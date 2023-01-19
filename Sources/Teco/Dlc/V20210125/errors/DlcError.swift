@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Dlc`.
-public protocol TCDlcErrorType: TCPlatformErrorType {
+public protocol TCDlcErrorType: TCServiceErrorType {
     /// Get the service error as ``TCDlcError``.
     ///
     /// - Returns: ``TCDlcError`` that holds the same error code and context.

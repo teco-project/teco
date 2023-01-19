@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Iotcloud`.
-public protocol TCIotcloudErrorType: TCPlatformErrorType {
+public protocol TCIotcloudErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIotcloudError``.
     ///
     /// - Returns: ``TCIotcloudError`` that holds the same error code and context.

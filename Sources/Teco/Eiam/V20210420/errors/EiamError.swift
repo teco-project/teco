@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Eiam`.
-public protocol TCEiamErrorType: TCPlatformErrorType {
+public protocol TCEiamErrorType: TCServiceErrorType {
     /// Get the service error as ``TCEiamError``.
     ///
     /// - Returns: ``TCEiamError`` that holds the same error code and context.

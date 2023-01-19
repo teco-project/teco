@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Waf`.
-public protocol TCWafErrorType: TCPlatformErrorType {
+public protocol TCWafErrorType: TCServiceErrorType {
     /// Get the service error as ``TCWafError``.
     ///
     /// - Returns: ``TCWafError`` that holds the same error code and context.

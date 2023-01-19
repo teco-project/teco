@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Batch`.
-public protocol TCBatchErrorType: TCPlatformErrorType {
+public protocol TCBatchErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBatchError``.
     ///
     /// - Returns: ``TCBatchError`` that holds the same error code and context.

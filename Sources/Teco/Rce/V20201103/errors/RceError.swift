@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Rce`.
-public protocol TCRceErrorType: TCPlatformErrorType {
+public protocol TCRceErrorType: TCServiceErrorType {
     /// Get the service error as ``TCRceError``.
     ///
     /// - Returns: ``TCRceError`` that holds the same error code and context.

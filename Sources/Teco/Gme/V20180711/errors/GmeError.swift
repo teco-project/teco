@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Gme`.
-public protocol TCGmeErrorType: TCPlatformErrorType {
+public protocol TCGmeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCGmeError``.
     ///
     /// - Returns: ``TCGmeError`` that holds the same error code and context.

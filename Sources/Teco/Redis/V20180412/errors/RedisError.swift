@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Redis`.
-public protocol TCRedisErrorType: TCPlatformErrorType {
+public protocol TCRedisErrorType: TCServiceErrorType {
     /// Get the service error as ``TCRedisError``.
     ///
     /// - Returns: ``TCRedisError`` that holds the same error code and context.

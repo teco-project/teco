@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Sts`.
-public protocol TCStsErrorType: TCPlatformErrorType {
+public protocol TCStsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCStsError``.
     ///
     /// - Returns: ``TCStsError`` that holds the same error code and context.

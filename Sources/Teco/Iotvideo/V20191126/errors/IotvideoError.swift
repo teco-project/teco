@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Iotvideo`.
-public protocol TCIotvideoErrorType: TCPlatformErrorType {
+public protocol TCIotvideoErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIotvideoError``.
     ///
     /// - Returns: ``TCIotvideoError`` that holds the same error code and context.

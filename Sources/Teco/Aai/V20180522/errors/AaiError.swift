@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Aai`.
-public protocol TCAaiErrorType: TCPlatformErrorType {
+public protocol TCAaiErrorType: TCServiceErrorType {
     /// Get the service error as ``TCAaiError``.
     ///
     /// - Returns: ``TCAaiError`` that holds the same error code and context.

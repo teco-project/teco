@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Irp`.
-public protocol TCIrpErrorType: TCPlatformErrorType {
+public protocol TCIrpErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIrpError``.
     ///
     /// - Returns: ``TCIrpError`` that holds the same error code and context.

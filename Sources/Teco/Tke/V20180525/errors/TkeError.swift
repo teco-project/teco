@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tke`.
-public protocol TCTkeErrorType: TCPlatformErrorType {
+public protocol TCTkeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTkeError``.
     ///
     /// - Returns: ``TCTkeError`` that holds the same error code and context.

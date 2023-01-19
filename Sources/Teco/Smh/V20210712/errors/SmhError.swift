@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Smh`.
-public protocol TCSmhErrorType: TCPlatformErrorType {
+public protocol TCSmhErrorType: TCServiceErrorType {
     /// Get the service error as ``TCSmhError``.
     ///
     /// - Returns: ``TCSmhError`` that holds the same error code and context.

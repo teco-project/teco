@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cloudhsm`.
-public protocol TCCloudhsmErrorType: TCPlatformErrorType {
+public protocol TCCloudhsmErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCloudhsmError``.
     ///
     /// - Returns: ``TCCloudhsmError`` that holds the same error code and context.

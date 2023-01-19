@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tione`.
-public protocol TCTioneErrorType: TCPlatformErrorType {
+public protocol TCTioneErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTioneError``.
     ///
     /// - Returns: ``TCTioneError`` that holds the same error code and context.

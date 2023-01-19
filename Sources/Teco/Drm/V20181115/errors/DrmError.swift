@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Drm`.
-public protocol TCDrmErrorType: TCPlatformErrorType {
+public protocol TCDrmErrorType: TCServiceErrorType {
     /// Get the service error as ``TCDrmError``.
     ///
     /// - Returns: ``TCDrmError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ssl`.
-public protocol TCSslErrorType: TCPlatformErrorType {
+public protocol TCSslErrorType: TCServiceErrorType {
     /// Get the service error as ``TCSslError``.
     ///
     /// - Returns: ``TCSslError`` that holds the same error code and context.

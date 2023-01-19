@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Car`.
-public protocol TCCarErrorType: TCPlatformErrorType {
+public protocol TCCarErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCarError``.
     ///
     /// - Returns: ``TCCarError`` that holds the same error code and context.

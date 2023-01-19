@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Dnspod`.
-public protocol TCDnspodErrorType: TCPlatformErrorType {
+public protocol TCDnspodErrorType: TCServiceErrorType {
     /// Get the service error as ``TCDnspodError``.
     ///
     /// - Returns: ``TCDnspodError`` that holds the same error code and context.

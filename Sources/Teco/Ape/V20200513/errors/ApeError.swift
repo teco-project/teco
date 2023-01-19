@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ape`.
-public protocol TCApeErrorType: TCPlatformErrorType {
+public protocol TCApeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCApeError``.
     ///
     /// - Returns: ``TCApeError`` that holds the same error code and context.

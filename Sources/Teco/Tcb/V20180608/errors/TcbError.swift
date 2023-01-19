@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tcb`.
-public protocol TCTcbErrorType: TCPlatformErrorType {
+public protocol TCTcbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTcbError``.
     ///
     /// - Returns: ``TCTcbError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bmeip`.
-public protocol TCBmeipErrorType: TCPlatformErrorType {
+public protocol TCBmeipErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBmeipError``.
     ///
     /// - Returns: ``TCBmeipError`` that holds the same error code and context.

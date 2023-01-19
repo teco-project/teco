@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Sms`.
-public protocol TCSmsErrorType: TCPlatformErrorType {
+public protocol TCSmsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCSmsError``.
     ///
     /// - Returns: ``TCSmsError`` that holds the same error code and context.

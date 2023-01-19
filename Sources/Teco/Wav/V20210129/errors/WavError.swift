@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Wav`.
-public protocol TCWavErrorType: TCPlatformErrorType {
+public protocol TCWavErrorType: TCServiceErrorType {
     /// Get the service error as ``TCWavError``.
     ///
     /// - Returns: ``TCWavError`` that holds the same error code and context.

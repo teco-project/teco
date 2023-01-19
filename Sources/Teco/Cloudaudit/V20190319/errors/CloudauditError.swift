@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cloudaudit`.
-public protocol TCCloudauditErrorType: TCPlatformErrorType {
+public protocol TCCloudauditErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCloudauditError``.
     ///
     /// - Returns: ``TCCloudauditError`` that holds the same error code and context.

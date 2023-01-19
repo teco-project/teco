@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `As`.
-public protocol TCAsErrorType: TCPlatformErrorType {
+public protocol TCAsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCAsError``.
     ///
     /// - Returns: ``TCAsError`` that holds the same error code and context.

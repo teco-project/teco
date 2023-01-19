@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Trp`.
-public protocol TCTrpErrorType: TCPlatformErrorType {
+public protocol TCTrpErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTrpError``.
     ///
     /// - Returns: ``TCTrpError`` that holds the same error code and context.

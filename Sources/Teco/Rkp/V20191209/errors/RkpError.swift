@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Rkp`.
-public protocol TCRkpErrorType: TCPlatformErrorType {
+public protocol TCRkpErrorType: TCServiceErrorType {
     /// Get the service error as ``TCRkpError``.
     ///
     /// - Returns: ``TCRkpError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Taf`.
-public protocol TCTafErrorType: TCPlatformErrorType {
+public protocol TCTafErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTafError``.
     ///
     /// - Returns: ``TCTafError`` that holds the same error code and context.

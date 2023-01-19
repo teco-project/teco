@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Sslpod`.
-public protocol TCSslpodErrorType: TCPlatformErrorType {
+public protocol TCSslpodErrorType: TCServiceErrorType {
     /// Get the service error as ``TCSslpodError``.
     ///
     /// - Returns: ``TCSslpodError`` that holds the same error code and context.

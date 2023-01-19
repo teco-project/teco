@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Emr`.
-public protocol TCEmrErrorType: TCPlatformErrorType {
+public protocol TCEmrErrorType: TCServiceErrorType {
     /// Get the service error as ``TCEmrError``.
     ///
     /// - Returns: ``TCEmrError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Apigateway`.
-public protocol TCApigatewayErrorType: TCPlatformErrorType {
+public protocol TCApigatewayErrorType: TCServiceErrorType {
     /// Get the service error as ``TCApigatewayError``.
     ///
     /// - Returns: ``TCApigatewayError`` that holds the same error code and context.

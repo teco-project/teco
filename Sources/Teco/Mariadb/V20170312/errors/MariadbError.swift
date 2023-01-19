@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Mariadb`.
-public protocol TCMariadbErrorType: TCPlatformErrorType {
+public protocol TCMariadbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMariadbError``.
     ///
     /// - Returns: ``TCMariadbError`` that holds the same error code and context.

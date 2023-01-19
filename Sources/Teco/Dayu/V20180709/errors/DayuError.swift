@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Dayu`.
-public protocol TCDayuErrorType: TCPlatformErrorType {
+public protocol TCDayuErrorType: TCServiceErrorType {
     /// Get the service error as ``TCDayuError``.
     ///
     /// - Returns: ``TCDayuError`` that holds the same error code and context.

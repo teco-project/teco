@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ciam`.
-public protocol TCCiamErrorType: TCPlatformErrorType {
+public protocol TCCiamErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCiamError``.
     ///
     /// - Returns: ``TCCiamError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Rum`.
-public protocol TCRumErrorType: TCPlatformErrorType {
+public protocol TCRumErrorType: TCServiceErrorType {
     /// Get the service error as ``TCRumError``.
     ///
     /// - Returns: ``TCRumError`` that holds the same error code and context.

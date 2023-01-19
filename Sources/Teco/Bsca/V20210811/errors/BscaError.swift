@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bsca`.
-public protocol TCBscaErrorType: TCPlatformErrorType {
+public protocol TCBscaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBscaError``.
     ///
     /// - Returns: ``TCBscaError`` that holds the same error code and context.

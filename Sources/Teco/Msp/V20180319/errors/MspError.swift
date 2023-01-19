@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Msp`.
-public protocol TCMspErrorType: TCPlatformErrorType {
+public protocol TCMspErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMspError``.
     ///
     /// - Returns: ``TCMspError`` that holds the same error code and context.

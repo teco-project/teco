@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Lcic`.
-public protocol TCLcicErrorType: TCPlatformErrorType {
+public protocol TCLcicErrorType: TCServiceErrorType {
     /// Get the service error as ``TCLcicError``.
     ///
     /// - Returns: ``TCLcicError`` that holds the same error code and context.

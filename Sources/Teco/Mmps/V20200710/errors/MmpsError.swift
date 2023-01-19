@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Mmps`.
-public protocol TCMmpsErrorType: TCPlatformErrorType {
+public protocol TCMmpsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMmpsError``.
     ///
     /// - Returns: ``TCMmpsError`` that holds the same error code and context.

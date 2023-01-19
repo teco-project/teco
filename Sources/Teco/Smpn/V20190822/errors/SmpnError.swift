@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Smpn`.
-public protocol TCSmpnErrorType: TCPlatformErrorType {
+public protocol TCSmpnErrorType: TCServiceErrorType {
     /// Get the service error as ``TCSmpnError``.
     ///
     /// - Returns: ``TCSmpnError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Iottid`.
-public protocol TCIottidErrorType: TCPlatformErrorType {
+public protocol TCIottidErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIottidError``.
     ///
     /// - Returns: ``TCIottidError`` that holds the same error code and context.

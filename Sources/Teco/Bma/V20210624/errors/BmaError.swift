@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bma`.
-public protocol TCBmaErrorType: TCPlatformErrorType {
+public protocol TCBmaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBmaError``.
     ///
     /// - Returns: ``TCBmaError`` that holds the same error code and context.

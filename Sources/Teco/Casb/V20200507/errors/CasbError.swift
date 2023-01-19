@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Casb`.
-public protocol TCCasbErrorType: TCPlatformErrorType {
+public protocol TCCasbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCasbError``.
     ///
     /// - Returns: ``TCCasbError`` that holds the same error code and context.

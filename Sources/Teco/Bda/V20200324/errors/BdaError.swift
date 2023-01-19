@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bda`.
-public protocol TCBdaErrorType: TCPlatformErrorType {
+public protocol TCBdaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBdaError``.
     ///
     /// - Returns: ``TCBdaError`` that holds the same error code and context.

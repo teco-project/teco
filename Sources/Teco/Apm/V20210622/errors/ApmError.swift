@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Apm`.
-public protocol TCApmErrorType: TCPlatformErrorType {
+public protocol TCApmErrorType: TCServiceErrorType {
     /// Get the service error as ``TCApmError``.
     ///
     /// - Returns: ``TCApmError`` that holds the same error code and context.

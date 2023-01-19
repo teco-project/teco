@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Thpc`.
-public protocol TCThpcErrorType: TCPlatformErrorType {
+public protocol TCThpcErrorType: TCServiceErrorType {
     /// Get the service error as ``TCThpcError``.
     ///
     /// - Returns: ``TCThpcError`` that holds the same error code and context.

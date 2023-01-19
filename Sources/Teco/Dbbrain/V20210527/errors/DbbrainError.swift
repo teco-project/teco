@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Dbbrain`.
-public protocol TCDbbrainErrorType: TCPlatformErrorType {
+public protocol TCDbbrainErrorType: TCServiceErrorType {
     /// Get the service error as ``TCDbbrainError``.
     ///
     /// - Returns: ``TCDbbrainError`` that holds the same error code and context.

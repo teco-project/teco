@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Gaap`.
-public protocol TCGaapErrorType: TCPlatformErrorType {
+public protocol TCGaapErrorType: TCServiceErrorType {
     /// Get the service error as ``TCGaapError``.
     ///
     /// - Returns: ``TCGaapError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Yunsou`.
-public protocol TCYunsouErrorType: TCPlatformErrorType {
+public protocol TCYunsouErrorType: TCServiceErrorType {
     /// Get the service error as ``TCYunsouError``.
     ///
     /// - Returns: ``TCYunsouError`` that holds the same error code and context.

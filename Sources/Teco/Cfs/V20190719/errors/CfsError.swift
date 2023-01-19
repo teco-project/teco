@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cfs`.
-public protocol TCCfsErrorType: TCPlatformErrorType {
+public protocol TCCfsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCfsError``.
     ///
     /// - Returns: ``TCCfsError`` that holds the same error code and context.

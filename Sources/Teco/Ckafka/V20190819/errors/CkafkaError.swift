@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ckafka`.
-public protocol TCCkafkaErrorType: TCPlatformErrorType {
+public protocol TCCkafkaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCkafkaError``.
     ///
     /// - Returns: ``TCCkafkaError`` that holds the same error code and context.

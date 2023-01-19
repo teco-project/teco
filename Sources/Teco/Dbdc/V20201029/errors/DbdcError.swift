@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Dbdc`.
-public protocol TCDbdcErrorType: TCPlatformErrorType {
+public protocol TCDbdcErrorType: TCServiceErrorType {
     /// Get the service error as ``TCDbdcError``.
     ///
     /// - Returns: ``TCDbdcError`` that holds the same error code and context.

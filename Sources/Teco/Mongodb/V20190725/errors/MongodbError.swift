@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Mongodb`.
-public protocol TCMongodbErrorType: TCPlatformErrorType {
+public protocol TCMongodbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMongodbError``.
     ///
     /// - Returns: ``TCMongodbError`` that holds the same error code and context.

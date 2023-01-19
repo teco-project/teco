@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Organization`.
-public protocol TCOrganizationErrorType: TCPlatformErrorType {
+public protocol TCOrganizationErrorType: TCServiceErrorType {
     /// Get the service error as ``TCOrganizationError``.
     ///
     /// - Returns: ``TCOrganizationError`` that holds the same error code and context.

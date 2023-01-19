@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Yinsuda`.
-public protocol TCYinsudaErrorType: TCPlatformErrorType {
+public protocol TCYinsudaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCYinsudaError``.
     ///
     /// - Returns: ``TCYinsudaError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cwp`.
-public protocol TCCwpErrorType: TCPlatformErrorType {
+public protocol TCCwpErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCwpError``.
     ///
     /// - Returns: ``TCCwpError`` that holds the same error code and context.

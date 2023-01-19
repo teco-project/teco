@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Vpc`.
-public protocol TCVpcErrorType: TCPlatformErrorType {
+public protocol TCVpcErrorType: TCServiceErrorType {
     /// Get the service error as ``TCVpcError``.
     ///
     /// - Returns: ``TCVpcError`` that holds the same error code and context.

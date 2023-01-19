@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Facefusion`.
-public protocol TCFacefusionErrorType: TCPlatformErrorType {
+public protocol TCFacefusionErrorType: TCServiceErrorType {
     /// Get the service error as ``TCFacefusionError``.
     ///
     /// - Returns: ``TCFacefusionError`` that holds the same error code and context.

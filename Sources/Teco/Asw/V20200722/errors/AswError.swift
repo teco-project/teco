@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Asw`.
-public protocol TCAswErrorType: TCPlatformErrorType {
+public protocol TCAswErrorType: TCServiceErrorType {
     /// Get the service error as ``TCAswError``.
     ///
     /// - Returns: ``TCAswError`` that holds the same error code and context.

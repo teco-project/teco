@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ams`.
-public protocol TCAmsErrorType: TCPlatformErrorType {
+public protocol TCAmsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCAmsError``.
     ///
     /// - Returns: ``TCAmsError`` that holds the same error code and context.

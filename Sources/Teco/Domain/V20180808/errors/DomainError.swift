@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Domain`.
-public protocol TCDomainErrorType: TCPlatformErrorType {
+public protocol TCDomainErrorType: TCServiceErrorType {
     /// Get the service error as ``TCDomainError``.
     ///
     /// - Returns: ``TCDomainError`` that holds the same error code and context.

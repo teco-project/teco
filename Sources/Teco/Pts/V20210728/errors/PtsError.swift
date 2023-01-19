@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Pts`.
-public protocol TCPtsErrorType: TCPlatformErrorType {
+public protocol TCPtsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCPtsError``.
     ///
     /// - Returns: ``TCPtsError`` that holds the same error code and context.

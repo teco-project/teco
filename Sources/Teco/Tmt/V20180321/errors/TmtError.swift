@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tmt`.
-public protocol TCTmtErrorType: TCPlatformErrorType {
+public protocol TCTmtErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTmtError``.
     ///
     /// - Returns: ``TCTmtError`` that holds the same error code and context.

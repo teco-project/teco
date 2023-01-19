@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Essbasic`.
-public protocol TCEssbasicErrorType: TCPlatformErrorType {
+public protocol TCEssbasicErrorType: TCServiceErrorType {
     /// Get the service error as ``TCEssbasicError``.
     ///
     /// - Returns: ``TCEssbasicError`` that holds the same error code and context.

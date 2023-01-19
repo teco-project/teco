@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cynosdb`.
-public protocol TCCynosdbErrorType: TCPlatformErrorType {
+public protocol TCCynosdbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCynosdbError``.
     ///
     /// - Returns: ``TCCynosdbError`` that holds the same error code and context.

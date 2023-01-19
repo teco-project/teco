@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Eis`.
-public protocol TCEisErrorType: TCPlatformErrorType {
+public protocol TCEisErrorType: TCServiceErrorType {
     /// Get the service error as ``TCEisError``.
     ///
     /// - Returns: ``TCEisError`` that holds the same error code and context.

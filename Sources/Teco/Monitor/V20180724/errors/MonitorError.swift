@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Monitor`.
-public protocol TCMonitorErrorType: TCPlatformErrorType {
+public protocol TCMonitorErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMonitorError``.
     ///
     /// - Returns: ``TCMonitorError`` that holds the same error code and context.

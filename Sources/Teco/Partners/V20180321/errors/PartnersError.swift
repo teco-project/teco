@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Partners`.
-public protocol TCPartnersErrorType: TCPlatformErrorType {
+public protocol TCPartnersErrorType: TCServiceErrorType {
     /// Get the service error as ``TCPartnersError``.
     ///
     /// - Returns: ``TCPartnersError`` that holds the same error code and context.

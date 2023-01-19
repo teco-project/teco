@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tsf`.
-public protocol TCTsfErrorType: TCPlatformErrorType {
+public protocol TCTsfErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTsfError``.
     ///
     /// - Returns: ``TCTsfError`` that holds the same error code and context.

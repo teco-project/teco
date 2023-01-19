@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cdc`.
-public protocol TCCdcErrorType: TCPlatformErrorType {
+public protocol TCCdcErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCdcError``.
     ///
     /// - Returns: ``TCCdcError`` that holds the same error code and context.

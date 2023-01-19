@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Dasb`.
-public protocol TCDasbErrorType: TCPlatformErrorType {
+public protocol TCDasbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCDasbError``.
     ///
     /// - Returns: ``TCDasbError`` that holds the same error code and context.

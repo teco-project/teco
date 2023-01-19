@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tiia`.
-public protocol TCTiiaErrorType: TCPlatformErrorType {
+public protocol TCTiiaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTiiaError``.
     ///
     /// - Returns: ``TCTiiaError`` that holds the same error code and context.

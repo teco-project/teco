@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Acp`.
-public protocol TCAcpErrorType: TCPlatformErrorType {
+public protocol TCAcpErrorType: TCServiceErrorType {
     /// Get the service error as ``TCAcpError``.
     ///
     /// - Returns: ``TCAcpError`` that holds the same error code and context.

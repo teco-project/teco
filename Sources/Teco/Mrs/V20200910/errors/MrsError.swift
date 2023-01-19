@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Mrs`.
-public protocol TCMrsErrorType: TCPlatformErrorType {
+public protocol TCMrsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMrsError``.
     ///
     /// - Returns: ``TCMrsError`` that holds the same error code and context.

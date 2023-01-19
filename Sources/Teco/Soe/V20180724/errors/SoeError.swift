@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Soe`.
-public protocol TCSoeErrorType: TCPlatformErrorType {
+public protocol TCSoeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCSoeError``.
     ///
     /// - Returns: ``TCSoeError`` that holds the same error code and context.

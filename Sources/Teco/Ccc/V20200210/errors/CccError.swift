@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ccc`.
-public protocol TCCccErrorType: TCPlatformErrorType {
+public protocol TCCccErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCccError``.
     ///
     /// - Returns: ``TCCccError`` that holds the same error code and context.

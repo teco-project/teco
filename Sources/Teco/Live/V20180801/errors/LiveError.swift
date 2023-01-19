@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Live`.
-public protocol TCLiveErrorType: TCPlatformErrorType {
+public protocol TCLiveErrorType: TCServiceErrorType {
     /// Get the service error as ``TCLiveError``.
     ///
     /// - Returns: ``TCLiveError`` that holds the same error code and context.

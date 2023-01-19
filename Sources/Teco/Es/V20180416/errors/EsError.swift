@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Es`.
-public protocol TCEsErrorType: TCPlatformErrorType {
+public protocol TCEsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCEsError``.
     ///
     /// - Returns: ``TCEsError`` that holds the same error code and context.

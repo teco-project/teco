@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Iotexplorer`.
-public protocol TCIotexplorerErrorType: TCPlatformErrorType {
+public protocol TCIotexplorerErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIotexplorerError``.
     ///
     /// - Returns: ``TCIotexplorerError`` that holds the same error code and context.

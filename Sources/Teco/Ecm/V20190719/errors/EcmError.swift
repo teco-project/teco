@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ecm`.
-public protocol TCEcmErrorType: TCPlatformErrorType {
+public protocol TCEcmErrorType: TCServiceErrorType {
     /// Get the service error as ``TCEcmError``.
     ///
     /// - Returns: ``TCEcmError`` that holds the same error code and context.

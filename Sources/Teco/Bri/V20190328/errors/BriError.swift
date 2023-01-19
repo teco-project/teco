@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bri`.
-public protocol TCBriErrorType: TCPlatformErrorType {
+public protocol TCBriErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBriError``.
     ///
     /// - Returns: ``TCBriError`` that holds the same error code and context.

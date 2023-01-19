@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Api`.
-public protocol TCApiErrorType: TCPlatformErrorType {
+public protocol TCApiErrorType: TCServiceErrorType {
     /// Get the service error as ``TCApiError``.
     ///
     /// - Returns: ``TCApiError`` that holds the same error code and context.

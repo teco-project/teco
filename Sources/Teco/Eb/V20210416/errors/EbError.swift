@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Eb`.
-public protocol TCEbErrorType: TCPlatformErrorType {
+public protocol TCEbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCEbError``.
     ///
     /// - Returns: ``TCEbError`` that holds the same error code and context.

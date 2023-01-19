@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Kms`.
-public protocol TCKmsErrorType: TCPlatformErrorType {
+public protocol TCKmsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCKmsError``.
     ///
     /// - Returns: ``TCKmsError`` that holds the same error code and context.

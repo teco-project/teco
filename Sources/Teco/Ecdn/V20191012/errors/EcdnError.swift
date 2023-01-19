@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ecdn`.
-public protocol TCEcdnErrorType: TCPlatformErrorType {
+public protocol TCEcdnErrorType: TCServiceErrorType {
     /// Get the service error as ``TCEcdnError``.
     ///
     /// - Returns: ``TCEcdnError`` that holds the same error code and context.

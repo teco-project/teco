@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ie`.
-public protocol TCIeErrorType: TCPlatformErrorType {
+public protocol TCIeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIeError``.
     ///
     /// - Returns: ``TCIeError`` that holds the same error code and context.

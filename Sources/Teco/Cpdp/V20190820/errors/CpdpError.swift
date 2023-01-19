@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cpdp`.
-public protocol TCCpdpErrorType: TCPlatformErrorType {
+public protocol TCCpdpErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCpdpError``.
     ///
     /// - Returns: ``TCCpdpError`` that holds the same error code and context.

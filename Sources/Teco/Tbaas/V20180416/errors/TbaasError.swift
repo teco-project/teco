@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tbaas`.
-public protocol TCTbaasErrorType: TCPlatformErrorType {
+public protocol TCTbaasErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTbaasError``.
     ///
     /// - Returns: ``TCTbaasError`` that holds the same error code and context.

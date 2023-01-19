@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tem`.
-public protocol TCTemErrorType: TCPlatformErrorType {
+public protocol TCTemErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTemError``.
     ///
     /// - Returns: ``TCTemError`` that holds the same error code and context.

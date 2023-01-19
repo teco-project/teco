@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Oceanus`.
-public protocol TCOceanusErrorType: TCPlatformErrorType {
+public protocol TCOceanusErrorType: TCServiceErrorType {
     /// Get the service error as ``TCOceanusError``.
     ///
     /// - Returns: ``TCOceanusError`` that holds the same error code and context.

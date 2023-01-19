@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Lighthouse`.
-public protocol TCLighthouseErrorType: TCPlatformErrorType {
+public protocol TCLighthouseErrorType: TCServiceErrorType {
     /// Get the service error as ``TCLighthouseError``.
     ///
     /// - Returns: ``TCLighthouseError`` that holds the same error code and context.

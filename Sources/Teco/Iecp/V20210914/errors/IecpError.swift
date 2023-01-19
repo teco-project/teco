@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Iecp`.
-public protocol TCIecpErrorType: TCPlatformErrorType {
+public protocol TCIecpErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIecpError``.
     ///
     /// - Returns: ``TCIecpError`` that holds the same error code and context.

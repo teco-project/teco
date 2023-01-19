@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tcr`.
-public protocol TCTcrErrorType: TCPlatformErrorType {
+public protocol TCTcrErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTcrError``.
     ///
     /// - Returns: ``TCTcrError`` that holds the same error code and context.

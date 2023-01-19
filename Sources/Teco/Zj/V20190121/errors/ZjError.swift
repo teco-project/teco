@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Zj`.
-public protocol TCZjErrorType: TCPlatformErrorType {
+public protocol TCZjErrorType: TCServiceErrorType {
     /// Get the service error as ``TCZjError``.
     ///
     /// - Returns: ``TCZjError`` that holds the same error code and context.

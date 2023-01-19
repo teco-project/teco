@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Lowcode`.
-public protocol TCLowcodeErrorType: TCPlatformErrorType {
+public protocol TCLowcodeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCLowcodeError``.
     ///
     /// - Returns: ``TCLowcodeError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Mps`.
-public protocol TCMpsErrorType: TCPlatformErrorType {
+public protocol TCMpsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMpsError``.
     ///
     /// - Returns: ``TCMpsError`` that holds the same error code and context.

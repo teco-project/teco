@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tag`.
-public protocol TCTagErrorType: TCPlatformErrorType {
+public protocol TCTagErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTagError``.
     ///
     /// - Returns: ``TCTagError`` that holds the same error code and context.

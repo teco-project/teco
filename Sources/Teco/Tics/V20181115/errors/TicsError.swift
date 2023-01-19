@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tics`.
-public protocol TCTicsErrorType: TCPlatformErrorType {
+public protocol TCTicsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTicsError``.
     ///
     /// - Returns: ``TCTicsError`` that holds the same error code and context.

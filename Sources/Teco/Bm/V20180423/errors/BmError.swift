@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bm`.
-public protocol TCBmErrorType: TCPlatformErrorType {
+public protocol TCBmErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBmError``.
     ///
     /// - Returns: ``TCBmError`` that holds the same error code and context.

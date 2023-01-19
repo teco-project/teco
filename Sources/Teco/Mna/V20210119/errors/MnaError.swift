@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Mna`.
-public protocol TCMnaErrorType: TCPlatformErrorType {
+public protocol TCMnaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMnaError``.
     ///
     /// - Returns: ``TCMnaError`` that holds the same error code and context.

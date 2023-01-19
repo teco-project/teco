@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Vms`.
-public protocol TCVmsErrorType: TCPlatformErrorType {
+public protocol TCVmsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCVmsError``.
     ///
     /// - Returns: ``TCVmsError`` that holds the same error code and context.

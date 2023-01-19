@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Teo`.
-public protocol TCTeoErrorType: TCPlatformErrorType {
+public protocol TCTeoErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTeoError``.
     ///
     /// - Returns: ``TCTeoError`` that holds the same error code and context.

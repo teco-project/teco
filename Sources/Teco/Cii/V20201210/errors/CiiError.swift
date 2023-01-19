@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cii`.
-public protocol TCCiiErrorType: TCPlatformErrorType {
+public protocol TCCiiErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCiiError``.
     ///
     /// - Returns: ``TCCiiError`` that holds the same error code and context.

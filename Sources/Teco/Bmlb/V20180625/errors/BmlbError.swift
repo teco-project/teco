@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bmlb`.
-public protocol TCBmlbErrorType: TCPlatformErrorType {
+public protocol TCBmlbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBmlbError``.
     ///
     /// - Returns: ``TCBmlbError`` that holds the same error code and context.

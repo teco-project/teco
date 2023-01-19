@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bizlive`.
-public protocol TCBizliveErrorType: TCPlatformErrorType {
+public protocol TCBizliveErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBizliveError``.
     ///
     /// - Returns: ``TCBizliveError`` that holds the same error code and context.

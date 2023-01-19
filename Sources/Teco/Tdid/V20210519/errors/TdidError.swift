@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tdid`.
-public protocol TCTdidErrorType: TCPlatformErrorType {
+public protocol TCTdidErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTdidError``.
     ///
     /// - Returns: ``TCTdidError`` that holds the same error code and context.

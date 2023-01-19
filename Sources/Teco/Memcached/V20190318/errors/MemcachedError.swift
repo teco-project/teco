@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Memcached`.
-public protocol TCMemcachedErrorType: TCPlatformErrorType {
+public protocol TCMemcachedErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMemcachedError``.
     ///
     /// - Returns: ``TCMemcachedError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cbs`.
-public protocol TCCbsErrorType: TCPlatformErrorType {
+public protocol TCCbsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCbsError``.
     ///
     /// - Returns: ``TCCbsError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cdb`.
-public protocol TCCdbErrorType: TCPlatformErrorType {
+public protocol TCCdbErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCdbError``.
     ///
     /// - Returns: ``TCCdbError`` that holds the same error code and context.

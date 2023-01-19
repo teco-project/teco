@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bi`.
-public protocol TCBiErrorType: TCPlatformErrorType {
+public protocol TCBiErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBiError``.
     ///
     /// - Returns: ``TCBiError`` that holds the same error code and context.

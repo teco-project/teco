@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Fmu`.
-public protocol TCFmuErrorType: TCPlatformErrorType {
+public protocol TCFmuErrorType: TCServiceErrorType {
     /// Get the service error as ``TCFmuError``.
     ///
     /// - Returns: ``TCFmuError`` that holds the same error code and context.

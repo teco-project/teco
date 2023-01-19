@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ic`.
-public protocol TCIcErrorType: TCPlatformErrorType {
+public protocol TCIcErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIcError``.
     ///
     /// - Returns: ``TCIcError`` that holds the same error code and context.

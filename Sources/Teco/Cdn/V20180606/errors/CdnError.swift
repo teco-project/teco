@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cdn`.
-public protocol TCCdnErrorType: TCPlatformErrorType {
+public protocol TCCdnErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCdnError``.
     ///
     /// - Returns: ``TCCdnError`` that holds the same error code and context.

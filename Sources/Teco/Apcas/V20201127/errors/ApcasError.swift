@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Apcas`.
-public protocol TCApcasErrorType: TCPlatformErrorType {
+public protocol TCApcasErrorType: TCServiceErrorType {
     /// Get the service error as ``TCApcasError``.
     ///
     /// - Returns: ``TCApcasError`` that holds the same error code and context.

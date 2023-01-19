@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Sqlserver`.
-public protocol TCSqlserverErrorType: TCPlatformErrorType {
+public protocol TCSqlserverErrorType: TCServiceErrorType {
     /// Get the service error as ``TCSqlserverError``.
     ///
     /// - Returns: ``TCSqlserverError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ba`.
-public protocol TCBaErrorType: TCPlatformErrorType {
+public protocol TCBaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBaError``.
     ///
     /// - Returns: ``TCBaError`` that holds the same error code and context.

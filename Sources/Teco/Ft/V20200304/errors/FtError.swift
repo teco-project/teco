@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ft`.
-public protocol TCFtErrorType: TCPlatformErrorType {
+public protocol TCFtErrorType: TCServiceErrorType {
     /// Get the service error as ``TCFtError``.
     ///
     /// - Returns: ``TCFtError`` that holds the same error code and context.

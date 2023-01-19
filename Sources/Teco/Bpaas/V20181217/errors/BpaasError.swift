@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Bpaas`.
-public protocol TCBpaasErrorType: TCPlatformErrorType {
+public protocol TCBpaasErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBpaasError``.
     ///
     /// - Returns: ``TCBpaasError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Btoe`.
-public protocol TCBtoeErrorType: TCPlatformErrorType {
+public protocol TCBtoeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCBtoeError``.
     ///
     /// - Returns: ``TCBtoeError`` that holds the same error code and context.

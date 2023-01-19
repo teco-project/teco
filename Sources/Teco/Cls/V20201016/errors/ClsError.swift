@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cls`.
-public protocol TCClsErrorType: TCPlatformErrorType {
+public protocol TCClsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCClsError``.
     ///
     /// - Returns: ``TCClsError`` that holds the same error code and context.

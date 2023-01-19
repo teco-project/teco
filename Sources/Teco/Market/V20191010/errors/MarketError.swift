@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Market`.
-public protocol TCMarketErrorType: TCPlatformErrorType {
+public protocol TCMarketErrorType: TCServiceErrorType {
     /// Get the service error as ``TCMarketError``.
     ///
     /// - Returns: ``TCMarketError`` that holds the same error code and context.

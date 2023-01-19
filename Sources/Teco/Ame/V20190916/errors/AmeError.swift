@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ame`.
-public protocol TCAmeErrorType: TCPlatformErrorType {
+public protocol TCAmeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCAmeError``.
     ///
     /// - Returns: ``TCAmeError`` that holds the same error code and context.

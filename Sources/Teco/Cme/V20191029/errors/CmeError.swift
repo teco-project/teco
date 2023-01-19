@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cme`.
-public protocol TCCmeErrorType: TCPlatformErrorType {
+public protocol TCCmeErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCmeError``.
     ///
     /// - Returns: ``TCCmeError`` that holds the same error code and context.

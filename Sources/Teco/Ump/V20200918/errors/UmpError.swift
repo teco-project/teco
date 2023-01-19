@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ump`.
-public protocol TCUmpErrorType: TCPlatformErrorType {
+public protocol TCUmpErrorType: TCServiceErrorType {
     /// Get the service error as ``TCUmpError``.
     ///
     /// - Returns: ``TCUmpError`` that holds the same error code and context.

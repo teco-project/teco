@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tcss`.
-public protocol TCTcssErrorType: TCPlatformErrorType {
+public protocol TCTcssErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTcssError``.
     ///
     /// - Returns: ``TCTcssError`` that holds the same error code and context.

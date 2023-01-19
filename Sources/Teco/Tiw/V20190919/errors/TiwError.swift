@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tiw`.
-public protocol TCTiwErrorType: TCPlatformErrorType {
+public protocol TCTiwErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTiwError``.
     ///
     /// - Returns: ``TCTiwError`` that holds the same error code and context.

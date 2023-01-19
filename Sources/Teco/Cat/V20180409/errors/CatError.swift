@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cat`.
-public protocol TCCatErrorType: TCPlatformErrorType {
+public protocol TCCatErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCatError``.
     ///
     /// - Returns: ``TCCatError`` that holds the same error code and context.

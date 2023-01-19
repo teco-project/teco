@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Cam`.
-public protocol TCCamErrorType: TCPlatformErrorType {
+public protocol TCCamErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCamError``.
     ///
     /// - Returns: ``TCCamError`` that holds the same error code and context.

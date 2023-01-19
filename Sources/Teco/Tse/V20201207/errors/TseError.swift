@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tse`.
-public protocol TCTseErrorType: TCPlatformErrorType {
+public protocol TCTseErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTseError``.
     ///
     /// - Returns: ``TCTseError`` that holds the same error code and context.

@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Captcha`.
-public protocol TCCaptchaErrorType: TCPlatformErrorType {
+public protocol TCCaptchaErrorType: TCServiceErrorType {
     /// Get the service error as ``TCCaptchaError``.
     ///
     /// - Returns: ``TCCaptchaError`` that holds the same error code and context.

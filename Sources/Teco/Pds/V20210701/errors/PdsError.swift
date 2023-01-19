@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Pds`.
-public protocol TCPdsErrorType: TCPlatformErrorType {
+public protocol TCPdsErrorType: TCServiceErrorType {
     /// Get the service error as ``TCPdsError``.
     ///
     /// - Returns: ``TCPdsError`` that holds the same error code and context.

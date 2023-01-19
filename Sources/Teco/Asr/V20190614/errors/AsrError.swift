@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Asr`.
-public protocol TCAsrErrorType: TCPlatformErrorType {
+public protocol TCAsrErrorType: TCServiceErrorType {
     /// Get the service error as ``TCAsrError``.
     ///
     /// - Returns: ``TCAsrError`` that holds the same error code and context.

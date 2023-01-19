@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Ivld`.
-public protocol TCIvldErrorType: TCPlatformErrorType {
+public protocol TCIvldErrorType: TCServiceErrorType {
     /// Get the service error as ``TCIvldError``.
     ///
     /// - Returns: ``TCIvldError`` that holds the same error code and context.

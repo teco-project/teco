@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tat`.
-public protocol TCTatErrorType: TCPlatformErrorType {
+public protocol TCTatErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTatError``.
     ///
     /// - Returns: ``TCTatError`` that holds the same error code and context.

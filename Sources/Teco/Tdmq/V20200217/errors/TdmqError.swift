@@ -15,7 +15,7 @@
 // DO NOT EDIT.
 
 /// Service error type returned by `Tdmq`.
-public protocol TCTdmqErrorType: TCPlatformErrorType {
+public protocol TCTdmqErrorType: TCServiceErrorType {
     /// Get the service error as ``TCTdmqError``.
     ///
     /// - Returns: ``TCTdmqError`` that holds the same error code and context.
