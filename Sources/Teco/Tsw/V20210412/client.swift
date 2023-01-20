@@ -32,9 +32,9 @@ public struct Tsw: TCService {
     ///
     /// - Parameters:
     ///    - client: ``TCClient`` used to perform actions.
-    ///    - region: Default region of the service you want to operate on.
+    ///    - region: Default region of the service to operate on.
     ///    - language: Preferred language for API response.
-    ///    - endpoint: Custom endpoint URL for API request.
+    ///    - endpoint: Endpoint provider for API request.
     ///    - timeout: Timeout value for HTTP requests.
     public init(
         client: TCClient,
