@@ -3,7 +3,7 @@
 //
 // This source file is part of the Teco open source project
 //
-// Copyright (c) 2022 the Teco project authors
+// Copyright (c) 2022-2023 the Teco project authors
 // Licensed under Apache License v2.0
 //
 // See LICENSE.txt for license information
@@ -269,7 +269,7 @@ let package = Package(
         .library(name: "TecoZjV20190121", targets: ["TecoZjV20190121"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/teco-project/teco-core.git", .upToNextMinor(from: "0.4.0-alpha.10"))
+        .package(url: "https://github.com/teco-project/teco-core.git", .upToNextMinor(from: "0.4.0-alpha.11"))
     ],
     targets: [
         .target(name: "TecoAaV20200224", dependencies: [.product(name: "TecoCore", package: "teco-core")], path: "./Sources/Teco/Aa/V20200224"),
