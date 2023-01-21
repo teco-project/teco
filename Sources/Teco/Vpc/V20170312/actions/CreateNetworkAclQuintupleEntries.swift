@@ -47,7 +47,7 @@ extension Vpc {
     /// 增量添加网络ACL五元组规则接口
     ///
     /// 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
-    @inlinable
+    @inlinable @discardableResult
     public func createNetworkAclQuintupleEntries(_ input: CreateNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkAclQuintupleEntriesResponse> {
         self.client.execute(action: "CreateNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 增量添加网络ACL五元组规则接口
     ///
     /// 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
-    @inlinable
+    @inlinable @discardableResult
     public func createNetworkAclQuintupleEntries(_ input: CreateNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclQuintupleEntriesResponse {
         try await self.client.execute(action: "CreateNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 增量添加网络ACL五元组规则接口
     ///
     /// 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
-    @inlinable
+    @inlinable @discardableResult
     public func createNetworkAclQuintupleEntries(networkAclId: String, networkAclQuintupleSet: NetworkAclQuintupleEntries, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkAclQuintupleEntriesResponse> {
         self.createNetworkAclQuintupleEntries(CreateNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 增量添加网络ACL五元组规则接口
     ///
     /// 本接口（CreateNetworkAclQuintupleEntries）用于增量网络ACL五元组的入站规则和出站规则。
-    @inlinable
+    @inlinable @discardableResult
     public func createNetworkAclQuintupleEntries(networkAclId: String, networkAclQuintupleSet: NetworkAclQuintupleEntries, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkAclQuintupleEntriesResponse {
         try await self.createNetworkAclQuintupleEntries(CreateNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }

@@ -40,25 +40,25 @@ extension Dlc {
     }
 
     /// 删除spark应用
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSparkApp(_ input: DeleteSparkAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSparkAppResponse> {
         self.client.execute(action: "DeleteSparkApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除spark应用
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSparkApp(_ input: DeleteSparkAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSparkAppResponse {
         try await self.client.execute(action: "DeleteSparkApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除spark应用
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSparkApp(appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSparkAppResponse> {
         self.deleteSparkApp(DeleteSparkAppRequest(appName: appName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除spark应用
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSparkApp(appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSparkAppResponse {
         try await self.deleteSparkApp(DeleteSparkAppRequest(appName: appName), region: region, logger: logger, on: eventLoop)
     }

@@ -73,7 +73,7 @@ extension Casb {
     /// 不同Casbid,不同MetaDataId 下策略复制
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
-    @inlinable
+    @inlinable @discardableResult
     public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyCryptoColumnPolicyResponse> {
         self.client.execute(action: "CopyCryptoColumnPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -87,7 +87,7 @@ extension Casb {
     /// 不同Casbid,不同MetaDataId 下策略复制
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
-    @inlinable
+    @inlinable @discardableResult
     public func copyCryptoColumnPolicy(_ input: CopyCryptoColumnPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
         try await self.client.execute(action: "CopyCryptoColumnPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -101,7 +101,7 @@ extension Casb {
     /// 不同Casbid,不同MetaDataId 下策略复制
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
-    @inlinable
+    @inlinable @discardableResult
     public func copyCryptoColumnPolicy(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyCryptoColumnPolicyResponse> {
         self.copyCryptoColumnPolicy(CopyCryptoColumnPolicyRequest(casbId: casbId, metaDataId: metaDataId, dstCasbId: dstCasbId, dstMetaDataId: dstMetaDataId, srcTableFilter: srcTableFilter, dstDatabaseName: dstDatabaseName), region: region, logger: logger, on: eventLoop)
     }
@@ -115,7 +115,7 @@ extension Casb {
     /// 不同Casbid,不同MetaDataId 下策略复制
     /// 场景3:
     /// 相同CasbId,相同MetaDataId 且 DatabaseName不同 策略复制
-    @inlinable
+    @inlinable @discardableResult
     public func copyCryptoColumnPolicy(casbId: String, metaDataId: String, dstCasbId: String, dstMetaDataId: String, srcTableFilter: [CryptoCopyColumnPolicyTableFilter]? = nil, dstDatabaseName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyCryptoColumnPolicyResponse {
         try await self.copyCryptoColumnPolicy(CopyCryptoColumnPolicyRequest(casbId: casbId, metaDataId: metaDataId, dstCasbId: dstCasbId, dstMetaDataId: dstMetaDataId, srcTableFilter: srcTableFilter, dstDatabaseName: dstDatabaseName), region: region, logger: logger, on: eventLoop)
     }

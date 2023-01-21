@@ -88,7 +88,7 @@ extension Clb {
     ///
     /// ModifyDomainAttributes接口用于修改负载均衡7层监听器转发规则的域名级别属性，如修改域名、修改DefaultServer、开启/关闭Http2、修改证书。
     /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainAttributes(_ input: ModifyDomainAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainAttributesResponse> {
         self.client.execute(action: "ModifyDomainAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -97,7 +97,7 @@ extension Clb {
     ///
     /// ModifyDomainAttributes接口用于修改负载均衡7层监听器转发规则的域名级别属性，如修改域名、修改DefaultServer、开启/关闭Http2、修改证书。
     /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainAttributes(_ input: ModifyDomainAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainAttributesResponse {
         try await self.client.execute(action: "ModifyDomainAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -106,7 +106,7 @@ extension Clb {
     ///
     /// ModifyDomainAttributes接口用于修改负载均衡7层监听器转发规则的域名级别属性，如修改域名、修改DefaultServer、开启/关闭Http2、修改证书。
     /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainAttributes(loadBalancerId: String, listenerId: String, domain: String, newDomain: String? = nil, certificate: CertificateInput? = nil, http2: Bool? = nil, defaultServer: Bool? = nil, newDefaultServerDomain: String? = nil, newDomains: [String]? = nil, multiCertInfo: MultiCertInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainAttributesResponse> {
         self.modifyDomainAttributes(ModifyDomainAttributesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain, certificate: certificate, http2: http2, defaultServer: defaultServer, newDefaultServerDomain: newDefaultServerDomain, newDomains: newDomains, multiCertInfo: multiCertInfo), region: region, logger: logger, on: eventLoop)
     }
@@ -115,7 +115,7 @@ extension Clb {
     ///
     /// ModifyDomainAttributes接口用于修改负载均衡7层监听器转发规则的域名级别属性，如修改域名、修改DefaultServer、开启/关闭Http2、修改证书。
     /// 本接口为异步接口，本接口返回成功后，需以返回的RequestId为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainAttributes(loadBalancerId: String, listenerId: String, domain: String, newDomain: String? = nil, certificate: CertificateInput? = nil, http2: Bool? = nil, defaultServer: Bool? = nil, newDefaultServerDomain: String? = nil, newDomains: [String]? = nil, multiCertInfo: MultiCertInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainAttributesResponse {
         try await self.modifyDomainAttributes(ModifyDomainAttributesRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domain: domain, newDomain: newDomain, certificate: certificate, http2: http2, defaultServer: defaultServer, newDefaultServerDomain: newDefaultServerDomain, newDomains: newDomains, multiCertInfo: multiCertInfo), region: region, logger: logger, on: eventLoop)
     }

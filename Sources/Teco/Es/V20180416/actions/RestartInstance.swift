@@ -52,7 +52,7 @@ extension Es {
     /// 重启ES集群实例
     ///
     /// 重启ES集群实例(用于系统版本更新等操作)
-    @inlinable
+    @inlinable @discardableResult
     public func restartInstance(_ input: RestartInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
         self.client.execute(action: "RestartInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Es {
     /// 重启ES集群实例
     ///
     /// 重启ES集群实例(用于系统版本更新等操作)
-    @inlinable
+    @inlinable @discardableResult
     public func restartInstance(_ input: RestartInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
         try await self.client.execute(action: "RestartInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Es {
     /// 重启ES集群实例
     ///
     /// 重启ES集群实例(用于系统版本更新等操作)
-    @inlinable
+    @inlinable @discardableResult
     public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInstanceResponse> {
         self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Es {
     /// 重启ES集群实例
     ///
     /// 重启ES集群实例(用于系统版本更新等操作)
-    @inlinable
+    @inlinable @discardableResult
     public func restartInstance(instanceId: String, forceRestart: Bool? = nil, restartMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInstanceResponse {
         try await self.restartInstance(RestartInstanceRequest(instanceId: instanceId, forceRestart: forceRestart, restartMode: restartMode), region: region, logger: logger, on: eventLoop)
     }

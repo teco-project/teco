@@ -52,7 +52,7 @@ extension Cwp {
     /// 停止扫描任务
     ///
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScanTask(_ input: DeleteScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanTaskResponse> {
         self.client.execute(action: "DeleteScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cwp {
     /// 停止扫描任务
     ///
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScanTask(_ input: DeleteScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
         try await self.client.execute(action: "DeleteScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cwp {
     /// 停止扫描任务
     ///
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScanTaskResponse> {
         self.deleteScanTask(DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cwp {
     /// 停止扫描任务
     ///
     /// DeleteScanTask 该接口可以对指定类型的扫描任务进行停止扫描;
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScanTask(taskId: UInt64, moduleType: String, quuidList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScanTaskResponse {
         try await self.deleteScanTask(DeleteScanTaskRequest(taskId: taskId, moduleType: moduleType, quuidList: quuidList), region: region, logger: logger, on: eventLoop)
     }

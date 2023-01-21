@@ -40,25 +40,25 @@ extension Dlc {
     }
 
     /// 解绑用户上的用户组
-    @inlinable
+    @inlinable @discardableResult
     public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
         self.client.execute(action: "UnbindWorkGroupsFromUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑用户上的用户组
-    @inlinable
+    @inlinable @discardableResult
     public func unbindWorkGroupsFromUser(_ input: UnbindWorkGroupsFromUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
         try await self.client.execute(action: "UnbindWorkGroupsFromUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑用户上的用户组
-    @inlinable
+    @inlinable @discardableResult
     public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
         self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑用户上的用户组
-    @inlinable
+    @inlinable @discardableResult
     public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
         try await self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }

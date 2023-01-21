@@ -50,25 +50,25 @@ extension Cdb {
     }
 
     /// 修改置放群组的名称或者描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNameOrDescByDpId(_ input: ModifyNameOrDescByDpIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNameOrDescByDpIdResponse> {
         self.client.execute(action: "ModifyNameOrDescByDpId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改置放群组的名称或者描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNameOrDescByDpId(_ input: ModifyNameOrDescByDpIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNameOrDescByDpIdResponse {
         try await self.client.execute(action: "ModifyNameOrDescByDpId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改置放群组的名称或者描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNameOrDescByDpId(deployGroupId: String, deployGroupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNameOrDescByDpIdResponse> {
         self.modifyNameOrDescByDpId(ModifyNameOrDescByDpIdRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改置放群组的名称或者描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNameOrDescByDpId(deployGroupId: String, deployGroupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNameOrDescByDpIdResponse {
         try await self.modifyNameOrDescByDpId(ModifyNameOrDescByDpIdRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, description: description), region: region, logger: logger, on: eventLoop)
     }

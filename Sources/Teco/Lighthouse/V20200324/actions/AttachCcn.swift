@@ -42,7 +42,7 @@ extension Lighthouse {
     /// 关联云联网
     ///
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
-    @inlinable
+    @inlinable @discardableResult
     public func attachCcn(_ input: AttachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnResponse> {
         self.client.execute(action: "AttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Lighthouse {
     /// 关联云联网
     ///
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
-    @inlinable
+    @inlinable @discardableResult
     public func attachCcn(_ input: AttachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnResponse {
         try await self.client.execute(action: "AttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Lighthouse {
     /// 关联云联网
     ///
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
-    @inlinable
+    @inlinable @discardableResult
     public func attachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnResponse> {
         self.attachCcn(AttachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Lighthouse {
     /// 关联云联网
     ///
     /// 本接口 (AttachCcn) 用于建立与云联网的关联。
-    @inlinable
+    @inlinable @discardableResult
     public func attachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnResponse {
         try await self.attachCcn(AttachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }

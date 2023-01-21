@@ -42,7 +42,7 @@ extension Ses {
     /// 删除收件人黑名单
     ///
     /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBlackList(_ input: DeleteBlackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBlackListResponse> {
         self.client.execute(action: "DeleteBlackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ses {
     /// 删除收件人黑名单
     ///
     /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBlackList(_ input: DeleteBlackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlackListResponse {
         try await self.client.execute(action: "DeleteBlackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ses {
     /// 删除收件人黑名单
     ///
     /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBlackList(emailAddressList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBlackListResponse> {
         self.deleteBlackList(DeleteBlackListRequest(emailAddressList: emailAddressList), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ses {
     /// 删除收件人黑名单
     ///
     /// 邮箱被拉黑之后，用户如果确认收件邮箱有效或者已经处于激活状态，可以从腾讯云地址库中删除该黑名单之后继续投递。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBlackList(emailAddressList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlackListResponse {
         try await self.deleteBlackList(DeleteBlackListRequest(emailAddressList: emailAddressList), region: region, logger: logger, on: eventLoop)
     }

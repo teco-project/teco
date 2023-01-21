@@ -77,7 +77,7 @@ extension Mps {
     /// 修改内容识别模板
     ///
     /// 修改用户自定义内容识别模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIRecognitionTemplateResponse> {
         self.client.execute(action: "ModifyAIRecognitionTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Mps {
     /// 修改内容识别模板
     ///
     /// 修改用户自定义内容识别模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIRecognitionTemplate(_ input: ModifyAIRecognitionTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
         try await self.client.execute(action: "ModifyAIRecognitionTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -93,7 +93,7 @@ extension Mps {
     /// 修改内容识别模板
     ///
     /// 修改用户自定义内容识别模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIRecognitionTemplate(definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIRecognitionTemplateResponse> {
         self.modifyAIRecognitionTemplate(ModifyAIRecognitionTemplateRequest(definition: definition, name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), region: region, logger: logger, on: eventLoop)
     }
@@ -101,7 +101,7 @@ extension Mps {
     /// 修改内容识别模板
     ///
     /// 修改用户自定义内容识别模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIRecognitionTemplate(definition: Int64, name: String? = nil, comment: String? = nil, faceConfigure: FaceConfigureInfoForUpdate? = nil, ocrFullTextConfigure: OcrFullTextConfigureInfoForUpdate? = nil, ocrWordsConfigure: OcrWordsConfigureInfoForUpdate? = nil, asrFullTextConfigure: AsrFullTextConfigureInfoForUpdate? = nil, asrWordsConfigure: AsrWordsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIRecognitionTemplateResponse {
         try await self.modifyAIRecognitionTemplate(ModifyAIRecognitionTemplateRequest(definition: definition, name: name, comment: comment, faceConfigure: faceConfigure, ocrFullTextConfigure: ocrFullTextConfigure, ocrWordsConfigure: ocrWordsConfigure, asrFullTextConfigure: asrFullTextConfigure, asrWordsConfigure: asrWordsConfigure), region: region, logger: logger, on: eventLoop)
     }

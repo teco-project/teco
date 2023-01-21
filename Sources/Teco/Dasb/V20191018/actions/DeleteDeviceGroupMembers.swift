@@ -45,25 +45,25 @@ extension Dasb {
     }
 
     /// 删除资产组成员
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupMembersResponse> {
         self.client.execute(action: "DeleteDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除资产组成员
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceGroupMembers(_ input: DeleteDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {
         try await self.client.execute(action: "DeleteDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除资产组成员
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupMembersResponse> {
         self.deleteDeviceGroupMembers(DeleteDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资产组成员
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupMembersResponse {
         try await self.deleteDeviceGroupMembers(DeleteDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }

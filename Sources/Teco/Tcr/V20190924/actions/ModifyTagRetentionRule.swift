@@ -65,25 +65,25 @@ extension Tcr {
     }
 
     /// 更新版本保留规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagRetentionRuleResponse> {
         self.client.execute(action: "ModifyTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新版本保留规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTagRetentionRule(_ input: ModifyTagRetentionRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
         try await self.client.execute(action: "ModifyTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新版本保留规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTagRetentionRuleResponse> {
         self.modifyTagRetentionRule(ModifyTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, retentionId: retentionId, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新版本保留规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, retentionId: Int64, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTagRetentionRuleResponse {
         try await self.modifyTagRetentionRule(ModifyTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, retentionId: retentionId, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }

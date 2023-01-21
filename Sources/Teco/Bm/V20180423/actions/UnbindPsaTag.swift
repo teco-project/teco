@@ -50,25 +50,25 @@ extension Bm {
     }
 
     /// 解除标签与预授权规则的绑定
-    @inlinable
+    @inlinable @discardableResult
     public func unbindPsaTag(_ input: UnbindPsaTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPsaTagResponse> {
         self.client.execute(action: "UnbindPsaTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除标签与预授权规则的绑定
-    @inlinable
+    @inlinable @discardableResult
     public func unbindPsaTag(_ input: UnbindPsaTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
         try await self.client.execute(action: "UnbindPsaTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除标签与预授权规则的绑定
-    @inlinable
+    @inlinable @discardableResult
     public func unbindPsaTag(psaId: String, tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindPsaTagResponse> {
         self.unbindPsaTag(UnbindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除标签与预授权规则的绑定
-    @inlinable
+    @inlinable @discardableResult
     public func unbindPsaTag(psaId: String, tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindPsaTagResponse {
         try await self.unbindPsaTag(UnbindPsaTagRequest(psaId: psaId, tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }

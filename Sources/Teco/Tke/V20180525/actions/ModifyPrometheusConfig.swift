@@ -67,7 +67,7 @@ extension Tke {
     /// 修改prometheus配置
     ///
     /// 修改prometheus配置，如果配置项不存在，则会新增
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrometheusConfig(_ input: ModifyPrometheusConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusConfigResponse> {
         self.client.execute(action: "ModifyPrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Tke {
     /// 修改prometheus配置
     ///
     /// 修改prometheus配置，如果配置项不存在，则会新增
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrometheusConfig(_ input: ModifyPrometheusConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusConfigResponse {
         try await self.client.execute(action: "ModifyPrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Tke {
     /// 修改prometheus配置
     ///
     /// 修改prometheus配置，如果配置项不存在，则会新增
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusConfigResponse> {
         self.modifyPrometheusConfig(ModifyPrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Tke {
     /// 修改prometheus配置
     ///
     /// 修改prometheus配置，如果配置项不存在，则会新增
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusConfigResponse {
         try await self.modifyPrometheusConfig(ModifyPrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
     }

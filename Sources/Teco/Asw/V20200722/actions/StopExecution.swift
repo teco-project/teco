@@ -42,7 +42,7 @@ extension Asw {
     /// 停止状态机
     ///
     /// 终止某个状态机
-    @inlinable
+    @inlinable @discardableResult
     public func stopExecution(_ input: StopExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
         self.client.execute(action: "StopExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Asw {
     /// 停止状态机
     ///
     /// 终止某个状态机
-    @inlinable
+    @inlinable @discardableResult
     public func stopExecution(_ input: StopExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
         try await self.client.execute(action: "StopExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Asw {
     /// 停止状态机
     ///
     /// 终止某个状态机
-    @inlinable
+    @inlinable @discardableResult
     public func stopExecution(executionQrn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopExecutionResponse> {
         self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Asw {
     /// 停止状态机
     ///
     /// 终止某个状态机
-    @inlinable
+    @inlinable @discardableResult
     public func stopExecution(executionQrn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopExecutionResponse {
         try await self.stopExecution(StopExecutionRequest(executionQrn: executionQrn), region: region, logger: logger, on: eventLoop)
     }

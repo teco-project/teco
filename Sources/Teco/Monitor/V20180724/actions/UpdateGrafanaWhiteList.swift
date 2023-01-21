@@ -45,25 +45,25 @@ extension Monitor {
     }
 
     /// 更新 Grafana 白名单
-    @inlinable
+    @inlinable @discardableResult
     public func updateGrafanaWhiteList(_ input: UpdateGrafanaWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaWhiteListResponse> {
         self.client.execute(action: "UpdateGrafanaWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新 Grafana 白名单
-    @inlinable
+    @inlinable @discardableResult
     public func updateGrafanaWhiteList(_ input: UpdateGrafanaWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaWhiteListResponse {
         try await self.client.execute(action: "UpdateGrafanaWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新 Grafana 白名单
-    @inlinable
+    @inlinable @discardableResult
     public func updateGrafanaWhiteList(instanceId: String, whitelist: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaWhiteListResponse> {
         self.updateGrafanaWhiteList(UpdateGrafanaWhiteListRequest(instanceId: instanceId, whitelist: whitelist), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新 Grafana 白名单
-    @inlinable
+    @inlinable @discardableResult
     public func updateGrafanaWhiteList(instanceId: String, whitelist: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaWhiteListResponse {
         try await self.updateGrafanaWhiteList(UpdateGrafanaWhiteListRequest(instanceId: instanceId, whitelist: whitelist), region: region, logger: logger, on: eventLoop)
     }

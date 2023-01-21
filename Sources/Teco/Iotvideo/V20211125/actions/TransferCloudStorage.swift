@@ -50,25 +50,25 @@ extension Iotvideo {
     }
 
     /// 转移云存服务
-    @inlinable
+    @inlinable @discardableResult
     public func transferCloudStorage(_ input: TransferCloudStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
         self.client.execute(action: "TransferCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 转移云存服务
-    @inlinable
+    @inlinable @discardableResult
     public func transferCloudStorage(_ input: TransferCloudStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
         try await self.client.execute(action: "TransferCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 转移云存服务
-    @inlinable
+    @inlinable @discardableResult
     public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferCloudStorageResponse> {
         self.transferCloudStorage(TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 转移云存服务
-    @inlinable
+    @inlinable @discardableResult
     public func transferCloudStorage(productId: String, deviceName: String, toDeviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferCloudStorageResponse {
         try await self.transferCloudStorage(TransferCloudStorageRequest(productId: productId, deviceName: deviceName, toDeviceName: toDeviceName), region: region, logger: logger, on: eventLoop)
     }

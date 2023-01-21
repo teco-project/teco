@@ -48,7 +48,7 @@ extension Tcss {
     ///
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
-    @inlinable
+    @inlinable @discardableResult
     public func addCompliancePolicyAssetSetToWhitelist(_ input: AddCompliancePolicyAssetSetToWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCompliancePolicyAssetSetToWhitelistResponse> {
         self.client.execute(action: "AddCompliancePolicyAssetSetToWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Tcss {
     ///
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
-    @inlinable
+    @inlinable @discardableResult
     public func addCompliancePolicyAssetSetToWhitelist(_ input: AddCompliancePolicyAssetSetToWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCompliancePolicyAssetSetToWhitelistResponse {
         try await self.client.execute(action: "AddCompliancePolicyAssetSetToWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Tcss {
     ///
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
-    @inlinable
+    @inlinable @discardableResult
     public func addCompliancePolicyAssetSetToWhitelist(customerPolicyItemId: UInt64, customerAssetItemIdSet: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCompliancePolicyAssetSetToWhitelistResponse> {
         self.addCompliancePolicyAssetSetToWhitelist(AddCompliancePolicyAssetSetToWhitelistRequest(customerPolicyItemId: customerPolicyItemId, customerAssetItemIdSet: customerAssetItemIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Tcss {
     ///
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
     /// 参考的AddCompliancePolicyItemToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
-    @inlinable
+    @inlinable @discardableResult
     public func addCompliancePolicyAssetSetToWhitelist(customerPolicyItemId: UInt64, customerAssetItemIdSet: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCompliancePolicyAssetSetToWhitelistResponse {
         try await self.addCompliancePolicyAssetSetToWhitelist(AddCompliancePolicyAssetSetToWhitelistRequest(customerPolicyItemId: customerPolicyItemId, customerAssetItemIdSet: customerAssetItemIdSet), region: region, logger: logger, on: eventLoop)
     }

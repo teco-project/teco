@@ -50,25 +50,25 @@ extension Ccc {
     }
 
     /// 停用号码
-    @inlinable
+    @inlinable @discardableResult
     public func disableCCCPhoneNumber(_ input: DisableCCCPhoneNumberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCCCPhoneNumberResponse> {
         self.client.execute(action: "DisableCCCPhoneNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用号码
-    @inlinable
+    @inlinable @discardableResult
     public func disableCCCPhoneNumber(_ input: DisableCCCPhoneNumberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCCCPhoneNumberResponse {
         try await self.client.execute(action: "DisableCCCPhoneNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停用号码
-    @inlinable
+    @inlinable @discardableResult
     public func disableCCCPhoneNumber(sdkAppId: UInt64, phoneNumbers: [String], disabled: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCCCPhoneNumberResponse> {
         self.disableCCCPhoneNumber(DisableCCCPhoneNumberRequest(sdkAppId: sdkAppId, phoneNumbers: phoneNumbers, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停用号码
-    @inlinable
+    @inlinable @discardableResult
     public func disableCCCPhoneNumber(sdkAppId: UInt64, phoneNumbers: [String], disabled: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCCCPhoneNumberResponse {
         try await self.disableCCCPhoneNumber(DisableCCCPhoneNumberRequest(sdkAppId: sdkAppId, phoneNumbers: phoneNumbers, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }

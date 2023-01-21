@@ -67,7 +67,7 @@ extension Iotcloud {
     /// 发布消息
     ///
     /// 本接口（PublishMessage）用于向某个主题发消息。
-    @inlinable
+    @inlinable @discardableResult
     public func publishMessage(_ input: PublishMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
         self.client.execute(action: "PublishMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Iotcloud {
     /// 发布消息
     ///
     /// 本接口（PublishMessage）用于向某个主题发消息。
-    @inlinable
+    @inlinable @discardableResult
     public func publishMessage(_ input: PublishMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
         try await self.client.execute(action: "PublishMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Iotcloud {
     /// 发布消息
     ///
     /// 本接口（PublishMessage）用于向某个主题发消息。
-    @inlinable
+    @inlinable @discardableResult
     public func publishMessage(topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
         self.publishMessage(PublishMessageRequest(topic: topic, payload: payload, productId: productId, deviceName: deviceName, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Iotcloud {
     /// 发布消息
     ///
     /// 本接口（PublishMessage）用于向某个主题发消息。
-    @inlinable
+    @inlinable @discardableResult
     public func publishMessage(topic: String, payload: String, productId: String, deviceName: String, qos: UInt64? = nil, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
         try await self.publishMessage(PublishMessageRequest(topic: topic, payload: payload, productId: productId, deviceName: deviceName, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }

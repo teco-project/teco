@@ -50,25 +50,25 @@ extension Tke {
     }
 
     /// 删除集群伸缩组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterAsGroups(_ input: DeleteClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterAsGroupsResponse> {
         self.client.execute(action: "DeleteClusterAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集群伸缩组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterAsGroups(_ input: DeleteClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterAsGroupsResponse {
         try await self.client.execute(action: "DeleteClusterAsGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除集群伸缩组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterAsGroups(clusterId: String, autoScalingGroupIds: [String], keepInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterAsGroupsResponse> {
         self.deleteClusterAsGroups(DeleteClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, keepInstance: keepInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群伸缩组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterAsGroups(clusterId: String, autoScalingGroupIds: [String], keepInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterAsGroupsResponse {
         try await self.deleteClusterAsGroups(DeleteClusterAsGroupsRequest(clusterId: clusterId, autoScalingGroupIds: autoScalingGroupIds, keepInstance: keepInstance), region: region, logger: logger, on: eventLoop)
     }

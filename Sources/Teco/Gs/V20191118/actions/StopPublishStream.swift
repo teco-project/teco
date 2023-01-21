@@ -40,25 +40,25 @@ extension Gs {
     }
 
     /// 停止云端推流
-    @inlinable
+    @inlinable @discardableResult
     public func stopPublishStream(_ input: StopPublishStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopPublishStreamResponse> {
         self.client.execute(action: "StopPublishStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止云端推流
-    @inlinable
+    @inlinable @discardableResult
     public func stopPublishStream(_ input: StopPublishStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopPublishStreamResponse {
         try await self.client.execute(action: "StopPublishStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止云端推流
-    @inlinable
+    @inlinable @discardableResult
     public func stopPublishStream(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopPublishStreamResponse> {
         self.stopPublishStream(StopPublishStreamRequest(userId: userId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止云端推流
-    @inlinable
+    @inlinable @discardableResult
     public func stopPublishStream(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopPublishStreamResponse {
         try await self.stopPublishStream(StopPublishStreamRequest(userId: userId), region: region, logger: logger, on: eventLoop)
     }

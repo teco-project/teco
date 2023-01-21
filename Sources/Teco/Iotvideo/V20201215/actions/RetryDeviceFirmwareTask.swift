@@ -57,7 +57,7 @@ extension Iotvideo {
     /// 重试设备升级任务
     ///
     /// 本接口用于重试设备升级任务
-    @inlinable
+    @inlinable @discardableResult
     public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryDeviceFirmwareTaskResponse> {
         self.client.execute(action: "RetryDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Iotvideo {
     /// 重试设备升级任务
     ///
     /// 本接口用于重试设备升级任务
-    @inlinable
+    @inlinable @discardableResult
     public func retryDeviceFirmwareTask(_ input: RetryDeviceFirmwareTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
         try await self.client.execute(action: "RetryDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Iotvideo {
     /// 重试设备升级任务
     ///
     /// 本接口用于重试设备升级任务
-    @inlinable
+    @inlinable @discardableResult
     public func retryDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryDeviceFirmwareTaskResponse> {
         self.retryDeviceFirmwareTask(RetryDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Iotvideo {
     /// 重试设备升级任务
     ///
     /// 本接口用于重试设备升级任务
-    @inlinable
+    @inlinable @discardableResult
     public func retryDeviceFirmwareTask(productID: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryDeviceFirmwareTaskResponse {
         try await self.retryDeviceFirmwareTask(RetryDeviceFirmwareTaskRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Kms {
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
-    @inlinable
+    @inlinable @discardableResult
     public func enableKeys(_ input: EnableKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeysResponse> {
         self.client.execute(action: "EnableKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Kms {
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
-    @inlinable
+    @inlinable @discardableResult
     public func enableKeys(_ input: EnableKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
         try await self.client.execute(action: "EnableKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Kms {
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
-    @inlinable
+    @inlinable @discardableResult
     public func enableKeys(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeysResponse> {
         self.enableKeys(EnableKeysRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Kms {
     /// 批量启动主密钥
     ///
     /// 该接口用于批量启用CMK。
-    @inlinable
+    @inlinable @discardableResult
     public func enableKeys(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeysResponse {
         try await self.enableKeys(EnableKeysRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }

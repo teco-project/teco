@@ -42,7 +42,7 @@ extension As {
     /// 删除伸缩组
     ///
     /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAutoScalingGroup(_ input: DeleteAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoScalingGroupResponse> {
         self.client.execute(action: "DeleteAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension As {
     /// 删除伸缩组
     ///
     /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAutoScalingGroup(_ input: DeleteAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoScalingGroupResponse {
         try await self.client.execute(action: "DeleteAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension As {
     /// 删除伸缩组
     ///
     /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoScalingGroupResponse> {
         self.deleteAutoScalingGroup(DeleteAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension As {
     /// 删除伸缩组
     ///
     /// 本接口（DeleteAutoScalingGroup）用于删除指定伸缩组，删除前提是伸缩组内无实例且当前未在执行伸缩活动。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoScalingGroupResponse {
         try await self.deleteAutoScalingGroup(DeleteAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }

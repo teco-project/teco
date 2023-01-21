@@ -52,7 +52,7 @@ extension Scf {
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFunction(_ input: DeleteFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
         self.client.execute(action: "DeleteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Scf {
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFunction(_ input: DeleteFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
         try await self.client.execute(action: "DeleteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Scf {
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFunctionResponse> {
         self.deleteFunction(DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Scf {
     /// 删除函数
     ///
     /// 该接口根据传入参数删除函数。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFunction(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFunctionResponse {
         try await self.deleteFunction(DeleteFunctionRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
     }

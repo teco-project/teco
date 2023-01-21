@@ -50,7 +50,7 @@ extension Vod {
     /// 2. URL 的域名必须已在云点播中注册。
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认预热配额为每天10000个 URL。
-    @inlinable
+    @inlinable @discardableResult
     public func pushUrlCache(_ input: PushUrlCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlCacheResponse> {
         self.client.execute(action: "PushUrlCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -61,7 +61,7 @@ extension Vod {
     /// 2. URL 的域名必须已在云点播中注册。
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认预热配额为每天10000个 URL。
-    @inlinable
+    @inlinable @discardableResult
     public func pushUrlCache(_ input: PushUrlCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlCacheResponse {
         try await self.client.execute(action: "PushUrlCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -72,7 +72,7 @@ extension Vod {
     /// 2. URL 的域名必须已在云点播中注册。
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认预热配额为每天10000个 URL。
-    @inlinable
+    @inlinable @discardableResult
     public func pushUrlCache(urls: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlCacheResponse> {
         self.pushUrlCache(PushUrlCacheRequest(urls: urls, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -83,7 +83,7 @@ extension Vod {
     /// 2. URL 的域名必须已在云点播中注册。
     /// 3. 单次请求最多指定20个 URL。
     /// 4. 默认预热配额为每天10000个 URL。
-    @inlinable
+    @inlinable @discardableResult
     public func pushUrlCache(urls: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlCacheResponse {
         try await self.pushUrlCache(PushUrlCacheRequest(urls: urls, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

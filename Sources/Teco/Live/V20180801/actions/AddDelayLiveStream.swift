@@ -66,7 +66,7 @@ extension Live {
     ///
     /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
     /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
-    @inlinable
+    @inlinable @discardableResult
     public func addDelayLiveStream(_ input: AddDelayLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDelayLiveStreamResponse> {
         self.client.execute(action: "AddDelayLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Live {
     ///
     /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
     /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
-    @inlinable
+    @inlinable @discardableResult
     public func addDelayLiveStream(_ input: AddDelayLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDelayLiveStreamResponse {
         try await self.client.execute(action: "AddDelayLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -84,7 +84,7 @@ extension Live {
     ///
     /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
     /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
-    @inlinable
+    @inlinable @discardableResult
     public func addDelayLiveStream(appName: String, domainName: String, streamName: String, delayTime: UInt64, expireTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDelayLiveStreamResponse> {
         self.addDelayLiveStream(AddDelayLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, delayTime: delayTime, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }
@@ -93,7 +93,7 @@ extension Live {
     ///
     /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
     /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
-    @inlinable
+    @inlinable @discardableResult
     public func addDelayLiveStream(appName: String, domainName: String, streamName: String, delayTime: UInt64, expireTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDelayLiveStreamResponse {
         try await self.addDelayLiveStream(AddDelayLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, delayTime: delayTime, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
     }

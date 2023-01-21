@@ -45,25 +45,25 @@ extension Antiddos {
     }
 
     /// 设置DDoS防护的协议封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtocolBlockConfigResponse> {
         self.client.execute(action: "CreateProtocolBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置DDoS防护的协议封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func createProtocolBlockConfig(_ input: CreateProtocolBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
         try await self.client.execute(action: "CreateProtocolBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置DDoS防护的协议封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtocolBlockConfigResponse> {
         self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置DDoS防护的协议封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func createProtocolBlockConfig(instanceId: String, protocolBlockConfig: ProtocolBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtocolBlockConfigResponse {
         try await self.createProtocolBlockConfig(CreateProtocolBlockConfigRequest(instanceId: instanceId, protocolBlockConfig: protocolBlockConfig), region: region, logger: logger, on: eventLoop)
     }

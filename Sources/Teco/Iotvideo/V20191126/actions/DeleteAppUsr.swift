@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAppUsr(_ input: DeleteAppUsrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
         self.client.execute(action: "DeleteAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAppUsr(_ input: DeleteAppUsrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
         try await self.client.execute(action: "DeleteAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAppUsr(accessId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
         self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotvideo {
     /// 删除终端用户
     ///
     /// 本接口（DeleteAppUsr）用于删除终端用户。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAppUsr(accessId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
         try await self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), region: region, logger: logger, on: eventLoop)
     }

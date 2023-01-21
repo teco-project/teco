@@ -45,25 +45,25 @@ extension Antiddos {
     }
 
     /// 开启或关闭DDoS防护的水印防护配置
-    @inlinable
+    @inlinable @discardableResult
     public func switchWaterPrintConfig(_ input: SwitchWaterPrintConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchWaterPrintConfigResponse> {
         self.client.execute(action: "SwitchWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭DDoS防护的水印防护配置
-    @inlinable
+    @inlinable @discardableResult
     public func switchWaterPrintConfig(_ input: SwitchWaterPrintConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchWaterPrintConfigResponse {
         try await self.client.execute(action: "SwitchWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启或关闭DDoS防护的水印防护配置
-    @inlinable
+    @inlinable @discardableResult
     public func switchWaterPrintConfig(instanceId: String, openStatus: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchWaterPrintConfigResponse> {
         self.switchWaterPrintConfig(SwitchWaterPrintConfigRequest(instanceId: instanceId, openStatus: openStatus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭DDoS防护的水印防护配置
-    @inlinable
+    @inlinable @discardableResult
     public func switchWaterPrintConfig(instanceId: String, openStatus: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchWaterPrintConfigResponse {
         try await self.switchWaterPrintConfig(SwitchWaterPrintConfigRequest(instanceId: instanceId, openStatus: openStatus), region: region, logger: logger, on: eventLoop)
     }

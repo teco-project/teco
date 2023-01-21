@@ -47,7 +47,7 @@ extension Tag {
     /// 创建标签
     ///
     /// 本接口用于创建一对标签键和标签值
-    @inlinable
+    @inlinable @discardableResult
     public func createTag(_ input: CreateTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagResponse> {
         self.client.execute(action: "CreateTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tag {
     /// 创建标签
     ///
     /// 本接口用于创建一对标签键和标签值
-    @inlinable
+    @inlinable @discardableResult
     public func createTag(_ input: CreateTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
         try await self.client.execute(action: "CreateTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tag {
     /// 创建标签
     ///
     /// 本接口用于创建一对标签键和标签值
-    @inlinable
+    @inlinable @discardableResult
     public func createTag(tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagResponse> {
         self.createTag(CreateTagRequest(tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tag {
     /// 创建标签
     ///
     /// 本接口用于创建一对标签键和标签值
-    @inlinable
+    @inlinable @discardableResult
     public func createTag(tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagResponse {
         try await self.createTag(CreateTagRequest(tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }

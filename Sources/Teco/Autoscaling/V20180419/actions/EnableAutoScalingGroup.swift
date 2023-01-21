@@ -42,7 +42,7 @@ extension As {
     /// 启用伸缩组
     ///
     /// 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func enableAutoScalingGroup(_ input: EnableAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableAutoScalingGroupResponse> {
         self.client.execute(action: "EnableAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension As {
     /// 启用伸缩组
     ///
     /// 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func enableAutoScalingGroup(_ input: EnableAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableAutoScalingGroupResponse {
         try await self.client.execute(action: "EnableAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension As {
     /// 启用伸缩组
     ///
     /// 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func enableAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableAutoScalingGroupResponse> {
         self.enableAutoScalingGroup(EnableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension As {
     /// 启用伸缩组
     ///
     /// 本接口（EnableAutoScalingGroup）用于启用指定伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func enableAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableAutoScalingGroupResponse {
         try await self.enableAutoScalingGroup(EnableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }

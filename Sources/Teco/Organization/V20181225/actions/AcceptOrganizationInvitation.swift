@@ -40,25 +40,25 @@ extension Organization {
     }
 
     /// 接受加入企业组织邀请
-    @inlinable
+    @inlinable @discardableResult
     public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptOrganizationInvitationResponse> {
         self.client.execute(action: "AcceptOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 接受加入企业组织邀请
-    @inlinable
+    @inlinable @discardableResult
     public func acceptOrganizationInvitation(_ input: AcceptOrganizationInvitationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
         try await self.client.execute(action: "AcceptOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 接受加入企业组织邀请
-    @inlinable
+    @inlinable @discardableResult
     public func acceptOrganizationInvitation(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptOrganizationInvitationResponse> {
         self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 接受加入企业组织邀请
-    @inlinable
+    @inlinable @discardableResult
     public func acceptOrganizationInvitation(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptOrganizationInvitationResponse {
         try await self.acceptOrganizationInvitation(AcceptOrganizationInvitationRequest(id: id), region: region, logger: logger, on: eventLoop)
     }

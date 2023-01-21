@@ -62,7 +62,7 @@ extension Vpc {
     /// 修改NAT网关的属性
     ///
     /// 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNatGatewayAttribute(_ input: ModifyNatGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewayAttributeResponse> {
         self.client.execute(action: "ModifyNatGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Vpc {
     /// 修改NAT网关的属性
     ///
     /// 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNatGatewayAttribute(_ input: ModifyNatGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayAttributeResponse {
         try await self.client.execute(action: "ModifyNatGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Vpc {
     /// 修改NAT网关的属性
     ///
     /// 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNatGatewayAttribute(natGatewayId: String, natGatewayName: String? = nil, internetMaxBandwidthOut: UInt64? = nil, modifySecurityGroup: Bool? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewayAttributeResponse> {
         self.modifyNatGatewayAttribute(ModifyNatGatewayAttributeRequest(natGatewayId: natGatewayId, natGatewayName: natGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, modifySecurityGroup: modifySecurityGroup, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Vpc {
     /// 修改NAT网关的属性
     ///
     /// 本接口（ModifyNatGatewayAttribute）用于修改NAT网关的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNatGatewayAttribute(natGatewayId: String, natGatewayName: String? = nil, internetMaxBandwidthOut: UInt64? = nil, modifySecurityGroup: Bool? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayAttributeResponse {
         try await self.modifyNatGatewayAttribute(ModifyNatGatewayAttributeRequest(natGatewayId: natGatewayId, natGatewayName: natGatewayName, internetMaxBandwidthOut: internetMaxBandwidthOut, modifySecurityGroup: modifySecurityGroup, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }

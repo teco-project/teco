@@ -51,25 +51,25 @@ extension Tke {
     }
 
     /// 创建grafana监控面板
-    @inlinable
+    @inlinable @discardableResult
     public func createPrometheusDashboard(_ input: CreatePrometheusDashboardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusDashboardResponse> {
         self.client.execute(action: "CreatePrometheusDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建grafana监控面板
-    @inlinable
+    @inlinable @discardableResult
     public func createPrometheusDashboard(_ input: CreatePrometheusDashboardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusDashboardResponse {
         try await self.client.execute(action: "CreatePrometheusDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建grafana监控面板
-    @inlinable
+    @inlinable @discardableResult
     public func createPrometheusDashboard(instanceId: String, dashboardName: String, contents: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusDashboardResponse> {
         self.createPrometheusDashboard(CreatePrometheusDashboardRequest(instanceId: instanceId, dashboardName: dashboardName, contents: contents), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建grafana监控面板
-    @inlinable
+    @inlinable @discardableResult
     public func createPrometheusDashboard(instanceId: String, dashboardName: String, contents: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusDashboardResponse {
         try await self.createPrometheusDashboard(CreatePrometheusDashboardRequest(instanceId: instanceId, dashboardName: dashboardName, contents: contents), region: region, logger: logger, on: eventLoop)
     }

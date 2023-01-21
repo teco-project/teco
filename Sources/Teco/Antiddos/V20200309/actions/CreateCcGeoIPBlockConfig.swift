@@ -60,25 +60,25 @@ extension Antiddos {
     }
 
     /// 新建cc防护的地域封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func createCcGeoIPBlockConfig(_ input: CreateCcGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcGeoIPBlockConfigResponse> {
         self.client.execute(action: "CreateCcGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建cc防护的地域封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func createCcGeoIPBlockConfig(_ input: CreateCcGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcGeoIPBlockConfigResponse {
         try await self.client.execute(action: "CreateCcGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建cc防护的地域封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func createCcGeoIPBlockConfig(instanceId: String, ip: String, domain: String, protocol: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcGeoIPBlockConfigResponse> {
         self.createCcGeoIPBlockConfig(CreateCcGeoIPBlockConfigRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建cc防护的地域封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func createCcGeoIPBlockConfig(instanceId: String, ip: String, domain: String, protocol: String, ccGeoIPBlockConfig: CcGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcGeoIPBlockConfigResponse {
         try await self.createCcGeoIPBlockConfig(CreateCcGeoIPBlockConfigRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, ccGeoIPBlockConfig: ccGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }

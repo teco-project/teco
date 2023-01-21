@@ -95,7 +95,7 @@ extension Mps {
     /// 修改转动图模板
     ///
     /// 修改用户自定义转动图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAnimatedGraphicsTemplateResponse> {
         self.client.execute(action: "ModifyAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -103,7 +103,7 @@ extension Mps {
     /// 修改转动图模板
     ///
     /// 修改用户自定义转动图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAnimatedGraphicsTemplate(_ input: ModifyAnimatedGraphicsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAnimatedGraphicsTemplateResponse {
         try await self.client.execute(action: "ModifyAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -111,7 +111,7 @@ extension Mps {
     /// 修改转动图模板
     ///
     /// 修改用户自定义转动图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAnimatedGraphicsTemplate(definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAnimatedGraphicsTemplateResponse> {
         self.modifyAnimatedGraphicsTemplate(ModifyAnimatedGraphicsTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, fps: fps, quality: quality, comment: comment), region: region, logger: logger, on: eventLoop)
     }
@@ -119,7 +119,7 @@ extension Mps {
     /// 修改转动图模板
     ///
     /// 修改用户自定义转动图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAnimatedGraphicsTemplate(definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, fps: UInt64? = nil, quality: Float? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAnimatedGraphicsTemplateResponse {
         try await self.modifyAnimatedGraphicsTemplate(ModifyAnimatedGraphicsTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, fps: fps, quality: quality, comment: comment), region: region, logger: logger, on: eventLoop)
     }

@@ -62,7 +62,7 @@ extension Tag {
     /// 标签解绑批量资源
     ///
     /// 解绑多个资源关联的某个标签
-    @inlinable
+    @inlinable @discardableResult
     public func detachResourcesTag(_ input: DetachResourcesTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachResourcesTagResponse> {
         self.client.execute(action: "DetachResourcesTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Tag {
     /// 标签解绑批量资源
     ///
     /// 解绑多个资源关联的某个标签
-    @inlinable
+    @inlinable @discardableResult
     public func detachResourcesTag(_ input: DetachResourcesTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachResourcesTagResponse {
         try await self.client.execute(action: "DetachResourcesTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Tag {
     /// 标签解绑批量资源
     ///
     /// 解绑多个资源关联的某个标签
-    @inlinable
+    @inlinable @discardableResult
     public func detachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachResourcesTagResponse> {
         self.detachResourcesTag(DetachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Tag {
     /// 标签解绑批量资源
     ///
     /// 解绑多个资源关联的某个标签
-    @inlinable
+    @inlinable @discardableResult
     public func detachResourcesTag(serviceType: String, resourceIds: [String], tagKey: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachResourcesTagResponse {
         try await self.detachResourcesTag(DetachResourcesTagRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
     }

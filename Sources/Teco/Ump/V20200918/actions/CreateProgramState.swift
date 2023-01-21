@@ -52,7 +52,7 @@ extension Ump {
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
-    @inlinable
+    @inlinable @discardableResult
     public func createProgramState(_ input: CreateProgramStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
         self.client.execute(action: "CreateProgramState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Ump {
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
-    @inlinable
+    @inlinable @discardableResult
     public func createProgramState(_ input: CreateProgramStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProgramStateResponse {
         try await self.client.execute(action: "CreateProgramState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Ump {
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
-    @inlinable
+    @inlinable @discardableResult
     public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
         self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Ump {
     /// 进程监控信息上报
     ///
     /// 上报所有进程监控信息
-    @inlinable
+    @inlinable @discardableResult
     public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProgramStateResponse {
         try await self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), region: region, logger: logger, on: eventLoop)
     }

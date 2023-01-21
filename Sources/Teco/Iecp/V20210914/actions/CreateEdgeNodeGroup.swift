@@ -60,25 +60,25 @@ extension Iecp {
     }
 
     /// 创建边缘单元NodeGroup
-    @inlinable
+    @inlinable @discardableResult
     public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeGroupResponse> {
         self.client.execute(action: "CreateEdgeNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘单元NodeGroup
-    @inlinable
+    @inlinable @discardableResult
     public func createEdgeNodeGroup(_ input: CreateEdgeNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeGroupResponse {
         try await self.client.execute(action: "CreateEdgeNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建边缘单元NodeGroup
-    @inlinable
+    @inlinable @discardableResult
     public func createEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, description: String? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeNodeGroupResponse> {
         self.createEdgeNodeGroup(CreateEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, description: description, nodeUnitTemplateIDs: nodeUnitTemplateIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘单元NodeGroup
-    @inlinable
+    @inlinable @discardableResult
     public func createEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, description: String? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeNodeGroupResponse {
         try await self.createEdgeNodeGroup(CreateEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace, description: description, nodeUnitTemplateIDs: nodeUnitTemplateIDs), region: region, logger: logger, on: eventLoop)
     }

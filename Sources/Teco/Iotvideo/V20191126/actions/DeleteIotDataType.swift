@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
         self.client.execute(action: "DeleteIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIotDataType(_ input: DeleteIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
         try await self.client.execute(action: "DeleteIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIotDataType(typeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDataTypeResponse> {
         self.deleteIotDataType(DeleteIotDataTypeRequest(typeId: typeId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotvideo {
     /// 删除自定义物模型数据类型
     ///
     /// 本接口（DeleteIotDataType）用于删除自定义物模型数据类型。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIotDataType(typeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDataTypeResponse {
         try await self.deleteIotDataType(DeleteIotDataTypeRequest(typeId: typeId), region: region, logger: logger, on: eventLoop)
     }

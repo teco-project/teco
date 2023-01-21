@@ -42,7 +42,7 @@ extension Yunjing {
     /// 创建实时获取端口任务
     ///
     /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
-    @inlinable
+    @inlinable @discardableResult
     public func createOpenPortTask(_ input: CreateOpenPortTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenPortTaskResponse> {
         self.client.execute(action: "CreateOpenPortTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Yunjing {
     /// 创建实时获取端口任务
     ///
     /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
-    @inlinable
+    @inlinable @discardableResult
     public func createOpenPortTask(_ input: CreateOpenPortTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenPortTaskResponse {
         try await self.client.execute(action: "CreateOpenPortTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Yunjing {
     /// 创建实时获取端口任务
     ///
     /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
-    @inlinable
+    @inlinable @discardableResult
     public func createOpenPortTask(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenPortTaskResponse> {
         self.createOpenPortTask(CreateOpenPortTaskRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Yunjing {
     /// 创建实时获取端口任务
     ///
     /// 本接口 (CreateOpenPortTask) 用于创建实时获取端口任务。
-    @inlinable
+    @inlinable @discardableResult
     public func createOpenPortTask(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenPortTaskResponse {
         try await self.createOpenPortTask(CreateOpenPortTaskRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }

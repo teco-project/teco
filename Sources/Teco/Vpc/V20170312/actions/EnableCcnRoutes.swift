@@ -48,7 +48,7 @@ extension Vpc {
     ///
     /// 本接口（EnableCcnRoutes）用于启用已经加入云联网（CCN）的路由。<br />
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
+    @inlinable @discardableResult
     public func enableCcnRoutes(_ input: EnableCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableCcnRoutesResponse> {
         self.client.execute(action: "EnableCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Vpc {
     ///
     /// 本接口（EnableCcnRoutes）用于启用已经加入云联网（CCN）的路由。<br />
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
+    @inlinable @discardableResult
     public func enableCcnRoutes(_ input: EnableCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCcnRoutesResponse {
         try await self.client.execute(action: "EnableCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Vpc {
     ///
     /// 本接口（EnableCcnRoutes）用于启用已经加入云联网（CCN）的路由。<br />
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
+    @inlinable @discardableResult
     public func enableCcnRoutes(ccnId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableCcnRoutesResponse> {
         self.enableCcnRoutes(EnableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Vpc {
     ///
     /// 本接口（EnableCcnRoutes）用于启用已经加入云联网（CCN）的路由。<br />
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
+    @inlinable @discardableResult
     public func enableCcnRoutes(ccnId: String, routeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableCcnRoutesResponse {
         try await self.enableCcnRoutes(EnableCcnRoutesRequest(ccnId: ccnId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }

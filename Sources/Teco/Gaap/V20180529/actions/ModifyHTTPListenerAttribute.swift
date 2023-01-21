@@ -53,7 +53,7 @@ extension Gaap {
     ///
     /// 该接口（ModifyHTTPListenerAttribute）用于修改通道的HTTP监听器配置信息，目前仅支持修改监听器的名称。
     /// 注意：通道组通道暂时不支持HTTP/HTTPS监听器。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyHTTPListenerAttribute(_ input: ModifyHTTPListenerAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHTTPListenerAttributeResponse> {
         self.client.execute(action: "ModifyHTTPListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -62,7 +62,7 @@ extension Gaap {
     ///
     /// 该接口（ModifyHTTPListenerAttribute）用于修改通道的HTTP监听器配置信息，目前仅支持修改监听器的名称。
     /// 注意：通道组通道暂时不支持HTTP/HTTPS监听器。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyHTTPListenerAttribute(_ input: ModifyHTTPListenerAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHTTPListenerAttributeResponse {
         try await self.client.execute(action: "ModifyHTTPListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Gaap {
     ///
     /// 该接口（ModifyHTTPListenerAttribute）用于修改通道的HTTP监听器配置信息，目前仅支持修改监听器的名称。
     /// 注意：通道组通道暂时不支持HTTP/HTTPS监听器。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyHTTPListenerAttribute(listenerId: String, listenerName: String, proxyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHTTPListenerAttributeResponse> {
         self.modifyHTTPListenerAttribute(ModifyHTTPListenerAttributeRequest(listenerId: listenerId, listenerName: listenerName, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Gaap {
     ///
     /// 该接口（ModifyHTTPListenerAttribute）用于修改通道的HTTP监听器配置信息，目前仅支持修改监听器的名称。
     /// 注意：通道组通道暂时不支持HTTP/HTTPS监听器。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyHTTPListenerAttribute(listenerId: String, listenerName: String, proxyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHTTPListenerAttributeResponse {
         try await self.modifyHTTPListenerAttribute(ModifyHTTPListenerAttributeRequest(listenerId: listenerId, listenerName: listenerName, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }

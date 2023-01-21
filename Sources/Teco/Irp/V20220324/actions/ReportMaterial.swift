@@ -45,25 +45,25 @@ extension Irp {
     }
 
     /// 上报物料
-    @inlinable
+    @inlinable @discardableResult
     public func reportMaterial(_ input: ReportMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportMaterialResponse> {
         self.client.execute(action: "ReportMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报物料
-    @inlinable
+    @inlinable @discardableResult
     public func reportMaterial(_ input: ReportMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportMaterialResponse {
         try await self.client.execute(action: "ReportMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报物料
-    @inlinable
+    @inlinable @discardableResult
     public func reportMaterial(bid: String, docItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportMaterialResponse> {
         self.reportMaterial(ReportMaterialRequest(bid: bid, docItemList: docItemList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报物料
-    @inlinable
+    @inlinable @discardableResult
     public func reportMaterial(bid: String, docItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportMaterialResponse {
         try await self.reportMaterial(ReportMaterialRequest(bid: bid, docItemList: docItemList), region: region, logger: logger, on: eventLoop)
     }

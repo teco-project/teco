@@ -40,25 +40,25 @@ extension Cam {
     }
 
     /// 从用户组删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserFromGroupResponse> {
         self.client.execute(action: "RemoveUserFromGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 从用户组删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func removeUserFromGroup(_ input: RemoveUserFromGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
         try await self.client.execute(action: "RemoveUserFromGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 从用户组删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func removeUserFromGroup(info: [GroupIdOfUidInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserFromGroupResponse> {
         self.removeUserFromGroup(RemoveUserFromGroupRequest(info: info), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从用户组删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func removeUserFromGroup(info: [GroupIdOfUidInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserFromGroupResponse {
         try await self.removeUserFromGroup(RemoveUserFromGroupRequest(info: info), region: region, logger: logger, on: eventLoop)
     }

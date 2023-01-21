@@ -47,7 +47,7 @@ extension Teo {
     /// 删除别称域名
     ///
     /// 删除别称域名。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasDomainResponse> {
         self.client.execute(action: "DeleteAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Teo {
     /// 删除别称域名
     ///
     /// 删除别称域名。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAliasDomain(_ input: DeleteAliasDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
         try await self.client.execute(action: "DeleteAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Teo {
     /// 删除别称域名
     ///
     /// 删除别称域名。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasDomainResponse> {
         self.deleteAliasDomain(DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Teo {
     /// 删除别称域名
     ///
     /// 删除别称域名。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAliasDomain(zoneId: String, aliasNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasDomainResponse {
         try await self.deleteAliasDomain(DeleteAliasDomainRequest(zoneId: zoneId, aliasNames: aliasNames), region: region, logger: logger, on: eventLoop)
     }

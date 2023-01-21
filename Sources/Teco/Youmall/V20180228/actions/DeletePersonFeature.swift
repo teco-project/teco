@@ -52,7 +52,7 @@ extension Youmall {
     /// 删除顾客特征
     ///
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePersonFeature(_ input: DeletePersonFeatureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonFeatureResponse> {
         self.client.execute(action: "DeletePersonFeature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Youmall {
     /// 删除顾客特征
     ///
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePersonFeature(_ input: DeletePersonFeatureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
         try await self.client.execute(action: "DeletePersonFeature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Youmall {
     /// 删除顾客特征
     ///
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePersonFeature(companyId: String, shopId: Int64, personId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonFeatureResponse> {
         self.deletePersonFeature(DeletePersonFeatureRequest(companyId: companyId, shopId: shopId, personId: personId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Youmall {
     /// 删除顾客特征
     ///
     /// 删除顾客特征，仅支持删除黑名单或者白名单用户特征。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePersonFeature(companyId: String, shopId: Int64, personId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonFeatureResponse {
         try await self.deletePersonFeature(DeletePersonFeatureRequest(companyId: companyId, shopId: shopId, personId: personId), region: region, logger: logger, on: eventLoop)
     }

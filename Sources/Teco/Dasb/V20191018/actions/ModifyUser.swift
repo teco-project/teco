@@ -96,25 +96,25 @@ extension Dasb {
     }
 
     /// 修改用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUser(_ input: ModifyUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
         self.client.execute(action: "ModifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUser(_ input: ModifyUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
         try await self.client.execute(action: "ModifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUser(id: UInt64, realName: String, phone: String, email: String, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
         self.modifyUser(ModifyUserRequest(id: id, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUser(id: UInt64, realName: String, phone: String, email: String, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
         try await self.modifyUser(ModifyUserRequest(id: id, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
     }

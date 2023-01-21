@@ -57,7 +57,7 @@ extension Vpc {
     /// 修改带宽包属性
     ///
     /// 接口用于修改带宽包属性，包括带宽包名字等
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBandwidthPackageAttribute(_ input: ModifyBandwidthPackageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBandwidthPackageAttributeResponse> {
         self.client.execute(action: "ModifyBandwidthPackageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Vpc {
     /// 修改带宽包属性
     ///
     /// 接口用于修改带宽包属性，包括带宽包名字等
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBandwidthPackageAttribute(_ input: ModifyBandwidthPackageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBandwidthPackageAttributeResponse {
         try await self.client.execute(action: "ModifyBandwidthPackageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Vpc {
     /// 修改带宽包属性
     ///
     /// 接口用于修改带宽包属性，包括带宽包名字等
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, migrateOnRefund: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBandwidthPackageAttributeResponse> {
         self.modifyBandwidthPackageAttribute(ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType, migrateOnRefund: migrateOnRefund), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Vpc {
     /// 修改带宽包属性
     ///
     /// 接口用于修改带宽包属性，包括带宽包名字等
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, migrateOnRefund: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBandwidthPackageAttributeResponse {
         try await self.modifyBandwidthPackageAttribute(ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType, migrateOnRefund: migrateOnRefund), region: region, logger: logger, on: eventLoop)
     }

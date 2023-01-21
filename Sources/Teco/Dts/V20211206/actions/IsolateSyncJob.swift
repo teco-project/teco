@@ -42,7 +42,7 @@ extension Dts {
     /// 隔离同步任务
     ///
     /// 隔离同步任务，隔离后可通过查询同步任务信息接口DescribeSyncJobs获取隔离后状态。在任务隔离后可进行解除隔离(RecoverSyncJob)操作或直接进行下线操作。对于不计费任务，调用此接口后会直接删除任务，无法进行恢复操作。
-    @inlinable
+    @inlinable @discardableResult
     public func isolateSyncJob(_ input: IsolateSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateSyncJobResponse> {
         self.client.execute(action: "IsolateSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Dts {
     /// 隔离同步任务
     ///
     /// 隔离同步任务，隔离后可通过查询同步任务信息接口DescribeSyncJobs获取隔离后状态。在任务隔离后可进行解除隔离(RecoverSyncJob)操作或直接进行下线操作。对于不计费任务，调用此接口后会直接删除任务，无法进行恢复操作。
-    @inlinable
+    @inlinable @discardableResult
     public func isolateSyncJob(_ input: IsolateSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateSyncJobResponse {
         try await self.client.execute(action: "IsolateSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Dts {
     /// 隔离同步任务
     ///
     /// 隔离同步任务，隔离后可通过查询同步任务信息接口DescribeSyncJobs获取隔离后状态。在任务隔离后可进行解除隔离(RecoverSyncJob)操作或直接进行下线操作。对于不计费任务，调用此接口后会直接删除任务，无法进行恢复操作。
-    @inlinable
+    @inlinable @discardableResult
     public func isolateSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateSyncJobResponse> {
         self.isolateSyncJob(IsolateSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Dts {
     /// 隔离同步任务
     ///
     /// 隔离同步任务，隔离后可通过查询同步任务信息接口DescribeSyncJobs获取隔离后状态。在任务隔离后可进行解除隔离(RecoverSyncJob)操作或直接进行下线操作。对于不计费任务，调用此接口后会直接删除任务，无法进行恢复操作。
-    @inlinable
+    @inlinable @discardableResult
     public func isolateSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateSyncJobResponse {
         try await self.isolateSyncJob(IsolateSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }

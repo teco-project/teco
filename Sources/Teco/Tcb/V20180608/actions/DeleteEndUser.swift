@@ -45,25 +45,25 @@ extension Tcb {
     }
 
     /// 删除终端用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEndUser(_ input: DeleteEndUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEndUserResponse> {
         self.client.execute(action: "DeleteEndUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除终端用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEndUser(_ input: DeleteEndUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEndUserResponse {
         try await self.client.execute(action: "DeleteEndUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除终端用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEndUser(envId: String, userList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEndUserResponse> {
         self.deleteEndUser(DeleteEndUserRequest(envId: envId, userList: userList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除终端用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEndUser(envId: String, userList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEndUserResponse {
         try await self.deleteEndUser(DeleteEndUserRequest(envId: envId, userList: userList), region: region, logger: logger, on: eventLoop)
     }

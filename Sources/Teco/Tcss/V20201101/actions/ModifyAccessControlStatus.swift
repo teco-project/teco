@@ -56,7 +56,7 @@ extension Tcss {
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlStatusResponse> {
         self.client.execute(action: "ModifyAccessControlStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -64,7 +64,7 @@ extension Tcss {
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessControlStatus(_ input: ModifyAccessControlStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
         try await self.client.execute(action: "ModifyAccessControlStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -72,7 +72,7 @@ extension Tcss {
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessControlStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessControlStatusResponse> {
         self.modifyAccessControlStatus(ModifyAccessControlStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Tcss {
     /// 修改运行时访问控制事件状态
     ///
     /// 修改运行时访问控制事件状态信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessControlStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessControlStatusResponse {
         try await self.modifyAccessControlStatus(ModifyAccessControlStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }

@@ -50,25 +50,25 @@ extension Tdcpg {
     }
 
     /// 修改数据库账号描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
         self.client.execute(action: "ModifyAccountDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库账号描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountDescription(_ input: ModifyAccountDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
         try await self.client.execute(action: "ModifyAccountDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改数据库账号描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
         self.modifyAccountDescription(ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库账号描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
         try await self.modifyAccountDescription(ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription), region: region, logger: logger, on: eventLoop)
     }

@@ -40,25 +40,25 @@ extension Tke {
     }
 
     /// 删除边缘计算集群
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTKEEdgeClusterResponse> {
         self.client.execute(action: "DeleteTKEEdgeCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘计算集群
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTKEEdgeCluster(_ input: DeleteTKEEdgeClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTKEEdgeClusterResponse {
         try await self.client.execute(action: "DeleteTKEEdgeCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除边缘计算集群
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTKEEdgeCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTKEEdgeClusterResponse> {
         self.deleteTKEEdgeCluster(DeleteTKEEdgeClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘计算集群
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTKEEdgeCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTKEEdgeClusterResponse {
         try await self.deleteTKEEdgeCluster(DeleteTKEEdgeClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }

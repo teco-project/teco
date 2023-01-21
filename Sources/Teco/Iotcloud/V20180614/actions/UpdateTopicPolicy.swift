@@ -62,7 +62,7 @@ extension Iotcloud {
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
         self.client.execute(action: "UpdateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Iotcloud {
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateTopicPolicy(_ input: UpdateTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
         try await self.client.execute(action: "UpdateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Iotcloud {
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
         self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Iotcloud {
     /// 更新Topic
     ///
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
         try await self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), region: region, logger: logger, on: eventLoop)
     }

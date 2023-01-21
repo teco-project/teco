@@ -48,7 +48,7 @@ extension Monitor {
     ///
     /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
     /// 同一项目下相同的告警策略类型，就会被设置为非默认。
-    @inlinable
+    @inlinable @discardableResult
     public func setDefaultAlarmPolicy(_ input: SetDefaultAlarmPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDefaultAlarmPolicyResponse> {
         self.client.execute(action: "SetDefaultAlarmPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Monitor {
     ///
     /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
     /// 同一项目下相同的告警策略类型，就会被设置为非默认。
-    @inlinable
+    @inlinable @discardableResult
     public func setDefaultAlarmPolicy(_ input: SetDefaultAlarmPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultAlarmPolicyResponse {
         try await self.client.execute(action: "SetDefaultAlarmPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Monitor {
     ///
     /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
     /// 同一项目下相同的告警策略类型，就会被设置为非默认。
-    @inlinable
+    @inlinable @discardableResult
     public func setDefaultAlarmPolicy(module: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDefaultAlarmPolicyResponse> {
         self.setDefaultAlarmPolicy(SetDefaultAlarmPolicyRequest(module: module, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Monitor {
     ///
     /// 设置一个策略为该告警策略类型、该项目的默认告警策略。
     /// 同一项目下相同的告警策略类型，就会被设置为非默认。
-    @inlinable
+    @inlinable @discardableResult
     public func setDefaultAlarmPolicy(module: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultAlarmPolicyResponse {
         try await self.setDefaultAlarmPolicy(SetDefaultAlarmPolicyRequest(module: module, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Sqlserver {
     /// 删除发布订阅
     ///
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublishSubscribeResponse> {
         self.client.execute(action: "DeletePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Sqlserver {
     /// 删除发布订阅
     ///
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePublishSubscribe(_ input: DeletePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
         try await self.client.execute(action: "DeletePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Sqlserver {
     /// 删除发布订阅
     ///
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePublishSubscribeResponse> {
         self.deletePublishSubscribe(DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Sqlserver {
     /// 删除发布订阅
     ///
     /// 本接口（DeletePublishSubscribe）用于删除两个数据库间的发布订阅关系。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePublishSubscribe(publishSubscribeId: UInt64, databaseTupleSet: [DatabaseTuple], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePublishSubscribeResponse {
         try await self.deletePublishSubscribe(DeletePublishSubscribeRequest(publishSubscribeId: publishSubscribeId, databaseTupleSet: databaseTupleSet), region: region, logger: logger, on: eventLoop)
     }

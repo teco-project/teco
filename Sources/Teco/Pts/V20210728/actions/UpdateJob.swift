@@ -55,25 +55,25 @@ extension Pts {
     }
 
     /// 更新任务
-    @inlinable
+    @inlinable @discardableResult
     public func updateJob(_ input: UpdateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJobResponse> {
         self.client.execute(action: "UpdateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新任务
-    @inlinable
+    @inlinable @discardableResult
     public func updateJob(_ input: UpdateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {
         try await self.client.execute(action: "UpdateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新任务
-    @inlinable
+    @inlinable @discardableResult
     public func updateJob(jobId: String, projectId: String, scenarioId: String, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJobResponse> {
         self.updateJob(UpdateJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, note: note), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新任务
-    @inlinable
+    @inlinable @discardableResult
     public func updateJob(jobId: String, projectId: String, scenarioId: String, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJobResponse {
         try await self.updateJob(UpdateJobRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, note: note), region: region, logger: logger, on: eventLoop)
     }

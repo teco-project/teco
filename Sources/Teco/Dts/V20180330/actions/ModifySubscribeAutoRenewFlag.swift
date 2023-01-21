@@ -45,25 +45,25 @@ extension Dts {
     }
 
     /// 修改订阅实例自动续费标识
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeAutoRenewFlagResponse> {
         self.client.execute(action: "ModifySubscribeAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改订阅实例自动续费标识
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscribeAutoRenewFlag(_ input: ModifySubscribeAutoRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
         try await self.client.execute(action: "ModifySubscribeAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改订阅实例自动续费标识
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscribeAutoRenewFlag(subscribeId: String, autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeAutoRenewFlagResponse> {
         self.modifySubscribeAutoRenewFlag(ModifySubscribeAutoRenewFlagRequest(subscribeId: subscribeId, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改订阅实例自动续费标识
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscribeAutoRenewFlag(subscribeId: String, autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeAutoRenewFlagResponse {
         try await self.modifySubscribeAutoRenewFlag(ModifySubscribeAutoRenewFlagRequest(subscribeId: subscribeId, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }

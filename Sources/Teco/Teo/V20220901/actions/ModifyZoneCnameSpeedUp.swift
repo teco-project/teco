@@ -49,7 +49,7 @@ extension Teo {
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
         self.client.execute(action: "ModifyZoneCnameSpeedUp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Teo {
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZoneCnameSpeedUp(_ input: ModifyZoneCnameSpeedUpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
         try await self.client.execute(action: "ModifyZoneCnameSpeedUp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -65,7 +65,7 @@ extension Teo {
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZoneCnameSpeedUp(zoneId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneCnameSpeedUpResponse> {
         self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(zoneId: zoneId, status: status), region: region, logger: logger, on: eventLoop)
     }
@@ -73,7 +73,7 @@ extension Teo {
     /// 修改 CNAME 加速状态
     ///
     /// 开启，关闭 CNAME 加速。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZoneCnameSpeedUp(zoneId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneCnameSpeedUpResponse {
         try await self.modifyZoneCnameSpeedUp(ModifyZoneCnameSpeedUpRequest(zoneId: zoneId, status: status), region: region, logger: logger, on: eventLoop)
     }

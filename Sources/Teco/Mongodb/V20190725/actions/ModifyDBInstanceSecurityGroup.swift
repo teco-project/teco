@@ -47,7 +47,7 @@ extension Mongodb {
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
         self.client.execute(action: "ModifyDBInstanceSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Mongodb {
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroup(_ input: ModifyDBInstanceSecurityGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
         try await self.client.execute(action: "ModifyDBInstanceSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Mongodb {
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
         self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Mongodb {
     /// 修改实例安全组
     ///
     /// 修改实例绑定的安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
         try await self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }

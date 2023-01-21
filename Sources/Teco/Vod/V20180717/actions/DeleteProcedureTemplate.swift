@@ -47,7 +47,7 @@ extension Vod {
     /// 删除任务流模板
     ///
     /// 删除用户自定义的任务流模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProcedureTemplate(_ input: DeleteProcedureTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProcedureTemplateResponse> {
         self.client.execute(action: "DeleteProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vod {
     /// 删除任务流模板
     ///
     /// 删除用户自定义的任务流模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProcedureTemplate(_ input: DeleteProcedureTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProcedureTemplateResponse {
         try await self.client.execute(action: "DeleteProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vod {
     /// 删除任务流模板
     ///
     /// 删除用户自定义的任务流模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProcedureTemplate(name: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProcedureTemplateResponse> {
         self.deleteProcedureTemplate(DeleteProcedureTemplateRequest(name: name, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vod {
     /// 删除任务流模板
     ///
     /// 删除用户自定义的任务流模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProcedureTemplate(name: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProcedureTemplateResponse {
         try await self.deleteProcedureTemplate(DeleteProcedureTemplateRequest(name: name, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

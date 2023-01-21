@@ -40,25 +40,25 @@ extension Partners {
     }
 
     /// 合作伙伴为客户创建强代付关系
-    @inlinable
+    @inlinable @discardableResult
     public func createPayRelationForClient(_ input: CreatePayRelationForClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRelationForClientResponse> {
         self.client.execute(action: "CreatePayRelationForClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合作伙伴为客户创建强代付关系
-    @inlinable
+    @inlinable @discardableResult
     public func createPayRelationForClient(_ input: CreatePayRelationForClientRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRelationForClientResponse {
         try await self.client.execute(action: "CreatePayRelationForClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 合作伙伴为客户创建强代付关系
-    @inlinable
+    @inlinable @discardableResult
     public func createPayRelationForClient(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRelationForClientResponse> {
         self.createPayRelationForClient(CreatePayRelationForClientRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 合作伙伴为客户创建强代付关系
-    @inlinable
+    @inlinable @discardableResult
     public func createPayRelationForClient(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRelationForClientResponse {
         try await self.createPayRelationForClient(CreatePayRelationForClientRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }

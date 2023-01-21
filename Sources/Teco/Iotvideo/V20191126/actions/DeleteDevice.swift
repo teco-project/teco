@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 删除设备
     ///
     /// 本接口（DeleteDevice）用于删除设备，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDevice(_ input: DeleteDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
         self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 删除设备
     ///
     /// 本接口（DeleteDevice）用于删除设备，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDevice(_ input: DeleteDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
         try await self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 删除设备
     ///
     /// 本接口（DeleteDevice）用于删除设备，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDevice(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
         self.deleteDevice(DeleteDeviceRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotvideo {
     /// 删除设备
     ///
     /// 本接口（DeleteDevice）用于删除设备，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDevice(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
         try await self.deleteDevice(DeleteDeviceRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }

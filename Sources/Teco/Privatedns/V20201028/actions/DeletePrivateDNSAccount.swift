@@ -40,25 +40,25 @@ extension Privatedns {
     }
 
     /// 删除私有域解析账号
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivateDNSAccount(_ input: DeletePrivateDNSAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateDNSAccountResponse> {
         self.client.execute(action: "DeletePrivateDNSAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除私有域解析账号
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivateDNSAccount(_ input: DeletePrivateDNSAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateDNSAccountResponse {
         try await self.client.execute(action: "DeletePrivateDNSAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除私有域解析账号
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivateDNSAccount(account: PrivateDNSAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateDNSAccountResponse> {
         self.deletePrivateDNSAccount(DeletePrivateDNSAccountRequest(account: account), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除私有域解析账号
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivateDNSAccount(account: PrivateDNSAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateDNSAccountResponse {
         try await self.deletePrivateDNSAccount(DeletePrivateDNSAccountRequest(account: account), region: region, logger: logger, on: eventLoop)
     }

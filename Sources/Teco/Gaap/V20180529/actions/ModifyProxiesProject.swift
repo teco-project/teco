@@ -58,7 +58,7 @@ extension Gaap {
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesProjectResponse> {
         self.client.execute(action: "ModifyProxiesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Gaap {
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProxiesProject(_ input: ModifyProxiesProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
         try await self.client.execute(action: "ModifyProxiesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -74,7 +74,7 @@ extension Gaap {
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxiesProjectResponse> {
         self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Gaap {
     /// 修改通道所属项目
     ///
     /// 本接口（ModifyProxiesProject）用于修改通道所属项目。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProxiesProject(projectId: Int64, instanceIds: [String]? = nil, clientToken: String? = nil, proxyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxiesProjectResponse {
         try await self.modifyProxiesProject(ModifyProxiesProjectRequest(projectId: projectId, instanceIds: instanceIds, clientToken: clientToken, proxyIds: proxyIds), region: region, logger: logger, on: eventLoop)
     }

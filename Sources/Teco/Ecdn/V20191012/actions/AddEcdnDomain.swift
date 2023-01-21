@@ -103,7 +103,7 @@ extension Ecdn {
     ///
     /// 本接口（AddEcdnDomain）用于创建加速域名。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41123"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
+    @inlinable @discardableResult
     public func addEcdnDomain(_ input: AddEcdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEcdnDomainResponse> {
         self.client.execute(action: "AddEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -112,7 +112,7 @@ extension Ecdn {
     ///
     /// 本接口（AddEcdnDomain）用于创建加速域名。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41123"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
+    @inlinable @discardableResult
     public func addEcdnDomain(_ input: AddEcdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEcdnDomainResponse {
         try await self.client.execute(action: "AddEcdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -121,7 +121,7 @@ extension Ecdn {
     ///
     /// 本接口（AddEcdnDomain）用于创建加速域名。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41123"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
+    @inlinable @discardableResult
     public func addEcdnDomain(domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEcdnDomainResponse> {
         self.addEcdnDomain(AddEcdnDomainRequest(domain: domain, origin: origin, area: area, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, tag: tag, webSocket: webSocket), region: region, logger: logger, on: eventLoop)
     }
@@ -130,7 +130,7 @@ extension Ecdn {
     ///
     /// 本接口（AddEcdnDomain）用于创建加速域名。
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41123"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
-    @inlinable
+    @inlinable @discardableResult
     public func addEcdnDomain(domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEcdnDomainResponse {
         try await self.addEcdnDomain(AddEcdnDomainRequest(domain: domain, origin: origin, area: area, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, tag: tag, webSocket: webSocket), region: region, logger: logger, on: eventLoop)
     }

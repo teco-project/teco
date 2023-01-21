@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 将设备从白名单删除
     ///
     /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTraceIds(_ input: DeleteTraceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTraceIdsResponse> {
         self.client.execute(action: "DeleteTraceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 将设备从白名单删除
     ///
     /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTraceIds(_ input: DeleteTraceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceIdsResponse {
         try await self.client.execute(action: "DeleteTraceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 将设备从白名单删除
     ///
     /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTraceIds(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTraceIdsResponse> {
         self.deleteTraceIds(DeleteTraceIdsRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotvideo {
     /// 将设备从白名单删除
     ///
     /// 本接口（DeleteTraceIds）用于将设备从日志跟踪白名单中删除，该接口可批量操作，最多支持同时操作100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTraceIds(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceIdsResponse {
         try await self.deleteTraceIds(DeleteTraceIdsRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }

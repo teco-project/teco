@@ -42,7 +42,7 @@ extension Cvm {
     /// 删除实例启动模板
     ///
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLaunchTemplate(_ input: DeleteLaunchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchTemplateResponse> {
         self.client.execute(action: "DeleteLaunchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cvm {
     /// 删除实例启动模板
     ///
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLaunchTemplate(_ input: DeleteLaunchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
         try await self.client.execute(action: "DeleteLaunchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cvm {
     /// 删除实例启动模板
     ///
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLaunchTemplate(launchTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchTemplateResponse> {
         self.deleteLaunchTemplate(DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cvm {
     /// 删除实例启动模板
     ///
     /// 本接口（DeleteLaunchTemplate）用于删除一个实例启动模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLaunchTemplate(launchTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateResponse {
         try await self.deleteLaunchTemplate(DeleteLaunchTemplateRequest(launchTemplateId: launchTemplateId), region: region, logger: logger, on: eventLoop)
     }

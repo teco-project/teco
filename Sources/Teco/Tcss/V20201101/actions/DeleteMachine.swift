@@ -40,25 +40,25 @@ extension Tcss {
     }
 
     /// 卸载Agent客户端
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachine(_ input: DeleteMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
         self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 卸载Agent客户端
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachine(_ input: DeleteMachineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
         try await self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 卸载Agent客户端
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
         self.deleteMachine(DeleteMachineRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 卸载Agent客户端
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
         try await self.deleteMachine(DeleteMachineRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
     }

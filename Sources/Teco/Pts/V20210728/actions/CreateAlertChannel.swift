@@ -50,25 +50,25 @@ extension Pts {
     }
 
     /// 创建告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func createAlertChannel(_ input: CreateAlertChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertChannelResponse> {
         self.client.execute(action: "CreateAlertChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func createAlertChannel(_ input: CreateAlertChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {
         try await self.client.execute(action: "CreateAlertChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlertChannelResponse> {
         self.createAlertChannel(CreateAlertChannelRequest(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func createAlertChannel(noticeId: String, projectId: String, ampConsumerId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlertChannelResponse {
         try await self.createAlertChannel(CreateAlertChannelRequest(noticeId: noticeId, projectId: projectId, ampConsumerId: ampConsumerId), region: region, logger: logger, on: eventLoop)
     }

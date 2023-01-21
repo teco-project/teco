@@ -60,7 +60,7 @@ extension Mps {
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWordSample(_ input: ModifyWordSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
         self.client.execute(action: "ModifyWordSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Mps {
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWordSample(_ input: ModifyWordSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
         try await self.client.execute(action: "ModifyWordSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -76,7 +76,7 @@ extension Mps {
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWordSample(keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWordSampleResponse> {
         self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo), region: region, logger: logger, on: eventLoop)
     }
@@ -84,7 +84,7 @@ extension Mps {
     /// 修改关键词样本
     ///
     /// 该接口用于修改关键词的应用场景、标签，关键词本身不可修改，如需修改，可删除重建。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWordSample(keyword: String, usages: [String]? = nil, tagOperationInfo: AiSampleTagOperation? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWordSampleResponse {
         try await self.modifyWordSample(ModifyWordSampleRequest(keyword: keyword, usages: usages, tagOperationInfo: tagOperationInfo), region: region, logger: logger, on: eventLoop)
     }

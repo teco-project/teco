@@ -45,25 +45,25 @@ extension Tcss {
     }
 
     /// 重置安全日志主题设置
-    @inlinable
+    @inlinable @discardableResult
     public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetSecLogTopicConfigResponse> {
         self.client.execute(action: "ResetSecLogTopicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置安全日志主题设置
-    @inlinable
+    @inlinable @discardableResult
     public func resetSecLogTopicConfig(_ input: ResetSecLogTopicConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSecLogTopicConfigResponse {
         try await self.client.execute(action: "ResetSecLogTopicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置安全日志主题设置
-    @inlinable
+    @inlinable @discardableResult
     public func resetSecLogTopicConfig(configType: String, logType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetSecLogTopicConfigResponse> {
         self.resetSecLogTopicConfig(ResetSecLogTopicConfigRequest(configType: configType, logType: logType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置安全日志主题设置
-    @inlinable
+    @inlinable @discardableResult
     public func resetSecLogTopicConfig(configType: String, logType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSecLogTopicConfigResponse {
         try await self.resetSecLogTopicConfig(ResetSecLogTopicConfigRequest(configType: configType, logType: logType), region: region, logger: logger, on: eventLoop)
     }

@@ -40,25 +40,25 @@ extension Antiddos {
     }
 
     /// 删除DDoS防护的水印防护配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWaterPrintConfig(_ input: DeleteWaterPrintConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWaterPrintConfigResponse> {
         self.client.execute(action: "DeleteWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS防护的水印防护配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWaterPrintConfig(_ input: DeleteWaterPrintConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWaterPrintConfigResponse {
         try await self.client.execute(action: "DeleteWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除DDoS防护的水印防护配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWaterPrintConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWaterPrintConfigResponse> {
         self.deleteWaterPrintConfig(DeleteWaterPrintConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS防护的水印防护配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWaterPrintConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWaterPrintConfigResponse {
         try await self.deleteWaterPrintConfig(DeleteWaterPrintConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

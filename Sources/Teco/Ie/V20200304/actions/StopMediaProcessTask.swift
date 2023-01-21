@@ -42,7 +42,7 @@ extension Ie {
     /// 停止编辑处理任务
     ///
     /// 用于停止正在进行中的编辑处理任务。
-    @inlinable
+    @inlinable @discardableResult
     public func stopMediaProcessTask(_ input: StopMediaProcessTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaProcessTaskResponse> {
         self.client.execute(action: "StopMediaProcessTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ie {
     /// 停止编辑处理任务
     ///
     /// 用于停止正在进行中的编辑处理任务。
-    @inlinable
+    @inlinable @discardableResult
     public func stopMediaProcessTask(_ input: StopMediaProcessTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaProcessTaskResponse {
         try await self.client.execute(action: "StopMediaProcessTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ie {
     /// 停止编辑处理任务
     ///
     /// 用于停止正在进行中的编辑处理任务。
-    @inlinable
+    @inlinable @discardableResult
     public func stopMediaProcessTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaProcessTaskResponse> {
         self.stopMediaProcessTask(StopMediaProcessTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ie {
     /// 停止编辑处理任务
     ///
     /// 用于停止正在进行中的编辑处理任务。
-    @inlinable
+    @inlinable @discardableResult
     public func stopMediaProcessTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaProcessTaskResponse {
         try await self.stopMediaProcessTask(StopMediaProcessTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

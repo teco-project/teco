@@ -42,7 +42,7 @@ extension Tcss {
     /// 安全合规忽略检测项列表
     ///
     /// 将指定的检测项添加到白名单中，不显示未通过结果。
-    @inlinable
+    @inlinable @discardableResult
     public func addCompliancePolicyItemToWhitelist(_ input: AddCompliancePolicyItemToWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCompliancePolicyItemToWhitelistResponse> {
         self.client.execute(action: "AddCompliancePolicyItemToWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcss {
     /// 安全合规忽略检测项列表
     ///
     /// 将指定的检测项添加到白名单中，不显示未通过结果。
-    @inlinable
+    @inlinable @discardableResult
     public func addCompliancePolicyItemToWhitelist(_ input: AddCompliancePolicyItemToWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCompliancePolicyItemToWhitelistResponse {
         try await self.client.execute(action: "AddCompliancePolicyItemToWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcss {
     /// 安全合规忽略检测项列表
     ///
     /// 将指定的检测项添加到白名单中，不显示未通过结果。
-    @inlinable
+    @inlinable @discardableResult
     public func addCompliancePolicyItemToWhitelist(customerPolicyItemIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCompliancePolicyItemToWhitelistResponse> {
         self.addCompliancePolicyItemToWhitelist(AddCompliancePolicyItemToWhitelistRequest(customerPolicyItemIdSet: customerPolicyItemIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcss {
     /// 安全合规忽略检测项列表
     ///
     /// 将指定的检测项添加到白名单中，不显示未通过结果。
-    @inlinable
+    @inlinable @discardableResult
     public func addCompliancePolicyItemToWhitelist(customerPolicyItemIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCompliancePolicyItemToWhitelistResponse {
         try await self.addCompliancePolicyItemToWhitelist(AddCompliancePolicyItemToWhitelistRequest(customerPolicyItemIdSet: customerPolicyItemIdSet), region: region, logger: logger, on: eventLoop)
     }

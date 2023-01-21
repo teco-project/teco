@@ -48,7 +48,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口用于删除设备下的通道
     /// 注意： 在线状态的设备不允许删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteChannel(_ input: DeleteChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteChannelResponse> {
         self.client.execute(action: "DeleteChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口用于删除设备下的通道
     /// 注意： 在线状态的设备不允许删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteChannel(_ input: DeleteChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteChannelResponse {
         try await self.client.execute(action: "DeleteChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口用于删除设备下的通道
     /// 注意： 在线状态的设备不允许删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteChannel(deviceId: String, channelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteChannelResponse> {
         self.deleteChannel(DeleteChannelRequest(deviceId: deviceId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口用于删除设备下的通道
     /// 注意： 在线状态的设备不允许删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteChannel(deviceId: String, channelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteChannelResponse {
         try await self.deleteChannel(DeleteChannelRequest(deviceId: deviceId, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }

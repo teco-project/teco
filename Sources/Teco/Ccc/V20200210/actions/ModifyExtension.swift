@@ -60,25 +60,25 @@ extension Ccc {
     }
 
     /// 修改话机账号(绑定技能组、绑定坐席账号)
-    @inlinable
+    @inlinable @discardableResult
     public func modifyExtension(_ input: ModifyExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExtensionResponse> {
         self.client.execute(action: "ModifyExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改话机账号(绑定技能组、绑定坐席账号)
-    @inlinable
+    @inlinable @discardableResult
     public func modifyExtension(_ input: ModifyExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtensionResponse {
         try await self.client.execute(action: "ModifyExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改话机账号(绑定技能组、绑定坐席账号)
-    @inlinable
+    @inlinable @discardableResult
     public func modifyExtension(sdkAppId: UInt64, extensionId: String, extensionName: String? = nil, skillGroupIds: [Int64]? = nil, relation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExtensionResponse> {
         self.modifyExtension(ModifyExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName, skillGroupIds: skillGroupIds, relation: relation), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改话机账号(绑定技能组、绑定坐席账号)
-    @inlinable
+    @inlinable @discardableResult
     public func modifyExtension(sdkAppId: UInt64, extensionId: String, extensionName: String? = nil, skillGroupIds: [Int64]? = nil, relation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtensionResponse {
         try await self.modifyExtension(ModifyExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName, skillGroupIds: skillGroupIds, relation: relation), region: region, logger: logger, on: eventLoop)
     }

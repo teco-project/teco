@@ -45,25 +45,25 @@ extension Tdcpg {
     }
 
     /// 续费集群
-    @inlinable
+    @inlinable @discardableResult
     public func renewCluster(_ input: RenewClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewClusterResponse> {
         self.client.execute(action: "RenewCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费集群
-    @inlinable
+    @inlinable @discardableResult
     public func renewCluster(_ input: RenewClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
         try await self.client.execute(action: "RenewCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 续费集群
-    @inlinable
+    @inlinable @discardableResult
     public func renewCluster(clusterId: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewClusterResponse> {
         self.renewCluster(RenewClusterRequest(clusterId: clusterId, period: period), region: region, logger: logger, on: eventLoop)
     }
 
     /// 续费集群
-    @inlinable
+    @inlinable @discardableResult
     public func renewCluster(clusterId: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewClusterResponse {
         try await self.renewCluster(RenewClusterRequest(clusterId: clusterId, period: period), region: region, logger: logger, on: eventLoop)
     }

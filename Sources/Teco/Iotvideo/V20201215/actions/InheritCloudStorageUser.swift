@@ -55,25 +55,25 @@ extension Iotvideo {
     }
 
     /// 继承云存用户
-    @inlinable
+    @inlinable @discardableResult
     public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InheritCloudStorageUserResponse> {
         self.client.execute(action: "InheritCloudStorageUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 继承云存用户
-    @inlinable
+    @inlinable @discardableResult
     public func inheritCloudStorageUser(_ input: InheritCloudStorageUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
         try await self.client.execute(action: "InheritCloudStorageUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 继承云存用户
-    @inlinable
+    @inlinable @discardableResult
     public func inheritCloudStorageUser(productId: String, deviceName: String, userId: String, toUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InheritCloudStorageUserResponse> {
         self.inheritCloudStorageUser(InheritCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 继承云存用户
-    @inlinable
+    @inlinable @discardableResult
     public func inheritCloudStorageUser(productId: String, deviceName: String, userId: String, toUserId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InheritCloudStorageUserResponse {
         try await self.inheritCloudStorageUser(InheritCloudStorageUserRequest(productId: productId, deviceName: deviceName, userId: userId, toUserId: toUserId), region: region, logger: logger, on: eventLoop)
     }

@@ -32,25 +32,25 @@ extension Cwp {
     }
 
     /// 不再提醒爆破阻断提示弹窗
-    @inlinable
+    @inlinable @discardableResult
     public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNoticeBanTipsResponse> {
         self.client.execute(action: "StopNoticeBanTips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 不再提醒爆破阻断提示弹窗
-    @inlinable
+    @inlinable @discardableResult
     public func stopNoticeBanTips(_ input: StopNoticeBanTipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {
         try await self.client.execute(action: "StopNoticeBanTips", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 不再提醒爆破阻断提示弹窗
-    @inlinable
+    @inlinable @discardableResult
     public func stopNoticeBanTips(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNoticeBanTipsResponse> {
         self.stopNoticeBanTips(StopNoticeBanTipsRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 不再提醒爆破阻断提示弹窗
-    @inlinable
+    @inlinable @discardableResult
     public func stopNoticeBanTips(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNoticeBanTipsResponse {
         try await self.stopNoticeBanTips(StopNoticeBanTipsRequest(), region: region, logger: logger, on: eventLoop)
     }

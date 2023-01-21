@@ -57,7 +57,7 @@ extension Iotcloud {
     /// 创建Topic
     ///
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
-    @inlinable
+    @inlinable @discardableResult
     public func createTopicPolicy(_ input: CreateTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicPolicyResponse> {
         self.client.execute(action: "CreateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Iotcloud {
     /// 创建Topic
     ///
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
-    @inlinable
+    @inlinable @discardableResult
     public func createTopicPolicy(_ input: CreateTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
         try await self.client.execute(action: "CreateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Iotcloud {
     /// 创建Topic
     ///
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
-    @inlinable
+    @inlinable @discardableResult
     public func createTopicPolicy(productId: String, topicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicPolicyResponse> {
         self.createTopicPolicy(CreateTopicPolicyRequest(productId: productId, topicName: topicName, privilege: privilege, brokerSubscribe: brokerSubscribe), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Iotcloud {
     /// 创建Topic
     ///
     /// 本接口（CreateTopicPolicy）用于创建一个Topic
-    @inlinable
+    @inlinable @discardableResult
     public func createTopicPolicy(productId: String, topicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicPolicyResponse {
         try await self.createTopicPolicy(CreateTopicPolicyRequest(productId: productId, topicName: topicName, privilege: privilege, brokerSubscribe: brokerSubscribe), region: region, logger: logger, on: eventLoop)
     }

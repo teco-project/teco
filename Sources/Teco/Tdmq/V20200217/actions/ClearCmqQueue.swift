@@ -40,25 +40,25 @@ extension Tdmq {
     }
 
     /// 清空cmq消息队列中的消息
-    @inlinable
+    @inlinable @discardableResult
     public func clearCmqQueue(_ input: ClearCmqQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqQueueResponse> {
         self.client.execute(action: "ClearCmqQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清空cmq消息队列中的消息
-    @inlinable
+    @inlinable @discardableResult
     public func clearCmqQueue(_ input: ClearCmqQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqQueueResponse {
         try await self.client.execute(action: "ClearCmqQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清空cmq消息队列中的消息
-    @inlinable
+    @inlinable @discardableResult
     public func clearCmqQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqQueueResponse> {
         self.clearCmqQueue(ClearCmqQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清空cmq消息队列中的消息
-    @inlinable
+    @inlinable @discardableResult
     public func clearCmqQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqQueueResponse {
         try await self.clearCmqQueue(ClearCmqQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }

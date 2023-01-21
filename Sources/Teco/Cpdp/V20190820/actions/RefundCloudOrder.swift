@@ -108,7 +108,7 @@ extension Cpdp {
     /// 聚鑫V2-退款申请
     ///
     /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。
-    @inlinable
+    @inlinable @discardableResult
     public func refundCloudOrder(_ input: RefundCloudOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundCloudOrderResponse> {
         self.client.execute(action: "RefundCloudOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -116,7 +116,7 @@ extension Cpdp {
     /// 聚鑫V2-退款申请
     ///
     /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。
-    @inlinable
+    @inlinable @discardableResult
     public func refundCloudOrder(_ input: RefundCloudOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundCloudOrderResponse {
         try await self.client.execute(action: "RefundCloudOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -124,7 +124,7 @@ extension Cpdp {
     /// 聚鑫V2-退款申请
     ///
     /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。
-    @inlinable
+    @inlinable @discardableResult
     public func refundCloudOrder(midasAppId: String, userId: String, refundId: String, totalRefundAmt: Int64, outTradeNo: String, midasEnvironment: String? = nil, platformRefundAmt: Int64? = nil, mchRefundAmt: Int64? = nil, subOrderRefundList: [CloudSubOrderRefund]? = nil, channelOrderId: String? = nil, refundNotifyUrl: String? = nil, metadata: String? = nil, externalRefundPromptGroupList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundCloudOrderResponse> {
         self.refundCloudOrder(RefundCloudOrderRequest(midasAppId: midasAppId, userId: userId, refundId: refundId, totalRefundAmt: totalRefundAmt, outTradeNo: outTradeNo, midasEnvironment: midasEnvironment, platformRefundAmt: platformRefundAmt, mchRefundAmt: mchRefundAmt, subOrderRefundList: subOrderRefundList, channelOrderId: channelOrderId, refundNotifyUrl: refundNotifyUrl, metadata: metadata, externalRefundPromptGroupList: externalRefundPromptGroupList), region: region, logger: logger, on: eventLoop)
     }
@@ -132,7 +132,7 @@ extension Cpdp {
     /// 聚鑫V2-退款申请
     ///
     /// 如交易订单需退款，可以通过本接口将支付款全部或部分退还给付款方，聚鑫将在收到退款请求并且验证成功之后，按照退款规则将支付款按原路退回到支付帐号。最长支持1年的订单退款。在订单包含多个子订单的情况下，如果使用本接口传入OutTradeNo或TransactionId退款，则只支持全单退款；如果需要部分退款，请通过传入子订单的方式来指定部分金额退款。
-    @inlinable
+    @inlinable @discardableResult
     public func refundCloudOrder(midasAppId: String, userId: String, refundId: String, totalRefundAmt: Int64, outTradeNo: String, midasEnvironment: String? = nil, platformRefundAmt: Int64? = nil, mchRefundAmt: Int64? = nil, subOrderRefundList: [CloudSubOrderRefund]? = nil, channelOrderId: String? = nil, refundNotifyUrl: String? = nil, metadata: String? = nil, externalRefundPromptGroupList: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundCloudOrderResponse {
         try await self.refundCloudOrder(RefundCloudOrderRequest(midasAppId: midasAppId, userId: userId, refundId: refundId, totalRefundAmt: totalRefundAmt, outTradeNo: outTradeNo, midasEnvironment: midasEnvironment, platformRefundAmt: platformRefundAmt, mchRefundAmt: mchRefundAmt, subOrderRefundList: subOrderRefundList, channelOrderId: channelOrderId, refundNotifyUrl: refundNotifyUrl, metadata: metadata, externalRefundPromptGroupList: externalRefundPromptGroupList), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Mps {
     /// 删除水印模板
     ///
     /// 删除用户自定义水印模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWatermarkTemplateResponse> {
         self.client.execute(action: "DeleteWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Mps {
     /// 删除水印模板
     ///
     /// 删除用户自定义水印模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWatermarkTemplate(_ input: DeleteWatermarkTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
         try await self.client.execute(action: "DeleteWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Mps {
     /// 删除水印模板
     ///
     /// 删除用户自定义水印模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWatermarkTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWatermarkTemplateResponse> {
         self.deleteWatermarkTemplate(DeleteWatermarkTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Mps {
     /// 删除水印模板
     ///
     /// 删除用户自定义水印模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWatermarkTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
         try await self.deleteWatermarkTemplate(DeleteWatermarkTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }

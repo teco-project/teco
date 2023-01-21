@@ -45,7 +45,7 @@ extension Vpc {
     /// 关闭网关流量监控
     ///
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
-    @inlinable
+    @inlinable @discardableResult
     public func disableGatewayFlowMonitor(_ input: DisableGatewayFlowMonitorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGatewayFlowMonitorResponse> {
         self.client.execute(action: "DisableGatewayFlowMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -53,7 +53,7 @@ extension Vpc {
     /// 关闭网关流量监控
     ///
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
-    @inlinable
+    @inlinable @discardableResult
     public func disableGatewayFlowMonitor(_ input: DisableGatewayFlowMonitorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGatewayFlowMonitorResponse {
         try await self.client.execute(action: "DisableGatewayFlowMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Vpc {
     /// 关闭网关流量监控
     ///
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
-    @inlinable
+    @inlinable @discardableResult
     public func disableGatewayFlowMonitor(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGatewayFlowMonitorResponse> {
         self.disableGatewayFlowMonitor(DisableGatewayFlowMonitorRequest(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
     }
@@ -69,7 +69,7 @@ extension Vpc {
     /// 关闭网关流量监控
     ///
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
-    @inlinable
+    @inlinable @discardableResult
     public func disableGatewayFlowMonitor(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGatewayFlowMonitorResponse {
         try await self.disableGatewayFlowMonitor(DisableGatewayFlowMonitorRequest(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
     }

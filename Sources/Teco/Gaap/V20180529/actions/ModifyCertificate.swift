@@ -66,7 +66,7 @@ extension Gaap {
     /// 修改域名对应的证书
     ///
     /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCertificate(_ input: ModifyCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateResponse> {
         self.client.execute(action: "ModifyCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -74,7 +74,7 @@ extension Gaap {
     /// 修改域名对应的证书
     ///
     /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCertificate(_ input: ModifyCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateResponse {
         try await self.client.execute(action: "ModifyCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -82,7 +82,7 @@ extension Gaap {
     /// 修改域名对应的证书
     ///
     /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCertificate(listenerId: String, domain: String, certificateId: String, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateResponse> {
         self.modifyCertificate(ModifyCertificateRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds), region: region, logger: logger, on: eventLoop)
     }
@@ -90,7 +90,7 @@ extension Gaap {
     /// 修改域名对应的证书
     ///
     /// 本接口（ModifyCertificate）用于修改监听器下的域名对应的证书。该接口仅适用于version3.0的通道。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCertificate(listenerId: String, domain: String, certificateId: String, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateResponse {
         try await self.modifyCertificate(ModifyCertificateRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds), region: region, logger: logger, on: eventLoop)
     }

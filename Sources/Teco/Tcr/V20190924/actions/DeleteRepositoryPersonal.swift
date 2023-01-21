@@ -42,7 +42,7 @@ extension Tcr {
     /// 删除个人版镜像仓库
     ///
     /// 用于个人版镜像仓库中删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryPersonalResponse> {
         self.client.execute(action: "DeleteRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcr {
     /// 删除个人版镜像仓库
     ///
     /// 用于个人版镜像仓库中删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRepositoryPersonal(_ input: DeleteRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryPersonalResponse {
         try await self.client.execute(action: "DeleteRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcr {
     /// 删除个人版镜像仓库
     ///
     /// 用于个人版镜像仓库中删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRepositoryPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryPersonalResponse> {
         self.deleteRepositoryPersonal(DeleteRepositoryPersonalRequest(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcr {
     /// 删除个人版镜像仓库
     ///
     /// 用于个人版镜像仓库中删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRepositoryPersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryPersonalResponse {
         try await self.deleteRepositoryPersonal(DeleteRepositoryPersonalRequest(repoName: repoName), region: region, logger: logger, on: eventLoop)
     }

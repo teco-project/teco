@@ -40,25 +40,25 @@ extension Iotexplorer {
     }
 
     /// 禁用规则
-    @inlinable
+    @inlinable @discardableResult
     public func disableTopicRule(_ input: DisableTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTopicRuleResponse> {
         self.client.execute(action: "DisableTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用规则
-    @inlinable
+    @inlinable @discardableResult
     public func disableTopicRule(_ input: DisableTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTopicRuleResponse {
         try await self.client.execute(action: "DisableTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用规则
-    @inlinable
+    @inlinable @discardableResult
     public func disableTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTopicRuleResponse> {
         self.disableTopicRule(DisableTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用规则
-    @inlinable
+    @inlinable @discardableResult
     public func disableTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTopicRuleResponse {
         try await self.disableTopicRule(DisableTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }

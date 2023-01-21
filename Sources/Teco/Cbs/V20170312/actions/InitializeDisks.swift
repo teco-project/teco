@@ -46,7 +46,7 @@ extension Cbs {
     /// 2. 如果云硬盘不是通过快照创建的，则重新初始化会清空此云硬盘的数据；请在重新初始化云硬盘前检查并备份必要的数据；
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func initializeDisks(_ input: InitializeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
         self.client.execute(action: "InitializeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Cbs {
     /// 2. 如果云硬盘不是通过快照创建的，则重新初始化会清空此云硬盘的数据；请在重新初始化云硬盘前检查并备份必要的数据；
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func initializeDisks(_ input: InitializeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeDisksResponse {
         try await self.client.execute(action: "InitializeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -70,7 +70,7 @@ extension Cbs {
     /// 2. 如果云硬盘不是通过快照创建的，则重新初始化会清空此云硬盘的数据；请在重新初始化云硬盘前检查并备份必要的数据；
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func initializeDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeDisksResponse> {
         self.initializeDisks(InitializeDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Cbs {
     /// 2. 如果云硬盘不是通过快照创建的，则重新初始化会清空此云硬盘的数据；请在重新初始化云硬盘前检查并备份必要的数据；
     /// 3. 当前仅未挂载的、非共享属性的数据盘云硬盘支持重新初始化；
     /// 4. 当创建此云硬盘的原始快照被删除时，不再支持重新初始化此云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func initializeDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeDisksResponse {
         try await self.initializeDisks(InitializeDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }

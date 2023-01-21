@@ -120,7 +120,7 @@ extension Dc {
     /// 修改专用通道扩展信息
     ///
     /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelExtraResponse> {
         self.client.execute(action: "ModifyDirectConnectTunnelExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -128,7 +128,7 @@ extension Dc {
     /// 修改专用通道扩展信息
     ///
     /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDirectConnectTunnelExtra(_ input: ModifyDirectConnectTunnelExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelExtraResponse {
         try await self.client.execute(action: "ModifyDirectConnectTunnelExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -136,7 +136,7 @@ extension Dc {
     /// 修改专用通道扩展信息
     ///
     /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDirectConnectTunnelExtra(directConnectTunnelId: String, vlan: Int64? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: RouteFilterPrefix? = nil, tencentAddress: String? = nil, tencentBackupAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, enableBGPCommunity: Bool? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, iPv6Enable: Int64? = nil, customerIDCRoutes: [RouteFilterPrefix]? = nil, jumboEnable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelExtraResponse> {
         self.modifyDirectConnectTunnelExtra(ModifyDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId, vlan: vlan, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, tencentBackupAddress: tencentBackupAddress, customerAddress: customerAddress, bandwidth: bandwidth, enableBGPCommunity: enableBGPCommunity, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo, iPv6Enable: iPv6Enable, customerIDCRoutes: customerIDCRoutes, jumboEnable: jumboEnable), region: region, logger: logger, on: eventLoop)
     }
@@ -144,7 +144,7 @@ extension Dc {
     /// 修改专用通道扩展信息
     ///
     /// 本接口（ModifyDirectConnectTunnelExtra）用于修改专用通道扩展信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDirectConnectTunnelExtra(directConnectTunnelId: String, vlan: Int64? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: RouteFilterPrefix? = nil, tencentAddress: String? = nil, tencentBackupAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, enableBGPCommunity: Bool? = nil, bfdEnable: Int64? = nil, nqaEnable: Int64? = nil, bfdInfo: BFDInfo? = nil, nqaInfo: NQAInfo? = nil, iPv6Enable: Int64? = nil, customerIDCRoutes: [RouteFilterPrefix]? = nil, jumboEnable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelExtraResponse {
         try await self.modifyDirectConnectTunnelExtra(ModifyDirectConnectTunnelExtraRequest(directConnectTunnelId: directConnectTunnelId, vlan: vlan, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, tencentBackupAddress: tencentBackupAddress, customerAddress: customerAddress, bandwidth: bandwidth, enableBGPCommunity: enableBGPCommunity, bfdEnable: bfdEnable, nqaEnable: nqaEnable, bfdInfo: bfdInfo, nqaInfo: nqaInfo, iPv6Enable: iPv6Enable, customerIDCRoutes: customerIDCRoutes, jumboEnable: jumboEnable), region: region, logger: logger, on: eventLoop)
     }

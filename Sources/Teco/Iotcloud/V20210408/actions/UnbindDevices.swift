@@ -62,7 +62,7 @@ extension Iotcloud {
     /// 批量解绑子设备
     ///
     /// 本接口（UnbindDevices）用于网关设备批量解绑子设备
-    @inlinable
+    @inlinable @discardableResult
     public func unbindDevices(_ input: UnbindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDevicesResponse> {
         self.client.execute(action: "UnbindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Iotcloud {
     /// 批量解绑子设备
     ///
     /// 本接口（UnbindDevices）用于网关设备批量解绑子设备
-    @inlinable
+    @inlinable @discardableResult
     public func unbindDevices(_ input: UnbindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDevicesResponse {
         try await self.client.execute(action: "UnbindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Iotcloud {
     /// 批量解绑子设备
     ///
     /// 本接口（UnbindDevices）用于网关设备批量解绑子设备
-    @inlinable
+    @inlinable @discardableResult
     public func unbindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDevicesResponse> {
         self.unbindDevices(UnbindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Iotcloud {
     /// 批量解绑子设备
     ///
     /// 本接口（UnbindDevices）用于网关设备批量解绑子设备
-    @inlinable
+    @inlinable @discardableResult
     public func unbindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDevicesResponse {
         try await self.unbindDevices(UnbindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), region: region, logger: logger, on: eventLoop)
     }

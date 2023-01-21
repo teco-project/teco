@@ -57,7 +57,7 @@ extension As {
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDesiredCapacityResponse> {
         self.client.execute(action: "ModifyDesiredCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension As {
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDesiredCapacity(_ input: ModifyDesiredCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
         try await self.client.execute(action: "ModifyDesiredCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension As {
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDesiredCapacity(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDesiredCapacityResponse> {
         self.modifyDesiredCapacity(ModifyDesiredCapacityRequest(autoScalingGroupId: autoScalingGroupId, desiredCapacity: desiredCapacity, minSize: minSize, maxSize: maxSize), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension As {
     /// 修改期望实例数
     ///
     /// 本接口（ModifyDesiredCapacity）用于修改指定伸缩组的期望实例数
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDesiredCapacity(autoScalingGroupId: String, desiredCapacity: UInt64, minSize: UInt64? = nil, maxSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDesiredCapacityResponse {
         try await self.modifyDesiredCapacity(ModifyDesiredCapacityRequest(autoScalingGroupId: autoScalingGroupId, desiredCapacity: desiredCapacity, minSize: minSize, maxSize: maxSize), region: region, logger: logger, on: eventLoop)
     }

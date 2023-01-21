@@ -47,7 +47,7 @@ extension Monitor {
     /// 删除报警规则
     ///
     /// 批量删除 Prometheus 报警规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlertRules(_ input: DeleteAlertRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlertRulesResponse> {
         self.client.execute(action: "DeleteAlertRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Monitor {
     /// 删除报警规则
     ///
     /// 批量删除 Prometheus 报警规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlertRules(_ input: DeleteAlertRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlertRulesResponse {
         try await self.client.execute(action: "DeleteAlertRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Monitor {
     /// 删除报警规则
     ///
     /// 批量删除 Prometheus 报警规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlertRules(ruleIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlertRulesResponse> {
         self.deleteAlertRules(DeleteAlertRulesRequest(ruleIds: ruleIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Monitor {
     /// 删除报警规则
     ///
     /// 批量删除 Prometheus 报警规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlertRules(ruleIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlertRulesResponse {
         try await self.deleteAlertRules(DeleteAlertRulesRequest(ruleIds: ruleIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

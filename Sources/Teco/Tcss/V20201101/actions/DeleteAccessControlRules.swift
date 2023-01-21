@@ -42,7 +42,7 @@ extension Tcss {
     /// 删除运行时访问控制策略
     ///
     /// 删除运行访问控制策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAccessControlRules(_ input: DeleteAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessControlRulesResponse> {
         self.client.execute(action: "DeleteAccessControlRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcss {
     /// 删除运行时访问控制策略
     ///
     /// 删除运行访问控制策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAccessControlRules(_ input: DeleteAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessControlRulesResponse {
         try await self.client.execute(action: "DeleteAccessControlRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcss {
     /// 删除运行时访问控制策略
     ///
     /// 删除运行访问控制策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAccessControlRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessControlRulesResponse> {
         self.deleteAccessControlRules(DeleteAccessControlRulesRequest(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcss {
     /// 删除运行时访问控制策略
     ///
     /// 删除运行访问控制策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAccessControlRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessControlRulesResponse {
         try await self.deleteAccessControlRules(DeleteAccessControlRulesRequest(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Tcss {
     }
 
     /// 运行时文件扫描超时设置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusScanTimeoutSetting(_ input: ModifyVirusScanTimeoutSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanTimeoutSettingResponse> {
         self.client.execute(action: "ModifyVirusScanTimeoutSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件扫描超时设置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusScanTimeoutSetting(_ input: ModifyVirusScanTimeoutSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanTimeoutSettingResponse {
         try await self.client.execute(action: "ModifyVirusScanTimeoutSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时文件扫描超时设置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusScanTimeoutSetting(timeout: UInt64, scanType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanTimeoutSettingResponse> {
         self.modifyVirusScanTimeoutSetting(ModifyVirusScanTimeoutSettingRequest(timeout: timeout, scanType: scanType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件扫描超时设置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusScanTimeoutSetting(timeout: UInt64, scanType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanTimeoutSettingResponse {
         try await self.modifyVirusScanTimeoutSetting(ModifyVirusScanTimeoutSettingRequest(timeout: timeout, scanType: scanType), region: region, logger: logger, on: eventLoop)
     }

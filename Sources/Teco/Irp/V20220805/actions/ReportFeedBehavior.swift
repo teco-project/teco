@@ -47,7 +47,7 @@ extension Irp {
     /// 上报信息流行为数据
     ///
     /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
-    @inlinable
+    @inlinable @discardableResult
     public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedBehaviorResponse> {
         self.client.execute(action: "ReportFeedBehavior", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Irp {
     /// 上报信息流行为数据
     ///
     /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
-    @inlinable
+    @inlinable @discardableResult
     public func reportFeedBehavior(_ input: ReportFeedBehaviorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
         try await self.client.execute(action: "ReportFeedBehavior", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Irp {
     /// 上报信息流行为数据
     ///
     /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
-    @inlinable
+    @inlinable @discardableResult
     public func reportFeedBehavior(instanceId: String, feedBehaviorList: [FeedBehaviorInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedBehaviorResponse> {
         self.reportFeedBehavior(ReportFeedBehaviorRequest(instanceId: instanceId, feedBehaviorList: feedBehaviorList), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Irp {
     /// 上报信息流行为数据
     ///
     /// 上报信息流场景内的行为数据，随着数据的积累，模型的效果会逐渐稳定。
-    @inlinable
+    @inlinable @discardableResult
     public func reportFeedBehavior(instanceId: String, feedBehaviorList: [FeedBehaviorInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedBehaviorResponse {
         try await self.reportFeedBehavior(ReportFeedBehaviorRequest(instanceId: instanceId, feedBehaviorList: feedBehaviorList), region: region, logger: logger, on: eventLoop)
     }

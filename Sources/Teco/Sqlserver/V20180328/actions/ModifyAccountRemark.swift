@@ -47,7 +47,7 @@ extension Sqlserver {
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
         self.client.execute(action: "ModifyAccountRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Sqlserver {
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountRemark(_ input: ModifyAccountRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
         try await self.client.execute(action: "ModifyAccountRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Sqlserver {
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountRemark(instanceId: String, accounts: [AccountRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
         self.modifyAccountRemark(ModifyAccountRemarkRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Sqlserver {
     /// 修改账户备注
     ///
     /// 本接口（ModifyAccountRemark）用于修改账户备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountRemark(instanceId: String, accounts: [AccountRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
         try await self.modifyAccountRemark(ModifyAccountRemarkRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
     }

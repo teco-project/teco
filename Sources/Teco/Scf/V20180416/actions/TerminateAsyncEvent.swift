@@ -57,7 +57,7 @@ extension Scf {
     /// 终止函数异步事件
     ///
     /// 终止正在运行中的函数异步事件
-    @inlinable
+    @inlinable @discardableResult
     public func terminateAsyncEvent(_ input: TerminateAsyncEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateAsyncEventResponse> {
         self.client.execute(action: "TerminateAsyncEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Scf {
     /// 终止函数异步事件
     ///
     /// 终止正在运行中的函数异步事件
-    @inlinable
+    @inlinable @discardableResult
     public func terminateAsyncEvent(_ input: TerminateAsyncEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateAsyncEventResponse {
         try await self.client.execute(action: "TerminateAsyncEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Scf {
     /// 终止函数异步事件
     ///
     /// 终止正在运行中的函数异步事件
-    @inlinable
+    @inlinable @discardableResult
     public func terminateAsyncEvent(functionName: String, invokeRequestId: String, namespace: String? = nil, graceShutdown: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateAsyncEventResponse> {
         self.terminateAsyncEvent(TerminateAsyncEventRequest(functionName: functionName, invokeRequestId: invokeRequestId, namespace: namespace, graceShutdown: graceShutdown), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Scf {
     /// 终止函数异步事件
     ///
     /// 终止正在运行中的函数异步事件
-    @inlinable
+    @inlinable @discardableResult
     public func terminateAsyncEvent(functionName: String, invokeRequestId: String, namespace: String? = nil, graceShutdown: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateAsyncEventResponse {
         try await self.terminateAsyncEvent(TerminateAsyncEventRequest(functionName: functionName, invokeRequestId: invokeRequestId, namespace: namespace, graceShutdown: graceShutdown), region: region, logger: logger, on: eventLoop)
     }

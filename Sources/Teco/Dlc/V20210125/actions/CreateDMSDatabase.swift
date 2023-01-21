@@ -55,25 +55,25 @@ extension Dlc {
     }
 
     /// DMS元数据创建库
-    @inlinable
+    @inlinable @discardableResult
     public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDMSDatabaseResponse> {
         self.client.execute(action: "CreateDMSDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据创建库
-    @inlinable
+    @inlinable @discardableResult
     public func createDMSDatabase(_ input: CreateDMSDatabaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSDatabaseResponse {
         try await self.client.execute(action: "CreateDMSDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DMS元数据创建库
-    @inlinable
+    @inlinable @discardableResult
     public func createDMSDatabase(asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDMSDatabaseResponse> {
         self.createDMSDatabase(CreateDMSDatabaseRequest(asset: asset, schemaName: schemaName, location: location, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据创建库
-    @inlinable
+    @inlinable @discardableResult
     public func createDMSDatabase(asset: Asset? = nil, schemaName: String? = nil, location: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDMSDatabaseResponse {
         try await self.createDMSDatabase(CreateDMSDatabaseRequest(asset: asset, schemaName: schemaName, location: location, name: name), region: region, logger: logger, on: eventLoop)
     }

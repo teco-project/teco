@@ -40,25 +40,25 @@ extension Tcss {
     }
 
     /// 删除运行时高危系统调用事件
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRiskSyscallEventsResponse> {
         self.client.execute(action: "DeleteRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时高危系统调用事件
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRiskSyscallEvents(_ input: DeleteRiskSyscallEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
         try await self.client.execute(action: "DeleteRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除运行时高危系统调用事件
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRiskSyscallEvents(eventIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRiskSyscallEventsResponse> {
         self.deleteRiskSyscallEvents(DeleteRiskSyscallEventsRequest(eventIdSet: eventIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时高危系统调用事件
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRiskSyscallEvents(eventIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRiskSyscallEventsResponse {
         try await self.deleteRiskSyscallEvents(DeleteRiskSyscallEventsRequest(eventIdSet: eventIdSet), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Vpc {
     /// 网络ACL关联子网
     ///
     /// 本接口（AssociateNetworkAclSubnets）用于网络ACL关联vpc下的子网。
-    @inlinable
+    @inlinable @discardableResult
     public func associateNetworkAclSubnets(_ input: AssociateNetworkAclSubnetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNetworkAclSubnetsResponse> {
         self.client.execute(action: "AssociateNetworkAclSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 网络ACL关联子网
     ///
     /// 本接口（AssociateNetworkAclSubnets）用于网络ACL关联vpc下的子网。
-    @inlinable
+    @inlinable @discardableResult
     public func associateNetworkAclSubnets(_ input: AssociateNetworkAclSubnetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNetworkAclSubnetsResponse {
         try await self.client.execute(action: "AssociateNetworkAclSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 网络ACL关联子网
     ///
     /// 本接口（AssociateNetworkAclSubnets）用于网络ACL关联vpc下的子网。
-    @inlinable
+    @inlinable @discardableResult
     public func associateNetworkAclSubnets(networkAclId: String, subnetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNetworkAclSubnetsResponse> {
         self.associateNetworkAclSubnets(AssociateNetworkAclSubnetsRequest(networkAclId: networkAclId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 网络ACL关联子网
     ///
     /// 本接口（AssociateNetworkAclSubnets）用于网络ACL关联vpc下的子网。
-    @inlinable
+    @inlinable @discardableResult
     public func associateNetworkAclSubnets(networkAclId: String, subnetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNetworkAclSubnetsResponse {
         try await self.associateNetworkAclSubnets(AssociateNetworkAclSubnetsRequest(networkAclId: networkAclId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
     }

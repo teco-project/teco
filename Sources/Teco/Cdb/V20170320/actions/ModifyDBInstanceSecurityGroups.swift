@@ -52,7 +52,7 @@ extension Cdb {
     /// 修改云数据库安全组
     ///
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupsResponse> {
         self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cdb {
     /// 修改云数据库安全组
     ///
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
         try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cdb {
     /// 修改云数据库安全组
     ///
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(instanceId: String, securityGroupIds: [String], forReadonlyInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupsResponse> {
         self.modifyDBInstanceSecurityGroups(ModifyDBInstanceSecurityGroupsRequest(instanceId: instanceId, securityGroupIds: securityGroupIds, forReadonlyInstance: forReadonlyInstance), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cdb {
     /// 修改云数据库安全组
     ///
     /// 本接口(ModifyDBInstanceSecurityGroups)用于修改实例绑定的安全组。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(instanceId: String, securityGroupIds: [String], forReadonlyInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
         try await self.modifyDBInstanceSecurityGroups(ModifyDBInstanceSecurityGroupsRequest(instanceId: instanceId, securityGroupIds: securityGroupIds, forReadonlyInstance: forReadonlyInstance), region: region, logger: logger, on: eventLoop)
     }

@@ -40,25 +40,25 @@ extension Cam {
     }
 
     /// 删除用户权限边界
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserPermissionsBoundaryResponse> {
         self.client.execute(action: "DeleteUserPermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户权限边界
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserPermissionsBoundary(_ input: DeleteUserPermissionsBoundaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserPermissionsBoundaryResponse {
         try await self.client.execute(action: "DeleteUserPermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除用户权限边界
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserPermissionsBoundary(targetUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserPermissionsBoundaryResponse> {
         self.deleteUserPermissionsBoundary(DeleteUserPermissionsBoundaryRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户权限边界
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserPermissionsBoundary(targetUin: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserPermissionsBoundaryResponse {
         try await self.deleteUserPermissionsBoundary(DeleteUserPermissionsBoundaryRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }

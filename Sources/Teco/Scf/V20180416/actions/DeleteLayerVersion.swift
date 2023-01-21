@@ -47,7 +47,7 @@ extension Scf {
     /// 删除层版本
     ///
     /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLayerVersion(_ input: DeleteLayerVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLayerVersionResponse> {
         self.client.execute(action: "DeleteLayerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Scf {
     /// 删除层版本
     ///
     /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLayerVersion(_ input: DeleteLayerVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLayerVersionResponse {
         try await self.client.execute(action: "DeleteLayerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Scf {
     /// 删除层版本
     ///
     /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLayerVersion(layerName: String, layerVersion: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLayerVersionResponse> {
         self.deleteLayerVersion(DeleteLayerVersionRequest(layerName: layerName, layerVersion: layerVersion), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Scf {
     /// 删除层版本
     ///
     /// 删除指定层的指定版本，被删除的版本无法再关联到函数上，但不会影响正在引用这个层的函数。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLayerVersion(layerName: String, layerVersion: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLayerVersionResponse {
         try await self.deleteLayerVersion(DeleteLayerVersionRequest(layerName: layerName, layerVersion: layerVersion), region: region, logger: logger, on: eventLoop)
     }

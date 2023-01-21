@@ -53,7 +53,7 @@ extension Clb {
     ///
     /// 针对SnatPro负载均衡，这个接口用于添加SnatIp，如果负载均衡没有开启SnatPro，添加SnatIp后会自动开启。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func createLoadBalancerSnatIps(_ input: CreateLoadBalancerSnatIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerSnatIpsResponse> {
         self.client.execute(action: "CreateLoadBalancerSnatIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -62,7 +62,7 @@ extension Clb {
     ///
     /// 针对SnatPro负载均衡，这个接口用于添加SnatIp，如果负载均衡没有开启SnatPro，添加SnatIp后会自动开启。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func createLoadBalancerSnatIps(_ input: CreateLoadBalancerSnatIpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerSnatIpsResponse {
         try await self.client.execute(action: "CreateLoadBalancerSnatIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Clb {
     ///
     /// 针对SnatPro负载均衡，这个接口用于添加SnatIp，如果负载均衡没有开启SnatPro，添加SnatIp后会自动开启。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func createLoadBalancerSnatIps(loadBalancerId: String, snatIps: [SnatIp], number: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerSnatIpsResponse> {
         self.createLoadBalancerSnatIps(CreateLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number), region: region, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Clb {
     ///
     /// 针对SnatPro负载均衡，这个接口用于添加SnatIp，如果负载均衡没有开启SnatPro，添加SnatIp后会自动开启。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func createLoadBalancerSnatIps(loadBalancerId: String, snatIps: [SnatIp], number: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerSnatIpsResponse {
         try await self.createLoadBalancerSnatIps(CreateLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, snatIps: snatIps, number: number), region: region, logger: logger, on: eventLoop)
     }

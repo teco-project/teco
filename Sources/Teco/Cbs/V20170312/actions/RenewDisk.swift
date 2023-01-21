@@ -49,7 +49,7 @@ extension Cbs {
     /// 本接口（RenewDisk）用于续费云硬盘。
     /// * 只支持预付费的云硬盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中DiskChargeType字段解释。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
-    @inlinable
+    @inlinable @discardableResult
     public func renewDisk(_ input: RenewDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDiskResponse> {
         self.client.execute(action: "RenewDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -59,7 +59,7 @@ extension Cbs {
     /// 本接口（RenewDisk）用于续费云硬盘。
     /// * 只支持预付费的云硬盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中DiskChargeType字段解释。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
-    @inlinable
+    @inlinable @discardableResult
     public func renewDisk(_ input: RenewDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDiskResponse {
         try await self.client.execute(action: "RenewDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -69,7 +69,7 @@ extension Cbs {
     /// 本接口（RenewDisk）用于续费云硬盘。
     /// * 只支持预付费的云硬盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中DiskChargeType字段解释。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
-    @inlinable
+    @inlinable @discardableResult
     public func renewDisk(diskChargePrepaid: DiskChargePrepaid, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDiskResponse> {
         self.renewDisk(RenewDiskRequest(diskChargePrepaid: diskChargePrepaid, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }
@@ -79,7 +79,7 @@ extension Cbs {
     /// 本接口（RenewDisk）用于续费云硬盘。
     /// * 只支持预付费的云硬盘。云硬盘类型可以通过[DescribeDisks](/document/product/362/16315)接口查询，见输出参数中DiskChargeType字段解释。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到子机续费后的到期时间来续费。
-    @inlinable
+    @inlinable @discardableResult
     public func renewDisk(diskChargePrepaid: DiskChargePrepaid, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDiskResponse {
         try await self.renewDisk(RenewDiskRequest(diskChargePrepaid: diskChargePrepaid, diskId: diskId), region: region, logger: logger, on: eventLoop)
     }

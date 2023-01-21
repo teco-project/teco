@@ -50,25 +50,25 @@ extension Organization {
     }
 
     /// 发送企业组织邀请
-    @inlinable
+    @inlinable @discardableResult
     public func sendOrganizationInvitation(_ input: SendOrganizationInvitationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendOrganizationInvitationResponse> {
         self.client.execute(action: "SendOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送企业组织邀请
-    @inlinable
+    @inlinable @discardableResult
     public func sendOrganizationInvitation(_ input: SendOrganizationInvitationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOrganizationInvitationResponse {
         try await self.client.execute(action: "SendOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 发送企业组织邀请
-    @inlinable
+    @inlinable @discardableResult
     public func sendOrganizationInvitation(inviteUin: UInt64, name: String, remark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendOrganizationInvitationResponse> {
         self.sendOrganizationInvitation(SendOrganizationInvitationRequest(inviteUin: inviteUin, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发送企业组织邀请
-    @inlinable
+    @inlinable @discardableResult
     public func sendOrganizationInvitation(inviteUin: UInt64, name: String, remark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendOrganizationInvitationResponse {
         try await self.sendOrganizationInvitation(SendOrganizationInvitationRequest(inviteUin: inviteUin, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }

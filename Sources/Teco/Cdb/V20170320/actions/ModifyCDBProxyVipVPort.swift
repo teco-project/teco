@@ -65,25 +65,25 @@ extension Cdb {
     }
 
     /// 修改数据库代理VIP或端口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCDBProxyVipVPort(_ input: ModifyCDBProxyVipVPortRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCDBProxyVipVPortResponse> {
         self.client.execute(action: "ModifyCDBProxyVipVPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库代理VIP或端口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCDBProxyVipVPort(_ input: ModifyCDBProxyVipVPortRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyVipVPortResponse {
         try await self.client.execute(action: "ModifyCDBProxyVipVPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改数据库代理VIP或端口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCDBProxyVipVPort(proxyGroupId: String, uniqVpcId: String, uniqSubnetId: String, dstIp: String? = nil, dstPort: UInt64? = nil, releaseDuration: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCDBProxyVipVPortResponse> {
         self.modifyCDBProxyVipVPort(ModifyCDBProxyVipVPortRequest(proxyGroupId: proxyGroupId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, dstIp: dstIp, dstPort: dstPort, releaseDuration: releaseDuration), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库代理VIP或端口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCDBProxyVipVPort(proxyGroupId: String, uniqVpcId: String, uniqSubnetId: String, dstIp: String? = nil, dstPort: UInt64? = nil, releaseDuration: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCDBProxyVipVPortResponse {
         try await self.modifyCDBProxyVipVPort(ModifyCDBProxyVipVPortRequest(proxyGroupId: proxyGroupId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, dstIp: dstIp, dstPort: dstPort, releaseDuration: releaseDuration), region: region, logger: logger, on: eventLoop)
     }

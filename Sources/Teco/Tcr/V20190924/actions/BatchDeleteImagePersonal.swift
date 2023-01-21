@@ -47,7 +47,7 @@ extension Tcr {
     /// 个人版镜像仓库批量删除Tag
     ///
     /// 用于在个人版镜像仓库中批量删除Tag
-    @inlinable
+    @inlinable @discardableResult
     public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteImagePersonalResponse> {
         self.client.execute(action: "BatchDeleteImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcr {
     /// 个人版镜像仓库批量删除Tag
     ///
     /// 用于在个人版镜像仓库中批量删除Tag
-    @inlinable
+    @inlinable @discardableResult
     public func batchDeleteImagePersonal(_ input: BatchDeleteImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
         try await self.client.execute(action: "BatchDeleteImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcr {
     /// 个人版镜像仓库批量删除Tag
     ///
     /// 用于在个人版镜像仓库中批量删除Tag
-    @inlinable
+    @inlinable @discardableResult
     public func batchDeleteImagePersonal(repoName: String, tags: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteImagePersonalResponse> {
         self.batchDeleteImagePersonal(BatchDeleteImagePersonalRequest(repoName: repoName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcr {
     /// 个人版镜像仓库批量删除Tag
     ///
     /// 用于在个人版镜像仓库中批量删除Tag
-    @inlinable
+    @inlinable @discardableResult
     public func batchDeleteImagePersonal(repoName: String, tags: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteImagePersonalResponse {
         try await self.batchDeleteImagePersonal(BatchDeleteImagePersonalRequest(repoName: repoName, tags: tags), region: region, logger: logger, on: eventLoop)
     }

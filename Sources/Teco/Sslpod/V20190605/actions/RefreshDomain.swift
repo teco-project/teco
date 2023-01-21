@@ -42,7 +42,7 @@ extension Sslpod {
     /// 重新检测域名
     ///
     /// 强制重新检测域名
-    @inlinable
+    @inlinable @discardableResult
     public func refreshDomain(_ input: RefreshDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDomainResponse> {
         self.client.execute(action: "RefreshDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Sslpod {
     /// 重新检测域名
     ///
     /// 强制重新检测域名
-    @inlinable
+    @inlinable @discardableResult
     public func refreshDomain(_ input: RefreshDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
         try await self.client.execute(action: "RefreshDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Sslpod {
     /// 重新检测域名
     ///
     /// 强制重新检测域名
-    @inlinable
+    @inlinable @discardableResult
     public func refreshDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefreshDomainResponse> {
         self.refreshDomain(RefreshDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Sslpod {
     /// 重新检测域名
     ///
     /// 强制重新检测域名
-    @inlinable
+    @inlinable @discardableResult
     public func refreshDomain(domainId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefreshDomainResponse {
         try await self.refreshDomain(RefreshDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }

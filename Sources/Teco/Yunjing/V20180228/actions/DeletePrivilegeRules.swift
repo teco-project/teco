@@ -40,25 +40,25 @@ extension Yunjing {
     }
 
     /// 删除本地提权规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeRulesResponse> {
         self.client.execute(action: "DeletePrivilegeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除本地提权规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivilegeRules(_ input: DeletePrivilegeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
         try await self.client.execute(action: "DeletePrivilegeRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除本地提权规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivilegeRules(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeRulesResponse> {
         self.deletePrivilegeRules(DeletePrivilegeRulesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除本地提权规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivilegeRules(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeRulesResponse {
         try await self.deletePrivilegeRules(DeletePrivilegeRulesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

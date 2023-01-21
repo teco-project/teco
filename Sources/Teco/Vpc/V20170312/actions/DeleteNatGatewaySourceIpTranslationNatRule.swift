@@ -47,7 +47,7 @@ extension Vpc {
     /// 删除NAT网关的SNAT转发规则
     ///
     /// 本接口（DeleteNatGatewaySourceIpTranslationNatRule）用于删除NAT网关端口SNAT转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatGatewaySourceIpTranslationNatRule(_ input: DeleteNatGatewaySourceIpTranslationNatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewaySourceIpTranslationNatRuleResponse> {
         self.client.execute(action: "DeleteNatGatewaySourceIpTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 删除NAT网关的SNAT转发规则
     ///
     /// 本接口（DeleteNatGatewaySourceIpTranslationNatRule）用于删除NAT网关端口SNAT转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatGatewaySourceIpTranslationNatRule(_ input: DeleteNatGatewaySourceIpTranslationNatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewaySourceIpTranslationNatRuleResponse {
         try await self.client.execute(action: "DeleteNatGatewaySourceIpTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 删除NAT网关的SNAT转发规则
     ///
     /// 本接口（DeleteNatGatewaySourceIpTranslationNatRule）用于删除NAT网关端口SNAT转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatGatewaySourceIpTranslationNatRule(natGatewayId: String, natGatewaySnatIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewaySourceIpTranslationNatRuleResponse> {
         self.deleteNatGatewaySourceIpTranslationNatRule(DeleteNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, natGatewaySnatIds: natGatewaySnatIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 删除NAT网关的SNAT转发规则
     ///
     /// 本接口（DeleteNatGatewaySourceIpTranslationNatRule）用于删除NAT网关端口SNAT转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatGatewaySourceIpTranslationNatRule(natGatewayId: String, natGatewaySnatIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewaySourceIpTranslationNatRuleResponse {
         try await self.deleteNatGatewaySourceIpTranslationNatRule(DeleteNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, natGatewaySnatIds: natGatewaySnatIds), region: region, logger: logger, on: eventLoop)
     }

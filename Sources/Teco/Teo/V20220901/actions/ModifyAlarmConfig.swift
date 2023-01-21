@@ -63,7 +63,7 @@ extension Teo {
     /// 修改用户告警配置
     ///
     /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmConfig(_ input: ModifyAlarmConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmConfigResponse> {
         self.client.execute(action: "ModifyAlarmConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Teo {
     /// 修改用户告警配置
     ///
     /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmConfig(_ input: ModifyAlarmConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmConfigResponse {
         try await self.client.execute(action: "ModifyAlarmConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -79,7 +79,7 @@ extension Teo {
     /// 修改用户告警配置
     ///
     /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmConfig(serviceType: String, zoneId: String, entityList: [String], threshold: Int64? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmConfigResponse> {
         self.modifyAlarmConfig(ModifyAlarmConfigRequest(serviceType: serviceType, zoneId: zoneId, entityList: entityList, threshold: threshold, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
     }
@@ -87,7 +87,7 @@ extension Teo {
     /// 修改用户告警配置
     ///
     /// 本接口（ModifyAlarmConfig）用于修改用户告警配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmConfig(serviceType: String, zoneId: String, entityList: [String], threshold: Int64? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmConfigResponse {
         try await self.modifyAlarmConfig(ModifyAlarmConfigRequest(serviceType: serviceType, zoneId: zoneId, entityList: entityList, threshold: threshold, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
     }

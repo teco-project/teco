@@ -62,7 +62,7 @@ extension Solar {
     /// 补充（子）项目库存
     ///
     /// 补充子项目库存
-    @inlinable
+    @inlinable @discardableResult
     public func replenishProjectStock(_ input: ReplenishProjectStockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplenishProjectStockResponse> {
         self.client.execute(action: "ReplenishProjectStock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Solar {
     /// 补充（子）项目库存
     ///
     /// 补充子项目库存
-    @inlinable
+    @inlinable @discardableResult
     public func replenishProjectStock(_ input: ReplenishProjectStockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplenishProjectStockResponse {
         try await self.client.execute(action: "ReplenishProjectStock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Solar {
     /// 补充（子）项目库存
     ///
     /// 补充子项目库存
-    @inlinable
+    @inlinable @discardableResult
     public func replenishProjectStock(subProjectId: String, prizeId: String, prizeNum: UInt64, poolIndex: UInt64, poolName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplenishProjectStockResponse> {
         self.replenishProjectStock(ReplenishProjectStockRequest(subProjectId: subProjectId, prizeId: prizeId, prizeNum: prizeNum, poolIndex: poolIndex, poolName: poolName), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Solar {
     /// 补充（子）项目库存
     ///
     /// 补充子项目库存
-    @inlinable
+    @inlinable @discardableResult
     public func replenishProjectStock(subProjectId: String, prizeId: String, prizeNum: UInt64, poolIndex: UInt64, poolName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplenishProjectStockResponse {
         try await self.replenishProjectStock(ReplenishProjectStockRequest(subProjectId: subProjectId, prizeId: prizeId, prizeNum: prizeNum, poolIndex: poolIndex, poolName: poolName), region: region, logger: logger, on: eventLoop)
     }

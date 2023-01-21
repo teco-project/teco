@@ -50,25 +50,25 @@ extension Iotcloud {
     }
 
     /// 创建私有CA证书
-    @inlinable
+    @inlinable @discardableResult
     public func createPrivateCA(_ input: CreatePrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateCAResponse> {
         self.client.execute(action: "CreatePrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建私有CA证书
-    @inlinable
+    @inlinable @discardableResult
     public func createPrivateCA(_ input: CreatePrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateCAResponse {
         try await self.client.execute(action: "CreatePrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建私有CA证书
-    @inlinable
+    @inlinable @discardableResult
     public func createPrivateCA(certName: String, certText: String, verifyCertText: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateCAResponse> {
         self.createPrivateCA(CreatePrivateCARequest(certName: certName, certText: certText, verifyCertText: verifyCertText), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建私有CA证书
-    @inlinable
+    @inlinable @discardableResult
     public func createPrivateCA(certName: String, certText: String, verifyCertText: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateCAResponse {
         try await self.createPrivateCA(CreatePrivateCARequest(certName: certName, certText: certText, verifyCertText: verifyCertText), region: region, logger: logger, on: eventLoop)
     }

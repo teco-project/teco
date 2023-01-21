@@ -144,7 +144,7 @@ extension Teo {
     /// 修改站点配置
     ///
     /// 用于修改站点配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneSettingResponse> {
         self.client.execute(action: "ModifyZoneSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -152,7 +152,7 @@ extension Teo {
     /// 修改站点配置
     ///
     /// 用于修改站点配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZoneSetting(_ input: ModifyZoneSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
         try await self.client.execute(action: "ModifyZoneSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -160,7 +160,7 @@ extension Teo {
     /// 修改站点配置
     ///
     /// 用于修改站点配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZoneSetting(zoneId: String, cacheConfig: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIpHeader? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6? = nil, clientIpCountry: ClientIpCountry? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneSettingResponse> {
         self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cacheConfig: cacheConfig, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6, clientIpCountry: clientIpCountry), region: region, logger: logger, on: eventLoop)
     }
@@ -168,7 +168,7 @@ extension Teo {
     /// 修改站点配置
     ///
     /// 用于修改站点配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZoneSetting(zoneId: String, cacheConfig: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIpHeader? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6? = nil, clientIpCountry: ClientIpCountry? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
         try await self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cacheConfig: cacheConfig, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6, clientIpCountry: clientIpCountry), region: region, logger: logger, on: eventLoop)
     }

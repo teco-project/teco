@@ -57,7 +57,7 @@ extension Cdb {
     /// 修改参数模板
     ///
     /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyParamTemplateResponse> {
         self.client.execute(action: "ModifyParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cdb {
     /// 修改参数模板
     ///
     /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
         try await self.client.execute(action: "ModifyParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cdb {
     /// 修改参数模板
     ///
     /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyParamTemplate(templateId: Int64, name: String? = nil, description: String? = nil, paramList: [Parameter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyParamTemplateResponse> {
         self.modifyParamTemplate(ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cdb {
     /// 修改参数模板
     ///
     /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyParamTemplate(templateId: Int64, name: String? = nil, description: String? = nil, paramList: [Parameter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
         try await self.modifyParamTemplate(ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList), region: region, logger: logger, on: eventLoop)
     }

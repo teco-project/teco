@@ -47,7 +47,7 @@ extension Dts {
     /// 启动一致性校验任务
     ///
     /// 启动一致性校验任务，启动之前需要先通过接口`CreateCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态
-    @inlinable
+    @inlinable @discardableResult
     public func startCompare(_ input: StartCompareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCompareResponse> {
         self.client.execute(action: "StartCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Dts {
     /// 启动一致性校验任务
     ///
     /// 启动一致性校验任务，启动之前需要先通过接口`CreateCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态
-    @inlinable
+    @inlinable @discardableResult
     public func startCompare(_ input: StartCompareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCompareResponse {
         try await self.client.execute(action: "StartCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Dts {
     /// 启动一致性校验任务
     ///
     /// 启动一致性校验任务，启动之前需要先通过接口`CreateCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态
-    @inlinable
+    @inlinable @discardableResult
     public func startCompare(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCompareResponse> {
         self.startCompare(StartCompareRequest(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Dts {
     /// 启动一致性校验任务
     ///
     /// 启动一致性校验任务，启动之前需要先通过接口`CreateCompareTask` 创建一致性校验任务，启动后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态
-    @inlinable
+    @inlinable @discardableResult
     public func startCompare(jobId: String, compareTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCompareResponse {
         try await self.startCompare(StartCompareRequest(jobId: jobId, compareTaskId: compareTaskId), region: region, logger: logger, on: eventLoop)
     }

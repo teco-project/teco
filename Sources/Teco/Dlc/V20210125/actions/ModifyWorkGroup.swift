@@ -45,25 +45,25 @@ extension Dlc {
     }
 
     /// 修改工作组信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWorkGroup(_ input: ModifyWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkGroupResponse> {
         self.client.execute(action: "ModifyWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改工作组信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWorkGroup(_ input: ModifyWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkGroupResponse {
         try await self.client.execute(action: "ModifyWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改工作组信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWorkGroup(workGroupId: Int64, workGroupDescription: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkGroupResponse> {
         self.modifyWorkGroup(ModifyWorkGroupRequest(workGroupId: workGroupId, workGroupDescription: workGroupDescription), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改工作组信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWorkGroup(workGroupId: Int64, workGroupDescription: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkGroupResponse {
         try await self.modifyWorkGroup(ModifyWorkGroupRequest(workGroupId: workGroupId, workGroupDescription: workGroupDescription), region: region, logger: logger, on: eventLoop)
     }

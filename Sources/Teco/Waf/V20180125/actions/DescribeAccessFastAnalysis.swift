@@ -62,7 +62,7 @@ extension Waf {
     /// 访问日志快速分析统计
     ///
     /// 本接口用于访问日志的快速分析
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessFastAnalysisResponse> {
         self.client.execute(action: "DescribeAccessFastAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Waf {
     /// 访问日志快速分析统计
     ///
     /// 本接口用于访问日志的快速分析
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccessFastAnalysis(_ input: DescribeAccessFastAnalysisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
         try await self.client.execute(action: "DescribeAccessFastAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Waf {
     /// 访问日志快速分析统计
     ///
     /// 本接口用于访问日志的快速分析
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessFastAnalysisResponse> {
         self.describeAccessFastAnalysis(DescribeAccessFastAnalysisRequest(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Waf {
     /// 访问日志快速分析统计
     ///
     /// 本接口用于访问日志的快速分析
-    @inlinable
+    @inlinable @discardableResult
     public func describeAccessFastAnalysis(topicId: String, from: Int64, to: Int64, query: String, fieldName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessFastAnalysisResponse {
         try await self.describeAccessFastAnalysis(DescribeAccessFastAnalysisRequest(topicId: topicId, from: from, to: to, query: query, fieldName: fieldName), region: region, logger: logger, on: eventLoop)
     }

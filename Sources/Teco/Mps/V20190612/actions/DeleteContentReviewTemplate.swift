@@ -42,7 +42,7 @@ extension Mps {
     /// 删除内容审核模板
     ///
     /// 删除用户自定义内容审核模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
         self.client.execute(action: "DeleteContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Mps {
     /// 删除内容审核模板
     ///
     /// 删除用户自定义内容审核模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
         try await self.client.execute(action: "DeleteContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Mps {
     /// 删除内容审核模板
     ///
     /// 删除用户自定义内容审核模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteContentReviewTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContentReviewTemplateResponse> {
         self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Mps {
     /// 删除内容审核模板
     ///
     /// 删除用户自定义内容审核模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteContentReviewTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
         try await self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }

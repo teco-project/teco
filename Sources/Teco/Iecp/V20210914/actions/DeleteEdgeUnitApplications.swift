@@ -45,25 +45,25 @@ extension Iecp {
     }
 
     /// 删除应用列表
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
         self.client.execute(action: "DeleteEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除应用列表
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitApplications(_ input: DeleteEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
         try await self.client.execute(action: "DeleteEdgeUnitApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除应用列表
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitApplicationsResponse> {
         self.deleteEdgeUnitApplications(DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用列表
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitApplications(edgeUnitID: UInt64, applicationIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitApplicationsResponse {
         try await self.deleteEdgeUnitApplications(DeleteEdgeUnitApplicationsRequest(edgeUnitID: edgeUnitID, applicationIDs: applicationIDs), region: region, logger: logger, on: eventLoop)
     }

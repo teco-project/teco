@@ -47,7 +47,7 @@ extension Vpc {
     /// 后付费产品修改带宽限速策略
     ///
     /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnRegionBandwidthLimitsType(_ input: ModifyCcnRegionBandwidthLimitsTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnRegionBandwidthLimitsTypeResponse> {
         self.client.execute(action: "ModifyCcnRegionBandwidthLimitsType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 后付费产品修改带宽限速策略
     ///
     /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnRegionBandwidthLimitsType(_ input: ModifyCcnRegionBandwidthLimitsTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnRegionBandwidthLimitsTypeResponse {
         try await self.client.execute(action: "ModifyCcnRegionBandwidthLimitsType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 后付费产品修改带宽限速策略
     ///
     /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnRegionBandwidthLimitsType(ccnId: String, bandwidthLimitType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnRegionBandwidthLimitsTypeResponse> {
         self.modifyCcnRegionBandwidthLimitsType(ModifyCcnRegionBandwidthLimitsTypeRequest(ccnId: ccnId, bandwidthLimitType: bandwidthLimitType), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 后付费产品修改带宽限速策略
     ///
     /// 本接口（ModifyCcnRegionBandwidthLimitsType）用于修改后付费云联网实例修改带宽限速策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnRegionBandwidthLimitsType(ccnId: String, bandwidthLimitType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnRegionBandwidthLimitsTypeResponse {
         try await self.modifyCcnRegionBandwidthLimitsType(ModifyCcnRegionBandwidthLimitsTypeRequest(ccnId: ccnId, bandwidthLimitType: bandwidthLimitType), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Tcaplusdb {
     /// 修改表格组名称
     ///
     /// 修改TcaplusDB表格组名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableGroupNameResponse> {
         self.client.execute(action: "ModifyTableGroupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tcaplusdb {
     /// 修改表格组名称
     ///
     /// 修改TcaplusDB表格组名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTableGroupName(_ input: ModifyTableGroupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
         try await self.client.execute(action: "ModifyTableGroupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tcaplusdb {
     /// 修改表格组名称
     ///
     /// 修改TcaplusDB表格组名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTableGroupName(clusterId: String, tableGroupId: String, tableGroupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableGroupNameResponse> {
         self.modifyTableGroupName(ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tcaplusdb {
     /// 修改表格组名称
     ///
     /// 修改TcaplusDB表格组名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTableGroupName(clusterId: String, tableGroupId: String, tableGroupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
         try await self.modifyTableGroupName(ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName), region: region, logger: logger, on: eventLoop)
     }

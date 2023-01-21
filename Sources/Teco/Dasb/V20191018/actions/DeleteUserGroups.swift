@@ -40,25 +40,25 @@ extension Dasb {
     }
 
     /// 删除用户组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserGroups(_ input: DeleteUserGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserGroupsResponse> {
         self.client.execute(action: "DeleteUserGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserGroups(_ input: DeleteUserGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupsResponse {
         try await self.client.execute(action: "DeleteUserGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除用户组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserGroups(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserGroupsResponse> {
         self.deleteUserGroups(DeleteUserGroupsRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserGroups(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserGroupsResponse {
         try await self.deleteUserGroups(DeleteUserGroupsRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }

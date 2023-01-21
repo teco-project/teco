@@ -50,25 +50,25 @@ extension Ecm {
     }
 
     /// 弹性网卡绑定云主机
-    @inlinable
+    @inlinable @discardableResult
     public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachNetworkInterfaceResponse> {
         self.client.execute(action: "AttachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡绑定云主机
-    @inlinable
+    @inlinable @discardableResult
     public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
         try await self.client.execute(action: "AttachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 弹性网卡绑定云主机
-    @inlinable
+    @inlinable @discardableResult
     public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachNetworkInterfaceResponse> {
         self.attachNetworkInterface(AttachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡绑定云主机
-    @inlinable
+    @inlinable @discardableResult
     public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
         try await self.attachNetworkInterface(AttachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }

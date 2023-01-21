@@ -65,25 +65,25 @@ extension Eb {
     }
 
     /// 更新事件规则
-    @inlinable
+    @inlinable @discardableResult
     public func updateRule(_ input: UpdateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRuleResponse> {
         self.client.execute(action: "UpdateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新事件规则
-    @inlinable
+    @inlinable @discardableResult
     public func updateRule(_ input: UpdateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRuleResponse {
         try await self.client.execute(action: "UpdateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新事件规则
-    @inlinable
+    @inlinable @discardableResult
     public func updateRule(ruleId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, eventPattern: String? = nil, ruleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRuleResponse> {
         self.updateRule(UpdateRuleRequest(ruleId: ruleId, eventBusId: eventBusId, enable: enable, description: description, eventPattern: eventPattern, ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新事件规则
-    @inlinable
+    @inlinable @discardableResult
     public func updateRule(ruleId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, eventPattern: String? = nil, ruleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRuleResponse {
         try await self.updateRule(UpdateRuleRequest(ruleId: ruleId, eventBusId: eventBusId, enable: enable, description: description, eventPattern: eventPattern, ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }

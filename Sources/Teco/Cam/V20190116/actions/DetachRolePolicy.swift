@@ -57,7 +57,7 @@ extension Cam {
     /// 解绑角色的策略
     ///
     /// 本接口（DetachRolePolicy）用于解除绑定角色的策略。
-    @inlinable
+    @inlinable @discardableResult
     public func detachRolePolicy(_ input: DetachRolePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachRolePolicyResponse> {
         self.client.execute(action: "DetachRolePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cam {
     /// 解绑角色的策略
     ///
     /// 本接口（DetachRolePolicy）用于解除绑定角色的策略。
-    @inlinable
+    @inlinable @discardableResult
     public func detachRolePolicy(_ input: DetachRolePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachRolePolicyResponse {
         try await self.client.execute(action: "DetachRolePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cam {
     /// 解绑角色的策略
     ///
     /// 本接口（DetachRolePolicy）用于解除绑定角色的策略。
-    @inlinable
+    @inlinable @discardableResult
     public func detachRolePolicy(policyId: UInt64? = nil, detachRoleId: String? = nil, detachRoleName: String? = nil, policyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachRolePolicyResponse> {
         self.detachRolePolicy(DetachRolePolicyRequest(policyId: policyId, detachRoleId: detachRoleId, detachRoleName: detachRoleName, policyName: policyName), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cam {
     /// 解绑角色的策略
     ///
     /// 本接口（DetachRolePolicy）用于解除绑定角色的策略。
-    @inlinable
+    @inlinable @discardableResult
     public func detachRolePolicy(policyId: UInt64? = nil, detachRoleId: String? = nil, detachRoleName: String? = nil, policyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachRolePolicyResponse {
         try await self.detachRolePolicy(DetachRolePolicyRequest(policyId: policyId, detachRoleId: detachRoleId, detachRoleName: detachRoleName, policyName: policyName), region: region, logger: logger, on: eventLoop)
     }

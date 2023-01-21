@@ -47,7 +47,7 @@ extension Tag {
     /// 标签解绑资源
     ///
     /// 本接口用于解除标签和资源的关联关系
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceTag(_ input: DeleteResourceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceTagResponse> {
         self.client.execute(action: "DeleteResourceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tag {
     /// 标签解绑资源
     ///
     /// 本接口用于解除标签和资源的关联关系
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceTag(_ input: DeleteResourceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceTagResponse {
         try await self.client.execute(action: "DeleteResourceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tag {
     /// 标签解绑资源
     ///
     /// 本接口用于解除标签和资源的关联关系
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceTag(tagKey: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceTagResponse> {
         self.deleteResourceTag(DeleteResourceTagRequest(tagKey: tagKey, resource: resource), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tag {
     /// 标签解绑资源
     ///
     /// 本接口用于解除标签和资源的关联关系
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceTag(tagKey: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceTagResponse {
         try await self.deleteResourceTag(DeleteResourceTagRequest(tagKey: tagKey, resource: resource), region: region, logger: logger, on: eventLoop)
     }

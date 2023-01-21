@@ -45,25 +45,25 @@ extension Postgres {
     }
 
     /// 关闭serverlessDB实例外网
-    @inlinable
+    @inlinable @discardableResult
     public func closeServerlessDBExtranetAccess(_ input: CloseServerlessDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseServerlessDBExtranetAccessResponse> {
         self.client.execute(action: "CloseServerlessDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭serverlessDB实例外网
-    @inlinable
+    @inlinable @discardableResult
     public func closeServerlessDBExtranetAccess(_ input: CloseServerlessDBExtranetAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseServerlessDBExtranetAccessResponse {
         try await self.client.execute(action: "CloseServerlessDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭serverlessDB实例外网
-    @inlinable
+    @inlinable @discardableResult
     public func closeServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseServerlessDBExtranetAccessResponse> {
         self.closeServerlessDBExtranetAccess(CloseServerlessDBExtranetAccessRequest(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭serverlessDB实例外网
-    @inlinable
+    @inlinable @discardableResult
     public func closeServerlessDBExtranetAccess(dbInstanceId: String? = nil, dbInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseServerlessDBExtranetAccessResponse {
         try await self.closeServerlessDBExtranetAccess(CloseServerlessDBExtranetAccessRequest(dbInstanceId: dbInstanceId, dbInstanceName: dbInstanceName), region: region, logger: logger, on: eventLoop)
     }

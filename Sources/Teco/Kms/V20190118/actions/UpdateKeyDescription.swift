@@ -47,7 +47,7 @@ extension Kms {
     /// 修改主密钥描述信息
     ///
     /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updateKeyDescription(_ input: UpdateKeyDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateKeyDescriptionResponse> {
         self.client.execute(action: "UpdateKeyDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Kms {
     /// 修改主密钥描述信息
     ///
     /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updateKeyDescription(_ input: UpdateKeyDescriptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateKeyDescriptionResponse {
         try await self.client.execute(action: "UpdateKeyDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Kms {
     /// 修改主密钥描述信息
     ///
     /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updateKeyDescription(description: String, keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateKeyDescriptionResponse> {
         self.updateKeyDescription(UpdateKeyDescriptionRequest(description: description, keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Kms {
     /// 修改主密钥描述信息
     ///
     /// 该接口用于对指定的cmk修改描述信息。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updateKeyDescription(description: String, keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateKeyDescriptionResponse {
         try await self.updateKeyDescription(UpdateKeyDescriptionRequest(description: description, keyId: keyId), region: region, logger: logger, on: eventLoop)
     }

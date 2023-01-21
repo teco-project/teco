@@ -45,25 +45,25 @@ extension Monitor {
     }
 
     /// 删除告警策略组
-    @inlinable
+    @inlinable @discardableResult
     public func deletePolicyGroup(_ input: DeletePolicyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyGroupResponse> {
         self.client.execute(action: "DeletePolicyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除告警策略组
-    @inlinable
+    @inlinable @discardableResult
     public func deletePolicyGroup(_ input: DeletePolicyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyGroupResponse {
         try await self.client.execute(action: "DeletePolicyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除告警策略组
-    @inlinable
+    @inlinable @discardableResult
     public func deletePolicyGroup(module: String, groupId: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyGroupResponse> {
         self.deletePolicyGroup(DeletePolicyGroupRequest(module: module, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警策略组
-    @inlinable
+    @inlinable @discardableResult
     public func deletePolicyGroup(module: String, groupId: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyGroupResponse {
         try await self.deletePolicyGroup(DeletePolicyGroupRequest(module: module, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }

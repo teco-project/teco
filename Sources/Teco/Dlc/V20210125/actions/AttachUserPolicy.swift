@@ -45,25 +45,25 @@ extension Dlc {
     }
 
     /// 绑定鉴权策略到用户
-    @inlinable
+    @inlinable @discardableResult
     public func attachUserPolicy(_ input: AttachUserPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
         self.client.execute(action: "AttachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定鉴权策略到用户
-    @inlinable
+    @inlinable @discardableResult
     public func attachUserPolicy(_ input: AttachUserPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
         try await self.client.execute(action: "AttachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定鉴权策略到用户
-    @inlinable
+    @inlinable @discardableResult
     public func attachUserPolicy(userId: String, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
         self.attachUserPolicy(AttachUserPolicyRequest(userId: userId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定鉴权策略到用户
-    @inlinable
+    @inlinable @discardableResult
     public func attachUserPolicy(userId: String, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
         try await self.attachUserPolicy(AttachUserPolicyRequest(userId: userId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }

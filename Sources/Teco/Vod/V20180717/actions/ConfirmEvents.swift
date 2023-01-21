@@ -55,7 +55,7 @@ extension Vod {
     /// * 开发者调用拉取事件通知，获取到事件后，必须调用该接口来确认消息已经收到；
     /// * 开发者获取到事件句柄后，等待确认的有效时间为 30 秒，超出 30 秒会报参数错误（4000）；
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
-    @inlinable
+    @inlinable @discardableResult
     public func confirmEvents(_ input: ConfirmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmEventsResponse> {
         self.client.execute(action: "ConfirmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Vod {
     /// * 开发者调用拉取事件通知，获取到事件后，必须调用该接口来确认消息已经收到；
     /// * 开发者获取到事件句柄后，等待确认的有效时间为 30 秒，超出 30 秒会报参数错误（4000）；
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
-    @inlinable
+    @inlinable @discardableResult
     public func confirmEvents(_ input: ConfirmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmEventsResponse {
         try await self.client.execute(action: "ConfirmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -75,7 +75,7 @@ extension Vod {
     /// * 开发者调用拉取事件通知，获取到事件后，必须调用该接口来确认消息已经收到；
     /// * 开发者获取到事件句柄后，等待确认的有效时间为 30 秒，超出 30 秒会报参数错误（4000）；
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
-    @inlinable
+    @inlinable @discardableResult
     public func confirmEvents(eventHandles: [String], extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmEventsResponse> {
         self.confirmEvents(ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Vod {
     /// * 开发者调用拉取事件通知，获取到事件后，必须调用该接口来确认消息已经收到；
     /// * 开发者获取到事件句柄后，等待确认的有效时间为 30 秒，超出 30 秒会报参数错误（4000）；
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
-    @inlinable
+    @inlinable @discardableResult
     public func confirmEvents(eventHandles: [String], extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmEventsResponse {
         try await self.confirmEvents(ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

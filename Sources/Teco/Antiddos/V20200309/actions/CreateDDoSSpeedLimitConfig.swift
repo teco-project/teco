@@ -45,25 +45,25 @@ extension Antiddos {
     }
 
     /// 添加DDoS防护的访问限速配置
-    @inlinable
+    @inlinable @discardableResult
     public func createDDoSSpeedLimitConfig(_ input: CreateDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSSpeedLimitConfigResponse> {
         self.client.execute(action: "CreateDDoSSpeedLimitConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的访问限速配置
-    @inlinable
+    @inlinable @discardableResult
     public func createDDoSSpeedLimitConfig(_ input: CreateDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSSpeedLimitConfigResponse {
         try await self.client.execute(action: "CreateDDoSSpeedLimitConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加DDoS防护的访问限速配置
-    @inlinable
+    @inlinable @discardableResult
     public func createDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDDoSSpeedLimitConfigResponse> {
         self.createDDoSSpeedLimitConfig(CreateDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的访问限速配置
-    @inlinable
+    @inlinable @discardableResult
     public func createDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDDoSSpeedLimitConfigResponse {
         try await self.createDDoSSpeedLimitConfig(CreateDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig), region: region, logger: logger, on: eventLoop)
     }

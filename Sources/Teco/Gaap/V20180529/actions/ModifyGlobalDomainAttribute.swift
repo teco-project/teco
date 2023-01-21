@@ -55,25 +55,25 @@ extension Gaap {
     }
 
     /// 修改域名属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainAttributeResponse> {
         self.client.execute(action: "ModifyGlobalDomainAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGlobalDomainAttribute(_ input: ModifyGlobalDomainAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
         try await self.client.execute(action: "ModifyGlobalDomainAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改域名属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGlobalDomainAttribute(domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGlobalDomainAttributeResponse> {
         self.modifyGlobalDomainAttribute(ModifyGlobalDomainAttributeRequest(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改域名属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGlobalDomainAttribute(domainId: String, projectId: UInt64, alias: String? = nil, defaultValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGlobalDomainAttributeResponse {
         try await self.modifyGlobalDomainAttribute(ModifyGlobalDomainAttributeRequest(domainId: domainId, projectId: projectId, alias: alias, defaultValue: defaultValue), region: region, logger: logger, on: eventLoop)
     }

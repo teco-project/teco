@@ -55,25 +55,25 @@ extension Oceanus {
     }
 
     /// 删除作业表配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTableConfig(_ input: DeleteTableConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableConfigResponse> {
         self.client.execute(action: "DeleteTableConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除作业表配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTableConfig(_ input: DeleteTableConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableConfigResponse {
         try await self.client.execute(action: "DeleteTableConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除作业表配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTableConfig(jobId: String, debugId: Int64, tableName: String, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTableConfigResponse> {
         self.deleteTableConfig(DeleteTableConfigRequest(jobId: jobId, debugId: debugId, tableName: tableName, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除作业表配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTableConfig(jobId: String, debugId: Int64, tableName: String, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTableConfigResponse {
         try await self.deleteTableConfig(DeleteTableConfigRequest(jobId: jobId, debugId: debugId, tableName: tableName, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }

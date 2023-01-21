@@ -97,7 +97,7 @@ extension Cls {
     /// 修改投递规则
     ///
     /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyShipper(_ input: ModifyShipperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyShipperResponse> {
         self.client.execute(action: "ModifyShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -105,7 +105,7 @@ extension Cls {
     /// 修改投递规则
     ///
     /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyShipper(_ input: ModifyShipperRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyShipperResponse {
         try await self.client.execute(action: "ModifyShipper", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -113,7 +113,7 @@ extension Cls {
     /// 修改投递规则
     ///
     /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyShipper(shipperId: String, bucket: String? = nil, prefix: String? = nil, status: Bool? = nil, shipperName: String? = nil, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyShipperResponse> {
         self.modifyShipper(ModifyShipperRequest(shipperId: shipperId, bucket: bucket, prefix: prefix, status: status, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), region: region, logger: logger, on: eventLoop)
     }
@@ -121,7 +121,7 @@ extension Cls {
     /// 修改投递规则
     ///
     /// 修改现有的投递规则，客户如果使用此接口，需要自行处理CLS对指定bucket的写权限。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyShipper(shipperId: String, bucket: String? = nil, prefix: String? = nil, status: Bool? = nil, shipperName: String? = nil, interval: UInt64? = nil, maxSize: UInt64? = nil, filterRules: [FilterRuleInfo]? = nil, partition: String? = nil, compress: CompressInfo? = nil, content: ContentInfo? = nil, filenameMode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyShipperResponse {
         try await self.modifyShipper(ModifyShipperRequest(shipperId: shipperId, bucket: bucket, prefix: prefix, status: status, shipperName: shipperName, interval: interval, maxSize: maxSize, filterRules: filterRules, partition: partition, compress: compress, content: content, filenameMode: filenameMode), region: region, logger: logger, on: eventLoop)
     }

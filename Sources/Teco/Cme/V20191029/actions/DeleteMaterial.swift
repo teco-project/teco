@@ -52,7 +52,7 @@ extension Cme {
     /// 删除媒体
     ///
     /// 根据媒体 Id 删除媒体。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMaterial(_ input: DeleteMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaterialResponse> {
         self.client.execute(action: "DeleteMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cme {
     /// 删除媒体
     ///
     /// 根据媒体 Id 删除媒体。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMaterial(_ input: DeleteMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
         try await self.client.execute(action: "DeleteMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cme {
     /// 删除媒体
     ///
     /// 根据媒体 Id 删除媒体。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMaterial(platform: String, materialId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaterialResponse> {
         self.deleteMaterial(DeleteMaterialRequest(platform: platform, materialId: materialId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cme {
     /// 删除媒体
     ///
     /// 根据媒体 Id 删除媒体。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMaterial(platform: String, materialId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaterialResponse {
         try await self.deleteMaterial(DeleteMaterialRequest(platform: platform, materialId: materialId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

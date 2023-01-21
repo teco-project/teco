@@ -57,7 +57,7 @@ extension Iotvideoindustry {
     /// 修改分组信息
     ///
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceGroupResponse> {
         self.client.execute(action: "UpdateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Iotvideoindustry {
     /// 修改分组信息
     ///
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceGroup(_ input: UpdateDeviceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
         try await self.client.execute(action: "UpdateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Iotvideoindustry {
     /// 修改分组信息
     ///
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceGroupResponse> {
         self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Iotvideoindustry {
     /// 修改分组信息
     ///
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
         try await self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), region: region, logger: logger, on: eventLoop)
     }

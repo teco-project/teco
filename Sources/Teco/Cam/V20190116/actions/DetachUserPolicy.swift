@@ -47,7 +47,7 @@ extension Cam {
     /// 解除绑定到用户的策略
     ///
     /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
-    @inlinable
+    @inlinable @discardableResult
     public func detachUserPolicy(_ input: DetachUserPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
         self.client.execute(action: "DetachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cam {
     /// 解除绑定到用户的策略
     ///
     /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
-    @inlinable
+    @inlinable @discardableResult
     public func detachUserPolicy(_ input: DetachUserPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
         try await self.client.execute(action: "DetachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cam {
     /// 解除绑定到用户的策略
     ///
     /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
-    @inlinable
+    @inlinable @discardableResult
     public func detachUserPolicy(policyId: UInt64, detachUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachUserPolicyResponse> {
         self.detachUserPolicy(DetachUserPolicyRequest(policyId: policyId, detachUin: detachUin), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cam {
     /// 解除绑定到用户的策略
     ///
     /// 本接口（DetachUserPolicy）可用于解除绑定到用户的策略。
-    @inlinable
+    @inlinable @discardableResult
     public func detachUserPolicy(policyId: UInt64, detachUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachUserPolicyResponse {
         try await self.detachUserPolicy(DetachUserPolicyRequest(policyId: policyId, detachUin: detachUin), region: region, logger: logger, on: eventLoop)
     }

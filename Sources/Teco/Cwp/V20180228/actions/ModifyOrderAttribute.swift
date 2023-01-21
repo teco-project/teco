@@ -57,7 +57,7 @@ extension Cwp {
     /// 编辑订单属性
     ///
     /// 对订单属性编辑
-    @inlinable
+    @inlinable @discardableResult
     public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderAttributeResponse> {
         self.client.execute(action: "ModifyOrderAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cwp {
     /// 编辑订单属性
     ///
     /// 对订单属性编辑
-    @inlinable
+    @inlinable @discardableResult
     public func modifyOrderAttribute(_ input: ModifyOrderAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
         try await self.client.execute(action: "ModifyOrderAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cwp {
     /// 编辑订单属性
     ///
     /// 对订单属性编辑
-    @inlinable
+    @inlinable @discardableResult
     public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderAttributeResponse> {
         self.modifyOrderAttribute(ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cwp {
     /// 编辑订单属性
     ///
     /// 对订单属性编辑
-    @inlinable
+    @inlinable @discardableResult
     public func modifyOrderAttribute(licenseType: UInt64, resourceId: String, attrName: String, attrValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderAttributeResponse {
         try await self.modifyOrderAttribute(ModifyOrderAttributeRequest(licenseType: licenseType, resourceId: resourceId, attrName: attrName, attrValue: attrValue), region: region, logger: logger, on: eventLoop)
     }

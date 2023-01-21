@@ -58,7 +58,7 @@ extension Bizlive {
     /// 禁播直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
-    @inlinable
+    @inlinable @discardableResult
     public func forbidLiveStream(_ input: ForbidLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
         self.client.execute(action: "ForbidLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Bizlive {
     /// 禁播直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
-    @inlinable
+    @inlinable @discardableResult
     public func forbidLiveStream(_ input: ForbidLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
         try await self.client.execute(action: "ForbidLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -74,7 +74,7 @@ extension Bizlive {
     /// 禁播直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
-    @inlinable
+    @inlinable @discardableResult
     public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
         self.forbidLiveStream(ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime), region: region, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Bizlive {
     /// 禁播直播流
     ///
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
-    @inlinable
+    @inlinable @discardableResult
     public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
         try await self.forbidLiveStream(ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime), region: region, logger: logger, on: eventLoop)
     }

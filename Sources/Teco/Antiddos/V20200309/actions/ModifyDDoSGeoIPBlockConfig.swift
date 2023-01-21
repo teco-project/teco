@@ -45,25 +45,25 @@ extension Antiddos {
     }
 
     /// 修改DDoS防护的区域封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDDoSGeoIPBlockConfig(_ input: ModifyDDoSGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSGeoIPBlockConfigResponse> {
         self.client.execute(action: "ModifyDDoSGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护的区域封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDDoSGeoIPBlockConfig(_ input: ModifyDDoSGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSGeoIPBlockConfigResponse {
         try await self.client.execute(action: "ModifyDDoSGeoIPBlockConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改DDoS防护的区域封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSGeoIPBlockConfigResponse> {
         self.modifyDDoSGeoIPBlockConfig(ModifyDDoSGeoIPBlockConfigRequest(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护的区域封禁配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDDoSGeoIPBlockConfig(instanceId: String, dDoSGeoIPBlockConfig: DDoSGeoIPBlockConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSGeoIPBlockConfigResponse {
         try await self.modifyDDoSGeoIPBlockConfig(ModifyDDoSGeoIPBlockConfigRequest(instanceId: instanceId, dDoSGeoIPBlockConfig: dDoSGeoIPBlockConfig), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Tiw {
     /// 设置录制视频生成回调密钥
     ///
     /// 设置视频生成回调鉴权密钥
-    @inlinable
+    @inlinable @discardableResult
     public func setVideoGenerationTaskCallbackKey(_ input: SetVideoGenerationTaskCallbackKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVideoGenerationTaskCallbackKeyResponse> {
         self.client.execute(action: "SetVideoGenerationTaskCallbackKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tiw {
     /// 设置录制视频生成回调密钥
     ///
     /// 设置视频生成回调鉴权密钥
-    @inlinable
+    @inlinable @discardableResult
     public func setVideoGenerationTaskCallbackKey(_ input: SetVideoGenerationTaskCallbackKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackKeyResponse {
         try await self.client.execute(action: "SetVideoGenerationTaskCallbackKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tiw {
     /// 设置录制视频生成回调密钥
     ///
     /// 设置视频生成回调鉴权密钥
-    @inlinable
+    @inlinable @discardableResult
     public func setVideoGenerationTaskCallbackKey(sdkAppId: Int64, callbackKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetVideoGenerationTaskCallbackKeyResponse> {
         self.setVideoGenerationTaskCallbackKey(SetVideoGenerationTaskCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tiw {
     /// 设置录制视频生成回调密钥
     ///
     /// 设置视频生成回调鉴权密钥
-    @inlinable
+    @inlinable @discardableResult
     public func setVideoGenerationTaskCallbackKey(sdkAppId: Int64, callbackKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetVideoGenerationTaskCallbackKeyResponse {
         try await self.setVideoGenerationTaskCallbackKey(SetVideoGenerationTaskCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
     }

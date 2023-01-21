@@ -48,25 +48,25 @@ extension Antiddos {
     }
 
     /// 设置单IP默认告警阈值配置
-    @inlinable
+    @inlinable @discardableResult
     public func createDefaultAlarmThreshold(_ input: CreateDefaultAlarmThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultAlarmThresholdResponse> {
         self.client.execute(action: "CreateDefaultAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置单IP默认告警阈值配置
-    @inlinable
+    @inlinable @discardableResult
     public func createDefaultAlarmThreshold(_ input: CreateDefaultAlarmThresholdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultAlarmThresholdResponse {
         try await self.client.execute(action: "CreateDefaultAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置单IP默认告警阈值配置
-    @inlinable
+    @inlinable @discardableResult
     public func createDefaultAlarmThreshold(defaultAlarmConfig: DefaultAlarmThreshold, instanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultAlarmThresholdResponse> {
         self.createDefaultAlarmThreshold(CreateDefaultAlarmThresholdRequest(defaultAlarmConfig: defaultAlarmConfig, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置单IP默认告警阈值配置
-    @inlinable
+    @inlinable @discardableResult
     public func createDefaultAlarmThreshold(defaultAlarmConfig: DefaultAlarmThreshold, instanceType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultAlarmThresholdResponse {
         try await self.createDefaultAlarmThreshold(CreateDefaultAlarmThresholdRequest(defaultAlarmConfig: defaultAlarmConfig, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
     }

@@ -48,7 +48,7 @@ extension Essbasic {
     ///
     /// 通过此接口（DestroyFlowFile）可删除指定流程中的合同文件。
     /// 注：调用此接口前，请确保此流程已属于归档状态。您可通过查询流程信息接口（DescribeFlow）进行查询。
-    @inlinable
+    @inlinable @discardableResult
     public func destroyFlowFile(_ input: DestroyFlowFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyFlowFileResponse> {
         self.client.execute(action: "DestroyFlowFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Essbasic {
     ///
     /// 通过此接口（DestroyFlowFile）可删除指定流程中的合同文件。
     /// 注：调用此接口前，请确保此流程已属于归档状态。您可通过查询流程信息接口（DescribeFlow）进行查询。
-    @inlinable
+    @inlinable @discardableResult
     public func destroyFlowFile(_ input: DestroyFlowFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyFlowFileResponse {
         try await self.client.execute(action: "DestroyFlowFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Essbasic {
     ///
     /// 通过此接口（DestroyFlowFile）可删除指定流程中的合同文件。
     /// 注：调用此接口前，请确保此流程已属于归档状态。您可通过查询流程信息接口（DescribeFlow）进行查询。
-    @inlinable
+    @inlinable @discardableResult
     public func destroyFlowFile(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyFlowFileResponse> {
         self.destroyFlowFile(DestroyFlowFileRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Essbasic {
     ///
     /// 通过此接口（DestroyFlowFile）可删除指定流程中的合同文件。
     /// 注：调用此接口前，请确保此流程已属于归档状态。您可通过查询流程信息接口（DescribeFlow）进行查询。
-    @inlinable
+    @inlinable @discardableResult
     public func destroyFlowFile(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyFlowFileResponse {
         try await self.destroyFlowFile(DestroyFlowFileRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }

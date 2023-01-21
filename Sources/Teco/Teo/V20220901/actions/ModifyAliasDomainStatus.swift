@@ -54,7 +54,7 @@ extension Teo {
     /// 修改别称域名状态
     ///
     /// 修改别称域名状态。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAliasDomainStatus(_ input: ModifyAliasDomainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAliasDomainStatusResponse> {
         self.client.execute(action: "ModifyAliasDomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -62,7 +62,7 @@ extension Teo {
     /// 修改别称域名状态
     ///
     /// 修改别称域名状态。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAliasDomainStatus(_ input: ModifyAliasDomainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainStatusResponse {
         try await self.client.execute(action: "ModifyAliasDomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -70,7 +70,7 @@ extension Teo {
     /// 修改别称域名状态
     ///
     /// 修改别称域名状态。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAliasDomainStatus(zoneId: String, paused: Bool, aliasNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAliasDomainStatusResponse> {
         self.modifyAliasDomainStatus(ModifyAliasDomainStatusRequest(zoneId: zoneId, paused: paused, aliasNames: aliasNames), region: region, logger: logger, on: eventLoop)
     }
@@ -78,7 +78,7 @@ extension Teo {
     /// 修改别称域名状态
     ///
     /// 修改别称域名状态。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAliasDomainStatus(zoneId: String, paused: Bool, aliasNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAliasDomainStatusResponse {
         try await self.modifyAliasDomainStatus(ModifyAliasDomainStatusRequest(zoneId: zoneId, paused: paused, aliasNames: aliasNames), region: region, logger: logger, on: eventLoop)
     }

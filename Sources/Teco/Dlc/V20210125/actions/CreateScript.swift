@@ -57,7 +57,7 @@ extension Dlc {
     /// 创建sql脚本
     ///
     /// 该接口（CreateScript）用于创建sql脚本。
-    @inlinable
+    @inlinable @discardableResult
     public func createScript(_ input: CreateScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScriptResponse> {
         self.client.execute(action: "CreateScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Dlc {
     /// 创建sql脚本
     ///
     /// 该接口（CreateScript）用于创建sql脚本。
-    @inlinable
+    @inlinable @discardableResult
     public func createScript(_ input: CreateScriptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
         try await self.client.execute(action: "CreateScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Dlc {
     /// 创建sql脚本
     ///
     /// 该接口（CreateScript）用于创建sql脚本。
-    @inlinable
+    @inlinable @discardableResult
     public func createScript(scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScriptResponse> {
         self.createScript(CreateScriptRequest(scriptName: scriptName, sqlStatement: sqlStatement, scriptDesc: scriptDesc, databaseName: databaseName), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Dlc {
     /// 创建sql脚本
     ///
     /// 该接口（CreateScript）用于创建sql脚本。
-    @inlinable
+    @inlinable @discardableResult
     public func createScript(scriptName: String, sqlStatement: String, scriptDesc: String? = nil, databaseName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScriptResponse {
         try await self.createScript(CreateScriptRequest(scriptName: scriptName, sqlStatement: sqlStatement, scriptDesc: scriptDesc, databaseName: databaseName), region: region, logger: logger, on: eventLoop)
     }

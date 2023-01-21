@@ -77,7 +77,7 @@ extension Tat {
     /// 修改执行器
     ///
     /// 此接口用于修改执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInvoker(_ input: ModifyInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInvokerResponse> {
         self.client.execute(action: "ModifyInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Tat {
     /// 修改执行器
     ///
     /// 此接口用于修改执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInvoker(_ input: ModifyInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInvokerResponse {
         try await self.client.execute(action: "ModifyInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -93,7 +93,7 @@ extension Tat {
     /// 修改执行器
     ///
     /// 此接口用于修改执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInvoker(invokerId: String, name: String? = nil, type: String? = nil, commandId: String? = nil, username: String? = nil, parameters: String? = nil, instanceIds: [String]? = nil, scheduleSettings: ScheduleSettings? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInvokerResponse> {
         self.modifyInvoker(ModifyInvokerRequest(invokerId: invokerId, name: name, type: type, commandId: commandId, username: username, parameters: parameters, instanceIds: instanceIds, scheduleSettings: scheduleSettings), region: region, logger: logger, on: eventLoop)
     }
@@ -101,7 +101,7 @@ extension Tat {
     /// 修改执行器
     ///
     /// 此接口用于修改执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInvoker(invokerId: String, name: String? = nil, type: String? = nil, commandId: String? = nil, username: String? = nil, parameters: String? = nil, instanceIds: [String]? = nil, scheduleSettings: ScheduleSettings? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInvokerResponse {
         try await self.modifyInvoker(ModifyInvokerRequest(invokerId: invokerId, name: name, type: type, commandId: commandId, username: username, parameters: parameters, instanceIds: instanceIds, scheduleSettings: scheduleSettings), region: region, logger: logger, on: eventLoop)
     }

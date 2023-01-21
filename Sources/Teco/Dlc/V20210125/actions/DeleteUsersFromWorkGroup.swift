@@ -40,25 +40,25 @@ extension Dlc {
     }
 
     /// 从工作组中删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsersFromWorkGroup(_ input: DeleteUsersFromWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersFromWorkGroupResponse> {
         self.client.execute(action: "DeleteUsersFromWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 从工作组中删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsersFromWorkGroup(_ input: DeleteUsersFromWorkGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersFromWorkGroupResponse {
         try await self.client.execute(action: "DeleteUsersFromWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 从工作组中删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsersFromWorkGroup(addInfo: UserIdSetOfWorkGroupId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersFromWorkGroupResponse> {
         self.deleteUsersFromWorkGroup(DeleteUsersFromWorkGroupRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从工作组中删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsersFromWorkGroup(addInfo: UserIdSetOfWorkGroupId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersFromWorkGroupResponse {
         try await self.deleteUsersFromWorkGroup(DeleteUsersFromWorkGroupRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }

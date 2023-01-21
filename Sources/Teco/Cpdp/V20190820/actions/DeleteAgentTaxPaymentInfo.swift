@@ -45,25 +45,25 @@ extension Cpdp {
     }
 
     /// 直播平台-删除代理商完税信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAgentTaxPaymentInfo(_ input: DeleteAgentTaxPaymentInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfoResponse> {
         self.client.execute(action: "DeleteAgentTaxPaymentInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-删除代理商完税信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAgentTaxPaymentInfo(_ input: DeleteAgentTaxPaymentInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfoResponse {
         try await self.client.execute(action: "DeleteAgentTaxPaymentInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 直播平台-删除代理商完税信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAgentTaxPaymentInfo(batchNum: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAgentTaxPaymentInfoResponse> {
         self.deleteAgentTaxPaymentInfo(DeleteAgentTaxPaymentInfoRequest(batchNum: batchNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-删除代理商完税信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAgentTaxPaymentInfo(batchNum: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAgentTaxPaymentInfoResponse {
         try await self.deleteAgentTaxPaymentInfo(DeleteAgentTaxPaymentInfoRequest(batchNum: batchNum, profile: profile), region: region, logger: logger, on: eventLoop)
     }

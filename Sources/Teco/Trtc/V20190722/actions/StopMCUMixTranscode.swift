@@ -47,7 +47,7 @@ extension Trtc {
     /// 结束云端混流
     ///
     /// 接口说明：结束云端混流
-    @inlinable
+    @inlinable @discardableResult
     public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeResponse> {
         self.client.execute(action: "StopMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Trtc {
     /// 结束云端混流
     ///
     /// 接口说明：结束云端混流
-    @inlinable
+    @inlinable @discardableResult
     public func stopMCUMixTranscode(_ input: StopMCUMixTranscodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
         try await self.client.execute(action: "StopMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Trtc {
     /// 结束云端混流
     ///
     /// 接口说明：结束云端混流
-    @inlinable
+    @inlinable @discardableResult
     public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeResponse> {
         self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Trtc {
     /// 结束云端混流
     ///
     /// 接口说明：结束云端混流
-    @inlinable
+    @inlinable @discardableResult
     public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
         try await self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Chdfs {
     /// 批量修改权限规则属性
     ///
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessRules(_ input: ModifyAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessRulesResponse> {
         self.client.execute(action: "ModifyAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Chdfs {
     /// 批量修改权限规则属性
     ///
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessRules(_ input: ModifyAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessRulesResponse {
         try await self.client.execute(action: "ModifyAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Chdfs {
     /// 批量修改权限规则属性
     ///
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessRules(accessRules: [AccessRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessRulesResponse> {
         self.modifyAccessRules(ModifyAccessRulesRequest(accessRules: accessRules), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Chdfs {
     /// 批量修改权限规则属性
     ///
     /// 批量修改权限规则属性，需要指定权限规则ID，支持修改权限规则地址、访问模式和优先级。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessRules(accessRules: [AccessRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessRulesResponse {
         try await self.modifyAccessRules(ModifyAccessRulesRequest(accessRules: accessRules), region: region, logger: logger, on: eventLoop)
     }

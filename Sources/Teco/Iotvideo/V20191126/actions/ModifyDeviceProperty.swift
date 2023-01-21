@@ -68,7 +68,7 @@ extension Iotvideo {
     /// ProWritable.Pos.setVal.x;
     /// 可写属性云端写入成功即返回;云端向设备端发布属性变更参数;若当前设备不在线,在设备下次上线时会自动更新这些属性参数;
     /// 物模型写入数据时,不需要传入时标信息,平台以当前时标作为数据的时标更新物模型中的时标信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDeviceProperty(_ input: ModifyDevicePropertyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDevicePropertyResponse> {
         self.client.execute(action: "ModifyDeviceProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Iotvideo {
     /// ProWritable.Pos.setVal.x;
     /// 可写属性云端写入成功即返回;云端向设备端发布属性变更参数;若当前设备不在线,在设备下次上线时会自动更新这些属性参数;
     /// 物模型写入数据时,不需要传入时标信息,平台以当前时标作为数据的时标更新物模型中的时标信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDeviceProperty(_ input: ModifyDevicePropertyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDevicePropertyResponse {
         try await self.client.execute(action: "ModifyDeviceProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -96,7 +96,7 @@ extension Iotvideo {
     /// ProWritable.Pos.setVal.x;
     /// 可写属性云端写入成功即返回;云端向设备端发布属性变更参数;若当前设备不在线,在设备下次上线时会自动更新这些属性参数;
     /// 物模型写入数据时,不需要传入时标信息,平台以当前时标作为数据的时标更新物模型中的时标信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDeviceProperty(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDevicePropertyResponse> {
         self.modifyDeviceProperty(ModifyDevicePropertyRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), region: region, logger: logger, on: eventLoop)
     }
@@ -110,7 +110,7 @@ extension Iotvideo {
     /// ProWritable.Pos.setVal.x;
     /// 可写属性云端写入成功即返回;云端向设备端发布属性变更参数;若当前设备不在线,在设备下次上线时会自动更新这些属性参数;
     /// 物模型写入数据时,不需要传入时标信息,平台以当前时标作为数据的时标更新物模型中的时标信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDeviceProperty(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDevicePropertyResponse {
         try await self.modifyDeviceProperty(ModifyDevicePropertyRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), region: region, logger: logger, on: eventLoop)
     }

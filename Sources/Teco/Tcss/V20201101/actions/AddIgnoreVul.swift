@@ -40,25 +40,25 @@ extension Tcss {
     }
 
     /// 新增漏洞扫描忽略漏洞
-    @inlinable
+    @inlinable @discardableResult
     public func addIgnoreVul(_ input: AddIgnoreVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIgnoreVulResponse> {
         self.client.execute(action: "AddIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增漏洞扫描忽略漏洞
-    @inlinable
+    @inlinable @discardableResult
     public func addIgnoreVul(_ input: AddIgnoreVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIgnoreVulResponse {
         try await self.client.execute(action: "AddIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增漏洞扫描忽略漏洞
-    @inlinable
+    @inlinable @discardableResult
     public func addIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddIgnoreVulResponse> {
         self.addIgnoreVul(AddIgnoreVulRequest(list: list), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增漏洞扫描忽略漏洞
-    @inlinable
+    @inlinable @discardableResult
     public func addIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddIgnoreVulResponse {
         try await self.addIgnoreVul(AddIgnoreVulRequest(list: list), region: region, logger: logger, on: eventLoop)
     }

@@ -52,25 +52,25 @@ extension Tcss {
     }
 
     /// 新增逃逸白名单
-    @inlinable
+    @inlinable @discardableResult
     public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEscapeWhiteListResponse> {
         self.client.execute(action: "AddEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增逃逸白名单
-    @inlinable
+    @inlinable @discardableResult
     public func addEscapeWhiteList(_ input: AddEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
         try await self.client.execute(action: "AddEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增逃逸白名单
-    @inlinable
+    @inlinable @discardableResult
     public func addEscapeWhiteList(eventType: [String], imageIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEscapeWhiteListResponse> {
         self.addEscapeWhiteList(AddEscapeWhiteListRequest(eventType: eventType, imageIDs: imageIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增逃逸白名单
-    @inlinable
+    @inlinable @discardableResult
     public func addEscapeWhiteList(eventType: [String], imageIDs: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEscapeWhiteListResponse {
         try await self.addEscapeWhiteList(AddEscapeWhiteListRequest(eventType: eventType, imageIDs: imageIDs), region: region, logger: logger, on: eventLoop)
     }

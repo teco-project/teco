@@ -50,25 +50,25 @@ extension Dnspod {
     }
 
     /// 修改域名状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainStatus(_ input: ModifyDomainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainStatusResponse> {
         self.client.execute(action: "ModifyDomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainStatus(_ input: ModifyDomainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainStatusResponse {
         try await self.client.execute(action: "ModifyDomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改域名状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainStatus(domain: String, status: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainStatusResponse> {
         self.modifyDomainStatus(ModifyDomainStatusRequest(domain: domain, status: status, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改域名状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainStatus(domain: String, status: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainStatusResponse {
         try await self.modifyDomainStatus(ModifyDomainStatusRequest(domain: domain, status: status, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }

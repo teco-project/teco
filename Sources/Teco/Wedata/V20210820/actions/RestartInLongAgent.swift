@@ -45,25 +45,25 @@ extension Wedata {
     }
 
     /// 重启采集器
-    @inlinable
+    @inlinable @discardableResult
     public func restartInLongAgent(_ input: RestartInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
         self.client.execute(action: "RestartInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启采集器
-    @inlinable
+    @inlinable @discardableResult
     public func restartInLongAgent(_ input: RestartInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
         try await self.client.execute(action: "RestartInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重启采集器
-    @inlinable
+    @inlinable @discardableResult
     public func restartInLongAgent(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartInLongAgentResponse> {
         self.restartInLongAgent(RestartInLongAgentRequest(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重启采集器
-    @inlinable
+    @inlinable @discardableResult
     public func restartInLongAgent(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartInLongAgentResponse {
         try await self.restartInLongAgent(RestartInLongAgentRequest(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }

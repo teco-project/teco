@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
-    @inlinable
+    @inlinable @discardableResult
     public func createIotDataType(_ input: CreateIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDataTypeResponse> {
         self.client.execute(action: "CreateIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
-    @inlinable
+    @inlinable @discardableResult
     public func createIotDataType(_ input: CreateIotDataTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
         try await self.client.execute(action: "CreateIotDataType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
-    @inlinable
+    @inlinable @discardableResult
     public func createIotDataType(iotDataType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDataTypeResponse> {
         self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotvideo {
     /// 创建自定义物模型数据类型
     ///
     /// 本接口（CreateIotDataType）用于创建自定义物模型数据类型。
-    @inlinable
+    @inlinable @discardableResult
     public func createIotDataType(iotDataType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDataTypeResponse {
         try await self.createIotDataType(CreateIotDataTypeRequest(iotDataType: iotDataType), region: region, logger: logger, on: eventLoop)
     }

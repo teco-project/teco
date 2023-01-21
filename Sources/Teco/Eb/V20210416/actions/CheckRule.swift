@@ -32,25 +32,25 @@ extension Eb {
     }
 
     /// 检验规则
-    @inlinable
+    @inlinable @discardableResult
     public func checkRule(_ input: CheckRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
         self.client.execute(action: "CheckRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检验规则
-    @inlinable
+    @inlinable @discardableResult
     public func checkRule(_ input: CheckRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
         try await self.client.execute(action: "CheckRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检验规则
-    @inlinable
+    @inlinable @discardableResult
     public func checkRule(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
         self.checkRule(CheckRuleRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检验规则
-    @inlinable
+    @inlinable @discardableResult
     public func checkRule(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
         try await self.checkRule(CheckRuleRequest(), region: region, logger: logger, on: eventLoop)
     }

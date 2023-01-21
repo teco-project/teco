@@ -65,7 +65,7 @@ extension Teo {
     /// 创建别称域名
     ///
     /// 创建别称域名。
-    @inlinable
+    @inlinable @discardableResult
     public func createAliasDomain(_ input: CreateAliasDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasDomainResponse> {
         self.client.execute(action: "CreateAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -73,7 +73,7 @@ extension Teo {
     /// 创建别称域名
     ///
     /// 创建别称域名。
-    @inlinable
+    @inlinable @discardableResult
     public func createAliasDomain(_ input: CreateAliasDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasDomainResponse {
         try await self.client.execute(action: "CreateAliasDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -81,7 +81,7 @@ extension Teo {
     /// 创建别称域名
     ///
     /// 创建别称域名。
-    @inlinable
+    @inlinable @discardableResult
     public func createAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasDomainResponse> {
         self.createAliasDomain(CreateAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), region: region, logger: logger, on: eventLoop)
     }
@@ -89,7 +89,7 @@ extension Teo {
     /// 创建别称域名
     ///
     /// 创建别称域名。
-    @inlinable
+    @inlinable @discardableResult
     public func createAliasDomain(zoneId: String, aliasName: String, targetName: String, certType: String? = nil, certId: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasDomainResponse {
         try await self.createAliasDomain(CreateAliasDomainRequest(zoneId: zoneId, aliasName: aliasName, targetName: targetName, certType: certType, certId: certId), region: region, logger: logger, on: eventLoop)
     }

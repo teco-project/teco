@@ -57,7 +57,7 @@ extension Ecm {
     /// 修改负载均衡实例的属性
     ///
     /// 修改负载均衡实例的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
         self.client.execute(action: "ModifyLoadBalancerAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Ecm {
     /// 修改负载均衡实例的属性
     ///
     /// 修改负载均衡实例的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoadBalancerAttributes(_ input: ModifyLoadBalancerAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
         try await self.client.execute(action: "ModifyLoadBalancerAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Ecm {
     /// 修改负载均衡实例的属性
     ///
     /// 修改负载均衡实例的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, internetChargeInfo: LoadBalancerInternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerAttributesResponse> {
         self.modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Ecm {
     /// 修改负载均衡实例的属性
     ///
     /// 修改负载均衡实例的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoadBalancerAttributes(loadBalancerId: String, loadBalancerName: String? = nil, internetChargeInfo: LoadBalancerInternetAccessible? = nil, loadBalancerPassToTarget: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerAttributesResponse {
         try await self.modifyLoadBalancerAttributes(ModifyLoadBalancerAttributesRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, internetChargeInfo: internetChargeInfo, loadBalancerPassToTarget: loadBalancerPassToTarget), region: region, logger: logger, on: eventLoop)
     }

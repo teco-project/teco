@@ -40,25 +40,25 @@ extension Dasb {
     }
 
     /// 删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsers(_ input: DeleteUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
         self.client.execute(action: "DeleteUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsers(_ input: DeleteUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
         try await self.client.execute(action: "DeleteUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsers(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsersResponse> {
         self.deleteUsers(DeleteUsersRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsers(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsersResponse {
         try await self.deleteUsers(DeleteUsersRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Iotexplorer {
     /// 删除项目
     ///
     /// 提供删除某个项目的能力
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProject(_ input: DeleteProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
         self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotexplorer {
     /// 删除项目
     ///
     /// 提供删除某个项目的能力
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProject(_ input: DeleteProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
         try await self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotexplorer {
     /// 删除项目
     ///
     /// 提供删除某个项目的能力
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
         self.deleteProject(DeleteProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotexplorer {
     /// 删除项目
     ///
     /// 提供删除某个项目的能力
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
         try await self.deleteProject(DeleteProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }

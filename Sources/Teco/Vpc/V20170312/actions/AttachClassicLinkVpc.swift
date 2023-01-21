@@ -51,7 +51,7 @@ extension Vpc {
     /// * 私有网络和基础网络的区别详见vpc产品文档-<a href="https://cloud.tencent.com/document/product/215/30720">私有网络与基础网络</a>。
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
-    @inlinable
+    @inlinable @discardableResult
     public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
         self.client.execute(action: "AttachClassicLinkVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// * 私有网络和基础网络的区别详见vpc产品文档-<a href="https://cloud.tencent.com/document/product/215/30720">私有网络与基础网络</a>。
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
-    @inlinable
+    @inlinable @discardableResult
     public func attachClassicLinkVpc(_ input: AttachClassicLinkVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachClassicLinkVpcResponse {
         try await self.client.execute(action: "AttachClassicLinkVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -75,7 +75,7 @@ extension Vpc {
     /// * 私有网络和基础网络的区别详见vpc产品文档-<a href="https://cloud.tencent.com/document/product/215/30720">私有网络与基础网络</a>。
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
-    @inlinable
+    @inlinable @discardableResult
     public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachClassicLinkVpcResponse> {
         self.attachClassicLinkVpc(AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
@@ -87,7 +87,7 @@ extension Vpc {
     /// * 私有网络和基础网络的区别详见vpc产品文档-<a href="https://cloud.tencent.com/document/product/215/30720">私有网络与基础网络</a>。
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
-    @inlinable
+    @inlinable @discardableResult
     public func attachClassicLinkVpc(vpcId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachClassicLinkVpcResponse {
         try await self.attachClassicLinkVpc(AttachClassicLinkVpcRequest(vpcId: vpcId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }

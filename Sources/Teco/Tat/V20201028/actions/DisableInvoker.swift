@@ -42,7 +42,7 @@ extension Tat {
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func disableInvoker(_ input: DisableInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInvokerResponse> {
         self.client.execute(action: "DisableInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tat {
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func disableInvoker(_ input: DisableInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
         try await self.client.execute(action: "DisableInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tat {
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func disableInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInvokerResponse> {
         self.disableInvoker(DisableInvokerRequest(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tat {
     /// 停用执行器
     ///
     /// 此接口用于停止执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func disableInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInvokerResponse {
         try await self.disableInvoker(DisableInvokerRequest(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }

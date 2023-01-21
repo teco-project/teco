@@ -42,7 +42,7 @@ extension Mps {
     /// 删除转动图模板
     ///
     /// 删除用户自定义转动图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAnimatedGraphicsTemplate(_ input: DeleteAnimatedGraphicsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAnimatedGraphicsTemplateResponse> {
         self.client.execute(action: "DeleteAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Mps {
     /// 删除转动图模板
     ///
     /// 删除用户自定义转动图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAnimatedGraphicsTemplate(_ input: DeleteAnimatedGraphicsTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAnimatedGraphicsTemplateResponse {
         try await self.client.execute(action: "DeleteAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Mps {
     /// 删除转动图模板
     ///
     /// 删除用户自定义转动图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAnimatedGraphicsTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAnimatedGraphicsTemplateResponse> {
         self.deleteAnimatedGraphicsTemplate(DeleteAnimatedGraphicsTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Mps {
     /// 删除转动图模板
     ///
     /// 删除用户自定义转动图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAnimatedGraphicsTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAnimatedGraphicsTemplateResponse {
         try await self.deleteAnimatedGraphicsTemplate(DeleteAnimatedGraphicsTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }

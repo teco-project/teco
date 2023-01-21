@@ -42,7 +42,7 @@ extension Lighthouse {
     /// 重新申请关联云联网
     ///
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
-    @inlinable
+    @inlinable @discardableResult
     public func resetAttachCcn(_ input: ResetAttachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAttachCcnResponse> {
         self.client.execute(action: "ResetAttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Lighthouse {
     /// 重新申请关联云联网
     ///
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
-    @inlinable
+    @inlinable @discardableResult
     public func resetAttachCcn(_ input: ResetAttachCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnResponse {
         try await self.client.execute(action: "ResetAttachCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Lighthouse {
     /// 重新申请关联云联网
     ///
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
-    @inlinable
+    @inlinable @discardableResult
     public func resetAttachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAttachCcnResponse> {
         self.resetAttachCcn(ResetAttachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Lighthouse {
     /// 重新申请关联云联网
     ///
     /// 本接口 (ResetAttachCcn) 用于关联云联网实例申请过期时，重新申请关联操作。
-    @inlinable
+    @inlinable @discardableResult
     public func resetAttachCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAttachCcnResponse {
         try await self.resetAttachCcn(ResetAttachCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }

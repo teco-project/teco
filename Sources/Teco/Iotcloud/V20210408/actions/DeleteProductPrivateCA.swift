@@ -40,25 +40,25 @@ extension Iotcloud {
     }
 
     /// 删除产品的私有CA证书
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProductPrivateCA(_ input: DeleteProductPrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductPrivateCAResponse> {
         self.client.execute(action: "DeleteProductPrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除产品的私有CA证书
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProductPrivateCA(_ input: DeleteProductPrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductPrivateCAResponse {
         try await self.client.execute(action: "DeleteProductPrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除产品的私有CA证书
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProductPrivateCA(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductPrivateCAResponse> {
         self.deleteProductPrivateCA(DeleteProductPrivateCARequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除产品的私有CA证书
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProductPrivateCA(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductPrivateCAResponse {
         try await self.deleteProductPrivateCA(DeleteProductPrivateCARequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }

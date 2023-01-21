@@ -47,7 +47,7 @@ extension Cynosdb {
     /// 删除手动备份
     ///
     /// 为集群删除手动备份，无法删除自动备份
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBackup(_ input: DeleteBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
         self.client.execute(action: "DeleteBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cynosdb {
     /// 删除手动备份
     ///
     /// 为集群删除手动备份，无法删除自动备份
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBackup(_ input: DeleteBackupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
         try await self.client.execute(action: "DeleteBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cynosdb {
     /// 删除手动备份
     ///
     /// 为集群删除手动备份，无法删除自动备份
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBackup(clusterId: String, snapshotIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
         self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cynosdb {
     /// 删除手动备份
     ///
     /// 为集群删除手动备份，无法删除自动备份
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBackup(clusterId: String, snapshotIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
         try await self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
     }

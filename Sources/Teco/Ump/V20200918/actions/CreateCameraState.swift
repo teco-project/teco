@@ -52,7 +52,7 @@ extension Ump {
     /// 相机状态上报接口
     ///
     /// 上报当前场内所有相机的当前状态
-    @inlinable
+    @inlinable @discardableResult
     public func createCameraState(_ input: CreateCameraStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraStateResponse> {
         self.client.execute(action: "CreateCameraState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Ump {
     /// 相机状态上报接口
     ///
     /// 上报当前场内所有相机的当前状态
-    @inlinable
+    @inlinable @discardableResult
     public func createCameraState(_ input: CreateCameraStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
         try await self.client.execute(action: "CreateCameraState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Ump {
     /// 相机状态上报接口
     ///
     /// 上报当前场内所有相机的当前状态
-    @inlinable
+    @inlinable @discardableResult
     public func createCameraState(groupCode: String, mallId: UInt64, cameraStates: [CameraState], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCameraStateResponse> {
         self.createCameraState(CreateCameraStateRequest(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Ump {
     /// 相机状态上报接口
     ///
     /// 上报当前场内所有相机的当前状态
-    @inlinable
+    @inlinable @discardableResult
     public func createCameraState(groupCode: String, mallId: UInt64, cameraStates: [CameraState], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCameraStateResponse {
         try await self.createCameraState(CreateCameraStateRequest(groupCode: groupCode, mallId: mallId, cameraStates: cameraStates), region: region, logger: logger, on: eventLoop)
     }

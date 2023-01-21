@@ -47,7 +47,7 @@ extension Oceanus {
     /// 运行作业
     ///
     /// 批量启动或者恢复作业，批量操作数量上限20
-    @inlinable
+    @inlinable @discardableResult
     public func runJobs(_ input: RunJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobsResponse> {
         self.client.execute(action: "RunJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Oceanus {
     /// 运行作业
     ///
     /// 批量启动或者恢复作业，批量操作数量上限20
-    @inlinable
+    @inlinable @discardableResult
     public func runJobs(_ input: RunJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobsResponse {
         try await self.client.execute(action: "RunJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Oceanus {
     /// 运行作业
     ///
     /// 批量启动或者恢复作业，批量操作数量上限20
-    @inlinable
+    @inlinable @discardableResult
     public func runJobs(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobsResponse> {
         self.runJobs(RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Oceanus {
     /// 运行作业
     ///
     /// 批量启动或者恢复作业，批量操作数量上限20
-    @inlinable
+    @inlinable @discardableResult
     public func runJobs(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobsResponse {
         try await self.runJobs(RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }

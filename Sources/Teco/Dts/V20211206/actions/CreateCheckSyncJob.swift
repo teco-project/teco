@@ -42,7 +42,7 @@ extension Dts {
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
-    @inlinable
+    @inlinable @discardableResult
     public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckSyncJobResponse> {
         self.client.execute(action: "CreateCheckSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Dts {
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
-    @inlinable
+    @inlinable @discardableResult
     public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
         try await self.client.execute(action: "CreateCheckSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Dts {
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
-    @inlinable
+    @inlinable @discardableResult
     public func createCheckSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCheckSyncJobResponse> {
         self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Dts {
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
-    @inlinable
+    @inlinable @discardableResult
     public func createCheckSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
         try await self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }

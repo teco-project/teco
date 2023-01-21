@@ -55,25 +55,25 @@ extension Dnspod {
     }
 
     /// 将记录添加到分组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordToGroupResponse> {
         self.client.execute(action: "ModifyRecordToGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将记录添加到分组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRecordToGroup(_ input: ModifyRecordToGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
         try await self.client.execute(action: "ModifyRecordToGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 将记录添加到分组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRecordToGroup(domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordToGroupResponse> {
         self.modifyRecordToGroup(ModifyRecordToGroupRequest(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 将记录添加到分组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRecordToGroup(domain: String, groupId: UInt64, recordId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordToGroupResponse {
         try await self.modifyRecordToGroup(ModifyRecordToGroupRequest(domain: domain, groupId: groupId, recordId: recordId, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }

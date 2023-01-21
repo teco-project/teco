@@ -47,7 +47,7 @@ extension Monitor {
     /// 设置SSO登录是否鉴权
     ///
     /// SSO单点登录时，设置是否cam鉴权
-    @inlinable
+    @inlinable @discardableResult
     public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableSSOCamCheckResponse> {
         self.client.execute(action: "EnableSSOCamCheck", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Monitor {
     /// 设置SSO登录是否鉴权
     ///
     /// SSO单点登录时，设置是否cam鉴权
-    @inlinable
+    @inlinable @discardableResult
     public func enableSSOCamCheck(_ input: EnableSSOCamCheckRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSSOCamCheckResponse {
         try await self.client.execute(action: "EnableSSOCamCheck", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Monitor {
     /// 设置SSO登录是否鉴权
     ///
     /// SSO单点登录时，设置是否cam鉴权
-    @inlinable
+    @inlinable @discardableResult
     public func enableSSOCamCheck(instanceId: String, enableSSOCamCheck: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableSSOCamCheckResponse> {
         self.enableSSOCamCheck(EnableSSOCamCheckRequest(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Monitor {
     /// 设置SSO登录是否鉴权
     ///
     /// SSO单点登录时，设置是否cam鉴权
-    @inlinable
+    @inlinable @discardableResult
     public func enableSSOCamCheck(instanceId: String, enableSSOCamCheck: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableSSOCamCheckResponse {
         try await self.enableSSOCamCheck(EnableSSOCamCheckRequest(instanceId: instanceId, enableSSOCamCheck: enableSSOCamCheck), region: region, logger: logger, on: eventLoop)
     }

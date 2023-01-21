@@ -47,7 +47,7 @@ extension Trtc {
     /// 结束云端混流（字符串房间号）
     ///
     /// 接口说明：结束云端混流
-    @inlinable
+    @inlinable @discardableResult
     public func stopMCUMixTranscodeByStrRoomId(_ input: StopMCUMixTranscodeByStrRoomIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeByStrRoomIdResponse> {
         self.client.execute(action: "StopMCUMixTranscodeByStrRoomId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Trtc {
     /// 结束云端混流（字符串房间号）
     ///
     /// 接口说明：结束云端混流
-    @inlinable
+    @inlinable @discardableResult
     public func stopMCUMixTranscodeByStrRoomId(_ input: StopMCUMixTranscodeByStrRoomIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeByStrRoomIdResponse {
         try await self.client.execute(action: "StopMCUMixTranscodeByStrRoomId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Trtc {
     /// 结束云端混流（字符串房间号）
     ///
     /// 接口说明：结束云端混流
-    @inlinable
+    @inlinable @discardableResult
     public func stopMCUMixTranscodeByStrRoomId(sdkAppId: UInt64, strRoomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeByStrRoomIdResponse> {
         self.stopMCUMixTranscodeByStrRoomId(StopMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Trtc {
     /// 结束云端混流（字符串房间号）
     ///
     /// 接口说明：结束云端混流
-    @inlinable
+    @inlinable @discardableResult
     public func stopMCUMixTranscodeByStrRoomId(sdkAppId: UInt64, strRoomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeByStrRoomIdResponse {
         try await self.stopMCUMixTranscodeByStrRoomId(StopMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId), region: region, logger: logger, on: eventLoop)
     }

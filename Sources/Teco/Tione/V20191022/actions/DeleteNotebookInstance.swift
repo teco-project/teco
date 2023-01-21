@@ -42,7 +42,7 @@ extension Tione {
     /// 删除Notebook实例
     ///
     /// 删除notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNotebookInstance(_ input: DeleteNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookInstanceResponse> {
         self.client.execute(action: "DeleteNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tione {
     /// 删除Notebook实例
     ///
     /// 删除notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNotebookInstance(_ input: DeleteNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookInstanceResponse {
         try await self.client.execute(action: "DeleteNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tione {
     /// 删除Notebook实例
     ///
     /// 删除notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotebookInstanceResponse> {
         self.deleteNotebookInstance(DeleteNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tione {
     /// 删除Notebook实例
     ///
     /// 删除notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotebookInstanceResponse {
         try await self.deleteNotebookInstance(DeleteNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
     }

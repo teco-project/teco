@@ -59,7 +59,7 @@ extension Ecm {
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
-    @inlinable
+    @inlinable @discardableResult
     public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
         self.client.execute(action: "ResetInstancesPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Ecm {
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
-    @inlinable
+    @inlinable @discardableResult
     public func resetInstancesPassword(_ input: ResetInstancesPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
         try await self.client.execute(action: "ResetInstancesPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -75,7 +75,7 @@ extension Ecm {
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
-    @inlinable
+    @inlinable @discardableResult
     public func resetInstancesPassword(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
         self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIdSet: instanceIdSet, password: password, forceStop: forceStop, userName: userName), region: region, logger: logger, on: eventLoop)
     }
@@ -83,7 +83,7 @@ extension Ecm {
     /// 重置实例密码
     ///
     /// 重置处于运行中状态的实例的密码，需要显式指定强制关机参数ForceStop。如果没有显式指定强制关机参数，则只有处于关机状态的实例才允许执行重置密码操作。
-    @inlinable
+    @inlinable @discardableResult
     public func resetInstancesPassword(instanceIdSet: [String], password: String, forceStop: Bool? = nil, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
         try await self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIdSet: instanceIdSet, password: password, forceStop: forceStop, userName: userName), region: region, logger: logger, on: eventLoop)
     }

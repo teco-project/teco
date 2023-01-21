@@ -40,25 +40,25 @@ extension Cfw {
     }
 
     /// 销毁防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
         self.client.execute(action: "DeleteNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatFwInstance(_ input: DeleteNatFwInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
         try await self.client.execute(action: "DeleteNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatFwInstance(cfwInstance: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatFwInstanceResponse> {
         self.deleteNatFwInstance(DeleteNatFwInstanceRequest(cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatFwInstance(cfwInstance: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatFwInstanceResponse {
         try await self.deleteNatFwInstance(DeleteNatFwInstanceRequest(cfwInstance: cfwInstance), region: region, logger: logger, on: eventLoop)
     }

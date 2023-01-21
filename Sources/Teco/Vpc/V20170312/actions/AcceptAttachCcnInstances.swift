@@ -47,7 +47,7 @@ extension Vpc {
     /// 云联网接受关联实例
     ///
     /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
-    @inlinable
+    @inlinable @discardableResult
     public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptAttachCcnInstancesResponse> {
         self.client.execute(action: "AcceptAttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 云联网接受关联实例
     ///
     /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
-    @inlinable
+    @inlinable @discardableResult
     public func acceptAttachCcnInstances(_ input: AcceptAttachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptAttachCcnInstancesResponse {
         try await self.client.execute(action: "AcceptAttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 云联网接受关联实例
     ///
     /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
-    @inlinable
+    @inlinable @discardableResult
     public func acceptAttachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptAttachCcnInstancesResponse> {
         self.acceptAttachCcnInstances(AcceptAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 云联网接受关联实例
     ///
     /// 本接口（AcceptAttachCcnInstances）用于跨账号关联实例时，云联网所有者接受并同意关联操作。
-    @inlinable
+    @inlinable @discardableResult
     public func acceptAttachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptAttachCcnInstancesResponse {
         try await self.acceptAttachCcnInstances(AcceptAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Chdfs {
     /// 删除权限组
     ///
     /// 删除权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessGroupResponse> {
         self.client.execute(action: "DeleteAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Chdfs {
     /// 删除权限组
     ///
     /// 删除权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAccessGroup(_ input: DeleteAccessGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessGroupResponse {
         try await self.client.execute(action: "DeleteAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Chdfs {
     /// 删除权限组
     ///
     /// 删除权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAccessGroup(accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessGroupResponse> {
         self.deleteAccessGroup(DeleteAccessGroupRequest(accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Chdfs {
     /// 删除权限组
     ///
     /// 删除权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAccessGroup(accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessGroupResponse {
         try await self.deleteAccessGroup(DeleteAccessGroupRequest(accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
     }

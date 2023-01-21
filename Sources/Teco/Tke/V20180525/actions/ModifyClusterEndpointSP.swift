@@ -52,7 +52,7 @@ extension Tke {
     /// 修改托管集群外网端口的安全策略
     ///
     /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterEndpointSPResponse> {
         self.client.execute(action: "ModifyClusterEndpointSP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tke {
     /// 修改托管集群外网端口的安全策略
     ///
     /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterEndpointSP(_ input: ModifyClusterEndpointSPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterEndpointSPResponse {
         try await self.client.execute(action: "ModifyClusterEndpointSP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tke {
     /// 修改托管集群外网端口的安全策略
     ///
     /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterEndpointSP(clusterId: String, securityPolicies: [String]? = nil, securityGroup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterEndpointSPResponse> {
         self.modifyClusterEndpointSP(ModifyClusterEndpointSPRequest(clusterId: clusterId, securityPolicies: securityPolicies, securityGroup: securityGroup), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tke {
     /// 修改托管集群外网端口的安全策略
     ///
     /// 修改托管集群外网端口的安全策略（老的方式，仅支持托管集群外网端口）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterEndpointSP(clusterId: String, securityPolicies: [String]? = nil, securityGroup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterEndpointSPResponse {
         try await self.modifyClusterEndpointSP(ModifyClusterEndpointSPRequest(clusterId: clusterId, securityPolicies: securityPolicies, securityGroup: securityGroup), region: region, logger: logger, on: eventLoop)
     }

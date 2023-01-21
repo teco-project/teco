@@ -47,7 +47,7 @@ extension Tke {
     /// 删除容器实例
     ///
     /// 删除容器实例，可批量删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEKSContainerInstances(_ input: DeleteEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEKSContainerInstancesResponse> {
         self.client.execute(action: "DeleteEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tke {
     /// 删除容器实例
     ///
     /// 删除容器实例，可批量删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEKSContainerInstances(_ input: DeleteEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSContainerInstancesResponse {
         try await self.client.execute(action: "DeleteEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tke {
     /// 删除容器实例
     ///
     /// 删除容器实例，可批量删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEKSContainerInstances(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEKSContainerInstancesResponse> {
         self.deleteEKSContainerInstances(DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tke {
     /// 删除容器实例
     ///
     /// 删除容器实例，可批量删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEKSContainerInstances(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSContainerInstancesResponse {
         try await self.deleteEKSContainerInstances(DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip), region: region, logger: logger, on: eventLoop)
     }

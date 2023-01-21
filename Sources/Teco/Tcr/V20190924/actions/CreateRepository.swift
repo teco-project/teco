@@ -62,7 +62,7 @@ extension Tcr {
     /// 创建镜像仓库
     ///
     /// 用于企业版创建镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func createRepository(_ input: CreateRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
         self.client.execute(action: "CreateRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Tcr {
     /// 创建镜像仓库
     ///
     /// 用于企业版创建镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func createRepository(_ input: CreateRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
         try await self.client.execute(action: "CreateRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Tcr {
     /// 创建镜像仓库
     ///
     /// 用于企业版创建镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func createRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
         self.createRepository(CreateRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Tcr {
     /// 创建镜像仓库
     ///
     /// 用于企业版创建镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func createRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
         try await self.createRepository(CreateRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
     }

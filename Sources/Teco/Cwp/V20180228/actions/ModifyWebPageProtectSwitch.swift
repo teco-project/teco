@@ -52,7 +52,7 @@ extension Cwp {
     /// 网站防护设置开关
     ///
     /// 网站防篡改防护设置开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWebPageProtectSwitch(_ input: ModifyWebPageProtectSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectSwitchResponse> {
         self.client.execute(action: "ModifyWebPageProtectSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cwp {
     /// 网站防护设置开关
     ///
     /// 网站防篡改防护设置开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWebPageProtectSwitch(_ input: ModifyWebPageProtectSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSwitchResponse {
         try await self.client.execute(action: "ModifyWebPageProtectSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cwp {
     /// 网站防护设置开关
     ///
     /// 网站防篡改防护设置开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWebPageProtectSwitch(switchType: UInt64, ids: [String], status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectSwitchResponse> {
         self.modifyWebPageProtectSwitch(ModifyWebPageProtectSwitchRequest(switchType: switchType, ids: ids, status: status), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cwp {
     /// 网站防护设置开关
     ///
     /// 网站防篡改防护设置开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWebPageProtectSwitch(switchType: UInt64, ids: [String], status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectSwitchResponse {
         try await self.modifyWebPageProtectSwitch(ModifyWebPageProtectSwitchRequest(switchType: switchType, ids: ids, status: status), region: region, logger: logger, on: eventLoop)
     }

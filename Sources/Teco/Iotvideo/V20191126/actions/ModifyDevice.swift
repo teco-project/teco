@@ -50,25 +50,25 @@ extension Iotvideo {
     }
 
     /// 修改设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDevice(_ input: ModifyDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceResponse> {
         self.client.execute(action: "ModifyDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDevice(_ input: ModifyDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {
         try await self.client.execute(action: "ModifyDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDevice(tid: String, accessId: String, nick: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceResponse> {
         self.modifyDevice(ModifyDeviceRequest(tid: tid, accessId: accessId, nick: nick), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDevice(tid: String, accessId: String, nick: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {
         try await self.modifyDevice(ModifyDeviceRequest(tid: tid, accessId: accessId, nick: nick), region: region, logger: logger, on: eventLoop)
     }

@@ -49,7 +49,7 @@ extension Teo {
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
-    @inlinable
+    @inlinable @discardableResult
     public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchLogTopicTaskResponse> {
         self.client.execute(action: "SwitchLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Teo {
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
-    @inlinable
+    @inlinable @discardableResult
     public func switchLogTopicTask(_ input: SwitchLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
         try await self.client.execute(action: "SwitchLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -65,7 +65,7 @@ extension Teo {
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
-    @inlinable
+    @inlinable @discardableResult
     public func switchLogTopicTask(topicId: String, isOpen: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchLogTopicTaskResponse> {
         self.switchLogTopicTask(SwitchLogTopicTaskRequest(topicId: topicId, isOpen: isOpen), region: region, logger: logger, on: eventLoop)
     }
@@ -73,7 +73,7 @@ extension Teo {
     /// 开启或关闭推送任务
     ///
     /// 本接口（SwitchLogTopicTask）用于开启/关闭推送任务。
-    @inlinable
+    @inlinable @discardableResult
     public func switchLogTopicTask(topicId: String, isOpen: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchLogTopicTaskResponse {
         try await self.switchLogTopicTask(SwitchLogTopicTaskRequest(topicId: topicId, isOpen: isOpen), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Tag {
     /// 删除标签
     ///
     /// 本接口用于删除一对标签键和标签值
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTag(_ input: DeleteTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagResponse> {
         self.client.execute(action: "DeleteTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tag {
     /// 删除标签
     ///
     /// 本接口用于删除一对标签键和标签值
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTag(_ input: DeleteTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
         try await self.client.execute(action: "DeleteTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tag {
     /// 删除标签
     ///
     /// 本接口用于删除一对标签键和标签值
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTag(tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagResponse> {
         self.deleteTag(DeleteTagRequest(tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tag {
     /// 删除标签
     ///
     /// 本接口用于删除一对标签键和标签值
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTag(tagKey: String, tagValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
         try await self.deleteTag(DeleteTagRequest(tagKey: tagKey, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
     }

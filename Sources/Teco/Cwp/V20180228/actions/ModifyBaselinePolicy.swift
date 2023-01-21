@@ -52,25 +52,25 @@ extension Cwp {
     }
 
     /// 更改基线策略设置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBaselinePolicy(_ input: ModifyBaselinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBaselinePolicyResponse> {
         self.client.execute(action: "ModifyBaselinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更改基线策略设置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBaselinePolicy(_ input: ModifyBaselinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBaselinePolicyResponse {
         try await self.client.execute(action: "ModifyBaselinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更改基线策略设置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBaselinePolicy(data: BaselinePolicy, filters: [Filter]? = nil, selectAll: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBaselinePolicyResponse> {
         self.modifyBaselinePolicy(ModifyBaselinePolicyRequest(data: data, filters: filters, selectAll: selectAll), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更改基线策略设置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBaselinePolicy(data: BaselinePolicy, filters: [Filter]? = nil, selectAll: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBaselinePolicyResponse {
         try await self.modifyBaselinePolicy(ModifyBaselinePolicyRequest(data: data, filters: filters, selectAll: selectAll), region: region, logger: logger, on: eventLoop)
     }

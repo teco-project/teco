@@ -47,7 +47,7 @@ extension Yunjing {
     /// 添加常用登录地
     ///
     /// 此接口（CreateUsualLoginPlaces）用于添加常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func createUsualLoginPlaces(_ input: CreateUsualLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUsualLoginPlacesResponse> {
         self.client.execute(action: "CreateUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Yunjing {
     /// 添加常用登录地
     ///
     /// 此接口（CreateUsualLoginPlaces）用于添加常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func createUsualLoginPlaces(_ input: CreateUsualLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsualLoginPlacesResponse {
         try await self.client.execute(action: "CreateUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Yunjing {
     /// 添加常用登录地
     ///
     /// 此接口（CreateUsualLoginPlaces）用于添加常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func createUsualLoginPlaces(uuids: [String], places: [Place], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUsualLoginPlacesResponse> {
         self.createUsualLoginPlaces(CreateUsualLoginPlacesRequest(uuids: uuids, places: places), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Yunjing {
     /// 添加常用登录地
     ///
     /// 此接口（CreateUsualLoginPlaces）用于添加常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func createUsualLoginPlaces(uuids: [String], places: [Place], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsualLoginPlacesResponse {
         try await self.createUsualLoginPlaces(CreateUsualLoginPlacesRequest(uuids: uuids, places: places), region: region, logger: logger, on: eventLoop)
     }

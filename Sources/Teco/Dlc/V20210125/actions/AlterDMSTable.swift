@@ -137,25 +137,25 @@ extension Dlc {
     }
 
     /// DMS元数据更新表
-    @inlinable
+    @inlinable @discardableResult
     public func alterDMSTable(_ input: AlterDMSTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSTableResponse> {
         self.client.execute(action: "AlterDMSTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据更新表
-    @inlinable
+    @inlinable @discardableResult
     public func alterDMSTable(_ input: AlterDMSTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSTableResponse {
         try await self.client.execute(action: "AlterDMSTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// DMS元数据更新表
-    @inlinable
+    @inlinable @discardableResult
     public func alterDMSTable(currentName: String, currentDbName: String, asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSTableResponse> {
         self.alterDMSTable(AlterDMSTableRequest(currentName: currentName, currentDbName: currentDbName, asset: asset, type: type, dbName: dbName, storageSize: storageSize, recordCount: recordCount, lifeTime: lifeTime, dataUpdateTime: dataUpdateTime, structUpdateTime: structUpdateTime, lastAccessTime: lastAccessTime, sds: sds, columns: columns, partitionKeys: partitionKeys, viewOriginalText: viewOriginalText, viewExpandedText: viewExpandedText, partitions: partitions, name: name), region: region, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据更新表
-    @inlinable
+    @inlinable @discardableResult
     public func alterDMSTable(currentName: String, currentDbName: String, asset: Asset? = nil, type: String? = nil, dbName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, lastAccessTime: Date? = nil, sds: DMSSds? = nil, columns: [DMSColumn]? = nil, partitionKeys: [DMSColumn]? = nil, viewOriginalText: String? = nil, viewExpandedText: String? = nil, partitions: [DMSPartition]? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSTableResponse {
         try await self.alterDMSTable(AlterDMSTableRequest(currentName: currentName, currentDbName: currentDbName, asset: asset, type: type, dbName: dbName, storageSize: storageSize, recordCount: recordCount, lifeTime: lifeTime, dataUpdateTime: dataUpdateTime, structUpdateTime: structUpdateTime, lastAccessTime: lastAccessTime, sds: sds, columns: columns, partitionKeys: partitionKeys, viewOriginalText: viewOriginalText, viewExpandedText: viewExpandedText, partitions: partitions, name: name), region: region, logger: logger, on: eventLoop)
     }

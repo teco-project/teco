@@ -62,7 +62,7 @@ extension Monitor {
     /// 上报的时间戳为期望保存的时间戳，建议构造整数分钟时刻的时间戳。
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
-    @inlinable
+    @inlinable @discardableResult
     public func putMonitorData(_ input: PutMonitorDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
         self.client.execute(action: "PutMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Monitor {
     /// 上报的时间戳为期望保存的时间戳，建议构造整数分钟时刻的时间戳。
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
-    @inlinable
+    @inlinable @discardableResult
     public func putMonitorData(_ input: PutMonitorDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
         try await self.client.execute(action: "PutMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -88,7 +88,7 @@ extension Monitor {
     /// 上报的时间戳为期望保存的时间戳，建议构造整数分钟时刻的时间戳。
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
-    @inlinable
+    @inlinable @discardableResult
     public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
         self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), region: region, logger: logger, on: eventLoop)
     }
@@ -101,7 +101,7 @@ extension Monitor {
     /// 上报的时间戳为期望保存的时间戳，建议构造整数分钟时刻的时间戳。
     /// 时间戳时间范围必须为当前时间到 300 秒前之间。
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
-    @inlinable
+    @inlinable @discardableResult
     public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
         try await self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), region: region, logger: logger, on: eventLoop)
     }

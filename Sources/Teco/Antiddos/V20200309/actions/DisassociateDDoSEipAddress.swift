@@ -47,7 +47,7 @@ extension Antiddos {
     /// 解绑高防弹性公网IP
     ///
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDDoSEipAddressResponse> {
         self.client.execute(action: "DisassociateDDoSEipAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Antiddos {
     /// 解绑高防弹性公网IP
     ///
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateDDoSEipAddress(_ input: DisassociateDDoSEipAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
         try await self.client.execute(action: "DisassociateDDoSEipAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Antiddos {
     /// 解绑高防弹性公网IP
     ///
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateDDoSEipAddress(instanceId: String, eip: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDDoSEipAddressResponse> {
         self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Antiddos {
     /// 解绑高防弹性公网IP
     ///
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateDDoSEipAddress(instanceId: String, eip: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
         try await self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), region: region, logger: logger, on: eventLoop)
     }

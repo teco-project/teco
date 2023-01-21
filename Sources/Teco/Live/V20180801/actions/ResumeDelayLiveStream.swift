@@ -52,7 +52,7 @@ extension Live {
     /// 取消直播延时
     ///
     /// 取消直播流设置的延时配置，恢复实时直播画面。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDelayLiveStreamResponse> {
         self.client.execute(action: "ResumeDelayLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Live {
     /// 取消直播延时
     ///
     /// 取消直播流设置的延时配置，恢复实时直播画面。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeDelayLiveStream(_ input: ResumeDelayLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDelayLiveStreamResponse {
         try await self.client.execute(action: "ResumeDelayLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Live {
     /// 取消直播延时
     ///
     /// 取消直播流设置的延时配置，恢复实时直播画面。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeDelayLiveStream(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeDelayLiveStreamResponse> {
         self.resumeDelayLiveStream(ResumeDelayLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Live {
     /// 取消直播延时
     ///
     /// 取消直播流设置的延时配置，恢复实时直播画面。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeDelayLiveStream(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeDelayLiveStreamResponse {
         try await self.resumeDelayLiveStream(ResumeDelayLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }

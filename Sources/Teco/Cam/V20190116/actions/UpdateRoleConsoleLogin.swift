@@ -52,7 +52,7 @@ extension Cam {
     /// 修改角色是否可登录
     ///
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
-    @inlinable
+    @inlinable @discardableResult
     public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleConsoleLoginResponse> {
         self.client.execute(action: "UpdateRoleConsoleLogin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cam {
     /// 修改角色是否可登录
     ///
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
-    @inlinable
+    @inlinable @discardableResult
     public func updateRoleConsoleLogin(_ input: UpdateRoleConsoleLoginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
         try await self.client.execute(action: "UpdateRoleConsoleLogin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cam {
     /// 修改角色是否可登录
     ///
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
-    @inlinable
+    @inlinable @discardableResult
     public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRoleConsoleLoginResponse> {
         self.updateRoleConsoleLogin(UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cam {
     /// 修改角色是否可登录
     ///
     /// 本接口（UpdateRoleConsoleLogin）用于修改角色是否可登录。
-    @inlinable
+    @inlinable @discardableResult
     public func updateRoleConsoleLogin(consoleLogin: Int64, roleId: Int64? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRoleConsoleLoginResponse {
         try await self.updateRoleConsoleLogin(UpdateRoleConsoleLoginRequest(consoleLogin: consoleLogin, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
     }

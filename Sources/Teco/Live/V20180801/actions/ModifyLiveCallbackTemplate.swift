@@ -83,7 +83,7 @@ extension Live {
     /// 修改回调模板
     ///
     /// 修改回调模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveCallbackTemplateResponse> {
         self.client.execute(action: "ModifyLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Live {
     /// 修改回调模板
     ///
     /// 修改回调模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveCallbackTemplate(_ input: ModifyLiveCallbackTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
         try await self.client.execute(action: "ModifyLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -99,7 +99,7 @@ extension Live {
     /// 修改回调模板
     ///
     /// 修改回调模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveCallbackTemplateResponse> {
         self.modifyLiveCallbackTemplate(ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
     }
@@ -107,7 +107,7 @@ extension Live {
     /// 修改回调模板
     ///
     /// 修改回调模板。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
         try await self.modifyLiveCallbackTemplate(ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
     }

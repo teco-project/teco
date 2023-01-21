@@ -47,7 +47,7 @@ extension Vpc {
     /// 调整NAT网关并发连接上限
     ///
     /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
-    @inlinable
+    @inlinable @discardableResult
     public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetNatGatewayConnectionResponse> {
         self.client.execute(action: "ResetNatGatewayConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 调整NAT网关并发连接上限
     ///
     /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
-    @inlinable
+    @inlinable @discardableResult
     public func resetNatGatewayConnection(_ input: ResetNatGatewayConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetNatGatewayConnectionResponse {
         try await self.client.execute(action: "ResetNatGatewayConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 调整NAT网关并发连接上限
     ///
     /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
-    @inlinable
+    @inlinable @discardableResult
     public func resetNatGatewayConnection(natGatewayId: String, maxConcurrentConnection: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetNatGatewayConnectionResponse> {
         self.resetNatGatewayConnection(ResetNatGatewayConnectionRequest(natGatewayId: natGatewayId, maxConcurrentConnection: maxConcurrentConnection), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 调整NAT网关并发连接上限
     ///
     /// 本接口（ResetNatGatewayConnection）用来NAT网关并发连接上限。
-    @inlinable
+    @inlinable @discardableResult
     public func resetNatGatewayConnection(natGatewayId: String, maxConcurrentConnection: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetNatGatewayConnectionResponse {
         try await self.resetNatGatewayConnection(ResetNatGatewayConnectionRequest(natGatewayId: natGatewayId, maxConcurrentConnection: maxConcurrentConnection), region: region, logger: logger, on: eventLoop)
     }

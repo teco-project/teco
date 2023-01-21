@@ -40,25 +40,25 @@ extension Lcic {
     }
 
     /// 删除房间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRoom(_ input: DeleteRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomResponse> {
         self.client.execute(action: "DeleteRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除房间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRoom(_ input: DeleteRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
         try await self.client.execute(action: "DeleteRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除房间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomResponse> {
         self.deleteRoom(DeleteRoomRequest(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除房间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomResponse {
         try await self.deleteRoom(DeleteRoomRequest(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }

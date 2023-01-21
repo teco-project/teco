@@ -57,7 +57,7 @@ extension Tdcpg {
     /// 转换集群付费模式
     ///
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
-    @inlinable
+    @inlinable @discardableResult
     public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransformClusterPayModeResponse> {
         self.client.execute(action: "TransformClusterPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Tdcpg {
     /// 转换集群付费模式
     ///
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
-    @inlinable
+    @inlinable @discardableResult
     public func transformClusterPayMode(_ input: TransformClusterPayModeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransformClusterPayModeResponse {
         try await self.client.execute(action: "TransformClusterPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Tdcpg {
     /// 转换集群付费模式
     ///
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
-    @inlinable
+    @inlinable @discardableResult
     public func transformClusterPayMode(clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransformClusterPayModeResponse> {
         self.transformClusterPayMode(TransformClusterPayModeRequest(clusterId: clusterId, currentPayMode: currentPayMode, targetPayMode: targetPayMode, period: period), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Tdcpg {
     /// 转换集群付费模式
     ///
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
-    @inlinable
+    @inlinable @discardableResult
     public func transformClusterPayMode(clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransformClusterPayModeResponse {
         try await self.transformClusterPayMode(TransformClusterPayModeRequest(clusterId: clusterId, currentPayMode: currentPayMode, targetPayMode: targetPayMode, period: period), region: region, logger: logger, on: eventLoop)
     }

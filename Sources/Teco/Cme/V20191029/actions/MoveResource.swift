@@ -62,7 +62,7 @@ extension Cme {
     ///  如果 SourceResource.Resource.Id = /素材/视频/NBA，DestinationResource.Resource.Id= /素材/视频/篮球
     /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
+    @inlinable @discardableResult
     public func moveResource(_ input: MoveResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
         self.client.execute(action: "MoveResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Cme {
     ///  如果 SourceResource.Resource.Id = /素材/视频/NBA，DestinationResource.Resource.Id= /素材/视频/篮球
     /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
+    @inlinable @discardableResult
     public func moveResource(_ input: MoveResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
         try await self.client.execute(action: "MoveResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -88,7 +88,7 @@ extension Cme {
     ///  如果 SourceResource.Resource.Id = /素材/视频/NBA，DestinationResource.Resource.Id= /素材/视频/篮球
     /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
+    @inlinable @discardableResult
     public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveResourceResponse> {
         self.moveResource(MoveResourceRequest(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -101,7 +101,7 @@ extension Cme {
     ///  如果 SourceResource.Resource.Id = /素材/视频/NBA，DestinationResource.Resource.Id= /素材/视频/篮球
     /// <li>当 DestinationResource.Resource.Id 不存在时候且原始资源与目标资源归属相同，操作结果为重命名原始分类；</li>
     /// <li>当 DestinationResource.Resource.Id 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
+    @inlinable @discardableResult
     public func moveResource(platform: String, sourceResource: ResourceInfo, destinationResource: ResourceInfo, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveResourceResponse {
         try await self.moveResource(MoveResourceRequest(platform: platform, sourceResource: sourceResource, destinationResource: destinationResource, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

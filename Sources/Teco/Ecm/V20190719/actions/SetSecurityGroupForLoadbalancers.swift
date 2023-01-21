@@ -53,7 +53,7 @@ extension Ecm {
     /// 绑定或解绑一个安全组到多个负载均衡实例
     ///
     /// 绑定或解绑一个安全组到多个负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetSecurityGroupForLoadbalancersResponse> {
         self.client.execute(action: "SetSecurityGroupForLoadbalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -61,7 +61,7 @@ extension Ecm {
     /// 绑定或解绑一个安全组到多个负载均衡实例
     ///
     /// 绑定或解绑一个安全组到多个负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func setSecurityGroupForLoadbalancers(_ input: SetSecurityGroupForLoadbalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
         try await self.client.execute(action: "SetSecurityGroupForLoadbalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -69,7 +69,7 @@ extension Ecm {
     /// 绑定或解绑一个安全组到多个负载均衡实例
     ///
     /// 绑定或解绑一个安全组到多个负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func setSecurityGroupForLoadbalancers(loadBalancerIds: [String], securityGroup: String, operationType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetSecurityGroupForLoadbalancersResponse> {
         self.setSecurityGroupForLoadbalancers(SetSecurityGroupForLoadbalancersRequest(loadBalancerIds: loadBalancerIds, securityGroup: securityGroup, operationType: operationType), region: region, logger: logger, on: eventLoop)
     }
@@ -77,7 +77,7 @@ extension Ecm {
     /// 绑定或解绑一个安全组到多个负载均衡实例
     ///
     /// 绑定或解绑一个安全组到多个负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func setSecurityGroupForLoadbalancers(loadBalancerIds: [String], securityGroup: String, operationType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
         try await self.setSecurityGroupForLoadbalancers(SetSecurityGroupForLoadbalancersRequest(loadBalancerIds: loadBalancerIds, securityGroup: securityGroup, operationType: operationType), region: region, logger: logger, on: eventLoop)
     }

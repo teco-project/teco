@@ -62,7 +62,7 @@ extension Ump {
     /// 多经点位配置更新
     ///
     /// 集团广场的多经点位配置更新
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMultiBizConfig(_ input: ModifyMultiBizConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMultiBizConfigResponse> {
         self.client.execute(action: "ModifyMultiBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Ump {
     /// 多经点位配置更新
     ///
     /// 集团广场的多经点位配置更新
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMultiBizConfig(_ input: ModifyMultiBizConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMultiBizConfigResponse {
         try await self.client.execute(action: "ModifyMultiBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Ump {
     /// 多经点位配置更新
     ///
     /// 集团广场的多经点位配置更新
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMultiBizConfig(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, monitoringAreas: [Polygon], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMultiBizConfigResponse> {
         self.modifyMultiBizConfig(ModifyMultiBizConfigRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, monitoringAreas: monitoringAreas), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Ump {
     /// 多经点位配置更新
     ///
     /// 集团广场的多经点位配置更新
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMultiBizConfig(groupCode: String, mallId: UInt64, zoneId: UInt64, cameraId: UInt64, monitoringAreas: [Polygon], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMultiBizConfigResponse {
         try await self.modifyMultiBizConfig(ModifyMultiBizConfigRequest(groupCode: groupCode, mallId: mallId, zoneId: zoneId, cameraId: cameraId, monitoringAreas: monitoringAreas), region: region, logger: logger, on: eventLoop)
     }

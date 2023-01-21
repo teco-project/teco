@@ -58,7 +58,7 @@ extension Tsf {
     ///
     /// 从软件仓库批量删除程序包。
     /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePkgs(_ input: DeletePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePkgsResponse> {
         self.client.execute(action: "DeletePkgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Tsf {
     ///
     /// 从软件仓库批量删除程序包。
     /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePkgs(_ input: DeletePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePkgsResponse {
         try await self.client.execute(action: "DeletePkgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -76,7 +76,7 @@ extension Tsf {
     ///
     /// 从软件仓库批量删除程序包。
     /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePkgs(applicationId: String, pkgIds: [String], repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePkgsResponse> {
         self.deletePkgs(DeletePkgsRequest(applicationId: applicationId, pkgIds: pkgIds, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Tsf {
     ///
     /// 从软件仓库批量删除程序包。
     /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePkgs(applicationId: String, pkgIds: [String], repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePkgsResponse {
         try await self.deletePkgs(DeletePkgsRequest(applicationId: applicationId, pkgIds: pkgIds, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }

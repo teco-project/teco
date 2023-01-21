@@ -50,7 +50,7 @@ extension Gaap {
     /// 删除通道组
     ///
     /// 本接口（DeleteProxyGroup）用于删除通道组。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProxyGroupResponse> {
         self.client.execute(action: "DeleteProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Gaap {
     /// 删除通道组
     ///
     /// 本接口（DeleteProxyGroup）用于删除通道组。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProxyGroup(_ input: DeleteProxyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
         try await self.client.execute(action: "DeleteProxyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Gaap {
     /// 删除通道组
     ///
     /// 本接口（DeleteProxyGroup）用于删除通道组。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProxyGroup(groupId: String? = nil, force: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProxyGroupResponse> {
         self.deleteProxyGroup(DeleteProxyGroupRequest(groupId: groupId, force: force), region: region, logger: logger, on: eventLoop)
     }
@@ -74,7 +74,7 @@ extension Gaap {
     /// 删除通道组
     ///
     /// 本接口（DeleteProxyGroup）用于删除通道组。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProxyGroup(groupId: String? = nil, force: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProxyGroupResponse {
         try await self.deleteProxyGroup(DeleteProxyGroupRequest(groupId: groupId, force: force), region: region, logger: logger, on: eventLoop)
     }

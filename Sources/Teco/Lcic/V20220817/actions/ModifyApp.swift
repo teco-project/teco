@@ -45,25 +45,25 @@ extension Lcic {
     }
 
     /// 修改应用
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApp(_ input: ModifyAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
         self.client.execute(action: "ModifyApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApp(_ input: ModifyAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
         try await self.client.execute(action: "ModifyApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApp(sdkAppId: UInt64, callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
         self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApp(sdkAppId: UInt64, callback: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
         try await self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
     }

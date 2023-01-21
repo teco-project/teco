@@ -50,25 +50,25 @@ extension Eb {
     }
 
     /// 删除事件目标
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTarget(_ input: DeleteTargetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetResponse> {
         self.client.execute(action: "DeleteTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除事件目标
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTarget(_ input: DeleteTargetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
         try await self.client.execute(action: "DeleteTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除事件目标
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTargetResponse> {
         self.deleteTarget(DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除事件目标
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTarget(eventBusId: String, targetId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTargetResponse {
         try await self.deleteTarget(DeleteTargetRequest(eventBusId: eventBusId, targetId: targetId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }

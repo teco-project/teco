@@ -40,25 +40,25 @@ extension Cwp {
     }
 
     /// 修改暴力破解规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBruteAttackRulesResponse> {
         self.client.execute(action: "ModifyBruteAttackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改暴力破解规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBruteAttackRules(_ input: ModifyBruteAttackRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
         try await self.client.execute(action: "ModifyBruteAttackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改暴力破解规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBruteAttackRules(rules: [BruteAttackRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBruteAttackRulesResponse> {
         self.modifyBruteAttackRules(ModifyBruteAttackRulesRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改暴力破解规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBruteAttackRules(rules: [BruteAttackRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
         try await self.modifyBruteAttackRules(ModifyBruteAttackRulesRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }

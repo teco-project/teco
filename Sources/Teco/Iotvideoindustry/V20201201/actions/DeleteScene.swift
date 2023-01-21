@@ -40,25 +40,25 @@ extension Iotvideoindustry {
     }
 
     /// 删除场景
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScene(_ input: DeleteSceneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSceneResponse> {
         self.client.execute(action: "DeleteScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除场景
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScene(_ input: DeleteSceneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSceneResponse {
         try await self.client.execute(action: "DeleteScene", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除场景
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScene(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSceneResponse> {
         self.deleteScene(DeleteSceneRequest(intId: intId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除场景
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScene(intId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSceneResponse {
         try await self.deleteScene(DeleteSceneRequest(intId: intId), region: region, logger: logger, on: eventLoop)
     }

@@ -43,7 +43,7 @@ extension Dts {
     ///
     /// 本接口（StopMigrateJob）用于终止数据迁移任务。
     /// 调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
+    @inlinable @discardableResult
     public func stopMigrateJob(_ input: StopMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrateJobResponse> {
         self.client.execute(action: "StopMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Dts {
     ///
     /// 本接口（StopMigrateJob）用于终止数据迁移任务。
     /// 调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
+    @inlinable @discardableResult
     public func stopMigrateJob(_ input: StopMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrateJobResponse {
         try await self.client.execute(action: "StopMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Dts {
     ///
     /// 本接口（StopMigrateJob）用于终止数据迁移任务。
     /// 调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
+    @inlinable @discardableResult
     public func stopMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrateJobResponse> {
         self.stopMigrateJob(StopMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Dts {
     ///
     /// 本接口（StopMigrateJob）用于终止数据迁移任务。
     /// 调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
+    @inlinable @discardableResult
     public func stopMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrateJobResponse {
         try await self.stopMigrateJob(StopMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }

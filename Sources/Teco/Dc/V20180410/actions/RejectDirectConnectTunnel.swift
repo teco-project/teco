@@ -40,25 +40,25 @@ extension Dc {
     }
 
     /// 拒绝专用通道申请
-    @inlinable
+    @inlinable @discardableResult
     public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectDirectConnectTunnelResponse> {
         self.client.execute(action: "RejectDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拒绝专用通道申请
-    @inlinable
+    @inlinable @discardableResult
     public func rejectDirectConnectTunnel(_ input: RejectDirectConnectTunnelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectDirectConnectTunnelResponse {
         try await self.client.execute(action: "RejectDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 拒绝专用通道申请
-    @inlinable
+    @inlinable @discardableResult
     public func rejectDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectDirectConnectTunnelResponse> {
         self.rejectDirectConnectTunnel(RejectDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 拒绝专用通道申请
-    @inlinable
+    @inlinable @discardableResult
     public func rejectDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectDirectConnectTunnelResponse {
         try await self.rejectDirectConnectTunnel(RejectDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
     }

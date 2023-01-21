@@ -42,7 +42,7 @@ extension Cfw {
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
         self.client.execute(action: "DeleteResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cfw {
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceGroup(_ input: DeleteResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
         try await self.client.execute(action: "DeleteResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cfw {
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceGroupResponse> {
         self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cfw {
     /// 资产中心资产组删除
     ///
     /// DeleteResourceGroup-资产中心资产组删除
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceGroupResponse {
         try await self.deleteResourceGroup(DeleteResourceGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }

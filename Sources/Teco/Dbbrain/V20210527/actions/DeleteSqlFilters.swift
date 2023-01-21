@@ -52,7 +52,7 @@ extension Dbbrain {
     /// 删除实例SQL限流任务
     ///
     /// 删除实例SQL限流任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSqlFilters(_ input: DeleteSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSqlFiltersResponse> {
         self.client.execute(action: "DeleteSqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Dbbrain {
     /// 删除实例SQL限流任务
     ///
     /// 删除实例SQL限流任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSqlFilters(_ input: DeleteSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
         try await self.client.execute(action: "DeleteSqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Dbbrain {
     /// 删除实例SQL限流任务
     ///
     /// 删除实例SQL限流任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSqlFiltersResponse> {
         self.deleteSqlFilters(DeleteSqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Dbbrain {
     /// 删除实例SQL限流任务
     ///
     /// 删除实例SQL限流任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSqlFiltersResponse {
         try await self.deleteSqlFilters(DeleteSqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds), region: region, logger: logger, on: eventLoop)
     }

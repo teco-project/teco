@@ -52,7 +52,7 @@ extension Tcr {
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryPersonalResponse> {
         self.client.execute(action: "CreateRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tcr {
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func createRepositoryPersonal(_ input: CreateRepositoryPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryPersonalResponse {
         try await self.client.execute(action: "CreateRepositoryPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tcr {
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func createRepositoryPersonal(repoName: String, public: UInt64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryPersonalResponse> {
         self.createRepositoryPersonal(CreateRepositoryPersonalRequest(repoName: repoName, public: `public`, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tcr {
     /// 创建个人版镜像仓库
     ///
     /// 用于在个人版仓库中创建镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func createRepositoryPersonal(repoName: String, public: UInt64? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryPersonalResponse {
         try await self.createRepositoryPersonal(CreateRepositoryPersonalRequest(repoName: repoName, public: `public`, description: description), region: region, logger: logger, on: eventLoop)
     }

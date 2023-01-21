@@ -83,7 +83,7 @@ extension Trtc {
     /// 1、**混流转码为收费功能，调用接口将产生云端混流转码费用，详见[云端混流转码计费说明](https://cloud.tencent.com/document/product/647/49446)。**
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
-    @inlinable
+    @inlinable @discardableResult
     public func startMCUMixTranscodeByStrRoomId(_ input: StartMCUMixTranscodeByStrRoomIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeByStrRoomIdResponse> {
         self.client.execute(action: "StartMCUMixTranscodeByStrRoomId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -107,7 +107,7 @@ extension Trtc {
     /// 1、**混流转码为收费功能，调用接口将产生云端混流转码费用，详见[云端混流转码计费说明](https://cloud.tencent.com/document/product/647/49446)。**
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
-    @inlinable
+    @inlinable @discardableResult
     public func startMCUMixTranscodeByStrRoomId(_ input: StartMCUMixTranscodeByStrRoomIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeByStrRoomIdResponse {
         try await self.client.execute(action: "StartMCUMixTranscodeByStrRoomId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -131,7 +131,7 @@ extension Trtc {
     /// 1、**混流转码为收费功能，调用接口将产生云端混流转码费用，详见[云端混流转码计费说明](https://cloud.tencent.com/document/product/647/49446)。**
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
-    @inlinable
+    @inlinable @discardableResult
     public func startMCUMixTranscodeByStrRoomId(sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeByStrRoomIdResponse> {
         self.startMCUMixTranscodeByStrRoomId(StartMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), region: region, logger: logger, on: eventLoop)
     }
@@ -155,7 +155,7 @@ extension Trtc {
     /// 1、**混流转码为收费功能，调用接口将产生云端混流转码费用，详见[云端混流转码计费说明](https://cloud.tencent.com/document/product/647/49446)。**
     /// 2、2020年1月9号及以后创建的应用才能直接调用此接口。2020年1月9日之前创建的应用默认使用云直播的云端混流，如需切换至MCU混流，请[提交工单](https://console.cloud.tencent.com/workorder/category)寻求帮助。
     /// 3、客户端混流和服务端混流不能混用。
-    @inlinable
+    @inlinable @discardableResult
     public func startMCUMixTranscodeByStrRoomId(sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeByStrRoomIdResponse {
         try await self.startMCUMixTranscodeByStrRoomId(StartMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), region: region, logger: logger, on: eventLoop)
     }

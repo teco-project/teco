@@ -57,7 +57,7 @@ extension Postgres {
     /// 解隔离实例
     ///
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
-    @inlinable
+    @inlinable @discardableResult
     public func disIsolateDBInstances(_ input: DisIsolateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisIsolateDBInstancesResponse> {
         self.client.execute(action: "DisIsolateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Postgres {
     /// 解隔离实例
     ///
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
-    @inlinable
+    @inlinable @discardableResult
     public func disIsolateDBInstances(_ input: DisIsolateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisIsolateDBInstancesResponse {
         try await self.client.execute(action: "DisIsolateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Postgres {
     /// 解隔离实例
     ///
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
-    @inlinable
+    @inlinable @discardableResult
     public func disIsolateDBInstances(dbInstanceIdSet: [String], period: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisIsolateDBInstancesResponse> {
         self.disIsolateDBInstances(DisIsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Postgres {
     /// 解隔离实例
     ///
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
-    @inlinable
+    @inlinable @discardableResult
     public func disIsolateDBInstances(dbInstanceIdSet: [String], period: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisIsolateDBInstancesResponse {
         try await self.disIsolateDBInstances(DisIsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
     }

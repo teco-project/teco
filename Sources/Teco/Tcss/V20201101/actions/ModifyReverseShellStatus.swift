@@ -56,7 +56,7 @@ extension Tcss {
     /// 修改反弹shell事件状态
     ///
     /// 修改反弹shell事件的状态信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReverseShellStatusResponse> {
         self.client.execute(action: "ModifyReverseShellStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -64,7 +64,7 @@ extension Tcss {
     /// 修改反弹shell事件状态
     ///
     /// 修改反弹shell事件的状态信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyReverseShellStatus(_ input: ModifyReverseShellStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
         try await self.client.execute(action: "ModifyReverseShellStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -72,7 +72,7 @@ extension Tcss {
     /// 修改反弹shell事件状态
     ///
     /// 修改反弹shell事件的状态信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyReverseShellStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReverseShellStatusResponse> {
         self.modifyReverseShellStatus(ModifyReverseShellStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Tcss {
     /// 修改反弹shell事件状态
     ///
     /// 修改反弹shell事件的状态信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyReverseShellStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReverseShellStatusResponse {
         try await self.modifyReverseShellStatus(ModifyReverseShellStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }

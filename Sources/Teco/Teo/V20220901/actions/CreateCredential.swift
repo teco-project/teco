@@ -34,7 +34,7 @@ extension Teo {
     /// 创建凭证
     ///
     /// 用于创建COS回源私有凭证
-    @inlinable
+    @inlinable @discardableResult
     public func createCredential(_ input: CreateCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
         self.client.execute(action: "CreateCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -42,7 +42,7 @@ extension Teo {
     /// 创建凭证
     ///
     /// 用于创建COS回源私有凭证
-    @inlinable
+    @inlinable @discardableResult
     public func createCredential(_ input: CreateCredentialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
         try await self.client.execute(action: "CreateCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -50,7 +50,7 @@ extension Teo {
     /// 创建凭证
     ///
     /// 用于创建COS回源私有凭证
-    @inlinable
+    @inlinable @discardableResult
     public func createCredential(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCredentialResponse> {
         self.createCredential(CreateCredentialRequest(), region: region, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Teo {
     /// 创建凭证
     ///
     /// 用于创建COS回源私有凭证
-    @inlinable
+    @inlinable @discardableResult
     public func createCredential(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCredentialResponse {
         try await self.createCredential(CreateCredentialRequest(), region: region, logger: logger, on: eventLoop)
     }

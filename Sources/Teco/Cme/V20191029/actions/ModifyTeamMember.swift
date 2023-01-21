@@ -69,7 +69,7 @@ extension Cme {
     /// 修改团队成员
     ///
     /// 修改团队成员信息，包括成员备注、角色等。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTeamMember(_ input: ModifyTeamMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamMemberResponse> {
         self.client.execute(action: "ModifyTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -77,7 +77,7 @@ extension Cme {
     /// 修改团队成员
     ///
     /// 修改团队成员信息，包括成员备注、角色等。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTeamMember(_ input: ModifyTeamMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamMemberResponse {
         try await self.client.execute(action: "ModifyTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -85,7 +85,7 @@ extension Cme {
     /// 修改团队成员
     ///
     /// 修改团队成员信息，包括成员备注、角色等。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTeamMember(platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamMemberResponse> {
         self.modifyTeamMember(ModifyTeamMemberRequest(platform: platform, teamId: teamId, memberId: memberId, remark: remark, role: role, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -93,7 +93,7 @@ extension Cme {
     /// 修改团队成员
     ///
     /// 修改团队成员信息，包括成员备注、角色等。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTeamMember(platform: String, teamId: String, memberId: String, remark: String? = nil, role: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamMemberResponse {
         try await self.modifyTeamMember(ModifyTeamMemberRequest(platform: platform, teamId: teamId, memberId: memberId, remark: remark, role: role, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

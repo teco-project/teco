@@ -40,25 +40,25 @@ extension Tione {
     }
 
     /// 删除模型加速任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelAccelerateTask(_ input: DeleteModelAccelerateTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelAccelerateTaskResponse> {
         self.client.execute(action: "DeleteModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模型加速任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelAccelerateTask(_ input: DeleteModelAccelerateTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelAccelerateTaskResponse {
         try await self.client.execute(action: "DeleteModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除模型加速任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelAccelerateTaskResponse> {
         self.deleteModelAccelerateTask(DeleteModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模型加速任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelAccelerateTaskResponse {
         try await self.deleteModelAccelerateTask(DeleteModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
     }

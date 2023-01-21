@@ -42,7 +42,7 @@ extension Cfs {
     /// 删除文件系统
     ///
     /// 用于删除文件系统
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsFileSystemResponse> {
         self.client.execute(action: "DeleteCfsFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cfs {
     /// 删除文件系统
     ///
     /// 用于删除文件系统
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCfsFileSystem(_ input: DeleteCfsFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
         try await self.client.execute(action: "DeleteCfsFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cfs {
     /// 删除文件系统
     ///
     /// 用于删除文件系统
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCfsFileSystem(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsFileSystemResponse> {
         self.deleteCfsFileSystem(DeleteCfsFileSystemRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cfs {
     /// 删除文件系统
     ///
     /// 用于删除文件系统
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCfsFileSystem(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsFileSystemResponse {
         try await self.deleteCfsFileSystem(DeleteCfsFileSystemRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }

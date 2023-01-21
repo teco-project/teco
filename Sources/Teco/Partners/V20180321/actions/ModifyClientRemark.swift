@@ -47,7 +47,7 @@ extension Partners {
     /// 修改客户备注
     ///
     /// 代理商可以对名下客户添加备注、修改备注
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClientRemark(_ input: ModifyClientRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClientRemarkResponse> {
         self.client.execute(action: "ModifyClientRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Partners {
     /// 修改客户备注
     ///
     /// 代理商可以对名下客户添加备注、修改备注
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClientRemark(_ input: ModifyClientRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
         try await self.client.execute(action: "ModifyClientRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Partners {
     /// 修改客户备注
     ///
     /// 代理商可以对名下客户添加备注、修改备注
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClientRemark(clientRemark: String, clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClientRemarkResponse> {
         self.modifyClientRemark(ModifyClientRemarkRequest(clientRemark: clientRemark, clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Partners {
     /// 修改客户备注
     ///
     /// 代理商可以对名下客户添加备注、修改备注
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClientRemark(clientRemark: String, clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClientRemarkResponse {
         try await self.modifyClientRemark(ModifyClientRemarkRequest(clientRemark: clientRemark, clientUin: clientUin), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Yunjing {
     /// 误报异地登录
     ///
     /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func misAlarmNonlocalLoginPlaces(_ input: MisAlarmNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MisAlarmNonlocalLoginPlacesResponse> {
         self.client.execute(action: "MisAlarmNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Yunjing {
     /// 误报异地登录
     ///
     /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func misAlarmNonlocalLoginPlaces(_ input: MisAlarmNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MisAlarmNonlocalLoginPlacesResponse {
         try await self.client.execute(action: "MisAlarmNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Yunjing {
     /// 误报异地登录
     ///
     /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func misAlarmNonlocalLoginPlaces(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MisAlarmNonlocalLoginPlacesResponse> {
         self.misAlarmNonlocalLoginPlaces(MisAlarmNonlocalLoginPlacesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Yunjing {
     /// 误报异地登录
     ///
     /// 本接口{MisAlarmNonlocalLoginPlaces}将设置当前地点为常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func misAlarmNonlocalLoginPlaces(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MisAlarmNonlocalLoginPlacesResponse {
         try await self.misAlarmNonlocalLoginPlaces(MisAlarmNonlocalLoginPlacesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Ccc {
     }
 
     /// 删除话机账号
-    @inlinable
+    @inlinable @discardableResult
     public func deleteExtension(_ input: DeleteExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExtensionResponse> {
         self.client.execute(action: "DeleteExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除话机账号
-    @inlinable
+    @inlinable @discardableResult
     public func deleteExtension(_ input: DeleteExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
         try await self.client.execute(action: "DeleteExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除话机账号
-    @inlinable
+    @inlinable @discardableResult
     public func deleteExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExtensionResponse> {
         self.deleteExtension(DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除话机账号
-    @inlinable
+    @inlinable @discardableResult
     public func deleteExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExtensionResponse {
         try await self.deleteExtension(DeleteExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
     }

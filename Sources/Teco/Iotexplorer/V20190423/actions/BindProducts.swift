@@ -45,25 +45,25 @@ extension Iotexplorer {
     }
 
     /// 批量绑定子产品
-    @inlinable
+    @inlinable @discardableResult
     public func bindProducts(_ input: BindProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindProductsResponse> {
         self.client.execute(action: "BindProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定子产品
-    @inlinable
+    @inlinable @discardableResult
     public func bindProducts(_ input: BindProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindProductsResponse {
         try await self.client.execute(action: "BindProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量绑定子产品
-    @inlinable
+    @inlinable @discardableResult
     public func bindProducts(gatewayProductId: String, productIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindProductsResponse> {
         self.bindProducts(BindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定子产品
-    @inlinable
+    @inlinable @discardableResult
     public func bindProducts(gatewayProductId: String, productIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindProductsResponse {
         try await self.bindProducts(BindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds), region: region, logger: logger, on: eventLoop)
     }

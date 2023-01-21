@@ -42,7 +42,7 @@ extension Oceanus {
     /// 自定义树状结构
     ///
     /// 生成树状作业显示结构
-    @inlinable
+    @inlinable @discardableResult
     public func describeTreeJobs(_ input: DescribeTreeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeJobsResponse> {
         self.client.execute(action: "DescribeTreeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Oceanus {
     /// 自定义树状结构
     ///
     /// 生成树状作业显示结构
-    @inlinable
+    @inlinable @discardableResult
     public func describeTreeJobs(_ input: DescribeTreeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
         try await self.client.execute(action: "DescribeTreeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Oceanus {
     /// 自定义树状结构
     ///
     /// 生成树状作业显示结构
-    @inlinable
+    @inlinable @discardableResult
     public func describeTreeJobs(workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTreeJobsResponse> {
         self.describeTreeJobs(DescribeTreeJobsRequest(workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Oceanus {
     /// 自定义树状结构
     ///
     /// 生成树状作业显示结构
-    @inlinable
+    @inlinable @discardableResult
     public func describeTreeJobs(workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTreeJobsResponse {
         try await self.describeTreeJobs(DescribeTreeJobsRequest(workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }

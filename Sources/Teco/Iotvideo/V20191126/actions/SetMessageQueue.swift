@@ -74,7 +74,7 @@ extension Iotvideo {
     /// 配置产品转发消息队列
     ///
     /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
-    @inlinable
+    @inlinable @discardableResult
     public func setMessageQueue(_ input: SetMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetMessageQueueResponse> {
         self.client.execute(action: "SetMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Iotvideo {
     /// 配置产品转发消息队列
     ///
     /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
-    @inlinable
+    @inlinable @discardableResult
     public func setMessageQueue(_ input: SetMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
         try await self.client.execute(action: "SetMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -90,7 +90,7 @@ extension Iotvideo {
     /// 配置产品转发消息队列
     ///
     /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
-    @inlinable
+    @inlinable @discardableResult
     public func setMessageQueue(productId: String, msgQueueType: UInt64, msgType: String, topic: String, instance: String, msgRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetMessageQueueResponse> {
         self.setMessageQueue(SetMessageQueueRequest(productId: productId, msgQueueType: msgQueueType, msgType: msgType, topic: topic, instance: instance, msgRegion: msgRegion), region: region, logger: logger, on: eventLoop)
     }
@@ -98,7 +98,7 @@ extension Iotvideo {
     /// 配置产品转发消息队列
     ///
     /// 本接口（SetMessageQueue）用于配置物联网智能视频产品的转发消息队列。
-    @inlinable
+    @inlinable @discardableResult
     public func setMessageQueue(productId: String, msgQueueType: UInt64, msgType: String, topic: String, instance: String, msgRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetMessageQueueResponse {
         try await self.setMessageQueue(SetMessageQueueRequest(productId: productId, msgQueueType: msgQueueType, msgType: msgType, topic: topic, instance: instance, msgRegion: msgRegion), region: region, logger: logger, on: eventLoop)
     }

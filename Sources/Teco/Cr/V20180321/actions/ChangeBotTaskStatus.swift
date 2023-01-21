@@ -61,25 +61,25 @@ extension Cr {
     }
 
     /// 更新机器人任务状态
-    @inlinable
+    @inlinable @discardableResult
     public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotTaskStatusResponse> {
         self.client.execute(action: "ChangeBotTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新机器人任务状态
-    @inlinable
+    @inlinable @discardableResult
     public func changeBotTaskStatus(_ input: ChangeBotTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
         try await self.client.execute(action: "ChangeBotTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新机器人任务状态
-    @inlinable
+    @inlinable @discardableResult
     public func changeBotTaskStatus(module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotTaskStatusResponse> {
         self.changeBotTaskStatus(ChangeBotTaskStatusRequest(module: module, operation: operation, status: status, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新机器人任务状态
-    @inlinable
+    @inlinable @discardableResult
     public func changeBotTaskStatus(module: String, operation: String, status: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotTaskStatusResponse {
         try await self.changeBotTaskStatus(ChangeBotTaskStatusRequest(module: module, operation: operation, status: status, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }

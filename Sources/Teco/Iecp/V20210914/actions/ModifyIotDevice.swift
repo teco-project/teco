@@ -60,25 +60,25 @@ extension Iecp {
     }
 
     /// 修改设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIotDevice(_ input: ModifyIotDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIotDeviceResponse> {
         self.client.execute(action: "ModifyIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIotDevice(_ input: ModifyIotDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
         try await self.client.execute(action: "ModifyIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIotDevice(deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIotDeviceResponse> {
         self.modifyIotDevice(ModifyIotDeviceRequest(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIotDevice(deviceId: Int64, description: String? = nil, disabled: Bool? = nil, logSetting: Int64? = nil, logLevel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIotDeviceResponse {
         try await self.modifyIotDevice(ModifyIotDeviceRequest(deviceId: deviceId, description: description, disabled: disabled, logSetting: logSetting, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }

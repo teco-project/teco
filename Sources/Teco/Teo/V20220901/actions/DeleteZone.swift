@@ -42,7 +42,7 @@ extension Teo {
     /// 删除站点
     ///
     /// 删除站点。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteZone(_ input: DeleteZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteZoneResponse> {
         self.client.execute(action: "DeleteZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Teo {
     /// 删除站点
     ///
     /// 删除站点。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteZone(_ input: DeleteZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteZoneResponse {
         try await self.client.execute(action: "DeleteZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Teo {
     /// 删除站点
     ///
     /// 删除站点。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteZone(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteZoneResponse> {
         self.deleteZone(DeleteZoneRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Teo {
     /// 删除站点
     ///
     /// 删除站点。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteZone(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteZoneResponse {
         try await self.deleteZone(DeleteZoneRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
     }

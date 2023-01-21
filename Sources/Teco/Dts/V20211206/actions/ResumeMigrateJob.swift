@@ -47,7 +47,7 @@ extension Dts {
     /// 重试迁移任务
     ///
     /// 重试数据迁移任务，针对异常情况可进行重试，对于redis在失败时也可重试。注意：此操作跳过校验阶段，直接重新发起任务，相当于从StartMigrationJob开始执行。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeMigrateJob(_ input: ResumeMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeMigrateJobResponse> {
         self.client.execute(action: "ResumeMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Dts {
     /// 重试迁移任务
     ///
     /// 重试数据迁移任务，针对异常情况可进行重试，对于redis在失败时也可重试。注意：此操作跳过校验阶段，直接重新发起任务，相当于从StartMigrationJob开始执行。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeMigrateJob(_ input: ResumeMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeMigrateJobResponse {
         try await self.client.execute(action: "ResumeMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Dts {
     /// 重试迁移任务
     ///
     /// 重试数据迁移任务，针对异常情况可进行重试，对于redis在失败时也可重试。注意：此操作跳过校验阶段，直接重新发起任务，相当于从StartMigrationJob开始执行。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeMigrateJob(jobId: String, resumeOption: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeMigrateJobResponse> {
         self.resumeMigrateJob(ResumeMigrateJobRequest(jobId: jobId, resumeOption: resumeOption), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Dts {
     /// 重试迁移任务
     ///
     /// 重试数据迁移任务，针对异常情况可进行重试，对于redis在失败时也可重试。注意：此操作跳过校验阶段，直接重新发起任务，相当于从StartMigrationJob开始执行。调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeMigrateJob(jobId: String, resumeOption: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeMigrateJobResponse {
         try await self.resumeMigrateJob(ResumeMigrateJobRequest(jobId: jobId, resumeOption: resumeOption), region: region, logger: logger, on: eventLoop)
     }

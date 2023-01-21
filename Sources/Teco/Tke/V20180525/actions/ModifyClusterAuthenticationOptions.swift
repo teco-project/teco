@@ -50,25 +50,25 @@ extension Tke {
     }
 
     /// 修改集群认证配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAuthenticationOptionsResponse> {
         self.client.execute(action: "ModifyClusterAuthenticationOptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群认证配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterAuthenticationOptions(_ input: ModifyClusterAuthenticationOptionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAuthenticationOptionsResponse {
         try await self.client.execute(action: "ModifyClusterAuthenticationOptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改集群认证配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterAuthenticationOptions(clusterId: String, serviceAccounts: ServiceAccountAuthenticationOptions? = nil, oidcConfig: OIDCConfigAuthenticationOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAuthenticationOptionsResponse> {
         self.modifyClusterAuthenticationOptions(ModifyClusterAuthenticationOptionsRequest(clusterId: clusterId, serviceAccounts: serviceAccounts, oidcConfig: oidcConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群认证配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterAuthenticationOptions(clusterId: String, serviceAccounts: ServiceAccountAuthenticationOptions? = nil, oidcConfig: OIDCConfigAuthenticationOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAuthenticationOptionsResponse {
         try await self.modifyClusterAuthenticationOptions(ModifyClusterAuthenticationOptionsRequest(clusterId: clusterId, serviceAccounts: serviceAccounts, oidcConfig: oidcConfig), region: region, logger: logger, on: eventLoop)
     }

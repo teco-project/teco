@@ -68,7 +68,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(ControlDevicePTZ) 用于对支持GB28181 PTZ信令的设备进行远程控制。
     /// 请使用ControlChannelPTZ接口
-    @inlinable
+    @inlinable @discardableResult
     public func controlDevicePTZ(_ input: ControlDevicePTZRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlDevicePTZResponse> {
         self.client.execute(action: "ControlDevicePTZ", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -77,7 +77,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(ControlDevicePTZ) 用于对支持GB28181 PTZ信令的设备进行远程控制。
     /// 请使用ControlChannelPTZ接口
-    @inlinable
+    @inlinable @discardableResult
     public func controlDevicePTZ(_ input: ControlDevicePTZRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDevicePTZResponse {
         try await self.client.execute(action: "ControlDevicePTZ", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -86,7 +86,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(ControlDevicePTZ) 用于对支持GB28181 PTZ信令的设备进行远程控制。
     /// 请使用ControlChannelPTZ接口
-    @inlinable
+    @inlinable @discardableResult
     public func controlDevicePTZ(deviceId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlDevicePTZResponse> {
         self.controlDevicePTZ(ControlDevicePTZRequest(deviceId: deviceId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
@@ -95,7 +95,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(ControlDevicePTZ) 用于对支持GB28181 PTZ信令的设备进行远程控制。
     /// 请使用ControlChannelPTZ接口
-    @inlinable
+    @inlinable @discardableResult
     public func controlDevicePTZ(deviceId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDevicePTZResponse {
         try await self.controlDevicePTZ(ControlDevicePTZRequest(deviceId: deviceId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }

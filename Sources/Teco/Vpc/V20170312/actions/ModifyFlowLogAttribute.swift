@@ -57,7 +57,7 @@ extension Vpc {
     /// 修改流日志属性
     ///
     /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowLogAttributeResponse> {
         self.client.execute(action: "ModifyFlowLogAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Vpc {
     /// 修改流日志属性
     ///
     /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFlowLogAttribute(_ input: ModifyFlowLogAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
         try await self.client.execute(action: "ModifyFlowLogAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Vpc {
     /// 修改流日志属性
     ///
     /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFlowLogAttribute(flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlowLogAttributeResponse> {
         self.modifyFlowLogAttribute(ModifyFlowLogAttributeRequest(flowLogId: flowLogId, vpcId: vpcId, flowLogName: flowLogName, flowLogDescription: flowLogDescription), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Vpc {
     /// 修改流日志属性
     ///
     /// 本接口（ModifyFlowLogAttribute）用于修改流日志属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFlowLogAttribute(flowLogId: String, vpcId: String? = nil, flowLogName: String? = nil, flowLogDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlowLogAttributeResponse {
         try await self.modifyFlowLogAttribute(ModifyFlowLogAttributeRequest(flowLogId: flowLogId, vpcId: vpcId, flowLogName: flowLogName, flowLogDescription: flowLogDescription), region: region, logger: logger, on: eventLoop)
     }

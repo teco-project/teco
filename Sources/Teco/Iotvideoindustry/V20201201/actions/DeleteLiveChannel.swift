@@ -40,25 +40,25 @@ extension Iotvideoindustry {
     }
 
     /// 删除直播接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveChannelResponse> {
         self.client.execute(action: "DeleteLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除直播接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveChannel(_ input: DeleteLiveChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveChannelResponse {
         try await self.client.execute(action: "DeleteLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除直播接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveChannel(liveChannelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveChannelResponse> {
         self.deleteLiveChannel(DeleteLiveChannelRequest(liveChannelId: liveChannelId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除直播接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveChannel(liveChannelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveChannelResponse {
         try await self.deleteLiveChannel(DeleteLiveChannelRequest(liveChannelId: liveChannelId), region: region, logger: logger, on: eventLoop)
     }

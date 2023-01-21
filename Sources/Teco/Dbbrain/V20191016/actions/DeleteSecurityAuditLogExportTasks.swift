@@ -52,7 +52,7 @@ extension Dbbrain {
     /// 删除安全审计日志导出任务
     ///
     /// 删除安全审计日志导出任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityAuditLogExportTasksResponse> {
         self.client.execute(action: "DeleteSecurityAuditLogExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Dbbrain {
     /// 删除安全审计日志导出任务
     ///
     /// 删除安全审计日志导出任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSecurityAuditLogExportTasks(_ input: DeleteSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
         try await self.client.execute(action: "DeleteSecurityAuditLogExportTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Dbbrain {
     /// 删除安全审计日志导出任务
     ///
     /// 删除安全审计日志导出任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSecurityAuditLogExportTasks(secAuditGroupId: String, asyncRequestIds: [UInt64], product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityAuditLogExportTasksResponse> {
         self.deleteSecurityAuditLogExportTasks(DeleteSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, asyncRequestIds: asyncRequestIds, product: product), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Dbbrain {
     /// 删除安全审计日志导出任务
     ///
     /// 删除安全审计日志导出任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSecurityAuditLogExportTasks(secAuditGroupId: String, asyncRequestIds: [UInt64], product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityAuditLogExportTasksResponse {
         try await self.deleteSecurityAuditLogExportTasks(DeleteSecurityAuditLogExportTasksRequest(secAuditGroupId: secAuditGroupId, asyncRequestIds: asyncRequestIds, product: product), region: region, logger: logger, on: eventLoop)
     }

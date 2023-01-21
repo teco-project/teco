@@ -40,25 +40,25 @@ extension Rum {
     }
 
     /// 恢复实例
-    @inlinable
+    @inlinable @discardableResult
     public func resumeInstance(_ input: ResumeInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeInstanceResponse> {
         self.client.execute(action: "ResumeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复实例
-    @inlinable
+    @inlinable @discardableResult
     public func resumeInstance(_ input: ResumeInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeInstanceResponse {
         try await self.client.execute(action: "ResumeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 恢复实例
-    @inlinable
+    @inlinable @discardableResult
     public func resumeInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeInstanceResponse> {
         self.resumeInstance(ResumeInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 恢复实例
-    @inlinable
+    @inlinable @discardableResult
     public func resumeInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeInstanceResponse {
         try await self.resumeInstance(ResumeInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

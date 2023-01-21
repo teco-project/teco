@@ -42,7 +42,7 @@ extension Mps {
     /// 删除雪碧图模板
     ///
     /// 删除雪碧图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageSpriteTemplateResponse> {
         self.client.execute(action: "DeleteImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Mps {
     /// 删除雪碧图模板
     ///
     /// 删除雪碧图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImageSpriteTemplate(_ input: DeleteImageSpriteTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageSpriteTemplateResponse {
         try await self.client.execute(action: "DeleteImageSpriteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Mps {
     /// 删除雪碧图模板
     ///
     /// 删除雪碧图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImageSpriteTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageSpriteTemplateResponse> {
         self.deleteImageSpriteTemplate(DeleteImageSpriteTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Mps {
     /// 删除雪碧图模板
     ///
     /// 删除雪碧图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImageSpriteTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageSpriteTemplateResponse {
         try await self.deleteImageSpriteTemplate(DeleteImageSpriteTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }

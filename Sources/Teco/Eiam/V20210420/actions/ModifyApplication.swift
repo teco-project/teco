@@ -67,7 +67,7 @@ extension Eiam {
     /// 更新应用
     ///
     /// 更新一个应用的信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplication(_ input: ModifyApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationResponse> {
         self.client.execute(action: "ModifyApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Eiam {
     /// 更新应用
     ///
     /// 更新一个应用的信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplication(_ input: ModifyApplicationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationResponse {
         try await self.client.execute(action: "ModifyApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Eiam {
     /// 更新应用
     ///
     /// 更新一个应用的信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplication(applicationId: String, secureLevel: String? = nil, displayName: String? = nil, appStatus: Bool? = nil, iconUrl: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationResponse> {
         self.modifyApplication(ModifyApplicationRequest(applicationId: applicationId, secureLevel: secureLevel, displayName: displayName, appStatus: appStatus, iconUrl: iconUrl, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Eiam {
     /// 更新应用
     ///
     /// 更新一个应用的信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplication(applicationId: String, secureLevel: String? = nil, displayName: String? = nil, appStatus: Bool? = nil, iconUrl: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationResponse {
         try await self.modifyApplication(ModifyApplicationRequest(applicationId: applicationId, secureLevel: secureLevel, displayName: displayName, appStatus: appStatus, iconUrl: iconUrl, description: description), region: region, logger: logger, on: eventLoop)
     }

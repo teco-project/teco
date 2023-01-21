@@ -42,7 +42,7 @@ extension Yunjing {
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeEventsResponse> {
         self.client.execute(action: "DeletePrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Yunjing {
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivilegeEvents(_ input: DeletePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
         try await self.client.execute(action: "DeletePrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Yunjing {
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivilegeEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivilegeEventsResponse> {
         self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Yunjing {
     /// 删除本地提权事件
     ///
     /// 根据Ids删除本地提权
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivilegeEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivilegeEventsResponse {
         try await self.deletePrivilegeEvents(DeletePrivilegeEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

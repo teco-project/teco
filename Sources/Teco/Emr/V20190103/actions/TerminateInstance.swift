@@ -47,7 +47,7 @@ extension Emr {
     /// 销毁EMR实例
     ///
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateInstance(_ input: TerminateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstanceResponse> {
         self.client.execute(action: "TerminateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Emr {
     /// 销毁EMR实例
     ///
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateInstance(_ input: TerminateInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstanceResponse {
         try await self.client.execute(action: "TerminateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Emr {
     /// 销毁EMR实例
     ///
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateInstance(instanceId: String, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstanceResponse> {
         self.terminateInstance(TerminateInstanceRequest(instanceId: instanceId, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Emr {
     /// 销毁EMR实例
     ///
     /// 销毁EMR实例。此接口仅支持弹性MapReduce正式计费版本。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateInstance(instanceId: String, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstanceResponse {
         try await self.terminateInstance(TerminateInstanceRequest(instanceId: instanceId, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
     }

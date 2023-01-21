@@ -43,7 +43,7 @@ extension Yunjing {
     /// 关闭专业版
     ///
     /// 本接口 (CloseProVersion) 用于关闭专业版。
-    @inlinable
+    @inlinable @discardableResult
     public func closeProVersion(_ input: CloseProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProVersionResponse> {
         self.client.execute(action: "CloseProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -51,7 +51,7 @@ extension Yunjing {
     /// 关闭专业版
     ///
     /// 本接口 (CloseProVersion) 用于关闭专业版。
-    @inlinable
+    @inlinable @discardableResult
     public func closeProVersion(_ input: CloseProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProVersionResponse {
         try await self.client.execute(action: "CloseProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -59,7 +59,7 @@ extension Yunjing {
     /// 关闭专业版
     ///
     /// 本接口 (CloseProVersion) 用于关闭专业版。
-    @inlinable
+    @inlinable @discardableResult
     public func closeProVersion(quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseProVersionResponse> {
         self.closeProVersion(CloseProVersionRequest(quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Yunjing {
     /// 关闭专业版
     ///
     /// 本接口 (CloseProVersion) 用于关闭专业版。
-    @inlinable
+    @inlinable @discardableResult
     public func closeProVersion(quuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseProVersionResponse {
         try await self.closeProVersion(CloseProVersionRequest(quuid: quuid), region: region, logger: logger, on: eventLoop)
     }

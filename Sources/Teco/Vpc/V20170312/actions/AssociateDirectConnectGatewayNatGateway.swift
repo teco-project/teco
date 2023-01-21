@@ -52,7 +52,7 @@ extension Vpc {
     /// 专线网关绑定NAT网关
     ///
     /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
-    @inlinable
+    @inlinable @discardableResult
     public func associateDirectConnectGatewayNatGateway(_ input: AssociateDirectConnectGatewayNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDirectConnectGatewayNatGatewayResponse> {
         self.client.execute(action: "AssociateDirectConnectGatewayNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vpc {
     /// 专线网关绑定NAT网关
     ///
     /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
-    @inlinable
+    @inlinable @discardableResult
     public func associateDirectConnectGatewayNatGateway(_ input: AssociateDirectConnectGatewayNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDirectConnectGatewayNatGatewayResponse {
         try await self.client.execute(action: "AssociateDirectConnectGatewayNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vpc {
     /// 专线网关绑定NAT网关
     ///
     /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
-    @inlinable
+    @inlinable @discardableResult
     public func associateDirectConnectGatewayNatGateway(vpcId: String, natGatewayId: String, directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateDirectConnectGatewayNatGatewayResponse> {
         self.associateDirectConnectGatewayNatGateway(AssociateDirectConnectGatewayNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vpc {
     /// 专线网关绑定NAT网关
     ///
     /// 将专线网关与NAT网关绑定，专线网关默认路由指向NAT网关
-    @inlinable
+    @inlinable @discardableResult
     public func associateDirectConnectGatewayNatGateway(vpcId: String, natGatewayId: String, directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateDirectConnectGatewayNatGatewayResponse {
         try await self.associateDirectConnectGatewayNatGateway(AssociateDirectConnectGatewayNatGatewayRequest(vpcId: vpcId, natGatewayId: natGatewayId, directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }

@@ -50,25 +50,25 @@ extension Es {
     }
 
     /// 智能运维诊断集群
-    @inlinable
+    @inlinable @discardableResult
     public func diagnoseInstance(_ input: DiagnoseInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DiagnoseInstanceResponse> {
         self.client.execute(action: "DiagnoseInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智能运维诊断集群
-    @inlinable
+    @inlinable @discardableResult
     public func diagnoseInstance(_ input: DiagnoseInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
         try await self.client.execute(action: "DiagnoseInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 智能运维诊断集群
-    @inlinable
+    @inlinable @discardableResult
     public func diagnoseInstance(instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DiagnoseInstanceResponse> {
         self.diagnoseInstance(DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices), region: region, logger: logger, on: eventLoop)
     }
 
     /// 智能运维诊断集群
-    @inlinable
+    @inlinable @discardableResult
     public func diagnoseInstance(instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
         try await self.diagnoseInstance(DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices), region: region, logger: logger, on: eventLoop)
     }

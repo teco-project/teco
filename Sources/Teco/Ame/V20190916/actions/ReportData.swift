@@ -52,7 +52,7 @@ extension Ame {
     /// 上报歌曲播放数据
     ///
     /// 客户上报用户数据功能，为了更好地为用户提供优质服务
-    @inlinable
+    @inlinable @discardableResult
     public func reportData(_ input: ReportDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportDataResponse> {
         self.client.execute(action: "ReportData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Ame {
     /// 上报歌曲播放数据
     ///
     /// 客户上报用户数据功能，为了更好地为用户提供优质服务
-    @inlinable
+    @inlinable @discardableResult
     public func reportData(_ input: ReportDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportDataResponse {
         try await self.client.execute(action: "ReportData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Ame {
     /// 上报歌曲播放数据
     ///
     /// 客户上报用户数据功能，为了更好地为用户提供优质服务
-    @inlinable
+    @inlinable @discardableResult
     public func reportData(reportData: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportDataResponse> {
         self.reportData(ReportDataRequest(reportData: reportData), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Ame {
     /// 上报歌曲播放数据
     ///
     /// 客户上报用户数据功能，为了更好地为用户提供优质服务
-    @inlinable
+    @inlinable @discardableResult
     public func reportData(reportData: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportDataResponse {
         try await self.reportData(ReportDataRequest(reportData: reportData), region: region, logger: logger, on: eventLoop)
     }

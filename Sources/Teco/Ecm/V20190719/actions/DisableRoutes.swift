@@ -47,7 +47,7 @@ extension Ecm {
     /// 禁用子网路由
     ///
     /// 禁用已启用的子网路由
-    @inlinable
+    @inlinable @discardableResult
     public func disableRoutes(_ input: DisableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
         self.client.execute(action: "DisableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Ecm {
     /// 禁用子网路由
     ///
     /// 禁用已启用的子网路由
-    @inlinable
+    @inlinable @discardableResult
     public func disableRoutes(_ input: DisableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
         try await self.client.execute(action: "DisableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Ecm {
     /// 禁用子网路由
     ///
     /// 禁用已启用的子网路由
-    @inlinable
+    @inlinable @discardableResult
     public func disableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
         self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Ecm {
     /// 禁用子网路由
     ///
     /// 禁用已启用的子网路由
-    @inlinable
+    @inlinable @discardableResult
     public func disableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
         try await self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }

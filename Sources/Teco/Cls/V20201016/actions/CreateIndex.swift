@@ -62,7 +62,7 @@ extension Cls {
     /// 创建索引
     ///
     /// 本接口用于创建索引
-    @inlinable
+    @inlinable @discardableResult
     public func createIndex(_ input: CreateIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIndexResponse> {
         self.client.execute(action: "CreateIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Cls {
     /// 创建索引
     ///
     /// 本接口用于创建索引
-    @inlinable
+    @inlinable @discardableResult
     public func createIndex(_ input: CreateIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
         try await self.client.execute(action: "CreateIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Cls {
     /// 创建索引
     ///
     /// 本接口用于创建索引
-    @inlinable
+    @inlinable @discardableResult
     public func createIndex(topicId: String, rule: RuleInfo, status: Bool? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIndexResponse> {
         self.createIndex(CreateIndexRequest(topicId: topicId, rule: rule, status: status, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Cls {
     /// 创建索引
     ///
     /// 本接口用于创建索引
-    @inlinable
+    @inlinable @discardableResult
     public func createIndex(topicId: String, rule: RuleInfo, status: Bool? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
         try await self.createIndex(CreateIndexRequest(topicId: topicId, rule: rule, status: status, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), region: region, logger: logger, on: eventLoop)
     }

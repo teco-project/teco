@@ -40,25 +40,25 @@ extension Tcss {
     }
 
     /// 修改k8sapi异常规则信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyK8sApiAbnormalRuleInfo(_ input: ModifyK8sApiAbnormalRuleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleInfoResponse> {
         self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改k8sapi异常规则信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyK8sApiAbnormalRuleInfo(_ input: ModifyK8sApiAbnormalRuleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleInfoResponse {
         try await self.client.execute(action: "ModifyK8sApiAbnormalRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改k8sapi异常规则信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyK8sApiAbnormalRuleInfo(ruleInfo: K8sApiAbnormalRuleInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalRuleInfoResponse> {
         self.modifyK8sApiAbnormalRuleInfo(ModifyK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改k8sapi异常规则信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyK8sApiAbnormalRuleInfo(ruleInfo: K8sApiAbnormalRuleInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalRuleInfoResponse {
         try await self.modifyK8sApiAbnormalRuleInfo(ModifyK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo), region: region, logger: logger, on: eventLoop)
     }

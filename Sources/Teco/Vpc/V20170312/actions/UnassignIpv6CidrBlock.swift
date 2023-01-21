@@ -48,7 +48,7 @@ extension Vpc {
     ///
     /// 本接口（UnassignIpv6CidrBlock）用于释放IPv6网段。<br />
     /// 网段如果还有IP占用且未回收，则网段无法释放。
-    @inlinable
+    @inlinable @discardableResult
     public func unassignIpv6CidrBlock(_ input: UnassignIpv6CidrBlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6CidrBlockResponse> {
         self.client.execute(action: "UnassignIpv6CidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Vpc {
     ///
     /// 本接口（UnassignIpv6CidrBlock）用于释放IPv6网段。<br />
     /// 网段如果还有IP占用且未回收，则网段无法释放。
-    @inlinable
+    @inlinable @discardableResult
     public func unassignIpv6CidrBlock(_ input: UnassignIpv6CidrBlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6CidrBlockResponse {
         try await self.client.execute(action: "UnassignIpv6CidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Vpc {
     ///
     /// 本接口（UnassignIpv6CidrBlock）用于释放IPv6网段。<br />
     /// 网段如果还有IP占用且未回收，则网段无法释放。
-    @inlinable
+    @inlinable @discardableResult
     public func unassignIpv6CidrBlock(vpcId: String, ipv6CidrBlock: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6CidrBlockResponse> {
         self.unassignIpv6CidrBlock(UnassignIpv6CidrBlockRequest(vpcId: vpcId, ipv6CidrBlock: ipv6CidrBlock), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Vpc {
     ///
     /// 本接口（UnassignIpv6CidrBlock）用于释放IPv6网段。<br />
     /// 网段如果还有IP占用且未回收，则网段无法释放。
-    @inlinable
+    @inlinable @discardableResult
     public func unassignIpv6CidrBlock(vpcId: String, ipv6CidrBlock: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6CidrBlockResponse {
         try await self.unassignIpv6CidrBlock(UnassignIpv6CidrBlockRequest(vpcId: vpcId, ipv6CidrBlock: ipv6CidrBlock), region: region, logger: logger, on: eventLoop)
     }

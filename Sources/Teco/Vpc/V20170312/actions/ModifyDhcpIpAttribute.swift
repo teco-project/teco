@@ -47,7 +47,7 @@ extension Vpc {
     /// 修改DhcpIp属性
     ///
     /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDhcpIpAttribute(_ input: ModifyDhcpIpAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDhcpIpAttributeResponse> {
         self.client.execute(action: "ModifyDhcpIpAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 修改DhcpIp属性
     ///
     /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDhcpIpAttribute(_ input: ModifyDhcpIpAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDhcpIpAttributeResponse {
         try await self.client.execute(action: "ModifyDhcpIpAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 修改DhcpIp属性
     ///
     /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDhcpIpAttribute(dhcpIpId: String, dhcpIpName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDhcpIpAttributeResponse> {
         self.modifyDhcpIpAttribute(ModifyDhcpIpAttributeRequest(dhcpIpId: dhcpIpId, dhcpIpName: dhcpIpName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 修改DhcpIp属性
     ///
     /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDhcpIpAttribute(dhcpIpId: String, dhcpIpName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDhcpIpAttributeResponse {
         try await self.modifyDhcpIpAttribute(ModifyDhcpIpAttributeRequest(dhcpIpId: dhcpIpId, dhcpIpName: dhcpIpName), region: region, logger: logger, on: eventLoop)
     }

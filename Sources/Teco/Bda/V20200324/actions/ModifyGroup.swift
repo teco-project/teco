@@ -52,7 +52,7 @@ extension Bda {
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGroup(_ input: ModifyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupResponse> {
         self.client.execute(action: "ModifyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Bda {
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGroup(_ input: ModifyGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
         try await self.client.execute(action: "ModifyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Bda {
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupResponse> {
         self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Bda {
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
         try await self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), region: region, logger: logger, on: eventLoop)
     }

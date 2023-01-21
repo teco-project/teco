@@ -45,25 +45,25 @@ extension Ecm {
     }
 
     /// 解绑安全组
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
         self.client.execute(action: "DisassociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑安全组
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
         try await self.client.execute(action: "DisassociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑安全组
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateSecurityGroups(securityGroupIds: [String], instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
         self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(securityGroupIds: securityGroupIds, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑安全组
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateSecurityGroups(securityGroupIds: [String], instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
         try await self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(securityGroupIds: securityGroupIds, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }

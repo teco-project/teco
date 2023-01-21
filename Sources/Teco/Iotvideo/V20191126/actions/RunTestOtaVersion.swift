@@ -62,7 +62,7 @@ extension Iotvideo {
     /// 固件版本测试发布
     ///
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
-    @inlinable
+    @inlinable @discardableResult
     public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTestOtaVersionResponse> {
         self.client.execute(action: "RunTestOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Iotvideo {
     /// 固件版本测试发布
     ///
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
-    @inlinable
+    @inlinable @discardableResult
     public func runTestOtaVersion(_ input: RunTestOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
         try await self.client.execute(action: "RunTestOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Iotvideo {
     /// 固件版本测试发布
     ///
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
-    @inlinable
+    @inlinable @discardableResult
     public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunTestOtaVersionResponse> {
         self.runTestOtaVersion(RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Iotvideo {
     /// 固件版本测试发布
     ///
     /// 本接口（RunTestOtaVersion）用于固件版本测试发布。
-    @inlinable
+    @inlinable @discardableResult
     public func runTestOtaVersion(productId: String, otaVersion: String, tids: [String], operator: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunTestOtaVersionResponse {
         try await self.runTestOtaVersion(RunTestOtaVersionRequest(productId: productId, otaVersion: otaVersion, tids: tids, operator: `operator`, remark: remark), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Ecm {
     /// 导入镜像
     ///
     /// 从CVM产品导入镜像到ECM
-    @inlinable
+    @inlinable @discardableResult
     public func importImage(_ input: ImportImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
         self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Ecm {
     /// 导入镜像
     ///
     /// 从CVM产品导入镜像到ECM
-    @inlinable
+    @inlinable @discardableResult
     public func importImage(_ input: ImportImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
         try await self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Ecm {
     /// 导入镜像
     ///
     /// 从CVM产品导入镜像到ECM
-    @inlinable
+    @inlinable @discardableResult
     public func importImage(imageId: String, imageDescription: String, sourceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
         self.importImage(ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Ecm {
     /// 导入镜像
     ///
     /// 从CVM产品导入镜像到ECM
-    @inlinable
+    @inlinable @discardableResult
     public func importImage(imageId: String, imageDescription: String, sourceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
         try await self.importImage(ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion), region: region, logger: logger, on: eventLoop)
     }

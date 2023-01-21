@@ -86,7 +86,7 @@ extension Scf {
     /// 设置预置并发
     ///
     /// 设置函数某一非$LATEST版本的预置并发。
-    @inlinable
+    @inlinable @discardableResult
     public func putProvisionedConcurrencyConfig(_ input: PutProvisionedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutProvisionedConcurrencyConfigResponse> {
         self.client.execute(action: "PutProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -94,7 +94,7 @@ extension Scf {
     /// 设置预置并发
     ///
     /// 设置函数某一非$LATEST版本的预置并发。
-    @inlinable
+    @inlinable @discardableResult
     public func putProvisionedConcurrencyConfig(_ input: PutProvisionedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutProvisionedConcurrencyConfigResponse {
         try await self.client.execute(action: "PutProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -102,7 +102,7 @@ extension Scf {
     /// 设置预置并发
     ///
     /// 设置函数某一非$LATEST版本的预置并发。
-    @inlinable
+    @inlinable @discardableResult
     public func putProvisionedConcurrencyConfig(functionName: String, qualifier: String, versionProvisionedConcurrencyNum: UInt64, namespace: String? = nil, triggerActions: [TriggerAction]? = nil, provisionedType: String? = nil, trackingTarget: Float? = nil, minCapacity: UInt64? = nil, maxCapacity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutProvisionedConcurrencyConfigResponse> {
         self.putProvisionedConcurrencyConfig(PutProvisionedConcurrencyConfigRequest(functionName: functionName, qualifier: qualifier, versionProvisionedConcurrencyNum: versionProvisionedConcurrencyNum, namespace: namespace, triggerActions: triggerActions, provisionedType: provisionedType, trackingTarget: trackingTarget, minCapacity: minCapacity, maxCapacity: maxCapacity), region: region, logger: logger, on: eventLoop)
     }
@@ -110,7 +110,7 @@ extension Scf {
     /// 设置预置并发
     ///
     /// 设置函数某一非$LATEST版本的预置并发。
-    @inlinable
+    @inlinable @discardableResult
     public func putProvisionedConcurrencyConfig(functionName: String, qualifier: String, versionProvisionedConcurrencyNum: UInt64, namespace: String? = nil, triggerActions: [TriggerAction]? = nil, provisionedType: String? = nil, trackingTarget: Float? = nil, minCapacity: UInt64? = nil, maxCapacity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutProvisionedConcurrencyConfigResponse {
         try await self.putProvisionedConcurrencyConfig(PutProvisionedConcurrencyConfigRequest(functionName: functionName, qualifier: qualifier, versionProvisionedConcurrencyNum: versionProvisionedConcurrencyNum, namespace: namespace, triggerActions: triggerActions, provisionedType: provisionedType, trackingTarget: trackingTarget, minCapacity: minCapacity, maxCapacity: maxCapacity), region: region, logger: logger, on: eventLoop)
     }

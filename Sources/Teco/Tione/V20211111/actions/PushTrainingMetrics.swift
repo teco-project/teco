@@ -40,25 +40,25 @@ extension Tione {
     }
 
     /// 上报训练自定义指标
-    @inlinable
+    @inlinable @discardableResult
     public func pushTrainingMetrics(_ input: PushTrainingMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushTrainingMetricsResponse> {
         self.client.execute(action: "PushTrainingMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报训练自定义指标
-    @inlinable
+    @inlinable @discardableResult
     public func pushTrainingMetrics(_ input: PushTrainingMetricsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushTrainingMetricsResponse {
         try await self.client.execute(action: "PushTrainingMetrics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报训练自定义指标
-    @inlinable
+    @inlinable @discardableResult
     public func pushTrainingMetrics(data: [MetricData]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushTrainingMetricsResponse> {
         self.pushTrainingMetrics(PushTrainingMetricsRequest(data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报训练自定义指标
-    @inlinable
+    @inlinable @discardableResult
     public func pushTrainingMetrics(data: [MetricData]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushTrainingMetricsResponse {
         try await self.pushTrainingMetrics(PushTrainingMetricsRequest(data: data), region: region, logger: logger, on: eventLoop)
     }

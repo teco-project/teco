@@ -40,25 +40,25 @@ extension Cls {
     }
 
     /// 关闭Kafka协议消费
-    @inlinable
+    @inlinable @discardableResult
     public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
         self.client.execute(action: "CloseKafkaConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭Kafka协议消费
-    @inlinable
+    @inlinable @discardableResult
     public func closeKafkaConsumer(_ input: CloseKafkaConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
         try await self.client.execute(action: "CloseKafkaConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭Kafka协议消费
-    @inlinable
+    @inlinable @discardableResult
     public func closeKafkaConsumer(fromTopicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseKafkaConsumerResponse> {
         self.closeKafkaConsumer(CloseKafkaConsumerRequest(fromTopicId: fromTopicId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭Kafka协议消费
-    @inlinable
+    @inlinable @discardableResult
     public func closeKafkaConsumer(fromTopicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseKafkaConsumerResponse {
         try await self.closeKafkaConsumer(CloseKafkaConsumerRequest(fromTopicId: fromTopicId), region: region, logger: logger, on: eventLoop)
     }

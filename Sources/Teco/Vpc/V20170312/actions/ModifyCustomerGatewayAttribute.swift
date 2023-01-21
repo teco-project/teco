@@ -47,7 +47,7 @@ extension Vpc {
     /// 修改对端网关
     ///
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomerGatewayAttributeResponse> {
         self.client.execute(action: "ModifyCustomerGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 修改对端网关
     ///
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomerGatewayAttribute(_ input: ModifyCustomerGatewayAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
         try await self.client.execute(action: "ModifyCustomerGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 修改对端网关
     ///
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomerGatewayAttribute(customerGatewayId: String, customerGatewayName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomerGatewayAttributeResponse> {
         self.modifyCustomerGatewayAttribute(ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 修改对端网关
     ///
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomerGatewayAttribute(customerGatewayId: String, customerGatewayName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
         try await self.modifyCustomerGatewayAttribute(ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName), region: region, logger: logger, on: eventLoop)
     }

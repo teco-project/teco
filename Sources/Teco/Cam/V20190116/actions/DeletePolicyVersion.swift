@@ -47,7 +47,7 @@ extension Cam {
     /// 删除策略的策略版本
     ///
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyVersionResponse> {
         self.client.execute(action: "DeletePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cam {
     /// 删除策略的策略版本
     ///
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePolicyVersion(_ input: DeletePolicyVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
         try await self.client.execute(action: "DeletePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cam {
     /// 删除策略的策略版本
     ///
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePolicyVersion(policyId: UInt64, versionId: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyVersionResponse> {
         self.deletePolicyVersion(DeletePolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cam {
     /// 删除策略的策略版本
     ///
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePolicyVersion(policyId: UInt64, versionId: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
         try await self.deletePolicyVersion(DeletePolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
     }

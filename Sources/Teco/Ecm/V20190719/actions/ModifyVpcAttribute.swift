@@ -62,7 +62,7 @@ extension Ecm {
     /// 修改VPC属性
     ///
     /// 修改私有网络（VPC）的相关属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
         self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Ecm {
     /// 修改VPC属性
     ///
     /// 修改私有网络（VPC）的相关属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
         try await self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Ecm {
     /// 修改VPC属性
     ///
     /// 修改私有网络（VPC）的相关属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpcAttribute(vpcId: String, ecmRegion: String, vpcName: String? = nil, tags: [Tag]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
         self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, ecmRegion: ecmRegion, vpcName: vpcName, tags: tags, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Ecm {
     /// 修改VPC属性
     ///
     /// 修改私有网络（VPC）的相关属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpcAttribute(vpcId: String, ecmRegion: String, vpcName: String? = nil, tags: [Tag]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
         try await self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, ecmRegion: ecmRegion, vpcName: vpcName, tags: tags, description: description), region: region, logger: logger, on: eventLoop)
     }

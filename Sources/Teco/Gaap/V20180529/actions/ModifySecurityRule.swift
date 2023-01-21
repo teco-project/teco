@@ -74,25 +74,25 @@ extension Gaap {
     }
 
     /// 修改安全策略规则名
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityRule(_ input: ModifySecurityRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityRuleResponse> {
         self.client.execute(action: "ModifySecurityRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全策略规则名
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityRule(_ input: ModifySecurityRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
         try await self.client.execute(action: "ModifySecurityRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全策略规则名
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityRule(ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityRuleResponse> {
         self.modifySecurityRule(ModifySecurityRuleRequest(ruleId: ruleId, aliasName: aliasName, policyId: policyId, ruleAction: ruleAction, sourceCidr: sourceCidr, protocol: `protocol`, destPortRange: destPortRange), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全策略规则名
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityRule(ruleId: String, aliasName: String, policyId: String, ruleAction: String? = nil, sourceCidr: String? = nil, protocol: String? = nil, destPortRange: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityRuleResponse {
         try await self.modifySecurityRule(ModifySecurityRuleRequest(ruleId: ruleId, aliasName: aliasName, policyId: policyId, ruleAction: ruleAction, sourceCidr: sourceCidr, protocol: `protocol`, destPortRange: destPortRange), region: region, logger: logger, on: eventLoop)
     }

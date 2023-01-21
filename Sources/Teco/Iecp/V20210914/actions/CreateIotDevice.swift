@@ -55,25 +55,25 @@ extension Iecp {
     }
 
     /// 创建子设备
-    @inlinable
+    @inlinable @discardableResult
     public func createIotDevice(_ input: CreateIotDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDeviceResponse> {
         self.client.execute(action: "CreateIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建子设备
-    @inlinable
+    @inlinable @discardableResult
     public func createIotDevice(_ input: CreateIotDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
         try await self.client.execute(action: "CreateIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建子设备
-    @inlinable
+    @inlinable @discardableResult
     public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDeviceResponse> {
         self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建子设备
-    @inlinable
+    @inlinable @discardableResult
     public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
         try await self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), region: region, logger: logger, on: eventLoop)
     }

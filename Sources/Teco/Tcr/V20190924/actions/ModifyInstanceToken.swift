@@ -62,7 +62,7 @@ extension Tcr {
     /// 更新实例长期访问凭证
     ///
     /// 更新实例内指定长期访问凭证的启用状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTokenResponse> {
         self.client.execute(action: "ModifyInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Tcr {
     /// 更新实例长期访问凭证
     ///
     /// 更新实例内指定长期访问凭证的启用状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceToken(_ input: ModifyInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
         try await self.client.execute(action: "ModifyInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Tcr {
     /// 更新实例长期访问凭证
     ///
     /// 更新实例内指定长期访问凭证的启用状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceToken(tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTokenResponse> {
         self.modifyInstanceToken(ModifyInstanceTokenRequest(tokenId: tokenId, registryId: registryId, enable: enable, desc: desc, modifyFlag: modifyFlag), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Tcr {
     /// 更新实例长期访问凭证
     ///
     /// 更新实例内指定长期访问凭证的启用状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceToken(tokenId: String, registryId: String, enable: Bool? = nil, desc: String? = nil, modifyFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTokenResponse {
         try await self.modifyInstanceToken(ModifyInstanceTokenRequest(tokenId: tokenId, registryId: registryId, enable: enable, desc: desc, modifyFlag: modifyFlag), region: region, logger: logger, on: eventLoop)
     }

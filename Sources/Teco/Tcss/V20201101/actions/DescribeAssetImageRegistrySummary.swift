@@ -32,25 +32,25 @@ extension Tcss {
     }
 
     /// 镜像仓库查询镜像统计信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetImageRegistrySummary(_ input: DescribeAssetImageRegistrySummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistrySummaryResponse> {
         self.client.execute(action: "DescribeAssetImageRegistrySummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像统计信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetImageRegistrySummary(_ input: DescribeAssetImageRegistrySummaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistrySummaryResponse {
         try await self.client.execute(action: "DescribeAssetImageRegistrySummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 镜像仓库查询镜像统计信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetImageRegistrySummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistrySummaryResponse> {
         self.describeAssetImageRegistrySummary(DescribeAssetImageRegistrySummaryRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像统计信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeAssetImageRegistrySummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistrySummaryResponse {
         try await self.describeAssetImageRegistrySummary(DescribeAssetImageRegistrySummaryRequest(), region: region, logger: logger, on: eventLoop)
     }

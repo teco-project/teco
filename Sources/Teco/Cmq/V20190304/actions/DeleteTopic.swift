@@ -40,25 +40,25 @@ extension Cmq {
     }
 
     /// 删除主题
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopic(_ input: DeleteTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicResponse> {
         self.client.execute(action: "DeleteTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除主题
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopic(_ input: DeleteTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
         try await self.client.execute(action: "DeleteTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除主题
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopic(topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicResponse> {
         self.deleteTopic(DeleteTopicRequest(topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除主题
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopic(topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
         try await self.deleteTopic(DeleteTopicRequest(topicName: topicName), region: region, logger: logger, on: eventLoop)
     }

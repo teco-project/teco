@@ -60,25 +60,25 @@ extension Tcb {
     }
 
     /// 更新活动详情
-    @inlinable
+    @inlinable @discardableResult
     public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceActivityRecordResponse> {
         self.client.execute(action: "ReplaceActivityRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新活动详情
-    @inlinable
+    @inlinable @discardableResult
     public func replaceActivityRecord(_ input: ReplaceActivityRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
         try await self.client.execute(action: "ReplaceActivityRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新活动详情
-    @inlinable
+    @inlinable @discardableResult
     public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceActivityRecordResponse> {
         self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新活动详情
-    @inlinable
+    @inlinable @discardableResult
     public func replaceActivityRecord(activityId: Int64, status: Int64, subStatus: String? = nil, channelToken: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceActivityRecordResponse {
         try await self.replaceActivityRecord(ReplaceActivityRecordRequest(activityId: activityId, status: status, subStatus: subStatus, channelToken: channelToken, channel: channel), region: region, logger: logger, on: eventLoop)
     }

@@ -40,25 +40,25 @@ extension Dts {
     }
 
     /// 启动同步任务
-    @inlinable
+    @inlinable @discardableResult
     public func startSyncJob(_ input: StartSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartSyncJobResponse> {
         self.client.execute(action: "StartSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动同步任务
-    @inlinable
+    @inlinable @discardableResult
     public func startSyncJob(_ input: StartSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartSyncJobResponse {
         try await self.client.execute(action: "StartSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动同步任务
-    @inlinable
+    @inlinable @discardableResult
     public func startSyncJob(jobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartSyncJobResponse> {
         self.startSyncJob(StartSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动同步任务
-    @inlinable
+    @inlinable @discardableResult
     public func startSyncJob(jobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartSyncJobResponse {
         try await self.startSyncJob(StartSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }

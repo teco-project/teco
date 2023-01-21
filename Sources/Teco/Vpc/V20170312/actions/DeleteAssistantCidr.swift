@@ -47,7 +47,7 @@ extension Vpc {
     /// 删除辅助CIDR
     ///
     /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssistantCidrResponse> {
         self.client.execute(action: "DeleteAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 删除辅助CIDR
     ///
     /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAssistantCidr(_ input: DeleteAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
         try await self.client.execute(action: "DeleteAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 删除辅助CIDR
     ///
     /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssistantCidrResponse> {
         self.deleteAssistantCidr(DeleteAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 删除辅助CIDR
     ///
     /// 本接口(DeleteAssistantCidr)用于删除辅助CIDR。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAssistantCidr(vpcId: String, cidrBlocks: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssistantCidrResponse {
         try await self.deleteAssistantCidr(DeleteAssistantCidrRequest(vpcId: vpcId, cidrBlocks: cidrBlocks), region: region, logger: logger, on: eventLoop)
     }

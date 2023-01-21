@@ -45,25 +45,25 @@ extension Tcr {
     }
 
     /// 删除长期访问凭证
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceTokenResponse> {
         self.client.execute(action: "DeleteInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除长期访问凭证
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstanceToken(_ input: DeleteInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
         try await self.client.execute(action: "DeleteInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除长期访问凭证
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstanceToken(registryId: String, tokenId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceTokenResponse> {
         self.deleteInstanceToken(DeleteInstanceTokenRequest(registryId: registryId, tokenId: tokenId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除长期访问凭证
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstanceToken(registryId: String, tokenId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceTokenResponse {
         try await self.deleteInstanceToken(DeleteInstanceTokenRequest(registryId: registryId, tokenId: tokenId), region: region, logger: logger, on: eventLoop)
     }

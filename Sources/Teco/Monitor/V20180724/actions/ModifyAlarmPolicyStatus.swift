@@ -50,25 +50,25 @@ extension Monitor {
     }
 
     /// 启停告警策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyStatusResponse> {
         self.client.execute(action: "ModifyAlarmPolicyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启停告警策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyStatus(_ input: ModifyAlarmPolicyStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {
         try await self.client.execute(action: "ModifyAlarmPolicyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启停告警策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyStatus(module: String, policyId: String, enable: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyStatusResponse> {
         self.modifyAlarmPolicyStatus(ModifyAlarmPolicyStatusRequest(module: module, policyId: policyId, enable: enable), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启停告警策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyStatus(module: String, policyId: String, enable: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyStatusResponse {
         try await self.modifyAlarmPolicyStatus(ModifyAlarmPolicyStatusRequest(module: module, policyId: policyId, enable: enable), region: region, logger: logger, on: eventLoop)
     }

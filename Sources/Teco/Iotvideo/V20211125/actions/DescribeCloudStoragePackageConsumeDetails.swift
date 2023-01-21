@@ -54,25 +54,25 @@ extension Iotvideo {
     }
 
     /// 获取云存套餐包消耗详细记录
-    @inlinable
+    @inlinable @discardableResult
     public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStoragePackageConsumeDetailsResponse> {
         self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取云存套餐包消耗详细记录
-    @inlinable
+    @inlinable @discardableResult
     public func describeCloudStoragePackageConsumeDetails(_ input: DescribeCloudStoragePackageConsumeDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
         try await self.client.execute(action: "DescribeCloudStoragePackageConsumeDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取云存套餐包消耗详细记录
-    @inlinable
+    @inlinable @discardableResult
     public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStoragePackageConsumeDetailsResponse> {
         self.describeCloudStoragePackageConsumeDetails(DescribeCloudStoragePackageConsumeDetailsRequest(startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取云存套餐包消耗详细记录
-    @inlinable
+    @inlinable @discardableResult
     public func describeCloudStoragePackageConsumeDetails(startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStoragePackageConsumeDetailsResponse {
         try await self.describeCloudStoragePackageConsumeDetails(DescribeCloudStoragePackageConsumeDetailsRequest(startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
     }

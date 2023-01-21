@@ -57,7 +57,7 @@ extension Dayu {
     /// 设置自动切回
     ///
     /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetReturnSwitch(_ input: ModifyNetReturnSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetReturnSwitchResponse> {
         self.client.execute(action: "ModifyNetReturnSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Dayu {
     /// 设置自动切回
     ///
     /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetReturnSwitch(_ input: ModifyNetReturnSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetReturnSwitchResponse {
         try await self.client.execute(action: "ModifyNetReturnSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Dayu {
     /// 设置自动切回
     ///
     /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetReturnSwitch(business: String, id: String, status: UInt64, hour: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetReturnSwitchResponse> {
         self.modifyNetReturnSwitch(ModifyNetReturnSwitchRequest(business: business, id: id, status: status, hour: hour), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Dayu {
     /// 设置自动切回
     ///
     /// 在客户收攻击或者被封堵时，切回到源站，并设置回切的时长
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetReturnSwitch(business: String, id: String, status: UInt64, hour: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetReturnSwitchResponse {
         try await self.modifyNetReturnSwitch(ModifyNetReturnSwitchRequest(business: business, id: id, status: status, hour: hour), region: region, logger: logger, on: eventLoop)
     }

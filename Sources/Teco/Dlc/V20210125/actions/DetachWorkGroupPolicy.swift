@@ -45,25 +45,25 @@ extension Dlc {
     }
 
     /// 解绑工作组鉴权策略
-    @inlinable
+    @inlinable @discardableResult
     public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
         self.client.execute(action: "DetachWorkGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑工作组鉴权策略
-    @inlinable
+    @inlinable @discardableResult
     public func detachWorkGroupPolicy(_ input: DetachWorkGroupPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
         try await self.client.execute(action: "DetachWorkGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑工作组鉴权策略
-    @inlinable
+    @inlinable @discardableResult
     public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
         self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑工作组鉴权策略
-    @inlinable
+    @inlinable @discardableResult
     public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
         try await self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), region: region, logger: logger, on: eventLoop)
     }

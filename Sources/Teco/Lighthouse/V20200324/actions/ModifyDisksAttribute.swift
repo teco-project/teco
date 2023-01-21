@@ -47,7 +47,7 @@ extension Lighthouse {
     /// 修改云硬盘属性
     ///
     /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksAttribute(_ input: ModifyDisksAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksAttributeResponse> {
         self.client.execute(action: "ModifyDisksAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Lighthouse {
     /// 修改云硬盘属性
     ///
     /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksAttribute(_ input: ModifyDisksAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksAttributeResponse {
         try await self.client.execute(action: "ModifyDisksAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Lighthouse {
     /// 修改云硬盘属性
     ///
     /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksAttribute(diskIds: [String], diskName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksAttributeResponse> {
         self.modifyDisksAttribute(ModifyDisksAttributeRequest(diskIds: diskIds, diskName: diskName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Lighthouse {
     /// 修改云硬盘属性
     ///
     /// 本接口(ModifyDisksAttribute)用于修改云硬盘属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksAttribute(diskIds: [String], diskName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksAttributeResponse {
         try await self.modifyDisksAttribute(ModifyDisksAttributeRequest(diskIds: diskIds, diskName: diskName), region: region, logger: logger, on: eventLoop)
     }

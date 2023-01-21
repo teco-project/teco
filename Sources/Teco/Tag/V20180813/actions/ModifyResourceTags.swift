@@ -52,7 +52,7 @@ extension Tag {
     /// 批量修改资源关联的标签
     ///
     /// 本接口用于修改资源关联的所有标签
-    @inlinable
+    @inlinable @discardableResult
     public func modifyResourceTags(_ input: ModifyResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceTagsResponse> {
         self.client.execute(action: "ModifyResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tag {
     /// 批量修改资源关联的标签
     ///
     /// 本接口用于修改资源关联的所有标签
-    @inlinable
+    @inlinable @discardableResult
     public func modifyResourceTags(_ input: ModifyResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
         try await self.client.execute(action: "ModifyResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tag {
     /// 批量修改资源关联的标签
     ///
     /// 本接口用于修改资源关联的所有标签
-    @inlinable
+    @inlinable @discardableResult
     public func modifyResourceTags(resource: String, replaceTags: [Tag]? = nil, deleteTags: [TagKeyObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceTagsResponse> {
         self.modifyResourceTags(ModifyResourceTagsRequest(resource: resource, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tag {
     /// 批量修改资源关联的标签
     ///
     /// 本接口用于修改资源关联的所有标签
-    @inlinable
+    @inlinable @discardableResult
     public func modifyResourceTags(resource: String, replaceTags: [Tag]? = nil, deleteTags: [TagKeyObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
         try await self.modifyResourceTags(ModifyResourceTagsRequest(resource: resource, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }

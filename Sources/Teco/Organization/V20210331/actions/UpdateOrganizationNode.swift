@@ -50,25 +50,25 @@ extension Organization {
     }
 
     /// 更新企业组织节点
-    @inlinable
+    @inlinable @discardableResult
     public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
         self.client.execute(action: "UpdateOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新企业组织节点
-    @inlinable
+    @inlinable @discardableResult
     public func updateOrganizationNode(_ input: UpdateOrganizationNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
         try await self.client.execute(action: "UpdateOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新企业组织节点
-    @inlinable
+    @inlinable @discardableResult
     public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrganizationNodeResponse> {
         self.updateOrganizationNode(UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新企业组织节点
-    @inlinable
+    @inlinable @discardableResult
     public func updateOrganizationNode(nodeId: UInt64, name: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrganizationNodeResponse {
         try await self.updateOrganizationNode(UpdateOrganizationNodeRequest(nodeId: nodeId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
     }

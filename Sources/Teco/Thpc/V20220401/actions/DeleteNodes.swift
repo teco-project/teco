@@ -47,7 +47,7 @@ extension Thpc {
     /// 删除节点
     ///
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNodes(_ input: DeleteNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNodesResponse> {
         self.client.execute(action: "DeleteNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Thpc {
     /// 删除节点
     ///
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNodes(_ input: DeleteNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodesResponse {
         try await self.client.execute(action: "DeleteNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Thpc {
     /// 删除节点
     ///
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNodes(clusterId: String, nodeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNodesResponse> {
         self.deleteNodes(DeleteNodesRequest(clusterId: clusterId, nodeIds: nodeIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Thpc {
     /// 删除节点
     ///
     /// 本接口(DeleteNodes)用于删除指定集群中一个或者多个计算节点或者登录节点。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNodes(clusterId: String, nodeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodesResponse {
         try await self.deleteNodes(DeleteNodesRequest(clusterId: clusterId, nodeIds: nodeIds), region: region, logger: logger, on: eventLoop)
     }

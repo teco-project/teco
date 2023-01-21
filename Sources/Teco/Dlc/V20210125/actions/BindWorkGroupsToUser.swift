@@ -40,25 +40,25 @@ extension Dlc {
     }
 
     /// 绑定工作组到用户
-    @inlinable
+    @inlinable @discardableResult
     public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindWorkGroupsToUserResponse> {
         self.client.execute(action: "BindWorkGroupsToUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定工作组到用户
-    @inlinable
+    @inlinable @discardableResult
     public func bindWorkGroupsToUser(_ input: BindWorkGroupsToUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
         try await self.client.execute(action: "BindWorkGroupsToUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 绑定工作组到用户
-    @inlinable
+    @inlinable @discardableResult
     public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindWorkGroupsToUserResponse> {
         self.bindWorkGroupsToUser(BindWorkGroupsToUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定工作组到用户
-    @inlinable
+    @inlinable @discardableResult
     public func bindWorkGroupsToUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindWorkGroupsToUserResponse {
         try await self.bindWorkGroupsToUser(BindWorkGroupsToUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
     }

@@ -65,25 +65,25 @@ extension Scf {
     }
 
     /// 更新别名的配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlias(_ input: UpdateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
         self.client.execute(action: "UpdateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新别名的配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlias(_ input: UpdateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
         try await self.client.execute(action: "UpdateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新别名的配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
         self.updateAlias(UpdateAliasRequest(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新别名的配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlias(functionName: String, name: String, functionVersion: String, namespace: String? = nil, routingConfig: RoutingConfig? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
         try await self.updateAlias(UpdateAliasRequest(functionName: functionName, name: name, functionVersion: functionVersion, namespace: namespace, routingConfig: routingConfig, description: description), region: region, logger: logger, on: eventLoop)
     }

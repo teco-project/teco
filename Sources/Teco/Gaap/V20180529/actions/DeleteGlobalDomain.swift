@@ -42,7 +42,7 @@ extension Gaap {
     /// 删除域名
     ///
     /// 删除统一域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainResponse> {
         self.client.execute(action: "DeleteGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Gaap {
     /// 删除域名
     ///
     /// 删除统一域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGlobalDomain(_ input: DeleteGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
         try await self.client.execute(action: "DeleteGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Gaap {
     /// 删除域名
     ///
     /// 删除统一域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainResponse> {
         self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Gaap {
     /// 删除域名
     ///
     /// 删除统一域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainResponse {
         try await self.deleteGlobalDomain(DeleteGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }

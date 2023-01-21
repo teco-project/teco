@@ -42,7 +42,7 @@ extension Dts {
     /// 下线已隔离的数据订阅实例
     ///
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
-    @inlinable
+    @inlinable @discardableResult
     public func offlineIsolatedSubscribe(_ input: OfflineIsolatedSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedSubscribeResponse> {
         self.client.execute(action: "OfflineIsolatedSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Dts {
     /// 下线已隔离的数据订阅实例
     ///
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
-    @inlinable
+    @inlinable @discardableResult
     public func offlineIsolatedSubscribe(_ input: OfflineIsolatedSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
         try await self.client.execute(action: "OfflineIsolatedSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Dts {
     /// 下线已隔离的数据订阅实例
     ///
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
-    @inlinable
+    @inlinable @discardableResult
     public func offlineIsolatedSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedSubscribeResponse> {
         self.offlineIsolatedSubscribe(OfflineIsolatedSubscribeRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Dts {
     /// 下线已隔离的数据订阅实例
     ///
     /// 本接口（OfflineIsolatedSubscribe）用于下线已隔离的数据订阅实例
-    @inlinable
+    @inlinable @discardableResult
     public func offlineIsolatedSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedSubscribeResponse {
         try await self.offlineIsolatedSubscribe(OfflineIsolatedSubscribeRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
     }

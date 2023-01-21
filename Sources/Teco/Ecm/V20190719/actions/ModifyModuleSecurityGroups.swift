@@ -45,25 +45,25 @@ extension Ecm {
     }
 
     /// 修改模块默认安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleSecurityGroups(_ input: ModifyModuleSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleSecurityGroupsResponse> {
         self.client.execute(action: "ModifyModuleSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改模块默认安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleSecurityGroups(_ input: ModifyModuleSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleSecurityGroupsResponse {
         try await self.client.execute(action: "ModifyModuleSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改模块默认安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleSecurityGroups(securityGroupIdSet: [String], moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleSecurityGroupsResponse> {
         self.modifyModuleSecurityGroups(ModifyModuleSecurityGroupsRequest(securityGroupIdSet: securityGroupIdSet, moduleId: moduleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改模块默认安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleSecurityGroups(securityGroupIdSet: [String], moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleSecurityGroupsResponse {
         try await self.modifyModuleSecurityGroups(ModifyModuleSecurityGroupsRequest(securityGroupIdSet: securityGroupIdSet, moduleId: moduleId), region: region, logger: logger, on: eventLoop)
     }

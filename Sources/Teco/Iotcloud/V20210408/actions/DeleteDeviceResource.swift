@@ -52,7 +52,7 @@ extension Iotcloud {
     /// 删除设备资源
     ///
     /// 本接口（DeleteDeviceResource）用于删除设备资源
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceResource(_ input: DeleteDeviceResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResourceResponse> {
         self.client.execute(action: "DeleteDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotcloud {
     /// 删除设备资源
     ///
     /// 本接口（DeleteDeviceResource）用于删除设备资源
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceResource(_ input: DeleteDeviceResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResourceResponse {
         try await self.client.execute(action: "DeleteDeviceResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotcloud {
     /// 删除设备资源
     ///
     /// 本接口（DeleteDeviceResource）用于删除设备资源
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceResource(productID: String, name: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResourceResponse> {
         self.deleteDeviceResource(DeleteDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotcloud {
     /// 删除设备资源
     ///
     /// 本接口（DeleteDeviceResource）用于删除设备资源
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceResource(productID: String, name: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResourceResponse {
         try await self.deleteDeviceResource(DeleteDeviceResourceRequest(productID: productID, name: name, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }

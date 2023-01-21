@@ -52,7 +52,7 @@ extension Iotvideo {
     /// 禁用固件版本
     ///
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
-    @inlinable
+    @inlinable @discardableResult
     public func disableOtaVersion(_ input: DisableOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableOtaVersionResponse> {
         self.client.execute(action: "DisableOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotvideo {
     /// 禁用固件版本
     ///
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
-    @inlinable
+    @inlinable @discardableResult
     public func disableOtaVersion(_ input: DisableOtaVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableOtaVersionResponse {
         try await self.client.execute(action: "DisableOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotvideo {
     /// 禁用固件版本
     ///
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
-    @inlinable
+    @inlinable @discardableResult
     public func disableOtaVersion(productId: String, otaVersion: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableOtaVersionResponse> {
         self.disableOtaVersion(DisableOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotvideo {
     /// 禁用固件版本
     ///
     /// 本接口（DisableOtaVersion）用于禁用固件版本。
-    @inlinable
+    @inlinable @discardableResult
     public func disableOtaVersion(productId: String, otaVersion: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableOtaVersionResponse {
         try await self.disableOtaVersion(DisableOtaVersionRequest(productId: productId, otaVersion: otaVersion, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

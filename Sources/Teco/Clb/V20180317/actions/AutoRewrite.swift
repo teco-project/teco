@@ -63,7 +63,7 @@ extension Clb {
     ///
     /// 用户需要先创建出一个HTTPS:443监听器，并在其下创建转发规则。通过调用本接口，系统会自动创建出一个HTTP:80监听器（如果之前不存在），并在其下创建转发规则，与HTTPS:443监听器下的Domains（在入参中指定）对应。创建成功后可以通过HTTP:80地址自动跳转为HTTPS:443地址进行访问。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func autoRewrite(_ input: AutoRewriteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AutoRewriteResponse> {
         self.client.execute(action: "AutoRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -72,7 +72,7 @@ extension Clb {
     ///
     /// 用户需要先创建出一个HTTPS:443监听器，并在其下创建转发规则。通过调用本接口，系统会自动创建出一个HTTP:80监听器（如果之前不存在），并在其下创建转发规则，与HTTPS:443监听器下的Domains（在入参中指定）对应。创建成功后可以通过HTTP:80地址自动跳转为HTTPS:443地址进行访问。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func autoRewrite(_ input: AutoRewriteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoRewriteResponse {
         try await self.client.execute(action: "AutoRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -81,7 +81,7 @@ extension Clb {
     ///
     /// 用户需要先创建出一个HTTPS:443监听器，并在其下创建转发规则。通过调用本接口，系统会自动创建出一个HTTP:80监听器（如果之前不存在），并在其下创建转发规则，与HTTPS:443监听器下的Domains（在入参中指定）对应。创建成功后可以通过HTTP:80地址自动跳转为HTTPS:443地址进行访问。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func autoRewrite(loadBalancerId: String, listenerId: String, domains: [String]? = nil, rewriteCodes: [Int64]? = nil, takeUrls: [Bool]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AutoRewriteResponse> {
         self.autoRewrite(AutoRewriteRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domains: domains, rewriteCodes: rewriteCodes, takeUrls: takeUrls), region: region, logger: logger, on: eventLoop)
     }
@@ -90,7 +90,7 @@ extension Clb {
     ///
     /// 用户需要先创建出一个HTTPS:443监听器，并在其下创建转发规则。通过调用本接口，系统会自动创建出一个HTTP:80监听器（如果之前不存在），并在其下创建转发规则，与HTTPS:443监听器下的Domains（在入参中指定）对应。创建成功后可以通过HTTP:80地址自动跳转为HTTPS:443地址进行访问。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func autoRewrite(loadBalancerId: String, listenerId: String, domains: [String]? = nil, rewriteCodes: [Int64]? = nil, takeUrls: [Bool]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AutoRewriteResponse {
         try await self.autoRewrite(AutoRewriteRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domains: domains, rewriteCodes: rewriteCodes, takeUrls: takeUrls), region: region, logger: logger, on: eventLoop)
     }

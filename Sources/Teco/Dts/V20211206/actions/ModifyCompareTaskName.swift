@@ -50,25 +50,25 @@ extension Dts {
     }
 
     /// 修改一致性校验任务名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCompareTaskName(_ input: ModifyCompareTaskNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskNameResponse> {
         self.client.execute(action: "ModifyCompareTaskName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改一致性校验任务名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCompareTaskName(_ input: ModifyCompareTaskNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskNameResponse {
         try await self.client.execute(action: "ModifyCompareTaskName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改一致性校验任务名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCompareTaskName(jobId: String, compareTaskId: String, taskName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskNameResponse> {
         self.modifyCompareTaskName(ModifyCompareTaskNameRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改一致性校验任务名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCompareTaskName(jobId: String, compareTaskId: String, taskName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskNameResponse {
         try await self.modifyCompareTaskName(ModifyCompareTaskNameRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName), region: region, logger: logger, on: eventLoop)
     }

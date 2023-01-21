@@ -57,7 +57,7 @@ extension Ds {
     /// 发送验证码
     ///
     /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
-    @inlinable
+    @inlinable @discardableResult
     public func sendVcode(_ input: SendVcodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendVcodeResponse> {
         self.client.execute(action: "SendVcode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Ds {
     /// 发送验证码
     ///
     /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
-    @inlinable
+    @inlinable @discardableResult
     public func sendVcode(_ input: SendVcodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendVcodeResponse {
         try await self.client.execute(action: "SendVcode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Ds {
     /// 发送验证码
     ///
     /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
-    @inlinable
+    @inlinable @discardableResult
     public func sendVcode(module: String, operation: String, contractResId: String, accountResId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendVcodeResponse> {
         self.sendVcode(SendVcodeRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Ds {
     /// 发送验证码
     ///
     /// 发送验证码接口。此接口用于：企业电子合同平台需要腾讯云发送验证码对其用户进行验证时调用，腾讯云将向其用户联系手机(企业电子合同平台为用户开户时通过接口传入)发送验证码，以验证码授权方式签署合同。用户验证工作由企业电子合同平台自身完成。
-    @inlinable
+    @inlinable @discardableResult
     public func sendVcode(module: String, operation: String, contractResId: String, accountResId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendVcodeResponse {
         try await self.sendVcode(SendVcodeRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId), region: region, logger: logger, on: eventLoop)
     }

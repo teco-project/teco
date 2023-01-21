@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 删除产品转发消息配置
     ///
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageQueueResponse> {
         self.client.execute(action: "DeleteMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 删除产品转发消息配置
     ///
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMessageQueue(_ input: DeleteMessageQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
         try await self.client.execute(action: "DeleteMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 删除产品转发消息配置
     ///
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageQueueResponse> {
         self.deleteMessageQueue(DeleteMessageQueueRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotvideo {
     /// 删除产品转发消息配置
     ///
     /// 本接口（DeleteMessageQueue）用于删除物联网智能视频产品的转发消息配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageQueueResponse {
         try await self.deleteMessageQueue(DeleteMessageQueueRequest(productId: productId), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Tiw {
     }
 
     /// 停止实时录制
-    @inlinable
+    @inlinable @discardableResult
     public func stopOnlineRecord(_ input: StopOnlineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopOnlineRecordResponse> {
         self.client.execute(action: "StopOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止实时录制
-    @inlinable
+    @inlinable @discardableResult
     public func stopOnlineRecord(_ input: StopOnlineRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopOnlineRecordResponse {
         try await self.client.execute(action: "StopOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止实时录制
-    @inlinable
+    @inlinable @discardableResult
     public func stopOnlineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopOnlineRecordResponse> {
         self.stopOnlineRecord(StopOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止实时录制
-    @inlinable
+    @inlinable @discardableResult
     public func stopOnlineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopOnlineRecordResponse {
         try await self.stopOnlineRecord(StopOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

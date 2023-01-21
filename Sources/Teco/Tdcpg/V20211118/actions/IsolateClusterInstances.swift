@@ -50,7 +50,7 @@ extension Tdcpg {
     ///  - 批量隔离集群内所有的实例
     ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
-    @inlinable
+    @inlinable @discardableResult
     public func isolateClusterInstances(_ input: IsolateClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterInstancesResponse> {
         self.client.execute(action: "IsolateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -61,7 +61,7 @@ extension Tdcpg {
     ///  - 批量隔离集群内所有的实例
     ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
-    @inlinable
+    @inlinable @discardableResult
     public func isolateClusterInstances(_ input: IsolateClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
         try await self.client.execute(action: "IsolateClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -72,7 +72,7 @@ extension Tdcpg {
     ///  - 批量隔离集群内所有的实例
     ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
-    @inlinable
+    @inlinable @discardableResult
     public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterInstancesResponse> {
         self.isolateClusterInstances(IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -83,7 +83,7 @@ extension Tdcpg {
     ///  - 批量隔离集群内所有的实例
     ///  - 在读写实例为running(运行中)时，单个/批量隔离只读实例
     ///  - 集群内所有只读实例为isolated(已隔离)时，单独隔离读写实例
-    @inlinable
+    @inlinable @discardableResult
     public func isolateClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterInstancesResponse {
         try await self.isolateClusterInstances(IsolateClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }

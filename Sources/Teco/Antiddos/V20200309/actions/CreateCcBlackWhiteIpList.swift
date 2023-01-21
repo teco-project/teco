@@ -65,25 +65,25 @@ extension Antiddos {
     }
 
     /// 新建CC四层黑白名单
-    @inlinable
+    @inlinable @discardableResult
     public func createCcBlackWhiteIpList(_ input: CreateCcBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcBlackWhiteIpListResponse> {
         self.client.execute(action: "CreateCcBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建CC四层黑白名单
-    @inlinable
+    @inlinable @discardableResult
     public func createCcBlackWhiteIpList(_ input: CreateCcBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcBlackWhiteIpListResponse {
         try await self.client.execute(action: "CreateCcBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新建CC四层黑白名单
-    @inlinable
+    @inlinable @discardableResult
     public func createCcBlackWhiteIpList(instanceId: String, ipList: [IpSegment], type: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCcBlackWhiteIpListResponse> {
         self.createCcBlackWhiteIpList(CreateCcBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新建CC四层黑白名单
-    @inlinable
+    @inlinable @discardableResult
     public func createCcBlackWhiteIpList(instanceId: String, ipList: [IpSegment], type: String, ip: String, domain: String, protocol: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCcBlackWhiteIpListResponse {
         try await self.createCcBlackWhiteIpList(CreateCcBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }

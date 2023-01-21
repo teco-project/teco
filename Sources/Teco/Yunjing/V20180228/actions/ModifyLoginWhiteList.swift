@@ -40,25 +40,25 @@ extension Yunjing {
     }
 
     /// 编辑白名单规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoginWhiteList(_ input: ModifyLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoginWhiteListResponse> {
         self.client.execute(action: "ModifyLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑白名单规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoginWhiteList(_ input: ModifyLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoginWhiteListResponse {
         try await self.client.execute(action: "ModifyLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑白名单规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoginWhiteList(rules: LoginWhiteListsRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoginWhiteListResponse> {
         self.modifyLoginWhiteList(ModifyLoginWhiteListRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑白名单规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoginWhiteList(rules: LoginWhiteListsRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoginWhiteListResponse {
         try await self.modifyLoginWhiteList(ModifyLoginWhiteListRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }

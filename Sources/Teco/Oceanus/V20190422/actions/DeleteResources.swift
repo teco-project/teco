@@ -45,25 +45,25 @@ extension Oceanus {
     }
 
     /// 删除资源接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResources(_ input: DeleteResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourcesResponse> {
         self.client.execute(action: "DeleteResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除资源接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResources(_ input: DeleteResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourcesResponse {
         try await self.client.execute(action: "DeleteResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除资源接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResources(resourceIds: [String], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourcesResponse> {
         self.deleteResources(DeleteResourcesRequest(resourceIds: resourceIds, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资源接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResources(resourceIds: [String], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourcesResponse {
         try await self.deleteResources(DeleteResourcesRequest(resourceIds: resourceIds, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }

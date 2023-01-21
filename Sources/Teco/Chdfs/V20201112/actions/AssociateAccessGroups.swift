@@ -47,7 +47,7 @@ extension Chdfs {
     /// 绑定权限组列表
     ///
     /// 给挂载点绑定多个权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAccessGroupsResponse> {
         self.client.execute(action: "AssociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Chdfs {
     /// 绑定权限组列表
     ///
     /// 给挂载点绑定多个权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func associateAccessGroups(_ input: AssociateAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
         try await self.client.execute(action: "AssociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Chdfs {
     /// 绑定权限组列表
     ///
     /// 给挂载点绑定多个权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func associateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAccessGroupsResponse> {
         self.associateAccessGroups(AssociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Chdfs {
     /// 绑定权限组列表
     ///
     /// 给挂载点绑定多个权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func associateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAccessGroupsResponse {
         try await self.associateAccessGroups(AssociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }

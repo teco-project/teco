@@ -40,25 +40,25 @@ extension Antiddos {
     }
 
     /// 设置单IP告警阈值配置
-    @inlinable
+    @inlinable @discardableResult
     public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIPAlarmThresholdConfigResponse> {
         self.client.execute(action: "CreateIPAlarmThresholdConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置单IP告警阈值配置
-    @inlinable
+    @inlinable @discardableResult
     public func createIPAlarmThresholdConfig(_ input: CreateIPAlarmThresholdConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
         try await self.client.execute(action: "CreateIPAlarmThresholdConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置单IP告警阈值配置
-    @inlinable
+    @inlinable @discardableResult
     public func createIPAlarmThresholdConfig(ipAlarmThresholdConfigList: [IPAlarmThresholdRelation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIPAlarmThresholdConfigResponse> {
         self.createIPAlarmThresholdConfig(CreateIPAlarmThresholdConfigRequest(ipAlarmThresholdConfigList: ipAlarmThresholdConfigList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置单IP告警阈值配置
-    @inlinable
+    @inlinable @discardableResult
     public func createIPAlarmThresholdConfig(ipAlarmThresholdConfigList: [IPAlarmThresholdRelation], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPAlarmThresholdConfigResponse {
         try await self.createIPAlarmThresholdConfig(CreateIPAlarmThresholdConfigRequest(ipAlarmThresholdConfigList: ipAlarmThresholdConfigList), region: region, logger: logger, on: eventLoop)
     }

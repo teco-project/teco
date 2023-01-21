@@ -42,7 +42,7 @@ extension Kms {
     /// 删除白盒密钥
     ///
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhiteBoxKeyResponse> {
         self.client.execute(action: "DeleteWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Kms {
     /// 删除白盒密钥
     ///
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWhiteBoxKey(_ input: DeleteWhiteBoxKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhiteBoxKeyResponse {
         try await self.client.execute(action: "DeleteWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Kms {
     /// 删除白盒密钥
     ///
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhiteBoxKeyResponse> {
         self.deleteWhiteBoxKey(DeleteWhiteBoxKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Kms {
     /// 删除白盒密钥
     ///
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhiteBoxKeyResponse {
         try await self.deleteWhiteBoxKey(DeleteWhiteBoxKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }

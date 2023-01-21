@@ -43,7 +43,7 @@ extension Dc {
     ///
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectResponse> {
         self.client.execute(action: "DeleteDirectConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Dc {
     ///
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDirectConnect(_ input: DeleteDirectConnectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
         try await self.client.execute(action: "DeleteDirectConnect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Dc {
     ///
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDirectConnect(directConnectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectResponse> {
         self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Dc {
     ///
     /// 删除物理专线。
     /// 只能删除处于已连接状态的物理专线。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDirectConnect(directConnectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectResponse {
         try await self.deleteDirectConnect(DeleteDirectConnectRequest(directConnectId: directConnectId), region: region, logger: logger, on: eventLoop)
     }

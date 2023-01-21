@@ -47,7 +47,7 @@ extension Cdb {
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
-    @inlinable
+    @inlinable @discardableResult
     public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
         self.client.execute(action: "ReloadBalanceProxyNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cdb {
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
-    @inlinable
+    @inlinable @discardableResult
     public func reloadBalanceProxyNode(_ input: ReloadBalanceProxyNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
         try await self.client.execute(action: "ReloadBalanceProxyNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cdb {
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
-    @inlinable
+    @inlinable @discardableResult
     public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
         self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cdb {
     /// 负载均衡数据库代理
     ///
     /// 重新负载均衡数据库代理
-    @inlinable
+    @inlinable @discardableResult
     public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
         try await self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), region: region, logger: logger, on: eventLoop)
     }

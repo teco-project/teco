@@ -48,7 +48,7 @@ extension Cls {
     /// 删除机器组信息
     ///
     /// 用于删除机器组信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupInfoResponse> {
         self.client.execute(action: "DeleteMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -56,7 +56,7 @@ extension Cls {
     /// 删除机器组信息
     ///
     /// 用于删除机器组信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineGroupInfo(_ input: DeleteMachineGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
         try await self.client.execute(action: "DeleteMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -64,7 +64,7 @@ extension Cls {
     /// 删除机器组信息
     ///
     /// 用于删除机器组信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupInfoResponse> {
         self.deleteMachineGroupInfo(DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
     }
@@ -72,7 +72,7 @@ extension Cls {
     /// 删除机器组信息
     ///
     /// 用于删除机器组信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupInfoResponse {
         try await self.deleteMachineGroupInfo(DeleteMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
     }

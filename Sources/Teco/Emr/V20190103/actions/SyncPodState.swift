@@ -42,7 +42,7 @@ extension Emr {
     /// EMR同步POD状态
     ///
     /// EMR同步TKE中POD状态
-    @inlinable
+    @inlinable @discardableResult
     public func syncPodState(_ input: SyncPodStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPodStateResponse> {
         self.client.execute(action: "SyncPodState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Emr {
     /// EMR同步POD状态
     ///
     /// EMR同步TKE中POD状态
-    @inlinable
+    @inlinable @discardableResult
     public func syncPodState(_ input: SyncPodStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
         try await self.client.execute(action: "SyncPodState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Emr {
     /// EMR同步POD状态
     ///
     /// EMR同步TKE中POD状态
-    @inlinable
+    @inlinable @discardableResult
     public func syncPodState(message: PodState, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPodStateResponse> {
         self.syncPodState(SyncPodStateRequest(message: message), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Emr {
     /// EMR同步POD状态
     ///
     /// EMR同步TKE中POD状态
-    @inlinable
+    @inlinable @discardableResult
     public func syncPodState(message: PodState, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPodStateResponse {
         try await self.syncPodState(SyncPodStateRequest(message: message), region: region, logger: logger, on: eventLoop)
     }

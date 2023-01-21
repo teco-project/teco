@@ -52,7 +52,7 @@ extension Tcr {
     /// 删除实例
     ///
     /// 删除镜像仓库企业版实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstance(_ input: DeleteInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
         self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tcr {
     /// 删除实例
     ///
     /// 删除镜像仓库企业版实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstance(_ input: DeleteInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
         try await self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tcr {
     /// 删除实例
     ///
     /// 删除镜像仓库企业版实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
         self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tcr {
     /// 删除实例
     ///
     /// 删除镜像仓库企业版实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
         try await self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
     }

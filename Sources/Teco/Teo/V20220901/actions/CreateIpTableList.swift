@@ -50,25 +50,25 @@ extension Teo {
     }
 
     /// 创建IP黑白名单列表
-    @inlinable
+    @inlinable @discardableResult
     public func createIpTableList(_ input: CreateIpTableListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIpTableListResponse> {
         self.client.execute(action: "CreateIpTableList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建IP黑白名单列表
-    @inlinable
+    @inlinable @discardableResult
     public func createIpTableList(_ input: CreateIpTableListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIpTableListResponse {
         try await self.client.execute(action: "CreateIpTableList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建IP黑白名单列表
-    @inlinable
+    @inlinable @discardableResult
     public func createIpTableList(zoneId: String, entity: String, ipTableRules: [IpTableRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIpTableListResponse> {
         self.createIpTableList(CreateIpTableListRequest(zoneId: zoneId, entity: entity, ipTableRules: ipTableRules), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建IP黑白名单列表
-    @inlinable
+    @inlinable @discardableResult
     public func createIpTableList(zoneId: String, entity: String, ipTableRules: [IpTableRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIpTableListResponse {
         try await self.createIpTableList(CreateIpTableListRequest(zoneId: zoneId, entity: entity, ipTableRules: ipTableRules), region: region, logger: logger, on: eventLoop)
     }

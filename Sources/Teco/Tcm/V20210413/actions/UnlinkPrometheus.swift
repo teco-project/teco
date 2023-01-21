@@ -40,25 +40,25 @@ extension Tcm {
     }
 
     /// 解除关联Prometheus
-    @inlinable
+    @inlinable @discardableResult
     public func unlinkPrometheus(_ input: UnlinkPrometheusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkPrometheusResponse> {
         self.client.execute(action: "UnlinkPrometheus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除关联Prometheus
-    @inlinable
+    @inlinable @discardableResult
     public func unlinkPrometheus(_ input: UnlinkPrometheusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkPrometheusResponse {
         try await self.client.execute(action: "UnlinkPrometheus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解除关联Prometheus
-    @inlinable
+    @inlinable @discardableResult
     public func unlinkPrometheus(meshID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlinkPrometheusResponse> {
         self.unlinkPrometheus(UnlinkPrometheusRequest(meshID: meshID), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解除关联Prometheus
-    @inlinable
+    @inlinable @discardableResult
     public func unlinkPrometheus(meshID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlinkPrometheusResponse {
         try await self.unlinkPrometheus(UnlinkPrometheusRequest(meshID: meshID), region: region, logger: logger, on: eventLoop)
     }

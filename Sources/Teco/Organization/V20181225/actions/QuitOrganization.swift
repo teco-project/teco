@@ -40,25 +40,25 @@ extension Organization {
     }
 
     /// 退出企业组织
-    @inlinable
+    @inlinable @discardableResult
     public func quitOrganization(_ input: QuitOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuitOrganizationResponse> {
         self.client.execute(action: "QuitOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退出企业组织
-    @inlinable
+    @inlinable @discardableResult
     public func quitOrganization(_ input: QuitOrganizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuitOrganizationResponse {
         try await self.client.execute(action: "QuitOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 退出企业组织
-    @inlinable
+    @inlinable @discardableResult
     public func quitOrganization(orgId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuitOrganizationResponse> {
         self.quitOrganization(QuitOrganizationRequest(orgId: orgId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 退出企业组织
-    @inlinable
+    @inlinable @discardableResult
     public func quitOrganization(orgId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuitOrganizationResponse {
         try await self.quitOrganization(QuitOrganizationRequest(orgId: orgId), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Tke {
     /// 删除模板实例
     ///
     /// 删除一个云原生Prometheus配置模板
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusTemp(_ input: DeletePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempResponse> {
         self.client.execute(action: "DeletePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tke {
     /// 删除模板实例
     ///
     /// 删除一个云原生Prometheus配置模板
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusTemp(_ input: DeletePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempResponse {
         try await self.client.execute(action: "DeletePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tke {
     /// 删除模板实例
     ///
     /// 删除一个云原生Prometheus配置模板
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusTemp(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempResponse> {
         self.deletePrometheusTemp(DeletePrometheusTempRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tke {
     /// 删除模板实例
     ///
     /// 删除一个云原生Prometheus配置模板
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusTemp(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempResponse {
         try await self.deletePrometheusTemp(DeletePrometheusTempRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }

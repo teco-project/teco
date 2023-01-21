@@ -45,25 +45,25 @@ extension Antiddos {
     }
 
     /// 删除CC频率限制策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCCRequestLimitPolicy(_ input: DeleteCCRequestLimitPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCRequestLimitPolicyResponse> {
         self.client.execute(action: "DeleteCCRequestLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除CC频率限制策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCCRequestLimitPolicy(_ input: DeleteCCRequestLimitPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCRequestLimitPolicyResponse {
         try await self.client.execute(action: "DeleteCCRequestLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除CC频率限制策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCCRequestLimitPolicy(instanceId: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCRequestLimitPolicyResponse> {
         self.deleteCCRequestLimitPolicy(DeleteCCRequestLimitPolicyRequest(instanceId: instanceId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC频率限制策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCCRequestLimitPolicy(instanceId: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCRequestLimitPolicyResponse {
         try await self.deleteCCRequestLimitPolicy(DeleteCCRequestLimitPolicyRequest(instanceId: instanceId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }

@@ -57,7 +57,7 @@ extension Cr {
     /// 提交黑名单申请
     ///
     /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
-    @inlinable
+    @inlinable @discardableResult
     public func applyBlackList(_ input: ApplyBlackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListResponse> {
         self.client.execute(action: "ApplyBlackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cr {
     /// 提交黑名单申请
     ///
     /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
-    @inlinable
+    @inlinable @discardableResult
     public func applyBlackList(_ input: ApplyBlackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListResponse {
         try await self.client.execute(action: "ApplyBlackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cr {
     /// 提交黑名单申请
     ///
     /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
-    @inlinable
+    @inlinable @discardableResult
     public func applyBlackList(module: String, operation: String, blackList: [SingleBlackApply], instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyBlackListResponse> {
         self.applyBlackList(ApplyBlackListRequest(module: module, operation: operation, blackList: blackList, instId: instId), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cr {
     /// 提交黑名单申请
     ///
     /// 提交黑名单后，黑名单中有效期内的号码将停止拨打，适用于到期/逾期提醒、回访场景。
-    @inlinable
+    @inlinable @discardableResult
     public func applyBlackList(module: String, operation: String, blackList: [SingleBlackApply], instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyBlackListResponse {
         try await self.applyBlackList(ApplyBlackListRequest(module: module, operation: operation, blackList: blackList, instId: instId), region: region, logger: logger, on: eventLoop)
     }

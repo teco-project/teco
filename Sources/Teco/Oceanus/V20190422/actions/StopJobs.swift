@@ -47,7 +47,7 @@ extension Oceanus {
     /// 停止作业
     ///
     /// 批量停止作业，批量操作数量上限为20
-    @inlinable
+    @inlinable @discardableResult
     public func stopJobs(_ input: StopJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopJobsResponse> {
         self.client.execute(action: "StopJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Oceanus {
     /// 停止作业
     ///
     /// 批量停止作业，批量操作数量上限为20
-    @inlinable
+    @inlinable @discardableResult
     public func stopJobs(_ input: StopJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopJobsResponse {
         try await self.client.execute(action: "StopJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Oceanus {
     /// 停止作业
     ///
     /// 批量停止作业，批量操作数量上限为20
-    @inlinable
+    @inlinable @discardableResult
     public func stopJobs(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopJobsResponse> {
         self.stopJobs(StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Oceanus {
     /// 停止作业
     ///
     /// 批量停止作业，批量操作数量上限为20
-    @inlinable
+    @inlinable @discardableResult
     public func stopJobs(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopJobsResponse {
         try await self.stopJobs(StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }

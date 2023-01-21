@@ -42,7 +42,7 @@ extension Vpc {
     /// 删除协议端口模板
     ///
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateResponse> {
         self.client.execute(action: "DeleteServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Vpc {
     /// 删除协议端口模板
     ///
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteServiceTemplate(_ input: DeleteServiceTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
         try await self.client.execute(action: "DeleteServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Vpc {
     /// 删除协议端口模板
     ///
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteServiceTemplate(serviceTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateResponse> {
         self.deleteServiceTemplate(DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 删除协议端口模板
     ///
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteServiceTemplate(serviceTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
         try await self.deleteServiceTemplate(DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
     }

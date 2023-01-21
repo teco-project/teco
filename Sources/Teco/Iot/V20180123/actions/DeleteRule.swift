@@ -40,25 +40,25 @@ extension Iot {
     }
 
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.deleteRule(DeleteRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.deleteRule(DeleteRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }

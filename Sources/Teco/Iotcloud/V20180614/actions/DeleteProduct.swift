@@ -47,7 +47,7 @@ extension Iotcloud {
     /// 删除产品
     ///
     /// 本接口（DeleteProduct）用于删除一个物联网通信产品
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProduct(_ input: DeleteProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
         self.client.execute(action: "DeleteProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotcloud {
     /// 删除产品
     ///
     /// 本接口（DeleteProduct）用于删除一个物联网通信产品
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProduct(_ input: DeleteProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
         try await self.client.execute(action: "DeleteProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotcloud {
     /// 删除产品
     ///
     /// 本接口（DeleteProduct）用于删除一个物联网通信产品
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProduct(productId: String, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
         self.deleteProduct(DeleteProductRequest(productId: productId, skey: skey), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotcloud {
     /// 删除产品
     ///
     /// 本接口（DeleteProduct）用于删除一个物联网通信产品
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProduct(productId: String, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
         try await self.deleteProduct(DeleteProductRequest(productId: productId, skey: skey), region: region, logger: logger, on: eventLoop)
     }

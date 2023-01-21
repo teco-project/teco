@@ -62,7 +62,7 @@ extension Iotcloud {
     /// 批量绑定子设备
     ///
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
-    @inlinable
+    @inlinable @discardableResult
     public func bindDevices(_ input: BindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
         self.client.execute(action: "BindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Iotcloud {
     /// 批量绑定子设备
     ///
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
-    @inlinable
+    @inlinable @discardableResult
     public func bindDevices(_ input: BindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
         try await self.client.execute(action: "BindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Iotcloud {
     /// 批量绑定子设备
     ///
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
-    @inlinable
+    @inlinable @discardableResult
     public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDevicesResponse> {
         self.bindDevices(BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Iotcloud {
     /// 批量绑定子设备
     ///
     /// 本接口（BindDevices）用于网关设备批量绑定子设备
-    @inlinable
+    @inlinable @discardableResult
     public func bindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDevicesResponse {
         try await self.bindDevices(BindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames, skey: skey), region: region, logger: logger, on: eventLoop)
     }

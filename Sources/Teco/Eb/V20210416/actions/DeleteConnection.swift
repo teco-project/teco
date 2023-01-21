@@ -45,25 +45,25 @@ extension Eb {
     }
 
     /// 删除事件连接器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConnection(_ input: DeleteConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConnectionResponse> {
         self.client.execute(action: "DeleteConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除事件连接器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConnection(_ input: DeleteConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectionResponse {
         try await self.client.execute(action: "DeleteConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除事件连接器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConnection(connectionId: String, eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConnectionResponse> {
         self.deleteConnection(DeleteConnectionRequest(connectionId: connectionId, eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除事件连接器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConnection(connectionId: String, eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConnectionResponse {
         try await self.deleteConnection(DeleteConnectionRequest(connectionId: connectionId, eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }

@@ -97,7 +97,7 @@ extension Cls {
     /// 修改告警策略
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarm(_ input: ModifyAlarmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmResponse> {
         self.client.execute(action: "ModifyAlarm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -105,7 +105,7 @@ extension Cls {
     /// 修改告警策略
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarm(_ input: ModifyAlarmRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
         try await self.client.execute(action: "ModifyAlarm", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -113,7 +113,7 @@ extension Cls {
     /// 修改告警策略
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmResponse> {
         self.modifyAlarm(ModifyAlarmRequest(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }
@@ -121,7 +121,7 @@ extension Cls {
     /// 修改告警策略
     ///
     /// 本接口用于修改告警策略。需要至少修改一项有效内容。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarm(alarmId: String, name: String? = nil, monitorTime: MonitorTime? = nil, condition: String? = nil, triggerCount: Int64? = nil, alarmPeriod: Int64? = nil, alarmNoticeIds: [String]? = nil, alarmTargets: [AlarmTarget]? = nil, status: Bool? = nil, messageTemplate: String? = nil, callBack: CallBackInfo? = nil, analysis: [AnalysisDimensional]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmResponse {
         try await self.modifyAlarm(ModifyAlarmRequest(alarmId: alarmId, name: name, monitorTime: monitorTime, condition: condition, triggerCount: triggerCount, alarmPeriod: alarmPeriod, alarmNoticeIds: alarmNoticeIds, alarmTargets: alarmTargets, status: status, messageTemplate: messageTemplate, callBack: callBack, analysis: analysis), region: region, logger: logger, on: eventLoop)
     }

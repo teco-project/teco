@@ -40,25 +40,25 @@ extension Tci {
     }
 
     /// 建立词汇库
-    @inlinable
+    @inlinable @discardableResult
     public func createVocabLib(_ input: CreateVocabLibRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabLibResponse> {
         self.client.execute(action: "CreateVocabLib", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 建立词汇库
-    @inlinable
+    @inlinable @discardableResult
     public func createVocabLib(_ input: CreateVocabLibRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabLibResponse {
         try await self.client.execute(action: "CreateVocabLib", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 建立词汇库
-    @inlinable
+    @inlinable @discardableResult
     public func createVocabLib(vocabLibName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabLibResponse> {
         self.createVocabLib(CreateVocabLibRequest(vocabLibName: vocabLibName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 建立词汇库
-    @inlinable
+    @inlinable @discardableResult
     public func createVocabLib(vocabLibName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabLibResponse {
         try await self.createVocabLib(CreateVocabLibRequest(vocabLibName: vocabLibName), region: region, logger: logger, on: eventLoop)
     }

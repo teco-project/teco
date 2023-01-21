@@ -43,7 +43,7 @@ extension Cdn {
     /// 删除加速域名
     ///
     /// DeleteCdnDomain 用于删除指定加速域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCdnDomain(_ input: DeleteCdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCdnDomainResponse> {
         self.client.execute(action: "DeleteCdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -51,7 +51,7 @@ extension Cdn {
     /// 删除加速域名
     ///
     /// DeleteCdnDomain 用于删除指定加速域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCdnDomain(_ input: DeleteCdnDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCdnDomainResponse {
         try await self.client.execute(action: "DeleteCdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -59,7 +59,7 @@ extension Cdn {
     /// 删除加速域名
     ///
     /// DeleteCdnDomain 用于删除指定加速域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCdnDomainResponse> {
         self.deleteCdnDomain(DeleteCdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Cdn {
     /// 删除加速域名
     ///
     /// DeleteCdnDomain 用于删除指定加速域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCdnDomainResponse {
         try await self.deleteCdnDomain(DeleteCdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
     }

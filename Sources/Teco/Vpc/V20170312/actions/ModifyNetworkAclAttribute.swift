@@ -47,7 +47,7 @@ extension Vpc {
     /// 修改网络ACL属性
     ///
     /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclAttribute(_ input: ModifyNetworkAclAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclAttributeResponse> {
         self.client.execute(action: "ModifyNetworkAclAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 修改网络ACL属性
     ///
     /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclAttribute(_ input: ModifyNetworkAclAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclAttributeResponse {
         try await self.client.execute(action: "ModifyNetworkAclAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 修改网络ACL属性
     ///
     /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclAttribute(networkAclId: String, networkAclName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclAttributeResponse> {
         self.modifyNetworkAclAttribute(ModifyNetworkAclAttributeRequest(networkAclId: networkAclId, networkAclName: networkAclName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 修改网络ACL属性
     ///
     /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclAttribute(networkAclId: String, networkAclName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclAttributeResponse {
         try await self.modifyNetworkAclAttribute(ModifyNetworkAclAttributeRequest(networkAclId: networkAclId, networkAclName: networkAclName), region: region, logger: logger, on: eventLoop)
     }

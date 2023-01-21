@@ -77,7 +77,7 @@ extension Dts {
     /// 配置迁移服务
     ///
     /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMigrationJob(_ input: ModifyMigrationJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationJobResponse> {
         self.client.execute(action: "ModifyMigrationJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Dts {
     /// 配置迁移服务
     ///
     /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMigrationJob(_ input: ModifyMigrationJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationJobResponse {
         try await self.client.execute(action: "ModifyMigrationJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -93,7 +93,7 @@ extension Dts {
     /// 配置迁移服务
     ///
     /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMigrationJob(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationJobResponse> {
         self.modifyMigrationJob(ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags), region: region, logger: logger, on: eventLoop)
     }
@@ -101,7 +101,7 @@ extension Dts {
     /// 配置迁移服务
     ///
     /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMigrationJob(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationJobResponse {
         try await self.modifyMigrationJob(ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags), region: region, logger: logger, on: eventLoop)
     }

@@ -61,7 +61,7 @@ extension Yunjing {
     /// 开通专业版
     ///
     /// 本接口 (OpenProVersion) 用于开通专业版。
-    @inlinable
+    @inlinable @discardableResult
     public func openProVersion(_ input: OpenProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionResponse> {
         self.client.execute(action: "OpenProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -69,7 +69,7 @@ extension Yunjing {
     /// 开通专业版
     ///
     /// 本接口 (OpenProVersion) 用于开通专业版。
-    @inlinable
+    @inlinable @discardableResult
     public func openProVersion(_ input: OpenProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
         try await self.client.execute(action: "OpenProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -77,7 +77,7 @@ extension Yunjing {
     /// 开通专业版
     ///
     /// 本接口 (OpenProVersion) 用于开通专业版。
-    @inlinable
+    @inlinable @discardableResult
     public func openProVersion(machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionResponse> {
         self.openProVersion(OpenProVersionRequest(machineType: machineType, machineRegion: machineRegion, quuids: quuids, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Yunjing {
     /// 开通专业版
     ///
     /// 本接口 (OpenProVersion) 用于开通专业版。
-    @inlinable
+    @inlinable @discardableResult
     public func openProVersion(machineType: String, machineRegion: String, quuids: [String], activityId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionResponse {
         try await self.openProVersion(OpenProVersionRequest(machineType: machineType, machineRegion: machineRegion, quuids: quuids, activityId: activityId), region: region, logger: logger, on: eventLoop)
     }

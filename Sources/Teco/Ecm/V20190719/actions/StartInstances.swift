@@ -42,7 +42,7 @@ extension Ecm {
     /// 开启实例
     ///
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
-    @inlinable
+    @inlinable @discardableResult
     public func startInstances(_ input: StartInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartInstancesResponse> {
         self.client.execute(action: "StartInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ecm {
     /// 开启实例
     ///
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
-    @inlinable
+    @inlinable @discardableResult
     public func startInstances(_ input: StartInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartInstancesResponse {
         try await self.client.execute(action: "StartInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ecm {
     /// 开启实例
     ///
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
-    @inlinable
+    @inlinable @discardableResult
     public func startInstances(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartInstancesResponse> {
         self.startInstances(StartInstancesRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ecm {
     /// 开启实例
     ///
     /// 只有状态为STOPPED的实例才可以进行此操作；接口调用成功时，实例会进入STARTING状态；启动实例成功时，实例会进入RUNNING状态。
-    @inlinable
+    @inlinable @discardableResult
     public func startInstances(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartInstancesResponse {
         try await self.startInstances(StartInstancesRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }

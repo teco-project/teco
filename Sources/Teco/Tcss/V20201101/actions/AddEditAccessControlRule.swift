@@ -47,7 +47,7 @@ extension Tcss {
     /// 添加编辑运行访问控制策略
     ///
     /// 添加编辑运行时访问控制策略
-    @inlinable
+    @inlinable @discardableResult
     public func addEditAccessControlRule(_ input: AddEditAccessControlRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAccessControlRuleResponse> {
         self.client.execute(action: "AddEditAccessControlRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcss {
     /// 添加编辑运行访问控制策略
     ///
     /// 添加编辑运行时访问控制策略
-    @inlinable
+    @inlinable @discardableResult
     public func addEditAccessControlRule(_ input: AddEditAccessControlRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAccessControlRuleResponse {
         try await self.client.execute(action: "AddEditAccessControlRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcss {
     /// 添加编辑运行访问控制策略
     ///
     /// 添加编辑运行时访问控制策略
-    @inlinable
+    @inlinable @discardableResult
     public func addEditAccessControlRule(ruleInfo: AccessControlRuleInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAccessControlRuleResponse> {
         self.addEditAccessControlRule(AddEditAccessControlRuleRequest(ruleInfo: ruleInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcss {
     /// 添加编辑运行访问控制策略
     ///
     /// 添加编辑运行时访问控制策略
-    @inlinable
+    @inlinable @discardableResult
     public func addEditAccessControlRule(ruleInfo: AccessControlRuleInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAccessControlRuleResponse {
         try await self.addEditAccessControlRule(AddEditAccessControlRuleRequest(ruleInfo: ruleInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }

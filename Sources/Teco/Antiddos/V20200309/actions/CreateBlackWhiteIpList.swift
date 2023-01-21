@@ -50,25 +50,25 @@ extension Antiddos {
     }
 
     /// 添加DDoS防护的IP黑白名单
-    @inlinable
+    @inlinable @discardableResult
     public func createBlackWhiteIpList(_ input: CreateBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlackWhiteIpListResponse> {
         self.client.execute(action: "CreateBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的IP黑白名单
-    @inlinable
+    @inlinable @discardableResult
     public func createBlackWhiteIpList(_ input: CreateBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlackWhiteIpListResponse {
         try await self.client.execute(action: "CreateBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加DDoS防护的IP黑白名单
-    @inlinable
+    @inlinable @discardableResult
     public func createBlackWhiteIpList(instanceId: String, ipList: [String], type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlackWhiteIpListResponse> {
         self.createBlackWhiteIpList(CreateBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的IP黑白名单
-    @inlinable
+    @inlinable @discardableResult
     public func createBlackWhiteIpList(instanceId: String, ipList: [String], type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlackWhiteIpListResponse {
         try await self.createBlackWhiteIpList(CreateBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type), region: region, logger: logger, on: eventLoop)
     }

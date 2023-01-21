@@ -42,7 +42,7 @@ extension Es {
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
         self.client.execute(action: "DeleteLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Es {
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogstashInstance(_ input: DeleteLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
         try await self.client.execute(action: "DeleteLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Es {
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogstashInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
         self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Es {
     /// 删除Logstash实例
     ///
     /// 用于删除Logstash实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogstashInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
         try await self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

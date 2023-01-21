@@ -50,25 +50,25 @@ extension Tdcpg {
     }
 
     /// 重置数据库账号密码
-    @inlinable
+    @inlinable @discardableResult
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
         self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置数据库账号密码
-    @inlinable
+    @inlinable @discardableResult
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置数据库账号密码
-    @inlinable
+    @inlinable @discardableResult
     public func resetAccountPassword(clusterId: String, accountName: String, accountPassword: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
         self.resetAccountPassword(ResetAccountPasswordRequest(clusterId: clusterId, accountName: accountName, accountPassword: accountPassword), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置数据库账号密码
-    @inlinable
+    @inlinable @discardableResult
     public func resetAccountPassword(clusterId: String, accountName: String, accountPassword: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.resetAccountPassword(ResetAccountPasswordRequest(clusterId: clusterId, accountName: accountName, accountPassword: accountPassword), region: region, logger: logger, on: eventLoop)
     }

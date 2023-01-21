@@ -44,7 +44,7 @@ extension Cvm {
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
         self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -54,7 +54,7 @@ extension Cvm {
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
         try await self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -64,7 +64,7 @@ extension Cvm {
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
         self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
@@ -74,7 +74,7 @@ extension Cvm {
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
         try await self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }

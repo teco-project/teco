@@ -67,7 +67,7 @@ extension Cls {
     /// 修改投递任务
     ///
     /// 本接口用于修改投递任务
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConsumer(_ input: ModifyConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConsumerResponse> {
         self.client.execute(action: "ModifyConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Cls {
     /// 修改投递任务
     ///
     /// 本接口用于修改投递任务
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConsumer(_ input: ModifyConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConsumerResponse {
         try await self.client.execute(action: "ModifyConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Cls {
     /// 修改投递任务
     ///
     /// 本接口用于修改投递任务
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConsumer(topicId: String, effective: Bool? = nil, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConsumerResponse> {
         self.modifyConsumer(ModifyConsumerRequest(topicId: topicId, effective: effective, needContent: needContent, content: content, ckafka: ckafka, compression: compression), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Cls {
     /// 修改投递任务
     ///
     /// 本接口用于修改投递任务
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConsumer(topicId: String, effective: Bool? = nil, needContent: Bool? = nil, content: ConsumerContent? = nil, ckafka: Ckafka? = nil, compression: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConsumerResponse {
         try await self.modifyConsumer(ModifyConsumerRequest(topicId: topicId, effective: effective, needContent: needContent, content: content, ckafka: ckafka, compression: compression), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Mariadb {
     /// 修改同步任务的属性
     ///
     /// 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
-    @inlinable
+    @inlinable @discardableResult
     public func modifySyncTaskAttribute(_ input: ModifySyncTaskAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySyncTaskAttributeResponse> {
         self.client.execute(action: "ModifySyncTaskAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Mariadb {
     /// 修改同步任务的属性
     ///
     /// 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
-    @inlinable
+    @inlinable @discardableResult
     public func modifySyncTaskAttribute(_ input: ModifySyncTaskAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySyncTaskAttributeResponse {
         try await self.client.execute(action: "ModifySyncTaskAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Mariadb {
     /// 修改同步任务的属性
     ///
     /// 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
-    @inlinable
+    @inlinable @discardableResult
     public func modifySyncTaskAttribute(taskIds: [String], taskName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySyncTaskAttributeResponse> {
         self.modifySyncTaskAttribute(ModifySyncTaskAttributeRequest(taskIds: taskIds, taskName: taskName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Mariadb {
     /// 修改同步任务的属性
     ///
     /// 本接口 (ModifySyncTaskAttribute) 用于修改同步任务的属性（目前只支持修改任务名称）
-    @inlinable
+    @inlinable @discardableResult
     public func modifySyncTaskAttribute(taskIds: [String], taskName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySyncTaskAttributeResponse {
         try await self.modifySyncTaskAttribute(ModifySyncTaskAttributeRequest(taskIds: taskIds, taskName: taskName), region: region, logger: logger, on: eventLoop)
     }

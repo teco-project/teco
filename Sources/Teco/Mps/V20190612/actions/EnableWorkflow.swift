@@ -42,7 +42,7 @@ extension Mps {
     /// 启用工作流
     ///
     /// 启用工作流。
-    @inlinable
+    @inlinable @discardableResult
     public func enableWorkflow(_ input: EnableWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWorkflowResponse> {
         self.client.execute(action: "EnableWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Mps {
     /// 启用工作流
     ///
     /// 启用工作流。
-    @inlinable
+    @inlinable @discardableResult
     public func enableWorkflow(_ input: EnableWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWorkflowResponse {
         try await self.client.execute(action: "EnableWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Mps {
     /// 启用工作流
     ///
     /// 启用工作流。
-    @inlinable
+    @inlinable @discardableResult
     public func enableWorkflow(workflowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableWorkflowResponse> {
         self.enableWorkflow(EnableWorkflowRequest(workflowId: workflowId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Mps {
     /// 启用工作流
     ///
     /// 启用工作流。
-    @inlinable
+    @inlinable @discardableResult
     public func enableWorkflow(workflowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWorkflowResponse {
         try await self.enableWorkflow(EnableWorkflowRequest(workflowId: workflowId), region: region, logger: logger, on: eventLoop)
     }

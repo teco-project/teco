@@ -42,7 +42,7 @@ extension Sqlserver {
     /// 恢复后付费实例
     ///
     /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
-    @inlinable
+    @inlinable @discardableResult
     public func renewPostpaidDBInstance(_ input: RenewPostpaidDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewPostpaidDBInstanceResponse> {
         self.client.execute(action: "RenewPostpaidDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Sqlserver {
     /// 恢复后付费实例
     ///
     /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
-    @inlinable
+    @inlinable @discardableResult
     public func renewPostpaidDBInstance(_ input: RenewPostpaidDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewPostpaidDBInstanceResponse {
         try await self.client.execute(action: "RenewPostpaidDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Sqlserver {
     /// 恢复后付费实例
     ///
     /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
-    @inlinable
+    @inlinable @discardableResult
     public func renewPostpaidDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewPostpaidDBInstanceResponse> {
         self.renewPostpaidDBInstance(RenewPostpaidDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Sqlserver {
     /// 恢复后付费实例
     ///
     /// 本接口（RenewPostpaidDBInstance）用于将通过接口TerminateDBInstance手动隔离的按量计费实例从回收站中恢复。
-    @inlinable
+    @inlinable @discardableResult
     public func renewPostpaidDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewPostpaidDBInstanceResponse {
         try await self.renewPostpaidDBInstance(RenewPostpaidDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

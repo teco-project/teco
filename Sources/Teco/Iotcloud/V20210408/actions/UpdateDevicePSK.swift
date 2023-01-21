@@ -52,7 +52,7 @@ extension Iotcloud {
     /// 更新设备PSK
     ///
     /// 本接口（UpdateDevicePSK）用于更新设备的PSK
-    @inlinable
+    @inlinable @discardableResult
     public func updateDevicePSK(_ input: UpdateDevicePSKRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePSKResponse> {
         self.client.execute(action: "UpdateDevicePSK", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotcloud {
     /// 更新设备PSK
     ///
     /// 本接口（UpdateDevicePSK）用于更新设备的PSK
-    @inlinable
+    @inlinable @discardableResult
     public func updateDevicePSK(_ input: UpdateDevicePSKRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
         try await self.client.execute(action: "UpdateDevicePSK", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotcloud {
     /// 更新设备PSK
     ///
     /// 本接口（UpdateDevicePSK）用于更新设备的PSK
-    @inlinable
+    @inlinable @discardableResult
     public func updateDevicePSK(productId: String, deviceName: String, psk: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicePSKResponse> {
         self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotcloud {
     /// 更新设备PSK
     ///
     /// 本接口（UpdateDevicePSK）用于更新设备的PSK
-    @inlinable
+    @inlinable @discardableResult
     public func updateDevicePSK(productId: String, deviceName: String, psk: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicePSKResponse {
         try await self.updateDevicePSK(UpdateDevicePSKRequest(productId: productId, deviceName: deviceName, psk: psk), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Postgres {
     /// 修改实例名字
     ///
     /// 本接口（ModifyDBInstanceName）用于修改postgresql实例名字。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNameResponse> {
         self.client.execute(action: "ModifyDBInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Postgres {
     /// 修改实例名字
     ///
     /// 本接口（ModifyDBInstanceName）用于修改postgresql实例名字。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceName(_ input: ModifyDBInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
         try await self.client.execute(action: "ModifyDBInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Postgres {
     /// 修改实例名字
     ///
     /// 本接口（ModifyDBInstanceName）用于修改postgresql实例名字。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceName(dbInstanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNameResponse> {
         self.modifyDBInstanceName(ModifyDBInstanceNameRequest(dbInstanceId: dbInstanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Postgres {
     /// 修改实例名字
     ///
     /// 本接口（ModifyDBInstanceName）用于修改postgresql实例名字。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceName(dbInstanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNameResponse {
         try await self.modifyDBInstanceName(ModifyDBInstanceNameRequest(dbInstanceId: dbInstanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }

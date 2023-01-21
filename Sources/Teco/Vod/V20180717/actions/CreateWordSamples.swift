@@ -60,7 +60,7 @@ extension Vod {
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
-    @inlinable
+    @inlinable @discardableResult
     public func createWordSamples(_ input: CreateWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
         self.client.execute(action: "CreateWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Vod {
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
-    @inlinable
+    @inlinable @discardableResult
     public func createWordSamples(_ input: CreateWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
         try await self.client.execute(action: "CreateWordSamples", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -76,7 +76,7 @@ extension Vod {
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
-    @inlinable
+    @inlinable @discardableResult
     public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordSamplesResponse> {
         self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -84,7 +84,7 @@ extension Vod {
     /// 创建关键词样本
     ///
     /// 该接口用于批量创建关键词样本，样本用于通过OCR、ASR技术，进行不适宜内容识别、内容识别等视频处理。
-    @inlinable
+    @inlinable @discardableResult
     public func createWordSamples(usages: [String], words: [AiSampleWordInfo], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordSamplesResponse {
         try await self.createWordSamples(CreateWordSamplesRequest(usages: usages, words: words, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

@@ -62,25 +62,25 @@ extension Tcss {
     }
 
     /// 运行时更新木马文件事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusFileStatusResponse> {
         self.client.execute(action: "ModifyVirusFileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新木马文件事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusFileStatus(_ input: ModifyVirusFileStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
         try await self.client.execute(action: "ModifyVirusFileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时更新木马文件事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusFileStatusResponse> {
         self.modifyVirusFileStatus(ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新木马文件事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusFileStatus(eventIdSet: [String], status: String, remark: String? = nil, autoIsolate: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusFileStatusResponse {
         try await self.modifyVirusFileStatus(ModifyVirusFileStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, autoIsolate: autoIsolate), region: region, logger: logger, on: eventLoop)
     }

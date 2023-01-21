@@ -50,25 +50,25 @@ extension Tke {
     }
 
     /// 修改节点池的机型配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNodePoolInstanceTypes(_ input: ModifyNodePoolInstanceTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodePoolInstanceTypesResponse> {
         self.client.execute(action: "ModifyNodePoolInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改节点池的机型配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNodePoolInstanceTypes(_ input: ModifyNodePoolInstanceTypesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolInstanceTypesResponse {
         try await self.client.execute(action: "ModifyNodePoolInstanceTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改节点池的机型配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNodePoolInstanceTypes(clusterId: String, nodePoolId: String, instanceTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodePoolInstanceTypesResponse> {
         self.modifyNodePoolInstanceTypes(ModifyNodePoolInstanceTypesRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceTypes: instanceTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改节点池的机型配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNodePoolInstanceTypes(clusterId: String, nodePoolId: String, instanceTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodePoolInstanceTypesResponse {
         try await self.modifyNodePoolInstanceTypes(ModifyNodePoolInstanceTypesRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceTypes: instanceTypes), region: region, logger: logger, on: eventLoop)
     }

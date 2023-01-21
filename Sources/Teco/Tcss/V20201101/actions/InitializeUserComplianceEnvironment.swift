@@ -34,7 +34,7 @@ extension Tcss {
     /// 安全合规初始化用户的合规基线检测环境
     ///
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
-    @inlinable
+    @inlinable @discardableResult
     public func initializeUserComplianceEnvironment(_ input: InitializeUserComplianceEnvironmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeUserComplianceEnvironmentResponse> {
         self.client.execute(action: "InitializeUserComplianceEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -42,7 +42,7 @@ extension Tcss {
     /// 安全合规初始化用户的合规基线检测环境
     ///
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
-    @inlinable
+    @inlinable @discardableResult
     public func initializeUserComplianceEnvironment(_ input: InitializeUserComplianceEnvironmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeUserComplianceEnvironmentResponse {
         try await self.client.execute(action: "InitializeUserComplianceEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -50,7 +50,7 @@ extension Tcss {
     /// 安全合规初始化用户的合规基线检测环境
     ///
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
-    @inlinable
+    @inlinable @discardableResult
     public func initializeUserComplianceEnvironment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitializeUserComplianceEnvironmentResponse> {
         self.initializeUserComplianceEnvironment(InitializeUserComplianceEnvironmentRequest(), region: region, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Tcss {
     /// 安全合规初始化用户的合规基线检测环境
     ///
     /// 为客户初始化合规基线的使用环境，创建必要的数据和选项。
-    @inlinable
+    @inlinable @discardableResult
     public func initializeUserComplianceEnvironment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitializeUserComplianceEnvironmentResponse {
         try await self.initializeUserComplianceEnvironment(InitializeUserComplianceEnvironmentRequest(), region: region, logger: logger, on: eventLoop)
     }

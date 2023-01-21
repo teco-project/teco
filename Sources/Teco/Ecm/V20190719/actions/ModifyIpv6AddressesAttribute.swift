@@ -52,7 +52,7 @@ extension Ecm {
     /// 修改弹性网卡IPv6地址属性
     ///
     /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡IPv6地址属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIpv6AddressesAttribute(_ input: ModifyIpv6AddressesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIpv6AddressesAttributeResponse> {
         self.client.execute(action: "ModifyIpv6AddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Ecm {
     /// 修改弹性网卡IPv6地址属性
     ///
     /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡IPv6地址属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIpv6AddressesAttribute(_ input: ModifyIpv6AddressesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIpv6AddressesAttributeResponse {
         try await self.client.execute(action: "ModifyIpv6AddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Ecm {
     /// 修改弹性网卡IPv6地址属性
     ///
     /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡IPv6地址属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIpv6AddressesAttribute(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIpv6AddressesAttributeResponse> {
         self.modifyIpv6AddressesAttribute(ModifyIpv6AddressesAttributeRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Ecm {
     /// 修改弹性网卡IPv6地址属性
     ///
     /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡IPv6地址属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIpv6AddressesAttribute(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIpv6AddressesAttributeResponse {
         try await self.modifyIpv6AddressesAttribute(ModifyIpv6AddressesAttributeRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
     }

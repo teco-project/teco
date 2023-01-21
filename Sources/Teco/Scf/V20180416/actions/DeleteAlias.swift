@@ -52,7 +52,7 @@ extension Scf {
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlias(_ input: DeleteAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
         self.client.execute(action: "DeleteAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Scf {
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlias(_ input: DeleteAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
         try await self.client.execute(action: "DeleteAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Scf {
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlias(functionName: String, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
         self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Scf {
     /// 删除别名
     ///
     /// 删除一个函数版本的别名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlias(functionName: String, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
         try await self.deleteAlias(DeleteAliasRequest(functionName: functionName, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

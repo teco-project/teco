@@ -68,7 +68,7 @@ extension Clb {
     ///
     /// RegisterTargets 接口用来将一台或多台后端服务绑定到负载均衡的监听器（或7层转发规则），在此之前您需要先行创建相关的4层监听器或7层转发规则。对于四层监听器（TCP、UDP），只需指定监听器ID即可，对于七层监听器（HTTP、HTTPS），还需通过LocationId或者Domain+Url指定转发规则。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func registerTargets(_ input: RegisterTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterTargetsResponse> {
         self.client.execute(action: "RegisterTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -77,7 +77,7 @@ extension Clb {
     ///
     /// RegisterTargets 接口用来将一台或多台后端服务绑定到负载均衡的监听器（或7层转发规则），在此之前您需要先行创建相关的4层监听器或7层转发规则。对于四层监听器（TCP、UDP），只需指定监听器ID即可，对于七层监听器（HTTP、HTTPS），还需通过LocationId或者Domain+Url指定转发规则。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func registerTargets(_ input: RegisterTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterTargetsResponse {
         try await self.client.execute(action: "RegisterTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -86,7 +86,7 @@ extension Clb {
     ///
     /// RegisterTargets 接口用来将一台或多台后端服务绑定到负载均衡的监听器（或7层转发规则），在此之前您需要先行创建相关的4层监听器或7层转发规则。对于四层监听器（TCP、UDP），只需指定监听器ID即可，对于七层监听器（HTTP、HTTPS），还需通过LocationId或者Domain+Url指定转发规则。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func registerTargets(loadBalancerId: String, listenerId: String, targets: [Target], locationId: String? = nil, domain: String? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterTargetsResponse> {
         self.registerTargets(RegisterTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, locationId: locationId, domain: domain, url: url), region: region, logger: logger, on: eventLoop)
     }
@@ -95,7 +95,7 @@ extension Clb {
     ///
     /// RegisterTargets 接口用来将一台或多台后端服务绑定到负载均衡的监听器（或7层转发规则），在此之前您需要先行创建相关的4层监听器或7层转发规则。对于四层监听器（TCP、UDP），只需指定监听器ID即可，对于七层监听器（HTTP、HTTPS），还需通过LocationId或者Domain+Url指定转发规则。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func registerTargets(loadBalancerId: String, listenerId: String, targets: [Target], locationId: String? = nil, domain: String? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterTargetsResponse {
         try await self.registerTargets(RegisterTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, locationId: locationId, domain: domain, url: url), region: region, logger: logger, on: eventLoop)
     }

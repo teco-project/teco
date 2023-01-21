@@ -50,25 +50,25 @@ extension Iecp {
     }
 
     /// 修改边缘单元NodeUnit模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodeUnitTemplateResponse> {
         self.client.execute(action: "ModifyNodeUnitTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元NodeUnit模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNodeUnitTemplate(_ input: ModifyNodeUnitTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
         try await self.client.execute(action: "ModifyNodeUnitTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改边缘单元NodeUnit模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNodeUnitTemplateResponse> {
         self.modifyNodeUnitTemplate(ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元NodeUnit模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNodeUnitTemplate(edgeUnitId: UInt64, nodeUnitTemplateID: UInt64, nodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNodeUnitTemplateResponse {
         try await self.modifyNodeUnitTemplate(ModifyNodeUnitTemplateRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateID: nodeUnitTemplateID, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }

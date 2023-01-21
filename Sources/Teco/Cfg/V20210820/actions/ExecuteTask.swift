@@ -40,25 +40,25 @@ extension Cfg {
     }
 
     /// 执行任务
-    @inlinable
+    @inlinable @discardableResult
     public func executeTask(_ input: ExecuteTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteTaskResponse> {
         self.client.execute(action: "ExecuteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行任务
-    @inlinable
+    @inlinable @discardableResult
     public func executeTask(_ input: ExecuteTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
         try await self.client.execute(action: "ExecuteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 执行任务
-    @inlinable
+    @inlinable @discardableResult
     public func executeTask(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteTaskResponse> {
         self.executeTask(ExecuteTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 执行任务
-    @inlinable
+    @inlinable @discardableResult
     public func executeTask(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteTaskResponse {
         try await self.executeTask(ExecuteTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

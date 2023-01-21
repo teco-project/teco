@@ -81,25 +81,25 @@ extension Cam {
     }
 
     /// 修改用户OIDC配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateUserOIDCConfig(_ input: UpdateUserOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserOIDCConfigResponse> {
         self.client.execute(action: "UpdateUserOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改用户OIDC配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateUserOIDCConfig(_ input: UpdateUserOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserOIDCConfigResponse {
         try await self.client.execute(action: "UpdateUserOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改用户OIDC配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateUserOIDCConfig(identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserOIDCConfigResponse> {
         self.updateUserOIDCConfig(UpdateUserOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, authorizationEndpoint: authorizationEndpoint, responseType: responseType, responseMode: responseMode, mappingFiled: mappingFiled, scope: scope, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户OIDC配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateUserOIDCConfig(identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserOIDCConfigResponse {
         try await self.updateUserOIDCConfig(UpdateUserOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, authorizationEndpoint: authorizationEndpoint, responseType: responseType, responseMode: responseMode, mappingFiled: mappingFiled, scope: scope, description: description), region: region, logger: logger, on: eventLoop)
     }

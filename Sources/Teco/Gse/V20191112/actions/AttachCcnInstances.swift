@@ -53,7 +53,7 @@ extension Gse {
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（AttachCcnInstances）用于关联云联网实例。
-    @inlinable
+    @inlinable @discardableResult
     public func attachCcnInstances(_ input: AttachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnInstancesResponse> {
         self.client.execute(action: "AttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -62,7 +62,7 @@ extension Gse {
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（AttachCcnInstances）用于关联云联网实例。
-    @inlinable
+    @inlinable @discardableResult
     public func attachCcnInstances(_ input: AttachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {
         try await self.client.execute(action: "AttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Gse {
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（AttachCcnInstances）用于关联云联网实例。
-    @inlinable
+    @inlinable @discardableResult
     public func attachCcnInstances(fleetId: String? = nil, accountId: String? = nil, ccnId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachCcnInstancesResponse> {
         self.attachCcnInstances(AttachCcnInstancesRequest(fleetId: fleetId, accountId: accountId, ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Gse {
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
     /// 本接口（AttachCcnInstances）用于关联云联网实例。
-    @inlinable
+    @inlinable @discardableResult
     public func attachCcnInstances(fleetId: String? = nil, accountId: String? = nil, ccnId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachCcnInstancesResponse {
         try await self.attachCcnInstances(AttachCcnInstancesRequest(fleetId: fleetId, accountId: accountId, ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }

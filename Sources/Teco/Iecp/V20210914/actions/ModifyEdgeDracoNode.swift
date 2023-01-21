@@ -55,25 +55,25 @@ extension Iecp {
     }
 
     /// 编辑draco设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeDracoNode(_ input: ModifyEdgeDracoNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeDracoNodeResponse> {
         self.client.execute(action: "ModifyEdgeDracoNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑draco设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeDracoNode(_ input: ModifyEdgeDracoNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeDracoNodeResponse {
         try await self.client.execute(action: "ModifyEdgeDracoNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑draco设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeDracoNode(edgeUnitId: UInt64, nodeId: UInt64, nodeInfo: DracoNodeInfo? = nil, isReset: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeDracoNodeResponse> {
         self.modifyEdgeDracoNode(ModifyEdgeDracoNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, nodeInfo: nodeInfo, isReset: isReset), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑draco设备信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeDracoNode(edgeUnitId: UInt64, nodeId: UInt64, nodeInfo: DracoNodeInfo? = nil, isReset: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeDracoNodeResponse {
         try await self.modifyEdgeDracoNode(ModifyEdgeDracoNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, nodeInfo: nodeInfo, isReset: isReset), region: region, logger: logger, on: eventLoop)
     }

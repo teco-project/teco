@@ -42,7 +42,7 @@ extension Ame {
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
-    @inlinable
+    @inlinable @discardableResult
     public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
         self.client.execute(action: "DestroyKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ame {
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
-    @inlinable
+    @inlinable @discardableResult
     public func destroyKTVRobot(_ input: DestroyKTVRobotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
         try await self.client.execute(action: "DestroyKTVRobot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ame {
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
-    @inlinable
+    @inlinable @discardableResult
     public func destroyKTVRobot(robotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyKTVRobotResponse> {
         self.destroyKTVRobot(DestroyKTVRobotRequest(robotId: robotId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ame {
     /// 销毁直播互动机器人
     ///
     /// 销毁机器人，机器人退出 RTC 房间。
-    @inlinable
+    @inlinable @discardableResult
     public func destroyKTVRobot(robotId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyKTVRobotResponse {
         try await self.destroyKTVRobot(DestroyKTVRobotRequest(robotId: robotId), region: region, logger: logger, on: eventLoop)
     }

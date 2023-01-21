@@ -57,7 +57,7 @@ extension Cme {
     /// 删除团队成员
     ///
     /// 将团队成员从团队中删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTeamMembers(_ input: DeleteTeamMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTeamMembersResponse> {
         self.client.execute(action: "DeleteTeamMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cme {
     /// 删除团队成员
     ///
     /// 将团队成员从团队中删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTeamMembers(_ input: DeleteTeamMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamMembersResponse {
         try await self.client.execute(action: "DeleteTeamMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cme {
     /// 删除团队成员
     ///
     /// 将团队成员从团队中删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTeamMembers(platform: String, teamId: String, memberIds: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTeamMembersResponse> {
         self.deleteTeamMembers(DeleteTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cme {
     /// 删除团队成员
     ///
     /// 将团队成员从团队中删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTeamMembers(platform: String, teamId: String, memberIds: [String], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamMembersResponse {
         try await self.deleteTeamMembers(DeleteTeamMembersRequest(platform: platform, teamId: teamId, memberIds: memberIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

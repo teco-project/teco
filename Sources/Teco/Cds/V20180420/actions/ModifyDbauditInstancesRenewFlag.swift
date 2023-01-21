@@ -47,7 +47,7 @@ extension Cds {
     /// 修改实例续费标识
     ///
     /// 本接口 (ModifyDbauditInstancesRenewFlag) 用于修改数据安全审计产品实例续费标识
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDbauditInstancesRenewFlag(_ input: ModifyDbauditInstancesRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDbauditInstancesRenewFlagResponse> {
         self.client.execute(action: "ModifyDbauditInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cds {
     /// 修改实例续费标识
     ///
     /// 本接口 (ModifyDbauditInstancesRenewFlag) 用于修改数据安全审计产品实例续费标识
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDbauditInstancesRenewFlag(_ input: ModifyDbauditInstancesRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDbauditInstancesRenewFlagResponse {
         try await self.client.execute(action: "ModifyDbauditInstancesRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cds {
     /// 修改实例续费标识
     ///
     /// 本接口 (ModifyDbauditInstancesRenewFlag) 用于修改数据安全审计产品实例续费标识
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDbauditInstancesRenewFlag(instanceId: String, autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDbauditInstancesRenewFlagResponse> {
         self.modifyDbauditInstancesRenewFlag(ModifyDbauditInstancesRenewFlagRequest(instanceId: instanceId, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cds {
     /// 修改实例续费标识
     ///
     /// 本接口 (ModifyDbauditInstancesRenewFlag) 用于修改数据安全审计产品实例续费标识
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDbauditInstancesRenewFlag(instanceId: String, autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDbauditInstancesRenewFlagResponse {
         try await self.modifyDbauditInstancesRenewFlag(ModifyDbauditInstancesRenewFlagRequest(instanceId: instanceId, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
     }

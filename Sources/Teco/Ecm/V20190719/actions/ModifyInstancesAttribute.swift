@@ -52,7 +52,7 @@ extension Ecm {
     /// 修改实例属性
     ///
     /// 修改实例的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
         self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Ecm {
     /// 修改实例属性
     ///
     /// 修改实例的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstancesAttribute(_ input: ModifyInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
         try await self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Ecm {
     /// 修改实例属性
     ///
     /// 修改实例的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstancesAttribute(instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
         self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Ecm {
     /// 修改实例属性
     ///
     /// 修改实例的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstancesAttribute(instanceIdSet: [String], instanceName: String? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
         try await self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIdSet: instanceIdSet, instanceName: instanceName, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }

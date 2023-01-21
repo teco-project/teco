@@ -40,25 +40,25 @@ extension Organization {
     }
 
     /// 批量删除企业组织节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteOrganizationNodes(_ input: DeleteOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationNodesResponse> {
         self.client.execute(action: "DeleteOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除企业组织节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteOrganizationNodes(_ input: DeleteOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationNodesResponse {
         try await self.client.execute(action: "DeleteOrganizationNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除企业组织节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteOrganizationNodes(nodeId: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationNodesResponse> {
         self.deleteOrganizationNodes(DeleteOrganizationNodesRequest(nodeId: nodeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除企业组织节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteOrganizationNodes(nodeId: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationNodesResponse {
         try await self.deleteOrganizationNodes(DeleteOrganizationNodesRequest(nodeId: nodeId), region: region, logger: logger, on: eventLoop)
     }

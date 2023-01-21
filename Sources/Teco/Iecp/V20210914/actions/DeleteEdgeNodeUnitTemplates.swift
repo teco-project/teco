@@ -45,25 +45,25 @@ extension Iecp {
     }
 
     /// 删除边缘单元NodeUnit模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeUnitTemplatesResponse> {
         self.client.execute(action: "DeleteEdgeNodeUnitTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元NodeUnit模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodeUnitTemplates(_ input: DeleteEdgeNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeUnitTemplatesResponse {
         try await self.client.execute(action: "DeleteEdgeNodeUnitTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除边缘单元NodeUnit模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodeUnitTemplates(edgeUnitId: UInt64, nodeUnitTemplateIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeUnitTemplatesResponse> {
         self.deleteEdgeNodeUnitTemplates(DeleteEdgeNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateIDs: nodeUnitTemplateIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元NodeUnit模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodeUnitTemplates(edgeUnitId: UInt64, nodeUnitTemplateIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeUnitTemplatesResponse {
         try await self.deleteEdgeNodeUnitTemplates(DeleteEdgeNodeUnitTemplatesRequest(edgeUnitId: edgeUnitId, nodeUnitTemplateIDs: nodeUnitTemplateIDs), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Scf {
     }
 
     /// 更新命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func updateNamespace(_ input: UpdateNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateNamespaceResponse> {
         self.client.execute(action: "UpdateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func updateNamespace(_ input: UpdateNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNamespaceResponse {
         try await self.client.execute(action: "UpdateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func updateNamespace(namespace: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateNamespaceResponse> {
         self.updateNamespace(UpdateNamespaceRequest(namespace: namespace, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func updateNamespace(namespace: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNamespaceResponse {
         try await self.updateNamespace(UpdateNamespaceRequest(namespace: namespace, description: description), region: region, logger: logger, on: eventLoop)
     }

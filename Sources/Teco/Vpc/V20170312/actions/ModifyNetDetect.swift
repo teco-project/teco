@@ -79,7 +79,7 @@ extension Vpc {
     /// 修改网络探测
     ///
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetDetect(_ input: ModifyNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetDetectResponse> {
         self.client.execute(action: "ModifyNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -87,7 +87,7 @@ extension Vpc {
     /// 修改网络探测
     ///
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetDetect(_ input: ModifyNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetDetectResponse {
         try await self.client.execute(action: "ModifyNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -95,7 +95,7 @@ extension Vpc {
     /// 修改网络探测
     ///
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetDetect(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetDetectResponse> {
         self.modifyNetDetect(ModifyNetDetectRequest(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
     }
@@ -103,7 +103,7 @@ extension Vpc {
     /// 修改网络探测
     ///
     /// 本接口(ModifyNetDetect)用于修改网络探测参数。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetDetect(netDetectId: String, netDetectName: String? = nil, detectDestinationIp: [String]? = nil, nextHopType: String? = nil, nextHopDestination: String? = nil, netDetectDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetDetectResponse {
         try await self.modifyNetDetect(ModifyNetDetectRequest(netDetectId: netDetectId, netDetectName: netDetectName, detectDestinationIp: detectDestinationIp, nextHopType: nextHopType, nextHopDestination: nextHopDestination, netDetectDescription: netDetectDescription), region: region, logger: logger, on: eventLoop)
     }

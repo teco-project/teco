@@ -45,25 +45,25 @@ extension Cwp {
     }
 
     /// 漏洞管理-重新检测接口
-    @inlinable
+    @inlinable @discardableResult
     public func scanVulAgain(_ input: ScanVulAgainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulAgainResponse> {
         self.client.execute(action: "ScanVulAgain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞管理-重新检测接口
-    @inlinable
+    @inlinable @discardableResult
     public func scanVulAgain(_ input: ScanVulAgainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
         try await self.client.execute(action: "ScanVulAgain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 漏洞管理-重新检测接口
-    @inlinable
+    @inlinable @discardableResult
     public func scanVulAgain(eventIds: String, uuids: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulAgainResponse> {
         self.scanVulAgain(ScanVulAgainRequest(eventIds: eventIds, uuids: uuids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 漏洞管理-重新检测接口
-    @inlinable
+    @inlinable @discardableResult
     public func scanVulAgain(eventIds: String, uuids: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulAgainResponse {
         try await self.scanVulAgain(ScanVulAgainRequest(eventIds: eventIds, uuids: uuids), region: region, logger: logger, on: eventLoop)
     }

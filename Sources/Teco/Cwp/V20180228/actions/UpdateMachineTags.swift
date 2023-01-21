@@ -55,25 +55,25 @@ extension Cwp {
     }
 
     /// 关联机器标签列表
-    @inlinable
+    @inlinable @discardableResult
     public func updateMachineTags(_ input: UpdateMachineTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateMachineTagsResponse> {
         self.client.execute(action: "UpdateMachineTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关联机器标签列表
-    @inlinable
+    @inlinable @discardableResult
     public func updateMachineTags(_ input: UpdateMachineTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateMachineTagsResponse {
         try await self.client.execute(action: "UpdateMachineTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关联机器标签列表
-    @inlinable
+    @inlinable @discardableResult
     public func updateMachineTags(quuid: String, machineRegion: String, machineArea: String, tagIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateMachineTagsResponse> {
         self.updateMachineTags(UpdateMachineTagsRequest(quuid: quuid, machineRegion: machineRegion, machineArea: machineArea, tagIds: tagIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关联机器标签列表
-    @inlinable
+    @inlinable @discardableResult
     public func updateMachineTags(quuid: String, machineRegion: String, machineArea: String, tagIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateMachineTagsResponse {
         try await self.updateMachineTags(UpdateMachineTagsRequest(quuid: quuid, machineRegion: machineRegion, machineArea: machineArea, tagIds: tagIds), region: region, logger: logger, on: eventLoop)
     }

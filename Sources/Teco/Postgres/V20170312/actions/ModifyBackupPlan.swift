@@ -62,7 +62,7 @@ extension Postgres {
     /// 修改备份计划
     ///
     /// 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupPlan(_ input: ModifyBackupPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupPlanResponse> {
         self.client.execute(action: "ModifyBackupPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Postgres {
     /// 修改备份计划
     ///
     /// 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupPlan(_ input: ModifyBackupPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupPlanResponse {
         try await self.client.execute(action: "ModifyBackupPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Postgres {
     /// 修改备份计划
     ///
     /// 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupPlan(dbInstanceId: String, minBackupStartTime: String? = nil, maxBackupStartTime: String? = nil, baseBackupRetentionPeriod: UInt64? = nil, backupPeriod: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupPlanResponse> {
         self.modifyBackupPlan(ModifyBackupPlanRequest(dbInstanceId: dbInstanceId, minBackupStartTime: minBackupStartTime, maxBackupStartTime: maxBackupStartTime, baseBackupRetentionPeriod: baseBackupRetentionPeriod, backupPeriod: backupPeriod), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Postgres {
     /// 修改备份计划
     ///
     /// 本接口 (ModifyBackupPlan) 用于实例备份计划的修改，默认是在每天的凌晨开始全量备份，备份保留时长是7天。可以根据此接口指定时间进行实例的备份。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupPlan(dbInstanceId: String, minBackupStartTime: String? = nil, maxBackupStartTime: String? = nil, baseBackupRetentionPeriod: UInt64? = nil, backupPeriod: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupPlanResponse {
         try await self.modifyBackupPlan(ModifyBackupPlanRequest(dbInstanceId: dbInstanceId, minBackupStartTime: minBackupStartTime, maxBackupStartTime: maxBackupStartTime, baseBackupRetentionPeriod: baseBackupRetentionPeriod, backupPeriod: backupPeriod), region: region, logger: logger, on: eventLoop)
     }

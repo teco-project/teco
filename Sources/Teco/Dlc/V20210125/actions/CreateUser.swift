@@ -65,25 +65,25 @@ extension Dlc {
     }
 
     /// 创建用户
-    @inlinable
+    @inlinable @discardableResult
     public func createUser(_ input: CreateUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
         self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建用户
-    @inlinable
+    @inlinable @discardableResult
     public func createUser(_ input: CreateUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
         try await self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建用户
-    @inlinable
+    @inlinable @discardableResult
     public func createUser(userId: String, userDescription: String? = nil, policySet: [Policy]? = nil, userType: String? = nil, workGroupIds: [Int64]? = nil, userAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
         self.createUser(CreateUserRequest(userId: userId, userDescription: userDescription, policySet: policySet, userType: userType, workGroupIds: workGroupIds, userAlias: userAlias), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建用户
-    @inlinable
+    @inlinable @discardableResult
     public func createUser(userId: String, userDescription: String? = nil, policySet: [Policy]? = nil, userType: String? = nil, workGroupIds: [Int64]? = nil, userAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
         try await self.createUser(CreateUserRequest(userId: userId, userDescription: userDescription, policySet: policySet, userType: userType, workGroupIds: workGroupIds, userAlias: userAlias), region: region, logger: logger, on: eventLoop)
     }

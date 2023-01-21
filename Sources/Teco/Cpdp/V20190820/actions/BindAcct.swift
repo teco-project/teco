@@ -141,7 +141,7 @@ extension Cpdp {
     /// 聚鑫-绑定提现银行卡
     ///
     /// 商户绑定提现银行卡，每个商户只能绑定一张提现银行卡
-    @inlinable
+    @inlinable @discardableResult
     public func bindAcct(_ input: BindAcctRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAcctResponse> {
         self.client.execute(action: "BindAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -149,7 +149,7 @@ extension Cpdp {
     /// 聚鑫-绑定提现银行卡
     ///
     /// 商户绑定提现银行卡，每个商户只能绑定一张提现银行卡
-    @inlinable
+    @inlinable @discardableResult
     public func bindAcct(_ input: BindAcctRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAcctResponse {
         try await self.client.execute(action: "BindAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -157,7 +157,7 @@ extension Cpdp {
     /// 聚鑫-绑定提现银行卡
     ///
     /// 商户绑定提现银行卡，每个商户只能绑定一张提现银行卡
-    @inlinable
+    @inlinable @discardableResult
     public func bindAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, settleAcctName: String, settleAcctType: Int64, idType: String, idCode: String, acctBranchName: String, midasSecretId: String, midasSignature: String, mobile: String? = nil, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, agencyClientInfo: AgencyClientInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAcctResponse> {
         self.bindAcct(BindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, settleAcctType: settleAcctType, idType: idType, idCode: idCode, acctBranchName: acctBranchName, midasSecretId: midasSecretId, midasSignature: midasSignature, mobile: mobile, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, encryptType: encryptType, midasEnvironment: midasEnvironment, agencyClientInfo: agencyClientInfo), region: region, logger: logger, on: eventLoop)
     }
@@ -165,7 +165,7 @@ extension Cpdp {
     /// 聚鑫-绑定提现银行卡
     ///
     /// 商户绑定提现银行卡，每个商户只能绑定一张提现银行卡
-    @inlinable
+    @inlinable @discardableResult
     public func bindAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, settleAcctName: String, settleAcctType: Int64, idType: String, idCode: String, acctBranchName: String, midasSecretId: String, midasSignature: String, mobile: String? = nil, cnapsBranchId: String? = nil, eiconBankBranchId: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, agencyClientInfo: AgencyClientInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAcctResponse {
         try await self.bindAcct(BindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, settleAcctName: settleAcctName, settleAcctType: settleAcctType, idType: idType, idCode: idCode, acctBranchName: acctBranchName, midasSecretId: midasSecretId, midasSignature: midasSignature, mobile: mobile, cnapsBranchId: cnapsBranchId, eiconBankBranchId: eiconBankBranchId, encryptType: encryptType, midasEnvironment: midasEnvironment, agencyClientInfo: agencyClientInfo), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Tcr {
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllNamespacesResponse> {
         self.client.execute(action: "DescribeInstanceAllNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcr {
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstanceAllNamespaces(_ input: DescribeInstanceAllNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
         try await self.client.execute(action: "DescribeInstanceAllNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcr {
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllNamespacesResponse> {
         self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcr {
     /// 查询所有实例命名空间
     ///
     /// 查询所有实例命名空间列表
-    @inlinable
+    @inlinable @discardableResult
     public func describeInstanceAllNamespaces(limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllNamespacesResponse {
         try await self.describeInstanceAllNamespaces(DescribeInstanceAllNamespacesRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
     }

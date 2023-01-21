@@ -106,7 +106,7 @@ extension Live {
     /// 修改截图模板
     ///
     /// 修改截图模板配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveSnapshotTemplate(_ input: ModifyLiveSnapshotTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveSnapshotTemplateResponse> {
         self.client.execute(action: "ModifyLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -114,7 +114,7 @@ extension Live {
     /// 修改截图模板
     ///
     /// 修改截图模板配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveSnapshotTemplate(_ input: ModifyLiveSnapshotTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveSnapshotTemplateResponse {
         try await self.client.execute(action: "ModifyLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -122,7 +122,7 @@ extension Live {
     /// 修改截图模板
     ///
     /// 修改截图模板配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveSnapshotTemplate(templateId: Int64, cosAppId: Int64, cosBucket: String, cosRegion: String, templateName: String? = nil, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveSnapshotTemplateResponse> {
         self.modifyLiveSnapshotTemplate(ModifyLiveSnapshotTemplateRequest(templateId: templateId, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, templateName: templateName, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), region: region, logger: logger, on: eventLoop)
     }
@@ -130,7 +130,7 @@ extension Live {
     /// 修改截图模板
     ///
     /// 修改截图模板配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveSnapshotTemplate(templateId: Int64, cosAppId: Int64, cosBucket: String, cosRegion: String, templateName: String? = nil, description: String? = nil, snapshotInterval: Int64? = nil, width: Int64? = nil, height: Int64? = nil, pornFlag: Int64? = nil, cosPrefix: String? = nil, cosFileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveSnapshotTemplateResponse {
         try await self.modifyLiveSnapshotTemplate(ModifyLiveSnapshotTemplateRequest(templateId: templateId, cosAppId: cosAppId, cosBucket: cosBucket, cosRegion: cosRegion, templateName: templateName, description: description, snapshotInterval: snapshotInterval, width: width, height: height, pornFlag: pornFlag, cosPrefix: cosPrefix, cosFileName: cosFileName), region: region, logger: logger, on: eventLoop)
     }

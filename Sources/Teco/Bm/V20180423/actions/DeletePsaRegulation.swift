@@ -40,25 +40,25 @@ extension Bm {
     }
 
     /// 删除预授权规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePsaRegulationResponse> {
         self.client.execute(action: "DeletePsaRegulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除预授权规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePsaRegulation(_ input: DeletePsaRegulationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
         try await self.client.execute(action: "DeletePsaRegulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除预授权规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePsaRegulation(psaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePsaRegulationResponse> {
         self.deletePsaRegulation(DeletePsaRegulationRequest(psaId: psaId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除预授权规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePsaRegulation(psaId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePsaRegulationResponse {
         try await self.deletePsaRegulation(DeletePsaRegulationRequest(psaId: psaId), region: region, logger: logger, on: eventLoop)
     }

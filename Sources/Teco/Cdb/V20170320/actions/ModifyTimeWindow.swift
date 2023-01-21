@@ -57,7 +57,7 @@ extension Cdb {
     /// 更新维护时间窗口
     ///
     /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTimeWindow(_ input: ModifyTimeWindowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTimeWindowResponse> {
         self.client.execute(action: "ModifyTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cdb {
     /// 更新维护时间窗口
     ///
     /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTimeWindow(_ input: ModifyTimeWindowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTimeWindowResponse {
         try await self.client.execute(action: "ModifyTimeWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cdb {
     /// 更新维护时间窗口
     ///
     /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTimeWindow(instanceId: String, timeRanges: [String], weekdays: [String]? = nil, maxDelayTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTimeWindowResponse> {
         self.modifyTimeWindow(ModifyTimeWindowRequest(instanceId: instanceId, timeRanges: timeRanges, weekdays: weekdays, maxDelayTime: maxDelayTime), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cdb {
     /// 更新维护时间窗口
     ///
     /// 本接口(ModifyTimeWindow)用于更新云数据库实例的维护时间窗口。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTimeWindow(instanceId: String, timeRanges: [String], weekdays: [String]? = nil, maxDelayTime: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTimeWindowResponse {
         try await self.modifyTimeWindow(ModifyTimeWindowRequest(instanceId: instanceId, timeRanges: timeRanges, weekdays: weekdays, maxDelayTime: maxDelayTime), region: region, logger: logger, on: eventLoop)
     }

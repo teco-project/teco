@@ -32,25 +32,25 @@ extension Cfw {
     }
 
     /// 删除防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpcInstance(_ input: DeleteVpcInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcInstanceResponse> {
         self.client.execute(action: "DeleteVpcInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpcInstance(_ input: DeleteVpcInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcInstanceResponse {
         try await self.client.execute(action: "DeleteVpcInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpcInstance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcInstanceResponse> {
         self.deleteVpcInstance(DeleteVpcInstanceRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpcInstance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcInstanceResponse {
         try await self.deleteVpcInstance(DeleteVpcInstanceRequest(), region: region, logger: logger, on: eventLoop)
     }

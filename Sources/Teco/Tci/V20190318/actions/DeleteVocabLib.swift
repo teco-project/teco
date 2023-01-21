@@ -40,25 +40,25 @@ extension Tci {
     }
 
     /// 删除词汇库
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVocabLib(_ input: DeleteVocabLibRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVocabLibResponse> {
         self.client.execute(action: "DeleteVocabLib", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除词汇库
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVocabLib(_ input: DeleteVocabLibRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabLibResponse {
         try await self.client.execute(action: "DeleteVocabLib", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除词汇库
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVocabLib(vocabLibName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVocabLibResponse> {
         self.deleteVocabLib(DeleteVocabLibRequest(vocabLibName: vocabLibName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除词汇库
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVocabLib(vocabLibName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabLibResponse {
         try await self.deleteVocabLib(DeleteVocabLibRequest(vocabLibName: vocabLibName), region: region, logger: logger, on: eventLoop)
     }

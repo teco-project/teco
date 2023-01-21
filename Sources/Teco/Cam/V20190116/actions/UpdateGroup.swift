@@ -50,25 +50,25 @@ extension Cam {
     }
 
     /// 更新用户组
-    @inlinable
+    @inlinable @discardableResult
     public func updateGroup(_ input: UpdateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGroupResponse> {
         self.client.execute(action: "UpdateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新用户组
-    @inlinable
+    @inlinable @discardableResult
     public func updateGroup(_ input: UpdateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGroupResponse {
         try await self.client.execute(action: "UpdateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新用户组
-    @inlinable
+    @inlinable @discardableResult
     public func updateGroup(groupId: UInt64, groupName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGroupResponse> {
         self.updateGroup(UpdateGroupRequest(groupId: groupId, groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新用户组
-    @inlinable
+    @inlinable @discardableResult
     public func updateGroup(groupId: UInt64, groupName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGroupResponse {
         try await self.updateGroup(UpdateGroupRequest(groupId: groupId, groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
     }

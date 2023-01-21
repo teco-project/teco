@@ -40,25 +40,25 @@ extension Iot {
     }
 
     /// 启用规则
-    @inlinable
+    @inlinable @discardableResult
     public func activateRule(_ input: ActivateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
         self.client.execute(action: "ActivateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用规则
-    @inlinable
+    @inlinable @discardableResult
     public func activateRule(_ input: ActivateRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
         try await self.client.execute(action: "ActivateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用规则
-    @inlinable
+    @inlinable @discardableResult
     public func activateRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateRuleResponse> {
         self.activateRule(ActivateRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用规则
-    @inlinable
+    @inlinable @discardableResult
     public func activateRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateRuleResponse {
         try await self.activateRule(ActivateRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }

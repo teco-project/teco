@@ -47,7 +47,7 @@ extension Tke {
     /// 修改告警规则
     ///
     /// 修改告警规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAlertRuleResponse> {
         self.client.execute(action: "ModifyPrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tke {
     /// 修改告警规则
     ///
     /// 修改告警规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrometheusAlertRule(_ input: ModifyPrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertRuleResponse {
         try await self.client.execute(action: "ModifyPrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tke {
     /// 修改告警规则
     ///
     /// 修改告警规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAlertRuleResponse> {
         self.modifyPrometheusAlertRule(ModifyPrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tke {
     /// 修改告警规则
     ///
     /// 修改告警规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrometheusAlertRule(instanceId: String, alertRule: PrometheusAlertRuleDetail, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertRuleResponse {
         try await self.modifyPrometheusAlertRule(ModifyPrometheusAlertRuleRequest(instanceId: instanceId, alertRule: alertRule), region: region, logger: logger, on: eventLoop)
     }

@@ -57,7 +57,7 @@ extension Cam {
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
-    @inlinable
+    @inlinable @discardableResult
     public func attachRolePolicy(_ input: AttachRolePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachRolePolicyResponse> {
         self.client.execute(action: "AttachRolePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cam {
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
-    @inlinable
+    @inlinable @discardableResult
     public func attachRolePolicy(_ input: AttachRolePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
         try await self.client.execute(action: "AttachRolePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cam {
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
-    @inlinable
+    @inlinable @discardableResult
     public func attachRolePolicy(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachRolePolicyResponse> {
         self.attachRolePolicy(AttachRolePolicyRequest(policyId: policyId, attachRoleId: attachRoleId, attachRoleName: attachRoleName, policyName: policyName), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cam {
     /// 绑定权限策略到角色
     ///
     /// 本接口（AttachRolePolicy）用于绑定策略到角色。
-    @inlinable
+    @inlinable @discardableResult
     public func attachRolePolicy(policyId: UInt64? = nil, attachRoleId: String? = nil, attachRoleName: String? = nil, policyName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachRolePolicyResponse {
         try await self.attachRolePolicy(AttachRolePolicyRequest(policyId: policyId, attachRoleId: attachRoleId, attachRoleName: attachRoleName, policyName: policyName), region: region, logger: logger, on: eventLoop)
     }

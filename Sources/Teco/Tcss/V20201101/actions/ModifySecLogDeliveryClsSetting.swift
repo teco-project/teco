@@ -40,25 +40,25 @@ extension Tcss {
     }
 
     /// 更新安全日志-日志投递cls配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogDeliveryClsSetting(_ input: ModifySecLogDeliveryClsSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogDeliveryClsSettingResponse> {
         self.client.execute(action: "ModifySecLogDeliveryClsSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新安全日志-日志投递cls配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogDeliveryClsSetting(_ input: ModifySecLogDeliveryClsSettingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryClsSettingResponse {
         try await self.client.execute(action: "ModifySecLogDeliveryClsSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新安全日志-日志投递cls配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogDeliveryClsSetting(list: [SecLogDeliveryClsSettingInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogDeliveryClsSettingResponse> {
         self.modifySecLogDeliveryClsSetting(ModifySecLogDeliveryClsSettingRequest(list: list), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新安全日志-日志投递cls配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogDeliveryClsSetting(list: [SecLogDeliveryClsSettingInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryClsSettingResponse {
         try await self.modifySecLogDeliveryClsSetting(ModifySecLogDeliveryClsSettingRequest(list: list), region: region, logger: logger, on: eventLoop)
     }

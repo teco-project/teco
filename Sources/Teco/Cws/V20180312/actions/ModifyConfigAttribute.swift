@@ -42,7 +42,7 @@ extension Cws {
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigAttributeResponse> {
         self.client.execute(action: "ModifyConfigAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cws {
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
         try await self.client.execute(action: "ModifyConfigAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cws {
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigAttribute(noticeLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigAttributeResponse> {
         self.modifyConfigAttribute(ModifyConfigAttributeRequest(noticeLevel: noticeLevel), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cws {
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigAttribute(noticeLevel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
         try await self.modifyConfigAttribute(ModifyConfigAttributeRequest(noticeLevel: noticeLevel), region: region, logger: logger, on: eventLoop)
     }

@@ -65,7 +65,7 @@ extension Cls {
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
         self.client.execute(action: "ModifyAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -73,7 +73,7 @@ extension Cls {
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
         try await self.client.execute(action: "ModifyAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -81,7 +81,7 @@ extension Cls {
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
         self.modifyAlarmNotice(ModifyAlarmNoticeRequest(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), region: region, logger: logger, on: eventLoop)
     }
@@ -89,7 +89,7 @@ extension Cls {
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
         try await self.modifyAlarmNotice(ModifyAlarmNoticeRequest(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), region: region, logger: logger, on: eventLoop)
     }

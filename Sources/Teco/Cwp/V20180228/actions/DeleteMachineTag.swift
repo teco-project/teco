@@ -40,25 +40,25 @@ extension Cwp {
     }
 
     /// 删除服务器关联的标签
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineTag(_ input: DeleteMachineTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineTagResponse> {
         self.client.execute(action: "DeleteMachineTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除服务器关联的标签
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineTag(_ input: DeleteMachineTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
         try await self.client.execute(action: "DeleteMachineTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除服务器关联的标签
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineTag(rid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineTagResponse> {
         self.deleteMachineTag(DeleteMachineTagRequest(rid: rid), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除服务器关联的标签
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineTag(rid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineTagResponse {
         try await self.deleteMachineTag(DeleteMachineTagRequest(rid: rid), region: region, logger: logger, on: eventLoop)
     }

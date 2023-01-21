@@ -57,7 +57,7 @@ extension Iotcloud {
     /// 服务下发消息到lora设备
     ///
     /// 服务器端下发消息给lora类型的设备
-    @inlinable
+    @inlinable @discardableResult
     public func publishToDevice(_ input: PublishToDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishToDeviceResponse> {
         self.client.execute(action: "PublishToDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Iotcloud {
     /// 服务下发消息到lora设备
     ///
     /// 服务器端下发消息给lora类型的设备
-    @inlinable
+    @inlinable @discardableResult
     public func publishToDevice(_ input: PublishToDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishToDeviceResponse {
         try await self.client.execute(action: "PublishToDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Iotcloud {
     /// 服务下发消息到lora设备
     ///
     /// 服务器端下发消息给lora类型的设备
-    @inlinable
+    @inlinable @discardableResult
     public func publishToDevice(productId: String, deviceName: String, port: UInt64, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishToDeviceResponse> {
         self.publishToDevice(PublishToDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Iotcloud {
     /// 服务下发消息到lora设备
     ///
     /// 服务器端下发消息给lora类型的设备
-    @inlinable
+    @inlinable @discardableResult
     public func publishToDevice(productId: String, deviceName: String, port: UInt64, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishToDeviceResponse {
         try await self.publishToDevice(PublishToDeviceRequest(productId: productId, deviceName: deviceName, port: port, payload: payload), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Es {
     /// 保存并部署管道
     ///
     /// 用于下发并且部署管道
-    @inlinable
+    @inlinable @discardableResult
     public func saveAndDeployLogstashPipeline(_ input: SaveAndDeployLogstashPipelineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveAndDeployLogstashPipelineResponse> {
         self.client.execute(action: "SaveAndDeployLogstashPipeline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Es {
     /// 保存并部署管道
     ///
     /// 用于下发并且部署管道
-    @inlinable
+    @inlinable @discardableResult
     public func saveAndDeployLogstashPipeline(_ input: SaveAndDeployLogstashPipelineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveAndDeployLogstashPipelineResponse {
         try await self.client.execute(action: "SaveAndDeployLogstashPipeline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Es {
     /// 保存并部署管道
     ///
     /// 用于下发并且部署管道
-    @inlinable
+    @inlinable @discardableResult
     public func saveAndDeployLogstashPipeline(instanceId: String, pipeline: LogstashPipeline, opType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveAndDeployLogstashPipelineResponse> {
         self.saveAndDeployLogstashPipeline(SaveAndDeployLogstashPipelineRequest(instanceId: instanceId, pipeline: pipeline, opType: opType), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Es {
     /// 保存并部署管道
     ///
     /// 用于下发并且部署管道
-    @inlinable
+    @inlinable @discardableResult
     public func saveAndDeployLogstashPipeline(instanceId: String, pipeline: LogstashPipeline, opType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveAndDeployLogstashPipelineResponse {
         try await self.saveAndDeployLogstashPipeline(SaveAndDeployLogstashPipelineRequest(instanceId: instanceId, pipeline: pipeline, opType: opType), region: region, logger: logger, on: eventLoop)
     }

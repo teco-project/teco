@@ -55,25 +55,25 @@ extension Tcr {
     }
 
     /// 更新镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
         self.client.execute(action: "ModifyImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImmutableTagRules(_ input: ModifyImmutableTagRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
         try await self.client.execute(action: "ModifyImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
         self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
         try await self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), region: region, logger: logger, on: eventLoop)
     }

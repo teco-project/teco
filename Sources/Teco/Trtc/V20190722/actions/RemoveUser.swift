@@ -52,7 +52,7 @@ extension Trtc {
     /// 移出用户
     ///
     /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
+    @inlinable @discardableResult
     public func removeUser(_ input: RemoveUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserResponse> {
         self.client.execute(action: "RemoveUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Trtc {
     /// 移出用户
     ///
     /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
+    @inlinable @discardableResult
     public func removeUser(_ input: RemoveUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserResponse {
         try await self.client.execute(action: "RemoveUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Trtc {
     /// 移出用户
     ///
     /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
+    @inlinable @discardableResult
     public func removeUser(sdkAppId: UInt64, roomId: UInt64, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveUserResponse> {
         self.removeUser(RemoveUserRequest(sdkAppId: sdkAppId, roomId: roomId, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Trtc {
     /// 移出用户
     ///
     /// 接口说明：将用户从房间移出，适用于主播/房主/管理员踢人等场景。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
+    @inlinable @discardableResult
     public func removeUser(sdkAppId: UInt64, roomId: UInt64, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveUserResponse {
         try await self.removeUser(RemoveUserRequest(sdkAppId: sdkAppId, roomId: roomId, userIds: userIds), region: region, logger: logger, on: eventLoop)
     }

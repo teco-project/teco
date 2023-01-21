@@ -55,7 +55,7 @@ extension Ecm {
     /// 修改镜像属性
     ///
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
         self.client.execute(action: "ModifyImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -63,7 +63,7 @@ extension Ecm {
     /// 修改镜像属性
     ///
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
         try await self.client.execute(action: "ModifyImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Ecm {
     /// 修改镜像属性
     ///
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
         self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }
@@ -79,7 +79,7 @@ extension Ecm {
     /// 修改镜像属性
     ///
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
         try await self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }

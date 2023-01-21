@@ -50,7 +50,7 @@ extension Live {
     /// 注意：
     /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLivePullStreamTaskResponse> {
         self.client.execute(action: "DeleteLivePullStreamTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -61,7 +61,7 @@ extension Live {
     /// 注意：
     /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLivePullStreamTask(_ input: DeleteLivePullStreamTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
         try await self.client.execute(action: "DeleteLivePullStreamTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -72,7 +72,7 @@ extension Live {
     /// 注意：
     /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLivePullStreamTask(taskId: String, operator: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLivePullStreamTaskResponse> {
         self.deleteLivePullStreamTask(DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -83,7 +83,7 @@ extension Live {
     /// 注意：
     /// 1. 入参中的 TaskId 为 CreateLivePullStreamTask 接口创建时返回的TaskId。
     /// 2. 也可通过 DescribeLivePullStreamTasks 进行查询创建的任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLivePullStreamTask(taskId: String, operator: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLivePullStreamTaskResponse {
         try await self.deleteLivePullStreamTask(DeleteLivePullStreamTaskRequest(taskId: taskId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Iotcloud {
     /// 删除设备影子
     ///
     /// 本接口（DeleteDeviceShadow）用于删除设备影子
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceShadow(_ input: DeleteDeviceShadowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceShadowResponse> {
         self.client.execute(action: "DeleteDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotcloud {
     /// 删除设备影子
     ///
     /// 本接口（DeleteDeviceShadow）用于删除设备影子
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceShadow(_ input: DeleteDeviceShadowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceShadowResponse {
         try await self.client.execute(action: "DeleteDeviceShadow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotcloud {
     /// 删除设备影子
     ///
     /// 本接口（DeleteDeviceShadow）用于删除设备影子
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceShadow(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceShadowResponse> {
         self.deleteDeviceShadow(DeleteDeviceShadowRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotcloud {
     /// 删除设备影子
     ///
     /// 本接口（DeleteDeviceShadow）用于删除设备影子
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceShadow(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceShadowResponse {
         try await self.deleteDeviceShadow(DeleteDeviceShadowRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }

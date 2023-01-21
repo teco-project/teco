@@ -50,25 +50,25 @@ extension Iotvideo {
     }
 
     /// 更新设备日志级别
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceLogLevelResponse> {
         self.client.execute(action: "ModifyDeviceLogLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新设备日志级别
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDeviceLogLevel(_ input: ModifyDeviceLogLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
         try await self.client.execute(action: "ModifyDeviceLogLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新设备日志级别
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceLogLevelResponse> {
         self.modifyDeviceLogLevel(ModifyDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新设备日志级别
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceLogLevelResponse {
         try await self.modifyDeviceLogLevel(ModifyDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Eb {
     }
 
     /// 删除事件规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除事件规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除事件规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(eventBusId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.deleteRule(DeleteRuleRequest(eventBusId: eventBusId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除事件规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(eventBusId: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.deleteRule(DeleteRuleRequest(eventBusId: eventBusId, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }

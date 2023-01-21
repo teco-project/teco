@@ -43,7 +43,7 @@ extension Gpm {
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Gpm {
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Gpm {
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(ruleCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.deleteRule(DeleteRuleRequest(ruleCode: ruleCode), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Gpm {
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(ruleCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.deleteRule(DeleteRuleRequest(ruleCode: ruleCode), region: region, logger: logger, on: eventLoop)
     }

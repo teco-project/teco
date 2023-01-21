@@ -47,7 +47,7 @@ extension Cfw {
     /// 取消阻断记录置顶接口
     ///
     /// ModifyBlockTop取消置顶接口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBlockTop(_ input: ModifyBlockTopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockTopResponse> {
         self.client.execute(action: "ModifyBlockTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cfw {
     /// 取消阻断记录置顶接口
     ///
     /// ModifyBlockTop取消置顶接口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBlockTop(_ input: ModifyBlockTopRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockTopResponse {
         try await self.client.execute(action: "ModifyBlockTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cfw {
     /// 取消阻断记录置顶接口
     ///
     /// ModifyBlockTop取消置顶接口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBlockTop(uniqueId: String, opeType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockTopResponse> {
         self.modifyBlockTop(ModifyBlockTopRequest(uniqueId: uniqueId, opeType: opeType), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cfw {
     /// 取消阻断记录置顶接口
     ///
     /// ModifyBlockTop取消置顶接口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBlockTop(uniqueId: String, opeType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockTopResponse {
         try await self.modifyBlockTop(ModifyBlockTopRequest(uniqueId: uniqueId, opeType: opeType), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Cloudstudio {
     }
 
     /// 删除自定义模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizeTemplatesByIdResponse> {
         self.client.execute(action: "DeleteCustomizeTemplatesById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCustomizeTemplatesById(_ input: DeleteCustomizeTemplatesByIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
         try await self.client.execute(action: "DeleteCustomizeTemplatesById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizeTemplatesByIdResponse> {
         self.deleteCustomizeTemplatesById(DeleteCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizeTemplatesByIdResponse {
         try await self.deleteCustomizeTemplatesById(DeleteCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), region: region, logger: logger, on: eventLoop)
     }

@@ -50,25 +50,25 @@ extension Ccc {
     }
 
     /// 创建话机账号
-    @inlinable
+    @inlinable @discardableResult
     public func createExtension(_ input: CreateExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExtensionResponse> {
         self.client.execute(action: "CreateExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建话机账号
-    @inlinable
+    @inlinable @discardableResult
     public func createExtension(_ input: CreateExtensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
         try await self.client.execute(action: "CreateExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建话机账号
-    @inlinable
+    @inlinable @discardableResult
     public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExtensionResponse> {
         self.createExtension(CreateExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建话机账号
-    @inlinable
+    @inlinable @discardableResult
     public func createExtension(sdkAppId: UInt64, extensionId: String, extensionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExtensionResponse {
         try await self.createExtension(CreateExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId, extensionName: extensionName), region: region, logger: logger, on: eventLoop)
     }

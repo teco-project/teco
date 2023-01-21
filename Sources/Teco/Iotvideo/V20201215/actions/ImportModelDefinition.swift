@@ -47,7 +47,7 @@ extension Iotvideo {
     /// 导入其它产品的数据模板
     ///
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
-    @inlinable
+    @inlinable @discardableResult
     public func importModelDefinition(_ input: ImportModelDefinitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportModelDefinitionResponse> {
         self.client.execute(action: "ImportModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotvideo {
     /// 导入其它产品的数据模板
     ///
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
-    @inlinable
+    @inlinable @discardableResult
     public func importModelDefinition(_ input: ImportModelDefinitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportModelDefinitionResponse {
         try await self.client.execute(action: "ImportModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotvideo {
     /// 导入其它产品的数据模板
     ///
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
-    @inlinable
+    @inlinable @discardableResult
     public func importModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportModelDefinitionResponse> {
         self.importModelDefinition(ImportModelDefinitionRequest(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotvideo {
     /// 导入其它产品的数据模板
     ///
     /// 导入其它产品的数据模板，覆盖现有数据模板的物模型和产品分类信息
-    @inlinable
+    @inlinable @discardableResult
     public func importModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportModelDefinitionResponse {
         try await self.importModelDefinition(ImportModelDefinitionRequest(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
     }

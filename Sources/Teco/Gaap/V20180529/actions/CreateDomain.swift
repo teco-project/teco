@@ -73,7 +73,7 @@ extension Gaap {
     ///
     /// 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
     /// 该接口仅支持version3.0的通道。
-    @inlinable
+    @inlinable @discardableResult
     public func createDomain(_ input: CreateDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
         self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Gaap {
     ///
     /// 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
     /// 该接口仅支持version3.0的通道。
-    @inlinable
+    @inlinable @discardableResult
     public func createDomain(_ input: CreateDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
         try await self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -91,7 +91,7 @@ extension Gaap {
     ///
     /// 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
     /// 该接口仅支持version3.0的通道。
-    @inlinable
+    @inlinable @discardableResult
     public func createDomain(listenerId: String, domain: String, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
         self.createDomain(CreateDomainRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }
@@ -100,7 +100,7 @@ extension Gaap {
     ///
     /// 本接口（CreateDomain）用于创建HTTP/HTTPS监听器的访问域名，客户端请求通过访问该域名来请求后端业务。
     /// 该接口仅支持version3.0的通道。
-    @inlinable
+    @inlinable @discardableResult
     public func createDomain(listenerId: String, domain: String, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
         try await self.createDomain(CreateDomainRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
     }

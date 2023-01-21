@@ -47,7 +47,7 @@ extension Tcr {
     /// 更新个人版仓库访问属性
     ///
     /// 用于更新个人版镜像仓库的访问属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryAccessPersonalResponse> {
         self.client.execute(action: "ModifyRepositoryAccessPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcr {
     /// 更新个人版仓库访问属性
     ///
     /// 用于更新个人版镜像仓库的访问属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepositoryAccessPersonal(_ input: ModifyRepositoryAccessPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryAccessPersonalResponse {
         try await self.client.execute(action: "ModifyRepositoryAccessPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcr {
     /// 更新个人版仓库访问属性
     ///
     /// 用于更新个人版镜像仓库的访问属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepositoryAccessPersonal(repoName: String, public: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryAccessPersonalResponse> {
         self.modifyRepositoryAccessPersonal(ModifyRepositoryAccessPersonalRequest(repoName: repoName, public: `public`), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcr {
     /// 更新个人版仓库访问属性
     ///
     /// 用于更新个人版镜像仓库的访问属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepositoryAccessPersonal(repoName: String, public: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryAccessPersonalResponse {
         try await self.modifyRepositoryAccessPersonal(ModifyRepositoryAccessPersonalRequest(repoName: repoName, public: `public`), region: region, logger: logger, on: eventLoop)
     }

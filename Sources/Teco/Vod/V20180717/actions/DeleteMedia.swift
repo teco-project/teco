@@ -54,7 +54,7 @@ extension Vod {
     /// * 删除媒体及其对应的视频处理文件（原始文件、如转码视频、雪碧图、截图、微信发布视频等）；
     /// * 可单独删除指定 ID 的视频文件下的原文件、转码视频、微信发布视频等；
     /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMedia(_ input: DeleteMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMediaResponse> {
         self.client.execute(action: "DeleteMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -64,7 +64,7 @@ extension Vod {
     /// * 删除媒体及其对应的视频处理文件（原始文件、如转码视频、雪碧图、截图、微信发布视频等）；
     /// * 可单独删除指定 ID 的视频文件下的原文件、转码视频、微信发布视频等；
     /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMedia(_ input: DeleteMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMediaResponse {
         try await self.client.execute(action: "DeleteMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -74,7 +74,7 @@ extension Vod {
     /// * 删除媒体及其对应的视频处理文件（原始文件、如转码视频、雪碧图、截图、微信发布视频等）；
     /// * 可单独删除指定 ID 的视频文件下的原文件、转码视频、微信发布视频等；
     /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMedia(fileId: String, subAppId: UInt64? = nil, deleteParts: [MediaDeleteItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMediaResponse> {
         self.deleteMedia(DeleteMediaRequest(fileId: fileId, subAppId: subAppId, deleteParts: deleteParts), region: region, logger: logger, on: eventLoop)
     }
@@ -84,7 +84,7 @@ extension Vod {
     /// * 删除媒体及其对应的视频处理文件（原始文件、如转码视频、雪碧图、截图、微信发布视频等）；
     /// * 可单独删除指定 ID 的视频文件下的原文件、转码视频、微信发布视频等；
     /// * 注意：原文件删除后，无法发起转码、微信发布等任何视频处理操作。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMedia(fileId: String, subAppId: UInt64? = nil, deleteParts: [MediaDeleteItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMediaResponse {
         try await self.deleteMedia(DeleteMediaRequest(fileId: fileId, subAppId: subAppId, deleteParts: deleteParts), region: region, logger: logger, on: eventLoop)
     }

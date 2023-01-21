@@ -45,25 +45,25 @@ extension Iotexplorer {
     }
 
     /// 删除围栏绑定信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFenceBind(_ input: DeleteFenceBindRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFenceBindResponse> {
         self.client.execute(action: "DeleteFenceBind", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除围栏绑定信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFenceBind(_ input: DeleteFenceBindRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFenceBindResponse {
         try await self.client.execute(action: "DeleteFenceBind", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除围栏绑定信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFenceBind(fenceId: Int64, items: [FenceBindProductItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFenceBindResponse> {
         self.deleteFenceBind(DeleteFenceBindRequest(fenceId: fenceId, items: items), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除围栏绑定信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFenceBind(fenceId: Int64, items: [FenceBindProductItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFenceBindResponse {
         try await self.deleteFenceBind(DeleteFenceBindRequest(fenceId: fenceId, items: items), region: region, logger: logger, on: eventLoop)
     }

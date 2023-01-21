@@ -57,7 +57,7 @@ extension Tdmq {
     /// 修改环境角色授权
     ///
     /// 修改环境角色授权。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEnvironmentRole(_ input: ModifyEnvironmentRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentRoleResponse> {
         self.client.execute(action: "ModifyEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Tdmq {
     /// 修改环境角色授权
     ///
     /// 修改环境角色授权。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEnvironmentRole(_ input: ModifyEnvironmentRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentRoleResponse {
         try await self.client.execute(action: "ModifyEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Tdmq {
     /// 修改环境角色授权
     ///
     /// 修改环境角色授权。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentRoleResponse> {
         self.modifyEnvironmentRole(ModifyEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Tdmq {
     /// 修改环境角色授权
     ///
     /// 修改环境角色授权。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentRoleResponse {
         try await self.modifyEnvironmentRole(ModifyEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }

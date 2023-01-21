@@ -42,7 +42,7 @@ extension Yunjing {
     /// 新增白名单规则
     ///
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
-    @inlinable
+    @inlinable @discardableResult
     public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLoginWhiteListResponse> {
         self.client.execute(action: "AddLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Yunjing {
     /// 新增白名单规则
     ///
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
-    @inlinable
+    @inlinable @discardableResult
     public func addLoginWhiteList(_ input: AddLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLoginWhiteListResponse {
         try await self.client.execute(action: "AddLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Yunjing {
     /// 新增白名单规则
     ///
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
-    @inlinable
+    @inlinable @discardableResult
     public func addLoginWhiteList(rules: LoginWhiteListsRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddLoginWhiteListResponse> {
         self.addLoginWhiteList(AddLoginWhiteListRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Yunjing {
     /// 新增白名单规则
     ///
     /// 本接口（AddLoginWhiteList）用于添加白名单规则
-    @inlinable
+    @inlinable @discardableResult
     public func addLoginWhiteList(rules: LoginWhiteListsRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddLoginWhiteListResponse {
         try await self.addLoginWhiteList(AddLoginWhiteListRequest(rules: rules), region: region, logger: logger, on: eventLoop)
     }

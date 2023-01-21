@@ -40,25 +40,25 @@ extension Tione {
     }
 
     /// 删除训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
         self.client.execute(action: "DeleteTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingTask(_ input: DeleteTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
         try await self.client.execute(action: "DeleteTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
         self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
         try await self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }

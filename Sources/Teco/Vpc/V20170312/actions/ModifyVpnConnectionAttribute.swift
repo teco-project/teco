@@ -102,7 +102,7 @@ extension Vpc {
     /// 修改VPN通道
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnConnectionAttributeResponse> {
         self.client.execute(action: "ModifyVpnConnectionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -110,7 +110,7 @@ extension Vpc {
     /// 修改VPN通道
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpnConnectionAttribute(_ input: ModifyVpnConnectionAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
         try await self.client.execute(action: "ModifyVpnConnectionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -118,7 +118,7 @@ extension Vpc {
     /// 修改VPN通道
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpnConnectionAttributeResponse> {
         self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction), region: region, logger: logger, on: eventLoop)
     }
@@ -126,7 +126,7 @@ extension Vpc {
     /// 修改VPN通道
     ///
     /// 本接口（ModifyVpnConnectionAttribute）用于修改VPN通道。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpnConnectionAttribute(vpnConnectionId: String, vpnConnectionName: String? = nil, preShareKey: String? = nil, securityPolicyDatabases: [SecurityPolicyDatabase]? = nil, ikeOptionsSpecification: IKEOptionsSpecification? = nil, ipsecOptionsSpecification: IPSECOptionsSpecification? = nil, enableHealthCheck: Bool? = nil, healthCheckLocalIp: String? = nil, healthCheckRemoteIp: String? = nil, negotiationType: String? = nil, dpdEnable: Int64? = nil, dpdTimeout: String? = nil, dpdAction: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpnConnectionAttributeResponse {
         try await self.modifyVpnConnectionAttribute(ModifyVpnConnectionAttributeRequest(vpnConnectionId: vpnConnectionId, vpnConnectionName: vpnConnectionName, preShareKey: preShareKey, securityPolicyDatabases: securityPolicyDatabases, ikeOptionsSpecification: ikeOptionsSpecification, ipsecOptionsSpecification: ipsecOptionsSpecification, enableHealthCheck: enableHealthCheck, healthCheckLocalIp: healthCheckLocalIp, healthCheckRemoteIp: healthCheckRemoteIp, negotiationType: negotiationType, dpdEnable: dpdEnable, dpdTimeout: dpdTimeout, dpdAction: dpdAction), region: region, logger: logger, on: eventLoop)
     }

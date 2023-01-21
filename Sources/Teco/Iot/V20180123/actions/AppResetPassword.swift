@@ -52,7 +52,7 @@ extension Iot {
     /// 重置用户密码
     ///
     /// 重置APP用户密码
-    @inlinable
+    @inlinable @discardableResult
     public func appResetPassword(_ input: AppResetPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppResetPasswordResponse> {
         self.client.execute(action: "AppResetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iot {
     /// 重置用户密码
     ///
     /// 重置APP用户密码
-    @inlinable
+    @inlinable @discardableResult
     public func appResetPassword(_ input: AppResetPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppResetPasswordResponse {
         try await self.client.execute(action: "AppResetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iot {
     /// 重置用户密码
     ///
     /// 重置APP用户密码
-    @inlinable
+    @inlinable @discardableResult
     public func appResetPassword(accessToken: String, oldPassword: String, newPassword: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppResetPasswordResponse> {
         self.appResetPassword(AppResetPasswordRequest(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iot {
     /// 重置用户密码
     ///
     /// 重置APP用户密码
-    @inlinable
+    @inlinable @discardableResult
     public func appResetPassword(accessToken: String, oldPassword: String, newPassword: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppResetPasswordResponse {
         try await self.appResetPassword(AppResetPasswordRequest(accessToken: accessToken, oldPassword: oldPassword, newPassword: newPassword), region: region, logger: logger, on: eventLoop)
     }

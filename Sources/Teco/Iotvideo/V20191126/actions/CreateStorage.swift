@@ -52,7 +52,7 @@ extension Iotvideo {
     /// 购买云存套餐
     ///
     /// 该接口已经停止维护，请勿使用
-    @inlinable
+    @inlinable @discardableResult
     public func createStorage(_ input: CreateStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStorageResponse> {
         self.client.execute(action: "CreateStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotvideo {
     /// 购买云存套餐
     ///
     /// 该接口已经停止维护，请勿使用
-    @inlinable
+    @inlinable @discardableResult
     public func createStorage(_ input: CreateStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageResponse {
         try await self.client.execute(action: "CreateStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotvideo {
     /// 购买云存套餐
     ///
     /// 该接口已经停止维护，请勿使用
-    @inlinable
+    @inlinable @discardableResult
     public func createStorage(pkgId: String, tid: String, userTag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStorageResponse> {
         self.createStorage(CreateStorageRequest(pkgId: pkgId, tid: tid, userTag: userTag), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotvideo {
     /// 购买云存套餐
     ///
     /// 该接口已经停止维护，请勿使用
-    @inlinable
+    @inlinable @discardableResult
     public func createStorage(pkgId: String, tid: String, userTag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageResponse {
         try await self.createStorage(CreateStorageRequest(pkgId: pkgId, tid: tid, userTag: userTag), region: region, logger: logger, on: eventLoop)
     }

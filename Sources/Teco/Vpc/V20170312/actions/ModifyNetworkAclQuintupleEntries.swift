@@ -47,7 +47,7 @@ extension Vpc {
     /// 增量更新网络ACL五元组规则接口
     ///
     /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclQuintupleEntries(_ input: ModifyNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclQuintupleEntriesResponse> {
         self.client.execute(action: "ModifyNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 增量更新网络ACL五元组规则接口
     ///
     /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclQuintupleEntries(_ input: ModifyNetworkAclQuintupleEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclQuintupleEntriesResponse {
         try await self.client.execute(action: "ModifyNetworkAclQuintupleEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 增量更新网络ACL五元组规则接口
     ///
     /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclQuintupleEntries(networkAclId: String, networkAclQuintupleSet: NetworkAclQuintupleEntries, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclQuintupleEntriesResponse> {
         self.modifyNetworkAclQuintupleEntries(ModifyNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 增量更新网络ACL五元组规则接口
     ///
     /// 本接口（ModifyNetworkAclQuintupleEntries）用于修改网络ACL五元组的入站规则和出站规则。在NetworkAclQuintupleEntrySet参数中：NetworkAclQuintupleEntry需要提供NetworkAclQuintupleEntryId。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclQuintupleEntries(networkAclId: String, networkAclQuintupleSet: NetworkAclQuintupleEntries, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclQuintupleEntriesResponse {
         try await self.modifyNetworkAclQuintupleEntries(ModifyNetworkAclQuintupleEntriesRequest(networkAclId: networkAclId, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }

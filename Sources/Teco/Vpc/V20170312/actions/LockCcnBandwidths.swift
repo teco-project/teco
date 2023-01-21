@@ -36,7 +36,7 @@ extension Vpc {
     /// 本接口（LockCcnBandwidths）用户锁定云联网限速实例。
     /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（LockCcns）。
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
-    @inlinable
+    @inlinable @discardableResult
     public func lockCcnBandwidths(_ input: LockCcnBandwidthsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockCcnBandwidthsResponse> {
         self.client.execute(action: "LockCcnBandwidths", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -46,7 +46,7 @@ extension Vpc {
     /// 本接口（LockCcnBandwidths）用户锁定云联网限速实例。
     /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（LockCcns）。
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
-    @inlinable
+    @inlinable @discardableResult
     public func lockCcnBandwidths(_ input: LockCcnBandwidthsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockCcnBandwidthsResponse {
         try await self.client.execute(action: "LockCcnBandwidths", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -56,7 +56,7 @@ extension Vpc {
     /// 本接口（LockCcnBandwidths）用户锁定云联网限速实例。
     /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（LockCcns）。
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
-    @inlinable
+    @inlinable @discardableResult
     public func lockCcnBandwidths(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockCcnBandwidthsResponse> {
         self.lockCcnBandwidths(LockCcnBandwidthsRequest(), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 本接口（LockCcnBandwidths）用户锁定云联网限速实例。
     /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（LockCcns）。
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
-    @inlinable
+    @inlinable @discardableResult
     public func lockCcnBandwidths(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockCcnBandwidthsResponse {
         try await self.lockCcnBandwidths(LockCcnBandwidthsRequest(), region: region, logger: logger, on: eventLoop)
     }

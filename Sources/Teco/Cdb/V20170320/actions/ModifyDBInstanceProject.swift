@@ -47,7 +47,7 @@ extension Cdb {
     /// 修改云数据库实例的所属项目
     ///
     /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceProject(_ input: ModifyDBInstanceProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceProjectResponse> {
         self.client.execute(action: "ModifyDBInstanceProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cdb {
     /// 修改云数据库实例的所属项目
     ///
     /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceProject(_ input: ModifyDBInstanceProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
         try await self.client.execute(action: "ModifyDBInstanceProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cdb {
     /// 修改云数据库实例的所属项目
     ///
     /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceProject(instanceIds: [String], newProjectId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceProjectResponse> {
         self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIds: instanceIds, newProjectId: newProjectId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cdb {
     /// 修改云数据库实例的所属项目
     ///
     /// 本接口(ModifyDBInstanceProject)用于修改云数据库实例的所属项目。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceProject(instanceIds: [String], newProjectId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceProjectResponse {
         try await self.modifyDBInstanceProject(ModifyDBInstanceProjectRequest(instanceIds: instanceIds, newProjectId: newProjectId), region: region, logger: logger, on: eventLoop)
     }

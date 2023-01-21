@@ -58,7 +58,7 @@ extension Live {
     ///
     /// 删除转码规则。
     /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveTranscodeRule(_ input: DeleteLiveTranscodeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveTranscodeRuleResponse> {
         self.client.execute(action: "DeleteLiveTranscodeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Live {
     ///
     /// 删除转码规则。
     /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveTranscodeRule(_ input: DeleteLiveTranscodeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeRuleResponse {
         try await self.client.execute(action: "DeleteLiveTranscodeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -76,7 +76,7 @@ extension Live {
     ///
     /// 删除转码规则。
     /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveTranscodeRuleResponse> {
         self.deleteLiveTranscodeRule(DeleteLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Live {
     ///
     /// 删除转码规则。
     /// DomainName+AppName+StreamName+TemplateId唯一标识单个转码规则，如需删除需要强匹配。其中TemplateId必填，其余参数为空时也需要传空字符串进行强匹配。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeRuleResponse {
         try await self.deleteLiveTranscodeRule(DeleteLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
     }

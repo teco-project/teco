@@ -62,7 +62,7 @@ extension Iotexplorer {
     /// 更新设备固件
     ///
     /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
-    @inlinable
+    @inlinable @discardableResult
     public func updateFirmware(_ input: UpdateFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFirmwareResponse> {
         self.client.execute(action: "UpdateFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Iotexplorer {
     /// 更新设备固件
     ///
     /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
-    @inlinable
+    @inlinable @discardableResult
     public func updateFirmware(_ input: UpdateFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
         try await self.client.execute(action: "UpdateFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Iotexplorer {
     /// 更新设备固件
     ///
     /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
-    @inlinable
+    @inlinable @discardableResult
     public func updateFirmware(productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFirmwareResponse> {
         self.updateFirmware(UpdateFirmwareRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Iotexplorer {
     /// 更新设备固件
     ///
     /// 本接口（UpdateFirmware）用于对指定设备发起固件升级请求
-    @inlinable
+    @inlinable @discardableResult
     public func updateFirmware(productID: String, deviceName: String, firmwareVersion: String, firmwareOriVersion: String, upgradeMethod: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFirmwareResponse {
         try await self.updateFirmware(UpdateFirmwareRequest(productID: productID, deviceName: deviceName, firmwareVersion: firmwareVersion, firmwareOriVersion: firmwareOriVersion, upgradeMethod: upgradeMethod), region: region, logger: logger, on: eventLoop)
     }

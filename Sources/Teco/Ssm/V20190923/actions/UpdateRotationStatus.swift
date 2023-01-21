@@ -63,7 +63,7 @@ extension Ssm {
     /// 是否开启轮转
     /// 轮转周期
     /// 轮转开始时间
-    @inlinable
+    @inlinable @discardableResult
     public func updateRotationStatus(_ input: UpdateRotationStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
         self.client.execute(action: "UpdateRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -74,7 +74,7 @@ extension Ssm {
     /// 是否开启轮转
     /// 轮转周期
     /// 轮转开始时间
-    @inlinable
+    @inlinable @discardableResult
     public func updateRotationStatus(_ input: UpdateRotationStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
         try await self.client.execute(action: "UpdateRotationStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -85,7 +85,7 @@ extension Ssm {
     /// 是否开启轮转
     /// 轮转周期
     /// 轮转开始时间
-    @inlinable
+    @inlinable @discardableResult
     public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRotationStatusResponse> {
         self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), region: region, logger: logger, on: eventLoop)
     }
@@ -96,7 +96,7 @@ extension Ssm {
     /// 是否开启轮转
     /// 轮转周期
     /// 轮转开始时间
-    @inlinable
+    @inlinable @discardableResult
     public func updateRotationStatus(secretName: String, enableRotation: Bool, frequency: Int64? = nil, rotationBeginTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRotationStatusResponse {
         try await self.updateRotationStatus(UpdateRotationStatusRequest(secretName: secretName, enableRotation: enableRotation, frequency: frequency, rotationBeginTime: rotationBeginTime), region: region, logger: logger, on: eventLoop)
     }

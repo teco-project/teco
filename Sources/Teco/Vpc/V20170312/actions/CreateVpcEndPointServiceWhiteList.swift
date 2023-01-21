@@ -52,7 +52,7 @@ extension Vpc {
     /// 创建终端服务白名单
     ///
     /// 创建终端服务白名单。
-    @inlinable
+    @inlinable @discardableResult
     public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceWhiteListResponse> {
         self.client.execute(action: "CreateVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vpc {
     /// 创建终端服务白名单
     ///
     /// 创建终端服务白名单。
-    @inlinable
+    @inlinable @discardableResult
     public func createVpcEndPointServiceWhiteList(_ input: CreateVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
         try await self.client.execute(action: "CreateVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vpc {
     /// 创建终端服务白名单
     ///
     /// 创建终端服务白名单。
-    @inlinable
+    @inlinable @discardableResult
     public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceWhiteListResponse> {
         self.createVpcEndPointServiceWhiteList(CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vpc {
     /// 创建终端服务白名单
     ///
     /// 创建终端服务白名单。
-    @inlinable
+    @inlinable @discardableResult
     public func createVpcEndPointServiceWhiteList(userUin: String, endPointServiceId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceWhiteListResponse {
         try await self.createVpcEndPointServiceWhiteList(CreateVpcEndPointServiceWhiteListRequest(userUin: userUin, endPointServiceId: endPointServiceId, description: description), region: region, logger: logger, on: eventLoop)
     }

@@ -97,7 +97,7 @@ extension Tke {
     /// 修改弹性集群EKS
     ///
     /// 修改弹性集群名称等属性
-    @inlinable
+    @inlinable @discardableResult
     public func updateEKSCluster(_ input: UpdateEKSClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSClusterResponse> {
         self.client.execute(action: "UpdateEKSCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -105,7 +105,7 @@ extension Tke {
     /// 修改弹性集群EKS
     ///
     /// 修改弹性集群名称等属性
-    @inlinable
+    @inlinable @discardableResult
     public func updateEKSCluster(_ input: UpdateEKSClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSClusterResponse {
         try await self.client.execute(action: "UpdateEKSCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -113,7 +113,7 @@ extension Tke {
     /// 修改弹性集群EKS
     ///
     /// 修改弹性集群名称等属性
-    @inlinable
+    @inlinable @discardableResult
     public func updateEKSCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, subnetIds: [String]? = nil, publicLB: ClusterPublicLB? = nil, internalLB: ClusterInternalLB? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, clearDnsServer: String? = nil, needDeleteCbs: Bool? = nil, proxyLB: Bool? = nil, extraParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSClusterResponse> {
         self.updateEKSCluster(UpdateEKSClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, subnetIds: subnetIds, publicLB: publicLB, internalLB: internalLB, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, clearDnsServer: clearDnsServer, needDeleteCbs: needDeleteCbs, proxyLB: proxyLB, extraParam: extraParam), region: region, logger: logger, on: eventLoop)
     }
@@ -121,7 +121,7 @@ extension Tke {
     /// 修改弹性集群EKS
     ///
     /// 修改弹性集群名称等属性
-    @inlinable
+    @inlinable @discardableResult
     public func updateEKSCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, subnetIds: [String]? = nil, publicLB: ClusterPublicLB? = nil, internalLB: ClusterInternalLB? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, clearDnsServer: String? = nil, needDeleteCbs: Bool? = nil, proxyLB: Bool? = nil, extraParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSClusterResponse {
         try await self.updateEKSCluster(UpdateEKSClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, subnetIds: subnetIds, publicLB: publicLB, internalLB: internalLB, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, clearDnsServer: clearDnsServer, needDeleteCbs: needDeleteCbs, proxyLB: proxyLB, extraParam: extraParam), region: region, logger: logger, on: eventLoop)
     }

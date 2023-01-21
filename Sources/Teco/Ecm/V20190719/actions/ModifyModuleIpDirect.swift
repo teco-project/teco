@@ -49,7 +49,7 @@ extension Ecm {
     /// 修改模块IP直通
     ///
     /// 修改模块IP直通。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleIpDirectResponse> {
         self.client.execute(action: "ModifyModuleIpDirect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Ecm {
     /// 修改模块IP直通
     ///
     /// 修改模块IP直通。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleIpDirect(_ input: ModifyModuleIpDirectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
         try await self.client.execute(action: "ModifyModuleIpDirect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -65,7 +65,7 @@ extension Ecm {
     /// 修改模块IP直通
     ///
     /// 修改模块IP直通。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleIpDirect(moduleId: String, closeIpDirect: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleIpDirectResponse> {
         self.modifyModuleIpDirect(ModifyModuleIpDirectRequest(moduleId: moduleId, closeIpDirect: closeIpDirect), region: region, logger: logger, on: eventLoop)
     }
@@ -73,7 +73,7 @@ extension Ecm {
     /// 修改模块IP直通
     ///
     /// 修改模块IP直通。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleIpDirect(moduleId: String, closeIpDirect: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleIpDirectResponse {
         try await self.modifyModuleIpDirect(ModifyModuleIpDirectRequest(moduleId: moduleId, closeIpDirect: closeIpDirect), region: region, logger: logger, on: eventLoop)
     }

@@ -56,7 +56,7 @@ extension Cvm {
     /// * 每个自定义镜像最多可共享给50个账户。
     /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
     /// * 只支持分享到对方账户相同地域。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageSharePermission(_ input: ModifyImageSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageSharePermissionResponse> {
         self.client.execute(action: "ModifyImageSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Cvm {
     /// * 每个自定义镜像最多可共享给50个账户。
     /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
     /// * 只支持分享到对方账户相同地域。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageSharePermission(_ input: ModifyImageSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSharePermissionResponse {
         try await self.client.execute(action: "ModifyImageSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -80,7 +80,7 @@ extension Cvm {
     /// * 每个自定义镜像最多可共享给50个账户。
     /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
     /// * 只支持分享到对方账户相同地域。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageSharePermission(imageId: String, accountIds: [String], permission: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageSharePermissionResponse> {
         self.modifyImageSharePermission(ModifyImageSharePermissionRequest(imageId: imageId, accountIds: accountIds, permission: permission), region: region, logger: logger, on: eventLoop)
     }
@@ -92,7 +92,7 @@ extension Cvm {
     /// * 每个自定义镜像最多可共享给50个账户。
     /// * 分享镜像无法更改名称，描述，仅可用于创建实例。
     /// * 只支持分享到对方账户相同地域。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageSharePermission(imageId: String, accountIds: [String], permission: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageSharePermissionResponse {
         try await self.modifyImageSharePermission(ModifyImageSharePermissionRequest(imageId: imageId, accountIds: accountIds, permission: permission), region: region, logger: logger, on: eventLoop)
     }

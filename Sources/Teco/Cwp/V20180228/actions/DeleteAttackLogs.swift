@@ -40,25 +40,25 @@ extension Cwp {
     }
 
     /// 删除网络攻击日志
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
         self.client.execute(action: "DeleteAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除网络攻击日志
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAttackLogs(_ input: DeleteAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
         try await self.client.execute(action: "DeleteAttackLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除网络攻击日志
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAttackLogs(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackLogsResponse> {
         self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除网络攻击日志
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAttackLogs(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackLogsResponse {
         try await self.deleteAttackLogs(DeleteAttackLogsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

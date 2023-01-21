@@ -48,25 +48,25 @@ extension Tcss {
     }
 
     /// 隔离容器网络状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerNetStatusResponse> {
         self.client.execute(action: "ModifyContainerNetStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离容器网络状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyContainerNetStatus(_ input: ModifyContainerNetStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
         try await self.client.execute(action: "ModifyContainerNetStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 隔离容器网络状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyContainerNetStatus(containerID: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerNetStatusResponse> {
         self.modifyContainerNetStatus(ModifyContainerNetStatusRequest(containerID: containerID, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 隔离容器网络状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyContainerNetStatus(containerID: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerNetStatusResponse {
         try await self.modifyContainerNetStatus(ModifyContainerNetStatusRequest(containerID: containerID, status: status), region: region, logger: logger, on: eventLoop)
     }

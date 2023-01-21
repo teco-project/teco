@@ -52,7 +52,7 @@ extension Bmvpc {
     /// 修改黑石VPC属性
     ///
     /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
         self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Bmvpc {
     /// 修改黑石VPC属性
     ///
     /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpcAttribute(_ input: ModifyVpcAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
         try await self.client.execute(action: "ModifyVpcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Bmvpc {
     /// 修改黑石VPC属性
     ///
     /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVpcAttributeResponse> {
         self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, vpcName: vpcName, enableMonitor: enableMonitor), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Bmvpc {
     /// 修改黑石VPC属性
     ///
     /// 本接口（ModifyVpcAttribute）用于修改VPC的标识名称和控制VPC的监控起停。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVpcAttribute(vpcId: String, vpcName: String? = nil, enableMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVpcAttributeResponse {
         try await self.modifyVpcAttribute(ModifyVpcAttributeRequest(vpcId: vpcId, vpcName: vpcName, enableMonitor: enableMonitor), region: region, logger: logger, on: eventLoop)
     }

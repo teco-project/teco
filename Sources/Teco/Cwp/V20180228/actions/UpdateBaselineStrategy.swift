@@ -87,7 +87,7 @@ extension Cwp {
     /// 更新基线策略信息
     ///
     /// 根据基线策略id更新策略信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateBaselineStrategy(_ input: UpdateBaselineStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBaselineStrategyResponse> {
         self.client.execute(action: "UpdateBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -95,7 +95,7 @@ extension Cwp {
     /// 更新基线策略信息
     ///
     /// 根据基线策略id更新策略信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateBaselineStrategy(_ input: UpdateBaselineStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBaselineStrategyResponse {
         try await self.client.execute(action: "UpdateBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -103,7 +103,7 @@ extension Cwp {
     /// 更新基线策略信息
     ///
     /// 根据基线策略id更新策略信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateBaselineStrategy(strategyId: UInt64, strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [String], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBaselineStrategyResponse> {
         self.updateBaselineStrategy(UpdateBaselineStrategyRequest(strategyId: strategyId, strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
@@ -111,7 +111,7 @@ extension Cwp {
     /// 更新基线策略信息
     ///
     /// 根据基线策略id更新策略信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateBaselineStrategy(strategyId: UInt64, strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [String], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBaselineStrategyResponse {
         try await self.updateBaselineStrategy(UpdateBaselineStrategyRequest(strategyId: strategyId, strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }

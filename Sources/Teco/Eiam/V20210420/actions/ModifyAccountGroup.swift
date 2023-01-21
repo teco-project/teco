@@ -50,25 +50,25 @@ extension Eiam {
     }
 
     /// 修改账号组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountGroup(_ input: ModifyAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountGroupResponse> {
         self.client.execute(action: "ModifyAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改账号组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountGroup(_ input: ModifyAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountGroupResponse {
         try await self.client.execute(action: "ModifyAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改账号组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountGroup(accountGroupId: String, groupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountGroupResponse> {
         self.modifyAccountGroup(ModifyAccountGroupRequest(accountGroupId: accountGroupId, groupName: groupName, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改账号组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccountGroup(accountGroupId: String, groupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountGroupResponse {
         try await self.modifyAccountGroup(ModifyAccountGroupRequest(accountGroupId: accountGroupId, groupName: groupName, description: description), region: region, logger: logger, on: eventLoop)
     }

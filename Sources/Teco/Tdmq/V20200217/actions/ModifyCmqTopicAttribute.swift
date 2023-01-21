@@ -55,25 +55,25 @@ extension Tdmq {
     }
 
     /// 修改cmq主题属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqTopicAttributeResponse> {
         self.client.execute(action: "ModifyCmqTopicAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改cmq主题属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCmqTopicAttribute(_ input: ModifyCmqTopicAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
         try await self.client.execute(action: "ModifyCmqTopicAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改cmq主题属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCmqTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCmqTopicAttributeResponse> {
         self.modifyCmqTopicAttribute(ModifyCmqTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改cmq主题属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCmqTopicAttribute(topicName: String, maxMsgSize: UInt64? = nil, msgRetentionSeconds: UInt64? = nil, trace: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCmqTopicAttributeResponse {
         try await self.modifyCmqTopicAttribute(ModifyCmqTopicAttributeRequest(topicName: topicName, maxMsgSize: maxMsgSize, msgRetentionSeconds: msgRetentionSeconds, trace: trace), region: region, logger: logger, on: eventLoop)
     }

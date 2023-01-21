@@ -47,7 +47,7 @@ extension Iotvideo {
     /// 删除固件
     ///
     /// 本接口（DeleteFirmware）用于删除固件
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFirmware(_ input: DeleteFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirmwareResponse> {
         self.client.execute(action: "DeleteFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotvideo {
     /// 删除固件
     ///
     /// 本接口（DeleteFirmware）用于删除固件
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFirmware(_ input: DeleteFirmwareRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
         try await self.client.execute(action: "DeleteFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotvideo {
     /// 删除固件
     ///
     /// 本接口（DeleteFirmware）用于删除固件
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFirmware(productID: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirmwareResponse> {
         self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotvideo {
     /// 删除固件
     ///
     /// 本接口（DeleteFirmware）用于删除固件
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFirmware(productID: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirmwareResponse {
         try await self.deleteFirmware(DeleteFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
     }

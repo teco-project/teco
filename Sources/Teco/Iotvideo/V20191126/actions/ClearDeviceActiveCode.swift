@@ -40,25 +40,25 @@ extension Iotvideo {
     }
 
     /// 清除设备激活码
-    @inlinable
+    @inlinable @discardableResult
     public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearDeviceActiveCodeResponse> {
         self.client.execute(action: "ClearDeviceActiveCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清除设备激活码
-    @inlinable
+    @inlinable @discardableResult
     public func clearDeviceActiveCode(_ input: ClearDeviceActiveCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearDeviceActiveCodeResponse {
         try await self.client.execute(action: "ClearDeviceActiveCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清除设备激活码
-    @inlinable
+    @inlinable @discardableResult
     public func clearDeviceActiveCode(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearDeviceActiveCodeResponse> {
         self.clearDeviceActiveCode(ClearDeviceActiveCodeRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清除设备激活码
-    @inlinable
+    @inlinable @discardableResult
     public func clearDeviceActiveCode(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearDeviceActiveCodeResponse {
         try await self.clearDeviceActiveCode(ClearDeviceActiveCodeRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }

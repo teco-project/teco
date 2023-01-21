@@ -51,25 +51,25 @@ extension Tcss {
     }
 
     /// 修改漏洞防御事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVulDefenceEventStatus(_ input: ModifyVulDefenceEventStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVulDefenceEventStatusResponse> {
         self.client.execute(action: "ModifyVulDefenceEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改漏洞防御事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVulDefenceEventStatus(_ input: ModifyVulDefenceEventStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceEventStatusResponse {
         try await self.client.execute(action: "ModifyVulDefenceEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改漏洞防御事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVulDefenceEventStatus(eventIDs: [Int64], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVulDefenceEventStatusResponse> {
         self.modifyVulDefenceEventStatus(ModifyVulDefenceEventStatusRequest(eventIDs: eventIDs, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改漏洞防御事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVulDefenceEventStatus(eventIDs: [Int64], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceEventStatusResponse {
         try await self.modifyVulDefenceEventStatus(ModifyVulDefenceEventStatusRequest(eventIDs: eventIDs, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }

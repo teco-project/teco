@@ -69,25 +69,25 @@ extension Teo {
     }
 
     /// 修改应用代理
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationProxy(_ input: ModifyApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyResponse> {
         self.client.execute(action: "ModifyApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationProxy(_ input: ModifyApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
         try await self.client.execute(action: "ModifyApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用代理
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyResponse> {
         self.modifyApplicationProxy(ModifyApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationProxy(zoneId: String, proxyId: String, proxyName: String, sessionPersistTime: UInt64? = nil, proxyType: String? = nil, ipv6: Ipv6? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyResponse {
         try await self.modifyApplicationProxy(ModifyApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId, proxyName: proxyName, sessionPersistTime: sessionPersistTime, proxyType: proxyType, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
     }

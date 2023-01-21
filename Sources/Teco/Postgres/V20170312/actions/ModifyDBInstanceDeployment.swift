@@ -62,7 +62,7 @@ extension Postgres {
     /// 修改实例部署方式
     ///
     /// 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceDeployment(_ input: ModifyDBInstanceDeploymentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceDeploymentResponse> {
         self.client.execute(action: "ModifyDBInstanceDeployment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Postgres {
     /// 修改实例部署方式
     ///
     /// 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceDeployment(_ input: ModifyDBInstanceDeploymentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceDeploymentResponse {
         try await self.client.execute(action: "ModifyDBInstanceDeployment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Postgres {
     /// 修改实例部署方式
     ///
     /// 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceDeployment(dbInstanceId: String, dbNodeSet: [DBNode], switchTag: Int64, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceDeploymentResponse> {
         self.modifyDBInstanceDeployment(ModifyDBInstanceDeploymentRequest(dbInstanceId: dbInstanceId, dbNodeSet: dbNodeSet, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Postgres {
     /// 修改实例部署方式
     ///
     /// 本接口（ModifyDBInstanceDeployment）用于修改节点可用区部署方式，仅支持主实例。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceDeployment(dbInstanceId: String, dbNodeSet: [DBNode], switchTag: Int64, switchStartTime: String? = nil, switchEndTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceDeploymentResponse {
         try await self.modifyDBInstanceDeployment(ModifyDBInstanceDeploymentRequest(dbInstanceId: dbInstanceId, dbNodeSet: dbNodeSet, switchTag: switchTag, switchStartTime: switchStartTime, switchEndTime: switchEndTime), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Live {
     /// 删除截图任务
     ///
     /// 删除截图任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScreenshotTask(_ input: DeleteScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScreenshotTaskResponse> {
         self.client.execute(action: "DeleteScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Live {
     /// 删除截图任务
     ///
     /// 删除截图任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScreenshotTask(_ input: DeleteScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScreenshotTaskResponse {
         try await self.client.execute(action: "DeleteScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Live {
     /// 删除截图任务
     ///
     /// 删除截图任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScreenshotTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScreenshotTaskResponse> {
         self.deleteScreenshotTask(DeleteScreenshotTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Live {
     /// 删除截图任务
     ///
     /// 删除截图任务配置。删除操作不影响正在运行当中的任务，仅对删除之后新的推流有效。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScreenshotTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScreenshotTaskResponse {
         try await self.deleteScreenshotTask(DeleteScreenshotTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

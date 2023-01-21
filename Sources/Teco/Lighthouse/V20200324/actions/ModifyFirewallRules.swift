@@ -60,7 +60,7 @@ extension Lighthouse {
     /// * CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。租户之间网络隔离规则优先于防火墙中的内网规则。
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFirewallRules(_ input: ModifyFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFirewallRulesResponse> {
         self.client.execute(action: "ModifyFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Lighthouse {
     /// * CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。租户之间网络隔离规则优先于防火墙中的内网规则。
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFirewallRules(_ input: ModifyFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRulesResponse {
         try await self.client.execute(action: "ModifyFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -92,7 +92,7 @@ extension Lighthouse {
     /// * CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。租户之间网络隔离规则优先于防火墙中的内网规则。
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFirewallRulesResponse> {
         self.modifyFirewallRules(ModifyFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
     }
@@ -108,7 +108,7 @@ extension Lighthouse {
     /// * CidrBlock 字段允许输入符合 cidr 格式标准的任意字符串。租户之间网络隔离规则优先于防火墙中的内网规则。
     /// * Action 字段只允许输入 ACCEPT 或 DROP。
     /// * FirewallRuleDescription 字段长度不得超过 64。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRulesResponse {
         try await self.modifyFirewallRules(ModifyFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
     }

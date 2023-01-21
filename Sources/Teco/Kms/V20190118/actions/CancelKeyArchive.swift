@@ -42,7 +42,7 @@ extension Kms {
     /// 取消密钥归档
     ///
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
-    @inlinable
+    @inlinable @discardableResult
     public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyArchiveResponse> {
         self.client.execute(action: "CancelKeyArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Kms {
     /// 取消密钥归档
     ///
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
-    @inlinable
+    @inlinable @discardableResult
     public func cancelKeyArchive(_ input: CancelKeyArchiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
         try await self.client.execute(action: "CancelKeyArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Kms {
     /// 取消密钥归档
     ///
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
-    @inlinable
+    @inlinable @discardableResult
     public func cancelKeyArchive(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyArchiveResponse> {
         self.cancelKeyArchive(CancelKeyArchiveRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Kms {
     /// 取消密钥归档
     ///
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
-    @inlinable
+    @inlinable @discardableResult
     public func cancelKeyArchive(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
         try await self.cancelKeyArchive(CancelKeyArchiveRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }

@@ -62,7 +62,7 @@ extension Bda {
     /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
-    @inlinable
+    @inlinable @discardableResult
     public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
         self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -73,7 +73,7 @@ extension Bda {
     /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
-    @inlinable
+    @inlinable @discardableResult
     public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
         try await self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -84,7 +84,7 @@ extension Bda {
     /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
-    @inlinable
+    @inlinable @discardableResult
     public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
         self.createGroup(CreateGroupRequest(groupName: groupName, groupId: groupId, tag: tag, bodyModelVersion: bodyModelVersion), region: region, logger: logger, on: eventLoop)
     }
@@ -95,7 +95,7 @@ extension Bda {
     /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
-    @inlinable
+    @inlinable @discardableResult
     public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
         try await self.createGroup(CreateGroupRequest(groupName: groupName, groupId: groupId, tag: tag, bodyModelVersion: bodyModelVersion), region: region, logger: logger, on: eventLoop)
     }

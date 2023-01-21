@@ -42,7 +42,7 @@ extension Mongodb {
     /// 包年包月隔离接口
     ///
     /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDBInstances(_ input: TerminateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstancesResponse> {
         self.client.execute(action: "TerminateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Mongodb {
     /// 包年包月隔离接口
     ///
     /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDBInstances(_ input: TerminateDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstancesResponse {
         try await self.client.execute(action: "TerminateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Mongodb {
     /// 包年包月隔离接口
     ///
     /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDBInstances(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstancesResponse> {
         self.terminateDBInstances(TerminateDBInstancesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Mongodb {
     /// 包年包月隔离接口
     ///
     /// 本接口（TerminateDBInstances）可将包年包月实例退还隔离。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDBInstances(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstancesResponse {
         try await self.terminateDBInstances(TerminateDBInstancesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

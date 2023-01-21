@@ -47,7 +47,7 @@ extension Es {
     /// 停止Logstash管道
     ///
     /// 用于批量停止Logstash管道
-    @inlinable
+    @inlinable @discardableResult
     public func stopLogstashPipelines(_ input: StopLogstashPipelinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopLogstashPipelinesResponse> {
         self.client.execute(action: "StopLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Es {
     /// 停止Logstash管道
     ///
     /// 用于批量停止Logstash管道
-    @inlinable
+    @inlinable @discardableResult
     public func stopLogstashPipelines(_ input: StopLogstashPipelinesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLogstashPipelinesResponse {
         try await self.client.execute(action: "StopLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Es {
     /// 停止Logstash管道
     ///
     /// 用于批量停止Logstash管道
-    @inlinable
+    @inlinable @discardableResult
     public func stopLogstashPipelines(instanceId: String, pipelineIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopLogstashPipelinesResponse> {
         self.stopLogstashPipelines(StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Es {
     /// 停止Logstash管道
     ///
     /// 用于批量停止Logstash管道
-    @inlinable
+    @inlinable @discardableResult
     public func stopLogstashPipelines(instanceId: String, pipelineIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLogstashPipelinesResponse {
         try await self.stopLogstashPipelines(StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
     }

@@ -34,7 +34,7 @@ extension Tcr {
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
         self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -42,7 +42,7 @@ extension Tcr {
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImageLifecycleGlobalPersonal(_ input: DeleteImageLifecycleGlobalPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
         try await self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -50,7 +50,7 @@ extension Tcr {
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImageLifecycleGlobalPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
         self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), region: region, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Tcr {
     /// 删除个人版全局镜像版本自动清理策略
     ///
     /// 用于删除个人版全局镜像版本自动清理策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImageLifecycleGlobalPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
         try await self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), region: region, logger: logger, on: eventLoop)
     }

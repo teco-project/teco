@@ -55,25 +55,25 @@ extension Antiddos {
     }
 
     /// 修改CC精准防护策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPrecisionPolicyResponse> {
         self.client.execute(action: "ModifyCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC精准防护策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCCPrecisionPolicy(_ input: ModifyCCPrecisionPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {
         try await self.client.execute(action: "ModifyCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改CC精准防护策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCCPrecisionPolicy(instanceId: String, policyId: String, policyAction: String, policyList: [CCPrecisionPlyRecord], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPrecisionPolicyResponse> {
         self.modifyCCPrecisionPolicy(ModifyCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId, policyAction: policyAction, policyList: policyList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CC精准防护策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCCPrecisionPolicy(instanceId: String, policyId: String, policyAction: String, policyList: [CCPrecisionPlyRecord], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPrecisionPolicyResponse {
         try await self.modifyCCPrecisionPolicy(ModifyCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId, policyAction: policyAction, policyList: policyList), region: region, logger: logger, on: eventLoop)
     }

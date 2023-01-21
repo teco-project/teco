@@ -47,7 +47,7 @@ extension Iotvideo {
     /// 定义的物模型发布
     ///
     /// 本接口（RunIotModel）用于对定义的物模型进行发布。
-    @inlinable
+    @inlinable @discardableResult
     public func runIotModel(_ input: RunIotModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunIotModelResponse> {
         self.client.execute(action: "RunIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotvideo {
     /// 定义的物模型发布
     ///
     /// 本接口（RunIotModel）用于对定义的物模型进行发布。
-    @inlinable
+    @inlinable @discardableResult
     public func runIotModel(_ input: RunIotModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunIotModelResponse {
         try await self.client.execute(action: "RunIotModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotvideo {
     /// 定义的物模型发布
     ///
     /// 本接口（RunIotModel）用于对定义的物模型进行发布。
-    @inlinable
+    @inlinable @discardableResult
     public func runIotModel(productId: String, iotModel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunIotModelResponse> {
         self.runIotModel(RunIotModelRequest(productId: productId, iotModel: iotModel), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotvideo {
     /// 定义的物模型发布
     ///
     /// 本接口（RunIotModel）用于对定义的物模型进行发布。
-    @inlinable
+    @inlinable @discardableResult
     public func runIotModel(productId: String, iotModel: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunIotModelResponse {
         try await self.runIotModel(RunIotModelRequest(productId: productId, iotModel: iotModel), region: region, logger: logger, on: eventLoop)
     }

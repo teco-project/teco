@@ -52,7 +52,7 @@ extension Cam {
     /// 更新访问密钥
     ///
     /// 为CAM用户更新访问密钥
-    @inlinable
+    @inlinable @discardableResult
     public func updateAccessKey(_ input: UpdateAccessKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAccessKeyResponse> {
         self.client.execute(action: "UpdateAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cam {
     /// 更新访问密钥
     ///
     /// 为CAM用户更新访问密钥
-    @inlinable
+    @inlinable @discardableResult
     public func updateAccessKey(_ input: UpdateAccessKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAccessKeyResponse {
         try await self.client.execute(action: "UpdateAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cam {
     /// 更新访问密钥
     ///
     /// 为CAM用户更新访问密钥
-    @inlinable
+    @inlinable @discardableResult
     public func updateAccessKey(accessKeyId: String, status: String, targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAccessKeyResponse> {
         self.updateAccessKey(UpdateAccessKeyRequest(accessKeyId: accessKeyId, status: status, targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cam {
     /// 更新访问密钥
     ///
     /// 为CAM用户更新访问密钥
-    @inlinable
+    @inlinable @discardableResult
     public func updateAccessKey(accessKeyId: String, status: String, targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAccessKeyResponse {
         try await self.updateAccessKey(UpdateAccessKeyRequest(accessKeyId: accessKeyId, status: status, targetUin: targetUin), region: region, logger: logger, on: eventLoop)
     }

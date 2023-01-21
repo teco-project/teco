@@ -65,25 +65,25 @@ extension Es {
     }
 
     /// 删除索引
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIndex(_ input: DeleteIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
         self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除索引
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIndex(_ input: DeleteIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
         try await self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除索引
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
         self.deleteIndex(DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除索引
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIndex(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, backingIndexName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
         try await self.deleteIndex(DeleteIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password, backingIndexName: backingIndexName), region: region, logger: logger, on: eventLoop)
     }

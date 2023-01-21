@@ -43,7 +43,7 @@ extension Vpc {
     ///
     /// 本接口（DeleteNatGateway）用于删除NAT网关。
     /// 删除 NAT 网关后，系统会自动删除路由表中包含此 NAT 网关的路由项，同时也会解绑弹性公网IP（EIP）。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatGateway(_ input: DeleteNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewayResponse> {
         self.client.execute(action: "DeleteNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Vpc {
     ///
     /// 本接口（DeleteNatGateway）用于删除NAT网关。
     /// 删除 NAT 网关后，系统会自动删除路由表中包含此 NAT 网关的路由项，同时也会解绑弹性公网IP（EIP）。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatGateway(_ input: DeleteNatGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
         try await self.client.execute(action: "DeleteNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Vpc {
     ///
     /// 本接口（DeleteNatGateway）用于删除NAT网关。
     /// 删除 NAT 网关后，系统会自动删除路由表中包含此 NAT 网关的路由项，同时也会解绑弹性公网IP（EIP）。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatGateway(natGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNatGatewayResponse> {
         self.deleteNatGateway(DeleteNatGatewayRequest(natGatewayId: natGatewayId), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Vpc {
     ///
     /// 本接口（DeleteNatGateway）用于删除NAT网关。
     /// 删除 NAT 网关后，系统会自动删除路由表中包含此 NAT 网关的路由项，同时也会解绑弹性公网IP（EIP）。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNatGateway(natGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
         try await self.deleteNatGateway(DeleteNatGatewayRequest(natGatewayId: natGatewayId), region: region, logger: logger, on: eventLoop)
     }

@@ -48,25 +48,25 @@ extension Live {
     }
 
     /// 解绑域名证书
-    @inlinable
+    @inlinable @discardableResult
     public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindLiveDomainCertResponse> {
         self.client.execute(action: "UnBindLiveDomainCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑域名证书
-    @inlinable
+    @inlinable @discardableResult
     public func unBindLiveDomainCert(_ input: UnBindLiveDomainCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindLiveDomainCertResponse {
         try await self.client.execute(action: "UnBindLiveDomainCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑域名证书
-    @inlinable
+    @inlinable @discardableResult
     public func unBindLiveDomainCert(domainName: String, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindLiveDomainCertResponse> {
         self.unBindLiveDomainCert(UnBindLiveDomainCertRequest(domainName: domainName, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑域名证书
-    @inlinable
+    @inlinable @discardableResult
     public func unBindLiveDomainCert(domainName: String, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindLiveDomainCertResponse {
         try await self.unBindLiveDomainCert(UnBindLiveDomainCertRequest(domainName: domainName, type: type), region: region, logger: logger, on: eventLoop)
     }

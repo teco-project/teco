@@ -42,7 +42,7 @@ extension Vpc {
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclResponse> {
         self.client.execute(action: "DeleteNetworkAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Vpc {
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNetworkAcl(_ input: DeleteNetworkAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
         try await self.client.execute(action: "DeleteNetworkAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Vpc {
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNetworkAcl(networkAclId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetworkAclResponse> {
         self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 删除网络ACL
     ///
     /// 本接口（DeleteNetworkAcl）用于删除网络ACL。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNetworkAcl(networkAclId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkAclResponse {
         try await self.deleteNetworkAcl(DeleteNetworkAclRequest(networkAclId: networkAclId), region: region, logger: logger, on: eventLoop)
     }

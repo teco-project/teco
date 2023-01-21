@@ -60,25 +60,25 @@ extension Tdmq {
     }
 
     /// 更新RocketMQ命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRocketMQNamespace(_ input: ModifyRocketMQNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQNamespaceResponse> {
         self.client.execute(action: "ModifyRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRocketMQNamespace(_ input: ModifyRocketMQNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQNamespaceResponse {
         try await self.client.execute(action: "ModifyRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新RocketMQ命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQNamespaceResponse> {
         self.modifyRocketMQNamespace(ModifyRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQNamespaceResponse {
         try await self.modifyRocketMQNamespace(ModifyRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
     }

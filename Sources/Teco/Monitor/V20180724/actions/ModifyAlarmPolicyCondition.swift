@@ -75,25 +75,25 @@ extension Monitor {
     }
 
     /// 修改告警策略触发条件
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyCondition(_ input: ModifyAlarmPolicyConditionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyConditionResponse> {
         self.client.execute(action: "ModifyAlarmPolicyCondition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略触发条件
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyCondition(_ input: ModifyAlarmPolicyConditionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyConditionResponse {
         try await self.client.execute(action: "ModifyAlarmPolicyCondition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改告警策略触发条件
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyCondition(module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyConditionResponse> {
         self.modifyAlarmPolicyCondition(ModifyAlarmPolicyConditionRequest(module: module, policyId: policyId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, filter: filter, groupBy: groupBy, logAlarmReqInfo: logAlarmReqInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略触发条件
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyCondition(module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyConditionResponse {
         try await self.modifyAlarmPolicyCondition(ModifyAlarmPolicyConditionRequest(module: module, policyId: policyId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, filter: filter, groupBy: groupBy, logAlarmReqInfo: logAlarmReqInfo), region: region, logger: logger, on: eventLoop)
     }

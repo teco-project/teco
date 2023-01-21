@@ -45,25 +45,25 @@ extension Wedata {
     }
 
     /// 获取kafka的topic信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKafkaTopicInfoResponse> {
         self.client.execute(action: "DescribeKafkaTopicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取kafka的topic信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeKafkaTopicInfo(_ input: DescribeKafkaTopicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
         try await self.client.execute(action: "DescribeKafkaTopicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 获取kafka的topic信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeKafkaTopicInfo(datasourceId: String, type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKafkaTopicInfoResponse> {
         self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取kafka的topic信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeKafkaTopicInfo(datasourceId: String, type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKafkaTopicInfoResponse {
         try await self.describeKafkaTopicInfo(DescribeKafkaTopicInfoRequest(datasourceId: datasourceId, type: type), region: region, logger: logger, on: eventLoop)
     }

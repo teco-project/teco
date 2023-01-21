@@ -47,7 +47,7 @@ extension Tcaplusdb {
     /// 修改集群名称
     ///
     /// 修改指定的集群名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterName(_ input: ModifyClusterNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNameResponse> {
         self.client.execute(action: "ModifyClusterName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcaplusdb {
     /// 修改集群名称
     ///
     /// 修改指定的集群名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterName(_ input: ModifyClusterNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
         try await self.client.execute(action: "ModifyClusterName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcaplusdb {
     /// 修改集群名称
     ///
     /// 修改指定的集群名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterName(clusterId: String, clusterName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterNameResponse> {
         self.modifyClusterName(ModifyClusterNameRequest(clusterId: clusterId, clusterName: clusterName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcaplusdb {
     /// 修改集群名称
     ///
     /// 修改指定的集群名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterName(clusterId: String, clusterName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterNameResponse {
         try await self.modifyClusterName(ModifyClusterNameRequest(clusterId: clusterId, clusterName: clusterName), region: region, logger: logger, on: eventLoop)
     }

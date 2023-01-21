@@ -117,7 +117,7 @@ extension Gaap {
     /// 修改UDP监听器配置
     ///
     /// 本接口（ModifyUDPListenerAttribute）用于修改通道实例下UDP监听器配置，包括监听器名称和调度策略的修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUDPListenerAttribute(_ input: ModifyUDPListenerAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUDPListenerAttributeResponse> {
         self.client.execute(action: "ModifyUDPListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -125,7 +125,7 @@ extension Gaap {
     /// 修改UDP监听器配置
     ///
     /// 本接口（ModifyUDPListenerAttribute）用于修改通道实例下UDP监听器配置，包括监听器名称和调度策略的修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUDPListenerAttribute(_ input: ModifyUDPListenerAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUDPListenerAttributeResponse {
         try await self.client.execute(action: "ModifyUDPListenerAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -133,7 +133,7 @@ extension Gaap {
     /// 修改UDP监听器配置
     ///
     /// 本接口（ModifyUDPListenerAttribute）用于修改通道实例下UDP监听器配置，包括监听器名称和调度策略的修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUDPListenerAttribute(listenerId: String, groupId: String? = nil, proxyId: String? = nil, listenerName: String? = nil, scheduler: String? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, failoverSwitch: Int64? = nil, healthCheck: UInt64? = nil, checkType: String? = nil, checkPort: Int64? = nil, contextType: String? = nil, sendContext: String? = nil, recvContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUDPListenerAttributeResponse> {
         self.modifyUDPListenerAttribute(ModifyUDPListenerAttributeRequest(listenerId: listenerId, groupId: groupId, proxyId: proxyId, listenerName: listenerName, scheduler: scheduler, delayLoop: delayLoop, connectTimeout: connectTimeout, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold, failoverSwitch: failoverSwitch, healthCheck: healthCheck, checkType: checkType, checkPort: checkPort, contextType: contextType, sendContext: sendContext, recvContext: recvContext), region: region, logger: logger, on: eventLoop)
     }
@@ -141,7 +141,7 @@ extension Gaap {
     /// 修改UDP监听器配置
     ///
     /// 本接口（ModifyUDPListenerAttribute）用于修改通道实例下UDP监听器配置，包括监听器名称和调度策略的修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUDPListenerAttribute(listenerId: String, groupId: String? = nil, proxyId: String? = nil, listenerName: String? = nil, scheduler: String? = nil, delayLoop: UInt64? = nil, connectTimeout: UInt64? = nil, healthyThreshold: UInt64? = nil, unhealthyThreshold: UInt64? = nil, failoverSwitch: Int64? = nil, healthCheck: UInt64? = nil, checkType: String? = nil, checkPort: Int64? = nil, contextType: String? = nil, sendContext: String? = nil, recvContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUDPListenerAttributeResponse {
         try await self.modifyUDPListenerAttribute(ModifyUDPListenerAttributeRequest(listenerId: listenerId, groupId: groupId, proxyId: proxyId, listenerName: listenerName, scheduler: scheduler, delayLoop: delayLoop, connectTimeout: connectTimeout, healthyThreshold: healthyThreshold, unhealthyThreshold: unhealthyThreshold, failoverSwitch: failoverSwitch, healthCheck: healthCheck, checkType: checkType, checkPort: checkPort, contextType: contextType, sendContext: sendContext, recvContext: recvContext), region: region, logger: logger, on: eventLoop)
     }

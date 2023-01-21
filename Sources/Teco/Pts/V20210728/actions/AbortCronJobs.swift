@@ -45,25 +45,25 @@ extension Pts {
     }
 
     /// 停止定时任务
-    @inlinable
+    @inlinable @discardableResult
     public func abortCronJobs(_ input: AbortCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortCronJobsResponse> {
         self.client.execute(action: "AbortCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止定时任务
-    @inlinable
+    @inlinable @discardableResult
     public func abortCronJobs(_ input: AbortCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
         try await self.client.execute(action: "AbortCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止定时任务
-    @inlinable
+    @inlinable @discardableResult
     public func abortCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AbortCronJobsResponse> {
         self.abortCronJobs(AbortCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止定时任务
-    @inlinable
+    @inlinable @discardableResult
     public func abortCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AbortCronJobsResponse {
         try await self.abortCronJobs(AbortCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
     }

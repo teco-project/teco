@@ -57,7 +57,7 @@ extension Cdn {
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
-    @inlinable
+    @inlinable @discardableResult
     public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
         self.client.execute(action: "AddCLSTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cdn {
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
-    @inlinable
+    @inlinable @discardableResult
     public func addCLSTopicDomains(_ input: AddCLSTopicDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCLSTopicDomainsResponse {
         try await self.client.execute(action: "AddCLSTopicDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cdn {
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
-    @inlinable
+    @inlinable @discardableResult
     public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCLSTopicDomainsResponse> {
         self.addCLSTopicDomains(AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cdn {
     /// 新增日志主题下绑定的域名
     ///
     /// AddCLSTopicDomains 用于新增域名到某日志主题下
-    @inlinable
+    @inlinable @discardableResult
     public func addCLSTopicDomains(logsetId: String, topicId: String, domainAreaConfigs: [DomainAreaConfig], channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCLSTopicDomainsResponse {
         try await self.addCLSTopicDomains(AddCLSTopicDomainsRequest(logsetId: logsetId, topicId: topicId, domainAreaConfigs: domainAreaConfigs, channel: channel), region: region, logger: logger, on: eventLoop)
     }

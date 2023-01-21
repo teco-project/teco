@@ -52,7 +52,7 @@ extension Nlp {
     /// 修改自定义词库
     ///
     /// 修改自定义词库元数据信息，包括名称、描述。
-    @inlinable
+    @inlinable @discardableResult
     public func updateDict(_ input: UpdateDictRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictResponse> {
         self.client.execute(action: "UpdateDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Nlp {
     /// 修改自定义词库
     ///
     /// 修改自定义词库元数据信息，包括名称、描述。
-    @inlinable
+    @inlinable @discardableResult
     public func updateDict(_ input: UpdateDictRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictResponse {
         try await self.client.execute(action: "UpdateDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Nlp {
     /// 修改自定义词库
     ///
     /// 修改自定义词库元数据信息，包括名称、描述。
-    @inlinable
+    @inlinable @discardableResult
     public func updateDict(dictId: String, description: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDictResponse> {
         self.updateDict(UpdateDictRequest(dictId: dictId, description: description, name: name), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Nlp {
     /// 修改自定义词库
     ///
     /// 修改自定义词库元数据信息，包括名称、描述。
-    @inlinable
+    @inlinable @discardableResult
     public func updateDict(dictId: String, description: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDictResponse {
         try await self.updateDict(UpdateDictRequest(dictId: dictId, description: description, name: name), region: region, logger: logger, on: eventLoop)
     }

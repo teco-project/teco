@@ -45,7 +45,7 @@ extension Vpc {
     /// <li>如果是 NAT 网关，删除专线网关后，NAT 规则以及 ACL 策略都被清理了。</li>
     /// <li>删除专线网关后，系统会删除路由表中跟该专线网关相关的路由策略。</li>
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDirectConnectGateway(_ input: DeleteDirectConnectGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayResponse> {
         self.client.execute(action: "DeleteDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -56,7 +56,7 @@ extension Vpc {
     /// <li>如果是 NAT 网关，删除专线网关后，NAT 规则以及 ACL 策略都被清理了。</li>
     /// <li>删除专线网关后，系统会删除路由表中跟该专线网关相关的路由策略。</li>
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDirectConnectGateway(_ input: DeleteDirectConnectGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayResponse {
         try await self.client.execute(action: "DeleteDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -67,7 +67,7 @@ extension Vpc {
     /// <li>如果是 NAT 网关，删除专线网关后，NAT 规则以及 ACL 策略都被清理了。</li>
     /// <li>删除专线网关后，系统会删除路由表中跟该专线网关相关的路由策略。</li>
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDirectConnectGateway(directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectGatewayResponse> {
         self.deleteDirectConnectGateway(DeleteDirectConnectGatewayRequest(directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }
@@ -78,7 +78,7 @@ extension Vpc {
     /// <li>如果是 NAT 网关，删除专线网关后，NAT 规则以及 ACL 策略都被清理了。</li>
     /// <li>删除专线网关后，系统会删除路由表中跟该专线网关相关的路由策略。</li>
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`QueryTask`接口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDirectConnectGateway(directConnectGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectGatewayResponse {
         try await self.deleteDirectConnectGateway(DeleteDirectConnectGatewayRequest(directConnectGatewayId: directConnectGatewayId), region: region, logger: logger, on: eventLoop)
     }

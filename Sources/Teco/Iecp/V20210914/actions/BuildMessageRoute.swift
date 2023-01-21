@@ -75,25 +75,25 @@ extension Iecp {
     }
 
     /// 建立消息路由
-    @inlinable
+    @inlinable @discardableResult
     public func buildMessageRoute(_ input: BuildMessageRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildMessageRouteResponse> {
         self.client.execute(action: "BuildMessageRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 建立消息路由
-    @inlinable
+    @inlinable @discardableResult
     public func buildMessageRoute(_ input: BuildMessageRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildMessageRouteResponse {
         try await self.client.execute(action: "BuildMessageRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 建立消息路由
-    @inlinable
+    @inlinable @discardableResult
     public func buildMessageRoute(routeName: String, sourceProductID: String, sourceDeviceNameList: [String], topicFilter: String, mode: String, sourceUnitIDList: [String]? = nil, descript: String? = nil, targetOptions: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BuildMessageRouteResponse> {
         self.buildMessageRoute(BuildMessageRouteRequest(routeName: routeName, sourceProductID: sourceProductID, sourceDeviceNameList: sourceDeviceNameList, topicFilter: topicFilter, mode: mode, sourceUnitIDList: sourceUnitIDList, descript: descript, targetOptions: targetOptions), region: region, logger: logger, on: eventLoop)
     }
 
     /// 建立消息路由
-    @inlinable
+    @inlinable @discardableResult
     public func buildMessageRoute(routeName: String, sourceProductID: String, sourceDeviceNameList: [String], topicFilter: String, mode: String, sourceUnitIDList: [String]? = nil, descript: String? = nil, targetOptions: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BuildMessageRouteResponse {
         try await self.buildMessageRoute(BuildMessageRouteRequest(routeName: routeName, sourceProductID: sourceProductID, sourceDeviceNameList: sourceDeviceNameList, topicFilter: topicFilter, mode: mode, sourceUnitIDList: sourceUnitIDList, descript: descript, targetOptions: targetOptions), region: region, logger: logger, on: eventLoop)
     }

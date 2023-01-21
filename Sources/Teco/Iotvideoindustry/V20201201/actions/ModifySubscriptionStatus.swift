@@ -50,25 +50,25 @@ extension Iotvideoindustry {
     }
 
     /// 编辑设备订阅状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscriptionStatus(_ input: ModifySubscriptionStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscriptionStatusResponse> {
         self.client.execute(action: "ModifySubscriptionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑设备订阅状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscriptionStatus(_ input: ModifySubscriptionStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionStatusResponse {
         try await self.client.execute(action: "ModifySubscriptionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 编辑设备订阅状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscriptionStatus(deviceId: String, status: Int64, subscriptionItem: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscriptionStatusResponse> {
         self.modifySubscriptionStatus(ModifySubscriptionStatusRequest(deviceId: deviceId, status: status, subscriptionItem: subscriptionItem), region: region, logger: logger, on: eventLoop)
     }
 
     /// 编辑设备订阅状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscriptionStatus(deviceId: String, status: Int64, subscriptionItem: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscriptionStatusResponse {
         try await self.modifySubscriptionStatus(ModifySubscriptionStatusRequest(deviceId: deviceId, status: status, subscriptionItem: subscriptionItem), region: region, logger: logger, on: eventLoop)
     }

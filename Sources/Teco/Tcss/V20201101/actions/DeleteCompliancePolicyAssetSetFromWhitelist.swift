@@ -42,7 +42,7 @@ extension Tcss {
     /// 删除检测项+资产列表的白名单策略
     ///
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCompliancePolicyAssetSetFromWhitelist(_ input: DeleteCompliancePolicyAssetSetFromWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyAssetSetFromWhitelistResponse> {
         self.client.execute(action: "DeleteCompliancePolicyAssetSetFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcss {
     /// 删除检测项+资产列表的白名单策略
     ///
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCompliancePolicyAssetSetFromWhitelist(_ input: DeleteCompliancePolicyAssetSetFromWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyAssetSetFromWhitelistResponse {
         try await self.client.execute(action: "DeleteCompliancePolicyAssetSetFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcss {
     /// 删除检测项+资产列表的白名单策略
     ///
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCompliancePolicyAssetSetFromWhitelist(policyAssetSetList: [CompliancePolicyAssetSetItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyAssetSetFromWhitelistResponse> {
         self.deleteCompliancePolicyAssetSetFromWhitelist(DeleteCompliancePolicyAssetSetFromWhitelistRequest(policyAssetSetList: policyAssetSetList), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcss {
     /// 删除检测项+资产列表的白名单策略
     ///
     /// 新增安全合规忽略(检测项+资产)列表，不显示指定的检查项包含的资产内容
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCompliancePolicyAssetSetFromWhitelist(policyAssetSetList: [CompliancePolicyAssetSetItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyAssetSetFromWhitelistResponse {
         try await self.deleteCompliancePolicyAssetSetFromWhitelist(DeleteCompliancePolicyAssetSetFromWhitelistRequest(policyAssetSetList: policyAssetSetList), region: region, logger: logger, on: eventLoop)
     }

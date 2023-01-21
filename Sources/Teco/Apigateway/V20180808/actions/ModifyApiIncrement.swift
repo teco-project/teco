@@ -62,7 +62,7 @@ extension Apigateway {
     /// 增量更新API接口
     ///
     /// 提供增量更新API能力，主要是给程序调用（区别于ModifyApi，该接口是需要传入API的全量参数，对console使用较友好）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApiIncrement(_ input: ModifyApiIncrementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiIncrementResponse> {
         self.client.execute(action: "ModifyApiIncrement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Apigateway {
     /// 增量更新API接口
     ///
     /// 提供增量更新API能力，主要是给程序调用（区别于ModifyApi，该接口是需要传入API的全量参数，对console使用较友好）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApiIncrement(_ input: ModifyApiIncrementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiIncrementResponse {
         try await self.client.execute(action: "ModifyApiIncrement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Apigateway {
     /// 增量更新API接口
     ///
     /// 提供增量更新API能力，主要是给程序调用（区别于ModifyApi，该接口是需要传入API的全量参数，对console使用较友好）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApiIncrement(serviceId: String, apiId: String, businessType: String, publicKey: String? = nil, loginRedirectUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiIncrementResponse> {
         self.modifyApiIncrement(ModifyApiIncrementRequest(serviceId: serviceId, apiId: apiId, businessType: businessType, publicKey: publicKey, loginRedirectUrl: loginRedirectUrl), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Apigateway {
     /// 增量更新API接口
     ///
     /// 提供增量更新API能力，主要是给程序调用（区别于ModifyApi，该接口是需要传入API的全量参数，对console使用较友好）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApiIncrement(serviceId: String, apiId: String, businessType: String, publicKey: String? = nil, loginRedirectUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiIncrementResponse {
         try await self.modifyApiIncrement(ModifyApiIncrementRequest(serviceId: serviceId, apiId: apiId, businessType: businessType, publicKey: publicKey, loginRedirectUrl: loginRedirectUrl), region: region, logger: logger, on: eventLoop)
     }

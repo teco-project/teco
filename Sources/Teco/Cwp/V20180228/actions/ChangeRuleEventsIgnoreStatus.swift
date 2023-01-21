@@ -52,7 +52,7 @@ extension Cwp {
     /// 修改事件忽略状态
     ///
     /// 根据检测项id或事件id批量忽略事件或取消忽略
-    @inlinable
+    @inlinable @discardableResult
     public func changeRuleEventsIgnoreStatus(_ input: ChangeRuleEventsIgnoreStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRuleEventsIgnoreStatusResponse> {
         self.client.execute(action: "ChangeRuleEventsIgnoreStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cwp {
     /// 修改事件忽略状态
     ///
     /// 根据检测项id或事件id批量忽略事件或取消忽略
-    @inlinable
+    @inlinable @discardableResult
     public func changeRuleEventsIgnoreStatus(_ input: ChangeRuleEventsIgnoreStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRuleEventsIgnoreStatusResponse {
         try await self.client.execute(action: "ChangeRuleEventsIgnoreStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cwp {
     /// 修改事件忽略状态
     ///
     /// 根据检测项id或事件id批量忽略事件或取消忽略
-    @inlinable
+    @inlinable @discardableResult
     public func changeRuleEventsIgnoreStatus(ignoreStatus: UInt64, ruleIdList: [UInt64]? = nil, eventIdList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRuleEventsIgnoreStatusResponse> {
         self.changeRuleEventsIgnoreStatus(ChangeRuleEventsIgnoreStatusRequest(ignoreStatus: ignoreStatus, ruleIdList: ruleIdList, eventIdList: eventIdList), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cwp {
     /// 修改事件忽略状态
     ///
     /// 根据检测项id或事件id批量忽略事件或取消忽略
-    @inlinable
+    @inlinable @discardableResult
     public func changeRuleEventsIgnoreStatus(ignoreStatus: UInt64, ruleIdList: [UInt64]? = nil, eventIdList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRuleEventsIgnoreStatusResponse {
         try await self.changeRuleEventsIgnoreStatus(ChangeRuleEventsIgnoreStatusRequest(ignoreStatus: ignoreStatus, ruleIdList: ruleIdList, eventIdList: eventIdList), region: region, logger: logger, on: eventLoop)
     }

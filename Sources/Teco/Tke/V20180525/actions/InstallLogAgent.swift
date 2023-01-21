@@ -47,7 +47,7 @@ extension Tke {
     /// 安装日志采集组件
     ///
     /// 在TKE集群中安装CLS日志采集组件
-    @inlinable
+    @inlinable @discardableResult
     public func installLogAgent(_ input: InstallLogAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallLogAgentResponse> {
         self.client.execute(action: "InstallLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tke {
     /// 安装日志采集组件
     ///
     /// 在TKE集群中安装CLS日志采集组件
-    @inlinable
+    @inlinable @discardableResult
     public func installLogAgent(_ input: InstallLogAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallLogAgentResponse {
         try await self.client.execute(action: "InstallLogAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tke {
     /// 安装日志采集组件
     ///
     /// 在TKE集群中安装CLS日志采集组件
-    @inlinable
+    @inlinable @discardableResult
     public func installLogAgent(clusterId: String, kubeletRootDir: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallLogAgentResponse> {
         self.installLogAgent(InstallLogAgentRequest(clusterId: clusterId, kubeletRootDir: kubeletRootDir), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tke {
     /// 安装日志采集组件
     ///
     /// 在TKE集群中安装CLS日志采集组件
-    @inlinable
+    @inlinable @discardableResult
     public func installLogAgent(clusterId: String, kubeletRootDir: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallLogAgentResponse {
         try await self.installLogAgent(InstallLogAgentRequest(clusterId: clusterId, kubeletRootDir: kubeletRootDir), region: region, logger: logger, on: eventLoop)
     }

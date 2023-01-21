@@ -42,7 +42,7 @@ extension Cls {
     /// 删除投递配置
     ///
     /// 本接口用于删除投递配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConsumer(_ input: DeleteConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConsumerResponse> {
         self.client.execute(action: "DeleteConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cls {
     /// 删除投递配置
     ///
     /// 本接口用于删除投递配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConsumer(_ input: DeleteConsumerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConsumerResponse {
         try await self.client.execute(action: "DeleteConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cls {
     /// 删除投递配置
     ///
     /// 本接口用于删除投递配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConsumer(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConsumerResponse> {
         self.deleteConsumer(DeleteConsumerRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cls {
     /// 删除投递配置
     ///
     /// 本接口用于删除投递配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConsumer(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConsumerResponse {
         try await self.deleteConsumer(DeleteConsumerRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }

@@ -57,7 +57,7 @@ extension Tcr {
     /// 创建命名空间
     ///
     /// 用于在企业版中创建命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func createNamespace(_ input: CreateNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
         self.client.execute(action: "CreateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Tcr {
     /// 创建命名空间
     ///
     /// 用于在企业版中创建命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func createNamespace(_ input: CreateNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
         try await self.client.execute(action: "CreateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Tcr {
     /// 创建命名空间
     ///
     /// 用于在企业版中创建命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
         self.createNamespace(CreateNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Tcr {
     /// 创建命名空间
     ///
     /// 用于在企业版中创建命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func createNamespace(registryId: String, namespaceName: String, isPublic: Bool, tagSpecification: TagSpecification? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
         try await self.createNamespace(CreateNamespaceRequest(registryId: registryId, namespaceName: namespaceName, isPublic: isPublic, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
     }

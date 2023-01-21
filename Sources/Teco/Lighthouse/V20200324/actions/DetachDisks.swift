@@ -42,7 +42,7 @@ extension Lighthouse {
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func detachDisks(_ input: DetachDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachDisksResponse> {
         self.client.execute(action: "DetachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Lighthouse {
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func detachDisks(_ input: DetachDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
         try await self.client.execute(action: "DetachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Lighthouse {
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func detachDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachDisksResponse> {
         self.detachDisks(DetachDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Lighthouse {
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载一个或多个云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func detachDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
         try await self.detachDisks(DetachDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }

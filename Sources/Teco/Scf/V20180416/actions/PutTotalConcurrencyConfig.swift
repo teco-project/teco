@@ -45,25 +45,25 @@ extension Scf {
     }
 
     /// 修改账号并发限制配额
-    @inlinable
+    @inlinable @discardableResult
     public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTotalConcurrencyConfigResponse> {
         self.client.execute(action: "PutTotalConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改账号并发限制配额
-    @inlinable
+    @inlinable @discardableResult
     public func putTotalConcurrencyConfig(_ input: PutTotalConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
         try await self.client.execute(action: "PutTotalConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改账号并发限制配额
-    @inlinable
+    @inlinable @discardableResult
     public func putTotalConcurrencyConfig(totalConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTotalConcurrencyConfigResponse> {
         self.putTotalConcurrencyConfig(PutTotalConcurrencyConfigRequest(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改账号并发限制配额
-    @inlinable
+    @inlinable @discardableResult
     public func putTotalConcurrencyConfig(totalConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTotalConcurrencyConfigResponse {
         try await self.putTotalConcurrencyConfig(PutTotalConcurrencyConfigRequest(totalConcurrencyMem: totalConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

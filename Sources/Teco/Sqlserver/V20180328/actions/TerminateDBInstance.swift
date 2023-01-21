@@ -42,7 +42,7 @@ extension Sqlserver {
     /// 主动隔离实例
     ///
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDBInstance(_ input: TerminateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
         self.client.execute(action: "TerminateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Sqlserver {
     /// 主动隔离实例
     ///
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDBInstance(_ input: TerminateDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
         try await self.client.execute(action: "TerminateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Sqlserver {
     /// 主动隔离实例
     ///
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDBInstance(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
         self.terminateDBInstance(TerminateDBInstanceRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Sqlserver {
     /// 主动隔离实例
     ///
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDBInstance(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
         try await self.terminateDBInstance(TerminateDBInstanceRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
     }

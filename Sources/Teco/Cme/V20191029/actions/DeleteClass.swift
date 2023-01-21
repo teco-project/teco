@@ -59,7 +59,7 @@ extension Cme {
     /// 删除分类信息，删除时检验下述限制：
     /// <li>分类路径必须存在；</li>
     /// <li>分类下没有绑定素材。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClass(_ input: DeleteClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
         self.client.execute(action: "DeleteClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -69,7 +69,7 @@ extension Cme {
     /// 删除分类信息，删除时检验下述限制：
     /// <li>分类路径必须存在；</li>
     /// <li>分类下没有绑定素材。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClass(_ input: DeleteClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
         try await self.client.execute(action: "DeleteClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -79,7 +79,7 @@ extension Cme {
     /// 删除分类信息，删除时检验下述限制：
     /// <li>分类路径必须存在；</li>
     /// <li>分类下没有绑定素材。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
         self.deleteClass(DeleteClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -89,7 +89,7 @@ extension Cme {
     /// 删除分类信息，删除时检验下述限制：
     /// <li>分类路径必须存在；</li>
     /// <li>分类下没有绑定素材。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClass(platform: String, owner: Entity, classPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
         try await self.deleteClass(DeleteClassRequest(platform: platform, owner: owner, classPath: classPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Live {
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
-    @inlinable
+    @inlinable @discardableResult
     public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveDomainResponse> {
         self.client.execute(action: "ForbidLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Live {
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
-    @inlinable
+    @inlinable @discardableResult
     public func forbidLiveDomain(_ input: ForbidLiveDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
         try await self.client.execute(action: "ForbidLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Live {
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
-    @inlinable
+    @inlinable @discardableResult
     public func forbidLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveDomainResponse> {
         self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Live {
     /// 禁用域名
     ///
     /// 停止使用某个直播域名。
-    @inlinable
+    @inlinable @discardableResult
     public func forbidLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveDomainResponse {
         try await self.forbidLiveDomain(ForbidLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
     }

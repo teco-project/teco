@@ -42,7 +42,7 @@ extension Tcr {
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationTriggerPersonalResponse> {
         self.client.execute(action: "DeleteApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcr {
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplicationTriggerPersonal(_ input: DeleteApplicationTriggerPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
         try await self.client.execute(action: "DeleteApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcr {
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplicationTriggerPersonal(triggerName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationTriggerPersonalResponse> {
         self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcr {
     /// 删除应用更新触发器
     ///
     /// 用于删除应用更新触发器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplicationTriggerPersonal(triggerName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationTriggerPersonalResponse {
         try await self.deleteApplicationTriggerPersonal(DeleteApplicationTriggerPersonalRequest(triggerName: triggerName), region: region, logger: logger, on: eventLoop)
     }

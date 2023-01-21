@@ -73,7 +73,7 @@ extension As {
     /// 修改告警触发策略
     ///
     /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyScalingPolicy(_ input: ModifyScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScalingPolicyResponse> {
         self.client.execute(action: "ModifyScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension As {
     /// 修改告警触发策略
     ///
     /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyScalingPolicy(_ input: ModifyScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScalingPolicyResponse {
         try await self.client.execute(action: "ModifyScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -89,7 +89,7 @@ extension As {
     /// 修改告警触发策略
     ///
     /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyScalingPolicy(autoScalingPolicyId: String, scalingPolicyName: String? = nil, adjustmentType: String? = nil, adjustmentValue: Int64? = nil, cooldown: UInt64? = nil, metricAlarm: MetricAlarm? = nil, notificationUserGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScalingPolicyResponse> {
         self.modifyScalingPolicy(ModifyScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, cooldown: cooldown, metricAlarm: metricAlarm, notificationUserGroupIds: notificationUserGroupIds), region: region, logger: logger, on: eventLoop)
     }
@@ -97,7 +97,7 @@ extension As {
     /// 修改告警触发策略
     ///
     /// 本接口（ModifyScalingPolicy）用于修改告警触发策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyScalingPolicy(autoScalingPolicyId: String, scalingPolicyName: String? = nil, adjustmentType: String? = nil, adjustmentValue: Int64? = nil, cooldown: UInt64? = nil, metricAlarm: MetricAlarm? = nil, notificationUserGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScalingPolicyResponse {
         try await self.modifyScalingPolicy(ModifyScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId, scalingPolicyName: scalingPolicyName, adjustmentType: adjustmentType, adjustmentValue: adjustmentValue, cooldown: cooldown, metricAlarm: metricAlarm, notificationUserGroupIds: notificationUserGroupIds), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Dnspod {
     }
 
     /// 创建快照
-    @inlinable
+    @inlinable @discardableResult
     public func createSnapshot(_ input: CreateSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotResponse> {
         self.client.execute(action: "CreateSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建快照
-    @inlinable
+    @inlinable @discardableResult
     public func createSnapshot(_ input: CreateSnapshotRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
         try await self.client.execute(action: "CreateSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建快照
-    @inlinable
+    @inlinable @discardableResult
     public func createSnapshot(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotResponse> {
         self.createSnapshot(CreateSnapshotRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建快照
-    @inlinable
+    @inlinable @discardableResult
     public func createSnapshot(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
         try await self.createSnapshot(CreateSnapshotRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }

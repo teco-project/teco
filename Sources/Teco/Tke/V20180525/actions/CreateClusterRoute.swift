@@ -50,25 +50,25 @@ extension Tke {
     }
 
     /// 创建集群路由
-    @inlinable
+    @inlinable @discardableResult
     public func createClusterRoute(_ input: CreateClusterRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteResponse> {
         self.client.execute(action: "CreateClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集群路由
-    @inlinable
+    @inlinable @discardableResult
     public func createClusterRoute(_ input: CreateClusterRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
         try await self.client.execute(action: "CreateClusterRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建集群路由
-    @inlinable
+    @inlinable @discardableResult
     public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteResponse> {
         self.createClusterRoute(CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群路由
-    @inlinable
+    @inlinable @discardableResult
     public func createClusterRoute(routeTableName: String, destinationCidrBlock: String, gatewayIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteResponse {
         try await self.createClusterRoute(CreateClusterRouteRequest(routeTableName: routeTableName, destinationCidrBlock: destinationCidrBlock, gatewayIp: gatewayIp), region: region, logger: logger, on: eventLoop)
     }

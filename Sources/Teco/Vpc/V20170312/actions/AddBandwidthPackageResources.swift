@@ -62,7 +62,7 @@ extension Vpc {
     /// 添加带宽包资源
     ///
     /// 接口用于添加带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
-    @inlinable
+    @inlinable @discardableResult
     public func addBandwidthPackageResources(_ input: AddBandwidthPackageResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddBandwidthPackageResourcesResponse> {
         self.client.execute(action: "AddBandwidthPackageResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Vpc {
     /// 添加带宽包资源
     ///
     /// 接口用于添加带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
-    @inlinable
+    @inlinable @discardableResult
     public func addBandwidthPackageResources(_ input: AddBandwidthPackageResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddBandwidthPackageResourcesResponse {
         try await self.client.execute(action: "AddBandwidthPackageResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Vpc {
     /// 添加带宽包资源
     ///
     /// 接口用于添加带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
-    @inlinable
+    @inlinable @discardableResult
     public func addBandwidthPackageResources(resourceIds: [String], bandwidthPackageId: String? = nil, networkType: String? = nil, resourceType: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddBandwidthPackageResourcesResponse> {
         self.addBandwidthPackageResources(AddBandwidthPackageResourcesRequest(resourceIds: resourceIds, bandwidthPackageId: bandwidthPackageId, networkType: networkType, resourceType: resourceType, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Vpc {
     /// 添加带宽包资源
     ///
     /// 接口用于添加带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
-    @inlinable
+    @inlinable @discardableResult
     public func addBandwidthPackageResources(resourceIds: [String], bandwidthPackageId: String? = nil, networkType: String? = nil, resourceType: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddBandwidthPackageResourcesResponse {
         try await self.addBandwidthPackageResources(AddBandwidthPackageResourcesRequest(resourceIds: resourceIds, bandwidthPackageId: bandwidthPackageId, networkType: networkType, resourceType: resourceType, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
     }

@@ -55,25 +55,25 @@ extension Cfg {
     }
 
     /// 修改任务运行状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTaskRunStatus(_ input: ModifyTaskRunStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskRunStatusResponse> {
         self.client.execute(action: "ModifyTaskRunStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改任务运行状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTaskRunStatus(_ input: ModifyTaskRunStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskRunStatusResponse {
         try await self.client.execute(action: "ModifyTaskRunStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改任务运行状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTaskRunStatus(taskId: Int64, status: Int64, isExpect: Bool? = nil, summary: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskRunStatusResponse> {
         self.modifyTaskRunStatus(ModifyTaskRunStatusRequest(taskId: taskId, status: status, isExpect: isExpect, summary: summary), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改任务运行状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTaskRunStatus(taskId: Int64, status: Int64, isExpect: Bool? = nil, summary: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskRunStatusResponse {
         try await self.modifyTaskRunStatus(ModifyTaskRunStatusRequest(taskId: taskId, status: status, isExpect: isExpect, summary: summary), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Chdfs {
     /// 批量创建权限规则
     ///
     /// 批量创建权限规则，权限规则ID和创建时间无需填写。
-    @inlinable
+    @inlinable @discardableResult
     public func createAccessRules(_ input: CreateAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessRulesResponse> {
         self.client.execute(action: "CreateAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Chdfs {
     /// 批量创建权限规则
     ///
     /// 批量创建权限规则，权限规则ID和创建时间无需填写。
-    @inlinable
+    @inlinable @discardableResult
     public func createAccessRules(_ input: CreateAccessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessRulesResponse {
         try await self.client.execute(action: "CreateAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Chdfs {
     /// 批量创建权限规则
     ///
     /// 批量创建权限规则，权限规则ID和创建时间无需填写。
-    @inlinable
+    @inlinable @discardableResult
     public func createAccessRules(accessRules: [AccessRule], accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessRulesResponse> {
         self.createAccessRules(CreateAccessRulesRequest(accessRules: accessRules, accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Chdfs {
     /// 批量创建权限规则
     ///
     /// 批量创建权限规则，权限规则ID和创建时间无需填写。
-    @inlinable
+    @inlinable @discardableResult
     public func createAccessRules(accessRules: [AccessRule], accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessRulesResponse {
         try await self.createAccessRules(CreateAccessRulesRequest(accessRules: accessRules, accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Iotcloud {
     /// 删除lora设备
     ///
     /// 删除lora类型的设备
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoraDeviceResponse> {
         self.client.execute(action: "DeleteLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotcloud {
     /// 删除lora设备
     ///
     /// 删除lora类型的设备
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLoraDevice(_ input: DeleteLoraDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoraDeviceResponse {
         try await self.client.execute(action: "DeleteLoraDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotcloud {
     /// 删除lora设备
     ///
     /// 删除lora类型的设备
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLoraDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoraDeviceResponse> {
         self.deleteLoraDevice(DeleteLoraDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotcloud {
     /// 删除lora设备
     ///
     /// 删除lora类型的设备
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLoraDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoraDeviceResponse {
         try await self.deleteLoraDevice(DeleteLoraDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
     }

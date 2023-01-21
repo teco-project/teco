@@ -63,7 +63,7 @@ extension Tcr {
     /// 删除私有域名解析
     ///
     /// 删除tcr内网私有域名解析
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInternalEndpointDns(_ input: DeleteInternalEndpointDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInternalEndpointDnsResponse> {
         self.client.execute(action: "DeleteInternalEndpointDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcr {
     /// 删除私有域名解析
     ///
     /// 删除tcr内网私有域名解析
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInternalEndpointDns(_ input: DeleteInternalEndpointDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInternalEndpointDnsResponse {
         try await self.client.execute(action: "DeleteInternalEndpointDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -79,7 +79,7 @@ extension Tcr {
     /// 删除私有域名解析
     ///
     /// 删除tcr内网私有域名解析
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInternalEndpointDns(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInternalEndpointDnsResponse> {
         self.deleteInternalEndpointDns(DeleteInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName), region: region, logger: logger, on: eventLoop)
     }
@@ -87,7 +87,7 @@ extension Tcr {
     /// 删除私有域名解析
     ///
     /// 删除tcr内网私有域名解析
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInternalEndpointDns(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInternalEndpointDnsResponse {
         try await self.deleteInternalEndpointDns(DeleteInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName), region: region, logger: logger, on: eventLoop)
     }

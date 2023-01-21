@@ -44,7 +44,7 @@ extension Vpc {
     /// 本接口（DeleteCcn）用于删除云联网。
     /// * 删除后，云联网关联的所有实例间路由将被删除，网络将会中断，请务必确认
     /// * 删除云联网是不可逆的操作，请谨慎处理。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCcn(_ input: DeleteCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCcnResponse> {
         self.client.execute(action: "DeleteCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -54,7 +54,7 @@ extension Vpc {
     /// 本接口（DeleteCcn）用于删除云联网。
     /// * 删除后，云联网关联的所有实例间路由将被删除，网络将会中断，请务必确认
     /// * 删除云联网是不可逆的操作，请谨慎处理。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCcn(_ input: DeleteCcnRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcnResponse {
         try await self.client.execute(action: "DeleteCcn", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -64,7 +64,7 @@ extension Vpc {
     /// 本接口（DeleteCcn）用于删除云联网。
     /// * 删除后，云联网关联的所有实例间路由将被删除，网络将会中断，请务必确认
     /// * 删除云联网是不可逆的操作，请谨慎处理。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCcnResponse> {
         self.deleteCcn(DeleteCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }
@@ -74,7 +74,7 @@ extension Vpc {
     /// 本接口（DeleteCcn）用于删除云联网。
     /// * 删除后，云联网关联的所有实例间路由将被删除，网络将会中断，请务必确认
     /// * 删除云联网是不可逆的操作，请谨慎处理。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCcn(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcnResponse {
         try await self.deleteCcn(DeleteCcnRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
     }

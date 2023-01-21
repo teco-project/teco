@@ -52,7 +52,7 @@ extension Cynosdb {
     /// 修改备份文件备注名
     ///
     /// 此接口（ModifyBackupName）用于修改备份文件备注名。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupName(_ input: ModifyBackupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
         self.client.execute(action: "ModifyBackupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cynosdb {
     /// 修改备份文件备注名
     ///
     /// 此接口（ModifyBackupName）用于修改备份文件备注名。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupName(_ input: ModifyBackupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
         try await self.client.execute(action: "ModifyBackupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cynosdb {
     /// 修改备份文件备注名
     ///
     /// 此接口（ModifyBackupName）用于修改备份文件备注名。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupName(clusterId: String, backupId: Int64, backupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
         self.modifyBackupName(ModifyBackupNameRequest(clusterId: clusterId, backupId: backupId, backupName: backupName), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cynosdb {
     /// 修改备份文件备注名
     ///
     /// 此接口（ModifyBackupName）用于修改备份文件备注名。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupName(clusterId: String, backupId: Int64, backupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
         try await self.modifyBackupName(ModifyBackupNameRequest(clusterId: clusterId, backupId: backupId, backupName: backupName), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Ses {
     /// 更新邮件模板
     ///
     /// 更新邮件模板，更新后需再次审核
-    @inlinable
+    @inlinable @discardableResult
     public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailTemplateResponse> {
         self.client.execute(action: "UpdateEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Ses {
     /// 更新邮件模板
     ///
     /// 更新邮件模板，更新后需再次审核
-    @inlinable
+    @inlinable @discardableResult
     public func updateEmailTemplate(_ input: UpdateEmailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
         try await self.client.execute(action: "UpdateEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Ses {
     /// 更新邮件模板
     ///
     /// 更新邮件模板，更新后需再次审核
-    @inlinable
+    @inlinable @discardableResult
     public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEmailTemplateResponse> {
         self.updateEmailTemplate(UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Ses {
     /// 更新邮件模板
     ///
     /// 更新邮件模板，更新后需再次审核
-    @inlinable
+    @inlinable @discardableResult
     public func updateEmailTemplate(templateContent: TemplateContent, templateID: UInt64, templateName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEmailTemplateResponse {
         try await self.updateEmailTemplate(UpdateEmailTemplateRequest(templateContent: templateContent, templateID: templateID, templateName: templateName), region: region, logger: logger, on: eventLoop)
     }

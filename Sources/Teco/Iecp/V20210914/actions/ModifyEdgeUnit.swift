@@ -50,25 +50,25 @@ extension Iecp {
     }
 
     /// 修改边缘集群
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitResponse> {
         self.client.execute(action: "ModifyEdgeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘集群
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnit(_ input: ModifyEdgeUnitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitResponse {
         try await self.client.execute(action: "ModifyEdgeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改边缘集群
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnit(edgeUnitId: UInt64, name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitResponse> {
         self.modifyEdgeUnit(ModifyEdgeUnitRequest(edgeUnitId: edgeUnitId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘集群
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnit(edgeUnitId: UInt64, name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitResponse {
         try await self.modifyEdgeUnit(ModifyEdgeUnitRequest(edgeUnitId: edgeUnitId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }

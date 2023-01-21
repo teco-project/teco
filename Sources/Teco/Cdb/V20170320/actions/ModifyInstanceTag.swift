@@ -52,7 +52,7 @@ extension Cdb {
     /// 修改实例标签
     ///
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTagResponse> {
         self.client.execute(action: "ModifyInstanceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cdb {
     /// 修改实例标签
     ///
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceTag(_ input: ModifyInstanceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
         try await self.client.execute(action: "ModifyInstanceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cdb {
     /// 修改实例标签
     ///
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceTagResponse> {
         self.modifyInstanceTag(ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cdb {
     /// 修改实例标签
     ///
     /// 本接口(ModifyInstanceTag)用于对实例标签进行添加、修改或者删除。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceTag(instanceId: String, replaceTags: [TagInfo]? = nil, deleteTags: [TagInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceTagResponse {
         try await self.modifyInstanceTag(ModifyInstanceTagRequest(instanceId: instanceId, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
     }

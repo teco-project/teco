@@ -70,7 +70,7 @@ extension Cme {
     /// 修改项目
     ///
     /// 修改项目信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProject(_ input: ModifyProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
         self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -78,7 +78,7 @@ extension Cme {
     /// 修改项目
     ///
     /// 修改项目信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProject(_ input: ModifyProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
         try await self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -86,7 +86,7 @@ extension Cme {
     /// 修改项目
     ///
     /// 修改项目信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProject(platform: String, projectId: String, name: String? = nil, aspectRatio: String? = nil, owner: Entity? = nil, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
         self.modifyProject(ModifyProjectRequest(platform: platform, projectId: projectId, name: name, aspectRatio: aspectRatio, owner: owner, mode: mode), region: region, logger: logger, on: eventLoop)
     }
@@ -94,7 +94,7 @@ extension Cme {
     /// 修改项目
     ///
     /// 修改项目信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProject(platform: String, projectId: String, name: String? = nil, aspectRatio: String? = nil, owner: Entity? = nil, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
         try await self.modifyProject(ModifyProjectRequest(platform: platform, projectId: projectId, name: name, aspectRatio: aspectRatio, owner: owner, mode: mode), region: region, logger: logger, on: eventLoop)
     }

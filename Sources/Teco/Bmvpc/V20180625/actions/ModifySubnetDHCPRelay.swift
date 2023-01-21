@@ -60,25 +60,25 @@ extension Bmvpc {
     }
 
     /// 修改子网DHCP Relay属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubnetDHCPRelay(_ input: ModifySubnetDHCPRelayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetDHCPRelayResponse> {
         self.client.execute(action: "ModifySubnetDHCPRelay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改子网DHCP Relay属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubnetDHCPRelay(_ input: ModifySubnetDHCPRelayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetDHCPRelayResponse {
         try await self.client.execute(action: "ModifySubnetDHCPRelay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改子网DHCP Relay属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubnetDHCPRelay(vpcId: String, subnetId: String, enableDHCP: Bool, serverIps: [String]? = nil, reservedIpCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetDHCPRelayResponse> {
         self.modifySubnetDHCPRelay(ModifySubnetDHCPRelayRequest(vpcId: vpcId, subnetId: subnetId, enableDHCP: enableDHCP, serverIps: serverIps, reservedIpCount: reservedIpCount), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改子网DHCP Relay属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubnetDHCPRelay(vpcId: String, subnetId: String, enableDHCP: Bool, serverIps: [String]? = nil, reservedIpCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetDHCPRelayResponse {
         try await self.modifySubnetDHCPRelay(ModifySubnetDHCPRelayRequest(vpcId: vpcId, subnetId: subnetId, enableDHCP: enableDHCP, serverIps: serverIps, reservedIpCount: reservedIpCount), region: region, logger: logger, on: eventLoop)
     }

@@ -55,7 +55,7 @@ extension Monitor {
     /// 更新报警策略状态
     ///
     /// 更新 Prometheus 报警策略状态
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAlertRuleStateResponse> {
         self.client.execute(action: "UpdateAlertRuleState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -63,7 +63,7 @@ extension Monitor {
     /// 更新报警策略状态
     ///
     /// 更新 Prometheus 报警策略状态
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlertRuleState(_ input: UpdateAlertRuleStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleStateResponse {
         try await self.client.execute(action: "UpdateAlertRuleState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Monitor {
     /// 更新报警策略状态
     ///
     /// 更新 Prometheus 报警策略状态
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlertRuleState(ruleIds: [String], instanceId: String, ruleState: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAlertRuleStateResponse> {
         self.updateAlertRuleState(UpdateAlertRuleStateRequest(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
     }
@@ -79,7 +79,7 @@ extension Monitor {
     /// 更新报警策略状态
     ///
     /// 更新 Prometheus 报警策略状态
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlertRuleState(ruleIds: [String], instanceId: String, ruleState: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAlertRuleStateResponse {
         try await self.updateAlertRuleState(UpdateAlertRuleStateRequest(ruleIds: ruleIds, instanceId: instanceId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Tke {
     /// 移出节点池节点
     ///
     /// 移出节点池节点，但保留在集群内
-    @inlinable
+    @inlinable @discardableResult
     public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveNodeFromNodePoolResponse> {
         self.client.execute(action: "RemoveNodeFromNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tke {
     /// 移出节点池节点
     ///
     /// 移出节点池节点，但保留在集群内
-    @inlinable
+    @inlinable @discardableResult
     public func removeNodeFromNodePool(_ input: RemoveNodeFromNodePoolRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
         try await self.client.execute(action: "RemoveNodeFromNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tke {
     /// 移出节点池节点
     ///
     /// 移出节点池节点，但保留在集群内
-    @inlinable
+    @inlinable @discardableResult
     public func removeNodeFromNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveNodeFromNodePoolResponse> {
         self.removeNodeFromNodePool(RemoveNodeFromNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tke {
     /// 移出节点池节点
     ///
     /// 移出节点池节点，但保留在集群内
-    @inlinable
+    @inlinable @discardableResult
     public func removeNodeFromNodePool(clusterId: String, nodePoolId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveNodeFromNodePoolResponse {
         try await self.removeNodeFromNodePool(RemoveNodeFromNodePoolRequest(clusterId: clusterId, nodePoolId: nodePoolId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }

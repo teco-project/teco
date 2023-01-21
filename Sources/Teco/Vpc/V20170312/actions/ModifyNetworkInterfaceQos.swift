@@ -52,7 +52,7 @@ extension Vpc {
     /// 修改弹性网卡服务质量
     ///
     /// 修改弹性网卡服务质量。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkInterfaceQosResponse> {
         self.client.execute(action: "ModifyNetworkInterfaceQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vpc {
     /// 修改弹性网卡服务质量
     ///
     /// 修改弹性网卡服务质量。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkInterfaceQos(_ input: ModifyNetworkInterfaceQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceQosResponse {
         try await self.client.execute(action: "ModifyNetworkInterfaceQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vpc {
     /// 修改弹性网卡服务质量
     ///
     /// 修改弹性网卡服务质量。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkInterfaceQos(networkInterfaceIds: [String], qosLevel: String, directSendMaxPort: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkInterfaceQosResponse> {
         self.modifyNetworkInterfaceQos(ModifyNetworkInterfaceQosRequest(networkInterfaceIds: networkInterfaceIds, qosLevel: qosLevel, directSendMaxPort: directSendMaxPort), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vpc {
     /// 修改弹性网卡服务质量
     ///
     /// 修改弹性网卡服务质量。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkInterfaceQos(networkInterfaceIds: [String], qosLevel: String, directSendMaxPort: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkInterfaceQosResponse {
         try await self.modifyNetworkInterfaceQos(ModifyNetworkInterfaceQosRequest(networkInterfaceIds: networkInterfaceIds, qosLevel: qosLevel, directSendMaxPort: directSendMaxPort), region: region, logger: logger, on: eventLoop)
     }

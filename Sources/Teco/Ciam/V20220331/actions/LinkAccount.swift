@@ -57,25 +57,25 @@ extension Ciam {
     }
 
     /// 账号融合
-    @inlinable
+    @inlinable @discardableResult
     public func linkAccount(_ input: LinkAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkAccountResponse> {
         self.client.execute(action: "LinkAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 账号融合
-    @inlinable
+    @inlinable @discardableResult
     public func linkAccount(_ input: LinkAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkAccountResponse {
         try await self.client.execute(action: "LinkAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 账号融合
-    @inlinable
+    @inlinable @discardableResult
     public func linkAccount(userStoreId: String, primaryUserId: String, secondaryUserId: String, userLinkedOnAttribute: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkAccountResponse> {
         self.linkAccount(LinkAccountRequest(userStoreId: userStoreId, primaryUserId: primaryUserId, secondaryUserId: secondaryUserId, userLinkedOnAttribute: userLinkedOnAttribute), region: region, logger: logger, on: eventLoop)
     }
 
     /// 账号融合
-    @inlinable
+    @inlinable @discardableResult
     public func linkAccount(userStoreId: String, primaryUserId: String, secondaryUserId: String, userLinkedOnAttribute: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkAccountResponse {
         try await self.linkAccount(LinkAccountRequest(userStoreId: userStoreId, primaryUserId: primaryUserId, secondaryUserId: secondaryUserId, userLinkedOnAttribute: userLinkedOnAttribute), region: region, logger: logger, on: eventLoop)
     }

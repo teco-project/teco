@@ -52,7 +52,7 @@ extension Vod {
     /// 修改分类
     ///
     /// 修改媒体分类属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClass(_ input: ModifyClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClassResponse> {
         self.client.execute(action: "ModifyClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vod {
     /// 修改分类
     ///
     /// 修改媒体分类属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClass(_ input: ModifyClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
         try await self.client.execute(action: "ModifyClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vod {
     /// 修改分类
     ///
     /// 修改媒体分类属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClassResponse> {
         self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vod {
     /// 修改分类
     ///
     /// 修改媒体分类属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClass(classId: UInt64, className: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClassResponse {
         try await self.modifyClass(ModifyClassRequest(classId: classId, className: className, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

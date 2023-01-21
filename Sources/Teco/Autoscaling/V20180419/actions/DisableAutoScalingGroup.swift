@@ -55,7 +55,7 @@ extension As {
     ///     - 添加 CVM 实例到伸缩组（AttachInstances）
     ///     - 关闭伸缩组内 CVM 实例（StopAutoScalingInstances）
     ///     - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
-    @inlinable
+    @inlinable @discardableResult
     public func disableAutoScalingGroup(_ input: DisableAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableAutoScalingGroupResponse> {
         self.client.execute(action: "DisableAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension As {
     ///     - 添加 CVM 实例到伸缩组（AttachInstances）
     ///     - 关闭伸缩组内 CVM 实例（StopAutoScalingInstances）
     ///     - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
-    @inlinable
+    @inlinable @discardableResult
     public func disableAutoScalingGroup(_ input: DisableAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableAutoScalingGroupResponse {
         try await self.client.execute(action: "DisableAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -97,7 +97,7 @@ extension As {
     ///     - 添加 CVM 实例到伸缩组（AttachInstances）
     ///     - 关闭伸缩组内 CVM 实例（StopAutoScalingInstances）
     ///     - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
-    @inlinable
+    @inlinable @discardableResult
     public func disableAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableAutoScalingGroupResponse> {
         self.disableAutoScalingGroup(DisableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }
@@ -118,7 +118,7 @@ extension As {
     ///     - 添加 CVM 实例到伸缩组（AttachInstances）
     ///     - 关闭伸缩组内 CVM 实例（StopAutoScalingInstances）
     ///     - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
-    @inlinable
+    @inlinable @discardableResult
     public func disableAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableAutoScalingGroupResponse {
         try await self.disableAutoScalingGroup(DisableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
     }

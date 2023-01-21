@@ -60,7 +60,7 @@ extension Ecm {
     /// <li>一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。</li>
     /// </ul></li></ul>
     /// <p>默认接口请求频率限制：20次/秒。</p>
-    @inlinable
+    @inlinable @discardableResult
     public func createSecurityGroupPolicies(_ input: CreateSecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupPoliciesResponse> {
         self.client.execute(action: "CreateSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Ecm {
     /// <li>一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。</li>
     /// </ul></li></ul>
     /// <p>默认接口请求频率限制：20次/秒。</p>
-    @inlinable
+    @inlinable @discardableResult
     public func createSecurityGroupPolicies(_ input: CreateSecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupPoliciesResponse {
         try await self.client.execute(action: "CreateSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -102,7 +102,7 @@ extension Ecm {
     /// <li>一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。</li>
     /// </ul></li></ul>
     /// <p>默认接口请求频率限制：20次/秒。</p>
-    @inlinable
+    @inlinable @discardableResult
     public func createSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupPoliciesResponse> {
         self.createSecurityGroupPolicies(CreateSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }
@@ -123,7 +123,7 @@ extension Ecm {
     /// <li>一次请求中只能创建单个方向的规则, 如果需要指定索引（PolicyIndex）参数, 多条规则的索引必须一致。</li>
     /// </ul></li></ul>
     /// <p>默认接口请求频率限制：20次/秒。</p>
-    @inlinable
+    @inlinable @discardableResult
     public func createSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupPoliciesResponse {
         try await self.createSecurityGroupPolicies(CreateSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
     }

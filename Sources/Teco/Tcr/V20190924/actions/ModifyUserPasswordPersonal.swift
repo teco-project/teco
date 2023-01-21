@@ -40,25 +40,25 @@ extension Tcr {
     }
 
     /// 修改个人用户登录密码
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserPasswordPersonalResponse> {
         self.client.execute(action: "ModifyUserPasswordPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改个人用户登录密码
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserPasswordPersonal(_ input: ModifyUserPasswordPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserPasswordPersonalResponse {
         try await self.client.execute(action: "ModifyUserPasswordPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改个人用户登录密码
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserPasswordPersonal(password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserPasswordPersonalResponse> {
         self.modifyUserPasswordPersonal(ModifyUserPasswordPersonalRequest(password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改个人用户登录密码
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserPasswordPersonal(password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserPasswordPersonalResponse {
         try await self.modifyUserPasswordPersonal(ModifyUserPasswordPersonalRequest(password: password), region: region, logger: logger, on: eventLoop)
     }

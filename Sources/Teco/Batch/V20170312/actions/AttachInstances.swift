@@ -52,7 +52,7 @@ extension Batch {
     /// 2.实例状态要求处于运行中。<br/>
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
-    @inlinable
+    @inlinable @discardableResult
     public func attachInstances(_ input: AttachInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
         self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Batch {
     /// 2.实例状态要求处于运行中。<br/>
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
-    @inlinable
+    @inlinable @discardableResult
     public func attachInstances(_ input: AttachInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
         try await self.client.execute(action: "AttachInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Batch {
     /// 2.实例状态要求处于运行中。<br/>
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
-    @inlinable
+    @inlinable @discardableResult
     public func attachInstances(envId: String, instances: [Instance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachInstancesResponse> {
         self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Batch {
     /// 2.实例状态要求处于运行中。<br/>
     /// 3.支持预付费实例，按小时后付费实例，专享子机实例。不支持竞价实例。<br/>
     /// 此接口会将加入到计算环境中的实例重设UserData和重装操作系统。
-    @inlinable
+    @inlinable @discardableResult
     public func attachInstances(envId: String, instances: [Instance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachInstancesResponse {
         try await self.attachInstances(AttachInstancesRequest(envId: envId, instances: instances), region: region, logger: logger, on: eventLoop)
     }

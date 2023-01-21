@@ -55,25 +55,25 @@ extension Iecp {
     }
 
     /// 创建ConfigMap
-    @inlinable
+    @inlinable @discardableResult
     public func createConfigMap(_ input: CreateConfigMapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigMapResponse> {
         self.client.execute(action: "CreateConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建ConfigMap
-    @inlinable
+    @inlinable @discardableResult
     public func createConfigMap(_ input: CreateConfigMapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigMapResponse {
         try await self.client.execute(action: "CreateConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建ConfigMap
-    @inlinable
+    @inlinable @discardableResult
     public func createConfigMap(edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigMapResponse> {
         self.createConfigMap(CreateConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapData: configMapData, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建ConfigMap
-    @inlinable
+    @inlinable @discardableResult
     public func createConfigMap(edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigMapResponse {
         try await self.createConfigMap(CreateConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapData: configMapData, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }

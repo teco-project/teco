@@ -73,7 +73,7 @@ extension Tsf {
     ///
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
         self.client.execute(action: "ModifyUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Tsf {
     ///
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUploadInfo(_ input: ModifyUploadInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUploadInfoResponse {
         try await self.client.execute(action: "ModifyUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -91,7 +91,7 @@ extension Tsf {
     ///
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
         self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }
@@ -100,7 +100,7 @@ extension Tsf {
     ///
     /// 调用该接口和COS的上传接口后，需要调用此接口更新TSF中保存的程序包状态。
     /// 调用此接口完成后，才标志上传包流程结束。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUploadInfoResponse {
         try await self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
     }

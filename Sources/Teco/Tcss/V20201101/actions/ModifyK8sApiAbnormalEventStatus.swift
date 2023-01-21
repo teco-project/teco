@@ -50,25 +50,25 @@ extension Tcss {
     }
 
     /// 修改k8sapi异常事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyK8sApiAbnormalEventStatus(_ input: ModifyK8sApiAbnormalEventStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalEventStatusResponse> {
         self.client.execute(action: "ModifyK8sApiAbnormalEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改k8sapi异常事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyK8sApiAbnormalEventStatus(_ input: ModifyK8sApiAbnormalEventStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalEventStatusResponse {
         try await self.client.execute(action: "ModifyK8sApiAbnormalEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改k8sapi异常事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyK8sApiAbnormalEventStatus(eventIDSet: [UInt64], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyK8sApiAbnormalEventStatusResponse> {
         self.modifyK8sApiAbnormalEventStatus(ModifyK8sApiAbnormalEventStatusRequest(eventIDSet: eventIDSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改k8sapi异常事件状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyK8sApiAbnormalEventStatus(eventIDSet: [UInt64], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyK8sApiAbnormalEventStatusResponse {
         try await self.modifyK8sApiAbnormalEventStatus(ModifyK8sApiAbnormalEventStatusRequest(eventIDSet: eventIDSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
     }

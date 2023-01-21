@@ -57,7 +57,7 @@ extension Monitor {
     /// 修改告警策略基本信息
     ///
     /// 告警2.0编辑告警策略基本信息，包括策略名、备注
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyInfoResponse> {
         self.client.execute(action: "ModifyAlarmPolicyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Monitor {
     /// 修改告警策略基本信息
     ///
     /// 告警2.0编辑告警策略基本信息，包括策略名、备注
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyInfo(_ input: ModifyAlarmPolicyInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyInfoResponse {
         try await self.client.execute(action: "ModifyAlarmPolicyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Monitor {
     /// 修改告警策略基本信息
     ///
     /// 告警2.0编辑告警策略基本信息，包括策略名、备注
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyInfo(module: String, policyId: String, key: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyInfoResponse> {
         self.modifyAlarmPolicyInfo(ModifyAlarmPolicyInfoRequest(module: module, policyId: policyId, key: key, value: value), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Monitor {
     /// 修改告警策略基本信息
     ///
     /// 告警2.0编辑告警策略基本信息，包括策略名、备注
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAlarmPolicyInfo(module: String, policyId: String, key: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyInfoResponse {
         try await self.modifyAlarmPolicyInfo(ModifyAlarmPolicyInfoRequest(module: module, policyId: policyId, key: key, value: value), region: region, logger: logger, on: eventLoop)
     }

@@ -40,25 +40,25 @@ extension Tione {
     }
 
     /// 停止跑批任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopBatchTask(_ input: StopBatchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBatchTaskResponse> {
         self.client.execute(action: "StopBatchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止跑批任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopBatchTask(_ input: StopBatchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBatchTaskResponse {
         try await self.client.execute(action: "StopBatchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止跑批任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopBatchTask(batchTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBatchTaskResponse> {
         self.stopBatchTask(StopBatchTaskRequest(batchTaskId: batchTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止跑批任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopBatchTask(batchTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBatchTaskResponse {
         try await self.stopBatchTask(StopBatchTaskRequest(batchTaskId: batchTaskId), region: region, logger: logger, on: eventLoop)
     }

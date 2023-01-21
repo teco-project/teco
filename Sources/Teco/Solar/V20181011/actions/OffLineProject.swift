@@ -40,25 +40,25 @@ extension Solar {
     }
 
     /// 下线项目
-    @inlinable
+    @inlinable @discardableResult
     public func offLineProject(_ input: OffLineProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
         self.client.execute(action: "OffLineProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线项目
-    @inlinable
+    @inlinable @discardableResult
     public func offLineProject(_ input: OffLineProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
         try await self.client.execute(action: "OffLineProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 下线项目
-    @inlinable
+    @inlinable @discardableResult
     public func offLineProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OffLineProjectResponse> {
         self.offLineProject(OffLineProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 下线项目
-    @inlinable
+    @inlinable @discardableResult
     public func offLineProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OffLineProjectResponse {
         try await self.offLineProject(OffLineProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }

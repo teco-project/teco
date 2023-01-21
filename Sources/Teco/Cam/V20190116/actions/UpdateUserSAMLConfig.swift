@@ -45,25 +45,25 @@ extension Cam {
     }
 
     /// 修改用户SAML配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
         self.client.execute(action: "UpdateUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改用户SAML配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateUserSAMLConfig(_ input: UpdateUserSAMLConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
         try await self.client.execute(action: "UpdateUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改用户SAML配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserSAMLConfigResponse> {
         self.updateUserSAMLConfig(UpdateUserSAMLConfigRequest(operate: operate, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改用户SAML配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateUserSAMLConfig(operate: String, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserSAMLConfigResponse {
         try await self.updateUserSAMLConfig(UpdateUserSAMLConfigRequest(operate: operate, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }

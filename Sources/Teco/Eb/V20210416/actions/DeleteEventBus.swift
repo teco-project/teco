@@ -40,25 +40,25 @@ extension Eb {
     }
 
     /// 删除事件集
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEventBus(_ input: DeleteEventBusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEventBusResponse> {
         self.client.execute(action: "DeleteEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除事件集
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEventBus(_ input: DeleteEventBusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEventBusResponse {
         try await self.client.execute(action: "DeleteEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除事件集
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEventBus(eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEventBusResponse> {
         self.deleteEventBus(DeleteEventBusRequest(eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除事件集
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEventBus(eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEventBusResponse {
         try await self.deleteEventBus(DeleteEventBusRequest(eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
     }

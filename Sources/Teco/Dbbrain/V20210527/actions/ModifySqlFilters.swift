@@ -62,7 +62,7 @@ extension Dbbrain {
     /// 更改实例限流任务状态
     ///
     /// 更改实例限流任务状态，目前仅用于终止限流。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySqlFilters(_ input: ModifySqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySqlFiltersResponse> {
         self.client.execute(action: "ModifySqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Dbbrain {
     /// 更改实例限流任务状态
     ///
     /// 更改实例限流任务状态，目前仅用于终止限流。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySqlFilters(_ input: ModifySqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySqlFiltersResponse {
         try await self.client.execute(action: "ModifySqlFilters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Dbbrain {
     /// 更改实例限流任务状态
     ///
     /// 更改实例限流任务状态，目前仅用于终止限流。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], status: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySqlFiltersResponse> {
         self.modifySqlFilters(ModifySqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds, status: status, product: product), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Dbbrain {
     /// 更改实例限流任务状态
     ///
     /// 更改实例限流任务状态，目前仅用于终止限流。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySqlFilters(instanceId: String, sessionToken: String, filterIds: [Int64], status: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySqlFiltersResponse {
         try await self.modifySqlFilters(ModifySqlFiltersRequest(instanceId: instanceId, sessionToken: sessionToken, filterIds: filterIds, status: status, product: product), region: region, logger: logger, on: eventLoop)
     }

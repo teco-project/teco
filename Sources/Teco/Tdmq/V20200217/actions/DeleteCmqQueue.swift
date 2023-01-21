@@ -40,25 +40,25 @@ extension Tdmq {
     }
 
     /// 删除cmq队列
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCmqQueue(_ input: DeleteCmqQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCmqQueueResponse> {
         self.client.execute(action: "DeleteCmqQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除cmq队列
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCmqQueue(_ input: DeleteCmqQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqQueueResponse {
         try await self.client.execute(action: "DeleteCmqQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除cmq队列
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCmqQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCmqQueueResponse> {
         self.deleteCmqQueue(DeleteCmqQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除cmq队列
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCmqQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqQueueResponse {
         try await self.deleteCmqQueue(DeleteCmqQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }

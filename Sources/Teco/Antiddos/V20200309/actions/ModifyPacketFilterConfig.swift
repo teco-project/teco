@@ -45,25 +45,25 @@ extension Antiddos {
     }
 
     /// 修改DDoS防护的特征过滤规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPacketFilterConfig(_ input: ModifyPacketFilterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPacketFilterConfigResponse> {
         self.client.execute(action: "ModifyPacketFilterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护的特征过滤规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPacketFilterConfig(_ input: ModifyPacketFilterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPacketFilterConfigResponse {
         try await self.client.execute(action: "ModifyPacketFilterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改DDoS防护的特征过滤规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPacketFilterConfigResponse> {
         self.modifyPacketFilterConfig(ModifyPacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护的特征过滤规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPacketFilterConfig(instanceId: String, packetFilterConfig: PacketFilterConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPacketFilterConfigResponse {
         try await self.modifyPacketFilterConfig(ModifyPacketFilterConfigRequest(instanceId: instanceId, packetFilterConfig: packetFilterConfig), region: region, logger: logger, on: eventLoop)
     }

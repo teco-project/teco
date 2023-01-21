@@ -55,7 +55,7 @@ extension Cvm {
     /// * 修改密钥对ID所指定的密钥对的名称和描述信息。
     /// * 密钥对名称不能和已经存在的密钥对的名称重复。
     /// * 密钥对ID是密钥对的唯一标识，不可修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyKeyPairAttributeResponse> {
         self.client.execute(action: "ModifyKeyPairAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cvm {
     /// * 修改密钥对ID所指定的密钥对的名称和描述信息。
     /// * 密钥对名称不能和已经存在的密钥对的名称重复。
     /// * 密钥对ID是密钥对的唯一标识，不可修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyKeyPairAttribute(_ input: ModifyKeyPairAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyKeyPairAttributeResponse {
         try await self.client.execute(action: "ModifyKeyPairAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -77,7 +77,7 @@ extension Cvm {
     /// * 修改密钥对ID所指定的密钥对的名称和描述信息。
     /// * 密钥对名称不能和已经存在的密钥对的名称重复。
     /// * 密钥对ID是密钥对的唯一标识，不可修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyKeyPairAttribute(keyId: String, keyName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyKeyPairAttributeResponse> {
         self.modifyKeyPairAttribute(ModifyKeyPairAttributeRequest(keyId: keyId, keyName: keyName, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -88,7 +88,7 @@ extension Cvm {
     /// * 修改密钥对ID所指定的密钥对的名称和描述信息。
     /// * 密钥对名称不能和已经存在的密钥对的名称重复。
     /// * 密钥对ID是密钥对的唯一标识，不可修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyKeyPairAttribute(keyId: String, keyName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyKeyPairAttributeResponse {
         try await self.modifyKeyPairAttribute(ModifyKeyPairAttributeRequest(keyId: keyId, keyName: keyName, description: description), region: region, logger: logger, on: eventLoop)
     }

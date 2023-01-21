@@ -42,7 +42,7 @@ extension Vpc {
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
-    @inlinable
+    @inlinable @discardableResult
     public func enableFlowLogs(_ input: EnableFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableFlowLogsResponse> {
         self.client.execute(action: "EnableFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Vpc {
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
-    @inlinable
+    @inlinable @discardableResult
     public func enableFlowLogs(_ input: EnableFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
         try await self.client.execute(action: "EnableFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Vpc {
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
-    @inlinable
+    @inlinable @discardableResult
     public func enableFlowLogs(flowLogIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableFlowLogsResponse> {
         self.enableFlowLogs(EnableFlowLogsRequest(flowLogIds: flowLogIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
-    @inlinable
+    @inlinable @discardableResult
     public func enableFlowLogs(flowLogIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
         try await self.enableFlowLogs(EnableFlowLogsRequest(flowLogIds: flowLogIds), region: region, logger: logger, on: eventLoop)
     }

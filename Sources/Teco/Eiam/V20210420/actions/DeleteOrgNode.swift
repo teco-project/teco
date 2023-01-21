@@ -42,7 +42,7 @@ extension Eiam {
     /// 删除机构节点
     ///
     /// 删除一个机构节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteOrgNode(_ input: DeleteOrgNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrgNodeResponse> {
         self.client.execute(action: "DeleteOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Eiam {
     /// 删除机构节点
     ///
     /// 删除一个机构节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteOrgNode(_ input: DeleteOrgNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
         try await self.client.execute(action: "DeleteOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Eiam {
     /// 删除机构节点
     ///
     /// 删除一个机构节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteOrgNode(orgNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrgNodeResponse> {
         self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Eiam {
     /// 删除机构节点
     ///
     /// 删除一个机构节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteOrgNode(orgNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
         try await self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), region: region, logger: logger, on: eventLoop)
     }

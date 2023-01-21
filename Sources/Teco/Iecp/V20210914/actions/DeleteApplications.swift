@@ -40,25 +40,25 @@ extension Iecp {
     }
 
     /// 删除应用模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplications(_ input: DeleteApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationsResponse> {
         self.client.execute(action: "DeleteApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除应用模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplications(_ input: DeleteApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationsResponse {
         try await self.client.execute(action: "DeleteApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除应用模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplications(applicationIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationsResponse> {
         self.deleteApplications(DeleteApplicationsRequest(applicationIds: applicationIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplications(applicationIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationsResponse {
         try await self.deleteApplications(DeleteApplicationsRequest(applicationIds: applicationIds), region: region, logger: logger, on: eventLoop)
     }

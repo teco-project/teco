@@ -60,7 +60,7 @@ extension Ecm {
     /// 解绑密钥对
     ///
     /// 用于解除实例的密钥绑定关系。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateInstancesKeyPairs(_ input: DisassociateInstancesKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateInstancesKeyPairsResponse> {
         self.client.execute(action: "DisassociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Ecm {
     /// 解绑密钥对
     ///
     /// 用于解除实例的密钥绑定关系。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateInstancesKeyPairs(_ input: DisassociateInstancesKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
         try await self.client.execute(action: "DisassociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -76,7 +76,7 @@ extension Ecm {
     /// 解绑密钥对
     ///
     /// 用于解除实例的密钥绑定关系。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateInstancesKeyPairsResponse> {
         self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
     }
@@ -84,7 +84,7 @@ extension Ecm {
     /// 解绑密钥对
     ///
     /// 用于解除实例的密钥绑定关系。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
         try await self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
     }

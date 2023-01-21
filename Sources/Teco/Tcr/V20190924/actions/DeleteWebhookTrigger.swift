@@ -50,25 +50,25 @@ extension Tcr {
     }
 
     /// 删除触发器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebhookTriggerResponse> {
         self.client.execute(action: "DeleteWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除触发器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWebhookTrigger(_ input: DeleteWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebhookTriggerResponse {
         try await self.client.execute(action: "DeleteWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除触发器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWebhookTrigger(registryId: String, namespace: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebhookTriggerResponse> {
         self.deleteWebhookTrigger(DeleteWebhookTriggerRequest(registryId: registryId, namespace: namespace, id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除触发器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWebhookTrigger(registryId: String, namespace: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebhookTriggerResponse {
         try await self.deleteWebhookTrigger(DeleteWebhookTriggerRequest(registryId: registryId, namespace: namespace, id: id), region: region, logger: logger, on: eventLoop)
     }

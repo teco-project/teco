@@ -47,7 +47,7 @@ extension Cbs {
     /// 调整云硬盘备份点配额
     ///
     /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDiskBackupQuota(_ input: ModifyDiskBackupQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskBackupQuotaResponse> {
         self.client.execute(action: "ModifyDiskBackupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cbs {
     /// 调整云硬盘备份点配额
     ///
     /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDiskBackupQuota(_ input: ModifyDiskBackupQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskBackupQuotaResponse {
         try await self.client.execute(action: "ModifyDiskBackupQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cbs {
     /// 调整云硬盘备份点配额
     ///
     /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskBackupQuotaResponse> {
         self.modifyDiskBackupQuota(ModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cbs {
     /// 调整云硬盘备份点配额
     ///
     /// 此接口 (ModifyDiskBackupQuota) 用于修改云硬盘备份点配额。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDiskBackupQuota(diskId: String, diskBackupQuota: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskBackupQuotaResponse {
         try await self.modifyDiskBackupQuota(ModifyDiskBackupQuotaRequest(diskId: diskId, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
     }

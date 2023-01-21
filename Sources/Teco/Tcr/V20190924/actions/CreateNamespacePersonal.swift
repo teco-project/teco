@@ -42,7 +42,7 @@ extension Tcr {
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
-    @inlinable
+    @inlinable @discardableResult
     public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespacePersonalResponse> {
         self.client.execute(action: "CreateNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcr {
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
-    @inlinable
+    @inlinable @discardableResult
     public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
         try await self.client.execute(action: "CreateNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcr {
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
-    @inlinable
+    @inlinable @discardableResult
     public func createNamespacePersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespacePersonalResponse> {
         self.createNamespacePersonal(CreateNamespacePersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcr {
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
-    @inlinable
+    @inlinable @discardableResult
     public func createNamespacePersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
         try await self.createNamespacePersonal(CreateNamespacePersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

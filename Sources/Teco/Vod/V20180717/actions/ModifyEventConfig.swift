@@ -69,7 +69,7 @@ extension Vod {
     /// - 设置接收回调通知的类型，目前有[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 和 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779) 两种类型。
     /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEventConfig(_ input: ModifyEventConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEventConfigResponse> {
         self.client.execute(action: "ModifyEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Vod {
     /// - 设置接收回调通知的类型，目前有[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 和 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779) 两种类型。
     /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEventConfig(_ input: ModifyEventConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
         try await self.client.execute(action: "ModifyEventConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -93,7 +93,7 @@ extension Vod {
     /// - 设置接收回调通知的类型，目前有[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 和 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779) 两种类型。
     /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEventConfig(mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEventConfigResponse> {
         self.modifyEventConfig(ModifyEventConfigRequest(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -105,7 +105,7 @@ extension Vod {
     /// - 设置接收回调通知的类型，目前有[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779) 和 [基于消息队列的可靠通知](https://cloud.tencent.com/document/product/266/33779) 两种类型。
     /// - 对于[ HTTP 回调通知](https://cloud.tencent.com/document/product/266/33779)，可设置 3.0 格式回调的地址。3.0 格式回调的说明参见 [历史格式回调](https://cloud.tencent.com/document/product/266/33796)。
     /// - 对具体事件服务的通知事件选择设置接收或者忽略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEventConfig(mode: String? = nil, notificationUrl: String? = nil, uploadMediaCompleteEventSwitch: String? = nil, deleteMediaCompleteEventSwitch: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEventConfigResponse {
         try await self.modifyEventConfig(ModifyEventConfigRequest(mode: mode, notificationUrl: notificationUrl, uploadMediaCompleteEventSwitch: uploadMediaCompleteEventSwitch, deleteMediaCompleteEventSwitch: deleteMediaCompleteEventSwitch, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

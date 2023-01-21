@@ -44,7 +44,7 @@ extension Live {
     /// 删除转码模板
     ///
     /// 删除转码模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveTranscodeTemplate(_ input: DeleteLiveTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveTranscodeTemplateResponse> {
         self.client.execute(action: "DeleteLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Live {
     /// 删除转码模板
     ///
     /// 删除转码模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveTranscodeTemplate(_ input: DeleteLiveTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeTemplateResponse {
         try await self.client.execute(action: "DeleteLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -60,7 +60,7 @@ extension Live {
     /// 删除转码模板
     ///
     /// 删除转码模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveTranscodeTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveTranscodeTemplateResponse> {
         self.deleteLiveTranscodeTemplate(DeleteLiveTranscodeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Live {
     /// 删除转码模板
     ///
     /// 删除转码模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveTranscodeTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeTemplateResponse {
         try await self.deleteLiveTranscodeTemplate(DeleteLiveTranscodeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }

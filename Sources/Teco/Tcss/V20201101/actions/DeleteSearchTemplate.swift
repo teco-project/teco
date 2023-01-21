@@ -40,25 +40,25 @@ extension Tcss {
     }
 
     /// 删除检索模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSearchTemplate(_ input: DeleteSearchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSearchTemplateResponse> {
         self.client.execute(action: "DeleteSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除检索模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSearchTemplate(_ input: DeleteSearchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSearchTemplateResponse {
         try await self.client.execute(action: "DeleteSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除检索模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSearchTemplate(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSearchTemplateResponse> {
         self.deleteSearchTemplate(DeleteSearchTemplateRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除检索模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSearchTemplate(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSearchTemplateResponse {
         try await self.deleteSearchTemplate(DeleteSearchTemplateRequest(id: id), region: region, logger: logger, on: eventLoop)
     }

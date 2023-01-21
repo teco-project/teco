@@ -42,7 +42,7 @@ extension Live {
     /// 删除录制模板
     ///
     /// 删除录制模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordTemplateResponse> {
         self.client.execute(action: "DeleteLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Live {
     /// 删除录制模板
     ///
     /// 删除录制模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecordTemplate(_ input: DeleteLiveRecordTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordTemplateResponse {
         try await self.client.execute(action: "DeleteLiveRecordTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Live {
     /// 删除录制模板
     ///
     /// 删除录制模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecordTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordTemplateResponse> {
         self.deleteLiveRecordTemplate(DeleteLiveRecordTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Live {
     /// 删除录制模板
     ///
     /// 删除录制模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecordTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordTemplateResponse {
         try await self.deleteLiveRecordTemplate(DeleteLiveRecordTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }

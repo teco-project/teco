@@ -52,7 +52,7 @@ extension Vpc {
     /// 修改协议端口模板集合
     ///
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyServiceTemplateGroupAttribute(_ input: ModifyServiceTemplateGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateGroupAttributeResponse> {
         self.client.execute(action: "ModifyServiceTemplateGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vpc {
     /// 修改协议端口模板集合
     ///
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyServiceTemplateGroupAttribute(_ input: ModifyServiceTemplateGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateGroupAttributeResponse {
         try await self.client.execute(action: "ModifyServiceTemplateGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vpc {
     /// 修改协议端口模板集合
     ///
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyServiceTemplateGroupAttribute(serviceTemplateGroupId: String, serviceTemplateGroupName: String? = nil, serviceTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateGroupAttributeResponse> {
         self.modifyServiceTemplateGroupAttribute(ModifyServiceTemplateGroupAttributeRequest(serviceTemplateGroupId: serviceTemplateGroupId, serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vpc {
     /// 修改协议端口模板集合
     ///
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyServiceTemplateGroupAttribute(serviceTemplateGroupId: String, serviceTemplateGroupName: String? = nil, serviceTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateGroupAttributeResponse {
         try await self.modifyServiceTemplateGroupAttribute(ModifyServiceTemplateGroupAttributeRequest(serviceTemplateGroupId: serviceTemplateGroupId, serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), region: region, logger: logger, on: eventLoop)
     }

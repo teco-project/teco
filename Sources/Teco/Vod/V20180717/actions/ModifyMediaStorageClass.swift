@@ -80,7 +80,7 @@ extension Vod {
     /// <li>标准存储</li>
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
     /// <li>标准存储</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
         self.client.execute(action: "ModifyMediaStorageClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -100,7 +100,7 @@ extension Vod {
     /// <li>标准存储</li>
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
     /// <li>标准存储</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMediaStorageClass(_ input: ModifyMediaStorageClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
         try await self.client.execute(action: "ModifyMediaStorageClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -120,7 +120,7 @@ extension Vod {
     /// <li>标准存储</li>
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
     /// <li>标准存储</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMediaStorageClassResponse> {
         self.modifyMediaStorageClass(ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
     }
@@ -140,7 +140,7 @@ extension Vod {
     /// <li>标准存储</li>
     /// 当媒体文件的当前存储类型为深度归档存储时，可以修改为以下类型：
     /// <li>标准存储</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMediaStorageClass(fileIds: [String], storageClass: String, subAppId: UInt64? = nil, restoreTier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMediaStorageClassResponse {
         try await self.modifyMediaStorageClass(ModifyMediaStorageClassRequest(fileIds: fileIds, storageClass: storageClass, subAppId: subAppId, restoreTier: restoreTier), region: region, logger: logger, on: eventLoop)
     }

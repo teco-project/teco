@@ -50,25 +50,25 @@ extension Tcr {
     }
 
     /// 更新触发器
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWebhookTrigger(_ input: ModifyWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebhookTriggerResponse> {
         self.client.execute(action: "ModifyWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新触发器
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWebhookTrigger(_ input: ModifyWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebhookTriggerResponse {
         try await self.client.execute(action: "ModifyWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新触发器
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebhookTriggerResponse> {
         self.modifyWebhookTrigger(ModifyWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新触发器
-    @inlinable
+    @inlinable @discardableResult
     public func modifyWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebhookTriggerResponse {
         try await self.modifyWebhookTrigger(ModifyWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

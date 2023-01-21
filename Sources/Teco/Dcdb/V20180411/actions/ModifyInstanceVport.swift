@@ -47,7 +47,7 @@ extension Dcdb {
     /// 修改实例VPORT
     ///
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVportResponse> {
         self.client.execute(action: "ModifyInstanceVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Dcdb {
     /// 修改实例VPORT
     ///
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceVport(_ input: ModifyInstanceVportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
         try await self.client.execute(action: "ModifyInstanceVport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Dcdb {
     /// 修改实例VPORT
     ///
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceVport(instanceId: String, vport: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceVportResponse> {
         self.modifyInstanceVport(ModifyInstanceVportRequest(instanceId: instanceId, vport: vport), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Dcdb {
     /// 修改实例VPORT
     ///
     /// 本接口（ModifyInstanceVport）用于修改实例VPORT
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceVport(instanceId: String, vport: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceVportResponse {
         try await self.modifyInstanceVport(ModifyInstanceVportRequest(instanceId: instanceId, vport: vport), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Vod {
     /// 删除素材样本
     ///
     /// 该接口用于根据人物 ID，删除素材样本。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePersonSample(_ input: DeletePersonSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonSampleResponse> {
         self.client.execute(action: "DeletePersonSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vod {
     /// 删除素材样本
     ///
     /// 该接口用于根据人物 ID，删除素材样本。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePersonSample(_ input: DeletePersonSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonSampleResponse {
         try await self.client.execute(action: "DeletePersonSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vod {
     /// 删除素材样本
     ///
     /// 该接口用于根据人物 ID，删除素材样本。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePersonSample(personId: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonSampleResponse> {
         self.deletePersonSample(DeletePersonSampleRequest(personId: personId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vod {
     /// 删除素材样本
     ///
     /// 该接口用于根据人物 ID，删除素材样本。
-    @inlinable
+    @inlinable @discardableResult
     public func deletePersonSample(personId: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonSampleResponse {
         try await self.deletePersonSample(DeletePersonSampleRequest(personId: personId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

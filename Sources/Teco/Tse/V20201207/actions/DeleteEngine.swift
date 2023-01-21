@@ -40,25 +40,25 @@ extension Tse {
     }
 
     /// 删除引擎实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEngine(_ input: DeleteEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEngineResponse> {
         self.client.execute(action: "DeleteEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除引擎实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEngine(_ input: DeleteEngineRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
         try await self.client.execute(action: "DeleteEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除引擎实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEngine(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEngineResponse> {
         self.deleteEngine(DeleteEngineRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除引擎实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEngine(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEngineResponse {
         try await self.deleteEngine(DeleteEngineRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

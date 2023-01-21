@@ -52,7 +52,7 @@ extension Cls {
     /// 修改日志集
     ///
     /// 本接口用于修改日志集信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLogset(_ input: ModifyLogsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogsetResponse> {
         self.client.execute(action: "ModifyLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cls {
     /// 修改日志集
     ///
     /// 本接口用于修改日志集信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLogset(_ input: ModifyLogsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogsetResponse {
         try await self.client.execute(action: "ModifyLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cls {
     /// 修改日志集
     ///
     /// 本接口用于修改日志集信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLogset(logsetId: String, logsetName: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogsetResponse> {
         self.modifyLogset(ModifyLogsetRequest(logsetId: logsetId, logsetName: logsetName, tags: tags), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cls {
     /// 修改日志集
     ///
     /// 本接口用于修改日志集信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLogset(logsetId: String, logsetName: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogsetResponse {
         try await self.modifyLogset(ModifyLogsetRequest(logsetId: logsetId, logsetName: logsetName, tags: tags), region: region, logger: logger, on: eventLoop)
     }

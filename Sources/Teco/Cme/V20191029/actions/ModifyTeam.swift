@@ -58,7 +58,7 @@ extension Cme {
     ///
     /// 修改团队信息，目前支持修改的操作有：
     /// <li>修改团队名称。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTeam(_ input: ModifyTeamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamResponse> {
         self.client.execute(action: "ModifyTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Cme {
     ///
     /// 修改团队信息，目前支持修改的操作有：
     /// <li>修改团队名称。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTeam(_ input: ModifyTeamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
         try await self.client.execute(action: "ModifyTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -76,7 +76,7 @@ extension Cme {
     ///
     /// 修改团队信息，目前支持修改的操作有：
     /// <li>修改团队名称。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTeamResponse> {
         self.modifyTeam(ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Cme {
     ///
     /// 修改团队信息，目前支持修改的操作有：
     /// <li>修改团队名称。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTeam(platform: String, teamId: String, name: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTeamResponse {
         try await self.modifyTeam(ModifyTeamRequest(platform: platform, teamId: teamId, name: name, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

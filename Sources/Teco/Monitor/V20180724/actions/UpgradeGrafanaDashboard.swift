@@ -62,25 +62,25 @@ extension Monitor {
     }
 
     /// 升级 Grafana Dashboard
-    @inlinable
+    @inlinable @discardableResult
     public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaDashboardResponse> {
         self.client.execute(action: "UpgradeGrafanaDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级 Grafana Dashboard
-    @inlinable
+    @inlinable @discardableResult
     public func upgradeGrafanaDashboard(_ input: UpgradeGrafanaDashboardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaDashboardResponse {
         try await self.client.execute(action: "UpgradeGrafanaDashboard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级 Grafana Dashboard
-    @inlinable
+    @inlinable @discardableResult
     public func upgradeGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGrafanaDashboardResponse> {
         self.upgradeGrafanaDashboard(UpgradeGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级 Grafana Dashboard
-    @inlinable
+    @inlinable @discardableResult
     public func upgradeGrafanaDashboard(instanceId: String, integrationCodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGrafanaDashboardResponse {
         try await self.upgradeGrafanaDashboard(UpgradeGrafanaDashboardRequest(instanceId: instanceId, integrationCodes: integrationCodes), region: region, logger: logger, on: eventLoop)
     }

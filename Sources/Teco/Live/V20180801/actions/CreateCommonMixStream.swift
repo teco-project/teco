@@ -70,7 +70,7 @@ extension Live {
     /// 该接口用来创建通用混流。用法与旧接口 mix_streamv2.start_mix_stream_advanced 基本一致。
     /// 注意：当前最多支持16路混流。
     /// 最佳实践：https://cloud.tencent.com/document/product/267/45566
-    @inlinable
+    @inlinable @discardableResult
     public func createCommonMixStream(_ input: CreateCommonMixStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommonMixStreamResponse> {
         self.client.execute(action: "CreateCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Live {
     /// 该接口用来创建通用混流。用法与旧接口 mix_streamv2.start_mix_stream_advanced 基本一致。
     /// 注意：当前最多支持16路混流。
     /// 最佳实践：https://cloud.tencent.com/document/product/267/45566
-    @inlinable
+    @inlinable @discardableResult
     public func createCommonMixStream(_ input: CreateCommonMixStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommonMixStreamResponse {
         try await self.client.execute(action: "CreateCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -90,7 +90,7 @@ extension Live {
     /// 该接口用来创建通用混流。用法与旧接口 mix_streamv2.start_mix_stream_advanced 基本一致。
     /// 注意：当前最多支持16路混流。
     /// 最佳实践：https://cloud.tencent.com/document/product/267/45566
-    @inlinable
+    @inlinable @discardableResult
     public func createCommonMixStream(mixStreamSessionId: String, inputStreamList: [CommonMixInputParam], outputParams: CommonMixOutputParams, mixStreamTemplateId: Int64? = nil, controlParams: CommonMixControlParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommonMixStreamResponse> {
         self.createCommonMixStream(CreateCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId, inputStreamList: inputStreamList, outputParams: outputParams, mixStreamTemplateId: mixStreamTemplateId, controlParams: controlParams), region: region, logger: logger, on: eventLoop)
     }
@@ -100,7 +100,7 @@ extension Live {
     /// 该接口用来创建通用混流。用法与旧接口 mix_streamv2.start_mix_stream_advanced 基本一致。
     /// 注意：当前最多支持16路混流。
     /// 最佳实践：https://cloud.tencent.com/document/product/267/45566
-    @inlinable
+    @inlinable @discardableResult
     public func createCommonMixStream(mixStreamSessionId: String, inputStreamList: [CommonMixInputParam], outputParams: CommonMixOutputParams, mixStreamTemplateId: Int64? = nil, controlParams: CommonMixControlParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommonMixStreamResponse {
         try await self.createCommonMixStream(CreateCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId, inputStreamList: inputStreamList, outputParams: outputParams, mixStreamTemplateId: mixStreamTemplateId, controlParams: controlParams), region: region, logger: logger, on: eventLoop)
     }

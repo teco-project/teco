@@ -47,7 +47,7 @@ extension Gaap {
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
         self.client.execute(action: "ModifyCertificateAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Gaap {
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCertificateAttributes(_ input: ModifyCertificateAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
         try await self.client.execute(action: "ModifyCertificateAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Gaap {
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
         self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Gaap {
     /// 修改证书属性
     ///
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
         try await self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
     }

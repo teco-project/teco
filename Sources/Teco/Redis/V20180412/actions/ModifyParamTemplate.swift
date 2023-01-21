@@ -55,25 +55,25 @@ extension Redis {
     }
 
     /// 修改参数模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyParamTemplateResponse> {
         self.client.execute(action: "ModifyParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改参数模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyParamTemplate(_ input: ModifyParamTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
         try await self.client.execute(action: "ModifyParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改参数模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyParamTemplate(templateId: String, name: String? = nil, description: String? = nil, paramList: [InstanceParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyParamTemplateResponse> {
         self.modifyParamTemplate(ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改参数模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyParamTemplate(templateId: String, name: String? = nil, description: String? = nil, paramList: [InstanceParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
         try await self.modifyParamTemplate(ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList), region: region, logger: logger, on: eventLoop)
     }

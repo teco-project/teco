@@ -45,25 +45,25 @@ extension Monitor {
     }
 
     /// 删除已安装的插件
-    @inlinable
+    @inlinable @discardableResult
     public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaPluginsResponse> {
         self.client.execute(action: "UninstallGrafanaPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除已安装的插件
-    @inlinable
+    @inlinable @discardableResult
     public func uninstallGrafanaPlugins(_ input: UninstallGrafanaPluginsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
         try await self.client.execute(action: "UninstallGrafanaPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除已安装的插件
-    @inlinable
+    @inlinable @discardableResult
     public func uninstallGrafanaPlugins(pluginIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaPluginsResponse> {
         self.uninstallGrafanaPlugins(UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除已安装的插件
-    @inlinable
+    @inlinable @discardableResult
     public func uninstallGrafanaPlugins(pluginIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
         try await self.uninstallGrafanaPlugins(UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

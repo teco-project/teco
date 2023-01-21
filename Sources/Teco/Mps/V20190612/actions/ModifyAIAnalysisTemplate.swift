@@ -73,7 +73,7 @@ extension Mps {
     ///
     /// 修改用户自定义内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
         self.client.execute(action: "ModifyAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Mps {
     ///
     /// 修改用户自定义内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
         try await self.client.execute(action: "ModifyAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -91,7 +91,7 @@ extension Mps {
     ///
     /// 修改用户自定义内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(definition: Int64, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
         self.modifyAIAnalysisTemplate(ModifyAIAnalysisTemplateRequest(definition: definition, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure), region: region, logger: logger, on: eventLoop)
     }
@@ -100,7 +100,7 @@ extension Mps {
     ///
     /// 修改用户自定义内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(definition: Int64, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
         try await self.modifyAIAnalysisTemplate(ModifyAIAnalysisTemplateRequest(definition: definition, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure), region: region, logger: logger, on: eventLoop)
     }

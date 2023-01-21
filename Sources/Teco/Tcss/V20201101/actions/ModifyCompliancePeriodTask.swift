@@ -52,7 +52,7 @@ extension Tcss {
     /// 安全合规编辑定时任务
     ///
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCompliancePeriodTask(_ input: ModifyCompliancePeriodTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompliancePeriodTaskResponse> {
         self.client.execute(action: "ModifyCompliancePeriodTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tcss {
     /// 安全合规编辑定时任务
     ///
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCompliancePeriodTask(_ input: ModifyCompliancePeriodTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompliancePeriodTaskResponse {
         try await self.client.execute(action: "ModifyCompliancePeriodTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tcss {
     /// 安全合规编辑定时任务
     ///
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCompliancePeriodTask(periodTaskId: UInt64, periodRule: CompliancePeriodTaskRule? = nil, standardSettings: [ComplianceBenchmarkStandardEnable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompliancePeriodTaskResponse> {
         self.modifyCompliancePeriodTask(ModifyCompliancePeriodTaskRequest(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tcss {
     /// 安全合规编辑定时任务
     ///
     /// 修改定时任务的设置，包括检测周期、开启/禁用合规基准。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCompliancePeriodTask(periodTaskId: UInt64, periodRule: CompliancePeriodTaskRule? = nil, standardSettings: [ComplianceBenchmarkStandardEnable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompliancePeriodTaskResponse {
         try await self.modifyCompliancePeriodTask(ModifyCompliancePeriodTaskRequest(periodTaskId: periodTaskId, periodRule: periodRule, standardSettings: standardSettings), region: region, logger: logger, on: eventLoop)
     }

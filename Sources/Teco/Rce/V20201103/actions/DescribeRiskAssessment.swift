@@ -34,7 +34,7 @@ extension Rce {
     /// 查询风险评估结果
     ///
     /// 此接口用于查询风险评估结果
-    @inlinable
+    @inlinable @discardableResult
     public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskAssessmentResponse> {
         self.client.execute(action: "DescribeRiskAssessment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -42,7 +42,7 @@ extension Rce {
     /// 查询风险评估结果
     ///
     /// 此接口用于查询风险评估结果
-    @inlinable
+    @inlinable @discardableResult
     public func describeRiskAssessment(_ input: DescribeRiskAssessmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
         try await self.client.execute(action: "DescribeRiskAssessment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -50,7 +50,7 @@ extension Rce {
     /// 查询风险评估结果
     ///
     /// 此接口用于查询风险评估结果
-    @inlinable
+    @inlinable @discardableResult
     public func describeRiskAssessment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskAssessmentResponse> {
         self.describeRiskAssessment(DescribeRiskAssessmentRequest(), region: region, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Rce {
     /// 查询风险评估结果
     ///
     /// 此接口用于查询风险评估结果
-    @inlinable
+    @inlinable @discardableResult
     public func describeRiskAssessment(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskAssessmentResponse {
         try await self.describeRiskAssessment(DescribeRiskAssessmentRequest(), region: region, logger: logger, on: eventLoop)
     }

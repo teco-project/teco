@@ -44,7 +44,7 @@ extension Vpc {
     /// 本接口（DeleteDhcpIp）用于删除DhcpIp。
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDhcpIp(_ input: DeleteDhcpIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDhcpIpResponse> {
         self.client.execute(action: "DeleteDhcpIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -54,7 +54,7 @@ extension Vpc {
     /// 本接口（DeleteDhcpIp）用于删除DhcpIp。
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDhcpIp(_ input: DeleteDhcpIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDhcpIpResponse {
         try await self.client.execute(action: "DeleteDhcpIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -64,7 +64,7 @@ extension Vpc {
     /// 本接口（DeleteDhcpIp）用于删除DhcpIp。
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDhcpIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDhcpIpResponse> {
         self.deleteDhcpIp(DeleteDhcpIpRequest(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
     }
@@ -74,7 +74,7 @@ extension Vpc {
     /// 本接口（DeleteDhcpIp）用于删除DhcpIp。
     /// >?本接口为异步接口，可调用 [DescribeVpcTaskResult](https://cloud.tencent.com/document/api/215/59037) 接口查询任务执行结果，待任务执行成功后再进行其他操作。
     /// >
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDhcpIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDhcpIpResponse {
         try await self.deleteDhcpIp(DeleteDhcpIpRequest(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
     }

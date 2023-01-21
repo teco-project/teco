@@ -45,25 +45,25 @@ extension Wedata {
     }
 
     /// 删除采集器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInLongAgent(_ input: DeleteInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInLongAgentResponse> {
         self.client.execute(action: "DeleteInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除采集器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInLongAgent(_ input: DeleteInLongAgentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInLongAgentResponse {
         try await self.client.execute(action: "DeleteInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除采集器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInLongAgent(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInLongAgentResponse> {
         self.deleteInLongAgent(DeleteInLongAgentRequest(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除采集器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInLongAgent(agentId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInLongAgentResponse {
         try await self.deleteInLongAgent(DeleteInLongAgentRequest(agentId: agentId, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }

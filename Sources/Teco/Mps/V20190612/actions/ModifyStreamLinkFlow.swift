@@ -47,7 +47,7 @@ extension Mps {
     /// 修改媒体传输流
     ///
     /// 修改媒体传输的传输流配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyStreamLinkFlow(_ input: ModifyStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkFlowResponse> {
         self.client.execute(action: "ModifyStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Mps {
     /// 修改媒体传输流
     ///
     /// 修改媒体传输的传输流配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyStreamLinkFlow(_ input: ModifyStreamLinkFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkFlowResponse {
         try await self.client.execute(action: "ModifyStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Mps {
     /// 修改媒体传输流
     ///
     /// 修改媒体传输的传输流配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyStreamLinkFlow(flowId: String, flowName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkFlowResponse> {
         self.modifyStreamLinkFlow(ModifyStreamLinkFlowRequest(flowId: flowId, flowName: flowName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Mps {
     /// 修改媒体传输流
     ///
     /// 修改媒体传输的传输流配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyStreamLinkFlow(flowId: String, flowName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkFlowResponse {
         try await self.modifyStreamLinkFlow(ModifyStreamLinkFlowRequest(flowId: flowId, flowName: flowName), region: region, logger: logger, on: eventLoop)
     }

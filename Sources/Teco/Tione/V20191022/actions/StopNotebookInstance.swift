@@ -40,25 +40,25 @@ extension Tione {
     }
 
     /// 停止Notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNotebookInstanceResponse> {
         self.client.execute(action: "StopNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止Notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func stopNotebookInstance(_ input: StopNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNotebookInstanceResponse {
         try await self.client.execute(action: "StopNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止Notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func stopNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNotebookInstanceResponse> {
         self.stopNotebookInstance(StopNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止Notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func stopNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNotebookInstanceResponse {
         try await self.stopNotebookInstance(StopNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
     }

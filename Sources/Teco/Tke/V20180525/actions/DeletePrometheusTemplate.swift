@@ -42,7 +42,7 @@ extension Tke {
     /// 删除模板
     ///
     /// 删除一个云原生Prometheus配置模板
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTemplateResponse> {
         self.client.execute(action: "DeletePrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tke {
     /// 删除模板
     ///
     /// 删除一个云原生Prometheus配置模板
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusTemplate(_ input: DeletePrometheusTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
         try await self.client.execute(action: "DeletePrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tke {
     /// 删除模板
     ///
     /// 删除一个云原生Prometheus配置模板
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTemplateResponse> {
         self.deletePrometheusTemplate(DeletePrometheusTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tke {
     /// 删除模板
     ///
     /// 删除一个云原生Prometheus配置模板
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
         try await self.deletePrometheusTemplate(DeletePrometheusTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }

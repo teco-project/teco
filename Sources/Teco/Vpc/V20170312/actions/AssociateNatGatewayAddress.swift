@@ -72,7 +72,7 @@ extension Vpc {
     /// NAT网关绑定弹性IP
     ///
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
-    @inlinable
+    @inlinable @discardableResult
     public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNatGatewayAddressResponse> {
         self.client.execute(action: "AssociateNatGatewayAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Vpc {
     /// NAT网关绑定弹性IP
     ///
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
-    @inlinable
+    @inlinable @discardableResult
     public func associateNatGatewayAddress(_ input: AssociateNatGatewayAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
         try await self.client.execute(action: "AssociateNatGatewayAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -88,7 +88,7 @@ extension Vpc {
     /// NAT网关绑定弹性IP
     ///
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
-    @inlinable
+    @inlinable @discardableResult
     public func associateNatGatewayAddress(natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateNatGatewayAddressResponse> {
         self.associateNatGatewayAddress(AssociateNatGatewayAddressRequest(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), region: region, logger: logger, on: eventLoop)
     }
@@ -96,7 +96,7 @@ extension Vpc {
     /// NAT网关绑定弹性IP
     ///
     /// 本接口(AssociateNatGatewayAddress)用于NAT网关绑定弹性IP（EIP）。
-    @inlinable
+    @inlinable @discardableResult
     public func associateNatGatewayAddress(natGatewayId: String, addressCount: UInt64? = nil, publicIpAddresses: [String]? = nil, zone: String? = nil, stockPublicIpAddressesBandwidthOut: UInt64? = nil, publicIpAddressesBandwidthOut: UInt64? = nil, publicIpFromSameZone: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateNatGatewayAddressResponse {
         try await self.associateNatGatewayAddress(AssociateNatGatewayAddressRequest(natGatewayId: natGatewayId, addressCount: addressCount, publicIpAddresses: publicIpAddresses, zone: zone, stockPublicIpAddressesBandwidthOut: stockPublicIpAddressesBandwidthOut, publicIpAddressesBandwidthOut: publicIpAddressesBandwidthOut, publicIpFromSameZone: publicIpFromSameZone), region: region, logger: logger, on: eventLoop)
     }

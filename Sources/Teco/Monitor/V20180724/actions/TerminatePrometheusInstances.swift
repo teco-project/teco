@@ -40,25 +40,25 @@ extension Monitor {
     }
 
     /// 销毁按量 Prometheus 实例
-    @inlinable
+    @inlinable @discardableResult
     public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminatePrometheusInstancesResponse> {
         self.client.execute(action: "TerminatePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁按量 Prometheus 实例
-    @inlinable
+    @inlinable @discardableResult
     public func terminatePrometheusInstances(_ input: TerminatePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
         try await self.client.execute(action: "TerminatePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 销毁按量 Prometheus 实例
-    @inlinable
+    @inlinable @discardableResult
     public func terminatePrometheusInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminatePrometheusInstancesResponse> {
         self.terminatePrometheusInstances(TerminatePrometheusInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 销毁按量 Prometheus 实例
-    @inlinable
+    @inlinable @discardableResult
     public func terminatePrometheusInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminatePrometheusInstancesResponse {
         try await self.terminatePrometheusInstances(TerminatePrometheusInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }

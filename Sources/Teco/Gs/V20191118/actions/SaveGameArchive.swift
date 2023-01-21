@@ -45,25 +45,25 @@ extension Gs {
     }
 
     /// 保存游戏存档
-    @inlinable
+    @inlinable @discardableResult
     public func saveGameArchive(_ input: SaveGameArchiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveGameArchiveResponse> {
         self.client.execute(action: "SaveGameArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 保存游戏存档
-    @inlinable
+    @inlinable @discardableResult
     public func saveGameArchive(_ input: SaveGameArchiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveGameArchiveResponse {
         try await self.client.execute(action: "SaveGameArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 保存游戏存档
-    @inlinable
+    @inlinable @discardableResult
     public func saveGameArchive(userId: String, gameId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveGameArchiveResponse> {
         self.saveGameArchive(SaveGameArchiveRequest(userId: userId, gameId: gameId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 保存游戏存档
-    @inlinable
+    @inlinable @discardableResult
     public func saveGameArchive(userId: String, gameId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveGameArchiveResponse {
         try await self.saveGameArchive(SaveGameArchiveRequest(userId: userId, gameId: gameId), region: region, logger: logger, on: eventLoop)
     }

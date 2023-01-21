@@ -42,7 +42,7 @@ extension Iotcloud {
     /// 禁用规则
     ///
     /// 本接口（DisableTopicRule）用于禁用规则
-    @inlinable
+    @inlinable @discardableResult
     public func disableTopicRule(_ input: DisableTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTopicRuleResponse> {
         self.client.execute(action: "DisableTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotcloud {
     /// 禁用规则
     ///
     /// 本接口（DisableTopicRule）用于禁用规则
-    @inlinable
+    @inlinable @discardableResult
     public func disableTopicRule(_ input: DisableTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTopicRuleResponse {
         try await self.client.execute(action: "DisableTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotcloud {
     /// 禁用规则
     ///
     /// 本接口（DisableTopicRule）用于禁用规则
-    @inlinable
+    @inlinable @discardableResult
     public func disableTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTopicRuleResponse> {
         self.disableTopicRule(DisableTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotcloud {
     /// 禁用规则
     ///
     /// 本接口（DisableTopicRule）用于禁用规则
-    @inlinable
+    @inlinable @discardableResult
     public func disableTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTopicRuleResponse {
         try await self.disableTopicRule(DisableTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }

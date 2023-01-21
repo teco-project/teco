@@ -52,7 +52,7 @@ extension Domain {
     /// 验证手机邮箱
     ///
     /// 此接口用于创建有效的手机、邮箱
-    @inlinable
+    @inlinable @discardableResult
     public func createPhoneEmail(_ input: CreatePhoneEmailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePhoneEmailResponse> {
         self.client.execute(action: "CreatePhoneEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Domain {
     /// 验证手机邮箱
     ///
     /// 此接口用于创建有效的手机、邮箱
-    @inlinable
+    @inlinable @discardableResult
     public func createPhoneEmail(_ input: CreatePhoneEmailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
         try await self.client.execute(action: "CreatePhoneEmail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Domain {
     /// 验证手机邮箱
     ///
     /// 此接口用于创建有效的手机、邮箱
-    @inlinable
+    @inlinable @discardableResult
     public func createPhoneEmail(code: String, type: UInt64, verifyCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePhoneEmailResponse> {
         self.createPhoneEmail(CreatePhoneEmailRequest(code: code, type: type, verifyCode: verifyCode), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Domain {
     /// 验证手机邮箱
     ///
     /// 此接口用于创建有效的手机、邮箱
-    @inlinable
+    @inlinable @discardableResult
     public func createPhoneEmail(code: String, type: UInt64, verifyCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePhoneEmailResponse {
         try await self.createPhoneEmail(CreatePhoneEmailRequest(code: code, type: type, verifyCode: verifyCode), region: region, logger: logger, on: eventLoop)
     }

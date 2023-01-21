@@ -50,25 +50,25 @@ extension Monitor {
     }
 
     /// 删除 Prometheus 抓取任务
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusScrapeJobsResponse> {
         self.client.execute(action: "DeletePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 Prometheus 抓取任务
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusScrapeJobs(_ input: DeletePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
         try await self.client.execute(action: "DeletePrometheusScrapeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 Prometheus 抓取任务
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusScrapeJobsResponse> {
         self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Prometheus 抓取任务
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusScrapeJobs(instanceId: String, agentId: String, jobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusScrapeJobsResponse {
         try await self.deletePrometheusScrapeJobs(DeletePrometheusScrapeJobsRequest(instanceId: instanceId, agentId: agentId, jobIds: jobIds), region: region, logger: logger, on: eventLoop)
     }

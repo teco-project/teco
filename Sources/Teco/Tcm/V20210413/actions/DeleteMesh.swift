@@ -60,25 +60,25 @@ extension Tcm {
     }
 
     /// 删除网格
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMesh(_ input: DeleteMeshRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMeshResponse> {
         self.client.execute(action: "DeleteMesh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除网格
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMesh(_ input: DeleteMeshRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMeshResponse {
         try await self.client.execute(action: "DeleteMesh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除网格
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMesh(meshId: String, needDeleteCLS: Bool? = nil, needDeleteTMP: Bool? = nil, needDeleteAPM: Bool? = nil, needDeleteGrafana: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMeshResponse> {
         self.deleteMesh(DeleteMeshRequest(meshId: meshId, needDeleteCLS: needDeleteCLS, needDeleteTMP: needDeleteTMP, needDeleteAPM: needDeleteAPM, needDeleteGrafana: needDeleteGrafana), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除网格
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMesh(meshId: String, needDeleteCLS: Bool? = nil, needDeleteTMP: Bool? = nil, needDeleteAPM: Bool? = nil, needDeleteGrafana: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMeshResponse {
         try await self.deleteMesh(DeleteMeshRequest(meshId: meshId, needDeleteCLS: needDeleteCLS, needDeleteTMP: needDeleteTMP, needDeleteAPM: needDeleteAPM, needDeleteGrafana: needDeleteGrafana), region: region, logger: logger, on: eventLoop)
     }

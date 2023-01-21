@@ -47,7 +47,7 @@ extension Ecm {
     /// 删除VPC
     ///
     /// 删除私有网络
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpc(_ input: DeleteVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
         self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Ecm {
     /// 删除VPC
     ///
     /// 删除私有网络
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpc(_ input: DeleteVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
         try await self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Ecm {
     /// 删除VPC
     ///
     /// 删除私有网络
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpc(vpcId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
         self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Ecm {
     /// 删除VPC
     ///
     /// 删除私有网络
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpc(vpcId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
         try await self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }

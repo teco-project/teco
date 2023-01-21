@@ -50,25 +50,25 @@ extension Ciam {
     }
 
     /// 设置用户密码
-    @inlinable
+    @inlinable @discardableResult
     public func setPassword(_ input: SetPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetPasswordResponse> {
         self.client.execute(action: "SetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置用户密码
-    @inlinable
+    @inlinable @discardableResult
     public func setPassword(_ input: SetPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
         try await self.client.execute(action: "SetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置用户密码
-    @inlinable
+    @inlinable @discardableResult
     public func setPassword(userStoreId: String, userId: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetPasswordResponse> {
         self.setPassword(SetPasswordRequest(userStoreId: userStoreId, userId: userId, password: password), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置用户密码
-    @inlinable
+    @inlinable @discardableResult
     public func setPassword(userStoreId: String, userId: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
         try await self.setPassword(SetPasswordRequest(userStoreId: userStoreId, userId: userId, password: password), region: region, logger: logger, on: eventLoop)
     }

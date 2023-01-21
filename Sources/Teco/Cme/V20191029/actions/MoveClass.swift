@@ -65,7 +65,7 @@ extension Cme {
     /// 如果 SourceClassPath = /素材/视频/NBA，DestinationClassPath = /素材/视频/篮球
     /// <li>当 DestinationClassPath 不存在时候，操作结果为重命名 ClassPath；</li>
     /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
+    @inlinable @discardableResult
     public func moveClass(_ input: MoveClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveClassResponse> {
         self.client.execute(action: "MoveClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cme {
     /// 如果 SourceClassPath = /素材/视频/NBA，DestinationClassPath = /素材/视频/篮球
     /// <li>当 DestinationClassPath 不存在时候，操作结果为重命名 ClassPath；</li>
     /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
+    @inlinable @discardableResult
     public func moveClass(_ input: MoveClassRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveClassResponse {
         try await self.client.execute(action: "MoveClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -87,7 +87,7 @@ extension Cme {
     /// 如果 SourceClassPath = /素材/视频/NBA，DestinationClassPath = /素材/视频/篮球
     /// <li>当 DestinationClassPath 不存在时候，操作结果为重命名 ClassPath；</li>
     /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
+    @inlinable @discardableResult
     public func moveClass(platform: String, owner: Entity, sourceClassPath: String, destinationClassPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveClassResponse> {
         self.moveClass(MoveClassRequest(platform: platform, owner: owner, sourceClassPath: sourceClassPath, destinationClassPath: destinationClassPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -98,7 +98,7 @@ extension Cme {
     /// 如果 SourceClassPath = /素材/视频/NBA，DestinationClassPath = /素材/视频/篮球
     /// <li>当 DestinationClassPath 不存在时候，操作结果为重命名 ClassPath；</li>
     /// <li>当 DestinationClassPath 存在时候，操作结果为产生新目录 /素材/视频/篮球/NBA</li>
-    @inlinable
+    @inlinable @discardableResult
     public func moveClass(platform: String, owner: Entity, sourceClassPath: String, destinationClassPath: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveClassResponse {
         try await self.moveClass(MoveClassRequest(platform: platform, owner: owner, sourceClassPath: sourceClassPath, destinationClassPath: destinationClassPath, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

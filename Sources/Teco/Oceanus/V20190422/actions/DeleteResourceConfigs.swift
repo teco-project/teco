@@ -50,25 +50,25 @@ extension Oceanus {
     }
 
     /// 删除资源版本
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceConfigsResponse> {
         self.client.execute(action: "DeleteResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除资源版本
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceConfigs(_ input: DeleteResourceConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
         try await self.client.execute(action: "DeleteResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除资源版本
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceConfigs(resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteResourceConfigsResponse> {
         self.deleteResourceConfigs(DeleteResourceConfigsRequest(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资源版本
-    @inlinable
+    @inlinable @discardableResult
     public func deleteResourceConfigs(resourceId: String, resourceConfigVersions: [Int64], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteResourceConfigsResponse {
         try await self.deleteResourceConfigs(DeleteResourceConfigsRequest(resourceId: resourceId, resourceConfigVersions: resourceConfigVersions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }

@@ -50,25 +50,25 @@ extension Cam {
     }
 
     /// 更新SAML身份提供商信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSAMLProviderResponse> {
         self.client.execute(action: "UpdateSAMLProvider", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新SAML身份提供商信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateSAMLProvider(_ input: UpdateSAMLProviderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
         try await self.client.execute(action: "UpdateSAMLProvider", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新SAML身份提供商信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSAMLProviderResponse> {
         self.updateSAMLProvider(UpdateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新SAML身份提供商信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateSAMLProvider(name: String, description: String? = nil, samlMetadataDocument: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSAMLProviderResponse {
         try await self.updateSAMLProvider(UpdateSAMLProviderRequest(name: name, description: description, samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }

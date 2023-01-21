@@ -48,7 +48,7 @@ extension Cls {
     /// 添加机器组信息
     ///
     /// 用于添加机器组信息
-    @inlinable
+    @inlinable @discardableResult
     public func addMachineGroupInfo(_ input: AddMachineGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddMachineGroupInfoResponse> {
         self.client.execute(action: "AddMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -56,7 +56,7 @@ extension Cls {
     /// 添加机器组信息
     ///
     /// 用于添加机器组信息
-    @inlinable
+    @inlinable @discardableResult
     public func addMachineGroupInfo(_ input: AddMachineGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineGroupInfoResponse {
         try await self.client.execute(action: "AddMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -64,7 +64,7 @@ extension Cls {
     /// 添加机器组信息
     ///
     /// 用于添加机器组信息
-    @inlinable
+    @inlinable @discardableResult
     public func addMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddMachineGroupInfoResponse> {
         self.addMachineGroupInfo(AddMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
     }
@@ -72,7 +72,7 @@ extension Cls {
     /// 添加机器组信息
     ///
     /// 用于添加机器组信息
-    @inlinable
+    @inlinable @discardableResult
     public func addMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineGroupInfoResponse {
         try await self.addMachineGroupInfo(AddMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
     }

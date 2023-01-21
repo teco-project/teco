@@ -43,7 +43,7 @@ extension Tiems {
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 停用资源组的伸缩组
-    @inlinable
+    @inlinable @discardableResult
     public func disableRsgAsGroup(_ input: DisableRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRsgAsGroupResponse> {
         self.client.execute(action: "DisableRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Tiems {
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 停用资源组的伸缩组
-    @inlinable
+    @inlinable @discardableResult
     public func disableRsgAsGroup(_ input: DisableRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRsgAsGroupResponse {
         try await self.client.execute(action: "DisableRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Tiems {
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 停用资源组的伸缩组
-    @inlinable
+    @inlinable @discardableResult
     public func disableRsgAsGroup(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRsgAsGroupResponse> {
         self.disableRsgAsGroup(DisableRsgAsGroupRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Tiems {
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
     /// 停用资源组的伸缩组
-    @inlinable
+    @inlinable @discardableResult
     public func disableRsgAsGroup(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRsgAsGroupResponse {
         try await self.disableRsgAsGroup(DisableRsgAsGroupRequest(id: id), region: region, logger: logger, on: eventLoop)
     }

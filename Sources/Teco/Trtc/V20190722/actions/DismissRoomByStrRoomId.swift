@@ -47,7 +47,7 @@ extension Trtc {
     /// 解散房间（字符串房间号）
     ///
     /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
+    @inlinable @discardableResult
     public func dismissRoomByStrRoomId(_ input: DismissRoomByStrRoomIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomByStrRoomIdResponse> {
         self.client.execute(action: "DismissRoomByStrRoomId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Trtc {
     /// 解散房间（字符串房间号）
     ///
     /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
+    @inlinable @discardableResult
     public func dismissRoomByStrRoomId(_ input: DismissRoomByStrRoomIdRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomByStrRoomIdResponse {
         try await self.client.execute(action: "DismissRoomByStrRoomId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Trtc {
     /// 解散房间（字符串房间号）
     ///
     /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
+    @inlinable @discardableResult
     public func dismissRoomByStrRoomId(sdkAppId: UInt64, roomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DismissRoomByStrRoomIdResponse> {
         self.dismissRoomByStrRoomId(DismissRoomByStrRoomIdRequest(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Trtc {
     /// 解散房间（字符串房间号）
     ///
     /// 接口说明：把房间所有用户从房间移出，解散房间。支持所有平台，Android、iOS、Windows 和 macOS 需升级到 TRTC SDK 6.6及以上版本。
-    @inlinable
+    @inlinable @discardableResult
     public func dismissRoomByStrRoomId(sdkAppId: UInt64, roomId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomByStrRoomIdResponse {
         try await self.dismissRoomByStrRoomId(DismissRoomByStrRoomIdRequest(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
     }

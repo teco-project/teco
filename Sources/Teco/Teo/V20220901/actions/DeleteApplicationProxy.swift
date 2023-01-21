@@ -45,25 +45,25 @@ extension Teo {
     }
 
     /// 删除应用代理
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplicationProxy(_ input: DeleteApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyResponse> {
         self.client.execute(action: "DeleteApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除应用代理
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplicationProxy(_ input: DeleteApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyResponse {
         try await self.client.execute(action: "DeleteApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除应用代理
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplicationProxy(zoneId: String, proxyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationProxyResponse> {
         self.deleteApplicationProxy(DeleteApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用代理
-    @inlinable
+    @inlinable @discardableResult
     public func deleteApplicationProxy(zoneId: String, proxyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationProxyResponse {
         try await self.deleteApplicationProxy(DeleteApplicationProxyRequest(zoneId: zoneId, proxyId: proxyId), region: region, logger: logger, on: eventLoop)
     }

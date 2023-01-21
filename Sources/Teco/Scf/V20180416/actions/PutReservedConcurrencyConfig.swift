@@ -52,7 +52,7 @@ extension Scf {
     /// 设置最大独占配额
     ///
     /// 设置函数最大独占配额
-    @inlinable
+    @inlinable @discardableResult
     public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutReservedConcurrencyConfigResponse> {
         self.client.execute(action: "PutReservedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Scf {
     /// 设置最大独占配额
     ///
     /// 设置函数最大独占配额
-    @inlinable
+    @inlinable @discardableResult
     public func putReservedConcurrencyConfig(_ input: PutReservedConcurrencyConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
         try await self.client.execute(action: "PutReservedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Scf {
     /// 设置最大独占配额
     ///
     /// 设置函数最大独占配额
-    @inlinable
+    @inlinable @discardableResult
     public func putReservedConcurrencyConfig(functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutReservedConcurrencyConfigResponse> {
         self.putReservedConcurrencyConfig(PutReservedConcurrencyConfigRequest(functionName: functionName, reservedConcurrencyMem: reservedConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Scf {
     /// 设置最大独占配额
     ///
     /// 设置函数最大独占配额
-    @inlinable
+    @inlinable @discardableResult
     public func putReservedConcurrencyConfig(functionName: String, reservedConcurrencyMem: UInt64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutReservedConcurrencyConfigResponse {
         try await self.putReservedConcurrencyConfig(PutReservedConcurrencyConfigRequest(functionName: functionName, reservedConcurrencyMem: reservedConcurrencyMem, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

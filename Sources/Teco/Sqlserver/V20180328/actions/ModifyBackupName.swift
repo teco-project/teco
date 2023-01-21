@@ -58,7 +58,7 @@ extension Sqlserver {
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupName(_ input: ModifyBackupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
         self.client.execute(action: "ModifyBackupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Sqlserver {
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupName(_ input: ModifyBackupNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
         try await self.client.execute(action: "ModifyBackupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -74,7 +74,7 @@ extension Sqlserver {
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupName(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupNameResponse> {
         self.modifyBackupName(ModifyBackupNameRequest(instanceId: instanceId, backupName: backupName, backupId: backupId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Sqlserver {
     /// 修改备份名称
     ///
     /// 本接口(ModifyBackupName)用于修改备份任务名称。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupName(instanceId: String, backupName: String, backupId: UInt64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupNameResponse {
         try await self.modifyBackupName(ModifyBackupNameRequest(instanceId: instanceId, backupName: backupName, backupId: backupId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }

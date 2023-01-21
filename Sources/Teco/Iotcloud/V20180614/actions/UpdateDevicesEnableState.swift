@@ -52,7 +52,7 @@ extension Iotcloud {
     /// 批量切换设备可用状态
     ///
     /// 批量启用或者禁用设备
-    @inlinable
+    @inlinable @discardableResult
     public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicesEnableStateResponse> {
         self.client.execute(action: "UpdateDevicesEnableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotcloud {
     /// 批量切换设备可用状态
     ///
     /// 批量启用或者禁用设备
-    @inlinable
+    @inlinable @discardableResult
     public func updateDevicesEnableState(_ input: UpdateDevicesEnableStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
         try await self.client.execute(action: "UpdateDevicesEnableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotcloud {
     /// 批量切换设备可用状态
     ///
     /// 批量启用或者禁用设备
-    @inlinable
+    @inlinable @discardableResult
     public func updateDevicesEnableState(productID: String, deviceNames: [String], status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicesEnableStateResponse> {
         self.updateDevicesEnableState(UpdateDevicesEnableStateRequest(productID: productID, deviceNames: deviceNames, status: status), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotcloud {
     /// 批量切换设备可用状态
     ///
     /// 批量启用或者禁用设备
-    @inlinable
+    @inlinable @discardableResult
     public func updateDevicesEnableState(productID: String, deviceNames: [String], status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
         try await self.updateDevicesEnableState(UpdateDevicesEnableStateRequest(productID: productID, deviceNames: deviceNames, status: status), region: region, logger: logger, on: eventLoop)
     }

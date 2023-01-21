@@ -47,7 +47,7 @@ extension Es {
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
-    @inlinable
+    @inlinable @discardableResult
     public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
         self.client.execute(action: "RestartLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Es {
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
-    @inlinable
+    @inlinable @discardableResult
     public func restartLogstashInstance(_ input: RestartLogstashInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
         try await self.client.execute(action: "RestartLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Es {
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
-    @inlinable
+    @inlinable @discardableResult
     public func restartLogstashInstance(instanceId: String, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
         self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Es {
     /// 重启Logstash实例
     ///
     /// 用于重启Logstash实例
-    @inlinable
+    @inlinable @discardableResult
     public func restartLogstashInstance(instanceId: String, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
         try await self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
     }

@@ -73,7 +73,7 @@ extension Essbasic {
     ///
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySeal(_ input: ModifySealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
         self.client.execute(action: "ModifySeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -82,7 +82,7 @@ extension Essbasic {
     ///
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySeal(_ input: ModifySealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
         try await self.client.execute(action: "ModifySeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -91,7 +91,7 @@ extension Essbasic {
     ///
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
         self.modifySeal(ModifySealRequest(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
@@ -100,7 +100,7 @@ extension Essbasic {
     ///
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
         try await self.modifySeal(ModifySealRequest(caller: caller, sourceIp: sourceIp, sealId: sealId, sealName: sealName, image: image, fileId: fileId, userId: userId), region: region, logger: logger, on: eventLoop)
     }

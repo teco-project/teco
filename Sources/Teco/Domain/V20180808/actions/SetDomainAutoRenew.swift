@@ -50,7 +50,7 @@ extension Domain {
     /// 域名自动续费
     ///
     /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
-    @inlinable
+    @inlinable @discardableResult
     public func setDomainAutoRenew(_ input: SetDomainAutoRenewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDomainAutoRenewResponse> {
         self.client.execute(action: "SetDomainAutoRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Domain {
     /// 域名自动续费
     ///
     /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
-    @inlinable
+    @inlinable @discardableResult
     public func setDomainAutoRenew(_ input: SetDomainAutoRenewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDomainAutoRenewResponse {
         try await self.client.execute(action: "SetDomainAutoRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Domain {
     /// 域名自动续费
     ///
     /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
-    @inlinable
+    @inlinable @discardableResult
     public func setDomainAutoRenew(domainId: String, autoRenew: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDomainAutoRenewResponse> {
         self.setDomainAutoRenew(SetDomainAutoRenewRequest(domainId: domainId, autoRenew: autoRenew), region: region, logger: logger, on: eventLoop)
     }
@@ -74,7 +74,7 @@ extension Domain {
     /// 域名自动续费
     ///
     /// 本接口 ( SetDomainAutoRenew ) 用于设置域名自动续费。
-    @inlinable
+    @inlinable @discardableResult
     public func setDomainAutoRenew(domainId: String, autoRenew: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDomainAutoRenewResponse {
         try await self.setDomainAutoRenew(SetDomainAutoRenewRequest(domainId: domainId, autoRenew: autoRenew), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Ecm {
     /// 删除负载均衡监听器
     ///
     /// 删除负载均衡监听器。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteListener(_ input: DeleteListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteListenerResponse> {
         self.client.execute(action: "DeleteListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Ecm {
     /// 删除负载均衡监听器
     ///
     /// 删除负载均衡监听器。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteListener(_ input: DeleteListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
         try await self.client.execute(action: "DeleteListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Ecm {
     /// 删除负载均衡监听器
     ///
     /// 删除负载均衡监听器。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteListener(loadBalancerId: String, listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteListenerResponse> {
         self.deleteListener(DeleteListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Ecm {
     /// 删除负载均衡监听器
     ///
     /// 删除负载均衡监听器。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteListener(loadBalancerId: String, listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
         try await self.deleteListener(DeleteListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }

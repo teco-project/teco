@@ -47,7 +47,7 @@ extension Irp {
     /// 上报信息流内容信息
     ///
     /// 上报被用于推荐的信息流内容信息
-    @inlinable
+    @inlinable @discardableResult
     public func reportFeedItem(_ input: ReportFeedItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedItemResponse> {
         self.client.execute(action: "ReportFeedItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Irp {
     /// 上报信息流内容信息
     ///
     /// 上报被用于推荐的信息流内容信息
-    @inlinable
+    @inlinable @discardableResult
     public func reportFeedItem(_ input: ReportFeedItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
         try await self.client.execute(action: "ReportFeedItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Irp {
     /// 上报信息流内容信息
     ///
     /// 上报被用于推荐的信息流内容信息
-    @inlinable
+    @inlinable @discardableResult
     public func reportFeedItem(instanceId: String, feedItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedItemResponse> {
         self.reportFeedItem(ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Irp {
     /// 上报信息流内容信息
     ///
     /// 上报被用于推荐的信息流内容信息
-    @inlinable
+    @inlinable @discardableResult
     public func reportFeedItem(instanceId: String, feedItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
         try await self.reportFeedItem(ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList), region: region, logger: logger, on: eventLoop)
     }

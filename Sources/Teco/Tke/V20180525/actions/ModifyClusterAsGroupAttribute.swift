@@ -45,25 +45,25 @@ extension Tke {
     }
 
     /// 修改集群伸缩组属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterAsGroupAttribute(_ input: ModifyClusterAsGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAsGroupAttributeResponse> {
         self.client.execute(action: "ModifyClusterAsGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群伸缩组属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterAsGroupAttribute(_ input: ModifyClusterAsGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupAttributeResponse {
         try await self.client.execute(action: "ModifyClusterAsGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改集群伸缩组属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterAsGroupAttribute(clusterId: String, clusterAsGroupAttribute: ClusterAsGroupAttribute? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAsGroupAttributeResponse> {
         self.modifyClusterAsGroupAttribute(ModifyClusterAsGroupAttributeRequest(clusterId: clusterId, clusterAsGroupAttribute: clusterAsGroupAttribute), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改集群伸缩组属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyClusterAsGroupAttribute(clusterId: String, clusterAsGroupAttribute: ClusterAsGroupAttribute? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupAttributeResponse {
         try await self.modifyClusterAsGroupAttribute(ModifyClusterAsGroupAttributeRequest(clusterId: clusterId, clusterAsGroupAttribute: clusterAsGroupAttribute), region: region, logger: logger, on: eventLoop)
     }

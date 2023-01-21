@@ -57,7 +57,7 @@ extension Cme {
     /// 添加团队成员
     ///
     /// 向一个团队中添加团队成员，并且指定成员的角色。
-    @inlinable
+    @inlinable @discardableResult
     public func addTeamMember(_ input: AddTeamMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTeamMemberResponse> {
         self.client.execute(action: "AddTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cme {
     /// 添加团队成员
     ///
     /// 向一个团队中添加团队成员，并且指定成员的角色。
-    @inlinable
+    @inlinable @discardableResult
     public func addTeamMember(_ input: AddTeamMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
         try await self.client.execute(action: "AddTeamMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cme {
     /// 添加团队成员
     ///
     /// 向一个团队中添加团队成员，并且指定成员的角色。
-    @inlinable
+    @inlinable @discardableResult
     public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddTeamMemberResponse> {
         self.addTeamMember(AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cme {
     /// 添加团队成员
     ///
     /// 向一个团队中添加团队成员，并且指定成员的角色。
-    @inlinable
+    @inlinable @discardableResult
     public func addTeamMember(platform: String, teamId: String, teamMembers: [AddMemberInfo], operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddTeamMemberResponse {
         try await self.addTeamMember(AddTeamMemberRequest(platform: platform, teamId: teamId, teamMembers: teamMembers, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

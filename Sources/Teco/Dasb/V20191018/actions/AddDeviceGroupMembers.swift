@@ -45,25 +45,25 @@ extension Dasb {
     }
 
     /// 添加资产组成员
-    @inlinable
+    @inlinable @discardableResult
     public func addDeviceGroupMembers(_ input: AddDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceGroupMembersResponse> {
         self.client.execute(action: "AddDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加资产组成员
-    @inlinable
+    @inlinable @discardableResult
     public func addDeviceGroupMembers(_ input: AddDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceGroupMembersResponse {
         try await self.client.execute(action: "AddDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加资产组成员
-    @inlinable
+    @inlinable @discardableResult
     public func addDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceGroupMembersResponse> {
         self.addDeviceGroupMembers(AddDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加资产组成员
-    @inlinable
+    @inlinable @discardableResult
     public func addDeviceGroupMembers(id: UInt64, memberIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceGroupMembersResponse {
         try await self.addDeviceGroupMembers(AddDeviceGroupMembersRequest(id: id, memberIdSet: memberIdSet), region: region, logger: logger, on: eventLoop)
     }

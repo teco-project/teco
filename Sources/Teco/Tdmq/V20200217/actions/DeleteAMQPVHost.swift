@@ -45,25 +45,25 @@ extension Tdmq {
     }
 
     /// 删除Vhost
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPVHostResponse> {
         self.client.execute(action: "DeleteAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Vhost
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAMQPVHost(_ input: DeleteAMQPVHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPVHostResponse {
         try await self.client.execute(action: "DeleteAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Vhost
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAMQPVHost(clusterId: String, vHostId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPVHostResponse> {
         self.deleteAMQPVHost(DeleteAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Vhost
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAMQPVHost(clusterId: String, vHostId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPVHostResponse {
         try await self.deleteAMQPVHost(DeleteAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId), region: region, logger: logger, on: eventLoop)
     }

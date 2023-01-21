@@ -52,7 +52,7 @@ extension Gaap {
     /// 修改通道组属性
     ///
     /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProxyGroupAttribute(_ input: ModifyProxyGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxyGroupAttributeResponse> {
         self.client.execute(action: "ModifyProxyGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Gaap {
     /// 修改通道组属性
     ///
     /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProxyGroupAttribute(_ input: ModifyProxyGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxyGroupAttributeResponse {
         try await self.client.execute(action: "ModifyProxyGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Gaap {
     /// 修改通道组属性
     ///
     /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProxyGroupAttribute(groupId: String, groupName: String? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxyGroupAttributeResponse> {
         self.modifyProxyGroupAttribute(ModifyProxyGroupAttributeRequest(groupId: groupId, groupName: groupName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Gaap {
     /// 修改通道组属性
     ///
     /// 本接口（ModifyProxyGroupAttribute）用于修改通道组属性，目前仅支持修改通道组名称。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyProxyGroupAttribute(groupId: String, groupName: String? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxyGroupAttributeResponse {
         try await self.modifyProxyGroupAttribute(ModifyProxyGroupAttributeRequest(groupId: groupId, groupName: groupName, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }

@@ -55,25 +55,25 @@ extension Bma {
     }
 
     /// 取证申请
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRObtainStatusResponse> {
         self.client.execute(action: "ModifyCRObtainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取证申请
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCRObtainStatus(_ input: ModifyCRObtainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
         try await self.client.execute(action: "ModifyCRObtainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取证申请
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCRObtainStatus(tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRObtainStatusResponse> {
         self.modifyCRObtainStatus(ModifyCRObtainStatusRequest(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取证申请
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCRObtainStatus(tortId: Int64, obtainType: Int64, obtainDuration: Int64, obtainUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRObtainStatusResponse {
         try await self.modifyCRObtainStatus(ModifyCRObtainStatusRequest(tortId: tortId, obtainType: obtainType, obtainDuration: obtainDuration, obtainUrl: obtainUrl), region: region, logger: logger, on: eventLoop)
     }

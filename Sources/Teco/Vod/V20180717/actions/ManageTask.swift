@@ -53,7 +53,7 @@ extension Vod {
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
-    @inlinable
+    @inlinable @discardableResult
     public func manageTask(_ input: ManageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
         self.client.execute(action: "ManageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -61,7 +61,7 @@ extension Vod {
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
-    @inlinable
+    @inlinable @discardableResult
     public func manageTask(_ input: ManageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
         try await self.client.execute(action: "ManageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -69,7 +69,7 @@ extension Vod {
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
-    @inlinable
+    @inlinable @discardableResult
     public func manageTask(taskId: String, operationType: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageTaskResponse> {
         self.manageTask(ManageTaskRequest(taskId: taskId, operationType: operationType, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -77,7 +77,7 @@ extension Vod {
     /// 任务管理
     ///
     /// 对已发起的任务进行管理。
-    @inlinable
+    @inlinable @discardableResult
     public func manageTask(taskId: String, operationType: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageTaskResponse {
         try await self.manageTask(ManageTaskRequest(taskId: taskId, operationType: operationType, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

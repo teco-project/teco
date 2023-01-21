@@ -42,7 +42,7 @@ extension Vpc {
     /// 删除VPN网关
     ///
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewayResponse> {
         self.client.execute(action: "DeleteVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Vpc {
     /// 删除VPN网关
     ///
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpnGateway(_ input: DeleteVpnGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
         try await self.client.execute(action: "DeleteVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Vpc {
     /// 删除VPN网关
     ///
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpnGateway(vpnGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewayResponse> {
         self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 删除VPN网关
     ///
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpnGateway(vpnGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
         try await self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Iotcloud {
     }
 
     /// 更新产品的私有CA
-    @inlinable
+    @inlinable @discardableResult
     public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductPrivateCAResponse> {
         self.client.execute(action: "UpdateProductPrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新产品的私有CA
-    @inlinable
+    @inlinable @discardableResult
     public func updateProductPrivateCA(_ input: UpdateProductPrivateCARequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {
         try await self.client.execute(action: "UpdateProductPrivateCA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新产品的私有CA
-    @inlinable
+    @inlinable @discardableResult
     public func updateProductPrivateCA(productId: String, certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductPrivateCAResponse> {
         self.updateProductPrivateCA(UpdateProductPrivateCARequest(productId: productId, certName: certName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新产品的私有CA
-    @inlinable
+    @inlinable @discardableResult
     public func updateProductPrivateCA(productId: String, certName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductPrivateCAResponse {
         try await self.updateProductPrivateCA(UpdateProductPrivateCARequest(productId: productId, certName: certName), region: region, logger: logger, on: eventLoop)
     }

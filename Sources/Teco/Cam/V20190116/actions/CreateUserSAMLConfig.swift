@@ -40,25 +40,25 @@ extension Cam {
     }
 
     /// 创建用户SAML配置
-    @inlinable
+    @inlinable @discardableResult
     public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSAMLConfigResponse> {
         self.client.execute(action: "CreateUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建用户SAML配置
-    @inlinable
+    @inlinable @discardableResult
     public func createUserSAMLConfig(_ input: CreateUserSAMLConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSAMLConfigResponse {
         try await self.client.execute(action: "CreateUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建用户SAML配置
-    @inlinable
+    @inlinable @discardableResult
     public func createUserSAMLConfig(samlMetadataDocument: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSAMLConfigResponse> {
         self.createUserSAMLConfig(CreateUserSAMLConfigRequest(samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建用户SAML配置
-    @inlinable
+    @inlinable @discardableResult
     public func createUserSAMLConfig(samlMetadataDocument: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSAMLConfigResponse {
         try await self.createUserSAMLConfig(CreateUserSAMLConfigRequest(samlMetadataDocument: samlMetadataDocument), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Eiam {
     }
 
     /// 账号组添加账号
-    @inlinable
+    @inlinable @discardableResult
     public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAccountToAccountGroupResponse> {
         self.client.execute(action: "AddAccountToAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 账号组添加账号
-    @inlinable
+    @inlinable @discardableResult
     public func addAccountToAccountGroup(_ input: AddAccountToAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAccountToAccountGroupResponse {
         try await self.client.execute(action: "AddAccountToAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 账号组添加账号
-    @inlinable
+    @inlinable @discardableResult
     public func addAccountToAccountGroup(accountGroupId: String, accountIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAccountToAccountGroupResponse> {
         self.addAccountToAccountGroup(AddAccountToAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 账号组添加账号
-    @inlinable
+    @inlinable @discardableResult
     public func addAccountToAccountGroup(accountGroupId: String, accountIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAccountToAccountGroupResponse {
         try await self.addAccountToAccountGroup(AddAccountToAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), region: region, logger: logger, on: eventLoop)
     }

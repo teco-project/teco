@@ -42,7 +42,7 @@ extension Cls {
     /// 删除通知渠道组
     ///
     /// 该接口用于删除通知渠道组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticeResponse> {
         self.client.execute(action: "DeleteAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cls {
     /// 删除通知渠道组
     ///
     /// 该接口用于删除通知渠道组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlarmNotice(_ input: DeleteAlarmNoticeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
         try await self.client.execute(action: "DeleteAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cls {
     /// 删除通知渠道组
     ///
     /// 该接口用于删除通知渠道组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlarmNotice(alarmNoticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticeResponse> {
         self.deleteAlarmNotice(DeleteAlarmNoticeRequest(alarmNoticeId: alarmNoticeId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cls {
     /// 删除通知渠道组
     ///
     /// 该接口用于删除通知渠道组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlarmNotice(alarmNoticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticeResponse {
         try await self.deleteAlarmNotice(DeleteAlarmNoticeRequest(alarmNoticeId: alarmNoticeId), region: region, logger: logger, on: eventLoop)
     }

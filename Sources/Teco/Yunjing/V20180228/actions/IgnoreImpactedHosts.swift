@@ -42,7 +42,7 @@ extension Yunjing {
     /// 忽略漏洞
     ///
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
-    @inlinable
+    @inlinable @discardableResult
     public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IgnoreImpactedHostsResponse> {
         self.client.execute(action: "IgnoreImpactedHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Yunjing {
     /// 忽略漏洞
     ///
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
-    @inlinable
+    @inlinable @discardableResult
     public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IgnoreImpactedHostsResponse {
         try await self.client.execute(action: "IgnoreImpactedHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Yunjing {
     /// 忽略漏洞
     ///
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
-    @inlinable
+    @inlinable @discardableResult
     public func ignoreImpactedHosts(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IgnoreImpactedHostsResponse> {
         self.ignoreImpactedHosts(IgnoreImpactedHostsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Yunjing {
     /// 忽略漏洞
     ///
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
-    @inlinable
+    @inlinable @discardableResult
     public func ignoreImpactedHosts(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IgnoreImpactedHostsResponse {
         try await self.ignoreImpactedHosts(IgnoreImpactedHostsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

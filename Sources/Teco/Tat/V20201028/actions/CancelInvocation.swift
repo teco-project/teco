@@ -51,7 +51,7 @@ extension Tat {
     /// 取消一台或多台CVM实例执行的命令
     /// * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
-    @inlinable
+    @inlinable @discardableResult
     public func cancelInvocation(_ input: CancelInvocationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelInvocationResponse> {
         self.client.execute(action: "CancelInvocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -61,7 +61,7 @@ extension Tat {
     /// 取消一台或多台CVM实例执行的命令
     /// * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
-    @inlinable
+    @inlinable @discardableResult
     public func cancelInvocation(_ input: CancelInvocationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelInvocationResponse {
         try await self.client.execute(action: "CancelInvocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Tat {
     /// 取消一台或多台CVM实例执行的命令
     /// * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
-    @inlinable
+    @inlinable @discardableResult
     public func cancelInvocation(invocationId: String, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelInvocationResponse> {
         self.cancelInvocation(CancelInvocationRequest(invocationId: invocationId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Tat {
     /// 取消一台或多台CVM实例执行的命令
     /// * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
-    @inlinable
+    @inlinable @discardableResult
     public func cancelInvocation(invocationId: String, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelInvocationResponse {
         try await self.cancelInvocation(CancelInvocationRequest(invocationId: invocationId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }

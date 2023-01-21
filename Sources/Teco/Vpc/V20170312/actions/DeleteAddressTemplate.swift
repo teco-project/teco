@@ -42,7 +42,7 @@ extension Vpc {
     /// 删除IP地址模板
     ///
     /// 本接口（DeleteAddressTemplate）用于删除IP地址模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAddressTemplate(_ input: DeleteAddressTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateResponse> {
         self.client.execute(action: "DeleteAddressTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Vpc {
     /// 删除IP地址模板
     ///
     /// 本接口（DeleteAddressTemplate）用于删除IP地址模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAddressTemplate(_ input: DeleteAddressTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateResponse {
         try await self.client.execute(action: "DeleteAddressTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Vpc {
     /// 删除IP地址模板
     ///
     /// 本接口（DeleteAddressTemplate）用于删除IP地址模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAddressTemplate(addressTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAddressTemplateResponse> {
         self.deleteAddressTemplate(DeleteAddressTemplateRequest(addressTemplateId: addressTemplateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 删除IP地址模板
     ///
     /// 本接口（DeleteAddressTemplate）用于删除IP地址模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAddressTemplate(addressTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAddressTemplateResponse {
         try await self.deleteAddressTemplate(DeleteAddressTemplateRequest(addressTemplateId: addressTemplateId), region: region, logger: logger, on: eventLoop)
     }

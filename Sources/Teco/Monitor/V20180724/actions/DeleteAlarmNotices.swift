@@ -47,7 +47,7 @@ extension Monitor {
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
         self.client.execute(action: "DeleteAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Monitor {
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlarmNotices(_ input: DeleteAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
         try await self.client.execute(action: "DeleteAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Monitor {
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlarmNotices(module: String, noticeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
         self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Monitor {
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlarmNotices(module: String, noticeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
         try await self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), region: region, logger: logger, on: eventLoop)
     }

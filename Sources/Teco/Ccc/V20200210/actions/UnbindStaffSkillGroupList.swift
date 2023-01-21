@@ -50,25 +50,25 @@ extension Ccc {
     }
 
     /// 解绑坐席所属技能组
-    @inlinable
+    @inlinable @discardableResult
     public func unbindStaffSkillGroupList(_ input: UnbindStaffSkillGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindStaffSkillGroupListResponse> {
         self.client.execute(action: "UnbindStaffSkillGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑坐席所属技能组
-    @inlinable
+    @inlinable @discardableResult
     public func unbindStaffSkillGroupList(_ input: UnbindStaffSkillGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindStaffSkillGroupListResponse {
         try await self.client.execute(action: "UnbindStaffSkillGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑坐席所属技能组
-    @inlinable
+    @inlinable @discardableResult
     public func unbindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindStaffSkillGroupListResponse> {
         self.unbindStaffSkillGroupList(UnbindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑坐席所属技能组
-    @inlinable
+    @inlinable @discardableResult
     public func unbindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindStaffSkillGroupListResponse {
         try await self.unbindStaffSkillGroupList(UnbindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Ecm {
     /// 修改模块默认镜像
     ///
     /// 修改模块的默认镜像
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleImage(_ input: ModifyModuleImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleImageResponse> {
         self.client.execute(action: "ModifyModuleImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Ecm {
     /// 修改模块默认镜像
     ///
     /// 修改模块的默认镜像
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleImage(_ input: ModifyModuleImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleImageResponse {
         try await self.client.execute(action: "ModifyModuleImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Ecm {
     /// 修改模块默认镜像
     ///
     /// 修改模块的默认镜像
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleImage(defaultImageId: String, moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleImageResponse> {
         self.modifyModuleImage(ModifyModuleImageRequest(defaultImageId: defaultImageId, moduleId: moduleId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Ecm {
     /// 修改模块默认镜像
     ///
     /// 修改模块的默认镜像
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleImage(defaultImageId: String, moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleImageResponse {
         try await self.modifyModuleImage(ModifyModuleImageRequest(defaultImageId: defaultImageId, moduleId: moduleId), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 开启设备推流
     ///
     /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func runDeviceStream(_ input: RunDeviceStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceStreamResponse> {
         self.client.execute(action: "RunDeviceStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 开启设备推流
     ///
     /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func runDeviceStream(_ input: RunDeviceStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceStreamResponse {
         try await self.client.execute(action: "RunDeviceStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 开启设备推流
     ///
     /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func runDeviceStream(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceStreamResponse> {
         self.runDeviceStream(RunDeviceStreamRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotvideo {
     /// 开启设备推流
     ///
     /// 本接口（RunDeviceStream）用于开启设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func runDeviceStream(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceStreamResponse {
         try await self.runDeviceStream(RunDeviceStreamRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }

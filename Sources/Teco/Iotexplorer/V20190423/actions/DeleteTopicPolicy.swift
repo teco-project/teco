@@ -47,7 +47,7 @@ extension Iotexplorer {
     /// 删除Topic
     ///
     /// 本接口（DeleteTopicPolicy）用于删除Topic
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicPolicyResponse> {
         self.client.execute(action: "DeleteTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotexplorer {
     /// 删除Topic
     ///
     /// 本接口（DeleteTopicPolicy）用于删除Topic
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopicPolicy(_ input: DeleteTopicPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
         try await self.client.execute(action: "DeleteTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotexplorer {
     /// 删除Topic
     ///
     /// 本接口（DeleteTopicPolicy）用于删除Topic
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopicPolicy(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicPolicyResponse> {
         self.deleteTopicPolicy(DeleteTopicPolicyRequest(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotexplorer {
     /// 删除Topic
     ///
     /// 本接口（DeleteTopicPolicy）用于删除Topic
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopicPolicy(productId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicPolicyResponse {
         try await self.deleteTopicPolicy(DeleteTopicPolicyRequest(productId: productId, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }

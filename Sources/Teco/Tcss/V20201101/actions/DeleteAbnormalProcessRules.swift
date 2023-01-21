@@ -42,7 +42,7 @@ extension Tcss {
     /// 删除运行时异常进程策略
     ///
     /// 删除运行异常进程策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAbnormalProcessRulesResponse> {
         self.client.execute(action: "DeleteAbnormalProcessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcss {
     /// 删除运行时异常进程策略
     ///
     /// 删除运行异常进程策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAbnormalProcessRules(_ input: DeleteAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
         try await self.client.execute(action: "DeleteAbnormalProcessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcss {
     /// 删除运行时异常进程策略
     ///
     /// 删除运行异常进程策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAbnormalProcessRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAbnormalProcessRulesResponse> {
         self.deleteAbnormalProcessRules(DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcss {
     /// 删除运行时异常进程策略
     ///
     /// 删除运行异常进程策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAbnormalProcessRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
         try await self.deleteAbnormalProcessRules(DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
     }

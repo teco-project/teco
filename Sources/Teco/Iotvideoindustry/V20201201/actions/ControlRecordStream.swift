@@ -63,7 +63,7 @@ extension Iotvideoindustry {
     ///
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
-    @inlinable
+    @inlinable @discardableResult
     public func controlRecordStream(_ input: ControlRecordStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
         self.client.execute(action: "ControlRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -72,7 +72,7 @@ extension Iotvideoindustry {
     ///
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
-    @inlinable
+    @inlinable @discardableResult
     public func controlRecordStream(_ input: ControlRecordStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
         try await self.client.execute(action: "ControlRecordStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -81,7 +81,7 @@ extension Iotvideoindustry {
     ///
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
-    @inlinable
+    @inlinable @discardableResult
     public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlRecordStreamResponse> {
         self.controlRecordStream(ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }
@@ -90,7 +90,7 @@ extension Iotvideoindustry {
     ///
     /// 对回放流进行控制，包括暂停、播放、拉动、结束等
     /// 请使用ControlChannelLocalRecord接口
-    @inlinable
+    @inlinable @discardableResult
     public func controlRecordStream(deviceId: String, streamId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlRecordStreamResponse {
         try await self.controlRecordStream(ControlRecordStreamRequest(deviceId: deviceId, streamId: streamId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
     }

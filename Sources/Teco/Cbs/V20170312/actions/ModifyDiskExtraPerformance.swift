@@ -48,7 +48,7 @@ extension Cbs {
     ///
     /// 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDiskExtraPerformance(_ input: ModifyDiskExtraPerformanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskExtraPerformanceResponse> {
         self.client.execute(action: "ModifyDiskExtraPerformance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Cbs {
     ///
     /// 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDiskExtraPerformance(_ input: ModifyDiskExtraPerformanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskExtraPerformanceResponse {
         try await self.client.execute(action: "ModifyDiskExtraPerformance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Cbs {
     ///
     /// 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskExtraPerformanceResponse> {
         self.modifyDiskExtraPerformance(ModifyDiskExtraPerformanceRequest(diskId: diskId, throughputPerformance: throughputPerformance), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Cbs {
     ///
     /// 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskExtraPerformanceResponse {
         try await self.modifyDiskExtraPerformance(ModifyDiskExtraPerformanceRequest(diskId: diskId, throughputPerformance: throughputPerformance), region: region, logger: logger, on: eventLoop)
     }

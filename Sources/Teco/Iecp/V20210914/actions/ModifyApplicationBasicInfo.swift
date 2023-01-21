@@ -45,25 +45,25 @@ extension Iecp {
     }
 
     /// 修改应用模板基本信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationBasicInfo(_ input: ModifyApplicationBasicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationBasicInfoResponse> {
         self.client.execute(action: "ModifyApplicationBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用模板基本信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationBasicInfo(_ input: ModifyApplicationBasicInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationBasicInfoResponse {
         try await self.client.execute(action: "ModifyApplicationBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用模板基本信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationBasicInfo(applicationId: UInt64, basicInfo: ApplicationBasicInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationBasicInfoResponse> {
         self.modifyApplicationBasicInfo(ModifyApplicationBasicInfoRequest(applicationId: applicationId, basicInfo: basicInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用模板基本信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationBasicInfo(applicationId: UInt64, basicInfo: ApplicationBasicInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationBasicInfoResponse {
         try await self.modifyApplicationBasicInfo(ModifyApplicationBasicInfoRequest(applicationId: applicationId, basicInfo: basicInfo), region: region, logger: logger, on: eventLoop)
     }

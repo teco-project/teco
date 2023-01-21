@@ -40,25 +40,25 @@ extension Tdid {
     }
 
     /// 撤消权威机构认证
-    @inlinable
+    @inlinable @discardableResult
     public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
         self.client.execute(action: "CancelAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤消权威机构认证
-    @inlinable
+    @inlinable @discardableResult
     public func cancelAuthorityIssuer(_ input: CancelAuthorityIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
         try await self.client.execute(action: "CancelAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 撤消权威机构认证
-    @inlinable
+    @inlinable @discardableResult
     public func cancelAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelAuthorityIssuerResponse> {
         self.cancelAuthorityIssuer(CancelAuthorityIssuerRequest(did: did), region: region, logger: logger, on: eventLoop)
     }
 
     /// 撤消权威机构认证
-    @inlinable
+    @inlinable @discardableResult
     public func cancelAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelAuthorityIssuerResponse {
         try await self.cancelAuthorityIssuer(CancelAuthorityIssuerRequest(did: did), region: region, logger: logger, on: eventLoop)
     }

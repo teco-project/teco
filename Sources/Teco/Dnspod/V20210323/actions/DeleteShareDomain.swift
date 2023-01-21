@@ -50,25 +50,25 @@ extension Dnspod {
     }
 
     /// 删除域名共享
-    @inlinable
+    @inlinable @discardableResult
     public func deleteShareDomain(_ input: DeleteShareDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShareDomainResponse> {
         self.client.execute(action: "DeleteShareDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除域名共享
-    @inlinable
+    @inlinable @discardableResult
     public func deleteShareDomain(_ input: DeleteShareDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShareDomainResponse {
         try await self.client.execute(action: "DeleteShareDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除域名共享
-    @inlinable
+    @inlinable @discardableResult
     public func deleteShareDomain(domain: String, account: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteShareDomainResponse> {
         self.deleteShareDomain(DeleteShareDomainRequest(domain: domain, account: account, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名共享
-    @inlinable
+    @inlinable @discardableResult
     public func deleteShareDomain(domain: String, account: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteShareDomainResponse {
         try await self.deleteShareDomain(DeleteShareDomainRequest(domain: domain, account: account, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }

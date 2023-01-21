@@ -52,7 +52,7 @@ extension Vpc {
     /// 修改CCN属性
     ///
     /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttributeResponse> {
         self.client.execute(action: "ModifyCcnAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vpc {
     /// 修改CCN属性
     ///
     /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnAttribute(_ input: ModifyCcnAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
         try await self.client.execute(action: "ModifyCcnAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vpc {
     /// 修改CCN属性
     ///
     /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnAttribute(ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttributeResponse> {
         self.modifyCcnAttribute(ModifyCcnAttributeRequest(ccnId: ccnId, ccnName: ccnName, ccnDescription: ccnDescription), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vpc {
     /// 修改CCN属性
     ///
     /// 本接口（ModifyCcnAttribute）用于修改云联网（CCN）的相关属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnAttribute(ccnId: String, ccnName: String? = nil, ccnDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttributeResponse {
         try await self.modifyCcnAttribute(ModifyCcnAttributeRequest(ccnId: ccnId, ccnName: ccnName, ccnDescription: ccnDescription), region: region, logger: logger, on: eventLoop)
     }

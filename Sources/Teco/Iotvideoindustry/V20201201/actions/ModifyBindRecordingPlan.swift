@@ -52,7 +52,7 @@ extension Iotvideoindustry {
     /// 更新录制计划绑定的通道
     ///
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindRecordingPlanResponse> {
         self.client.execute(action: "ModifyBindRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotvideoindustry {
     /// 更新录制计划绑定的通道
     ///
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBindRecordingPlan(_ input: ModifyBindRecordingPlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
         try await self.client.execute(action: "ModifyBindRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotvideoindustry {
     /// 更新录制计划绑定的通道
     ///
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindRecordingPlanResponse> {
         self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotvideoindustry {
     /// 更新录制计划绑定的通道
     ///
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
         try await self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), region: region, logger: logger, on: eventLoop)
     }

@@ -50,25 +50,25 @@ extension Iotvideo {
     }
 
     /// 创建数据转发
-    @inlinable
+    @inlinable @discardableResult
     public func createDataForward(_ input: CreateDataForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataForwardResponse> {
         self.client.execute(action: "CreateDataForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建数据转发
-    @inlinable
+    @inlinable @discardableResult
     public func createDataForward(_ input: CreateDataForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataForwardResponse {
         try await self.client.execute(action: "CreateDataForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建数据转发
-    @inlinable
+    @inlinable @discardableResult
     public func createDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataForwardResponse> {
         self.createDataForward(CreateDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建数据转发
-    @inlinable
+    @inlinable @discardableResult
     public func createDataForward(productId: String, forwardAddr: String, dataChose: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataForwardResponse {
         try await self.createDataForward(CreateDataForwardRequest(productId: productId, forwardAddr: forwardAddr, dataChose: dataChose), region: region, logger: logger, on: eventLoop)
     }

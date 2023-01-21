@@ -47,7 +47,7 @@ extension Sqlserver {
     /// 修改数据库备注
     ///
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBRemark(_ input: ModifyDBRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBRemarkResponse> {
         self.client.execute(action: "ModifyDBRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Sqlserver {
     /// 修改数据库备注
     ///
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBRemark(_ input: ModifyDBRemarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
         try await self.client.execute(action: "ModifyDBRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Sqlserver {
     /// 修改数据库备注
     ///
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBRemarkResponse> {
         self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Sqlserver {
     /// 修改数据库备注
     ///
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
         try await self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), region: region, logger: logger, on: eventLoop)
     }

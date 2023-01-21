@@ -89,25 +89,25 @@ extension Vod {
     }
 
     /// 修改转自适应码流模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAdaptiveDynamicStreamingTemplateResponse> {
         self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改转自适应码流模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAdaptiveDynamicStreamingTemplate(_ input: ModifyAdaptiveDynamicStreamingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAdaptiveDynamicStreamingTemplateResponse {
         try await self.client.execute(action: "ModifyAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改转自适应码流模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAdaptiveDynamicStreamingTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, format: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, streamInfos: [AdaptiveStreamTemplate]? = nil, comment: String? = nil, segmentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAdaptiveDynamicStreamingTemplateResponse> {
         self.modifyAdaptiveDynamicStreamingTemplate(ModifyAdaptiveDynamicStreamingTemplateRequest(definition: definition, subAppId: subAppId, name: name, format: format, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, streamInfos: streamInfos, comment: comment, segmentType: segmentType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改转自适应码流模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAdaptiveDynamicStreamingTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, format: String? = nil, disableHigherVideoBitrate: UInt64? = nil, disableHigherVideoResolution: UInt64? = nil, streamInfos: [AdaptiveStreamTemplate]? = nil, comment: String? = nil, segmentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAdaptiveDynamicStreamingTemplateResponse {
         try await self.modifyAdaptiveDynamicStreamingTemplate(ModifyAdaptiveDynamicStreamingTemplateRequest(definition: definition, subAppId: subAppId, name: name, format: format, disableHigherVideoBitrate: disableHigherVideoBitrate, disableHigherVideoResolution: disableHigherVideoResolution, streamInfos: streamInfos, comment: comment, segmentType: segmentType), region: region, logger: logger, on: eventLoop)
     }

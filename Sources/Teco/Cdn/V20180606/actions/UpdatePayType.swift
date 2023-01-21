@@ -47,7 +47,7 @@ extension Cdn {
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updatePayType(_ input: UpdatePayTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePayTypeResponse> {
         self.client.execute(action: "UpdatePayType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cdn {
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updatePayType(_ input: UpdatePayTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
         try await self.client.execute(action: "UpdatePayType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cdn {
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updatePayType(area: String, payType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePayTypeResponse> {
         self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cdn {
     /// 修改计费类型
     ///
     /// 本接口(UpdatePayType)用于修改账号计费类型，暂不支持月结用户或子账号修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updatePayType(area: String, payType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePayTypeResponse {
         try await self.updatePayType(UpdatePayTypeRequest(area: area, payType: payType), region: region, logger: logger, on: eventLoop)
     }

@@ -50,25 +50,25 @@ extension Tdid {
     }
 
     /// 注册为权威机构
-    @inlinable
+    @inlinable @discardableResult
     public func registerIssuer(_ input: RegisterIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
         self.client.execute(action: "RegisterIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册为权威机构
-    @inlinable
+    @inlinable @discardableResult
     public func registerIssuer(_ input: RegisterIssuerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
         try await self.client.execute(action: "RegisterIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 注册为权威机构
-    @inlinable
+    @inlinable @discardableResult
     public func registerIssuer(did: String, name: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterIssuerResponse> {
         self.registerIssuer(RegisterIssuerRequest(did: did, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 注册为权威机构
-    @inlinable
+    @inlinable @discardableResult
     public func registerIssuer(did: String, name: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterIssuerResponse {
         try await self.registerIssuer(RegisterIssuerRequest(did: did, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Waf {
     /// 修改访问日志保存期限
     ///
     /// 本接口用于修改访问日志保存期限
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessPeriodResponse> {
         self.client.execute(action: "ModifyAccessPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Waf {
     /// 修改访问日志保存期限
     ///
     /// 本接口用于修改访问日志保存期限
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessPeriod(_ input: ModifyAccessPeriodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
         try await self.client.execute(action: "ModifyAccessPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Waf {
     /// 修改访问日志保存期限
     ///
     /// 本接口用于修改访问日志保存期限
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessPeriod(period: Int64, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessPeriodResponse> {
         self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Waf {
     /// 修改访问日志保存期限
     ///
     /// 本接口用于修改访问日志保存期限
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAccessPeriod(period: Int64, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
         try await self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), region: region, logger: logger, on: eventLoop)
     }

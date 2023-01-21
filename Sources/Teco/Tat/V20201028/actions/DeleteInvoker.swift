@@ -42,7 +42,7 @@ extension Tat {
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInvoker(_ input: DeleteInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInvokerResponse> {
         self.client.execute(action: "DeleteInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tat {
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInvoker(_ input: DeleteInvokerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInvokerResponse {
         try await self.client.execute(action: "DeleteInvoker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tat {
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInvokerResponse> {
         self.deleteInvoker(DeleteInvokerRequest(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tat {
     /// 删除执行器
     ///
     /// 此接口用于删除执行器。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInvoker(invokerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInvokerResponse {
         try await self.deleteInvoker(DeleteInvokerRequest(invokerId: invokerId), region: region, logger: logger, on: eventLoop)
     }

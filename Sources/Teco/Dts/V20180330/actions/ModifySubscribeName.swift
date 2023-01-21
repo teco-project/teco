@@ -47,7 +47,7 @@ extension Dts {
     /// 修改数据订阅实例的名称
     ///
     /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscribeName(_ input: ModifySubscribeNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeNameResponse> {
         self.client.execute(action: "ModifySubscribeName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Dts {
     /// 修改数据订阅实例的名称
     ///
     /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscribeName(_ input: ModifySubscribeNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeNameResponse {
         try await self.client.execute(action: "ModifySubscribeName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Dts {
     /// 修改数据订阅实例的名称
     ///
     /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscribeName(subscribeId: String, subscribeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeNameResponse> {
         self.modifySubscribeName(ModifySubscribeNameRequest(subscribeId: subscribeId, subscribeName: subscribeName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Dts {
     /// 修改数据订阅实例的名称
     ///
     /// 本接口(ModifySubscribeName)用于修改数据订阅实例的名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubscribeName(subscribeId: String, subscribeName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeNameResponse {
         try await self.modifySubscribeName(ModifySubscribeNameRequest(subscribeId: subscribeId, subscribeName: subscribeName), region: region, logger: logger, on: eventLoop)
     }

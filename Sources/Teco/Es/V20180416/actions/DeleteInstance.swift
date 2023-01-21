@@ -42,7 +42,7 @@ extension Es {
     /// 销毁ES集群实例
     ///
     /// 销毁集群实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstance(_ input: DeleteInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
         self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Es {
     /// 销毁ES集群实例
     ///
     /// 销毁集群实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstance(_ input: DeleteInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
         try await self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Es {
     /// 销毁ES集群实例
     ///
     /// 销毁集群实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
         self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Es {
     /// 销毁ES集群实例
     ///
     /// 销毁集群实例
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
         try await self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

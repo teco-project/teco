@@ -48,7 +48,7 @@ extension Clb {
     ///
     /// 本接口用来删除负载均衡实例下的监听器（四层和七层）。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteListener(_ input: DeleteListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteListenerResponse> {
         self.client.execute(action: "DeleteListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Clb {
     ///
     /// 本接口用来删除负载均衡实例下的监听器（四层和七层）。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteListener(_ input: DeleteListenerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
         try await self.client.execute(action: "DeleteListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Clb {
     ///
     /// 本接口用来删除负载均衡实例下的监听器（四层和七层）。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteListener(loadBalancerId: String, listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteListenerResponse> {
         self.deleteListener(DeleteListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Clb {
     ///
     /// 本接口用来删除负载均衡实例下的监听器（四层和七层）。
     /// 本接口为异步接口，接口返回成功后，需以得到的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteListener(loadBalancerId: String, listenerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenerResponse {
         try await self.deleteListener(DeleteListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId), region: region, logger: logger, on: eventLoop)
     }

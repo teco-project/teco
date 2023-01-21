@@ -34,7 +34,7 @@ extension Iotvideo {
     /// 获取用户信息
     ///
     /// 获取video消费版用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeUser(_ input: DescribeUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
         self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 获取用户信息
     ///
     /// 获取video消费版用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeUser(_ input: DescribeUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
         try await self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 获取用户信息
     ///
     /// 获取video消费版用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeUser(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
         self.describeUser(DescribeUserRequest(), region: region, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 获取用户信息
     ///
     /// 获取video消费版用户信息
-    @inlinable
+    @inlinable @discardableResult
     public func describeUser(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
         try await self.describeUser(DescribeUserRequest(), region: region, logger: logger, on: eventLoop)
     }

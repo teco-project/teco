@@ -42,7 +42,7 @@ extension Sqlserver {
     /// 删除迁移任务
     ///
     /// 本接口（DeleteMigration）用于删除迁移任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMigration(_ input: DeleteMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMigrationResponse> {
         self.client.execute(action: "DeleteMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Sqlserver {
     /// 删除迁移任务
     ///
     /// 本接口（DeleteMigration）用于删除迁移任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMigration(_ input: DeleteMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMigrationResponse {
         try await self.client.execute(action: "DeleteMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Sqlserver {
     /// 删除迁移任务
     ///
     /// 本接口（DeleteMigration）用于删除迁移任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMigration(migrateId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMigrationResponse> {
         self.deleteMigration(DeleteMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Sqlserver {
     /// 删除迁移任务
     ///
     /// 本接口（DeleteMigration）用于删除迁移任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMigration(migrateId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMigrationResponse {
         try await self.deleteMigration(DeleteMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
     }

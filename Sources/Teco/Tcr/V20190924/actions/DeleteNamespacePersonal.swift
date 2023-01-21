@@ -42,7 +42,7 @@ extension Tcr {
     /// 删除个人版命名空间
     ///
     /// 删除共享版命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNamespacePersonal(_ input: DeleteNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespacePersonalResponse> {
         self.client.execute(action: "DeleteNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcr {
     /// 删除个人版命名空间
     ///
     /// 删除共享版命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNamespacePersonal(_ input: DeleteNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespacePersonalResponse {
         try await self.client.execute(action: "DeleteNamespacePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcr {
     /// 删除个人版命名空间
     ///
     /// 删除共享版命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNamespacePersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespacePersonalResponse> {
         self.deleteNamespacePersonal(DeleteNamespacePersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcr {
     /// 删除个人版命名空间
     ///
     /// 删除共享版命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNamespacePersonal(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespacePersonalResponse {
         try await self.deleteNamespacePersonal(DeleteNamespacePersonalRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

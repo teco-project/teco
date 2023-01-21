@@ -52,7 +52,7 @@ extension Clb {
     /// 修改目标组属性
     ///
     /// 修改目标组的名称或者默认端口属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupAttributeResponse> {
         self.client.execute(action: "ModifyTargetGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Clb {
     /// 修改目标组属性
     ///
     /// 修改目标组的名称或者默认端口属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTargetGroupAttribute(_ input: ModifyTargetGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
         try await self.client.execute(action: "ModifyTargetGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Clb {
     /// 修改目标组属性
     ///
     /// 修改目标组的名称或者默认端口属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupAttributeResponse> {
         self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Clb {
     /// 修改目标组属性
     ///
     /// 修改目标组的名称或者默认端口属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
         try await self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), region: region, logger: logger, on: eventLoop)
     }

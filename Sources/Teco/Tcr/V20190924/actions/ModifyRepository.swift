@@ -62,7 +62,7 @@ extension Tcr {
     /// 更新镜像仓库信息
     ///
     /// 更新镜像仓库信息，可修改仓库描述信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepository(_ input: ModifyRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryResponse> {
         self.client.execute(action: "ModifyRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Tcr {
     /// 更新镜像仓库信息
     ///
     /// 更新镜像仓库信息，可修改仓库描述信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepository(_ input: ModifyRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
         try await self.client.execute(action: "ModifyRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Tcr {
     /// 更新镜像仓库信息
     ///
     /// 更新镜像仓库信息，可修改仓库描述信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryResponse> {
         self.modifyRepository(ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Tcr {
     /// 更新镜像仓库信息
     ///
     /// 更新镜像仓库信息，可修改仓库描述信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryResponse {
         try await self.modifyRepository(ModifyRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
     }

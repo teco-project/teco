@@ -32,25 +32,25 @@ extension Tdid {
     }
 
     /// 验证购买
-    @inlinable
+    @inlinable @discardableResult
     public func verifyPurchase(_ input: VerifyPurchaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPurchaseResponse> {
         self.client.execute(action: "VerifyPurchase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证购买
-    @inlinable
+    @inlinable @discardableResult
     public func verifyPurchase(_ input: VerifyPurchaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {
         try await self.client.execute(action: "VerifyPurchase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 验证购买
-    @inlinable
+    @inlinable @discardableResult
     public func verifyPurchase(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPurchaseResponse> {
         self.verifyPurchase(VerifyPurchaseRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 验证购买
-    @inlinable
+    @inlinable @discardableResult
     public func verifyPurchase(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {
         try await self.verifyPurchase(VerifyPurchaseRequest(), region: region, logger: logger, on: eventLoop)
     }

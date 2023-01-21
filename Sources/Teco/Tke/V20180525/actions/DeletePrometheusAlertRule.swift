@@ -45,25 +45,25 @@ extension Tke {
     }
 
     /// 删除告警规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusAlertRuleResponse> {
         self.client.execute(action: "DeletePrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除告警规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusAlertRule(_ input: DeletePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {
         try await self.client.execute(action: "DeletePrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除告警规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusAlertRule(instanceId: String, alertIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusAlertRuleResponse> {
         self.deletePrometheusAlertRule(DeletePrometheusAlertRuleRequest(instanceId: instanceId, alertIds: alertIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警规则
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrometheusAlertRule(instanceId: String, alertIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusAlertRuleResponse {
         try await self.deletePrometheusAlertRule(DeletePrometheusAlertRuleRequest(instanceId: instanceId, alertIds: alertIds), region: region, logger: logger, on: eventLoop)
     }

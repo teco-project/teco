@@ -47,7 +47,7 @@ extension Tcr {
     /// 更新个人版镜像仓库描述
     ///
     /// 用于在个人版镜像仓库中更新容器镜像描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryInfoPersonalResponse> {
         self.client.execute(action: "ModifyRepositoryInfoPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcr {
     /// 更新个人版镜像仓库描述
     ///
     /// 用于在个人版镜像仓库中更新容器镜像描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepositoryInfoPersonal(_ input: ModifyRepositoryInfoPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryInfoPersonalResponse {
         try await self.client.execute(action: "ModifyRepositoryInfoPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcr {
     /// 更新个人版镜像仓库描述
     ///
     /// 用于在个人版镜像仓库中更新容器镜像描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepositoryInfoPersonal(repoName: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRepositoryInfoPersonalResponse> {
         self.modifyRepositoryInfoPersonal(ModifyRepositoryInfoPersonalRequest(repoName: repoName, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcr {
     /// 更新个人版镜像仓库描述
     ///
     /// 用于在个人版镜像仓库中更新容器镜像描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRepositoryInfoPersonal(repoName: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRepositoryInfoPersonalResponse {
         try await self.modifyRepositoryInfoPersonal(ModifyRepositoryInfoPersonalRequest(repoName: repoName, description: description), region: region, logger: logger, on: eventLoop)
     }

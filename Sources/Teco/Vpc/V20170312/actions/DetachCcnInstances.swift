@@ -48,7 +48,7 @@ extension Vpc {
     ///
     /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
     /// 解关联网络实例后，相应的路由策略会一并删除。
-    @inlinable
+    @inlinable @discardableResult
     public func detachCcnInstances(_ input: DetachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
         self.client.execute(action: "DetachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Vpc {
     ///
     /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
     /// 解关联网络实例后，相应的路由策略会一并删除。
-    @inlinable
+    @inlinable @discardableResult
     public func detachCcnInstances(_ input: DetachCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
         try await self.client.execute(action: "DetachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Vpc {
     ///
     /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
     /// 解关联网络实例后，相应的路由策略会一并删除。
-    @inlinable
+    @inlinable @discardableResult
     public func detachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCcnInstancesResponse> {
         self.detachCcnInstances(DetachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Vpc {
     ///
     /// 本接口（DetachCcnInstances）用于从云联网实例中解关联指定的网络实例。<br />
     /// 解关联网络实例后，相应的路由策略会一并删除。
-    @inlinable
+    @inlinable @discardableResult
     public func detachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCcnInstancesResponse {
         try await self.detachCcnInstances(DetachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }

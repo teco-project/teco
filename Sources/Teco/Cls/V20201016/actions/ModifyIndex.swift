@@ -62,7 +62,7 @@ extension Cls {
     /// 修改索引
     ///
     /// 本接口用于修改索引配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIndex(_ input: ModifyIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIndexResponse> {
         self.client.execute(action: "ModifyIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Cls {
     /// 修改索引
     ///
     /// 本接口用于修改索引配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIndex(_ input: ModifyIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIndexResponse {
         try await self.client.execute(action: "ModifyIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Cls {
     /// 修改索引
     ///
     /// 本接口用于修改索引配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIndex(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIndexResponse> {
         self.modifyIndex(ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Cls {
     /// 修改索引
     ///
     /// 本接口用于修改索引配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyIndex(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIndexResponse {
         try await self.modifyIndex(ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), region: region, logger: logger, on: eventLoop)
     }

@@ -50,25 +50,25 @@ extension Tdmq {
     }
 
     /// 删除Amqp队列
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAMQPQueue(_ input: DeleteAMQPQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPQueueResponse> {
         self.client.execute(action: "DeleteAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Amqp队列
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAMQPQueue(_ input: DeleteAMQPQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPQueueResponse {
         try await self.client.execute(action: "DeleteAMQPQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除Amqp队列
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAMQPQueue(clusterId: String, vHostId: String, queue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAMQPQueueResponse> {
         self.deleteAMQPQueue(DeleteAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除Amqp队列
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAMQPQueue(clusterId: String, vHostId: String, queue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAMQPQueueResponse {
         try await self.deleteAMQPQueue(DeleteAMQPQueueRequest(clusterId: clusterId, vHostId: vHostId, queue: queue), region: region, logger: logger, on: eventLoop)
     }

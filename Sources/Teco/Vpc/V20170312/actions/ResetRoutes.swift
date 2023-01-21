@@ -53,7 +53,7 @@ extension Vpc {
     ///
     /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
-    @inlinable
+    @inlinable @discardableResult
     public func resetRoutes(_ input: ResetRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
         self.client.execute(action: "ResetRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -62,7 +62,7 @@ extension Vpc {
     ///
     /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
-    @inlinable
+    @inlinable @discardableResult
     public func resetRoutes(_ input: ResetRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
         try await self.client.execute(action: "ResetRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Vpc {
     ///
     /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
-    @inlinable
+    @inlinable @discardableResult
     public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
         self.resetRoutes(ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), region: region, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Vpc {
     ///
     /// 本接口（ResetRoutes）用于对某个路由表名称和所有路由策略（Route）进行重新设置。<br />
     /// 注意: 调用本接口是先删除当前路由表中所有路由策略, 再保存新提交的路由策略内容, 会引起网络中断。
-    @inlinable
+    @inlinable @discardableResult
     public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
         try await self.resetRoutes(ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), region: region, logger: logger, on: eventLoop)
     }

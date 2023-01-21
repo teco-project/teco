@@ -47,7 +47,7 @@ extension Lcic {
     /// 设置应用自定义内容
     ///
     /// 设置应用的自定义内容，包括应用图标，自定义的代码等。如果已存在，则为更新。更新js、css内容后，要生效也需要调用该接口
-    @inlinable
+    @inlinable @discardableResult
     public func setAppCustomContent(_ input: SetAppCustomContentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAppCustomContentResponse> {
         self.client.execute(action: "SetAppCustomContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Lcic {
     /// 设置应用自定义内容
     ///
     /// 设置应用的自定义内容，包括应用图标，自定义的代码等。如果已存在，则为更新。更新js、css内容后，要生效也需要调用该接口
-    @inlinable
+    @inlinable @discardableResult
     public func setAppCustomContent(_ input: SetAppCustomContentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAppCustomContentResponse {
         try await self.client.execute(action: "SetAppCustomContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Lcic {
     /// 设置应用自定义内容
     ///
     /// 设置应用的自定义内容，包括应用图标，自定义的代码等。如果已存在，则为更新。更新js、css内容后，要生效也需要调用该接口
-    @inlinable
+    @inlinable @discardableResult
     public func setAppCustomContent(customContent: [AppCustomContent], sdkAppId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAppCustomContentResponse> {
         self.setAppCustomContent(SetAppCustomContentRequest(customContent: customContent, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Lcic {
     /// 设置应用自定义内容
     ///
     /// 设置应用的自定义内容，包括应用图标，自定义的代码等。如果已存在，则为更新。更新js、css内容后，要生效也需要调用该接口
-    @inlinable
+    @inlinable @discardableResult
     public func setAppCustomContent(customContent: [AppCustomContent], sdkAppId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAppCustomContentResponse {
         try await self.setAppCustomContent(SetAppCustomContentRequest(customContent: customContent, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
     }

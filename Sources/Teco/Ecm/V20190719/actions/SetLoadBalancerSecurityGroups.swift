@@ -47,7 +47,7 @@ extension Ecm {
     /// 设置负载均衡实例的安全组
     ///
     /// 设置负载均衡实例的安全组。
-    @inlinable
+    @inlinable @discardableResult
     public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
         self.client.execute(action: "SetLoadBalancerSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Ecm {
     /// 设置负载均衡实例的安全组
     ///
     /// 设置负载均衡实例的安全组。
-    @inlinable
+    @inlinable @discardableResult
     public func setLoadBalancerSecurityGroups(_ input: SetLoadBalancerSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
         try await self.client.execute(action: "SetLoadBalancerSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Ecm {
     /// 设置负载均衡实例的安全组
     ///
     /// 设置负载均衡实例的安全组。
-    @inlinable
+    @inlinable @discardableResult
     public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
         self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Ecm {
     /// 设置负载均衡实例的安全组
     ///
     /// 设置负载均衡实例的安全组。
-    @inlinable
+    @inlinable @discardableResult
     public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
         try await self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Iotcloud {
     /// 替换规则
     ///
     /// 本接口（ReplaceTopicRule）用于修改替换规则
-    @inlinable
+    @inlinable @discardableResult
     public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceTopicRuleResponse> {
         self.client.execute(action: "ReplaceTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotcloud {
     /// 替换规则
     ///
     /// 本接口（ReplaceTopicRule）用于修改替换规则
-    @inlinable
+    @inlinable @discardableResult
     public func replaceTopicRule(_ input: ReplaceTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
         try await self.client.execute(action: "ReplaceTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotcloud {
     /// 替换规则
     ///
     /// 本接口（ReplaceTopicRule）用于修改替换规则
-    @inlinable
+    @inlinable @discardableResult
     public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceTopicRuleResponse> {
         self.replaceTopicRule(ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotcloud {
     /// 替换规则
     ///
     /// 本接口（ReplaceTopicRule）用于修改替换规则
-    @inlinable
+    @inlinable @discardableResult
     public func replaceTopicRule(ruleName: String, topicRulePayload: TopicRulePayload, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceTopicRuleResponse {
         try await self.replaceTopicRule(ReplaceTopicRuleRequest(ruleName: ruleName, topicRulePayload: topicRulePayload), region: region, logger: logger, on: eventLoop)
     }

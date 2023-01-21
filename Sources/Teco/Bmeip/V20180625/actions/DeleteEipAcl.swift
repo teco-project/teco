@@ -40,25 +40,25 @@ extension Bmeip {
     }
 
     /// 删除弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEipAcl(_ input: DeleteEipAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipAclResponse> {
         self.client.execute(action: "DeleteEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEipAcl(_ input: DeleteEipAclRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipAclResponse {
         try await self.client.execute(action: "DeleteEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEipAcl(aclId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEipAclResponse> {
         self.deleteEipAcl(DeleteEipAclRequest(aclId: aclId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEipAcl(aclId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEipAclResponse {
         try await self.deleteEipAcl(DeleteEipAclRequest(aclId: aclId), region: region, logger: logger, on: eventLoop)
     }

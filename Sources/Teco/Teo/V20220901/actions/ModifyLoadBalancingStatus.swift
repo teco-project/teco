@@ -52,25 +52,25 @@ extension Teo {
     }
 
     /// 修改负载均衡状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingStatusResponse> {
         self.client.execute(action: "ModifyLoadBalancingStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoadBalancingStatus(_ input: ModifyLoadBalancingStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingStatusResponse {
         try await self.client.execute(action: "ModifyLoadBalancingStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改负载均衡状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoadBalancingStatus(zoneId: String, loadBalancingId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancingStatusResponse> {
         self.modifyLoadBalancingStatus(ModifyLoadBalancingStatusRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLoadBalancingStatus(zoneId: String, loadBalancingId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancingStatusResponse {
         try await self.modifyLoadBalancingStatus(ModifyLoadBalancingStatusRequest(zoneId: zoneId, loadBalancingId: loadBalancingId, status: status), region: region, logger: logger, on: eventLoop)
     }

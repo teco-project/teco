@@ -42,7 +42,7 @@ extension Ecm {
     /// 删除负载均衡实例
     ///
     /// 删除负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerResponse> {
         self.client.execute(action: "DeleteLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ecm {
     /// 删除负载均衡实例
     ///
     /// 删除负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLoadBalancer(_ input: DeleteLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
         try await self.client.execute(action: "DeleteLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ecm {
     /// 删除负载均衡实例
     ///
     /// 删除负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLoadBalancer(loadBalancerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerResponse> {
         self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ecm {
     /// 删除负载均衡实例
     ///
     /// 删除负载均衡实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLoadBalancer(loadBalancerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
         try await self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
     }

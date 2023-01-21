@@ -40,25 +40,25 @@ extension Dasb {
     }
 
     /// 删除资产组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupsResponse> {
         self.client.execute(action: "DeleteDeviceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除资产组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceGroups(_ input: DeleteDeviceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupsResponse {
         try await self.client.execute(action: "DeleteDeviceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除资产组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceGroups(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceGroupsResponse> {
         self.deleteDeviceGroups(DeleteDeviceGroupsRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除资产组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDeviceGroups(idSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupsResponse {
         try await self.deleteDeviceGroups(DeleteDeviceGroupsRequest(idSet: idSet), region: region, logger: logger, on: eventLoop)
     }

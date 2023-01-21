@@ -40,25 +40,25 @@ extension Bma {
     }
 
     /// 添加下线工单
-    @inlinable
+    @inlinable @discardableResult
     public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineTicketResponse> {
         self.client.execute(action: "CreateBPOfflineTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加下线工单
-    @inlinable
+    @inlinable @discardableResult
     public func createBPOfflineTicket(_ input: CreateBPOfflineTicketRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {
         try await self.client.execute(action: "CreateBPOfflineTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加下线工单
-    @inlinable
+    @inlinable @discardableResult
     public func createBPOfflineTicket(fakeURLId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineTicketResponse> {
         self.createBPOfflineTicket(CreateBPOfflineTicketRequest(fakeURLId: fakeURLId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加下线工单
-    @inlinable
+    @inlinable @discardableResult
     public func createBPOfflineTicket(fakeURLId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineTicketResponse {
         try await self.createBPOfflineTicket(CreateBPOfflineTicketRequest(fakeURLId: fakeURLId), region: region, logger: logger, on: eventLoop)
     }

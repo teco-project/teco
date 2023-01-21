@@ -43,7 +43,7 @@ extension As {
     ///
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchConfigurationResponse> {
         self.client.execute(action: "DeleteLaunchConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension As {
     ///
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
         try await self.client.execute(action: "DeleteLaunchConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension As {
     ///
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLaunchConfiguration(launchConfigurationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchConfigurationResponse> {
         self.deleteLaunchConfiguration(DeleteLaunchConfigurationRequest(launchConfigurationId: launchConfigurationId), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension As {
     ///
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLaunchConfiguration(launchConfigurationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
         try await self.deleteLaunchConfiguration(DeleteLaunchConfigurationRequest(launchConfigurationId: launchConfigurationId), region: region, logger: logger, on: eventLoop)
     }

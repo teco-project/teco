@@ -47,7 +47,7 @@ extension Cbs {
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksRenewFlagResponse> {
         self.client.execute(action: "ModifyDisksRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cbs {
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksRenewFlag(_ input: ModifyDisksRenewFlagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
         try await self.client.execute(action: "ModifyDisksRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cbs {
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksRenewFlag(diskIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksRenewFlagResponse> {
         self.modifyDisksRenewFlag(ModifyDisksRenewFlagRequest(diskIds: diskIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cbs {
     /// 修改云硬盘续费标识
     ///
     /// 本接口（ModifyDisksRenewFlag）用于修改云硬盘续费标识，支持批量修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksRenewFlag(diskIds: [String], renewFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksRenewFlagResponse {
         try await self.modifyDisksRenewFlag(ModifyDisksRenewFlagRequest(diskIds: diskIds, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
     }

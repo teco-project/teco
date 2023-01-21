@@ -55,25 +55,25 @@ extension Bma {
     }
 
     /// 添加下线材料
-    @inlinable
+    @inlinable @discardableResult
     public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineAttachmentResponse> {
         self.client.execute(action: "CreateBPOfflineAttachment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加下线材料
-    @inlinable
+    @inlinable @discardableResult
     public func createBPOfflineAttachment(_ input: CreateBPOfflineAttachmentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
         try await self.client.execute(action: "CreateBPOfflineAttachment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加下线材料
-    @inlinable
+    @inlinable @discardableResult
     public func createBPOfflineAttachment(brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPOfflineAttachmentResponse> {
         self.createBPOfflineAttachment(CreateBPOfflineAttachmentRequest(brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName, authorizationName: authorizationName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加下线材料
-    @inlinable
+    @inlinable @discardableResult
     public func createBPOfflineAttachment(brandName: String? = nil, brandCertificateName: String? = nil, transferName: String? = nil, authorizationName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPOfflineAttachmentResponse {
         try await self.createBPOfflineAttachment(CreateBPOfflineAttachmentRequest(brandName: brandName, brandCertificateName: brandCertificateName, transferName: transferName, authorizationName: authorizationName), region: region, logger: logger, on: eventLoop)
     }

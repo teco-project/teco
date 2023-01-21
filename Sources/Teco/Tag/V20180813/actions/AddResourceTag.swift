@@ -52,7 +52,7 @@ extension Tag {
     /// 标签关联资源
     ///
     /// 本接口用于给标签关联资源
-    @inlinable
+    @inlinable @discardableResult
     public func addResourceTag(_ input: AddResourceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddResourceTagResponse> {
         self.client.execute(action: "AddResourceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tag {
     /// 标签关联资源
     ///
     /// 本接口用于给标签关联资源
-    @inlinable
+    @inlinable @discardableResult
     public func addResourceTag(_ input: AddResourceTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddResourceTagResponse {
         try await self.client.execute(action: "AddResourceTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tag {
     /// 标签关联资源
     ///
     /// 本接口用于给标签关联资源
-    @inlinable
+    @inlinable @discardableResult
     public func addResourceTag(tagKey: String, tagValue: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddResourceTagResponse> {
         self.addResourceTag(AddResourceTagRequest(tagKey: tagKey, tagValue: tagValue, resource: resource), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tag {
     /// 标签关联资源
     ///
     /// 本接口用于给标签关联资源
-    @inlinable
+    @inlinable @discardableResult
     public func addResourceTag(tagKey: String, tagValue: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddResourceTagResponse {
         try await self.addResourceTag(AddResourceTagRequest(tagKey: tagKey, tagValue: tagValue, resource: resource), region: region, logger: logger, on: eventLoop)
     }

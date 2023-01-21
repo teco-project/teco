@@ -163,7 +163,7 @@ extension Live {
     /// 修改转码模板配置
     ///
     /// 修改转码模板配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveTranscodeTemplate(_ input: ModifyLiveTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveTranscodeTemplateResponse> {
         self.client.execute(action: "ModifyLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -171,7 +171,7 @@ extension Live {
     /// 修改转码模板配置
     ///
     /// 修改转码模板配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveTranscodeTemplate(_ input: ModifyLiveTranscodeTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveTranscodeTemplateResponse {
         try await self.client.execute(action: "ModifyLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -179,7 +179,7 @@ extension Live {
     /// 修改转码模板配置
     ///
     /// 修改转码模板配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveTranscodeTemplate(templateId: Int64, vcodec: String? = nil, acodec: String? = nil, audioBitrate: Int64? = nil, description: String? = nil, videoBitrate: Int64? = nil, width: Int64? = nil, needVideo: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveTranscodeTemplateResponse> {
         self.modifyLiveTranscodeTemplate(ModifyLiveTranscodeTemplateRequest(templateId: templateId, vcodec: vcodec, acodec: acodec, audioBitrate: audioBitrate, description: description, videoBitrate: videoBitrate, width: width, needVideo: needVideo, needAudio: needAudio, height: height, fps: fps, gop: gop, rotate: rotate, profile: profile, bitrateToOrig: bitrateToOrig, heightToOrig: heightToOrig, fpsToOrig: fpsToOrig, adaptBitratePercent: adaptBitratePercent, shortEdgeAsHeight: shortEdgeAsHeight, drmType: drmType, drmTracks: drmTracks), region: region, logger: logger, on: eventLoop)
     }
@@ -187,7 +187,7 @@ extension Live {
     /// 修改转码模板配置
     ///
     /// 修改转码模板配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLiveTranscodeTemplate(templateId: Int64, vcodec: String? = nil, acodec: String? = nil, audioBitrate: Int64? = nil, description: String? = nil, videoBitrate: Int64? = nil, width: Int64? = nil, needVideo: Int64? = nil, needAudio: Int64? = nil, height: Int64? = nil, fps: Int64? = nil, gop: Int64? = nil, rotate: Int64? = nil, profile: String? = nil, bitrateToOrig: Int64? = nil, heightToOrig: Int64? = nil, fpsToOrig: Int64? = nil, adaptBitratePercent: Float? = nil, shortEdgeAsHeight: Int64? = nil, drmType: String? = nil, drmTracks: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveTranscodeTemplateResponse {
         try await self.modifyLiveTranscodeTemplate(ModifyLiveTranscodeTemplateRequest(templateId: templateId, vcodec: vcodec, acodec: acodec, audioBitrate: audioBitrate, description: description, videoBitrate: videoBitrate, width: width, needVideo: needVideo, needAudio: needAudio, height: height, fps: fps, gop: gop, rotate: rotate, profile: profile, bitrateToOrig: bitrateToOrig, heightToOrig: heightToOrig, fpsToOrig: fpsToOrig, adaptBitratePercent: adaptBitratePercent, shortEdgeAsHeight: shortEdgeAsHeight, drmType: drmType, drmTracks: drmTracks), region: region, logger: logger, on: eventLoop)
     }

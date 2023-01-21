@@ -42,7 +42,7 @@ extension Mariadb {
     /// 切分Binlog
     ///
     /// 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
-    @inlinable
+    @inlinable @discardableResult
     public func flushBinlog(_ input: FlushBinlogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
         self.client.execute(action: "FlushBinlog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Mariadb {
     /// 切分Binlog
     ///
     /// 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
-    @inlinable
+    @inlinable @discardableResult
     public func flushBinlog(_ input: FlushBinlogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
         try await self.client.execute(action: "FlushBinlog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Mariadb {
     /// 切分Binlog
     ///
     /// 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
-    @inlinable
+    @inlinable @discardableResult
     public func flushBinlog(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushBinlogResponse> {
         self.flushBinlog(FlushBinlogRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Mariadb {
     /// 切分Binlog
     ///
     /// 相当于在mysqld中执行flush logs，完成切分的binlog将展示在实例控制台binlog列表里。
-    @inlinable
+    @inlinable @discardableResult
     public func flushBinlog(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushBinlogResponse {
         try await self.flushBinlog(FlushBinlogRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

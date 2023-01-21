@@ -40,25 +40,25 @@ extension Tdmq {
     }
 
     /// 解绑cmq死信队列
-    @inlinable
+    @inlinable @discardableResult
     public func unbindCmqDeadLetter(_ input: UnbindCmqDeadLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindCmqDeadLetterResponse> {
         self.client.execute(action: "UnbindCmqDeadLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑cmq死信队列
-    @inlinable
+    @inlinable @discardableResult
     public func unbindCmqDeadLetter(_ input: UnbindCmqDeadLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindCmqDeadLetterResponse {
         try await self.client.execute(action: "UnbindCmqDeadLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑cmq死信队列
-    @inlinable
+    @inlinable @discardableResult
     public func unbindCmqDeadLetter(sourceQueueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindCmqDeadLetterResponse> {
         self.unbindCmqDeadLetter(UnbindCmqDeadLetterRequest(sourceQueueName: sourceQueueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑cmq死信队列
-    @inlinable
+    @inlinable @discardableResult
     public func unbindCmqDeadLetter(sourceQueueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindCmqDeadLetterResponse {
         try await self.unbindCmqDeadLetter(UnbindCmqDeadLetterRequest(sourceQueueName: sourceQueueName), region: region, logger: logger, on: eventLoop)
     }

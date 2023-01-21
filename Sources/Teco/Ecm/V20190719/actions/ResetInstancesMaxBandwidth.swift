@@ -52,7 +52,7 @@ extension Ecm {
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
-    @inlinable
+    @inlinable @discardableResult
     public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesMaxBandwidthResponse> {
         self.client.execute(action: "ResetInstancesMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Ecm {
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
-    @inlinable
+    @inlinable @discardableResult
     public func resetInstancesMaxBandwidth(_ input: ResetInstancesMaxBandwidthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
         try await self.client.execute(action: "ResetInstancesMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Ecm {
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
-    @inlinable
+    @inlinable @discardableResult
     public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesMaxBandwidthResponse> {
         self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Ecm {
     /// 重置实例的最大带宽上限
     ///
     /// 重置实例的最大带宽上限。
-    @inlinable
+    @inlinable @discardableResult
     public func resetInstancesMaxBandwidth(instanceIdSet: [String], maxBandwidthOut: Int64, maxBandwidthIn: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesMaxBandwidthResponse {
         try await self.resetInstancesMaxBandwidth(ResetInstancesMaxBandwidthRequest(instanceIdSet: instanceIdSet, maxBandwidthOut: maxBandwidthOut, maxBandwidthIn: maxBandwidthIn), region: region, logger: logger, on: eventLoop)
     }

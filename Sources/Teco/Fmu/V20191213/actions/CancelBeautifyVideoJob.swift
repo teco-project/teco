@@ -42,7 +42,7 @@ extension Fmu {
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
-    @inlinable
+    @inlinable @discardableResult
     public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
         self.client.execute(action: "CancelBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Fmu {
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
-    @inlinable
+    @inlinable @discardableResult
     public func cancelBeautifyVideoJob(_ input: CancelBeautifyVideoJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
         try await self.client.execute(action: "CancelBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Fmu {
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
-    @inlinable
+    @inlinable @discardableResult
     public func cancelBeautifyVideoJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
         self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Fmu {
     /// 撤销视频美颜任务
     ///
     /// 撤销视频美颜任务请求
-    @inlinable
+    @inlinable @discardableResult
     public func cancelBeautifyVideoJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
         try await self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }

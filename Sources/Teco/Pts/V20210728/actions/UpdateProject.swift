@@ -60,25 +60,25 @@ extension Pts {
     }
 
     /// 更新项目
-    @inlinable
+    @inlinable @discardableResult
     public func updateProject(_ input: UpdateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProjectResponse> {
         self.client.execute(action: "UpdateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新项目
-    @inlinable
+    @inlinable @discardableResult
     public func updateProject(_ input: UpdateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
         try await self.client.execute(action: "UpdateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新项目
-    @inlinable
+    @inlinable @discardableResult
     public func updateProject(projectId: String, name: String? = nil, description: String? = nil, status: Int64? = nil, tags: [TagSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProjectResponse> {
         self.updateProject(UpdateProjectRequest(projectId: projectId, name: name, description: description, status: status, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新项目
-    @inlinable
+    @inlinable @discardableResult
     public func updateProject(projectId: String, name: String? = nil, description: String? = nil, status: Int64? = nil, tags: [TagSpec]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
         try await self.updateProject(UpdateProjectRequest(projectId: projectId, name: name, description: description, status: status, tags: tags), region: region, logger: logger, on: eventLoop)
     }

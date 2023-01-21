@@ -47,7 +47,7 @@ extension Tcss {
     /// 授权镜像扫描
     ///
     /// RenewImageAuthorizeState   授权镜像扫描
-    @inlinable
+    @inlinable @discardableResult
     public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewImageAuthorizeStateResponse> {
         self.client.execute(action: "RenewImageAuthorizeState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcss {
     /// 授权镜像扫描
     ///
     /// RenewImageAuthorizeState   授权镜像扫描
-    @inlinable
+    @inlinable @discardableResult
     public func renewImageAuthorizeState(_ input: RenewImageAuthorizeStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
         try await self.client.execute(action: "RenewImageAuthorizeState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcss {
     /// 授权镜像扫描
     ///
     /// RenewImageAuthorizeState   授权镜像扫描
-    @inlinable
+    @inlinable @discardableResult
     public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewImageAuthorizeStateResponse> {
         self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcss {
     /// 授权镜像扫描
     ///
     /// RenewImageAuthorizeState   授权镜像扫描
-    @inlinable
+    @inlinable @discardableResult
     public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
         try await self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), region: region, logger: logger, on: eventLoop)
     }

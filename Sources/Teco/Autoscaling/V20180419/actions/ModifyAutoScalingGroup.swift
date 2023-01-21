@@ -167,7 +167,7 @@ extension As {
     /// 修改伸缩组
     ///
     /// 本接口（ModifyAutoScalingGroup）用于修改伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAutoScalingGroup(_ input: ModifyAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoScalingGroupResponse> {
         self.client.execute(action: "ModifyAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -175,7 +175,7 @@ extension As {
     /// 修改伸缩组
     ///
     /// 本接口（ModifyAutoScalingGroup）用于修改伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAutoScalingGroup(_ input: ModifyAutoScalingGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoScalingGroupResponse {
         try await self.client.execute(action: "ModifyAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -183,7 +183,7 @@ extension As {
     /// 修改伸缩组
     ///
     /// 本接口（ModifyAutoScalingGroup）用于修改伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAutoScalingGroup(autoScalingGroupId: String, autoScalingGroupName: String? = nil, defaultCooldown: UInt64? = nil, desiredCapacity: UInt64? = nil, launchConfigurationId: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, projectId: UInt64? = nil, subnetIds: [String]? = nil, terminationPolicies: [String]? = nil, vpcId: String? = nil, zones: [String]? = nil, retryPolicy: String? = nil, zonesCheckPolicy: String? = nil, serviceSettings: ServiceSettings? = nil, ipv6AddressCount: Int64? = nil, multiZoneSubnetPolicy: String? = nil, healthCheckType: String? = nil, loadBalancerHealthCheckGracePeriod: UInt64? = nil, instanceAllocationPolicy: String? = nil, spotMixedAllocationPolicy: SpotMixedAllocationPolicy? = nil, capacityRebalance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoScalingGroupResponse> {
         self.modifyAutoScalingGroup(ModifyAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId, autoScalingGroupName: autoScalingGroupName, defaultCooldown: defaultCooldown, desiredCapacity: desiredCapacity, launchConfigurationId: launchConfigurationId, maxSize: maxSize, minSize: minSize, projectId: projectId, subnetIds: subnetIds, terminationPolicies: terminationPolicies, vpcId: vpcId, zones: zones, retryPolicy: retryPolicy, zonesCheckPolicy: zonesCheckPolicy, serviceSettings: serviceSettings, ipv6AddressCount: ipv6AddressCount, multiZoneSubnetPolicy: multiZoneSubnetPolicy, healthCheckType: healthCheckType, loadBalancerHealthCheckGracePeriod: loadBalancerHealthCheckGracePeriod, instanceAllocationPolicy: instanceAllocationPolicy, spotMixedAllocationPolicy: spotMixedAllocationPolicy, capacityRebalance: capacityRebalance), region: region, logger: logger, on: eventLoop)
     }
@@ -191,7 +191,7 @@ extension As {
     /// 修改伸缩组
     ///
     /// 本接口（ModifyAutoScalingGroup）用于修改伸缩组。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAutoScalingGroup(autoScalingGroupId: String, autoScalingGroupName: String? = nil, defaultCooldown: UInt64? = nil, desiredCapacity: UInt64? = nil, launchConfigurationId: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, projectId: UInt64? = nil, subnetIds: [String]? = nil, terminationPolicies: [String]? = nil, vpcId: String? = nil, zones: [String]? = nil, retryPolicy: String? = nil, zonesCheckPolicy: String? = nil, serviceSettings: ServiceSettings? = nil, ipv6AddressCount: Int64? = nil, multiZoneSubnetPolicy: String? = nil, healthCheckType: String? = nil, loadBalancerHealthCheckGracePeriod: UInt64? = nil, instanceAllocationPolicy: String? = nil, spotMixedAllocationPolicy: SpotMixedAllocationPolicy? = nil, capacityRebalance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoScalingGroupResponse {
         try await self.modifyAutoScalingGroup(ModifyAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId, autoScalingGroupName: autoScalingGroupName, defaultCooldown: defaultCooldown, desiredCapacity: desiredCapacity, launchConfigurationId: launchConfigurationId, maxSize: maxSize, minSize: minSize, projectId: projectId, subnetIds: subnetIds, terminationPolicies: terminationPolicies, vpcId: vpcId, zones: zones, retryPolicy: retryPolicy, zonesCheckPolicy: zonesCheckPolicy, serviceSettings: serviceSettings, ipv6AddressCount: ipv6AddressCount, multiZoneSubnetPolicy: multiZoneSubnetPolicy, healthCheckType: healthCheckType, loadBalancerHealthCheckGracePeriod: loadBalancerHealthCheckGracePeriod, instanceAllocationPolicy: instanceAllocationPolicy, spotMixedAllocationPolicy: spotMixedAllocationPolicy, capacityRebalance: capacityRebalance), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Bmeip {
     /// 绑定弹性公网IP ACL
     ///
     /// 此接口用于为某个 EIP 关联 ACL。
-    @inlinable
+    @inlinable @discardableResult
     public func bindEipAcls(_ input: BindEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipAclsResponse> {
         self.client.execute(action: "BindEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Bmeip {
     /// 绑定弹性公网IP ACL
     ///
     /// 此接口用于为某个 EIP 关联 ACL。
-    @inlinable
+    @inlinable @discardableResult
     public func bindEipAcls(_ input: BindEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipAclsResponse {
         try await self.client.execute(action: "BindEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Bmeip {
     /// 绑定弹性公网IP ACL
     ///
     /// 此接口用于为某个 EIP 关联 ACL。
-    @inlinable
+    @inlinable @discardableResult
     public func bindEipAcls(eipIdAclIdList: [EipAclMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEipAclsResponse> {
         self.bindEipAcls(BindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Bmeip {
     /// 绑定弹性公网IP ACL
     ///
     /// 此接口用于为某个 EIP 关联 ACL。
-    @inlinable
+    @inlinable @discardableResult
     public func bindEipAcls(eipIdAclIdList: [EipAclMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEipAclsResponse {
         try await self.bindEipAcls(BindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), region: region, logger: logger, on: eventLoop)
     }

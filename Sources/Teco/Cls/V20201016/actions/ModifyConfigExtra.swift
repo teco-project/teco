@@ -122,7 +122,7 @@ extension Cls {
     /// 修改特殊采集配置任务
     ///
     /// 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigExtra(_ input: ModifyConfigExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigExtraResponse> {
         self.client.execute(action: "ModifyConfigExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -130,7 +130,7 @@ extension Cls {
     /// 修改特殊采集配置任务
     ///
     /// 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigExtra(_ input: ModifyConfigExtraRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigExtraResponse {
         try await self.client.execute(action: "ModifyConfigExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -138,7 +138,7 @@ extension Cls {
     /// 修改特殊采集配置任务
     ///
     /// 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigExtra(configExtraId: String, name: String? = nil, topicId: String? = nil, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logType: String? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, type: String? = nil, groupId: String? = nil, configFlag: String? = nil, logsetId: String? = nil, logsetName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigExtraResponse> {
         self.modifyConfigExtra(ModifyConfigExtraRequest(configExtraId: configExtraId, name: name, topicId: topicId, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logType: logType, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, type: type, groupId: groupId, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
@@ -146,7 +146,7 @@ extension Cls {
     /// 修改特殊采集配置任务
     ///
     /// 本接口用于修改特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigExtra(configExtraId: String, name: String? = nil, topicId: String? = nil, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logType: String? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, type: String? = nil, groupId: String? = nil, configFlag: String? = nil, logsetId: String? = nil, logsetName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigExtraResponse {
         try await self.modifyConfigExtra(ModifyConfigExtraRequest(configExtraId: configExtraId, name: name, topicId: topicId, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logType: logType, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, type: type, groupId: groupId, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }

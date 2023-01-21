@@ -42,7 +42,7 @@ extension Cdb {
     /// 删除审计规则
     ///
     /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAuditRule(_ input: DeleteAuditRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleResponse> {
         self.client.execute(action: "DeleteAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cdb {
     /// 删除审计规则
     ///
     /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAuditRule(_ input: DeleteAuditRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleResponse {
         try await self.client.execute(action: "DeleteAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cdb {
     /// 删除审计规则
     ///
     /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAuditRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleResponse> {
         self.deleteAuditRule(DeleteAuditRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cdb {
     /// 删除审计规则
     ///
     /// 本接口(DeleteAuditRule)用于删除用户的审计规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAuditRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleResponse {
         try await self.deleteAuditRule(DeleteAuditRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }

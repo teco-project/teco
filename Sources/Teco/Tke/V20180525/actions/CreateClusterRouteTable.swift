@@ -55,25 +55,25 @@ extension Tke {
     }
 
     /// 创建集群路由表
-    @inlinable
+    @inlinable @discardableResult
     public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteTableResponse> {
         self.client.execute(action: "CreateClusterRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集群路由表
-    @inlinable
+    @inlinable @discardableResult
     public func createClusterRouteTable(_ input: CreateClusterRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteTableResponse {
         try await self.client.execute(action: "CreateClusterRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建集群路由表
-    @inlinable
+    @inlinable @discardableResult
     public func createClusterRouteTable(routeTableName: String, routeTableCidrBlock: String, vpcId: String, ignoreClusterCidrConflict: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterRouteTableResponse> {
         self.createClusterRouteTable(CreateClusterRouteTableRequest(routeTableName: routeTableName, routeTableCidrBlock: routeTableCidrBlock, vpcId: vpcId, ignoreClusterCidrConflict: ignoreClusterCidrConflict), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建集群路由表
-    @inlinable
+    @inlinable @discardableResult
     public func createClusterRouteTable(routeTableName: String, routeTableCidrBlock: String, vpcId: String, ignoreClusterCidrConflict: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterRouteTableResponse {
         try await self.createClusterRouteTable(CreateClusterRouteTableRequest(routeTableName: routeTableName, routeTableCidrBlock: routeTableCidrBlock, vpcId: vpcId, ignoreClusterCidrConflict: ignoreClusterCidrConflict), region: region, logger: logger, on: eventLoop)
     }

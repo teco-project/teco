@@ -45,25 +45,25 @@ extension Tke {
     }
 
     /// 删除集群访问端口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
         self.client.execute(action: "DeleteClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集群访问端口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterEndpoint(_ input: DeleteClusterEndpointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {
         try await self.client.execute(action: "DeleteClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除集群访问端口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointResponse> {
         self.deleteClusterEndpoint(DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群访问端口
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterEndpoint(clusterId: String, isExtranet: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointResponse {
         try await self.deleteClusterEndpoint(DeleteClusterEndpointRequest(clusterId: clusterId, isExtranet: isExtranet), region: region, logger: logger, on: eventLoop)
     }

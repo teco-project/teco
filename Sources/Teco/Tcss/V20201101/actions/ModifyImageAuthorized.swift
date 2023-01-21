@@ -95,25 +95,25 @@ extension Tcss {
     }
 
     /// 批量授权镜像扫描V2.0
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageAuthorized(_ input: ModifyImageAuthorizedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAuthorizedResponse> {
         self.client.execute(action: "ModifyImageAuthorized", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量授权镜像扫描V2.0
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageAuthorized(_ input: ModifyImageAuthorizedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAuthorizedResponse {
         try await self.client.execute(action: "ModifyImageAuthorized", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量授权镜像扫描V2.0
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageAuthorized(allLocalImages: Bool, allRegistryImages: Bool, updatedLocalImageCnt: UInt64, updatedRegistryImageCnt: UInt64, imageSourceType: String, localImageFilter: [AssetFilters]? = nil, registryImageFilter: [AssetFilters]? = nil, excludeLocalImageIds: [String]? = nil, excludeRegistryImageIds: [String]? = nil, localImageIds: [String]? = nil, registryImageIds: [String]? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAuthorizedResponse> {
         self.modifyImageAuthorized(ModifyImageAuthorizedRequest(allLocalImages: allLocalImages, allRegistryImages: allRegistryImages, updatedLocalImageCnt: updatedLocalImageCnt, updatedRegistryImageCnt: updatedRegistryImageCnt, imageSourceType: imageSourceType, localImageFilter: localImageFilter, registryImageFilter: registryImageFilter, excludeLocalImageIds: excludeLocalImageIds, excludeRegistryImageIds: excludeRegistryImageIds, localImageIds: localImageIds, registryImageIds: registryImageIds, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量授权镜像扫描V2.0
-    @inlinable
+    @inlinable @discardableResult
     public func modifyImageAuthorized(allLocalImages: Bool, allRegistryImages: Bool, updatedLocalImageCnt: UInt64, updatedRegistryImageCnt: UInt64, imageSourceType: String, localImageFilter: [AssetFilters]? = nil, registryImageFilter: [AssetFilters]? = nil, excludeLocalImageIds: [String]? = nil, excludeRegistryImageIds: [String]? = nil, localImageIds: [String]? = nil, registryImageIds: [String]? = nil, onlyShowLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAuthorizedResponse {
         try await self.modifyImageAuthorized(ModifyImageAuthorizedRequest(allLocalImages: allLocalImages, allRegistryImages: allRegistryImages, updatedLocalImageCnt: updatedLocalImageCnt, updatedRegistryImageCnt: updatedRegistryImageCnt, imageSourceType: imageSourceType, localImageFilter: localImageFilter, registryImageFilter: registryImageFilter, excludeLocalImageIds: excludeLocalImageIds, excludeRegistryImageIds: excludeRegistryImageIds, localImageIds: localImageIds, registryImageIds: registryImageIds, onlyShowLatest: onlyShowLatest), region: region, logger: logger, on: eventLoop)
     }

@@ -60,25 +60,25 @@ extension Tke {
     }
 
     /// 扩容独立集群master节点
-    @inlinable
+    @inlinable @discardableResult
     public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutClusterMasterResponse> {
         self.client.execute(action: "ScaleOutClusterMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 扩容独立集群master节点
-    @inlinable
+    @inlinable @discardableResult
     public func scaleOutClusterMaster(_ input: ScaleOutClusterMasterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutClusterMasterResponse {
         try await self.client.execute(action: "ScaleOutClusterMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 扩容独立集群master节点
-    @inlinable
+    @inlinable @discardableResult
     public func scaleOutClusterMaster(clusterId: String, runInstancesForNode: [RunInstancesForNode]? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, extraArgs: ClusterExtraArgs? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutClusterMasterResponse> {
         self.scaleOutClusterMaster(ScaleOutClusterMasterRequest(clusterId: clusterId, runInstancesForNode: runInstancesForNode, existedInstancesForNode: existedInstancesForNode, instanceAdvancedSettings: instanceAdvancedSettings, extraArgs: extraArgs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 扩容独立集群master节点
-    @inlinable
+    @inlinable @discardableResult
     public func scaleOutClusterMaster(clusterId: String, runInstancesForNode: [RunInstancesForNode]? = nil, existedInstancesForNode: [ExistedInstancesForNode]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, extraArgs: ClusterExtraArgs? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutClusterMasterResponse {
         try await self.scaleOutClusterMaster(ScaleOutClusterMasterRequest(clusterId: clusterId, runInstancesForNode: runInstancesForNode, existedInstancesForNode: existedInstancesForNode, instanceAdvancedSettings: instanceAdvancedSettings, extraArgs: extraArgs), region: region, logger: logger, on: eventLoop)
     }

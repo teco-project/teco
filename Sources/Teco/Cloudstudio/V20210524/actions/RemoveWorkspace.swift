@@ -50,25 +50,25 @@ extension Cloudstudio {
     }
 
     /// 删除工作空间
-    @inlinable
+    @inlinable @discardableResult
     public func removeWorkspace(_ input: RemoveWorkspaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWorkspaceResponse> {
         self.client.execute(action: "RemoveWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除工作空间
-    @inlinable
+    @inlinable @discardableResult
     public func removeWorkspace(_ input: RemoveWorkspaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {
         try await self.client.execute(action: "RemoveWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除工作空间
-    @inlinable
+    @inlinable @discardableResult
     public func removeWorkspace(cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWorkspaceResponse> {
         self.removeWorkspace(RemoveWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey, force: force), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除工作空间
-    @inlinable
+    @inlinable @discardableResult
     public func removeWorkspace(cloudStudioSessionTeam: String, spaceKey: String, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWorkspaceResponse {
         try await self.removeWorkspace(RemoveWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey, force: force), region: region, logger: logger, on: eventLoop)
     }

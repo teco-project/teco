@@ -45,25 +45,25 @@ extension Tcss {
     }
 
     /// 修改木马自动隔离样本开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateExampleSwitchResponse> {
         self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改木马自动隔离样本开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusAutoIsolateExampleSwitch(_ input: ModifyVirusAutoIsolateExampleSwitchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateExampleSwitchResponse {
         try await self.client.execute(action: "ModifyVirusAutoIsolateExampleSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改木马自动隔离样本开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusAutoIsolateExampleSwitch(md5: String, status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateExampleSwitchResponse> {
         self.modifyVirusAutoIsolateExampleSwitch(ModifyVirusAutoIsolateExampleSwitchRequest(md5: md5, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改木马自动隔离样本开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVirusAutoIsolateExampleSwitch(md5: String, status: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateExampleSwitchResponse {
         try await self.modifyVirusAutoIsolateExampleSwitch(ModifyVirusAutoIsolateExampleSwitchRequest(md5: md5, status: status), region: region, logger: logger, on: eventLoop)
     }

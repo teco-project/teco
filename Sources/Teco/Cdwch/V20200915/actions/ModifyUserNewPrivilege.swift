@@ -34,7 +34,7 @@ extension Cdwch {
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
         self.client.execute(action: "ModifyUserNewPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -42,7 +42,7 @@ extension Cdwch {
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserNewPrivilege(_ input: ModifyUserNewPrivilegeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
         try await self.client.execute(action: "ModifyUserNewPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -50,7 +50,7 @@ extension Cdwch {
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserNewPrivilege(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserNewPrivilegeResponse> {
         self.modifyUserNewPrivilege(ModifyUserNewPrivilegeRequest(), region: region, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Cdwch {
     /// 新增、修改ck账号cluster权限（新版）
     ///
     /// 针对ck账号的权限做管控（新版）
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserNewPrivilege(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserNewPrivilegeResponse {
         try await self.modifyUserNewPrivilege(ModifyUserNewPrivilegeRequest(), region: region, logger: logger, on: eventLoop)
     }

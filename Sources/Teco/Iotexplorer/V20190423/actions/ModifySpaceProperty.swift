@@ -50,25 +50,25 @@ extension Iotexplorer {
     }
 
     /// 更新位置空间产品属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySpacePropertyResponse> {
         self.client.execute(action: "ModifySpaceProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新位置空间产品属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySpaceProperty(_ input: ModifySpacePropertyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySpacePropertyResponse {
         try await self.client.execute(action: "ModifySpaceProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新位置空间产品属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySpaceProperty(spaceId: String, productId: String, data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySpacePropertyResponse> {
         self.modifySpaceProperty(ModifySpacePropertyRequest(spaceId: spaceId, productId: productId, data: data), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新位置空间产品属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySpaceProperty(spaceId: String, productId: String, data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySpacePropertyResponse {
         try await self.modifySpaceProperty(ModifySpacePropertyRequest(spaceId: spaceId, productId: productId, data: data), region: region, logger: logger, on: eventLoop)
     }

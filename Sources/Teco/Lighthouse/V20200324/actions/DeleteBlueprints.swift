@@ -42,7 +42,7 @@ extension Lighthouse {
     /// 删除镜像
     ///
     /// 本接口 (DeleteBlueprints) 用于删除镜像。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBlueprints(_ input: DeleteBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBlueprintsResponse> {
         self.client.execute(action: "DeleteBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Lighthouse {
     /// 删除镜像
     ///
     /// 本接口 (DeleteBlueprints) 用于删除镜像。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBlueprints(_ input: DeleteBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlueprintsResponse {
         try await self.client.execute(action: "DeleteBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Lighthouse {
     /// 删除镜像
     ///
     /// 本接口 (DeleteBlueprints) 用于删除镜像。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBlueprints(blueprintIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBlueprintsResponse> {
         self.deleteBlueprints(DeleteBlueprintsRequest(blueprintIds: blueprintIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Lighthouse {
     /// 删除镜像
     ///
     /// 本接口 (DeleteBlueprints) 用于删除镜像。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBlueprints(blueprintIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBlueprintsResponse {
         try await self.deleteBlueprints(DeleteBlueprintsRequest(blueprintIds: blueprintIds), region: region, logger: logger, on: eventLoop)
     }

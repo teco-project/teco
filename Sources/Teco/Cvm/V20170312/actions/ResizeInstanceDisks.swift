@@ -67,7 +67,7 @@ extension Cvm {
     /// * 目前只支持扩容一块数据盘。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     /// * 如果是系统盘，目前只支持扩容，不支持缩容。
-    @inlinable
+    @inlinable @discardableResult
     public func resizeInstanceDisks(_ input: ResizeInstanceDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResizeInstanceDisksResponse> {
         self.client.execute(action: "ResizeInstanceDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Cvm {
     /// * 目前只支持扩容一块数据盘。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     /// * 如果是系统盘，目前只支持扩容，不支持缩容。
-    @inlinable
+    @inlinable @discardableResult
     public func resizeInstanceDisks(_ input: ResizeInstanceDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResizeInstanceDisksResponse {
         try await self.client.execute(action: "ResizeInstanceDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -93,7 +93,7 @@ extension Cvm {
     /// * 目前只支持扩容一块数据盘。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     /// * 如果是系统盘，目前只支持扩容，不支持缩容。
-    @inlinable
+    @inlinable @discardableResult
     public func resizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, systemDisk: SystemDisk? = nil, resizeOnline: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResizeInstanceDisksResponse> {
         self.resizeInstanceDisks(ResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop, systemDisk: systemDisk, resizeOnline: resizeOnline), region: region, logger: logger, on: eventLoop)
     }
@@ -106,7 +106,7 @@ extension Cvm {
     /// * 目前只支持扩容一块数据盘。
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     /// * 如果是系统盘，目前只支持扩容，不支持缩容。
-    @inlinable
+    @inlinable @discardableResult
     public func resizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, systemDisk: SystemDisk? = nil, resizeOnline: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResizeInstanceDisksResponse {
         try await self.resizeInstanceDisks(ResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop, systemDisk: systemDisk, resizeOnline: resizeOnline), region: region, logger: logger, on: eventLoop)
     }

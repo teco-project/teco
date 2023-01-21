@@ -67,7 +67,7 @@ extension Trtc {
     /// 修改图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁修改自定义背景图或水印素材，可通过此接口修改已上传的图片。无需频繁修改图片素材的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPicture(_ input: ModifyPictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPictureResponse> {
         self.client.execute(action: "ModifyPicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Trtc {
     /// 修改图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁修改自定义背景图或水印素材，可通过此接口修改已上传的图片。无需频繁修改图片素材的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPicture(_ input: ModifyPictureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPictureResponse {
         try await self.client.execute(action: "ModifyPicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Trtc {
     /// 修改图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁修改自定义背景图或水印素材，可通过此接口修改已上传的图片。无需频繁修改图片素材的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPicture(pictureId: UInt64, sdkAppId: UInt64, height: UInt64? = nil, width: UInt64? = nil, xPosition: UInt64? = nil, yPosition: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPictureResponse> {
         self.modifyPicture(ModifyPictureRequest(pictureId: pictureId, sdkAppId: sdkAppId, height: height, width: width, xPosition: xPosition, yPosition: yPosition), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Trtc {
     /// 修改图片
     ///
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁修改自定义背景图或水印素材，可通过此接口修改已上传的图片。无需频繁修改图片素材的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPicture(pictureId: UInt64, sdkAppId: UInt64, height: UInt64? = nil, width: UInt64? = nil, xPosition: UInt64? = nil, yPosition: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPictureResponse {
         try await self.modifyPicture(ModifyPictureRequest(pictureId: pictureId, sdkAppId: sdkAppId, height: height, width: width, xPosition: xPosition, yPosition: yPosition), region: region, logger: logger, on: eventLoop)
     }

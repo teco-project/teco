@@ -57,7 +57,7 @@ extension Vpc {
     /// 修改本地网关
     ///
     /// 该接口用于修改CDC的本地网关。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLocalGateway(_ input: ModifyLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLocalGatewayResponse> {
         self.client.execute(action: "ModifyLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Vpc {
     /// 修改本地网关
     ///
     /// 该接口用于修改CDC的本地网关。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLocalGateway(_ input: ModifyLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalGatewayResponse {
         try await self.client.execute(action: "ModifyLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Vpc {
     /// 修改本地网关
     ///
     /// 该接口用于修改CDC的本地网关。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLocalGateway(localGatewayName: String, cdcId: String, localGatewayId: String, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLocalGatewayResponse> {
         self.modifyLocalGateway(ModifyLocalGatewayRequest(localGatewayName: localGatewayName, cdcId: cdcId, localGatewayId: localGatewayId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Vpc {
     /// 修改本地网关
     ///
     /// 该接口用于修改CDC的本地网关。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLocalGateway(localGatewayName: String, cdcId: String, localGatewayId: String, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalGatewayResponse {
         try await self.modifyLocalGateway(ModifyLocalGatewayRequest(localGatewayName: localGatewayName, cdcId: cdcId, localGatewayId: localGatewayId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }

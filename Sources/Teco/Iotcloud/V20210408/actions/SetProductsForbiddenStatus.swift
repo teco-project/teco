@@ -45,25 +45,25 @@ extension Iotcloud {
     }
 
     /// 批量设置产品禁用状态
-    @inlinable
+    @inlinable @discardableResult
     public func setProductsForbiddenStatus(_ input: SetProductsForbiddenStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetProductsForbiddenStatusResponse> {
         self.client.execute(action: "SetProductsForbiddenStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量设置产品禁用状态
-    @inlinable
+    @inlinable @discardableResult
     public func setProductsForbiddenStatus(_ input: SetProductsForbiddenStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetProductsForbiddenStatusResponse {
         try await self.client.execute(action: "SetProductsForbiddenStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量设置产品禁用状态
-    @inlinable
+    @inlinable @discardableResult
     public func setProductsForbiddenStatus(productId: [String], status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetProductsForbiddenStatusResponse> {
         self.setProductsForbiddenStatus(SetProductsForbiddenStatusRequest(productId: productId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量设置产品禁用状态
-    @inlinable
+    @inlinable @discardableResult
     public func setProductsForbiddenStatus(productId: [String], status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetProductsForbiddenStatusResponse {
         try await self.setProductsForbiddenStatus(SetProductsForbiddenStatusRequest(productId: productId, status: status), region: region, logger: logger, on: eventLoop)
     }

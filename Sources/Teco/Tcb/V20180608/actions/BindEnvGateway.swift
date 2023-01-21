@@ -42,7 +42,7 @@ extension Tcb {
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
-    @inlinable
+    @inlinable @discardableResult
     public func bindEnvGateway(_ input: BindEnvGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvGatewayResponse> {
         self.client.execute(action: "BindEnvGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcb {
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
-    @inlinable
+    @inlinable @discardableResult
     public func bindEnvGateway(_ input: BindEnvGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
         try await self.client.execute(action: "BindEnvGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcb {
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
-    @inlinable
+    @inlinable @discardableResult
     public func bindEnvGateway(subEnvId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindEnvGatewayResponse> {
         self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcb {
     /// 绑定环境网关
     ///
     /// 绑定另外一个环境下的网关，callContainer请求可以访问到该网关
-    @inlinable
+    @inlinable @discardableResult
     public func bindEnvGateway(subEnvId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindEnvGatewayResponse {
         try await self.bindEnvGateway(BindEnvGatewayRequest(subEnvId: subEnvId), region: region, logger: logger, on: eventLoop)
     }

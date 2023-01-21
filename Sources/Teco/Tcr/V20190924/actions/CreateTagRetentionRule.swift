@@ -60,25 +60,25 @@ extension Tcr {
     }
 
     /// 创建版本保留规则
-    @inlinable
+    @inlinable @discardableResult
     public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagRetentionRuleResponse> {
         self.client.execute(action: "CreateTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建版本保留规则
-    @inlinable
+    @inlinable @discardableResult
     public func createTagRetentionRule(_ input: CreateTagRetentionRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
         try await self.client.execute(action: "CreateTagRetentionRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建版本保留规则
-    @inlinable
+    @inlinable @discardableResult
     public func createTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagRetentionRuleResponse> {
         self.createTagRetentionRule(CreateTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建版本保留规则
-    @inlinable
+    @inlinable @discardableResult
     public func createTagRetentionRule(registryId: String, namespaceId: Int64, retentionRule: RetentionRule, cronSetting: String, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionRuleResponse {
         try await self.createTagRetentionRule(CreateTagRetentionRuleRequest(registryId: registryId, namespaceId: namespaceId, retentionRule: retentionRule, cronSetting: cronSetting, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Cwp {
     /// 删除授权记录
     ///
     /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLicenseRecordResponse> {
         self.client.execute(action: "DeleteLicenseRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cwp {
     /// 删除授权记录
     ///
     /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLicenseRecord(_ input: DeleteLicenseRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLicenseRecordResponse {
         try await self.client.execute(action: "DeleteLicenseRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cwp {
     /// 删除授权记录
     ///
     /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLicenseRecord(licenseId: UInt64, licenseType: UInt64, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLicenseRecordResponse> {
         self.deleteLicenseRecord(DeleteLicenseRecordRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cwp {
     /// 删除授权记录
     ///
     /// 对授权管理-订单列表内已过期的订单进行删除.(删除后的订单不在统计范畴内)
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLicenseRecord(licenseId: UInt64, licenseType: UInt64, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLicenseRecordResponse {
         try await self.deleteLicenseRecord(DeleteLicenseRecordRequest(licenseId: licenseId, licenseType: licenseType, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
     }

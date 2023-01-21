@@ -44,7 +44,7 @@ extension Live {
     /// 删除回调模板
     ///
     /// 删除回调模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveCallbackTemplate(_ input: DeleteLiveCallbackTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveCallbackTemplateResponse> {
         self.client.execute(action: "DeleteLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Live {
     /// 删除回调模板
     ///
     /// 删除回调模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveCallbackTemplate(_ input: DeleteLiveCallbackTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackTemplateResponse {
         try await self.client.execute(action: "DeleteLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -60,7 +60,7 @@ extension Live {
     /// 删除回调模板
     ///
     /// 删除回调模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveCallbackTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveCallbackTemplateResponse> {
         self.deleteLiveCallbackTemplate(DeleteLiveCallbackTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Live {
     /// 删除回调模板
     ///
     /// 删除回调模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveCallbackTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveCallbackTemplateResponse {
         try await self.deleteLiveCallbackTemplate(DeleteLiveCallbackTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }

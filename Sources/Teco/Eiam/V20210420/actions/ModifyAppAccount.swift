@@ -55,25 +55,25 @@ extension Eiam {
     }
 
     /// 修改应用账号
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAppAccount(_ input: ModifyAppAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppAccountResponse> {
         self.client.execute(action: "ModifyAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用账号
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAppAccount(_ input: ModifyAppAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppAccountResponse {
         try await self.client.execute(action: "ModifyAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用账号
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAppAccount(accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppAccountResponse> {
         self.modifyAppAccount(ModifyAppAccountRequest(accountId: accountId, accountName: accountName, password: password, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用账号
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAppAccount(accountId: String, accountName: String? = nil, password: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppAccountResponse {
         try await self.modifyAppAccount(ModifyAppAccountRequest(accountId: accountId, accountName: accountName, password: password, description: description), region: region, logger: logger, on: eventLoop)
     }

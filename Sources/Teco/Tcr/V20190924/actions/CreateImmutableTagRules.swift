@@ -50,25 +50,25 @@ extension Tcr {
     }
 
     /// 创建镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func createImmutableTagRules(_ input: CreateImmutableTagRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImmutableTagRulesResponse> {
         self.client.execute(action: "CreateImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func createImmutableTagRules(_ input: CreateImmutableTagRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImmutableTagRulesResponse {
         try await self.client.execute(action: "CreateImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func createImmutableTagRules(registryId: String, namespaceName: String, rule: ImmutableTagRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImmutableTagRulesResponse> {
         self.createImmutableTagRules(CreateImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, rule: rule), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func createImmutableTagRules(registryId: String, namespaceName: String, rule: ImmutableTagRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImmutableTagRulesResponse {
         try await self.createImmutableTagRules(CreateImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, rule: rule), region: region, logger: logger, on: eventLoop)
     }

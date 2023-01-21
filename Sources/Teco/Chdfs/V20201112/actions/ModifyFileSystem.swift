@@ -78,7 +78,7 @@ extension Chdfs {
     /// 修改文件系统属性
     ///
     /// 修改文件系统属性，仅限于创建成功的文件系统。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFileSystem(_ input: ModifyFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFileSystemResponse> {
         self.client.execute(action: "ModifyFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Chdfs {
     /// 修改文件系统属性
     ///
     /// 修改文件系统属性，仅限于创建成功的文件系统。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFileSystem(_ input: ModifyFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFileSystemResponse {
         try await self.client.execute(action: "ModifyFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -94,7 +94,7 @@ extension Chdfs {
     /// 修改文件系统属性
     ///
     /// 修改文件系统属性，仅限于创建成功的文件系统。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFileSystem(fileSystemId: String, fileSystemName: String? = nil, description: String? = nil, capacityQuota: UInt64? = nil, superUsers: [String]? = nil, posixAcl: Bool? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFileSystemResponse> {
         self.modifyFileSystem(ModifyFileSystemRequest(fileSystemId: fileSystemId, fileSystemName: fileSystemName, description: description, capacityQuota: capacityQuota, superUsers: superUsers, posixAcl: posixAcl, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses), region: region, logger: logger, on: eventLoop)
     }
@@ -102,7 +102,7 @@ extension Chdfs {
     /// 修改文件系统属性
     ///
     /// 修改文件系统属性，仅限于创建成功的文件系统。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyFileSystem(fileSystemId: String, fileSystemName: String? = nil, description: String? = nil, capacityQuota: UInt64? = nil, superUsers: [String]? = nil, posixAcl: Bool? = nil, enableRanger: Bool? = nil, rangerServiceAddresses: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFileSystemResponse {
         try await self.modifyFileSystem(ModifyFileSystemRequest(fileSystemId: fileSystemId, fileSystemName: fileSystemName, description: description, capacityQuota: capacityQuota, superUsers: superUsers, posixAcl: posixAcl, enableRanger: enableRanger, rangerServiceAddresses: rangerServiceAddresses), region: region, logger: logger, on: eventLoop)
     }

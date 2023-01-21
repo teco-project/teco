@@ -42,7 +42,7 @@ extension As {
     /// 删除告警触发策略
     ///
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
         self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension As {
     /// 删除告警触发策略
     ///
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
         try await self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension As {
     /// 删除告警触发策略
     ///
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScalingPolicy(autoScalingPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
         self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension As {
     /// 删除告警触发策略
     ///
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteScalingPolicy(autoScalingPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
         try await self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), region: region, logger: logger, on: eventLoop)
     }

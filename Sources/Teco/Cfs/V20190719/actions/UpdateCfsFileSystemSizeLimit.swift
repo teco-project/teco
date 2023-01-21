@@ -47,7 +47,7 @@ extension Cfs {
     /// 更新文件系统存储容量限制
     ///
     /// 本接口（UpdateCfsFileSystemSizeLimit）用于更新文件系统存储容量限制。
-    @inlinable
+    @inlinable @discardableResult
     public func updateCfsFileSystemSizeLimit(_ input: UpdateCfsFileSystemSizeLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsFileSystemSizeLimitResponse> {
         self.client.execute(action: "UpdateCfsFileSystemSizeLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cfs {
     /// 更新文件系统存储容量限制
     ///
     /// 本接口（UpdateCfsFileSystemSizeLimit）用于更新文件系统存储容量限制。
-    @inlinable
+    @inlinable @discardableResult
     public func updateCfsFileSystemSizeLimit(_ input: UpdateCfsFileSystemSizeLimitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemSizeLimitResponse {
         try await self.client.execute(action: "UpdateCfsFileSystemSizeLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cfs {
     /// 更新文件系统存储容量限制
     ///
     /// 本接口（UpdateCfsFileSystemSizeLimit）用于更新文件系统存储容量限制。
-    @inlinable
+    @inlinable @discardableResult
     public func updateCfsFileSystemSizeLimit(fsLimit: UInt64, fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsFileSystemSizeLimitResponse> {
         self.updateCfsFileSystemSizeLimit(UpdateCfsFileSystemSizeLimitRequest(fsLimit: fsLimit, fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cfs {
     /// 更新文件系统存储容量限制
     ///
     /// 本接口（UpdateCfsFileSystemSizeLimit）用于更新文件系统存储容量限制。
-    @inlinable
+    @inlinable @discardableResult
     public func updateCfsFileSystemSizeLimit(fsLimit: UInt64, fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemSizeLimitResponse {
         try await self.updateCfsFileSystemSizeLimit(UpdateCfsFileSystemSizeLimitRequest(fsLimit: fsLimit, fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }

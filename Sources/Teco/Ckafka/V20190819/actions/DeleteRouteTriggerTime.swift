@@ -42,7 +42,7 @@ extension Ckafka {
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
         self.client.execute(action: "DeleteRouteTriggerTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ckafka {
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRouteTriggerTime(_ input: DeleteRouteTriggerTimeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
         try await self.client.execute(action: "DeleteRouteTriggerTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ckafka {
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRouteTriggerTime(delayTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTriggerTimeResponse> {
         self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ckafka {
     /// 修改路由触发时间
     ///
     /// 修改删除路由延迟触发时间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRouteTriggerTime(delayTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTriggerTimeResponse {
         try await self.deleteRouteTriggerTime(DeleteRouteTriggerTimeRequest(delayTime: delayTime), region: region, logger: logger, on: eventLoop)
     }

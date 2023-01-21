@@ -48,7 +48,7 @@ extension Lighthouse {
     ///
     /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
     /// <li>“快照名称”仅为方便用户自己管理之用。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotAttributeResponse> {
         self.client.execute(action: "ModifySnapshotAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Lighthouse {
     ///
     /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
     /// <li>“快照名称”仅为方便用户自己管理之用。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifySnapshotAttribute(_ input: ModifySnapshotAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
         try await self.client.execute(action: "ModifySnapshotAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Lighthouse {
     ///
     /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
     /// <li>“快照名称”仅为方便用户自己管理之用。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotAttributeResponse> {
         self.modifySnapshotAttribute(ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Lighthouse {
     ///
     /// 本接口（ModifySnapshotAttribute）用于修改指定快照的属性。
     /// <li>“快照名称”仅为方便用户自己管理之用。</li>
-    @inlinable
+    @inlinable @discardableResult
     public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
         try await self.modifySnapshotAttribute(ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
     }

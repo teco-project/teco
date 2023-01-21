@@ -42,7 +42,7 @@ extension Gaap {
     /// 删除证书
     ///
     /// 本接口（DeleteCertificate）用于删除证书。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCertificate(_ input: DeleteCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCertificateResponse> {
         self.client.execute(action: "DeleteCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Gaap {
     /// 删除证书
     ///
     /// 本接口（DeleteCertificate）用于删除证书。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCertificate(_ input: DeleteCertificateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertificateResponse {
         try await self.client.execute(action: "DeleteCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Gaap {
     /// 删除证书
     ///
     /// 本接口（DeleteCertificate）用于删除证书。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCertificateResponse> {
         self.deleteCertificate(DeleteCertificateRequest(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Gaap {
     /// 删除证书
     ///
     /// 本接口（DeleteCertificate）用于删除证书。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCertificate(certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertificateResponse {
         try await self.deleteCertificate(DeleteCertificateRequest(certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }

@@ -58,7 +58,7 @@ extension Lighthouse {
     /// * 只有状态为 RUNNING，STOPPED的实例才可以进行此操作。
     /// * 支持批量操作。每次请求批量实例的上限为 30。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstancesBundle(_ input: ModifyInstancesBundleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesBundleResponse> {
         self.client.execute(action: "ModifyInstancesBundle", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -69,7 +69,7 @@ extension Lighthouse {
     /// * 只有状态为 RUNNING，STOPPED的实例才可以进行此操作。
     /// * 支持批量操作。每次请求批量实例的上限为 30。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstancesBundle(_ input: ModifyInstancesBundleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesBundleResponse {
         try await self.client.execute(action: "ModifyInstancesBundle", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -80,7 +80,7 @@ extension Lighthouse {
     /// * 只有状态为 RUNNING，STOPPED的实例才可以进行此操作。
     /// * 支持批量操作。每次请求批量实例的上限为 30。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstancesBundle(instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesBundleResponse> {
         self.modifyInstancesBundle(ModifyInstancesBundleRequest(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Lighthouse {
     /// * 只有状态为 RUNNING，STOPPED的实例才可以进行此操作。
     /// * 支持批量操作。每次请求批量实例的上限为 30。
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstancesBundle(instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesBundleResponse {
         try await self.modifyInstancesBundle(ModifyInstancesBundleRequest(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher), region: region, logger: logger, on: eventLoop)
     }

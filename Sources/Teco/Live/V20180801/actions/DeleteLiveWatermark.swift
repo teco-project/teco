@@ -44,7 +44,7 @@ extension Live {
     /// 删除水印
     ///
     /// 删除水印。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkResponse> {
         self.client.execute(action: "DeleteLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Live {
     /// 删除水印
     ///
     /// 删除水印。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveWatermark(_ input: DeleteLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkResponse {
         try await self.client.execute(action: "DeleteLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -60,7 +60,7 @@ extension Live {
     /// 删除水印
     ///
     /// 删除水印。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveWatermark(watermarkId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveWatermarkResponse> {
         self.deleteLiveWatermark(DeleteLiveWatermarkRequest(watermarkId: watermarkId), region: region, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Live {
     /// 删除水印
     ///
     /// 删除水印。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveWatermark(watermarkId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveWatermarkResponse {
         try await self.deleteLiveWatermark(DeleteLiveWatermarkRequest(watermarkId: watermarkId), region: region, logger: logger, on: eventLoop)
     }

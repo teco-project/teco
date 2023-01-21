@@ -48,7 +48,7 @@ extension Tdcpg {
     /// 恢复集群
     ///
     /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
-    @inlinable
+    @inlinable @discardableResult
     public func recoverCluster(_ input: RecoverClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterResponse> {
         self.client.execute(action: "RecoverCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -56,7 +56,7 @@ extension Tdcpg {
     /// 恢复集群
     ///
     /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
-    @inlinable
+    @inlinable @discardableResult
     public func recoverCluster(_ input: RecoverClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterResponse {
         try await self.client.execute(action: "RecoverCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -64,7 +64,7 @@ extension Tdcpg {
     /// 恢复集群
     ///
     /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
-    @inlinable
+    @inlinable @discardableResult
     public func recoverCluster(clusterId: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterResponse> {
         self.recoverCluster(RecoverClusterRequest(clusterId: clusterId, period: period), region: region, logger: logger, on: eventLoop)
     }
@@ -72,7 +72,7 @@ extension Tdcpg {
     /// 恢复集群
     ///
     /// 恢复集群，恢复集群的接入点网络，恢复后继续连接使用数据库。只有当集群状态处于isolated(已隔离)时才生效。
-    @inlinable
+    @inlinable @discardableResult
     public func recoverCluster(clusterId: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterResponse {
         try await self.recoverCluster(RecoverClusterRequest(clusterId: clusterId, period: period), region: region, logger: logger, on: eventLoop)
     }

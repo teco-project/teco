@@ -42,7 +42,7 @@ extension Kms {
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
-    @inlinable
+    @inlinable @discardableResult
     public func disableKeyRotation(_ input: DisableKeyRotationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyRotationResponse> {
         self.client.execute(action: "DisableKeyRotation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Kms {
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
-    @inlinable
+    @inlinable @discardableResult
     public func disableKeyRotation(_ input: DisableKeyRotationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
         try await self.client.execute(action: "DisableKeyRotation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Kms {
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
-    @inlinable
+    @inlinable @discardableResult
     public func disableKeyRotation(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeyRotationResponse> {
         self.disableKeyRotation(DisableKeyRotationRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Kms {
     /// 禁止密钥轮换
     ///
     /// 对指定的CMK禁止密钥轮换功能。
-    @inlinable
+    @inlinable @discardableResult
     public func disableKeyRotation(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeyRotationResponse {
         try await self.disableKeyRotation(DisableKeyRotationRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }

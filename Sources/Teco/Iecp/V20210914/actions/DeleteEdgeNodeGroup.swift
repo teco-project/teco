@@ -50,25 +50,25 @@ extension Iecp {
     }
 
     /// 删除边缘单元NodeGroup
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeGroupResponse> {
         self.client.execute(action: "DeleteEdgeNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元NodeGroup
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodeGroup(_ input: DeleteEdgeNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
         try await self.client.execute(action: "DeleteEdgeNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除边缘单元NodeGroup
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodeGroupResponse> {
         self.deleteEdgeNodeGroup(DeleteEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元NodeGroup
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodeGroup(edgeUnitId: UInt64, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodeGroupResponse {
         try await self.deleteEdgeNodeGroup(DeleteEdgeNodeGroupRequest(edgeUnitId: edgeUnitId, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

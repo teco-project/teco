@@ -42,7 +42,7 @@ extension Bda {
     /// 终止视频人像分割处理任务
     ///
     /// 终止指定视频人像分割处理任务
-    @inlinable
+    @inlinable @discardableResult
     public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateSegmentationTaskResponse> {
         self.client.execute(action: "TerminateSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Bda {
     /// 终止视频人像分割处理任务
     ///
     /// 终止指定视频人像分割处理任务
-    @inlinable
+    @inlinable @discardableResult
     public func terminateSegmentationTask(_ input: TerminateSegmentationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
         try await self.client.execute(action: "TerminateSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Bda {
     /// 终止视频人像分割处理任务
     ///
     /// 终止指定视频人像分割处理任务
-    @inlinable
+    @inlinable @discardableResult
     public func terminateSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateSegmentationTaskResponse> {
         self.terminateSegmentationTask(TerminateSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Bda {
     /// 终止视频人像分割处理任务
     ///
     /// 终止指定视频人像分割处理任务
-    @inlinable
+    @inlinable @discardableResult
     public func terminateSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
         try await self.terminateSegmentationTask(TerminateSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
     }

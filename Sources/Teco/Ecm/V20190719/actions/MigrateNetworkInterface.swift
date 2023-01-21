@@ -55,25 +55,25 @@ extension Ecm {
     }
 
     /// 弹性网卡迁移
-    @inlinable
+    @inlinable @discardableResult
     public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigrateNetworkInterfaceResponse> {
         self.client.execute(action: "MigrateNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡迁移
-    @inlinable
+    @inlinable @discardableResult
     public func migrateNetworkInterface(_ input: MigrateNetworkInterfaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
         try await self.client.execute(action: "MigrateNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 弹性网卡迁移
-    @inlinable
+    @inlinable @discardableResult
     public func migrateNetworkInterface(ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigrateNetworkInterfaceResponse> {
         self.migrateNetworkInterface(MigrateNetworkInterfaceRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡迁移
-    @inlinable
+    @inlinable @discardableResult
     public func migrateNetworkInterface(ecmRegion: String, networkInterfaceId: String, sourceInstanceId: String, destinationInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateNetworkInterfaceResponse {
         try await self.migrateNetworkInterface(MigrateNetworkInterfaceRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, sourceInstanceId: sourceInstanceId, destinationInstanceId: destinationInstanceId), region: region, logger: logger, on: eventLoop)
     }

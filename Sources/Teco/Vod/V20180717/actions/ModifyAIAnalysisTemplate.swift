@@ -83,7 +83,7 @@ extension Vod {
     ///
     /// 修改用户自定义音视频内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
         self.client.execute(action: "ModifyAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -92,7 +92,7 @@ extension Vod {
     ///
     /// 修改用户自定义音视频内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
         try await self.client.execute(action: "ModifyAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -101,7 +101,7 @@ extension Vod {
     ///
     /// 修改用户自定义音视频内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
         self.modifyAIAnalysisTemplate(ModifyAIAnalysisTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), region: region, logger: logger, on: eventLoop)
     }
@@ -110,7 +110,7 @@ extension Vod {
     ///
     /// 修改用户自定义音视频内容分析模板。
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
         try await self.modifyAIAnalysisTemplate(ModifyAIAnalysisTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure, highlightConfigure: highlightConfigure), region: region, logger: logger, on: eventLoop)
     }

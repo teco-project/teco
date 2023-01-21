@@ -45,25 +45,25 @@ extension Monitor {
     }
 
     /// 删除 Grafana 告警通道
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGrafanaNotificationChannel(_ input: DeleteGrafanaNotificationChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaNotificationChannelResponse> {
         self.client.execute(action: "DeleteGrafanaNotificationChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 告警通道
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGrafanaNotificationChannel(_ input: DeleteGrafanaNotificationChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaNotificationChannelResponse {
         try await self.client.execute(action: "DeleteGrafanaNotificationChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除 Grafana 告警通道
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGrafanaNotificationChannel(channelIDs: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGrafanaNotificationChannelResponse> {
         self.deleteGrafanaNotificationChannel(DeleteGrafanaNotificationChannelRequest(channelIDs: channelIDs, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除 Grafana 告警通道
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGrafanaNotificationChannel(channelIDs: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGrafanaNotificationChannelResponse {
         try await self.deleteGrafanaNotificationChannel(DeleteGrafanaNotificationChannelRequest(channelIDs: channelIDs, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

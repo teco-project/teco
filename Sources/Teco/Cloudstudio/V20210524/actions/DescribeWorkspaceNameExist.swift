@@ -50,25 +50,25 @@ extension Cloudstudio {
     }
 
     /// 检查工作空间是否存在
-    @inlinable
+    @inlinable @discardableResult
     public func describeWorkspaceNameExist(_ input: DescribeWorkspaceNameExistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceNameExistResponse> {
         self.client.execute(action: "DescribeWorkspaceNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查工作空间是否存在
-    @inlinable
+    @inlinable @discardableResult
     public func describeWorkspaceNameExist(_ input: DescribeWorkspaceNameExistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceNameExistResponse {
         try await self.client.execute(action: "DescribeWorkspaceNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 检查工作空间是否存在
-    @inlinable
+    @inlinable @discardableResult
     public func describeWorkspaceNameExist(cloudStudioSessionTeam: String, name: String, workspaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceNameExistResponse> {
         self.describeWorkspaceNameExist(DescribeWorkspaceNameExistRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检查工作空间是否存在
-    @inlinable
+    @inlinable @discardableResult
     public func describeWorkspaceNameExist(cloudStudioSessionTeam: String, name: String, workspaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceNameExistResponse {
         try await self.describeWorkspaceNameExist(DescribeWorkspaceNameExistRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, name: name, workspaceId: workspaceId), region: region, logger: logger, on: eventLoop)
     }

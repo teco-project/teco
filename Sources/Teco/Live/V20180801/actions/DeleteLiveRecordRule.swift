@@ -55,7 +55,7 @@ extension Live {
     /// 删除录制规则
     ///
     /// 删除录制规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordRuleResponse> {
         self.client.execute(action: "DeleteLiveRecordRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -63,7 +63,7 @@ extension Live {
     /// 删除录制规则
     ///
     /// 删除录制规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecordRule(_ input: DeleteLiveRecordRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordRuleResponse {
         try await self.client.execute(action: "DeleteLiveRecordRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Live {
     /// 删除录制规则
     ///
     /// 删除录制规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecordRule(domainName: String, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordRuleResponse> {
         self.deleteLiveRecordRule(DeleteLiveRecordRuleRequest(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
@@ -79,7 +79,7 @@ extension Live {
     /// 删除录制规则
     ///
     /// 删除录制规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecordRule(domainName: String, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordRuleResponse {
         try await self.deleteLiveRecordRule(DeleteLiveRecordRuleRequest(domainName: domainName, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }

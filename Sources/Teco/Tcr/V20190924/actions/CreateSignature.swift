@@ -57,7 +57,7 @@ extension Tcr {
     /// 创建镜像签名
     ///
     /// 为一个镜像版本创建签名
-    @inlinable
+    @inlinable @discardableResult
     public func createSignature(_ input: CreateSignatureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignatureResponse> {
         self.client.execute(action: "CreateSignature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Tcr {
     /// 创建镜像签名
     ///
     /// 为一个镜像版本创建签名
-    @inlinable
+    @inlinable @discardableResult
     public func createSignature(_ input: CreateSignatureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
         try await self.client.execute(action: "CreateSignature", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Tcr {
     /// 创建镜像签名
     ///
     /// 为一个镜像版本创建签名
-    @inlinable
+    @inlinable @discardableResult
     public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignatureResponse> {
         self.createSignature(CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Tcr {
     /// 创建镜像签名
     ///
     /// 为一个镜像版本创建签名
-    @inlinable
+    @inlinable @discardableResult
     public func createSignature(registryId: String, namespaceName: String, repositoryName: String, imageVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignatureResponse {
         try await self.createSignature(CreateSignatureRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, imageVersion: imageVersion), region: region, logger: logger, on: eventLoop)
     }

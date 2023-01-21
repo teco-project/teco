@@ -59,7 +59,7 @@ extension Teo {
     /// 修改站点
     ///
     /// 修改站点信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZone(_ input: ModifyZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
         self.client.execute(action: "ModifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Teo {
     /// 修改站点
     ///
     /// 修改站点信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZone(_ input: ModifyZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
         try await self.client.execute(action: "ModifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -75,7 +75,7 @@ extension Teo {
     /// 修改站点
     ///
     /// 修改站点信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZone(zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
         self.modifyZone(ModifyZoneRequest(zoneId: zoneId, type: type, vanityNameServers: vanityNameServers, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
     }
@@ -83,7 +83,7 @@ extension Teo {
     /// 修改站点
     ///
     /// 修改站点信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyZone(zoneId: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, aliasZoneName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
         try await self.modifyZone(ModifyZoneRequest(zoneId: zoneId, type: type, vanityNameServers: vanityNameServers, aliasZoneName: aliasZoneName), region: region, logger: logger, on: eventLoop)
     }

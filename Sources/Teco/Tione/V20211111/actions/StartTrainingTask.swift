@@ -40,25 +40,25 @@ extension Tione {
     }
 
     /// 启动模型训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func startTrainingTask(_ input: StartTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartTrainingTaskResponse> {
         self.client.execute(action: "StartTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动模型训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func startTrainingTask(_ input: StartTrainingTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartTrainingTaskResponse {
         try await self.client.execute(action: "StartTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动模型训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func startTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartTrainingTaskResponse> {
         self.startTrainingTask(StartTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动模型训练任务
-    @inlinable
+    @inlinable @discardableResult
     public func startTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartTrainingTaskResponse {
         try await self.startTrainingTask(StartTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
     }

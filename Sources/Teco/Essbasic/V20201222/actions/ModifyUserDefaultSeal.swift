@@ -57,7 +57,7 @@ extension Essbasic {
     /// 修改个人默认印章
     ///
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserDefaultSealResponse> {
         self.client.execute(action: "ModifyUserDefaultSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Essbasic {
     /// 修改个人默认印章
     ///
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserDefaultSeal(_ input: ModifyUserDefaultSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
         try await self.client.execute(action: "ModifyUserDefaultSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Essbasic {
     /// 修改个人默认印章
     ///
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserDefaultSeal(caller: Caller, userId: String, sealId: String, sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserDefaultSealResponse> {
         self.modifyUserDefaultSeal(ModifyUserDefaultSealRequest(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Essbasic {
     /// 修改个人默认印章
     ///
     /// 此接口 (ModifyUserDefaultSeal) 用于重新指定个人默认印章。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyUserDefaultSeal(caller: Caller, userId: String, sealId: String, sourceIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserDefaultSealResponse {
         try await self.modifyUserDefaultSeal(ModifyUserDefaultSealRequest(caller: caller, userId: userId, sealId: sealId, sourceIp: sourceIp), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Yunjing {
     /// 续费专业版
     ///
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
-    @inlinable
+    @inlinable @discardableResult
     public func renewProVersion(_ input: RenewProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewProVersionResponse> {
         self.client.execute(action: "RenewProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Yunjing {
     /// 续费专业版
     ///
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
-    @inlinable
+    @inlinable @discardableResult
     public func renewProVersion(_ input: RenewProVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
         try await self.client.execute(action: "RenewProVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Yunjing {
     /// 续费专业版
     ///
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
-    @inlinable
+    @inlinable @discardableResult
     public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewProVersionResponse> {
         self.renewProVersion(RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Yunjing {
     /// 续费专业版
     ///
     /// 本接口 (RenewProVersion) 用于续费专业版(包年包月)。
-    @inlinable
+    @inlinable @discardableResult
     public func renewProVersion(chargePrepaid: ChargePrepaid, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewProVersionResponse {
         try await self.renewProVersion(RenewProVersionRequest(chargePrepaid: chargePrepaid, quuid: quuid), region: region, logger: logger, on: eventLoop)
     }

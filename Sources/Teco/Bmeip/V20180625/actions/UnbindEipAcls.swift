@@ -40,25 +40,25 @@ extension Bmeip {
     }
 
     /// 解绑弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func unbindEipAcls(_ input: UnbindEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindEipAclsResponse> {
         self.client.execute(action: "UnbindEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func unbindEipAcls(_ input: UnbindEipAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipAclsResponse {
         try await self.client.execute(action: "UnbindEipAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func unbindEipAcls(eipIdAclIdList: [EipAclMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindEipAclsResponse> {
         self.unbindEipAcls(UnbindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑弹性公网IP ACL
-    @inlinable
+    @inlinable @discardableResult
     public func unbindEipAcls(eipIdAclIdList: [EipAclMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindEipAclsResponse {
         try await self.unbindEipAcls(UnbindEipAclsRequest(eipIdAclIdList: eipIdAclIdList), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Cls {
     }
 
     /// 删除应用到机器组的采集配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigFromMachineGroupResponse> {
         self.client.execute(action: "DeleteConfigFromMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除应用到机器组的采集配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConfigFromMachineGroup(_ input: DeleteConfigFromMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
         try await self.client.execute(action: "DeleteConfigFromMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除应用到机器组的采集配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConfigFromMachineGroup(groupId: String, configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigFromMachineGroupResponse> {
         self.deleteConfigFromMachineGroup(DeleteConfigFromMachineGroupRequest(groupId: groupId, configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除应用到机器组的采集配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConfigFromMachineGroup(groupId: String, configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigFromMachineGroupResponse {
         try await self.deleteConfigFromMachineGroup(DeleteConfigFromMachineGroupRequest(groupId: groupId, configId: configId), region: region, logger: logger, on: eventLoop)
     }

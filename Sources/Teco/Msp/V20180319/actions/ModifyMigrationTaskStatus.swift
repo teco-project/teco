@@ -45,25 +45,25 @@ extension Msp {
     }
 
     /// 更新迁移任务状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMigrationTaskStatus(_ input: ModifyMigrationTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationTaskStatusResponse> {
         self.client.execute(action: "ModifyMigrationTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新迁移任务状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMigrationTaskStatus(_ input: ModifyMigrationTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskStatusResponse {
         try await self.client.execute(action: "ModifyMigrationTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新迁移任务状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMigrationTaskStatus(status: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationTaskStatusResponse> {
         self.modifyMigrationTaskStatus(ModifyMigrationTaskStatusRequest(status: status, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新迁移任务状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMigrationTaskStatus(status: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationTaskStatusResponse {
         try await self.modifyMigrationTaskStatus(ModifyMigrationTaskStatusRequest(status: status, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

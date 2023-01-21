@@ -42,7 +42,7 @@ extension Tcss {
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
         self.client.execute(action: "ModifyEscapeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcss {
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEscapeRule(_ input: ModifyEscapeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
         try await self.client.execute(action: "ModifyEscapeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcss {
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeRuleResponse> {
         self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcss {
     /// 修改容器逃逸扫描规则信息
     ///
     /// ModifyEscapeRule  修改容器逃逸扫描规则信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEscapeRule(ruleSet: [EscapeRuleEnabled], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeRuleResponse {
         try await self.modifyEscapeRule(ModifyEscapeRuleRequest(ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
     }

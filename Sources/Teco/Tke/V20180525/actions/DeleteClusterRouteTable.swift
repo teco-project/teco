@@ -40,25 +40,25 @@ extension Tke {
     }
 
     /// 删除集群路由表
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteTableResponse> {
         self.client.execute(action: "DeleteClusterRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集群路由表
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterRouteTable(_ input: DeleteClusterRouteTableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {
         try await self.client.execute(action: "DeleteClusterRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除集群路由表
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterRouteTable(routeTableName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterRouteTableResponse> {
         self.deleteClusterRouteTable(DeleteClusterRouteTableRequest(routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除集群路由表
-    @inlinable
+    @inlinable @discardableResult
     public func deleteClusterRouteTable(routeTableName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterRouteTableResponse {
         try await self.deleteClusterRouteTable(DeleteClusterRouteTableRequest(routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }

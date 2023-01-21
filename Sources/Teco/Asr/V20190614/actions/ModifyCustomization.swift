@@ -57,7 +57,7 @@ extension Asr {
     /// 更新自学习模型
     ///
     /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomization(_ input: ModifyCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationResponse> {
         self.client.execute(action: "ModifyCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Asr {
     /// 更新自学习模型
     ///
     /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomization(_ input: ModifyCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
         try await self.client.execute(action: "ModifyCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Asr {
     /// 更新自学习模型
     ///
     /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomization(modelId: String, modelName: String? = nil, modelType: String? = nil, textUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationResponse> {
         self.modifyCustomization(ModifyCustomizationRequest(modelId: modelId, modelName: modelName, modelType: modelType, textUrl: textUrl), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Asr {
     /// 更新自学习模型
     ///
     /// 用户通过该接口可以更新自学习模型，如模型名称、模型类型、模型语料。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomization(modelId: String, modelName: String? = nil, modelType: String? = nil, textUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationResponse {
         try await self.modifyCustomization(ModifyCustomizationRequest(modelId: modelId, modelName: modelName, modelType: modelType, textUrl: textUrl), region: region, logger: logger, on: eventLoop)
     }

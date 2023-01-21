@@ -40,25 +40,25 @@ extension Privatedns {
     }
 
     /// 创建私有域解析账号
-    @inlinable
+    @inlinable @discardableResult
     public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateDNSAccountResponse> {
         self.client.execute(action: "CreatePrivateDNSAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建私有域解析账号
-    @inlinable
+    @inlinable @discardableResult
     public func createPrivateDNSAccount(_ input: CreatePrivateDNSAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
         try await self.client.execute(action: "CreatePrivateDNSAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建私有域解析账号
-    @inlinable
+    @inlinable @discardableResult
     public func createPrivateDNSAccount(account: PrivateDNSAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateDNSAccountResponse> {
         self.createPrivateDNSAccount(CreatePrivateDNSAccountRequest(account: account), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建私有域解析账号
-    @inlinable
+    @inlinable @discardableResult
     public func createPrivateDNSAccount(account: PrivateDNSAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateDNSAccountResponse {
         try await self.createPrivateDNSAccount(CreatePrivateDNSAccountRequest(account: account), region: region, logger: logger, on: eventLoop)
     }

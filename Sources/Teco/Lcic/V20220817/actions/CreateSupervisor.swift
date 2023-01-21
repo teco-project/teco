@@ -32,25 +32,25 @@ extension Lcic {
     }
 
     /// 创建巡课
-    @inlinable
+    @inlinable @discardableResult
     public func createSupervisor(_ input: CreateSupervisorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSupervisorResponse> {
         self.client.execute(action: "CreateSupervisor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建巡课
-    @inlinable
+    @inlinable @discardableResult
     public func createSupervisor(_ input: CreateSupervisorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
         try await self.client.execute(action: "CreateSupervisor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建巡课
-    @inlinable
+    @inlinable @discardableResult
     public func createSupervisor(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSupervisorResponse> {
         self.createSupervisor(CreateSupervisorRequest(), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建巡课
-    @inlinable
+    @inlinable @discardableResult
     public func createSupervisor(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSupervisorResponse {
         try await self.createSupervisor(CreateSupervisorRequest(), region: region, logger: logger, on: eventLoop)
     }

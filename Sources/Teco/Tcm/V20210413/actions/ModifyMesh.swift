@@ -55,25 +55,25 @@ extension Tcm {
     }
 
     /// 修改网格
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMesh(_ input: ModifyMeshRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMeshResponse> {
         self.client.execute(action: "ModifyMesh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改网格
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMesh(_ input: ModifyMeshRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMeshResponse {
         try await self.client.execute(action: "ModifyMesh", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改网格
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMesh(meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMeshResponse> {
         self.modifyMesh(ModifyMeshRequest(meshId: meshId, displayName: displayName, config: config, clusterList: clusterList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改网格
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMesh(meshId: String, displayName: String? = nil, config: MeshConfig? = nil, clusterList: [Cluster]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMeshResponse {
         try await self.modifyMesh(ModifyMeshRequest(meshId: meshId, displayName: displayName, config: config, clusterList: clusterList), region: region, logger: logger, on: eventLoop)
     }

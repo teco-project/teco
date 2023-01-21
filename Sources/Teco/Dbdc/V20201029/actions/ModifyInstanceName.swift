@@ -47,7 +47,7 @@ extension Dbdc {
     /// 修改独享集群名称
     ///
     /// 本接口用于修改集群名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceName(_ input: ModifyInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceNameResponse> {
         self.client.execute(action: "ModifyInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Dbdc {
     /// 修改独享集群名称
     ///
     /// 本接口用于修改集群名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceName(_ input: ModifyInstanceNameRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
         try await self.client.execute(action: "ModifyInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Dbdc {
     /// 修改独享集群名称
     ///
     /// 本接口用于修改集群名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceName(instanceId: String, instanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceNameResponse> {
         self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Dbdc {
     /// 修改独享集群名称
     ///
     /// 本接口用于修改集群名称
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceName(instanceId: String, instanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
         try await self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Bmvpc {
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
-    @inlinable
+    @inlinable @discardableResult
     public func resetVpnConnection(_ input: ResetVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
         self.client.execute(action: "ResetVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Bmvpc {
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
-    @inlinable
+    @inlinable @discardableResult
     public func resetVpnConnection(_ input: ResetVpnConnectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
         try await self.client.execute(action: "ResetVpnConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Bmvpc {
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
-    @inlinable
+    @inlinable @discardableResult
     public func resetVpnConnection(vpcId: String, vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetVpnConnectionResponse> {
         self.resetVpnConnection(ResetVpnConnectionRequest(vpcId: vpcId, vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Bmvpc {
     /// 重置VPN通道
     ///
     /// 本接口(ResetVpnConnection)用于重置VPN通道。
-    @inlinable
+    @inlinable @discardableResult
     public func resetVpnConnection(vpcId: String, vpnConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetVpnConnectionResponse {
         try await self.resetVpnConnection(ResetVpnConnectionRequest(vpcId: vpcId, vpnConnectionId: vpnConnectionId), region: region, logger: logger, on: eventLoop)
     }

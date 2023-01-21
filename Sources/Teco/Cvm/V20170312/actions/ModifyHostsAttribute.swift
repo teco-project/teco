@@ -57,7 +57,7 @@ extension Cvm {
     /// 修改CDH实例的属性
     ///
     /// 本接口（ModifyHostsAttribute）用于修改CDH实例的属性，如实例名称和续费标记等。参数HostName和RenewFlag必须设置其中一个，但不能同时设置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyHostsAttribute(_ input: ModifyHostsAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsAttributeResponse> {
         self.client.execute(action: "ModifyHostsAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cvm {
     /// 修改CDH实例的属性
     ///
     /// 本接口（ModifyHostsAttribute）用于修改CDH实例的属性，如实例名称和续费标记等。参数HostName和RenewFlag必须设置其中一个，但不能同时设置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyHostsAttribute(_ input: ModifyHostsAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsAttributeResponse {
         try await self.client.execute(action: "ModifyHostsAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cvm {
     /// 修改CDH实例的属性
     ///
     /// 本接口（ModifyHostsAttribute）用于修改CDH实例的属性，如实例名称和续费标记等。参数HostName和RenewFlag必须设置其中一个，但不能同时设置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyHostsAttribute(hostIds: [String], hostName: String? = nil, renewFlag: String? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsAttributeResponse> {
         self.modifyHostsAttribute(ModifyHostsAttributeRequest(hostIds: hostIds, hostName: hostName, renewFlag: renewFlag, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cvm {
     /// 修改CDH实例的属性
     ///
     /// 本接口（ModifyHostsAttribute）用于修改CDH实例的属性，如实例名称和续费标记等。参数HostName和RenewFlag必须设置其中一个，但不能同时设置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyHostsAttribute(hostIds: [String], hostName: String? = nil, renewFlag: String? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsAttributeResponse {
         try await self.modifyHostsAttribute(ModifyHostsAttributeRequest(hostIds: hostIds, hostName: hostName, renewFlag: renewFlag, projectId: projectId), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Tcss {
     }
 
     /// 运行时停止木马查杀任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
         self.client.execute(action: "StopVirusScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时停止木马查杀任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopVirusScanTask(_ input: StopVirusScanTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
         try await self.client.execute(action: "StopVirusScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行时停止木马查杀任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
         self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行时停止木马查杀任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
         try await self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), region: region, logger: logger, on: eventLoop)
     }

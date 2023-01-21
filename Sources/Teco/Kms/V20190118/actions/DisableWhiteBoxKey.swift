@@ -40,25 +40,25 @@ extension Kms {
     }
 
     /// 禁用白盒密钥
-    @inlinable
+    @inlinable @discardableResult
     public func disableWhiteBoxKey(_ input: DisableWhiteBoxKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableWhiteBoxKeyResponse> {
         self.client.execute(action: "DisableWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用白盒密钥
-    @inlinable
+    @inlinable @discardableResult
     public func disableWhiteBoxKey(_ input: DisableWhiteBoxKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableWhiteBoxKeyResponse {
         try await self.client.execute(action: "DisableWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 禁用白盒密钥
-    @inlinable
+    @inlinable @discardableResult
     public func disableWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableWhiteBoxKeyResponse> {
         self.disableWhiteBoxKey(DisableWhiteBoxKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 禁用白盒密钥
-    @inlinable
+    @inlinable @discardableResult
     public func disableWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableWhiteBoxKeyResponse {
         try await self.disableWhiteBoxKey(DisableWhiteBoxKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
     }

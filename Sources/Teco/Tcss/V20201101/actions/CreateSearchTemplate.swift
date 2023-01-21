@@ -40,25 +40,25 @@ extension Tcss {
     }
 
     /// 添加检索模板
-    @inlinable
+    @inlinable @discardableResult
     public func createSearchTemplate(_ input: CreateSearchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchTemplateResponse> {
         self.client.execute(action: "CreateSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加检索模板
-    @inlinable
+    @inlinable @discardableResult
     public func createSearchTemplate(_ input: CreateSearchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
         try await self.client.execute(action: "CreateSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加检索模板
-    @inlinable
+    @inlinable @discardableResult
     public func createSearchTemplate(searchTemplate: SearchTemplate, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchTemplateResponse> {
         self.createSearchTemplate(CreateSearchTemplateRequest(searchTemplate: searchTemplate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加检索模板
-    @inlinable
+    @inlinable @discardableResult
     public func createSearchTemplate(searchTemplate: SearchTemplate, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchTemplateResponse {
         try await self.createSearchTemplate(CreateSearchTemplateRequest(searchTemplate: searchTemplate), region: region, logger: logger, on: eventLoop)
     }

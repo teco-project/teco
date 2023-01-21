@@ -52,7 +52,7 @@ extension Tcr {
     /// 创建个人版镜像版本清理策略
     ///
     /// 用于在个人版中创建清理策略
-    @inlinable
+    @inlinable @discardableResult
     public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageLifecyclePersonalResponse> {
         self.client.execute(action: "CreateImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tcr {
     /// 创建个人版镜像版本清理策略
     ///
     /// 用于在个人版中创建清理策略
-    @inlinable
+    @inlinable @discardableResult
     public func createImageLifecyclePersonal(_ input: CreateImageLifecyclePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
         try await self.client.execute(action: "CreateImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tcr {
     /// 创建个人版镜像版本清理策略
     ///
     /// 用于在个人版中创建清理策略
-    @inlinable
+    @inlinable @discardableResult
     public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageLifecyclePersonalResponse> {
         self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tcr {
     /// 创建个人版镜像版本清理策略
     ///
     /// 用于在个人版中创建清理策略
-    @inlinable
+    @inlinable @discardableResult
     public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
         try await self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), region: region, logger: logger, on: eventLoop)
     }

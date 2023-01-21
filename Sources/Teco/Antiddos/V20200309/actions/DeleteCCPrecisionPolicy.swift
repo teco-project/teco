@@ -45,25 +45,25 @@ extension Antiddos {
     }
 
     /// 删除CC精准防护策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCPrecisionPolicyResponse> {
         self.client.execute(action: "DeleteCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除CC精准防护策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCCPrecisionPolicy(_ input: DeleteCCPrecisionPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCPrecisionPolicyResponse {
         try await self.client.execute(action: "DeleteCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除CC精准防护策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCCPrecisionPolicy(instanceId: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCCPrecisionPolicyResponse> {
         self.deleteCCPrecisionPolicy(DeleteCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除CC精准防护策略
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCCPrecisionPolicy(instanceId: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCCPrecisionPolicyResponse {
         try await self.deleteCCPrecisionPolicy(DeleteCCPrecisionPolicyRequest(instanceId: instanceId, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }

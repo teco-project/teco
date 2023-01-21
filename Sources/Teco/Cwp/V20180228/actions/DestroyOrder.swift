@@ -47,7 +47,7 @@ extension Cwp {
     /// 销毁订单
     ///
     /// DestroyOrder  该接口可以对资源销毁.
-    @inlinable
+    @inlinable @discardableResult
     public func destroyOrder(_ input: DestroyOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyOrderResponse> {
         self.client.execute(action: "DestroyOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cwp {
     /// 销毁订单
     ///
     /// DestroyOrder  该接口可以对资源销毁.
-    @inlinable
+    @inlinable @discardableResult
     public func destroyOrder(_ input: DestroyOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyOrderResponse {
         try await self.client.execute(action: "DestroyOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cwp {
     /// 销毁订单
     ///
     /// DestroyOrder  该接口可以对资源销毁.
-    @inlinable
+    @inlinable @discardableResult
     public func destroyOrder(resourceId: String, licenseType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyOrderResponse> {
         self.destroyOrder(DestroyOrderRequest(resourceId: resourceId, licenseType: licenseType), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cwp {
     /// 销毁订单
     ///
     /// DestroyOrder  该接口可以对资源销毁.
-    @inlinable
+    @inlinable @discardableResult
     public func destroyOrder(resourceId: String, licenseType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyOrderResponse {
         try await self.destroyOrder(DestroyOrderRequest(resourceId: resourceId, licenseType: licenseType), region: region, logger: logger, on: eventLoop)
     }

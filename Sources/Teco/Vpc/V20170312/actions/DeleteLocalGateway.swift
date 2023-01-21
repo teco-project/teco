@@ -52,7 +52,7 @@ extension Vpc {
     /// 删除本地网关
     ///
     /// 该接口用于删除CDC的本地网关。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLocalGateway(_ input: DeleteLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLocalGatewayResponse> {
         self.client.execute(action: "DeleteLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vpc {
     /// 删除本地网关
     ///
     /// 该接口用于删除CDC的本地网关。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLocalGateway(_ input: DeleteLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLocalGatewayResponse {
         try await self.client.execute(action: "DeleteLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vpc {
     /// 删除本地网关
     ///
     /// 该接口用于删除CDC的本地网关。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLocalGateway(localGatewayId: String, cdcId: String, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLocalGatewayResponse> {
         self.deleteLocalGateway(DeleteLocalGatewayRequest(localGatewayId: localGatewayId, cdcId: cdcId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vpc {
     /// 删除本地网关
     ///
     /// 该接口用于删除CDC的本地网关。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLocalGateway(localGatewayId: String, cdcId: String, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLocalGatewayResponse {
         try await self.deleteLocalGateway(DeleteLocalGatewayRequest(localGatewayId: localGatewayId, cdcId: cdcId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }

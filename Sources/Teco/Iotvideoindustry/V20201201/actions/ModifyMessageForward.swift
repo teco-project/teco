@@ -45,25 +45,25 @@ extension Iotvideoindustry {
     }
 
     /// 修改消息转发配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMessageForward(_ input: ModifyMessageForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMessageForwardResponse> {
         self.client.execute(action: "ModifyMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改消息转发配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMessageForward(_ input: ModifyMessageForwardRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMessageForwardResponse {
         try await self.client.execute(action: "ModifyMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改消息转发配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMessageForward(intId: Int64, messageType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMessageForwardResponse> {
         self.modifyMessageForward(ModifyMessageForwardRequest(intId: intId, messageType: messageType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改消息转发配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyMessageForward(intId: Int64, messageType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMessageForwardResponse {
         try await self.modifyMessageForward(ModifyMessageForwardRequest(intId: intId, messageType: messageType), region: region, logger: logger, on: eventLoop)
     }

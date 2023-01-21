@@ -52,7 +52,7 @@ extension Cfw {
     /// 设置防火墙实例弹性公网ip
     ///
     /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func setNatFwEip(_ input: SetNatFwEipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNatFwEipResponse> {
         self.client.execute(action: "SetNatFwEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cfw {
     /// 设置防火墙实例弹性公网ip
     ///
     /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func setNatFwEip(_ input: SetNatFwEipRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwEipResponse {
         try await self.client.execute(action: "SetNatFwEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cfw {
     /// 设置防火墙实例弹性公网ip
     ///
     /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func setNatFwEip(operationType: String, cfwInstance: String, eipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNatFwEipResponse> {
         self.setNatFwEip(SetNatFwEipRequest(operationType: operationType, cfwInstance: cfwInstance, eipList: eipList), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cfw {
     /// 设置防火墙实例弹性公网ip
     ///
     /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
-    @inlinable
+    @inlinable @discardableResult
     public func setNatFwEip(operationType: String, cfwInstance: String, eipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwEipResponse {
         try await self.setNatFwEip(SetNatFwEipRequest(operationType: operationType, cfwInstance: cfwInstance, eipList: eipList), region: region, logger: logger, on: eventLoop)
     }

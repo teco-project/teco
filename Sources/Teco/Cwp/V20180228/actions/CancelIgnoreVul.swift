@@ -40,25 +40,25 @@ extension Cwp {
     }
 
     /// 取消漏洞忽略
-    @inlinable
+    @inlinable @discardableResult
     public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelIgnoreVulResponse> {
         self.client.execute(action: "CancelIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消漏洞忽略
-    @inlinable
+    @inlinable @discardableResult
     public func cancelIgnoreVul(_ input: CancelIgnoreVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {
         try await self.client.execute(action: "CancelIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 取消漏洞忽略
-    @inlinable
+    @inlinable @discardableResult
     public func cancelIgnoreVul(eventIds: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelIgnoreVulResponse> {
         self.cancelIgnoreVul(CancelIgnoreVulRequest(eventIds: eventIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 取消漏洞忽略
-    @inlinable
+    @inlinable @discardableResult
     public func cancelIgnoreVul(eventIds: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelIgnoreVulResponse {
         try await self.cancelIgnoreVul(CancelIgnoreVulRequest(eventIds: eventIds), region: region, logger: logger, on: eventLoop)
     }

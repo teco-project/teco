@@ -47,7 +47,7 @@ extension Monitor {
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSSOAccountResponse> {
         self.client.execute(action: "DeleteSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Monitor {
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
         try await self.client.execute(action: "DeleteSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Monitor {
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSSOAccount(instanceId: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSSOAccountResponse> {
         self.deleteSSOAccount(DeleteSSOAccountRequest(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Monitor {
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSSOAccount(instanceId: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
         try await self.deleteSSOAccount(DeleteSSOAccountRequest(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
     }

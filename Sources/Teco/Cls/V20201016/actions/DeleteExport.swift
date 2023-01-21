@@ -42,7 +42,7 @@ extension Cls {
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteExport(_ input: DeleteExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
         self.client.execute(action: "DeleteExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cls {
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteExport(_ input: DeleteExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
         try await self.client.execute(action: "DeleteExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cls {
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteExport(exportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
         self.deleteExport(DeleteExportRequest(exportId: exportId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cls {
     /// 删除日志下载任务
     ///
     /// 本接口用于删除日志下载任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteExport(exportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
         try await self.deleteExport(DeleteExportRequest(exportId: exportId), region: region, logger: logger, on: eventLoop)
     }

@@ -40,25 +40,25 @@ extension Cwp {
     }
 
     /// 删除高危命令规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBashRules(_ input: DeleteBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBashRulesResponse> {
         self.client.execute(action: "DeleteBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除高危命令规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBashRules(_ input: DeleteBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashRulesResponse {
         try await self.client.execute(action: "DeleteBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除高危命令规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBashRules(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBashRulesResponse> {
         self.deleteBashRules(DeleteBashRulesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除高危命令规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBashRules(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBashRulesResponse {
         try await self.deleteBashRules(DeleteBashRulesRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

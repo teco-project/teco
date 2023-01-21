@@ -55,25 +55,25 @@ extension Car {
     }
 
     /// 申请并发
-    @inlinable
+    @inlinable @discardableResult
     public func applyConcurrent(_ input: ApplyConcurrentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
         self.client.execute(action: "ApplyConcurrent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请并发
-    @inlinable
+    @inlinable @discardableResult
     public func applyConcurrent(_ input: ApplyConcurrentRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
         try await self.client.execute(action: "ApplyConcurrent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请并发
-    @inlinable
+    @inlinable @discardableResult
     public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
         self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请并发
-    @inlinable
+    @inlinable @discardableResult
     public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
         try await self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), region: region, logger: logger, on: eventLoop)
     }

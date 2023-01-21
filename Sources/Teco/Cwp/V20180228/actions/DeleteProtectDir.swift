@@ -40,25 +40,25 @@ extension Cwp {
     }
 
     /// 删除防护网站
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProtectDir(_ input: DeleteProtectDirRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
         self.client.execute(action: "DeleteProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除防护网站
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProtectDir(_ input: DeleteProtectDirRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
         try await self.client.execute(action: "DeleteProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除防护网站
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProtectDir(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProtectDirResponse> {
         self.deleteProtectDir(DeleteProtectDirRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除防护网站
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProtectDir(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProtectDirResponse {
         try await self.deleteProtectDir(DeleteProtectDirRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

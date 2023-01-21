@@ -47,7 +47,7 @@ extension Teo {
     /// 删除推送任务
     ///
     /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogTopicTaskResponse> {
         self.client.execute(action: "DeleteLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Teo {
     /// 删除推送任务
     ///
     /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogTopicTask(_ input: DeleteLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
         try await self.client.execute(action: "DeleteLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Teo {
     /// 删除推送任务
     ///
     /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogTopicTask(topicId: String, logSetRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogTopicTaskResponse> {
         self.deleteLogTopicTask(DeleteLogTopicTaskRequest(topicId: topicId, logSetRegion: logSetRegion), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Teo {
     /// 删除推送任务
     ///
     /// 本接口（DeleteLogTopicTask）用于删除日志推送任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogTopicTask(topicId: String, logSetRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogTopicTaskResponse {
         try await self.deleteLogTopicTask(DeleteLogTopicTaskRequest(topicId: topicId, logSetRegion: logSetRegion), region: region, logger: logger, on: eventLoop)
     }

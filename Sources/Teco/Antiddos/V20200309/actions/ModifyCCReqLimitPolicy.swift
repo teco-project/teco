@@ -50,25 +50,25 @@ extension Antiddos {
     }
 
     /// 修改CC频率限制策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCCReqLimitPolicy(_ input: ModifyCCReqLimitPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCReqLimitPolicyResponse> {
         self.client.execute(action: "ModifyCCReqLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC频率限制策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCCReqLimitPolicy(_ input: ModifyCCReqLimitPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCReqLimitPolicyResponse {
         try await self.client.execute(action: "ModifyCCReqLimitPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改CC频率限制策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCCReqLimitPolicy(instanceId: String, policyId: String, policy: CCReqLimitPolicyRecord, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCReqLimitPolicyResponse> {
         self.modifyCCReqLimitPolicy(ModifyCCReqLimitPolicyRequest(instanceId: instanceId, policyId: policyId, policy: policy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改CC频率限制策略
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCCReqLimitPolicy(instanceId: String, policyId: String, policy: CCReqLimitPolicyRecord, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCReqLimitPolicyResponse {
         try await self.modifyCCReqLimitPolicy(ModifyCCReqLimitPolicyRequest(instanceId: instanceId, policyId: policyId, policy: policy), region: region, logger: logger, on: eventLoop)
     }

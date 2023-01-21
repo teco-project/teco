@@ -53,7 +53,7 @@ extension Live {
     ///
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
-    @inlinable
+    @inlinable @discardableResult
     public func dropLiveStream(_ input: DropLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
         self.client.execute(action: "DropLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -62,7 +62,7 @@ extension Live {
     ///
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
-    @inlinable
+    @inlinable @discardableResult
     public func dropLiveStream(_ input: DropLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
         try await self.client.execute(action: "DropLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -71,7 +71,7 @@ extension Live {
     ///
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
-    @inlinable
+    @inlinable @discardableResult
     public func dropLiveStream(streamName: String, domainName: String, appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropLiveStreamResponse> {
         self.dropLiveStream(DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName), region: region, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Live {
     ///
     /// 断开推流连接，但可以重新推流。
     /// 注：对已经不活跃的流，调用该断流接口时，接口返回成功。
-    @inlinable
+    @inlinable @discardableResult
     public func dropLiveStream(streamName: String, domainName: String, appName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropLiveStreamResponse {
         try await self.dropLiveStream(DropLiveStreamRequest(streamName: streamName, domainName: domainName, appName: appName), region: region, logger: logger, on: eventLoop)
     }

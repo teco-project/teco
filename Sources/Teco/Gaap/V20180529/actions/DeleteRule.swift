@@ -52,7 +52,7 @@ extension Gaap {
     /// 删除7层监听器转发规则
     ///
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Gaap {
     /// 删除7层监听器转发规则
     ///
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(_ input: DeleteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Gaap {
     /// 删除7层监听器转发规则
     ///
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(listenerId: String, ruleId: String, force: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
         self.deleteRule(DeleteRuleRequest(listenerId: listenerId, ruleId: ruleId, force: force), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Gaap {
     /// 删除7层监听器转发规则
     ///
     /// 该接口（DeleteRule）用于删除HTTP/HTTPS监听器的转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRule(listenerId: String, ruleId: String, force: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
         try await self.deleteRule(DeleteRuleRequest(listenerId: listenerId, ruleId: ruleId, force: force), region: region, logger: logger, on: eventLoop)
     }

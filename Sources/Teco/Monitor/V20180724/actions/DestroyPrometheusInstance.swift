@@ -42,7 +42,7 @@ extension Monitor {
     /// 强制释放 Prometheus 实例
     ///
     /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
-    @inlinable
+    @inlinable @discardableResult
     public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPrometheusInstanceResponse> {
         self.client.execute(action: "DestroyPrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Monitor {
     /// 强制释放 Prometheus 实例
     ///
     /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
-    @inlinable
+    @inlinable @discardableResult
     public func destroyPrometheusInstance(_ input: DestroyPrometheusInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
         try await self.client.execute(action: "DestroyPrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Monitor {
     /// 强制释放 Prometheus 实例
     ///
     /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
-    @inlinable
+    @inlinable @discardableResult
     public func destroyPrometheusInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyPrometheusInstanceResponse> {
         self.destroyPrometheusInstance(DestroyPrometheusInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Monitor {
     /// 强制释放 Prometheus 实例
     ///
     /// 彻底删除 Prometheus 实例相关数据，给定的实例必须先被 Terminate
-    @inlinable
+    @inlinable @discardableResult
     public func destroyPrometheusInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyPrometheusInstanceResponse {
         try await self.destroyPrometheusInstance(DestroyPrometheusInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

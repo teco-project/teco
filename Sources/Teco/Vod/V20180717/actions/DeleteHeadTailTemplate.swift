@@ -47,7 +47,7 @@ extension Vod {
     /// 删除片头片尾模板
     ///
     /// 删除片头片尾模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteHeadTailTemplate(_ input: DeleteHeadTailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHeadTailTemplateResponse> {
         self.client.execute(action: "DeleteHeadTailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vod {
     /// 删除片头片尾模板
     ///
     /// 删除片头片尾模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteHeadTailTemplate(_ input: DeleteHeadTailTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHeadTailTemplateResponse {
         try await self.client.execute(action: "DeleteHeadTailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vod {
     /// 删除片头片尾模板
     ///
     /// 删除片头片尾模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHeadTailTemplateResponse> {
         self.deleteHeadTailTemplate(DeleteHeadTailTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vod {
     /// 删除片头片尾模板
     ///
     /// 删除片头片尾模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteHeadTailTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHeadTailTemplateResponse {
         try await self.deleteHeadTailTemplate(DeleteHeadTailTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

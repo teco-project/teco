@@ -40,25 +40,25 @@ extension Tione {
     }
 
     /// 删除跑批任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBatchTask(_ input: DeleteBatchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBatchTaskResponse> {
         self.client.execute(action: "DeleteBatchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除跑批任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBatchTask(_ input: DeleteBatchTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
         try await self.client.execute(action: "DeleteBatchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除跑批任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBatchTask(batchTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBatchTaskResponse> {
         self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除跑批任务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBatchTask(batchTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBatchTaskResponse {
         try await self.deleteBatchTask(DeleteBatchTaskRequest(batchTaskId: batchTaskId), region: region, logger: logger, on: eventLoop)
     }

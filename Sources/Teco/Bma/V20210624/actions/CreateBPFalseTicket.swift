@@ -40,25 +40,25 @@ extension Bma {
     }
 
     /// 添加误报工单
-    @inlinable
+    @inlinable @discardableResult
     public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFalseTicketResponse> {
         self.client.execute(action: "CreateBPFalseTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加误报工单
-    @inlinable
+    @inlinable @discardableResult
     public func createBPFalseTicket(_ input: CreateBPFalseTicketRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
         try await self.client.execute(action: "CreateBPFalseTicket", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加误报工单
-    @inlinable
+    @inlinable @discardableResult
     public func createBPFalseTicket(fakeURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFalseTicketResponse> {
         self.createBPFalseTicket(CreateBPFalseTicketRequest(fakeURL: fakeURL), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加误报工单
-    @inlinable
+    @inlinable @discardableResult
     public func createBPFalseTicket(fakeURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFalseTicketResponse {
         try await self.createBPFalseTicket(CreateBPFalseTicketRequest(fakeURL: fakeURL), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Oceanus {
     /// 删除作业
     ///
     /// 批量删除作业接口，批量操作数量上限20
-    @inlinable
+    @inlinable @discardableResult
     public func deleteJobs(_ input: DeleteJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteJobsResponse> {
         self.client.execute(action: "DeleteJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Oceanus {
     /// 删除作业
     ///
     /// 批量删除作业接口，批量操作数量上限20
-    @inlinable
+    @inlinable @discardableResult
     public func deleteJobs(_ input: DeleteJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
         try await self.client.execute(action: "DeleteJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Oceanus {
     /// 删除作业
     ///
     /// 批量删除作业接口，批量操作数量上限20
-    @inlinable
+    @inlinable @discardableResult
     public func deleteJobs(jobIds: [String], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteJobsResponse> {
         self.deleteJobs(DeleteJobsRequest(jobIds: jobIds, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Oceanus {
     /// 删除作业
     ///
     /// 批量删除作业接口，批量操作数量上限20
-    @inlinable
+    @inlinable @discardableResult
     public func deleteJobs(jobIds: [String], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
         try await self.deleteJobs(DeleteJobsRequest(jobIds: jobIds, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
     }

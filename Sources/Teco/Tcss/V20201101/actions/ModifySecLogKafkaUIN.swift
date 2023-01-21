@@ -40,25 +40,25 @@ extension Tcss {
     }
 
     /// 修改安全日志kafkaUIN
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
         self.client.execute(action: "ModifySecLogKafkaUIN", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志kafkaUIN
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogKafkaUIN(_ input: ModifySecLogKafkaUINRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
         try await self.client.execute(action: "ModifySecLogKafkaUIN", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全日志kafkaUIN
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogKafkaUIN(dstUIN: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogKafkaUINResponse> {
         self.modifySecLogKafkaUIN(ModifySecLogKafkaUINRequest(dstUIN: dstUIN), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志kafkaUIN
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogKafkaUIN(dstUIN: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogKafkaUINResponse {
         try await self.modifySecLogKafkaUIN(ModifySecLogKafkaUINRequest(dstUIN: dstUIN), region: region, logger: logger, on: eventLoop)
     }

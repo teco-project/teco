@@ -47,7 +47,7 @@ extension Iotvideo {
     /// 修改产品数据模板
     ///
     /// 提供修改产品的数据模板的能力
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModelDefinitionResponse> {
         self.client.execute(action: "ModifyModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotvideo {
     /// 修改产品数据模板
     ///
     /// 提供修改产品的数据模板的能力
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModelDefinition(_ input: ModifyModelDefinitionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
         try await self.client.execute(action: "ModifyModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotvideo {
     /// 修改产品数据模板
     ///
     /// 提供修改产品的数据模板的能力
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModelDefinitionResponse> {
         self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotvideo {
     /// 修改产品数据模板
     ///
     /// 提供修改产品的数据模板的能力
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
         try await self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
     }

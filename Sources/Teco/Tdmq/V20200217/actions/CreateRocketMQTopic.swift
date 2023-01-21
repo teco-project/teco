@@ -65,25 +65,25 @@ extension Tdmq {
     }
 
     /// 创建RocketMQ主题
-    @inlinable
+    @inlinable @discardableResult
     public func createRocketMQTopic(_ input: CreateRocketMQTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQTopicResponse> {
         self.client.execute(action: "CreateRocketMQTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ主题
-    @inlinable
+    @inlinable @discardableResult
     public func createRocketMQTopic(_ input: CreateRocketMQTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQTopicResponse {
         try await self.client.execute(action: "CreateRocketMQTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建RocketMQ主题
-    @inlinable
+    @inlinable @discardableResult
     public func createRocketMQTopic(topic: String, namespaces: [String], type: String, clusterId: String, remark: String? = nil, partitionNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQTopicResponse> {
         self.createRocketMQTopic(CreateRocketMQTopicRequest(topic: topic, namespaces: namespaces, type: type, clusterId: clusterId, remark: remark, partitionNum: partitionNum), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ主题
-    @inlinable
+    @inlinable @discardableResult
     public func createRocketMQTopic(topic: String, namespaces: [String], type: String, clusterId: String, remark: String? = nil, partitionNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQTopicResponse {
         try await self.createRocketMQTopic(CreateRocketMQTopicRequest(topic: topic, namespaces: namespaces, type: type, clusterId: clusterId, remark: remark, partitionNum: partitionNum), region: region, logger: logger, on: eventLoop)
     }

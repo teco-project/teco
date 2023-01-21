@@ -42,7 +42,7 @@ extension Cls {
     /// 删除索引配置
     ///
     /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIndex(_ input: DeleteIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
         self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cls {
     /// 删除索引配置
     ///
     /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIndex(_ input: DeleteIndexRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
         try await self.client.execute(action: "DeleteIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cls {
     /// 删除索引配置
     ///
     /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIndex(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIndexResponse> {
         self.deleteIndex(DeleteIndexRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cls {
     /// 删除索引配置
     ///
     /// 本接口用于删除日志主题的索引配置，删除索引配置后将无法检索和查询采集到的日志。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIndex(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIndexResponse {
         try await self.deleteIndex(DeleteIndexRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }

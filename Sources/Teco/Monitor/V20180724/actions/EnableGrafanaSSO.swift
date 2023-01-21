@@ -47,7 +47,7 @@ extension Monitor {
     /// 设置 Grafana 单点登录
     ///
     /// 设置 Grafana 单点登录，使用腾讯云账号
-    @inlinable
+    @inlinable @discardableResult
     public func enableGrafanaSSO(_ input: EnableGrafanaSSORequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGrafanaSSOResponse> {
         self.client.execute(action: "EnableGrafanaSSO", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Monitor {
     /// 设置 Grafana 单点登录
     ///
     /// 设置 Grafana 单点登录，使用腾讯云账号
-    @inlinable
+    @inlinable @discardableResult
     public func enableGrafanaSSO(_ input: EnableGrafanaSSORequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaSSOResponse {
         try await self.client.execute(action: "EnableGrafanaSSO", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Monitor {
     /// 设置 Grafana 单点登录
     ///
     /// 设置 Grafana 单点登录，使用腾讯云账号
-    @inlinable
+    @inlinable @discardableResult
     public func enableGrafanaSSO(enableSSO: Bool, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGrafanaSSOResponse> {
         self.enableGrafanaSSO(EnableGrafanaSSORequest(enableSSO: enableSSO, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Monitor {
     /// 设置 Grafana 单点登录
     ///
     /// 设置 Grafana 单点登录，使用腾讯云账号
-    @inlinable
+    @inlinable @discardableResult
     public func enableGrafanaSSO(enableSSO: Bool, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaSSOResponse {
         try await self.enableGrafanaSSO(EnableGrafanaSSORequest(enableSSO: enableSSO, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

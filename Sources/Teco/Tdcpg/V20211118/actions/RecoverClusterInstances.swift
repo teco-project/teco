@@ -56,7 +56,7 @@ extension Tdcpg {
     ///  - 读写实例状态为running(运行中)时，批量恢复状态为isolated(已隔离)的只读实例
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
-    @inlinable
+    @inlinable @discardableResult
     public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterInstancesResponse> {
         self.client.execute(action: "RecoverClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Tdcpg {
     ///  - 读写实例状态为running(运行中)时，批量恢复状态为isolated(已隔离)的只读实例
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
-    @inlinable
+    @inlinable @discardableResult
     public func recoverClusterInstances(_ input: RecoverClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterInstancesResponse {
         try await self.client.execute(action: "RecoverClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Tdcpg {
     ///  - 读写实例状态为running(运行中)时，批量恢复状态为isolated(已隔离)的只读实例
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
-    @inlinable
+    @inlinable @discardableResult
     public func recoverClusterInstances(clusterId: String, instanceIdSet: [String], period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverClusterInstancesResponse> {
         self.recoverClusterInstances(RecoverClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, period: period), region: region, logger: logger, on: eventLoop)
     }
@@ -89,7 +89,7 @@ extension Tdcpg {
     ///  - 读写实例状态为running(运行中)时，批量恢复状态为isolated(已隔离)的只读实例
     ///  - 读写实例状态为isolated(已隔离)时，恢复读写实例
     ///  - 读写实例状态为isolated(已隔离)时，批量恢复读写实例以及状态为isolated(已隔离)的只读实例
-    @inlinable
+    @inlinable @discardableResult
     public func recoverClusterInstances(clusterId: String, instanceIdSet: [String], period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverClusterInstancesResponse {
         try await self.recoverClusterInstances(RecoverClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, period: period), region: region, logger: logger, on: eventLoop)
     }

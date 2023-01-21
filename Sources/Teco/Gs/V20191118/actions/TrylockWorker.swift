@@ -65,25 +65,25 @@ extension Gs {
     }
 
     /// 尝试锁定机器
-    @inlinable
+    @inlinable @discardableResult
     public func trylockWorker(_ input: TrylockWorkerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TrylockWorkerResponse> {
         self.client.execute(action: "TrylockWorker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 尝试锁定机器
-    @inlinable
+    @inlinable @discardableResult
     public func trylockWorker(_ input: TrylockWorkerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
         try await self.client.execute(action: "TrylockWorker", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 尝试锁定机器
-    @inlinable
+    @inlinable @discardableResult
     public func trylockWorker(userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TrylockWorkerResponse> {
         self.trylockWorker(TrylockWorkerRequest(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 尝试锁定机器
-    @inlinable
+    @inlinable @discardableResult
     public func trylockWorker(userId: String, gameId: String, gameRegion: String? = nil, setNo: UInt64? = nil, userIp: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrylockWorkerResponse {
         try await self.trylockWorker(TrylockWorkerRequest(userId: userId, gameId: gameId, gameRegion: gameRegion, setNo: setNo, userIp: userIp, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }

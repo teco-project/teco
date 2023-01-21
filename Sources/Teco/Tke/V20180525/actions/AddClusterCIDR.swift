@@ -52,7 +52,7 @@ extension Tke {
     /// 给集群增加ClusterCIDR
     ///
     /// 给GR集群增加可用的ClusterCIDR
-    @inlinable
+    @inlinable @discardableResult
     public func addClusterCIDR(_ input: AddClusterCIDRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterCIDRResponse> {
         self.client.execute(action: "AddClusterCIDR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tke {
     /// 给集群增加ClusterCIDR
     ///
     /// 给GR集群增加可用的ClusterCIDR
-    @inlinable
+    @inlinable @discardableResult
     public func addClusterCIDR(_ input: AddClusterCIDRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterCIDRResponse {
         try await self.client.execute(action: "AddClusterCIDR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tke {
     /// 给集群增加ClusterCIDR
     ///
     /// 给GR集群增加可用的ClusterCIDR
-    @inlinable
+    @inlinable @discardableResult
     public func addClusterCIDR(clusterId: String, clusterCIDRs: [String], ignoreClusterCIDRConflict: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterCIDRResponse> {
         self.addClusterCIDR(AddClusterCIDRRequest(clusterId: clusterId, clusterCIDRs: clusterCIDRs, ignoreClusterCIDRConflict: ignoreClusterCIDRConflict), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tke {
     /// 给集群增加ClusterCIDR
     ///
     /// 给GR集群增加可用的ClusterCIDR
-    @inlinable
+    @inlinable @discardableResult
     public func addClusterCIDR(clusterId: String, clusterCIDRs: [String], ignoreClusterCIDRConflict: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterCIDRResponse {
         try await self.addClusterCIDR(AddClusterCIDRRequest(clusterId: clusterId, clusterCIDRs: clusterCIDRs, ignoreClusterCIDRConflict: ignoreClusterCIDRConflict), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Cmq {
     }
 
     /// 回溯队列
-    @inlinable
+    @inlinable @discardableResult
     public func rewindQueue(_ input: RewindQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RewindQueueResponse> {
         self.client.execute(action: "RewindQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回溯队列
-    @inlinable
+    @inlinable @discardableResult
     public func rewindQueue(_ input: RewindQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindQueueResponse {
         try await self.client.execute(action: "RewindQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 回溯队列
-    @inlinable
+    @inlinable @discardableResult
     public func rewindQueue(queueName: String, startConsumeTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RewindQueueResponse> {
         self.rewindQueue(RewindQueueRequest(queueName: queueName, startConsumeTime: startConsumeTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回溯队列
-    @inlinable
+    @inlinable @discardableResult
     public func rewindQueue(queueName: String, startConsumeTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RewindQueueResponse {
         try await self.rewindQueue(RewindQueueRequest(queueName: queueName, startConsumeTime: startConsumeTime), region: region, logger: logger, on: eventLoop)
     }

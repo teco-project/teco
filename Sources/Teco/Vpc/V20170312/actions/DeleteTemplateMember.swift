@@ -47,7 +47,7 @@ extension Vpc {
     /// 删除模板对象成员
     ///
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateMemberResponse> {
         self.client.execute(action: "DeleteTemplateMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 删除模板对象成员
     ///
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTemplateMember(_ input: DeleteTemplateMemberRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
         try await self.client.execute(action: "DeleteTemplateMember", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 删除模板对象成员
     ///
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateMemberResponse> {
         self.deleteTemplateMember(DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 删除模板对象成员
     ///
     /// 删除模板对象中的IP地址、协议端口、IP地址组、协议端口组。当前仅支持北京、泰国、北美地域请求。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTemplateMember(templateId: String, templateMember: [MemberInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateMemberResponse {
         try await self.deleteTemplateMember(DeleteTemplateMemberRequest(templateId: templateId, templateMember: templateMember), region: region, logger: logger, on: eventLoop)
     }

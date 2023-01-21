@@ -60,25 +60,25 @@ extension Iecp {
     }
 
     /// 删除边缘单元NodeUnit
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNodeUnit(_ input: DeleteNodeUnitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNodeUnitResponse> {
         self.client.execute(action: "DeleteNodeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元NodeUnit
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNodeUnit(_ input: DeleteNodeUnitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodeUnitResponse {
         try await self.client.execute(action: "DeleteNodeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除边缘单元NodeUnit
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, nodeUnitName: String, namespace: String? = nil, nodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNodeUnitResponse> {
         self.deleteNodeUnit(DeleteNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, nodeUnitName: nodeUnitName, namespace: namespace, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元NodeUnit
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, nodeUnitName: String, namespace: String? = nil, nodes: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNodeUnitResponse {
         try await self.deleteNodeUnit(DeleteNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, nodeUnitName: nodeUnitName, namespace: namespace, nodes: nodes), region: region, logger: logger, on: eventLoop)
     }

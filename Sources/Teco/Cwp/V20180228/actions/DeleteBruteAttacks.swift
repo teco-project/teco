@@ -42,7 +42,7 @@ extension Cwp {
     /// 删除暴力破解记录
     ///
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBruteAttacksResponse> {
         self.client.execute(action: "DeleteBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cwp {
     /// 删除暴力破解记录
     ///
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBruteAttacks(_ input: DeleteBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
         try await self.client.execute(action: "DeleteBruteAttacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cwp {
     /// 删除暴力破解记录
     ///
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBruteAttacks(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBruteAttacksResponse> {
         self.deleteBruteAttacks(DeleteBruteAttacksRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cwp {
     /// 删除暴力破解记录
     ///
     /// 本接口 (DeleteBruteAttacks) 用于删除暴力破解记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBruteAttacks(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBruteAttacksResponse {
         try await self.deleteBruteAttacks(DeleteBruteAttacksRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

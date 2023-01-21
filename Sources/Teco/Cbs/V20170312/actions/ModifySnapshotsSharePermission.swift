@@ -57,7 +57,7 @@ extension Cbs {
     /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
         self.client.execute(action: "ModifySnapshotsSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Cbs {
     /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySnapshotsSharePermission(_ input: ModifySnapshotsSharePermissionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
         try await self.client.execute(action: "ModifySnapshotsSharePermission", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Cbs {
     /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsSharePermissionResponse> {
         self.modifySnapshotsSharePermission(ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }
@@ -96,7 +96,7 @@ extension Cbs {
     /// * 分享快照无法更改名称，描述，仅可用于创建云硬盘。
     /// * 只支持分享到对方账户相同地域。
     /// * 仅支持分享数据盘快照。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySnapshotsSharePermission(accountIds: [String], permission: String, snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsSharePermissionResponse {
         try await self.modifySnapshotsSharePermission(ModifySnapshotsSharePermissionRequest(accountIds: accountIds, permission: permission, snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
     }

@@ -40,25 +40,25 @@ extension Cls {
     }
 
     /// 删除采集规则配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConfig(_ input: DeleteConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigResponse> {
         self.client.execute(action: "DeleteConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除采集规则配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConfig(_ input: DeleteConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
         try await self.client.execute(action: "DeleteConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除采集规则配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigResponse> {
         self.deleteConfig(DeleteConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除采集规则配置
-    @inlinable
+    @inlinable @discardableResult
     public func deleteConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
         try await self.deleteConfig(DeleteConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
     }

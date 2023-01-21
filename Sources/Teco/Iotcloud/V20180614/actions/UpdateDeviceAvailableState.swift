@@ -52,7 +52,7 @@ extension Iotcloud {
     /// 切换设备可用状态
     ///
     /// 启用或者禁用设备
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceAvailableStateResponse> {
         self.client.execute(action: "UpdateDeviceAvailableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotcloud {
     /// 切换设备可用状态
     ///
     /// 启用或者禁用设备
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceAvailableState(_ input: UpdateDeviceAvailableStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
         try await self.client.execute(action: "UpdateDeviceAvailableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotcloud {
     /// 切换设备可用状态
     ///
     /// 启用或者禁用设备
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceAvailableStateResponse> {
         self.updateDeviceAvailableState(UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotcloud {
     /// 切换设备可用状态
     ///
     /// 启用或者禁用设备
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceAvailableState(productId: String, deviceName: String, enableState: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceAvailableStateResponse {
         try await self.updateDeviceAvailableState(UpdateDeviceAvailableStateRequest(productId: productId, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
     }

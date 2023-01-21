@@ -42,7 +42,7 @@ extension Sqlserver {
     /// 立即下线实例
     ///
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDBInstance(_ input: DeleteDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDBInstanceResponse> {
         self.client.execute(action: "DeleteDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Sqlserver {
     /// 立即下线实例
     ///
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDBInstance(_ input: DeleteDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
         try await self.client.execute(action: "DeleteDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Sqlserver {
     /// 立即下线实例
     ///
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDBInstanceResponse> {
         self.deleteDBInstance(DeleteDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Sqlserver {
     /// 立即下线实例
     ///
     /// 本接口（DeleteDBInstance）用于释放回收站中的SQL server实例(立即下线)。释放后的实例将保存一段时间后物理销毁。其发布订阅将自动解除，其ro副本将自动释放。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDBInstanceResponse {
         try await self.deleteDBInstance(DeleteDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

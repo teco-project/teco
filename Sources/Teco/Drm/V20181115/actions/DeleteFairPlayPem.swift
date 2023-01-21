@@ -50,7 +50,7 @@ extension Drm {
     /// 本接口用来删除fairplay方案的私钥、ask等信息
     /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
     /// 由于缓存，删除操作需要约半小时生效
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFairPlayPemResponse> {
         self.client.execute(action: "DeleteFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Drm {
     /// 本接口用来删除fairplay方案的私钥、ask等信息
     /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
     /// 由于缓存，删除操作需要约半小时生效
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFairPlayPem(_ input: DeleteFairPlayPemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFairPlayPemResponse {
         try await self.client.execute(action: "DeleteFairPlayPem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -70,7 +70,7 @@ extension Drm {
     /// 本接口用来删除fairplay方案的私钥、ask等信息
     /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
     /// 由于缓存，删除操作需要约半小时生效
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFairPlayPemResponse> {
         self.deleteFairPlayPem(DeleteFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), region: region, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Drm {
     /// 本接口用来删除fairplay方案的私钥、ask等信息
     /// 注：高风险操作，删除后，您将无法使用腾讯云DRM提供的fairplay服务。
     /// 由于缓存，删除操作需要约半小时生效
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFairPlayPem(bailorId: UInt64? = nil, fairPlayPemId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFairPlayPemResponse {
         try await self.deleteFairPlayPem(DeleteFairPlayPemRequest(bailorId: bailorId, fairPlayPemId: fairPlayPemId), region: region, logger: logger, on: eventLoop)
     }

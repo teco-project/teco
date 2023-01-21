@@ -40,25 +40,25 @@ extension Iecp {
     }
 
     /// 删除边缘单元
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitCloud(_ input: DeleteEdgeUnitCloudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitCloudResponse> {
         self.client.execute(action: "DeleteEdgeUnitCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitCloud(_ input: DeleteEdgeUnitCloudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitCloudResponse {
         try await self.client.execute(action: "DeleteEdgeUnitCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除边缘单元
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitCloud(edgeUnitId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitCloudResponse> {
         self.deleteEdgeUnitCloud(DeleteEdgeUnitCloudRequest(edgeUnitId: edgeUnitId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitCloud(edgeUnitId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitCloudResponse {
         try await self.deleteEdgeUnitCloud(DeleteEdgeUnitCloudRequest(edgeUnitId: edgeUnitId), region: region, logger: logger, on: eventLoop)
     }

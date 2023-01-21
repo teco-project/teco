@@ -55,7 +55,7 @@ extension Vpc {
     /// * 该接口用于将一个内网IP从一个弹性网卡上迁移到另外一个弹性网卡，主IP地址不支持迁移。
     /// * 迁移前后的弹性网卡必须在同一个子网内。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
+    @inlinable @discardableResult
     public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigratePrivateIpAddressResponse> {
         self.client.execute(action: "MigratePrivateIpAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// * 该接口用于将一个内网IP从一个弹性网卡上迁移到另外一个弹性网卡，主IP地址不支持迁移。
     /// * 迁移前后的弹性网卡必须在同一个子网内。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
+    @inlinable @discardableResult
     public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
         try await self.client.execute(action: "MigratePrivateIpAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -77,7 +77,7 @@ extension Vpc {
     /// * 该接口用于将一个内网IP从一个弹性网卡上迁移到另外一个弹性网卡，主IP地址不支持迁移。
     /// * 迁移前后的弹性网卡必须在同一个子网内。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
+    @inlinable @discardableResult
     public func migratePrivateIpAddress(sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigratePrivateIpAddressResponse> {
         self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), region: region, logger: logger, on: eventLoop)
     }
@@ -88,7 +88,7 @@ extension Vpc {
     /// * 该接口用于将一个内网IP从一个弹性网卡上迁移到另外一个弹性网卡，主IP地址不支持迁移。
     /// * 迁移前后的弹性网卡必须在同一个子网内。
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
-    @inlinable
+    @inlinable @discardableResult
     public func migratePrivateIpAddress(sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
         try await self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), region: region, logger: logger, on: eventLoop)
     }

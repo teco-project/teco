@@ -66,7 +66,7 @@ extension Vpc {
     /// 		<li>CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate 四者是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。</li>
     /// </ul></li></ul></li>
     /// </ul>
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
         self.client.execute(action: "ModifySecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -88,7 +88,7 @@ extension Vpc {
     /// 		<li>CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate 四者是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。</li>
     /// </ul></li></ul></li>
     /// </ul>
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityGroupPolicies(_ input: ModifySecurityGroupPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
         try await self.client.execute(action: "ModifySecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -110,7 +110,7 @@ extension Vpc {
     /// 		<li>CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate 四者是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。</li>
     /// </ul></li></ul></li>
     /// </ul>
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
         self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), region: region, logger: logger, on: eventLoop)
     }
@@ -132,7 +132,7 @@ extension Vpc {
     /// 		<li>CidrBlock, Ipv6CidrBlock, SecurityGroupId, AddressTemplate 四者是排他关系，不允许同时输入，Protocol + Port 和 ServiceTemplate 二者是排他关系，不允许同时输入。</li>
     /// </ul></li></ul></li>
     /// </ul>
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
         try await self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), region: region, logger: logger, on: eventLoop)
     }

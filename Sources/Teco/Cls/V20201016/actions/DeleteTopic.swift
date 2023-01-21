@@ -42,7 +42,7 @@ extension Cls {
     /// 删除日志主题
     ///
     /// 本接口用于删除日志主题。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopic(_ input: DeleteTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicResponse> {
         self.client.execute(action: "DeleteTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cls {
     /// 删除日志主题
     ///
     /// 本接口用于删除日志主题。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopic(_ input: DeleteTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
         try await self.client.execute(action: "DeleteTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cls {
     /// 删除日志主题
     ///
     /// 本接口用于删除日志主题。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopic(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicResponse> {
         self.deleteTopic(DeleteTopicRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cls {
     /// 删除日志主题
     ///
     /// 本接口用于删除日志主题。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopic(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicResponse {
         try await self.deleteTopic(DeleteTopicRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
     }

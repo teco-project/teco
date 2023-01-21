@@ -51,7 +51,7 @@ extension Vod {
     /// 修改子应用状态
     ///
     /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubAppIdStatus(_ input: ModifySubAppIdStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdStatusResponse> {
         self.client.execute(action: "ModifySubAppIdStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -59,7 +59,7 @@ extension Vod {
     /// 修改子应用状态
     ///
     /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubAppIdStatus(_ input: ModifySubAppIdStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdStatusResponse {
         try await self.client.execute(action: "ModifySubAppIdStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -67,7 +67,7 @@ extension Vod {
     /// 修改子应用状态
     ///
     /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubAppIdStatus(subAppId: UInt64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdStatusResponse> {
         self.modifySubAppIdStatus(ModifySubAppIdStatusRequest(subAppId: subAppId, status: status), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Vod {
     /// 修改子应用状态
     ///
     /// 该接口用于启用、停用子应用。被停用的子应用将封停对应域名，并限制控制台访问。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubAppIdStatus(subAppId: UInt64, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdStatusResponse {
         try await self.modifySubAppIdStatus(ModifySubAppIdStatusRequest(subAppId: subAppId, status: status), region: region, logger: logger, on: eventLoop)
     }

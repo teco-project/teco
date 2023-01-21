@@ -45,25 +45,25 @@ extension Irp {
     }
 
     /// 上报用户画像
-    @inlinable
+    @inlinable @discardableResult
     public func reportPortrait(_ input: ReportPortraitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportPortraitResponse> {
         self.client.execute(action: "ReportPortrait", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报用户画像
-    @inlinable
+    @inlinable @discardableResult
     public func reportPortrait(_ input: ReportPortraitRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
         try await self.client.execute(action: "ReportPortrait", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 上报用户画像
-    @inlinable
+    @inlinable @discardableResult
     public func reportPortrait(bid: String, portraitList: [PortraitInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportPortraitResponse> {
         self.reportPortrait(ReportPortraitRequest(bid: bid, portraitList: portraitList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 上报用户画像
-    @inlinable
+    @inlinable @discardableResult
     public func reportPortrait(bid: String, portraitList: [PortraitInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportPortraitResponse {
         try await self.reportPortrait(ReportPortraitRequest(bid: bid, portraitList: portraitList), region: region, logger: logger, on: eventLoop)
     }

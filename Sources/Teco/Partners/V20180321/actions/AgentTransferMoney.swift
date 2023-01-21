@@ -47,7 +47,7 @@ extension Partners {
     /// 给客户转账
     ///
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
-    @inlinable
+    @inlinable @discardableResult
     public func agentTransferMoney(_ input: AgentTransferMoneyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentTransferMoneyResponse> {
         self.client.execute(action: "AgentTransferMoney", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Partners {
     /// 给客户转账
     ///
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
-    @inlinable
+    @inlinable @discardableResult
     public func agentTransferMoney(_ input: AgentTransferMoneyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
         try await self.client.execute(action: "AgentTransferMoney", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Partners {
     /// 给客户转账
     ///
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
-    @inlinable
+    @inlinable @discardableResult
     public func agentTransferMoney(clientUin: String, amount: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentTransferMoneyResponse> {
         self.agentTransferMoney(AgentTransferMoneyRequest(clientUin: clientUin, amount: amount), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Partners {
     /// 给客户转账
     ///
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
-    @inlinable
+    @inlinable @discardableResult
     public func agentTransferMoney(clientUin: String, amount: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
         try await self.agentTransferMoney(AgentTransferMoneyRequest(clientUin: clientUin, amount: amount), region: region, logger: logger, on: eventLoop)
     }

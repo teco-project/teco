@@ -67,7 +67,7 @@ extension Ecm {
     /// 修改模块配置
     ///
     /// 修改模块配置，已关联实例的模块不支持调整配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleConfigResponse> {
         self.client.execute(action: "ModifyModuleConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Ecm {
     /// 修改模块配置
     ///
     /// 修改模块配置，已关联实例的模块不支持调整配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleConfig(_ input: ModifyModuleConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleConfigResponse {
         try await self.client.execute(action: "ModifyModuleConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Ecm {
     /// 修改模块配置
     ///
     /// 修改模块配置，已关联实例的模块不支持调整配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleConfig(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleConfigResponse> {
         self.modifyModuleConfig(ModifyModuleConfigRequest(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Ecm {
     /// 修改模块配置
     ///
     /// 修改模块配置，已关联实例的模块不支持调整配置。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleConfig(moduleId: String, instanceType: String, defaultDataDiskSize: Int64, defaultSystemDiskSize: Int64? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleConfigResponse {
         try await self.modifyModuleConfig(ModifyModuleConfigRequest(moduleId: moduleId, instanceType: instanceType, defaultDataDiskSize: defaultDataDiskSize, defaultSystemDiskSize: defaultSystemDiskSize, systemDisk: systemDisk, dataDisks: dataDisks), region: region, logger: logger, on: eventLoop)
     }

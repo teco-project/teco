@@ -50,25 +50,25 @@ extension Solar {
     }
 
     /// 复制活动渠道的策略
-    @inlinable
+    @inlinable @discardableResult
     public func copyActivityChannel(_ input: CopyActivityChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyActivityChannelResponse> {
         self.client.execute(action: "CopyActivityChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制活动渠道的策略
-    @inlinable
+    @inlinable @discardableResult
     public func copyActivityChannel(_ input: CopyActivityChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyActivityChannelResponse {
         try await self.client.execute(action: "CopyActivityChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 复制活动渠道的策略
-    @inlinable
+    @inlinable @discardableResult
     public func copyActivityChannel(activityId: String, channelFrom: String, channelTo: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyActivityChannelResponse> {
         self.copyActivityChannel(CopyActivityChannelRequest(activityId: activityId, channelFrom: channelFrom, channelTo: channelTo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 复制活动渠道的策略
-    @inlinable
+    @inlinable @discardableResult
     public func copyActivityChannel(activityId: String, channelFrom: String, channelTo: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyActivityChannelResponse {
         try await self.copyActivityChannel(CopyActivityChannelRequest(activityId: activityId, channelFrom: channelFrom, channelTo: channelTo), region: region, logger: logger, on: eventLoop)
     }

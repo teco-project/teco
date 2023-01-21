@@ -57,7 +57,7 @@ extension Ecm {
     /// 修改监听器绑定的后端机器的端口
     ///
     /// 修改监听器绑定的后端机器的端口。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTargetPort(_ input: ModifyTargetPortRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetPortResponse> {
         self.client.execute(action: "ModifyTargetPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Ecm {
     /// 修改监听器绑定的后端机器的端口
     ///
     /// 修改监听器绑定的后端机器的端口。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTargetPort(_ input: ModifyTargetPortRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetPortResponse {
         try await self.client.execute(action: "ModifyTargetPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Ecm {
     /// 修改监听器绑定的后端机器的端口
     ///
     /// 修改监听器绑定的后端机器的端口。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTargetPort(loadBalancerId: String, listenerId: String, targets: [Target], newPort: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetPortResponse> {
         self.modifyTargetPort(ModifyTargetPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, newPort: newPort), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Ecm {
     /// 修改监听器绑定的后端机器的端口
     ///
     /// 修改监听器绑定的后端机器的端口。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTargetPort(loadBalancerId: String, listenerId: String, targets: [Target], newPort: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetPortResponse {
         try await self.modifyTargetPort(ModifyTargetPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, newPort: newPort), region: region, logger: logger, on: eventLoop)
     }

@@ -50,25 +50,25 @@ extension Tcb {
     }
 
     /// 创建托管域名
-    @inlinable
+    @inlinable @discardableResult
     public func createHostingDomain(_ input: CreateHostingDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostingDomainResponse> {
         self.client.execute(action: "CreateHostingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建托管域名
-    @inlinable
+    @inlinable @discardableResult
     public func createHostingDomain(_ input: CreateHostingDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostingDomainResponse {
         try await self.client.execute(action: "CreateHostingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建托管域名
-    @inlinable
+    @inlinable @discardableResult
     public func createHostingDomain(envId: String, domain: String, certId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostingDomainResponse> {
         self.createHostingDomain(CreateHostingDomainRequest(envId: envId, domain: domain, certId: certId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建托管域名
-    @inlinable
+    @inlinable @discardableResult
     public func createHostingDomain(envId: String, domain: String, certId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostingDomainResponse {
         try await self.createHostingDomain(CreateHostingDomainRequest(envId: envId, domain: domain, certId: certId), region: region, logger: logger, on: eventLoop)
     }

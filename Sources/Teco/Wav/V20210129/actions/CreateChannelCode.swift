@@ -95,25 +95,25 @@ extension Wav {
     }
 
     /// 新增渠道活码接口
-    @inlinable
+    @inlinable @discardableResult
     public func createChannelCode(_ input: CreateChannelCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelCodeResponse> {
         self.client.execute(action: "CreateChannelCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增渠道活码接口
-    @inlinable
+    @inlinable @discardableResult
     public func createChannelCode(_ input: CreateChannelCodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelCodeResponse {
         try await self.client.execute(action: "CreateChannelCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 新增渠道活码接口
-    @inlinable
+    @inlinable @discardableResult
     public func createChannelCode(type: Int64, useUserId: [Int64], useUserOpenId: [String], appIds: String, source: String? = nil, sourceName: String? = nil, name: String? = nil, tag: [WeComTagDetail]? = nil, skipVerify: Int64? = nil, msgId: Int64? = nil, remark: String? = nil, sourceType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelCodeResponse> {
         self.createChannelCode(CreateChannelCodeRequest(type: type, useUserId: useUserId, useUserOpenId: useUserOpenId, appIds: appIds, source: source, sourceName: sourceName, name: name, tag: tag, skipVerify: skipVerify, msgId: msgId, remark: remark, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增渠道活码接口
-    @inlinable
+    @inlinable @discardableResult
     public func createChannelCode(type: Int64, useUserId: [Int64], useUserOpenId: [String], appIds: String, source: String? = nil, sourceName: String? = nil, name: String? = nil, tag: [WeComTagDetail]? = nil, skipVerify: Int64? = nil, msgId: Int64? = nil, remark: String? = nil, sourceType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelCodeResponse {
         try await self.createChannelCode(CreateChannelCodeRequest(type: type, useUserId: useUserId, useUserOpenId: useUserOpenId, appIds: appIds, source: source, sourceName: sourceName, name: name, tag: tag, skipVerify: skipVerify, msgId: msgId, remark: remark, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
     }

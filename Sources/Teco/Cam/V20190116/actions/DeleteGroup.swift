@@ -40,25 +40,25 @@ extension Cam {
     }
 
     /// 删除用户组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGroup(_ input: DeleteGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGroupResponse> {
         self.client.execute(action: "DeleteGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGroup(_ input: DeleteGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
         try await self.client.execute(action: "DeleteGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除用户组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGroup(groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGroupResponse> {
         self.deleteGroup(DeleteGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除用户组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGroup(groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
         try await self.deleteGroup(DeleteGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }

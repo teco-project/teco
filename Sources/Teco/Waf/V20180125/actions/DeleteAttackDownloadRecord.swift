@@ -40,25 +40,25 @@ extension Waf {
     }
 
     /// 删除攻击日志下载任务记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackDownloadRecordResponse> {
         self.client.execute(action: "DeleteAttackDownloadRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除攻击日志下载任务记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAttackDownloadRecord(_ input: DeleteAttackDownloadRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
         try await self.client.execute(action: "DeleteAttackDownloadRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除攻击日志下载任务记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAttackDownloadRecord(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAttackDownloadRecordResponse> {
         self.deleteAttackDownloadRecord(DeleteAttackDownloadRecordRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除攻击日志下载任务记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAttackDownloadRecord(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAttackDownloadRecordResponse {
         try await self.deleteAttackDownloadRecord(DeleteAttackDownloadRecordRequest(id: id), region: region, logger: logger, on: eventLoop)
     }

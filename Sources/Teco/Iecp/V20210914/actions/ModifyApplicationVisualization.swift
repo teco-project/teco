@@ -95,25 +95,25 @@ extension Iecp {
     }
 
     /// 修改应用模板配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationVisualization(_ input: ModifyApplicationVisualizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationVisualizationResponse> {
         self.client.execute(action: "ModifyApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用模板配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationVisualization(_ input: ModifyApplicationVisualizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationVisualizationResponse {
         try await self.client.execute(action: "ModifyApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改应用模板配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationVisualization(applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainer: Container? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationVisualizationResponse> {
         self.modifyApplicationVisualization(ModifyApplicationVisualizationRequest(applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainer: initContainer), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改应用模板配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyApplicationVisualization(applicationId: UInt64, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainer: Container? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationVisualizationResponse {
         try await self.modifyApplicationVisualization(ModifyApplicationVisualizationRequest(applicationId: applicationId, basicConfig: basicConfig, volumes: volumes, initContainers: initContainers, containers: containers, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainer: initContainer), region: region, logger: logger, on: eventLoop)
     }

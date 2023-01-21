@@ -50,25 +50,25 @@ extension Pts {
     }
 
     /// 删除项目
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProjects(_ input: DeleteProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectsResponse> {
         self.client.execute(action: "DeleteProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除项目
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProjects(_ input: DeleteProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectsResponse {
         try await self.client.execute(action: "DeleteProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除项目
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProjects(projectIds: [String], deleteScenarios: Bool? = nil, deleteJobs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectsResponse> {
         self.deleteProjects(DeleteProjectsRequest(projectIds: projectIds, deleteScenarios: deleteScenarios, deleteJobs: deleteJobs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除项目
-    @inlinable
+    @inlinable @discardableResult
     public func deleteProjects(projectIds: [String], deleteScenarios: Bool? = nil, deleteJobs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectsResponse {
         try await self.deleteProjects(DeleteProjectsRequest(projectIds: projectIds, deleteScenarios: deleteScenarios, deleteJobs: deleteJobs), region: region, logger: logger, on: eventLoop)
     }

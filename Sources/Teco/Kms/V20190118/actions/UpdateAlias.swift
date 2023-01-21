@@ -47,7 +47,7 @@ extension Kms {
     /// 修改别名
     ///
     /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlias(_ input: UpdateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
         self.client.execute(action: "UpdateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Kms {
     /// 修改别名
     ///
     /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlias(_ input: UpdateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
         try await self.client.execute(action: "UpdateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Kms {
     /// 修改别名
     ///
     /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlias(alias: String, keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
         self.updateAlias(UpdateAliasRequest(alias: alias, keyId: keyId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Kms {
     /// 修改别名
     ///
     /// 用于修改CMK的别名。对于处于PendingDelete状态的CMK禁止修改。
-    @inlinable
+    @inlinable @discardableResult
     public func updateAlias(alias: String, keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
         try await self.updateAlias(UpdateAliasRequest(alias: alias, keyId: keyId), region: region, logger: logger, on: eventLoop)
     }

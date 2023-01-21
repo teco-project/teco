@@ -45,25 +45,25 @@ extension Cloudstudio {
     }
 
     /// 运行空间
-    @inlinable
+    @inlinable @discardableResult
     public func runWorkspace(_ input: RunWorkspaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunWorkspaceResponse> {
         self.client.execute(action: "RunWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行空间
-    @inlinable
+    @inlinable @discardableResult
     public func runWorkspace(_ input: RunWorkspaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
         try await self.client.execute(action: "RunWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 运行空间
-    @inlinable
+    @inlinable @discardableResult
     public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunWorkspaceResponse> {
         self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }
 
     /// 运行空间
-    @inlinable
+    @inlinable @discardableResult
     public func runWorkspace(spaceKey: String, cloudStudioSessionTeam: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunWorkspaceResponse {
         try await self.runWorkspace(RunWorkspaceRequest(spaceKey: spaceKey, cloudStudioSessionTeam: cloudStudioSessionTeam), region: region, logger: logger, on: eventLoop)
     }

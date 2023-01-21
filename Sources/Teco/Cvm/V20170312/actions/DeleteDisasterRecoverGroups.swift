@@ -42,7 +42,7 @@ extension Cvm {
     /// 删除分散置放群组
     ///
     /// 本接口 (DeleteDisasterRecoverGroups)用于删除[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。只有空的置放群组才能被删除，非空的群组需要先销毁组内所有云服务器，才能执行删除操作，不然会产生删除置放群组失败的错误。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDisasterRecoverGroups(_ input: DeleteDisasterRecoverGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDisasterRecoverGroupsResponse> {
         self.client.execute(action: "DeleteDisasterRecoverGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cvm {
     /// 删除分散置放群组
     ///
     /// 本接口 (DeleteDisasterRecoverGroups)用于删除[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。只有空的置放群组才能被删除，非空的群组需要先销毁组内所有云服务器，才能执行删除操作，不然会产生删除置放群组失败的错误。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDisasterRecoverGroups(_ input: DeleteDisasterRecoverGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDisasterRecoverGroupsResponse {
         try await self.client.execute(action: "DeleteDisasterRecoverGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cvm {
     /// 删除分散置放群组
     ///
     /// 本接口 (DeleteDisasterRecoverGroups)用于删除[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。只有空的置放群组才能被删除，非空的群组需要先销毁组内所有云服务器，才能执行删除操作，不然会产生删除置放群组失败的错误。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDisasterRecoverGroups(disasterRecoverGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDisasterRecoverGroupsResponse> {
         self.deleteDisasterRecoverGroups(DeleteDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cvm {
     /// 删除分散置放群组
     ///
     /// 本接口 (DeleteDisasterRecoverGroups)用于删除[分散置放群组](https://cloud.tencent.com/document/product/213/15486)。只有空的置放群组才能被删除，非空的群组需要先销毁组内所有云服务器，才能执行删除操作，不然会产生删除置放群组失败的错误。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDisasterRecoverGroups(disasterRecoverGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDisasterRecoverGroupsResponse {
         try await self.deleteDisasterRecoverGroups(DeleteDisasterRecoverGroupsRequest(disasterRecoverGroupIds: disasterRecoverGroupIds), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Tcss {
     /// 安全合规取消忽略检测项列表
     ///
     /// 从白名单中删除将指定的检测项。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCompliancePolicyItemFromWhitelist(_ input: DeleteCompliancePolicyItemFromWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyItemFromWhitelistResponse> {
         self.client.execute(action: "DeleteCompliancePolicyItemFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tcss {
     /// 安全合规取消忽略检测项列表
     ///
     /// 从白名单中删除将指定的检测项。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCompliancePolicyItemFromWhitelist(_ input: DeleteCompliancePolicyItemFromWhitelistRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyItemFromWhitelistResponse {
         try await self.client.execute(action: "DeleteCompliancePolicyItemFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tcss {
     /// 安全合规取消忽略检测项列表
     ///
     /// 从白名单中删除将指定的检测项。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCompliancePolicyItemFromWhitelist(whitelistIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCompliancePolicyItemFromWhitelistResponse> {
         self.deleteCompliancePolicyItemFromWhitelist(DeleteCompliancePolicyItemFromWhitelistRequest(whitelistIdSet: whitelistIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tcss {
     /// 安全合规取消忽略检测项列表
     ///
     /// 从白名单中删除将指定的检测项。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteCompliancePolicyItemFromWhitelist(whitelistIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCompliancePolicyItemFromWhitelistResponse {
         try await self.deleteCompliancePolicyItemFromWhitelist(DeleteCompliancePolicyItemFromWhitelistRequest(whitelistIdSet: whitelistIdSet), region: region, logger: logger, on: eventLoop)
     }

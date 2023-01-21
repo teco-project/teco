@@ -42,7 +42,7 @@ extension As {
     /// 删除通知
     ///
     /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNotificationConfiguration(_ input: DeleteNotificationConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotificationConfigurationResponse> {
         self.client.execute(action: "DeleteNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension As {
     /// 删除通知
     ///
     /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNotificationConfiguration(_ input: DeleteNotificationConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotificationConfigurationResponse {
         try await self.client.execute(action: "DeleteNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension As {
     /// 删除通知
     ///
     /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNotificationConfiguration(autoScalingNotificationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNotificationConfigurationResponse> {
         self.deleteNotificationConfiguration(DeleteNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension As {
     /// 删除通知
     ///
     /// 本接口（DeleteNotificationConfiguration）用于删除特定的通知。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNotificationConfiguration(autoScalingNotificationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNotificationConfigurationResponse {
         try await self.deleteNotificationConfiguration(DeleteNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId), region: region, logger: logger, on: eventLoop)
     }

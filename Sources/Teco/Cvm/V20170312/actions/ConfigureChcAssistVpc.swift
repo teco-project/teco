@@ -62,7 +62,7 @@ extension Cvm {
     /// 配置CHC物理服务器的带外和部署网络
     ///
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
-    @inlinable
+    @inlinable @discardableResult
     public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureChcAssistVpcResponse> {
         self.client.execute(action: "ConfigureChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Cvm {
     /// 配置CHC物理服务器的带外和部署网络
     ///
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
-    @inlinable
+    @inlinable @discardableResult
     public func configureChcAssistVpc(_ input: ConfigureChcAssistVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
         try await self.client.execute(action: "ConfigureChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Cvm {
     /// 配置CHC物理服务器的带外和部署网络
     ///
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
-    @inlinable
+    @inlinable @discardableResult
     public func configureChcAssistVpc(chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureChcAssistVpcResponse> {
         self.configureChcAssistVpc(ConfigureChcAssistVpcRequest(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Cvm {
     /// 配置CHC物理服务器的带外和部署网络
     ///
     /// 配置CHC物理服务器的带外和部署网络。传入带外网络和部署网络信息
-    @inlinable
+    @inlinable @discardableResult
     public func configureChcAssistVpc(chcIds: [String], bmcVirtualPrivateCloud: VirtualPrivateCloud, bmcSecurityGroupIds: [String]? = nil, deployVirtualPrivateCloud: VirtualPrivateCloud? = nil, deploySecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcAssistVpcResponse {
         try await self.configureChcAssistVpc(ConfigureChcAssistVpcRequest(chcIds: chcIds, bmcVirtualPrivateCloud: bmcVirtualPrivateCloud, bmcSecurityGroupIds: bmcSecurityGroupIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), region: region, logger: logger, on: eventLoop)
     }

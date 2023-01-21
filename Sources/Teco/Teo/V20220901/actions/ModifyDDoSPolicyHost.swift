@@ -64,25 +64,25 @@ extension Teo {
     }
 
     /// 域名DDoS高可用开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDDoSPolicyHost(_ input: ModifyDDoSPolicyHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyHostResponse> {
         self.client.execute(action: "ModifyDDoSPolicyHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 域名DDoS高可用开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDDoSPolicyHost(_ input: ModifyDDoSPolicyHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyHostResponse {
         try await self.client.execute(action: "ModifyDDoSPolicyHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 域名DDoS高可用开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDDoSPolicyHost(zoneId: String, host: String, accelerateType: String, policyId: Int64, securityType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyHostResponse> {
         self.modifyDDoSPolicyHost(ModifyDDoSPolicyHostRequest(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名DDoS高可用开关
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDDoSPolicyHost(zoneId: String, host: String, accelerateType: String, policyId: Int64, securityType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyHostResponse {
         try await self.modifyDDoSPolicyHost(ModifyDDoSPolicyHostRequest(zoneId: zoneId, host: host, accelerateType: accelerateType, policyId: policyId, securityType: securityType), region: region, logger: logger, on: eventLoop)
     }

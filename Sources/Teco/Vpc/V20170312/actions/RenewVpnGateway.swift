@@ -47,7 +47,7 @@ extension Vpc {
     /// 续费VPN网关
     ///
     /// 本接口（RenewVpnGateway）用于预付费（包年包月）VPN网关续费。目前只支持IPSEC网关。
-    @inlinable
+    @inlinable @discardableResult
     public func renewVpnGateway(_ input: RenewVpnGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewVpnGatewayResponse> {
         self.client.execute(action: "RenewVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 续费VPN网关
     ///
     /// 本接口（RenewVpnGateway）用于预付费（包年包月）VPN网关续费。目前只支持IPSEC网关。
-    @inlinable
+    @inlinable @discardableResult
     public func renewVpnGateway(_ input: RenewVpnGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewVpnGatewayResponse {
         try await self.client.execute(action: "RenewVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 续费VPN网关
     ///
     /// 本接口（RenewVpnGateway）用于预付费（包年包月）VPN网关续费。目前只支持IPSEC网关。
-    @inlinable
+    @inlinable @discardableResult
     public func renewVpnGateway(vpnGatewayId: String, instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewVpnGatewayResponse> {
         self.renewVpnGateway(RenewVpnGatewayRequest(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 续费VPN网关
     ///
     /// 本接口（RenewVpnGateway）用于预付费（包年包月）VPN网关续费。目前只支持IPSEC网关。
-    @inlinable
+    @inlinable @discardableResult
     public func renewVpnGateway(vpnGatewayId: String, instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewVpnGatewayResponse {
         try await self.renewVpnGateway(RenewVpnGatewayRequest(vpnGatewayId: vpnGatewayId, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
     }

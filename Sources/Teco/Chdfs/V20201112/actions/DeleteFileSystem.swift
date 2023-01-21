@@ -42,7 +42,7 @@ extension Chdfs {
     /// 删除文件系统
     ///
     /// 删除文件系统，不允许删除非空文件系统。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFileSystem(_ input: DeleteFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSystemResponse> {
         self.client.execute(action: "DeleteFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Chdfs {
     /// 删除文件系统
     ///
     /// 删除文件系统，不允许删除非空文件系统。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFileSystem(_ input: DeleteFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSystemResponse {
         try await self.client.execute(action: "DeleteFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Chdfs {
     /// 删除文件系统
     ///
     /// 删除文件系统，不允许删除非空文件系统。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFileSystem(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSystemResponse> {
         self.deleteFileSystem(DeleteFileSystemRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Chdfs {
     /// 删除文件系统
     ///
     /// 删除文件系统，不允许删除非空文件系统。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFileSystem(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSystemResponse {
         try await self.deleteFileSystem(DeleteFileSystemRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
     }

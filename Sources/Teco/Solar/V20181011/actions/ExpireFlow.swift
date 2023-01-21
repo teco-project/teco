@@ -42,7 +42,7 @@ extension Solar {
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
-    @inlinable
+    @inlinable @discardableResult
     public func expireFlow(_ input: ExpireFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpireFlowResponse> {
         self.client.execute(action: "ExpireFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Solar {
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
-    @inlinable
+    @inlinable @discardableResult
     public func expireFlow(_ input: ExpireFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
         try await self.client.execute(action: "ExpireFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Solar {
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
-    @inlinable
+    @inlinable @discardableResult
     public func expireFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExpireFlowResponse> {
         self.expireFlow(ExpireFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Solar {
     /// 工单失效接口
     ///
     /// 把审批中的工单置为已失效
-    @inlinable
+    @inlinable @discardableResult
     public func expireFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExpireFlowResponse {
         try await self.expireFlow(ExpireFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
     }

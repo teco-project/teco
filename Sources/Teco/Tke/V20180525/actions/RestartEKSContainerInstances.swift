@@ -42,7 +42,7 @@ extension Tke {
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
-    @inlinable
+    @inlinable @discardableResult
     public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartEKSContainerInstancesResponse> {
         self.client.execute(action: "RestartEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tke {
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
-    @inlinable
+    @inlinable @discardableResult
     public func restartEKSContainerInstances(_ input: RestartEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
         try await self.client.execute(action: "RestartEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tke {
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
-    @inlinable
+    @inlinable @discardableResult
     public func restartEKSContainerInstances(eksCiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartEKSContainerInstancesResponse> {
         self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tke {
     /// 重启容器实例
     ///
     /// 重启弹性容器实例，支持批量操作
-    @inlinable
+    @inlinable @discardableResult
     public func restartEKSContainerInstances(eksCiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartEKSContainerInstancesResponse {
         try await self.restartEKSContainerInstances(RestartEKSContainerInstancesRequest(eksCiIds: eksCiIds), region: region, logger: logger, on: eventLoop)
     }

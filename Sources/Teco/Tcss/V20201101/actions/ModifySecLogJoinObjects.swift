@@ -53,25 +53,25 @@ extension Tcss {
     }
 
     /// 修改安全日志接入对象
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
         self.client.execute(action: "ModifySecLogJoinObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志接入对象
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogJoinObjects(_ input: ModifySecLogJoinObjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
         try await self.client.execute(action: "ModifySecLogJoinObjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改安全日志接入对象
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogJoinObjectsResponse> {
         self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志接入对象
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecLogJoinObjects(logType: String, bindList: [String]? = nil, unBindList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogJoinObjectsResponse {
         try await self.modifySecLogJoinObjects(ModifySecLogJoinObjectsRequest(logType: logType, bindList: bindList, unBindList: unBindList), region: region, logger: logger, on: eventLoop)
     }

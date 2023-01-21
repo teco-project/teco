@@ -45,25 +45,25 @@ extension Tke {
     }
 
     /// 关闭集群审计
-    @inlinable
+    @inlinable @discardableResult
     public func disableClusterAudit(_ input: DisableClusterAuditRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableClusterAuditResponse> {
         self.client.execute(action: "DisableClusterAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭集群审计
-    @inlinable
+    @inlinable @discardableResult
     public func disableClusterAudit(_ input: DisableClusterAuditRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClusterAuditResponse {
         try await self.client.execute(action: "DisableClusterAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关闭集群审计
-    @inlinable
+    @inlinable @discardableResult
     public func disableClusterAudit(clusterId: String, deleteLogSetAndTopic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableClusterAuditResponse> {
         self.disableClusterAudit(DisableClusterAuditRequest(clusterId: clusterId, deleteLogSetAndTopic: deleteLogSetAndTopic), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关闭集群审计
-    @inlinable
+    @inlinable @discardableResult
     public func disableClusterAudit(clusterId: String, deleteLogSetAndTopic: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableClusterAuditResponse {
         try await self.disableClusterAudit(DisableClusterAuditRequest(clusterId: clusterId, deleteLogSetAndTopic: deleteLogSetAndTopic), region: region, logger: logger, on: eventLoop)
     }

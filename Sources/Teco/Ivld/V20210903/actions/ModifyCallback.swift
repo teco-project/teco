@@ -72,7 +72,7 @@ extension Ivld {
     /// | MediaId | 是 | String | 媒资ID |
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCallback(_ input: ModifyCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
         self.client.execute(action: "ModifyCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -105,7 +105,7 @@ extension Ivld {
     /// | MediaId | 是 | String | 媒资ID |
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCallback(_ input: ModifyCallbackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
         try await self.client.execute(action: "ModifyCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -138,7 +138,7 @@ extension Ivld {
     /// | MediaId | 是 | String | 媒资ID |
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
         self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), region: region, logger: logger, on: eventLoop)
     }
@@ -171,7 +171,7 @@ extension Ivld {
     /// | MediaId | 是 | String | 媒资ID |
     /// | MediaStatus | 是 | [MediaStatus](/document/product/1509/65063#MediaInfo) | 媒资导入状态|
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
         try await self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), region: region, logger: logger, on: eventLoop)
     }

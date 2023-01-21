@@ -34,7 +34,7 @@ extension Cwp {
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebPageEventLogResponse> {
         self.client.execute(action: "DeleteWebPageEventLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -42,7 +42,7 @@ extension Cwp {
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWebPageEventLog(_ input: DeleteWebPageEventLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
         try await self.client.execute(action: "DeleteWebPageEventLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -50,7 +50,7 @@ extension Cwp {
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWebPageEventLog(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWebPageEventLogResponse> {
         self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), region: region, logger: logger, on: eventLoop)
     }
@@ -58,7 +58,7 @@ extension Cwp {
     /// 删除事件记录
     ///
     /// 网站防篡改-删除事件记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWebPageEventLog(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWebPageEventLogResponse {
         try await self.deleteWebPageEventLog(DeleteWebPageEventLogRequest(), region: region, logger: logger, on: eventLoop)
     }

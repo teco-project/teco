@@ -45,25 +45,25 @@ extension Tcm {
     }
 
     /// 关联Prometheus
-    @inlinable
+    @inlinable @discardableResult
     public func linkPrometheus(_ input: LinkPrometheusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkPrometheusResponse> {
         self.client.execute(action: "LinkPrometheus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关联Prometheus
-    @inlinable
+    @inlinable @discardableResult
     public func linkPrometheus(_ input: LinkPrometheusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
         try await self.client.execute(action: "LinkPrometheus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 关联Prometheus
-    @inlinable
+    @inlinable @discardableResult
     public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkPrometheusResponse> {
         self.linkPrometheus(LinkPrometheusRequest(meshID: meshID, prometheus: prometheus), region: region, logger: logger, on: eventLoop)
     }
 
     /// 关联Prometheus
-    @inlinable
+    @inlinable @discardableResult
     public func linkPrometheus(meshID: String, prometheus: PrometheusConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkPrometheusResponse {
         try await self.linkPrometheus(LinkPrometheusRequest(meshID: meshID, prometheus: prometheus), region: region, logger: logger, on: eventLoop)
     }

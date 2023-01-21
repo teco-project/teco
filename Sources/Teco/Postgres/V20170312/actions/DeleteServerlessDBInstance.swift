@@ -47,7 +47,7 @@ extension Postgres {
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
         self.client.execute(action: "DeleteServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Postgres {
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteServerlessDBInstance(_ input: DeleteServerlessDBInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessDBInstanceResponse {
         try await self.client.execute(action: "DeleteServerlessDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Postgres {
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessDBInstanceResponse> {
         self.deleteServerlessDBInstance(DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Postgres {
     /// 删除ServerlessDB实例
     ///
     /// 本接口 (DeleteServerlessDBInstance) 用于删除一个ServerlessDB实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteServerlessDBInstance(dbInstanceName: String? = nil, dbInstanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessDBInstanceResponse {
         try await self.deleteServerlessDBInstance(DeleteServerlessDBInstanceRequest(dbInstanceName: dbInstanceName, dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
     }

@@ -55,25 +55,25 @@ extension Iecp {
     }
 
     /// 修改ConfigMap
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigMap(_ input: ModifyConfigMapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigMapResponse> {
         self.client.execute(action: "ModifyConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改ConfigMap
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigMap(_ input: ModifyConfigMapRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigMapResponse {
         try await self.client.execute(action: "ModifyConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改ConfigMap
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigMap(edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigMapResponse> {
         self.modifyConfigMap(ModifyConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, yaml: yaml, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改ConfigMap
-    @inlinable
+    @inlinable @discardableResult
     public func modifyConfigMap(edgeUnitID: UInt64, configMapName: String, yaml: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigMapResponse {
         try await self.modifyConfigMap(ModifyConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, yaml: yaml, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
     }

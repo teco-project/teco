@@ -47,7 +47,7 @@ extension Tcss {
     /// 添加编辑异常进程策略
     ///
     /// 添加编辑运行时异常进程策略
-    @inlinable
+    @inlinable @discardableResult
     public func addEditAbnormalProcessRule(_ input: AddEditAbnormalProcessRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAbnormalProcessRuleResponse> {
         self.client.execute(action: "AddEditAbnormalProcessRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcss {
     /// 添加编辑异常进程策略
     ///
     /// 添加编辑运行时异常进程策略
-    @inlinable
+    @inlinable @discardableResult
     public func addEditAbnormalProcessRule(_ input: AddEditAbnormalProcessRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAbnormalProcessRuleResponse {
         try await self.client.execute(action: "AddEditAbnormalProcessRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcss {
     /// 添加编辑异常进程策略
     ///
     /// 添加编辑运行时异常进程策略
-    @inlinable
+    @inlinable @discardableResult
     public func addEditAbnormalProcessRule(ruleInfo: AbnormalProcessRuleInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditAbnormalProcessRuleResponse> {
         self.addEditAbnormalProcessRule(AddEditAbnormalProcessRuleRequest(ruleInfo: ruleInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcss {
     /// 添加编辑异常进程策略
     ///
     /// 添加编辑运行时异常进程策略
-    @inlinable
+    @inlinable @discardableResult
     public func addEditAbnormalProcessRule(ruleInfo: AbnormalProcessRuleInfo, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditAbnormalProcessRuleResponse {
         try await self.addEditAbnormalProcessRule(AddEditAbnormalProcessRuleRequest(ruleInfo: ruleInfo, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }

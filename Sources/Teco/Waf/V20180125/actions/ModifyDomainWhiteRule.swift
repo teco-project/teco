@@ -65,25 +65,25 @@ extension Waf {
     }
 
     /// 更改某一条规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainWhiteRuleResponse> {
         self.client.execute(action: "ModifyDomainWhiteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更改某一条规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainWhiteRule(_ input: ModifyDomainWhiteRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {
         try await self.client.execute(action: "ModifyDomainWhiteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更改某一条规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainWhiteRule(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainWhiteRuleResponse> {
         self.modifyDomainWhiteRule(ModifyDomainWhiteRuleRequest(domain: domain, id: id, rules: rules, url: url, function: function, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更改某一条规则
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainWhiteRule(domain: String, id: UInt64, rules: [UInt64], url: String, function: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainWhiteRuleResponse {
         try await self.modifyDomainWhiteRule(ModifyDomainWhiteRuleRequest(domain: domain, id: id, rules: rules, url: url, function: function, status: status), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Cvm {
     /// 删除高性能计算集群
     ///
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteHpcClusters(_ input: DeleteHpcClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHpcClustersResponse> {
         self.client.execute(action: "DeleteHpcClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cvm {
     /// 删除高性能计算集群
     ///
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteHpcClusters(_ input: DeleteHpcClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHpcClustersResponse {
         try await self.client.execute(action: "DeleteHpcClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cvm {
     /// 删除高性能计算集群
     ///
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteHpcClusters(hpcClusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHpcClustersResponse> {
         self.deleteHpcClusters(DeleteHpcClustersRequest(hpcClusterIds: hpcClusterIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cvm {
     /// 删除高性能计算集群
     ///
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteHpcClusters(hpcClusterIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHpcClustersResponse {
         try await self.deleteHpcClusters(DeleteHpcClustersRequest(hpcClusterIds: hpcClusterIds), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Lighthouse {
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
         self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Lighthouse {
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteKeyPairs(_ input: DeleteKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
         try await self.client.execute(action: "DeleteKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Lighthouse {
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteKeyPairsResponse> {
         self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Lighthouse {
     /// 删除密钥对
     ///
     /// 本接口（DeleteKeyPairs）用于删除密钥对。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteKeyPairs(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteKeyPairsResponse {
         try await self.deleteKeyPairs(DeleteKeyPairsRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
     }

@@ -72,7 +72,7 @@ extension Cws {
     /// 修改站点的属性
     ///
     /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySiteAttribute(_ input: ModifySiteAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteAttributeResponse> {
         self.client.execute(action: "ModifySiteAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Cws {
     /// 修改站点的属性
     ///
     /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySiteAttribute(_ input: ModifySiteAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteAttributeResponse {
         try await self.client.execute(action: "ModifySiteAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -88,7 +88,7 @@ extension Cws {
     /// 修改站点的属性
     ///
     /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySiteAttribute(siteId: UInt64, name: String? = nil, needLogin: Int64? = nil, loginCookie: String? = nil, loginCheckUrl: String? = nil, loginCheckKw: String? = nil, scanDisallow: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteAttributeResponse> {
         self.modifySiteAttribute(ModifySiteAttributeRequest(siteId: siteId, name: name, needLogin: needLogin, loginCookie: loginCookie, loginCheckUrl: loginCheckUrl, loginCheckKw: loginCheckKw, scanDisallow: scanDisallow), region: region, logger: logger, on: eventLoop)
     }
@@ -96,7 +96,7 @@ extension Cws {
     /// 修改站点的属性
     ///
     /// 本接口 (ModifySiteAttribute) 用于修改站点的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySiteAttribute(siteId: UInt64, name: String? = nil, needLogin: Int64? = nil, loginCookie: String? = nil, loginCheckUrl: String? = nil, loginCheckKw: String? = nil, scanDisallow: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteAttributeResponse {
         try await self.modifySiteAttribute(ModifySiteAttributeRequest(siteId: siteId, name: name, needLogin: needLogin, loginCookie: loginCookie, loginCheckUrl: loginCheckUrl, loginCheckKw: loginCheckKw, scanDisallow: scanDisallow), region: region, logger: logger, on: eventLoop)
     }

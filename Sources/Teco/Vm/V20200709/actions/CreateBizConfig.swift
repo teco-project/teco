@@ -60,7 +60,7 @@ extension Vm {
     /// 在创建业务配置之前，你需要以下步骤：
     /// 1. 开通COS存储捅功能，新建存储桶，例如 cms_segments，用来存储 视频转换过程中生成对音频和图片。
     /// 2. 然后在COS控制台，授权天御内容安全主账号 对 cms_segments 存储桶对读写权限。具体授权操作，参考https://cloud.tencent.com/document/product/436/38648
-    @inlinable
+    @inlinable @discardableResult
     public func createBizConfig(_ input: CreateBizConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBizConfigResponse> {
         self.client.execute(action: "CreateBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vm {
     /// 在创建业务配置之前，你需要以下步骤：
     /// 1. 开通COS存储捅功能，新建存储桶，例如 cms_segments，用来存储 视频转换过程中生成对音频和图片。
     /// 2. 然后在COS控制台，授权天御内容安全主账号 对 cms_segments 存储桶对读写权限。具体授权操作，参考https://cloud.tencent.com/document/product/436/38648
-    @inlinable
+    @inlinable @discardableResult
     public func createBizConfig(_ input: CreateBizConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBizConfigResponse {
         try await self.client.execute(action: "CreateBizConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -82,7 +82,7 @@ extension Vm {
     /// 在创建业务配置之前，你需要以下步骤：
     /// 1. 开通COS存储捅功能，新建存储桶，例如 cms_segments，用来存储 视频转换过程中生成对音频和图片。
     /// 2. 然后在COS控制台，授权天御内容安全主账号 对 cms_segments 存储桶对读写权限。具体授权操作，参考https://cloud.tencent.com/document/product/436/38648
-    @inlinable
+    @inlinable @discardableResult
     public func createBizConfig(bizType: String, mediaModeration: MediaModerationConfig, bizName: String? = nil, moderationCategories: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBizConfigResponse> {
         self.createBizConfig(CreateBizConfigRequest(bizType: bizType, mediaModeration: mediaModeration, bizName: bizName, moderationCategories: moderationCategories), region: region, logger: logger, on: eventLoop)
     }
@@ -93,7 +93,7 @@ extension Vm {
     /// 在创建业务配置之前，你需要以下步骤：
     /// 1. 开通COS存储捅功能，新建存储桶，例如 cms_segments，用来存储 视频转换过程中生成对音频和图片。
     /// 2. 然后在COS控制台，授权天御内容安全主账号 对 cms_segments 存储桶对读写权限。具体授权操作，参考https://cloud.tencent.com/document/product/436/38648
-    @inlinable
+    @inlinable @discardableResult
     public func createBizConfig(bizType: String, mediaModeration: MediaModerationConfig, bizName: String? = nil, moderationCategories: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBizConfigResponse {
         try await self.createBizConfig(CreateBizConfigRequest(bizType: bizType, mediaModeration: mediaModeration, bizName: bizName, moderationCategories: moderationCategories), region: region, logger: logger, on: eventLoop)
     }

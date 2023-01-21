@@ -47,7 +47,7 @@ extension Tdmq {
     /// 清空cmq订阅者消息标签
     ///
     /// 清空订阅者消息标签
-    @inlinable
+    @inlinable @discardableResult
     public func clearCmqSubscriptionFilterTags(_ input: ClearCmqSubscriptionFilterTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqSubscriptionFilterTagsResponse> {
         self.client.execute(action: "ClearCmqSubscriptionFilterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tdmq {
     /// 清空cmq订阅者消息标签
     ///
     /// 清空订阅者消息标签
-    @inlinable
+    @inlinable @discardableResult
     public func clearCmqSubscriptionFilterTags(_ input: ClearCmqSubscriptionFilterTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
         try await self.client.execute(action: "ClearCmqSubscriptionFilterTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tdmq {
     /// 清空cmq订阅者消息标签
     ///
     /// 清空订阅者消息标签
-    @inlinable
+    @inlinable @discardableResult
     public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ClearCmqSubscriptionFilterTagsResponse> {
         self.clearCmqSubscriptionFilterTags(ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tdmq {
     /// 清空cmq订阅者消息标签
     ///
     /// 清空订阅者消息标签
-    @inlinable
+    @inlinable @discardableResult
     public func clearCmqSubscriptionFilterTags(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ClearCmqSubscriptionFilterTagsResponse {
         try await self.clearCmqSubscriptionFilterTags(ClearCmqSubscriptionFilterTagsRequest(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Iotvideoindustry {
     /// 绑定设备到分组
     ///
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
-    @inlinable
+    @inlinable @discardableResult
     public func bindGroupDevices(_ input: BindGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindGroupDevicesResponse> {
         self.client.execute(action: "BindGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotvideoindustry {
     /// 绑定设备到分组
     ///
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
-    @inlinable
+    @inlinable @discardableResult
     public func bindGroupDevices(_ input: BindGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
         try await self.client.execute(action: "BindGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotvideoindustry {
     /// 绑定设备到分组
     ///
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
-    @inlinable
+    @inlinable @discardableResult
     public func bindGroupDevices(groupId: String, deviceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindGroupDevicesResponse> {
         self.bindGroupDevices(BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotvideoindustry {
     /// 绑定设备到分组
     ///
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
-    @inlinable
+    @inlinable @discardableResult
     public func bindGroupDevices(groupId: String, deviceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
         try await self.bindGroupDevices(BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList), region: region, logger: logger, on: eventLoop)
     }

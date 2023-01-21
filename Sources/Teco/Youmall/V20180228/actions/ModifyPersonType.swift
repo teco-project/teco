@@ -63,25 +63,25 @@ extension Youmall {
     }
 
     /// 修改顾客身份类型接口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPersonType(_ input: ModifyPersonTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
         self.client.execute(action: "ModifyPersonType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改顾客身份类型接口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPersonType(_ input: ModifyPersonTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
         try await self.client.execute(action: "ModifyPersonType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改顾客身份类型接口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonTypeResponse> {
         self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改顾客身份类型接口
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPersonType(companyId: String, shopId: UInt64, personId: UInt64, personType: UInt64, personSubType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonTypeResponse {
         try await self.modifyPersonType(ModifyPersonTypeRequest(companyId: companyId, shopId: shopId, personId: personId, personType: personType, personSubType: personSubType), region: region, logger: logger, on: eventLoop)
     }

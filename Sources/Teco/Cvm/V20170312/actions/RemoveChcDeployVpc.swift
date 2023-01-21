@@ -40,25 +40,25 @@ extension Cvm {
     }
 
     /// 清理CHC物理服务器的部署网络
-    @inlinable
+    @inlinable @discardableResult
     public func removeChcDeployVpc(_ input: RemoveChcDeployVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcDeployVpcResponse> {
         self.client.execute(action: "RemoveChcDeployVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清理CHC物理服务器的部署网络
-    @inlinable
+    @inlinable @discardableResult
     public func removeChcDeployVpc(_ input: RemoveChcDeployVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcDeployVpcResponse {
         try await self.client.execute(action: "RemoveChcDeployVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 清理CHC物理服务器的部署网络
-    @inlinable
+    @inlinable @discardableResult
     public func removeChcDeployVpc(chcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcDeployVpcResponse> {
         self.removeChcDeployVpc(RemoveChcDeployVpcRequest(chcIds: chcIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 清理CHC物理服务器的部署网络
-    @inlinable
+    @inlinable @discardableResult
     public func removeChcDeployVpc(chcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcDeployVpcResponse {
         try await self.removeChcDeployVpc(RemoveChcDeployVpcRequest(chcIds: chcIds), region: region, logger: logger, on: eventLoop)
     }

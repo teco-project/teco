@@ -45,25 +45,25 @@ extension Tcr {
     }
 
     /// 删除命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNamespace(_ input: DeleteNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
         self.client.execute(action: "DeleteNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNamespace(_ input: DeleteNamespaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
         try await self.client.execute(action: "DeleteNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNamespace(registryId: String, namespaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
         self.deleteNamespace(DeleteNamespaceRequest(registryId: registryId, namespaceName: namespaceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNamespace(registryId: String, namespaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
         try await self.deleteNamespace(DeleteNamespaceRequest(registryId: registryId, namespaceName: namespaceName), region: region, logger: logger, on: eventLoop)
     }

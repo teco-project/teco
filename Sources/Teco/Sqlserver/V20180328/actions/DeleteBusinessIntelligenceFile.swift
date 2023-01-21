@@ -47,7 +47,7 @@ extension Sqlserver {
     /// 删除商业智能文件
     ///
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBusinessIntelligenceFile(_ input: DeleteBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBusinessIntelligenceFileResponse> {
         self.client.execute(action: "DeleteBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Sqlserver {
     /// 删除商业智能文件
     ///
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBusinessIntelligenceFile(_ input: DeleteBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBusinessIntelligenceFileResponse {
         try await self.client.execute(action: "DeleteBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Sqlserver {
     /// 删除商业智能文件
     ///
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBusinessIntelligenceFile(instanceId: String, fileNameSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBusinessIntelligenceFileResponse> {
         self.deleteBusinessIntelligenceFile(DeleteBusinessIntelligenceFileRequest(instanceId: instanceId, fileNameSet: fileNameSet), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Sqlserver {
     /// 删除商业智能文件
     ///
     /// 本接口（DeleteBusinessIntelligenceFile）用于删除商业智能文件。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBusinessIntelligenceFile(instanceId: String, fileNameSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBusinessIntelligenceFileResponse {
         try await self.deleteBusinessIntelligenceFile(DeleteBusinessIntelligenceFileRequest(instanceId: instanceId, fileNameSet: fileNameSet), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Redis {
     /// 绑定安全组
     ///
     /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
-    @inlinable
+    @inlinable @discardableResult
     public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
         self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Redis {
     /// 绑定安全组
     ///
     /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
-    @inlinable
+    @inlinable @discardableResult
     public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
         try await self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Redis {
     /// 绑定安全组
     ///
     /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
-    @inlinable
+    @inlinable @discardableResult
     public func associateSecurityGroups(product: String, securityGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
         self.associateSecurityGroups(AssociateSecurityGroupsRequest(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Redis {
     /// 绑定安全组
     ///
     /// 本接口 (AssociateSecurityGroups) 用于安全组批量绑定多个指定实例。
-    @inlinable
+    @inlinable @discardableResult
     public func associateSecurityGroups(product: String, securityGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
         try await self.associateSecurityGroups(AssociateSecurityGroupsRequest(product: product, securityGroupId: securityGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }

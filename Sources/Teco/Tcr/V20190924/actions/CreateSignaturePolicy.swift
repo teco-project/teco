@@ -72,7 +72,7 @@ extension Tcr {
     /// 创建签名策略
     ///
     /// 创建镜像签名策略
-    @inlinable
+    @inlinable @discardableResult
     public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignaturePolicyResponse> {
         self.client.execute(action: "CreateSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Tcr {
     /// 创建签名策略
     ///
     /// 创建镜像签名策略
-    @inlinable
+    @inlinable @discardableResult
     public func createSignaturePolicy(_ input: CreateSignaturePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
         try await self.client.execute(action: "CreateSignaturePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -88,7 +88,7 @@ extension Tcr {
     /// 创建签名策略
     ///
     /// 创建镜像签名策略
-    @inlinable
+    @inlinable @discardableResult
     public func createSignaturePolicy(registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignaturePolicyResponse> {
         self.createSignaturePolicy(CreateSignaturePolicyRequest(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }
@@ -96,7 +96,7 @@ extension Tcr {
     /// 创建签名策略
     ///
     /// 创建镜像签名策略
-    @inlinable
+    @inlinable @discardableResult
     public func createSignaturePolicy(registryId: String, name: String, namespaceName: String, kmsId: String, kmsRegion: String, domain: String? = nil, disabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignaturePolicyResponse {
         try await self.createSignaturePolicy(CreateSignaturePolicyRequest(registryId: registryId, name: name, namespaceName: namespaceName, kmsId: kmsId, kmsRegion: kmsRegion, domain: domain, disabled: disabled), region: region, logger: logger, on: eventLoop)
     }

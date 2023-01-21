@@ -52,7 +52,7 @@ extension Partners {
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
-    @inlinable
+    @inlinable @discardableResult
     public func agentPayDeals(_ input: AgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
         self.client.execute(action: "AgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Partners {
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
-    @inlinable
+    @inlinable @discardableResult
     public func agentPayDeals(_ input: AgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentPayDealsResponse {
         try await self.client.execute(action: "AgentPayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Partners {
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
-    @inlinable
+    @inlinable @discardableResult
     public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentPayDealsResponse> {
         self.agentPayDeals(AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Partners {
     /// 支付订单（合作伙伴使用）
     ///
     /// 代理商支付订单接口，支持自付/代付
-    @inlinable
+    @inlinable @discardableResult
     public func agentPayDeals(ownerUin: String, agentPay: UInt64, dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentPayDealsResponse {
         try await self.agentPayDeals(AgentPayDealsRequest(ownerUin: ownerUin, agentPay: agentPay, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
     }

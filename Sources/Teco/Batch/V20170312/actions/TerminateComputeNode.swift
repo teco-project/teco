@@ -48,7 +48,7 @@ extension Batch {
     ///
     /// 用于销毁计算节点。
     /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateComputeNode(_ input: TerminateComputeNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodeResponse> {
         self.client.execute(action: "TerminateComputeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Batch {
     ///
     /// 用于销毁计算节点。
     /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateComputeNode(_ input: TerminateComputeNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodeResponse {
         try await self.client.execute(action: "TerminateComputeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Batch {
     ///
     /// 用于销毁计算节点。
     /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateComputeNode(envId: String, computeNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodeResponse> {
         self.terminateComputeNode(TerminateComputeNodeRequest(envId: envId, computeNodeId: computeNodeId), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Batch {
     ///
     /// 用于销毁计算节点。
     /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateComputeNode(envId: String, computeNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodeResponse {
         try await self.terminateComputeNode(TerminateComputeNodeRequest(envId: envId, computeNodeId: computeNodeId), region: region, logger: logger, on: eventLoop)
     }

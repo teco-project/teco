@@ -57,7 +57,7 @@ extension Tic {
     /// 更新资源栈版本的内容
     ///
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
-    @inlinable
+    @inlinable @discardableResult
     public func updateStackVersion(_ input: UpdateStackVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackVersionResponse> {
         self.client.execute(action: "UpdateStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Tic {
     /// 更新资源栈版本的内容
     ///
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
-    @inlinable
+    @inlinable @discardableResult
     public func updateStackVersion(_ input: UpdateStackVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
         try await self.client.execute(action: "UpdateStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Tic {
     /// 更新资源栈版本的内容
     ///
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
-    @inlinable
+    @inlinable @discardableResult
     public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackVersionResponse> {
         self.updateStackVersion(UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Tic {
     /// 更新资源栈版本的内容
     ///
     /// 本接口（UpdateStackVersion）用于更新一个版本的模版内容，名称或描述，模版仅限COS URL，且为zip格式。
-    @inlinable
+    @inlinable @discardableResult
     public func updateStackVersion(versionId: String, templateUrl: String, versionName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackVersionResponse {
         try await self.updateStackVersion(UpdateStackVersionRequest(versionId: versionId, templateUrl: templateUrl, versionName: versionName, description: description), region: region, logger: logger, on: eventLoop)
     }

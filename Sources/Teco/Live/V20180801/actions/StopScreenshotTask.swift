@@ -42,7 +42,7 @@ extension Live {
     /// 终止截图任务
     ///
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
-    @inlinable
+    @inlinable @discardableResult
     public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScreenshotTaskResponse> {
         self.client.execute(action: "StopScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Live {
     /// 终止截图任务
     ///
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
-    @inlinable
+    @inlinable @discardableResult
     public func stopScreenshotTask(_ input: StopScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
         try await self.client.execute(action: "StopScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Live {
     /// 终止截图任务
     ///
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
-    @inlinable
+    @inlinable @discardableResult
     public func stopScreenshotTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopScreenshotTaskResponse> {
         self.stopScreenshotTask(StopScreenshotTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Live {
     /// 终止截图任务
     ///
     /// 提前结束截图，中止运行中的截图任务。任务被成功终止后，本次任务将不再启动。
-    @inlinable
+    @inlinable @discardableResult
     public func stopScreenshotTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopScreenshotTaskResponse {
         try await self.stopScreenshotTask(StopScreenshotTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

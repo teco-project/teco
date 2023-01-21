@@ -54,7 +54,7 @@ extension Vpc {
     /// 本接口（ModifyNetworkAclEntries）用于修改（包括添加和删除）网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
         self.client.execute(action: "ModifyNetworkAclEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -64,7 +64,7 @@ extension Vpc {
     /// 本接口（ModifyNetworkAclEntries）用于修改（包括添加和删除）网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclEntries(_ input: ModifyNetworkAclEntriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
         try await self.client.execute(action: "ModifyNetworkAclEntries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -74,7 +74,7 @@ extension Vpc {
     /// 本接口（ModifyNetworkAclEntries）用于修改（包括添加和删除）网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclEntriesResponse> {
         self.modifyNetworkAclEntries(ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }
@@ -84,7 +84,7 @@ extension Vpc {
     /// 本接口（ModifyNetworkAclEntries）用于修改（包括添加和删除）网络ACL的入站规则和出站规则。在NetworkAclEntrySet参数中：
     /// * 若同时传入入站规则和出站规则，则重置原有的入站规则和出站规则，并分别导入传入的规则。
     /// * 若仅传入入站规则，则仅重置原有的入站规则，并导入传入的规则，不影响原有的出站规则（若仅传入出站规则，处理方式类似入站方向）。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNetworkAclEntries(networkAclId: String, networkAclEntrySet: NetworkAclEntrySet? = nil, networkAclQuintupleSet: NetworkAclQuintupleEntries? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclEntriesResponse {
         try await self.modifyNetworkAclEntries(ModifyNetworkAclEntriesRequest(networkAclId: networkAclId, networkAclEntrySet: networkAclEntrySet, networkAclQuintupleSet: networkAclQuintupleSet), region: region, logger: logger, on: eventLoop)
     }

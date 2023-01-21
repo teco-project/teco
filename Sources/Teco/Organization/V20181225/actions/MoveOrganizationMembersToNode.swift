@@ -45,25 +45,25 @@ extension Organization {
     }
 
     /// 移动成员到指定企业组织单元
-    @inlinable
+    @inlinable @discardableResult
     public func moveOrganizationMembersToNode(_ input: MoveOrganizationMembersToNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationMembersToNodeResponse> {
         self.client.execute(action: "MoveOrganizationMembersToNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 移动成员到指定企业组织单元
-    @inlinable
+    @inlinable @discardableResult
     public func moveOrganizationMembersToNode(_ input: MoveOrganizationMembersToNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationMembersToNodeResponse {
         try await self.client.execute(action: "MoveOrganizationMembersToNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 移动成员到指定企业组织单元
-    @inlinable
+    @inlinable @discardableResult
     public func moveOrganizationMembersToNode(nodeId: UInt64, uins: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MoveOrganizationMembersToNodeResponse> {
         self.moveOrganizationMembersToNode(MoveOrganizationMembersToNodeRequest(nodeId: nodeId, uins: uins), region: region, logger: logger, on: eventLoop)
     }
 
     /// 移动成员到指定企业组织单元
-    @inlinable
+    @inlinable @discardableResult
     public func moveOrganizationMembersToNode(nodeId: UInt64, uins: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MoveOrganizationMembersToNodeResponse {
         try await self.moveOrganizationMembersToNode(MoveOrganizationMembersToNodeRequest(nodeId: nodeId, uins: uins), region: region, logger: logger, on: eventLoop)
     }

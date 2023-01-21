@@ -62,7 +62,7 @@ extension Tke {
     /// 升级集群
     ///
     /// 升级集群 Master 组件到指定版本
-    @inlinable
+    @inlinable @discardableResult
     public func updateClusterVersion(_ input: UpdateClusterVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateClusterVersionResponse> {
         self.client.execute(action: "UpdateClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Tke {
     /// 升级集群
     ///
     /// 升级集群 Master 组件到指定版本
-    @inlinable
+    @inlinable @discardableResult
     public func updateClusterVersion(_ input: UpdateClusterVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateClusterVersionResponse {
         try await self.client.execute(action: "UpdateClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -78,7 +78,7 @@ extension Tke {
     /// 升级集群
     ///
     /// 升级集群 Master 组件到指定版本
-    @inlinable
+    @inlinable @discardableResult
     public func updateClusterVersion(clusterId: String, dstVersion: String, extraArgs: ClusterExtraArgs? = nil, maxNotReadyPercent: Float? = nil, skipPreCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateClusterVersionResponse> {
         self.updateClusterVersion(UpdateClusterVersionRequest(clusterId: clusterId, dstVersion: dstVersion, extraArgs: extraArgs, maxNotReadyPercent: maxNotReadyPercent, skipPreCheck: skipPreCheck), region: region, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Tke {
     /// 升级集群
     ///
     /// 升级集群 Master 组件到指定版本
-    @inlinable
+    @inlinable @discardableResult
     public func updateClusterVersion(clusterId: String, dstVersion: String, extraArgs: ClusterExtraArgs? = nil, maxNotReadyPercent: Float? = nil, skipPreCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateClusterVersionResponse {
         try await self.updateClusterVersion(UpdateClusterVersionRequest(clusterId: clusterId, dstVersion: dstVersion, extraArgs: extraArgs, maxNotReadyPercent: maxNotReadyPercent, skipPreCheck: skipPreCheck), region: region, logger: logger, on: eventLoop)
     }

@@ -52,25 +52,25 @@ extension Tione {
     }
 
     /// 启动Notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func startNotebookInstance(_ input: StartNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartNotebookInstanceResponse> {
         self.client.execute(action: "StartNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动Notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func startNotebookInstance(_ input: StartNotebookInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartNotebookInstanceResponse {
         try await self.client.execute(action: "StartNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启动Notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func startNotebookInstance(notebookInstanceName: String, autoStopping: String? = nil, stoppingCondition: StoppingCondition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartNotebookInstanceResponse> {
         self.startNotebookInstance(StartNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, autoStopping: autoStopping, stoppingCondition: stoppingCondition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启动Notebook实例
-    @inlinable
+    @inlinable @discardableResult
     public func startNotebookInstance(notebookInstanceName: String, autoStopping: String? = nil, stoppingCondition: StoppingCondition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartNotebookInstanceResponse {
         try await self.startNotebookInstance(StartNotebookInstanceRequest(notebookInstanceName: notebookInstanceName, autoStopping: autoStopping, stoppingCondition: stoppingCondition), region: region, logger: logger, on: eventLoop)
     }

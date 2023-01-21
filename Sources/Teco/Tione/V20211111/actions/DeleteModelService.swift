@@ -42,7 +42,7 @@ extension Tione {
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelService(_ input: DeleteModelServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceResponse> {
         self.client.execute(action: "DeleteModelService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tione {
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelService(_ input: DeleteModelServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
         try await self.client.execute(action: "DeleteModelService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tione {
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceResponse> {
         self.deleteModelService(DeleteModelServiceRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tione {
     /// 删除模型服务
     ///
     /// 根据服务id删除模型服务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceResponse {
         try await self.deleteModelService(DeleteModelServiceRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
     }

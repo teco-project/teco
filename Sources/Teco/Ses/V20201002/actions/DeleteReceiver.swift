@@ -42,7 +42,7 @@ extension Ses {
     /// 删除收件人列表
     ///
     /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
-    @inlinable
+    @inlinable @discardableResult
     public func deleteReceiver(_ input: DeleteReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReceiverResponse> {
         self.client.execute(action: "DeleteReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ses {
     /// 删除收件人列表
     ///
     /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
-    @inlinable
+    @inlinable @discardableResult
     public func deleteReceiver(_ input: DeleteReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
         try await self.client.execute(action: "DeleteReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ses {
     /// 删除收件人列表
     ///
     /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
-    @inlinable
+    @inlinable @discardableResult
     public func deleteReceiver(receiverId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReceiverResponse> {
         self.deleteReceiver(DeleteReceiverRequest(receiverId: receiverId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ses {
     /// 删除收件人列表
     ///
     /// 根据收件id删除收件人列表,同时删除列表中的所有收件邮箱
-    @inlinable
+    @inlinable @discardableResult
     public func deleteReceiver(receiverId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReceiverResponse {
         try await self.deleteReceiver(DeleteReceiverRequest(receiverId: receiverId), region: region, logger: logger, on: eventLoop)
     }

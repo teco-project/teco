@@ -76,7 +76,7 @@ extension Live {
     /// 更新水印
     ///
     /// 更新水印。
-    @inlinable
+    @inlinable @discardableResult
     public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
         self.client.execute(action: "UpdateLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -84,7 +84,7 @@ extension Live {
     /// 更新水印
     ///
     /// 更新水印。
-    @inlinable
+    @inlinable @discardableResult
     public func updateLiveWatermark(_ input: UpdateLiveWatermarkRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
         try await self.client.execute(action: "UpdateLiveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -92,7 +92,7 @@ extension Live {
     /// 更新水印
     ///
     /// 更新水印。
-    @inlinable
+    @inlinable @discardableResult
     public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLiveWatermarkResponse> {
         self.updateLiveWatermark(UpdateLiveWatermarkRequest(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), region: region, logger: logger, on: eventLoop)
     }
@@ -100,7 +100,7 @@ extension Live {
     /// 更新水印
     ///
     /// 更新水印。
-    @inlinable
+    @inlinable @discardableResult
     public func updateLiveWatermark(watermarkId: Int64, pictureUrl: String, xPosition: Int64, yPosition: Int64, watermarkName: String? = nil, width: Int64? = nil, height: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLiveWatermarkResponse {
         try await self.updateLiveWatermark(UpdateLiveWatermarkRequest(watermarkId: watermarkId, pictureUrl: pictureUrl, xPosition: xPosition, yPosition: yPosition, watermarkName: watermarkName, width: width, height: height), region: region, logger: logger, on: eventLoop)
     }

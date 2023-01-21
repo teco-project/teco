@@ -42,7 +42,7 @@ extension Vpc {
     /// 停止流日志
     ///
     /// 本接口（DisableFlowLogs）用于停止流日志。
-    @inlinable
+    @inlinable @discardableResult
     public func disableFlowLogs(_ input: DisableFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableFlowLogsResponse> {
         self.client.execute(action: "DisableFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Vpc {
     /// 停止流日志
     ///
     /// 本接口（DisableFlowLogs）用于停止流日志。
-    @inlinable
+    @inlinable @discardableResult
     public func disableFlowLogs(_ input: DisableFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableFlowLogsResponse {
         try await self.client.execute(action: "DisableFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Vpc {
     /// 停止流日志
     ///
     /// 本接口（DisableFlowLogs）用于停止流日志。
-    @inlinable
+    @inlinable @discardableResult
     public func disableFlowLogs(flowLogIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableFlowLogsResponse> {
         self.disableFlowLogs(DisableFlowLogsRequest(flowLogIds: flowLogIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 停止流日志
     ///
     /// 本接口（DisableFlowLogs）用于停止流日志。
-    @inlinable
+    @inlinable @discardableResult
     public func disableFlowLogs(flowLogIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableFlowLogsResponse {
         try await self.disableFlowLogs(DisableFlowLogsRequest(flowLogIds: flowLogIds), region: region, logger: logger, on: eventLoop)
     }

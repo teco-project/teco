@@ -77,7 +77,7 @@ extension Yunjing {
     /// 创建基线策略
     ///
     /// 根据策略信息创建基线策略
-    @inlinable
+    @inlinable @discardableResult
     public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaselineStrategyResponse> {
         self.client.execute(action: "CreateBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -85,7 +85,7 @@ extension Yunjing {
     /// 创建基线策略
     ///
     /// 根据策略信息创建基线策略
-    @inlinable
+    @inlinable @discardableResult
     public func createBaselineStrategy(_ input: CreateBaselineStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
         try await self.client.execute(action: "CreateBaselineStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -93,7 +93,7 @@ extension Yunjing {
     /// 创建基线策略
     ///
     /// 根据策略信息创建基线策略
-    @inlinable
+    @inlinable @discardableResult
     public func createBaselineStrategy(strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBaselineStrategyResponse> {
         self.createBaselineStrategy(CreateBaselineStrategyRequest(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }
@@ -101,7 +101,7 @@ extension Yunjing {
     /// 创建基线策略
     ///
     /// 根据策略信息创建基线策略
-    @inlinable
+    @inlinable @discardableResult
     public func createBaselineStrategy(strategyName: String, scanCycle: UInt64, scanAt: String, categoryIds: [UInt64], isGlobal: UInt64, machineType: String, regionCode: String, quuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBaselineStrategyResponse {
         try await self.createBaselineStrategy(CreateBaselineStrategyRequest(strategyName: strategyName, scanCycle: scanCycle, scanAt: scanAt, categoryIds: categoryIds, isGlobal: isGlobal, machineType: machineType, regionCode: regionCode, quuids: quuids), region: region, logger: logger, on: eventLoop)
     }

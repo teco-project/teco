@@ -42,7 +42,7 @@ extension Gaap {
     /// 删除域名解析记录
     ///
     /// 删除域名的某条解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainDnsResponse> {
         self.client.execute(action: "DeleteGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Gaap {
     /// 删除域名解析记录
     ///
     /// 删除域名的某条解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGlobalDomainDns(_ input: DeleteGlobalDomainDnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainDnsResponse {
         try await self.client.execute(action: "DeleteGlobalDomainDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Gaap {
     /// 删除域名解析记录
     ///
     /// 删除域名的某条解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGlobalDomainDns(dnsRecordId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGlobalDomainDnsResponse> {
         self.deleteGlobalDomainDns(DeleteGlobalDomainDnsRequest(dnsRecordId: dnsRecordId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Gaap {
     /// 删除域名解析记录
     ///
     /// 删除域名的某条解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func deleteGlobalDomainDns(dnsRecordId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGlobalDomainDnsResponse {
         try await self.deleteGlobalDomainDns(DeleteGlobalDomainDnsRequest(dnsRecordId: dnsRecordId), region: region, logger: logger, on: eventLoop)
     }

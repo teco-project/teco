@@ -45,25 +45,25 @@ extension Redis {
     }
 
     /// Proxy模拟故障接口
-    @inlinable
+    @inlinable @discardableResult
     public func switchProxy(_ input: SwitchProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyResponse> {
         self.client.execute(action: "SwitchProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Proxy模拟故障接口
-    @inlinable
+    @inlinable @discardableResult
     public func switchProxy(_ input: SwitchProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
         try await self.client.execute(action: "SwitchProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Proxy模拟故障接口
-    @inlinable
+    @inlinable @discardableResult
     public func switchProxy(instanceId: String, proxyID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyResponse> {
         self.switchProxy(SwitchProxyRequest(instanceId: instanceId, proxyID: proxyID), region: region, logger: logger, on: eventLoop)
     }
 
     /// Proxy模拟故障接口
-    @inlinable
+    @inlinable @discardableResult
     public func switchProxy(instanceId: String, proxyID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyResponse {
         try await self.switchProxy(SwitchProxyRequest(instanceId: instanceId, proxyID: proxyID), region: region, logger: logger, on: eventLoop)
     }

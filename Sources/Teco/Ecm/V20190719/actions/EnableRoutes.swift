@@ -48,7 +48,7 @@ extension Ecm {
     ///
     /// 启用已禁用的子网路由。
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
+    @inlinable @discardableResult
     public func enableRoutes(_ input: EnableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRoutesResponse> {
         self.client.execute(action: "EnableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Ecm {
     ///
     /// 启用已禁用的子网路由。
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
+    @inlinable @discardableResult
     public func enableRoutes(_ input: EnableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
         try await self.client.execute(action: "EnableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Ecm {
     ///
     /// 启用已禁用的子网路由。
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
+    @inlinable @discardableResult
     public func enableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRoutesResponse> {
         self.enableRoutes(EnableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Ecm {
     ///
     /// 启用已禁用的子网路由。
     /// 本接口会校验启用后，是否与已有路由冲突，如果冲突，则无法启用，失败处理。路由冲突时，需要先禁用与之冲突的路由，才能启用该路由。
-    @inlinable
+    @inlinable @discardableResult
     public func enableRoutes(routeTableId: String, routeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRoutesResponse {
         try await self.enableRoutes(EnableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds), region: region, logger: logger, on: eventLoop)
     }

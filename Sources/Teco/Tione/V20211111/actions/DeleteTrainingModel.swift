@@ -50,25 +50,25 @@ extension Tione {
     }
 
     /// 删除模型
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelResponse> {
         self.client.execute(action: "DeleteTrainingModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模型
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingModel(_ input: DeleteTrainingModelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelResponse {
         try await self.client.execute(action: "DeleteTrainingModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除模型
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelResponse> {
         self.deleteTrainingModel(DeleteTrainingModelRequest(trainingModelId: trainingModelId, enableDeleteCos: enableDeleteCos, modelVersionType: modelVersionType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模型
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingModel(trainingModelId: String, enableDeleteCos: Bool? = nil, modelVersionType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelResponse {
         try await self.deleteTrainingModel(DeleteTrainingModelRequest(trainingModelId: trainingModelId, enableDeleteCos: enableDeleteCos, modelVersionType: modelVersionType), region: region, logger: logger, on: eventLoop)
     }

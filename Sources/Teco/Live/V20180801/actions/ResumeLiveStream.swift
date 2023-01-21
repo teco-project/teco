@@ -52,7 +52,7 @@ extension Live {
     /// 恢复直播推流
     ///
     /// 恢复某条流的推流。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeLiveStream(_ input: ResumeLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeLiveStreamResponse> {
         self.client.execute(action: "ResumeLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Live {
     /// 恢复直播推流
     ///
     /// 恢复某条流的推流。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeLiveStream(_ input: ResumeLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
         try await self.client.execute(action: "ResumeLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Live {
     /// 恢复直播推流
     ///
     /// 恢复某条流的推流。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeLiveStream(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeLiveStreamResponse> {
         self.resumeLiveStream(ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Live {
     /// 恢复直播推流
     ///
     /// 恢复某条流的推流。
-    @inlinable
+    @inlinable @discardableResult
     public func resumeLiveStream(appName: String, domainName: String, streamName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeLiveStreamResponse {
         try await self.resumeLiveStream(ResumeLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName), region: region, logger: logger, on: eventLoop)
     }

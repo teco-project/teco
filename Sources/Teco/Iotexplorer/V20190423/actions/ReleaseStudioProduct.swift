@@ -47,7 +47,7 @@ extension Iotexplorer {
     /// 发布产品
     ///
     /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
-    @inlinable
+    @inlinable @discardableResult
     public func releaseStudioProduct(_ input: ReleaseStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseStudioProductResponse> {
         self.client.execute(action: "ReleaseStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Iotexplorer {
     /// 发布产品
     ///
     /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
-    @inlinable
+    @inlinable @discardableResult
     public func releaseStudioProduct(_ input: ReleaseStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseStudioProductResponse {
         try await self.client.execute(action: "ReleaseStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Iotexplorer {
     /// 发布产品
     ///
     /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
-    @inlinable
+    @inlinable @discardableResult
     public func releaseStudioProduct(productId: String, devStatus: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseStudioProductResponse> {
         self.releaseStudioProduct(ReleaseStudioProductRequest(productId: productId, devStatus: devStatus), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Iotexplorer {
     /// 发布产品
     ///
     /// 产品开发完成并测试通过后，通过发布产品将产品设置为发布状态
-    @inlinable
+    @inlinable @discardableResult
     public func releaseStudioProduct(productId: String, devStatus: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseStudioProductResponse {
         try await self.releaseStudioProduct(ReleaseStudioProductRequest(productId: productId, devStatus: devStatus), region: region, logger: logger, on: eventLoop)
     }

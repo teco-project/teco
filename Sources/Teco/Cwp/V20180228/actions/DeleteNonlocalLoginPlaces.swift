@@ -57,7 +57,7 @@ extension Cwp {
     /// 删除异地登录记录
     ///
     /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNonlocalLoginPlacesResponse> {
         self.client.execute(action: "DeleteNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cwp {
     /// 删除异地登录记录
     ///
     /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNonlocalLoginPlaces(_ input: DeleteNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNonlocalLoginPlacesResponse {
         try await self.client.execute(action: "DeleteNonlocalLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cwp {
     /// 删除异地登录记录
     ///
     /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNonlocalLoginPlaces(delType: String? = nil, ids: [UInt64]? = nil, ip: [String]? = nil, uuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNonlocalLoginPlacesResponse> {
         self.deleteNonlocalLoginPlaces(DeleteNonlocalLoginPlacesRequest(delType: delType, ids: ids, ip: ip, uuid: uuid), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cwp {
     /// 删除异地登录记录
     ///
     /// 本接口 (DeleteNonlocalLoginPlaces) 用于删除异地登录记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNonlocalLoginPlaces(delType: String? = nil, ids: [UInt64]? = nil, ip: [String]? = nil, uuid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNonlocalLoginPlacesResponse {
         try await self.deleteNonlocalLoginPlaces(DeleteNonlocalLoginPlacesRequest(delType: delType, ids: ids, ip: ip, uuid: uuid), region: region, logger: logger, on: eventLoop)
     }

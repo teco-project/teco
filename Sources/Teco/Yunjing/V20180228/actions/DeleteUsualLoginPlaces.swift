@@ -47,7 +47,7 @@ extension Yunjing {
     /// 删除常用登录地
     ///
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsualLoginPlacesResponse> {
         self.client.execute(action: "DeleteUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Yunjing {
     /// 删除常用登录地
     ///
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsualLoginPlaces(_ input: DeleteUsualLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
         try await self.client.execute(action: "DeleteUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Yunjing {
     /// 删除常用登录地
     ///
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsualLoginPlacesResponse> {
         self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Yunjing {
     /// 删除常用登录地
     ///
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
         try await self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), region: region, logger: logger, on: eventLoop)
     }

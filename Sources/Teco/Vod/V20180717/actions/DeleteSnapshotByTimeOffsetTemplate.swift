@@ -47,7 +47,7 @@ extension Vod {
     /// 删除指定时间点截图模板
     ///
     /// 删除用户自定义指定时间点截图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotByTimeOffsetTemplateResponse> {
         self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vod {
     /// 删除指定时间点截图模板
     ///
     /// 删除用户自定义指定时间点截图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSnapshotByTimeOffsetTemplate(_ input: DeleteSnapshotByTimeOffsetTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotByTimeOffsetTemplateResponse {
         try await self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vod {
     /// 删除指定时间点截图模板
     ///
     /// 删除用户自定义指定时间点截图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSnapshotByTimeOffsetTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotByTimeOffsetTemplateResponse> {
         self.deleteSnapshotByTimeOffsetTemplate(DeleteSnapshotByTimeOffsetTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vod {
     /// 删除指定时间点截图模板
     ///
     /// 删除用户自定义指定时间点截图模板。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSnapshotByTimeOffsetTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotByTimeOffsetTemplateResponse {
         try await self.deleteSnapshotByTimeOffsetTemplate(DeleteSnapshotByTimeOffsetTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

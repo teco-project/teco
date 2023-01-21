@@ -47,7 +47,7 @@ extension Tcr {
     /// 删除个人版仓库tag
     ///
     /// 用于在个人版中删除tag
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImagePersonal(_ input: DeleteImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagePersonalResponse> {
         self.client.execute(action: "DeleteImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcr {
     /// 删除个人版仓库tag
     ///
     /// 用于在个人版中删除tag
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImagePersonal(_ input: DeleteImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagePersonalResponse {
         try await self.client.execute(action: "DeleteImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcr {
     /// 删除个人版仓库tag
     ///
     /// 用于在个人版中删除tag
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImagePersonal(repoName: String, tag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagePersonalResponse> {
         self.deleteImagePersonal(DeleteImagePersonalRequest(repoName: repoName, tag: tag), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcr {
     /// 删除个人版仓库tag
     ///
     /// 用于在个人版中删除tag
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImagePersonal(repoName: String, tag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagePersonalResponse {
         try await self.deleteImagePersonal(DeleteImagePersonalRequest(repoName: repoName, tag: tag), region: region, logger: logger, on: eventLoop)
     }

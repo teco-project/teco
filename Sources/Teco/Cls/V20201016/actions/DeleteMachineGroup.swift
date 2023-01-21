@@ -40,25 +40,25 @@ extension Cls {
     }
 
     /// 删除机器组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupResponse> {
         self.client.execute(action: "DeleteMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除机器组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineGroup(_ input: DeleteMachineGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {
         try await self.client.execute(action: "DeleteMachineGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除机器组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineGroupResponse> {
         self.deleteMachineGroup(DeleteMachineGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除机器组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMachineGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineGroupResponse {
         try await self.deleteMachineGroup(DeleteMachineGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
     }

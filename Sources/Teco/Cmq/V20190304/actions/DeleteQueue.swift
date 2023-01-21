@@ -42,7 +42,7 @@ extension Cmq {
     /// 删除队列
     ///
     /// DeleteQueue
-    @inlinable
+    @inlinable @discardableResult
     public func deleteQueue(_ input: DeleteQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQueueResponse> {
         self.client.execute(action: "DeleteQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cmq {
     /// 删除队列
     ///
     /// DeleteQueue
-    @inlinable
+    @inlinable @discardableResult
     public func deleteQueue(_ input: DeleteQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQueueResponse {
         try await self.client.execute(action: "DeleteQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cmq {
     /// 删除队列
     ///
     /// DeleteQueue
-    @inlinable
+    @inlinable @discardableResult
     public func deleteQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQueueResponse> {
         self.deleteQueue(DeleteQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cmq {
     /// 删除队列
     ///
     /// DeleteQueue
-    @inlinable
+    @inlinable @discardableResult
     public func deleteQueue(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQueueResponse {
         try await self.deleteQueue(DeleteQueueRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }

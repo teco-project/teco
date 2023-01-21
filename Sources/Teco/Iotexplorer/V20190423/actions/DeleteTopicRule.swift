@@ -40,25 +40,25 @@ extension Iotexplorer {
     }
 
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopicRule(_ input: DeleteTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicRuleResponse> {
         self.client.execute(action: "DeleteTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopicRule(_ input: DeleteTopicRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicRuleResponse {
         try await self.client.execute(action: "DeleteTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTopicRuleResponse> {
         self.deleteTopicRule(DeleteTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTopicRuleResponse {
         try await self.deleteTopicRule(DeleteTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
     }

@@ -43,7 +43,7 @@ extension Mps {
     ///
     /// 删除用户自定义内容分析模板。
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
         self.client.execute(action: "DeleteAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Mps {
     ///
     /// 删除用户自定义内容分析模板。
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
         try await self.client.execute(action: "DeleteAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Mps {
     ///
     /// 删除用户自定义内容分析模板。
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
         self.deleteAIAnalysisTemplate(DeleteAIAnalysisTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Mps {
     ///
     /// 删除用户自定义内容分析模板。
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
         try await self.deleteAIAnalysisTemplate(DeleteAIAnalysisTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }

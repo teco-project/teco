@@ -52,7 +52,7 @@ extension Cdc {
     /// 修改订单状态
     ///
     /// 修改大订单、小订单的状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyOrderStatus(_ input: ModifyOrderStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderStatusResponse> {
         self.client.execute(action: "ModifyOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cdc {
     /// 修改订单状态
     ///
     /// 修改大订单、小订单的状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyOrderStatus(_ input: ModifyOrderStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderStatusResponse {
         try await self.client.execute(action: "ModifyOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cdc {
     /// 修改订单状态
     ///
     /// 修改大订单、小订单的状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyOrderStatus(status: String, dedicatedClusterOrderId: String? = nil, subOrderIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderStatusResponse> {
         self.modifyOrderStatus(ModifyOrderStatusRequest(status: status, dedicatedClusterOrderId: dedicatedClusterOrderId, subOrderIds: subOrderIds), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cdc {
     /// 修改订单状态
     ///
     /// 修改大订单、小订单的状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyOrderStatus(status: String, dedicatedClusterOrderId: String? = nil, subOrderIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderStatusResponse {
         try await self.modifyOrderStatus(ModifyOrderStatusRequest(status: status, dedicatedClusterOrderId: dedicatedClusterOrderId, subOrderIds: subOrderIds), region: region, logger: logger, on: eventLoop)
     }

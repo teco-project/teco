@@ -42,7 +42,7 @@ extension Batch {
     /// 删除任务模板
     ///
     /// 用于删除任务模板信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskTemplatesResponse> {
         self.client.execute(action: "DeleteTaskTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Batch {
     /// 删除任务模板
     ///
     /// 用于删除任务模板信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTaskTemplates(_ input: DeleteTaskTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskTemplatesResponse {
         try await self.client.execute(action: "DeleteTaskTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Batch {
     /// 删除任务模板
     ///
     /// 用于删除任务模板信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTaskTemplates(taskTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskTemplatesResponse> {
         self.deleteTaskTemplates(DeleteTaskTemplatesRequest(taskTemplateIds: taskTemplateIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Batch {
     /// 删除任务模板
     ///
     /// 用于删除任务模板信息
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTaskTemplates(taskTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskTemplatesResponse {
         try await self.deleteTaskTemplates(DeleteTaskTemplatesRequest(taskTemplateIds: taskTemplateIds), region: region, logger: logger, on: eventLoop)
     }

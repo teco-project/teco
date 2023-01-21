@@ -43,7 +43,7 @@ extension Live {
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
-    @inlinable
+    @inlinable @discardableResult
     public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
         self.client.execute(action: "CancelCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -51,7 +51,7 @@ extension Live {
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
-    @inlinable
+    @inlinable @discardableResult
     public func cancelCommonMixStream(_ input: CancelCommonMixStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
         try await self.client.execute(action: "CancelCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -59,7 +59,7 @@ extension Live {
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
-    @inlinable
+    @inlinable @discardableResult
     public func cancelCommonMixStream(mixStreamSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCommonMixStreamResponse> {
         self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), region: region, logger: logger, on: eventLoop)
     }
@@ -67,7 +67,7 @@ extension Live {
     /// 取消通用混流
     ///
     /// 该接口用来取消混流。用法与 mix_streamv2.cancel_mix_stream 基本一致。
-    @inlinable
+    @inlinable @discardableResult
     public func cancelCommonMixStream(mixStreamSessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCommonMixStreamResponse {
         try await self.cancelCommonMixStream(CancelCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId), region: region, logger: logger, on: eventLoop)
     }

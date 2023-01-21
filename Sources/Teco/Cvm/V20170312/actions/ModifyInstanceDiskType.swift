@@ -57,7 +57,7 @@ extension Cvm {
     /// * 不支持竞价实例类型。
     /// * 若实例同时存在本地系统盘和本地数据盘，需同时调整系统盘和数据盘的介质类型，不支持单独针对本地系统盘或本地数据盘修改介质类型。
     /// * 修改前请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/378/4397)接口查询账户余额。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceDiskType(_ input: ModifyInstanceDiskTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceDiskTypeResponse> {
         self.client.execute(action: "ModifyInstanceDiskType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Cvm {
     /// * 不支持竞价实例类型。
     /// * 若实例同时存在本地系统盘和本地数据盘，需同时调整系统盘和数据盘的介质类型，不支持单独针对本地系统盘或本地数据盘修改介质类型。
     /// * 修改前请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/378/4397)接口查询账户余额。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceDiskType(_ input: ModifyInstanceDiskTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceDiskTypeResponse {
         try await self.client.execute(action: "ModifyInstanceDiskType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Cvm {
     /// * 不支持竞价实例类型。
     /// * 若实例同时存在本地系统盘和本地数据盘，需同时调整系统盘和数据盘的介质类型，不支持单独针对本地系统盘或本地数据盘修改介质类型。
     /// * 修改前请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/378/4397)接口查询账户余额。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceDiskType(instanceId: String, dataDisks: [DataDisk]? = nil, systemDisk: SystemDisk? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceDiskTypeResponse> {
         self.modifyInstanceDiskType(ModifyInstanceDiskTypeRequest(instanceId: instanceId, dataDisks: dataDisks, systemDisk: systemDisk), region: region, logger: logger, on: eventLoop)
     }
@@ -96,7 +96,7 @@ extension Cvm {
     /// * 不支持竞价实例类型。
     /// * 若实例同时存在本地系统盘和本地数据盘，需同时调整系统盘和数据盘的介质类型，不支持单独针对本地系统盘或本地数据盘修改介质类型。
     /// * 修改前请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/378/4397)接口查询账户余额。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstanceDiskType(instanceId: String, dataDisks: [DataDisk]? = nil, systemDisk: SystemDisk? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceDiskTypeResponse {
         try await self.modifyInstanceDiskType(ModifyInstanceDiskTypeRequest(instanceId: instanceId, dataDisks: dataDisks, systemDisk: systemDisk), region: region, logger: logger, on: eventLoop)
     }

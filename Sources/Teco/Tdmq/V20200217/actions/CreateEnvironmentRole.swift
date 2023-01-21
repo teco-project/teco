@@ -55,25 +55,25 @@ extension Tdmq {
     }
 
     /// 创建环境角色授权
-    @inlinable
+    @inlinable @discardableResult
     public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentRoleResponse> {
         self.client.execute(action: "CreateEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建环境角色授权
-    @inlinable
+    @inlinable @discardableResult
     public func createEnvironmentRole(_ input: CreateEnvironmentRoleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
         try await self.client.execute(action: "CreateEnvironmentRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建环境角色授权
-    @inlinable
+    @inlinable @discardableResult
     public func createEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentRoleResponse> {
         self.createEnvironmentRole(CreateEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建环境角色授权
-    @inlinable
+    @inlinable @discardableResult
     public func createEnvironmentRole(environmentId: String, roleName: String, permissions: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentRoleResponse {
         try await self.createEnvironmentRole(CreateEnvironmentRoleRequest(environmentId: environmentId, roleName: roleName, permissions: permissions, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }

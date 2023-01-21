@@ -47,7 +47,7 @@ extension Cvm {
     /// 修改分散置放群组属性
     ///
     /// 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisasterRecoverGroupAttribute(_ input: ModifyDisasterRecoverGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisasterRecoverGroupAttributeResponse> {
         self.client.execute(action: "ModifyDisasterRecoverGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Cvm {
     /// 修改分散置放群组属性
     ///
     /// 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisasterRecoverGroupAttribute(_ input: ModifyDisasterRecoverGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisasterRecoverGroupAttributeResponse {
         try await self.client.execute(action: "ModifyDisasterRecoverGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Cvm {
     /// 修改分散置放群组属性
     ///
     /// 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisasterRecoverGroupAttribute(disasterRecoverGroupId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisasterRecoverGroupAttributeResponse> {
         self.modifyDisasterRecoverGroupAttribute(ModifyDisasterRecoverGroupAttributeRequest(disasterRecoverGroupId: disasterRecoverGroupId, name: name), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Cvm {
     /// 修改分散置放群组属性
     ///
     /// 本接口 (ModifyDisasterRecoverGroupAttribute)用于修改[分散置放群组](https://cloud.tencent.com/document/product/213/15486)属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisasterRecoverGroupAttribute(disasterRecoverGroupId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisasterRecoverGroupAttributeResponse {
         try await self.modifyDisasterRecoverGroupAttribute(ModifyDisasterRecoverGroupAttributeRequest(disasterRecoverGroupId: disasterRecoverGroupId, name: name), region: region, logger: logger, on: eventLoop)
     }

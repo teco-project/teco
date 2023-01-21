@@ -47,7 +47,7 @@ extension Tiw {
     /// 设置实时录制回调密钥
     ///
     /// 设置实时录制回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
+    @inlinable @discardableResult
     public func setOnlineRecordCallbackKey(_ input: SetOnlineRecordCallbackKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetOnlineRecordCallbackKeyResponse> {
         self.client.execute(action: "SetOnlineRecordCallbackKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tiw {
     /// 设置实时录制回调密钥
     ///
     /// 设置实时录制回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
+    @inlinable @discardableResult
     public func setOnlineRecordCallbackKey(_ input: SetOnlineRecordCallbackKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOnlineRecordCallbackKeyResponse {
         try await self.client.execute(action: "SetOnlineRecordCallbackKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tiw {
     /// 设置实时录制回调密钥
     ///
     /// 设置实时录制回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
+    @inlinable @discardableResult
     public func setOnlineRecordCallbackKey(sdkAppId: Int64, callbackKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetOnlineRecordCallbackKeyResponse> {
         self.setOnlineRecordCallbackKey(SetOnlineRecordCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tiw {
     /// 设置实时录制回调密钥
     ///
     /// 设置实时录制回调鉴权密钥，回调鉴权方式请参考文档：https://cloud.tencent.com/document/product/1137/40257
-    @inlinable
+    @inlinable @discardableResult
     public func setOnlineRecordCallbackKey(sdkAppId: Int64, callbackKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOnlineRecordCallbackKeyResponse {
         try await self.setOnlineRecordCallbackKey(SetOnlineRecordCallbackKeyRequest(sdkAppId: sdkAppId, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
     }

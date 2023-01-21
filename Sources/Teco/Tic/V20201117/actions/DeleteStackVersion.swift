@@ -42,7 +42,7 @@ extension Tic {
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteStackVersion(_ input: DeleteStackVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStackVersionResponse> {
         self.client.execute(action: "DeleteStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tic {
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteStackVersion(_ input: DeleteStackVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
         try await self.client.execute(action: "DeleteStackVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tic {
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteStackVersion(versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStackVersionResponse> {
         self.deleteStackVersion(DeleteStackVersionRequest(versionId: versionId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tic {
     /// 删除一个版本
     ///
     /// 本接口（DeleteStackVersion）用于删除一个版本，处于PLAN_IN_PROGRESS和APPLY_IN_PROGRESS状态中的版本无法删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteStackVersion(versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStackVersionResponse {
         try await self.deleteStackVersion(DeleteStackVersionRequest(versionId: versionId), region: region, logger: logger, on: eventLoop)
     }

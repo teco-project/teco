@@ -52,7 +52,7 @@ extension Vpc {
     /// 修改安全组属性
     ///
     /// 本接口（ModifySecurityGroupAttribute）用于修改安全组（SecurityGroupPolicy）属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupAttributeResponse> {
         self.client.execute(action: "ModifySecurityGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vpc {
     /// 修改安全组属性
     ///
     /// 本接口（ModifySecurityGroupAttribute）用于修改安全组（SecurityGroupPolicy）属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityGroupAttribute(_ input: ModifySecurityGroupAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
         try await self.client.execute(action: "ModifySecurityGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vpc {
     /// 修改安全组属性
     ///
     /// 本接口（ModifySecurityGroupAttribute）用于修改安全组（SecurityGroupPolicy）属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupAttributeResponse> {
         self.modifySecurityGroupAttribute(ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vpc {
     /// 修改安全组属性
     ///
     /// 本接口（ModifySecurityGroupAttribute）用于修改安全组（SecurityGroupPolicy）属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
         try await self.modifySecurityGroupAttribute(ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), region: region, logger: logger, on: eventLoop)
     }

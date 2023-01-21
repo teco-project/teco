@@ -47,7 +47,7 @@ extension Vpc {
     /// 修改NAT网关SNAT转发规则
     ///
     /// 本接口（ModifyNatGatewaySourceIpTranslationNatRule）用于修改NAT网关SNAT转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNatGatewaySourceIpTranslationNatRule(_ input: ModifyNatGatewaySourceIpTranslationNatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewaySourceIpTranslationNatRuleResponse> {
         self.client.execute(action: "ModifyNatGatewaySourceIpTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 修改NAT网关SNAT转发规则
     ///
     /// 本接口（ModifyNatGatewaySourceIpTranslationNatRule）用于修改NAT网关SNAT转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNatGatewaySourceIpTranslationNatRule(_ input: ModifyNatGatewaySourceIpTranslationNatRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewaySourceIpTranslationNatRuleResponse {
         try await self.client.execute(action: "ModifyNatGatewaySourceIpTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 修改NAT网关SNAT转发规则
     ///
     /// 本接口（ModifyNatGatewaySourceIpTranslationNatRule）用于修改NAT网关SNAT转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRule: SourceIpTranslationNatRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewaySourceIpTranslationNatRuleResponse> {
         self.modifyNatGatewaySourceIpTranslationNatRule(ModifyNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRule: sourceIpTranslationNatRule), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 修改NAT网关SNAT转发规则
     ///
     /// 本接口（ModifyNatGatewaySourceIpTranslationNatRule）用于修改NAT网关SNAT转发规则。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRule: SourceIpTranslationNatRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewaySourceIpTranslationNatRuleResponse {
         try await self.modifyNatGatewaySourceIpTranslationNatRule(ModifyNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRule: sourceIpTranslationNatRule), region: region, logger: logger, on: eventLoop)
     }

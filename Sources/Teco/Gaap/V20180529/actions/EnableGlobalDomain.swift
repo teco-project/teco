@@ -40,25 +40,25 @@ extension Gaap {
     }
 
     /// 开启域名解析
-    @inlinable
+    @inlinable @discardableResult
     public func enableGlobalDomain(_ input: EnableGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGlobalDomainResponse> {
         self.client.execute(action: "EnableGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启域名解析
-    @inlinable
+    @inlinable @discardableResult
     public func enableGlobalDomain(_ input: EnableGlobalDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGlobalDomainResponse {
         try await self.client.execute(action: "EnableGlobalDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开启域名解析
-    @inlinable
+    @inlinable @discardableResult
     public func enableGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGlobalDomainResponse> {
         self.enableGlobalDomain(EnableGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启域名解析
-    @inlinable
+    @inlinable @discardableResult
     public func enableGlobalDomain(domainId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGlobalDomainResponse {
         try await self.enableGlobalDomain(EnableGlobalDomainRequest(domainId: domainId), region: region, logger: logger, on: eventLoop)
     }

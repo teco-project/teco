@@ -42,7 +42,7 @@ extension Iotvideo {
     /// 停止设备推流
     ///
     /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func disableDeviceStream(_ input: DisableDeviceStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceStreamResponse> {
         self.client.execute(action: "DisableDeviceStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Iotvideo {
     /// 停止设备推流
     ///
     /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func disableDeviceStream(_ input: DisableDeviceStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceStreamResponse {
         try await self.client.execute(action: "DisableDeviceStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Iotvideo {
     /// 停止设备推流
     ///
     /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func disableDeviceStream(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableDeviceStreamResponse> {
         self.disableDeviceStream(DisableDeviceStreamRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Iotvideo {
     /// 停止设备推流
     ///
     /// 本接口（DisableDeviceStream）用于停止设备推流，可进行批量操作，每次操作最多100台设备。
-    @inlinable
+    @inlinable @discardableResult
     public func disableDeviceStream(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableDeviceStreamResponse {
         try await self.disableDeviceStream(DisableDeviceStreamRequest(tids: tids), region: region, logger: logger, on: eventLoop)
     }

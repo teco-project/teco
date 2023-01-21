@@ -52,7 +52,7 @@ extension Vpc {
     /// 禁用子网路由
     ///
     /// 本接口（DisableRoutes）用于禁用已启用的子网路由
-    @inlinable
+    @inlinable @discardableResult
     public func disableRoutes(_ input: DisableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
         self.client.execute(action: "DisableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vpc {
     /// 禁用子网路由
     ///
     /// 本接口（DisableRoutes）用于禁用已启用的子网路由
-    @inlinable
+    @inlinable @discardableResult
     public func disableRoutes(_ input: DisableRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
         try await self.client.execute(action: "DisableRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vpc {
     /// 禁用子网路由
     ///
     /// 本接口（DisableRoutes）用于禁用已启用的子网路由
-    @inlinable
+    @inlinable @discardableResult
     public func disableRoutes(routeTableId: String, routeIds: [UInt64]? = nil, routeItemIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableRoutesResponse> {
         self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vpc {
     /// 禁用子网路由
     ///
     /// 本接口（DisableRoutes）用于禁用已启用的子网路由
-    @inlinable
+    @inlinable @discardableResult
     public func disableRoutes(routeTableId: String, routeIds: [UInt64]? = nil, routeItemIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableRoutesResponse {
         try await self.disableRoutes(DisableRoutesRequest(routeTableId: routeTableId, routeIds: routeIds, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
     }

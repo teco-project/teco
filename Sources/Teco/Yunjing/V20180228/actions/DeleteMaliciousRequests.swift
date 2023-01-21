@@ -42,7 +42,7 @@ extension Yunjing {
     /// 删除恶意请求记录
     ///
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMaliciousRequests(_ input: DeleteMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaliciousRequestsResponse> {
         self.client.execute(action: "DeleteMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Yunjing {
     /// 删除恶意请求记录
     ///
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMaliciousRequests(_ input: DeleteMaliciousRequestsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaliciousRequestsResponse {
         try await self.client.execute(action: "DeleteMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Yunjing {
     /// 删除恶意请求记录
     ///
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMaliciousRequests(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaliciousRequestsResponse> {
         self.deleteMaliciousRequests(DeleteMaliciousRequestsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Yunjing {
     /// 删除恶意请求记录
     ///
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteMaliciousRequests(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaliciousRequestsResponse {
         try await self.deleteMaliciousRequests(DeleteMaliciousRequestsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
     }

@@ -75,25 +75,25 @@ extension Privatedns {
     }
 
     /// 修改私有域解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneRecordResponse> {
         self.client.execute(action: "ModifyPrivateZoneRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrivateZoneRecord(_ input: ModifyPrivateZoneRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {
         try await self.client.execute(action: "ModifyPrivateZoneRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改私有域解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneRecordResponse> {
         self.modifyPrivateZoneRecord(ModifyPrivateZoneRecordRequest(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPrivateZoneRecord(zoneId: String, recordId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneRecordResponse {
         try await self.modifyPrivateZoneRecord(ModifyPrivateZoneRecordRequest(zoneId: zoneId, recordId: recordId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), region: region, logger: logger, on: eventLoop)
     }

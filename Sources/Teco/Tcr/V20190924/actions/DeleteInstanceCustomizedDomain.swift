@@ -50,25 +50,25 @@ extension Tcr {
     }
 
     /// 删除自定义域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstanceCustomizedDomain(_ input: DeleteInstanceCustomizedDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceCustomizedDomainResponse> {
         self.client.execute(action: "DeleteInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstanceCustomizedDomain(_ input: DeleteInstanceCustomizedDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceCustomizedDomainResponse {
         try await self.client.execute(action: "DeleteInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除自定义域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceCustomizedDomainResponse> {
         self.deleteInstanceCustomizedDomain(DeleteInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义域名
-    @inlinable
+    @inlinable @discardableResult
     public func deleteInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceCustomizedDomainResponse {
         try await self.deleteInstanceCustomizedDomain(DeleteInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), region: region, logger: logger, on: eventLoop)
     }

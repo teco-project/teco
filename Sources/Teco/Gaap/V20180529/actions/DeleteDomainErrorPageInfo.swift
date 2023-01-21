@@ -40,25 +40,25 @@ extension Gaap {
     }
 
     /// 删除域名的定制错误
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainErrorPageInfoResponse> {
         self.client.execute(action: "DeleteDomainErrorPageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除域名的定制错误
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDomainErrorPageInfo(_ input: DeleteDomainErrorPageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
         try await self.client.execute(action: "DeleteDomainErrorPageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除域名的定制错误
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDomainErrorPageInfo(errorPageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainErrorPageInfoResponse> {
         self.deleteDomainErrorPageInfo(DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除域名的定制错误
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDomainErrorPageInfo(errorPageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainErrorPageInfoResponse {
         try await self.deleteDomainErrorPageInfo(DeleteDomainErrorPageInfoRequest(errorPageId: errorPageId), region: region, logger: logger, on: eventLoop)
     }

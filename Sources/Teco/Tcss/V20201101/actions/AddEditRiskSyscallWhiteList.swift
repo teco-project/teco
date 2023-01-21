@@ -47,7 +47,7 @@ extension Tcss {
     /// 添加编辑高危系统调用白名单
     ///
     /// 添加编辑运行时高危系统调用白名单
-    @inlinable
+    @inlinable @discardableResult
     public func addEditRiskSyscallWhiteList(_ input: AddEditRiskSyscallWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditRiskSyscallWhiteListResponse> {
         self.client.execute(action: "AddEditRiskSyscallWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Tcss {
     /// 添加编辑高危系统调用白名单
     ///
     /// 添加编辑运行时高危系统调用白名单
-    @inlinable
+    @inlinable @discardableResult
     public func addEditRiskSyscallWhiteList(_ input: AddEditRiskSyscallWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditRiskSyscallWhiteListResponse {
         try await self.client.execute(action: "AddEditRiskSyscallWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Tcss {
     /// 添加编辑高危系统调用白名单
     ///
     /// 添加编辑运行时高危系统调用白名单
-    @inlinable
+    @inlinable @discardableResult
     public func addEditRiskSyscallWhiteList(eventId: String? = nil, whiteListInfo: RiskSyscallWhiteListInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditRiskSyscallWhiteListResponse> {
         self.addEditRiskSyscallWhiteList(AddEditRiskSyscallWhiteListRequest(eventId: eventId, whiteListInfo: whiteListInfo), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Tcss {
     /// 添加编辑高危系统调用白名单
     ///
     /// 添加编辑运行时高危系统调用白名单
-    @inlinable
+    @inlinable @discardableResult
     public func addEditRiskSyscallWhiteList(eventId: String? = nil, whiteListInfo: RiskSyscallWhiteListInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditRiskSyscallWhiteListResponse {
         try await self.addEditRiskSyscallWhiteList(AddEditRiskSyscallWhiteListRequest(eventId: eventId, whiteListInfo: whiteListInfo), region: region, logger: logger, on: eventLoop)
     }

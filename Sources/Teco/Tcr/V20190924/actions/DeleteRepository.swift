@@ -50,25 +50,25 @@ extension Tcr {
     }
 
     /// 删除镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRepository(_ input: DeleteRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
         self.client.execute(action: "DeleteRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRepository(_ input: DeleteRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
         try await self.client.execute(action: "DeleteRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRepository(registryId: String, namespaceName: String, repositoryName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRepositoryResponse> {
         self.deleteRepository(DeleteRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除镜像仓库
-    @inlinable
+    @inlinable @discardableResult
     public func deleteRepository(registryId: String, namespaceName: String, repositoryName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRepositoryResponse {
         try await self.deleteRepository(DeleteRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName), region: region, logger: logger, on: eventLoop)
     }

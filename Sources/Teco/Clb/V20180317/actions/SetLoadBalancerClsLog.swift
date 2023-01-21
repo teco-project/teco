@@ -64,7 +64,7 @@ extension Clb {
     /// 设置负载均衡的日志服务主题
     ///
     /// 增加、删除、更新负载均衡的日志服务(CLS)主题。
-    @inlinable
+    @inlinable @discardableResult
     public func setLoadBalancerClsLog(_ input: SetLoadBalancerClsLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerClsLogResponse> {
         self.client.execute(action: "SetLoadBalancerClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -72,7 +72,7 @@ extension Clb {
     /// 设置负载均衡的日志服务主题
     ///
     /// 增加、删除、更新负载均衡的日志服务(CLS)主题。
-    @inlinable
+    @inlinable @discardableResult
     public func setLoadBalancerClsLog(_ input: SetLoadBalancerClsLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerClsLogResponse {
         try await self.client.execute(action: "SetLoadBalancerClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -80,7 +80,7 @@ extension Clb {
     /// 设置负载均衡的日志服务主题
     ///
     /// 增加、删除、更新负载均衡的日志服务(CLS)主题。
-    @inlinable
+    @inlinable @discardableResult
     public func setLoadBalancerClsLog(loadBalancerId: String, logSetId: String, logTopicId: String, logType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerClsLogResponse> {
         self.setLoadBalancerClsLog(SetLoadBalancerClsLogRequest(loadBalancerId: loadBalancerId, logSetId: logSetId, logTopicId: logTopicId, logType: logType), region: region, logger: logger, on: eventLoop)
     }
@@ -88,7 +88,7 @@ extension Clb {
     /// 设置负载均衡的日志服务主题
     ///
     /// 增加、删除、更新负载均衡的日志服务(CLS)主题。
-    @inlinable
+    @inlinable @discardableResult
     public func setLoadBalancerClsLog(loadBalancerId: String, logSetId: String, logTopicId: String, logType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerClsLogResponse {
         try await self.setLoadBalancerClsLog(SetLoadBalancerClsLogRequest(loadBalancerId: loadBalancerId, logSetId: logSetId, logTopicId: logTopicId, logType: logType), region: region, logger: logger, on: eventLoop)
     }

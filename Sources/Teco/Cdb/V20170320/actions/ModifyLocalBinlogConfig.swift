@@ -52,7 +52,7 @@ extension Cdb {
     /// 修改本地binlog保留策略
     ///
     /// 该接口用于修改实例本地binlog保留策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLocalBinlogConfigResponse> {
         self.client.execute(action: "ModifyLocalBinlogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cdb {
     /// 修改本地binlog保留策略
     ///
     /// 该接口用于修改实例本地binlog保留策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLocalBinlogConfig(_ input: ModifyLocalBinlogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalBinlogConfigResponse {
         try await self.client.execute(action: "ModifyLocalBinlogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cdb {
     /// 修改本地binlog保留策略
     ///
     /// 该接口用于修改实例本地binlog保留策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLocalBinlogConfig(instanceId: String, saveHours: Int64, maxUsage: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLocalBinlogConfigResponse> {
         self.modifyLocalBinlogConfig(ModifyLocalBinlogConfigRequest(instanceId: instanceId, saveHours: saveHours, maxUsage: maxUsage), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cdb {
     /// 修改本地binlog保留策略
     ///
     /// 该接口用于修改实例本地binlog保留策略。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLocalBinlogConfig(instanceId: String, saveHours: Int64, maxUsage: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLocalBinlogConfigResponse {
         try await self.modifyLocalBinlogConfig(ModifyLocalBinlogConfigRequest(instanceId: instanceId, saveHours: saveHours, maxUsage: maxUsage), region: region, logger: logger, on: eventLoop)
     }

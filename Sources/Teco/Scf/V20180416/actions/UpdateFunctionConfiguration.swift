@@ -143,7 +143,7 @@ extension Scf {
     /// 更新函数配置
     ///
     /// 该接口根据传入参数更新函数配置。
-    @inlinable
+    @inlinable @discardableResult
     public func updateFunctionConfiguration(_ input: UpdateFunctionConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionConfigurationResponse> {
         self.client.execute(action: "UpdateFunctionConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -151,7 +151,7 @@ extension Scf {
     /// 更新函数配置
     ///
     /// 该接口根据传入参数更新函数配置。
-    @inlinable
+    @inlinable @discardableResult
     public func updateFunctionConfiguration(_ input: UpdateFunctionConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionConfigurationResponse {
         try await self.client.execute(action: "UpdateFunctionConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -159,7 +159,7 @@ extension Scf {
     /// 更新函数配置
     ///
     /// 该接口根据传入参数更新函数配置。
-    @inlinable
+    @inlinable @discardableResult
     public func updateFunctionConfiguration(functionName: String, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, runtime: String? = nil, environment: Environment? = nil, namespace: String? = nil, vpcConfig: VpcConfig? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, publish: String? = nil, l5Enable: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFunctionConfigurationResponse> {
         self.updateFunctionConfiguration(UpdateFunctionConfigurationRequest(functionName: functionName, description: description, memorySize: memorySize, timeout: timeout, runtime: runtime, environment: environment, namespace: namespace, vpcConfig: vpcConfig, role: role, installDependency: installDependency, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, publish: publish, l5Enable: l5Enable, layers: layers, deadLetterConfig: deadLetterConfig, publicNetConfig: publicNetConfig, cfsConfig: cfsConfig, initTimeout: initTimeout, protocolParams: protocolParams, instanceConcurrencyConfig: instanceConcurrencyConfig), region: region, logger: logger, on: eventLoop)
     }
@@ -167,7 +167,7 @@ extension Scf {
     /// 更新函数配置
     ///
     /// 该接口根据传入参数更新函数配置。
-    @inlinable
+    @inlinable @discardableResult
     public func updateFunctionConfiguration(functionName: String, description: String? = nil, memorySize: Int64? = nil, timeout: Int64? = nil, runtime: String? = nil, environment: Environment? = nil, namespace: String? = nil, vpcConfig: VpcConfig? = nil, role: String? = nil, installDependency: String? = nil, clsLogsetId: String? = nil, clsTopicId: String? = nil, publish: String? = nil, l5Enable: String? = nil, layers: [LayerVersionSimple]? = nil, deadLetterConfig: DeadLetterConfig? = nil, publicNetConfig: PublicNetConfigIn? = nil, cfsConfig: CfsConfig? = nil, initTimeout: Int64? = nil, protocolParams: ProtocolParams? = nil, instanceConcurrencyConfig: InstanceConcurrencyConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFunctionConfigurationResponse {
         try await self.updateFunctionConfiguration(UpdateFunctionConfigurationRequest(functionName: functionName, description: description, memorySize: memorySize, timeout: timeout, runtime: runtime, environment: environment, namespace: namespace, vpcConfig: vpcConfig, role: role, installDependency: installDependency, clsLogsetId: clsLogsetId, clsTopicId: clsTopicId, publish: publish, l5Enable: l5Enable, layers: layers, deadLetterConfig: deadLetterConfig, publicNetConfig: publicNetConfig, cfsConfig: cfsConfig, initTimeout: initTimeout, protocolParams: protocolParams, instanceConcurrencyConfig: instanceConcurrencyConfig), region: region, logger: logger, on: eventLoop)
     }

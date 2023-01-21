@@ -42,7 +42,7 @@ extension Dc {
     /// 停用公网互联网地址
     ///
     /// 停用用户申请的公网互联网地址
-    @inlinable
+    @inlinable @discardableResult
     public func disableInternetAddress(_ input: DisableInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInternetAddressResponse> {
         self.client.execute(action: "DisableInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Dc {
     /// 停用公网互联网地址
     ///
     /// 停用用户申请的公网互联网地址
-    @inlinable
+    @inlinable @discardableResult
     public func disableInternetAddress(_ input: DisableInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInternetAddressResponse {
         try await self.client.execute(action: "DisableInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Dc {
     /// 停用公网互联网地址
     ///
     /// 停用用户申请的公网互联网地址
-    @inlinable
+    @inlinable @discardableResult
     public func disableInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInternetAddressResponse> {
         self.disableInternetAddress(DisableInternetAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Dc {
     /// 停用公网互联网地址
     ///
     /// 停用用户申请的公网互联网地址
-    @inlinable
+    @inlinable @discardableResult
     public func disableInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInternetAddressResponse {
         try await self.disableInternetAddress(DisableInternetAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Mps {
     /// 删除媒体传输输出
     ///
     /// 删除媒体传输流的输出配置。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteStreamLinkOutput(_ input: DeleteStreamLinkOutputRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStreamLinkOutputResponse> {
         self.client.execute(action: "DeleteStreamLinkOutput", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Mps {
     /// 删除媒体传输输出
     ///
     /// 删除媒体传输流的输出配置。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteStreamLinkOutput(_ input: DeleteStreamLinkOutputRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkOutputResponse {
         try await self.client.execute(action: "DeleteStreamLinkOutput", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Mps {
     /// 删除媒体传输输出
     ///
     /// 删除媒体传输流的输出配置。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteStreamLinkOutput(flowId: String, outputId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStreamLinkOutputResponse> {
         self.deleteStreamLinkOutput(DeleteStreamLinkOutputRequest(flowId: flowId, outputId: outputId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Mps {
     /// 删除媒体传输输出
     ///
     /// 删除媒体传输流的输出配置。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteStreamLinkOutput(flowId: String, outputId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkOutputResponse {
         try await self.deleteStreamLinkOutput(DeleteStreamLinkOutputRequest(flowId: flowId, outputId: outputId), region: region, logger: logger, on: eventLoop)
     }

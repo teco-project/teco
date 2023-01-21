@@ -52,7 +52,7 @@ extension Cfw {
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
-    @inlinable
+    @inlinable @discardableResult
     public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
         self.client.execute(action: "ModifyResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cfw {
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
-    @inlinable
+    @inlinable @discardableResult
     public func modifyResourceGroup(_ input: ModifyResourceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
         try await self.client.execute(action: "ModifyResourceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cfw {
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
-    @inlinable
+    @inlinable @discardableResult
     public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceGroupResponse> {
         self.modifyResourceGroup(ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cfw {
     /// 资产中心资产组信息修改
     ///
     /// ModifyResourceGroup-资产中心资产组信息修改
-    @inlinable
+    @inlinable @discardableResult
     public func modifyResourceGroup(groupId: String, groupName: String, parentId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceGroupResponse {
         try await self.modifyResourceGroup(ModifyResourceGroupRequest(groupId: groupId, groupName: groupName, parentId: parentId), region: region, logger: logger, on: eventLoop)
     }

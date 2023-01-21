@@ -47,7 +47,7 @@ extension Mongodb {
     /// 修改实例名称
     ///
     /// 本接口(RenameInstance)用于修改云数据库实例的名称。
-    @inlinable
+    @inlinable @discardableResult
     public func renameInstance(_ input: RenameInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenameInstanceResponse> {
         self.client.execute(action: "RenameInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Mongodb {
     /// 修改实例名称
     ///
     /// 本接口(RenameInstance)用于修改云数据库实例的名称。
-    @inlinable
+    @inlinable @discardableResult
     public func renameInstance(_ input: RenameInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
         try await self.client.execute(action: "RenameInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Mongodb {
     /// 修改实例名称
     ///
     /// 本接口(RenameInstance)用于修改云数据库实例的名称。
-    @inlinable
+    @inlinable @discardableResult
     public func renameInstance(instanceId: String, newName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenameInstanceResponse> {
         self.renameInstance(RenameInstanceRequest(instanceId: instanceId, newName: newName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Mongodb {
     /// 修改实例名称
     ///
     /// 本接口(RenameInstance)用于修改云数据库实例的名称。
-    @inlinable
+    @inlinable @discardableResult
     public func renameInstance(instanceId: String, newName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenameInstanceResponse {
         try await self.renameInstance(RenameInstanceRequest(instanceId: instanceId, newName: newName), region: region, logger: logger, on: eventLoop)
     }

@@ -55,25 +55,25 @@ extension Tsf {
     }
 
     /// 重关联业务日志配置
-    @inlinable
+    @inlinable @discardableResult
     public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReassociateBusinessLogConfigResponse> {
         self.client.execute(action: "ReassociateBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重关联业务日志配置
-    @inlinable
+    @inlinable @discardableResult
     public func reassociateBusinessLogConfig(_ input: ReassociateBusinessLogConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReassociateBusinessLogConfigResponse {
         try await self.client.execute(action: "ReassociateBusinessLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重关联业务日志配置
-    @inlinable
+    @inlinable @discardableResult
     public func reassociateBusinessLogConfig(configId: String, newConfigId: String, applicationId: String, groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReassociateBusinessLogConfigResponse> {
         self.reassociateBusinessLogConfig(ReassociateBusinessLogConfigRequest(configId: configId, newConfigId: newConfigId, applicationId: applicationId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重关联业务日志配置
-    @inlinable
+    @inlinable @discardableResult
     public func reassociateBusinessLogConfig(configId: String, newConfigId: String, applicationId: String, groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReassociateBusinessLogConfigResponse {
         try await self.reassociateBusinessLogConfig(ReassociateBusinessLogConfigRequest(configId: configId, newConfigId: newConfigId, applicationId: applicationId, groupId: groupId), region: region, logger: logger, on: eventLoop)
     }

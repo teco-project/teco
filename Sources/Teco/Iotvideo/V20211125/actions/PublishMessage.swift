@@ -67,7 +67,7 @@ extension Iotvideo {
     /// 设备透传指令控制
     ///
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
-    @inlinable
+    @inlinable @discardableResult
     public func publishMessage(_ input: PublishMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
         self.client.execute(action: "PublishMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Iotvideo {
     /// 设备透传指令控制
     ///
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
-    @inlinable
+    @inlinable @discardableResult
     public func publishMessage(_ input: PublishMessageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
         try await self.client.execute(action: "PublishMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Iotvideo {
     /// 设备透传指令控制
     ///
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
-    @inlinable
+    @inlinable @discardableResult
     public func publishMessage(productId: String, deviceName: String, topic: String, payload: String, qos: UInt64? = nil, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMessageResponse> {
         self.publishMessage(PublishMessageRequest(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Iotvideo {
     /// 设备透传指令控制
     ///
     /// 本接口（PublishMessage）用于使用自定义透传协议进行设备远控
-    @inlinable
+    @inlinable @discardableResult
     public func publishMessage(productId: String, deviceName: String, topic: String, payload: String, qos: UInt64? = nil, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMessageResponse {
         try await self.publishMessage(PublishMessageRequest(productId: productId, deviceName: deviceName, topic: topic, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
     }

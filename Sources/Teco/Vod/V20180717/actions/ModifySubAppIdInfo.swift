@@ -52,7 +52,7 @@ extension Vod {
     /// 修改子应用信息
     ///
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdInfoResponse> {
         self.client.execute(action: "ModifySubAppIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Vod {
     /// 修改子应用信息
     ///
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubAppIdInfo(_ input: ModifySubAppIdInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
         try await self.client.execute(action: "ModifySubAppIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Vod {
     /// 修改子应用信息
     ///
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubAppIdInfo(subAppId: UInt64, name: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubAppIdInfoResponse> {
         self.modifySubAppIdInfo(ModifySubAppIdInfoRequest(subAppId: subAppId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Vod {
     /// 修改子应用信息
     ///
     /// 该接口用于修改子应用信息，但不允许修改主应用信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubAppIdInfo(subAppId: UInt64, name: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubAppIdInfoResponse {
         try await self.modifySubAppIdInfo(ModifySubAppIdInfoRequest(subAppId: subAppId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }

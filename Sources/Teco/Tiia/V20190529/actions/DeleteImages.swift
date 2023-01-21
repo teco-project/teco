@@ -52,7 +52,7 @@ extension Tiia {
     /// 删除图片
     ///
     /// 删除图片。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImages(_ input: DeleteImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
         self.client.execute(action: "DeleteImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tiia {
     /// 删除图片
     ///
     /// 删除图片。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImages(_ input: DeleteImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
         try await self.client.execute(action: "DeleteImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tiia {
     /// 删除图片
     ///
     /// 删除图片。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImages(groupId: String, entityId: String, picName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImagesResponse> {
         self.deleteImages(DeleteImagesRequest(groupId: groupId, entityId: entityId, picName: picName), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tiia {
     /// 删除图片
     ///
     /// 删除图片。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImages(groupId: String, entityId: String, picName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
         try await self.deleteImages(DeleteImagesRequest(groupId: groupId, entityId: entityId, picName: picName), region: region, logger: logger, on: eventLoop)
     }

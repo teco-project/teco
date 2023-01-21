@@ -40,25 +40,25 @@ extension Cwp {
     }
 
     /// 停止基线检测
-    @inlinable
+    @inlinable @discardableResult
     public func stopBaselineDetect(_ input: StopBaselineDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBaselineDetectResponse> {
         self.client.execute(action: "StopBaselineDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止基线检测
-    @inlinable
+    @inlinable @discardableResult
     public func stopBaselineDetect(_ input: StopBaselineDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBaselineDetectResponse {
         try await self.client.execute(action: "StopBaselineDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 停止基线检测
-    @inlinable
+    @inlinable @discardableResult
     public func stopBaselineDetect(taskIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopBaselineDetectResponse> {
         self.stopBaselineDetect(StopBaselineDetectRequest(taskIds: taskIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 停止基线检测
-    @inlinable
+    @inlinable @discardableResult
     public func stopBaselineDetect(taskIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopBaselineDetectResponse {
         try await self.stopBaselineDetect(StopBaselineDetectRequest(taskIds: taskIds), region: region, logger: logger, on: eventLoop)
     }

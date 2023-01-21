@@ -45,25 +45,25 @@ extension Eiam {
     }
 
     /// 从账号组中移除账号
-    @inlinable
+    @inlinable @discardableResult
     public func removeAccountFromAccountGroup(_ input: RemoveAccountFromAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAccountFromAccountGroupResponse> {
         self.client.execute(action: "RemoveAccountFromAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 从账号组中移除账号
-    @inlinable
+    @inlinable @discardableResult
     public func removeAccountFromAccountGroup(_ input: RemoveAccountFromAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAccountFromAccountGroupResponse {
         try await self.client.execute(action: "RemoveAccountFromAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 从账号组中移除账号
-    @inlinable
+    @inlinable @discardableResult
     public func removeAccountFromAccountGroup(accountGroupId: String, accountIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveAccountFromAccountGroupResponse> {
         self.removeAccountFromAccountGroup(RemoveAccountFromAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 从账号组中移除账号
-    @inlinable
+    @inlinable @discardableResult
     public func removeAccountFromAccountGroup(accountGroupId: String, accountIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveAccountFromAccountGroupResponse {
         try await self.removeAccountFromAccountGroup(RemoveAccountFromAccountGroupRequest(accountGroupId: accountGroupId, accountIds: accountIds), region: region, logger: logger, on: eventLoop)
     }

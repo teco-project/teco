@@ -67,7 +67,7 @@ extension Sslpod {
     /// 添加域名
     ///
     /// 通过域名端口添加监控
-    @inlinable
+    @inlinable @discardableResult
     public func createDomain(_ input: CreateDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
         self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Sslpod {
     /// 添加域名
     ///
     /// 通过域名端口添加监控
-    @inlinable
+    @inlinable @discardableResult
     public func createDomain(_ input: CreateDomainRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
         try await self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Sslpod {
     /// 添加域名
     ///
     /// 通过域名端口添加监控
-    @inlinable
+    @inlinable @discardableResult
     public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
         self.createDomain(CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Sslpod {
     /// 添加域名
     ///
     /// 通过域名端口添加监控
-    @inlinable
+    @inlinable @discardableResult
     public func createDomain(serverType: Int64, domain: String, port: String, ip: String? = nil, notice: Bool? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
         try await self.createDomain(CreateDomainRequest(serverType: serverType, domain: domain, port: port, ip: ip, notice: notice, tags: tags), region: region, logger: logger, on: eventLoop)
     }

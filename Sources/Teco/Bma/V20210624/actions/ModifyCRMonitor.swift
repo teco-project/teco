@@ -52,7 +52,7 @@ extension Bma {
     /// 开启或关闭监测
     ///
     /// 开启/关闭监测
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRMonitorResponse> {
         self.client.execute(action: "ModifyCRMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Bma {
     /// 开启或关闭监测
     ///
     /// 开启/关闭监测
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCRMonitor(_ input: ModifyCRMonitorRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRMonitorResponse {
         try await self.client.execute(action: "ModifyCRMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Bma {
     /// 开启或关闭监测
     ///
     /// 开启/关闭监测
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCRMonitor(workId: Int64, monitorStatus: String, monitorEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRMonitorResponse> {
         self.modifyCRMonitor(ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Bma {
     /// 开启或关闭监测
     ///
     /// 开启/关闭监测
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCRMonitor(workId: Int64, monitorStatus: String, monitorEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRMonitorResponse {
         try await self.modifyCRMonitor(ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd), region: region, logger: logger, on: eventLoop)
     }

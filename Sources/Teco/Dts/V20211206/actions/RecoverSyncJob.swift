@@ -42,7 +42,7 @@ extension Dts {
     /// 解除隔离同步任务
     ///
     /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
-    @inlinable
+    @inlinable @discardableResult
     public func recoverSyncJob(_ input: RecoverSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverSyncJobResponse> {
         self.client.execute(action: "RecoverSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Dts {
     /// 解除隔离同步任务
     ///
     /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
-    @inlinable
+    @inlinable @discardableResult
     public func recoverSyncJob(_ input: RecoverSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverSyncJobResponse {
         try await self.client.execute(action: "RecoverSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Dts {
     /// 解除隔离同步任务
     ///
     /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
-    @inlinable
+    @inlinable @discardableResult
     public func recoverSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverSyncJobResponse> {
         self.recoverSyncJob(RecoverSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Dts {
     /// 解除隔离同步任务
     ///
     /// 解除隔离同步任务，任务在已隔离状态下可调用该接口解除隔离状态任务，同时可通过查询同步任务信息接口DescribeSyncJobs，获取操作后状态。
-    @inlinable
+    @inlinable @discardableResult
     public func recoverSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverSyncJobResponse {
         try await self.recoverSyncJob(RecoverSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Ses {
     /// 删除发信地址
     ///
     /// 删除发信人地址
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailAddressResponse> {
         self.client.execute(action: "DeleteEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ses {
     /// 删除发信地址
     ///
     /// 删除发信人地址
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEmailAddress(_ input: DeleteEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
         try await self.client.execute(action: "DeleteEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ses {
     /// 删除发信地址
     ///
     /// 删除发信人地址
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEmailAddress(emailAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailAddressResponse> {
         self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ses {
     /// 删除发信地址
     ///
     /// 删除发信人地址
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEmailAddress(emailAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailAddressResponse {
         try await self.deleteEmailAddress(DeleteEmailAddressRequest(emailAddress: emailAddress), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Bm {
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomImageAttributeResponse> {
         self.client.execute(action: "ModifyCustomImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Bm {
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomImageAttribute(_ input: ModifyCustomImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
         try await self.client.execute(action: "ModifyCustomImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Bm {
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomImageAttributeResponse> {
         self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Bm {
     /// 修改自定义镜像属性
     ///
     /// 用于修改自定义镜像名或描述
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCustomImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomImageAttributeResponse {
         try await self.modifyCustomImageAttribute(ModifyCustomImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
     }

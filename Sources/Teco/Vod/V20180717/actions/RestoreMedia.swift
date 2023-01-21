@@ -63,7 +63,7 @@ extension Vod {
     /// 解冻媒体文件
     ///
     /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
-    @inlinable
+    @inlinable @discardableResult
     public func restoreMedia(_ input: RestoreMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreMediaResponse> {
         self.client.execute(action: "RestoreMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vod {
     /// 解冻媒体文件
     ///
     /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
-    @inlinable
+    @inlinable @discardableResult
     public func restoreMedia(_ input: RestoreMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreMediaResponse {
         try await self.client.execute(action: "RestoreMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -79,7 +79,7 @@ extension Vod {
     /// 解冻媒体文件
     ///
     /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
-    @inlinable
+    @inlinable @discardableResult
     public func restoreMedia(fileIds: [String], restoreDay: UInt64? = nil, restoreTier: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreMediaResponse> {
         self.restoreMedia(RestoreMediaRequest(fileIds: fileIds, restoreDay: restoreDay, restoreTier: restoreTier, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -87,7 +87,7 @@ extension Vod {
     /// 解冻媒体文件
     ///
     /// 当媒体文件的存储类型是归档存储或深度归档存储时，是不可访问的。如需访问，则需要调用本接口进行解冻，解冻后可访问的媒体文件是临时的，在有效期过后，则不可访问。
-    @inlinable
+    @inlinable @discardableResult
     public func restoreMedia(fileIds: [String], restoreDay: UInt64? = nil, restoreTier: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreMediaResponse {
         try await self.restoreMedia(RestoreMediaRequest(fileIds: fileIds, restoreDay: restoreDay, restoreTier: restoreTier, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

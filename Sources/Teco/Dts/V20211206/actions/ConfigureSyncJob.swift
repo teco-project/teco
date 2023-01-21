@@ -87,7 +87,7 @@ extension Dts {
     /// 配置同步任务
     ///
     /// 配置一个同步任务
-    @inlinable
+    @inlinable @discardableResult
     public func configureSyncJob(_ input: ConfigureSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
         self.client.execute(action: "ConfigureSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -95,7 +95,7 @@ extension Dts {
     /// 配置同步任务
     ///
     /// 配置一个同步任务
-    @inlinable
+    @inlinable @discardableResult
     public func configureSyncJob(_ input: ConfigureSyncJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
         try await self.client.execute(action: "ConfigureSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -103,7 +103,7 @@ extension Dts {
     /// 配置同步任务
     ///
     /// 配置一个同步任务
-    @inlinable
+    @inlinable @discardableResult
     public func configureSyncJob(jobId: String, srcAccessType: String, srcInfo: Endpoint, dstAccessType: String, dstInfo: Endpoint, options: Options, objects: Objects, jobName: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
         self.configureSyncJob(ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, options: options, objects: objects, jobName: jobName, runMode: runMode, expectRunTime: expectRunTime), region: region, logger: logger, on: eventLoop)
     }
@@ -111,7 +111,7 @@ extension Dts {
     /// 配置同步任务
     ///
     /// 配置一个同步任务
-    @inlinable
+    @inlinable @discardableResult
     public func configureSyncJob(jobId: String, srcAccessType: String, srcInfo: Endpoint, dstAccessType: String, dstInfo: Endpoint, options: Options, objects: Objects, jobName: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
         try await self.configureSyncJob(ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, options: options, objects: objects, jobName: jobName, runMode: runMode, expectRunTime: expectRunTime), region: region, logger: logger, on: eventLoop)
     }

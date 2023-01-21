@@ -52,7 +52,7 @@ extension Cfs {
     /// 删除文件系统配额
     ///
     /// 指定条件删除文件系统配额
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserQuota(_ input: DeleteUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserQuotaResponse> {
         self.client.execute(action: "DeleteUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Cfs {
     /// 删除文件系统配额
     ///
     /// 指定条件删除文件系统配额
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserQuota(_ input: DeleteUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserQuotaResponse {
         try await self.client.execute(action: "DeleteUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Cfs {
     /// 删除文件系统配额
     ///
     /// 指定条件删除文件系统配额
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserQuota(fileSystemId: String, userType: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserQuotaResponse> {
         self.deleteUserQuota(DeleteUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Cfs {
     /// 删除文件系统配额
     ///
     /// 指定条件删除文件系统配额
-    @inlinable
+    @inlinable @discardableResult
     public func deleteUserQuota(fileSystemId: String, userType: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserQuotaResponse {
         try await self.deleteUserQuota(DeleteUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId), region: region, logger: logger, on: eventLoop)
     }

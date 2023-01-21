@@ -42,7 +42,7 @@ extension Lighthouse {
     /// 销毁云硬盘
     ///
     /// 本接口（TerminateDisks）用于销毁一个或多个云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDisks(_ input: TerminateDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDisksResponse> {
         self.client.execute(action: "TerminateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Lighthouse {
     /// 销毁云硬盘
     ///
     /// 本接口（TerminateDisks）用于销毁一个或多个云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDisks(_ input: TerminateDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDisksResponse {
         try await self.client.execute(action: "TerminateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Lighthouse {
     /// 销毁云硬盘
     ///
     /// 本接口（TerminateDisks）用于销毁一个或多个云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDisksResponse> {
         self.terminateDisks(TerminateDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Lighthouse {
     /// 销毁云硬盘
     ///
     /// 本接口（TerminateDisks）用于销毁一个或多个云硬盘。
-    @inlinable
+    @inlinable @discardableResult
     public func terminateDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDisksResponse {
         try await self.terminateDisks(TerminateDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
     }

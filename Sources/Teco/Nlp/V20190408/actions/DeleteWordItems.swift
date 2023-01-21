@@ -47,7 +47,7 @@ extension Nlp {
     /// 删除词条
     ///
     /// 用于删除自定义词库中的词条。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWordItems(_ input: DeleteWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordItemsResponse> {
         self.client.execute(action: "DeleteWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Nlp {
     /// 删除词条
     ///
     /// 用于删除自定义词库中的词条。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWordItems(_ input: DeleteWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordItemsResponse {
         try await self.client.execute(action: "DeleteWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Nlp {
     /// 删除词条
     ///
     /// 用于删除自定义词库中的词条。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWordItemsResponse> {
         self.deleteWordItems(DeleteWordItemsRequest(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Nlp {
     /// 删除词条
     ///
     /// 用于删除自定义词库中的词条。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWordItemsResponse {
         try await self.deleteWordItems(DeleteWordItemsRequest(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
     }

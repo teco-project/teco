@@ -45,25 +45,25 @@ extension Cmq {
     }
 
     /// 删除订阅
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSubscribe(_ input: DeleteSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscribeResponse> {
         self.client.execute(action: "DeleteSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除订阅
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSubscribe(_ input: DeleteSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscribeResponse {
         try await self.client.execute(action: "DeleteSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除订阅
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSubscribe(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscribeResponse> {
         self.deleteSubscribe(DeleteSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除订阅
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSubscribe(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscribeResponse {
         try await self.deleteSubscribe(DeleteSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
     }

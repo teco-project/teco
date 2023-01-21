@@ -145,7 +145,7 @@ extension Clb {
     /// BGP带宽包必须传带宽包id
     /// 独占集群克隆必须传对应的参数，否则按共享型创建
     /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
-    @inlinable
+    @inlinable @discardableResult
     public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneLoadBalancerResponse> {
         self.client.execute(action: "CloneLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -163,7 +163,7 @@ extension Clb {
     /// BGP带宽包必须传带宽包id
     /// 独占集群克隆必须传对应的参数，否则按共享型创建
     /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
-    @inlinable
+    @inlinable @discardableResult
     public func cloneLoadBalancer(_ input: CloneLoadBalancerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneLoadBalancerResponse {
         try await self.client.execute(action: "CloneLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -181,7 +181,7 @@ extension Clb {
     /// BGP带宽包必须传带宽包id
     /// 独占集群克隆必须传对应的参数，否则按共享型创建
     /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
-    @inlinable
+    @inlinable @discardableResult
     public func cloneLoadBalancer(loadBalancerId: String, loadBalancerName: String? = nil, projectId: Int64? = nil, masterZoneId: String? = nil, slaveZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, vip: String? = nil, tags: [TagInfo]? = nil, exclusiveCluster: ExclusiveCluster? = nil, bandwidthPackageId: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterIds: [String]? = nil, slaType: String? = nil, clusterTag: String? = nil, zones: [String]? = nil, eipAddressId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneLoadBalancerResponse> {
         self.cloneLoadBalancer(CloneLoadBalancerRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, projectId: projectId, masterZoneId: masterZoneId, slaveZoneId: slaveZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, vip: vip, tags: tags, exclusiveCluster: exclusiveCluster, bandwidthPackageId: bandwidthPackageId, snatPro: snatPro, snatIps: snatIps, clusterIds: clusterIds, slaType: slaType, clusterTag: clusterTag, zones: zones, eipAddressId: eipAddressId), region: region, logger: logger, on: eventLoop)
     }
@@ -199,7 +199,7 @@ extension Clb {
     /// BGP带宽包必须传带宽包id
     /// 独占集群克隆必须传对应的参数，否则按共享型创建
     /// 功能内测中，[申请开通](https://console.cloud.tencent.com/workorder/category?level1_id=6&level2_id=163&source=0&data_title=%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1%20CLB&step=1)。
-    @inlinable
+    @inlinable @discardableResult
     public func cloneLoadBalancer(loadBalancerId: String, loadBalancerName: String? = nil, projectId: Int64? = nil, masterZoneId: String? = nil, slaveZoneId: String? = nil, zoneId: String? = nil, internetAccessible: InternetAccessible? = nil, vipIsp: String? = nil, vip: String? = nil, tags: [TagInfo]? = nil, exclusiveCluster: ExclusiveCluster? = nil, bandwidthPackageId: String? = nil, snatPro: Bool? = nil, snatIps: [SnatIp]? = nil, clusterIds: [String]? = nil, slaType: String? = nil, clusterTag: String? = nil, zones: [String]? = nil, eipAddressId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneLoadBalancerResponse {
         try await self.cloneLoadBalancer(CloneLoadBalancerRequest(loadBalancerId: loadBalancerId, loadBalancerName: loadBalancerName, projectId: projectId, masterZoneId: masterZoneId, slaveZoneId: slaveZoneId, zoneId: zoneId, internetAccessible: internetAccessible, vipIsp: vipIsp, vip: vip, tags: tags, exclusiveCluster: exclusiveCluster, bandwidthPackageId: bandwidthPackageId, snatPro: snatPro, snatIps: snatIps, clusterIds: clusterIds, slaType: slaType, clusterTag: clusterTag, zones: zones, eipAddressId: eipAddressId), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Chdfs {
     /// 解绑权限组列表
     ///
     /// 给挂载点解绑多个权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateAccessGroupsResponse> {
         self.client.execute(action: "DisassociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Chdfs {
     /// 解绑权限组列表
     ///
     /// 给挂载点解绑多个权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateAccessGroups(_ input: DisassociateAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
         try await self.client.execute(action: "DisassociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Chdfs {
     /// 解绑权限组列表
     ///
     /// 给挂载点解绑多个权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateAccessGroupsResponse> {
         self.disassociateAccessGroups(DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Chdfs {
     /// 解绑权限组列表
     ///
     /// 给挂载点解绑多个权限组。
-    @inlinable
+    @inlinable @discardableResult
     public func disassociateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
         try await self.disassociateAccessGroups(DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
     }

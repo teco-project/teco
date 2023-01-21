@@ -66,25 +66,25 @@ extension Cat {
     }
 
     /// 批量更新拨测任务配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskConfigurationListResponse> {
         self.client.execute(action: "UpdateProbeTaskConfigurationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量更新拨测任务配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateProbeTaskConfigurationList(_ input: UpdateProbeTaskConfigurationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskConfigurationListResponse {
         try await self.client.execute(action: "UpdateProbeTaskConfigurationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量更新拨测任务配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateProbeTaskConfigurationList(taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String? = nil, resourceIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProbeTaskConfigurationListResponse> {
         self.updateProbeTaskConfigurationList(UpdateProbeTaskConfigurationListRequest(taskIds: taskIds, nodes: nodes, interval: interval, parameters: parameters, cron: cron, resourceIDs: resourceIDs), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量更新拨测任务配置
-    @inlinable
+    @inlinable @discardableResult
     public func updateProbeTaskConfigurationList(taskIds: [String], nodes: [String], interval: Int64, parameters: String, cron: String? = nil, resourceIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProbeTaskConfigurationListResponse {
         try await self.updateProbeTaskConfigurationList(UpdateProbeTaskConfigurationListRequest(taskIds: taskIds, nodes: nodes, interval: interval, parameters: parameters, cron: cron, resourceIDs: resourceIDs), region: region, logger: logger, on: eventLoop)
     }

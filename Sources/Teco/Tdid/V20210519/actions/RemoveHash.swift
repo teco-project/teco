@@ -40,25 +40,25 @@ extension Tdid {
     }
 
     /// 删除合约
-    @inlinable
+    @inlinable @discardableResult
     public func removeHash(_ input: RemoveHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
         self.client.execute(action: "RemoveHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除合约
-    @inlinable
+    @inlinable @discardableResult
     public func removeHash(_ input: RemoveHashRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
         try await self.client.execute(action: "RemoveHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除合约
-    @inlinable
+    @inlinable @discardableResult
     public func removeHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveHashResponse> {
         self.removeHash(RemoveHashRequest(hash: hash), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除合约
-    @inlinable
+    @inlinable @discardableResult
     public func removeHash(hash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveHashResponse {
         try await self.removeHash(RemoveHashRequest(hash: hash), region: region, logger: logger, on: eventLoop)
     }

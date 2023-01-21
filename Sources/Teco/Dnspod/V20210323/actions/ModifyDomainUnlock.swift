@@ -50,25 +50,25 @@ extension Dnspod {
     }
 
     /// 域名锁定解锁
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainUnlock(_ input: ModifyDomainUnlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainUnlockResponse> {
         self.client.execute(action: "ModifyDomainUnlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 域名锁定解锁
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainUnlock(_ input: ModifyDomainUnlockRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUnlockResponse {
         try await self.client.execute(action: "ModifyDomainUnlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 域名锁定解锁
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainUnlock(domain: String, lockCode: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainUnlockResponse> {
         self.modifyDomainUnlock(ModifyDomainUnlockRequest(domain: domain, lockCode: lockCode, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 域名锁定解锁
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDomainUnlock(domain: String, lockCode: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainUnlockResponse {
         try await self.modifyDomainUnlock(ModifyDomainUnlockRequest(domain: domain, lockCode: lockCode, domainId: domainId), region: region, logger: logger, on: eventLoop)
     }

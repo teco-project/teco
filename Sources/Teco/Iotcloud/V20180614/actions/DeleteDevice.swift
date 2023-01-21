@@ -52,7 +52,7 @@ extension Iotcloud {
     /// 删除设备
     ///
     /// 本接口（DeleteDevice）用于删除物联网通信设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDevice(_ input: DeleteDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
         self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotcloud {
     /// 删除设备
     ///
     /// 本接口（DeleteDevice）用于删除物联网通信设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDevice(_ input: DeleteDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
         try await self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotcloud {
     /// 删除设备
     ///
     /// 本接口（DeleteDevice）用于删除物联网通信设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDevice(productId: String, deviceName: String, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
         self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName, skey: skey), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotcloud {
     /// 删除设备
     ///
     /// 本接口（DeleteDevice）用于删除物联网通信设备。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteDevice(productId: String, deviceName: String, skey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
         try await self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName, skey: skey), region: region, logger: logger, on: eventLoop)
     }

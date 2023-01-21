@@ -78,7 +78,7 @@ extension Cme {
     /// 修改视频编码配置
     ///
     /// 修改视频编码配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoEncodingPresetResponse> {
         self.client.execute(action: "ModifyVideoEncodingPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -86,7 +86,7 @@ extension Cme {
     /// 修改视频编码配置
     ///
     /// 修改视频编码配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVideoEncodingPreset(_ input: ModifyVideoEncodingPresetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoEncodingPresetResponse {
         try await self.client.execute(action: "ModifyVideoEncodingPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -94,7 +94,7 @@ extension Cme {
     /// 修改视频编码配置
     ///
     /// 修改视频编码配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVideoEncodingPreset(platform: String, id: UInt64, name: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSettingForUpdate? = nil, audioSetting: VideoEncodingPresetAudioSettingForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVideoEncodingPresetResponse> {
         self.modifyVideoEncodingPreset(ModifyVideoEncodingPresetRequest(platform: platform, id: id, name: name, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), region: region, logger: logger, on: eventLoop)
     }
@@ -102,7 +102,7 @@ extension Cme {
     /// 修改视频编码配置
     ///
     /// 修改视频编码配置信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyVideoEncodingPreset(platform: String, id: UInt64, name: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoSetting: VideoEncodingPresetVideoSettingForUpdate? = nil, audioSetting: VideoEncodingPresetAudioSettingForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVideoEncodingPresetResponse {
         try await self.modifyVideoEncodingPreset(ModifyVideoEncodingPresetRequest(platform: platform, id: id, name: name, removeVideo: removeVideo, removeAudio: removeAudio, videoSetting: videoSetting, audioSetting: audioSetting), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Bda {
     /// 修改人员信息
     ///
     /// 修改人员信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonInfoResponse> {
         self.client.execute(action: "ModifyPersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Bda {
     /// 修改人员信息
     ///
     /// 修改人员信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPersonInfo(_ input: ModifyPersonInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
         try await self.client.execute(action: "ModifyPersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Bda {
     /// 修改人员信息
     ///
     /// 修改人员信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPersonInfo(personId: String, personName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonInfoResponse> {
         self.modifyPersonInfo(ModifyPersonInfoRequest(personId: personId, personName: personName), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Bda {
     /// 修改人员信息
     ///
     /// 修改人员信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPersonInfo(personId: String, personName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonInfoResponse {
         try await self.modifyPersonInfo(ModifyPersonInfoRequest(personId: personId, personName: personName), region: region, logger: logger, on: eventLoop)
     }

@@ -75,25 +75,25 @@ extension Redis {
     }
 
     /// 修改实例相关信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstance(_ input: ModifyInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
         self.client.execute(action: "ModifyInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例相关信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstance(_ input: ModifyInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
         try await self.client.execute(action: "ModifyInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改实例相关信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstance(operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil, instanceId: String? = nil, instanceName: String? = nil, autoRenew: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
         self.modifyInstance(ModifyInstanceRequest(operation: operation, instanceIds: instanceIds, instanceNames: instanceNames, projectId: projectId, autoRenews: autoRenews, instanceId: instanceId, instanceName: instanceName, autoRenew: autoRenew), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改实例相关信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstance(operation: String, instanceIds: [String]? = nil, instanceNames: [String]? = nil, projectId: Int64? = nil, autoRenews: [Int64]? = nil, instanceId: String? = nil, instanceName: String? = nil, autoRenew: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
         try await self.modifyInstance(ModifyInstanceRequest(operation: operation, instanceIds: instanceIds, instanceNames: instanceNames, projectId: projectId, autoRenews: autoRenews, instanceId: instanceId, instanceName: instanceName, autoRenew: autoRenew), region: region, logger: logger, on: eventLoop)
     }

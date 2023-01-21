@@ -52,7 +52,7 @@ extension Es {
     /// 更新管道描述
     ///
     /// 用于更新管道描述信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashPipelineDescResponse> {
         self.client.execute(action: "UpdateLogstashPipelineDesc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Es {
     /// 更新管道描述
     ///
     /// 用于更新管道描述信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateLogstashPipelineDesc(_ input: UpdateLogstashPipelineDescRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashPipelineDescResponse {
         try await self.client.execute(action: "UpdateLogstashPipelineDesc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Es {
     /// 更新管道描述
     ///
     /// 用于更新管道描述信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateLogstashPipelineDesc(instanceId: String, pipelineId: String, pipelineDesc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashPipelineDescResponse> {
         self.updateLogstashPipelineDesc(UpdateLogstashPipelineDescRequest(instanceId: instanceId, pipelineId: pipelineId, pipelineDesc: pipelineDesc), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Es {
     /// 更新管道描述
     ///
     /// 用于更新管道描述信息
-    @inlinable
+    @inlinable @discardableResult
     public func updateLogstashPipelineDesc(instanceId: String, pipelineId: String, pipelineDesc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashPipelineDescResponse {
         try await self.updateLogstashPipelineDesc(UpdateLogstashPipelineDescRequest(instanceId: instanceId, pipelineId: pipelineId, pipelineDesc: pipelineDesc), region: region, logger: logger, on: eventLoop)
     }

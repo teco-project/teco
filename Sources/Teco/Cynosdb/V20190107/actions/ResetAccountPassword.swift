@@ -57,7 +57,7 @@ extension Cynosdb {
     /// 重置数据库账号密码
     ///
     /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
-    @inlinable
+    @inlinable @discardableResult
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
         self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Cynosdb {
     /// 重置数据库账号密码
     ///
     /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
-    @inlinable
+    @inlinable @discardableResult
     public func resetAccountPassword(_ input: ResetAccountPasswordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Cynosdb {
     /// 重置数据库账号密码
     ///
     /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
-    @inlinable
+    @inlinable @discardableResult
     public func resetAccountPassword(accountName: String, accountPassword: String, clusterId: String, host: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
         self.resetAccountPassword(ResetAccountPasswordRequest(accountName: accountName, accountPassword: accountPassword, clusterId: clusterId, host: host), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Cynosdb {
     /// 重置数据库账号密码
     ///
     /// 本接口(ResetAccountPassword)用于重置实例的数据库账号密码。
-    @inlinable
+    @inlinable @discardableResult
     public func resetAccountPassword(accountName: String, accountPassword: String, clusterId: String, host: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
         try await self.resetAccountPassword(ResetAccountPasswordRequest(accountName: accountName, accountPassword: accountPassword, clusterId: clusterId, host: host), region: region, logger: logger, on: eventLoop)
     }

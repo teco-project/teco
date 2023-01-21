@@ -77,25 +77,25 @@ extension Cr {
     }
 
     /// 更新机器人任务作业状态
-    @inlinable
+    @inlinable @discardableResult
     public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotCallStatusResponse> {
         self.client.execute(action: "ChangeBotCallStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新机器人任务作业状态
-    @inlinable
+    @inlinable @discardableResult
     public func changeBotCallStatus(_ input: ChangeBotCallStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotCallStatusResponse {
         try await self.client.execute(action: "ChangeBotCallStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新机器人任务作业状态
-    @inlinable
+    @inlinable @discardableResult
     public func changeBotCallStatus(module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeBotCallStatusResponse> {
         self.changeBotCallStatus(ChangeBotCallStatusRequest(module: module, operation: operation, status: status, callId: callId, bizDate: bizDate, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新机器人任务作业状态
-    @inlinable
+    @inlinable @discardableResult
     public func changeBotCallStatus(module: String, operation: String, status: String, callId: String, bizDate: Date, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeBotCallStatusResponse {
         try await self.changeBotCallStatus(ChangeBotCallStatusRequest(module: module, operation: operation, status: status, callId: callId, bizDate: bizDate, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
     }

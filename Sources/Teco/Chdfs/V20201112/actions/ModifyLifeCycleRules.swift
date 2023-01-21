@@ -42,7 +42,7 @@ extension Chdfs {
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
         self.client.execute(action: "ModifyLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Chdfs {
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
         try await self.client.execute(action: "ModifyLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Chdfs {
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
         self.modifyLifeCycleRules(ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Chdfs {
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
         try await self.modifyLifeCycleRules(ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules), region: region, logger: logger, on: eventLoop)
     }

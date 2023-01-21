@@ -56,7 +56,7 @@ extension Cbs {
     /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
         self.client.execute(action: "ModifyDisksChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Cbs {
     /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksChargeType(_ input: ModifyDisksChargeTypeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
         try await self.client.execute(action: "ModifyDisksChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -80,7 +80,7 @@ extension Cbs {
     /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
         self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), region: region, logger: logger, on: eventLoop)
     }
@@ -92,7 +92,7 @@ extension Cbs {
     /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
         try await self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), region: region, logger: logger, on: eventLoop)
     }

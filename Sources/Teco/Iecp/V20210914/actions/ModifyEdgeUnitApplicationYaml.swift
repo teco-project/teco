@@ -50,25 +50,25 @@ extension Iecp {
     }
 
     /// Yaml方式修改应用配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationYamlResponse> {
         self.client.execute(action: "ModifyEdgeUnitApplicationYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Yaml方式修改应用配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnitApplicationYaml(_ input: ModifyEdgeUnitApplicationYamlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationYamlResponse {
         try await self.client.execute(action: "ModifyEdgeUnitApplicationYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// Yaml方式修改应用配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnitApplicationYaml(edgeUnitId: UInt64, applicationId: UInt64, yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitApplicationYamlResponse> {
         self.modifyEdgeUnitApplicationYaml(ModifyEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, yaml: yaml), region: region, logger: logger, on: eventLoop)
     }
 
     /// Yaml方式修改应用配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnitApplicationYaml(edgeUnitId: UInt64, applicationId: UInt64, yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitApplicationYamlResponse {
         try await self.modifyEdgeUnitApplicationYaml(ModifyEdgeUnitApplicationYamlRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, yaml: yaml), region: region, logger: logger, on: eventLoop)
     }

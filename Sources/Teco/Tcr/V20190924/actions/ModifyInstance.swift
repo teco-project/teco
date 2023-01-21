@@ -45,25 +45,25 @@ extension Tcr {
     }
 
     /// 更新实例信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstance(_ input: ModifyInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
         self.client.execute(action: "ModifyInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新实例信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstance(_ input: ModifyInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
         try await self.client.execute(action: "ModifyInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 更新实例信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstance(registryId: String, registryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
         self.modifyInstance(ModifyInstanceRequest(registryId: registryId, registryType: registryType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新实例信息
-    @inlinable
+    @inlinable @discardableResult
     public func modifyInstance(registryId: String, registryType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
         try await self.modifyInstance(ModifyInstanceRequest(registryId: registryId, registryType: registryType), region: region, logger: logger, on: eventLoop)
     }

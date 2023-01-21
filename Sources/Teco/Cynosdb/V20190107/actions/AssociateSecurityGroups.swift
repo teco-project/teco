@@ -50,25 +50,25 @@ extension Cynosdb {
     }
 
     /// 安全组批量绑定云资源
-    @inlinable
+    @inlinable @discardableResult
     public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
         self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量绑定云资源
-    @inlinable
+    @inlinable @discardableResult
     public func associateSecurityGroups(_ input: AssociateSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
         try await self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 安全组批量绑定云资源
-    @inlinable
+    @inlinable @discardableResult
     public func associateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
         self.associateSecurityGroups(AssociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量绑定云资源
-    @inlinable
+    @inlinable @discardableResult
     public func associateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
         try await self.associateSecurityGroups(AssociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone), region: region, logger: logger, on: eventLoop)
     }

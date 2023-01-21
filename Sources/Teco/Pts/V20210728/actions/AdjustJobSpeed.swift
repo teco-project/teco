@@ -47,7 +47,7 @@ extension Pts {
     /// 调整任务目标RPS
     ///
     /// 调整任务的目标RPS
-    @inlinable
+    @inlinable @discardableResult
     public func adjustJobSpeed(_ input: AdjustJobSpeedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AdjustJobSpeedResponse> {
         self.client.execute(action: "AdjustJobSpeed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Pts {
     /// 调整任务目标RPS
     ///
     /// 调整任务的目标RPS
-    @inlinable
+    @inlinable @discardableResult
     public func adjustJobSpeed(_ input: AdjustJobSpeedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustJobSpeedResponse {
         try await self.client.execute(action: "AdjustJobSpeed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Pts {
     /// 调整任务目标RPS
     ///
     /// 调整任务的目标RPS
-    @inlinable
+    @inlinable @discardableResult
     public func adjustJobSpeed(jobId: String, targetRequestsPerSecond: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AdjustJobSpeedResponse> {
         self.adjustJobSpeed(AdjustJobSpeedRequest(jobId: jobId, targetRequestsPerSecond: targetRequestsPerSecond), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Pts {
     /// 调整任务目标RPS
     ///
     /// 调整任务的目标RPS
-    @inlinable
+    @inlinable @discardableResult
     public func adjustJobSpeed(jobId: String, targetRequestsPerSecond: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustJobSpeedResponse {
         try await self.adjustJobSpeed(AdjustJobSpeedRequest(jobId: jobId, targetRequestsPerSecond: targetRequestsPerSecond), region: region, logger: logger, on: eventLoop)
     }

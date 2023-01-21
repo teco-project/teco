@@ -45,25 +45,25 @@ extension Tke {
     }
 
     /// 同步模板到实例或者集群
-    @inlinable
+    @inlinable @discardableResult
     public func syncPrometheusTemplate(_ input: SyncPrometheusTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPrometheusTemplateResponse> {
         self.client.execute(action: "SyncPrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步模板到实例或者集群
-    @inlinable
+    @inlinable @discardableResult
     public func syncPrometheusTemplate(_ input: SyncPrometheusTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPrometheusTemplateResponse {
         try await self.client.execute(action: "SyncPrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 同步模板到实例或者集群
-    @inlinable
+    @inlinable @discardableResult
     public func syncPrometheusTemplate(templateId: String, targets: [PrometheusTemplateSyncTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPrometheusTemplateResponse> {
         self.syncPrometheusTemplate(SyncPrometheusTemplateRequest(templateId: templateId, targets: targets), region: region, logger: logger, on: eventLoop)
     }
 
     /// 同步模板到实例或者集群
-    @inlinable
+    @inlinable @discardableResult
     public func syncPrometheusTemplate(templateId: String, targets: [PrometheusTemplateSyncTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPrometheusTemplateResponse {
         try await self.syncPrometheusTemplate(SyncPrometheusTemplateRequest(templateId: templateId, targets: targets), region: region, logger: logger, on: eventLoop)
     }

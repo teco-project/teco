@@ -42,7 +42,7 @@ extension Ie {
     /// 删除画质重生任务
     ///
     /// 删除正在进行的画质重生任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaQualityRestorationTaskResponse> {
         self.client.execute(action: "StopMediaQualityRestorationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Ie {
     /// 删除画质重生任务
     ///
     /// 删除正在进行的画质重生任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopMediaQualityRestorationTask(_ input: StopMediaQualityRestorationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
         try await self.client.execute(action: "StopMediaQualityRestorationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Ie {
     /// 删除画质重生任务
     ///
     /// 删除正在进行的画质重生任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopMediaQualityRestorationTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMediaQualityRestorationTaskResponse> {
         self.stopMediaQualityRestorationTask(StopMediaQualityRestorationTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Ie {
     /// 删除画质重生任务
     ///
     /// 删除正在进行的画质重生任务
-    @inlinable
+    @inlinable @discardableResult
     public func stopMediaQualityRestorationTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMediaQualityRestorationTaskResponse {
         try await self.stopMediaQualityRestorationTask(StopMediaQualityRestorationTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

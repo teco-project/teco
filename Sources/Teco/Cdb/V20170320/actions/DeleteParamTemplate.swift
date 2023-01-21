@@ -42,7 +42,7 @@ extension Cdb {
     /// 删除参数模板
     ///
     /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteParamTemplateResponse> {
         self.client.execute(action: "DeleteParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cdb {
     /// 删除参数模板
     ///
     /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteParamTemplate(_ input: DeleteParamTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
         try await self.client.execute(action: "DeleteParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cdb {
     /// 删除参数模板
     ///
     /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteParamTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteParamTemplateResponse> {
         self.deleteParamTemplate(DeleteParamTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cdb {
     /// 删除参数模板
     ///
     /// 该接口（DeleteParamTemplate）用于删除参数模板，全地域公共参数Region均为ap-guangzhou。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteParamTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParamTemplateResponse {
         try await self.deleteParamTemplate(DeleteParamTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
     }

@@ -68,7 +68,7 @@ extension Drm {
     ///
     /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
     /// 注意：该接口已下线。
-    @inlinable
+    @inlinable @discardableResult
     public func startEncryption(_ input: StartEncryptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEncryptionResponse> {
         self.client.execute(action: "StartEncryption", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -77,7 +77,7 @@ extension Drm {
     ///
     /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
     /// 注意：该接口已下线。
-    @inlinable
+    @inlinable @discardableResult
     public func startEncryption(_ input: StartEncryptionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEncryptionResponse {
         try await self.client.execute(action: "StartEncryption", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -86,7 +86,7 @@ extension Drm {
     ///
     /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
     /// 注意：该接口已下线。
-    @inlinable
+    @inlinable @discardableResult
     public func startEncryption(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartEncryptionResponse> {
         self.startEncryption(StartEncryptionRequest(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects), region: region, logger: logger, on: eventLoop)
     }
@@ -95,7 +95,7 @@ extension Drm {
     ///
     /// 开发者调用该接口，启动一次内容文件的DRM加密工作流。
     /// 注意：该接口已下线。
-    @inlinable
+    @inlinable @discardableResult
     public func startEncryption(cosEndPoint: String, cosSecretId: String, cosSecretKey: String, drmType: String, sourceObject: DrmSourceObject, outputObjects: [DrmOutputObject], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartEncryptionResponse {
         try await self.startEncryption(StartEncryptionRequest(cosEndPoint: cosEndPoint, cosSecretId: cosSecretId, cosSecretKey: cosSecretKey, drmType: drmType, sourceObject: sourceObject, outputObjects: outputObjects), region: region, logger: logger, on: eventLoop)
     }

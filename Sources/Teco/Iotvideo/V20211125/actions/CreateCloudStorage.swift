@@ -80,25 +80,25 @@ extension Iotvideo {
     }
 
     /// 开通云存服务
-    @inlinable
+    @inlinable @discardableResult
     public func createCloudStorage(_ input: CreateCloudStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudStorageResponse> {
         self.client.execute(action: "CreateCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通云存服务
-    @inlinable
+    @inlinable @discardableResult
     public func createCloudStorage(_ input: CreateCloudStorageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {
         try await self.client.execute(action: "CreateCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 开通云存服务
-    @inlinable
+    @inlinable @discardableResult
     public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudStorageResponse> {
         self.createCloudStorage(CreateCloudStorageRequest(productId: productId, deviceName: deviceName, packageId: packageId, override: override, packageQueue: packageQueue), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开通云存服务
-    @inlinable
+    @inlinable @discardableResult
     public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, packageQueue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {
         try await self.createCloudStorage(CreateCloudStorageRequest(productId: productId, deviceName: deviceName, packageId: packageId, override: override, packageQueue: packageQueue), region: region, logger: logger, on: eventLoop)
     }

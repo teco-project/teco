@@ -40,25 +40,25 @@ extension Cmq {
     }
 
     /// 解绑死信队列
-    @inlinable
+    @inlinable @discardableResult
     public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDeadLetterResponse> {
         self.client.execute(action: "UnbindDeadLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑死信队列
-    @inlinable
+    @inlinable @discardableResult
     public func unbindDeadLetter(_ input: UnbindDeadLetterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
         try await self.client.execute(action: "UnbindDeadLetter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 解绑死信队列
-    @inlinable
+    @inlinable @discardableResult
     public func unbindDeadLetter(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDeadLetterResponse> {
         self.unbindDeadLetter(UnbindDeadLetterRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 解绑死信队列
-    @inlinable
+    @inlinable @discardableResult
     public func unbindDeadLetter(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDeadLetterResponse {
         try await self.unbindDeadLetter(UnbindDeadLetterRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
     }

@@ -65,7 +65,7 @@ extension Cdn {
     /// 上报定时刷新预热任务执行状态
     ///
     /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPurgeFetchTaskStatus(_ input: ModifyPurgeFetchTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPurgeFetchTaskStatusResponse> {
         self.client.execute(action: "ModifyPurgeFetchTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -73,7 +73,7 @@ extension Cdn {
     /// 上报定时刷新预热任务执行状态
     ///
     /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPurgeFetchTaskStatus(_ input: ModifyPurgeFetchTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPurgeFetchTaskStatusResponse {
         try await self.client.execute(action: "ModifyPurgeFetchTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -81,7 +81,7 @@ extension Cdn {
     /// 上报定时刷新预热任务执行状态
     ///
     /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPurgeFetchTaskStatus(executionTime: Date, executionStatus: String, id: String, executionStatusDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPurgeFetchTaskStatusResponse> {
         self.modifyPurgeFetchTaskStatus(ModifyPurgeFetchTaskStatusRequest(executionTime: executionTime, executionStatus: executionStatus, id: id, executionStatusDesc: executionStatusDesc), region: region, logger: logger, on: eventLoop)
     }
@@ -89,7 +89,7 @@ extension Cdn {
     /// 上报定时刷新预热任务执行状态
     ///
     /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
-    @inlinable
+    @inlinable @discardableResult
     public func modifyPurgeFetchTaskStatus(executionTime: Date, executionStatus: String, id: String, executionStatusDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPurgeFetchTaskStatusResponse {
         try await self.modifyPurgeFetchTaskStatus(ModifyPurgeFetchTaskStatusRequest(executionTime: executionTime, executionStatus: executionStatus, id: id, executionStatusDesc: executionStatusDesc), region: region, logger: logger, on: eventLoop)
     }

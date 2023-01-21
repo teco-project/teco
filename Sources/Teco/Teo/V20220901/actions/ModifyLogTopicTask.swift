@@ -98,7 +98,7 @@ extension Teo {
     /// 修改推送任务
     ///
     /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogTopicTaskResponse> {
         self.client.execute(action: "ModifyLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -106,7 +106,7 @@ extension Teo {
     /// 修改推送任务
     ///
     /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLogTopicTask(_ input: ModifyLogTopicTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogTopicTaskResponse {
         try await self.client.execute(action: "ModifyLogTopicTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -114,7 +114,7 @@ extension Teo {
     /// 修改推送任务
     ///
     /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLogTopicTask(zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLogTopicTaskResponse> {
         self.modifyLogTopicTask(ModifyLogTopicTaskRequest(zoneId: zoneId, logSetRegion: logSetRegion, logSetId: logSetId, topicId: topicId, entityType: entityType, taskName: taskName, topicName: topicName, logSetName: logSetName, period: period, dropEntityList: dropEntityList, addedEntityList: addedEntityList), region: region, logger: logger, on: eventLoop)
     }
@@ -122,7 +122,7 @@ extension Teo {
     /// 修改推送任务
     ///
     /// 本接口（ModifyLogTopicTask）用于修改日志推送任务信息。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyLogTopicTask(zoneId: String, logSetRegion: String, logSetId: String, topicId: String, entityType: String? = nil, taskName: String? = nil, topicName: String? = nil, logSetName: String? = nil, period: Int64? = nil, dropEntityList: [String]? = nil, addedEntityList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLogTopicTaskResponse {
         try await self.modifyLogTopicTask(ModifyLogTopicTaskRequest(zoneId: zoneId, logSetRegion: logSetRegion, logSetId: logSetId, topicId: topicId, entityType: entityType, taskName: taskName, topicName: topicName, logSetName: logSetName, period: period, dropEntityList: dropEntityList, addedEntityList: addedEntityList), region: region, logger: logger, on: eventLoop)
     }

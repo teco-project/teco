@@ -60,25 +60,25 @@ extension Iecp {
     }
 
     /// 修改边缘单元Grid部署应用副本数
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
         self.client.execute(action: "ModifyEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元Grid部署应用副本数
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnitDeployGridItem(_ input: ModifyEdgeUnitDeployGridItemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {
         try await self.client.execute(action: "ModifyEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改边缘单元Grid部署应用副本数
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitDeployGridItemResponse> {
         self.modifyEdgeUnitDeployGridItem(ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改边缘单元Grid部署应用副本数
-    @inlinable
+    @inlinable @discardableResult
     public func modifyEdgeUnitDeployGridItem(edgeUnitId: UInt64, gridItemName: String, workloadKind: String, replicas: Int64, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitDeployGridItemResponse {
         try await self.modifyEdgeUnitDeployGridItem(ModifyEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, gridItemName: gridItemName, workloadKind: workloadKind, replicas: replicas, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

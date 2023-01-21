@@ -52,7 +52,7 @@ extension Eb {
     /// 删除转换器
     ///
     /// 用于删除转换器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTransformation(_ input: DeleteTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTransformationResponse> {
         self.client.execute(action: "DeleteTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Eb {
     /// 删除转换器
     ///
     /// 用于删除转换器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTransformation(_ input: DeleteTransformationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
         try await self.client.execute(action: "DeleteTransformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Eb {
     /// 删除转换器
     ///
     /// 用于删除转换器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTransformation(eventBusId: String, ruleId: String, transformationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTransformationResponse> {
         self.deleteTransformation(DeleteTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Eb {
     /// 删除转换器
     ///
     /// 用于删除转换器
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTransformation(eventBusId: String, ruleId: String, transformationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTransformationResponse {
         try await self.deleteTransformation(DeleteTransformationRequest(eventBusId: eventBusId, ruleId: ruleId, transformationId: transformationId), region: region, logger: logger, on: eventLoop)
     }

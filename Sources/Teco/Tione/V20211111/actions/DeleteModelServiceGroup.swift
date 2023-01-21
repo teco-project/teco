@@ -42,7 +42,7 @@ extension Tione {
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceGroupResponse> {
         self.client.execute(action: "DeleteModelServiceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tione {
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
         try await self.client.execute(action: "DeleteModelServiceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tione {
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelServiceGroup(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelServiceGroupResponse> {
         self.deleteModelServiceGroup(DeleteModelServiceGroupRequest(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tione {
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
-    @inlinable
+    @inlinable @discardableResult
     public func deleteModelServiceGroup(serviceGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
         try await self.deleteModelServiceGroup(DeleteModelServiceGroupRequest(serviceGroupId: serviceGroupId), region: region, logger: logger, on: eventLoop)
     }

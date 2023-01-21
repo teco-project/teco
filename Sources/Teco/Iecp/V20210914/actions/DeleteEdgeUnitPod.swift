@@ -50,25 +50,25 @@ extension Iecp {
     }
 
     /// 删除指定pod
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitPodResponse> {
         self.client.execute(action: "DeleteEdgeUnitPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除指定pod
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitPod(_ input: DeleteEdgeUnitPodRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
         try await self.client.execute(action: "DeleteEdgeUnitPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除指定pod
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitPod(clusterID: String, podName: String, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitPodResponse> {
         self.deleteEdgeUnitPod(DeleteEdgeUnitPodRequest(clusterID: clusterID, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除指定pod
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeUnitPod(clusterID: String, podName: String, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitPodResponse {
         try await self.deleteEdgeUnitPod(DeleteEdgeUnitPodRequest(clusterID: clusterID, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
     }

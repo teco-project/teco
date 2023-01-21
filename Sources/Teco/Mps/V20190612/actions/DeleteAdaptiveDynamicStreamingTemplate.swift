@@ -40,25 +40,25 @@ extension Mps {
     }
 
     /// 删除转自适应码流模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAdaptiveDynamicStreamingTemplateResponse> {
         self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除转自适应码流模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAdaptiveDynamicStreamingTemplate(_ input: DeleteAdaptiveDynamicStreamingTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAdaptiveDynamicStreamingTemplateResponse {
         try await self.client.execute(action: "DeleteAdaptiveDynamicStreamingTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除转自适应码流模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAdaptiveDynamicStreamingTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAdaptiveDynamicStreamingTemplateResponse> {
         self.deleteAdaptiveDynamicStreamingTemplate(DeleteAdaptiveDynamicStreamingTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除转自适应码流模板
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAdaptiveDynamicStreamingTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAdaptiveDynamicStreamingTemplateResponse {
         try await self.deleteAdaptiveDynamicStreamingTemplate(DeleteAdaptiveDynamicStreamingTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
     }

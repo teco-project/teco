@@ -47,7 +47,7 @@ extension Privatedns {
     /// 删除私有域
     ///
     /// 删除私有域并停止解析
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivateZone(_ input: DeletePrivateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateZoneResponse> {
         self.client.execute(action: "DeletePrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Privatedns {
     /// 删除私有域
     ///
     /// 删除私有域并停止解析
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivateZone(_ input: DeletePrivateZoneRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
         try await self.client.execute(action: "DeletePrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Privatedns {
     /// 删除私有域
     ///
     /// 删除私有域并停止解析
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateZoneResponse> {
         self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Privatedns {
     /// 删除私有域
     ///
     /// 删除私有域并停止解析
-    @inlinable
+    @inlinable @discardableResult
     public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
         try await self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), region: region, logger: logger, on: eventLoop)
     }

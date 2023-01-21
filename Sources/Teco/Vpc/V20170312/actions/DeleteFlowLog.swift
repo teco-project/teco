@@ -47,7 +47,7 @@ extension Vpc {
     /// 删除流日志
     ///
     /// 本接口（DeleteFlowLog）用于删除流日志
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFlowLog(_ input: DeleteFlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFlowLogResponse> {
         self.client.execute(action: "DeleteFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 删除流日志
     ///
     /// 本接口（DeleteFlowLog）用于删除流日志
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFlowLog(_ input: DeleteFlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFlowLogResponse {
         try await self.client.execute(action: "DeleteFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 删除流日志
     ///
     /// 本接口（DeleteFlowLog）用于删除流日志
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFlowLog(flowLogId: String, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFlowLogResponse> {
         self.deleteFlowLog(DeleteFlowLogRequest(flowLogId: flowLogId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 删除流日志
     ///
     /// 本接口（DeleteFlowLog）用于删除流日志
-    @inlinable
+    @inlinable @discardableResult
     public func deleteFlowLog(flowLogId: String, vpcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFlowLogResponse {
         try await self.deleteFlowLog(DeleteFlowLogRequest(flowLogId: flowLogId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Vpc {
     /// 修改CCN关联实例属性
     ///
     /// 修改CCN关联实例属性，目前仅修改备注description
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttachedInstancesAttributeResponse> {
         self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Vpc {
     /// 修改CCN关联实例属性
     ///
     /// 修改CCN关联实例属性，目前仅修改备注description
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnAttachedInstancesAttribute(_ input: ModifyCcnAttachedInstancesAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
         try await self.client.execute(action: "ModifyCcnAttachedInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Vpc {
     /// 修改CCN关联实例属性
     ///
     /// 修改CCN关联实例属性，目前仅修改备注description
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnAttachedInstancesAttribute(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCcnAttachedInstancesAttributeResponse> {
         self.modifyCcnAttachedInstancesAttribute(ModifyCcnAttachedInstancesAttributeRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Vpc {
     /// 修改CCN关联实例属性
     ///
     /// 修改CCN关联实例属性，目前仅修改备注description
-    @inlinable
+    @inlinable @discardableResult
     public func modifyCcnAttachedInstancesAttribute(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCcnAttachedInstancesAttributeResponse {
         try await self.modifyCcnAttachedInstancesAttribute(ModifyCcnAttachedInstancesAttributeRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
     }

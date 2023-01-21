@@ -48,7 +48,7 @@ extension Vpc {
     ///
     /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
-    @inlinable
+    @inlinable @discardableResult
     public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
         self.client.execute(action: "ReplaceRouteTableAssociation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Vpc {
     ///
     /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
-    @inlinable
+    @inlinable @discardableResult
     public func replaceRouteTableAssociation(_ input: ReplaceRouteTableAssociationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
         try await self.client.execute(action: "ReplaceRouteTableAssociation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Vpc {
     ///
     /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
-    @inlinable
+    @inlinable @discardableResult
     public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRouteTableAssociationResponse> {
         self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Vpc {
     ///
     /// 本接口（ReplaceRouteTableAssociation)用于修改子网（Subnet）关联的路由表（RouteTable）。
     /// * 一个子网只能关联一个路由表。
-    @inlinable
+    @inlinable @discardableResult
     public func replaceRouteTableAssociation(subnetId: String, routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRouteTableAssociationResponse {
         try await self.replaceRouteTableAssociation(ReplaceRouteTableAssociationRequest(subnetId: subnetId, routeTableId: routeTableId), region: region, logger: logger, on: eventLoop)
     }

@@ -72,7 +72,7 @@ extension Vod {
     /// 重设任务流模板
     ///
     /// 重新设置用户自定义任务流模板的内容。
-    @inlinable
+    @inlinable @discardableResult
     public func resetProcedureTemplate(_ input: ResetProcedureTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
         self.client.execute(action: "ResetProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -80,7 +80,7 @@ extension Vod {
     /// 重设任务流模板
     ///
     /// 重新设置用户自定义任务流模板的内容。
-    @inlinable
+    @inlinable @discardableResult
     public func resetProcedureTemplate(_ input: ResetProcedureTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
         try await self.client.execute(action: "ResetProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -88,7 +88,7 @@ extension Vod {
     /// 重设任务流模板
     ///
     /// 重新设置用户自定义任务流模板的内容。
-    @inlinable
+    @inlinable @discardableResult
     public func resetProcedureTemplate(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
         self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }
@@ -96,7 +96,7 @@ extension Vod {
     /// 重设任务流模板
     ///
     /// 重新设置用户自定义任务流模板的内容。
-    @inlinable
+    @inlinable @discardableResult
     public func resetProcedureTemplate(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
         try await self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
     }

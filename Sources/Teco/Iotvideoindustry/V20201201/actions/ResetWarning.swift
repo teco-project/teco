@@ -45,25 +45,25 @@ extension Iotvideoindustry {
     }
 
     /// 重置设备告警
-    @inlinable
+    @inlinable @discardableResult
     public func resetWarning(_ input: ResetWarningRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWarningResponse> {
         self.client.execute(action: "ResetWarning", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置设备告警
-    @inlinable
+    @inlinable @discardableResult
     public func resetWarning(_ input: ResetWarningRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
         try await self.client.execute(action: "ResetWarning", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 重置设备告警
-    @inlinable
+    @inlinable @discardableResult
     public func resetWarning(id: Int64? = nil, index: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetWarningResponse> {
         self.resetWarning(ResetWarningRequest(id: id, index: index), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重置设备告警
-    @inlinable
+    @inlinable @discardableResult
     public func resetWarning(id: Int64? = nil, index: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetWarningResponse {
         try await self.resetWarning(ResetWarningRequest(id: id, index: index), region: region, logger: logger, on: eventLoop)
     }

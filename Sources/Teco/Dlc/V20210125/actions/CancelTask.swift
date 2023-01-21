@@ -42,7 +42,7 @@ extension Dlc {
     /// 取消任务执行
     ///
     /// 本接口（CancelTask），用于取消任务执行
-    @inlinable
+    @inlinable @discardableResult
     public func cancelTask(_ input: CancelTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelTaskResponse> {
         self.client.execute(action: "CancelTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Dlc {
     /// 取消任务执行
     ///
     /// 本接口（CancelTask），用于取消任务执行
-    @inlinable
+    @inlinable @discardableResult
     public func cancelTask(_ input: CancelTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
         try await self.client.execute(action: "CancelTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Dlc {
     /// 取消任务执行
     ///
     /// 本接口（CancelTask），用于取消任务执行
-    @inlinable
+    @inlinable @discardableResult
     public func cancelTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelTaskResponse> {
         self.cancelTask(CancelTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Dlc {
     /// 取消任务执行
     ///
     /// 本接口（CancelTask），用于取消任务执行
-    @inlinable
+    @inlinable @discardableResult
     public func cancelTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
         try await self.cancelTask(CancelTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

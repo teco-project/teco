@@ -45,25 +45,25 @@ extension Monitor {
     }
 
     /// 修改 Grafana 实例属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGrafanaInstanceResponse> {
         self.client.execute(action: "ModifyGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改 Grafana 实例属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGrafanaInstance(_ input: ModifyGrafanaInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGrafanaInstanceResponse {
         try await self.client.execute(action: "ModifyGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改 Grafana 实例属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGrafanaInstance(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGrafanaInstanceResponse> {
         self.modifyGrafanaInstance(ModifyGrafanaInstanceRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改 Grafana 实例属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyGrafanaInstance(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGrafanaInstanceResponse {
         try await self.modifyGrafanaInstance(ModifyGrafanaInstanceRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
     }

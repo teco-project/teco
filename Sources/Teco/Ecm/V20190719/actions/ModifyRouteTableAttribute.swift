@@ -45,25 +45,25 @@ extension Ecm {
     }
 
     /// 修改路由表属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableAttributeResponse> {
         self.client.execute(action: "ModifyRouteTableAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改路由表属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRouteTableAttribute(_ input: ModifyRouteTableAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableAttributeResponse {
         try await self.client.execute(action: "ModifyRouteTableAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改路由表属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRouteTableAttribute(routeTableId: String, routeTableName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableAttributeResponse> {
         self.modifyRouteTableAttribute(ModifyRouteTableAttributeRequest(routeTableId: routeTableId, routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改路由表属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifyRouteTableAttribute(routeTableId: String, routeTableName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableAttributeResponse {
         try await self.modifyRouteTableAttribute(ModifyRouteTableAttributeRequest(routeTableId: routeTableId, routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
     }

@@ -52,7 +52,7 @@ extension Tic {
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
-    @inlinable
+    @inlinable @discardableResult
     public func updateStack(_ input: UpdateStackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackResponse> {
         self.client.execute(action: "UpdateStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tic {
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
-    @inlinable
+    @inlinable @discardableResult
     public func updateStack(_ input: UpdateStackRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
         try await self.client.execute(action: "UpdateStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tic {
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
-    @inlinable
+    @inlinable @discardableResult
     public func updateStack(stackId: String, stackName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateStackResponse> {
         self.updateStack(UpdateStackRequest(stackId: stackId, stackName: stackName, description: description), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tic {
     /// 更新资源栈
     ///
     /// 本接口（UpdateStack）用于更新资源栈的名称和描述。
-    @inlinable
+    @inlinable @discardableResult
     public func updateStack(stackId: String, stackName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateStackResponse {
         try await self.updateStack(UpdateStackRequest(stackId: stackId, stackName: stackName, description: description), region: region, logger: logger, on: eventLoop)
     }

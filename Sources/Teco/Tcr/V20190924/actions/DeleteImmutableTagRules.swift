@@ -52,7 +52,7 @@ extension Tcr {
     /// 删除镜像不可变规则
     ///
     ///  删除镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImmutableTagRules(_ input: DeleteImmutableTagRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImmutableTagRulesResponse> {
         self.client.execute(action: "DeleteImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Tcr {
     /// 删除镜像不可变规则
     ///
     ///  删除镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImmutableTagRules(_ input: DeleteImmutableTagRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImmutableTagRulesResponse {
         try await self.client.execute(action: "DeleteImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Tcr {
     /// 删除镜像不可变规则
     ///
     ///  删除镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImmutableTagRulesResponse> {
         self.deleteImmutableTagRules(DeleteImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Tcr {
     /// 删除镜像不可变规则
     ///
     ///  删除镜像不可变规则
-    @inlinable
+    @inlinable @discardableResult
     public func deleteImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImmutableTagRulesResponse {
         try await self.deleteImmutableTagRules(DeleteImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Mongodb {
     /// 刷新路由配置
     ///
     /// 在所有mongos上执行FlushRouterConfig命令
-    @inlinable
+    @inlinable @discardableResult
     public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushInstanceRouterConfigResponse> {
         self.client.execute(action: "FlushInstanceRouterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Mongodb {
     /// 刷新路由配置
     ///
     /// 在所有mongos上执行FlushRouterConfig命令
-    @inlinable
+    @inlinable @discardableResult
     public func flushInstanceRouterConfig(_ input: FlushInstanceRouterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
         try await self.client.execute(action: "FlushInstanceRouterConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Mongodb {
     /// 刷新路由配置
     ///
     /// 在所有mongos上执行FlushRouterConfig命令
-    @inlinable
+    @inlinable @discardableResult
     public func flushInstanceRouterConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlushInstanceRouterConfigResponse> {
         self.flushInstanceRouterConfig(FlushInstanceRouterConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Mongodb {
     /// 刷新路由配置
     ///
     /// 在所有mongos上执行FlushRouterConfig命令
-    @inlinable
+    @inlinable @discardableResult
     public func flushInstanceRouterConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlushInstanceRouterConfigResponse {
         try await self.flushInstanceRouterConfig(FlushInstanceRouterConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

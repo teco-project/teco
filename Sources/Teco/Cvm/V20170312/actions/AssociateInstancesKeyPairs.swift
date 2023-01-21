@@ -56,7 +56,7 @@ extension Cvm {
     /// * 如果实例原来绑定过密钥，那么原来的密钥将失效。
     /// * 如果实例原来是通过密码登录，绑定密钥后无法使用密码登录。
     /// * 支持批量操作。每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
-    @inlinable
+    @inlinable @discardableResult
     public func associateInstancesKeyPairs(_ input: AssociateInstancesKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateInstancesKeyPairsResponse> {
         self.client.execute(action: "AssociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -68,7 +68,7 @@ extension Cvm {
     /// * 如果实例原来绑定过密钥，那么原来的密钥将失效。
     /// * 如果实例原来是通过密码登录，绑定密钥后无法使用密码登录。
     /// * 支持批量操作。每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
-    @inlinable
+    @inlinable @discardableResult
     public func associateInstancesKeyPairs(_ input: AssociateInstancesKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateInstancesKeyPairsResponse {
         try await self.client.execute(action: "AssociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -80,7 +80,7 @@ extension Cvm {
     /// * 如果实例原来绑定过密钥，那么原来的密钥将失效。
     /// * 如果实例原来是通过密码登录，绑定密钥后无法使用密码登录。
     /// * 支持批量操作。每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
-    @inlinable
+    @inlinable @discardableResult
     public func associateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateInstancesKeyPairsResponse> {
         self.associateInstancesKeyPairs(AssociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
     }
@@ -92,7 +92,7 @@ extension Cvm {
     /// * 如果实例原来绑定过密钥，那么原来的密钥将失效。
     /// * 如果实例原来是通过密码登录，绑定密钥后无法使用密码登录。
     /// * 支持批量操作。每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
-    @inlinable
+    @inlinable @discardableResult
     public func associateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateInstancesKeyPairsResponse {
         try await self.associateInstancesKeyPairs(AssociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
     }

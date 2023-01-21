@@ -60,25 +60,25 @@ extension Cam {
     }
 
     /// 创建角色OIDC配置
-    @inlinable
+    @inlinable @discardableResult
     public func createOIDCConfig(_ input: CreateOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOIDCConfigResponse> {
         self.client.execute(action: "CreateOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建角色OIDC配置
-    @inlinable
+    @inlinable @discardableResult
     public func createOIDCConfig(_ input: CreateOIDCConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOIDCConfigResponse {
         try await self.client.execute(action: "CreateOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建角色OIDC配置
-    @inlinable
+    @inlinable @discardableResult
     public func createOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOIDCConfigResponse> {
         self.createOIDCConfig(CreateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建角色OIDC配置
-    @inlinable
+    @inlinable @discardableResult
     public func createOIDCConfig(identityUrl: String, identityKey: String, clientId: [String], name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOIDCConfigResponse {
         try await self.createOIDCConfig(CreateOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, name: name, description: description), region: region, logger: logger, on: eventLoop)
     }

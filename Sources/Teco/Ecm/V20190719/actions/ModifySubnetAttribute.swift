@@ -60,25 +60,25 @@ extension Ecm {
     }
 
     /// 修改子网属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetAttributeResponse> {
         self.client.execute(action: "ModifySubnetAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改子网属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubnetAttribute(_ input: ModifySubnetAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
         try await self.client.execute(action: "ModifySubnetAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改子网属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubnetAttribute(subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetAttributeResponse> {
         self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改子网属性
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubnetAttribute(subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
         try await self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags), region: region, logger: logger, on: eventLoop)
     }

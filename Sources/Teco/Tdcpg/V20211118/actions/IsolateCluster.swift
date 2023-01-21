@@ -42,7 +42,7 @@ extension Tdcpg {
     /// 隔离集群
     ///
     /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
-    @inlinable
+    @inlinable @discardableResult
     public func isolateCluster(_ input: IsolateClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
         self.client.execute(action: "IsolateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Tdcpg {
     /// 隔离集群
     ///
     /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
-    @inlinable
+    @inlinable @discardableResult
     public func isolateCluster(_ input: IsolateClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
         try await self.client.execute(action: "IsolateCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Tdcpg {
     /// 隔离集群
     ///
     /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
-    @inlinable
+    @inlinable @discardableResult
     public func isolateCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateClusterResponse> {
         self.isolateCluster(IsolateClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Tdcpg {
     /// 隔离集群
     ///
     /// 隔离集群，集群的接入点网络将会断掉无法连接使用数据库。只有当集群状态处于running(运行中)时才生效。
-    @inlinable
+    @inlinable @discardableResult
     public func isolateCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateClusterResponse {
         try await self.isolateCluster(IsolateClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }

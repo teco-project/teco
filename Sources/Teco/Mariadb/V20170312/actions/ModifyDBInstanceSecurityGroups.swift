@@ -52,7 +52,7 @@ extension Mariadb {
     /// 修改云数据库安全组
     ///
     /// 本接口（ModifyDBInstanceSecurityGroups）用于修改云数据库安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupsResponse> {
         self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Mariadb {
     /// 修改云数据库安全组
     ///
     /// 本接口（ModifyDBInstanceSecurityGroups）用于修改云数据库安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(_ input: ModifyDBInstanceSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
         try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Mariadb {
     /// 修改云数据库安全组
     ///
     /// 本接口（ModifyDBInstanceSecurityGroups）用于修改云数据库安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(product: String, instanceId: String, securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupsResponse> {
         self.modifyDBInstanceSecurityGroups(ModifyDBInstanceSecurityGroupsRequest(product: product, instanceId: instanceId, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Mariadb {
     /// 修改云数据库安全组
     ///
     /// 本接口（ModifyDBInstanceSecurityGroups）用于修改云数据库安全组
-    @inlinable
+    @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(product: String, instanceId: String, securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
         try await self.modifyDBInstanceSecurityGroups(ModifyDBInstanceSecurityGroupsRequest(product: product, instanceId: instanceId, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
     }

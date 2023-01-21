@@ -47,7 +47,7 @@ extension Ecm {
     /// 删除子网
     ///
     /// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSubnet(_ input: DeleteSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
         self.client.execute(action: "DeleteSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Ecm {
     /// 删除子网
     ///
     /// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSubnet(_ input: DeleteSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
         try await self.client.execute(action: "DeleteSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Ecm {
     /// 删除子网
     ///
     /// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSubnet(subnetId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubnetResponse> {
         self.deleteSubnet(DeleteSubnetRequest(subnetId: subnetId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Ecm {
     /// 删除子网
     ///
     /// 删除子网，若子网为可用区下的默认子网，则默认子网会回退到系统自动创建的默认子网，非用户最新创建的子网。若默认子网不满足需求，可调用设置默认子网接口设置。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteSubnet(subnetId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
         try await self.deleteSubnet(DeleteSubnetRequest(subnetId: subnetId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
     }

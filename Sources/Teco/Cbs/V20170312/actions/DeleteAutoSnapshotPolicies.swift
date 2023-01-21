@@ -43,7 +43,7 @@ extension Cbs {
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPoliciesResponse> {
         self.client.execute(action: "DeleteAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Cbs {
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPoliciesResponse {
         try await self.client.execute(action: "DeleteAutoSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Cbs {
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(autoSnapshotPolicyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPoliciesResponse> {
         self.deleteAutoSnapshotPolicies(DeleteAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Cbs {
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(autoSnapshotPolicyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPoliciesResponse {
         try await self.deleteAutoSnapshotPolicies(DeleteAutoSnapshotPoliciesRequest(autoSnapshotPolicyIds: autoSnapshotPolicyIds), region: region, logger: logger, on: eventLoop)
     }

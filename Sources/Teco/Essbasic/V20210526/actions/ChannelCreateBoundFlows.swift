@@ -53,7 +53,7 @@ extension Essbasic {
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
-    @inlinable
+    @inlinable @discardableResult
     public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
         self.client.execute(action: "ChannelCreateBoundFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -61,7 +61,7 @@ extension Essbasic {
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
-    @inlinable
+    @inlinable @discardableResult
     public func channelCreateBoundFlows(_ input: ChannelCreateBoundFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
         try await self.client.execute(action: "ChannelCreateBoundFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -69,7 +69,7 @@ extension Essbasic {
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
-    @inlinable
+    @inlinable @discardableResult
     public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateBoundFlowsResponse> {
         self.channelCreateBoundFlows(ChannelCreateBoundFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
@@ -77,7 +77,7 @@ extension Essbasic {
     /// 渠道版领取合同
     ///
     /// 此接口（ChannelCreateBoundFlows）用于渠道子客领取合同，经办人需要有相应的角色，领取后的合同不能重复领取。
-    @inlinable
+    @inlinable @discardableResult
     public func channelCreateBoundFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateBoundFlowsResponse {
         try await self.channelCreateBoundFlows(ChannelCreateBoundFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }

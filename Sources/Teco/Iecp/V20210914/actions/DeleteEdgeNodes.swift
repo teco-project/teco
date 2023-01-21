@@ -45,25 +45,25 @@ extension Iecp {
     }
 
     /// 批量删除边缘节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodes(_ input: DeleteEdgeNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodesResponse> {
         self.client.execute(action: "DeleteEdgeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除边缘节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodes(_ input: DeleteEdgeNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodesResponse {
         try await self.client.execute(action: "DeleteEdgeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 批量删除边缘节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodes(edgeUnitId: UInt64, nodeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeNodesResponse> {
         self.deleteEdgeNodes(DeleteEdgeNodesRequest(edgeUnitId: edgeUnitId, nodeIds: nodeIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 批量删除边缘节点
-    @inlinable
+    @inlinable @discardableResult
     public func deleteEdgeNodes(edgeUnitId: UInt64, nodeIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeNodesResponse {
         try await self.deleteEdgeNodes(DeleteEdgeNodesRequest(edgeUnitId: edgeUnitId, nodeIds: nodeIds), region: region, logger: logger, on: eventLoop)
     }

@@ -42,7 +42,7 @@ extension Vpc {
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNetDetect(_ input: DeleteNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetDetectResponse> {
         self.client.execute(action: "DeleteNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Vpc {
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNetDetect(_ input: DeleteNetDetectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
         try await self.client.execute(action: "DeleteNetDetect", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Vpc {
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNetDetect(netDetectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNetDetectResponse> {
         self.deleteNetDetect(DeleteNetDetectRequest(netDetectId: netDetectId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteNetDetect(netDetectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
         try await self.deleteNetDetect(DeleteNetDetectRequest(netDetectId: netDetectId), region: region, logger: logger, on: eventLoop)
     }

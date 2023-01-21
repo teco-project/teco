@@ -75,25 +75,25 @@ extension Es {
     }
 
     /// 升级ES集群版本
-    @inlinable
+    @inlinable @discardableResult
     public func upgradeInstance(_ input: UpgradeInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceResponse> {
         self.client.execute(action: "UpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级ES集群版本
-    @inlinable
+    @inlinable @discardableResult
     public func upgradeInstance(_ input: UpgradeInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
         try await self.client.execute(action: "UpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 升级ES集群版本
-    @inlinable
+    @inlinable @discardableResult
     public func upgradeInstance(instanceId: String, esVersion: String, checkOnly: Bool? = nil, licenseType: String? = nil, basicSecurityType: UInt64? = nil, upgradeMode: String? = nil, cosBackup: Bool? = nil, skipCheckForceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceResponse> {
         self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, esVersion: esVersion, checkOnly: checkOnly, licenseType: licenseType, basicSecurityType: basicSecurityType, upgradeMode: upgradeMode, cosBackup: cosBackup, skipCheckForceRestart: skipCheckForceRestart), region: region, logger: logger, on: eventLoop)
     }
 
     /// 升级ES集群版本
-    @inlinable
+    @inlinable @discardableResult
     public func upgradeInstance(instanceId: String, esVersion: String, checkOnly: Bool? = nil, licenseType: String? = nil, basicSecurityType: UInt64? = nil, upgradeMode: String? = nil, cosBackup: Bool? = nil, skipCheckForceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
         try await self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, esVersion: esVersion, checkOnly: checkOnly, licenseType: licenseType, basicSecurityType: basicSecurityType, upgradeMode: upgradeMode, cosBackup: cosBackup, skipCheckForceRestart: skipCheckForceRestart), region: region, logger: logger, on: eventLoop)
     }

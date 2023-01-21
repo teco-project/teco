@@ -47,7 +47,7 @@ extension Ecm {
     /// 修改模块是否禁止分配外网ip
     ///
     /// 修改模块是否禁止分配外网ip的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleDisableWanIpResponse> {
         self.client.execute(action: "ModifyModuleDisableWanIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Ecm {
     /// 修改模块是否禁止分配外网ip
     ///
     /// 修改模块是否禁止分配外网ip的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleDisableWanIp(_ input: ModifyModuleDisableWanIpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleDisableWanIpResponse {
         try await self.client.execute(action: "ModifyModuleDisableWanIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Ecm {
     /// 修改模块是否禁止分配外网ip
     ///
     /// 修改模块是否禁止分配外网ip的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleDisableWanIp(moduleId: String, disableWanIp: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleDisableWanIpResponse> {
         self.modifyModuleDisableWanIp(ModifyModuleDisableWanIpRequest(moduleId: moduleId, disableWanIp: disableWanIp), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Ecm {
     /// 修改模块是否禁止分配外网ip
     ///
     /// 修改模块是否禁止分配外网ip的属性。
-    @inlinable
+    @inlinable @discardableResult
     public func modifyModuleDisableWanIp(moduleId: String, disableWanIp: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleDisableWanIpResponse {
         try await self.modifyModuleDisableWanIp(ModifyModuleDisableWanIpRequest(moduleId: moduleId, disableWanIp: disableWanIp), region: region, logger: logger, on: eventLoop)
     }

@@ -47,7 +47,7 @@ extension Live {
     /// 删除录制任务(已废弃,请使用新接口)
     ///
     /// 注：DeleteLiveRecord 接口仅用于删除录制任务记录，不具备停止录制的功能，也不能删除正在进行中的录制。如果需要停止录制任务，请使用终止录制[StopLiveRecord](/document/product/267/30146) 接口。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecord(_ input: DeleteLiveRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordResponse> {
         self.client.execute(action: "DeleteLiveRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Live {
     /// 删除录制任务(已废弃,请使用新接口)
     ///
     /// 注：DeleteLiveRecord 接口仅用于删除录制任务记录，不具备停止录制的功能，也不能删除正在进行中的录制。如果需要停止录制任务，请使用终止录制[StopLiveRecord](/document/product/267/30146) 接口。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecord(_ input: DeleteLiveRecordRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordResponse {
         try await self.client.execute(action: "DeleteLiveRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Live {
     /// 删除录制任务(已废弃,请使用新接口)
     ///
     /// 注：DeleteLiveRecord 接口仅用于删除录制任务记录，不具备停止录制的功能，也不能删除正在进行中的录制。如果需要停止录制任务，请使用终止录制[StopLiveRecord](/document/product/267/30146) 接口。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecord(streamName: String, taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveRecordResponse> {
         self.deleteLiveRecord(DeleteLiveRecordRequest(streamName: streamName, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Live {
     /// 删除录制任务(已废弃,请使用新接口)
     ///
     /// 注：DeleteLiveRecord 接口仅用于删除录制任务记录，不具备停止录制的功能，也不能删除正在进行中的录制。如果需要停止录制任务，请使用终止录制[StopLiveRecord](/document/product/267/30146) 接口。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLiveRecord(streamName: String, taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveRecordResponse {
         try await self.deleteLiveRecord(DeleteLiveRecordRequest(streamName: streamName, taskId: taskId), region: region, logger: logger, on: eventLoop)
     }

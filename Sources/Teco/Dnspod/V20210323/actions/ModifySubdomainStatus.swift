@@ -60,25 +60,25 @@ extension Dnspod {
     }
 
     /// 暂停子域名的解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubdomainStatusResponse> {
         self.client.execute(action: "ModifySubdomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 暂停子域名的解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubdomainStatus(_ input: ModifySubdomainStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
         try await self.client.execute(action: "ModifySubdomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 暂停子域名的解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubdomainStatus(domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubdomainStatusResponse> {
         self.modifySubdomainStatus(ModifySubdomainStatusRequest(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }
 
     /// 暂停子域名的解析记录
-    @inlinable
+    @inlinable @discardableResult
     public func modifySubdomainStatus(domain: String, recordType: String, status: String, domainId: UInt64? = nil, subDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubdomainStatusResponse {
         try await self.modifySubdomainStatus(ModifySubdomainStatusRequest(domain: domain, recordType: recordType, status: status, domainId: domainId, subDomain: subDomain), region: region, logger: logger, on: eventLoop)
     }

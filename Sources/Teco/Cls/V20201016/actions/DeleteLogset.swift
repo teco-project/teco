@@ -42,7 +42,7 @@ extension Cls {
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogset(_ input: DeleteLogsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogsetResponse> {
         self.client.execute(action: "DeleteLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Cls {
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogset(_ input: DeleteLogsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
         try await self.client.execute(action: "DeleteLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Cls {
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogset(logsetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogsetResponse> {
         self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Cls {
     /// 删除日志集
     ///
     /// 本接口用于删除日志集。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteLogset(logsetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogsetResponse {
         try await self.deleteLogset(DeleteLogsetRequest(logsetId: logsetId), region: region, logger: logger, on: eventLoop)
     }

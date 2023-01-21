@@ -42,7 +42,7 @@ extension Vpc {
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
         self.client.execute(action: "DeleteVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Vpc {
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpcEndPointService(_ input: DeleteVpcEndPointServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
         try await self.client.execute(action: "DeleteVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Vpc {
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpcEndPointService(endPointServiceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
         self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Vpc {
     /// 删除终端节点服务
     ///
     /// 删除终端节点服务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteVpcEndPointService(endPointServiceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
         try await self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), region: region, logger: logger, on: eventLoop)
     }

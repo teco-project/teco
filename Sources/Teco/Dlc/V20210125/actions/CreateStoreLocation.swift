@@ -42,7 +42,7 @@ extension Dlc {
     /// 修改结果存储位置
     ///
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
-    @inlinable
+    @inlinable @discardableResult
     public func createStoreLocation(_ input: CreateStoreLocationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStoreLocationResponse> {
         self.client.execute(action: "CreateStoreLocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -50,7 +50,7 @@ extension Dlc {
     /// 修改结果存储位置
     ///
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
-    @inlinable
+    @inlinable @discardableResult
     public func createStoreLocation(_ input: CreateStoreLocationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStoreLocationResponse {
         try await self.client.execute(action: "CreateStoreLocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -58,7 +58,7 @@ extension Dlc {
     /// 修改结果存储位置
     ///
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
-    @inlinable
+    @inlinable @discardableResult
     public func createStoreLocation(storeLocation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStoreLocationResponse> {
         self.createStoreLocation(CreateStoreLocationRequest(storeLocation: storeLocation), region: region, logger: logger, on: eventLoop)
     }
@@ -66,7 +66,7 @@ extension Dlc {
     /// 修改结果存储位置
     ///
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
-    @inlinable
+    @inlinable @discardableResult
     public func createStoreLocation(storeLocation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStoreLocationResponse {
         try await self.createStoreLocation(CreateStoreLocationRequest(storeLocation: storeLocation), region: region, logger: logger, on: eventLoop)
     }

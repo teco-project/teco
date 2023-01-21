@@ -45,25 +45,25 @@ extension Cwp {
     }
 
     /// 添加网站防护服务器
-    @inlinable
+    @inlinable @discardableResult
     public func createProtectServer(_ input: CreateProtectServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtectServerResponse> {
         self.client.execute(action: "CreateProtectServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加网站防护服务器
-    @inlinable
+    @inlinable @discardableResult
     public func createProtectServer(_ input: CreateProtectServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtectServerResponse {
         try await self.client.execute(action: "CreateProtectServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加网站防护服务器
-    @inlinable
+    @inlinable @discardableResult
     public func createProtectServer(protectDir: String, protectHostConfig: [ProtectHostConfig], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProtectServerResponse> {
         self.createProtectServer(CreateProtectServerRequest(protectDir: protectDir, protectHostConfig: protectHostConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加网站防护服务器
-    @inlinable
+    @inlinable @discardableResult
     public func createProtectServer(protectDir: String, protectHostConfig: [ProtectHostConfig], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProtectServerResponse {
         try await self.createProtectServer(CreateProtectServerRequest(protectDir: protectDir, protectHostConfig: protectHostConfig), region: region, logger: logger, on: eventLoop)
     }

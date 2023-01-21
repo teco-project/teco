@@ -52,7 +52,7 @@ extension Iotcloud {
     /// 更新设备日志级别
     ///
     /// 设置设备上报的日志级别
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceLogLevelResponse> {
         self.client.execute(action: "UpdateDeviceLogLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -60,7 +60,7 @@ extension Iotcloud {
     /// 更新设备日志级别
     ///
     /// 设置设备上报的日志级别
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceLogLevel(_ input: UpdateDeviceLogLevelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
         try await self.client.execute(action: "UpdateDeviceLogLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -68,7 +68,7 @@ extension Iotcloud {
     /// 更新设备日志级别
     ///
     /// 设置设备上报的日志级别
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceLogLevelResponse> {
         self.updateDeviceLogLevel(UpdateDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }
@@ -76,7 +76,7 @@ extension Iotcloud {
     /// 更新设备日志级别
     ///
     /// 设置设备上报的日志级别
-    @inlinable
+    @inlinable @discardableResult
     public func updateDeviceLogLevel(productId: String, deviceName: String, logLevel: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceLogLevelResponse {
         try await self.updateDeviceLogLevel(UpdateDeviceLogLevelRequest(productId: productId, deviceName: deviceName, logLevel: logLevel), region: region, logger: logger, on: eventLoop)
     }

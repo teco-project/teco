@@ -48,7 +48,7 @@ extension Essbasic {
     ///
     /// 此接口（ArchiveFlow）用于流程的归档。
     /// 注意：归档后的流程不可再进行发送、签署、拒签、撤回等一系列操作。
-    @inlinable
+    @inlinable @discardableResult
     public func archiveFlow(_ input: ArchiveFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ArchiveFlowResponse> {
         self.client.execute(action: "ArchiveFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -57,7 +57,7 @@ extension Essbasic {
     ///
     /// 此接口（ArchiveFlow）用于流程的归档。
     /// 注意：归档后的流程不可再进行发送、签署、拒签、撤回等一系列操作。
-    @inlinable
+    @inlinable @discardableResult
     public func archiveFlow(_ input: ArchiveFlowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveFlowResponse {
         try await self.client.execute(action: "ArchiveFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -66,7 +66,7 @@ extension Essbasic {
     ///
     /// 此接口（ArchiveFlow）用于流程的归档。
     /// 注意：归档后的流程不可再进行发送、签署、拒签、撤回等一系列操作。
-    @inlinable
+    @inlinable @discardableResult
     public func archiveFlow(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ArchiveFlowResponse> {
         self.archiveFlow(ArchiveFlowRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Essbasic {
     ///
     /// 此接口（ArchiveFlow）用于流程的归档。
     /// 注意：归档后的流程不可再进行发送、签署、拒签、撤回等一系列操作。
-    @inlinable
+    @inlinable @discardableResult
     public func archiveFlow(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveFlowResponse {
         try await self.archiveFlow(ArchiveFlowRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
     }

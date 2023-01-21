@@ -45,25 +45,25 @@ extension Cam {
     }
 
     /// 设置用户权限边界
-    @inlinable
+    @inlinable @discardableResult
     public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutUserPermissionsBoundaryResponse> {
         self.client.execute(action: "PutUserPermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置用户权限边界
-    @inlinable
+    @inlinable @discardableResult
     public func putUserPermissionsBoundary(_ input: PutUserPermissionsBoundaryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
         try await self.client.execute(action: "PutUserPermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 设置用户权限边界
-    @inlinable
+    @inlinable @discardableResult
     public func putUserPermissionsBoundary(targetUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutUserPermissionsBoundaryResponse> {
         self.putUserPermissionsBoundary(PutUserPermissionsBoundaryRequest(targetUin: targetUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置用户权限边界
-    @inlinable
+    @inlinable @discardableResult
     public func putUserPermissionsBoundary(targetUin: Int64, policyId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutUserPermissionsBoundaryResponse {
         try await self.putUserPermissionsBoundary(PutUserPermissionsBoundaryRequest(targetUin: targetUin, policyId: policyId), region: region, logger: logger, on: eventLoop)
     }

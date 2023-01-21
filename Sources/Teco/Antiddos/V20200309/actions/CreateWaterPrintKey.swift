@@ -40,25 +40,25 @@ extension Antiddos {
     }
 
     /// 添加DDoS防护的水印防护密钥
-    @inlinable
+    @inlinable @discardableResult
     public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWaterPrintKeyResponse> {
         self.client.execute(action: "CreateWaterPrintKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的水印防护密钥
-    @inlinable
+    @inlinable @discardableResult
     public func createWaterPrintKey(_ input: CreateWaterPrintKeyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintKeyResponse {
         try await self.client.execute(action: "CreateWaterPrintKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 添加DDoS防护的水印防护密钥
-    @inlinable
+    @inlinable @discardableResult
     public func createWaterPrintKey(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWaterPrintKeyResponse> {
         self.createWaterPrintKey(CreateWaterPrintKeyRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的水印防护密钥
-    @inlinable
+    @inlinable @discardableResult
     public func createWaterPrintKey(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintKeyResponse {
         try await self.createWaterPrintKey(CreateWaterPrintKeyRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }

@@ -67,7 +67,7 @@ extension Cynosdb {
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
         self.client.execute(action: "ModifyBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -75,7 +75,7 @@ extension Cynosdb {
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupConfig(_ input: ModifyBackupConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
         try await self.client.execute(action: "ModifyBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -83,7 +83,7 @@ extension Cynosdb {
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
         self.modifyBackupConfig(ModifyBackupConfigRequest(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType), region: region, logger: logger, on: eventLoop)
     }
@@ -91,7 +91,7 @@ extension Cynosdb {
     /// 修改备份配置
     ///
     /// 修改指定集群的备份配置
-    @inlinable
+    @inlinable @discardableResult
     public func modifyBackupConfig(clusterId: String, backupTimeBeg: UInt64, backupTimeEnd: UInt64, reserveDuration: UInt64, backupFreq: [String]? = nil, backupType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
         try await self.modifyBackupConfig(ModifyBackupConfigRequest(clusterId: clusterId, backupTimeBeg: backupTimeBeg, backupTimeEnd: backupTimeEnd, reserveDuration: reserveDuration, backupFreq: backupFreq, backupType: backupType), region: region, logger: logger, on: eventLoop)
     }

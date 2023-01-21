@@ -47,7 +47,7 @@ extension Sqlserver {
     /// 删除备份导入任务
     ///
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupMigrationResponse> {
         self.client.execute(action: "DeleteBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -55,7 +55,7 @@ extension Sqlserver {
     /// 删除备份导入任务
     ///
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBackupMigration(_ input: DeleteBackupMigrationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
         try await self.client.execute(action: "DeleteBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -63,7 +63,7 @@ extension Sqlserver {
     /// 删除备份导入任务
     ///
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBackupMigration(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupMigrationResponse> {
         self.deleteBackupMigration(DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
     }
@@ -71,7 +71,7 @@ extension Sqlserver {
     /// 删除备份导入任务
     ///
     /// 本接口（DeleteBackupMigration）用于删除备份导入任务。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteBackupMigration(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupMigrationResponse {
         try await self.deleteBackupMigration(DeleteBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
     }

@@ -45,25 +45,25 @@ extension Pts {
     }
 
     /// 删除告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlertChannel(_ input: DeleteAlertChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlertChannelResponse> {
         self.client.execute(action: "DeleteAlertChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlertChannel(_ input: DeleteAlertChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlertChannelResponse {
         try await self.client.execute(action: "DeleteAlertChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlertChannel(projectId: String, noticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlertChannelResponse> {
         self.deleteAlertChannel(DeleteAlertChannelRequest(projectId: projectId, noticeId: noticeId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警通知接收组
-    @inlinable
+    @inlinable @discardableResult
     public func deleteAlertChannel(projectId: String, noticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlertChannelResponse {
         try await self.deleteAlertChannel(DeleteAlertChannelRequest(projectId: projectId, noticeId: noticeId), region: region, logger: logger, on: eventLoop)
     }

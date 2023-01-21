@@ -57,7 +57,7 @@ extension Batch {
     /// 修改任务模板
     ///
     /// 用于修改任务模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskTemplateResponse> {
         self.client.execute(action: "ModifyTaskTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -65,7 +65,7 @@ extension Batch {
     /// 修改任务模板
     ///
     /// 用于修改任务模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTaskTemplate(_ input: ModifyTaskTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskTemplateResponse {
         try await self.client.execute(action: "ModifyTaskTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -73,7 +73,7 @@ extension Batch {
     /// 修改任务模板
     ///
     /// 用于修改任务模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTaskTemplate(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskTemplateResponse> {
         self.modifyTaskTemplate(ModifyTaskTemplateRequest(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo), region: region, logger: logger, on: eventLoop)
     }
@@ -81,7 +81,7 @@ extension Batch {
     /// 修改任务模板
     ///
     /// 用于修改任务模板
-    @inlinable
+    @inlinable @discardableResult
     public func modifyTaskTemplate(taskTemplateId: String, taskTemplateName: String? = nil, taskTemplateDescription: String? = nil, taskTemplateInfo: Task? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskTemplateResponse {
         try await self.modifyTaskTemplate(ModifyTaskTemplateRequest(taskTemplateId: taskTemplateId, taskTemplateName: taskTemplateName, taskTemplateDescription: taskTemplateDescription, taskTemplateInfo: taskTemplateInfo), region: region, logger: logger, on: eventLoop)
     }

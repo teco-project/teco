@@ -45,25 +45,25 @@ extension Tione {
     }
 
     /// 删除模型版本
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingModelVersion(_ input: DeleteTrainingModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelVersionResponse> {
         self.client.execute(action: "DeleteTrainingModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模型版本
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingModelVersion(_ input: DeleteTrainingModelVersionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelVersionResponse {
         try await self.client.execute(action: "DeleteTrainingModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除模型版本
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingModelVersion(trainingModelVersionId: String, enableDeleteCos: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingModelVersionResponse> {
         self.deleteTrainingModelVersion(DeleteTrainingModelVersionRequest(trainingModelVersionId: trainingModelVersionId, enableDeleteCos: enableDeleteCos), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除模型版本
-    @inlinable
+    @inlinable @discardableResult
     public func deleteTrainingModelVersion(trainingModelVersionId: String, enableDeleteCos: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingModelVersionResponse {
         try await self.deleteTrainingModelVersion(DeleteTrainingModelVersionRequest(trainingModelVersionId: trainingModelVersionId, enableDeleteCos: enableDeleteCos), region: region, logger: logger, on: eventLoop)
     }

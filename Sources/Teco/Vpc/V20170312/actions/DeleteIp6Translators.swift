@@ -43,7 +43,7 @@ extension Vpc {
     ///
     /// 1. 该接口用于释放IPV6转换实例，支持批量。
     /// 2.  如果IPV6转换实例建立有转换规则，会一并删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIp6Translators(_ input: DeleteIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIp6TranslatorsResponse> {
         self.client.execute(action: "DeleteIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
@@ -52,7 +52,7 @@ extension Vpc {
     ///
     /// 1. 该接口用于释放IPV6转换实例，支持批量。
     /// 2.  如果IPV6转换实例建立有转换规则，会一并删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIp6Translators(_ input: DeleteIp6TranslatorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIp6TranslatorsResponse {
         try await self.client.execute(action: "DeleteIp6Translators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
@@ -61,7 +61,7 @@ extension Vpc {
     ///
     /// 1. 该接口用于释放IPV6转换实例，支持批量。
     /// 2.  如果IPV6转换实例建立有转换规则，会一并删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIp6Translators(ip6TranslatorIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIp6TranslatorsResponse> {
         self.deleteIp6Translators(DeleteIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds), region: region, logger: logger, on: eventLoop)
     }
@@ -70,7 +70,7 @@ extension Vpc {
     ///
     /// 1. 该接口用于释放IPV6转换实例，支持批量。
     /// 2.  如果IPV6转换实例建立有转换规则，会一并删除。
-    @inlinable
+    @inlinable @discardableResult
     public func deleteIp6Translators(ip6TranslatorIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIp6TranslatorsResponse {
         try await self.deleteIp6Translators(DeleteIp6TranslatorsRequest(ip6TranslatorIds: ip6TranslatorIds), region: region, logger: logger, on: eventLoop)
     }
