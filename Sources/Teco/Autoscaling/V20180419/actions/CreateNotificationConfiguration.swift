@@ -38,6 +38,7 @@ extension As {
         /// <br><li>CMQ_TOPIC：CMQ 主题
         /// <br><li>TDMQ_CMQ_TOPIC：TDMQ CMQ 主题
         /// <br><li>TDMQ_CMQ_QUEUE：TDMQ CMQ 队列
+        ///
         /// 默认值为：`USER_GROUP`。
         public let targetType: String?
 

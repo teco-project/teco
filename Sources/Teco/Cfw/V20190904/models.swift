@@ -297,6 +297,7 @@ extension Cfw {
     /// 	InsType   int    `json:"InsType" gorm:"column:instance_type"`
     /// 	PublicIP  string `json:"PublicIp" gorm:"column:public_ip"`
     /// 	PrivateIP string `json:"PrivateIp" gorm:"column:ip"`
+    ///
     /// 	//规则下发无需管，前端展示用
     /// 	PortNum          string `json:"PortNum" gorm:"column:port_num"`
     /// 	LeakNum          string `json:"LeakNum" gorm:"column:leak_num"`
@@ -1133,7 +1134,6 @@ extension Cfw {
     }
 
     /// StaticInfo 告警柱形图统计信息
-    ///
     public struct StaticInfo: TCOutputModel {
         /// 数
         public let num: Int64

@@ -42,6 +42,7 @@ extension Gse {
     /// 删除服务器舰队
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DeleteFleet）用于删除服务器舰队。
     @inlinable @discardableResult
     public func deleteFleet(_ input: DeleteFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFleetResponse> {
@@ -51,6 +52,7 @@ extension Gse {
     /// 删除服务器舰队
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DeleteFleet）用于删除服务器舰队。
     @inlinable @discardableResult
     public func deleteFleet(_ input: DeleteFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFleetResponse {
@@ -60,6 +62,7 @@ extension Gse {
     /// 删除服务器舰队
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DeleteFleet）用于删除服务器舰队。
     @inlinable @discardableResult
     public func deleteFleet(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFleetResponse> {
@@ -69,6 +72,7 @@ extension Gse {
     /// 删除服务器舰队
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DeleteFleet）用于删除服务器舰队。
     @inlinable @discardableResult
     public func deleteFleet(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFleetResponse {

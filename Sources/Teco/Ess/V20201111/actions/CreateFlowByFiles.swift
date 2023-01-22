@@ -41,6 +41,7 @@ extension Ess {
 
         /// 是否需要预览，true：预览模式，false：非预览（默认）；
         /// 预览链接有效期300秒；
+        ///
         /// 注：如果使用“预览模式”，出参会返回合同预览链接 PreviewUrl，不会正式发起合同，且出参不会返回签署流程编号 FlowId；如果使用“非预览”，则会正常返回签署流程编号 FlowId，不会生成合同预览链接 PreviewUrl。
         public let needPreview: Bool?
 
@@ -62,6 +63,7 @@ extension Ess {
 
         /// 发起方企业的签署人进行签署操作是否需要企业内部审批。使用此功能需要发起方企业有参与签署。
         /// 若设置为true，审核结果需通过接口 CreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
+        ///
         /// 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         public let needSignReview: Bool?
 
@@ -129,10 +131,12 @@ extension Ess {
     /// CreateFlowByFiles返回参数结构体
     public struct CreateFlowByFilesResponse: TCResponseModel {
         /// 签署流程编号。
+        ///
         /// 注：如入参 是否需要预览 NeedPreview 设置为 true，不会正式发起合同，此处不会有值返回；如入参 是否需要预览 NeedPreview 设置为 false，此处会正常返回签署流程编号 FlowId。
         public let flowId: String
 
         /// 合同预览链接。
+        ///
         /// 注：如入参 是否需要预览 NeedPreview 设置为 true，会开启“预览模式”，此处会返回预览链接；如入参 是否需要预览 NeedPreview 设置为 false，此处不会有值返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let previewUrl: String?

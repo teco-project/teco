@@ -51,6 +51,7 @@ extension Gpm {
     /// 取消匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 取消匹配。
     @inlinable
     public func cancelMatching(_ input: CancelMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMatchingResponse> {
@@ -60,6 +61,7 @@ extension Gpm {
     /// 取消匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 取消匹配。
     @inlinable
     public func cancelMatching(_ input: CancelMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
@@ -69,6 +71,7 @@ extension Gpm {
     /// 取消匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 取消匹配。
     @inlinable
     public func cancelMatching(matchCode: String, matchTicketId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMatchingResponse> {
@@ -78,6 +81,7 @@ extension Gpm {
     /// 取消匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 取消匹配。
     @inlinable
     public func cancelMatching(matchCode: String, matchTicketId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {

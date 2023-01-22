@@ -39,10 +39,12 @@ extension Dts {
         public let dstInfo: DstInfo?
 
         /// 当选择'指定库表'迁移的时候, 需要设置待迁移的源数据库表信息,用符合json数组格式的字符串描述, 如下所例。
+        ///
         /// 对于database-table两级结构的数据库：
         /// [{"Database":"db1","Table":["table1","table2"]},{"Database":"db2"}]
         /// 对于database-schema-table三级结构：
         /// [{"Database":"db1","Schema":"s1","Table":["table1","table2"]},{"Database":"db1","Schema":"s2","Table":["table1","table2"]},{"Database":"db2","Schema":"s1","Table":["table1","table2"]},{"Database":"db3"},{"Database":"db4","Schema":"s1"}]
+        ///
         /// 如果是'整个实例'的迁移模式,不需设置该字段
         public let databaseInfo: String?
 
@@ -93,6 +95,7 @@ extension Dts {
     ///
     /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
     /// 当迁移任务处于下述状态时，允许调用本接口修改迁移任务：迁移创建中（status=1）、 校验成功(status=4)、校验失败(status=5)、迁移失败(status=10)。但源实例、目标实例类型和目标实例地域不允许修改。
+    ///
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable @discardableResult
     public func modifyMigrateJob(_ input: ModifyMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateJobResponse> {
@@ -103,6 +106,7 @@ extension Dts {
     ///
     /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
     /// 当迁移任务处于下述状态时，允许调用本接口修改迁移任务：迁移创建中（status=1）、 校验成功(status=4)、校验失败(status=5)、迁移失败(status=10)。但源实例、目标实例类型和目标实例地域不允许修改。
+    ///
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable @discardableResult
     public func modifyMigrateJob(_ input: ModifyMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobResponse {
@@ -113,6 +117,7 @@ extension Dts {
     ///
     /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
     /// 当迁移任务处于下述状态时，允许调用本接口修改迁移任务：迁移创建中（status=1）、 校验成功(status=4)、校验失败(status=5)、迁移失败(status=10)。但源实例、目标实例类型和目标实例地域不允许修改。
+    ///
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable @discardableResult
     public func modifyMigrateJob(jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateJobResponse> {
@@ -123,6 +128,7 @@ extension Dts {
     ///
     /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
     /// 当迁移任务处于下述状态时，允许调用本接口修改迁移任务：迁移创建中（status=1）、 校验成功(status=4)、校验失败(status=5)、迁移失败(status=10)。但源实例、目标实例类型和目标实例地域不允许修改。
+    ///
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable @discardableResult
     public func modifyMigrateJob(jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobResponse {

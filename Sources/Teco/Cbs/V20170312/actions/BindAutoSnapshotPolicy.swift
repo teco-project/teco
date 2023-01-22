@@ -47,6 +47,7 @@ extension Cbs {
     /// 绑定定期快照策略
     ///
     /// 本接口（BindAutoSnapshotPolicy）用于绑定云硬盘到指定的定期快照策略。
+    ///
     /// * 每个地域下的定期快照策略配额限制请参考文档[定期快照](/document/product/362/8191)。
     /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
     @inlinable @discardableResult
@@ -57,6 +58,7 @@ extension Cbs {
     /// 绑定定期快照策略
     ///
     /// 本接口（BindAutoSnapshotPolicy）用于绑定云硬盘到指定的定期快照策略。
+    ///
     /// * 每个地域下的定期快照策略配额限制请参考文档[定期快照](/document/product/362/8191)。
     /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
     @inlinable @discardableResult
@@ -67,6 +69,7 @@ extension Cbs {
     /// 绑定定期快照策略
     ///
     /// 本接口（BindAutoSnapshotPolicy）用于绑定云硬盘到指定的定期快照策略。
+    ///
     /// * 每个地域下的定期快照策略配额限制请参考文档[定期快照](/document/product/362/8191)。
     /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
     @inlinable @discardableResult
@@ -77,6 +80,7 @@ extension Cbs {
     /// 绑定定期快照策略
     ///
     /// 本接口（BindAutoSnapshotPolicy）用于绑定云硬盘到指定的定期快照策略。
+    ///
     /// * 每个地域下的定期快照策略配额限制请参考文档[定期快照](/document/product/362/8191)。
     /// * 当已绑定定期快照策略的云硬盘处于未使用状态（即弹性云盘未挂载或非弹性云盘的主机处于关机状态）将不会创建定期快照。
     @inlinable @discardableResult

@@ -80,6 +80,7 @@ extension Cdb {
     /// 修改云数据库实例账号的权限
     ///
     /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    ///
     /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
@@ -90,6 +91,7 @@ extension Cdb {
     /// 修改云数据库实例账号的权限
     ///
     /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    ///
     /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
@@ -100,6 +102,7 @@ extension Cdb {
     /// 修改云数据库实例账号的权限
     ///
     /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    ///
     /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable
@@ -110,6 +113,7 @@ extension Cdb {
     /// 修改云数据库实例账号的权限
     ///
     /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    ///
     /// 注意，修改账号权限时，需要传入该账号下的全量权限信息。用户可以先通过 [查询云数据库账户的权限信息
     /// ](https://cloud.tencent.com/document/api/236/17500) 查询该账号下的全量权限信息，然后进行权限修改。
     @inlinable

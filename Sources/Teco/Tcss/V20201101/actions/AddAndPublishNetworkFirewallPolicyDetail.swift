@@ -24,14 +24,20 @@ extension Tcss {
         public let policyName: String
 
         /// 入站规则
+        ///
         /// 全部允许：1
+        ///
         /// 全部拒绝 ：2
+        ///
         /// 自定义：3
         public let fromPolicyRule: Int64
 
         /// 出站规则
+        ///
         /// 全部允许：1
+        ///
         /// 全部拒绝 ：2
+        ///
         /// 自定义：3
         public let toPolicyRule: Int64
 

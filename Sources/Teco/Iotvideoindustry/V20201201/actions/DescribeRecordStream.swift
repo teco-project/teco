@@ -72,6 +72,7 @@ extension Iotvideoindustry {
     ///
     /// 获取回放视频流地址
     /// 请使用DescribeChannelLocalRecordURL接口
+    ///
     /// RecordId和StartTime/EndTime互斥
     /// 当存在RecordId时，StartTime和EndTime无效
     /// 当RecordId为空，StartTime和EndTime生效
@@ -84,6 +85,7 @@ extension Iotvideoindustry {
     ///
     /// 获取回放视频流地址
     /// 请使用DescribeChannelLocalRecordURL接口
+    ///
     /// RecordId和StartTime/EndTime互斥
     /// 当存在RecordId时，StartTime和EndTime无效
     /// 当RecordId为空，StartTime和EndTime生效
@@ -96,6 +98,7 @@ extension Iotvideoindustry {
     ///
     /// 获取回放视频流地址
     /// 请使用DescribeChannelLocalRecordURL接口
+    ///
     /// RecordId和StartTime/EndTime互斥
     /// 当存在RecordId时，StartTime和EndTime无效
     /// 当RecordId为空，StartTime和EndTime生效
@@ -108,6 +111,7 @@ extension Iotvideoindustry {
     ///
     /// 获取回放视频流地址
     /// 请使用DescribeChannelLocalRecordURL接口
+    ///
     /// RecordId和StartTime/EndTime互斥
     /// 当存在RecordId时，StartTime和EndTime无效
     /// 当RecordId为空，StartTime和EndTime生效

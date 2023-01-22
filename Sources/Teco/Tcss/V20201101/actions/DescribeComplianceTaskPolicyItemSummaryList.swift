@@ -18,9 +18,13 @@ extension Tcss {
     /// DescribeComplianceTaskPolicyItemSummaryList请求参数结构体
     public struct DescribeComplianceTaskPolicyItemSummaryListRequest: TCRequestModel {
         /// 资产类型。仅查询与指定资产类型相关的检测项。
+        ///
         /// ASSET_CONTAINER, 容器
+        ///
         /// ASSET_IMAGE, 镜像
+        ///
         /// ASSET_HOST, 主机
+        ///
         /// ASSET_K8S, K8S资产
         public let assetType: String?
 

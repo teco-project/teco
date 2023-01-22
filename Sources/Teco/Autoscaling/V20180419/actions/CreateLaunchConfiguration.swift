@@ -71,6 +71,7 @@ extension As {
         /// 实例类型校验策略，取值包括 ALL 和 ANY，默认取值为ANY。
         /// <br><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
         /// <br><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
+        ///
         /// 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。
         /// 如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
         public let instanceTypesCheckPolicy: String?
@@ -175,7 +176,9 @@ extension As {
     /// 创建启动配置
     ///
     /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
+    ///
     /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
+    ///
     /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
     @inlinable
     public func createLaunchConfiguration(_ input: CreateLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaunchConfigurationResponse> {
@@ -185,7 +188,9 @@ extension As {
     /// 创建启动配置
     ///
     /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
+    ///
     /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
+    ///
     /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
     @inlinable
     public func createLaunchConfiguration(_ input: CreateLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchConfigurationResponse {
@@ -195,7 +200,9 @@ extension As {
     /// 创建启动配置
     ///
     /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
+    ///
     /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
+    ///
     /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
     @inlinable
     public func createLaunchConfiguration(launchConfigurationName: String, imageId: String, projectId: UInt64? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, userData: String? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypes: [String]? = nil, camRoleName: String? = nil, instanceTypesCheckPolicy: String? = nil, instanceTags: [InstanceTag]? = nil, tags: [Tag]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, diskTypePolicy: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaunchConfigurationResponse> {
@@ -205,7 +212,9 @@ extension As {
     /// 创建启动配置
     ///
     /// 本接口（CreateLaunchConfiguration）用于创建新的启动配置。
+    ///
     /// * 启动配置，可以通过 `ModifyLaunchConfigurationAttributes` 修改少量字段。如需使用新的启动配置，建议重新创建启动配置。
+    ///
     /// * 每个项目最多只能创建20个启动配置，详见[使用限制](https://cloud.tencent.com/document/product/377/3120)。
     @inlinable
     public func createLaunchConfiguration(launchConfigurationName: String, imageId: String, projectId: UInt64? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, internetAccessible: InternetAccessible? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, userData: String? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypes: [String]? = nil, camRoleName: String? = nil, instanceTypesCheckPolicy: String? = nil, instanceTags: [InstanceTag]? = nil, tags: [Tag]? = nil, hostNameSettings: HostNameSettings? = nil, instanceNameSettings: InstanceNameSettings? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, diskTypePolicy: String? = nil, hpcClusterId: String? = nil, iPv6InternetAccessible: IPv6InternetAccessible? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchConfigurationResponse {

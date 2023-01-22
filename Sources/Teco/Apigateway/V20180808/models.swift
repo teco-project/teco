@@ -996,6 +996,7 @@ extension Apigateway {
         public let name: String
 
         /// 进行编码触发的header的可选值数组, 数组元素的字符串最大长度为40，元素可以包括数字，英文字母以及特殊字符，特殊字符的可选值为： `.`    `+`    `*`   `-`   `/`  `_`
+        ///
         /// 例如 [
         ///     "application/x-vpeg005",
         ///     "application/xhtml+xml",
@@ -1097,6 +1098,7 @@ extension Apigateway {
         /// API后端COS的路径匹配模式，可选值：
         /// BackEndPath ： 后端路径匹配
         /// FullPath ： 全路径匹配
+        ///
         /// 默认值为：BackEndPath
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pathMatchMode: String?

@@ -70,6 +70,7 @@ extension Gse {
     /// 拉取生成包列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
     @inlinable
     public func describeAssets(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
@@ -79,6 +80,7 @@ extension Gse {
     /// 拉取生成包列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
     @inlinable
     public func describeAssets(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
@@ -88,6 +90,7 @@ extension Gse {
     /// 拉取生成包列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
     @inlinable
     public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
@@ -97,6 +100,7 @@ extension Gse {
     /// 拉取生成包列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
     @inlinable
     public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {

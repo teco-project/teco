@@ -1330,6 +1330,7 @@ extension Live {
         public let startTime: String
 
         /// 结束时间。
+        ///
         /// UTC格式时间，例如：2019-01-08T10:00:00Z。
         /// 注意：北京时间值为 UTC 时间值 + 8 小时，格式按照 ISO 8601 标准表示，详见 [ISO 日期格式说明](https://cloud.tencent.com/document/product/266/11732#I)。
         public let endTime: String
@@ -1426,6 +1427,7 @@ extension Live {
         /// 点播更新SourceUrls后的播放方式：
         /// ImmediateNewSource：立即从更新的拉流源开始播放；
         /// ContinueBreakPoint：从上次断流url源的断点处继续，结束后再使用新的拉流源。
+        ///
         /// 注意：拉流源为点播，该配置生效。
         public let vodRefreshType: String
 
@@ -1791,6 +1793,7 @@ extension Live {
         /// {EndMinute}: 结束时间-分钟
         /// {EndSecond}: 结束时间-秒
         /// {EndMillisecond}: 结束时间-毫秒
+        ///
         /// 若未设置默认录制文件名为{StreamID}_{StartYear}-{StartMonth}-{StartDay}-{StartHour}-{StartMinute}-{StartSecond}_{EndYear}-{EndMonth}-{EndDay}-{EndHour}-{EndMinute}-{EndSecond}
         public let vodFileName: String?
 
@@ -2191,6 +2194,7 @@ extension Live {
     /// 转码模板信息。
     public struct TemplateInfo: TCOutputModel {
         /// 视频编码：h264/h265/origin，默认h264。
+        ///
         /// origin: 保持原始编码格式
         public let vcodec: String
 
@@ -2269,6 +2273,7 @@ extension Live {
 
         /// 极速高清视频码率压缩比。
         /// 极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)
+        ///
         /// 取值范围：0.0到0.5
         public let adaptBitratePercent: Float
 

@@ -56,6 +56,7 @@ extension Ivld {
     /// 更新自定义人物分类
     ///
     /// 更新自定义人物分类
+    ///
     /// 当L2Category为空时，代表更新CategoryId对应的一级自定义人物类型以及所有二级自定义人物类型所从属的一级自定义人物类型；
     /// 当L2Category非空时，仅更新CategoryId对应的二级自定义人物类型
     @inlinable
@@ -66,6 +67,7 @@ extension Ivld {
     /// 更新自定义人物分类
     ///
     /// 更新自定义人物分类
+    ///
     /// 当L2Category为空时，代表更新CategoryId对应的一级自定义人物类型以及所有二级自定义人物类型所从属的一级自定义人物类型；
     /// 当L2Category非空时，仅更新CategoryId对应的二级自定义人物类型
     @inlinable
@@ -76,6 +78,7 @@ extension Ivld {
     /// 更新自定义人物分类
     ///
     /// 更新自定义人物分类
+    ///
     /// 当L2Category为空时，代表更新CategoryId对应的一级自定义人物类型以及所有二级自定义人物类型所从属的一级自定义人物类型；
     /// 当L2Category非空时，仅更新CategoryId对应的二级自定义人物类型
     @inlinable
@@ -86,6 +89,7 @@ extension Ivld {
     /// 更新自定义人物分类
     ///
     /// 更新自定义人物分类
+    ///
     /// 当L2Category为空时，代表更新CategoryId对应的一级自定义人物类型以及所有二级自定义人物类型所从属的一级自定义人物类型；
     /// 当L2Category非空时，仅更新CategoryId对应的二级自定义人物类型
     @inlinable

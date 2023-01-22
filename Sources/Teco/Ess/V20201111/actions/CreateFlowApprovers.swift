@@ -54,6 +54,7 @@ extension Ess {
     /// 补充签署流程本企业签署人信息
     /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
     /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
+    ///
     /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
     @inlinable @discardableResult
     public func createFlowApprovers(_ input: CreateFlowApproversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowApproversResponse> {
@@ -65,6 +66,7 @@ extension Ess {
     /// 补充签署流程本企业签署人信息
     /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
     /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
+    ///
     /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
     @inlinable @discardableResult
     public func createFlowApprovers(_ input: CreateFlowApproversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {
@@ -76,6 +78,7 @@ extension Ess {
     /// 补充签署流程本企业签署人信息
     /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
     /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
+    ///
     /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
     @inlinable @discardableResult
     public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowApproversResponse> {
@@ -87,6 +90,7 @@ extension Ess {
     /// 补充签署流程本企业签署人信息
     /// 适用场景：在通过模板或者文件发起合同时，若未指定本企业签署人信息，则流程发起后，可以调用此接口补充签署人。
     /// 同一签署人可以补充多个员工作为候选签署人,最终签署人取决于谁先领取合同完成签署。
+    ///
     /// 注：目前暂时只支持补充来源于企业微信的员工作为候选签署人
     @inlinable @discardableResult
     public func createFlowApprovers(operator: UserInfo, flowId: String, approvers: [FillApproverInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowApproversResponse {

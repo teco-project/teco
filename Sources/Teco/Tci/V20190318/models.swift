@@ -1749,7 +1749,7 @@ extension Tci {
         /// 单词出现的那个句子的起始时间
         public let mbtm: Int64?
 
-        /// 	单词出现的那个句子的结束时间
+        /// 单词出现的那个句子的结束时间
         public let metm: Int64?
 
         public init(mbtm: Int64? = nil, metm: Int64? = nil) {

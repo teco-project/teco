@@ -96,6 +96,7 @@ extension Tiems {
     /// 更新服务
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    ///
     /// 更新服务
     @inlinable
     public func updateService(_ input: UpdateServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateServiceResponse> {
@@ -105,6 +106,7 @@ extension Tiems {
     /// 更新服务
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    ///
     /// 更新服务
     @inlinable
     public func updateService(_ input: UpdateServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceResponse {
@@ -114,6 +116,7 @@ extension Tiems {
     /// 更新服务
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    ///
     /// 更新服务
     @inlinable
     public func updateService(serviceId: String, scaler: Scaler? = nil, serviceConfigId: String? = nil, scaleMode: String? = nil, serviceAction: String? = nil, description: String? = nil, gpuType: String? = nil, cpu: UInt64? = nil, memory: UInt64? = nil, gpu: UInt64? = nil, logTopicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateServiceResponse> {
@@ -123,6 +126,7 @@ extension Tiems {
     /// 更新服务
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    ///
     /// 更新服务
     @inlinable
     public func updateService(serviceId: String, scaler: Scaler? = nil, serviceConfigId: String? = nil, scaleMode: String? = nil, serviceAction: String? = nil, description: String? = nil, gpuType: String? = nil, cpu: UInt64? = nil, memory: UInt64? = nil, gpu: UInt64? = nil, logTopicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceResponse {

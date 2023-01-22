@@ -37,14 +37,17 @@ extension Gse {
         /// playerSessionCount 当前玩家会话数 Number
         /// hasAvailablePlayerSessions 是否有可用玩家数 String 取值true或false
         /// gameServerSessionProperties 游戏会话属性 String
+        ///
         /// 表达式String类型 等于=，不等于<>判断
         /// 表示Number类型支持 =,<>,>,>=,<,<=
+        ///
         /// 例如：
         /// FilterExpression取值
         /// playerSessionCount>=2 AND hasAvailablePlayerSessions=true"
         /// 表示查找至少有两个玩家，而且有可用玩家会话的游戏会话。
         /// FilterExpression取值
         /// gameServerSessionProperties.K1 = 'V1' AND gameServerSessionProperties.K2 = 'V2' OR gameServerSessionProperties.K3 = 'V3'
+        ///
         /// 表示
         /// 查询满足如下游戏服务器会话属性的游戏会话
         /// {
@@ -116,6 +119,7 @@ extension Gse {
     /// 搜索游戏服务器会话列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
     @inlinable
     public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchGameServerSessionsResponse> {
@@ -125,6 +129,7 @@ extension Gse {
     /// 搜索游戏服务器会话列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
     @inlinable
     public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
@@ -134,6 +139,7 @@ extension Gse {
     /// 搜索游戏服务器会话列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
     @inlinable
     public func searchGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchGameServerSessionsResponse> {
@@ -143,6 +149,7 @@ extension Gse {
     /// 搜索游戏服务器会话列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
     @inlinable
     public func searchGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {

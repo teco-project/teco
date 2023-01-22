@@ -21,6 +21,7 @@ extension Cvm {
         public let keyName: String
 
         /// 密钥对创建后所属的[项目](https://cloud.tencent.com/document/product/378/10861)ID。<br><br>可以通过以下方式获取项目ID：<br><li>通过[项目列表](https://console.cloud.tencent.com/project)查询项目ID。<br><li>通过调用接口 [DescribeProject](https://cloud.tencent.com/document/api/378/4400)，取返回信息中的 `projectId ` 获取项目ID。
+        ///
         /// 如果是默认项目，直接填0就可以。
         public let projectId: Int64
 
@@ -62,6 +63,7 @@ extension Cvm {
     /// 导入密钥对
     ///
     /// 本接口 (ImportKeyPair) 用于导入密钥对。
+    ///
     /// * 本接口的功能是将密钥对导入到用户账户，并不会自动绑定到实例。如需绑定可以使用[AssociasteInstancesKeyPair](https://cloud.tencent.com/document/api/213/9404)接口。
     /// * 需指定密钥对名称以及该密钥对的公钥文本。
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
@@ -73,6 +75,7 @@ extension Cvm {
     /// 导入密钥对
     ///
     /// 本接口 (ImportKeyPair) 用于导入密钥对。
+    ///
     /// * 本接口的功能是将密钥对导入到用户账户，并不会自动绑定到实例。如需绑定可以使用[AssociasteInstancesKeyPair](https://cloud.tencent.com/document/api/213/9404)接口。
     /// * 需指定密钥对名称以及该密钥对的公钥文本。
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
@@ -84,6 +87,7 @@ extension Cvm {
     /// 导入密钥对
     ///
     /// 本接口 (ImportKeyPair) 用于导入密钥对。
+    ///
     /// * 本接口的功能是将密钥对导入到用户账户，并不会自动绑定到实例。如需绑定可以使用[AssociasteInstancesKeyPair](https://cloud.tencent.com/document/api/213/9404)接口。
     /// * 需指定密钥对名称以及该密钥对的公钥文本。
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
@@ -95,6 +99,7 @@ extension Cvm {
     /// 导入密钥对
     ///
     /// 本接口 (ImportKeyPair) 用于导入密钥对。
+    ///
     /// * 本接口的功能是将密钥对导入到用户账户，并不会自动绑定到实例。如需绑定可以使用[AssociasteInstancesKeyPair](https://cloud.tencent.com/document/api/213/9404)接口。
     /// * 需指定密钥对名称以及该密钥对的公钥文本。
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。

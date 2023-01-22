@@ -47,6 +47,7 @@ extension Gpm {
     /// 查询规则详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 查询规则详情
     @inlinable
     public func describeRule(_ input: DescribeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
@@ -56,6 +57,7 @@ extension Gpm {
     /// 查询规则详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 查询规则详情
     @inlinable
     public func describeRule(_ input: DescribeRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {
@@ -65,6 +67,7 @@ extension Gpm {
     /// 查询规则详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 查询规则详情
     @inlinable
     public func describeRule(ruleCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleResponse> {
@@ -74,6 +77,7 @@ extension Gpm {
     /// 查询规则详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 查询规则详情
     @inlinable
     public func describeRule(ruleCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleResponse {

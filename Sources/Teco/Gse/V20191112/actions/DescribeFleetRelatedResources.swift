@@ -47,6 +47,7 @@ extension Gse {
     /// 获取与游戏服务器舰队关联的资源信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
     @inlinable
     public func describeFleetRelatedResources(_ input: DescribeFleetRelatedResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetRelatedResourcesResponse> {
@@ -56,6 +57,7 @@ extension Gse {
     /// 获取与游戏服务器舰队关联的资源信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
     @inlinable
     public func describeFleetRelatedResources(_ input: DescribeFleetRelatedResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetRelatedResourcesResponse {
@@ -65,6 +67,7 @@ extension Gse {
     /// 获取与游戏服务器舰队关联的资源信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
     @inlinable
     public func describeFleetRelatedResources(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetRelatedResourcesResponse> {
@@ -74,6 +77,7 @@ extension Gse {
     /// 获取与游戏服务器舰队关联的资源信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeFleetRelatedResources）用于获取与游戏服务器舰队关联的资源信息，如别名、队列
     @inlinable
     public func describeFleetRelatedResources(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetRelatedResourcesResponse {

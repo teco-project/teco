@@ -18,17 +18,27 @@ extension Cls {
     /// DescribeShippers请求参数结构体
     public struct DescribeShippersRequest: TCRequestModel {
         /// <br><li> shipperName
+        ///
         /// 按照【投递规则名称】进行过滤。
         /// 类型：String
+        ///
         /// 必选：否
+        ///
         /// <br><li> shipperId
+        ///
         /// 按照【投递规则ID】进行过滤。
         /// 类型：String
+        ///
         /// 必选：否
+        ///
         /// <br><li> topicId
+        ///
         /// 按照【日志主题】进行过滤。
+        ///
         /// 类型：String
+        ///
         /// 必选：否
+        ///
         /// 每次请求的Filters的上限为10，Filter.Values的上限为5。
         public let filters: [Filter]?
 

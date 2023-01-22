@@ -24,6 +24,7 @@ extension Cme {
         public let name: String
 
         /// 项目归属者，即项目的所有者，后续操作只有该所有者有权限操作。
+        ///
         /// 注：目前所有项目只能设置归属个人，暂不支持团队项目。
         public let owner: Entity
 
@@ -39,6 +40,7 @@ extension Cme {
         /// 当 Category 为 VIDEO_EDIT 时，可选模式有：
         /// <li>Default：默认模式，即普通视频编辑项目。</li>
         /// <li>VideoEditTemplate：剪辑模板制作模式，用于制作剪辑模板。</li>
+        ///
         /// 注：不填则为默认模式。
         public let mode: String?
 

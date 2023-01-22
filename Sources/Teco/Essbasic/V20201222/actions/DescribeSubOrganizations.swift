@@ -51,6 +51,7 @@ extension Essbasic {
     /// 查询子机构信息
     ///
     /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
+    ///
     /// 注：此接口仅可查询您所属机构应用号创建的子机构信息，不可跨应用/跨机构查询。
     @inlinable
     public func describeSubOrganizations(_ input: DescribeSubOrganizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubOrganizationsResponse> {
@@ -60,6 +61,7 @@ extension Essbasic {
     /// 查询子机构信息
     ///
     /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
+    ///
     /// 注：此接口仅可查询您所属机构应用号创建的子机构信息，不可跨应用/跨机构查询。
     @inlinable
     public func describeSubOrganizations(_ input: DescribeSubOrganizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubOrganizationsResponse {
@@ -69,6 +71,7 @@ extension Essbasic {
     /// 查询子机构信息
     ///
     /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
+    ///
     /// 注：此接口仅可查询您所属机构应用号创建的子机构信息，不可跨应用/跨机构查询。
     @inlinable
     public func describeSubOrganizations(caller: Caller, subOrganizationIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubOrganizationsResponse> {
@@ -78,6 +81,7 @@ extension Essbasic {
     /// 查询子机构信息
     ///
     /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
+    ///
     /// 注：此接口仅可查询您所属机构应用号创建的子机构信息，不可跨应用/跨机构查询。
     @inlinable
     public func describeSubOrganizations(caller: Caller, subOrganizationIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubOrganizationsResponse {

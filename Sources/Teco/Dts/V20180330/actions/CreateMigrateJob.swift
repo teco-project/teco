@@ -105,6 +105,7 @@ extension Dts {
     /// 创建数据迁移任务
     ///
     /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
+    ///
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func createMigrateJob(_ input: CreateMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateJobResponse> {
@@ -114,6 +115,7 @@ extension Dts {
     /// 创建数据迁移任务
     ///
     /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
+    ///
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func createMigrateJob(_ input: CreateMigrateJobRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateJobResponse {
@@ -123,6 +125,7 @@ extension Dts {
     /// 创建数据迁移任务
     ///
     /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
+    ///
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func createMigrateJob(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateJobResponse> {
@@ -132,6 +135,7 @@ extension Dts {
     /// 创建数据迁移任务
     ///
     /// 本接口（CreateMigrateJob）用于创建数据迁移任务。
+    ///
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func createMigrateJob(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateJobResponse {

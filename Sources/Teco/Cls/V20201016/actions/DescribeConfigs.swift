@@ -18,17 +18,27 @@ extension Cls {
     /// DescribeConfigs请求参数结构体
     public struct DescribeConfigsRequest: TCRequestModel {
         /// <br><li> configName
+        ///
         /// 按照【采集配置名称】进行模糊匹配过滤。
         /// 类型：String
+        ///
         /// 必选：否
+        ///
         /// <br><li> configId
+        ///
         /// 按照【采集配置ID】进行过滤。
         /// 类型：String
+        ///
         /// 必选：否
+        ///
         /// <br><li> topicId
+        ///
         /// 按照【日志主题】进行过滤。
+        ///
         /// 类型：String
+        ///
         /// 必选：否
+        ///
         /// 每次请求的Filters的上限为10，Filter.Values的上限为5。
         public let filters: [Filter]?
 

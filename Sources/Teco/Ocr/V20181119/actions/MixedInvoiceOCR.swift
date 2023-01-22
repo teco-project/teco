@@ -95,6 +95,7 @@ extension Ocr {
     /// 混贴票据识别
     ///
     /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
@@ -104,6 +105,7 @@ extension Ocr {
     /// 混贴票据识别
     ///
     /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func mixedInvoiceOCR(_ input: MixedInvoiceOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
@@ -113,6 +115,7 @@ extension Ocr {
     /// 混贴票据识别
     ///
     /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
@@ -122,6 +125,7 @@ extension Ocr {
     /// 混贴票据识别
     ///
     /// 本接口支持 单张、多张、多类型 票据的混合识别，同时支持自选需要识别的票据类型，已支持票种包括：增值税发票（专票、普票、卷票）、全电发票、非税发票、定额发票、通用机打发票、购车发票、火车票、出租车发票、机票行程单、汽车票、轮船票、过路过桥费发票共14种标准报销发票，并支持其他类发票的识别。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {

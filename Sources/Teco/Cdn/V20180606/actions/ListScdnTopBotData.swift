@@ -40,6 +40,7 @@ extension Cdn {
 
         /// session表示查询BOT会话的Top信息
         /// ip表示查询BOT客户端IP的Top信息
+        ///
         /// 不填代表获取会话信息
         public let metric: String?
 

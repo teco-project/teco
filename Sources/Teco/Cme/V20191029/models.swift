@@ -130,6 +130,7 @@ extension Cme {
         /// <li>当 SourceType 为 CME 时，参数填多媒体创作引擎媒体 Id；</li>
         /// <li>当 SourceType 为 EXTERNAL 时，目前仅支持外部媒体 URL(如`https://www.example.com/a.mp3`)，参数填写规则请参见注意事项。</li>
         /// </ul>
+        ///
         /// 注意：
         /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp3`)，参数为：`1000000:www.example.com/a.mp3`。</li>
         /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp3`)，参数为：`1000001:www.example.com/b.mp3`。</li>
@@ -1188,6 +1189,7 @@ extension Cme {
         /// 替换的媒体类型，取值有：
         /// <li>CMEMaterialId：替换的媒体类型为媒体 ID；</li>
         /// <li>ImageUrl：替换的媒体类型为图片 URL；</li>
+        ///
         /// 注：默认为 CMEMaterialId 。
         public let mediaType: String?
 
@@ -1462,7 +1464,7 @@ extension Cme {
         }
     }
 
-    ///  点播转直播项目状态变更事件。
+    /// 点播转直播项目状态变更事件。
     public struct ProjectMediaCastStatusChangedEvent: TCOutputModel {
         /// 项目 Id。
         public let projectId: String
@@ -2318,6 +2320,7 @@ extension Cme {
     public struct VideoEncodingPresetAudioSetting: TCInputModel, TCOutputModel {
         /// 音频流的编码格式，可选值：
         /// AAC：AAC 编码。
+        ///
         /// 默认值：AAC。
         public let codec: String?
 
@@ -2652,6 +2655,7 @@ extension Cme {
         /// <li>当 SourceType 为 CME 时，参数填多媒体创作引擎媒体 Id；</li>
         /// <li>当 SourceType 为 EXTERNAL 时，目前仅支持外部媒体 URL(如`https://www.example.com/a.mp4`)，参数填写规则请参见注意事项。</li>
         /// </ul>
+        ///
         /// 注意：
         /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `https` 时(如：`https://www.example.com/a.mp4`)，参数为：`1000000:www.example.com/a.mp4`。</li>
         /// <li>当 SourceType 为 EXTERNAL 并且媒体 URL Scheme 为 `http` 时(如：`http://www.example.com/b.mp4`)，参数为：`1000001:www.example.com/b.mp4`。</li>
@@ -2769,6 +2773,7 @@ extension Cme {
         /// 微博可见性，可取值为：
         /// <li>Public：公开，所有人可见；</li>
         /// <li>Private：私有，仅自己可见。</li>
+        ///
         /// 默认为 Public，所有人可见。
         public let visible: String?
 

@@ -40,15 +40,11 @@ extension Es {
     }
 
     /// 重启Kibana
-    ///
-    /// 重启Kibana
     @inlinable @discardableResult
     public func restartKibana(_ input: RestartKibanaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
         self.client.execute(action: "RestartKibana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 重启Kibana
-    ///
     /// 重启Kibana
     @inlinable @discardableResult
     public func restartKibana(_ input: RestartKibanaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
@@ -56,15 +52,11 @@ extension Es {
     }
 
     /// 重启Kibana
-    ///
-    /// 重启Kibana
     @inlinable @discardableResult
     public func restartKibana(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
         self.restartKibana(RestartKibanaRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 重启Kibana
-    ///
     /// 重启Kibana
     @inlinable @discardableResult
     public func restartKibana(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {

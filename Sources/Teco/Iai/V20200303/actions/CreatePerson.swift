@@ -128,6 +128,7 @@ extension Iai {
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
+    ///
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
@@ -138,6 +139,7 @@ extension Iai {
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
+    ///
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
@@ -148,6 +150,7 @@ extension Iai {
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
+    ///
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
@@ -158,6 +161,7 @@ extension Iai {
     /// 创建人员
     ///
     /// 创建人员，添加人脸、姓名、性别及其他相关信息。
+    ///
     /// >
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable

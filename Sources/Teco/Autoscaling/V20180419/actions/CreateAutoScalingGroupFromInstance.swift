@@ -71,6 +71,7 @@ extension As {
     /// 根据实例创建启动配置及伸缩组
     ///
     /// 本接口（CreateAutoScalingGroupFromInstance）用于根据实例创建启动配置及伸缩组。
+    ///
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
     public func createAutoScalingGroupFromInstance(_ input: CreateAutoScalingGroupFromInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupFromInstanceResponse> {
@@ -80,6 +81,7 @@ extension As {
     /// 根据实例创建启动配置及伸缩组
     ///
     /// 本接口（CreateAutoScalingGroupFromInstance）用于根据实例创建启动配置及伸缩组。
+    ///
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
     public func createAutoScalingGroupFromInstance(_ input: CreateAutoScalingGroupFromInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupFromInstanceResponse {
@@ -89,6 +91,7 @@ extension As {
     /// 根据实例创建启动配置及伸缩组
     ///
     /// 本接口（CreateAutoScalingGroupFromInstance）用于根据实例创建启动配置及伸缩组。
+    ///
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
     public func createAutoScalingGroupFromInstance(autoScalingGroupName: String, instanceId: String, minSize: Int64, maxSize: Int64, desiredCapacity: Int64? = nil, inheritInstanceTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupFromInstanceResponse> {
@@ -98,6 +101,7 @@ extension As {
     /// 根据实例创建启动配置及伸缩组
     ///
     /// 本接口（CreateAutoScalingGroupFromInstance）用于根据实例创建启动配置及伸缩组。
+    ///
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
     public func createAutoScalingGroupFromInstance(autoScalingGroupName: String, instanceId: String, minSize: Int64, maxSize: Int64, desiredCapacity: Int64? = nil, inheritInstanceTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupFromInstanceResponse {

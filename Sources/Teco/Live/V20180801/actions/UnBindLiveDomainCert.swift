@@ -23,6 +23,7 @@ extension Live {
         /// 枚举值：
         /// gray: 解绑灰度规则
         /// formal(默认): 解绑正式规则
+        ///
         /// 不传则为formal
         public let type: String?
 

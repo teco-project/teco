@@ -28,6 +28,7 @@ extension Live {
         /// 2. BuyTimeAsc： 最老购买的排在最前面
         /// 3. ExpireTimeDesc： 最后过期的排在最前面
         /// 4. ExpireTimeAsc：最先过期的排在最前面。
+        ///
         /// 注意：
         /// 1. PackageType 为 2（连麦包） 的时候，不支持 3、4 排序。
         public let orderBy: String?

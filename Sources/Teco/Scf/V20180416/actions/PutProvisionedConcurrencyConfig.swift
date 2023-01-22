@@ -36,6 +36,7 @@ extension Scf {
         /// 静态预置：Default
         /// 动态追踪并发利用率指标预置：ConcurrencyUtilizationTracking
         /// 预置类型二选一，设置静态预置时可以设置VersionProvisionedConcurrencyNum。
+        ///
         /// 动态利用率预置可以设置TrackingTarget，MinCapacity，MaxCapacity，保持向后兼容性此时VersionProvisionedConcurrencyNum设置为0.
         public let provisionedType: String?
 

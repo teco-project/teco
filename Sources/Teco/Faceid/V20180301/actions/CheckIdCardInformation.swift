@@ -38,6 +38,7 @@ extension Faceid {
         /// DetectPsWarn，PS检测告警
         /// TempIdWarn，临时身份证告警
         /// Quality，图片质量告警（评价图片模糊程度）
+        ///
         /// SDK 设置方式参考：
         /// Config = Json.stringify({"CopyWarn":true,"ReshootWarn":true})
         /// API 3.0 Explorer 设置方式参考：
@@ -96,6 +97,7 @@ extension Faceid {
         public let portrait: String
 
         /// 告警信息，当在Config中配置了告警信息会停止人像比对，Result返回错误（FailedOperation.OcrWarningOccurred）并有此告警信息，Code 告警码列表和释义：
+        ///
         /// -9101 身份证边框不完整告警，
         /// -9102 身份证复印件告警，
         /// -9103 身份证翻拍告警，

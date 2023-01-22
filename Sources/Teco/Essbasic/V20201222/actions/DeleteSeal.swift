@@ -57,6 +57,7 @@ extension Essbasic {
     /// 删除印章
     ///
     /// 此接口 (DeleteSeal) 用于删除指定ID的印章。
+    ///
     /// 注意：默认印章不支持删除
     @inlinable @discardableResult
     public func deleteSeal(_ input: DeleteSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
@@ -66,6 +67,7 @@ extension Essbasic {
     /// 删除印章
     ///
     /// 此接口 (DeleteSeal) 用于删除指定ID的印章。
+    ///
     /// 注意：默认印章不支持删除
     @inlinable @discardableResult
     public func deleteSeal(_ input: DeleteSealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
@@ -75,6 +77,7 @@ extension Essbasic {
     /// 删除印章
     ///
     /// 此接口 (DeleteSeal) 用于删除指定ID的印章。
+    ///
     /// 注意：默认印章不支持删除
     @inlinable @discardableResult
     public func deleteSeal(caller: Caller, sealId: String, sourceIp: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
@@ -84,6 +87,7 @@ extension Essbasic {
     /// 删除印章
     ///
     /// 此接口 (DeleteSeal) 用于删除指定ID的印章。
+    ///
     /// 注意：默认印章不支持删除
     @inlinable @discardableResult
     public func deleteSeal(caller: Caller, sealId: String, sourceIp: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {

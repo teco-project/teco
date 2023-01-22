@@ -51,6 +51,7 @@ extension Essbasic {
     /// 查询个人用户信息
     ///
     /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
+    ///
     /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
     @inlinable
     public func describeUsers(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
@@ -60,6 +61,7 @@ extension Essbasic {
     /// 查询个人用户信息
     ///
     /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
+    ///
     /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
     @inlinable
     public func describeUsers(_ input: DescribeUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {
@@ -69,6 +71,7 @@ extension Essbasic {
     /// 查询个人用户信息
     ///
     /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
+    ///
     /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
     @inlinable
     public func describeUsers(caller: Caller, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsersResponse> {
@@ -78,6 +81,7 @@ extension Essbasic {
     /// 查询个人用户信息
     ///
     /// 此接口（DescribeUsers）用于查询应用号下的个人用户信息。
+    ///
     /// 注：此接口仅可查询您所属机构应用号创建的个人用户信息，不可跨应用/跨机构查询。
     @inlinable
     public func describeUsers(caller: Caller, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsersResponse {

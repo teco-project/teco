@@ -117,8 +117,11 @@ extension Ocr {
     /// 通用印刷体识别
     ///
     /// 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语，阿拉伯语20种语言，且各种语言均支持与英文混合的文字识别。
+    ///
     /// 适用于印刷文档识别、网络图片识别、广告图文字识别、街景店招牌识别、菜单识别、视频标题识别、头像文字识别等场景。
+    ///
     /// 产品优势：支持自动识别语言类型，可返回文本框坐标信息，对于倾斜文本支持自动旋转纠正。
+    ///
     /// 通用印刷体识别不同版本的差异如下：
     /// <table style="width:715px">
     ///       <thead>
@@ -174,6 +177,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func generalBasicOCR(_ input: GeneralBasicOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralBasicOCRResponse> {
@@ -183,8 +187,11 @@ extension Ocr {
     /// 通用印刷体识别
     ///
     /// 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语，阿拉伯语20种语言，且各种语言均支持与英文混合的文字识别。
+    ///
     /// 适用于印刷文档识别、网络图片识别、广告图文字识别、街景店招牌识别、菜单识别、视频标题识别、头像文字识别等场景。
+    ///
     /// 产品优势：支持自动识别语言类型，可返回文本框坐标信息，对于倾斜文本支持自动旋转纠正。
+    ///
     /// 通用印刷体识别不同版本的差异如下：
     /// <table style="width:715px">
     ///       <thead>
@@ -240,6 +247,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func generalBasicOCR(_ input: GeneralBasicOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
@@ -249,8 +257,11 @@ extension Ocr {
     /// 通用印刷体识别
     ///
     /// 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语，阿拉伯语20种语言，且各种语言均支持与英文混合的文字识别。
+    ///
     /// 适用于印刷文档识别、网络图片识别、广告图文字识别、街景店招牌识别、菜单识别、视频标题识别、头像文字识别等场景。
+    ///
     /// 产品优势：支持自动识别语言类型，可返回文本框坐标信息，对于倾斜文本支持自动旋转纠正。
+    ///
     /// 通用印刷体识别不同版本的差异如下：
     /// <table style="width:715px">
     ///       <thead>
@@ -306,6 +317,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralBasicOCRResponse> {
@@ -315,8 +327,11 @@ extension Ocr {
     /// 通用印刷体识别
     ///
     /// 本接口支持图像整体文字的检测和识别。可以识别中文、英文、中英文、日语、韩语、西班牙语、法语、德语、葡萄牙语、越南语、马来语、俄语、意大利语、荷兰语、瑞典语、芬兰语、丹麦语、挪威语、匈牙利语、泰语，阿拉伯语20种语言，且各种语言均支持与英文混合的文字识别。
+    ///
     /// 适用于印刷文档识别、网络图片识别、广告图文字识别、街景店招牌识别、菜单识别、视频标题识别、头像文字识别等场景。
+    ///
     /// 产品优势：支持自动识别语言类型，可返回文本框坐标信息，对于倾斜文本支持自动旋转纠正。
+    ///
     /// 通用印刷体识别不同版本的差异如下：
     /// <table style="width:715px">
     ///       <thead>
@@ -372,6 +387,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {

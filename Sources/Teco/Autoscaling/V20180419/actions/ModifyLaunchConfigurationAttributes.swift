@@ -30,6 +30,7 @@ extension As {
         /// 实例类型校验策略，在实际修改 InstanceTypes 时发挥作用，取值包括 ALL 和 ANY，默认取值为ANY。
         /// <br><li> ALL，所有实例类型（InstanceType）都可用则通过校验，否则校验报错。
         /// <br><li> ANY，存在任何一个实例类型（InstanceType）可用则通过校验，否则校验报错。
+        ///
         /// 实例类型不可用的常见原因包括该实例类型售罄、对应云盘售罄等。
         /// 如果 InstanceTypes 中一款机型不存在或者已下线，则无论 InstanceTypesCheckPolicy 采用何种取值，都会校验报错。
         public let instanceTypesCheckPolicy: String?
@@ -162,6 +163,7 @@ extension As {
     /// 修改启动配置属性
     ///
     /// 本接口（ModifyLaunchConfigurationAttributes）用于修改启动配置部分属性。
+    ///
     /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
     /// * 本接口支持修改部分简单类型。
     @inlinable @discardableResult
@@ -172,6 +174,7 @@ extension As {
     /// 修改启动配置属性
     ///
     /// 本接口（ModifyLaunchConfigurationAttributes）用于修改启动配置部分属性。
+    ///
     /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
     /// * 本接口支持修改部分简单类型。
     @inlinable @discardableResult
@@ -182,6 +185,7 @@ extension As {
     /// 修改启动配置属性
     ///
     /// 本接口（ModifyLaunchConfigurationAttributes）用于修改启动配置部分属性。
+    ///
     /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
     /// * 本接口支持修改部分简单类型。
     @inlinable @discardableResult
@@ -192,6 +196,7 @@ extension As {
     /// 修改启动配置属性
     ///
     /// 本接口（ModifyLaunchConfigurationAttributes）用于修改启动配置部分属性。
+    ///
     /// * 修改启动配置后，已经使用该启动配置扩容的存量实例不会发生变更，此后使用该启动配置的新增实例会按照新的配置进行扩容。
     /// * 本接口支持修改部分简单类型。
     @inlinable @discardableResult

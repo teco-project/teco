@@ -52,6 +52,7 @@ extension Gse {
     /// 设置服务器权重
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（SetServerWeight）用于设置服务器权重。
     @inlinable @discardableResult
     public func setServerWeight(_ input: SetServerWeightRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerWeightResponse> {
@@ -61,6 +62,7 @@ extension Gse {
     /// 设置服务器权重
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（SetServerWeight）用于设置服务器权重。
     @inlinable @discardableResult
     public func setServerWeight(_ input: SetServerWeightRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerWeightResponse {
@@ -70,6 +72,7 @@ extension Gse {
     /// 设置服务器权重
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（SetServerWeight）用于设置服务器权重。
     @inlinable @discardableResult
     public func setServerWeight(fleetId: String, instanceId: String, weight: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerWeightResponse> {
@@ -79,6 +82,7 @@ extension Gse {
     /// 设置服务器权重
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（SetServerWeight）用于设置服务器权重。
     @inlinable @discardableResult
     public func setServerWeight(fleetId: String, instanceId: String, weight: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerWeightResponse {

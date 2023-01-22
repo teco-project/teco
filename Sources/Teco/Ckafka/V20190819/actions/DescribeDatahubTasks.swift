@@ -74,15 +74,11 @@ extension Ckafka {
     }
 
     /// 查询Datahub任务列表
-    ///
-    /// 查询Datahub任务列表
     @inlinable
     public func describeDatahubTasks(_ input: DescribeDatahubTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatahubTasksResponse> {
         self.client.execute(action: "DescribeDatahubTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询Datahub任务列表
-    ///
     /// 查询Datahub任务列表
     @inlinable
     public func describeDatahubTasks(_ input: DescribeDatahubTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTasksResponse {
@@ -90,15 +86,11 @@ extension Ckafka {
     }
 
     /// 查询Datahub任务列表
-    ///
-    /// 查询Datahub任务列表
     @inlinable
     public func describeDatahubTasks(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, targetType: String? = nil, taskType: String? = nil, sourceType: String? = nil, resource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatahubTasksResponse> {
         self.describeDatahubTasks(DescribeDatahubTasksRequest(limit: limit, offset: offset, searchWord: searchWord, targetType: targetType, taskType: taskType, sourceType: sourceType, resource: resource), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询Datahub任务列表
-    ///
     /// 查询Datahub任务列表
     @inlinable
     public func describeDatahubTasks(limit: Int64? = nil, offset: Int64? = nil, searchWord: String? = nil, targetType: String? = nil, taskType: String? = nil, sourceType: String? = nil, resource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatahubTasksResponse {

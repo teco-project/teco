@@ -52,6 +52,7 @@ extension Cvm {
     /// 修改镜像属性
     ///
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    ///
     /// * 已分享的镜像无法修改属性。
     @inlinable @discardableResult
     public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
@@ -61,6 +62,7 @@ extension Cvm {
     /// 修改镜像属性
     ///
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    ///
     /// * 已分享的镜像无法修改属性。
     @inlinable @discardableResult
     public func modifyImageAttribute(_ input: ModifyImageAttributeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
@@ -70,6 +72,7 @@ extension Cvm {
     /// 修改镜像属性
     ///
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    ///
     /// * 已分享的镜像无法修改属性。
     @inlinable @discardableResult
     public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
@@ -79,6 +82,7 @@ extension Cvm {
     /// 修改镜像属性
     ///
     /// 本接口（ModifyImageAttribute）用于修改镜像属性。
+    ///
     /// * 已分享的镜像无法修改属性。
     @inlinable @discardableResult
     public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {

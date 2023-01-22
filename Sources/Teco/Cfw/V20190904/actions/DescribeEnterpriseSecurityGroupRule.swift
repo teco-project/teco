@@ -18,10 +18,12 @@ extension Cfw {
     /// DescribeEnterpriseSecurityGroupRule请求参数结构体
     public struct DescribeEnterpriseSecurityGroupRuleRequest: TCRequestModel {
         /// 分页查询时，显示的当前页的页码。
+        ///
         /// 默认值为1。
         public let pageNo: String
 
         /// 分页查询时，显示的每页数据的最大条数。
+        ///
         /// 可设置值最大为50。
         public let pageSize: String
 

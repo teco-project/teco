@@ -304,6 +304,7 @@ extension Tdcpg {
         /// 付费模式：
         /// - PREPAID : 预付费
         /// - POSTPAID_BY_HOUR : 按小时结算后付费
+        ///
         /// 同一集群下付费模式需要保持一致。
         public let payMode: String
 

@@ -1030,7 +1030,7 @@ extension Dlc {
         }
     }
 
-    ///  SQL查询任务
+    /// SQL查询任务
     public struct SQLTask: TCInputModel {
         /// base64加密后的SQL语句
         public let sql: String

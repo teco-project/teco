@@ -18,6 +18,7 @@ extension Dc {
     /// DescribeAccessPoints请求参数结构体
     public struct DescribeAccessPointsRequest: TCRequestModel {
         /// 接入点所在的地域。使用DescribeRegions查询
+        ///
         /// 您可以通过调用 DescribeRegions接口获取地域ID。
         public let regionId: String?
 

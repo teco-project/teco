@@ -29,6 +29,7 @@ extension Bda {
         public let url: String?
 
         /// 人体局部关键点识别，开启后对人体局部图（例如部分身体部位）进行关键点识别，输出人体关键点坐标，默认不开启
+        ///
         /// 注意：若开启人体局部图片关键点识别，则BoundBox、Confidence返回为空。
         public let localBodySwitch: Bool?
 

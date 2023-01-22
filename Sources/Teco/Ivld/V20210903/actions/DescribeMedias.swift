@@ -66,7 +66,9 @@ extension Ivld {
     /// 批量描述媒资文件
     ///
     /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    ///
     /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    ///
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMedias(_ input: DescribeMediasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediasResponse> {
@@ -76,7 +78,9 @@ extension Ivld {
     /// 批量描述媒资文件
     ///
     /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    ///
     /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    ///
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMedias(_ input: DescribeMediasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediasResponse {
@@ -86,7 +90,9 @@ extension Ivld {
     /// 批量描述媒资文件
     ///
     /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    ///
     /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    ///
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMedias(pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter? = nil, sortBy: SortBy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediasResponse> {
@@ -96,7 +102,9 @@ extension Ivld {
     /// 批量描述媒资文件
     ///
     /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
+    ///
     /// 请注意，本接口最多支持同时描述**50**个媒资文件
+    ///
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
     public func describeMedias(pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter? = nil, sortBy: SortBy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediasResponse {

@@ -106,6 +106,7 @@ extension Vod {
     /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
     /// 9. 内容分析（标签、分类、封面、按帧标签）；
     /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
+    ///
     /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
     @inlinable
     public func processMedia(_ input: ProcessMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaResponse> {
@@ -125,6 +126,7 @@ extension Vod {
     /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
     /// 9. 内容分析（标签、分类、封面、按帧标签）；
     /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
+    ///
     /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
     @inlinable
     public func processMedia(_ input: ProcessMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
@@ -144,6 +146,7 @@ extension Vod {
     /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
     /// 9. 内容分析（标签、分类、封面、按帧标签）；
     /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
+    ///
     /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
     @inlinable
     public func processMedia(fileId: String, subAppId: UInt64? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaResponse> {
@@ -163,6 +166,7 @@ extension Vod {
     /// 8. 内容审核（令人反感的信息、不安全的信息、不适宜的信息）；
     /// 9. 内容分析（标签、分类、封面、按帧标签）；
     /// 10. 内容识别（视频片头片尾、人脸、文本全文、文本关键词、语音全文、语音关键词、物体）。
+    ///
     /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
     @inlinable
     public func processMedia(fileId: String, subAppId: UInt64? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {

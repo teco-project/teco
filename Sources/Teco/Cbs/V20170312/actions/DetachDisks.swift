@@ -47,6 +47,7 @@ extension Cbs {
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载云硬盘。
+    ///
     /// * 支持批量操作，卸载挂载在同一主机上的多块云盘。如果多块云盘中存在不允许卸载的云盘，则操作不执行，返回特定的错误码。
     /// * 本接口为异步接口，当请求成功返回时，云盘并未立即从主机卸载，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHED”变为“UNATTACHED”，则为卸载成功。
     @inlinable @discardableResult
@@ -57,6 +58,7 @@ extension Cbs {
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载云硬盘。
+    ///
     /// * 支持批量操作，卸载挂载在同一主机上的多块云盘。如果多块云盘中存在不允许卸载的云盘，则操作不执行，返回特定的错误码。
     /// * 本接口为异步接口，当请求成功返回时，云盘并未立即从主机卸载，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHED”变为“UNATTACHED”，则为卸载成功。
     @inlinable @discardableResult
@@ -67,6 +69,7 @@ extension Cbs {
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载云硬盘。
+    ///
     /// * 支持批量操作，卸载挂载在同一主机上的多块云盘。如果多块云盘中存在不允许卸载的云盘，则操作不执行，返回特定的错误码。
     /// * 本接口为异步接口，当请求成功返回时，云盘并未立即从主机卸载，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHED”变为“UNATTACHED”，则为卸载成功。
     @inlinable @discardableResult
@@ -77,6 +80,7 @@ extension Cbs {
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载云硬盘。
+    ///
     /// * 支持批量操作，卸载挂载在同一主机上的多块云盘。如果多块云盘中存在不允许卸载的云盘，则操作不执行，返回特定的错误码。
     /// * 本接口为异步接口，当请求成功返回时，云盘并未立即从主机卸载，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态由“ATTACHED”变为“UNATTACHED”，则为卸载成功。
     @inlinable @discardableResult

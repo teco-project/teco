@@ -45,11 +45,15 @@ extension Cfw {
         /// 访问控制策略中的源地址。取值：
         /// 当SourceType为net时，SourceContent为源IP地址或者CIDR地址。
         /// 例如：1.1.1.0/24
+        ///
         /// 当SourceType为template时，SourceContent为源地址模板id。
+        ///
         /// 当SourceType为location时，SourceContent为源区域。
         /// 例如["BJ11", "ZB"]
+        ///
         /// 当SourceType为instance时，SourceContent为该实例id对应的公网ip。
         /// 例如ins-xxxxx
+        ///
         /// 当SourceType为vendor时，SourceContent为所选择厂商的公网ip列表。
         /// 例如：aws,huawei,tencent,aliyun,azure,all代表以上五个
         public let sourceContent: String
@@ -66,13 +70,18 @@ extension Cfw {
         /// 访问控制策略中的目的地址。取值：
         /// 当DestType为net时，DestContent为源IP地址或者CIDR地址。
         /// 例如：1.1.1.0/24
+        ///
         /// 当DestType为template时，DestContent为源地址模板id。
+        ///
         /// 当DestType为location时，DestContent为源区域。
         /// 例如["BJ11", "ZB"]
+        ///
         /// 当DestType为instance时，DestContent为该实例id对应的公网ip。
         /// 例如ins-xxxxx
+        ///
         /// 当DestType为domain时，DestContent为该实例id对应的域名规则。
         /// 例如*.qq.com
+        ///
         /// 当DestType为vendor时，DestContent为所选择厂商的公网ip列表。
         /// 例如：aws,huawei,tencent,aliyun,azure,all代表以上五个
         public let destContent: String

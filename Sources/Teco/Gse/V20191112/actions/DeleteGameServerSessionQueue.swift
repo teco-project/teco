@@ -42,6 +42,7 @@ extension Gse {
     /// 删除游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
     @inlinable @discardableResult
     public func deleteGameServerSessionQueue(_ input: DeleteGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGameServerSessionQueueResponse> {
@@ -51,6 +52,7 @@ extension Gse {
     /// 删除游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
     @inlinable @discardableResult
     public func deleteGameServerSessionQueue(_ input: DeleteGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGameServerSessionQueueResponse {
@@ -60,6 +62,7 @@ extension Gse {
     /// 删除游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
     @inlinable @discardableResult
     public func deleteGameServerSessionQueue(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGameServerSessionQueueResponse> {
@@ -69,6 +72,7 @@ extension Gse {
     /// 删除游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
     @inlinable @discardableResult
     public func deleteGameServerSessionQueue(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGameServerSessionQueueResponse {

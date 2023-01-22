@@ -18,6 +18,7 @@ extension Tione {
     /// DescribeTrainingTasks请求参数结构体
     public struct DescribeTrainingTasksRequest: TCRequestModel {
         /// 过滤器，eg：[{ "Name": "Id", "Values": ["train-23091792777383936"] }]
+        ///
         /// 取值范围：
         /// Name（名称）：task1
         /// Id（task ID）：train-23091792777383936

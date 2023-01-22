@@ -126,6 +126,7 @@ extension Ocr {
     /// 中国香港身份证识别
     ///
     /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func hkidCardOCR(_ input: HKIDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HKIDCardOCRResponse> {
@@ -135,6 +136,7 @@ extension Ocr {
     /// 中国香港身份证识别
     ///
     /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func hkidCardOCR(_ input: HKIDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HKIDCardOCRResponse {
@@ -144,6 +146,7 @@ extension Ocr {
     /// 中国香港身份证识别
     ///
     /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func hkidCardOCR(detectFake: Bool, returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HKIDCardOCRResponse> {
@@ -153,6 +156,7 @@ extension Ocr {
     /// 中国香港身份证识别
     ///
     /// 本接口支持中国香港身份证人像面中关键字段的识别，包括中文姓名、英文姓名、姓名电码、出生日期、性别、证件符号、首次签发日期、最近领用日期、身份证号、是否是永久性居民身份证；具备防伪识别、人像照片裁剪等扩展功能。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func hkidCardOCR(detectFake: Bool, returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HKIDCardOCRResponse {

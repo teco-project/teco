@@ -2042,6 +2042,7 @@ extension Teo {
         /// 非洲：Africa
         /// 大洋洲：Oceania
         /// 美洲：Americas
+        ///
         /// 当Name=code时，Value取值范围：
         /// NoError：成功的响应
         /// NXDomain：只在权威域名服务器的响应消息中有效，标示请求中请求的域不存在
@@ -2056,6 +2057,7 @@ extension Teo {
         /// 非洲：Africa
         /// 大洋洲：Oceania
         /// 美洲：Americas
+        ///
         /// 当Name=code时，Value取值范围：
         /// NoError：成功的响应
         /// NXDomain：只在权威域名服务器的响应消息中有效，标示请求中请求的域不存在
@@ -2403,6 +2405,7 @@ extension Teo {
     /// 例外规则的生效范围
     public struct ExceptUserRuleScope: TCInputModel, TCOutputModel {
         /// 生效的模块
+        ///
         /// 1. waf Waf防护
         /// 2. bot Bot防护
         /// 注意：此字段可能返回 null，表示取不到有效值。

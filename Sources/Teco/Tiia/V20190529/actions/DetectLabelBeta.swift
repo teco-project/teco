@@ -39,6 +39,7 @@ extension Tiia {
         /// NONECAM，非实拍图；
         /// LOCATION，主体位置识别；
         /// 如果不传此参数，则默认为WEB。
+        ///
         /// 支持多场景（Scenes）一起检测。例如，使用 Scenes=["WEB", "CAMERA"]，即对一张图片使用两个模型同时检测，输出两套识别结果。
         public let scenes: [String]?
 
@@ -99,6 +100,7 @@ extension Tiia {
     /// 图像标签测试接口
     ///
     /// 图像标签测试接口
+    ///
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
@@ -109,6 +111,7 @@ extension Tiia {
     /// 图像标签测试接口
     ///
     /// 图像标签测试接口
+    ///
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
@@ -119,6 +122,7 @@ extension Tiia {
     /// 图像标签测试接口
     ///
     /// 图像标签测试接口
+    ///
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
@@ -129,6 +133,7 @@ extension Tiia {
     /// 图像标签测试接口
     ///
     /// 图像标签测试接口
+    ///
     /// >
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable

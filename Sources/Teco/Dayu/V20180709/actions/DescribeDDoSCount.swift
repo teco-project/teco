@@ -95,11 +95,13 @@ extension Dayu {
         /// key为"UdpKBSum"，表示UDP报文流量，单位KB
         /// key为"IcmpKBSum"，表示ICMP报文流量，单位KB
         /// key为"OtherKBSum"，表示其他报文流量，单位KB
+        ///
         /// 当MetricName为pkg时：
         /// key为"TcpPacketSum"，表示TCP报文个数，单位个
         /// key为"UdpPacketSum"，表示UDP报文个数，单位个
         /// key为"IcmpPacketSum"，表示ICMP报文个数，单位个
         /// key为"OtherPacketSum"，表示其他报文个数，单位个
+        ///
         /// 当MetricName为classnum时：
         /// key的值表示攻击事件类型，其中Key为"UNKNOWNFLOOD"，表示未知的攻击事件
         public let data: [KeyValue]

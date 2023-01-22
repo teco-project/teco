@@ -62,6 +62,7 @@ extension Gse {
     /// 设置cos跨域访问
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
     @inlinable @discardableResult
     public func updateBucketCORSOpt(_ input: UpdateBucketCORSOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBucketCORSOptResponse> {
@@ -71,6 +72,7 @@ extension Gse {
     /// 设置cos跨域访问
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
     @inlinable @discardableResult
     public func updateBucketCORSOpt(_ input: UpdateBucketCORSOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketCORSOptResponse {
@@ -80,6 +82,7 @@ extension Gse {
     /// 设置cos跨域访问
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
     @inlinable @discardableResult
     public func updateBucketCORSOpt(allowedOrigins: [String], allowedMethods: [String], allowedHeaders: [String]? = nil, maxAgeSeconds: Int64? = nil, exposeHeaders: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBucketCORSOptResponse> {
@@ -89,6 +92,7 @@ extension Gse {
     /// 设置cos跨域访问
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateBucketCORSOpt）用于设置cos跨域访问。
     @inlinable @discardableResult
     public func updateBucketCORSOpt(allowedOrigins: [String], allowedMethods: [String], allowedHeaders: [String]? = nil, maxAgeSeconds: Int64? = nil, exposeHeaders: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketCORSOptResponse {

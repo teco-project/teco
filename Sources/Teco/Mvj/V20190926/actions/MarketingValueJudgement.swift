@@ -71,6 +71,7 @@ extension Mvj {
     /// 营销价值判断
     ///
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
+    ///
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
     public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
@@ -80,6 +81,7 @@ extension Mvj {
     /// 营销价值判断
     ///
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
+    ///
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
     public func marketingValueJudgement(_ input: MarketingValueJudgementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MarketingValueJudgementResponse {
@@ -89,6 +91,7 @@ extension Mvj {
     /// 营销价值判断
     ///
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
+    ///
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
     public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MarketingValueJudgementResponse> {
@@ -98,6 +101,7 @@ extension Mvj {
     /// 营销价值判断
     ///
     /// 欢迎使用营销价值判断（Marketing Value Judgement，简称 MVJ）。
+    ///
     /// 营销价值判断（MVJ）是针对零售场景的风控服务，通过识别高价值顾客，以帮助零售商保障营销资金
     @inlinable
     public func marketingValueJudgement(accountType: UInt64, uid: String, userIp: String, postTime: UInt64, imei: String? = nil, referer: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MarketingValueJudgementResponse {

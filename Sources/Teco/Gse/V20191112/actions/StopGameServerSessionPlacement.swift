@@ -46,6 +46,7 @@ extension Gse {
     /// 停止放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
     @inlinable
     public func stopGameServerSessionPlacement(_ input: StopGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameServerSessionPlacementResponse> {
@@ -55,6 +56,7 @@ extension Gse {
     /// 停止放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
     @inlinable
     public func stopGameServerSessionPlacement(_ input: StopGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameServerSessionPlacementResponse {
@@ -64,6 +66,7 @@ extension Gse {
     /// 停止放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
     @inlinable
     public func stopGameServerSessionPlacement(placementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameServerSessionPlacementResponse> {
@@ -73,6 +76,7 @@ extension Gse {
     /// 停止放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StopGameServerSessionPlacement）用于停止放置游戏服务器会话。
     @inlinable
     public func stopGameServerSessionPlacement(placementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameServerSessionPlacementResponse {

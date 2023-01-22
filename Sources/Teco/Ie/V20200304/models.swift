@@ -904,11 +904,13 @@ extension Ie {
         /// Dynamic：动态图；
         /// Sprite：雪碧图；
         /// Video：视频。
+        ///
         /// 注1：不同类型时，对应的 TargetInfo.Format 格式支持如下：
         /// Static：jpg、png；
         /// Dynamic：gif；
         /// Sprite：jpg、png；
         /// Video：mp4。
+        ///
         /// 注2：当 Type=Sprite时，TargetInfo指定的尺寸表示小图的大小，最终结果尺寸以输出为准。
         public let type: String
 
@@ -1380,6 +1382,7 @@ extension Ie {
     /// 目标媒体信息。
     public struct MediaTargetInfo: TCInputModel {
         /// 目标文件名，不能带特殊字符（如/等），无需后缀名，最长200字符。
+        ///
         /// 注1：部分子服务支持占位符，形式为： {parameter}
         /// 预设parameter有：
         /// index：序号；

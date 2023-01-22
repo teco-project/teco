@@ -60,7 +60,7 @@ extension Apigateway {
 
     /// 修改独享实例
     ///
-    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。
     @inlinable
     public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExclusiveInstanceResponse> {
         self.client.execute(action: "ModifyExclusiveInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -68,7 +68,7 @@ extension Apigateway {
 
     /// 修改独享实例
     ///
-    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。
     @inlinable
     public func modifyExclusiveInstance(_ input: ModifyExclusiveInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
         try await self.client.execute(action: "ModifyExclusiveInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,7 +76,7 @@ extension Apigateway {
 
     /// 修改独享实例
     ///
-    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。
     @inlinable
     public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExclusiveInstanceResponse> {
         self.modifyExclusiveInstance(ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), region: region, logger: logger, on: eventLoop)
@@ -84,7 +84,7 @@ extension Apigateway {
 
     /// 修改独享实例
     ///
-    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。​
+    /// 本接口（ModifyExclusiveInstance）用于修改独享实例信息。
     @inlinable
     public func modifyExclusiveInstance(instanceId: String, instanceName: String? = nil, instanceDescription: String? = nil, parameters: [InstanceParameterInput]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExclusiveInstanceResponse {
         try await self.modifyExclusiveInstance(ModifyExclusiveInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDescription: instanceDescription, parameters: parameters), region: region, logger: logger, on: eventLoop)

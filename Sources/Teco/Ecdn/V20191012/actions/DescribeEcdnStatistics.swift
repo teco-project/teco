@@ -50,6 +50,7 @@ extension Ecdn {
         public let interval: Int64
 
         /// 指定查询域名列表
+        ///
         /// 最多可一次性查询30个加速域名。
         public let domains: [String]?
 
@@ -102,6 +103,7 @@ extension Ecdn {
     /// 访问数据查询
     ///
     /// DescribeEcdnStatistics用于查询 ECDN 实时访问监控数据，支持以下指标查询：
+    ///
     /// + 流量（单位为 byte）
     /// + 带宽（单位为 bps）
     /// + 请求数（单位为 次）
@@ -117,6 +119,7 @@ extension Ecdn {
     /// 访问数据查询
     ///
     /// DescribeEcdnStatistics用于查询 ECDN 实时访问监控数据，支持以下指标查询：
+    ///
     /// + 流量（单位为 byte）
     /// + 带宽（单位为 bps）
     /// + 请求数（单位为 次）
@@ -132,6 +135,7 @@ extension Ecdn {
     /// 访问数据查询
     ///
     /// DescribeEcdnStatistics用于查询 ECDN 实时访问监控数据，支持以下指标查询：
+    ///
     /// + 流量（单位为 byte）
     /// + 带宽（单位为 bps）
     /// + 请求数（单位为 次）
@@ -147,6 +151,7 @@ extension Ecdn {
     /// 访问数据查询
     ///
     /// DescribeEcdnStatistics用于查询 ECDN 实时访问监控数据，支持以下指标查询：
+    ///
     /// + 流量（单位为 byte）
     /// + 带宽（单位为 bps）
     /// + 请求数（单位为 次）

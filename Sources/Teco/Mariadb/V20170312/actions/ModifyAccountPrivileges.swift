@@ -93,6 +93,7 @@ extension Mariadb {
     /// 修改云数据库实例账号的权限信息
     ///
     /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    ///
     /// **注意**
     /// - 系统保留库："mysql"，只开放["SELECT"]权限
     /// - 只读账号授予读写权限会报错
@@ -105,6 +106,7 @@ extension Mariadb {
     /// 修改云数据库实例账号的权限信息
     ///
     /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    ///
     /// **注意**
     /// - 系统保留库："mysql"，只开放["SELECT"]权限
     /// - 只读账号授予读写权限会报错
@@ -117,6 +119,7 @@ extension Mariadb {
     /// 修改云数据库实例账号的权限信息
     ///
     /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    ///
     /// **注意**
     /// - 系统保留库："mysql"，只开放["SELECT"]权限
     /// - 只读账号授予读写权限会报错
@@ -129,6 +132,7 @@ extension Mariadb {
     /// 修改云数据库实例账号的权限信息
     ///
     /// 本接口(ModifyAccountPrivileges)用于修改云数据库的账户的权限信息。
+    ///
     /// **注意**
     /// - 系统保留库："mysql"，只开放["SELECT"]权限
     /// - 只读账号授予读写权限会报错

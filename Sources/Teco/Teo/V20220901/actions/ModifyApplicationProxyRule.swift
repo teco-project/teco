@@ -44,6 +44,7 @@ extension Teo {
         /// 源站信息：
         /// <li>当 OriginType 为 custom 时，表示一个或多个源站，如`["8.8.8.8","9.9.9.9"]` 或 `OriginValue=["test.com"]`；</li>
         /// <li>当 OriginType 为 origins 时，要求有且仅有一个元素，表示源站组ID，如`["origin-537f5b41-162a-11ed-abaa-525400c5da15"]`。</li>
+        ///
         /// 不填保持原有值。
         public let originValue: [String]?
 

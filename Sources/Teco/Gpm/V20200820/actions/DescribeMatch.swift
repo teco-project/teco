@@ -47,6 +47,7 @@ extension Gpm {
     /// 查询匹配详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 查询匹配详情
     @inlinable
     public func describeMatch(_ input: DescribeMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchResponse> {
@@ -56,6 +57,7 @@ extension Gpm {
     /// 查询匹配详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 查询匹配详情
     @inlinable
     public func describeMatch(_ input: DescribeMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchResponse {
@@ -65,6 +67,7 @@ extension Gpm {
     /// 查询匹配详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 查询匹配详情
     @inlinable
     public func describeMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchResponse> {
@@ -74,6 +77,7 @@ extension Gpm {
     /// 查询匹配详情
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 查询匹配详情
     @inlinable
     public func describeMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchResponse {

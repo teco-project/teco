@@ -139,6 +139,7 @@ extension Tat {
     /// 执行命令
     ///
     /// 执行命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
+    ///
     /// * 如果指定实例未安装 agent，或 agent 不在线，返回失败
     /// * 如果命令类型与 agent 运行环境不符，返回失败
     /// * 指定的实例需要处于 VPC 网络
@@ -152,6 +153,7 @@ extension Tat {
     /// 执行命令
     ///
     /// 执行命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
+    ///
     /// * 如果指定实例未安装 agent，或 agent 不在线，返回失败
     /// * 如果命令类型与 agent 运行环境不符，返回失败
     /// * 指定的实例需要处于 VPC 网络
@@ -165,6 +167,7 @@ extension Tat {
     /// 执行命令
     ///
     /// 执行命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
+    ///
     /// * 如果指定实例未安装 agent，或 agent 不在线，返回失败
     /// * 如果命令类型与 agent 运行环境不符，返回失败
     /// * 指定的实例需要处于 VPC 网络
@@ -178,6 +181,7 @@ extension Tat {
     /// 执行命令
     ///
     /// 执行命令，调用成功返回执行活动ID（inv-xxxxxxxx），每个执行活动内部有一个或多个执行任务（invt-xxxxxxxx），每个执行任务代表命令在一台 CVM 或一台 Lighthouse 上的执行记录。
+    ///
     /// * 如果指定实例未安装 agent，或 agent 不在线，返回失败
     /// * 如果命令类型与 agent 运行环境不符，返回失败
     /// * 指定的实例需要处于 VPC 网络

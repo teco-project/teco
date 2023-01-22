@@ -60,6 +60,7 @@ extension Ivld {
     /// 增加自定义人脸图片
     ///
     /// 增加自定义人脸图片，每个自定义人物最多可包含10张人脸图片
+    ///
     /// 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
     @inlinable
     public func addCustomPersonImage(_ input: AddCustomPersonImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCustomPersonImageResponse> {
@@ -69,6 +70,7 @@ extension Ivld {
     /// 增加自定义人脸图片
     ///
     /// 增加自定义人脸图片，每个自定义人物最多可包含10张人脸图片
+    ///
     /// 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
     @inlinable
     public func addCustomPersonImage(_ input: AddCustomPersonImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomPersonImageResponse {
@@ -78,6 +80,7 @@ extension Ivld {
     /// 增加自定义人脸图片
     ///
     /// 增加自定义人脸图片，每个自定义人物最多可包含10张人脸图片
+    ///
     /// 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
     @inlinable
     public func addCustomPersonImage(personId: String, imageURL: String? = nil, image: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCustomPersonImageResponse> {
@@ -87,6 +90,7 @@ extension Ivld {
     /// 增加自定义人脸图片
     ///
     /// 增加自定义人脸图片，每个自定义人物最多可包含10张人脸图片
+    ///
     /// 请注意，与创建自定义人物一样，图片数据优先级优于图片URL优先级
     @inlinable
     public func addCustomPersonImage(personId: String, imageURL: String? = nil, image: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomPersonImageResponse {

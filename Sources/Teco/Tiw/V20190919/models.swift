@@ -210,20 +210,26 @@ extension Tiw {
         public let enabled: Bool
 
         /// 设置是否禁用录制的全局控制参数。一般与`StreamControls`参数配合使用。
+        ///
         /// true - 所有流都不录制。
         /// false - 所有流都录制。默认为false。
+        ///
         /// 这里的设置对所有流都生效，如果同时在 `StreamControls` 列表中针对指定流设置了控制参数，则优先采用`StreamControls`中设置的控制参数。
         public let disableRecord: Bool?
 
         /// 设置是否禁用所有流的音频录制的全局控制参数。一般与`StreamControls`参数配合使用。
+        ///
         /// true - 所有流的录制都不对音频进行录制。
         /// false - 所有流的录制都需要对音频进行录制。默认为false。
+        ///
         /// 这里的设置对所有流都生效，如果同时在 `StreamControls` 列表中针对指定流设置了控制参数，则优先采用`StreamControls`中设置的控制参数。
         public let disableAudio: Bool?
 
         /// 设置是否所有流都只录制小画面的全局控制参数。一般与`StreamControls`参数配合使用。
+        ///
         /// true - 所有流都只录制小画面。设置为true时，请确保上行端在推流的时候同时上行了小画面，否则录制视频可能是黑屏。
         /// false - 所有流都录制大画面，默认为false。
+        ///
         /// 这里的设置对所有流都生效，如果同时在 `StreamControls` 列表中针对指定流设置了控制参数，则优先采用`StreamControls`中设置的控制参数。
         public let pullSmallVideo: Bool?
 
@@ -367,24 +373,31 @@ extension Tiw {
         /// 1. tic_record_user - 表示白板视频流
         /// 2. tic_substream - 表示辅路视频流
         /// 3. 特定用户ID - 表示指定用户的视频流
+        ///
         /// 在实际录制过程中，视频流ID的匹配规则为前缀匹配，只要真实流ID的前缀与指定的流ID一致就认为匹配成功。
         public let streamId: String
 
         /// 设置是否对此路流开启录制。
+        ///
         /// true - 表示不对这路流进行录制，录制结果将不包含这路流的视频。
         /// false - 表示需要对这路流进行录制，录制结果会包含这路流的视频。
+        ///
         /// 默认为 false。
         public let disableRecord: Bool?
 
         /// 设置是否禁用这路流的音频录制。
+        ///
         /// true - 表示不对这路流的音频进行录制，录制结果里这路流的视频将会没有声音。
         /// false - 录制视频会保留音频，如果设置为true，则录制视频会丢弃这路流的音频。
+        ///
         /// 默认为 false。
         public let disableAudio: Bool?
 
         /// 设置当前流录制视频是否只录制小画面。
+        ///
         /// true - 录制小画面。设置为true时，请确保上行端同时上行了小画面，否则录制视频可能是黑屏。
         /// false - 录制大画面。
+        ///
         /// 默认为 false。
         public let pullSmallVideo: Bool?
 
@@ -420,6 +433,7 @@ extension Tiw {
         public let backgroundColor: String?
 
         /// 视频画面填充模式。
+        ///
         /// 0 - 自适应模式，对视频画面进行等比例缩放，在指定区域内显示完整的画面。此模式可能存在黑边。
         /// 1 - 全屏模式，对视频画面进行等比例缩放，让画面填充满整个指定区域。此模式不会存在黑边，但会将超出区域的那一部分画面裁剪掉。
         public let fillMode: Int64?

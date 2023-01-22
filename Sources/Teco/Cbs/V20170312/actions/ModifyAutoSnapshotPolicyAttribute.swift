@@ -67,6 +67,7 @@ extension Cbs {
     /// 修改定期快照策略信息
     ///
     /// 本接口（ModifyAutoSnapshotPolicyAttribute）用于修改定期快照策略属性。
+    ///
     /// * 可通过该接口修改定期快照策略的执行策略、名称、是否激活等属性。
     /// * 修改保留天数时必须保证不与是否永久保留属性冲突，否则整个操作失败，以特定的错误码返回。
     @inlinable @discardableResult
@@ -77,6 +78,7 @@ extension Cbs {
     /// 修改定期快照策略信息
     ///
     /// 本接口（ModifyAutoSnapshotPolicyAttribute）用于修改定期快照策略属性。
+    ///
     /// * 可通过该接口修改定期快照策略的执行策略、名称、是否激活等属性。
     /// * 修改保留天数时必须保证不与是否永久保留属性冲突，否则整个操作失败，以特定的错误码返回。
     @inlinable @discardableResult
@@ -87,6 +89,7 @@ extension Cbs {
     /// 修改定期快照策略信息
     ///
     /// 本接口（ModifyAutoSnapshotPolicyAttribute）用于修改定期快照策略属性。
+    ///
     /// * 可通过该接口修改定期快照策略的执行策略、名称、是否激活等属性。
     /// * 修改保留天数时必须保证不与是否永久保留属性冲突，否则整个操作失败，以特定的错误码返回。
     @inlinable @discardableResult
@@ -97,6 +100,7 @@ extension Cbs {
     /// 修改定期快照策略信息
     ///
     /// 本接口（ModifyAutoSnapshotPolicyAttribute）用于修改定期快照策略属性。
+    ///
     /// * 可通过该接口修改定期快照策略的执行策略、名称、是否激活等属性。
     /// * 修改保留天数时必须保证不与是否永久保留属性冲突，否则整个操作失败，以特定的错误码返回。
     @inlinable @discardableResult

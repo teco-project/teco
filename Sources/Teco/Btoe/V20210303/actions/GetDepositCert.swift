@@ -50,6 +50,7 @@ extension Btoe {
     /// BTOE存证电子凭证查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
+    ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
     public func getDepositCert(_ input: GetDepositCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
@@ -59,6 +60,7 @@ extension Btoe {
     /// BTOE存证电子凭证查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
+    ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
     public func getDepositCert(_ input: GetDepositCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
@@ -68,6 +70,7 @@ extension Btoe {
     /// BTOE存证电子凭证查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
+    ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
     public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
@@ -77,6 +80,7 @@ extension Btoe {
     /// BTOE存证电子凭证查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
+    ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
     @inlinable
     public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {

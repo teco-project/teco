@@ -66,6 +66,7 @@ extension Gse {
     /// 创建游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
     @inlinable
     public func createGameServerSessionQueue(_ input: CreateGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionQueueResponse> {
@@ -75,6 +76,7 @@ extension Gse {
     /// 创建游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
     @inlinable
     public func createGameServerSessionQueue(_ input: CreateGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionQueueResponse {
@@ -84,6 +86,7 @@ extension Gse {
     /// 创建游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
     @inlinable
     public func createGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionQueueResponse> {
@@ -93,6 +96,7 @@ extension Gse {
     /// 创建游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
     @inlinable
     public func createGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionQueueResponse {

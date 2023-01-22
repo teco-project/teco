@@ -38,14 +38,17 @@ extension Vod {
         public let drmSwitch: String?
 
         /// 允许输出的未加密的自适应码流模板 ID。
+        ///
         /// 当 AudioVideoType 为 AdaptiveDynamicStream 并且 DrmSwitch 为 OFF 时，此参数为必填。
         public let adaptiveDynamicStreamingDefinition: UInt64?
 
         /// 允许输出的 DRM 自适应码流模板内容。
+        ///
         /// 当 AudioVideoType 为 AdaptiveDynamicStream 并且 DrmSwitch 为 ON 时，此参数为必填。
         public let drmStreamingsInfo: DrmStreamingsInfo?
 
         /// 允许输出的转码模板 ID。
+        ///
         /// 当 AudioVideoType 为 Transcode 时必填。
         public let transcodeDefinition: UInt64?
 

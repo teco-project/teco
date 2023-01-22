@@ -662,10 +662,13 @@ extension Cdn {
         /// 匹配值。
         /// 当MatchKey为protocol时
         /// 取值：HTTP、HTTPS
+        ///
         /// 当MatchKey为httpVersion时
         /// 取值：HTTP/1.0、HTTP/1.1、HTTP/1.2、HTTP/2、HTTP/3
+        ///
         /// 当MatchKey为method时
         /// 取值：HEAD、GET、POST、PUT、OPTIONS、TRACE、DELETE、PATCH、CONNECT
+        ///
         /// 当MatchKey为ipCountry时，取值为：
         /// 其他：OTHER
         /// 委内瑞拉：VE
@@ -858,6 +861,7 @@ extension Cdn {
         /// 贝宁：BJ
         /// 布隆迪：BI
         /// 安哥拉：AO
+        ///
         /// 当MatchKey为ipArea时，取值为：
         /// 其他：OTHER
         /// 亚洲：AS
@@ -867,6 +871,7 @@ extension Cdn {
         /// 大洋洲：OC
         /// 北美洲：NA
         /// 南美洲：SA
+        ///
         /// 当MatchKey为index时
         /// 取值为：/;/index.html
         public let matchValue: [String]
@@ -3427,7 +3432,7 @@ extension Cdn {
         }
     }
 
-    ///  华为云对象存储回源鉴权
+    /// 华为云对象存储回源鉴权
     public struct HwPrivateAccess: TCInputModel, TCOutputModel {
         /// 开关 on/off
         public let `switch`: String
@@ -6161,6 +6166,7 @@ extension Cdn {
     /// ShareCname配置
     public struct ShareCname: TCInputModel, TCOutputModel {
         /// ShareCname 配置开关, 开关为off时，域名使用默认CNAME，若需要使用共享CNAME，将开关置为on.
+        ///
         /// * ShareCname 为内测功能,如需使用,请联系腾讯云工程师开白.
         public let `switch`: String
 
@@ -6929,6 +6935,7 @@ extension Cdn {
     /// WebSocket配置
     public struct WebSocket: TCInputModel, TCOutputModel {
         /// WebSocket 超时配置开关, 开关为off时，平台仍支持WebSocket连接，此时超时时间默认为15秒，若需要调整超时时间，将开关置为on.
+        ///
         /// * WebSocket 为ECDN产品功能，如需使用请通过ECDN域名配置.
         public let `switch`: String
 

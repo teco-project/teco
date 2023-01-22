@@ -81,8 +81,10 @@ extension Mps {
     /// 对直播流发起处理
     ///
     /// 对直播流媒体发起处理任务，功能包括：
+    ///
     /// * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；
     /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译）。
+    ///
     /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
     public func processLiveStream(_ input: ProcessLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessLiveStreamResponse> {
@@ -92,8 +94,10 @@ extension Mps {
     /// 对直播流发起处理
     ///
     /// 对直播流媒体发起处理任务，功能包括：
+    ///
     /// * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；
     /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译）。
+    ///
     /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
     public func processLiveStream(_ input: ProcessLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessLiveStreamResponse {
@@ -103,8 +107,10 @@ extension Mps {
     /// 对直播流发起处理
     ///
     /// 对直播流媒体发起处理任务，功能包括：
+    ///
     /// * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；
     /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译）。
+    ///
     /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
     public func processLiveStream(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessLiveStreamResponse> {
@@ -114,8 +120,10 @@ extension Mps {
     /// 对直播流发起处理
     ///
     /// 对直播流媒体发起处理任务，功能包括：
+    ///
     /// * 智能内容审核（画面鉴黄、敏感信息检测、声音鉴黄）；
     /// * 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音实时翻译）。
+    ///
     /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
     public func processLiveStream(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessLiveStreamResponse {

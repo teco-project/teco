@@ -68,6 +68,7 @@ extension As {
     /// 查询通知
     ///
     /// 本接口 (DescribeNotificationConfigurations) 用于查询一个或多个通知的详细信息。
+    ///
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
@@ -78,6 +79,7 @@ extension As {
     /// 查询通知
     ///
     /// 本接口 (DescribeNotificationConfigurations) 用于查询一个或多个通知的详细信息。
+    ///
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
@@ -88,6 +90,7 @@ extension As {
     /// 查询通知
     ///
     /// 本接口 (DescribeNotificationConfigurations) 用于查询一个或多个通知的详细信息。
+    ///
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
@@ -98,6 +101,7 @@ extension As {
     /// 查询通知
     ///
     /// 本接口 (DescribeNotificationConfigurations) 用于查询一个或多个通知的详细信息。
+    ///
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable

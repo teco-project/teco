@@ -59,7 +59,7 @@ extension Cls {
 
     /// 获取日志主题列表
     ///
-    ///  本接口用于获取日志主题列表，支持分页
+    /// 本接口用于获取日志主题列表，支持分页
     @inlinable
     public func describeTopics(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
         self.client.execute(action: "DescribeTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -67,7 +67,7 @@ extension Cls {
 
     /// 获取日志主题列表
     ///
-    ///  本接口用于获取日志主题列表，支持分页
+    /// 本接口用于获取日志主题列表，支持分页
     @inlinable
     public func describeTopics(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
         try await self.client.execute(action: "DescribeTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -75,7 +75,7 @@ extension Cls {
 
     /// 获取日志主题列表
     ///
-    ///  本接口用于获取日志主题列表，支持分页
+    /// 本接口用于获取日志主题列表，支持分页
     @inlinable
     public func describeTopics(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
         self.describeTopics(DescribeTopicsRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -83,7 +83,7 @@ extension Cls {
 
     /// 获取日志主题列表
     ///
-    ///  本接口用于获取日志主题列表，支持分页
+    /// 本接口用于获取日志主题列表，支持分页
     @inlinable
     public func describeTopics(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
         try await self.describeTopics(DescribeTopicsRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)

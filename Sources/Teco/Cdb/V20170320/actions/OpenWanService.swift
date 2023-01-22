@@ -46,6 +46,7 @@ extension Cdb {
     /// 开通实例外网访问
     ///
     /// 本接口(OpenWanService)用于开通实例外网访问。
+    ///
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
     public func openWanService(_ input: OpenWanServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenWanServiceResponse> {
@@ -55,6 +56,7 @@ extension Cdb {
     /// 开通实例外网访问
     ///
     /// 本接口(OpenWanService)用于开通实例外网访问。
+    ///
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
     public func openWanService(_ input: OpenWanServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {
@@ -64,6 +66,7 @@ extension Cdb {
     /// 开通实例外网访问
     ///
     /// 本接口(OpenWanService)用于开通实例外网访问。
+    ///
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
     public func openWanService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenWanServiceResponse> {
@@ -73,6 +76,7 @@ extension Cdb {
     /// 开通实例外网访问
     ///
     /// 本接口(OpenWanService)用于开通实例外网访问。
+    ///
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
     public func openWanService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {

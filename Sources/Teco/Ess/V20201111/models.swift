@@ -225,6 +225,7 @@ extension Ess {
         /// SELECTOR - 选择器控件；
         /// DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
         /// DISTRICT - 省市区行政区划控件；
+        ///
         /// 如果是SignComponent控件类型，则可选的字段为
         /// SIGN_SEAL - 签署印章控件；
         /// SIGN_DATE - 签署日期控件；
@@ -232,6 +233,7 @@ extension Ess {
         /// SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
         /// SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
         /// SIGN_OPINION - 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认
+        ///
         /// 表单域的控件不能作为印章和签名控件
         public let componentType: String
 
@@ -267,9 +269,11 @@ extension Ess {
 
         /// 扩展参数：
         /// 为JSON格式。
+        ///
         /// ComponentType为FILL_IMAGE时，支持以下参数：
         /// NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
         /// FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+        ///
         /// ComponentType为SIGN_SIGNATURE类型可以控制签署方式
         /// {“ComponentTypeLimit”: [“xxx”]}
         /// xxx可以为：
@@ -828,9 +832,11 @@ extension Ess {
     }
 
     /// 电子文档的控件填充信息。按照控件类型进行相应的填充。
+    ///
     /// 【数据表格传参说明】
     /// 当模板的 ComponentType='DYNAMIC_TABLE'时（渠道版或集成版），FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充数据表格（支持内容的单元格合并）
     /// 输入示例1：
+    ///
     /// ```
     /// {
     ///     "headers":[
@@ -871,8 +877,11 @@ extension Ess {
     ///         ]
     ///     }
     /// }
+    ///
     /// ```
+    ///
     /// 输入示例2（表格表头宽度比例配置）：
+    ///
     /// ```
     /// {
     ///     "headers":[
@@ -916,8 +925,10 @@ extension Ess {
     ///         ]
     ///     }
     /// }
+    ///
     /// ```
     /// 表格参数说明
+    ///
     /// | 名称                | 类型    | 描述                                              |
     /// | ------------------- | ------- | ------------------------------------------------- |
     /// | headers             | Array   | 表头：不超过10列，不支持单元格合并，字数不超过100 |
@@ -927,6 +938,7 @@ extension Ess {
     /// | cells.N.columnStart | Integer | 单元格坐标：列起始index                           |
     /// | cells.N.columnEnd   | Integer | 单元格坐标：列结束index                           |
     /// | cells.N.content     | String  | 单元格内容，字数不超过100                         |
+    ///
     /// 表格参数headers说明
     /// widthPercent Integer 表头单元格列占总表头的比例，例如1：30表示 此列占表头的30%，不填写时列宽度平均拆分；例如2：总2列，某一列填写40，剩余列可以为空，按照60计算。；例如3：总3列，某一列填写30，剩余2列可以为空，分别为(100-30)/2=35
     /// content String 表头单元格内容，字数不超过100

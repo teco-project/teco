@@ -42,7 +42,9 @@ extension Gse {
     /// 创建或更新定时器
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
+    ///
     /// 填写字段timer_id，表示更新；不填字段timer_id表示新增。
     @inlinable @discardableResult
     public func putTimerScalingPolicy(_ input: PutTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTimerScalingPolicyResponse> {
@@ -52,7 +54,9 @@ extension Gse {
     /// 创建或更新定时器
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
+    ///
     /// 填写字段timer_id，表示更新；不填字段timer_id表示新增。
     @inlinable @discardableResult
     public func putTimerScalingPolicy(_ input: PutTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTimerScalingPolicyResponse {
@@ -62,7 +66,9 @@ extension Gse {
     /// 创建或更新定时器
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
+    ///
     /// 填写字段timer_id，表示更新；不填字段timer_id表示新增。
     @inlinable @discardableResult
     public func putTimerScalingPolicy(timerScalingPolicy: TimerScalingPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTimerScalingPolicyResponse> {
@@ -72,7 +78,9 @@ extension Gse {
     /// 创建或更新定时器
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
+    ///
     /// 填写字段timer_id，表示更新；不填字段timer_id表示新增。
     @inlinable @discardableResult
     public func putTimerScalingPolicy(timerScalingPolicy: TimerScalingPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTimerScalingPolicyResponse {

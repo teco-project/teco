@@ -27,16 +27,20 @@ extension Tke {
         /// (1)实例名称
         /// KeyName: eks-ci-name
         /// 类型：String
+        ///
         /// (2)实例状态
         /// KeyName: status
         /// 类型：String
         /// 可选值："Pending", "Running", "Succeeded", "Failed"
+        ///
         /// (3)内网ip
         /// KeyName: private-ip
         /// 类型：String
+        ///
         /// (4)EIP地址
         /// KeyName: eip-address
         /// 类型：String
+        ///
         /// (5)VpcId
         /// KeyName: vpc-id
         /// 类型：String

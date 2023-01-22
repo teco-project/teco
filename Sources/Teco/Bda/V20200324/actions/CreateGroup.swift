@@ -59,8 +59,11 @@ extension Bda {
     /// 创建人体库
     ///
     /// 用于创建一个空的人体库，如果人体库已存在返回错误。
+    ///
     /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
+    ///
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
+    ///
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
     @inlinable @discardableResult
     public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
@@ -70,8 +73,11 @@ extension Bda {
     /// 创建人体库
     ///
     /// 用于创建一个空的人体库，如果人体库已存在返回错误。
+    ///
     /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
+    ///
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
+    ///
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
     @inlinable @discardableResult
     public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
@@ -81,8 +87,11 @@ extension Bda {
     /// 创建人体库
     ///
     /// 用于创建一个空的人体库，如果人体库已存在返回错误。
+    ///
     /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
+    ///
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
+    ///
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
     @inlinable @discardableResult
     public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
@@ -92,8 +101,11 @@ extension Bda {
     /// 创建人体库
     ///
     /// 用于创建一个空的人体库，如果人体库已存在返回错误。
+    ///
     /// 1个APPID下最多有2000W个人体动作轨迹（Trace），最多1W个人体库（Group）。
+    ///
     /// 单个人体库（Group）最多10W个人体动作轨迹（Trace）。
+    ///
     /// 单个人员（Person）最多添加 5 个人体动作轨迹（Trace）。
     @inlinable @discardableResult
     public func createGroup(groupName: String, groupId: String, tag: String? = nil, bodyModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {

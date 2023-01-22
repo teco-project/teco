@@ -72,6 +72,7 @@ extension Essbasic {
     /// 更新电子印章
     ///
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
+    ///
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable @discardableResult
     public func modifySeal(_ input: ModifySealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
@@ -81,6 +82,7 @@ extension Essbasic {
     /// 更新电子印章
     ///
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
+    ///
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable @discardableResult
     public func modifySeal(_ input: ModifySealRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {
@@ -90,6 +92,7 @@ extension Essbasic {
     /// 更新电子印章
     ///
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
+    ///
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable @discardableResult
     public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySealResponse> {
@@ -99,6 +102,7 @@ extension Essbasic {
     /// 更新电子印章
     ///
     /// 此接口（ModifySeal）用于修改指定印章ID的印章图片和名称。
+    ///
     /// 注：印章类型暂不支持修改，如需调整，请联系客服经理或通过创建印章接口（CreateSeal）进行创建新印章。
     @inlinable @discardableResult
     public func modifySeal(caller: Caller, sourceIp: String, sealId: String? = nil, sealName: String? = nil, image: String? = nil, fileId: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySealResponse {

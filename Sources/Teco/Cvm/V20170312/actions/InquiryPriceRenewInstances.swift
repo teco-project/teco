@@ -61,6 +61,7 @@ extension Cvm {
     /// 续费实例询价
     ///
     /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
+    ///
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewInstances(_ input: InquiryPriceRenewInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewInstancesResponse> {
@@ -70,6 +71,7 @@ extension Cvm {
     /// 续费实例询价
     ///
     /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
+    ///
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewInstances(_ input: InquiryPriceRenewInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {
@@ -79,6 +81,7 @@ extension Cvm {
     /// 续费实例询价
     ///
     /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
+    ///
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewInstancesResponse> {
@@ -88,6 +91,7 @@ extension Cvm {
     /// 续费实例询价
     ///
     /// 本接口 (InquiryPriceRenewInstances) 用于续费包年包月实例询价。
+    ///
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {

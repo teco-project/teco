@@ -31,10 +31,12 @@ extension Tse {
 
         /// 引擎的产品版本。参考值：
         /// - STANDARD： 标准版
+        ///
         /// 引擎各版本及可选择的规格、节点数说明：
         /// apollo - STANDARD版本
         /// 规格列表：spec-qcr53kf1t（1C2G）,spec-qdr53kf2w（2C4G）
         /// 节点数：1，2，3，4，5
+        ///
         /// eureka - STANDARD版本
         /// 规格列表：spec-qvj6k7t4q（1C2G）,spec-qcr53kfjt（2C4G）,spec-qvj6k7t4m（4G8G）,spec-qcr54kfjt（8C16G）,spec-qcr55kfjt（16C32G）
         /// 节点数：3，4，5

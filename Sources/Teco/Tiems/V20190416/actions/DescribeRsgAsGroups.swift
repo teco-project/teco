@@ -70,6 +70,7 @@ extension Tiems {
     /// 查询资源组的伸缩组信息
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    ///
     /// 查询资源组的伸缩组信息
     @inlinable
     public func describeRsgAsGroups(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRsgAsGroupsResponse> {
@@ -79,6 +80,7 @@ extension Tiems {
     /// 查询资源组的伸缩组信息
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    ///
     /// 查询资源组的伸缩组信息
     @inlinable
     public func describeRsgAsGroups(_ input: DescribeRsgAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupsResponse {
@@ -88,6 +90,7 @@ extension Tiems {
     /// 查询资源组的伸缩组信息
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    ///
     /// 查询资源组的伸缩组信息
     @inlinable
     public func describeRsgAsGroups(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRsgAsGroupsResponse> {
@@ -97,6 +100,7 @@ extension Tiems {
     /// 查询资源组的伸缩组信息
     ///
     /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
+    ///
     /// 查询资源组的伸缩组信息
     @inlinable
     public func describeRsgAsGroups(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupsResponse {

@@ -42,6 +42,7 @@ extension Chdfs {
     /// 批量删除生命周期规则
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 批量删除生命周期规则。
     @inlinable @discardableResult
     public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifeCycleRulesResponse> {
@@ -51,6 +52,7 @@ extension Chdfs {
     /// 批量删除生命周期规则
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 批量删除生命周期规则。
     @inlinable @discardableResult
     public func deleteLifeCycleRules(_ input: DeleteLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifeCycleRulesResponse {
@@ -60,6 +62,7 @@ extension Chdfs {
     /// 批量删除生命周期规则
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 批量删除生命周期规则。
     @inlinable @discardableResult
     public func deleteLifeCycleRules(lifeCycleRuleIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifeCycleRulesResponse> {
@@ -69,6 +72,7 @@ extension Chdfs {
     /// 批量删除生命周期规则
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 批量删除生命周期规则。
     @inlinable @discardableResult
     public func deleteLifeCycleRules(lifeCycleRuleIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifeCycleRulesResponse {

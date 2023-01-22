@@ -85,6 +85,7 @@ extension Ocr {
     /// 智能结构化识别
     ///
     /// 本接口支持识别并提取各类证照、票据、表单、合同等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCR(_ input: SmartStructuralOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmartStructuralOCRResponse> {
@@ -94,6 +95,7 @@ extension Ocr {
     /// 智能结构化识别
     ///
     /// 本接口支持识别并提取各类证照、票据、表单、合同等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCR(_ input: SmartStructuralOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmartStructuralOCRResponse {
@@ -103,6 +105,7 @@ extension Ocr {
     /// 智能结构化识别
     ///
     /// 本接口支持识别并提取各类证照、票据、表单、合同等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCR(imageUrl: String? = nil, imageBase64: String? = nil, itemNames: [String]? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, returnFullText: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmartStructuralOCRResponse> {
@@ -112,6 +115,7 @@ extension Ocr {
     /// 智能结构化识别
     ///
     /// 本接口支持识别并提取各类证照、票据、表单、合同等结构化场景的字段信息。无需任何配置，灵活高效。适用于各类结构化信息录入场景。
+    ///
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func smartStructuralOCR(imageUrl: String? = nil, imageBase64: String? = nil, itemNames: [String]? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, returnFullText: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmartStructuralOCRResponse {

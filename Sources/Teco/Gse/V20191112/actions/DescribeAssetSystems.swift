@@ -51,6 +51,7 @@ extension Gse {
     /// 获取生成包支持的操作系统列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
     @inlinable
     public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemsResponse> {
@@ -60,6 +61,7 @@ extension Gse {
     /// 获取生成包支持的操作系统列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
     @inlinable
     public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemsResponse {
@@ -69,6 +71,7 @@ extension Gse {
     /// 获取生成包支持的操作系统列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
     @inlinable
     public func describeAssetSystems(osType: String? = nil, osBit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemsResponse> {
@@ -78,6 +81,7 @@ extension Gse {
     /// 获取生成包支持的操作系统列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
     @inlinable
     public func describeAssetSystems(osType: String? = nil, osBit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemsResponse {

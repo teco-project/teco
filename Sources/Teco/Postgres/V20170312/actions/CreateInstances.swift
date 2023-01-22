@@ -106,6 +106,7 @@ extension Postgres {
 
         /// 数据库引擎的配置信息，配置格式如下：
         /// {"$key1":"$value1", "$key2":"$value2"}
+        ///
         /// 各引擎支持如下：
         /// 1、mssql_compatible引擎：
         /// migrationMode：数据库模式，可选参数，可取值：single-db（单数据库模式），multi-db（多数据库模式）。默认为single-db。

@@ -55,15 +55,11 @@ extension Tsf {
     }
 
     /// 获取多个投递项配置
-    ///
-    /// 获取多个投递项配置
     @inlinable
     public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
         self.client.execute(action: "DescribeDeliveryConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取多个投递项配置
-    ///
     /// 获取多个投递项配置
     @inlinable
     public func describeDeliveryConfigs(_ input: DescribeDeliveryConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {
@@ -71,15 +67,11 @@ extension Tsf {
     }
 
     /// 获取多个投递项配置
-    ///
-    /// 获取多个投递项配置
     @inlinable
     public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliveryConfigsResponse> {
         self.describeDeliveryConfigs(DescribeDeliveryConfigsRequest(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取多个投递项配置
-    ///
     /// 获取多个投递项配置
     @inlinable
     public func describeDeliveryConfigs(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliveryConfigsResponse {

@@ -269,6 +269,7 @@ extension Gse {
     /// 事件对象
     public struct Event: TCOutputModel {
         /// 事件代码，支持以下的事件代码
+        ///
         /// - FLEET_CREATED
         /// - FLEET_STATE_DOWNLOADING
         /// - FLEET_BINARY_DOWNLOAD_FAILED

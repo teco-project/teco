@@ -42,6 +42,7 @@ extension Ms {
         /// 0-1：未知，访问暂无风险。
         /// 2 ：	风险网址，具体的恶意类型定义参考恶意大类EvilClass字段。
         /// 3-4：安全，访问无风险。
+        ///
         /// 注意：查询结果EvilClass字段在Urltype=2时，才有意义。
         public let urlType: Int64
 

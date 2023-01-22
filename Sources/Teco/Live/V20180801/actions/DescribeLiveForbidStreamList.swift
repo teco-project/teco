@@ -74,6 +74,7 @@ extension Live {
     /// 获取禁推流列表
     ///
     /// 获取禁推流列表。
+    ///
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
     public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveForbidStreamListResponse> {
@@ -83,6 +84,7 @@ extension Live {
     /// 获取禁推流列表
     ///
     /// 获取禁推流列表。
+    ///
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
     public func describeLiveForbidStreamList(_ input: DescribeLiveForbidStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveForbidStreamListResponse {
@@ -92,6 +94,7 @@ extension Live {
     /// 获取禁推流列表
     ///
     /// 获取禁推流列表。
+    ///
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
     public func describeLiveForbidStreamList(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveForbidStreamListResponse> {
@@ -101,6 +104,7 @@ extension Live {
     /// 获取禁推流列表
     ///
     /// 获取禁推流列表。
+    ///
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
     @inlinable
     public func describeLiveForbidStreamList(pageNum: Int64? = nil, pageSize: Int64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveForbidStreamListResponse {

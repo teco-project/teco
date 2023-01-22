@@ -34,6 +34,7 @@ extension Ocr {
         /// 目前支持的字段为：
         /// RetImageType-“PROPROCESS” 图像预处理，string 类型。
         /// 图像预处理功能为，检测图片倾斜的角度，将原本倾斜的图片围绕中心点转正，最终输出一张正的名片抠图。
+        ///
         /// SDK 设置方式参考：
         /// Config = Json.stringify({"RetImageType":"PROPROCESS"})
         /// API 3.0 Explorer 设置方式参考：

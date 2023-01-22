@@ -80,9 +80,12 @@ extension Gse {
     /// 创建生成包
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（CreateAsset）用于创建生成包。
     /// 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
+    ///
     /// 上传文件至 cos支持俩种方式：
+    ///
     /// - 获取预签名方式，COS 简单上传
     ///     1. [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 获取预签名信息
     ///     2. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7749))
@@ -90,6 +93,7 @@ extension Gse {
     ///     1. [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727)（获取上传 bucket  第一次调用需要，后续可以不用调用）
     ///     2. [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742) 获取临时密钥
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
+    ///
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
     @inlinable
     public func createAsset(_ input: CreateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
@@ -99,9 +103,12 @@ extension Gse {
     /// 创建生成包
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（CreateAsset）用于创建生成包。
     /// 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
+    ///
     /// 上传文件至 cos支持俩种方式：
+    ///
     /// - 获取预签名方式，COS 简单上传
     ///     1. [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 获取预签名信息
     ///     2. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7749))
@@ -109,6 +116,7 @@ extension Gse {
     ///     1. [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727)（获取上传 bucket  第一次调用需要，后续可以不用调用）
     ///     2. [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742) 获取临时密钥
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
+    ///
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
     @inlinable
     public func createAsset(_ input: CreateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {
@@ -118,9 +126,12 @@ extension Gse {
     /// 创建生成包
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（CreateAsset）用于创建生成包。
     /// 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
+    ///
     /// 上传文件至 cos支持俩种方式：
+    ///
     /// - 获取预签名方式，COS 简单上传
     ///     1. [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 获取预签名信息
     ///     2. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7749))
@@ -128,6 +139,7 @@ extension Gse {
     ///     1. [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727)（获取上传 bucket  第一次调用需要，后续可以不用调用）
     ///     2. [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742) 获取临时密钥
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
+    ///
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
     @inlinable
     public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
@@ -137,9 +149,12 @@ extension Gse {
     /// 创建生成包
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（CreateAsset）用于创建生成包。
     /// 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
+    ///
     /// 上传文件至 cos支持俩种方式：
+    ///
     /// - 获取预签名方式，COS 简单上传
     ///     1. [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) 获取预签名信息
     ///     2. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7749))
@@ -147,6 +162,7 @@ extension Gse {
     ///     1. [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727)（获取上传 bucket  第一次调用需要，后续可以不用调用）
     ///     2. [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742) 获取临时密钥
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
+    ///
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
     @inlinable
     public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {

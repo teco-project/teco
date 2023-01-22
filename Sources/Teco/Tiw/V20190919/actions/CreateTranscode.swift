@@ -28,7 +28,9 @@ extension Tiw {
         public let isStaticPPT: Bool?
 
         /// 注意: 该参数已废弃, 请使用最新的 [云API SDK](https://cloud.tencent.com/document/api/1137/40060#SDK) ，使用 MinScaleResolution字段传递分辨率
+        ///
         /// 转码后文档的最小分辨率，不传、传空字符串或分辨率格式错误则使用文档原分辨率
+        ///
         /// 示例：1280x720，注意分辨率宽高中间为英文字母"xyz"的"x"
         public let minResolution: String?
 
@@ -36,6 +38,7 @@ extension Tiw {
         public let thumbnailResolution: String?
 
         /// 转码文件压缩格式，不传、传空字符串或不是指定的格式则不生成压缩文件，目前支持如下压缩格式：
+        ///
         /// zip： 生成`.zip`压缩包
         /// tar.gz： 生成`.tar.gz`压缩包
         public let compressFileType: String?
@@ -52,6 +55,7 @@ extension Tiw {
 
         /// 转码后文档的最小分辨率，不传、传空字符串或分辨率格式错误则使用文档原分辨率。
         /// 分辨率越高，效果越清晰，转出来的图片资源体积会越大，课件加载耗时会变长，请根据实际使用场景配置此参数。
+        ///
         /// 示例：1280x720，注意分辨率宽高中间为英文字母"xyz"的"x"
         public let minScaleResolution: String?
 

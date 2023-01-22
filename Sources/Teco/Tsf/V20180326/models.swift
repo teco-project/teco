@@ -1343,7 +1343,7 @@ extension Tsf {
         }
     }
 
-    ///  获取部署组
+    /// 获取部署组
     public struct ContainerGroupDeploy: TCOutputModel {
         /// 部署组id
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1539,7 +1539,7 @@ extension Tsf {
         }
     }
 
-    ///  容器部署组详情
+    /// 容器部署组详情
     public struct ContainerGroupDetail: TCOutputModel {
         /// 部署组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4681,7 +4681,7 @@ extension Tsf {
         }
     }
 
-    /// 	端口对象
+    /// 端口对象
     public struct ProtocolPort: TCInputModel, TCOutputModel {
         /// TCP UDP
         public let `protocol`: String

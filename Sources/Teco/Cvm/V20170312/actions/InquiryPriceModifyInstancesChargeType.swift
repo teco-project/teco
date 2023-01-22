@@ -61,6 +61,7 @@ extension Cvm {
     /// 修改实例计费模式询价
     ///
     /// 本接口 (InquiryPriceModifyInstancesChargeType) 用于切换实例的计费模式询价。
+    ///
     /// * 只支持从 `POSTPAID_BY_HOUR` 计费模式切换为`PREPAID`计费模式。
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
@@ -71,6 +72,7 @@ extension Cvm {
     /// 修改实例计费模式询价
     ///
     /// 本接口 (InquiryPriceModifyInstancesChargeType) 用于切换实例的计费模式询价。
+    ///
     /// * 只支持从 `POSTPAID_BY_HOUR` 计费模式切换为`PREPAID`计费模式。
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
@@ -81,6 +83,7 @@ extension Cvm {
     /// 修改实例计费模式询价
     ///
     /// 本接口 (InquiryPriceModifyInstancesChargeType) 用于切换实例的计费模式询价。
+    ///
     /// * 只支持从 `POSTPAID_BY_HOUR` 计费模式切换为`PREPAID`计费模式。
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable
@@ -91,6 +94,7 @@ extension Cvm {
     /// 修改实例计费模式询价
     ///
     /// 本接口 (InquiryPriceModifyInstancesChargeType) 用于切换实例的计费模式询价。
+    ///
     /// * 只支持从 `POSTPAID_BY_HOUR` 计费模式切换为`PREPAID`计费模式。
     /// * 关机不收费的实例、`BC1`和`BS1`机型族的实例、设置定时销毁的实例、竞价实例不支持该操作。
     @inlinable

@@ -84,6 +84,7 @@ extension Vod {
     /// 有两种方式创建任务流模板：
     /// 1. 在控制台上创建和修改任务流模板；
     /// 2. 通过任务流模板接口创建任务流模板。
+    ///
     /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
     @inlinable
     public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaByProcedureResponse> {
@@ -96,6 +97,7 @@ extension Vod {
     /// 有两种方式创建任务流模板：
     /// 1. 在控制台上创建和修改任务流模板；
     /// 2. 通过任务流模板接口创建任务流模板。
+    ///
     /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
     @inlinable
     public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {
@@ -108,6 +110,7 @@ extension Vod {
     /// 有两种方式创建任务流模板：
     /// 1. 在控制台上创建和修改任务流模板；
     /// 2. 通过任务流模板接口创建任务流模板。
+    ///
     /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
     @inlinable
     public func processMediaByProcedure(fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaByProcedureResponse> {
@@ -120,6 +123,7 @@ extension Vod {
     /// 有两种方式创建任务流模板：
     /// 1. 在控制台上创建和修改任务流模板；
     /// 2. 通过任务流模板接口创建任务流模板。
+    ///
     /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
     @inlinable
     public func processMediaByProcedure(fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {

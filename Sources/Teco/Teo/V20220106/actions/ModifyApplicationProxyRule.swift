@@ -43,6 +43,7 @@ extension Teo {
         /// 当OriginType=custom时，表示一个或多个源站，如：
         /// OriginValue=["8.8.8.8:80","9.9.9.9:80"]
         /// OriginValue=["test.com:80"]
+        ///
         /// 当OriginType=origins时，包含一个元素，表示源站组ID，如：
         /// OriginValue=["origin-xxx"]
         public let originValue: [String]

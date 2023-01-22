@@ -46,6 +46,7 @@ extension Bmvpc {
     /// 删除私有网络
     ///
     /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
+    ///
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
     public func deleteVpc(_ input: DeleteVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
@@ -55,6 +56,7 @@ extension Bmvpc {
     /// 删除私有网络
     ///
     /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
+    ///
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
     public func deleteVpc(_ input: DeleteVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
@@ -64,6 +66,7 @@ extension Bmvpc {
     /// 删除私有网络
     ///
     /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
+    ///
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
     public func deleteVpc(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
@@ -73,6 +76,7 @@ extension Bmvpc {
     /// 删除私有网络
     ///
     /// 本接口(DeleteVpc)用于删除黑石私有网络(VPC)。
+    ///
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
     public func deleteVpc(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {

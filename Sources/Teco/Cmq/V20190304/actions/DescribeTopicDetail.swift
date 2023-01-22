@@ -68,15 +68,11 @@ extension Cmq {
     }
 
     /// 查询主题详情
-    ///
-    /// 查询主题详情
     @inlinable
     public func describeTopicDetail(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicDetailResponse> {
         self.client.execute(action: "DescribeTopicDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询主题详情
-    ///
     /// 查询主题详情
     @inlinable
     public func describeTopicDetail(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
@@ -84,15 +80,11 @@ extension Cmq {
     }
 
     /// 查询主题详情
-    ///
-    /// 查询主题详情
     @inlinable
     public func describeTopicDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicDetailResponse> {
         self.describeTopicDetail(DescribeTopicDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, topicName: topicName), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询主题详情
-    ///
     /// 查询主题详情
     @inlinable
     public func describeTopicDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {

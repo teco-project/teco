@@ -24,6 +24,7 @@ extension Ciam {
         public let userId: String
 
         /// 用户状态
+        ///
         /// <li> **NORMAL** </li>	  正常
         /// <li> **LOCK** </li>  锁定
         /// <li> **FREEZE** </li>	  冻结

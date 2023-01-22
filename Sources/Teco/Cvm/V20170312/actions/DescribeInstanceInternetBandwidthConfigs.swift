@@ -46,6 +46,7 @@ extension Cvm {
     /// 查询实例带宽配置
     ///
     /// 本接口 (DescribeInstanceInternetBandwidthConfigs) 用于查询实例带宽配置。
+    ///
     /// * 只支持查询`BANDWIDTH_PREPAID`（ 预付费按带宽结算 ）计费模式的带宽配置。
     /// * 接口返回实例的所有带宽配置信息（包含历史的带宽配置信息）。
     @inlinable
@@ -56,6 +57,7 @@ extension Cvm {
     /// 查询实例带宽配置
     ///
     /// 本接口 (DescribeInstanceInternetBandwidthConfigs) 用于查询实例带宽配置。
+    ///
     /// * 只支持查询`BANDWIDTH_PREPAID`（ 预付费按带宽结算 ）计费模式的带宽配置。
     /// * 接口返回实例的所有带宽配置信息（包含历史的带宽配置信息）。
     @inlinable
@@ -66,6 +68,7 @@ extension Cvm {
     /// 查询实例带宽配置
     ///
     /// 本接口 (DescribeInstanceInternetBandwidthConfigs) 用于查询实例带宽配置。
+    ///
     /// * 只支持查询`BANDWIDTH_PREPAID`（ 预付费按带宽结算 ）计费模式的带宽配置。
     /// * 接口返回实例的所有带宽配置信息（包含历史的带宽配置信息）。
     @inlinable
@@ -76,6 +79,7 @@ extension Cvm {
     /// 查询实例带宽配置
     ///
     /// 本接口 (DescribeInstanceInternetBandwidthConfigs) 用于查询实例带宽配置。
+    ///
     /// * 只支持查询`BANDWIDTH_PREPAID`（ 预付费按带宽结算 ）计费模式的带宽配置。
     /// * 接口返回实例的所有带宽配置信息（包含历史的带宽配置信息）。
     @inlinable

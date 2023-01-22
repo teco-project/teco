@@ -42,6 +42,7 @@ extension Gpm {
     /// 删除匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 删除匹配
     @inlinable @discardableResult
     public func deleteMatch(_ input: DeleteMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
@@ -51,6 +52,7 @@ extension Gpm {
     /// 删除匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 删除匹配
     @inlinable @discardableResult
     public func deleteMatch(_ input: DeleteMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
@@ -60,6 +62,7 @@ extension Gpm {
     /// 删除匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 删除匹配
     @inlinable @discardableResult
     public func deleteMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
@@ -69,6 +72,7 @@ extension Gpm {
     /// 删除匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 删除匹配
     @inlinable @discardableResult
     public func deleteMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {

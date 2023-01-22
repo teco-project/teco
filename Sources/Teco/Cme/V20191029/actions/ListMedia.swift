@@ -78,7 +78,7 @@ extension Cme {
 
     /// 浏览媒体
     ///
-    ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
+    /// 浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
     @inlinable
     public func listMedia(_ input: ListMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMediaResponse> {
         self.client.execute(action: "ListMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -86,7 +86,7 @@ extension Cme {
 
     /// 浏览媒体
     ///
-    ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
+    /// 浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
     @inlinable
     public func listMedia(_ input: ListMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMediaResponse {
         try await self.client.execute(action: "ListMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -94,7 +94,7 @@ extension Cme {
 
     /// 浏览媒体
     ///
-    ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
+    /// 浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
     @inlinable
     public func listMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMediaResponse> {
         self.listMedia(ListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -102,7 +102,7 @@ extension Cme {
 
     /// 浏览媒体
     ///
-    ///  浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
+    /// 浏览当前分类路径下的资源，包括媒体文件和子分类，返回媒资基础信息和分类信息。
     @inlinable
     public func listMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMediaResponse {
         try await self.listMedia(ListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)

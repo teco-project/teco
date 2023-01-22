@@ -81,6 +81,7 @@ extension Gse {
     /// 开始放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
     @inlinable
     public func startGameServerSessionPlacement(_ input: StartGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartGameServerSessionPlacementResponse> {
@@ -90,6 +91,7 @@ extension Gse {
     /// 开始放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
     @inlinable
     public func startGameServerSessionPlacement(_ input: StartGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGameServerSessionPlacementResponse {
@@ -99,6 +101,7 @@ extension Gse {
     /// 开始放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
     @inlinable
     public func startGameServerSessionPlacement(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartGameServerSessionPlacementResponse> {
@@ -108,6 +111,7 @@ extension Gse {
     /// 开始放置游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StartGameServerSessionPlacement）用于开始放置游戏服务器会话。
     @inlinable
     public func startGameServerSessionPlacement(placementId: String, gameServerSessionQueueName: String, maximumPlayerSessionCount: UInt64, desiredPlayerSessions: [DesiredPlayerSession]? = nil, gameProperties: [GameProperty]? = nil, gameServerSessionData: String? = nil, gameServerSessionName: String? = nil, playerLatencies: [PlayerLatency]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartGameServerSessionPlacementResponse {

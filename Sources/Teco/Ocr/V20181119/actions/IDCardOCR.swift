@@ -42,6 +42,7 @@ extension Ocr {
         /// Quality，图片质量分数（评价图片的模糊程度）
         /// MultiCardDetect，是否开启多卡证检测
         /// ReflectWarn，是否开启反光检测
+        ///
         /// SDK 设置方式参考：
         /// Config = Json.stringify({"CropIdCard":true,"CropPortrait":true})
         /// API 3.0 Explorer 设置方式参考：
@@ -92,8 +93,10 @@ extension Ocr {
         /// 扩展信息，不请求则不返回，具体输入参考示例3和示例4。
         /// IdCard，裁剪后身份证照片的base64编码，请求 Config.CropIdCard 时返回；
         /// Portrait，身份证头像照片的base64编码，请求 Config.CropPortrait 时返回；
+        ///
         /// Quality，图片质量分数，请求 Config.Quality 时返回（取值范围：0 ~ 100，分数越低越模糊，建议阈值≥50）;
         /// BorderCodeValue，身份证边框不完整告警阈值分数，请求 Config.BorderCheckWarn时返回（取值范围：0 ~ 100，分数越低边框遮挡可能性越低，建议阈值≤50）;
+        ///
         /// WarnInfos，告警信息，Code 告警码列表和释义：
         /// -9100	身份证有效日期不合法告警，
         /// -9101	身份证边框不完整告警，
@@ -125,7 +128,9 @@ extension Ocr {
     /// 身份证识别
     ///
     /// 本接口支持中国大陆居民二代身份证正反面所有字段的识别，包括姓名、性别、民族、出生日期、住址、公民身份证号、签发机关、有效期限，识别准确度达到99%以上。
+    ///
     /// 另外，本接口还支持多种增值能力，满足不同场景的需求。如身份证照片、人像照片的裁剪功能，同时具备9种告警功能，如下表所示。
+    ///
     /// <table style="width:650px">
     ///       <thead>
     ///         <tr>
@@ -168,6 +173,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func idCardOCR(_ input: IDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IDCardOCRResponse> {
@@ -177,7 +183,9 @@ extension Ocr {
     /// 身份证识别
     ///
     /// 本接口支持中国大陆居民二代身份证正反面所有字段的识别，包括姓名、性别、民族、出生日期、住址、公民身份证号、签发机关、有效期限，识别准确度达到99%以上。
+    ///
     /// 另外，本接口还支持多种增值能力，满足不同场景的需求。如身份证照片、人像照片的裁剪功能，同时具备9种告警功能，如下表所示。
+    ///
     /// <table style="width:650px">
     ///       <thead>
     ///         <tr>
@@ -220,6 +228,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func idCardOCR(_ input: IDCardOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IDCardOCRResponse {
@@ -229,7 +238,9 @@ extension Ocr {
     /// 身份证识别
     ///
     /// 本接口支持中国大陆居民二代身份证正反面所有字段的识别，包括姓名、性别、民族、出生日期、住址、公民身份证号、签发机关、有效期限，识别准确度达到99%以上。
+    ///
     /// 另外，本接口还支持多种增值能力，满足不同场景的需求。如身份证照片、人像照片的裁剪功能，同时具备9种告警功能，如下表所示。
+    ///
     /// <table style="width:650px">
     ///       <thead>
     ///         <tr>
@@ -272,6 +283,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func idCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IDCardOCRResponse> {
@@ -281,7 +293,9 @@ extension Ocr {
     /// 身份证识别
     ///
     /// 本接口支持中国大陆居民二代身份证正反面所有字段的识别，包括姓名、性别、民族、出生日期、住址、公民身份证号、签发机关、有效期限，识别准确度达到99%以上。
+    ///
     /// 另外，本接口还支持多种增值能力，满足不同场景的需求。如身份证照片、人像照片的裁剪功能，同时具备9种告警功能，如下表所示。
+    ///
     /// <table style="width:650px">
     ///       <thead>
     ///         <tr>
@@ -324,6 +338,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func idCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, config: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IDCardOCRResponse {

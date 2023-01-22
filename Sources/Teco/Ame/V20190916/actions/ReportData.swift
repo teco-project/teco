@@ -22,10 +22,12 @@ extension Ame {
         /// 压缩说明：
         /// a) 上报的json格式字符串通过流的转换（ByteArrayInputStream, java.util.zip.GZIPOutputStream），获取到压缩后的字节数组。
         /// b) 将压缩后的字节数组转成16进制字符串。
+        ///
         /// reportData由两部分数据组成：
         /// 1）report_type（上报类型）
         /// 2）data（歌曲上报数据）
         /// 不同的report_type对应的data数据结构不一样。
+        ///
         /// 详细说明请参考文档reportdata.docx：
         /// https://github.com/tencentyun/ame-documents
         public let reportData: String

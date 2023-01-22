@@ -82,6 +82,7 @@ extension Vod {
     /// 修改音视频内容分析模板
     ///
     /// 修改用户自定义音视频内容分析模板。
+    ///
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
     @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
@@ -91,6 +92,7 @@ extension Vod {
     /// 修改音视频内容分析模板
     ///
     /// 修改用户自定义音视频内容分析模板。
+    ///
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
     @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(_ input: ModifyAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {
@@ -100,6 +102,7 @@ extension Vod {
     /// 修改音视频内容分析模板
     ///
     /// 修改用户自定义音视频内容分析模板。
+    ///
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
     @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAIAnalysisTemplateResponse> {
@@ -109,6 +112,7 @@ extension Vod {
     /// 修改音视频内容分析模板
     ///
     /// 修改用户自定义音视频内容分析模板。
+    ///
     /// 注意：模板 ID 10000 以下的为系统预置模板，不允许修改。
     @inlinable @discardableResult
     public func modifyAIAnalysisTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfoForUpdate? = nil, tagConfigure: TagConfigureInfoForUpdate? = nil, coverConfigure: CoverConfigureInfoForUpdate? = nil, frameTagConfigure: FrameTagConfigureInfoForUpdate? = nil, highlightConfigure: HighlightsConfigureInfoForUpdate? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAIAnalysisTemplateResponse {

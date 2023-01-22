@@ -24,6 +24,7 @@ extension Cwp {
         public let offset: UInt64
 
         /// 过滤条件。
+        ///
         /// <li>Domain  - String - 基线名称</li>
         public let filters: [Filters]?
 

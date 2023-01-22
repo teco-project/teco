@@ -71,6 +71,7 @@ extension Cvm {
     /// 查询密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    ///
     /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
     @inlinable
     public func describeKeyPairs(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
@@ -80,6 +81,7 @@ extension Cvm {
     /// 查询密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    ///
     /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
     @inlinable
     public func describeKeyPairs(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
@@ -89,6 +91,7 @@ extension Cvm {
     /// 查询密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    ///
     /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
     @inlinable
     public func describeKeyPairs(keyIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
@@ -98,6 +101,7 @@ extension Cvm {
     /// 查询密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询密钥对信息。
+    ///
     /// * 密钥对是通过一种算法生成的一对密钥，在生成的密钥对中，一个向外界公开，称为公钥；另一个用户自己保留，称为私钥。密钥对的公钥内容可以通过这个接口查询，但私钥内容系统不保留。
     @inlinable
     public func describeKeyPairs(keyIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {

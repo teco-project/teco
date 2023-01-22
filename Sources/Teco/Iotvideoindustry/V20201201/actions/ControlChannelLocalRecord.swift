@@ -27,6 +27,7 @@ extension Iotvideoindustry {
         public let streamId: String
 
         /// 控制参数，转义的json字符串
+        ///
         /// 目前支持的command：
         /// "Command": "{"Action":"PAUSE"}" 暂停
         /// "Command": "{"Action":"PLAY"}" 暂停恢复

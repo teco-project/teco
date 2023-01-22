@@ -42,6 +42,7 @@ extension Cbs {
     /// 删除定期快照策略
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
+    ///
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPoliciesResponse> {
@@ -51,6 +52,7 @@ extension Cbs {
     /// 删除定期快照策略
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
+    ///
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(_ input: DeleteAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPoliciesResponse {
@@ -60,6 +62,7 @@ extension Cbs {
     /// 删除定期快照策略
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
+    ///
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(autoSnapshotPolicyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAutoSnapshotPoliciesResponse> {
@@ -69,6 +72,7 @@ extension Cbs {
     /// 删除定期快照策略
     ///
     /// 本接口（DeleteAutoSnapshotPolicies）用于删除定期快照策略。
+    ///
     /// *  支持批量操作。如果多个定期快照策略存在无法删除的，则操作不执行，以特定错误码返回。
     @inlinable @discardableResult
     public func deleteAutoSnapshotPolicies(autoSnapshotPolicyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAutoSnapshotPoliciesResponse {

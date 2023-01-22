@@ -1328,9 +1328,13 @@ extension Tcss {
         public let assetType: String
 
         /// 检测状态
+        ///
         /// CHECK_INIT, 待检测
+        ///
         /// CHECK_RUNNING, 检测中
+        ///
         /// CHECK_FINISHED, 检测完成
+        ///
         /// CHECK_FAILED, 检测失败
         public let checkStatus: String
 
@@ -1338,11 +1342,14 @@ extension Tcss {
         public let nodeName: String
 
         /// 上次检测的时间，格式为”YYYY-MM-DD HH:m::SS“。
+        ///
         /// 如果没有检测过，此处为”0000-00-00 00:00:00“。
         public let lastCheckTime: String
 
         /// 检测结果。取值为：
+        ///
         /// RESULT_FAILED: 未通过
+        ///
         /// RESULT_PASSED: 通过
         public let checkResult: String
 
@@ -1470,9 +1477,13 @@ extension Tcss {
         public let nodeName: String
 
         /// 检测状态
+        ///
         /// CHECK_INIT, 待检测
+        ///
         /// CHECK_RUNNING, 检测中
+        ///
         /// CHECK_FINISHED, 检测完成
+        ///
         /// CHECK_FAILED, 检测失败
         public let checkStatus: String
 
@@ -1608,10 +1619,15 @@ extension Tcss {
         public let isCustomerFirstCheck: Bool
 
         /// 检测状态
+        ///
         /// CHECK_UNINIT, 用户未启用此功能
+        ///
         /// CHECK_INIT, 待检测
+        ///
         /// CHECK_RUNNING, 检测中
+        ///
         /// CHECK_FINISHED, 检测完成
+        ///
         /// CHECK_FAILED, 检测失败
         public let checkStatus: String
 
@@ -1950,13 +1966,18 @@ extension Tcss {
         @TCTimestampEncoding public var lastCheckTime: Date?
 
         /// 检测状态
+        ///
         /// CHECK_INIT, 待检测
+        ///
         /// CHECK_RUNNING, 检测中
+        ///
         /// CHECK_FINISHED, 检测完成
+        ///
         /// CHECK_FAILED, 检测失败
         public let checkStatus: String
 
         /// 检测结果。RESULT_PASSED: 通过
+        ///
         /// RESULT_FAILED: 未通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkResult: String?
@@ -4242,10 +4263,15 @@ extension Tcss {
         public let ports: [NetworkPorts]?
 
         /// 网络策略策略对象
+        ///
         /// 开启待确认：PublishedNoConfirm
+        ///
         /// 开启已确认：PublishedConfirmed
+        ///
         /// 关闭中：unPublishing
+        ///
         /// 开启中：Publishing
+        ///
         /// 待开启：unPublishEdit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let peer: [NetworkPeer]?
@@ -4266,8 +4292,11 @@ extension Tcss {
     /// 网络集群策略自定义规则
     public struct NetworkPeer: TCInputModel, TCOutputModel {
         /// 对象类型：
+        ///
         /// 命名空间：NamespaceSelector，代表NamespaceSelector有值
+        ///
         /// pod类型：PodSelector，代表NamespaceSelector和PodSelector都有值
+        ///
         /// ip类型：IPBlock，代表只有IPBlock有值
         public let peerType: String
 
@@ -4308,15 +4337,22 @@ extension Tcss {
         public let description: String?
 
         /// 发布状态：
+        ///
         /// 开启待确认：PublishedNoConfirm
+        ///
         /// 开启已确认：PublishedConfirmed
+        ///
         /// 关闭中：unPublishing
+        ///
         /// 开启中：Publishing
+        ///
         /// 待开启：unPublishEdit
         public let publishStatus: String
 
         /// 策略类型：
+        ///
         /// 自动发现：System
+        ///
         /// 手动添加：Manual
         public let policySourceType: String
 
@@ -4327,7 +4363,9 @@ extension Tcss {
         public let policyCreateTime: String
 
         /// 策略类型
+        ///
         /// kube-router：KubeRouter
+        ///
         /// cilium：Cilium
         public let networkPolicyPlugin: String
 
@@ -4336,14 +4374,20 @@ extension Tcss {
         public let publishResult: String?
 
         /// 入站规则
+        ///
         /// 全部允许：1
+        ///
         /// 全部拒绝 ：2
+        ///
         /// 自定义：3
         public let fromPolicyRule: Int64
 
         /// 入站规则
+        ///
         /// 全部允许：1
+        ///
         /// 全部拒绝 ：2
+        ///
         /// 自定义：3
         public let toPolicyRule: Int64
 

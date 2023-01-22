@@ -638,7 +638,7 @@ extension Vm {
         }
     }
 
-    ///  数据存储信息
+    /// 数据存储信息
     public struct StorageInfo: TCInputModel {
         /// 类型 可选：
         /// URL 资源链接类型

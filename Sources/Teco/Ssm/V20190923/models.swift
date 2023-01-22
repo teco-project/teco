@@ -22,19 +22,26 @@ extension Ssm {
         /// DatabasePrivileges
         /// TablePrivileges
         /// ColumnPrivileges
+        ///
         /// 当权限为DatabasePrivileges时，必须通过参数Database指定数据库名；
+        ///
         /// 当权限为TablePrivileges时，必须通过参数Database和TableName指定数据库名以及数据库中的表名；
+        ///
         /// 当权限为ColumnPrivileges时，必须通过参数Database、TableName和CoulmnName指定数据库、数据库中的表名以及表中的列名。
         public let privilegeName: String
 
         /// 权限列表。
         /// 对于Mysql产品来说，可选权限值为：
+        ///
         /// 1. GlobalPrivileges 中权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "PROCESS", "DROP","REFERENCES","INDEX","ALTER","SHOW DATABASES","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
         /// 注意，不传该参数表示清除该权限。
+        ///
         /// 2. DatabasePrivileges 权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "DROP","REFERENCES","INDEX","ALTER","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
         /// 注意，不传该参数表示清除该权限。
+        ///
         /// 3. TablePrivileges 权限的可选值为：权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "DROP","REFERENCES","INDEX","ALTER","CREATE VIEW","SHOW VIEW", "TRIGGER"。
         /// 注意，不传该参数表示清除该权限。
+        ///
         /// 4. ColumnPrivileges 权限的可选值为："SELECT","INSERT","UPDATE","REFERENCES"。
         /// 注意，不传该参数表示清除该权限。
         public let privileges: [String]

@@ -56,6 +56,7 @@ extension Cbs {
     /// 扩容云硬盘询价
     ///
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
+    ///
     /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
     public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
@@ -65,6 +66,7 @@ extension Cbs {
     /// 扩容云硬盘询价
     ///
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
+    ///
     /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
     public func inquiryPriceResizeDisk(_ input: InquiryPriceResizeDiskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {
@@ -74,6 +76,7 @@ extension Cbs {
     /// 扩容云硬盘询价
     ///
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
+    ///
     /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
     public func inquiryPriceResizeDisk(diskId: String, diskSize: UInt64, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResizeDiskResponse> {
@@ -83,6 +86,7 @@ extension Cbs {
     /// 扩容云硬盘询价
     ///
     /// 本接口（InquiryPriceResizeDisk）用于扩容云硬盘询价。
+    ///
     /// * 只支持预付费模式的云硬盘扩容询价。
     @inlinable
     public func inquiryPriceResizeDisk(diskId: String, diskSize: UInt64, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResizeDiskResponse {

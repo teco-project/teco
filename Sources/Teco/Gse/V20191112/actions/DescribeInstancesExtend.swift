@@ -67,6 +67,7 @@ extension Gse {
     /// 查询实例扩展信息列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     @inlinable
     public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
@@ -76,6 +77,7 @@ extension Gse {
     /// 查询实例扩展信息列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     @inlinable
     public func describeInstancesExtend(_ input: DescribeInstancesExtendRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
@@ -85,6 +87,7 @@ extension Gse {
     /// 查询实例扩展信息列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     @inlinable
     public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
@@ -94,6 +97,7 @@ extension Gse {
     /// 查询实例扩展信息列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeInstancesExtend）用于查询实例扩展信息列表。
     @inlinable
     public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {

@@ -52,6 +52,7 @@ extension Gse {
     /// 修改生成包信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateAsset）用于修改生成包信息。
     @inlinable @discardableResult
     public func updateAsset(_ input: UpdateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetResponse> {
@@ -61,6 +62,7 @@ extension Gse {
     /// 修改生成包信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateAsset）用于修改生成包信息。
     @inlinable @discardableResult
     public func updateAsset(_ input: UpdateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetResponse {
@@ -70,6 +72,7 @@ extension Gse {
     /// 修改生成包信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateAsset）用于修改生成包信息。
     @inlinable @discardableResult
     public func updateAsset(assetId: String, assetName: String, assetVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetResponse> {
@@ -79,6 +82,7 @@ extension Gse {
     /// 修改生成包信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateAsset）用于修改生成包信息。
     @inlinable @discardableResult
     public func updateAsset(assetId: String, assetName: String, assetVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetResponse {

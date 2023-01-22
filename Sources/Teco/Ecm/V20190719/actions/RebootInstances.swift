@@ -30,6 +30,7 @@ extension Ecm {
         /// SOFT：表示软关机
         /// HARD：表示硬关机
         /// SOFT_FIRST：表示优先软关机，失败再执行硬关机
+        ///
         /// 默认取值：SOFT。
         public let stopType: String?
 

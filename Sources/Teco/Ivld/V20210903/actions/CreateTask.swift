@@ -71,6 +71,7 @@ extension Ivld {
     /// 创建任务
     ///
     /// 创建智能标签任务。
+    ///
     /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
     @inlinable
     public func createTask(_ input: CreateTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskResponse> {
@@ -80,6 +81,7 @@ extension Ivld {
     /// 创建任务
     ///
     /// 创建智能标签任务。
+    ///
     /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
     @inlinable
     public func createTask(_ input: CreateTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
@@ -89,6 +91,7 @@ extension Ivld {
     /// 创建任务
     ///
     /// 创建智能标签任务。
+    ///
     /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
     @inlinable
     public func createTask(mediaId: String, mediaPreknownInfo: MediaPreknownInfo, taskName: String? = nil, uploadVideo: Bool? = nil, label: String? = nil, callbackURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskResponse> {
@@ -98,6 +101,7 @@ extension Ivld {
     /// 创建任务
     ///
     /// 创建智能标签任务。
+    ///
     /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
     @inlinable
     public func createTask(mediaId: String, mediaPreknownInfo: MediaPreknownInfo, taskName: String? = nil, uploadVideo: Bool? = nil, label: String? = nil, callbackURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {

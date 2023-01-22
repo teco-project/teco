@@ -62,6 +62,7 @@ extension Gpm {
     /// 分页查询匹配Code
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 分页查询匹配Code
     @inlinable
     public func describeMatchCodes(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchCodesResponse> {
@@ -71,6 +72,7 @@ extension Gpm {
     /// 分页查询匹配Code
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 分页查询匹配Code
     @inlinable
     public func describeMatchCodes(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {
@@ -80,6 +82,7 @@ extension Gpm {
     /// 分页查询匹配Code
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 分页查询匹配Code
     @inlinable
     public func describeMatchCodes(offset: Int64, limit: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchCodesResponse> {
@@ -89,6 +92,7 @@ extension Gpm {
     /// 分页查询匹配Code
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 分页查询匹配Code
     @inlinable
     public func describeMatchCodes(offset: Int64, limit: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {

@@ -123,6 +123,7 @@ public struct TCMnaError: TCMnaErrorType {
     /// 无法获取到可加速的运营商信息
     ///
     /// - 若错误码返回提示为无法确定运营商 ，请检查SrcPublicIpv4 是否填写正确或在接口中传入正确的运营商信息(DeviceInfo.Vendor)
+    ///
     /// - 若错误码返回提示为该运营商无法支持加速，说明目前不支持该运营商加速服务
     public static var invalidParameterValue_VendorNotFound: TCMnaError {
         TCMnaError(.invalidParameterValue_VendorNotFound)

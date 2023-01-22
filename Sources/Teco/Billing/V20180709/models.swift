@@ -423,9 +423,13 @@ extension Billing {
         public let regionId: Int64
 
         /// 资源包、预留实例、节省计划、竞价实例这四类特殊实例本身的扣费行为，此字段体现对应的实例类型。枚举值如下：
+        ///
         /// ri=Standard RI
+        ///
         /// svp=Savings Plan
+        ///
         /// si=Spot Instances
+        ///
         /// rp=Resource Pack
         public let instanceType: String
 

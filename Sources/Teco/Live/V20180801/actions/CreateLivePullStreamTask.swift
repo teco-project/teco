@@ -80,6 +80,7 @@ extension Live {
         /// VodSourceFileStart：从点播源文件开始拉流回调，
         /// VodSourceFileFinish：从点播源文件拉流结束回调，
         /// ResetTaskConfig：任务更新回调。
+        ///
         /// TaskAlarm: 用于告警事件通知，AlarmType 示例:
         /// PullFileUnstable - 文件拉取不稳定，
         /// PushStreamUnstable - 推流不稳定，
@@ -98,6 +99,7 @@ extension Live {
         /// 点播更新SourceUrls后的播放方式：
         /// ImmediateNewSource：立即播放新的拉流源内容；
         /// ContinueBreakPoint：播放完当前正在播放的点播 url 后再使用新的拉流源播放。（旧拉流源未播放的点播 url 不会再播放）
+        ///
         /// 注意：该配置生效仅对变更前拉流源为点播时生效。
         public let vodRefreshType: String?
 
@@ -114,6 +116,7 @@ extension Live {
 
         /// 完整目标 URL 地址。
         /// 用法注意：如果使用该参数来传完整目标地址，则 DomainName, AppName, StreamName 需要传入空字符串，任务将会使用该 ToUrl 参数指定的目标地址。
+        ///
         /// 注意：签名时间需要超过任务结束时间，避免因签名过期造成任务失败。
         public let toUrl: String?
 

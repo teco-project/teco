@@ -42,6 +42,7 @@ extension Ecdn {
     /// 查询刷新用量配额
     ///
     /// 查询刷新接口的用量配额。
+    ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeQuota(_ input: DescribePurgeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
@@ -51,6 +52,7 @@ extension Ecdn {
     /// 查询刷新用量配额
     ///
     /// 查询刷新接口的用量配额。
+    ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeQuota(_ input: DescribePurgeQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {
@@ -60,6 +62,7 @@ extension Ecdn {
     /// 查询刷新用量配额
     ///
     /// 查询刷新接口的用量配额。
+    ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeQuotaResponse> {
@@ -69,6 +72,7 @@ extension Ecdn {
     /// 查询刷新用量配额
     ///
     /// 查询刷新接口的用量配额。
+    ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41956"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describePurgeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeQuotaResponse {

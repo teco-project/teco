@@ -51,6 +51,7 @@ extension Tic {
     /// 执行Plan事件
     ///
     /// 本接口（PlanStack）用于触发资源栈下某个版本的PLAN事件。
+    ///
     /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
@@ -61,6 +62,7 @@ extension Tic {
     /// 执行Plan事件
     ///
     /// 本接口（PlanStack）用于触发资源栈下某个版本的PLAN事件。
+    ///
     /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
@@ -71,6 +73,7 @@ extension Tic {
     /// 执行Plan事件
     ///
     /// 本接口（PlanStack）用于触发资源栈下某个版本的PLAN事件。
+    ///
     /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
@@ -81,6 +84,7 @@ extension Tic {
     /// 执行Plan事件
     ///
     /// 本接口（PlanStack）用于触发资源栈下某个版本的PLAN事件。
+    ///
     /// - 当版本处于PLAN_IN_PROGRESS或APPLY_IN_PROGRESS状态时，将无法再执行本操作
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable

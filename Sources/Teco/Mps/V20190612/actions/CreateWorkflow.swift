@@ -100,6 +100,7 @@ extension Mps {
     /// 7. 智能内容审核（鉴黄、敏感信息检测）；
     /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
     /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+    ///
     /// 注意：创建工作流成功后是禁用状态，需要手动启用。
     @inlinable
     public func createWorkflow(_ input: CreateWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkflowResponse> {
@@ -118,6 +119,7 @@ extension Mps {
     /// 7. 智能内容审核（鉴黄、敏感信息检测）；
     /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
     /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+    ///
     /// 注意：创建工作流成功后是禁用状态，需要手动启用。
     @inlinable
     public func createWorkflow(_ input: CreateWorkflowRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
@@ -136,6 +138,7 @@ extension Mps {
     /// 7. 智能内容审核（鉴黄、敏感信息检测）；
     /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
     /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+    ///
     /// 注意：创建工作流成功后是禁用状态，需要手动启用。
     @inlinable
     public func createWorkflow(workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, taskPriority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkflowResponse> {
@@ -154,6 +157,7 @@ extension Mps {
     /// 7. 智能内容审核（鉴黄、敏感信息检测）；
     /// 8. 智能内容分析（标签、分类、封面、按帧标签）；
     /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词）。
+    ///
     /// 注意：创建工作流成功后是禁用状态，需要手动启用。
     @inlinable
     public func createWorkflow(workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, taskPriority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {

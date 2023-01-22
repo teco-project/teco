@@ -42,6 +42,7 @@ extension Lighthouse {
     /// 重启实例
     ///
     /// 本接口（RebootInstances）用于重启实例。
+    ///
     /// * 只有状态为 RUNNING 的实例才可以进行此操作。
     /// * 接口调用成功时，实例会进入 REBOOTING 状态；重启实例成功时，实例会进入 RUNNING 状态。
     /// * 支持批量操作，每次请求批量实例的上限为 100。
@@ -54,6 +55,7 @@ extension Lighthouse {
     /// 重启实例
     ///
     /// 本接口（RebootInstances）用于重启实例。
+    ///
     /// * 只有状态为 RUNNING 的实例才可以进行此操作。
     /// * 接口调用成功时，实例会进入 REBOOTING 状态；重启实例成功时，实例会进入 RUNNING 状态。
     /// * 支持批量操作，每次请求批量实例的上限为 100。
@@ -66,6 +68,7 @@ extension Lighthouse {
     /// 重启实例
     ///
     /// 本接口（RebootInstances）用于重启实例。
+    ///
     /// * 只有状态为 RUNNING 的实例才可以进行此操作。
     /// * 接口调用成功时，实例会进入 REBOOTING 状态；重启实例成功时，实例会进入 RUNNING 状态。
     /// * 支持批量操作，每次请求批量实例的上限为 100。
@@ -78,6 +81,7 @@ extension Lighthouse {
     /// 重启实例
     ///
     /// 本接口（RebootInstances）用于重启实例。
+    ///
     /// * 只有状态为 RUNNING 的实例才可以进行此操作。
     /// * 接口调用成功时，实例会进入 REBOOTING 状态；重启实例成功时，实例会进入 RUNNING 状态。
     /// * 支持批量操作，每次请求批量实例的上限为 100。

@@ -36,9 +36,13 @@ extension Iai {
         public let tag: String?
 
         /// 人脸识别服务所用的算法模型版本。
+        ///
         /// 目前入参支持 “2.0”和“3.0“ 两个输入。
+        ///
         /// 2020年4月2日开始，默认为“3.0”，之前使用过本接口的账号若未填写本参数默认为“2.0”。
+        ///
         /// 2020年11月26日后开通服务的账号仅支持输入“3.0”。
+        ///
         /// 不同算法模型版本对应的人脸识别算法不同，新版本的整体效果会优于旧版本，建议使用“3.0”版本。
         public let faceModelVersion: String?
 
@@ -77,7 +81,9 @@ extension Iai {
     ///
     /// 用于创建一个空的人员库，如果人员库已存在返回错误。
     /// 可根据需要创建自定义描述字段，用于辅助描述该人员库下的人员信息。
+    ///
     /// 1个APPID下最多创建10万个人员库（Group）、最多包含5000万张人脸（Face）。
+    ///
     /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
     @inlinable
     public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
@@ -88,7 +94,9 @@ extension Iai {
     ///
     /// 用于创建一个空的人员库，如果人员库已存在返回错误。
     /// 可根据需要创建自定义描述字段，用于辅助描述该人员库下的人员信息。
+    ///
     /// 1个APPID下最多创建10万个人员库（Group）、最多包含5000万张人脸（Face）。
+    ///
     /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
     @inlinable
     public func createGroup(_ input: CreateGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
@@ -99,7 +107,9 @@ extension Iai {
     ///
     /// 用于创建一个空的人员库，如果人员库已存在返回错误。
     /// 可根据需要创建自定义描述字段，用于辅助描述该人员库下的人员信息。
+    ///
     /// 1个APPID下最多创建10万个人员库（Group）、最多包含5000万张人脸（Face）。
+    ///
     /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
     @inlinable
     public func createGroup(groupName: String, groupId: String, groupExDescriptions: [String]? = nil, tag: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
@@ -110,7 +120,9 @@ extension Iai {
     ///
     /// 用于创建一个空的人员库，如果人员库已存在返回错误。
     /// 可根据需要创建自定义描述字段，用于辅助描述该人员库下的人员信息。
+    ///
     /// 1个APPID下最多创建10万个人员库（Group）、最多包含5000万张人脸（Face）。
+    ///
     /// 不同算法模型版本（FaceModelVersion）的人员库（Group）最多可包含人脸（Face）数不同。算法模型版本为2.0的人员库最多包含100万张人脸，算法模型版本为3.0的人员库最多可包含300万张人脸。
     @inlinable
     public func createGroup(groupName: String, groupId: String, groupExDescriptions: [String]? = nil, tag: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {

@@ -71,6 +71,7 @@ extension Chdfs {
     /// 创建挂载点
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
     public func createMountPoint(_ input: CreateMountPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMountPointResponse> {
@@ -80,6 +81,7 @@ extension Chdfs {
     /// 创建挂载点
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
     public func createMountPoint(_ input: CreateMountPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {
@@ -89,6 +91,7 @@ extension Chdfs {
     /// 创建挂载点
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
     public func createMountPoint(mountPointName: String, fileSystemId: String, accessGroupId: String, vpcId: String, mountPointStatus: UInt64, vpcType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMountPointResponse> {
@@ -98,6 +101,7 @@ extension Chdfs {
     /// 创建挂载点
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 创建文件系统挂载点，仅限于创建成功的文件系统。
     @inlinable
     public func createMountPoint(mountPointName: String, fileSystemId: String, accessGroupId: String, vpcId: String, mountPointStatus: UInt64, vpcType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMountPointResponse {

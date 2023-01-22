@@ -41,6 +41,7 @@ extension Cdn {
         /// 5min：5 分钟粒度，查询区间需要小于等于 31 天(计费数据粒度)
         /// hour：1 小时粒度，查询区间需要小于等于 31 天内
         /// day：天粒度，查询区间需要大于 31 天
+        ///
         /// Area 字段为 overseas 时暂不支持1分钟粒度数据查询
         public let interval: String?
 

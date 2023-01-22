@@ -61,6 +61,7 @@ extension Cbs {
     /// 续费云硬盘询价
     ///
     /// 本接口（InquiryPriceRenewDisks）用于续费云硬盘询价。
+    ///
     /// * 只支持查询预付费模式的弹性云盘续费价格。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到实例续费后的到期时间来续费询价。
     /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
@@ -72,6 +73,7 @@ extension Cbs {
     /// 续费云硬盘询价
     ///
     /// 本接口（InquiryPriceRenewDisks）用于续费云硬盘询价。
+    ///
     /// * 只支持查询预付费模式的弹性云盘续费价格。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到实例续费后的到期时间来续费询价。
     /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
@@ -83,6 +85,7 @@ extension Cbs {
     /// 续费云硬盘询价
     ///
     /// 本接口（InquiryPriceRenewDisks）用于续费云硬盘询价。
+    ///
     /// * 只支持查询预付费模式的弹性云盘续费价格。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到实例续费后的到期时间来续费询价。
     /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。
@@ -94,6 +97,7 @@ extension Cbs {
     /// 续费云硬盘询价
     ///
     /// 本接口（InquiryPriceRenewDisks）用于续费云硬盘询价。
+    ///
     /// * 只支持查询预付费模式的弹性云盘续费价格。
     /// * 支持与挂载实例一起续费的场景，需要在[DiskChargePrepaid](/document/product/362/15669#DiskChargePrepaid)参数中指定CurInstanceDeadline，此时会按对齐到实例续费后的到期时间来续费询价。
     /// * 支持为多块云盘指定不同的续费时长，此时返回的价格为多块云盘续费的总价格。

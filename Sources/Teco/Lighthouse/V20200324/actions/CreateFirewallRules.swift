@@ -52,7 +52,10 @@ extension Lighthouse {
     /// 添加防火墙规则
     ///
     /// 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
+    ///
+    ///
     /// * FirewallVersion 为防火墙版本号，用户每次更新防火墙规则版本会自动加1，防止您更新的规则已过期，不填不考虑冲突。
+    ///
     /// 在 FirewallRules 参数中：
     /// * Protocol 字段支持输入 TCP，UDP，ICMP，ALL。
     /// * Port 字段允许输入 ALL，或者一个单独的端口号，或者用逗号分隔的离散端口号，或者用减号分隔的两个端口号代表的端口范围。当 Port 为范围时，减号分隔的第一个端口号小于第二个端口号。当 Protocol 字段不是 TCP 或 UDP 时，Port 字段只能为空或 ALL。Port 字段长度不得超过 64。
@@ -67,7 +70,10 @@ extension Lighthouse {
     /// 添加防火墙规则
     ///
     /// 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
+    ///
+    ///
     /// * FirewallVersion 为防火墙版本号，用户每次更新防火墙规则版本会自动加1，防止您更新的规则已过期，不填不考虑冲突。
+    ///
     /// 在 FirewallRules 参数中：
     /// * Protocol 字段支持输入 TCP，UDP，ICMP，ALL。
     /// * Port 字段允许输入 ALL，或者一个单独的端口号，或者用逗号分隔的离散端口号，或者用减号分隔的两个端口号代表的端口范围。当 Port 为范围时，减号分隔的第一个端口号小于第二个端口号。当 Protocol 字段不是 TCP 或 UDP 时，Port 字段只能为空或 ALL。Port 字段长度不得超过 64。
@@ -82,7 +88,10 @@ extension Lighthouse {
     /// 添加防火墙规则
     ///
     /// 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
+    ///
+    ///
     /// * FirewallVersion 为防火墙版本号，用户每次更新防火墙规则版本会自动加1，防止您更新的规则已过期，不填不考虑冲突。
+    ///
     /// 在 FirewallRules 参数中：
     /// * Protocol 字段支持输入 TCP，UDP，ICMP，ALL。
     /// * Port 字段允许输入 ALL，或者一个单独的端口号，或者用逗号分隔的离散端口号，或者用减号分隔的两个端口号代表的端口范围。当 Port 为范围时，减号分隔的第一个端口号小于第二个端口号。当 Protocol 字段不是 TCP 或 UDP 时，Port 字段只能为空或 ALL。Port 字段长度不得超过 64。
@@ -97,7 +106,10 @@ extension Lighthouse {
     /// 添加防火墙规则
     ///
     /// 本接口（CreateFirewallRules）用于在实例上添加防火墙规则。
+    ///
+    ///
     /// * FirewallVersion 为防火墙版本号，用户每次更新防火墙规则版本会自动加1，防止您更新的规则已过期，不填不考虑冲突。
+    ///
     /// 在 FirewallRules 参数中：
     /// * Protocol 字段支持输入 TCP，UDP，ICMP，ALL。
     /// * Port 字段允许输入 ALL，或者一个单独的端口号，或者用逗号分隔的离散端口号，或者用减号分隔的两个端口号代表的端口范围。当 Port 为范围时，减号分隔的第一个端口号小于第二个端口号。当 Protocol 字段不是 TCP 或 UDP 时，Port 字段只能为空或 ALL。Port 字段长度不得超过 64。

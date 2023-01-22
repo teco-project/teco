@@ -55,6 +55,7 @@ extension Ocr {
     /// 广告文字识别
     ///
     /// 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。
+    ///
     /// 产品优势：针对广告商品图片普遍存在较多繁体字、艺术字的特点，进行了识别能力的增强。支持中英文、横排、竖排以及倾斜场景文字识别。文字识别的召回率和准确率能达到96%以上。
     @inlinable
     public func advertiseOCR(_ input: AdvertiseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AdvertiseOCRResponse> {
@@ -64,6 +65,7 @@ extension Ocr {
     /// 广告文字识别
     ///
     /// 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。
+    ///
     /// 产品优势：针对广告商品图片普遍存在较多繁体字、艺术字的特点，进行了识别能力的增强。支持中英文、横排、竖排以及倾斜场景文字识别。文字识别的召回率和准确率能达到96%以上。
     @inlinable
     public func advertiseOCR(_ input: AdvertiseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdvertiseOCRResponse {
@@ -73,6 +75,7 @@ extension Ocr {
     /// 广告文字识别
     ///
     /// 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。
+    ///
     /// 产品优势：针对广告商品图片普遍存在较多繁体字、艺术字的特点，进行了识别能力的增强。支持中英文、横排、竖排以及倾斜场景文字识别。文字识别的召回率和准确率能达到96%以上。
     @inlinable
     public func advertiseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AdvertiseOCRResponse> {
@@ -82,6 +85,7 @@ extension Ocr {
     /// 广告文字识别
     ///
     /// 本接口支持广告商品图片内文字的检测和识别，返回文本框位置与文字内容。
+    ///
     /// 产品优势：针对广告商品图片普遍存在较多繁体字、艺术字的特点，进行了识别能力的增强。支持中英文、横排、竖排以及倾斜场景文字识别。文字识别的召回率和准确率能达到96%以上。
     @inlinable
     public func advertiseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdvertiseOCRResponse {

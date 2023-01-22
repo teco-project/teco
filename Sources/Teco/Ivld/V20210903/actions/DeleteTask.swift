@@ -42,7 +42,9 @@ extension Ivld {
     /// 删除任务
     ///
     /// 删除任务信息
+    ///
     /// 请注意，本接口**不会**删除媒资文件
+    ///
     /// 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
     @inlinable @discardableResult
     public func deleteTask(_ input: DeleteTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskResponse> {
@@ -52,7 +54,9 @@ extension Ivld {
     /// 删除任务
     ///
     /// 删除任务信息
+    ///
     /// 请注意，本接口**不会**删除媒资文件
+    ///
     /// 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
     @inlinable @discardableResult
     public func deleteTask(_ input: DeleteTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
@@ -62,7 +66,9 @@ extension Ivld {
     /// 删除任务
     ///
     /// 删除任务信息
+    ///
     /// 请注意，本接口**不会**删除媒资文件
+    ///
     /// 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
     @inlinable @discardableResult
     public func deleteTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskResponse> {
@@ -72,7 +78,9 @@ extension Ivld {
     /// 删除任务
     ///
     /// 删除任务信息
+    ///
     /// 请注意，本接口**不会**删除媒资文件
+    ///
     /// 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
     @inlinable @discardableResult
     public func deleteTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {

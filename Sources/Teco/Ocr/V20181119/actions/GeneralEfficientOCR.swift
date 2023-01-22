@@ -59,8 +59,11 @@ extension Ocr {
     /// 通用印刷体识别（精简版）
     ///
     /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
+    ///
     /// 适用于快速文本识别场景。
+    ///
     /// 产品优势：与通用印刷体识别接口相比，精简版虽然在准确率和召回率上有一定损失，但价格更加优惠。
+    ///
     /// 通用印刷体识别不同版本的差异如下：
     /// <table style="width:715px">
     ///       <thead>
@@ -116,6 +119,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralEfficientOCRResponse> {
@@ -125,8 +129,11 @@ extension Ocr {
     /// 通用印刷体识别（精简版）
     ///
     /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
+    ///
     /// 适用于快速文本识别场景。
+    ///
     /// 产品优势：与通用印刷体识别接口相比，精简版虽然在准确率和召回率上有一定损失，但价格更加优惠。
+    ///
     /// 通用印刷体识别不同版本的差异如下：
     /// <table style="width:715px">
     ///       <thead>
@@ -182,6 +189,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func generalEfficientOCR(_ input: GeneralEfficientOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralEfficientOCRResponse {
@@ -191,8 +199,11 @@ extension Ocr {
     /// 通用印刷体识别（精简版）
     ///
     /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
+    ///
     /// 适用于快速文本识别场景。
+    ///
     /// 产品优势：与通用印刷体识别接口相比，精简版虽然在准确率和召回率上有一定损失，但价格更加优惠。
+    ///
     /// 通用印刷体识别不同版本的差异如下：
     /// <table style="width:715px">
     ///       <thead>
@@ -248,6 +259,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func generalEfficientOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralEfficientOCRResponse> {
@@ -257,8 +269,11 @@ extension Ocr {
     /// 通用印刷体识别（精简版）
     ///
     /// 本接口支持图像整体文字的检测和识别。支持中文、英文、中英文、数字和特殊字符号的识别，并返回文字框位置和文字内容。
+    ///
     /// 适用于快速文本识别场景。
+    ///
     /// 产品优势：与通用印刷体识别接口相比，精简版虽然在准确率和召回率上有一定损失，但价格更加优惠。
+    ///
     /// 通用印刷体识别不同版本的差异如下：
     /// <table style="width:715px">
     ///       <thead>
@@ -314,6 +329,7 @@ extension Ocr {
     ///         </tr>
     ///       </tbody>
     ///     </table>
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func generalEfficientOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralEfficientOCRResponse {

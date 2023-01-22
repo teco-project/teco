@@ -21,6 +21,7 @@ extension Ciam {
         public let userStoreId: String
 
         /// 查询的属性
+        ///
         /// <li> **phoneNumber** </li>	  手机号码
         /// <li> **email** </li>  邮箱
         public let propertyCode: String

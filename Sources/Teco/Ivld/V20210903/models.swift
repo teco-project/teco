@@ -16,13 +16,16 @@
 
 extension Ivld {
     /// 出现信息索引对
+    ///
     /// AppearIndex可选值定义如下：
+    ///
     /// | AppearIndex名称 | AppearIndex取值 | AppearIndex描述 |
     /// |---|---|---|
     /// | APPEAR_INDEX_INVALID | 0 | 非法的任务状态 |
     /// | APPEAR_INDEX_AUDIO | 1 | 音频出现信息|
     /// | APPEAR_INDEX_TEXT | 2 | 可视文本出现信息|
     /// | APPEAR_INDEX_VIDEO | 3 | 视频出现信息|
+    ///
     /// 例如，当AppearIndex=1，Index=15，则意味着目标关键词出现在第16个(Index计数从0开始)音频文字识别结果之中
     public struct AppearIndexPair: TCOutputModel {
         /// 出现信息，取值范围为[1，3]
@@ -38,6 +41,7 @@ extension Ivld {
     }
 
     /// 出现信息结构
+    ///
     /// 包含关键词在音频转文字(ASR)，图片转文字(OCR)以及视频结果中的出现信息
     public struct AppearInfo: TCOutputModel {
         /// 关键词在音频文本结果中的出现位置数组
@@ -335,6 +339,7 @@ extension Ivld {
     }
 
     /// 一级标签信息
+    ///
     /// 请注意，一级标签信息可能不包含二级标签(此时L2TagSet为空)。在这种情况下，一级标签可直接包含出现信息。
     public struct L1Tag: TCOutputModel {
         /// 一级标签名
@@ -361,6 +366,7 @@ extension Ivld {
     }
 
     /// 二级标签信息
+    ///
     /// 请注意，二级标签信息可能不包含三级标签(此时L3TagSet为空)。
     public struct L2Tag: TCOutputModel {
         /// 二级标签名
@@ -387,6 +393,7 @@ extension Ivld {
     }
 
     /// 三级标签信息。
+    ///
     /// 三级标签不再包含任何子标签。所有三级标签都对应着识别结果中的出现信息，出现信息使用AppearIndexPairSet定位。
     public struct L3Tag: TCOutputModel {
         /// 三级标签名
@@ -447,7 +454,9 @@ extension Ivld {
     }
 
     /// 媒资信息结构体
+    ///
     /// 媒资状态定义如下：
+    ///
     /// | 状态名 | 状态值 | 状态描述 |
     /// |---|---|---|
     /// | MEDIA_STATUS_INVALID | 0 | 非法状态|
@@ -575,7 +584,9 @@ extension Ivld {
     }
 
     /// 描述输入媒资的先验知识，例如文件类型(视频)，媒体类型(新闻/综艺等)
+    ///
     /// MediaPreknownInfo.MediaType:
+    ///
     /// | MediaType 名称|  MediaType取值 | MediaType描述 |
     /// |---|---|---|
     /// | MEDIA_TYPE_INVALID | 0 | 非法的媒资文件类型 |
@@ -584,7 +595,9 @@ extension Ivld {
     /// | MEDIA_TYPE_AUDIO | 3 | 音频 |
     /// | MEDIA_TYPE_VIDEO_STREAM | 4 | 视频流，暂不支持 |
     /// | MEDIA_TYPE_TEXT | 5 | 文本 |
+    ///
     /// MediaPreknownInfo.MediaLabel:
+    ///
     /// | MediaLabel名称 | MediaLabel取值 | MediaLabel描述 |
     /// |---|---|---|
     /// | MEDIA_LABEL_INVALID | 0 | 非法的一级媒资素材类型 |
@@ -595,14 +608,18 @@ extension Ivld {
     /// | MEDIA_LABEL_SERIES | 5 | 电视连续剧 |
     /// | MEDIA_LABEL_SPECIAL | 6 | 专题 |
     /// | MEDIA_LABEL_SPORT | 7 | 体育 |
+    ///
     /// MediaPreknownInfo.MediaSecondLabel
     /// 请注意：**当且仅当MediaLabel=2(综艺)时MediaSecondLabel才有意义**
+    ///
     /// | MediaSecondLabel名称 | MediaSecondLabel取值 | MediaSecondLabel 描述|
     /// |---|---|---|
     /// | MEDIA_SECOND_LABEL_INVALID |  0  | 非法的MediaSecondLabel |
     /// | MEDIA_SECOND_LABEL_EVENING | 1 | 综艺晚会 |
     /// | MEDIA_SECOND_LABEL_OTHERS | 2 | 其他 |
+    ///
     /// MediaMeta.MediaLang
+    ///
     /// | MediaLang名称 | MediaLang取值 | MediaLang描述 |
     /// |---|---|---|
     /// | MEDIA_LANG_INVALID | 0 | 非法的MediaLang |
@@ -660,6 +677,7 @@ extension Ivld {
     }
 
     /// 标签信息结构体
+    ///
     /// 包含多级(最多三级)标签结果，以及这些标签在识别结果中的出现位置
     public struct MultiLevelTag: TCOutputModel {
         /// 树状标签信息
@@ -911,7 +929,9 @@ extension Ivld {
     }
 
     /// 任务信息
+    ///
     /// TaskStatus定义如下:
+    ///
     /// | TaskStatus名称 | TaskStatus取值 | TaskStatus描述 |
     /// |---|---|---|
     /// | TASK_STATUS_INVALID | 0 | 非法的任务状态 |
@@ -1010,6 +1030,7 @@ extension Ivld {
     }
 
     /// 关键词在文本中的定位信息
+    ///
     /// Position为关键词在文本中的偏移量，从0开始。例如，给定文本结果"欢迎收看新闻三十分”，以及关键词"新闻三十分"，那么StartPosition的值为4，EndPosition的值为9
     public struct TextAppearInfo: TCOutputModel {
         /// 文本结果数组中的下标

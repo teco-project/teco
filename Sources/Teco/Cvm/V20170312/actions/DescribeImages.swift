@@ -21,6 +21,7 @@ extension Cvm {
         public let imageIds: [String]?
 
         /// 过滤条件，每次请求的`Filters`的上限为10，`Filters.Values`的上限为5。参数不可以同时指定`ImageIds`和`Filters`。详细的过滤条件如下：
+        ///
         /// <li><strong>image-id</strong></li>
         /// <p style="padding-left: 30px;">按照【<strong>镜像ID</strong>】进行过滤。</p><p style="padding-left: 30px;">类型：String</p><p style="padding-left: 30px;">必选：否</p>
         /// <li><strong>image-type</strong></li>
@@ -84,6 +85,7 @@ extension Cvm {
     /// 查看镜像列表
     ///
     /// 本接口(DescribeImages) 用于查看镜像列表。
+    ///
     /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
     @inlinable
@@ -94,6 +96,7 @@ extension Cvm {
     /// 查看镜像列表
     ///
     /// 本接口(DescribeImages) 用于查看镜像列表。
+    ///
     /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
     @inlinable
@@ -104,6 +107,7 @@ extension Cvm {
     /// 查看镜像列表
     ///
     /// 本接口(DescribeImages) 用于查看镜像列表。
+    ///
     /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
     @inlinable
@@ -114,6 +118,7 @@ extension Cvm {
     /// 查看镜像列表
     ///
     /// 本接口(DescribeImages) 用于查看镜像列表。
+    ///
     /// * 可以通过指定镜像ID来查询指定镜像的详细信息，或通过设定过滤器来查询满足过滤条件的镜像的详细信息。
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
     @inlinable

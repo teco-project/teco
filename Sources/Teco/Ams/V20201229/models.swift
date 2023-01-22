@@ -580,6 +580,7 @@ extension Ams {
     public struct TextResult: TCOutputModel {
         /// 恶意标签，Normal：正常，Porn：色情，Abuse：谩骂，Ad：广告，Custom：自定义词库。
         /// 以及其他令人反感、不安全或不适宜的内容类型。
+        ///
         /// 如音频中无复杂类型「TextResults」的返回则代表改音频中无相关违规内容；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String?
@@ -607,7 +608,9 @@ extension Ams {
         public let suggestion: String?
 
         /// 自定义词库的类型，自定义词库相关的信息可登录控制台中查看；
+        ///
         /// 1：自定义黑白库；
+        ///
         /// 2：自定义库；
         public let libType: Int64
 

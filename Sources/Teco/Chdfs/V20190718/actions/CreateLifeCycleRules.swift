@@ -47,6 +47,7 @@ extension Chdfs {
     /// 批量创建生命周期规则
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
     @inlinable @discardableResult
     public func createLifeCycleRules(_ input: CreateLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLifeCycleRulesResponse> {
@@ -56,6 +57,7 @@ extension Chdfs {
     /// 批量创建生命周期规则
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
     @inlinable @discardableResult
     public func createLifeCycleRules(_ input: CreateLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifeCycleRulesResponse {
@@ -65,6 +67,7 @@ extension Chdfs {
     /// 批量创建生命周期规则
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
     @inlinable @discardableResult
     public func createLifeCycleRules(fileSystemId: String, lifeCycleRules: [LifeCycleRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLifeCycleRulesResponse> {
@@ -74,6 +77,7 @@ extension Chdfs {
     /// 批量创建生命周期规则
     ///
     /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
+    ///
     /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
     @inlinable @discardableResult
     public func createLifeCycleRules(fileSystemId: String, lifeCycleRules: [LifeCycleRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifeCycleRulesResponse {

@@ -58,6 +58,7 @@ extension Apigateway {
         /// err_msg：“:”
         /// rsp_st：“=” 、“!=” 、 “:” 、 “>” 、 “<”
         /// req_t：”>=“ 、 ”<=“
+        ///
         /// 说明：
         /// “:”表示包含，“!=”表示不等于，字段含义见输出参数的LogSet说明
         public let logQuerys: [LogQuery]?
@@ -97,6 +98,7 @@ extension Apigateway {
         /// '[cip:$remote_addr][uip:$upstream_addr][vip:$server_addr][rsp_len:$bytes_sent][req_len:$request_length]'
         /// '[req_t:$request_time][ups_rsp_t:$upstream_response_time][ups_conn_t:$upstream_connect_time][ups_head_t:$upstream_header_time]’
         /// '[err_msg:$err_msg][tcp_rtt:$tcpinfo_rtt][$pid][$time_local][req_id:$request_id]';
+        ///
         /// 说明：
         /// app_id： 用户 ID。
         /// env_name：环境名称。

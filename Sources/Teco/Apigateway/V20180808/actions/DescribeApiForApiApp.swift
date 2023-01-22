@@ -55,7 +55,7 @@ extension Apigateway {
 
     /// 应用使用者查询API详情
     ///
-    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
+    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。
     @inlinable
     public func describeApiForApiApp(_ input: DescribeApiForApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiForApiAppResponse> {
         self.client.execute(action: "DescribeApiForApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -63,7 +63,7 @@ extension Apigateway {
 
     /// 应用使用者查询API详情
     ///
-    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
+    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。
     @inlinable
     public func describeApiForApiApp(_ input: DescribeApiForApiAppRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiForApiAppResponse {
         try await self.client.execute(action: "DescribeApiForApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,7 +71,7 @@ extension Apigateway {
 
     /// 应用使用者查询API详情
     ///
-    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
+    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。
     @inlinable
     public func describeApiForApiApp(serviceId: String, apiId: String, apiRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiForApiAppResponse> {
         self.describeApiForApiApp(DescribeApiForApiAppRequest(serviceId: serviceId, apiId: apiId, apiRegion: apiRegion), region: region, logger: logger, on: eventLoop)
@@ -79,7 +79,7 @@ extension Apigateway {
 
     /// 应用使用者查询API详情
     ///
-    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。​
+    /// 本接口（DescribeApiForApiApp）用于应用使用者查询部署于 API 网关的 API 接口的详细信息。
     @inlinable
     public func describeApiForApiApp(serviceId: String, apiId: String, apiRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiForApiAppResponse {
         try await self.describeApiForApiApp(DescribeApiForApiAppRequest(serviceId: serviceId, apiId: apiId, apiRegion: apiRegion), region: region, logger: logger, on: eventLoop)

@@ -23,6 +23,7 @@ extension Ecm {
         public let instanceIds: [String]
 
         /// 密钥对ID列表，每次请求批量密钥对的上限为100。密钥对ID形如：skey-11112222。
+        ///
         /// 可以通过以下方式获取可用的密钥ID：
         /// 通过登录控制台查询密钥ID。
         /// 通过调用接口 DescribeKeyPairs ，取返回信息中的 KeyId 获取密钥对ID。
@@ -31,6 +32,7 @@ extension Ecm {
         /// 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机，然后再解绑密钥。取值范围：
         /// TRUE：表示在正常关机失败后进行强制关机。
         /// FALSE：表示在正常关机失败后不进行强制关机。
+        ///
         /// 默认取值：FALSE。
         public let forceStop: Bool?
 

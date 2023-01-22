@@ -74,7 +74,7 @@ extension Tke {
 
     /// 查询集群节点信息
     ///
-    ///  查询集群下节点实例信息
+    /// 查询集群下节点实例信息
     @inlinable
     public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
         self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -82,7 +82,7 @@ extension Tke {
 
     /// 查询集群节点信息
     ///
-    ///  查询集群下节点实例信息
+    /// 查询集群下节点实例信息
     @inlinable
     public func describeClusterInstances(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
         try await self.client.execute(action: "DescribeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -90,7 +90,7 @@ extension Tke {
 
     /// 查询集群节点信息
     ///
-    ///  查询集群下节点实例信息
+    /// 查询集群下节点实例信息
     @inlinable
     public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstancesResponse> {
         self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), region: region, logger: logger, on: eventLoop)
@@ -98,7 +98,7 @@ extension Tke {
 
     /// 查询集群节点信息
     ///
-    ///  查询集群下节点实例信息
+    /// 查询集群下节点实例信息
     @inlinable
     public func describeClusterInstances(clusterId: String, offset: Int64? = nil, limit: Int64? = nil, instanceIds: [String]? = nil, instanceRole: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstancesResponse {
         try await self.describeClusterInstances(DescribeClusterInstancesRequest(clusterId: clusterId, offset: offset, limit: limit, instanceIds: instanceIds, instanceRole: instanceRole, filters: filters), region: region, logger: logger, on: eventLoop)

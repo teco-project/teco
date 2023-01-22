@@ -23,12 +23,15 @@ extension Tic {
         /// <li>**VersionId**</li>
         /// 按照【**版本ID**】过滤，VersionId形如 `ver-kg8hn58h`
         /// 类型：string
+        ///
         /// <li>**StackId**</li>
         /// 按照【**资源栈ID**】过滤，StackId形如 `stk-hz5vn3te`
         /// 类型：string
+        ///
         /// <li>**Type**</li>
         /// 按照【**事件类型**】过滤，Type 形如 plan, apply, destroy
         /// 类型：string
+        ///
         /// <li>**Status**</li>
         /// 按照【**事件状态**】过滤，Status形如 queueing, running, success, failed
         /// 类型：string
@@ -76,6 +79,7 @@ extension Tic {
     /// 查询事件列表
     ///
     /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
+    ///
     /// - 可以根据事件ID过滤感兴趣的事件
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
@@ -87,6 +91,7 @@ extension Tic {
     /// 查询事件列表
     ///
     /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
+    ///
     /// - 可以根据事件ID过滤感兴趣的事件
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
@@ -98,6 +103,7 @@ extension Tic {
     /// 查询事件列表
     ///
     /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
+    ///
     /// - 可以根据事件ID过滤感兴趣的事件
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件
@@ -109,6 +115,7 @@ extension Tic {
     /// 查询事件列表
     ///
     /// 本接口（DescribeStackEvents）用于查看一个或多个事件详细信息。
+    ///
     /// - 可以根据事件ID过滤感兴趣的事件
     /// - 也可以根据版本ID，资源栈ID，事件类型，事件状态过滤事件，过滤信息详细请见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的事件

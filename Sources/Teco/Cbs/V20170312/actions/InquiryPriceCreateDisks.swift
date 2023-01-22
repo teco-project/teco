@@ -81,6 +81,7 @@ extension Cbs {
     /// 创建云硬盘询价
     ///
     /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
+    ///
     /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
     @inlinable
     public func inquiryPriceCreateDisks(_ input: InquiryPriceCreateDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDisksResponse> {
@@ -90,6 +91,7 @@ extension Cbs {
     /// 创建云硬盘询价
     ///
     /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
+    ///
     /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
     @inlinable
     public func inquiryPriceCreateDisks(_ input: InquiryPriceCreateDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDisksResponse {
@@ -99,6 +101,7 @@ extension Cbs {
     /// 创建云硬盘询价
     ///
     /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
+    ///
     /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
     @inlinable
     public func inquiryPriceCreateDisks(diskChargeType: String, diskType: String, diskSize: UInt64, projectId: UInt64? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskBackupQuota: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceCreateDisksResponse> {
@@ -108,6 +111,7 @@ extension Cbs {
     /// 创建云硬盘询价
     ///
     /// 本接口（InquiryPriceCreateDisks）用于创建云硬盘询价。
+    ///
     /// * 支持查询创建多块云硬盘的价格，此时返回结果为总价格。
     @inlinable
     public func inquiryPriceCreateDisks(diskChargeType: String, diskType: String, diskSize: UInt64, projectId: UInt64? = nil, diskCount: UInt64? = nil, throughputPerformance: UInt64? = nil, diskChargePrepaid: DiskChargePrepaid? = nil, diskBackupQuota: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceCreateDisksResponse {

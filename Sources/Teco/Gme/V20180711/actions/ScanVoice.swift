@@ -75,9 +75,11 @@ extension Gme {
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     /// </br></br>
+    ///
     /// <h4><b>功能试用说明：</b></h4>
     /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     /// </br>
+    ///
     /// <h4><b>接口功能说明：</b></h4>
     /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
     /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
@@ -152,6 +154,7 @@ extension Gme {
     /// 		<li>签名key为应用的 SecretKey，可以通过控制台查看。</li>
     /// 	</ul>
     /// </ul>
+    ///
     /// <li>回调示例如下<font color="red">（详细字段说明见结构：
     /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
     /// <pre><code>{
@@ -215,9 +218,11 @@ extension Gme {
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     /// </br></br>
+    ///
     /// <h4><b>功能试用说明：</b></h4>
     /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     /// </br>
+    ///
     /// <h4><b>接口功能说明：</b></h4>
     /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
     /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
@@ -292,6 +297,7 @@ extension Gme {
     /// 		<li>签名key为应用的 SecretKey，可以通过控制台查看。</li>
     /// 	</ul>
     /// </ul>
+    ///
     /// <li>回调示例如下<font color="red">（详细字段说明见结构：
     /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
     /// <pre><code>{
@@ -355,9 +361,11 @@ extension Gme {
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     /// </br></br>
+    ///
     /// <h4><b>功能试用说明：</b></h4>
     /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     /// </br>
+    ///
     /// <h4><b>接口功能说明：</b></h4>
     /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
     /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
@@ -432,6 +440,7 @@ extension Gme {
     /// 		<li>签名key为应用的 SecretKey，可以通过控制台查看。</li>
     /// 	</ul>
     /// </ul>
+    ///
     /// <li>回调示例如下<font color="red">（详细字段说明见结构：
     /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
     /// <pre><code>{
@@ -495,9 +504,11 @@ extension Gme {
     ///
     /// 本接口(ScanVoice)用于提交语音检测任务，检测任务列表最多支持100个。使用前请您登录[控制台 - 服务配置](https://console.cloud.tencent.com/gamegme/conf)开启语音内容安全服务。
     /// </br></br>
+    ///
     /// <h4><b>功能试用说明：</b></h4>
     /// <li>打开前往<a href="https://console.cloud.tencent.com/gamegme/tryout">控制台 - 产品试用</a>免费试用语音内容安全服务。</li>
     /// </br>
+    ///
     /// <h4><b>接口功能说明：</b></h4>
     /// <li>支持对语音流或语音文件进行检测，判断其中是否包含违规内容。</li>
     /// <li>支持设置回调地址 Callback 获取检测结果，同时支持通过接口(查询语音检测结果)主动轮询获取检测结果。</li>
@@ -572,6 +583,7 @@ extension Gme {
     /// 		<li>签名key为应用的 SecretKey，可以通过控制台查看。</li>
     /// 	</ul>
     /// </ul>
+    ///
     /// <li>回调示例如下<font color="red">（详细字段说明见结构：
     /// <a href="https://cloud.tencent.com/document/api/607/35375#DescribeScanResult" target="_blank">DescribeScanResult</a>）</font>：</li>
     /// <pre><code>{

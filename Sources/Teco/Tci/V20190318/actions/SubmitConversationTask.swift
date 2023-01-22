@@ -61,7 +61,7 @@ extension Tci {
 
     /// SubmitConversationTask返回参数结构体
     public struct SubmitConversationTaskResponse: TCResponseModel {
-        /// 	查询结果时指名的jobid。在URL方式时提交请求后会返回一个jobid，后续查询该url的结果时使用这个jobid进行查询。
+        /// 查询结果时指名的jobid。在URL方式时提交请求后会返回一个jobid，后续查询该url的结果时使用这个jobid进行查询。
         public let jobId: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

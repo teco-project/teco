@@ -296,6 +296,7 @@ extension Ecm {
         /// 数据盘类型，取值范围：
         /// - LOCAL_BASIC：本地硬盘
         /// - CLOUD_PREMIUM：高性能云硬盘
+        ///
         /// 默认取值： LOCAL_BASIC。
         public let diskType: String?
 
@@ -3270,6 +3271,7 @@ extension Ecm {
         /// 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：
         /// TRUE：表示用作公网网关
         /// FALSE：表示不用作公网网关
+        ///
         /// 默认取值：FALSE。
         public let asVpcGateway: Bool?
 

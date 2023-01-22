@@ -85,6 +85,7 @@ extension Tione {
         public let logUrl: String?
 
         /// Notebook实例状态
+        ///
         /// Pending: 创建中
         /// Inservice: 运行中
         /// Stopping: 停止中

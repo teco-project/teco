@@ -33,6 +33,7 @@ extension Cls {
         /// 按照【接收用户组ID】进行过滤。
         /// 类型：String
         /// 必选：否
+        ///
         /// 每次请求的Filters的上限为10，Filter.Values的上限为5。
         public let filters: [Filter]?
 

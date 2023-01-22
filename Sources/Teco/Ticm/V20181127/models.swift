@@ -247,6 +247,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -363,6 +364,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -401,6 +403,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// Asr 文字涉政、敏感评分，分值为0到100。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confidence: Float
@@ -409,6 +412,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -483,12 +487,14 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
         /// 视频鉴政结果标签，取值范围：
         /// politician：政治人物。
         /// violation_photo：违规图标。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String
 
@@ -525,6 +531,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -583,6 +590,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -621,6 +629,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -659,6 +668,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -667,6 +677,7 @@ extension Ticm {
         /// sexy：性感。
         /// vulgar：低俗。
         /// intimacy：亲密行为。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String
 
@@ -707,6 +718,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -740,6 +752,7 @@ extension Ticm {
         /// pass。
         /// review。
         /// block。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String
 
@@ -752,6 +765,7 @@ extension Ticm {
         /// militant：武装分子。
         /// explosion：爆炸火灾。
         /// terrorists：暴恐人物。
+        ///
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let label: String
 

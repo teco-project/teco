@@ -81,6 +81,7 @@ extension Ocr {
     /// 通用印刷体识别（高速版）
     ///
     /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func generalFastOCR(_ input: GeneralFastOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralFastOCRResponse> {
@@ -90,6 +91,7 @@ extension Ocr {
     /// 通用印刷体识别（高速版）
     ///
     /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func generalFastOCR(_ input: GeneralFastOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralFastOCRResponse {
@@ -99,6 +101,7 @@ extension Ocr {
     /// 通用印刷体识别（高速版）
     ///
     /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func generalFastOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralFastOCRResponse> {
@@ -108,6 +111,7 @@ extension Ocr {
     /// 通用印刷体识别（高速版）
     ///
     /// 本接口支持图片中整体文字的检测和识别，返回文字框位置与文字内容。相比通用印刷体识别接口，识别速度更快。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func generalFastOCR(imageBase64: String? = nil, imageUrl: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralFastOCRResponse {

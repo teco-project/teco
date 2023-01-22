@@ -316,6 +316,7 @@ extension Thpc {
         /// NOTIFY_AND_AUTO_RENEW：通知过期且自动续费
         /// NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费
         /// DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费
+        ///
         /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
 
@@ -610,6 +611,7 @@ extension Thpc {
         /// CLOUD_BASIC：普通云硬盘
         /// CLOUD_SSD：SSD云硬盘
         /// CLOUD_PREMIUM：高性能云硬盘
+        ///
         /// 默认取值：当前有库存的硬盘类型。
         public let diskType: String?
 

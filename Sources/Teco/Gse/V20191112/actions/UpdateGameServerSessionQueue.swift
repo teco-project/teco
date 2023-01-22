@@ -61,6 +61,7 @@ extension Gse {
     /// 修改游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateGameServerSessionQueue）用于修改游戏服务器会话队列。
     @inlinable
     public func updateGameServerSessionQueue(_ input: UpdateGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionQueueResponse> {
@@ -70,6 +71,7 @@ extension Gse {
     /// 修改游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateGameServerSessionQueue）用于修改游戏服务器会话队列。
     @inlinable
     public func updateGameServerSessionQueue(_ input: UpdateGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionQueueResponse {
@@ -79,6 +81,7 @@ extension Gse {
     /// 修改游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateGameServerSessionQueue）用于修改游戏服务器会话队列。
     @inlinable
     public func updateGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionQueueResponse> {
@@ -88,6 +91,7 @@ extension Gse {
     /// 修改游戏服务器会话队列
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（UpdateGameServerSessionQueue）用于修改游戏服务器会话队列。
     @inlinable
     public func updateGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionQueueResponse {

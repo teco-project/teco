@@ -42,6 +42,7 @@ extension Cvm {
     /// 删除密钥对
     ///
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
+    ///
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
     @inlinable @discardableResult
@@ -52,6 +53,7 @@ extension Cvm {
     /// 删除密钥对
     ///
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
+    ///
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
     @inlinable @discardableResult
@@ -62,6 +64,7 @@ extension Cvm {
     /// 删除密钥对
     ///
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
+    ///
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
     @inlinable @discardableResult
@@ -72,6 +75,7 @@ extension Cvm {
     /// 删除密钥对
     ///
     /// 本接口 (DeleteKeyPairs) 用于删除已在腾讯云托管的密钥对。
+    ///
     /// * 可以同时删除多个密钥对。
     /// * 不能删除已被实例或镜像引用的密钥对，所以需要独立判断是否所有密钥对都被成功删除。
     @inlinable @discardableResult

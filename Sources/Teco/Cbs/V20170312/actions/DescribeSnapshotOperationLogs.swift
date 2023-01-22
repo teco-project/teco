@@ -66,6 +66,7 @@ extension Cbs {
     /// 查询快照操作日志列表
     ///
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
+    ///
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
     public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
@@ -75,6 +76,7 @@ extension Cbs {
     /// 查询快照操作日志列表
     ///
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
+    ///
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
     public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
@@ -84,6 +86,7 @@ extension Cbs {
     /// 查询快照操作日志列表
     ///
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
+    ///
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
     public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
@@ -93,6 +96,7 @@ extension Cbs {
     /// 查询快照操作日志列表
     ///
     /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
+    ///
     /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
     @inlinable
     public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {

@@ -52,6 +52,7 @@ extension Cvm {
     /// 删除镜像
     ///
     /// 本接口（DeleteImages）用于删除一个或多个镜像。
+    ///
     /// * 当[镜像状态](https://cloud.tencent.com/document/product/213/15753#Image)为`创建中`和`使用中`时, 不允许删除。镜像状态可以通过[DescribeImages](https://cloud.tencent.com/document/api/213/9418)获取。
     /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
     /// * 当镜像正在被其它账户分享时，不允许删除。
@@ -63,6 +64,7 @@ extension Cvm {
     /// 删除镜像
     ///
     /// 本接口（DeleteImages）用于删除一个或多个镜像。
+    ///
     /// * 当[镜像状态](https://cloud.tencent.com/document/product/213/15753#Image)为`创建中`和`使用中`时, 不允许删除。镜像状态可以通过[DescribeImages](https://cloud.tencent.com/document/api/213/9418)获取。
     /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
     /// * 当镜像正在被其它账户分享时，不允许删除。
@@ -74,6 +76,7 @@ extension Cvm {
     /// 删除镜像
     ///
     /// 本接口（DeleteImages）用于删除一个或多个镜像。
+    ///
     /// * 当[镜像状态](https://cloud.tencent.com/document/product/213/15753#Image)为`创建中`和`使用中`时, 不允许删除。镜像状态可以通过[DescribeImages](https://cloud.tencent.com/document/api/213/9418)获取。
     /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
     /// * 当镜像正在被其它账户分享时，不允许删除。
@@ -85,6 +88,7 @@ extension Cvm {
     /// 删除镜像
     ///
     /// 本接口（DeleteImages）用于删除一个或多个镜像。
+    ///
     /// * 当[镜像状态](https://cloud.tencent.com/document/product/213/15753#Image)为`创建中`和`使用中`时, 不允许删除。镜像状态可以通过[DescribeImages](https://cloud.tencent.com/document/api/213/9418)获取。
     /// * 每个地域最多只支持创建10个自定义镜像，删除镜像可以释放账户的配额。
     /// * 当镜像正在被其它账户分享时，不允许删除。

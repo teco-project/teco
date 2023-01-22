@@ -36,6 +36,7 @@ extension Tcss {
     /// DescribeComplianceTaskAssetSummary返回参数结构体
     public struct DescribeComplianceTaskAssetSummaryResponse: TCResponseModel {
         /// 返回用户的状态，
+        ///
         /// USER_UNINIT: 用户未初始化。
         /// USER_INITIALIZING，表示用户正在初始化环境。
         /// USER_NORMAL: 正常状态。

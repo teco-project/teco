@@ -61,6 +61,7 @@ extension Gse {
     /// 获取服务器舰队属性
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
     @inlinable
     public func describeFleetAttributes(_ input: DescribeFleetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetAttributesResponse> {
@@ -70,6 +71,7 @@ extension Gse {
     /// 获取服务器舰队属性
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
     @inlinable
     public func describeFleetAttributes(_ input: DescribeFleetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetAttributesResponse {
@@ -79,6 +81,7 @@ extension Gse {
     /// 获取服务器舰队属性
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
     @inlinable
     public func describeFleetAttributes(fleetIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetAttributesResponse> {
@@ -88,6 +91,7 @@ extension Gse {
     /// 获取服务器舰队属性
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeFleetAttributes）用于查询服务器舰队属性。
     @inlinable
     public func describeFleetAttributes(fleetIds: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetAttributesResponse {

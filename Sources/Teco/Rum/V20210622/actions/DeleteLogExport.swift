@@ -52,7 +52,9 @@ extension Rum {
     /// 删除日志下载任务
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
+    ///
     /// 本接口用于删除日志下载任务
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func deleteLogExport(_ input: DeleteLogExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
@@ -62,7 +64,9 @@ extension Rum {
     /// 删除日志下载任务
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
+    ///
     /// 本接口用于删除日志下载任务
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func deleteLogExport(_ input: DeleteLogExportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {
@@ -72,7 +76,9 @@ extension Rum {
     /// 删除日志下载任务
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
+    ///
     /// 本接口用于删除日志下载任务
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func deleteLogExport(id: Int64, exportID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogExportResponse> {
@@ -82,7 +88,9 @@ extension Rum {
     /// 删除日志下载任务
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
+    ///
     /// 本接口用于删除日志下载任务
+    ///
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func deleteLogExport(id: Int64, exportID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogExportResponse {

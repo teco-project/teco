@@ -132,10 +132,15 @@ extension Ocr {
     /// 驾驶证识别
     ///
     /// 本接口支持驾驶证主页和副页所有字段的自动定位与识别，重点字段的识别准确度达到99%以上。
+    ///
     /// 驾驶证主页：包括证号、姓名、性别、国籍、住址、出生日期、初次领证日期、准驾车型、有效期限、发证单位
+    ///
     /// 驾驶证副页：包括证号、姓名、档案编号、记录。
+    ///
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。同时支持识别交管12123APP发放的电子驾驶证正页。
+    ///
     /// 电子驾驶证正页：包括证号、姓名、性别、国籍、出生日期、初次领证日期、准驾车型、有效期开始时间、有效期截止时间、档案编号、状态、累积记分。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func driverLicenseOCR(_ input: DriverLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DriverLicenseOCRResponse> {
@@ -145,10 +150,15 @@ extension Ocr {
     /// 驾驶证识别
     ///
     /// 本接口支持驾驶证主页和副页所有字段的自动定位与识别，重点字段的识别准确度达到99%以上。
+    ///
     /// 驾驶证主页：包括证号、姓名、性别、国籍、住址、出生日期、初次领证日期、准驾车型、有效期限、发证单位
+    ///
     /// 驾驶证副页：包括证号、姓名、档案编号、记录。
+    ///
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。同时支持识别交管12123APP发放的电子驾驶证正页。
+    ///
     /// 电子驾驶证正页：包括证号、姓名、性别、国籍、出生日期、初次领证日期、准驾车型、有效期开始时间、有效期截止时间、档案编号、状态、累积记分。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func driverLicenseOCR(_ input: DriverLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DriverLicenseOCRResponse {
@@ -158,10 +168,15 @@ extension Ocr {
     /// 驾驶证识别
     ///
     /// 本接口支持驾驶证主页和副页所有字段的自动定位与识别，重点字段的识别准确度达到99%以上。
+    ///
     /// 驾驶证主页：包括证号、姓名、性别、国籍、住址、出生日期、初次领证日期、准驾车型、有效期限、发证单位
+    ///
     /// 驾驶证副页：包括证号、姓名、档案编号、记录。
+    ///
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。同时支持识别交管12123APP发放的电子驾驶证正页。
+    ///
     /// 电子驾驶证正页：包括证号、姓名、性别、国籍、出生日期、初次领证日期、准驾车型、有效期开始时间、有效期截止时间、档案编号、状态、累积记分。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func driverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DriverLicenseOCRResponse> {
@@ -171,10 +186,15 @@ extension Ocr {
     /// 驾驶证识别
     ///
     /// 本接口支持驾驶证主页和副页所有字段的自动定位与识别，重点字段的识别准确度达到99%以上。
+    ///
     /// 驾驶证主页：包括证号、姓名、性别、国籍、住址、出生日期、初次领证日期、准驾车型、有效期限、发证单位
+    ///
     /// 驾驶证副页：包括证号、姓名、档案编号、记录。
+    ///
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。同时支持识别交管12123APP发放的电子驾驶证正页。
+    ///
     /// 电子驾驶证正页：包括证号、姓名、性别、国籍、出生日期、初次领证日期、准驾车型、有效期开始时间、有效期截止时间、档案编号、状态、累积记分。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func driverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DriverLicenseOCRResponse {

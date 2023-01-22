@@ -104,7 +104,9 @@ extension Iai {
     /// 防疫场景人脸比对
     ///
     /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
+    ///
     /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
+    ///
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
     public func compareMaskFace(_ input: CompareMaskFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareMaskFaceResponse> {
@@ -114,7 +116,9 @@ extension Iai {
     /// 防疫场景人脸比对
     ///
     /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
+    ///
     /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
+    ///
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
     public func compareMaskFace(_ input: CompareMaskFaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {
@@ -124,7 +128,9 @@ extension Iai {
     /// 防疫场景人脸比对
     ///
     /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
+    ///
     /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
+    ///
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
     public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareMaskFaceResponse> {
@@ -134,7 +140,9 @@ extension Iai {
     /// 防疫场景人脸比对
     ///
     /// 对两张图片中的人脸进行相似度比对，返回人脸相似度分数。
+    ///
     /// 防疫场景人脸比对接口可在人脸戴口罩情况下使用，口罩遮挡程度最高可以遮挡鼻尖。
+    ///
     /// 如图片人脸不存在防疫场景下戴口罩的情况，建议使用人脸比对服务。
     @inlinable
     public func compareMaskFace(imageA: String? = nil, imageB: String? = nil, urlA: String? = nil, urlB: String? = nil, faceModelVersion: String? = nil, qualityControl: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareMaskFaceResponse {

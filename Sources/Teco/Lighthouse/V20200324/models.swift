@@ -244,6 +244,7 @@ extension Lighthouse {
         public let cidrBlock: [String]
 
         /// 关联实例状态：
+        ///
         /// •  PENDING：申请中
         /// •  ACTIVE：已连接
         /// •  EXPIRED：已过期

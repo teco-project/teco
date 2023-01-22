@@ -51,6 +51,7 @@ extension Gse {
     /// 查询云联网实例
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeCcnInstances）用于查询云联网实例。
     @inlinable
     public func describeCcnInstances(_ input: DescribeCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnInstancesResponse> {
@@ -60,6 +61,7 @@ extension Gse {
     /// 查询云联网实例
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeCcnInstances）用于查询云联网实例。
     @inlinable
     public func describeCcnInstances(_ input: DescribeCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnInstancesResponse {
@@ -69,6 +71,7 @@ extension Gse {
     /// 查询云联网实例
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeCcnInstances）用于查询云联网实例。
     @inlinable
     public func describeCcnInstances(fleetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnInstancesResponse> {
@@ -78,6 +81,7 @@ extension Gse {
     /// 查询云联网实例
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeCcnInstances）用于查询云联网实例。
     @inlinable
     public func describeCcnInstances(fleetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnInstancesResponse {

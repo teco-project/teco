@@ -69,7 +69,7 @@ extension Vpc {
 
     /// 查询VPN通道列表
     ///
-    ///  本接口（DescribeVpnConnections）查询VPN通道列表。
+    /// 本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
     public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnConnectionsResponse> {
         self.client.execute(action: "DescribeVpnConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -77,7 +77,7 @@ extension Vpc {
 
     /// 查询VPN通道列表
     ///
-    ///  本接口（DescribeVpnConnections）查询VPN通道列表。
+    /// 本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
     public func describeVpnConnections(_ input: DescribeVpnConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
         try await self.client.execute(action: "DescribeVpnConnections", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -85,7 +85,7 @@ extension Vpc {
 
     /// 查询VPN通道列表
     ///
-    ///  本接口（DescribeVpnConnections）查询VPN通道列表。
+    /// 本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
     public func describeVpnConnections(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnConnectionsResponse> {
         self.describeVpnConnections(DescribeVpnConnectionsRequest(vpnConnectionIds: vpnConnectionIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -93,7 +93,7 @@ extension Vpc {
 
     /// 查询VPN通道列表
     ///
-    ///  本接口（DescribeVpnConnections）查询VPN通道列表。
+    /// 本接口（DescribeVpnConnections）查询VPN通道列表。
     @inlinable
     public func describeVpnConnections(vpnConnectionIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnConnectionsResponse {
         try await self.describeVpnConnections(DescribeVpnConnectionsRequest(vpnConnectionIds: vpnConnectionIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)

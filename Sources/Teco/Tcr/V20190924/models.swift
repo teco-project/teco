@@ -975,7 +975,7 @@ extension Tcr {
         }
     }
 
-    ///  作业调度信息
+    /// 作业调度信息
     public struct Schedule: TCOutputModel {
         /// 类型：Hourly, Daily, Weekly, Custom, Manual, Dryrun, None
         public let type: String

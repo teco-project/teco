@@ -58,6 +58,7 @@ extension Btoe {
     /// 存证基本信息查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
+    ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
     public func getDepositInfo(_ input: GetDepositInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
@@ -67,6 +68,7 @@ extension Btoe {
     /// 存证基本信息查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
+    ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
     public func getDepositInfo(_ input: GetDepositInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
@@ -76,6 +78,7 @@ extension Btoe {
     /// 存证基本信息查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
+    ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
     public func getDepositInfo(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
@@ -85,6 +88,7 @@ extension Btoe {
     /// 存证基本信息查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
+    ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
     @inlinable
     public func getDepositInfo(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {

@@ -42,6 +42,7 @@ extension As {
     /// 删除启动配置
     ///
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
+    ///
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
     @inlinable @discardableResult
     public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchConfigurationResponse> {
@@ -51,6 +52,7 @@ extension As {
     /// 删除启动配置
     ///
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
+    ///
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
     @inlinable @discardableResult
     public func deleteLaunchConfiguration(_ input: DeleteLaunchConfigurationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {
@@ -60,6 +62,7 @@ extension As {
     /// 删除启动配置
     ///
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
+    ///
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
     @inlinable @discardableResult
     public func deleteLaunchConfiguration(launchConfigurationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchConfigurationResponse> {
@@ -69,6 +72,7 @@ extension As {
     /// 删除启动配置
     ///
     /// 本接口（DeleteLaunchConfiguration）用于删除启动配置。
+    ///
     /// * 若启动配置在伸缩组中属于生效状态，则该启动配置不允许删除。
     @inlinable @discardableResult
     public func deleteLaunchConfiguration(launchConfigurationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchConfigurationResponse {

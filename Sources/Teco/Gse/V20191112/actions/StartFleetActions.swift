@@ -52,6 +52,7 @@ extension Gse {
     /// 启用服务器舰队自动扩缩容
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
     @inlinable
     public func startFleetActions(_ input: StartFleetActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFleetActionsResponse> {
@@ -61,6 +62,7 @@ extension Gse {
     /// 启用服务器舰队自动扩缩容
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
     @inlinable
     public func startFleetActions(_ input: StartFleetActionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFleetActionsResponse {
@@ -70,6 +72,7 @@ extension Gse {
     /// 启用服务器舰队自动扩缩容
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
     @inlinable
     public func startFleetActions(fleetId: String, actions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartFleetActionsResponse> {
@@ -79,6 +82,7 @@ extension Gse {
     /// 启用服务器舰队自动扩缩容
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（StartFleetActions）用于启用服务器舰队自动扩缩容。
     @inlinable
     public func startFleetActions(fleetId: String, actions: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFleetActionsResponse {

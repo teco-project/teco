@@ -24,6 +24,7 @@ extension Ciam {
         public let pageable: Pageable
 
         /// Key可选值为condition、userGroupId
+        ///
         /// <li> **condition** </li>	Values = 查询条件，用户ID，用户名称，手机或邮箱
         /// <li> **userGroupId** </li>	Values = 用户组ID
         public let filters: [Filter]?

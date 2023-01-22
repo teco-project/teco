@@ -62,6 +62,7 @@ extension Cat {
         /// <li> 4 = 端口性能 </li>
         /// <li> 5 = 网络质量 </li>
         /// <li> 6 =流媒体 </li>
+        ///
         /// 即使拨测只支持页面浏览，网络质量，文件下载
         public let taskType: [Int64]?
 

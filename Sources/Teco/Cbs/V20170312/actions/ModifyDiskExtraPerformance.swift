@@ -47,6 +47,7 @@ extension Cbs {
     /// 调整云硬盘额外性能
     ///
     /// 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
+    ///
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
     @inlinable @discardableResult
     public func modifyDiskExtraPerformance(_ input: ModifyDiskExtraPerformanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskExtraPerformanceResponse> {
@@ -56,6 +57,7 @@ extension Cbs {
     /// 调整云硬盘额外性能
     ///
     /// 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
+    ///
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
     @inlinable @discardableResult
     public func modifyDiskExtraPerformance(_ input: ModifyDiskExtraPerformanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskExtraPerformanceResponse {
@@ -65,6 +67,7 @@ extension Cbs {
     /// 调整云硬盘额外性能
     ///
     /// 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
+    ///
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
     @inlinable @discardableResult
     public func modifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskExtraPerformanceResponse> {
@@ -74,6 +77,7 @@ extension Cbs {
     /// 调整云硬盘额外性能
     ///
     /// 本接口（ModifyDiskExtraPerformance）用于调整云硬盘额外的性能。
+    ///
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
     @inlinable @discardableResult
     public func modifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskExtraPerformanceResponse {

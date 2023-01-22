@@ -65,6 +65,7 @@ extension Live {
     /// 设置延时直播
     ///
     /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
+    ///
     /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
     @inlinable @discardableResult
     public func addDelayLiveStream(_ input: AddDelayLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDelayLiveStreamResponse> {
@@ -74,6 +75,7 @@ extension Live {
     /// 设置延时直播
     ///
     /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
+    ///
     /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
     @inlinable @discardableResult
     public func addDelayLiveStream(_ input: AddDelayLiveStreamRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDelayLiveStreamResponse {
@@ -83,6 +85,7 @@ extension Live {
     /// 设置延时直播
     ///
     /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
+    ///
     /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
     @inlinable @discardableResult
     public func addDelayLiveStream(appName: String, domainName: String, streamName: String, delayTime: UInt64, expireTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDelayLiveStreamResponse> {
@@ -92,6 +95,7 @@ extension Live {
     /// 设置延时直播
     ///
     /// 针对大型活动直播，通过对直播流设置延时来控制现场与观众播放画面的时间间隔，避免突发状况造成影响。
+    ///
     /// 注意：如果在推流前设置延播，需要提前5分钟设置，目前该接口只支持流粒度。
     @inlinable @discardableResult
     public func addDelayLiveStream(appName: String, domainName: String, streamName: String, delayTime: UInt64, expireTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDelayLiveStreamResponse {

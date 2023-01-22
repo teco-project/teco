@@ -70,7 +70,7 @@ extension Scf {
 
     /// 同步Invoke调用接口
     ///
-    ///  SCF同步调用函数接口
+    /// SCF同步调用函数接口
     @inlinable
     public func invokeFunction(_ input: InvokeFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeFunctionResponse> {
         self.client.execute(action: "InvokeFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -78,7 +78,7 @@ extension Scf {
 
     /// 同步Invoke调用接口
     ///
-    ///  SCF同步调用函数接口
+    /// SCF同步调用函数接口
     @inlinable
     public func invokeFunction(_ input: InvokeFunctionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeFunctionResponse {
         try await self.client.execute(action: "InvokeFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -86,7 +86,7 @@ extension Scf {
 
     /// 同步Invoke调用接口
     ///
-    ///  SCF同步调用函数接口
+    /// SCF同步调用函数接口
     @inlinable
     public func invokeFunction(functionName: String, qualifier: String? = nil, event: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeFunctionResponse> {
         self.invokeFunction(InvokeFunctionRequest(functionName: functionName, qualifier: qualifier, event: event, logType: logType, namespace: namespace, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
@@ -94,7 +94,7 @@ extension Scf {
 
     /// 同步Invoke调用接口
     ///
-    ///  SCF同步调用函数接口
+    /// SCF同步调用函数接口
     @inlinable
     public func invokeFunction(functionName: String, qualifier: String? = nil, event: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeFunctionResponse {
         try await self.invokeFunction(InvokeFunctionRequest(functionName: functionName, qualifier: qualifier, event: event, logType: logType, namespace: namespace, routingKey: routingKey), region: region, logger: logger, on: eventLoop)

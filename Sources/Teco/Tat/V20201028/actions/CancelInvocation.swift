@@ -49,6 +49,7 @@ extension Tat {
     /// 取消命令执行
     ///
     /// 取消一台或多台CVM实例执行的命令
+    ///
     /// * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
     @inlinable @discardableResult
@@ -59,6 +60,7 @@ extension Tat {
     /// 取消命令执行
     ///
     /// 取消一台或多台CVM实例执行的命令
+    ///
     /// * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
     @inlinable @discardableResult
@@ -69,6 +71,7 @@ extension Tat {
     /// 取消命令执行
     ///
     /// 取消一台或多台CVM实例执行的命令
+    ///
     /// * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
     @inlinable @discardableResult
@@ -79,6 +82,7 @@ extension Tat {
     /// 取消命令执行
     ///
     /// 取消一台或多台CVM实例执行的命令
+    ///
     /// * 如果命令还未下发到agent，任务状态处于处于PENDING、DELIVERING、DELIVER_DELAYED，取消后任务状态是CANCELLED
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
     @inlinable @discardableResult

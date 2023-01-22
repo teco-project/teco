@@ -32,10 +32,12 @@ extension Faceid {
     /// GetRealNameAuthResult返回参数结构体
     public struct GetRealNameAuthResultResponse: TCResponseModel {
         /// 认证结果码，收费情况如下：
+        ///
         /// 收费码：
         /// 0:  姓名和身份证号一致
         /// -1: 姓名和身份证号不一致
         /// -2: 姓名和微信实名姓名不一致
+        ///
         /// 不收费码：
         /// -3: 微信号未实名
         public let resultType: String

@@ -134,6 +134,7 @@ extension Essbasic {
     }
 
     /// 此结构体 (Component) 用于描述控件属性。
+    ///
     /// 在通过文件发起合同时，对应的component有三种定位方式
     /// 1. 绝对定位方式
     /// 2. 表单域(FIELD)定位方式
@@ -142,12 +143,15 @@ extension Essbasic {
     /// https://cloud.tencent.com/document/product/1323/78346#component-.E4.B8.89.E7.A7.8D.E5.AE.9A.E4.BD.8D.E6.96.B9.E5.BC.8F.E8.AF.B4.E6.98.8E
     public struct Component: TCInputModel, TCOutputModel {
         /// 控件编号
+        ///
         /// CreateFlowByTemplates发起合同时优先以ComponentId（不为空）填充；否则以ComponentName填充
+        ///
         /// 注：
         /// 当GenerateMode=3时，通过"^"来决定是否使用关键字整词匹配能力。
         /// 例：
         /// 当GenerateMode=3时，如果传入关键字"^甲方签署^"，则会在PDF文件中有且仅有"甲方签署"关键字的地方进行对应操作。
         /// 如传入的关键字为"甲方签署"，则PDF文件中每个出现关键字的位置都会执行相应操作。
+        ///
         /// 创建控件时，此值为空
         /// 查询时返回完整结构
         public let componentId: String?
@@ -162,6 +166,7 @@ extension Essbasic {
         /// SELECTOR - 选择器控件；
         /// DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
         /// DISTRICT - 省市区行政区划控件；
+        ///
         /// 如果是SignComponent控件类型，则可选的字段为
         /// SIGN_SEAL - 签署印章控件；
         /// SIGN_DATE - 签署日期控件；
@@ -169,6 +174,7 @@ extension Essbasic {
         /// SIGN_PERSONAL_SEAL - 个人签署印章控件（使用文件发起暂不支持此类型）；
         /// SIGN_PAGING_SEAL - 骑缝章；若文件发起，需要对应填充ComponentPosY、ComponentWidth、ComponentHeight
         /// SIGN_OPINION - 签署意见控件，用户需要根据配置的签署意见内容，完成对意见内容的确认
+        ///
         /// 表单域的控件不能作为印章和签名控件
         public let componentType: String?
 
@@ -208,15 +214,19 @@ extension Essbasic {
         public let componentPosY: Float?
 
         /// 参数控件样式，json格式表述
+        ///
         /// 不同类型的控件会有部分非通用参数
+        ///
         /// TEXT/MULTI_LINE_TEXT控件可以指定
         /// 1 Font：目前只支持黑体、宋体
         /// 2 FontSize： 范围12-72
         /// 3 FontAlign： Left/Right/Center，左对齐/居中/右对齐
         /// 例如：{"FontSize":12}
+        ///
         /// ComponentType为FILL_IMAGE时，支持以下参数：
         /// NotMakeImageCenter：bool。是否设置图片居中。false：居中（默认）。 true: 不居中
         /// FillMethod: int. 填充方式。0-铺满（默认）；1-等比例缩放
+        ///
         /// ComponentType为SIGN_SIGNATURE类型可以控制签署方式
         /// {“ComponentTypeLimit”: [“xxx”]}
         /// xxx可以为：
@@ -240,6 +250,7 @@ extension Essbasic {
         public let componentValue: String?
 
         /// 日期签署控件的字号，默认为 12
+        ///
         /// 签署区日期控件会转换成图片格式并带存证，需要通过字体决定图片大小
         public let componentDateFontSize: Int64?
 
@@ -431,12 +442,14 @@ extension Essbasic {
     }
 
     /// 创建签署流程签署人入参。
+    ///
     /// 其中签署方FlowApproverInfo需要传递的参数
     /// 非单C、单B、B2C合同，ApproverType、RecipientId（模板发起合同时）必传，建议都传。其他身份标识
     /// 1-个人：Name、Mobile必传
     /// 2-渠道子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；
     /// 3-渠道合作企业不指定经办人：（暂不支持）
     /// 4-非渠道合作企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
+    ///
     /// RecipientId参数：
     /// 从DescribeTemplates接口中，可以得到模板下的签署方Recipient列表，根据模板自定义的Rolename在此结构体中确定其RecipientId
     public struct FlowApproverInfo: TCInputModel {
@@ -653,9 +666,11 @@ extension Essbasic {
     }
 
     /// 此结构体 (FlowInfo) 用于描述签署流程信息。
+    ///
     /// 【数据表格传参说明】
     /// 当模板的 ComponentType='DYNAMIC_TABLE'时（渠道版或集成版），FormField.ComponentValue需要传递json格式的字符串参数，用于确定表头&填充数据表格（支持内容的单元格合并）
     /// 输入示例1：
+    ///
     /// ```
     /// {
     ///     "headers":[
@@ -696,8 +711,11 @@ extension Essbasic {
     ///         ]
     ///     }
     /// }
+    ///
     /// ```
+    ///
     /// 输入示例2（表格表头宽度比例配置）：
+    ///
     /// ```
     /// {
     ///     "headers":[
@@ -741,8 +759,10 @@ extension Essbasic {
     ///         ]
     ///     }
     /// }
+    ///
     /// ```
     /// 表格参数说明
+    ///
     /// | 名称                | 类型    | 描述                                              |
     /// | ------------------- | ------- | ------------------------------------------------- |
     /// | headers             | Array   | 表头：不超过10列，不支持单元格合并，字数不超过100 |
@@ -752,7 +772,9 @@ extension Essbasic {
     /// | cells.N.columnStart | Integer | 单元格坐标：列起始index                           |
     /// | cells.N.columnEnd   | Integer | 单元格坐标：列结束index                           |
     /// | cells.N.content     | String  | 单元格内容，字数不超过100                         |
+    ///
     /// 表格参数headers说明
+    ///
     /// | 名称                | 类型    | 描述                                              |
     /// | ------------------- | ------- | ------------------------------------------------- |
     /// | widthPercent   | Integer | 表头单元格列占总表头的比例，例如1：30表示 此列占表头的30%，不填写时列宽度平均拆分；例如2：总2列，某一列填写40，剩余列可以为空，按照60计算。；例如3：总3列，某一列填写30，剩余2列可以为空，分别为(100-30)/2=35                    |
@@ -793,6 +815,7 @@ extension Essbasic {
 
         /// 发起方企业的签署人进行签署操作是否需要企业内部审批。
         /// 若设置为true,审核结果需通过接口 ChannelCreateFlowSignReview 通知电子签，审核通过后，发起方企业签署人方可进行签署操作，否则会阻塞其签署操作。
+        ///
         /// 注：企业可以通过此功能与企业内部的审批流程进行关联，支持手动、静默签署合同。
         public let needSignReview: Bool?
 
@@ -1116,6 +1139,7 @@ extension Essbasic {
 
     /// 解除协议的签署人，如不指定，默认使用待解除流程（即原流程）中的签署人。
     /// 注意：不支持更换C端（个人身份类型）签署人，如果原流程中含有C端签署人，默认使用原流程中的该签署人。
+    ///
     /// 如果需要指定B端（机构身份类型）签署人，其中ReleasedApprover需要传递的参数如下：
     /// ApproverNumber, OrganizationName, ApproverType必传。
     /// 对于其他身份标识

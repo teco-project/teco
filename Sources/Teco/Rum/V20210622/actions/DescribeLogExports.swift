@@ -46,7 +46,9 @@ extension Rum {
     /// 获取日志下载任务列表
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
+    ///
     /// 本接口用于获取日志下载任务列表
+    ///
     /// 默认接口请求频率限制：20次/秒
     @inlinable
     public func describeLogExports(_ input: DescribeLogExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogExportsResponse> {
@@ -56,7 +58,9 @@ extension Rum {
     /// 获取日志下载任务列表
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
+    ///
     /// 本接口用于获取日志下载任务列表
+    ///
     /// 默认接口请求频率限制：20次/秒
     @inlinable
     public func describeLogExports(_ input: DescribeLogExportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
@@ -66,7 +70,9 @@ extension Rum {
     /// 获取日志下载任务列表
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
+    ///
     /// 本接口用于获取日志下载任务列表
+    ///
     /// 默认接口请求频率限制：20次/秒
     @inlinable
     public func describeLogExports(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogExportsResponse> {
@@ -76,7 +82,9 @@ extension Rum {
     /// 获取日志下载任务列表
     ///
     /// 接口请求域名： rum.tencentcloudapi.com 。
+    ///
     /// 本接口用于获取日志下载任务列表
+    ///
     /// 默认接口请求频率限制：20次/秒
     @inlinable
     public func describeLogExports(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {

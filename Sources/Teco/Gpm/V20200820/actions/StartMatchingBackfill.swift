@@ -62,6 +62,7 @@ extension Gpm {
     /// 发起回填匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 通过调用StartMatchingBackfill，用户可以传入一个回填的匹配请求，GPM为回填请求搜索符合条件的ticket并形成一个新的match。
     @inlinable
     public func startMatchingBackfill(_ input: StartMatchingBackfillRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingBackfillResponse> {
@@ -71,6 +72,7 @@ extension Gpm {
     /// 发起回填匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 通过调用StartMatchingBackfill，用户可以传入一个回填的匹配请求，GPM为回填请求搜索符合条件的ticket并形成一个新的match。
     @inlinable
     public func startMatchingBackfill(_ input: StartMatchingBackfillRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingBackfillResponse {
@@ -80,6 +82,7 @@ extension Gpm {
     /// 发起回填匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 通过调用StartMatchingBackfill，用户可以传入一个回填的匹配请求，GPM为回填请求搜索符合条件的ticket并形成一个新的match。
     @inlinable
     public func startMatchingBackfill(matchCode: String, players: [Player], gameServerSessionId: String, matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingBackfillResponse> {
@@ -89,6 +92,7 @@ extension Gpm {
     /// 发起回填匹配
     ///
     /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
+    ///
     /// 通过调用StartMatchingBackfill，用户可以传入一个回填的匹配请求，GPM为回填请求搜索符合条件的ticket并形成一个新的match。
     @inlinable
     public func startMatchingBackfill(matchCode: String, players: [Player], gameServerSessionId: String, matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingBackfillResponse {

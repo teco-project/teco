@@ -1094,7 +1094,7 @@ extension Cdb {
         }
     }
 
-    ///  CPU负载
+    /// CPU负载
     public struct DeviceCpuInfo: TCOutputModel {
         /// 实例CPU平均使用率
         public let rate: [DeviceCpuRateInfo]

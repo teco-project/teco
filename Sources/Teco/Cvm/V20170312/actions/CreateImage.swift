@@ -32,6 +32,7 @@ extension Cvm {
 
         /// 创建Windows镜像时是否启用Sysprep。
         /// 取值范围：TRUE或FALSE，默认取值为FALSE。
+        ///
         /// 关于Sysprep的详情请参考[链接](https://cloud.tencent.com/document/product/213/43498)。
         public let sysprep: String?
 

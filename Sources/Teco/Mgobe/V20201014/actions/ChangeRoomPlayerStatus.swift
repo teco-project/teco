@@ -56,6 +56,7 @@ extension Mgobe {
     /// 修改玩家自定义状态
     ///
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    ///
     /// 修改玩家自定义状态
     @inlinable
     public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerStatusResponse> {
@@ -65,6 +66,7 @@ extension Mgobe {
     /// 修改玩家自定义状态
     ///
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    ///
     /// 修改玩家自定义状态
     @inlinable
     public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
@@ -74,6 +76,7 @@ extension Mgobe {
     /// 修改玩家自定义状态
     ///
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    ///
     /// 修改玩家自定义状态
     @inlinable
     public func changeRoomPlayerStatus(gameId: String, customStatus: UInt64, playerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerStatusResponse> {
@@ -83,6 +86,7 @@ extension Mgobe {
     /// 修改玩家自定义状态
     ///
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
+    ///
     /// 修改玩家自定义状态
     @inlinable
     public func changeRoomPlayerStatus(gameId: String, customStatus: UInt64, playerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {

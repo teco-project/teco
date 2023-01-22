@@ -65,6 +65,7 @@ extension Tiw {
 
         /// 缩略图URL前缀，比如，该URL前缀为`http://example.com/g0jb42ps49vtebjshilb/ `，那么动态PPT第1页的缩略图URL为
         /// `http://example.com/g0jb42ps49vtebjshilb/1.jpg`，其它页以此类推
+        ///
         /// 如果发起文档转码请求参数中带了ThumbnailResolution参数，并且转码类型为动态转码，该参数不为空，其余情况该参数为空字符串
         public let thumbnailUrl: String
 

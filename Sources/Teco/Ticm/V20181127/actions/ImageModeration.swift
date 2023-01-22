@@ -21,6 +21,7 @@ extension Ticm {
         /// 1. PORN，即色情识别
         /// 2. TERRORISM，即暴恐识别
         /// 3. POLITICS，即政治敏感识别
+        ///
         /// 支持多场景（Scenes）一起检测。例如，使用 Scenes=["PORN", "TERRORISM"]，即对一张图片同时进行色情识别和暴恐识别。
         public let scenes: [String]
 

@@ -204,17 +204,23 @@ extension Lp {
     /// QueryLoginProtection返回参数结构体
     public struct QueryLoginProtectionResponse: TCResponseModel {
         /// AssociateAccount
+        ///
         /// accountType 是 QQ 或微信开放账号时，用于标识 QQ 或微信用户登录后关联业务自身的账号 ID。
         /// LoginTime
+        ///
         /// 操作时间。
         /// Uid
+        ///
         /// 用户 ID 不同的 accountType 对应不同的用户 ID。如果是 QQ，则填入对应的 openid，微信用户则填入对应的 openid/unionid，手机号则填入对应真实用户手机号（如13123456789）。
         /// LoginIp
+        ///
         /// 登录 IP。
         /// Level
+        ///
         /// 0：表示无恶意。
         /// 1 - 4：恶意等级由低到高。
         /// RiskType
+        ///
         /// 风险类型。
         /// 出参不用填"Req业务侧错误码。成功时返回 Success，错误时返回具体业务错误原因。uestId"等公共出参， 详细解释>>>
         /// 注意：此字段可能返回 null，表示取不到有效值。

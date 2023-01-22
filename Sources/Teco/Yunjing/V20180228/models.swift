@@ -322,6 +322,7 @@ extension Yunjing {
         /// <li>NOTIFY_AND_AUTO_RENEW：通知过期且自动续费</li>
         /// <li>NOTIFY_AND_MANUAL_RENEW：通知过期不自动续费</li>
         /// <li>DISABLE_NOTIFY_AND_MANUAL_RENEW：不通知过期不自动续费</li>
+        ///
         /// 默认取值：NOTIFY_AND_MANUAL_RENEW。若该参数指定为NOTIFY_AND_AUTO_RENEW，在账户余额充足的情况下，实例到期后将按月自动续费。
         public let renewFlag: String?
 
@@ -470,8 +471,10 @@ extension Yunjing {
     }
 
     /// 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
+    ///
     /// 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
     /// 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
+    ///
     /// * 最多只能有5个Filter
     /// * 同一个Filter存在多个Values，Values值数量最多不能超过5个。
     public struct Filter: TCInputModel {

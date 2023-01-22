@@ -181,7 +181,9 @@ extension Cvm {
     /// 创建实例启动模板
     ///
     /// 本接口（CreateLaunchTemplate）用于创建实例启动模板。
+    ///
     /// 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
+    ///
     /// 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
     @inlinable
     public func createLaunchTemplate(_ input: CreateLaunchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaunchTemplateResponse> {
@@ -191,7 +193,9 @@ extension Cvm {
     /// 创建实例启动模板
     ///
     /// 本接口（CreateLaunchTemplate）用于创建实例启动模板。
+    ///
     /// 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
+    ///
     /// 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
     @inlinable
     public func createLaunchTemplate(_ input: CreateLaunchTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchTemplateResponse {
@@ -201,7 +205,9 @@ extension Cvm {
     /// 创建实例启动模板
     ///
     /// 本接口（CreateLaunchTemplate）用于创建实例启动模板。
+    ///
     /// 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
+    ///
     /// 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
     @inlinable
     public func createLaunchTemplate(launchTemplateName: String, placement: Placement, imageId: String, launchTemplateVersionDescription: String? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceCount: Int64? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, clientToken: String? = nil, hostName: String? = nil, actionTimer: ActionTimer? = nil, disasterRecoverGroupIds: [String]? = nil, tagSpecification: [TagSpecification]? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, userData: String? = nil, dryRun: Bool? = nil, camRoleName: String? = nil, hpcClusterId: String? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, disableApiTermination: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaunchTemplateResponse> {
@@ -211,7 +217,9 @@ extension Cvm {
     /// 创建实例启动模板
     ///
     /// 本接口（CreateLaunchTemplate）用于创建实例启动模板。
+    ///
     /// 实例启动模板是一种配置数据并可用于创建实例，其内容包含创建实例所需的配置，比如实例类型，数据盘和系统盘的类型和大小，以及安全组等信息。
+    ///
     /// 初次创建实例模板后，其模板版本为默认版本1，新版本的创建可使用CreateLaunchTemplateVersion创建，版本号递增。默认情况下，在RunInstances中指定实例启动模板，若不指定模板版本号，则使用默认版本。
     @inlinable
     public func createLaunchTemplate(launchTemplateName: String, placement: Placement, imageId: String, launchTemplateVersionDescription: String? = nil, instanceType: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceCount: Int64? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, clientToken: String? = nil, hostName: String? = nil, actionTimer: ActionTimer? = nil, disasterRecoverGroupIds: [String]? = nil, tagSpecification: [TagSpecification]? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, userData: String? = nil, dryRun: Bool? = nil, camRoleName: String? = nil, hpcClusterId: String? = nil, instanceChargeType: String? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, disableApiTermination: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaunchTemplateResponse {

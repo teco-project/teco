@@ -105,6 +105,7 @@ extension Cdn {
         /// IDC-IP Aws
         /// IDC-IP Azure
         /// IDC-IP Google
+        ///
         /// 以上所有类型，FilterName为空时，表示不过滤，获取所有内容
         public let filterName: String?
 
@@ -113,6 +114,7 @@ extension Cdn {
         /// "monitor"，监控
         /// "permit" 放行
         /// "redirect" 重定向
+        ///
         /// 尚未支持的Action
         /// "captcha" 验证码
         public let filterAction: String?

@@ -44,15 +44,11 @@ extension Ckafka {
     }
 
     /// 获取实例属性
-    ///
-    /// 获取实例属性
     @inlinable
     public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAttributesResponse> {
         self.client.execute(action: "DescribeInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例属性
-    ///
     /// 获取实例属性
     @inlinable
     public func describeInstanceAttributes(_ input: DescribeInstanceAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {
@@ -60,15 +56,11 @@ extension Ckafka {
     }
 
     /// 获取实例属性
-    ///
-    /// 获取实例属性
     @inlinable
     public func describeInstanceAttributes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAttributesResponse> {
         self.describeInstanceAttributes(DescribeInstanceAttributesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取实例属性
-    ///
     /// 获取实例属性
     @inlinable
     public func describeInstanceAttributes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAttributesResponse {

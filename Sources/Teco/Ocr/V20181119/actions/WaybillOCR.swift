@@ -73,6 +73,7 @@ extension Ocr {
     /// 运单识别
     ///
     /// 本接口支持市面上主流版式电子运单的识别，包括收件人和寄件人的姓名、电话、地址以及运单号等字段，精度均处于业界领先水平，识别准确率达到99%以上。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func waybillOCR(_ input: WaybillOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WaybillOCRResponse> {
@@ -82,6 +83,7 @@ extension Ocr {
     /// 运单识别
     ///
     /// 本接口支持市面上主流版式电子运单的识别，包括收件人和寄件人的姓名、电话、地址以及运单号等字段，精度均处于业界领先水平，识别准确率达到99%以上。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func waybillOCR(_ input: WaybillOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WaybillOCRResponse {
@@ -91,6 +93,7 @@ extension Ocr {
     /// 运单识别
     ///
     /// 本接口支持市面上主流版式电子运单的识别，包括收件人和寄件人的姓名、电话、地址以及运单号等字段，精度均处于业界领先水平，识别准确率达到99%以上。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func waybillOCR(imageBase64: String? = nil, imageUrl: String? = nil, enablePreDetect: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WaybillOCRResponse> {
@@ -100,6 +103,7 @@ extension Ocr {
     /// 运单识别
     ///
     /// 本接口支持市面上主流版式电子运单的识别，包括收件人和寄件人的姓名、电话、地址以及运单号等字段，精度均处于业界领先水平，识别准确率达到99%以上。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func waybillOCR(imageBase64: String? = nil, imageUrl: String? = nil, enablePreDetect: Bool? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WaybillOCRResponse {

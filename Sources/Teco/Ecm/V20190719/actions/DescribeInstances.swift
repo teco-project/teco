@@ -34,6 +34,7 @@ extension Ecm {
         /// image-id      String      是否必填：否      （过滤条件）按照实例的镜像ID过滤。
         /// vpc-id String      是否必填：否      （过滤条件）按照实例的vpc id过滤。
         /// subnet-id String      是否必填：否      （过滤条件）按照实例的subnet id过滤。
+        ///
         /// 若不传Filters参数则表示查询所有相关的实例信息。
         /// 单次请求的Filter.Values的上限为5。
         public let filters: [Filter]?

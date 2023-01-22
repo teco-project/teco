@@ -83,9 +83,13 @@ extension Ocr {
     /// 行驶证识别
     ///
     /// 本接口支持行驶证主页和副页所有字段的自动定位与识别。
+    ///
     /// 行驶证主页：车牌号码、车辆类型、所有人、住址、使用性质、品牌型号、识别代码、发动机号、注册日期、发证日期、发证单位。
+    ///
     /// 行驶证副页：号牌号码、档案编号、核定载人数、总质量、整备质量、核定载质量、外廓尺寸、准牵引总质量、备注、检验记录。
+    ///
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VehicleLicenseOCRResponse> {
@@ -95,9 +99,13 @@ extension Ocr {
     /// 行驶证识别
     ///
     /// 本接口支持行驶证主页和副页所有字段的自动定位与识别。
+    ///
     /// 行驶证主页：车牌号码、车辆类型、所有人、住址、使用性质、品牌型号、识别代码、发动机号、注册日期、发证日期、发证单位。
+    ///
     /// 行驶证副页：号牌号码、档案编号、核定载人数、总质量、整备质量、核定载质量、外廓尺寸、准牵引总质量、备注、检验记录。
+    ///
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func vehicleLicenseOCR(_ input: VehicleLicenseOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {
@@ -107,9 +115,13 @@ extension Ocr {
     /// 行驶证识别
     ///
     /// 本接口支持行驶证主页和副页所有字段的自动定位与识别。
+    ///
     /// 行驶证主页：车牌号码、车辆类型、所有人、住址、使用性质、品牌型号、识别代码、发动机号、注册日期、发证日期、发证单位。
+    ///
     /// 行驶证副页：号牌号码、档案编号、核定载人数、总质量、整备质量、核定载质量、外廓尺寸、准牵引总质量、备注、检验记录。
+    ///
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func vehicleLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VehicleLicenseOCRResponse> {
@@ -119,9 +131,13 @@ extension Ocr {
     /// 行驶证识别
     ///
     /// 本接口支持行驶证主页和副页所有字段的自动定位与识别。
+    ///
     /// 行驶证主页：车牌号码、车辆类型、所有人、住址、使用性质、品牌型号、识别代码、发动机号、注册日期、发证日期、发证单位。
+    ///
     /// 行驶证副页：号牌号码、档案编号、核定载人数、总质量、整备质量、核定载质量、外廓尺寸、准牵引总质量、备注、检验记录。
+    ///
     /// 另外，本接口还支持复印件、翻拍和PS告警功能。
+    ///
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func vehicleLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {

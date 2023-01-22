@@ -47,6 +47,7 @@ extension Gse {
     /// 获取用户单个模块配额
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeUserQuota）获取用户单个模块配额。
     @inlinable
     public func describeUserQuota(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaResponse> {
@@ -56,6 +57,7 @@ extension Gse {
     /// 获取用户单个模块配额
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeUserQuota）获取用户单个模块配额。
     @inlinable
     public func describeUserQuota(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {
@@ -65,6 +67,7 @@ extension Gse {
     /// 获取用户单个模块配额
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeUserQuota）获取用户单个模块配额。
     @inlinable
     public func describeUserQuota(resourceType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaResponse> {
@@ -74,6 +77,7 @@ extension Gse {
     /// 获取用户单个模块配额
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（DescribeUserQuota）获取用户单个模块配额。
     @inlinable
     public func describeUserQuota(resourceType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {

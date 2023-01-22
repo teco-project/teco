@@ -51,6 +51,7 @@ extension Gse {
     /// 获取实例登录所需要的凭据
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
     @inlinable
     public func getInstanceAccess(_ input: GetInstanceAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetInstanceAccessResponse> {
@@ -60,6 +61,7 @@ extension Gse {
     /// 获取实例登录所需要的凭据
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
     @inlinable
     public func getInstanceAccess(_ input: GetInstanceAccessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInstanceAccessResponse {
@@ -69,6 +71,7 @@ extension Gse {
     /// 获取实例登录所需要的凭据
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
     @inlinable
     public func getInstanceAccess(fleetId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetInstanceAccessResponse> {
@@ -78,6 +81,7 @@ extension Gse {
     /// 获取实例登录所需要的凭据
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口（GetInstanceAccess）用于获取实例登录所需要的凭据。
     @inlinable
     public func getInstanceAccess(fleetId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInstanceAccessResponse {

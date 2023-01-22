@@ -25,6 +25,7 @@ extension Cme {
 
         /// 任务类型集合，取值有：
         /// <li>VIDEO_EDIT_PROJECT_EXPORT：视频编辑项目导出。</li>
+        ///
         /// 注：不填不使用任务类型进行过滤。
         public let taskTypeSet: [String]?
 
@@ -32,6 +33,7 @@ extension Cme {
         /// <li>PROCESSING：处理中；</li>
         /// <li>SUCCESS：成功；</li>
         /// <li>FAIL：失败。</li>
+        ///
         /// 注：不填则不使用任务状态进行过滤。
         public let statusSet: [String]?
 

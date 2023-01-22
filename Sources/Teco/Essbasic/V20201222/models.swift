@@ -108,6 +108,7 @@ extension Essbasic {
     /// 此结构体 (Component) 用于描述控件属性。
     public struct Component: TCInputModel, TCOutputModel {
         /// 控件编号
+        ///
         /// 注：
         /// 当GenerateMode=3时，通过"^"来决定是否使用关键字整词匹配能力。
         /// 例：
@@ -160,6 +161,7 @@ extension Essbasic {
         public let componentExtra: String?
 
         /// 印章ID，如果是手写签名则为jpg或png格式的base64图片
+        ///
         /// SIGN_SEAL控件,可以用ORG_DEFAULT_SEAL表示主企业的默认印章
         /// SIGN_SEAL控件,可以用SUBORG_DEFAULT_SEAL表示子企业的默认印章
         /// SIGN_SEAL控件,可以用USER_DEFAULT_SEAL表示个人默认印章

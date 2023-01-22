@@ -66,6 +66,7 @@ extension Cme {
     ///
     /// <li>支持获取所创建的所有平台列表信息；</li>
     /// <li>支持获取指定的平台列表信息。</li>
+    ///
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
     public func describePlatforms(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlatformsResponse> {
@@ -76,6 +77,7 @@ extension Cme {
     ///
     /// <li>支持获取所创建的所有平台列表信息；</li>
     /// <li>支持获取指定的平台列表信息。</li>
+    ///
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
     public func describePlatforms(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
@@ -86,6 +88,7 @@ extension Cme {
     ///
     /// <li>支持获取所创建的所有平台列表信息；</li>
     /// <li>支持获取指定的平台列表信息。</li>
+    ///
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
     public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlatformsResponse> {
@@ -96,6 +99,7 @@ extension Cme {
     ///
     /// <li>支持获取所创建的所有平台列表信息；</li>
     /// <li>支持获取指定的平台列表信息。</li>
+    ///
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
     public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {

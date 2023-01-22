@@ -28,6 +28,7 @@ extension Tiw {
         /// - sp_tiw_dt: 动态转码页数，单位页
         /// - sp_tiw_st: 静态转码页数，单位页
         /// - sp_tiw_ric: 实时录制时长，单位分钟
+        ///
         /// 注意：动态转码以1:8的比例计算文档转码页数，静态转码以1:1的比例计算文档转码页数
         public let subProduct: String
 

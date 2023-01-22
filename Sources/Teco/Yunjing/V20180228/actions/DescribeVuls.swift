@@ -31,6 +31,7 @@ extension Yunjing {
 
         /// 过滤条件。
         /// <li>Status - String - 是否必填：否 - 状态筛选（UN_OPERATED: 待处理 | FIXED：已修复）
+        ///
         /// Status过滤条件值只能取其一，不能是“或”逻辑。
         public let filters: [Filter]?
 

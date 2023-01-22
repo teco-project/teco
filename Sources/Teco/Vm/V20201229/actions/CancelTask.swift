@@ -42,6 +42,7 @@ extension Vm {
     /// 取消任务
     ///
     /// 可使用该接口取消审核任务，成功取消后，该接口返回已取消任务的TaskId。<br>
+    ///
     /// 默认接口请求频率限制：**20次/秒**。
     @inlinable @discardableResult
     public func cancelTask(_ input: CancelTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelTaskResponse> {
@@ -51,6 +52,7 @@ extension Vm {
     /// 取消任务
     ///
     /// 可使用该接口取消审核任务，成功取消后，该接口返回已取消任务的TaskId。<br>
+    ///
     /// 默认接口请求频率限制：**20次/秒**。
     @inlinable @discardableResult
     public func cancelTask(_ input: CancelTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
@@ -60,6 +62,7 @@ extension Vm {
     /// 取消任务
     ///
     /// 可使用该接口取消审核任务，成功取消后，该接口返回已取消任务的TaskId。<br>
+    ///
     /// 默认接口请求频率限制：**20次/秒**。
     @inlinable @discardableResult
     public func cancelTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelTaskResponse> {
@@ -69,6 +72,7 @@ extension Vm {
     /// 取消任务
     ///
     /// 可使用该接口取消审核任务，成功取消后，该接口返回已取消任务的TaskId。<br>
+    ///
     /// 默认接口请求频率限制：**20次/秒**。
     @inlinable @discardableResult
     public func cancelTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {

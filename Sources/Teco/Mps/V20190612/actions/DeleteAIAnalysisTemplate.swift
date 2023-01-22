@@ -42,6 +42,7 @@ extension Mps {
     /// 删除内容分析模板
     ///
     /// 删除用户自定义内容分析模板。
+    ///
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
@@ -51,6 +52,7 @@ extension Mps {
     /// 删除内容分析模板
     ///
     /// 删除用户自定义内容分析模板。
+    ///
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(_ input: DeleteAIAnalysisTemplateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {
@@ -60,6 +62,7 @@ extension Mps {
     /// 删除内容分析模板
     ///
     /// 删除用户自定义内容分析模板。
+    ///
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIAnalysisTemplateResponse> {
@@ -69,6 +72,7 @@ extension Mps {
     /// 删除内容分析模板
     ///
     /// 删除用户自定义内容分析模板。
+    ///
     /// 注意：模板 ID 为 10000 以下的为系统预置模板，不允许删除。
     @inlinable @discardableResult
     public func deleteAIAnalysisTemplate(definition: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIAnalysisTemplateResponse {

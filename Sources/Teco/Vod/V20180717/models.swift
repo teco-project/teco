@@ -5261,6 +5261,7 @@ extension Vod {
         public let category: String
 
         /// 文件状态：Normal：正常，Forbidden：封禁。
+        ///
         /// *注意：此字段暂不支持。
         public let status: String
 
@@ -10319,6 +10320,7 @@ extension Vod {
         public let fillType: String?
 
         /// 视频恒定码率控制因子，取值范围为[1, 51]。
+        ///
         /// <font color=red>注意：</font>
         /// <li>如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；</li>
         /// <li>当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；</li>
@@ -10413,6 +10415,7 @@ extension Vod {
         public let fillType: String?
 
         /// 视频恒定码率控制因子，取值范围为[1, 51]，填 0 表示禁用该参数。
+        ///
         /// <font color=red>注意：</font>
         /// <li>如果指定该参数，将使用 CRF 的码率控制方式做转码（视频码率将不再生效）；</li>
         /// <li>当指定视频流编码格式为 H.266 时，该字段必填，推荐值为 28；</li>

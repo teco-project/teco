@@ -47,6 +47,7 @@ extension Essbasic {
     /// 销毁流程文件
     ///
     /// 通过此接口（DestroyFlowFile）可删除指定流程中的合同文件。
+    ///
     /// 注：调用此接口前，请确保此流程已属于归档状态。您可通过查询流程信息接口（DescribeFlow）进行查询。
     @inlinable @discardableResult
     public func destroyFlowFile(_ input: DestroyFlowFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyFlowFileResponse> {
@@ -56,6 +57,7 @@ extension Essbasic {
     /// 销毁流程文件
     ///
     /// 通过此接口（DestroyFlowFile）可删除指定流程中的合同文件。
+    ///
     /// 注：调用此接口前，请确保此流程已属于归档状态。您可通过查询流程信息接口（DescribeFlow）进行查询。
     @inlinable @discardableResult
     public func destroyFlowFile(_ input: DestroyFlowFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyFlowFileResponse {
@@ -65,6 +67,7 @@ extension Essbasic {
     /// 销毁流程文件
     ///
     /// 通过此接口（DestroyFlowFile）可删除指定流程中的合同文件。
+    ///
     /// 注：调用此接口前，请确保此流程已属于归档状态。您可通过查询流程信息接口（DescribeFlow）进行查询。
     @inlinable @discardableResult
     public func destroyFlowFile(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyFlowFileResponse> {
@@ -74,6 +77,7 @@ extension Essbasic {
     /// 销毁流程文件
     ///
     /// 通过此接口（DestroyFlowFile）可删除指定流程中的合同文件。
+    ///
     /// 注：调用此接口前，请确保此流程已属于归档状态。您可通过查询流程信息接口（DescribeFlow）进行查询。
     @inlinable @discardableResult
     public func destroyFlowFile(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyFlowFileResponse {

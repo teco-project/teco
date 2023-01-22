@@ -47,6 +47,7 @@ extension Lighthouse {
     /// 解绑密钥对
     ///
     /// 本接口（DisassociateInstancesKeyPairs）用于解除实例与指定密钥对的绑定关系。
+    ///
     /// * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后解绑。
     /// * 解绑密钥后，实例可以通过原来设置的密码登录。
     /// * 如果原来没有设置密码，解绑后将无法使用 SSH 登录。可以调用 ResetInstancesPassword 接口来设置登录密码。
@@ -60,6 +61,7 @@ extension Lighthouse {
     /// 解绑密钥对
     ///
     /// 本接口（DisassociateInstancesKeyPairs）用于解除实例与指定密钥对的绑定关系。
+    ///
     /// * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后解绑。
     /// * 解绑密钥后，实例可以通过原来设置的密码登录。
     /// * 如果原来没有设置密码，解绑后将无法使用 SSH 登录。可以调用 ResetInstancesPassword 接口来设置登录密码。
@@ -73,6 +75,7 @@ extension Lighthouse {
     /// 解绑密钥对
     ///
     /// 本接口（DisassociateInstancesKeyPairs）用于解除实例与指定密钥对的绑定关系。
+    ///
     /// * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后解绑。
     /// * 解绑密钥后，实例可以通过原来设置的密码登录。
     /// * 如果原来没有设置密码，解绑后将无法使用 SSH 登录。可以调用 ResetInstancesPassword 接口来设置登录密码。
@@ -86,6 +89,7 @@ extension Lighthouse {
     /// 解绑密钥对
     ///
     /// 本接口（DisassociateInstancesKeyPairs）用于解除实例与指定密钥对的绑定关系。
+    ///
     /// * 只支持 [RUNNING, STOPPED] 状态的 LINUX_UNIX 操作系统的实例。处于 RUNNING 状态的实例会强制关机，然后解绑。
     /// * 解绑密钥后，实例可以通过原来设置的密码登录。
     /// * 如果原来没有设置密码，解绑后将无法使用 SSH 登录。可以调用 ResetInstancesPassword 接口来设置登录密码。

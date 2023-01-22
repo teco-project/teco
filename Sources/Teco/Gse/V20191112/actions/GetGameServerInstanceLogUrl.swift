@@ -75,6 +75,7 @@ extension Gse {
     /// 获取游戏服务器实例的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口用于获取游戏服务器实例的日志URL。
     @inlinable
     public func getGameServerInstanceLogUrl(_ input: GetGameServerInstanceLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerInstanceLogUrlResponse> {
@@ -84,6 +85,7 @@ extension Gse {
     /// 获取游戏服务器实例的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口用于获取游戏服务器实例的日志URL。
     @inlinable
     public func getGameServerInstanceLogUrl(_ input: GetGameServerInstanceLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerInstanceLogUrlResponse {
@@ -93,6 +95,7 @@ extension Gse {
     /// 获取游戏服务器实例的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口用于获取游戏服务器实例的日志URL。
     @inlinable
     public func getGameServerInstanceLogUrl(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerInstanceLogUrlResponse> {
@@ -102,6 +105,7 @@ extension Gse {
     /// 获取游戏服务器实例的日志URL
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
+    ///
     /// 本接口用于获取游戏服务器实例的日志URL。
     @inlinable
     public func getGameServerInstanceLogUrl(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerInstanceLogUrlResponse {

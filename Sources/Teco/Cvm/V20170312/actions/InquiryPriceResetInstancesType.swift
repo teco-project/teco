@@ -51,6 +51,7 @@ extension Cvm {
     /// 调整实例配置询价
     ///
     /// 本接口 (InquiryPriceResetInstancesType) 用于调整实例的机型询价。
+    ///
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/product/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口进行调整机型询价。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
@@ -61,6 +62,7 @@ extension Cvm {
     /// 调整实例配置询价
     ///
     /// 本接口 (InquiryPriceResetInstancesType) 用于调整实例的机型询价。
+    ///
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/product/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口进行调整机型询价。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
@@ -71,6 +73,7 @@ extension Cvm {
     /// 调整实例配置询价
     ///
     /// 本接口 (InquiryPriceResetInstancesType) 用于调整实例的机型询价。
+    ///
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/product/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口进行调整机型询价。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable
@@ -81,6 +84,7 @@ extension Cvm {
     /// 调整实例配置询价
     ///
     /// 本接口 (InquiryPriceResetInstancesType) 用于调整实例的机型询价。
+    ///
     /// * 目前只支持[系统盘类型](https://cloud.tencent.com/document/product/213/15753#SystemDisk)是`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`类型的实例使用该接口进行调整机型询价。
     /// * 目前不支持[CDH](https://cloud.tencent.com/document/product/416)实例使用该接口调整机型询价。
     @inlinable

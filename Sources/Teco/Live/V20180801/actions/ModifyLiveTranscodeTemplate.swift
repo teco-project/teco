@@ -21,6 +21,7 @@ extension Live {
         public let templateId: Int64
 
         /// 视频编码：h264/h265/origin，默认origin。
+        ///
         /// origin: 保持原始编码格式
         public let vcodec: String?
 
@@ -87,6 +88,7 @@ extension Live {
 
         /// 极速高清视频码率压缩比。
         /// 极速高清目标码率=VideoBitrate * (1-AdaptBitratePercent)
+        ///
         /// 取值范围：0.0到0.5
         public let adaptBitratePercent: Float?
 

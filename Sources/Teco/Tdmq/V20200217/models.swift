@@ -864,7 +864,7 @@ extension Tdmq {
         }
     }
 
-    ///  消费者
+    /// 消费者
     public struct Consumer: TCOutputModel {
         /// 消费者开始连接的时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。

@@ -47,6 +47,7 @@ extension Cbs {
     /// 解绑定期快照策略
     ///
     /// 本接口（UnbindAutoSnapshotPolicy）用于解除云硬盘绑定的定期快照策略。
+    ///
     /// * 支持批量操作，可一次解除多个云盘与同一定期快照策略的绑定。
     /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
     @inlinable @discardableResult
@@ -57,6 +58,7 @@ extension Cbs {
     /// 解绑定期快照策略
     ///
     /// 本接口（UnbindAutoSnapshotPolicy）用于解除云硬盘绑定的定期快照策略。
+    ///
     /// * 支持批量操作，可一次解除多个云盘与同一定期快照策略的绑定。
     /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
     @inlinable @discardableResult
@@ -67,6 +69,7 @@ extension Cbs {
     /// 解绑定期快照策略
     ///
     /// 本接口（UnbindAutoSnapshotPolicy）用于解除云硬盘绑定的定期快照策略。
+    ///
     /// * 支持批量操作，可一次解除多个云盘与同一定期快照策略的绑定。
     /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
     @inlinable @discardableResult
@@ -77,6 +80,7 @@ extension Cbs {
     /// 解绑定期快照策略
     ///
     /// 本接口（UnbindAutoSnapshotPolicy）用于解除云硬盘绑定的定期快照策略。
+    ///
     /// * 支持批量操作，可一次解除多个云盘与同一定期快照策略的绑定。
     /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
     @inlinable @discardableResult

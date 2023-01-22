@@ -44,15 +44,11 @@ extension Iottid {
     }
 
     /// 单向认证测试TID
-    ///
-    /// 单向认证测试TID
     @inlinable
     public func authTestTid(_ input: AuthTestTidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
         self.client.execute(action: "AuthTestTid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 单向认证测试TID
-    ///
     /// 单向认证测试TID
     @inlinable
     public func authTestTid(_ input: AuthTestTidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
@@ -60,15 +56,11 @@ extension Iottid {
     }
 
     /// 单向认证测试TID
-    ///
-    /// 单向认证测试TID
     @inlinable
     public func authTestTid(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
         self.authTestTid(AuthTestTidRequest(data: data), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 单向认证测试TID
-    ///
     /// 单向认证测试TID
     @inlinable
     public func authTestTid(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {

@@ -111,7 +111,7 @@ extension Emr {
 
     /// 查询YARN的任务统计信息
     ///
-    ///  yarn application 统计接口查询
+    /// yarn application 统计接口查询
     @inlinable
     public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmrApplicationStaticsResponse> {
         self.client.execute(action: "DescribeEmrApplicationStatics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -119,7 +119,7 @@ extension Emr {
 
     /// 查询YARN的任务统计信息
     ///
-    ///  yarn application 统计接口查询
+    /// yarn application 统计接口查询
     @inlinable
     public func describeEmrApplicationStatics(_ input: DescribeEmrApplicationStaticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmrApplicationStaticsResponse {
         try await self.client.execute(action: "DescribeEmrApplicationStatics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -127,7 +127,7 @@ extension Emr {
 
     /// 查询YARN的任务统计信息
     ///
-    ///  yarn application 统计接口查询
+    /// yarn application 统计接口查询
     @inlinable
     public func describeEmrApplicationStatics(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmrApplicationStaticsResponse> {
         self.describeEmrApplicationStatics(DescribeEmrApplicationStaticsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -135,7 +135,7 @@ extension Emr {
 
     /// 查询YARN的任务统计信息
     ///
-    ///  yarn application 统计接口查询
+    /// yarn application 统计接口查询
     @inlinable
     public func describeEmrApplicationStatics(instanceId: String, startTime: Int64? = nil, endTime: Int64? = nil, queues: [String]? = nil, users: [String]? = nil, applicationTypes: [String]? = nil, groupBy: [String]? = nil, orderBy: String? = nil, isAsc: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmrApplicationStaticsResponse {
         try await self.describeEmrApplicationStatics(DescribeEmrApplicationStaticsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, queues: queues, users: users, applicationTypes: applicationTypes, groupBy: groupBy, orderBy: orderBy, isAsc: isAsc, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
