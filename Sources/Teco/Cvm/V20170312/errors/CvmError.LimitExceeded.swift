@@ -62,8 +62,6 @@ extension TCCvmError {
         }
 
         /// 一个实例绑定安全组数量不能超过5个
-        ///
-        /// 无
         public static var associateUSGLimitExceeded: LimitExceeded {
             LimitExceeded(.associateUSGLimitExceeded)
         }
@@ -99,8 +97,6 @@ extension TCCvmError {
         }
 
         /// IP数量超过网卡上限。
-        ///
-        /// 暂无
         public static var iPv6AddressNum: LimitExceeded {
             LimitExceeded(.iPv6AddressNum)
         }
@@ -113,13 +109,11 @@ extension TCCvmError {
         }
 
         /// 当前配额不足够生产指定数量的实例
-        ///
-        /// 无
         public static var instanceQuota: LimitExceeded {
             LimitExceeded(.instanceQuota)
         }
 
-        /// 目标实例规格不支持当前规格的外网带宽上限，不支持调整。具体可参考<a href="https://cloud.tencent.com/document/product/213/12523">公网网络带宽上限</a>。
+        /// 目标实例规格不支持当前规格的外网带宽上限，不支持调整。具体可参考[公网网络带宽上限](https://cloud.tencent.com/document/product/213/12523)。
         public static var instanceTypeBandwidth: LimitExceeded {
             LimitExceeded(.instanceTypeBandwidth)
         }
@@ -140,15 +134,11 @@ extension TCCvmError {
         }
 
         /// 安全组限额不足
-        ///
-        /// 无
         public static var singleUSGQuota: LimitExceeded {
             LimitExceeded(.singleUSGQuota)
         }
 
         /// 竞价实例类型配额不足
-        ///
-        /// 无
         public static var spotQuota: LimitExceeded {
             LimitExceeded(.spotQuota)
         }
@@ -163,15 +153,11 @@ extension TCCvmError {
         }
 
         /// 竞价实例配额不足
-        ///
-        /// 无
         public static var userSpotQuota: LimitExceeded {
             LimitExceeded(.userSpotQuota)
         }
 
         /// 子网IP不足
-        ///
-        /// 无
         public static var vpcSubnetNum: LimitExceeded {
             LimitExceeded(.vpcSubnetNum)
         }

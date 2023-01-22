@@ -371,8 +371,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 角色名鉴权失败
-    ///
-    /// 无
     public static var authFailure_CamRoleNameAuthenticateFailed: TCCvmError {
         TCCvmError(.authFailure_CamRoleNameAuthenticateFailed)
     }
@@ -383,15 +381,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 账号已经存在
-    ///
-    /// 无
     public static var failedOperation_AccountAlreadyExists: TCCvmError {
         TCCvmError(.failedOperation_AccountAlreadyExists)
     }
 
     /// 账号为当前用户
-    ///
-    /// 无
     public static var failedOperation_AccountIsYourSelf: TCCvmError {
         TCCvmError(.failedOperation_AccountIsYourSelf)
     }
@@ -401,36 +395,26 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 未找到指定的容灾组
-    ///
-    /// 无
     public static var failedOperation_DisasterRecoverGroupNotFound: TCCvmError {
         TCCvmError(.failedOperation_DisasterRecoverGroupNotFound)
     }
 
     /// 标签键存在不合法字符
-    ///
-    /// 无
     public static var failedOperation_IllegalTagKey: TCCvmError {
         TCCvmError(.failedOperation_IllegalTagKey)
     }
 
     /// 标签值存在不合法字符。
-    ///
-    /// 暂无
     public static var failedOperation_IllegalTagValue: TCCvmError {
         TCCvmError(.failedOperation_IllegalTagValue)
     }
 
     /// 询价失败
-    ///
-    /// 无
     public static var failedOperation_InquiryPriceFailed: TCCvmError {
         TCCvmError(.failedOperation_InquiryPriceFailed)
     }
 
-    /// 查询退换价格失败，找不到付款订单，请检查设备 <code>ins-xxxxxxx</code> 是否已过期。
-    ///
-    /// 无
+    /// 查询退换价格失败，找不到付款订单，请检查设备 `ins-xxxxxxx` 是否已过期。
     public static var failedOperation_InquiryRefundPriceFailed: TCCvmError {
         TCCvmError(.failedOperation_InquiryRefundPriceFailed)
     }
@@ -439,9 +423,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.failedOperation_InvalidImageState)
     }
 
-    /// 请求不支持<code>EMR</code>的实例<code>ins-xxxxxxxx</code>。
-    ///
-    /// 无
+    /// 请求不支持`EMR`的实例`ins-xxxxxxxx`。
     public static var failedOperation_InvalidInstanceApplicationRoleEmr: TCCvmError {
         TCCvmError(.failedOperation_InvalidInstanceApplicationRoleEmr)
     }
@@ -452,15 +434,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 当前实例没有弹性IP
-    ///
-    /// 无
     public static var failedOperation_NotFoundEIP: TCCvmError {
         TCCvmError(.failedOperation_NotFoundEIP)
     }
 
     /// 账号为协作者，请填写主账号
-    ///
-    /// 无
     public static var failedOperation_NotMasterAccount: TCCvmError {
         TCCvmError(.failedOperation_NotMasterAccount)
     }
@@ -481,22 +459,16 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 镜像共享失败。
-    ///
-    /// 无
     public static var failedOperation_QImageShareFailed: TCCvmError {
         TCCvmError(.failedOperation_QImageShareFailed)
     }
 
     /// 镜像共享失败。
-    ///
-    /// 无
     public static var failedOperation_RImageShareFailed: TCCvmError {
         TCCvmError(.failedOperation_RImageShareFailed)
     }
 
     /// 安全组操作失败。
-    ///
-    /// 无
     public static var failedOperation_SecurityGroupActionFailed: TCCvmError {
         TCCvmError(.failedOperation_SecurityGroupActionFailed)
     }
@@ -507,15 +479,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 不支持快照size小于云盘size。
-    ///
-    /// 暂无
     public static var failedOperation_SnapshotSizeLessThanDataSize: TCCvmError {
         TCCvmError(.failedOperation_SnapshotSizeLessThanDataSize)
     }
 
     /// 请求中指定的标签键为系统预留标签，禁止创建
-    ///
-    /// 无
     public static var failedOperation_TagKeyReserved: TCCvmError {
         TCCvmError(.failedOperation_TagKeyReserved)
     }
@@ -546,8 +514,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 内部错误
-    ///
-    /// 无
     public static var internalError_TradeUnknownError: TCCvmError {
         TCCvmError(.internalError_TradeUnknownError)
     }
@@ -587,12 +553,12 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidFilter)
     }
 
-    /// <a href="https://cloud.tencent.com/document/api/213/15753#Filter"><code>Filter</code></a>。
+    /// [`Filter`](https://cloud.tencent.com/document/api/213/15753#Filter)。
     public static var invalidFilterValue_LimitExceeded: TCCvmError {
         TCCvmError(.invalidFilterValue_LimitExceeded)
     }
 
-    /// 无效<a href="https://cloud.tencent.com/document/product/416">CDH</a> <code>ID</code>。指定的<a href="https://cloud.tencent.com/document/product/416">CDH</a> <code>ID</code>格式错误。例如<code>ID</code>长度错误<code>host-1122</code>。
+    /// 无效[CDH](https://cloud.tencent.com/document/product/416) `ID`。指定的[CDH](https://cloud.tencent.com/document/product/416) `ID`格式错误。例如`ID`长度错误`host-1122`。
     public static var invalidHostId_Malformed: TCCvmError {
         TCCvmError(.invalidHostId_Malformed)
     }
@@ -647,7 +613,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidImageOsVersion_Unsupported)
     }
 
-    /// 无效实例<code>ID</code>。指定的实例<code>ID</code>格式错误。例如实例<code>ID</code>长度错误<code>ins-1122</code>。
+    /// 无效实例`ID`。指定的实例`ID`格式错误。例如实例`ID`长度错误`ins-1122`。
     public static var invalidInstanceId_Malformed: TCCvmError {
         TCCvmError(.invalidInstanceId_Malformed)
     }
@@ -662,7 +628,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidInstanceName_TooLong)
     }
 
-    /// 该实例不满足包月<a href="https://cloud.tencent.com/document/product/213/9711">退还规则</a>。
+    /// 该实例不满足包月[退还规则](https://cloud.tencent.com/document/product/213/9711)。
     public static var invalidInstanceNotSupportedPrepaidInstance: TCCvmError {
         TCCvmError(.invalidInstanceNotSupportedPrepaidInstance)
     }
@@ -682,7 +648,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidInstance_NotSupported)
     }
 
-    /// 无效密钥对ID。指定的密钥对ID格式错误，例如 <code>ID</code> 长度错误<code>skey-1122</code>。
+    /// 无效密钥对ID。指定的密钥对ID格式错误，例如 `ID` 长度错误`skey-1122`。
     public static var invalidKeyPairId_Malformed: TCCvmError {
         TCCvmError(.invalidKeyPairId_Malformed)
     }
@@ -742,7 +708,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameterValueLimit)
     }
 
-    /// 无效参数值。指定的 <code>Offset</code> 无效。
+    /// 无效参数值。指定的 `Offset` 无效。
     public static var invalidParameterValueOffset: TCCvmError {
         TCCvmError(.invalidParameterValueOffset)
     }
@@ -788,8 +754,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// SSD云硬盘为数据盘时，购买大小不得小于100GB
-    ///
-    /// 无
     public static var invalidParameterValue_CloudSsdDataDiskSizeTooSmall: TCCvmError {
         TCCvmError(.invalidParameterValue_CloudSsdDataDiskSizeTooSmall)
     }
@@ -835,8 +799,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// HostName参数值不合法
-    ///
-    /// 无
     public static var invalidParameterValue_IllegalHostName: TCCvmError {
         TCCvmError(.invalidParameterValue_IllegalHostName)
     }
@@ -856,8 +818,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 指定机型不存在
-    ///
-    /// 无
     public static var invalidParameterValue_InstanceTypeNotFound: TCCvmError {
         TCCvmError(.invalidParameterValue_InstanceTypeNotFound)
     }
@@ -913,8 +873,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 镜像不允许执行该操作
-    ///
-    /// 无
     public static var invalidParameterValue_InvalidImageId: TCCvmError {
         TCCvmError(.invalidParameterValue_InvalidImageId)
     }
@@ -930,8 +888,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 镜像被其他操作占用，请检查，并稍后重试。
-    ///
-    /// 无
     public static var invalidParameterValue_InvalidImageState: TCCvmError {
         TCCvmError(.invalidParameterValue_InvalidImageState)
     }
@@ -942,8 +898,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// IP地址不符合规范
-    ///
-    /// 无
     public static var invalidParameterValue_InvalidIpFormat: TCCvmError {
         TCCvmError(.invalidParameterValue_InvalidIpFormat)
     }
@@ -984,15 +938,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 时间格式不合法。
-    ///
-    /// 暂无
     public static var invalidParameterValue_InvalidTimeFormat: TCCvmError {
         TCCvmError(.invalidParameterValue_InvalidTimeFormat)
     }
 
     /// UserData格式错误, 需要base64编码格式
-    ///
-    /// 无
     public static var invalidParameterValue_InvalidUserDataFormat: TCCvmError {
         TCCvmError(.invalidParameterValue_InvalidUserDataFormat)
     }
@@ -1015,8 +965,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 不支持删除默认启动模板版本。
-    ///
-    /// 暂无
     public static var invalidParameterValue_LaunchTemplateDefaultVersion: TCCvmError {
         TCCvmError(.invalidParameterValue_LaunchTemplateDefaultVersion)
     }
@@ -1037,8 +985,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 指定的实例启动模板id不存在。
-    ///
-    /// 暂无
     public static var invalidParameterValue_LaunchTemplateIdVerSetAlready: TCCvmError {
         TCCvmError(.invalidParameterValue_LaunchTemplateIdVerSetAlready)
     }
@@ -1064,8 +1010,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 参数值必须为开启DHCP的VPC
-    ///
-    /// 无
     public static var invalidParameterValue_MustDhcpEnabledVpc: TCCvmError {
         TCCvmError(.invalidParameterValue_MustDhcpEnabledVpc)
     }
@@ -1086,22 +1030,16 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 快照ID不合要求，请提供规范的快照ID，类似snap-xxxxxxxx，字母x代表小写字符或者数字
-    ///
-    /// 无
     public static var invalidParameterValue_SnapshotIdMalformed: TCCvmError {
         TCCvmError(.invalidParameterValue_SnapshotIdMalformed)
     }
 
     /// 子网ID不合要求，请提供规范的子网ID，类似subnet-xxxxxxxx，字母x代表小写字符或者数字
-    ///
-    /// 无
     public static var invalidParameterValue_SubnetIdMalformed: TCCvmError {
         TCCvmError(.invalidParameterValue_SubnetIdMalformed)
     }
 
     /// 创建失败，您指定的子网不存在，请您重新指定
-    ///
-    /// 无
     public static var invalidParameterValue_SubnetNotExist: TCCvmError {
         TCCvmError(.invalidParameterValue_SubnetNotExist)
     }
@@ -1131,9 +1069,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidParameterValue_TooLong)
     }
 
-    /// VPC ID<code>xxx</code>不合要求，请提供规范的Vpc ID， 类似vpc-xxxxxxxx，字母x代表小写字符或者数字。
-    ///
-    /// 无
+    /// VPC ID`xxx`不合要求，请提供规范的Vpc ID， 类似vpc-xxxxxxxx，字母x代表小写字符或者数字。
     public static var invalidParameterValue_VpcIdMalformed: TCCvmError {
         TCCvmError(.invalidParameterValue_VpcIdMalformed)
     }
@@ -1144,8 +1080,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// VPC网络与实例不在同一可用区
-    ///
-    /// 无
     public static var invalidParameterValue_VpcIdZoneIdNotMatch: TCCvmError {
         TCCvmError(.invalidParameterValue_VpcIdZoneIdNotMatch)
     }
@@ -1156,8 +1090,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 请求不支持该可用区
-    ///
-    /// 无
     public static var invalidParameterValue_ZoneNotSupported: TCCvmError {
         TCCvmError(.invalidParameterValue_ZoneNotSupported)
     }
@@ -1250,8 +1182,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 不支持同时指定密钥登陆和保持镜像登陆方式。
-    ///
-    /// 暂无
     public static var invalidParameter_ParameterConflict: TCCvmError {
         TCCvmError(.invalidParameter_ParameterConflict)
     }
@@ -1311,7 +1241,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidPublicKey_Duplicate)
     }
 
-    /// 无效密钥公钥。指定公钥格式错误，不符合<code>OpenSSH RSA</code>格式要求。
+    /// 无效密钥公钥。指定公钥格式错误，不符合`OpenSSH RSA`格式要求。
     public static var invalidPublicKey_Malformed: TCCvmError {
         TCCvmError(.invalidPublicKey_Malformed)
     }
@@ -1326,24 +1256,22 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.invalidRegion_Unavailable)
     }
 
-    /// 指定的<code>安全组ID</code>不存在。
+    /// 指定的`安全组ID`不存在。
     public static var invalidSecurityGroupId_NotFound: TCCvmError {
         TCCvmError(.invalidSecurityGroupId_NotFound)
     }
 
-    /// 指定的<code>安全组ID</code>格式错误，例如<code>实例ID</code>长度错误<code>sg-ide32</code>。
+    /// 指定的`安全组ID`格式错误，例如`实例ID`长度错误`sg-ide32`。
     public static var invalidSgId_Malformed: TCCvmError {
         TCCvmError(.invalidSgId_Malformed)
     }
 
-    /// 指定的<code>zone</code>不存在。
+    /// 指定的`zone`不存在。
     public static var invalidZone_MismatchRegion: TCCvmError {
         TCCvmError(.invalidZone_MismatchRegion)
     }
 
     /// 一个实例绑定安全组数量不能超过5个
-    ///
-    /// 无
     public static var limitExceeded_AssociateUSGLimitExceeded: TCCvmError {
         TCCvmError(.limitExceeded_AssociateUSGLimitExceeded)
     }
@@ -1379,8 +1307,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// IP数量超过网卡上限。
-    ///
-    /// 暂无
     public static var limitExceeded_IPv6AddressNum: TCCvmError {
         TCCvmError(.limitExceeded_IPv6AddressNum)
     }
@@ -1393,13 +1319,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 当前配额不足够生产指定数量的实例
-    ///
-    /// 无
     public static var limitExceeded_InstanceQuota: TCCvmError {
         TCCvmError(.limitExceeded_InstanceQuota)
     }
 
-    /// 目标实例规格不支持当前规格的外网带宽上限，不支持调整。具体可参考<a href="https://cloud.tencent.com/document/product/213/12523">公网网络带宽上限</a>。
+    /// 目标实例规格不支持当前规格的外网带宽上限，不支持调整。具体可参考[公网网络带宽上限](https://cloud.tencent.com/document/product/213/12523)。
     public static var limitExceeded_InstanceTypeBandwidth: TCCvmError {
         TCCvmError(.limitExceeded_InstanceTypeBandwidth)
     }
@@ -1420,15 +1344,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 安全组限额不足
-    ///
-    /// 无
     public static var limitExceeded_SingleUSGQuota: TCCvmError {
         TCCvmError(.limitExceeded_SingleUSGQuota)
     }
 
     /// 竞价实例类型配额不足
-    ///
-    /// 无
     public static var limitExceeded_SpotQuota: TCCvmError {
         TCCvmError(.limitExceeded_SpotQuota)
     }
@@ -1443,15 +1363,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 竞价实例配额不足
-    ///
-    /// 无
     public static var limitExceeded_UserSpotQuota: TCCvmError {
         TCCvmError(.limitExceeded_UserSpotQuota)
     }
 
     /// 子网IP不足
-    ///
-    /// 无
     public static var limitExceeded_VpcSubnetNum: TCCvmError {
         TCCvmError(.limitExceeded_VpcSubnetNum)
     }
@@ -1467,15 +1383,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// DPDK实例机型要求VPC网络
-    ///
-    /// 无
     public static var missingParameter_DPDKInstanceTypeRequiredVPC: TCCvmError {
         TCCvmError(.missingParameter_DPDKInstanceTypeRequiredVPC)
     }
 
     /// 该实例类型必须开启云监控服务
-    ///
-    /// 无
     public static var missingParameter_MonitorService: TCCvmError {
         TCCvmError(.missingParameter_MonitorService)
     }
@@ -1520,29 +1432,21 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 该可用区已售罄
-    ///
-    /// 无
     public static var resourceInsufficient_AvailabilityZoneSoldOut: TCCvmError {
         TCCvmError(.resourceInsufficient_AvailabilityZoneSoldOut)
     }
 
     /// 指定的云盘规格已售罄
-    ///
-    /// 无
     public static var resourceInsufficient_CloudDiskSoldOut: TCCvmError {
         TCCvmError(.resourceInsufficient_CloudDiskSoldOut)
     }
 
     /// 云盘参数不符合规范
-    ///
-    /// 无
     public static var resourceInsufficient_CloudDiskUnavailable: TCCvmError {
         TCCvmError(.resourceInsufficient_CloudDiskUnavailable)
     }
 
     /// 实例个数超过容灾组的配额
-    ///
-    /// 无
     public static var resourceInsufficient_DisasterRecoverGroupCvmQuota: TCCvmError {
         TCCvmError(.resourceInsufficient_DisasterRecoverGroupCvmQuota)
     }
@@ -1582,8 +1486,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 该可用区不售卖此机型
-    ///
-    /// 无
     public static var resourceUnavailable_InstanceType: TCCvmError {
         TCCvmError(.resourceUnavailable_InstanceType)
     }
@@ -1594,8 +1496,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 该可用区已售罄
-    ///
-    /// 无
     public static var resourcesSoldOut_AvailableZone: TCCvmError {
         TCCvmError(.resourcesSoldOut_AvailableZone)
     }
@@ -1629,8 +1529,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 请确认Token是否有效。
-    ///
-    /// 暂无
     public static var unauthorizedOperation_InvalidToken: TCCvmError {
         TCCvmError(.unauthorizedOperation_InvalidToken)
     }
@@ -1665,8 +1563,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 指定的实例付费模式或者网络付费模式不支持共享带宽包
-    ///
-    /// 无
     public static var unsupportedOperation_BandwidthPackageIdNotSupported: TCCvmError {
         TCCvmError(.unsupportedOperation_BandwidthPackageIdNotSupported)
     }
@@ -1689,8 +1585,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// IPv6实例不支持VPC迁移
-    ///
-    /// 无
     public static var unsupportedOperation_IPv6NotSupportVpcMigrate: TCCvmError {
         TCCvmError(.unsupportedOperation_IPv6NotSupportVpcMigrate)
     }
@@ -1701,8 +1595,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 请求不支持该实例计费模式
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceChargeType: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceChargeType)
     }
@@ -1717,9 +1609,7 @@ public struct TCCvmError: TCCvmErrorType {
         TCCvmError(.unsupportedOperation_InstanceMixedZoneType)
     }
 
-    /// 请求不支持操作系统为<code>Xserver windows2012cndatacenterx86_64</code>的实例<code>ins-xxxxxx</code> 。
-    ///
-    /// 暂无
+    /// 请求不支持操作系统为`Xserver windows2012cndatacenterx86_64`的实例`ins-xxxxxx` 。
     public static var unsupportedOperation_InstanceOsWindows: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceOsWindows)
     }
@@ -1735,27 +1625,21 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 请求不支持进入救援模式的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateEnterRescueMode: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateEnterRescueMode)
     }
 
-    /// 不支持状态为 <code>ENTER_SERVICE_LIVE_MIGRATE</code>.的实例 <code>ins-xxxxxx</code> 。
-    ///
-    /// 无
+    /// 不支持状态为 `ENTER_SERVICE_LIVE_MIGRATE`.的实例 `ins-xxxxxx` 。
     public static var unsupportedOperation_InstanceStateEnterServiceLiveMigrate: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateEnterServiceLiveMigrate)
     }
 
     /// 请求不支持正在退出救援模式的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateExitRescueMode: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateExitRescueMode)
     }
 
-    /// 不支持状态为 <code>EXIT_SERVICE_LIVE_MIGRATE</code>.的实例 <code>ins-xxxxxx</code> 。
+    /// 不支持状态为 `EXIT_SERVICE_LIVE_MIGRATE`.的实例 `ins-xxxxxx` 。
     public static var unsupportedOperation_InstanceStateExitServiceLiveMigrate: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateExitServiceLiveMigrate)
     }
@@ -1775,43 +1659,31 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 请求不支持创建未完成的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStatePending: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStatePending)
     }
 
     /// 请求不支持正在重启的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateRebooting: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateRebooting)
     }
 
     /// 请求不支持救援模式的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateRescueMode: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateRescueMode)
     }
 
     /// 请求不支持开机状态的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateRunning: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateRunning)
     }
 
     /// 不支持正在服务迁移的实例，请稍后再试
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateServiceLiveMigrate: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateServiceLiveMigrate)
     }
 
     /// 请求不支持隔离状态的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateShutdown: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateShutdown)
     }
@@ -1822,29 +1694,21 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 请求不支持已关机的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateStopped: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateStopped)
     }
 
     /// 请求不支持正在关机的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateStopping: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateStopping)
     }
 
     /// 不支持已销毁的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateTerminated: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateTerminated)
     }
 
     /// 请求不支持正在销毁的实例
-    ///
-    /// 无
     public static var unsupportedOperation_InstanceStateTerminating: TCCvmError {
         TCCvmError(.unsupportedOperation_InstanceStateTerminating)
     }
@@ -1865,8 +1729,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 不支持指定的磁盘
-    ///
-    /// 无
     public static var unsupportedOperation_InvalidDisk: TCCvmError {
         TCCvmError(.unsupportedOperation_InvalidDisk)
     }
@@ -1895,8 +1757,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 密钥不支持Windows操作系统
-    ///
-    /// 无
     public static var unsupportedOperation_KeyPairUnsupportedWindows: TCCvmError {
         TCCvmError(.unsupportedOperation_KeyPairUnsupportedWindows)
     }
@@ -1928,8 +1788,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 该实例类型不支持竞价计费
-    ///
-    /// 无
     public static var unsupportedOperation_NoInstanceTypeSupportSpot: TCCvmError {
         TCCvmError(.unsupportedOperation_NoInstanceTypeSupportSpot)
     }
@@ -1954,15 +1812,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 操作不支持当前实例
-    ///
-    /// 无
     public static var unsupportedOperation_NotSupportInstanceImage: TCCvmError {
         TCCvmError(.unsupportedOperation_NotSupportInstanceImage)
     }
 
     /// 该操作仅支持预付费账户
-    ///
-    /// 无
     public static var unsupportedOperation_OnlyForPrepaidAccount: TCCvmError {
         TCCvmError(.unsupportedOperation_OnlyForPrepaidAccount)
     }
@@ -1991,8 +1845,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 不支持该地域
-    ///
-    /// 无
     public static var unsupportedOperation_Region: TCCvmError {
         TCCvmError(.unsupportedOperation_Region)
     }
@@ -2013,8 +1865,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 请求不支持特殊机型的实例
-    ///
-    /// 无
     public static var unsupportedOperation_SpecialInstanceType: TCCvmError {
         TCCvmError(.unsupportedOperation_SpecialInstanceType)
     }
@@ -2024,8 +1874,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 不支持关机不收费特性
-    ///
-    /// 无
     public static var unsupportedOperation_StoppedModeStopCharging: TCCvmError {
         TCCvmError(.unsupportedOperation_StoppedModeStopCharging)
     }
@@ -2036,15 +1884,11 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 该机型为包销机型，RenewFlag的值只允许设置为NOTIFY_AND_AUTO_RENEW。
-    ///
-    /// 无
     public static var unsupportedOperation_UnderwritingInstanceTypeOnlySupportAutoRenew: TCCvmError {
         TCCvmError(.unsupportedOperation_UnderwritingInstanceTypeOnlySupportAutoRenew)
     }
 
     /// 指定机型不支持跨机型调整配置。
-    ///
-    /// 暂无
     public static var unsupportedOperation_UnsupportedChangeInstanceFamily: TCCvmError {
         TCCvmError(.unsupportedOperation_UnsupportedChangeInstanceFamily)
     }
@@ -2060,8 +1904,6 @@ public struct TCCvmError: TCCvmErrorType {
     }
 
     /// 请求不支持国际版账号
-    ///
-    /// 无
     public static var unsupportedOperation_UnsupportedInternationalUser: TCCvmError {
         TCCvmError(.unsupportedOperation_UnsupportedInternationalUser)
     }

@@ -745,7 +745,7 @@ extension TCScfError {
             InvalidParameterValue(.zipFile)
         }
 
-        /// 压缩文件base64解码失败: <code>Incorrect padding</code>，请修正后再试。
+        /// 压缩文件base64解码失败: `Incorrect padding`，请修正后再试。
         ///
         /// 检查压缩文件base64编码是否合法
         public static var zipFileBase64BinasciiError: InvalidParameterValue {

@@ -43,8 +43,6 @@ extension TCEmrError {
         }
 
         /// 引导脚本数量超过限制。
-        ///
-        /// 占位符
         public static var bootstrapActionsNumLimitExceeded: LimitExceeded {
             LimitExceeded(.bootstrapActionsNumLimitExceeded)
         }

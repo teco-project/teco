@@ -44,8 +44,6 @@ extension TCEmrError {
         }
 
         /// 该服务不支持此操作。
-        ///
-        /// 占位符
         public static var serviceNotSupport: UnsupportedOperation {
             UnsupportedOperation(.serviceNotSupport)
         }

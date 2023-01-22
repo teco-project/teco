@@ -42,7 +42,7 @@ extension TCCbsError {
             self.context = context
         }
 
-        /// 输入的<code>SnapshotId</code>不存在。
+        /// 输入的`SnapshotId`不存在。
         public static var notFound: InvalidSnapshotId {
             InvalidSnapshotId(.notFound)
         }

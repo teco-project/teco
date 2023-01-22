@@ -108,7 +108,7 @@ extension TCLighthouseError {
             InternalError(.invalidBundlePrice)
         }
 
-        /// 命令 <code>DescribeInstanceLoginKeyPair</code> 无法找到。
+        /// 命令 `DescribeInstanceLoginKeyPair` 无法找到。
         public static var invalidCommandNotFound: InternalError {
             InternalError(.invalidCommandNotFound)
         }

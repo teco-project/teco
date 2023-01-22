@@ -154,8 +154,6 @@ extension TCCvmError {
         }
 
         /// 不支持同时指定密钥登陆和保持镜像登陆方式。
-        ///
-        /// 暂无
         public static var parameterConflict: InvalidParameter {
             InvalidParameter(.parameterConflict)
         }

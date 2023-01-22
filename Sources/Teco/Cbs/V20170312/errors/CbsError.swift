@@ -163,12 +163,12 @@ public struct TCCbsError: TCCbsErrorType {
         TCCbsError(.invalidAccount_InsufficientBalance)
     }
 
-    /// 输入的<code>AutoSnapshotPolicyId</code>不存在。
+    /// 输入的`AutoSnapshotPolicyId`不存在。
     public static var invalidAutoSnapshotPolicyId_NotFound: TCCbsError {
         TCCbsError(.invalidAutoSnapshotPolicyId_NotFound)
     }
 
-    /// 输入的<code>DiskId</code>不存在。
+    /// 输入的`DiskId`不存在。
     public static var invalidDiskId_NotFound: TCCbsError {
         TCCbsError(.invalidDiskId_NotFound)
     }
@@ -218,7 +218,7 @@ public struct TCCbsError: TCCbsErrorType {
         TCCbsError(.invalidFilter)
     }
 
-    /// 输入实例的<code>InstanceId</code>不存在。
+    /// 输入实例的`InstanceId`不存在。
     public static var invalidInstanceId_NotFound: TCCbsError {
         TCCbsError(.invalidInstanceId_NotFound)
     }
@@ -268,7 +268,7 @@ public struct TCCbsError: TCCbsErrorType {
         TCCbsError(.invalidParameter_ShouldConvertSnapshotToImage)
     }
 
-    /// 输入的<code>SnapshotId</code>不存在。
+    /// 输入的`SnapshotId`不存在。
     public static var invalidSnapshotId_NotFound: TCCbsError {
         TCCbsError(.invalidSnapshotId_NotFound)
     }

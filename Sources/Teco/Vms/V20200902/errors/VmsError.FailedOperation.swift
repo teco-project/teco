@@ -56,17 +56,17 @@ extension TCVmsError {
             FailedOperation(.accessUpstreamTimeout)
         }
 
-        /// 语音内容中含有敏感词，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>沟通解决。
+        /// 语音内容中含有敏感词，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)沟通解决。
         public static var containSensitiveWord: FailedOperation {
             FailedOperation(.containSensitiveWord)
         }
 
-        /// 后端请求包解析失败，通常由于没有遵守 API 接口说明规范导致的，请参见<a href="https://cloud.tencent.com/document/product/1128/38004#Q7">1004错误详解</a>。
+        /// 后端请求包解析失败，通常由于没有遵守 API 接口说明规范导致的，请参见[1004错误详解](https://cloud.tencent.com/document/product/1128/38004#Q7)。
         public static var failResolvePacket: FailedOperation {
             FailedOperation(.failResolvePacket)
         }
 
-        /// 套餐包余量不足，请及时<a href="https://cloud.tencent.com/document/product/1128#buyPackage">购买语音套餐包</a>。
+        /// 套餐包余量不足，请及时[购买语音套餐包](https://cloud.tencent.com/document/product/1128#buyPackage)。
         public static var insufficientBalanceInVoicePackage: FailedOperation {
             FailedOperation(.insufficientBalanceInVoicePackage)
         }
@@ -86,12 +86,12 @@ extension TCVmsError {
             FailedOperation(.jsonParseFail)
         }
 
-        /// 语音未知错误，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>沟通解决。
+        /// 语音未知错误，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)沟通解决。
         public static var parametersOtherError: FailedOperation {
             FailedOperation(.parametersOtherError)
         }
 
-        /// 未申请号码或申请的号码资源已过期，请及时支付月功能费用和信息服务费用，具体操作请参见<a href="https://cloud.tencent.com/document/product/1128">购买指南</a>。
+        /// 未申请号码或申请的号码资源已过期，请及时支付月功能费用和信息服务费用，具体操作请参见[购买指南](https://cloud.tencent.com/document/product/1128)。
         public static var phonenumberUnappliedOrExpired: FailedOperation {
             FailedOperation(.phonenumberUnappliedOrExpired)
         }

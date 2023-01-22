@@ -45,15 +45,11 @@ extension TCEmrError {
         }
 
         /// CBS资源售罄。
-        ///
-        /// 占位符
         public static var cbsSoldOut: ResourcesSoldOut {
             ResourcesSoldOut(.cbsSoldOut)
         }
 
         /// 云服务器已售罄。
-        ///
-        /// 占位符
         public static var cvmSoldOut: ResourcesSoldOut {
             ResourcesSoldOut(.cvmSoldOut)
         }

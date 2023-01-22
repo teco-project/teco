@@ -66,7 +66,7 @@ extension TCSmsError {
             InvalidParameterValue(.beginTimeVerifyFail)
         }
 
-        /// 请求的短信内容太长，短信长度规则请参考 <a href="https://cloud.tencent.com/document/product/382/18058">国内短信内容长度计算规则</a>。
+        /// 请求的短信内容太长，短信长度规则请参考 [国内短信内容长度计算规则](https://cloud.tencent.com/document/product/382/18058)。
         public static var contentLengthLimit: InvalidParameterValue {
             InvalidParameterValue(.contentLengthLimit)
         }
@@ -76,27 +76,27 @@ extension TCSmsError {
             InvalidParameterValue(.endTimeVerifyFail)
         }
 
-        /// 上传的转码图片格式错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// 上传的转码图片格式错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var imageInvalid: InvalidParameterValue {
             InvalidParameterValue(.imageInvalid)
         }
 
-        /// 手机号格式错误，请参考 <a href="https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1016.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F">1016错误详解</a>。
+        /// 手机号格式错误，请参考 [1016错误详解](https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E1016.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)。
         public static var incorrectPhoneNumber: InvalidParameterValue {
             InvalidParameterValue(.incorrectPhoneNumber)
         }
 
-        /// DocumentType 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// DocumentType 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var invalidDocumentType: InvalidParameterValue {
             InvalidParameterValue(.invalidDocumentType)
         }
 
-        /// International 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// International 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var invalidInternational: InvalidParameterValue {
             InvalidParameterValue(.invalidInternational)
         }
 
-        /// SignPurpose 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// SignPurpose 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var invalidSignPurpose: InvalidParameterValue {
             InvalidParameterValue(.invalidSignPurpose)
         }
@@ -106,12 +106,12 @@ extension TCSmsError {
             InvalidParameterValue(.invalidStartTime)
         }
 
-        /// 模板格式错误，请参考<a href="https://cloud.tencent.com/document/product/382/39023">正文模板审核标准</a>。
+        /// 模板格式错误，请参考[正文模板审核标准](https://cloud.tencent.com/document/product/382/39023)。
         public static var invalidTemplateFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidTemplateFormat)
         }
 
-        /// UsedMethod 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// UsedMethod 字段校验错误，请参照 API 接口说明中对改字段的说明，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var invalidUsedMethod: InvalidParameterValue {
             InvalidParameterValue(.invalidUsedMethod)
         }
@@ -153,12 +153,12 @@ extension TCSmsError {
             InvalidParameterValue(.templateParameterFormatError)
         }
 
-        /// 单个模板变量字符数超过12个，企业认证用户不限制单个变量值字数，您可以 <a href="https://cloud.tencent.com/document/product/378/34075">变更实名认证模式</a>，变更为企业认证用户后，该限制变更约1小时左右生效。
+        /// 单个模板变量字符数超过12个，企业认证用户不限制单个变量值字数，您可以 [变更实名认证模式](https://cloud.tencent.com/document/product/378/34075)，变更为企业认证用户后，该限制变更约1小时左右生效。
         public static var templateParameterLengthLimit: InvalidParameterValue {
             InvalidParameterValue(.templateParameterLengthLimit)
         }
 
-        /// 模板内容存在敏感词，请参考<a href="https://cloud.tencent.com/document/product/382/39023">正文模板审核标准</a>。
+        /// 模板内容存在敏感词，请参考[正文模板审核标准](https://cloud.tencent.com/document/product/382/39023)。
         public static var templateWithDirtyWords: InvalidParameterValue {
             InvalidParameterValue(.templateWithDirtyWords)
         }

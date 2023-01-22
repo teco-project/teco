@@ -53,8 +53,6 @@ extension TCCvmError {
         }
 
         /// 请确认Token是否有效。
-        ///
-        /// 暂无
         public static var invalidToken: UnauthorizedOperation {
             UnauthorizedOperation(.invalidToken)
         }

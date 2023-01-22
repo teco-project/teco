@@ -43,7 +43,7 @@ extension TCCvmError {
             self.context = context
         }
 
-        /// 无效实例<code>ID</code>。指定的实例<code>ID</code>格式错误。例如实例<code>ID</code>长度错误<code>ins-1122</code>。
+        /// 无效实例`ID`。指定的实例`ID`格式错误。例如实例`ID`长度错误`ins-1122`。
         public static var malformed: InvalidInstanceId {
             InvalidInstanceId(.malformed)
         }

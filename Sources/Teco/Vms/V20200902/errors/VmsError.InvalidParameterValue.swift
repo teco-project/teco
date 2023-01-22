@@ -51,7 +51,7 @@ extension TCVmsError {
             InvalidParameterValue(.calledNumberVerifyFail)
         }
 
-        /// 语音模板中单个变量长度超过限制，如需调整限制，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
+        /// 语音模板中单个变量长度超过限制，如需调整限制，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)。
         public static var contentLengthLimit: InvalidParameterValue {
             InvalidParameterValue(.contentLengthLimit)
         }

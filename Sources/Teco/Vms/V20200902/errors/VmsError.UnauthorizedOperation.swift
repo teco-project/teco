@@ -44,12 +44,12 @@ extension TCVmsError {
             self.context = context
         }
 
-        /// SDK AppID 禁用发送语音消息，如有需要请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
+        /// SDK AppID 禁用发送语音消息，如有需要请[联系我们](https://cloud.tencent.com/document/product/1128/37720)。
         public static var sdkAppidIsDisabled: UnauthorizedOperation {
             UnauthorizedOperation(.sdkAppidIsDisabled)
         }
 
-        /// 因腾讯云账号欠费被停止服务，请及时为您的腾讯云账号<a href="https://cloud.tencent.com/document/product/555/7425">充值</a>缴清欠款。
+        /// 因腾讯云账号欠费被停止服务，请及时为您的腾讯云账号[充值](https://cloud.tencent.com/document/product/555/7425)缴清欠款。
         public static var serviceSuspendDueToArrears: UnauthorizedOperation {
             UnauthorizedOperation(.serviceSuspendDueToArrears)
         }

@@ -45,15 +45,11 @@ extension TCEmrError {
         }
 
         /// 重复的订单，请检查emr控制台。
-        ///
-        /// 占位符
         public static var duplicateOrderNotAllowed: FailedOperation {
             FailedOperation(.duplicateOrderNotAllowed)
         }
 
         /// 操作失败，不支持pod。
-        ///
-        /// 占位符
         public static var notSupportPod: FailedOperation {
             FailedOperation(.notSupportPod)
         }

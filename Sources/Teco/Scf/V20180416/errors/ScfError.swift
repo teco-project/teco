@@ -1226,7 +1226,7 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.invalidParameterValue_ZipFile)
     }
 
-    /// 压缩文件base64解码失败: <code>Incorrect padding</code>，请修正后再试。
+    /// 压缩文件base64解码失败: `Incorrect padding`，请修正后再试。
     ///
     /// 检查压缩文件base64编码是否合法
     public static var invalidParameterValue_ZipFileBase64BinasciiError: TCScfError {
@@ -1287,7 +1287,7 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.limitExceeded_Eip)
     }
 
-    /// 函数数量超出最大限制 ，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
+    /// 函数数量超出最大限制 ，可通过[提交工单](https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex)申请提升限制。
     public static var limitExceeded_Function: TCScfError {
         TCScfError(.limitExceeded_Function)
     }
@@ -1347,7 +1347,7 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.limitExceeded_MsgTTL)
     }
 
-    /// 命名空间数量超过最大限制，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
+    /// 命名空间数量超过最大限制，可通过[提交工单](https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex)申请提升限制。
     public static var limitExceeded_Namespace: TCScfError {
         TCScfError(.limitExceeded_Namespace)
     }
@@ -1387,7 +1387,7 @@ public struct TCScfError: TCScfErrorType {
         TCScfError(.limitExceeded_TotalConcurrencyMemory)
     }
 
-    /// 触发器数量超出最大限制，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
+    /// 触发器数量超出最大限制，可通过[提交工单](https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex)申请提升限制。
     public static var limitExceeded_Trigger: TCScfError {
         TCScfError(.limitExceeded_Trigger)
     }

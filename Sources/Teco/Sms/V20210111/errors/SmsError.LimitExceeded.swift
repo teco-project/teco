@@ -78,12 +78,12 @@ extension TCSmsError {
             LimitExceeded(.appMainlandChinaDailyLimit)
         }
 
-        /// 短信日下发条数超过设定的上限 (国际/港澳台)，如需调整限制，可联系 <a href="https://cloud.tencent.com/document/product/382/3773">腾讯云短信小助手</a>。
+        /// 短信日下发条数超过设定的上限 (国际/港澳台)，如需调整限制，可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773)。
         public static var dailyLimit: LimitExceeded {
             LimitExceeded(.dailyLimit)
         }
 
-        /// 下发短信命中了频率限制策略，可自行到控制台调整短信频率限制策略，如有其他需求请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// 下发短信命中了频率限制策略，可自行到控制台调整短信频率限制策略，如有其他需求请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var deliveryFrequencyLimit: LimitExceeded {
             LimitExceeded(.deliveryFrequencyLimit)
         }

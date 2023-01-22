@@ -50,57 +50,41 @@ extension TCEmrError {
         }
 
         /// 资源不存在。
-        ///
-        /// 占位符
         public static var cdbInfoNotFound: ResourceNotFound {
             ResourceNotFound(.cdbInfoNotFound)
         }
 
         /// 无法找到该实例。
-        ///
-        /// 占位符
         public static var clusterNotFound: ResourceNotFound {
             ResourceNotFound(.clusterNotFound)
         }
 
         /// 无法找到硬件信息。
-        ///
-        /// 占位符
         public static var hardwareInfoNotFound: ResourceNotFound {
             ResourceNotFound(.hardwareInfoNotFound)
         }
 
         /// 无法找到该实例。
-        ///
-        /// 占位符
         public static var instanceNotFound: ResourceNotFound {
             ResourceNotFound(.instanceNotFound)
         }
 
         /// 无法找到监控元数据。
-        ///
-        /// 占位符
         public static var resourceNotFound: ResourceNotFound {
             ResourceNotFound(.resourceNotFound)
         }
 
         /// 找不到对应的子网。
-        ///
-        /// 占位符
         public static var subnetNotFound: ResourceNotFound {
             ResourceNotFound(.subnetNotFound)
         }
 
         /// 没有查找到指定标签。
-        ///
-        /// 占位符
         public static var tagsNotFound: ResourceNotFound {
             ResourceNotFound(.tagsNotFound)
         }
 
         /// tke集群前置组件未部署。
-        ///
-        /// 占位符
         public static var tkePreconditionNotFound: ResourceNotFound {
             ResourceNotFound(.tkePreconditionNotFound)
         }

@@ -42,7 +42,7 @@ extension TCCvmError {
             self.context = context
         }
 
-        /// 指定的<code>zone</code>不存在。
+        /// 指定的`zone`不存在。
         public static var mismatchRegion: InvalidZone {
             InvalidZone(.mismatchRegion)
         }

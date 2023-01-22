@@ -116,7 +116,7 @@ extension TCLighthouseError {
             InvalidParameterValue(.diskSizeNotMatch)
         }
 
-        /// 参数 <code>KeyName</code> 已经存在且重复。
+        /// 参数 `KeyName` 已经存在且重复。
         public static var duplicateParameterValue: InvalidParameterValue {
             InvalidParameterValue(.duplicateParameterValue)
         }

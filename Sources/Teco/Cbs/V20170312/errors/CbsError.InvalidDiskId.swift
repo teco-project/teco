@@ -42,7 +42,7 @@ extension TCCbsError {
             self.context = context
         }
 
-        /// 输入的<code>DiskId</code>不存在。
+        /// 输入的`DiskId`不存在。
         public static var notFound: InvalidDiskId {
             InvalidDiskId(.notFound)
         }

@@ -43,7 +43,7 @@ extension TCCvmError {
             self.context = context
         }
 
-        /// 无效<a href="https://cloud.tencent.com/document/product/416">CDH</a> <code>ID</code>。指定的<a href="https://cloud.tencent.com/document/product/416">CDH</a> <code>ID</code>格式错误。例如<code>ID</code>长度错误<code>host-1122</code>。
+        /// 无效[CDH](https://cloud.tencent.com/document/product/416) `ID`。指定的[CDH](https://cloud.tencent.com/document/product/416) `ID`格式错误。例如`ID`长度错误`host-1122`。
         public static var malformed: InvalidHostId {
             InvalidHostId(.malformed)
         }

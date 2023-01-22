@@ -66,15 +66,11 @@ extension TCCvmError {
         }
 
         /// 账号已经存在
-        ///
-        /// 无
         public static var accountAlreadyExists: FailedOperation {
             FailedOperation(.accountAlreadyExists)
         }
 
         /// 账号为当前用户
-        ///
-        /// 无
         public static var accountIsYourSelf: FailedOperation {
             FailedOperation(.accountIsYourSelf)
         }
@@ -84,36 +80,26 @@ extension TCCvmError {
         }
 
         /// 未找到指定的容灾组
-        ///
-        /// 无
         public static var disasterRecoverGroupNotFound: FailedOperation {
             FailedOperation(.disasterRecoverGroupNotFound)
         }
 
         /// 标签键存在不合法字符
-        ///
-        /// 无
         public static var illegalTagKey: FailedOperation {
             FailedOperation(.illegalTagKey)
         }
 
         /// 标签值存在不合法字符。
-        ///
-        /// 暂无
         public static var illegalTagValue: FailedOperation {
             FailedOperation(.illegalTagValue)
         }
 
         /// 询价失败
-        ///
-        /// 无
         public static var inquiryPriceFailed: FailedOperation {
             FailedOperation(.inquiryPriceFailed)
         }
 
-        /// 查询退换价格失败，找不到付款订单，请检查设备 <code>ins-xxxxxxx</code> 是否已过期。
-        ///
-        /// 无
+        /// 查询退换价格失败，找不到付款订单，请检查设备 `ins-xxxxxxx` 是否已过期。
         public static var inquiryRefundPriceFailed: FailedOperation {
             FailedOperation(.inquiryRefundPriceFailed)
         }
@@ -122,9 +108,7 @@ extension TCCvmError {
             FailedOperation(.invalidImageState)
         }
 
-        /// 请求不支持<code>EMR</code>的实例<code>ins-xxxxxxxx</code>。
-        ///
-        /// 无
+        /// 请求不支持`EMR`的实例`ins-xxxxxxxx`。
         public static var invalidInstanceApplicationRoleEmr: FailedOperation {
             FailedOperation(.invalidInstanceApplicationRoleEmr)
         }
@@ -135,15 +119,11 @@ extension TCCvmError {
         }
 
         /// 当前实例没有弹性IP
-        ///
-        /// 无
         public static var notFoundEIP: FailedOperation {
             FailedOperation(.notFoundEIP)
         }
 
         /// 账号为协作者，请填写主账号
-        ///
-        /// 无
         public static var notMasterAccount: FailedOperation {
             FailedOperation(.notMasterAccount)
         }
@@ -164,22 +144,16 @@ extension TCCvmError {
         }
 
         /// 镜像共享失败。
-        ///
-        /// 无
         public static var qImageShareFailed: FailedOperation {
             FailedOperation(.qImageShareFailed)
         }
 
         /// 镜像共享失败。
-        ///
-        /// 无
         public static var rImageShareFailed: FailedOperation {
             FailedOperation(.rImageShareFailed)
         }
 
         /// 安全组操作失败。
-        ///
-        /// 无
         public static var securityGroupActionFailed: FailedOperation {
             FailedOperation(.securityGroupActionFailed)
         }
@@ -190,15 +164,11 @@ extension TCCvmError {
         }
 
         /// 不支持快照size小于云盘size。
-        ///
-        /// 暂无
         public static var snapshotSizeLessThanDataSize: FailedOperation {
             FailedOperation(.snapshotSizeLessThanDataSize)
         }
 
         /// 请求中指定的标签键为系统预留标签，禁止创建
-        ///
-        /// 无
         public static var tagKeyReserved: FailedOperation {
             FailedOperation(.tagKeyReserved)
         }

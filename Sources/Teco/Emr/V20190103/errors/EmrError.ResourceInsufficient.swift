@@ -44,15 +44,11 @@ extension TCEmrError {
         }
 
         /// 硬盘规格不满足。
-        ///
-        /// 占位符
         public static var diskInsufficient: ResourceInsufficient {
             ResourceInsufficient(.diskInsufficient)
         }
 
         /// 不支持或售罄的节点规格。
-        ///
-        /// 占位符
         public static var instanceInsufficient: ResourceInsufficient {
             ResourceInsufficient(.instanceInsufficient)
         }

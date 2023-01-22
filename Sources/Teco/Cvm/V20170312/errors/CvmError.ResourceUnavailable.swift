@@ -44,8 +44,6 @@ extension TCCvmError {
         }
 
         /// 该可用区不售卖此机型
-        ///
-        /// 无
         public static var instanceType: ResourceUnavailable {
             ResourceUnavailable(.instanceType)
         }

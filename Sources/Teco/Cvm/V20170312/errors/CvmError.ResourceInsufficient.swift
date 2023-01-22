@@ -48,29 +48,21 @@ extension TCCvmError {
         }
 
         /// 该可用区已售罄
-        ///
-        /// 无
         public static var availabilityZoneSoldOut: ResourceInsufficient {
             ResourceInsufficient(.availabilityZoneSoldOut)
         }
 
         /// 指定的云盘规格已售罄
-        ///
-        /// 无
         public static var cloudDiskSoldOut: ResourceInsufficient {
             ResourceInsufficient(.cloudDiskSoldOut)
         }
 
         /// 云盘参数不符合规范
-        ///
-        /// 无
         public static var cloudDiskUnavailable: ResourceInsufficient {
             ResourceInsufficient(.cloudDiskUnavailable)
         }
 
         /// 实例个数超过容灾组的配额
-        ///
-        /// 无
         public static var disasterRecoverGroupCvmQuota: ResourceInsufficient {
             ResourceInsufficient(.disasterRecoverGroupCvmQuota)
         }

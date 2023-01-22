@@ -42,7 +42,7 @@ extension TCVmsError {
             self.context = context
         }
 
-        /// 下发语音消息时命中频率限制策略，如需申请不受频率限制的测试号码或更改限制策略，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
+        /// 下发语音消息时命中频率限制策略，如需申请不受频率限制的测试号码或更改限制策略，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)。
         public static var deliveryFrequencyLimit: LimitExceeded {
             LimitExceeded(.deliveryFrequencyLimit)
         }

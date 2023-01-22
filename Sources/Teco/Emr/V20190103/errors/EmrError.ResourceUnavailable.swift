@@ -43,8 +43,6 @@ extension TCEmrError {
         }
 
         /// 当前资源规格不存在默认规格。
-        ///
-        /// 占位符
         public static var resourceSpecNotDefaultSpec: ResourceUnavailable {
             ResourceUnavailable(.resourceSpecNotDefaultSpec)
         }

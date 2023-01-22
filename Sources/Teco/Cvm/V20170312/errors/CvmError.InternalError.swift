@@ -44,8 +44,6 @@ extension TCCvmError {
         }
 
         /// 内部错误
-        ///
-        /// 无
         public static var tradeUnknownError: InternalError {
             InternalError(.tradeUnknownError)
         }

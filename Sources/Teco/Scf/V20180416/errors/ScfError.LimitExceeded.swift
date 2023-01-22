@@ -86,7 +86,7 @@ extension TCScfError {
             LimitExceeded(.eip)
         }
 
-        /// 函数数量超出最大限制 ，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
+        /// 函数数量超出最大限制 ，可通过[提交工单](https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex)申请提升限制。
         public static var function: LimitExceeded {
             LimitExceeded(.function)
         }
@@ -146,7 +146,7 @@ extension TCScfError {
             LimitExceeded(.msgTTL)
         }
 
-        /// 命名空间数量超过最大限制，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
+        /// 命名空间数量超过最大限制，可通过[提交工单](https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex)申请提升限制。
         public static var namespace: LimitExceeded {
             LimitExceeded(.namespace)
         }
@@ -186,7 +186,7 @@ extension TCScfError {
             LimitExceeded(.totalConcurrencyMemory)
         }
 
-        /// 触发器数量超出最大限制，可通过<a href="https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex">提交工单</a>申请提升限制。
+        /// 触发器数量超出最大限制，可通过[提交工单](https://cloud.tencent.com/act/event/Online_service?from=scf%7Cindex)申请提升限制。
         public static var trigger: LimitExceeded {
             LimitExceeded(.trigger)
         }

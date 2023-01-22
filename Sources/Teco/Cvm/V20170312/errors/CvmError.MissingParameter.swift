@@ -51,15 +51,11 @@ extension TCCvmError {
         }
 
         /// DPDK实例机型要求VPC网络
-        ///
-        /// 无
         public static var dpdkInstanceTypeRequiredVPC: MissingParameter {
             MissingParameter(.dpdkInstanceTypeRequiredVPC)
         }
 
         /// 该实例类型必须开启云监控服务
-        ///
-        /// 无
         public static var monitorService: MissingParameter {
             MissingParameter(.monitorService)
         }

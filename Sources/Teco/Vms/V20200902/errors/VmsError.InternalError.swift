@@ -72,7 +72,7 @@ extension TCVmsError {
             InternalError(.ssoSendRecvFail)
         }
 
-        /// 语音上游错误，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>沟通解决。
+        /// 语音上游错误，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)沟通解决。
         public static var upstreamError: InternalError {
             InternalError(.upstreamError)
         }

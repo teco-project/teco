@@ -48,7 +48,7 @@ extension TCCvmError {
             InvalidPublicKey(.duplicate)
         }
 
-        /// 无效密钥公钥。指定公钥格式错误，不符合<code>OpenSSH RSA</code>格式要求。
+        /// 无效密钥公钥。指定公钥格式错误，不符合`OpenSSH RSA`格式要求。
         public static var malformed: InvalidPublicKey {
             InvalidPublicKey(.malformed)
         }

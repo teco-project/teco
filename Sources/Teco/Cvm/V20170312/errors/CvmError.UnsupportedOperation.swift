@@ -115,8 +115,6 @@ extension TCCvmError {
         }
 
         /// 指定的实例付费模式或者网络付费模式不支持共享带宽包
-        ///
-        /// 无
         public static var bandwidthPackageIdNotSupported: UnsupportedOperation {
             UnsupportedOperation(.bandwidthPackageIdNotSupported)
         }
@@ -139,8 +137,6 @@ extension TCCvmError {
         }
 
         /// IPv6实例不支持VPC迁移
-        ///
-        /// 无
         public static var iPv6NotSupportVpcMigrate: UnsupportedOperation {
             UnsupportedOperation(.iPv6NotSupportVpcMigrate)
         }
@@ -151,8 +147,6 @@ extension TCCvmError {
         }
 
         /// 请求不支持该实例计费模式
-        ///
-        /// 无
         public static var instanceChargeType: UnsupportedOperation {
             UnsupportedOperation(.instanceChargeType)
         }
@@ -167,9 +161,7 @@ extension TCCvmError {
             UnsupportedOperation(.instanceMixedZoneType)
         }
 
-        /// 请求不支持操作系统为<code>Xserver windows2012cndatacenterx86_64</code>的实例<code>ins-xxxxxx</code> 。
-        ///
-        /// 暂无
+        /// 请求不支持操作系统为`Xserver windows2012cndatacenterx86_64`的实例`ins-xxxxxx` 。
         public static var instanceOsWindows: UnsupportedOperation {
             UnsupportedOperation(.instanceOsWindows)
         }
@@ -185,27 +177,21 @@ extension TCCvmError {
         }
 
         /// 请求不支持进入救援模式的实例
-        ///
-        /// 无
         public static var instanceStateEnterRescueMode: UnsupportedOperation {
             UnsupportedOperation(.instanceStateEnterRescueMode)
         }
 
-        /// 不支持状态为 <code>ENTER_SERVICE_LIVE_MIGRATE</code>.的实例 <code>ins-xxxxxx</code> 。
-        ///
-        /// 无
+        /// 不支持状态为 `ENTER_SERVICE_LIVE_MIGRATE`.的实例 `ins-xxxxxx` 。
         public static var instanceStateEnterServiceLiveMigrate: UnsupportedOperation {
             UnsupportedOperation(.instanceStateEnterServiceLiveMigrate)
         }
 
         /// 请求不支持正在退出救援模式的实例
-        ///
-        /// 无
         public static var instanceStateExitRescueMode: UnsupportedOperation {
             UnsupportedOperation(.instanceStateExitRescueMode)
         }
 
-        /// 不支持状态为 <code>EXIT_SERVICE_LIVE_MIGRATE</code>.的实例 <code>ins-xxxxxx</code> 。
+        /// 不支持状态为 `EXIT_SERVICE_LIVE_MIGRATE`.的实例 `ins-xxxxxx` 。
         public static var instanceStateExitServiceLiveMigrate: UnsupportedOperation {
             UnsupportedOperation(.instanceStateExitServiceLiveMigrate)
         }
@@ -225,43 +211,31 @@ extension TCCvmError {
         }
 
         /// 请求不支持创建未完成的实例
-        ///
-        /// 无
         public static var instanceStatePending: UnsupportedOperation {
             UnsupportedOperation(.instanceStatePending)
         }
 
         /// 请求不支持正在重启的实例
-        ///
-        /// 无
         public static var instanceStateRebooting: UnsupportedOperation {
             UnsupportedOperation(.instanceStateRebooting)
         }
 
         /// 请求不支持救援模式的实例
-        ///
-        /// 无
         public static var instanceStateRescueMode: UnsupportedOperation {
             UnsupportedOperation(.instanceStateRescueMode)
         }
 
         /// 请求不支持开机状态的实例
-        ///
-        /// 无
         public static var instanceStateRunning: UnsupportedOperation {
             UnsupportedOperation(.instanceStateRunning)
         }
 
         /// 不支持正在服务迁移的实例，请稍后再试
-        ///
-        /// 无
         public static var instanceStateServiceLiveMigrate: UnsupportedOperation {
             UnsupportedOperation(.instanceStateServiceLiveMigrate)
         }
 
         /// 请求不支持隔离状态的实例
-        ///
-        /// 无
         public static var instanceStateShutdown: UnsupportedOperation {
             UnsupportedOperation(.instanceStateShutdown)
         }
@@ -272,29 +246,21 @@ extension TCCvmError {
         }
 
         /// 请求不支持已关机的实例
-        ///
-        /// 无
         public static var instanceStateStopped: UnsupportedOperation {
             UnsupportedOperation(.instanceStateStopped)
         }
 
         /// 请求不支持正在关机的实例
-        ///
-        /// 无
         public static var instanceStateStopping: UnsupportedOperation {
             UnsupportedOperation(.instanceStateStopping)
         }
 
         /// 不支持已销毁的实例
-        ///
-        /// 无
         public static var instanceStateTerminated: UnsupportedOperation {
             UnsupportedOperation(.instanceStateTerminated)
         }
 
         /// 请求不支持正在销毁的实例
-        ///
-        /// 无
         public static var instanceStateTerminating: UnsupportedOperation {
             UnsupportedOperation(.instanceStateTerminating)
         }
@@ -315,8 +281,6 @@ extension TCCvmError {
         }
 
         /// 不支持指定的磁盘
-        ///
-        /// 无
         public static var invalidDisk: UnsupportedOperation {
             UnsupportedOperation(.invalidDisk)
         }
@@ -345,8 +309,6 @@ extension TCCvmError {
         }
 
         /// 密钥不支持Windows操作系统
-        ///
-        /// 无
         public static var keyPairUnsupportedWindows: UnsupportedOperation {
             UnsupportedOperation(.keyPairUnsupportedWindows)
         }
@@ -378,8 +340,6 @@ extension TCCvmError {
         }
 
         /// 该实例类型不支持竞价计费
-        ///
-        /// 无
         public static var noInstanceTypeSupportSpot: UnsupportedOperation {
             UnsupportedOperation(.noInstanceTypeSupportSpot)
         }
@@ -404,15 +364,11 @@ extension TCCvmError {
         }
 
         /// 操作不支持当前实例
-        ///
-        /// 无
         public static var notSupportInstanceImage: UnsupportedOperation {
             UnsupportedOperation(.notSupportInstanceImage)
         }
 
         /// 该操作仅支持预付费账户
-        ///
-        /// 无
         public static var onlyForPrepaidAccount: UnsupportedOperation {
             UnsupportedOperation(.onlyForPrepaidAccount)
         }
@@ -441,8 +397,6 @@ extension TCCvmError {
         }
 
         /// 不支持该地域
-        ///
-        /// 无
         public static var region: UnsupportedOperation {
             UnsupportedOperation(.region)
         }
@@ -463,8 +417,6 @@ extension TCCvmError {
         }
 
         /// 请求不支持特殊机型的实例
-        ///
-        /// 无
         public static var specialInstanceType: UnsupportedOperation {
             UnsupportedOperation(.specialInstanceType)
         }
@@ -474,8 +426,6 @@ extension TCCvmError {
         }
 
         /// 不支持关机不收费特性
-        ///
-        /// 无
         public static var stoppedModeStopCharging: UnsupportedOperation {
             UnsupportedOperation(.stoppedModeStopCharging)
         }
@@ -486,15 +436,11 @@ extension TCCvmError {
         }
 
         /// 该机型为包销机型，RenewFlag的值只允许设置为NOTIFY_AND_AUTO_RENEW。
-        ///
-        /// 无
         public static var underwritingInstanceTypeOnlySupportAutoRenew: UnsupportedOperation {
             UnsupportedOperation(.underwritingInstanceTypeOnlySupportAutoRenew)
         }
 
         /// 指定机型不支持跨机型调整配置。
-        ///
-        /// 暂无
         public static var unsupportedChangeInstanceFamily: UnsupportedOperation {
             UnsupportedOperation(.unsupportedChangeInstanceFamily)
         }
@@ -510,8 +456,6 @@ extension TCCvmError {
         }
 
         /// 请求不支持国际版账号
-        ///
-        /// 无
         public static var unsupportedInternationalUser: UnsupportedOperation {
             UnsupportedOperation(.unsupportedInternationalUser)
         }

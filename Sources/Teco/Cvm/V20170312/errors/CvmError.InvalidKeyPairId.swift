@@ -43,7 +43,7 @@ extension TCCvmError {
             self.context = context
         }
 
-        /// 无效密钥对ID。指定的密钥对ID格式错误，例如 <code>ID</code> 长度错误<code>skey-1122</code>。
+        /// 无效密钥对ID。指定的密钥对ID格式错误，例如 `ID` 长度错误`skey-1122`。
         public static var malformed: InvalidKeyPairId {
             InvalidKeyPairId(.malformed)
         }

@@ -43,8 +43,6 @@ extension TCCvmError {
         }
 
         /// 角色名鉴权失败
-        ///
-        /// 无
         public static var camRoleNameAuthenticateFailed: AuthFailure {
             AuthFailure(.camRoleNameAuthenticateFailed)
         }

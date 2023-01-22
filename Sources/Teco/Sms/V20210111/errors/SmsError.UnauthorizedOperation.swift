@@ -47,22 +47,22 @@ extension TCSmsError {
             self.context = context
         }
 
-        /// 个人用户没有发营销短信的权限，请参考 <a href="https://cloud.tencent.com/document/product/382/13444">权益区别</a>。
+        /// 个人用户没有发营销短信的权限，请参考 [权益区别](https://cloud.tencent.com/document/product/382/13444)。
         public static var individualUserMarketingSmsPermissionDeny: UnauthorizedOperation {
             UnauthorizedOperation(.individualUserMarketingSmsPermissionDeny)
         }
 
-        /// 请求 IP 不在白名单中，您配置了校验请求来源 IP，但是检测到当前请求 IP 不在配置列表中，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// 请求 IP 不在白名单中，您配置了校验请求来源 IP，但是检测到当前请求 IP 不在配置列表中，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var requestIpNotInWhitelist: UnauthorizedOperation {
             UnauthorizedOperation(.requestIpNotInWhitelist)
         }
 
-        /// 请求没有权限，请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// 请求没有权限，请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var requestPermissionDeny: UnauthorizedOperation {
             UnauthorizedOperation(.requestPermissionDeny)
         }
 
-        /// 此 SdkAppId 禁止提供服务，如有需要请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// 此 SdkAppId 禁止提供服务，如有需要请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var sdkAppIdIsDisabled: UnauthorizedOperation {
             UnauthorizedOperation(.sdkAppIdIsDisabled)
         }
@@ -72,7 +72,7 @@ extension TCSmsError {
             UnauthorizedOperation(.serivceSuspendDueToArrears)
         }
 
-        /// SmsSdkAppId 校验失败，请检查 <a href="https://console.cloud.tencent.com/smsv2/app-manage">SmsSdkAppId</a> 是否属于 <a href="https://console.cloud.tencent.com/cam/capi">云API密钥</a> 的关联账户。
+        /// SmsSdkAppId 校验失败，请检查 [SmsSdkAppId](https://console.cloud.tencent.com/smsv2/app-manage) 是否属于 [云API密钥](https://console.cloud.tencent.com/cam/capi) 的关联账户。
         ///
         /// 可参考 [短信发送提示：UnauthorizedOperation.SmsSdkAppIdVerifyFail 如何处理](https://cloud.tencent.com/document/product/382/9558#.E7.9F.AD.E4.BF.A1.E5.8F.91.E9.80.81.E6.8F.90.E7.A4.BA.EF.BC.9Aunauthorizedoperation.smssdkappidverifyfail-.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)，若存在疑问可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var smsSdkAppIdVerifyFail: UnauthorizedOperation {

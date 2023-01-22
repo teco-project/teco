@@ -68,8 +68,6 @@ extension TCEmrError {
         }
 
         /// 内部服务调用异常。
-        ///
-        /// 占位符
         public static var camCgwError: InternalError {
             InternalError(.camCgwError)
         }
@@ -80,8 +78,6 @@ extension TCEmrError {
         }
 
         /// 内部服务调用异常。
-        ///
-        /// 占位符
         public static var cbsCgwError: InternalError {
             InternalError(.cbsCgwError)
         }
@@ -92,8 +88,6 @@ extension TCEmrError {
         }
 
         /// 内部服务调用异常。
-        ///
-        /// 占位符
         public static var cdbCgwError: InternalError {
             InternalError(.cdbCgwError)
         }
@@ -129,8 +123,6 @@ extension TCEmrError {
         }
 
         /// 内部服务调用异常。
-        ///
-        /// 占位符
         public static var projectCgwError: InternalError {
             InternalError(.projectCgwError)
         }
@@ -151,15 +143,11 @@ extension TCEmrError {
         }
 
         /// 内部服务调用异常。
-        ///
-        /// 占位符
         public static var tradeCgwError: InternalError {
             InternalError(.tradeCgwError)
         }
 
         /// 内部服务调用异常。
-        ///
-        /// 占位符
         public static var vpcCgwError: InternalError {
             InternalError(.vpcCgwError)
         }
@@ -170,8 +158,6 @@ extension TCEmrError {
         }
 
         /// 内部服务调用异常。
-        ///
-        /// 占位符
         public static var woodServerError: InternalError {
             InternalError(.woodServerError)
         }

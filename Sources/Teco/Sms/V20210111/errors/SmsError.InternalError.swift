@@ -51,17 +51,17 @@ extension TCSmsError {
             self.context = context
         }
 
-        /// 解析用户参数失败，可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a>。
+        /// 解析用户参数失败，可联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81)。
         public static var jsonParseFail: InternalError {
             InternalError(.jsonParseFail)
         }
 
-        /// 其他错误，请联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a> 并提供失败手机号。
+        /// 其他错误，请联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 并提供失败手机号。
         public static var otherError: InternalError {
             InternalError(.otherError)
         }
 
-        /// 解析运营商包体失败，可联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">sms helper</a> 。
+        /// 解析运营商包体失败，可联系 [sms helper](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 。
         public static var parseBackendResponseFail: InternalError {
             InternalError(.parseBackendResponseFail)
         }
@@ -76,7 +76,7 @@ extension TCSmsError {
             InternalError(.restApiInterfaceNotExist)
         }
 
-        /// 接口超时或短信收发包超时，请检查您的网络是否有波动，或联系 <a href="https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81">腾讯云短信小助手</a> 解决。
+        /// 接口超时或短信收发包超时，请检查您的网络是否有波动，或联系 [腾讯云短信小助手](https://cloud.tencent.com/document/product/382/3773#.E6.8A.80.E6.9C.AF.E4.BA.A4.E6.B5.81) 解决。
         public static var sendAndRecvFail: InternalError {
             InternalError(.sendAndRecvFail)
         }
@@ -91,7 +91,7 @@ extension TCSmsError {
             InternalError(.sigVerificationFail)
         }
 
-        /// 请求下发短信超时，请参考 <a href="https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E60008.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F">60008错误详解</a>。
+        /// 请求下发短信超时，请参考 [60008错误详解](https://cloud.tencent.com/document/product/382/9558#.E8.BF.94.E5.9B.9E60008.E9.94.99.E8.AF.AF.E5.A6.82.E4.BD.95.E5.A4.84.E7.90.86.EF.BC.9F)。
         public static var timeout: InternalError {
             InternalError(.timeout)
         }

@@ -327,7 +327,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.internalError_InvalidBundlePrice)
     }
 
-    /// 命令 <code>DescribeInstanceLoginKeyPair</code> 无法找到。
+    /// 命令 `DescribeInstanceLoginKeyPair` 无法找到。
     public static var internalError_InvalidCommandNotFound: TCLighthouseError {
         TCLighthouseError(.internalError_InvalidCommandNotFound)
     }
@@ -394,7 +394,7 @@ public struct TCLighthouseError: TCLighthouseErrorType {
         TCLighthouseError(.invalidParameterValue_DiskSizeNotMatch)
     }
 
-    /// 参数 <code>KeyName</code> 已经存在且重复。
+    /// 参数 `KeyName` 已经存在且重复。
     public static var invalidParameterValue_DuplicateParameterValue: TCLighthouseError {
         TCLighthouseError(.invalidParameterValue_DuplicateParameterValue)
     }

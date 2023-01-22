@@ -43,8 +43,6 @@ extension TCEmrError {
         }
 
         /// 实例在流程中。
-        ///
-        /// 占位符
         public static var instanceInProcess: ResourceInUse {
             ResourceInUse(.instanceInProcess)
         }

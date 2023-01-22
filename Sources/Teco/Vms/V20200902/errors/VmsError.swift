@@ -82,17 +82,17 @@ public struct TCVmsError: TCVmsErrorType {
         TCVmsError(.failedOperation_AccessUpstreamTimeout)
     }
 
-    /// 语音内容中含有敏感词，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>沟通解决。
+    /// 语音内容中含有敏感词，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)沟通解决。
     public static var failedOperation_ContainSensitiveWord: TCVmsError {
         TCVmsError(.failedOperation_ContainSensitiveWord)
     }
 
-    /// 后端请求包解析失败，通常由于没有遵守 API 接口说明规范导致的，请参见<a href="https://cloud.tencent.com/document/product/1128/38004#Q7">1004错误详解</a>。
+    /// 后端请求包解析失败，通常由于没有遵守 API 接口说明规范导致的，请参见[1004错误详解](https://cloud.tencent.com/document/product/1128/38004#Q7)。
     public static var failedOperation_FailResolvePacket: TCVmsError {
         TCVmsError(.failedOperation_FailResolvePacket)
     }
 
-    /// 套餐包余量不足，请及时<a href="https://cloud.tencent.com/document/product/1128#buyPackage">购买语音套餐包</a>。
+    /// 套餐包余量不足，请及时[购买语音套餐包](https://cloud.tencent.com/document/product/1128#buyPackage)。
     public static var failedOperation_InsufficientBalanceInVoicePackage: TCVmsError {
         TCVmsError(.failedOperation_InsufficientBalanceInVoicePackage)
     }
@@ -112,12 +112,12 @@ public struct TCVmsError: TCVmsErrorType {
         TCVmsError(.failedOperation_JsonParseFail)
     }
 
-    /// 语音未知错误，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>沟通解决。
+    /// 语音未知错误，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)沟通解决。
     public static var failedOperation_ParametersOtherError: TCVmsError {
         TCVmsError(.failedOperation_ParametersOtherError)
     }
 
-    /// 未申请号码或申请的号码资源已过期，请及时支付月功能费用和信息服务费用，具体操作请参见<a href="https://cloud.tencent.com/document/product/1128">购买指南</a>。
+    /// 未申请号码或申请的号码资源已过期，请及时支付月功能费用和信息服务费用，具体操作请参见[购买指南](https://cloud.tencent.com/document/product/1128)。
     public static var failedOperation_PhonenumberUnappliedOrExpired: TCVmsError {
         TCVmsError(.failedOperation_PhonenumberUnappliedOrExpired)
     }
@@ -152,7 +152,7 @@ public struct TCVmsError: TCVmsErrorType {
         TCVmsError(.internalError_SsoSendRecvFail)
     }
 
-    /// 语音上游错误，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>沟通解决。
+    /// 语音上游错误，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)沟通解决。
     public static var internalError_UpstreamError: TCVmsError {
         TCVmsError(.internalError_UpstreamError)
     }
@@ -164,7 +164,7 @@ public struct TCVmsError: TCVmsErrorType {
         TCVmsError(.invalidParameterValue_CalledNumberVerifyFail)
     }
 
-    /// 语音模板中单个变量长度超过限制，如需调整限制，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
+    /// 语音模板中单个变量长度超过限制，如需调整限制，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)。
     public static var invalidParameterValue_ContentLengthLimit: TCVmsError {
         TCVmsError(.invalidParameterValue_ContentLengthLimit)
     }
@@ -174,17 +174,17 @@ public struct TCVmsError: TCVmsErrorType {
         TCVmsError(.invalidParameterValue_SdkAppidNotExist)
     }
 
-    /// 下发语音消息时命中频率限制策略，如需申请不受频率限制的测试号码或更改限制策略，请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
+    /// 下发语音消息时命中频率限制策略，如需申请不受频率限制的测试号码或更改限制策略，请[联系我们](https://cloud.tencent.com/document/product/1128/37720)。
     public static var limitExceeded_DeliveryFrequencyLimit: TCVmsError {
         TCVmsError(.limitExceeded_DeliveryFrequencyLimit)
     }
 
-    /// SDK AppID 禁用发送语音消息，如有需要请<a href="https://cloud.tencent.com/document/product/1128/37720">联系我们</a>。
+    /// SDK AppID 禁用发送语音消息，如有需要请[联系我们](https://cloud.tencent.com/document/product/1128/37720)。
     public static var unauthorizedOperation_SdkAppidIsDisabled: TCVmsError {
         TCVmsError(.unauthorizedOperation_SdkAppidIsDisabled)
     }
 
-    /// 因腾讯云账号欠费被停止服务，请及时为您的腾讯云账号<a href="https://cloud.tencent.com/document/product/555/7425">充值</a>缴清欠款。
+    /// 因腾讯云账号欠费被停止服务，请及时为您的腾讯云账号[充值](https://cloud.tencent.com/document/product/555/7425)缴清欠款。
     public static var unauthorizedOperation_ServiceSuspendDueToArrears: TCVmsError {
         TCVmsError(.unauthorizedOperation_ServiceSuspendDueToArrears)
     }

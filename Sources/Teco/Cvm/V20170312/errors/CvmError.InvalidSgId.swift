@@ -42,7 +42,7 @@ extension TCCvmError {
             self.context = context
         }
 
-        /// 指定的<code>安全组ID</code>格式错误，例如<code>实例ID</code>长度错误<code>sg-ide32</code>。
+        /// 指定的`安全组ID`格式错误，例如`实例ID`长度错误`sg-ide32`。
         public static var malformed: InvalidSgId {
             InvalidSgId(.malformed)
         }

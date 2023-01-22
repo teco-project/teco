@@ -45,8 +45,6 @@ extension TCCvmError {
         }
 
         /// 该可用区已售罄
-        ///
-        /// 无
         public static var availableZone: ResourcesSoldOut {
             ResourcesSoldOut(.availableZone)
         }

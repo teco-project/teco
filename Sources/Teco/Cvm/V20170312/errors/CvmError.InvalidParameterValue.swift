@@ -159,8 +159,6 @@ extension TCCvmError {
         }
 
         /// SSD云硬盘为数据盘时，购买大小不得小于100GB
-        ///
-        /// 无
         public static var cloudSsdDataDiskSizeTooSmall: InvalidParameterValue {
             InvalidParameterValue(.cloudSsdDataDiskSizeTooSmall)
         }
@@ -201,8 +199,6 @@ extension TCCvmError {
         }
 
         /// HostName参数值不合法
-        ///
-        /// 无
         public static var illegalHostName: InvalidParameterValue {
             InvalidParameterValue(.illegalHostName)
         }
@@ -222,8 +218,6 @@ extension TCCvmError {
         }
 
         /// 指定机型不存在
-        ///
-        /// 无
         public static var instanceTypeNotFound: InvalidParameterValue {
             InvalidParameterValue(.instanceTypeNotFound)
         }
@@ -279,8 +273,6 @@ extension TCCvmError {
         }
 
         /// 镜像不允许执行该操作
-        ///
-        /// 无
         public static var invalidImageId: InvalidParameterValue {
             InvalidParameterValue(.invalidImageId)
         }
@@ -296,8 +288,6 @@ extension TCCvmError {
         }
 
         /// 镜像被其他操作占用，请检查，并稍后重试。
-        ///
-        /// 无
         public static var invalidImageState: InvalidParameterValue {
             InvalidParameterValue(.invalidImageState)
         }
@@ -308,8 +298,6 @@ extension TCCvmError {
         }
 
         /// IP地址不符合规范
-        ///
-        /// 无
         public static var invalidIpFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidIpFormat)
         }
@@ -350,15 +338,11 @@ extension TCCvmError {
         }
 
         /// 时间格式不合法。
-        ///
-        /// 暂无
         public static var invalidTimeFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidTimeFormat)
         }
 
         /// UserData格式错误, 需要base64编码格式
-        ///
-        /// 无
         public static var invalidUserDataFormat: InvalidParameterValue {
             InvalidParameterValue(.invalidUserDataFormat)
         }
@@ -386,8 +370,6 @@ extension TCCvmError {
         }
 
         /// 不支持删除默认启动模板版本。
-        ///
-        /// 暂无
         public static var launchTemplateDefaultVersion: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateDefaultVersion)
         }
@@ -408,8 +390,6 @@ extension TCCvmError {
         }
 
         /// 指定的实例启动模板id不存在。
-        ///
-        /// 暂无
         public static var launchTemplateIdVerSetAlready: InvalidParameterValue {
             InvalidParameterValue(.launchTemplateIdVerSetAlready)
         }
@@ -435,8 +415,6 @@ extension TCCvmError {
         }
 
         /// 参数值必须为开启DHCP的VPC
-        ///
-        /// 无
         public static var mustDhcpEnabledVpc: InvalidParameterValue {
             InvalidParameterValue(.mustDhcpEnabledVpc)
         }
@@ -457,22 +435,16 @@ extension TCCvmError {
         }
 
         /// 快照ID不合要求，请提供规范的快照ID，类似snap-xxxxxxxx，字母x代表小写字符或者数字
-        ///
-        /// 无
         public static var snapshotIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.snapshotIdMalformed)
         }
 
         /// 子网ID不合要求，请提供规范的子网ID，类似subnet-xxxxxxxx，字母x代表小写字符或者数字
-        ///
-        /// 无
         public static var subnetIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.subnetIdMalformed)
         }
 
         /// 创建失败，您指定的子网不存在，请您重新指定
-        ///
-        /// 无
         public static var subnetNotExist: InvalidParameterValue {
             InvalidParameterValue(.subnetNotExist)
         }
@@ -502,9 +474,7 @@ extension TCCvmError {
             InvalidParameterValue(.tooLong)
         }
 
-        /// VPC ID<code>xxx</code>不合要求，请提供规范的Vpc ID， 类似vpc-xxxxxxxx，字母x代表小写字符或者数字。
-        ///
-        /// 无
+        /// VPC ID`xxx`不合要求，请提供规范的Vpc ID， 类似vpc-xxxxxxxx，字母x代表小写字符或者数字。
         public static var vpcIdMalformed: InvalidParameterValue {
             InvalidParameterValue(.vpcIdMalformed)
         }
@@ -515,8 +485,6 @@ extension TCCvmError {
         }
 
         /// VPC网络与实例不在同一可用区
-        ///
-        /// 无
         public static var vpcIdZoneIdNotMatch: InvalidParameterValue {
             InvalidParameterValue(.vpcIdZoneIdNotMatch)
         }
@@ -527,8 +495,6 @@ extension TCCvmError {
         }
 
         /// 请求不支持该可用区
-        ///
-        /// 无
         public static var zoneNotSupported: InvalidParameterValue {
             InvalidParameterValue(.zoneNotSupported)
         }
