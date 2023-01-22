@@ -29,14 +29,18 @@ extension Tcr {
         /// 实例计费类型，0表示按量计费，1表示预付费，默认为按量计费
         public let registryChargeType: Int64?
 
+        /// 预付费自动续费标识和购买时长
+        public let registryChargePrepaid: RegistryChargePrepaid?
+
         /// 是否同步TCR云标签至生成的COS Bucket
         public let syncTag: Bool?
 
-        public init(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil) {
+        public init(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil) {
             self.registryName = registryName
             self.registryType = registryType
             self.tagSpecification = tagSpecification
             self.registryChargeType = registryChargeType
+            self.registryChargePrepaid = registryChargePrepaid
             self.syncTag = syncTag
         }
 
@@ -45,6 +49,7 @@ extension Tcr {
             case registryType = "RegistryType"
             case tagSpecification = "TagSpecification"
             case registryChargeType = "RegistryChargeType"
+            case registryChargePrepaid = "RegistryChargePrepaid"
             case syncTag = "SyncTag"
         }
     }
@@ -77,13 +82,13 @@ extension Tcr {
 
     /// 创建实例
     @inlinable
-    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
-        self.createInstance(CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
+    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
+        self.createInstance(CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
     @inlinable
-    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
-        try await self.createInstance(CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
+    public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
+        try await self.createInstance(CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
     }
 }

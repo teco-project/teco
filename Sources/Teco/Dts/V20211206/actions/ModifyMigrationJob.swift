@@ -41,7 +41,10 @@ extension Dts {
         /// 标签信息
         public let tags: [TagItem]?
 
-        public init(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil) {
+        /// 自动重试的时间段、可设置5至720分钟、0表示不重试
+        public let autoRetryTimeRangeMinutes: Int64?
+
+        public init(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, autoRetryTimeRangeMinutes: Int64? = nil) {
             self.jobId = jobId
             self.runMode = runMode
             self.migrateOption = migrateOption
@@ -50,6 +53,7 @@ extension Dts {
             self.jobName = jobName
             self.expectRunTime = expectRunTime
             self.tags = tags
+            self.autoRetryTimeRangeMinutes = autoRetryTimeRangeMinutes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ extension Dts {
             case jobName = "JobName"
             case expectRunTime = "ExpectRunTime"
             case tags = "Tags"
+            case autoRetryTimeRangeMinutes = "AutoRetryTimeRangeMinutes"
         }
     }
 
@@ -94,15 +99,15 @@ extension Dts {
     ///
     /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
     @inlinable @discardableResult
-    public func modifyMigrationJob(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationJobResponse> {
-        self.modifyMigrationJob(ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func modifyMigrationJob(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationJobResponse> {
+        self.modifyMigrationJob(ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 配置迁移服务
     ///
     /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
     @inlinable @discardableResult
-    public func modifyMigrationJob(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationJobResponse {
-        try await self.modifyMigrationJob(ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags), region: region, logger: logger, on: eventLoop)
+    public func modifyMigrationJob(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationJobResponse {
+        try await self.modifyMigrationJob(ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
     }
 }

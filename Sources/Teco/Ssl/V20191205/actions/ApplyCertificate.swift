@@ -56,7 +56,10 @@ extension Ssl {
         /// 权益包ID，用于免费证书扩容包使用
         public let packageId: String?
 
-        public init(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil) {
+        /// 签发后是否删除自动域名验证记录， 默认为否；仅域名为DNS_AUTO验证类型支持传参
+        public let deleteDnsAutoRecord: Bool?
+
+        public init(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, deleteDnsAutoRecord: Bool? = nil) {
             self.dvAuthMethod = dvAuthMethod
             self.domainName = domainName
             self.projectId = projectId
@@ -70,6 +73,7 @@ extension Ssl {
             self.alias = alias
             self.oldCertificateId = oldCertificateId
             self.packageId = packageId
+            self.deleteDnsAutoRecord = deleteDnsAutoRecord
         }
 
         enum CodingKeys: String, CodingKey {
@@ -86,6 +90,7 @@ extension Ssl {
             case alias = "Alias"
             case oldCertificateId = "OldCertificateId"
             case packageId = "PackageId"
+            case deleteDnsAutoRecord = "DeleteDnsAutoRecord"
         }
     }
 
@@ -123,15 +128,15 @@ extension Ssl {
     ///
     /// 本接口（ApplyCertificate）用于免费证书申请。
     @inlinable
-    public func applyCertificate(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCertificateResponse> {
-        self.applyCertificate(ApplyCertificateRequest(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId), region: region, logger: logger, on: eventLoop)
+    public func applyCertificate(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, deleteDnsAutoRecord: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCertificateResponse> {
+        self.applyCertificate(ApplyCertificateRequest(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId, deleteDnsAutoRecord: deleteDnsAutoRecord), region: region, logger: logger, on: eventLoop)
     }
 
     /// 免费证书申请
     ///
     /// 本接口（ApplyCertificate）用于免费证书申请。
     @inlinable
-    public func applyCertificate(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCertificateResponse {
-        try await self.applyCertificate(ApplyCertificateRequest(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId), region: region, logger: logger, on: eventLoop)
+    public func applyCertificate(dvAuthMethod: String, domainName: String, projectId: UInt64? = nil, packageType: String? = nil, contactEmail: String? = nil, contactPhone: String? = nil, validityPeriod: String? = nil, csrEncryptAlgo: String? = nil, csrKeyParameter: String? = nil, csrKeyPassword: String? = nil, alias: String? = nil, oldCertificateId: String? = nil, packageId: String? = nil, deleteDnsAutoRecord: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCertificateResponse {
+        try await self.applyCertificate(ApplyCertificateRequest(dvAuthMethod: dvAuthMethod, domainName: domainName, projectId: projectId, packageType: packageType, contactEmail: contactEmail, contactPhone: contactPhone, validityPeriod: validityPeriod, csrEncryptAlgo: csrEncryptAlgo, csrKeyParameter: csrKeyParameter, csrKeyPassword: csrKeyPassword, alias: alias, oldCertificateId: oldCertificateId, packageId: packageId, deleteDnsAutoRecord: deleteDnsAutoRecord), region: region, logger: logger, on: eventLoop)
     }
 }

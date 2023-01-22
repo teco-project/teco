@@ -17,9 +17,6 @@
 extension Cls {
     /// DescribeLogHistogram请求参数结构体
     public struct DescribeLogHistogramRequest: TCRequestModel {
-        /// 要查询的日志主题ID
-        public let topicId: String
-
         /// 要查询的日志的起始时间，Unix时间戳，单位ms
         public let from: Int64
 
@@ -29,22 +26,25 @@ extension Cls {
         /// 查询语句
         public let query: String
 
+        /// 要查询的日志主题ID
+        public let topicId: String?
+
         /// 时间间隔: 单位ms  限制性条件：(To-From) / interval <= 200
         public let interval: Int64?
 
-        public init(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil) {
-            self.topicId = topicId
+        public init(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil) {
             self.from = from
             self.to = to
             self.query = query
+            self.topicId = topicId
             self.interval = interval
         }
 
         enum CodingKeys: String, CodingKey {
-            case topicId = "TopicId"
             case from = "From"
             case to = "To"
             case query = "Query"
+            case topicId = "TopicId"
             case interval = "Interval"
         }
     }
@@ -91,15 +91,15 @@ extension Cls {
     ///
     /// 本接口用于构建日志数量直方图
     @inlinable
-    public func describeLogHistogram(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
-        self.describeLogHistogram(DescribeLogHistogramRequest(topicId: topicId, from: from, to: to, query: query, interval: interval), region: region, logger: logger, on: eventLoop)
+    public func describeLogHistogram(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogHistogramResponse> {
+        self.describeLogHistogram(DescribeLogHistogramRequest(from: from, to: to, query: query, topicId: topicId, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取日志数量直方图
     ///
     /// 本接口用于构建日志数量直方图
     @inlinable
-    public func describeLogHistogram(topicId: String, from: Int64, to: Int64, query: String, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
-        try await self.describeLogHistogram(DescribeLogHistogramRequest(topicId: topicId, from: from, to: to, query: query, interval: interval), region: region, logger: logger, on: eventLoop)
+    public func describeLogHistogram(from: Int64, to: Int64, query: String, topicId: String? = nil, interval: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogHistogramResponse {
+        try await self.describeLogHistogram(DescribeLogHistogramRequest(from: from, to: to, query: query, topicId: topicId, interval: interval), region: region, logger: logger, on: eventLoop)
     }
 }

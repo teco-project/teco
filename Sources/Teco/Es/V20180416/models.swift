@@ -316,6 +316,10 @@ extension Es {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: UInt64?
 
+        /// 索引文档数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let indexDocs: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case indexType = "IndexType"
             case indexName = "IndexName"
@@ -330,6 +334,7 @@ extension Es {
             case indexOptionsField = "IndexOptionsField"
             case indexSettingsField = "IndexSettingsField"
             case appId = "AppId"
+            case indexDocs = "IndexDocs"
         }
     }
 

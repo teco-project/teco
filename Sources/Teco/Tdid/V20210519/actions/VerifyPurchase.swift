@@ -32,11 +32,19 @@ extension Tdid {
     }
 
     /// 验证购买
+    ///
+    /// 该接口已废弃
+    ///
+    /// 验证购买
     @inlinable @discardableResult
     public func verifyPurchase(_ input: VerifyPurchaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPurchaseResponse> {
         self.client.execute(action: "VerifyPurchase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
+    /// 验证购买
+    ///
+    /// 该接口已废弃
+    ///
     /// 验证购买
     @inlinable @discardableResult
     public func verifyPurchase(_ input: VerifyPurchaseRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {
@@ -44,11 +52,19 @@ extension Tdid {
     }
 
     /// 验证购买
+    ///
+    /// 该接口已废弃
+    ///
+    /// 验证购买
     @inlinable @discardableResult
     public func verifyPurchase(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPurchaseResponse> {
         self.verifyPurchase(VerifyPurchaseRequest(), region: region, logger: logger, on: eventLoop)
     }
 
+    /// 验证购买
+    ///
+    /// 该接口已废弃
+    ///
     /// 验证购买
     @inlinable @discardableResult
     public func verifyPurchase(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPurchaseResponse {

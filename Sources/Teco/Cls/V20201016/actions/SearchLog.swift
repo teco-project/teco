@@ -17,9 +17,6 @@
 extension Cls {
     /// SearchLog请求参数结构体
     public struct SearchLogRequest: TCRequestModel {
-        /// 要检索分析的日志主题ID
-        public let topicId: String
-
         /// 要检索分析的日志的起始时间，Unix时间戳（毫秒）
         public let from: Int64
 
@@ -28,7 +25,11 @@ extension Cls {
 
         /// 检索分析语句，最大长度为12KB
         /// 语句由 <a href="https://cloud.tencent.com/document/product/614/47044" target="_blank">[检索条件]</a> | <a href="https://cloud.tencent.com/document/product/614/44061" target="_blank">[SQL语句]</a>构成，无需对日志进行统计分析时，可省略其中的管道符<code> | </code>及SQL语句
+        /// 使用*或空字符串可查询所有日志
         public let query: String
+
+        /// 要检索分析的日志主题ID
+        public let topicId: String?
 
         /// 表示单次查询返回的原始日志条数，最大值为1000，获取后续日志需使用Context参数
         /// 注意：
@@ -61,11 +62,11 @@ extension Cls {
         /// 默认值为1
         public let samplingRate: Float?
 
-        public init(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil) {
-            self.topicId = topicId
+        public init(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil) {
             self.from = from
             self.to = to
             self.query = query
+            self.topicId = topicId
             self.limit = limit
             self.context = context
             self.sort = sort
@@ -74,10 +75,10 @@ extension Cls {
         }
 
         enum CodingKeys: String, CodingKey {
-            case topicId = "TopicId"
             case from = "From"
             case to = "To"
             case query = "Query"
+            case topicId = "TopicId"
             case limit = "Limit"
             case context = "Context"
             case sort = "Sort"
@@ -158,15 +159,15 @@ extension Cls {
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
     @inlinable
-    public func searchLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchLogResponse> {
-        self.searchLog(SearchLogRequest(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate), region: region, logger: logger, on: eventLoop)
+    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchLogResponse> {
+        self.searchLog(SearchLogRequest(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate), region: region, logger: logger, on: eventLoop)
     }
 
     /// 检索分析日志
     ///
     /// 本接口用于检索分析日志, 该接口除受默认接口请求频率限制外，针对单个日志主题，查询并发数不能超过15。
     @inlinable
-    public func searchLog(topicId: String, from: Int64, to: Int64, query: String, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchLogResponse {
-        try await self.searchLog(SearchLogRequest(topicId: topicId, from: from, to: to, query: query, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate), region: region, logger: logger, on: eventLoop)
+    public func searchLog(from: Int64, to: Int64, query: String, topicId: String? = nil, limit: Int64? = nil, context: String? = nil, sort: String? = nil, useNewAnalysis: Bool? = nil, samplingRate: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchLogResponse {
+        try await self.searchLog(SearchLogRequest(from: from, to: to, query: query, topicId: topicId, limit: limit, context: context, sort: sort, useNewAnalysis: useNewAnalysis, samplingRate: samplingRate), region: region, logger: logger, on: eventLoop)
     }
 }

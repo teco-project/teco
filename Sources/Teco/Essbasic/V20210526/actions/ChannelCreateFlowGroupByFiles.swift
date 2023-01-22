@@ -26,13 +26,20 @@ extension Essbasic {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
         public let agent: Agent?
 
+        /// 签署人校验方式
+        /// VerifyCheck: 人脸识别（默认）
+        /// MobileCheck：手机号验证
+        /// 参数说明：若选择后者，未实名的个人签署方查看合同时，无需进行人脸识别实名认证（但签署合同时仍然需要人脸实名），该能力仅适用于个人签署方。
+        public let approverVerifyType: String?
+
         /// 操作者的信息
         public let `operator`: UserInfo?
 
-        public init(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil) {
+        public init(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil) {
             self.flowFileInfos = flowFileInfos
             self.flowGroupName = flowGroupName
             self.agent = agent
+            self.approverVerifyType = approverVerifyType
             self.`operator` = `operator`
         }
 
@@ -40,6 +47,7 @@ extension Essbasic {
             case flowFileInfos = "FlowFileInfos"
             case flowGroupName = "FlowGroupName"
             case agent = "Agent"
+            case approverVerifyType = "ApproverVerifyType"
             case `operator` = "Operator"
         }
     }
@@ -84,15 +92,15 @@ extension Essbasic {
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
-    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
-        self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowGroupByFilesResponse> {
+        self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 通过多文件创建合同组签署流程
     ///
     /// 接口（ChannelCreateFlowGroupByFiles）用于通过多文件创建合同组签署流程。
     @inlinable
-    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
-        try await self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func channelCreateFlowGroupByFiles(flowFileInfos: [FlowFileInfo], flowGroupName: String, agent: Agent? = nil, approverVerifyType: String? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowGroupByFilesResponse {
+        try await self.channelCreateFlowGroupByFiles(ChannelCreateFlowGroupByFilesRequest(flowFileInfos: flowFileInfos, flowGroupName: flowGroupName, agent: agent, approverVerifyType: approverVerifyType, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

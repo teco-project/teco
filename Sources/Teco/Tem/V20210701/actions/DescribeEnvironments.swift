@@ -32,12 +32,16 @@ extension Tem {
         /// 排序字段
         public let sortInfo: SortType?
 
-        public init(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil) {
+        /// 环境id
+        public let environmentId: String?
+
+        public init(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, environmentId: String? = nil) {
             self.limit = limit
             self.offset = offset
             self.sourceChannel = sourceChannel
             self.filters = filters
             self.sortInfo = sortInfo
+            self.environmentId = environmentId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +50,7 @@ extension Tem {
             case sourceChannel = "SourceChannel"
             case filters = "Filters"
             case sortInfo = "SortInfo"
+            case environmentId = "EnvironmentId"
         }
     }
 
@@ -77,13 +82,13 @@ extension Tem {
 
     /// 获取环境列表
     @inlinable
-    public func describeEnvironments(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentsResponse> {
-        self.describeEnvironments(DescribeEnvironmentsRequest(limit: limit, offset: offset, sourceChannel: sourceChannel, filters: filters, sortInfo: sortInfo), region: region, logger: logger, on: eventLoop)
+    public func describeEnvironments(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentsResponse> {
+        self.describeEnvironments(DescribeEnvironmentsRequest(limit: limit, offset: offset, sourceChannel: sourceChannel, filters: filters, sortInfo: sortInfo, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取环境列表
     @inlinable
-    public func describeEnvironments(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
-        try await self.describeEnvironments(DescribeEnvironmentsRequest(limit: limit, offset: offset, sourceChannel: sourceChannel, filters: filters, sortInfo: sortInfo), region: region, logger: logger, on: eventLoop)
+    public func describeEnvironments(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, filters: [QueryFilter]? = nil, sortInfo: SortType? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentsResponse {
+        try await self.describeEnvironments(DescribeEnvironmentsRequest(limit: limit, offset: offset, sourceChannel: sourceChannel, filters: filters, sortInfo: sortInfo, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
     }
 }

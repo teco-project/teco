@@ -4944,6 +4944,81 @@ extension Tke {
         }
     }
 
+    /// 虚拟节点
+    public struct VirtualNode: TCOutputModel {
+        /// 虚拟节点名称
+        public let name: String
+
+        /// 虚拟节点所属子网
+        public let subnetId: String
+
+        /// 虚拟节点状态
+        public let phase: String
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createdTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case subnetId = "SubnetId"
+            case phase = "Phase"
+            case createdTime = "CreatedTime"
+        }
+    }
+
+    /// 虚拟节点池
+    public struct VirtualNodePool: TCOutputModel {
+        /// 节点池ID
+        public let nodePoolId: String
+
+        /// 子网列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetIds: [String]?
+
+        /// 节点池名称
+        public let name: String
+
+        /// 节点池生命周期
+        public let lifeState: String
+
+        /// 虚拟节点label
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let labels: [Label]?
+
+        /// 虚拟节点taint
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taints: [Taint]?
+
+        enum CodingKeys: String, CodingKey {
+            case nodePoolId = "NodePoolId"
+            case subnetIds = "SubnetIds"
+            case name = "Name"
+            case lifeState = "LifeState"
+            case labels = "Labels"
+            case taints = "Taints"
+        }
+    }
+
+    /// 虚拟节点
+    public struct VirtualNodeSpec: TCInputModel {
+        /// 节点展示名称
+        public let displayName: String
+
+        /// 子网ID
+        public let subnetId: String
+
+        public init(displayName: String, subnetId: String) {
+            self.displayName = displayName
+            self.subnetId = subnetId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case displayName = "DisplayName"
+            case subnetId = "SubnetId"
+        }
+    }
+
     /// 数据卷挂载路径信息
     public struct VolumeMount: TCInputModel, TCOutputModel {
         /// volume名称

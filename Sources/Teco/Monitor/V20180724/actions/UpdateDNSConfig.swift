@@ -17,7 +17,7 @@
 extension Monitor {
     /// UpdateDNSConfig请求参数结构体
     public struct UpdateDNSConfigRequest: TCRequestModel {
-        /// 实例 ID
+        /// Grafana 实例 ID，例如：grafana-12345678
         public let instanceId: String
 
         /// DNS 数组

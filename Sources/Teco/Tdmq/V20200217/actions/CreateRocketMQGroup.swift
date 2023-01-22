@@ -35,13 +35,21 @@ extension Tdmq {
         /// 说明信息，最长128个字符
         public let remark: String?
 
-        public init(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil) {
+        /// Group类型（TCP/HTTP）
+        public let groupType: String?
+
+        /// Group最大重试次数
+        public let retryMaxTimes: UInt64?
+
+        public init(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, groupType: String? = nil, retryMaxTimes: UInt64? = nil) {
             self.groupId = groupId
             self.namespaces = namespaces
             self.readEnable = readEnable
             self.broadcastEnable = broadcastEnable
             self.clusterId = clusterId
             self.remark = remark
+            self.groupType = groupType
+            self.retryMaxTimes = retryMaxTimes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +59,8 @@ extension Tdmq {
             case broadcastEnable = "BroadcastEnable"
             case clusterId = "ClusterId"
             case remark = "Remark"
+            case groupType = "GroupType"
+            case retryMaxTimes = "RetryMaxTimes"
         }
     }
 
@@ -78,13 +88,13 @@ extension Tdmq {
 
     /// 创建RocketMQ消费组
     @inlinable @discardableResult
-    public func createRocketMQGroup(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQGroupResponse> {
-        self.createRocketMQGroup(CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func createRocketMQGroup(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, groupType: String? = nil, retryMaxTimes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQGroupResponse> {
+        self.createRocketMQGroup(CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark, groupType: groupType, retryMaxTimes: retryMaxTimes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ消费组
     @inlinable @discardableResult
-    public func createRocketMQGroup(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQGroupResponse {
-        try await self.createRocketMQGroup(CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func createRocketMQGroup(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, groupType: String? = nil, retryMaxTimes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQGroupResponse {
+        try await self.createRocketMQGroup(CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark, groupType: groupType, retryMaxTimes: retryMaxTimes), region: region, logger: logger, on: eventLoop)
     }
 }

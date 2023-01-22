@@ -16,7 +16,7 @@
 
 @_exported import TecoCore
 
-/// 黑石物理服务器1.0 (bm)
+/// 黑石物理服务器CPM (bm)
 ///
 /// 对黑石物理服务器进行相关操作，包括创建、更改带宽、重启等。
 public struct Bm: TCService {

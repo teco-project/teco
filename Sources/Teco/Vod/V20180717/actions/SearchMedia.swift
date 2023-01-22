@@ -26,12 +26,12 @@ extension Vod {
         public let fileIds: [String]?
 
         /// 文件名集合，模糊匹配媒体文件的文件名，匹配度越高，排序越优先。
-        /// <li>单个文件名长度限制：40个字符。</li>
+        /// <li>单个文件名长度限制：100个字符。</li>
         /// <li>数组长度限制：10。</li>
         public let names: [String]?
 
         /// 文件名前缀，前缀匹配媒体文件的文件名。
-        /// <li>单个文件名前缀长度限制：20个字符。</li>
+        /// <li>单个文件名前缀长度限制：100个字符。</li>
         /// <li>数组长度限制：10。</li>
         public let namePrefixes: [String]?
 
@@ -45,8 +45,8 @@ extension Vod {
         public let classIds: [Int64]?
 
         /// 标签集合，匹配集合中任意元素。
-        /// <li>单个标签长度限制：16个字符。</li>
-        /// <li>数组长度限制：10。</li>
+        /// <li>单个标签长度限制：32个字符。</li>
+        /// <li>数组长度限制：16。</li>
         public let tags: [String]?
 
         /// 文件类型。匹配集合中的任意元素：

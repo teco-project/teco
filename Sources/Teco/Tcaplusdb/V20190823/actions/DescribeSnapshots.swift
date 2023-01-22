@@ -29,11 +29,15 @@ extension Tcaplusdb {
         /// 快照名称
         public let snapshotName: String?
 
-        public init(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil) {
+        /// 批量拉取快照的表格列表
+        public let selectedTables: [SelectedTableInfoNew]?
+
+        public init(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, selectedTables: [SelectedTableInfoNew]? = nil) {
             self.clusterId = clusterId
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.snapshotName = snapshotName
+            self.selectedTables = selectedTables
         }
 
         enum CodingKeys: String, CodingKey {
@@ -41,6 +45,7 @@ extension Tcaplusdb {
             case tableGroupId = "TableGroupId"
             case tableName = "TableName"
             case snapshotName = "SnapshotName"
+            case selectedTables = "SelectedTables"
         }
     }
 
@@ -76,13 +81,13 @@ extension Tcaplusdb {
 
     /// 查询快照列表
     @inlinable
-    public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
-        self.describeSnapshots(DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
+    public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, selectedTables: [SelectedTableInfoNew]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
+        self.describeSnapshots(DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表
     @inlinable
-    public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
-        try await self.describeSnapshots(DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
+    public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, selectedTables: [SelectedTableInfoNew]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
+        try await self.describeSnapshots(DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
     }
 }

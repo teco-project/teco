@@ -17,10 +17,10 @@
 extension Redis {
     /// DescribeInstances请求参数结构体
     public struct DescribeInstancesRequest: TCRequestModel {
-        /// 实例数量，参数默认值20，最大值为1000。
+        /// 每页输出实例的数量，参数默认值20，最大值为1000。
         public let limit: UInt64?
 
-        /// 偏移量，取Limit整数倍。
+        /// 分页偏移量，取Limit整数倍。
         public let offset: UInt64?
 
         /// 实例 ID，如：crs-6ubhgouj。

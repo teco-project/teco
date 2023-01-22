@@ -940,6 +940,32 @@ extension Postgres {
         }
     }
 
+    /// 参数模板的基本信息
+    public struct ParameterTemplate: TCOutputModel {
+        /// 参数模板ID
+        public let templateId: String
+
+        /// 参数模板名称
+        public let templateName: String
+
+        /// 参数模板适用的数据库版本
+        public let dbMajorVersion: String
+
+        /// 参数模板适用的数据库引擎
+        public let dbEngine: String
+
+        /// 参数模板描述
+        public let templateDescription: String
+
+        enum CodingKeys: String, CodingKey {
+            case templateId = "TemplateId"
+            case templateName = "TemplateName"
+            case dbMajorVersion = "DBMajorVersion"
+            case dbEngine = "DBEngine"
+            case templateDescription = "TemplateDescription"
+        }
+    }
+
     /// 订单详情
     public struct PgDeal: TCOutputModel {
         /// 订单名
@@ -967,6 +993,32 @@ extension Postgres {
             case payMode = "PayMode"
             case flowId = "FlowId"
             case dbInstanceIdSet = "DBInstanceIdSet"
+        }
+    }
+
+    /// 安全组规则信息
+    public struct PolicyRule: TCOutputModel {
+        /// 策略，ACCEPT 或者 DROP
+        public let action: String
+
+        /// 来源或目的 IP 或 IP 段，例如172.16.0.0/12
+        public let cidrIp: String
+
+        /// 端口
+        public let portRange: String
+
+        /// 网络协议，支持 UDP、TCP 等
+        public let ipProtocol: String
+
+        /// 规则描述
+        public let description: String
+
+        enum CodingKeys: String, CodingKey {
+            case action = "Action"
+            case cidrIp = "CidrIp"
+            case portRange = "PortRange"
+            case ipProtocol = "IpProtocol"
+            case description = "Description"
         }
     }
 
@@ -1109,6 +1161,40 @@ extension Postgres {
             case regionId = "RegionId"
             case regionState = "RegionState"
             case supportInternational = "SupportInternational"
+        }
+    }
+
+    /// 安全组信息
+    public struct SecurityGroup: TCOutputModel {
+        /// 项目Id
+        public let projectId: Int64
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 入站规则
+        public let inbound: [PolicyRule]
+
+        /// 出站规则
+        public let outbound: [PolicyRule]
+
+        /// 安全组ID
+        public let securityGroupId: String
+
+        /// 安全组名称
+        public let securityGroupName: String
+
+        /// 安全组备注
+        public let securityGroupDescription: String
+
+        enum CodingKeys: String, CodingKey {
+            case projectId = "ProjectId"
+            case createTime = "CreateTime"
+            case inbound = "Inbound"
+            case outbound = "Outbound"
+            case securityGroupId = "SecurityGroupId"
+            case securityGroupName = "SecurityGroupName"
+            case securityGroupDescription = "SecurityGroupDescription"
         }
     }
 

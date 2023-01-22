@@ -292,7 +292,7 @@ extension Chdfs {
         /// 触发时间（单位天）
         public let days: UInt64
 
-        /// 转换类型（1：归档；2：删除；3：低频）
+        /// 转换类型（1：归档；2：删除；3：低频；4：深度归档；5：智能分层）
         public let type: UInt64
 
         public init(days: UInt64, type: UInt64) {

@@ -1060,7 +1060,13 @@ extension Cls {
 
     /// 键值或者元字段索引的字段信息
     public struct KeyValueInfo: TCInputModel, TCOutputModel {
-        /// 需要配置键值或者元字段索引的字段，元字段Key无需额外添加`__TAG__.`前缀，与上传日志时对应的字段Key一致即可，腾讯云控制台展示时将自动添加`__TAG__.`前缀
+        /// 需要配置键值或者元字段索引的字段名称，仅支持字母、数字、下划线和-./@，且不能以下划线开头
+        ///
+        /// 注意：
+        /// 1，元字段（tag）的Key无需额外添加`__TAG__.`前缀，与上传日志时对应的字段Key一致即可，腾讯云控制台展示时将自动添加`__TAG__.`前缀
+        /// 2，键值索引（KeyValue）及元字段索引（Tag）中的Key总数不能超过300
+        /// 3，Key的层级不能超过10层，例如a.b.c.d.e.f.g.h.j.k
+        /// 4，不允许同时包含json父子级字段，例如a及a.b
         public let key: String
 
         /// 字段的索引描述信息
@@ -1459,15 +1465,15 @@ extension Cls {
 
     /// 索引规则，FullText、KeyValue、Tag参数必须输入一个有效参数
     public struct RuleInfo: TCInputModel, TCOutputModel {
-        /// 全文索引配置
+        /// 全文索引配置, 如果为空时代表未开启全文索引
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fullText: FullTextInfo?
 
-        /// 键值索引配置
+        /// 键值索引配置，如果为空时代表未开启键值索引
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyValue: RuleKeyValueInfo?
 
-        /// 元字段索引配置
+        /// 元字段索引配置，如果为空时代表未开启元字段索引
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: RuleTagInfo?
 
@@ -1489,7 +1495,7 @@ extension Cls {
         /// 是否大小写敏感
         public let caseSensitive: Bool
 
-        /// 需要建立索引的键值对信息；最大只能配置100个键值对
+        /// 需要建立索引的键值对信息
         public let keyValues: [KeyValueInfo]?
 
         public init(caseSensitive: Bool, keyValues: [KeyValueInfo]? = nil) {
@@ -1737,7 +1743,7 @@ extension Cls {
         /// 字段是否开启分析功能
         public let sqlFlag: Bool?
 
-        /// 是否包含中文
+        /// 是否包含中文，long及double类型字段需为false
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containZH: Bool?
 

@@ -75,6 +75,14 @@ extension Tiw {
         /// 转码压缩文件下载的URL，如果发起文档转码请求参数中`CompressFileType`为空或者不是支持的压缩格式，该参数为空字符串
         public let compressFileUrl: String
 
+        /// 资源清单文件下载URL(内测体验)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resourceListUrl: String?
+
+        /// 文档制作方式(内测体验)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ext: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -89,6 +97,8 @@ extension Tiw {
             case thumbnailUrl = "ThumbnailUrl"
             case thumbnailResolution = "ThumbnailResolution"
             case compressFileUrl = "CompressFileUrl"
+            case resourceListUrl = "ResourceListUrl"
+            case ext = "Ext"
             case requestId = "RequestId"
         }
     }

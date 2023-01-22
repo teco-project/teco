@@ -17,7 +17,7 @@
 extension Cfg {
     /// CreateTaskFromTemplate请求参数结构体
     public struct CreateTaskFromTemplateRequest: TCRequestModel {
-        /// 从经验库中查询到的经验模版ID
+        /// 从经验库中查询到的经验模板ID
         public let templateId: UInt64
 
         /// 演练的配置参数

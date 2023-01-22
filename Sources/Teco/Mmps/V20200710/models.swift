@@ -51,6 +51,18 @@ extension Mmps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let highRiskCount: Int64?
 
+        /// 隐私申明文件名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let privacyTextName: String?
+
+        /// 软件MD5
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let softwareMD5: String?
+
+        /// 隐私文本MD5
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let privacyTextMD5: String?
+
         enum CodingKeys: String, CodingKey {
             case appPackage = "AppPackage"
             case appName = "AppName"
@@ -61,6 +73,9 @@ extension Mmps {
             case behaviorUrl = "BehaviorUrl"
             case behaviorTitle = "BehaviorTitle"
             case highRiskCount = "HighRiskCount"
+            case privacyTextName = "PrivacyTextName"
+            case softwareMD5 = "SoftwareMD5"
+            case privacyTextMD5 = "PrivacyTextMD5"
         }
     }
 
@@ -91,6 +106,10 @@ extension Mmps {
         /// 任务完成时间(更新时间)
         public let endTime: String
 
+        /// 联系人信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let contactName: String?
+
         enum CodingKeys: String, CodingKey {
             case taskID = "TaskID"
             case taskType = "TaskType"
@@ -100,6 +119,7 @@ extension Mmps {
             case appInfo = "AppInfo"
             case startTime = "StartTime"
             case endTime = "EndTime"
+            case contactName = "ContactName"
         }
     }
 

@@ -17,7 +17,7 @@
 extension Monitor {
     /// DescribeGrafanaEnvironments请求参数结构体
     public struct DescribeGrafanaEnvironmentsRequest: TCRequestModel {
-        /// 实例 ID
+        /// Grafana 实例 ID，例如：Grafana 实例 ID，例如：grafana-abcdefghGrafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
         public init(instanceId: String) {

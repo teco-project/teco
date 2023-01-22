@@ -45,7 +45,13 @@ extension Ecm {
         /// 安全组。
         public let securityGroups: [String]?
 
-        public init(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil) {
+        /// 仅适用于公网负载均衡。IP版本，可取值：IPV4、IPv6FullChain，默认值 IPV4。说明：取值为IPv6FullChain，表示为IPv6版本。
+        public let addressIPVersion: String?
+
+        /// 在购买IPV6负载均衡实例的情况下，必须指定子网 ID, 此参数必填。
+        public let subnetId: String?
+
+        public init(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, addressIPVersion: String? = nil, subnetId: String? = nil) {
             self.ecmRegion = ecmRegion
             self.loadBalancerType = loadBalancerType
             self.vipIsp = vipIsp
@@ -55,6 +61,8 @@ extension Ecm {
             self.internetAccessible = internetAccessible
             self.tags = tags
             self.securityGroups = securityGroups
+            self.addressIPVersion = addressIPVersion
+            self.subnetId = subnetId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -67,6 +75,8 @@ extension Ecm {
             case internetAccessible = "InternetAccessible"
             case tags = "Tags"
             case securityGroups = "SecurityGroups"
+            case addressIPVersion = "AddressIPVersion"
+            case subnetId = "SubnetId"
         }
     }
 
@@ -105,15 +115,15 @@ extension Ecm {
     ///
     /// 购买负载均衡实例。
     @inlinable
-    public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
-        self.createLoadBalancer(CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
+    public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, addressIPVersion: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoadBalancerResponse> {
+        self.createLoadBalancer(CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups, addressIPVersion: addressIPVersion, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 购买负载均衡实例
     ///
     /// 购买负载均衡实例。
     @inlinable
-    public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
-        try await self.createLoadBalancer(CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
+    public func createLoadBalancer(ecmRegion: String, loadBalancerType: String, vipIsp: String, loadBalancerName: String? = nil, vpcId: String? = nil, number: Int64? = nil, internetAccessible: LoadBalancerInternetAccessible? = nil, tags: [TagInfo]? = nil, securityGroups: [String]? = nil, addressIPVersion: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoadBalancerResponse {
+        try await self.createLoadBalancer(CreateLoadBalancerRequest(ecmRegion: ecmRegion, loadBalancerType: loadBalancerType, vipIsp: vipIsp, loadBalancerName: loadBalancerName, vpcId: vpcId, number: number, internetAccessible: internetAccessible, tags: tags, securityGroups: securityGroups, addressIPVersion: addressIPVersion, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
     }
 }

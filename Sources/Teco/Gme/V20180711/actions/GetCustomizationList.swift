@@ -31,7 +31,7 @@ extension Gme {
 
     /// GetCustomizationList返回参数结构体
     public struct GetCustomizationListResponse: TCResponseModel {
-        /// 语音消息转文本自学习模型配置
+        /// 语音消息转文本热句模型配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customizationConfigs: [CustomizationConfigs]?
 
@@ -44,25 +44,25 @@ extension Gme {
         }
     }
 
-    /// 查询语音消息转文本自学习模型列表
+    /// 查询语音消息转文本热句模型列表
     @inlinable
     public func getCustomizationList(_ input: GetCustomizationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomizationListResponse> {
         self.client.execute(action: "GetCustomizationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询语音消息转文本自学习模型列表
+    /// 查询语音消息转文本热句模型列表
     @inlinable
     public func getCustomizationList(_ input: GetCustomizationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
         try await self.client.execute(action: "GetCustomizationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询语音消息转文本自学习模型列表
+    /// 查询语音消息转文本热句模型列表
     @inlinable
     public func getCustomizationList(bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomizationListResponse> {
         self.getCustomizationList(GetCustomizationListRequest(bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询语音消息转文本自学习模型列表
+    /// 查询语音消息转文本热句模型列表
     @inlinable
     public func getCustomizationList(bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
         try await self.getCustomizationList(GetCustomizationListRequest(bizId: bizId), region: region, logger: logger, on: eventLoop)

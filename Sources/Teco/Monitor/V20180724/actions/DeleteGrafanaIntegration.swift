@@ -17,10 +17,10 @@
 extension Monitor {
     /// DeleteGrafanaIntegration请求参数结构体
     public struct DeleteGrafanaIntegrationRequest: TCRequestModel {
-        /// 实例 ID
+        /// Grafana 实例 ID，例如：grafana-12345678
         public let instanceId: String
 
-        /// 集成 ID
+        /// 集成 ID，可在实例详情-云产品集成-集成列表查看。例如：integration-abcd1234
         public let integrationId: String
 
         public init(instanceId: String, integrationId: String) {

@@ -317,12 +317,31 @@ extension Vpc {
         }
     }
 
+    /// 时间备份策略详情
+    public struct BackupPolicy: TCInputModel, TCOutputModel {
+        /// 备份周期时间，取值为monday, tuesday, wednesday, thursday, friday, saturday, sunday。
+        public let backupDay: String
+
+        /// 备份时间点，格式：HH:mm:ss。
+        public let backupTime: String
+
+        public init(backupDay: String, backupTime: String) {
+            self.backupDay = backupDay
+            self.backupTime = backupTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case backupDay = "BackupDay"
+            case backupTime = "BackupTime"
+        }
+    }
+
     /// 描述带宽包信息的结构
     public struct BandwidthPackage: TCOutputModel {
         /// 带宽包唯一标识Id
         public let bandwidthPackageId: String
 
-        /// 带宽包类型，包括'BGP','SINGLEISP','ANYCAST'
+        /// 带宽包类型，包括'BGP','SINGLEISP','ANYCAST','SINGLEISP_CMCC','SINGLEISP_CTCC','SINGLEISP_CUCC'
         public let networkType: String
 
         /// 带宽包计费类型，包括'TOP5_POSTPAID_BY_MONTH'和'PERCENT95_POSTPAID_BY_MONTH'
@@ -361,38 +380,67 @@ extension Vpc {
     /// 后付费共享带宽包的当前计费用量
     public struct BandwidthPackageBillBandwidth: TCOutputModel {
         /// 当前计费用量，单位为 Mbps
-        public let bandwidthUsage: UInt64
+        public let bandwidthUsage: Float
 
         enum CodingKeys: String, CodingKey {
             case bandwidthUsage = "BandwidthUsage"
         }
     }
 
+    /// 批量修改快照策略信息
+    public struct BatchModifySnapshotPolicy: TCInputModel {
+        /// 快照策略Id。
+        public let snapshotPolicyId: String
+
+        /// 快照策略名称。
+        public let snapshotPolicyName: String?
+
+        /// 备份策略。
+        public let backupPolicies: [BackupPolicy]?
+
+        /// 快照保留时间，支持1～365天。
+        public let keepTime: UInt64?
+
+        public init(snapshotPolicyId: String, snapshotPolicyName: String? = nil, backupPolicies: [BackupPolicy]? = nil, keepTime: UInt64? = nil) {
+            self.snapshotPolicyId = snapshotPolicyId
+            self.snapshotPolicyName = snapshotPolicyName
+            self.backupPolicies = backupPolicies
+            self.keepTime = keepTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case snapshotPolicyId = "SnapshotPolicyId"
+            case snapshotPolicyName = "SnapshotPolicyName"
+            case backupPolicies = "BackupPolicies"
+            case keepTime = "KeepTime"
+        }
+    }
+
     /// 云联网（CCN）对象
     public struct CCN: TCOutputModel {
         /// 云联网唯一ID
-        public let ccnId: String
+        public let ccnId: String?
 
         /// 云联网名称
-        public let ccnName: String
+        public let ccnName: String?
 
         /// 云联网描述信息
-        public let ccnDescription: String
+        public let ccnDescription: String?
 
         /// 关联实例数量
-        public let instanceCount: UInt64
+        public let instanceCount: UInt64?
 
         /// 创建时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampEncoding public var createTime: Date
+        @TCTimestampEncoding public var createTime: Date?
 
         /// 实例状态， 'ISOLATED': 隔离中（欠费停服），'AVAILABLE'：运行中。
-        public let state: String
+        public let state: String?
 
         /// 实例服务质量，’PT’：白金，'AU'：金，'AG'：银。
-        public let qosLevel: String
+        public let qosLevel: String?
 
         /// 付费类型，PREPAID为预付费，POSTPAID为后付费。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -403,10 +451,10 @@ extension Vpc {
         public let bandwidthLimitType: String?
 
         /// 标签键值对。
-        public let tagSet: [Tag]
+        public let tagSet: [Tag]?
 
         /// 是否支持云联网路由优先级的功能。False：不支持，True：支持。
-        public let routePriorityFlag: Bool
+        public let routePriorityFlag: Bool?
 
         /// 实例关联的路由表个数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -415,6 +463,10 @@ extension Vpc {
         /// 是否开启云联网多路由表特性。False：未开启，True：开启。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let routeTableFlag: Bool?
+
+        /// 是否开启云联网路由传播策略。`False` 未开启，`True` 开启。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let routeBroadcastPolicyFlag: Bool?
 
         enum CodingKeys: String, CodingKey {
             case ccnId = "CcnId"
@@ -430,6 +482,7 @@ extension Vpc {
             case routePriorityFlag = "RoutePriorityFlag"
             case routeTableCount = "RouteTableCount"
             case routeTableFlag = "RouteTableFlag"
+            case routeBroadcastPolicyFlag = "RouteBroadcastPolicyFlag"
         }
     }
 
@@ -1326,6 +1379,9 @@ extension Vpc {
         /// 创建时间。
         public let createTime: String
 
+        /// 挂载的PAAS服务类型，CLB,CDB,CRS
+        public let serviceType: String
+
         enum CodingKeys: String, CodingKey {
             case endPointServiceId = "EndPointServiceId"
             case vpcId = "VpcId"
@@ -1337,6 +1393,7 @@ extension Vpc {
             case endPointCount = "EndPointCount"
             case endPointSet = "EndPointSet"
             case createTime = "CreateTime"
+            case serviceType = "ServiceType"
         }
     }
 
@@ -3476,6 +3533,128 @@ extension Vpc {
         enum CodingKeys: String, CodingKey {
             case service = "Service"
             case description = "Description"
+        }
+    }
+
+    /// 快照文件信息
+    public struct SnapshotFileInfo: TCOutputModel {
+        /// 快照策略Id。
+        public let snapshotPolicyId: String
+
+        /// 实例Id。
+        public let instanceId: String
+
+        /// 快照文件Id。
+        public let snapshotFileId: String
+
+        /// 备份时间。
+        public let backupTime: String
+
+        /// 操作者Uin。
+        public let `operator`: String
+
+        enum CodingKeys: String, CodingKey {
+            case snapshotPolicyId = "SnapshotPolicyId"
+            case instanceId = "InstanceId"
+            case snapshotFileId = "SnapshotFileId"
+            case backupTime = "BackupTime"
+            case `operator` = "Operator"
+        }
+    }
+
+    /// 快照策略关联实例信息
+    public struct SnapshotInstance: TCInputModel, TCOutputModel {
+        /// 实例Id。
+        public let instanceId: String
+
+        /// 实例类型，目前支持安全组：securitygroup。
+        public let instanceType: String
+
+        /// 实例所在地域。
+        public let instanceRegion: String
+
+        /// 快照策略Id。
+        public let snapshotPolicyId: String?
+
+        /// 实例名称。
+        public let instanceName: String?
+
+        public init(instanceId: String, instanceType: String, instanceRegion: String, snapshotPolicyId: String? = nil, instanceName: String? = nil) {
+            self.instanceId = instanceId
+            self.instanceType = instanceType
+            self.instanceRegion = instanceRegion
+            self.snapshotPolicyId = snapshotPolicyId
+            self.instanceName = instanceName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceType = "InstanceType"
+            case instanceRegion = "InstanceRegion"
+            case snapshotPolicyId = "SnapshotPolicyId"
+            case instanceName = "InstanceName"
+        }
+    }
+
+    /// 快照策略
+    public struct SnapshotPolicy: TCInputModel, TCOutputModel {
+        /// 快照策略名称。
+        public let snapshotPolicyName: String
+
+        /// 备份策略类型，operate-操作备份，time-定时备份。
+        public let backupType: String
+
+        /// 保留时间，支持1～365天。
+        public let keepTime: UInt64
+
+        /// 是否创建新的cos桶，默认为False。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createNewCos: Bool?
+
+        /// cos桶所在地域。
+        public let cosRegion: String
+
+        /// cos桶。
+        public let cosBucket: String
+
+        /// 快照策略Id。
+        public let snapshotPolicyId: String?
+
+        /// 时间备份策略。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let backupPolicies: [BackupPolicy]?
+
+        /// 启用状态，True-启用，False-停用，默认为True。
+        public let enable: Bool?
+
+        /// 创建时间。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        public init(snapshotPolicyName: String, backupType: String, keepTime: UInt64, createNewCos: Bool, cosRegion: String, cosBucket: String, snapshotPolicyId: String? = nil, backupPolicies: [BackupPolicy]? = nil, enable: Bool? = nil, createTime: String? = nil) {
+            self.snapshotPolicyName = snapshotPolicyName
+            self.backupType = backupType
+            self.keepTime = keepTime
+            self.createNewCos = createNewCos
+            self.cosRegion = cosRegion
+            self.cosBucket = cosBucket
+            self.snapshotPolicyId = snapshotPolicyId
+            self.backupPolicies = backupPolicies
+            self.enable = enable
+            self.createTime = createTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case snapshotPolicyName = "SnapshotPolicyName"
+            case backupType = "BackupType"
+            case keepTime = "KeepTime"
+            case createNewCos = "CreateNewCos"
+            case cosRegion = "CosRegion"
+            case cosBucket = "CosBucket"
+            case snapshotPolicyId = "SnapshotPolicyId"
+            case backupPolicies = "BackupPolicies"
+            case enable = "Enable"
+            case createTime = "CreateTime"
         }
     }
 

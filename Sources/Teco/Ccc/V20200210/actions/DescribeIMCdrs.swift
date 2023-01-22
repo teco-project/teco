@@ -17,10 +17,10 @@
 extension Ccc {
     /// DescribeIMCdrs请求参数结构体
     public struct DescribeIMCdrsRequest: TCRequestModel {
-        /// 起始时间
+        /// 起始时间（必填），Unix 秒级时间戳
         public let startTimestamp: Int64
 
-        /// 结束时间
+        /// 结束时间（必填），Unix 秒级时间戳
         public let endTimestamp: Int64
 
         /// 实例 ID（废弃）
@@ -29,10 +29,10 @@ extension Ccc {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64?
 
-        /// 返回记录条数 最大为100默认20
+        /// 返回记录条数，最大为100默认20
         public let limit: Int64?
 
-        /// 返回记录偏移 默认为0
+        /// 返回记录偏移，默认为 0
         public let offset: Int64?
 
         /// 1为全媒体，2为文本客服，不填则查询全部
@@ -79,7 +79,7 @@ extension Ccc {
 
     /// 查询在线客服记录
     ///
-    /// 包括全媒体和文本两种类型
+    /// 获取包括全媒体和文本会话两种类型的服务记录。
     @inlinable
     public func describeIMCdrs(_ input: DescribeIMCdrsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIMCdrsResponse> {
         self.client.execute(action: "DescribeIMCdrs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -87,7 +87,7 @@ extension Ccc {
 
     /// 查询在线客服记录
     ///
-    /// 包括全媒体和文本两种类型
+    /// 获取包括全媒体和文本会话两种类型的服务记录。
     @inlinable
     public func describeIMCdrs(_ input: DescribeIMCdrsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
         try await self.client.execute(action: "DescribeIMCdrs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -95,7 +95,7 @@ extension Ccc {
 
     /// 查询在线客服记录
     ///
-    /// 包括全媒体和文本两种类型
+    /// 获取包括全媒体和文本会话两种类型的服务记录。
     @inlinable
     public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIMCdrsResponse> {
         self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), region: region, logger: logger, on: eventLoop)
@@ -103,7 +103,7 @@ extension Ccc {
 
     /// 查询在线客服记录
     ///
-    /// 包括全媒体和文本两种类型
+    /// 获取包括全媒体和文本会话两种类型的服务记录。
     @inlinable
     public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
         try await self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), region: region, logger: logger, on: eventLoop)

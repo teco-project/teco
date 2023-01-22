@@ -174,6 +174,10 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
 
+        /// API路径匹配类型。normal：普通API；wildcard：通配API。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let apiMatchType: String?
+
         enum CodingKeys: String, CodingKey {
             case apiId = "ApiId"
             case namespaceId = "NamespaceId"
@@ -196,6 +200,7 @@ extension Tsf {
             case host = "Host"
             case apiType = "ApiType"
             case description = "Description"
+            case apiMatchType = "ApiMatchType"
         }
     }
 
@@ -968,6 +973,192 @@ extension Tsf {
         }
     }
 
+    /// 集群详情
+    public struct ClusterV2: TCOutputModel {
+        /// 集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 集群名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
+
+        /// 集群描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterDesc: String?
+
+        /// 集群类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterType: String?
+
+        /// 集群所属私有网络ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 集群状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterStatus: String?
+
+        /// 集群CIDR
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterCIDR: String?
+
+        /// 集群总CPU，单位: 核
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterTotalCpu: Float?
+
+        /// 集群总内存，单位: G
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterTotalMem: Float?
+
+        /// 集群已使用CPU，单位: 核
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterUsedCpu: Float?
+
+        /// 集群已使用内存，单位: G
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterUsedMem: Float?
+
+        /// 集群机器实例数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceCount: Int64?
+
+        /// 集群运行中的机器实例数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let runInstanceCount: Int64?
+
+        /// 集群正常状态的机器实例数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let normalInstanceCount: Int64?
+
+        /// 删除标记：true：可以删除；false：不可删除
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deleteFlag: Bool?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 集群所属TSF地域ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tsfRegionId: String?
+
+        /// 集群所属TSF地域名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tsfRegionName: String?
+
+        /// 集群所属TSF可用区ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tsfZoneId: String?
+
+        /// 集群所属TSF可用区名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tsfZoneName: String?
+
+        /// 集群不可删除的原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deleteFlagReason: String?
+
+        /// 集群所属私有网络子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 集群剩余 cpu limit
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterLimitCpu: String?
+
+        /// 集群剩余 memory limit
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterLimitMem: String?
+
+        /// 运行服务实例数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let runServiceInstanceCount: Int64?
+
+        /// 给前端的按钮控制信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let operationInfo: OperationInfo?
+
+        /// 容器集群版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterVersion: String?
+
+        /// 部署组总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupCount: UInt64?
+
+        /// 运行中部署组数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let runGroupCount: UInt64?
+
+        /// 停止中部署组数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stopGroupCount: UInt64?
+
+        /// 异常部署组数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let abnormalGroupCount: UInt64?
+
+        /// 集群备注名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterRemarkName: String?
+
+        /// api地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kuberneteApiServer: String?
+
+        /// K : kubeconfig, S : service account
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kuberneteNativeType: String?
+
+        /// native secret
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kuberneteNativeSecret: String?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case clusterName = "ClusterName"
+            case clusterDesc = "ClusterDesc"
+            case clusterType = "ClusterType"
+            case vpcId = "VpcId"
+            case clusterStatus = "ClusterStatus"
+            case clusterCIDR = "ClusterCIDR"
+            case clusterTotalCpu = "ClusterTotalCpu"
+            case clusterTotalMem = "ClusterTotalMem"
+            case clusterUsedCpu = "ClusterUsedCpu"
+            case clusterUsedMem = "ClusterUsedMem"
+            case instanceCount = "InstanceCount"
+            case runInstanceCount = "RunInstanceCount"
+            case normalInstanceCount = "NormalInstanceCount"
+            case deleteFlag = "DeleteFlag"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+            case tsfRegionId = "TsfRegionId"
+            case tsfRegionName = "TsfRegionName"
+            case tsfZoneId = "TsfZoneId"
+            case tsfZoneName = "TsfZoneName"
+            case deleteFlagReason = "DeleteFlagReason"
+            case subnetId = "SubnetId"
+            case clusterLimitCpu = "ClusterLimitCpu"
+            case clusterLimitMem = "ClusterLimitMem"
+            case runServiceInstanceCount = "RunServiceInstanceCount"
+            case operationInfo = "OperationInfo"
+            case clusterVersion = "ClusterVersion"
+            case groupCount = "GroupCount"
+            case runGroupCount = "RunGroupCount"
+            case stopGroupCount = "StopGroupCount"
+            case abnormalGroupCount = "AbnormalGroupCount"
+            case clusterRemarkName = "ClusterRemarkName"
+            case kuberneteApiServer = "KuberneteApiServer"
+            case kuberneteNativeType = "KuberneteNativeType"
+            case kuberneteNativeSecret = "KuberneteNativeSecret"
+        }
+    }
+
     /// 配置项
     public struct Config: TCOutputModel {
         /// 配置项ID
@@ -1193,6 +1384,57 @@ extension Tsf {
             case lastConfigName = "LastConfigName"
             case lastConfigVersion = "LastConfigVersion"
             case rollbackFlag = "RollbackFlag"
+        }
+    }
+
+    /// 配置模板对象
+    public struct ConfigTemplate: TCInputModel, TCOutputModel {
+        /// 配置模板Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configTemplateId: String?
+
+        /// 配置模板名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configTemplateName: String?
+
+        /// 配置模板描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configTemplateDesc: String?
+
+        /// 配置模板对应的微服务框架
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configTemplateType: String?
+
+        /// 配置模板数据
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let configTemplateValue: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 更新时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        public init(configTemplateId: String? = nil, configTemplateName: String? = nil, configTemplateDesc: String? = nil, configTemplateType: String? = nil, configTemplateValue: String? = nil, createTime: String? = nil, updateTime: String? = nil) {
+            self.configTemplateId = configTemplateId
+            self.configTemplateName = configTemplateName
+            self.configTemplateDesc = configTemplateDesc
+            self.configTemplateType = configTemplateType
+            self.configTemplateValue = configTemplateValue
+            self.createTime = createTime
+            self.updateTime = updateTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case configTemplateId = "ConfigTemplateId"
+            case configTemplateName = "ConfigTemplateName"
+            case configTemplateDesc = "ConfigTemplateDesc"
+            case configTemplateType = "ConfigTemplateType"
+            case configTemplateValue = "ConfigTemplateValue"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
         }
     }
 
@@ -1909,6 +2151,41 @@ extension Tsf {
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case content = "Content"
+        }
+    }
+
+    /// kafka投递的topic和path的信息
+    public struct DeliveryKafkaInfo: TCInputModel, TCOutputModel {
+        /// 投递kafka的topic
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let topic: String?
+
+        /// 采集日志的path
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let path: [String]?
+
+        /// default，默认换行符分行
+        /// time，按时间分行
+        /// custom, 选了custom那么CustomRule就要填入具体的自定义值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lineRule: String?
+
+        /// 自定义的分行值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customRule: String?
+
+        public init(topic: String? = nil, path: [String]? = nil, lineRule: String? = nil, customRule: String? = nil) {
+            self.topic = topic
+            self.path = path
+            self.lineRule = lineRule
+            self.customRule = customRule
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case topic = "Topic"
+            case path = "Path"
+            case lineRule = "LineRule"
+            case customRule = "CustomRule"
         }
     }
 
@@ -3485,6 +3762,30 @@ extension Tsf {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lineRule: String?
 
+        /// 是否需要认证
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableAuth: Bool?
+
+        /// 用户名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let username: String?
+
+        /// 密码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let password: String?
+
+        /// 投递的topic和path
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let kafkaInfos: [DeliveryKafkaInfo]?
+
+        /// 是否应用单行规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableGlobalLineRule: Bool?
+
+        /// 自定义分行规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customRule: String?
+
         enum CodingKeys: String, CodingKey {
             case configId = "ConfigId"
             case configName = "ConfigName"
@@ -3493,6 +3794,12 @@ extension Tsf {
             case kafkaVPort = "KafkaVPort"
             case topic = "Topic"
             case lineRule = "LineRule"
+            case enableAuth = "EnableAuth"
+            case username = "Username"
+            case password = "Password"
+            case kafkaInfos = "KafkaInfos"
+            case enableGlobalLineRule = "EnableGlobalLineRule"
+            case customRule = "CustomRule"
         }
     }
 
@@ -5838,6 +6145,22 @@ extension Tsf {
         }
     }
 
+    /// Tsf分页集群对象
+    public struct TsfPageClusterV2: TCOutputModel {
+        /// 集群总数目
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        /// 集群列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: [ClusterV2]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case content = "Content"
+        }
+    }
+
     /// TsfPage<Config>
     public struct TsfPageConfig: TCOutputModel {
         /// TsfPageConfig
@@ -5921,6 +6244,22 @@ extension Tsf {
         /// 文件配置数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let content: [FileConfig]?
+
+        enum CodingKeys: String, CodingKey {
+            case totalCount = "TotalCount"
+            case content = "Content"
+        }
+    }
+
+    /// 文件配置项发布信息列表
+    public struct TsfPageFileConfigRelease: TCOutputModel {
+        /// 数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalCount: Int64?
+
+        /// 列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: [FileConfigRelease]?
 
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"

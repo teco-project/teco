@@ -227,6 +227,21 @@ extension Ckafka {
         }
     }
 
+    /// 批量解析
+    public struct BatchAnalyseParam: TCInputModel, TCOutputModel {
+        /// ONE_BY_ONE单条输出，MERGE合并输出
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let format: String?
+
+        public init(format: String) {
+            self.format = format
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case format = "Format"
+        }
+    }
+
     /// 批量发送消息内容
     public struct BatchContent: TCInputModel {
         /// 发送的消息体
@@ -1130,7 +1145,11 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ctsdbParam: CtsdbParam?
 
-        public init(type: String, kafkaParam: KafkaParam? = nil, eventBusParam: EventBusParam? = nil, mongoDBParam: MongoDBParam? = nil, esParam: EsParam? = nil, tdwParam: TdwParam? = nil, dtsParam: DtsParam? = nil, clickHouseParam: ClickHouseParam? = nil, clsParam: ClsParam? = nil, cosParam: CosParam? = nil, mySQLParam: MySQLParam? = nil, postgreSQLParam: PostgreSQLParam? = nil, topicParam: TopicParam? = nil, mariaDBParam: MariaDBParam? = nil, sqlServerParam: SQLServerParam? = nil, ctsdbParam: CtsdbParam? = nil) {
+        /// Scf配置，Type为SCF时必填
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let scfParam: ScfParam?
+
+        public init(type: String, kafkaParam: KafkaParam? = nil, eventBusParam: EventBusParam? = nil, mongoDBParam: MongoDBParam? = nil, esParam: EsParam? = nil, tdwParam: TdwParam? = nil, dtsParam: DtsParam? = nil, clickHouseParam: ClickHouseParam? = nil, clsParam: ClsParam? = nil, cosParam: CosParam? = nil, mySQLParam: MySQLParam? = nil, postgreSQLParam: PostgreSQLParam? = nil, topicParam: TopicParam? = nil, mariaDBParam: MariaDBParam? = nil, sqlServerParam: SQLServerParam? = nil, ctsdbParam: CtsdbParam? = nil, scfParam: ScfParam? = nil) {
             self.type = type
             self.kafkaParam = kafkaParam
             self.eventBusParam = eventBusParam
@@ -1147,6 +1166,7 @@ extension Ckafka {
             self.mariaDBParam = mariaDBParam
             self.sqlServerParam = sqlServerParam
             self.ctsdbParam = ctsdbParam
+            self.scfParam = scfParam
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1166,6 +1186,7 @@ extension Ckafka {
             case mariaDBParam = "MariaDBParam"
             case sqlServerParam = "SQLServerParam"
             case ctsdbParam = "CtsdbParam"
+            case scfParam = "ScfParam"
         }
     }
 
@@ -1265,6 +1286,27 @@ extension Ckafka {
             case format = "Format"
             case targetType = "TargetType"
             case timeZone = "TimeZone"
+        }
+    }
+
+    /// topic链接信息
+    public struct DescribeConnectInfoResultDTO: TCOutputModel {
+        /// ip地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ipAddr: String?
+
+        /// 连结时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let time: String?
+
+        /// 是否支持的版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isUnSupportVersion: Bool?
+
+        enum CodingKeys: String, CodingKey {
+            case ipAddr = "IpAddr"
+            case time = "Time"
+            case isUnSupportVersion = "IsUnSupportVersion"
         }
     }
 
@@ -2137,7 +2179,10 @@ extension Ckafka {
         /// 转储到ES的消息为Database的binlog时，如果需要同步数据库操作，即增删改的操作到ES时填写数据库表主键
         public let databasePrimaryKey: String?
 
-        public init(resource: String, port: Int64? = nil, userName: String? = nil, password: String? = nil, selfBuilt: Bool? = nil, serviceVip: String? = nil, uniqVpcId: String? = nil, dropInvalidMessage: Bool? = nil, index: String? = nil, dateFormat: String? = nil, contentKey: String? = nil, dropInvalidJsonMessage: Bool? = nil, documentIdField: String? = nil, indexType: String? = nil, dropCls: DropCls? = nil, databasePrimaryKey: String? = nil) {
+        /// 死信队列
+        public let dropDlq: FailureParam?
+
+        public init(resource: String, port: Int64? = nil, userName: String? = nil, password: String? = nil, selfBuilt: Bool? = nil, serviceVip: String? = nil, uniqVpcId: String? = nil, dropInvalidMessage: Bool? = nil, index: String? = nil, dateFormat: String? = nil, contentKey: String? = nil, dropInvalidJsonMessage: Bool? = nil, documentIdField: String? = nil, indexType: String? = nil, dropCls: DropCls? = nil, databasePrimaryKey: String? = nil, dropDlq: FailureParam? = nil) {
             self.resource = resource
             self.port = port
             self.userName = userName
@@ -2154,6 +2199,7 @@ extension Ckafka {
             self.indexType = indexType
             self.dropCls = dropCls
             self.databasePrimaryKey = databasePrimaryKey
+            self.dropDlq = dropDlq
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2173,6 +2219,7 @@ extension Ckafka {
             case indexType = "IndexType"
             case dropCls = "DropCls"
             case databasePrimaryKey = "DatabasePrimaryKey"
+            case dropDlq = "DropDlq"
         }
     }
 
@@ -3271,7 +3318,11 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compressionType: String?
 
-        public init(selfBuilt: Bool, resource: String, topic: String? = nil, offsetType: String? = nil, startTime: UInt64? = nil, resourceName: String? = nil, zoneId: Int64? = nil, topicId: String? = nil, partitionNum: Int64? = nil, enableToleration: Bool? = nil, qpsLimit: UInt64? = nil, tableMappings: [TableMapping]? = nil, useTableMapping: Bool? = nil, useAutoCreateTopic: Bool? = nil, compressionType: String? = nil) {
+        /// 源topic消息1条扩增成msgMultiple条写入目标topic(该参数目前只有ckafka流入ckafka适用)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let msgMultiple: Int64?
+
+        public init(selfBuilt: Bool, resource: String, topic: String? = nil, offsetType: String? = nil, startTime: UInt64? = nil, resourceName: String? = nil, zoneId: Int64? = nil, topicId: String? = nil, partitionNum: Int64? = nil, enableToleration: Bool? = nil, qpsLimit: UInt64? = nil, tableMappings: [TableMapping]? = nil, useTableMapping: Bool? = nil, useAutoCreateTopic: Bool? = nil, compressionType: String? = nil, msgMultiple: Int64? = nil) {
             self.selfBuilt = selfBuilt
             self.resource = resource
             self.topic = topic
@@ -3287,6 +3338,7 @@ extension Ckafka {
             self.useTableMapping = useTableMapping
             self.useAutoCreateTopic = useAutoCreateTopic
             self.compressionType = compressionType
+            self.msgMultiple = msgMultiple
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3305,6 +3357,7 @@ extension Ckafka {
             case useTableMapping = "UseTableMapping"
             case useAutoCreateTopic = "UseAutoCreateTopic"
             case compressionType = "CompressionType"
+            case msgMultiple = "MsgMultiple"
         }
     }
 
@@ -4667,6 +4720,43 @@ extension Ckafka {
         }
     }
 
+    /// Scf类型入参
+    public struct ScfParam: TCInputModel {
+        /// SCF云函数函数名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let functionName: String?
+
+        /// SCF云函数命名空间, 默认为default
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let namespace: String?
+
+        /// SCF云函数版本及别名, 默认为$DEFAULT
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qualifier: String?
+
+        /// 每批最大发送消息数, 默认为1000
+        public let batchSize: Int64?
+
+        /// SCF调用失败后重试次数, 默认为5
+        public let maxRetries: Int64?
+
+        public init(functionName: String, namespace: String? = nil, qualifier: String? = nil, batchSize: Int64? = nil, maxRetries: Int64? = nil) {
+            self.functionName = functionName
+            self.namespace = namespace
+            self.qualifier = qualifier
+            self.batchSize = batchSize
+            self.maxRetries = maxRetries
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case functionName = "FunctionName"
+            case namespace = "Namespace"
+            case qualifier = "Qualifier"
+            case batchSize = "BatchSize"
+            case maxRetries = "MaxRetries"
+        }
+    }
+
     /// 数据处理——二次解析参数
     public struct SecondaryAnalyseParam: TCInputModel, TCOutputModel {
         /// 分隔符
@@ -4769,12 +4859,17 @@ extension Ckafka {
     }
 
     /// 实例详情中的标签对象
-    public struct Tag: TCOutputModel {
+    public struct Tag: TCInputModel, TCOutputModel {
         /// 标签的key
         public let tagKey: String
 
         /// 标签的值
         public let tagValue: String
+
+        public init(tagKey: String, tagValue: String) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
 
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
@@ -5052,13 +5147,18 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let useAutoCreateTopic: Bool?
 
-        public init(resource: String, offsetType: String? = nil, startTime: UInt64? = nil, topicId: String? = nil, compressionType: String? = nil, useAutoCreateTopic: Bool? = nil) {
+        /// 源topic消息1条扩增成msgMultiple条写入目标topic(该参数目前只有ckafka流入ckafka适用)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let msgMultiple: Int64?
+
+        public init(resource: String, offsetType: String? = nil, startTime: UInt64? = nil, topicId: String? = nil, compressionType: String? = nil, useAutoCreateTopic: Bool? = nil, msgMultiple: Int64? = nil) {
             self.resource = resource
             self.offsetType = offsetType
             self.startTime = startTime
             self.topicId = topicId
             self.compressionType = compressionType
             self.useAutoCreateTopic = useAutoCreateTopic
+            self.msgMultiple = msgMultiple
         }
 
         enum CodingKeys: String, CodingKey {
@@ -5068,6 +5168,7 @@ extension Ckafka {
             case topicId = "TopicId"
             case compressionType = "CompressionType"
             case useAutoCreateTopic = "UseAutoCreateTopic"
+            case msgMultiple = "MsgMultiple"
         }
     }
 
@@ -5257,7 +5358,11 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keepMetadata: Bool?
 
-        public init(content: String, fieldChain: [FieldParam], filterParam: [FilterMapParam]? = nil, failureParam: FailureParam? = nil, result: String? = nil, sourceType: String? = nil, outputFormat: String? = nil, rowParam: RowParam? = nil, keepMetadata: Bool? = nil) {
+        /// 数组解析
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let batchAnalyse: BatchAnalyseParam?
+
+        public init(content: String, fieldChain: [FieldParam], filterParam: [FilterMapParam]? = nil, failureParam: FailureParam? = nil, result: String? = nil, sourceType: String? = nil, outputFormat: String? = nil, rowParam: RowParam? = nil, keepMetadata: Bool? = nil, batchAnalyse: BatchAnalyseParam? = nil) {
             self.content = content
             self.fieldChain = fieldChain
             self.filterParam = filterParam
@@ -5267,6 +5372,7 @@ extension Ckafka {
             self.outputFormat = outputFormat
             self.rowParam = rowParam
             self.keepMetadata = keepMetadata
+            self.batchAnalyse = batchAnalyse
         }
 
         enum CodingKeys: String, CodingKey {
@@ -5279,6 +5385,7 @@ extension Ckafka {
             case outputFormat = "OutputFormat"
             case rowParam = "RowParam"
             case keepMetadata = "KeepMetadata"
+            case batchAnalyse = "BatchAnalyse"
         }
     }
 

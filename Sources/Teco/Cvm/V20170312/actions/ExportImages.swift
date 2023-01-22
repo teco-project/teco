@@ -64,11 +64,15 @@ extension Cvm {
         /// 导出镜像任务ID
         public let taskId: UInt64
 
+        /// 导出镜像的COS文件名列表
+        public let cosPaths: [String]
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
+            case cosPaths = "CosPaths"
             case requestId = "RequestId"
         }
     }

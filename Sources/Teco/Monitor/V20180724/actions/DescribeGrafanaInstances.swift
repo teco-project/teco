@@ -23,10 +23,10 @@ extension Monitor {
         /// 查询数量
         public let limit: Int64
 
-        /// 实例 ID 数组
+        /// Grafana 实例 ID 数组
         public let instanceIds: [String]?
 
-        /// 实例名，支持前缀模糊搜索
+        /// Grafana 实例名，支持前缀模糊搜索
         public let instanceName: String?
 
         /// 查询状态

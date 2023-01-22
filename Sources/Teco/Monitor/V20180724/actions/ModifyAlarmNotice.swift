@@ -41,7 +41,10 @@ extension Monitor {
         /// 告警通知推送到CLS服务 最多1个
         public let clsNotices: [CLSNotice]?
 
-        public init(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil) {
+        /// 告警通知模板绑定的告警策略ID列表
+        public let policyIds: [String]?
+
+        public init(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, policyIds: [String]? = nil) {
             self.module = module
             self.name = name
             self.noticeType = noticeType
@@ -50,6 +53,7 @@ extension Monitor {
             self.userNotices = userNotices
             self.urlNotices = urlNotices
             self.clsNotices = clsNotices
+            self.policyIds = policyIds
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ extension Monitor {
             case userNotices = "UserNotices"
             case urlNotices = "URLNotices"
             case clsNotices = "CLSNotices"
+            case policyIds = "PolicyIds"
         }
     }
 
@@ -94,15 +99,15 @@ extension Monitor {
     ///
     /// 云监控告警编辑告警通知模板
     @inlinable @discardableResult
-    public func modifyAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
-        self.modifyAlarmNotice(ModifyAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
+        self.modifyAlarmNotice(ModifyAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改通知模板
     ///
     /// 云监控告警编辑告警通知模板
     @inlinable @discardableResult
-    public func modifyAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
-        try await self.modifyAlarmNotice(ModifyAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
+        try await self.modifyAlarmNotice(ModifyAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
     }
 }

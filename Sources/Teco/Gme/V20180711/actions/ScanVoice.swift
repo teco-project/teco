@@ -127,7 +127,7 @@ extension Gme {
     /// <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
     /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
     /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-    /// <li>HTTP 头参数说明：</li>
+    /// <li>HTTP 请求参数（query）说明：</li>
     /// <table>
     /// <thread>
     /// <tr>
@@ -169,32 +169,32 @@ extension Gme {
     /// 		"HitFlag": true,
     /// 		"MainType": "abuse",
     /// 		"RoomId": "123",
-    /// 		"OpenId": "xxx",
+    /// 		"OpenId": "111",
     /// 		"Info":"",
     /// 		"Offset": 0,
     /// 		"Duration": 3400,
     /// 		"PieceStartTime":1574684231,
     /// 		"ScanDetail": [{
     /// 			"EndTime": 1110,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 1110
     /// 		}, {
     /// 			"EndTime": 1380,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 930
     /// 		}, {
     /// 			"EndTime": 1560,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 930
     /// 		}, {
     /// 			"EndTime": 2820,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 2490
@@ -205,7 +205,7 @@ extension Gme {
     /// 		"default"
     /// 	],
     /// 	"Status": "Success",
-    /// 	"TaskId": "xxx",
+    /// 	"TaskId": "6330xxxx-9xx7-11ed-98e3-52xxxxe4ac3b",
     /// 	"Url": "https://xxx/xxx.m4a"
     /// }
     /// </code></pre>
@@ -270,7 +270,7 @@ extension Gme {
     /// <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
     /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
     /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-    /// <li>HTTP 头参数说明：</li>
+    /// <li>HTTP 请求参数（query）说明：</li>
     /// <table>
     /// <thread>
     /// <tr>
@@ -312,32 +312,32 @@ extension Gme {
     /// 		"HitFlag": true,
     /// 		"MainType": "abuse",
     /// 		"RoomId": "123",
-    /// 		"OpenId": "xxx",
+    /// 		"OpenId": "111",
     /// 		"Info":"",
     /// 		"Offset": 0,
     /// 		"Duration": 3400,
     /// 		"PieceStartTime":1574684231,
     /// 		"ScanDetail": [{
     /// 			"EndTime": 1110,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 1110
     /// 		}, {
     /// 			"EndTime": 1380,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 930
     /// 		}, {
     /// 			"EndTime": 1560,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 930
     /// 		}, {
     /// 			"EndTime": 2820,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 2490
@@ -348,7 +348,7 @@ extension Gme {
     /// 		"default"
     /// 	],
     /// 	"Status": "Success",
-    /// 	"TaskId": "xxx",
+    /// 	"TaskId": "6330xxxx-9xx7-11ed-98e3-52xxxxe4ac3b",
     /// 	"Url": "https://xxx/xxx.m4a"
     /// }
     /// </code></pre>
@@ -413,7 +413,7 @@ extension Gme {
     /// <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
     /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
     /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-    /// <li>HTTP 头参数说明：</li>
+    /// <li>HTTP 请求参数（query）说明：</li>
     /// <table>
     /// <thread>
     /// <tr>
@@ -455,32 +455,32 @@ extension Gme {
     /// 		"HitFlag": true,
     /// 		"MainType": "abuse",
     /// 		"RoomId": "123",
-    /// 		"OpenId": "xxx",
+    /// 		"OpenId": "111",
     /// 		"Info":"",
     /// 		"Offset": 0,
     /// 		"Duration": 3400,
     /// 		"PieceStartTime":1574684231,
     /// 		"ScanDetail": [{
     /// 			"EndTime": 1110,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 1110
     /// 		}, {
     /// 			"EndTime": 1380,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 930
     /// 		}, {
     /// 			"EndTime": 1560,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 930
     /// 		}, {
     /// 			"EndTime": 2820,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 2490
@@ -491,7 +491,7 @@ extension Gme {
     /// 		"default"
     /// 	],
     /// 	"Status": "Success",
-    /// 	"TaskId": "xxx",
+    /// 	"TaskId": "6330xxxx-9xx7-11ed-98e3-52xxxxe4ac3b",
     /// 	"Url": "https://xxx/xxx.m4a"
     /// }
     /// </code></pre>
@@ -556,7 +556,7 @@ extension Gme {
     /// <h4 id="Callback_Declare"><b>回调相关说明：</b></h4>
     /// <li>如果在请求参数中指定了回调地址参数 Callback，即一个 HTTP(S) 协议接口的 URL，则需要支持 POST 方法，传输数据编码采用 UTF-8。</li>
     /// <li>在推送回调数据后，接收到的 HTTP 状态码为 200 时，表示推送成功。</li>
-    /// <li>HTTP 头参数说明：</li>
+    /// <li>HTTP 请求参数（query）说明：</li>
     /// <table>
     /// <thread>
     /// <tr>
@@ -598,32 +598,32 @@ extension Gme {
     /// 		"HitFlag": true,
     /// 		"MainType": "abuse",
     /// 		"RoomId": "123",
-    /// 		"OpenId": "xxx",
+    /// 		"OpenId": "111",
     /// 		"Info":"",
     /// 		"Offset": 0,
     /// 		"Duration": 3400,
     /// 		"PieceStartTime":1574684231,
     /// 		"ScanDetail": [{
     /// 			"EndTime": 1110,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 1110
     /// 		}, {
     /// 			"EndTime": 1380,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 930
     /// 		}, {
     /// 			"EndTime": 1560,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 930
     /// 		}, {
     /// 			"EndTime": 2820,
-    /// 			"KeyWord": "xxx",
+    /// 			"KeyWord": "违规字",
     /// 			"Label": "abuse",
     /// 			"Rate": "90.00",
     /// 			"StartTime": 2490
@@ -634,7 +634,7 @@ extension Gme {
     /// 		"default"
     /// 	],
     /// 	"Status": "Success",
-    /// 	"TaskId": "xxx",
+    /// 	"TaskId": "6330xxxx-9xx7-11ed-98e3-52xxxxe4ac3b",
     /// 	"Url": "https://xxx/xxx.m4a"
     /// }
     /// </code></pre>

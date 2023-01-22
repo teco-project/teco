@@ -557,12 +557,19 @@ extension Mps {
         /// 视频内容分析模板 ID。
         public let definition: UInt64
 
-        public init(definition: UInt64) {
+        /// 扩展参数，其值为序列化的 json字符串。
+        /// 注意：此参数为定制需求参数，需要线下对接。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let extendedParameter: String?
+
+        public init(definition: UInt64, extendedParameter: String? = nil) {
             self.definition = definition
+            self.extendedParameter = extendedParameter
         }
 
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
+            case extendedParameter = "ExtendedParameter"
         }
     }
 
@@ -5032,6 +5039,8 @@ extension Mps {
         public let topicName: String?
 
         /// 通知类型，默认CMQ，指定URL时HTTP回调推送到 NotifyUrl 指定的地址。
+        ///
+        /// <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
         public let notifyType: String?
 
         /// HTTP回调地址，NotifyType为URL时必填。
@@ -5473,7 +5482,7 @@ extension Mps {
 
     /// 媒体处理的输入对象信息。
     public struct MediaInputInfo: TCInputModel, TCOutputModel {
-        /// 输入来源对象的类型，支持 COS 和 URL 两种。
+        /// 输入来源对象的类型，支持 COS、URL 两种。
         public let type: String
 
         /// 当 Type 为 COS 时有效，则该项为必填，表示媒体处理 COS 对象信息。
@@ -7870,10 +7879,10 @@ extension Mps {
     /// 任务的事件通知配置。
     public struct TaskNotifyConfig: TCInputModel, TCOutputModel {
         /// CMQ或TDMQ-CMQ 的模型，有 Queue 和 Topic 两种。
-        public let cmqModel: String
+        public let cmqModel: String?
 
         /// CMQ或TDMQ-CMQ 的园区，如 sh，bj 等。
-        public let cmqRegion: String
+        public let cmqRegion: String?
 
         /// 当模型为 Topic 时有效，表示接收事件通知的 CMQ 或 TDMQ-CMQ 的主题名。
         public let topicName: String?
@@ -7889,13 +7898,13 @@ extension Mps {
         /// <li>TDMQ-CMQ：消息队列</li>
         /// <li>URL：指定URL时HTTP回调推送到 NotifyUrl 指定的地址，回调协议http+json，包体内容同解析事件通知接口的输出参数 </li>
         /// <li>SCF：不推荐使用，需要在控制台额外配置SCF</li>
-        /// 目前 默认CMQ。
+        /// <font color="red"> 注：不填或为空时默认 CMQ，如需采用其他类型需填写对应类型值。 </font>
         public let notifyType: String?
 
         /// HTTP回调地址，NotifyType为URL时必填。
         public let notifyUrl: String?
 
-        public init(cmqModel: String, cmqRegion: String, topicName: String? = nil, queueName: String? = nil, notifyMode: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil) {
+        public init(cmqModel: String? = nil, cmqRegion: String? = nil, topicName: String? = nil, queueName: String? = nil, notifyMode: String? = nil, notifyType: String? = nil, notifyUrl: String? = nil) {
             self.cmqModel = cmqModel
             self.cmqRegion = cmqRegion
             self.topicName = topicName

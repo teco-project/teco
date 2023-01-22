@@ -17,7 +17,7 @@
 extension Gme {
     /// DeleteCustomization请求参数结构体
     public struct DeleteCustomizationRequest: TCRequestModel {
-        /// 要删除的模型ID
+        /// 删除的模型ID
         public let modelId: String
 
         /// 应用 ID，登录控制台创建应用得到的AppID
@@ -48,33 +48,33 @@ extension Gme {
         }
     }
 
-    /// 删除语音消息转文本自学习模型
+    /// 删除语音消息转文本热句模型
     ///
-    /// 用户通过该接口可以删除语音消息转文本自学习模型
+    /// 用户通过该接口可以删除语音消息转文本热句模型
     @inlinable
     public func deleteCustomization(_ input: DeleteCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
         self.client.execute(action: "DeleteCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除语音消息转文本自学习模型
+    /// 删除语音消息转文本热句模型
     ///
-    /// 用户通过该接口可以删除语音消息转文本自学习模型
+    /// 用户通过该接口可以删除语音消息转文本热句模型
     @inlinable
     public func deleteCustomization(_ input: DeleteCustomizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
         try await self.client.execute(action: "DeleteCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除语音消息转文本自学习模型
+    /// 删除语音消息转文本热句模型
     ///
-    /// 用户通过该接口可以删除语音消息转文本自学习模型
+    /// 用户通过该接口可以删除语音消息转文本热句模型
     @inlinable
     public func deleteCustomization(modelId: String, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomizationResponse> {
         self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除语音消息转文本自学习模型
+    /// 删除语音消息转文本热句模型
     ///
-    /// 用户通过该接口可以删除语音消息转文本自学习模型
+    /// 用户通过该接口可以删除语音消息转文本热句模型
     @inlinable
     public func deleteCustomization(modelId: String, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomizationResponse {
         try await self.deleteCustomization(DeleteCustomizationRequest(modelId: modelId, bizId: bizId), region: region, logger: logger, on: eventLoop)

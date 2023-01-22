@@ -20,7 +20,7 @@ extension Tsf {
         /// 搜索字段，模糊搜索groupName字段
         public let searchWord: String?
 
-        /// 分组所属应用ID
+        /// 分组所属应用ID。必填
         public let applicationId: String?
 
         /// 排序字段，默认为 createTime字段，支持id， name， createTime

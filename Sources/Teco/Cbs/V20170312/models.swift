@@ -860,11 +860,23 @@ extension Cbs {
         }
     }
 
-    /// 快照操作日志。
+    /// 快照操作日志，已废弃。
     public struct SnapshotOperationLog: TCOutputModel {
+        /// 操作的状态。取值范围：
+        /// SUCCESS :表示操作成功
+        /// FAILED :表示操作失败
+        /// PROCESSING :表示操作中。
+        public let operationState: String
+
+        /// 开始时间。
+        public let startTime: String
+
         /// 操作者的UIN。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
+
+        /// 操作的快照ID。
+        public let snapshotId: String
 
         /// 操作类型。取值范围：
         /// SNAP_OPERATION_DELETE：删除快照
@@ -876,27 +888,15 @@ extension Cbs {
         /// ASP_OPERATION_DELETE_SNAP：由定期快照策略删除快照
         public let operation: String
 
-        /// 操作的快照ID。
-        public let snapshotId: String
-
-        /// 操作的状态。取值范围：
-        /// SUCCESS :表示操作成功
-        /// FAILED :表示操作失败
-        /// PROCESSING :表示操作中。
-        public let operationState: String
-
-        /// 开始时间。
-        public let startTime: String
-
         /// 结束时间。
         public let endTime: String
 
         enum CodingKeys: String, CodingKey {
-            case `operator` = "Operator"
-            case operation = "Operation"
-            case snapshotId = "SnapshotId"
             case operationState = "OperationState"
             case startTime = "StartTime"
+            case `operator` = "Operator"
+            case snapshotId = "SnapshotId"
+            case operation = "Operation"
             case endTime = "EndTime"
         }
     }

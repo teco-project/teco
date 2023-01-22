@@ -20,7 +20,7 @@ extension Ckafka {
         /// （过滤条件）按照实例ID过滤
         public let instanceId: String?
 
-        /// （过滤条件）按照实例名称过滤，支持模糊查询
+        /// （过滤条件）按照实例名,实例Id,可用区,私有网络id,子网id 过滤，支持模糊查询
         public let searchWord: String?
 
         /// （过滤条件）实例的状态。0：创建中，1：运行中，2：删除中，不填默认返回全部

@@ -66,14 +66,18 @@ extension Vod {
 
     /// ProcessMediaByProcedure返回参数结构体
     public struct ProcessMediaByProcedureResponse: TCResponseModel {
-        /// 任务 ID。
+        /// 任务类型为 Procedure 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
         public let taskId: String
+
+        /// 任务类型为 ReviewAudioVideo 的任务 ID，当入参 ProcedureName 对应的任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        public let reviewAudioVideoTaskId: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
+            case reviewAudioVideoTaskId = "ReviewAudioVideoTaskId"
             case requestId = "RequestId"
         }
     }
@@ -85,7 +89,7 @@ extension Vod {
     /// 1. 在控制台上创建和修改任务流模板；
     /// 2. 通过任务流模板接口创建任务流模板。
     ///
-    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    /// 如使用事件通知，除音视频审核任务外的事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)；音视频审核任务事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaByProcedureResponse> {
         self.client.execute(action: "ProcessMediaByProcedure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -98,7 +102,7 @@ extension Vod {
     /// 1. 在控制台上创建和修改任务流模板；
     /// 2. 通过任务流模板接口创建任务流模板。
     ///
-    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    /// 如使用事件通知，除音视频审核任务外的事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)；音视频审核任务事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func processMediaByProcedure(_ input: ProcessMediaByProcedureRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {
         try await self.client.execute(action: "ProcessMediaByProcedure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -111,7 +115,7 @@ extension Vod {
     /// 1. 在控制台上创建和修改任务流模板；
     /// 2. 通过任务流模板接口创建任务流模板。
     ///
-    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    /// 如使用事件通知，除音视频审核任务外的事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)；音视频审核任务事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func processMediaByProcedure(fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaByProcedureResponse> {
         self.processMediaByProcedure(ProcessMediaByProcedureRequest(fileId: fileId, procedureName: procedureName, subAppId: subAppId, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
@@ -124,7 +128,7 @@ extension Vod {
     /// 1. 在控制台上创建和修改任务流模板；
     /// 2. 通过任务流模板接口创建任务流模板。
     ///
-    /// 如使用事件通知，事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)。
+    /// 如使用事件通知，除音视频审核任务外的事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)；音视频审核任务事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func processMediaByProcedure(fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {
         try await self.processMediaByProcedure(ProcessMediaByProcedureRequest(fileId: fileId, procedureName: procedureName, subAppId: subAppId, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)

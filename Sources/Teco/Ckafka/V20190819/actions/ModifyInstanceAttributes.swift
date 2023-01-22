@@ -35,7 +35,7 @@ extension Ckafka {
         /// 修改升配置rebalance时间
         public let rebalanceTime: Int64?
 
-        /// 时间戳
+        /// 公网带宽
         public let publicNetwork: Int64?
 
         /// 动态硬盘扩容策略配置

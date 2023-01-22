@@ -15,6 +15,63 @@
 // DO NOT EDIT.
 
 extension Emr {
+    /// 资源描述
+    public struct AllNodeResourceSpec: TCInputModel, TCOutputModel {
+        /// 描述Master节点资源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let masterResourceSpec: NodeResourceSpec?
+
+        /// 描述Core节点资源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let coreResourceSpec: NodeResourceSpec?
+
+        /// 描述Taskr节点资源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskResourceSpec: NodeResourceSpec?
+
+        /// 描述Common节点资源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let commonResourceSpec: NodeResourceSpec?
+
+        /// Master节点数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let masterCount: Int64?
+
+        /// Corer节点数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let coreCount: Int64?
+
+        /// Task节点数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskCount: Int64?
+
+        /// Common节点数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let commonCount: Int64?
+
+        public init(masterResourceSpec: NodeResourceSpec? = nil, coreResourceSpec: NodeResourceSpec? = nil, taskResourceSpec: NodeResourceSpec? = nil, commonResourceSpec: NodeResourceSpec? = nil, masterCount: Int64? = nil, coreCount: Int64? = nil, taskCount: Int64? = nil, commonCount: Int64? = nil) {
+            self.masterResourceSpec = masterResourceSpec
+            self.coreResourceSpec = coreResourceSpec
+            self.taskResourceSpec = taskResourceSpec
+            self.commonResourceSpec = commonResourceSpec
+            self.masterCount = masterCount
+            self.coreCount = coreCount
+            self.taskCount = taskCount
+            self.commonCount = commonCount
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case masterResourceSpec = "MasterResourceSpec"
+            case coreResourceSpec = "CoreResourceSpec"
+            case taskResourceSpec = "TaskResourceSpec"
+            case commonResourceSpec = "CommonResourceSpec"
+            case masterCount = "MasterCount"
+            case coreCount = "CoreCount"
+            case taskCount = "TaskCount"
+            case commonCount = "CommonCount"
+        }
+    }
+
     /// yarn application 统计信息
     public struct ApplicationStatics: TCOutputModel {
         /// 队列名
@@ -549,6 +606,43 @@ extension Emr {
         }
     }
 
+    /// 用户Hive-MetaDB信息
+    public struct CustomMetaDBInfo: TCInputModel {
+        /// 自定义MetaDB的JDBC连接，示例: jdbc:mysql://10.10.10.10:3306/dbname
+        public let metaDataJdbcUrl: String?
+
+        /// 自定义MetaDB用户名
+        public let metaDataUser: String?
+
+        /// 自定义MetaDB密码
+        public let metaDataPass: String?
+
+        /// hive共享元数据库类型。取值范围：
+        /// <li>EMR_DEFAULT_META：表示集群默认创建</li>
+        /// <li>EMR_EXIST_META：表示集群使用指定EMR-MetaDB。</li>
+        /// <li>USER_CUSTOM_META：表示集群使用自定义MetaDB。</li>
+        public let metaType: String?
+
+        /// EMR-MetaDB实例
+        public let unifyMetaInstanceId: String?
+
+        public init(metaDataJdbcUrl: String? = nil, metaDataUser: String? = nil, metaDataPass: String? = nil, metaType: String? = nil, unifyMetaInstanceId: String? = nil) {
+            self.metaDataJdbcUrl = metaDataJdbcUrl
+            self.metaDataUser = metaDataUser
+            self.metaDataPass = metaDataPass
+            self.metaType = metaType
+            self.unifyMetaInstanceId = unifyMetaInstanceId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case metaDataJdbcUrl = "MetaDataJdbcUrl"
+            case metaDataUser = "MetaDataUser"
+            case metaDataPass = "MetaDataPass"
+            case metaType = "MetaType"
+            case unifyMetaInstanceId = "UnifyMetaInstanceId"
+        }
+    }
+
     /// 用户自建Hive-MetaDB信息
     public struct CustomMetaInfo: TCInputModel {
         /// 自定义MetaDB的JDBC连接，请以 jdbc:mysql:// 开头
@@ -592,6 +686,25 @@ extension Emr {
         }
     }
 
+    /// 共用组件信息
+    public struct DependService: TCInputModel {
+        /// 共用组件名
+        public let serviceName: String
+
+        /// 共用组件集群
+        public let instanceId: String
+
+        public init(serviceName: String, instanceId: String) {
+            self.serviceName = serviceName
+            self.instanceId = instanceId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case serviceName = "ServiceName"
+            case instanceId = "InstanceId"
+        }
+    }
+
     /// 磁盘组。
     public struct DiskGroup: TCInputModel, TCOutputModel {
         /// 磁盘规格。
@@ -631,6 +744,48 @@ extension Emr {
         }
 
         enum CodingKeys: String, CodingKey {
+            case diskType = "DiskType"
+            case diskSize = "DiskSize"
+        }
+    }
+
+    /// 节点磁盘信息
+    public struct DiskSpecInfo: TCInputModel, TCOutputModel {
+        /// 磁盘数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: Int64?
+
+        /// 系统盘类型 取值范围：
+        /// <li>CLOUD_SSD：表示云SSD。</li>
+        /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
+        /// <li>CLOUD_BASIC：表示云硬盘。</li>
+        /// <li>LOCAL_BASIC：表示本地盘。</li>
+        /// <li>LOCAL_SSD：表示本地SSD。</li>
+        ///
+        /// 数据盘类型 取值范围：
+        /// <li>CLOUD_SSD：表示云SSD。</li>
+        /// <li>CLOUD_PREMIUM：表示高效云盘。</li>
+        /// <li>CLOUD_BASIC：表示云硬盘。</li>
+        /// <li>LOCAL_BASIC：表示本地盘。</li>
+        /// <li>LOCAL_SSD：表示本地SSD。</li>
+        /// <li>CLOUD_HSSD：表示增强型SSD云硬盘。</li>
+        /// <li>CLOUD_THROUGHPUT：表示吞吐型云硬盘。</li>
+        /// <li>CLOUD_TSSD：表示极速型SSD云硬盘。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diskType: String?
+
+        /// 数据容量，单位为GB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diskSize: Int64?
+
+        public init(count: Int64, diskType: String, diskSize: Int64) {
+            self.count = count
+            self.diskType = diskType
+            self.diskSize = diskSize
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case count = "Count"
             case diskType = "DiskType"
             case diskSize = "DiskSize"
         }
@@ -769,6 +924,10 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isHandsCluster: Bool?
 
+        /// 体外客户端组件信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let outSideSoftInfo: [SoftDependInfo]?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case statusDesc = "StatusDesc"
@@ -798,6 +957,38 @@ extension Emr {
             case clusterClass = "ClusterClass"
             case isMultiZoneCluster = "IsMultiZoneCluster"
             case isHandsCluster = "IsHandsCluster"
+            case outSideSoftInfo = "OutSideSoftInfo"
+        }
+    }
+
+    /// Emr询价描述
+    public struct EmrPrice: TCOutputModel {
+        /// 刊例价格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originalCost: String?
+
+        /// 折扣价格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let discountCost: String?
+
+        /// 单位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unit: String?
+
+        /// 询价配置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let priceSpec: PriceResource?
+
+        /// 是否支持竞价实例
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let supportSpotPaid: Bool?
+
+        enum CodingKeys: String, CodingKey {
+            case originalCost = "OriginalCost"
+            case discountCost = "DiscountCost"
+            case unit = "Unit"
+            case priceSpec = "PriceSpec"
+            case supportSpotPaid = "SupportSpotPaid"
         }
     }
 
@@ -1303,6 +1494,21 @@ extension Emr {
         }
     }
 
+    /// 用于创建集群价格清单 节点价格详情
+    public struct NodeDetailPriceResult: TCOutputModel {
+        /// 节点类型 master core task common router mysql
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nodeType: String?
+
+        /// 节点组成部分价格详情
+        public let partDetailPrice: [PartDetailPriceItem]
+
+        enum CodingKeys: String, CodingKey {
+            case nodeType = "NodeType"
+            case partDetailPrice = "PartDetailPrice"
+        }
+    }
+
     /// 节点硬件信息
     public struct NodeHardwareInfo: TCOutputModel {
         /// 用户APPID
@@ -1561,6 +1767,45 @@ extension Emr {
     }
 
     /// 资源详情
+    public struct NodeResourceSpec: TCInputModel, TCOutputModel {
+        /// 规格类型，如S2.MEDIUM8
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceType: String?
+
+        /// 系统盘，系统盘个数不超过1块
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let systemDisk: [DiskSpecInfo]?
+
+        /// 需要绑定的标签列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
+        /// 云数据盘，云数据盘总个数不超过15块
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataDisk: [DiskSpecInfo]?
+
+        /// 本地数据盘
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let localDataDisk: [DiskSpecInfo]?
+
+        public init(instanceType: String, systemDisk: [DiskSpecInfo], tags: [Tag]? = nil, dataDisk: [DiskSpecInfo]? = nil, localDataDisk: [DiskSpecInfo]? = nil) {
+            self.instanceType = instanceType
+            self.systemDisk = systemDisk
+            self.tags = tags
+            self.dataDisk = dataDisk
+            self.localDataDisk = localDataDisk
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceType = "InstanceType"
+            case systemDisk = "SystemDisk"
+            case tags = "Tags"
+            case dataDisk = "DataDisk"
+            case localDataDisk = "LocalDataDisk"
+        }
+    }
+
+    /// 资源详情
     public struct OutterResource: TCOutputModel {
         /// 规格
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1611,6 +1856,42 @@ extension Emr {
         }
     }
 
+    /// 用于创建集群价格清单-节点组成部分价格
+    public struct PartDetailPriceItem: TCOutputModel {
+        /// 类型包括：节点->node、系统盘->rootDisk、云数据盘->dataDisk、metaDB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceType: String?
+
+        /// 单价（原价）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let price: Float?
+
+        /// 单价（折扣价）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realCost: Float?
+
+        /// 总价（折扣价）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let realTotalCost: Float?
+
+        /// 折扣
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policy: Float?
+
+        /// 数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let goodsNum: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceType = "InstanceType"
+            case price = "Price"
+            case realCost = "RealCost"
+            case realTotalCost = "RealTotalCost"
+            case policy = "Policy"
+            case goodsNum = "GoodsNum"
+        }
+    }
+
     /// Pod PVC存储方式描述
     public struct PersistentVolumeContext: TCInputModel, TCOutputModel {
         /// 磁盘大小，单位为GB。
@@ -1654,6 +1935,213 @@ extension Emr {
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case projectId = "ProjectId"
+        }
+    }
+
+    /// POD自定义权限和自定义参数
+    public struct PodNewParameter: TCInputModel {
+        /// TKE或EKS集群ID
+        public let instanceId: String
+
+        /// 自定义权限
+        /// 如：
+        /// {
+        ///   "apiVersion": "v1",
+        ///   "clusters": [
+        ///     {
+        ///       "cluster": {
+        ///         "certificate-authority-data": "xxxxxx==",
+        ///         "server": "https://xxxxx.com"
+        ///       },
+        ///       "name": "cls-xxxxx"
+        ///     }
+        ///   ],
+        ///   "contexts": [
+        ///     {
+        ///       "context": {
+        ///         "cluster": "cls-xxxxx",
+        ///         "user": "100014xxxxx"
+        ///       },
+        ///       "name": "cls-a44yhcxxxxxxxxxx"
+        ///     }
+        ///   ],
+        ///   "current-context": "cls-a4xxxx-context-default",
+        ///   "kind": "Config",
+        ///   "preferences": {},
+        ///   "users": [
+        ///     {
+        ///       "name": "100014xxxxx",
+        ///       "user": {
+        ///         "client-certificate-data": "xxxxxx",
+        ///         "client-key-data": "xxxxxx"
+        ///       }
+        ///     }
+        ///   ]
+        /// }
+        public let config: String
+
+        /// 自定义参数
+        /// 如：
+        /// {
+        ///     "apiVersion": "apps/v1",
+        ///     "kind": "Deployment",
+        ///     "metadata": {
+        ///       "name": "test-deployment",
+        ///       "labels": {
+        ///         "app": "test"
+        ///       }
+        ///     },
+        ///     "spec": {
+        ///       "replicas": 3,
+        ///       "selector": {
+        ///         "matchLabels": {
+        ///           "app": "test-app"
+        ///         }
+        ///       },
+        ///       "template": {
+        ///         "metadata": {
+        ///           "annotations": {
+        ///             "your-organization.com/department-v1": "test-example-v1",
+        ///             "your-organization.com/department-v2": "test-example-v2"
+        ///           },
+        ///           "labels": {
+        ///             "app": "test-app",
+        ///             "environment": "production"
+        ///           }
+        ///         },
+        ///         "spec": {
+        ///           "nodeSelector": {
+        ///             "your-organization/node-test": "test-node"
+        ///           },
+        ///           "containers": [
+        ///             {
+        ///               "name": "nginx",
+        ///               "image": "nginx:1.14.2",
+        ///               "ports": [
+        ///                 {
+        ///                   "containerPort": 80
+        ///                 }
+        ///               ]
+        ///             }
+        ///           ],
+        ///           "affinity": {
+        ///             "nodeAffinity": {
+        ///               "requiredDuringSchedulingIgnoredDuringExecution": {
+        ///                 "nodeSelectorTerms": [
+        ///                   {
+        ///                     "matchExpressions": [
+        ///                       {
+        ///                         "key": "disk-type",
+        ///                         "operator": "In",
+        ///                         "values": [
+        ///                           "ssd",
+        ///                           "sas"
+        ///                         ]
+        ///                       },
+        ///                       {
+        ///                         "key": "cpu-num",
+        ///                         "operator": "Gt",
+        ///                         "values": [
+        ///                           "6"
+        ///                         ]
+        ///                       }
+        ///                     ]
+        ///                   }
+        ///                 ]
+        ///               }
+        ///             }
+        ///           }
+        ///         }
+        ///       }
+        ///     }
+        ///   }
+        public let parameter: String
+
+        public init(instanceId: String, config: String, parameter: String) {
+            self.instanceId = instanceId
+            self.config = config
+            self.parameter = parameter
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case config = "Config"
+            case parameter = "Parameter"
+        }
+    }
+
+    /// 扩容容器资源时的资源描述
+    public struct PodNewSpec: TCInputModel, TCOutputModel {
+        /// 外部资源提供者的标识符，例如"cls-a1cd23fa"。
+        public let resourceProviderIdentifier: String
+
+        /// 外部资源提供者类型，例如"tke",当前仅支持"tke"。
+        public let resourceProviderType: String
+
+        /// 资源的用途，即节点类型，当前仅支持"TASK"。
+        public let nodeFlag: String
+
+        /// CPU核数。
+        public let cpu: UInt64
+
+        /// 内存大小，单位为GB。
+        public let memory: UInt64
+
+        /// Eks集群-CPU类型，当前支持"intel"和"amd"
+        public let cpuType: String?
+
+        /// Pod节点数据目录挂载信息。
+        public let podVolumes: [PodVolume]?
+
+        /// 是否浮动规格，默认否
+        /// <li>true：代表是</li>
+        /// <li>false：代表否</li>
+        public let enableDynamicSpecFlag: Bool?
+
+        /// 浮动规格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dynamicPodSpec: DynamicPodSpec?
+
+        /// 代表vpc网络唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 代表vpc子网唯一id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// pod name
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podName: String?
+
+        public init(resourceProviderIdentifier: String, resourceProviderType: String, nodeFlag: String, cpu: UInt64, memory: UInt64, cpuType: String? = nil, podVolumes: [PodVolume]? = nil, enableDynamicSpecFlag: Bool? = nil, dynamicPodSpec: DynamicPodSpec? = nil, vpcId: String? = nil, subnetId: String? = nil, podName: String? = nil) {
+            self.resourceProviderIdentifier = resourceProviderIdentifier
+            self.resourceProviderType = resourceProviderType
+            self.nodeFlag = nodeFlag
+            self.cpu = cpu
+            self.memory = memory
+            self.cpuType = cpuType
+            self.podVolumes = podVolumes
+            self.enableDynamicSpecFlag = enableDynamicSpecFlag
+            self.dynamicPodSpec = dynamicPodSpec
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+            self.podName = podName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case resourceProviderIdentifier = "ResourceProviderIdentifier"
+            case resourceProviderType = "ResourceProviderType"
+            case nodeFlag = "NodeFlag"
+            case cpu = "Cpu"
+            case memory = "Memory"
+            case cpuType = "CpuType"
+            case podVolumes = "PodVolumes"
+            case enableDynamicSpecFlag = "EnableDynamicSpecFlag"
+            case dynamicPodSpec = "DynamicPodSpec"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case podName = "PodName"
         }
     }
 
@@ -1893,6 +2381,25 @@ extension Emr {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
             case podName = "PodName"
+        }
+    }
+
+    /// Pod相关信息
+    public struct PodSpecInfo: TCInputModel {
+        /// 使用Pod资源扩容时，指定的Pod规格以及来源等信息
+        public let podSpec: PodNewSpec?
+
+        /// POD自定义权限和自定义参数
+        public let podParameter: PodNewParameter?
+
+        public init(podSpec: PodNewSpec? = nil, podParameter: PodNewParameter? = nil) {
+            self.podSpec = podSpec
+            self.podParameter = podParameter
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case podSpec = "PodSpec"
+            case podParameter = "PodParameter"
         }
     }
 
@@ -2284,6 +2791,86 @@ extension Emr {
         }
     }
 
+    /// 扩容节点类型以及数量
+    public struct ScaleOutNodeConfig: TCInputModel {
+        /// 扩容节点类型取值范围：
+        ///   <li>MASTER</li>
+        ///   <li>TASK</li>
+        ///   <li>CORE</li>
+        ///   <li>ROUTER</li>
+        public let nodeFlag: String
+
+        /// 扩容节点数量
+        public let nodeCount: UInt64
+
+        public init(nodeFlag: String, nodeCount: UInt64) {
+            self.nodeFlag = nodeFlag
+            self.nodeCount = nodeCount
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case nodeFlag = "NodeFlag"
+            case nodeCount = "NodeCount"
+        }
+    }
+
+    /// 集群应用场景以及支持部署组件信息
+    public struct SceneSoftwareConfig: TCInputModel {
+        /// 部署的组件列表。不同的EMR产品版本ProductVersion 对应不同可选组件列表，不同产品版本可选组件列表查询：[组件版本](https://cloud.tencent.com/document/product/589/20279) ；
+        /// 填写实例值：hive、flink。
+        public let software: [String]
+
+        /// 默认Hadoop-Default,[场景查询](https://cloud.tencent.com/document/product/589/14624)场景化取值范围：
+        /// Hadoop-Kudu
+        /// Hadoop-Zookeeper
+        /// Hadoop-Presto
+        /// Hadoop-Hbase
+        /// Hadoop-Default
+        public let sceneName: String?
+
+        public init(software: [String], sceneName: String? = nil) {
+            self.software = software
+            self.sceneName = sceneName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case software = "Software"
+            case sceneName = "SceneName"
+        }
+    }
+
+    /// 添加引导操作
+    public struct ScriptBootstrapActionConfig: TCInputModel {
+        /// 脚本的cos地址，参照格式：https://beijing-111111.cos.ap-beijing.myqcloud.com/data/test.sh查询cos存储桶列表：[存储桶列表](https://console.cloud.tencent.com/cos/bucket)
+        public let cosFileURI: String
+
+        /// 引导脚步执行时机范围
+        /// <li>resourceAfter：节点初始化后</li>
+        /// <li>clusterAfter：集群启动后</li>
+        /// <li>clusterBefore：集群启动前</li>
+        public let executionMoment: String
+
+        /// 执行脚本参数，参数格式请遵循标准Shell规范
+        public let args: [String]?
+
+        /// 脚本文件名
+        public let cosFileName: String?
+
+        public init(cosFileURI: String, executionMoment: String, args: [String]? = nil, cosFileName: String? = nil) {
+            self.cosFileURI = cosFileURI
+            self.executionMoment = executionMoment
+            self.args = args
+            self.cosFileName = cosFileName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case cosFileURI = "CosFileURI"
+            case executionMoment = "ExecutionMoment"
+            case args = "Args"
+            case cosFileName = "CosFileName"
+        }
+    }
+
     /// 搜索字段
     public struct SearchItem: TCInputModel {
         /// 支持搜索的类型
@@ -2321,6 +2908,20 @@ extension Emr {
         enum CodingKeys: String, CodingKey {
             case nodeType = "NodeType"
             case nodeSize = "NodeSize"
+        }
+    }
+
+    /// 体外客户端组件依赖信息
+    public struct SoftDependInfo: TCOutputModel {
+        /// 组件名称
+        public let softName: String
+
+        /// 是否必选
+        public let required: Bool
+
+        enum CodingKeys: String, CodingKey {
+            case softName = "SoftName"
+            case required = "Required"
         }
     }
 
@@ -2549,6 +3150,76 @@ extension Emr {
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
+        }
+    }
+
+    /// VPC 参数
+    public struct VirtualPrivateCloud: TCInputModel, TCOutputModel {
+        /// VPC ID
+        public let vpcId: String
+
+        /// Subnet ID
+        public let subnetId: String
+
+        public init(vpcId: String, subnetId: String) {
+            self.vpcId = vpcId
+            self.subnetId = subnetId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+        }
+    }
+
+    /// 用于创建集群价格清单 不同可用区下价格详情
+    public struct ZoneDetailPriceResult: TCOutputModel {
+        /// 可用区Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneId: String?
+
+        /// 不同节点的价格详情
+        public let nodeDetailPrice: [NodeDetailPriceResult]
+
+        enum CodingKeys: String, CodingKey {
+            case zoneId = "ZoneId"
+            case nodeDetailPrice = "NodeDetailPrice"
+        }
+    }
+
+    /// 可用区配置信息
+    public struct ZoneResourceConfiguration: TCInputModel, TCOutputModel {
+        /// 私有网络相关信息配置。通过该参数可以指定私有网络的ID，子网ID等信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let virtualPrivateCloud: VirtualPrivateCloud?
+
+        /// 实例所在的位置。通过该参数可以指定实例所属可用区，所属项目等属性。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let placement: Placement?
+
+        /// 所有节点资源的规格
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let allNodeResourceSpec: AllNodeResourceSpec?
+
+        /// 如果是单可用区，ZoneTag可以不用填， 如果是双AZ部署，第一个可用区ZoneTag选择master，第二个可用区ZoneTag选择standby，如果是三AZ部署，第一个可用区ZoneTag选择master，第二个可用区ZoneTag选择standby，第三个可用区ZoneTag选择third-party，取值范围：
+        ///   <li>master</li>
+        ///   <li>standby</li>
+        ///   <li>third-party</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneTag: String?
+
+        public init(virtualPrivateCloud: VirtualPrivateCloud? = nil, placement: Placement? = nil, allNodeResourceSpec: AllNodeResourceSpec? = nil, zoneTag: String? = nil) {
+            self.virtualPrivateCloud = virtualPrivateCloud
+            self.placement = placement
+            self.allNodeResourceSpec = allNodeResourceSpec
+            self.zoneTag = zoneTag
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case virtualPrivateCloud = "VirtualPrivateCloud"
+            case placement = "Placement"
+            case allNodeResourceSpec = "AllNodeResourceSpec"
+            case zoneTag = "ZoneTag"
         }
     }
 }

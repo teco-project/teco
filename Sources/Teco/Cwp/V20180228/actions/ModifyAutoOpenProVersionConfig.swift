@@ -22,12 +22,22 @@ extension Cwp {
         /// <li>OPEN：打开</li>
         public let status: String
 
-        public init(status: String) {
+        /// 自动加购/扩容授权开关,默认 1, 0关闭, 1开启
+        public let autoRepurchaseSwitch: UInt64?
+
+        /// 自动加购的订单是否自动续费,默认0 ,0关闭, 1开启
+        public let autoRepurchaseRenewSwitch: UInt64?
+
+        public init(status: String, autoRepurchaseSwitch: UInt64? = nil, autoRepurchaseRenewSwitch: UInt64? = nil) {
             self.status = status
+            self.autoRepurchaseSwitch = autoRepurchaseSwitch
+            self.autoRepurchaseRenewSwitch = autoRepurchaseRenewSwitch
         }
 
         enum CodingKeys: String, CodingKey {
             case status = "Status"
+            case autoRepurchaseSwitch = "AutoRepurchaseSwitch"
+            case autoRepurchaseRenewSwitch = "AutoRepurchaseRenewSwitch"
         }
     }
 
@@ -61,15 +71,15 @@ extension Cwp {
     ///
     /// 用于设置新增主机自动开通专业防护配置。
     @inlinable @discardableResult
-    public func modifyAutoOpenProVersionConfig(status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoOpenProVersionConfigResponse> {
-        self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status), region: region, logger: logger, on: eventLoop)
+    public func modifyAutoOpenProVersionConfig(status: String, autoRepurchaseSwitch: UInt64? = nil, autoRepurchaseRenewSwitch: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoOpenProVersionConfigResponse> {
+        self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status, autoRepurchaseSwitch: autoRepurchaseSwitch, autoRepurchaseRenewSwitch: autoRepurchaseRenewSwitch), region: region, logger: logger, on: eventLoop)
     }
 
     /// 设置自动开通配置
     ///
     /// 用于设置新增主机自动开通专业防护配置。
     @inlinable @discardableResult
-    public func modifyAutoOpenProVersionConfig(status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
-        try await self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status), region: region, logger: logger, on: eventLoop)
+    public func modifyAutoOpenProVersionConfig(status: String, autoRepurchaseSwitch: UInt64? = nil, autoRepurchaseRenewSwitch: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
+        try await self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status, autoRepurchaseSwitch: autoRepurchaseSwitch, autoRepurchaseRenewSwitch: autoRepurchaseRenewSwitch), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -546,6 +546,16 @@ extension Cvm {
         }
     }
 
+    /// cdh相关价格信息
+    public struct HostPriceInfo: TCOutputModel {
+        /// 描述了cdh实例相关的价格信息
+        public let hostPrice: ItemPrice
+
+        enum CodingKeys: String, CodingKey {
+            case hostPrice = "HostPrice"
+        }
+    }
+
     /// 专用宿主机实例的资源信息
     public struct HostResource: TCOutputModel {
         /// 专用宿主机实例总CPU核数
@@ -883,6 +893,16 @@ extension Cvm {
         /// 实例销毁保护标志，表示是否允许通过api接口删除实例。取值范围：<br><li>TRUE：表示开启实例保护，不允许通过api接口删除实例<br><li>FALSE：表示关闭实例保护，允许通过api接口删除实例<br><br>默认取值：FALSE。
         public let disableApiTermination: Bool?
 
+        /// 默认登录用户。
+        public let defaultLoginUser: String?
+
+        /// 默认登录端口。
+        public let defaultLoginPort: Int64?
+
+        /// 实例的最新操作错误信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let latestOperationErrorMsg: String?
+
         enum CodingKeys: String, CodingKey {
             case placement = "Placement"
             case instanceId = "InstanceId"
@@ -921,6 +941,9 @@ extension Cvm {
             case gpuInfo = "GPUInfo"
             case licenseType = "LicenseType"
             case disableApiTermination = "DisableApiTermination"
+            case defaultLoginUser = "DefaultLoginUser"
+            case defaultLoginPort = "DefaultLoginPort"
+            case latestOperationErrorMsg = "LatestOperationErrorMsg"
         }
     }
 

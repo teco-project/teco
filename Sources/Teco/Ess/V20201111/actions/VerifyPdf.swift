@@ -43,12 +43,16 @@ extension Ess {
         /// ；5-文件签名格式错误
         public let pdfVerifyResults: [PdfVerifyResult]
 
+        /// 验签序列号
+        public let verifySerialNo: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case verifyResult = "VerifyResult"
             case pdfVerifyResults = "PdfVerifyResults"
+            case verifySerialNo = "VerifySerialNo"
             case requestId = "RequestId"
         }
     }

@@ -23,7 +23,13 @@ extension Vod {
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
 
-        /// 音视频审核模板 ID，默认值为 10。取值范围：
+        /// 审核的内容，可选值有：
+        /// <li>Media：原始音视频；</li>
+        /// <li>Cover：封面。</li>
+        /// 不填或填空数组时，默认为审核 Media。
+        public let reviewContents: [String]?
+
+        /// 审核模板 ID，默认值为 10。取值范围：
         /// <li>10：预置模板，支持检测的违规标签包括色情（Porn）、暴恐（Terror）和不适宜的信息（Polity）。</li>
         public let definition: UInt64?
 
@@ -39,9 +45,10 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
 
-        public init(fileId: String, subAppId: UInt64? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil) {
+        public init(fileId: String, subAppId: UInt64? = nil, reviewContents: [String]? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil) {
             self.fileId = fileId
             self.subAppId = subAppId
+            self.reviewContents = reviewContents
             self.definition = definition
             self.tasksPriority = tasksPriority
             self.sessionContext = sessionContext
@@ -52,6 +59,7 @@ extension Vod {
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case subAppId = "SubAppId"
+            case reviewContents = "ReviewContents"
             case definition = "Definition"
             case tasksPriority = "TasksPriority"
             case sessionContext = "SessionContext"
@@ -100,8 +108,8 @@ extension Vod {
     ///
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
-    public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewAudioVideoResponse> {
-        self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+    public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, reviewContents: [String]? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewAudioVideoResponse> {
+        self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 音视频审核
@@ -110,7 +118,7 @@ extension Vod {
     ///
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
-    public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
-        try await self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+    public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, reviewContents: [String]? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
+        try await self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

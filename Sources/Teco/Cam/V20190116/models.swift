@@ -713,9 +713,14 @@ extension Cam {
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var lastUsedDate: Date?
 
+        /// 最后密钥访问日期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let lastSecretUsedDate: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case secretId = "SecretId"
             case lastUsedDate = "LastUsedDate"
+            case lastSecretUsedDate = "LastSecretUsedDate"
         }
     }
 

@@ -41,11 +41,7 @@ extension Essbasic {
 
     /// CreateChannelFlowEvidenceReport返回参数结构体
     public struct CreateChannelFlowEvidenceReportResponse: TCResponseModel {
-        /// 废除，字段无效
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let reportUrl: String?
-
-        /// 出证报告 ID
+        /// 出证报告 ID，用于查询出证报告接口DescribeChannelFlowEvidenceReport时用到
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reportId: String?
 
@@ -54,20 +50,25 @@ extension Essbasic {
         /// 失败：EvidenceStatusFailed
         public let status: String
 
+        /// 废除，字段无效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reportUrl: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case reportUrl = "ReportUrl"
             case reportId = "ReportId"
             case status = "Status"
+            case reportUrl = "ReportUrl"
             case requestId = "RequestId"
         }
     }
 
     /// 创建并返回出证报告
     ///
-    /// 创建出证报告，返回报告 ID
+    /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
+    /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
     public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
         self.client.execute(action: "CreateChannelFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -75,7 +76,8 @@ extension Essbasic {
 
     /// 创建并返回出证报告
     ///
-    /// 创建出证报告，返回报告 ID
+    /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
+    /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
     public func createChannelFlowEvidenceReport(_ input: CreateChannelFlowEvidenceReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
         try await self.client.execute(action: "CreateChannelFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -83,7 +85,8 @@ extension Essbasic {
 
     /// 创建并返回出证报告
     ///
-    /// 创建出证报告，返回报告 ID
+    /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
+    /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
     public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
         self.createChannelFlowEvidenceReport(CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
@@ -91,7 +94,8 @@ extension Essbasic {
 
     /// 创建并返回出证报告
     ///
-    /// 创建出证报告，返回报告 ID
+    /// 创建出证报告，返回报告 ID。需要配合出证套餐才能调用。
+    /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
     public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
         try await self.createChannelFlowEvidenceReport(CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)

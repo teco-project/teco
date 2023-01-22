@@ -20,7 +20,7 @@ extension Monitor {
         /// 插件信息
         public let plugins: [GrafanaPlugin]
 
-        /// 实例 ID
+        /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
         public init(plugins: [GrafanaPlugin], instanceId: String) {

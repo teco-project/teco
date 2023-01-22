@@ -49,7 +49,7 @@ extension Cynosdb {
 
     /// 查询实例组
     ///
-    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
+    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组信息。
     @inlinable
     public func describeClusterInstanceGrps(_ input: DescribeClusterInstanceGrpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstanceGrpsResponse> {
         self.client.execute(action: "DescribeClusterInstanceGrps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -57,7 +57,7 @@ extension Cynosdb {
 
     /// 查询实例组
     ///
-    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
+    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组信息。
     @inlinable
     public func describeClusterInstanceGrps(_ input: DescribeClusterInstanceGrpsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
         try await self.client.execute(action: "DescribeClusterInstanceGrps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,7 +65,7 @@ extension Cynosdb {
 
     /// 查询实例组
     ///
-    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
+    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组信息。
     @inlinable
     public func describeClusterInstanceGrps(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterInstanceGrpsResponse> {
         self.describeClusterInstanceGrps(DescribeClusterInstanceGrpsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
@@ -73,7 +73,7 @@ extension Cynosdb {
 
     /// 查询实例组
     ///
-    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组
+    /// 本接口（DescribeClusterInstanceGrps）用于查询实例组信息。
     @inlinable
     public func describeClusterInstanceGrps(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterInstanceGrpsResponse {
         try await self.describeClusterInstanceGrps(DescribeClusterInstanceGrpsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)

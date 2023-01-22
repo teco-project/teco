@@ -115,7 +115,7 @@ extension Ecm {
         }
     }
 
-    /// IP地址模版
+    /// IP地址模板
     public struct AddressTemplateSpecification: TCInputModel, TCOutputModel {
         /// IP地址ID，例如：eipm-2uw6ujo6。
         public let addressId: String
@@ -1542,6 +1542,10 @@ extension Ecm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerPassToTarget: Bool?
 
+        /// 负载均衡实例的IPv6地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let addressIPv6: String?
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case position = "Position"
@@ -1558,6 +1562,7 @@ extension Ecm {
             case networkAttributes = "NetworkAttributes"
             case secureGroups = "SecureGroups"
             case loadBalancerPassToTarget = "LoadBalancerPassToTarget"
+            case addressIPv6 = "AddressIPv6"
         }
     }
 
@@ -2781,7 +2786,7 @@ extension Ecm {
         }
     }
 
-    /// 协议端口模版
+    /// 协议端口模板
     public struct ServiceTemplateSpecification: TCInputModel, TCOutputModel {
         /// 协议端口ID，例如：eppm-f5n1f8da。
         public let serviceId: String

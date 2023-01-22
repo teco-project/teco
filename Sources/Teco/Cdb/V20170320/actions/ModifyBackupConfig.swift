@@ -65,7 +65,19 @@ extension Cdb {
         /// 是否开启日志备份归档策略，off-关闭，on-打开，默认为off
         public let enableBinlogArchive: String?
 
-        public init(instanceId: String, expireDays: Int64? = nil, startTime: String? = nil, backupMethod: String? = nil, binlogExpireDays: Int64? = nil, backupTimeWindow: CommonTimeWindow? = nil, enableBackupPeriodSave: String? = nil, enableBackupPeriodLongTermSave: String? = nil, backupPeriodSaveDays: Int64? = nil, backupPeriodSaveInterval: String? = nil, backupPeriodSaveCount: Int64? = nil, startBackupPeriodSaveDate: String? = nil, enableBackupArchive: String? = nil, backupArchiveDays: Int64? = nil, binlogArchiveDays: Int64? = nil, enableBinlogArchive: String? = nil) {
+        /// 是否开启数据备份标准存储策略，off-关闭，on-打开，默认为off
+        public let enableBackupStandby: String?
+
+        /// 数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        public let backupStandbyDays: Int64?
+
+        /// 是否开启日志备份标准存储策略，off-关闭，on-打开，默认为off
+        public let enableBinlogStandby: String?
+
+        /// 日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        public let binlogStandbyDays: Int64?
+
+        public init(instanceId: String, expireDays: Int64? = nil, startTime: String? = nil, backupMethod: String? = nil, binlogExpireDays: Int64? = nil, backupTimeWindow: CommonTimeWindow? = nil, enableBackupPeriodSave: String? = nil, enableBackupPeriodLongTermSave: String? = nil, backupPeriodSaveDays: Int64? = nil, backupPeriodSaveInterval: String? = nil, backupPeriodSaveCount: Int64? = nil, startBackupPeriodSaveDate: String? = nil, enableBackupArchive: String? = nil, backupArchiveDays: Int64? = nil, binlogArchiveDays: Int64? = nil, enableBinlogArchive: String? = nil, enableBackupStandby: String? = nil, backupStandbyDays: Int64? = nil, enableBinlogStandby: String? = nil, binlogStandbyDays: Int64? = nil) {
             self.instanceId = instanceId
             self.expireDays = expireDays
             self.startTime = startTime
@@ -82,6 +94,10 @@ extension Cdb {
             self.backupArchiveDays = backupArchiveDays
             self.binlogArchiveDays = binlogArchiveDays
             self.enableBinlogArchive = enableBinlogArchive
+            self.enableBackupStandby = enableBackupStandby
+            self.backupStandbyDays = backupStandbyDays
+            self.enableBinlogStandby = enableBinlogStandby
+            self.binlogStandbyDays = binlogStandbyDays
         }
 
         enum CodingKeys: String, CodingKey {
@@ -101,6 +117,10 @@ extension Cdb {
             case backupArchiveDays = "BackupArchiveDays"
             case binlogArchiveDays = "BinlogArchiveDays"
             case enableBinlogArchive = "EnableBinlogArchive"
+            case enableBackupStandby = "EnableBackupStandby"
+            case backupStandbyDays = "BackupStandbyDays"
+            case enableBinlogStandby = "EnableBinlogStandby"
+            case binlogStandbyDays = "BinlogStandbyDays"
         }
     }
 
@@ -134,15 +154,15 @@ extension Cdb {
     ///
     /// 本接口(ModifyBackupConfig)用于修改数据库备份配置信息。
     @inlinable @discardableResult
-    public func modifyBackupConfig(instanceId: String, expireDays: Int64? = nil, startTime: String? = nil, backupMethod: String? = nil, binlogExpireDays: Int64? = nil, backupTimeWindow: CommonTimeWindow? = nil, enableBackupPeriodSave: String? = nil, enableBackupPeriodLongTermSave: String? = nil, backupPeriodSaveDays: Int64? = nil, backupPeriodSaveInterval: String? = nil, backupPeriodSaveCount: Int64? = nil, startBackupPeriodSaveDate: String? = nil, enableBackupArchive: String? = nil, backupArchiveDays: Int64? = nil, binlogArchiveDays: Int64? = nil, enableBinlogArchive: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
-        self.modifyBackupConfig(ModifyBackupConfigRequest(instanceId: instanceId, expireDays: expireDays, startTime: startTime, backupMethod: backupMethod, binlogExpireDays: binlogExpireDays, backupTimeWindow: backupTimeWindow, enableBackupPeriodSave: enableBackupPeriodSave, enableBackupPeriodLongTermSave: enableBackupPeriodLongTermSave, backupPeriodSaveDays: backupPeriodSaveDays, backupPeriodSaveInterval: backupPeriodSaveInterval, backupPeriodSaveCount: backupPeriodSaveCount, startBackupPeriodSaveDate: startBackupPeriodSaveDate, enableBackupArchive: enableBackupArchive, backupArchiveDays: backupArchiveDays, binlogArchiveDays: binlogArchiveDays, enableBinlogArchive: enableBinlogArchive), region: region, logger: logger, on: eventLoop)
+    public func modifyBackupConfig(instanceId: String, expireDays: Int64? = nil, startTime: String? = nil, backupMethod: String? = nil, binlogExpireDays: Int64? = nil, backupTimeWindow: CommonTimeWindow? = nil, enableBackupPeriodSave: String? = nil, enableBackupPeriodLongTermSave: String? = nil, backupPeriodSaveDays: Int64? = nil, backupPeriodSaveInterval: String? = nil, backupPeriodSaveCount: Int64? = nil, startBackupPeriodSaveDate: String? = nil, enableBackupArchive: String? = nil, backupArchiveDays: Int64? = nil, binlogArchiveDays: Int64? = nil, enableBinlogArchive: String? = nil, enableBackupStandby: String? = nil, backupStandbyDays: Int64? = nil, enableBinlogStandby: String? = nil, binlogStandbyDays: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupConfigResponse> {
+        self.modifyBackupConfig(ModifyBackupConfigRequest(instanceId: instanceId, expireDays: expireDays, startTime: startTime, backupMethod: backupMethod, binlogExpireDays: binlogExpireDays, backupTimeWindow: backupTimeWindow, enableBackupPeriodSave: enableBackupPeriodSave, enableBackupPeriodLongTermSave: enableBackupPeriodLongTermSave, backupPeriodSaveDays: backupPeriodSaveDays, backupPeriodSaveInterval: backupPeriodSaveInterval, backupPeriodSaveCount: backupPeriodSaveCount, startBackupPeriodSaveDate: startBackupPeriodSaveDate, enableBackupArchive: enableBackupArchive, backupArchiveDays: backupArchiveDays, binlogArchiveDays: binlogArchiveDays, enableBinlogArchive: enableBinlogArchive, enableBackupStandby: enableBackupStandby, backupStandbyDays: backupStandbyDays, enableBinlogStandby: enableBinlogStandby, binlogStandbyDays: binlogStandbyDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库备份配置
     ///
     /// 本接口(ModifyBackupConfig)用于修改数据库备份配置信息。
     @inlinable @discardableResult
-    public func modifyBackupConfig(instanceId: String, expireDays: Int64? = nil, startTime: String? = nil, backupMethod: String? = nil, binlogExpireDays: Int64? = nil, backupTimeWindow: CommonTimeWindow? = nil, enableBackupPeriodSave: String? = nil, enableBackupPeriodLongTermSave: String? = nil, backupPeriodSaveDays: Int64? = nil, backupPeriodSaveInterval: String? = nil, backupPeriodSaveCount: Int64? = nil, startBackupPeriodSaveDate: String? = nil, enableBackupArchive: String? = nil, backupArchiveDays: Int64? = nil, binlogArchiveDays: Int64? = nil, enableBinlogArchive: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
-        try await self.modifyBackupConfig(ModifyBackupConfigRequest(instanceId: instanceId, expireDays: expireDays, startTime: startTime, backupMethod: backupMethod, binlogExpireDays: binlogExpireDays, backupTimeWindow: backupTimeWindow, enableBackupPeriodSave: enableBackupPeriodSave, enableBackupPeriodLongTermSave: enableBackupPeriodLongTermSave, backupPeriodSaveDays: backupPeriodSaveDays, backupPeriodSaveInterval: backupPeriodSaveInterval, backupPeriodSaveCount: backupPeriodSaveCount, startBackupPeriodSaveDate: startBackupPeriodSaveDate, enableBackupArchive: enableBackupArchive, backupArchiveDays: backupArchiveDays, binlogArchiveDays: binlogArchiveDays, enableBinlogArchive: enableBinlogArchive), region: region, logger: logger, on: eventLoop)
+    public func modifyBackupConfig(instanceId: String, expireDays: Int64? = nil, startTime: String? = nil, backupMethod: String? = nil, binlogExpireDays: Int64? = nil, backupTimeWindow: CommonTimeWindow? = nil, enableBackupPeriodSave: String? = nil, enableBackupPeriodLongTermSave: String? = nil, backupPeriodSaveDays: Int64? = nil, backupPeriodSaveInterval: String? = nil, backupPeriodSaveCount: Int64? = nil, startBackupPeriodSaveDate: String? = nil, enableBackupArchive: String? = nil, backupArchiveDays: Int64? = nil, binlogArchiveDays: Int64? = nil, enableBinlogArchive: String? = nil, enableBackupStandby: String? = nil, backupStandbyDays: Int64? = nil, enableBinlogStandby: String? = nil, binlogStandbyDays: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupConfigResponse {
+        try await self.modifyBackupConfig(ModifyBackupConfigRequest(instanceId: instanceId, expireDays: expireDays, startTime: startTime, backupMethod: backupMethod, binlogExpireDays: binlogExpireDays, backupTimeWindow: backupTimeWindow, enableBackupPeriodSave: enableBackupPeriodSave, enableBackupPeriodLongTermSave: enableBackupPeriodLongTermSave, backupPeriodSaveDays: backupPeriodSaveDays, backupPeriodSaveInterval: backupPeriodSaveInterval, backupPeriodSaveCount: backupPeriodSaveCount, startBackupPeriodSaveDate: startBackupPeriodSaveDate, enableBackupArchive: enableBackupArchive, backupArchiveDays: backupArchiveDays, binlogArchiveDays: binlogArchiveDays, enableBinlogArchive: enableBinlogArchive, enableBackupStandby: enableBackupStandby, backupStandbyDays: backupStandbyDays, enableBinlogStandby: enableBinlogStandby, binlogStandbyDays: binlogStandbyDays), region: region, logger: logger, on: eventLoop)
     }
 }

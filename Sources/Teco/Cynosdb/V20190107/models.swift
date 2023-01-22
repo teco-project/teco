@@ -18,6 +18,30 @@
 import TecoDateHelpers
 
 extension Cynosdb {
+    /// 集群支持的功能
+    public struct Ability: TCOutputModel {
+        /// 是否支持从可用区
+        public let isSupportSlaveZone: String
+
+        /// 不支持从可用区的原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nonsupportSlaveZoneReason: String?
+
+        /// 是否支持RO实例
+        public let isSupportRo: String
+
+        /// 不支持RO实例的原因
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nonsupportRoReason: String?
+
+        enum CodingKeys: String, CodingKey {
+            case isSupportSlaveZone = "IsSupportSlaveZone"
+            case nonsupportSlaveZoneReason = "NonsupportSlaveZoneReason"
+            case isSupportRo = "IsSupportRo"
+            case nonsupportRoReason = "NonsupportRoReason"
+        }
+    }
+
     /// 数据库账号信息
     public struct Account: TCOutputModel {
         /// 数据库账号名
@@ -259,6 +283,47 @@ extension Cynosdb {
         }
     }
 
+    /// 规则审计的过滤条件
+    public struct AuditRuleFilters: TCInputModel {
+        /// 单条审计规则。
+        public let ruleFilters: [RuleFilters]
+
+        public init(ruleFilters: [RuleFilters]) {
+            self.ruleFilters = ruleFilters
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ruleFilters = "RuleFilters"
+        }
+    }
+
+    /// 审计规则模版的详情
+    public struct AuditRuleTemplateInfo: TCOutputModel {
+        /// 规则模版ID。
+        public let ruleTemplateId: String
+
+        /// 规则模版名称。
+        public let ruleTemplateName: String
+
+        /// 规则模版的过滤条件
+        public let ruleFilters: [RuleFilters]
+
+        /// 规则模版描述。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let description: String?
+
+        /// 规则模版创建时间。
+        public let createAt: String
+
+        enum CodingKeys: String, CodingKey {
+            case ruleTemplateId = "RuleTemplateId"
+            case ruleTemplateName = "RuleTemplateName"
+            case ruleFilters = "RuleFilters"
+            case description = "Description"
+            case createAt = "CreateAt"
+        }
+    }
+
     /// 备份文件信息
     public struct BackupFileInfo: TCOutputModel {
         /// 快照文件ID，已废弃，请使用BackupId
@@ -386,6 +451,9 @@ extension Cynosdb {
         /// 硬盘
         public let instanceStorage: Int64
 
+        /// 实例角色
+        public let instanceRole: String
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -395,6 +463,7 @@ extension Cynosdb {
             case instanceCpu = "InstanceCpu"
             case instanceMemory = "InstanceMemory"
             case instanceStorage = "InstanceStorage"
+            case instanceRole = "InstanceRole"
         }
     }
 
@@ -443,7 +512,7 @@ extension Cynosdb {
     }
 
     /// 集群信息
-    public struct CynosdbCluster: TCInputModel {
+    public struct CynosdbCluster: TCInputModel, TCOutputModel {
         /// 集群状态， 可选值如下:
         /// creating: 创建中
         /// running:运行中
@@ -478,86 +547,144 @@ extension Cynosdb {
         public let instanceNum: Int64
 
         /// 用户uin
-        public let uin: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uin: String?
 
         /// 引擎类型
-        public let dbType: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbType: String?
 
         /// 用户appid
-        public let appId: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let appId: Int64?
 
         /// 集群状态描述
-        public let statusDesc: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statusDesc: String?
 
         /// 集群创建时间
-        public let createTime: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
 
         /// 付费模式。0-按量计费，1-包年包月
-        public let payMode: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let payMode: Int64?
 
         /// 截止时间
-        public let periodEndTime: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let periodEndTime: String?
 
         /// 集群读写vip
-        public let vip: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vip: String?
 
         /// 集群读写vport
-        public let vport: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vport: Int64?
 
         /// 项目id
-        public let projectID: Int64
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let projectID: Int64?
 
         /// 私有网络ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
 
         /// 子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
 
         /// cynos内核版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cynosVersion: String?
 
         /// 存储容量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageLimit: Int64?
 
         /// 续费标志
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let renewFlag: Int64?
 
         /// 正在处理的任务
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let processingTask: String?
 
         /// 集群的任务数组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tasks: [ObjectTask]?
 
         /// 集群绑定的tag数组
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceTags: [Tag]?
 
         /// Db类型(NORMAL, SERVERLESS)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbMode: String?
 
         /// 当Db类型为SERVERLESS时，serverless集群状态，可选值:
         /// resume
         /// pause
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverlessStatus: String?
 
         /// 集群预付费存储值大小
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storage: Int64?
 
         /// 集群存储为预付费时的存储ID，用于预付费存储变配
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageId: String?
 
         /// 集群存储付费模式。0-按量计费，1-包年包月
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storagePayMode: Int64?
 
         /// 集群计算规格对应的最小存储值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minStorageSize: Int64?
 
         /// 集群计算规格对应的最大存储值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxStorageSize: Int64?
 
         /// 集群网络信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
         public let netAddrs: [NetAddr]?
 
-        public init(status: String, updateTime: String, zone: String, clusterName: String, region: String, dbVersion: String, clusterId: String, instanceNum: Int64, uin: String, dbType: String, appId: Int64, statusDesc: String, createTime: String, payMode: Int64, periodEndTime: String, vip: String, vport: Int64, projectID: Int64, vpcId: String? = nil, subnetId: String? = nil, cynosVersion: String? = nil, storageLimit: Int64? = nil, renewFlag: Int64? = nil, processingTask: String? = nil, tasks: [ObjectTask]? = nil, resourceTags: [Tag]? = nil, dbMode: String? = nil, serverlessStatus: String? = nil, storage: Int64? = nil, storageId: String? = nil, storagePayMode: Int64? = nil, minStorageSize: Int64? = nil, maxStorageSize: Int64? = nil, netAddrs: [NetAddr]? = nil) {
+        /// 物理可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let physicalZone: String?
+
+        /// 主可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let masterZone: String?
+
+        /// 是否有从可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hasSlaveZone: String?
+
+        /// 从可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slaveZones: [String]?
+
+        /// 商业类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let businessType: String?
+
+        /// 是否冻结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isFreeze: String?
+
+        /// 订单来源
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let orderSource: String?
+
+        /// 能力
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ability: Ability?
+
+        public init(status: String, updateTime: String, zone: String, clusterName: String, region: String, dbVersion: String, clusterId: String, instanceNum: Int64, uin: String, dbType: String, appId: Int64, statusDesc: String, createTime: String, payMode: Int64, periodEndTime: String, vip: String, vport: Int64, projectID: Int64, vpcId: String? = nil, subnetId: String? = nil, cynosVersion: String? = nil, storageLimit: Int64? = nil, renewFlag: Int64? = nil, processingTask: String? = nil, tasks: [ObjectTask]? = nil, resourceTags: [Tag]? = nil, dbMode: String? = nil, serverlessStatus: String? = nil, storage: Int64? = nil, storageId: String? = nil, storagePayMode: Int64? = nil, minStorageSize: Int64? = nil, maxStorageSize: Int64? = nil, netAddrs: [NetAddr]? = nil, physicalZone: String? = nil, masterZone: String? = nil, hasSlaveZone: String? = nil, slaveZones: [String]? = nil, businessType: String? = nil, isFreeze: String? = nil, orderSource: String? = nil, ability: Ability? = nil) {
             self.status = status
             self.updateTime = updateTime
             self.zone = zone
@@ -592,6 +719,14 @@ extension Cynosdb {
             self.minStorageSize = minStorageSize
             self.maxStorageSize = maxStorageSize
             self.netAddrs = netAddrs
+            self.physicalZone = physicalZone
+            self.masterZone = masterZone
+            self.hasSlaveZone = hasSlaveZone
+            self.slaveZones = slaveZones
+            self.businessType = businessType
+            self.isFreeze = isFreeze
+            self.orderSource = orderSource
+            self.ability = ability
         }
 
         enum CodingKeys: String, CodingKey {
@@ -629,6 +764,14 @@ extension Cynosdb {
             case minStorageSize = "MinStorageSize"
             case maxStorageSize = "MaxStorageSize"
             case netAddrs = "NetAddrs"
+            case physicalZone = "PhysicalZone"
+            case masterZone = "MasterZone"
+            case hasSlaveZone = "HasSlaveZone"
+            case slaveZones = "SlaveZones"
+            case businessType = "BusinessType"
+            case isFreeze = "IsFreeze"
+            case orderSource = "OrderSource"
+            case ability = "Ability"
         }
     }
 
@@ -710,6 +853,94 @@ extension Cynosdb {
         /// pausing
         public let serverlessStatus: String
 
+        /// binlog开关，可选值：ON, OFF
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logBin: String?
+
+        /// pitr类型，可选值：normal, redo_pitr
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pitrType: String?
+
+        /// 物理可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let physicalZone: String?
+
+        /// 存储Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let storageId: String?
+
+        /// 存储大小，单位为G
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let storage: Int64?
+
+        /// 最大存储规格，单位为G
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxStorageSize: Int64?
+
+        /// 最小存储规格，单位为G
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let minStorageSize: Int64?
+
+        /// 存储付费类型，1为包年包月，0为按量计费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let storagePayMode: Int64?
+
+        /// 数据库类型，normal，serverless
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dbMode: String?
+
+        /// 存储空间上限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let storageLimit: Int64?
+
+        /// 集群支持的功能
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ability: Ability?
+
+        /// cynos版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cynosVersion: String?
+
+        /// 商业类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let businessType: String?
+
+        /// 是否有从可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hasSlaveZone: String?
+
+        /// 是否冻结
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isFreeze: String?
+
+        /// 任务列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tasks: [ObjectTask]?
+
+        /// 主可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let masterZone: String?
+
+        /// 从可用区列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slaveZones: [String]?
+
+        /// Proxy状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let proxyStatus: String?
+
+        /// 是否跳过交易
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isSkipTrade: String?
+
+        /// 是否打开密码复杂度
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isOpenPasswordComplexity: String?
+
+        /// 网络类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let networkStatus: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -735,6 +966,28 @@ extension Cynosdb {
             case zone = "Zone"
             case resourceTags = "ResourceTags"
             case serverlessStatus = "ServerlessStatus"
+            case logBin = "LogBin"
+            case pitrType = "PitrType"
+            case physicalZone = "PhysicalZone"
+            case storageId = "StorageId"
+            case storage = "Storage"
+            case maxStorageSize = "MaxStorageSize"
+            case minStorageSize = "MinStorageSize"
+            case storagePayMode = "StoragePayMode"
+            case dbMode = "DbMode"
+            case storageLimit = "StorageLimit"
+            case ability = "Ability"
+            case cynosVersion = "CynosVersion"
+            case businessType = "BusinessType"
+            case hasSlaveZone = "HasSlaveZone"
+            case isFreeze = "IsFreeze"
+            case tasks = "Tasks"
+            case masterZone = "MasterZone"
+            case slaveZones = "SlaveZones"
+            case proxyStatus = "ProxyStatus"
+            case isSkipTrade = "IsSkipTrade"
+            case isOpenPasswordComplexity = "IsOpenPasswordComplexity"
+            case networkStatus = "NetworkStatus"
         }
     }
 
@@ -1106,59 +1359,80 @@ extension Cynosdb {
 
     /// 实例组信息
     public struct CynosdbInstanceGrp: TCOutputModel {
-        /// appId
-        public let appId: Int64
+        /// 用户appId
+        public let appId: Int64?
 
         /// 集群ID
-        public let clusterId: String
+        public let clusterId: String?
 
         /// 创建时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampEncoding public var createdTime: Date
+        @TCTimestampEncoding public var createdTime: Date?
 
         /// 删除时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampEncoding public var deletedTime: Date
+        @TCTimestampEncoding public var deletedTime: Date?
 
         /// 实例组ID
-        public let instanceGrpId: String
+        public let instanceGrpId: String?
 
         /// 状态
-        public let status: String
+        public let status: String?
 
         /// 实例组类型。ha-ha组；ro-只读组
-        public let type: String
+        public let type: String?
 
         /// 更新时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampEncoding public var updatedTime: Date
+        @TCTimestampEncoding public var updatedTime: Date?
 
         /// 内网IP
-        public let vip: String
+        public let vip: String?
 
         /// 内网端口
-        public let vport: Int64
+        public let vport: Int64?
 
         /// 外网域名
-        public let wanDomain: String
+        public let wanDomain: String?
 
         /// 外网ip
-        public let wanIP: String
+        public let wanIP: String?
 
         /// 外网端口
-        public let wanPort: Int64
+        public let wanPort: Int64?
 
         /// 外网状态
-        public let wanStatus: String
+        public let wanStatus: String?
 
         /// 实例组包含实例信息
-        public let instanceSet: [CynosdbInstance]
+        public let instanceSet: [CynosdbInstance]?
+
+        /// VPC的ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uniqVpcId: String?
+
+        /// 子网ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let uniqSubnetId: String?
+
+        /// 正在回收IP信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let oldAddrInfo: OldAddrInfo?
+
+        /// 正在进行的任务
+        public let processingTasks: [String]?
+
+        /// 任务列表
+        public let tasks: [ObjectTask]?
+
+        /// biz_net_service表id
+        public let netServiceId: Int64
 
         enum CodingKeys: String, CodingKey {
             case appId = "AppId"
@@ -1176,6 +1450,12 @@ extension Cynosdb {
             case wanPort = "WanPort"
             case wanStatus = "WanStatus"
             case instanceSet = "InstanceSet"
+            case uniqVpcId = "UniqVpcId"
+            case uniqSubnetId = "UniqSubnetId"
+            case oldAddrInfo = "OldAddrInfo"
+            case processingTasks = "ProcessingTasks"
+            case tasks = "Tasks"
+            case netServiceId = "NetServiceId"
         }
     }
 
@@ -1257,6 +1537,55 @@ extension Cynosdb {
         }
     }
 
+    /// 实例的审计规则详情，DescribeAuditRuleWithInstanceIds接口的出参。
+    public struct InstanceAuditRule: TCOutputModel {
+        /// 实例ID。
+        public let instanceId: String
+
+        /// 是否是规则审计。true-规则审计，false-全审计。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let auditRule: Bool?
+
+        /// 审计规则详情。仅当AuditRule=true时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let auditRuleFilters: [AuditRuleFilters]?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case auditRule = "AuditRule"
+            case auditRuleFilters = "AuditRuleFilters"
+        }
+    }
+
+    /// 实例初始化配置信息
+    public struct InstanceInitInfo: TCInputModel {
+        /// 实例cpu
+        public let cpu: Int64
+
+        /// 实例内存
+        public let memory: Int64
+
+        /// 实例类型 rw/ro
+        public let instanceType: String
+
+        /// 实例个数,范围[1,15]
+        public let instanceCount: Int64
+
+        public init(cpu: Int64, memory: Int64, instanceType: String, instanceCount: Int64) {
+            self.cpu = cpu
+            self.memory = memory
+            self.instanceType = instanceType
+            self.instanceCount = instanceCount
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case cpu = "Cpu"
+            case memory = "Memory"
+            case instanceType = "InstanceType"
+            case instanceCount = "InstanceCount"
+        }
+    }
+
     /// 实例可售卖规格详细信息，创建实例时Cpu/Memory确定实例规格，存储可选大小为[MinStorageSize,MaxStorageSize]
     public struct InstanceSpec: TCOutputModel {
         /// 实例CPU，单位：核
@@ -1287,6 +1616,10 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zoneStockInfos: [ZoneStockInfo]?
 
+        /// 库存数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let stockCount: Int64?
+
         enum CodingKeys: String, CodingKey {
             case cpu = "Cpu"
             case memory = "Memory"
@@ -1297,11 +1630,37 @@ extension Cynosdb {
             case maxIops = "MaxIops"
             case maxIoBandWidth = "MaxIoBandWidth"
             case zoneStockInfos = "ZoneStockInfos"
+            case stockCount = "StockCount"
         }
     }
 
     /// 参数是否可修改的详细信息
     public struct ModifiableInfo: TCOutputModel {
+    }
+
+    /// 修改的实例参数信息
+    public struct ModifyParamItem: TCInputModel, TCOutputModel {
+        /// 参数名
+        public let paramName: String
+
+        /// 参数当前值
+        public let currentValue: String
+
+        /// 参数旧值（只在出参时有用）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let oldValue: String?
+
+        public init(paramName: String, currentValue: String, oldValue: String? = nil) {
+            self.paramName = paramName
+            self.currentValue = currentValue
+            self.oldValue = oldValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case paramName = "ParamName"
+            case currentValue = "CurrentValue"
+            case oldValue = "OldValue"
+        }
     }
 
     /// 网络信息
@@ -1338,6 +1697,14 @@ extension Cynosdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
 
+        /// 外网IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wanIP: String?
+
+        /// 外网状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let wanStatus: String?
+
         enum CodingKeys: String, CodingKey {
             case vip = "Vip"
             case vport = "Vport"
@@ -1347,15 +1714,17 @@ extension Cynosdb {
             case uniqSubnetId = "UniqSubnetId"
             case uniqVpcId = "UniqVpcId"
             case description = "Description"
+            case wanIP = "WanIP"
+            case wanStatus = "WanStatus"
         }
     }
 
-    /// 新创建的账号
+    /// x08新创建的账号
     public struct NewAccount: TCInputModel {
-        /// 账户名
+        /// 账户名，包含字母数字_,以字母开头，字母或数字结尾，长度1-16
         public let accountName: String
 
-        /// 密码
+        /// 密码，密码长度范围为8到64个字符
         public let accountPassword: String
 
         /// 主机
@@ -1364,11 +1733,15 @@ extension Cynosdb {
         /// 描述
         public let description: String?
 
-        public init(accountName: String, accountPassword: String, host: String, description: String? = nil) {
+        /// 用户最大连接数，不能大于10240
+        public let maxUserConnections: Int64?
+
+        public init(accountName: String, accountPassword: String, host: String, description: String? = nil, maxUserConnections: Int64? = nil) {
             self.accountName = accountName
             self.accountPassword = accountPassword
             self.host = host
             self.description = description
+            self.maxUserConnections = maxUserConnections
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1376,6 +1749,7 @@ extension Cynosdb {
             case accountPassword = "AccountPassword"
             case host = "Host"
             case description = "Description"
+            case maxUserConnections = "MaxUserConnections"
         }
     }
 
@@ -1415,6 +1789,27 @@ extension Cynosdb {
             case taskStatus = "TaskStatus"
             case objectId = "ObjectId"
             case objectType = "ObjectType"
+        }
+    }
+
+    /// 数据库地址
+    public struct OldAddrInfo: TCOutputModel {
+        /// IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vip: String?
+
+        /// 端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vport: Int64?
+
+        /// 期望执行回收时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let returnTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case vip = "Vip"
+            case vport = "Vport"
+            case returnTime = "ReturnTime"
         }
     }
 
@@ -1687,6 +2082,30 @@ extension Cynosdb {
         }
     }
 
+    /// 审计规则的规则过滤条件
+    public struct RuleFilters: TCInputModel, TCOutputModel {
+        /// 审计规则过滤条件的参数名称。可选值：host – 客户端 IP；user – 数据库账户；dbName – 数据库名称；sqlType-SQL类型；sql-sql语句。
+        public let type: String
+
+        /// 审计规则过滤条件的匹配类型。可选值：INC – 包含；EXC – 不包含；EQS – 等于；NEQ – 不等于。
+        public let compare: String
+
+        /// 审计规则过滤条件的匹配值。
+        public let value: [String]
+
+        public init(type: String, compare: String, value: [String]) {
+            self.type = type
+            self.compare = compare
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case compare = "Compare"
+            case value = "Value"
+        }
+    }
+
     /// 安全组详情
     public struct SecurityGroup: TCOutputModel {
         /// 项目ID
@@ -1901,9 +2320,13 @@ extension Cynosdb {
         /// 是否有库存
         public let hasStock: Bool
 
+        /// 库存数量
+        public let stockCount: Int64
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case hasStock = "HasStock"
+            case stockCount = "StockCount"
         }
     }
 }

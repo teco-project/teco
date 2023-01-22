@@ -194,13 +194,13 @@ extension Trtc {
 
     /// MCU混流输出流编码参数
     public struct EncodeParams: TCInputModel {
-        /// 混流-输出流音频采样率。取值为[48000, 44100, 32000, 24000, 16000, 8000]，单位是Hz。
+        /// 混流-输出流音频采样率。取值为[48000, 44100, 32000, 24000, 16000, 8000]，单位是Hz。混流任务发起过程中，为了保持CDN链接的稳定，不要修改音频参数（codec、采样率、码率、声道数）。
         public let audioSampleRate: UInt64
 
-        /// 混流-输出流音频码率。取值范围[8,500]，单位为kbps。
+        /// 混流-输出流音频码率。取值范围[8,500]，单位为kbps。混流任务发起过程中，为了保持CDN链接的稳定，不要修改音频参数（codec、采样率、码率、声道数）。
         public let audioBitrate: UInt64
 
-        /// 混流-输出流音频声道数，取值范围[1,2]，1表示混流输出音频为单声道，2表示混流输出音频为双声道。
+        /// 混流-输出流音频声道数，取值范围[1,2]，1表示混流输出音频为单声道，2表示混流输出音频为双声道。混流任务发起过程中，为了保持CDN链接的稳定，不要修改音频参数（codec、采样率、码率、声道数）。
         public let audioChannels: UInt64
 
         /// 混流-输出流宽，音视频输出时必填。取值范围[0,1920]，单位为像素值。
@@ -231,7 +231,7 @@ extension Trtc {
         /// 混流-输出流背景图片，取值为实时音视频控制台上传的图片ID。
         public let backgroundImageId: UInt64?
 
-        /// 混流-输出流音频编码类型，取值范围[0,1, 2]，0为LC-AAC，1为HE-AAC，2为HE-AACv2。默认值为0。当音频编码设置为HE-AACv2时，只支持输出流音频声道数为双声道。HE-AAC和HE-AACv2支持的输出流音频采样率范围为[48000, 44100, 32000, 24000, 16000]
+        /// 混流-输出流音频编码类型，取值范围[0,1, 2]，0为LC-AAC，1为HE-AAC，2为HE-AACv2。默认值为0。当音频编码设置为HE-AACv2时，只支持输出流音频声道数为双声道。HE-AAC和HE-AACv2支持的输出流音频采样率范围为[48000, 44100, 32000, 24000, 16000]。混流任务发起过程中，为了保持CDN链接的稳定，不要修改音频参数（codec、采样率、码率、声道数）。
         public let audioCodec: UInt64?
 
         /// 混流-输出流背景图片URL地址，支持png、jpg、jpeg、bmp格式，暂不支持透明通道。URL链接长度限制为512字节。BackgroundImageUrl和BackgroundImageId参数都填时，以BackgroundImageUrl为准。图片大小限制不超过2MB。
@@ -344,7 +344,10 @@ extension Trtc {
         /// 水印参数。
         public let waterMarkParams: WaterMarkParams?
 
-        public init(template: UInt64? = nil, mainVideoUserId: String? = nil, mainVideoStreamType: UInt64? = nil, smallVideoLayoutParams: SmallVideoLayoutParams? = nil, mainVideoRightAlign: UInt64? = nil, mixVideoUids: [String]? = nil, presetLayoutConfig: [PresetLayoutConfig]? = nil, placeHolderMode: UInt64? = nil, pureAudioHoldPlaceMode: UInt64? = nil, waterMarkParams: WaterMarkParams? = nil) {
+        /// 屏幕分享模板、悬浮模板、九宫格模板、画中画模版有效，画面在输出时的显示模式：0为裁剪，1为缩放，2为缩放并显示黑底，不填采用后台的默认渲染方式（屏幕分享大画面为缩放，其他为裁剪）。
+        public let renderMode: UInt64?
+
+        public init(template: UInt64? = nil, mainVideoUserId: String? = nil, mainVideoStreamType: UInt64? = nil, smallVideoLayoutParams: SmallVideoLayoutParams? = nil, mainVideoRightAlign: UInt64? = nil, mixVideoUids: [String]? = nil, presetLayoutConfig: [PresetLayoutConfig]? = nil, placeHolderMode: UInt64? = nil, pureAudioHoldPlaceMode: UInt64? = nil, waterMarkParams: WaterMarkParams? = nil, renderMode: UInt64? = nil) {
             self.template = template
             self.mainVideoUserId = mainVideoUserId
             self.mainVideoStreamType = mainVideoStreamType
@@ -355,6 +358,7 @@ extension Trtc {
             self.placeHolderMode = placeHolderMode
             self.pureAudioHoldPlaceMode = pureAudioHoldPlaceMode
             self.waterMarkParams = waterMarkParams
+            self.renderMode = renderMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -368,6 +372,7 @@ extension Trtc {
             case placeHolderMode = "PlaceHolderMode"
             case pureAudioHoldPlaceMode = "PureAudioHoldPlaceMode"
             case waterMarkParams = "WaterMarkParams"
+            case renderMode = "RenderMode"
         }
     }
 
@@ -613,7 +618,7 @@ extension Trtc {
         /// CDN转推URL。
         public let publishCdnUrl: String
 
-        /// 是否是腾讯云CDN，0为转推非腾讯云CDN，1为转推腾讯CDN，不携带该参数默认为1。注意：为避免误产生转推费用，该参数建议明确填写。转推非腾讯云CDN时会产生转推费用，详情参见接口文档说明。
+        /// 是否是腾讯云CDN，0为转推非腾讯云CDN，1为转推腾讯CDN，不携带该参数默认为1。注意：1，为避免误产生转推费用，该参数建议明确填写，转推非腾讯云CDN时会产生转推费用，详情参见接口文档说明；2，国内站默认只支持转推腾讯云CDN，如您有转推第三方CDN需求，请联系腾讯云技术支持。
         public let isTencentCdn: UInt64?
 
         public init(publishCdnUrl: String, isTencentCdn: UInt64? = nil) {
@@ -1139,7 +1144,7 @@ extension Trtc {
         /// 2：混流录制，将房间内订阅UserId的音视频混录成一个音视频文件，将录制文件上传至云存储；
         public let recordMode: UInt64
 
-        /// 房间内持续没有主播的状态超过MaxIdleTime的时长，自动停止录制，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。
+        /// 房间内持续没有用户（主播）上行推流的状态超过MaxIdleTime的时长，自动停止录制，单位：秒。默认值为 30 秒，该值需大于等于 5秒，且小于等于 86400秒(24小时)。
         public let maxIdleTime: UInt64?
 
         /// 录制的媒体流类型：

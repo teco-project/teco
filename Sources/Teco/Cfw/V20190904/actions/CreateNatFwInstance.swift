@@ -41,7 +41,10 @@ extension Cfw {
         /// 异地灾备 1：使用异地灾备；0：不使用异地灾备；为空则默认不使用异地灾备
         public let crossAZone: Int64?
 
-        public init(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil) {
+        /// 指定防火墙使用网段信息
+        public let fwCidrInfo: FwCidrInfo?
+
+        public init(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, fwCidrInfo: FwCidrInfo? = nil) {
             self.name = name
             self.width = width
             self.mode = mode
@@ -50,6 +53,7 @@ extension Cfw {
             self.zone = zone
             self.zoneBak = zoneBak
             self.crossAZone = crossAZone
+            self.fwCidrInfo = fwCidrInfo
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ extension Cfw {
             case zone = "Zone"
             case zoneBak = "ZoneBak"
             case crossAZone = "CrossAZone"
+            case fwCidrInfo = "FwCidrInfo"
         }
     }
 
@@ -92,13 +97,13 @@ extension Cfw {
 
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
-    public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceResponse> {
-        self.createNatFwInstance(CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone), region: region, logger: logger, on: eventLoop)
+    public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, fwCidrInfo: FwCidrInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatFwInstanceResponse> {
+        self.createNatFwInstance(CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, fwCidrInfo: fwCidrInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT防火墙实例（Region参数必填）
     @inlinable
-    public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
-        try await self.createNatFwInstance(CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone), region: region, logger: logger, on: eventLoop)
+    public func createNatFwInstance(name: String, width: Int64, mode: Int64, newModeItems: NewModeItems? = nil, natGwList: [String]? = nil, zone: String? = nil, zoneBak: String? = nil, crossAZone: Int64? = nil, fwCidrInfo: FwCidrInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatFwInstanceResponse {
+        try await self.createNatFwInstance(CreateNatFwInstanceRequest(name: name, width: width, mode: mode, newModeItems: newModeItems, natGwList: natGwList, zone: zone, zoneBak: zoneBak, crossAZone: crossAZone, fwCidrInfo: fwCidrInfo), region: region, logger: logger, on: eventLoop)
     }
 }

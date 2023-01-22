@@ -16,9 +16,9 @@
 
 @_exported import TecoCore
 
-/// 图片内容检测 (ims)
+/// 图片内容安全 (ims)
 ///
-/// 对图片内容检测进行操作，包括识别图片中的不适宜内容等。
+/// 对图片内容安全进行操作，包括识别图片中的不适宜内容等。
 public struct Ims: TCService {
     /// Client used to communicate with Tencent Cloud.
     public let client: TCClient

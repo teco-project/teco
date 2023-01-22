@@ -79,6 +79,14 @@ extension Dts {
 
     /// 一致性校验摘要信息
     public struct CompareAbstractInfo: TCOutputModel {
+        /// 校验配置参数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let options: CompareOptions?
+
+        /// 一致性校验对比对象
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let objects: CompareObject?
+
         /// 对比结论: same,different
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let conclusion: String?
@@ -103,18 +111,45 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let skippedTables: UInt64?
 
+        /// 预估表总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nearlyTableCount: UInt64?
+
         /// 不一致的数据行数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let differentRows: UInt64?
 
+        /// 源库行数，当对比类型为**行数对比**时此项有意义
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let srcSampleRows: UInt64?
+
+        /// 目标库行数，当对比类型为**行数对比**时此项有意义
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dstSampleRows: UInt64?
+
+        /// 开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startedAt: String?
+
+        /// 结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let finishedAt: String?
+
         enum CodingKeys: String, CodingKey {
+            case options = "Options"
+            case objects = "Objects"
             case conclusion = "Conclusion"
             case status = "Status"
             case totalTables = "TotalTables"
             case checkedTables = "CheckedTables"
             case differentTables = "DifferentTables"
             case skippedTables = "SkippedTables"
+            case nearlyTableCount = "NearlyTableCount"
             case differentRows = "DifferentRows"
+            case srcSampleRows = "SrcSampleRows"
+            case dstSampleRows = "DstSampleRows"
+            case startedAt = "StartedAt"
+            case finishedAt = "FinishedAt"
         }
     }
 
@@ -136,28 +171,34 @@ extension Dts {
 
     /// 一致性对比对象配置
     public struct CompareObject: TCInputModel, TCOutputModel {
-        /// 迁移对象模式 all(所有迁移对象)，partial(部分对象迁移)
+        /// 对象模式 整实例-all,部分对象-partial
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectMode: String?
 
-        /// 迁移对象库表配置
+        /// 对象列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let objectItems: [CompareObjectItem]?
 
-        public init(objectMode: String, objectItems: [CompareObjectItem]? = nil) {
+        /// 高级对象类型，如account(账号),index(索引),shardkey(片建，后面可能会调整),schema(库表结构)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let advancedObjects: [String]?
+
+        public init(objectMode: String, objectItems: [CompareObjectItem]? = nil, advancedObjects: [String]? = nil) {
             self.objectMode = objectMode
             self.objectItems = objectItems
+            self.advancedObjects = advancedObjects
         }
 
         enum CodingKeys: String, CodingKey {
             case objectMode = "ObjectMode"
             case objectItems = "ObjectItems"
+            case advancedObjects = "AdvancedObjects"
         }
     }
 
     /// 一致性校验库表对象
     public struct CompareObjectItem: TCInputModel, TCOutputModel {
-        /// 迁移的库
+        /// 数据库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbName: String?
 
@@ -165,7 +206,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbMode: String?
 
-        /// 迁移的 schema
+        /// schema名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaName: String?
 
@@ -206,6 +247,33 @@ extension Dts {
         }
     }
 
+    /// 一致性校验选项
+    public struct CompareOptions: TCInputModel, TCOutputModel {
+        /// 对比类型：dataCheck(完整数据对比)、sampleDataCheck(抽样数据对比)、rowsCount(行数对比)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let method: String?
+
+        /// 抽样比例;范围0,100
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sampleRate: Int64?
+
+        /// 线程数，取值1-5，默认为1
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let threadCount: Int64?
+
+        public init(method: String? = nil, sampleRate: Int64? = nil, threadCount: Int64? = nil) {
+            self.method = method
+            self.sampleRate = sampleRate
+            self.threadCount = threadCount
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case method = "Method"
+            case sampleRate = "SampleRate"
+            case threadCount = "ThreadCount"
+        }
+    }
+
     /// 用于一致性校验的表配置
     public struct CompareTableItem: TCInputModel, TCOutputModel {
         /// 表名称
@@ -239,7 +307,7 @@ extension Dts {
 
     /// 一致性校验对象信息
     public struct CompareTaskItem: TCOutputModel {
-        /// 迁移任务id
+        /// 任务id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobId: String?
 
@@ -283,6 +351,18 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let finishedAt: String?
 
+        /// 对比类型，dataCheck(完整数据对比)、sampleDataCheck(抽样数据对比)、rowsCount(行数对比)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let method: String?
+
+        /// 对比配置信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let options: CompareOptions?
+
+        /// 一致性校验提示信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let message: String?
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case compareTaskId = "CompareTaskId"
@@ -295,6 +375,9 @@ extension Dts {
             case createdAt = "CreatedAt"
             case startedAt = "StartedAt"
             case finishedAt = "FinishedAt"
+            case method = "Method"
+            case options = "Options"
+            case message = "Message"
         }
     }
 
@@ -536,7 +619,7 @@ extension Dts {
         }
     }
 
-    /// 迁移对象信息
+    /// 迁移对象信息，在配置库表视图等对象信息时大小写敏感
     public struct DBItem: TCInputModel, TCOutputModel {
         /// 需要迁移或同步的库名，当ObjectMode为partial时，此项必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -719,7 +802,23 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let procedures: [String]?
 
-        public init(dbName: String? = nil, newDbName: String? = nil, dbMode: String? = nil, schemaName: String? = nil, newSchemaName: String? = nil, tableMode: String? = nil, tables: [Table]? = nil, viewMode: String? = nil, views: [View]? = nil, functionMode: String? = nil, functions: [String]? = nil, procedureMode: String? = nil, procedures: [String]? = nil) {
+        /// 触发器迁移模式，all(为当前对象下的所有对象)，partial(部分对象)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let triggerMode: String?
+
+        /// 当TriggerMode为partial，指定要迁移的触发器名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let triggers: [String]?
+
+        /// 事件迁移模式，all(为当前对象下的所有对象)，partial(部分对象)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eventMode: String?
+
+        /// 当EventMode为partial，指定要迁移的事件名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let events: [String]?
+
+        public init(dbName: String? = nil, newDbName: String? = nil, dbMode: String? = nil, schemaName: String? = nil, newSchemaName: String? = nil, tableMode: String? = nil, tables: [Table]? = nil, viewMode: String? = nil, views: [View]? = nil, functionMode: String? = nil, functions: [String]? = nil, procedureMode: String? = nil, procedures: [String]? = nil, triggerMode: String? = nil, triggers: [String]? = nil, eventMode: String? = nil, events: [String]? = nil) {
             self.dbName = dbName
             self.newDbName = newDbName
             self.dbMode = dbMode
@@ -733,6 +832,10 @@ extension Dts {
             self.functions = functions
             self.procedureMode = procedureMode
             self.procedures = procedures
+            self.triggerMode = triggerMode
+            self.triggers = triggers
+            self.eventMode = eventMode
+            self.events = events
         }
 
         enum CodingKeys: String, CodingKey {
@@ -749,6 +852,10 @@ extension Dts {
             case functions = "Functions"
             case procedureMode = "ProcedureMode"
             case procedures = "Procedures"
+            case triggerMode = "TriggerMode"
+            case triggers = "Triggers"
+            case eventMode = "EventMode"
+            case events = "Events"
         }
     }
 
@@ -924,6 +1031,10 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
 
+        /// tdsql mysql版的节点类型，枚举值为proxy、set
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let role: String?
+
         /// 数据库内核类型，tdsql中用于区分不同内核：percona,mariadb,mysql
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbKernel: String?
@@ -984,17 +1095,21 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let engineVersion: String?
 
-        /// 资源所属账号 为空或self(表示本账号内资源)、other(表示跨账号资源)
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let accountMode: String?
-
         /// 实例所属账号，如果为跨账号实例此项必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let account: String?
 
+        /// 资源所属账号 为空或self(表示本账号内资源)、other(表示跨账号资源)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accountMode: String?
+
         /// 跨账号同步时的角色，只允许[a-zA-Z0-9\-\_]+，如果为跨账号实例此项必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountRole: String?
+
+        /// 外部角色id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let roleExternalId: String?
 
         /// 临时密钥Id，如果为跨账号实例此项必填
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1008,12 +1123,13 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tmpToken: String?
 
-        /// 外部角色id
+        /// 是否走加密传输、UnEncrypted表示不走加密传输，Encrypted表示走加密传输，默认UnEncrypted
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let roleExternalId: String?
+        public let encryptConn: String?
 
-        public init(region: String? = nil, dbKernel: String? = nil, instanceId: String? = nil, ip: String? = nil, port: UInt64? = nil, user: String? = nil, password: String? = nil, dbName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, uniqVpnGwId: String? = nil, ccnId: String? = nil, supplier: String? = nil, engineVersion: String? = nil, accountMode: String? = nil, account: String? = nil, accountRole: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, roleExternalId: String? = nil) {
+        public init(region: String? = nil, role: String? = nil, dbKernel: String? = nil, instanceId: String? = nil, ip: String? = nil, port: UInt64? = nil, user: String? = nil, password: String? = nil, dbName: String? = nil, vpcId: String? = nil, subnetId: String? = nil, cvmInstanceId: String? = nil, uniqDcgId: String? = nil, uniqVpnGwId: String? = nil, ccnId: String? = nil, supplier: String? = nil, engineVersion: String? = nil, account: String? = nil, accountMode: String? = nil, accountRole: String? = nil, roleExternalId: String? = nil, tmpSecretId: String? = nil, tmpSecretKey: String? = nil, tmpToken: String? = nil, encryptConn: String? = nil) {
             self.region = region
+            self.role = role
             self.dbKernel = dbKernel
             self.instanceId = instanceId
             self.ip = ip
@@ -1029,17 +1145,19 @@ extension Dts {
             self.ccnId = ccnId
             self.supplier = supplier
             self.engineVersion = engineVersion
-            self.accountMode = accountMode
             self.account = account
+            self.accountMode = accountMode
             self.accountRole = accountRole
+            self.roleExternalId = roleExternalId
             self.tmpSecretId = tmpSecretId
             self.tmpSecretKey = tmpSecretKey
             self.tmpToken = tmpToken
-            self.roleExternalId = roleExternalId
+            self.encryptConn = encryptConn
         }
 
         enum CodingKeys: String, CodingKey {
             case region = "Region"
+            case role = "Role"
             case dbKernel = "DbKernel"
             case instanceId = "InstanceId"
             case ip = "Ip"
@@ -1055,13 +1173,14 @@ extension Dts {
             case ccnId = "CcnId"
             case supplier = "Supplier"
             case engineVersion = "EngineVersion"
-            case accountMode = "AccountMode"
             case account = "Account"
+            case accountMode = "AccountMode"
             case accountRole = "AccountRole"
+            case roleExternalId = "RoleExternalId"
             case tmpSecretId = "TmpSecretId"
             case tmpSecretKey = "TmpSecretKey"
             case tmpToken = "TmpToken"
-            case roleExternalId = "RoleExternalId"
+            case encryptConn = "EncryptConn"
         }
     }
 
@@ -1161,6 +1280,10 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagItem]?
 
+        /// 自动重试时间段信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoRetryTimeRangeMinutes: Int64?
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -1179,6 +1302,7 @@ extension Dts {
             case compareTask = "CompareTask"
             case tradeInfo = "TradeInfo"
             case tags = "Tags"
+            case autoRetryTimeRangeMinutes = "AutoRetryTimeRangeMinutes"
         }
     }
 
@@ -1346,17 +1470,27 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let advancedObjects: [String]?
 
-        public init(mode: String? = nil, databases: [Database]? = nil, advancedObjects: [String]? = nil) {
+        /// OnlineDDL类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let onlineDDL: OnlineDDL?
+
+        public init(mode: String? = nil, databases: [Database]? = nil, advancedObjects: [String]? = nil, onlineDDL: OnlineDDL? = nil) {
             self.mode = mode
             self.databases = databases
             self.advancedObjects = advancedObjects
+            self.onlineDDL = onlineDDL
         }
 
         enum CodingKeys: String, CodingKey {
             case mode = "Mode"
             case databases = "Databases"
             case advancedObjects = "AdvancedObjects"
+            case onlineDDL = "OnlineDDL"
         }
+    }
+
+    /// OnlineDDL类型
+    public struct OnlineDDL: TCOutputModel {
     }
 
     /// 数据同步中的选项
@@ -1776,7 +1910,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srcAccessType: String?
 
-        /// 源端信息
+        /// 源端信息，单节点数据库使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srcInfo: Endpoint?
 
@@ -1792,7 +1926,7 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dstAccessType: String?
 
-        /// 目标端信息
+        /// 目标端信息，单节点数据库使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dstInfo: Endpoint?
 
@@ -1836,6 +1970,10 @@ extension Dts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offlineTime: String?
 
+        /// 自动重试时间段设置
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoRetryTimeRangeMinutes: Int64?
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -1866,6 +2004,7 @@ extension Dts {
             case instanceClass = "InstanceClass"
             case autoRenew = "AutoRenew"
             case offlineTime = "OfflineTime"
+            case autoRetryTimeRangeMinutes = "AutoRetryTimeRangeMinutes"
         }
     }
 
@@ -1898,7 +2037,7 @@ extension Dts {
 
     /// 表对象集合，当 TableMode 为 partial 时，此项需要填写
     public struct TableItem: TCInputModel, TCOutputModel {
-        /// 迁移的表名
+        /// 迁移的表名，大小写敏感
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
 

@@ -50,6 +50,14 @@ extension Ocr {
         /// 全部印章信息
         public let sealInfos: [SealInfo]
 
+        /// 印章类型，表示为：
+        /// 圆形印章：0
+        /// 椭圆形印章：1
+        /// 方形印章：2
+        /// 菱形印章：3
+        /// 三角形印章：4
+        public let sealShape: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -58,6 +66,7 @@ extension Ocr {
             case location = "Location"
             case otherTexts = "OtherTexts"
             case sealInfos = "SealInfos"
+            case sealShape = "SealShape"
             case requestId = "RequestId"
         }
     }
@@ -65,6 +74,8 @@ extension Ocr {
     /// 印章识别
     ///
     /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func sealOCR(_ input: SealOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SealOCRResponse> {
         self.client.execute(action: "SealOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -73,6 +84,8 @@ extension Ocr {
     /// 印章识别
     ///
     /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func sealOCR(_ input: SealOCRRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
         try await self.client.execute(action: "SealOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,6 +94,8 @@ extension Ocr {
     /// 印章识别
     ///
     /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SealOCRResponse> {
         self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
@@ -89,6 +104,8 @@ extension Ocr {
     /// 印章识别
     ///
     /// 本接口支持各类印章识别，包括发票章，财务章等，适用于公文，票据等场景。
+    ///
+    /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
         try await self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)

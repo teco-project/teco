@@ -32,12 +32,20 @@ extension Monitor {
         /// 告警策略ID，使用此字段时 GroupId 会被忽略
         public let policyId: String?
 
-        public init(module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil) {
+        /// 事件配置的告警
+        public let ebSubject: String?
+
+        /// 是否配置了事件告警
+        public let ebEventFlag: Int64?
+
+        public init(module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil) {
             self.module = module
             self.groupId = groupId
             self.uniqueId = uniqueId
             self.instanceGroupId = instanceGroupId
             self.policyId = policyId
+            self.ebSubject = ebSubject
+            self.ebEventFlag = ebEventFlag
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +54,8 @@ extension Monitor {
             case uniqueId = "UniqueId"
             case instanceGroupId = "InstanceGroupId"
             case policyId = "PolicyId"
+            case ebSubject = "EbSubject"
+            case ebEventFlag = "EbEventFlag"
         }
     }
 
@@ -73,13 +83,13 @@ extension Monitor {
 
     /// 删除策略的关联对象
     @inlinable @discardableResult
-    public func unBindingPolicyObject(module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingPolicyObjectResponse> {
-        self.unBindingPolicyObject(UnBindingPolicyObjectRequest(module: module, groupId: groupId, uniqueId: uniqueId, instanceGroupId: instanceGroupId, policyId: policyId), region: region, logger: logger, on: eventLoop)
+    public func unBindingPolicyObject(module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingPolicyObjectResponse> {
+        self.unBindingPolicyObject(UnBindingPolicyObjectRequest(module: module, groupId: groupId, uniqueId: uniqueId, instanceGroupId: instanceGroupId, policyId: policyId, ebSubject: ebSubject, ebEventFlag: ebEventFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除策略的关联对象
     @inlinable @discardableResult
-    public func unBindingPolicyObject(module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingPolicyObjectResponse {
-        try await self.unBindingPolicyObject(UnBindingPolicyObjectRequest(module: module, groupId: groupId, uniqueId: uniqueId, instanceGroupId: instanceGroupId, policyId: policyId), region: region, logger: logger, on: eventLoop)
+    public func unBindingPolicyObject(module: String, groupId: Int64, uniqueId: [String], instanceGroupId: Int64? = nil, policyId: String? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingPolicyObjectResponse {
+        try await self.unBindingPolicyObject(UnBindingPolicyObjectRequest(module: module, groupId: groupId, uniqueId: uniqueId, instanceGroupId: instanceGroupId, policyId: policyId, ebSubject: ebSubject, ebEventFlag: ebEventFlag), region: region, logger: logger, on: eventLoop)
     }
 }

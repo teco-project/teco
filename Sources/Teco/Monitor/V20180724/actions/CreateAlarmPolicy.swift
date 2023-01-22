@@ -71,7 +71,10 @@ extension Monitor {
         /// 迁移策略专用字段，0-走鉴权逻辑，1-跳过鉴权逻辑
         public let migrateFlag: Int64?
 
-        public init(module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil) {
+        /// 事件配置的告警
+        public let ebSubject: String?
+
+        public init(module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil, ebSubject: String? = nil) {
             self.module = module
             self.policyName = policyName
             self.monitorType = monitorType
@@ -90,6 +93,7 @@ extension Monitor {
             self.logAlarmReqInfo = logAlarmReqInfo
             self.hierarchicalNotices = hierarchicalNotices
             self.migrateFlag = migrateFlag
+            self.ebSubject = ebSubject
         }
 
         enum CodingKeys: String, CodingKey {
@@ -111,6 +115,7 @@ extension Monitor {
             case logAlarmReqInfo = "LogAlarmReqInfo"
             case hierarchicalNotices = "HierarchicalNotices"
             case migrateFlag = "MigrateFlag"
+            case ebSubject = "EbSubject"
         }
     }
 
@@ -146,13 +151,13 @@ extension Monitor {
 
     /// 创建云监控告警策略
     @inlinable
-    public func createAlarmPolicy(module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmPolicyResponse> {
-        self.createAlarmPolicy(CreateAlarmPolicyRequest(module: module, policyName: policyName, monitorType: monitorType, namespace: namespace, remark: remark, enable: enable, projectId: projectId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, noticeIds: noticeIds, triggerTasks: triggerTasks, filter: filter, groupBy: groupBy, tags: tags, logAlarmReqInfo: logAlarmReqInfo, hierarchicalNotices: hierarchicalNotices, migrateFlag: migrateFlag), region: region, logger: logger, on: eventLoop)
+    public func createAlarmPolicy(module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil, ebSubject: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmPolicyResponse> {
+        self.createAlarmPolicy(CreateAlarmPolicyRequest(module: module, policyName: policyName, monitorType: monitorType, namespace: namespace, remark: remark, enable: enable, projectId: projectId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, noticeIds: noticeIds, triggerTasks: triggerTasks, filter: filter, groupBy: groupBy, tags: tags, logAlarmReqInfo: logAlarmReqInfo, hierarchicalNotices: hierarchicalNotices, migrateFlag: migrateFlag, ebSubject: ebSubject), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云监控告警策略
     @inlinable
-    public func createAlarmPolicy(module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmPolicyResponse {
-        try await self.createAlarmPolicy(CreateAlarmPolicyRequest(module: module, policyName: policyName, monitorType: monitorType, namespace: namespace, remark: remark, enable: enable, projectId: projectId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, noticeIds: noticeIds, triggerTasks: triggerTasks, filter: filter, groupBy: groupBy, tags: tags, logAlarmReqInfo: logAlarmReqInfo, hierarchicalNotices: hierarchicalNotices, migrateFlag: migrateFlag), region: region, logger: logger, on: eventLoop)
+    public func createAlarmPolicy(module: String, policyName: String, monitorType: String, namespace: String, remark: String? = nil, enable: Int64? = nil, projectId: Int64? = nil, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, noticeIds: [String]? = nil, triggerTasks: [AlarmPolicyTriggerTask]? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, tags: [Tag]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, hierarchicalNotices: [AlarmHierarchicalNotice]? = nil, migrateFlag: Int64? = nil, ebSubject: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmPolicyResponse {
+        try await self.createAlarmPolicy(CreateAlarmPolicyRequest(module: module, policyName: policyName, monitorType: monitorType, namespace: namespace, remark: remark, enable: enable, projectId: projectId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, noticeIds: noticeIds, triggerTasks: triggerTasks, filter: filter, groupBy: groupBy, tags: tags, logAlarmReqInfo: logAlarmReqInfo, hierarchicalNotices: hierarchicalNotices, migrateFlag: migrateFlag, ebSubject: ebSubject), region: region, logger: logger, on: eventLoop)
     }
 }

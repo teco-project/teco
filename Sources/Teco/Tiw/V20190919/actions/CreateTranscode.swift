@@ -59,7 +59,15 @@ extension Tiw {
         /// 示例：1280x720，注意分辨率宽高中间为英文字母"xyz"的"x"
         public let minScaleResolution: String?
 
-        public init(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil) {
+        /// 是否对不支持元素开启自动处理的功能。默认不开启。
+        ///
+        /// 在开启自动处理的情况下，会自动进行如下处理：
+        /// 1. 墨迹：移除不支持的墨迹（比如使用WPS画的）
+        /// 2. 自动翻页：移除PPT上所有的自动翻页设置，并设置为单击鼠标翻页
+        /// 3. 已损坏音视频：移除PPT上对损坏音视频的引用
+        public let autoHandleUnsupportedElement: Bool?
+
+        public init(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, autoHandleUnsupportedElement: Bool? = nil) {
             self.sdkAppId = sdkAppId
             self.url = url
             self.isStaticPPT = isStaticPPT
@@ -69,6 +77,7 @@ extension Tiw {
             self.extraData = extraData
             self.priority = priority
             self.minScaleResolution = minScaleResolution
+            self.autoHandleUnsupportedElement = autoHandleUnsupportedElement
         }
 
         enum CodingKeys: String, CodingKey {
@@ -81,6 +90,7 @@ extension Tiw {
             case extraData = "ExtraData"
             case priority = "Priority"
             case minScaleResolution = "MinScaleResolution"
+            case autoHandleUnsupportedElement = "AutoHandleUnsupportedElement"
         }
     }
 
@@ -118,15 +128,15 @@ extension Tiw {
     ///
     /// 创建一个文档转码任务
     @inlinable
-    public func createTranscode(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTranscodeResponse> {
-        self.createTranscode(CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution), region: region, logger: logger, on: eventLoop)
+    public func createTranscode(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, autoHandleUnsupportedElement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTranscodeResponse> {
+        self.createTranscode(CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution, autoHandleUnsupportedElement: autoHandleUnsupportedElement), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建文档转码任务
     ///
     /// 创建一个文档转码任务
     @inlinable
-    public func createTranscode(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeResponse {
-        try await self.createTranscode(CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution), region: region, logger: logger, on: eventLoop)
+    public func createTranscode(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, autoHandleUnsupportedElement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeResponse {
+        try await self.createTranscode(CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution, autoHandleUnsupportedElement: autoHandleUnsupportedElement), region: region, logger: logger, on: eventLoop)
     }
 }

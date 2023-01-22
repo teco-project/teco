@@ -40,7 +40,7 @@ extension Tiia {
 
         /// 返回结果的数量，默认值为10，最大值为100。
         /// 按照相似度分数由高到低排序。
-        /// **<font color=#1E90FF>注意：服务类型为相似图像搜索时返回数量限制为1，即返回top1的结果。</font>**
+        /// **<font color=#1E90FF>服务类型为图案花纹搜索时Limit = 1，最多只能返回1个结果。</font>**
         public let limit: Int64?
 
         /// 返回结果的起始序号，默认值为0。
@@ -49,9 +49,10 @@ extension Tiia {
         /// 匹配阈值。
         /// 只有图片相似度分数超过匹配阈值的结果才会返回。
         /// 当MatchThreshold为0（默认值）时，各服务类型将按照以下默认的匹配阈值进行结果过滤：
-        /// • 相同图像搜索：50。
-        /// • 商品图像搜索：28。
-        /// • 相似图像搜索：56。
+        /// • 通用图像搜索1.0版：50。
+        /// • 商品图像搜索2.0升级版：45。
+        /// • 商品图像搜索1.0版：28。
+        /// • 图案花纹搜索1.0版：56。
         /// 建议：
         /// 可以手动调整MatchThreshold值来控制输出结果的范围。如果发现无检索结果，可能是因为图片相似度较低导致检索结果被匹配阈值过滤，建议调整为较低的阈值后再次尝试检索。
         public let matchThreshold: Int64?
@@ -138,6 +139,9 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchImageResponse> {
         self.client.execute(action: "SearchImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -146,6 +150,9 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
         try await self.client.execute(action: "SearchImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -154,6 +161,9 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchImageResponse> {
         self.searchImage(SearchImageRequest(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId), region: region, logger: logger, on: eventLoop)
@@ -162,6 +172,9 @@ extension Tiia {
     /// 检索图片
     ///
     /// 本接口用于对一张图片，在指定图片库中检索出与之相似的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func searchImage(groupId: String, imageUrl: String? = nil, imageBase64: String? = nil, limit: Int64? = nil, offset: Int64? = nil, matchThreshold: Int64? = nil, filter: String? = nil, imageRect: ImageRect? = nil, enableDetect: Bool? = nil, categoryId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchImageResponse {
         try await self.searchImage(SearchImageRequest(groupId: groupId, imageUrl: imageUrl, imageBase64: imageBase64, limit: limit, offset: offset, matchThreshold: matchThreshold, filter: filter, imageRect: imageRect, enableDetect: enableDetect, categoryId: categoryId), region: region, logger: logger, on: eventLoop)

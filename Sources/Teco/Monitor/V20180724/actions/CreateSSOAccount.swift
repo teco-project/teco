@@ -17,10 +17,10 @@
 extension Monitor {
     /// CreateSSOAccount请求参数结构体
     public struct CreateSSOAccountRequest: TCRequestModel {
-        /// 实例ID
+        /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
-        /// 用户账号ID
+        /// 用户账号 ID ，例如：10000000
         public let userId: String
 
         /// 权限

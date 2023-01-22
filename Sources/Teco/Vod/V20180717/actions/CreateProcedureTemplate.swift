@@ -29,7 +29,8 @@ extension Vod {
         /// 视频处理类型任务参数。
         public let mediaProcessTask: MediaProcessTaskInput?
 
-        /// AI 内容审核类型任务参数。
+        /// AI 内容审核类型任务参数 \*。
+        /// <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
         public let aiContentReviewTask: AiContentReviewTaskInput?
 
         /// AI 内容分析类型任务参数。
@@ -38,7 +39,10 @@ extension Vod {
         /// AI 内容识别类型任务参数。
         public let aiRecognitionTask: AiRecognitionTaskInput?
 
-        public init(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil) {
+        /// 音视频审核类型任务参数。
+        public let reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput?
+
+        public init(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil) {
             self.name = name
             self.subAppId = subAppId
             self.comment = comment
@@ -46,6 +50,7 @@ extension Vod {
             self.aiContentReviewTask = aiContentReviewTask
             self.aiAnalysisTask = aiAnalysisTask
             self.aiRecognitionTask = aiRecognitionTask
+            self.reviewAudioVideoTask = reviewAudioVideoTask
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +61,7 @@ extension Vod {
             case aiContentReviewTask = "AiContentReviewTask"
             case aiAnalysisTask = "AiAnalysisTask"
             case aiRecognitionTask = "AiRecognitionTask"
+            case reviewAudioVideoTask = "ReviewAudioVideoTask"
         }
     }
 
@@ -89,15 +95,15 @@ extension Vod {
     ///
     /// 创建用户自定义的任务流模板，模板上限：50。
     @inlinable @discardableResult
-    public func createProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProcedureTemplateResponse> {
-        self.createProcedureTemplate(CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask), region: region, logger: logger, on: eventLoop)
+    public func createProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProcedureTemplateResponse> {
+        self.createProcedureTemplate(CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建任务流模板
     ///
     /// 创建用户自定义的任务流模板，模板上限：50。
     @inlinable @discardableResult
-    public func createProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcedureTemplateResponse {
-        try await self.createProcedureTemplate(CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask), region: region, logger: logger, on: eventLoop)
+    public func createProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcedureTemplateResponse {
+        try await self.createProcedureTemplate(CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask), region: region, logger: logger, on: eventLoop)
     }
 }

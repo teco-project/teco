@@ -26,7 +26,7 @@ extension Antiddos {
         /// 大禹子产品代号（bgpip表示高防IP）
         public let business: String
 
-        /// 统计周期，可取值300，1800，3600，21600，86400，单位秒
+        /// 统计周期，可取值60，300，1800，3600，21600，86400，单位秒
         public let period: UInt64
 
         /// 统计开始时间。 例：“2020-09-22 00:00:00”

@@ -474,7 +474,11 @@ extension Waf {
         /// 是否开启投递CKafka功能
         public let postCKafkaStatus: Int64?
 
-        public init(domain: String, domainId: String, instanceId: String, cname: String, edition: String, region: String, instanceName: String, clsStatus: UInt64, flowMode: UInt64, status: UInt64, mode: UInt64, engine: UInt64, ccList: [String], rsList: [String], ports: [PortInfo], loadBalancerSet: [LoadBalancerPackageNew], appId: UInt64, state: Int64, createTime: String? = nil, ipv6Status: Int64? = nil, botStatus: Int64? = nil, level: Int64? = nil, postCLSStatus: Int64? = nil, postCKafkaStatus: Int64? = nil) {
+        /// 应用型负载均衡类型: clb或者apisix，默认clb
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let albType: String?
+
+        public init(domain: String, domainId: String, instanceId: String, cname: String, edition: String, region: String, instanceName: String, clsStatus: UInt64, flowMode: UInt64, status: UInt64, mode: UInt64, engine: UInt64, ccList: [String], rsList: [String], ports: [PortInfo], loadBalancerSet: [LoadBalancerPackageNew], appId: UInt64, state: Int64, createTime: String? = nil, ipv6Status: Int64? = nil, botStatus: Int64? = nil, level: Int64? = nil, postCLSStatus: Int64? = nil, postCKafkaStatus: Int64? = nil, albType: String? = nil) {
             self.domain = domain
             self.domainId = domainId
             self.instanceId = instanceId
@@ -499,6 +503,7 @@ extension Waf {
             self.level = level
             self.postCLSStatus = postCLSStatus
             self.postCKafkaStatus = postCKafkaStatus
+            self.albType = albType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -526,6 +531,7 @@ extension Waf {
             case level = "Level"
             case postCLSStatus = "PostCLSStatus"
             case postCKafkaStatus = "PostCKafkaStatus"
+            case albType = "AlbType"
         }
     }
 
@@ -1101,6 +1107,63 @@ extension Waf {
 
     /// 负载均衡算法
     public struct LoadBalancerPackageNew: TCOutputModel {
+        /// 监听id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listenerId: String?
+
+        /// 监听名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let listenerName: String?
+
+        /// 负载均衡id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerId: String?
+
+        /// 负载均衡名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerName: String?
+
+        /// 协议
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `protocol`: String?
+
+        /// 地区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 接入IP
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vip: String?
+
+        /// 接入端口
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vport: UInt64?
+
+        /// 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        /// VPCID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let numericalVpcId: Int64?
+
+        /// CLB类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let loadBalancerType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case listenerId = "ListenerId"
+            case listenerName = "ListenerName"
+            case loadBalancerId = "LoadBalancerId"
+            case loadBalancerName = "LoadBalancerName"
+            case `protocol` = "Protocol"
+            case region = "Region"
+            case vip = "Vip"
+            case vport = "Vport"
+            case zone = "Zone"
+            case numericalVpcId = "NumericalVpcId"
+            case loadBalancerType = "LoadBalancerType"
+        }
     }
 
     /// 防护域名端口配置信息

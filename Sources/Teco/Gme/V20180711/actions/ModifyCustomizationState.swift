@@ -17,7 +17,7 @@
 extension Gme {
     /// ModifyCustomizationState请求参数结构体
     public struct ModifyCustomizationStateRequest: TCRequestModel {
-        /// 自学习模型ID
+        /// 模型ID
         public let modelId: String
 
         /// 想要变换的模型状态，-1代表下线，1代表上线
@@ -41,7 +41,7 @@ extension Gme {
 
     /// ModifyCustomizationState返回参数结构体
     public struct ModifyCustomizationStateResponse: TCResponseModel {
-        /// 自学习模型ID
+        /// 模型ID
         public let modelId: String
 
         /// 返回值。0为成功，非0为失败。
@@ -57,33 +57,33 @@ extension Gme {
         }
     }
 
-    /// 修改语音消息转文本自学习模型状态
+    /// 修改语音消息转文本热句模型状态
     ///
-    /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
+    /// 通过该接口，用户可以修改语音消息转文本热句模型状态，上下线热句模型
     @inlinable
     public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
         self.client.execute(action: "ModifyCustomizationState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 修改语音消息转文本自学习模型状态
+    /// 修改语音消息转文本热句模型状态
     ///
-    /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
+    /// 通过该接口，用户可以修改语音消息转文本热句模型状态，上下线热句模型
     @inlinable
     public func modifyCustomizationState(_ input: ModifyCustomizationStateRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
         try await self.client.execute(action: "ModifyCustomizationState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 修改语音消息转文本自学习模型状态
+    /// 修改语音消息转文本热句模型状态
     ///
-    /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
+    /// 通过该接口，用户可以修改语音消息转文本热句模型状态，上下线热句模型
     @inlinable
     public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizationStateResponse> {
         self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 修改语音消息转文本自学习模型状态
+    /// 修改语音消息转文本热句模型状态
     ///
-    /// 通过该接口，用户可以修改语音消息转文本自学习模型状态，上下线自学习模型
+    /// 通过该接口，用户可以修改语音消息转文本热句模型状态，上下线热句模型
     @inlinable
     public func modifyCustomizationState(modelId: String, toState: Int64, bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizationStateResponse {
         try await self.modifyCustomizationState(ModifyCustomizationStateRequest(modelId: modelId, toState: toState, bizId: bizId), region: region, logger: logger, on: eventLoop)

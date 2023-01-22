@@ -57,7 +57,13 @@ extension Clb {
         /// 证书信息，支持同时传入不同算法类型的多本服务端证书；此参数仅适用于未开启SNI特性的HTTPS监听器。此参数和Certificate不能同时传入。
         public let multiCertInfo: MultiCertInfo?
 
-        public init(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil) {
+        /// 监听器最大连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
+        public let maxConn: Int64?
+
+        /// 监听器最大连接数，只有TCP/UDP/TCP_SSL/QUIC监听器支持，不传或者传-1表示监听器维度不限速。
+        public let maxCps: Int64?
+
+        public init(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.listenerName = listenerName
@@ -71,6 +77,8 @@ extension Clb {
             self.deregisterTargetRst = deregisterTargetRst
             self.sessionType = sessionType
             self.multiCertInfo = multiCertInfo
+            self.maxConn = maxConn
+            self.maxCps = maxCps
         }
 
         enum CodingKeys: String, CodingKey {
@@ -87,6 +95,8 @@ extension Clb {
             case deregisterTargetRst = "DeregisterTargetRst"
             case sessionType = "SessionType"
             case multiCertInfo = "MultiCertInfo"
+            case maxConn = "MaxConn"
+            case maxCps = "MaxCps"
         }
     }
 
@@ -123,8 +133,8 @@ extension Clb {
     /// ModifyListener接口用来修改负载均衡监听器的属性，包括监听器名称、健康检查参数、证书信息、转发策略等。本接口不支持传统型负载均衡。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
-    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyListenerResponse> {
-        self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, certificate: certificate, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, keepaliveEnable: keepaliveEnable, deregisterTargetRst: deregisterTargetRst, sessionType: sessionType, multiCertInfo: multiCertInfo), region: region, logger: logger, on: eventLoop)
+    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyListenerResponse> {
+        self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, certificate: certificate, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, keepaliveEnable: keepaliveEnable, deregisterTargetRst: deregisterTargetRst, sessionType: sessionType, multiCertInfo: multiCertInfo, maxConn: maxConn, maxCps: maxCps), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡监听器属性
@@ -132,7 +142,7 @@ extension Clb {
     /// ModifyListener接口用来修改负载均衡监听器的属性，包括监听器名称、健康检查参数、证书信息、转发策略等。本接口不支持传统型负载均衡。
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
-    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
-        try await self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, certificate: certificate, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, keepaliveEnable: keepaliveEnable, deregisterTargetRst: deregisterTargetRst, sessionType: sessionType, multiCertInfo: multiCertInfo), region: region, logger: logger, on: eventLoop)
+    public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, keepaliveEnable: Int64? = nil, deregisterTargetRst: Bool? = nil, sessionType: String? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
+        try await self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, certificate: certificate, scheduler: scheduler, sniSwitch: sniSwitch, targetType: targetType, keepaliveEnable: keepaliveEnable, deregisterTargetRst: deregisterTargetRst, sessionType: sessionType, multiCertInfo: multiCertInfo, maxConn: maxConn, maxCps: maxCps), region: region, logger: logger, on: eventLoop)
     }
 }

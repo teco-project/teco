@@ -61,6 +61,12 @@ extension Cdb {
         /// 当前地域归档备份总个数。
         public let dataBackupArchiveCount: Int64
 
+        /// 当前地域标准存储备份总容量。
+        public let dataBackupStandbyVolume: Int64
+
+        /// 当前地域标准存储备份总个数。
+        public let dataBackupStandbyCount: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -75,6 +81,8 @@ extension Cdb {
             case remoteBackupCount = "RemoteBackupCount"
             case dataBackupArchiveVolume = "DataBackupArchiveVolume"
             case dataBackupArchiveCount = "DataBackupArchiveCount"
+            case dataBackupStandbyVolume = "DataBackupStandbyVolume"
+            case dataBackupStandbyCount = "DataBackupStandbyCount"
             case requestId = "RequestId"
         }
     }

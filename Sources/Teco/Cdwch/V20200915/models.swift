@@ -49,6 +49,30 @@ extension Cdwch {
         }
     }
 
+    /// 集群计费相关信息
+    public struct Charge: TCInputModel, TCOutputModel {
+        /// 计费类型，“PREPAID” 预付费，“POSTPAID_BY_HOUR” 后付费
+        public let chargeType: String
+
+        /// PREPAID需要传递，是否自动续费，1表示自动续费开启
+        public let renewFlag: Int64?
+
+        /// 预付费需要传递，计费时间长度，多少个月
+        public let timeSpan: Int64?
+
+        public init(chargeType: String, renewFlag: Int64? = nil, timeSpan: Int64? = nil) {
+            self.chargeType = chargeType
+            self.renewFlag = renewFlag
+            self.timeSpan = timeSpan
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case chargeType = "ChargeType"
+            case renewFlag = "RenewFlag"
+            case timeSpan = "TimeSpan"
+        }
+    }
+
     /// 新增或是修改ck用户
     public struct CkUserAlterInfo: TCInputModel {
         /// 集群实例id
@@ -133,6 +157,223 @@ extension Cdwch {
         }
     }
 
+    /// 实例描述信息
+    public struct InstanceInfo: TCOutputModel {
+        /// 集群实例ID, "cdw-xxxx" 字符串类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 集群实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 状态,
+        /// Init 创建中; Serving 运行中；
+        /// Deleted已销毁；Deleting 销毁中；
+        /// Modify 集群变更中；
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
+
+        /// 地域, ap-guangzhou
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 可用区， ap-guangzhou-3
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zone: String?
+
+        /// 私有网络名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 子网名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let subnetId: String?
+
+        /// 付费类型，"hour", "prepay"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let payMode: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 过期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expireTime: String?
+
+        /// 数据节点描述信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let masterSummary: NodesSummary?
+
+        /// zookeeper节点描述信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let commonSummary: NodesSummary?
+
+        /// 高可用，“true" "false"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ha: String?
+
+        /// 访问地址，例如 "10.0.0.1:9000"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let accessInfo: String?
+
+        /// 记录ID，数值型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: Int64?
+
+        /// regionId, 表示地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionId: Int64?
+
+        /// 可用区说明，例如 "广州二区"
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneDesc: String?
+
+        /// 错误流程说明信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let flowMsg: String?
+
+        /// 状态描述，例如“运行中”等
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statusDesc: String?
+
+        /// 自动续费标记
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let renewFlag: Bool?
+
+        /// 标签列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [Tag]?
+
+        /// 监控信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let monitor: String?
+
+        /// 是否开通日志
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hasClsTopic: Bool?
+
+        /// 日志主题ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clsTopicId: String?
+
+        /// 日志集ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clsLogSetId: String?
+
+        /// 是否支持xml配置管理
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let enableXMLConfig: Int64?
+
+        /// 区域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionDesc: String?
+
+        /// 弹性网卡地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eip: String?
+
+        /// 冷热分层系数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cosMoveFactor: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case status = "Status"
+            case version = "Version"
+            case region = "Region"
+            case zone = "Zone"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case payMode = "PayMode"
+            case createTime = "CreateTime"
+            case expireTime = "ExpireTime"
+            case masterSummary = "MasterSummary"
+            case commonSummary = "CommonSummary"
+            case ha = "HA"
+            case accessInfo = "AccessInfo"
+            case id = "Id"
+            case regionId = "RegionId"
+            case zoneDesc = "ZoneDesc"
+            case flowMsg = "FlowMsg"
+            case statusDesc = "StatusDesc"
+            case renewFlag = "RenewFlag"
+            case tags = "Tags"
+            case monitor = "Monitor"
+            case hasClsTopic = "HasClsTopic"
+            case clsTopicId = "ClsTopicId"
+            case clsLogSetId = "ClsLogSetId"
+            case enableXMLConfig = "EnableXMLConfig"
+            case regionDesc = "RegionDesc"
+            case eip = "Eip"
+            case cosMoveFactor = "CosMoveFactor"
+        }
+    }
+
+    /// 创建集群时的规格
+    public struct NodeSpec: TCInputModel {
+        /// 规格名称
+        public let specName: String
+
+        /// 数量
+        public let count: Int64
+
+        /// 云盘大小
+        public let diskSize: Int64
+
+        public init(specName: String, count: Int64, diskSize: Int64) {
+            self.specName = specName
+            self.count = count
+            self.diskSize = diskSize
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case specName = "SpecName"
+            case count = "Count"
+            case diskSize = "DiskSize"
+        }
+    }
+
+    /// 节点角色描述信息
+    public struct NodesSummary: TCOutputModel {
+        /// 机型，如 S1
+        public let spec: String
+
+        /// 节点数目
+        public let nodeSize: Int64
+
+        /// cpu核数，单位个
+        public let core: Int64
+
+        /// 内存大小，单位G
+        public let memory: Int64
+
+        /// 磁盘大小，单位G
+        public let disk: Int64
+
+        /// 磁盘类型
+        public let diskType: String
+
+        /// 磁盘描述
+        public let diskDesc: String
+
+        enum CodingKeys: String, CodingKey {
+            case spec = "Spec"
+            case nodeSize = "NodeSize"
+            case core = "Core"
+            case memory = "Memory"
+            case disk = "Disk"
+            case diskType = "DiskType"
+            case diskDesc = "DiskDesc"
+        }
+    }
+
     /// 资源规格描述信息
     public struct ResourceSpec: TCOutputModel {
         /// 规格名称，例如“SCH1"
@@ -184,6 +425,25 @@ extension Cdwch {
             case computeSpecDesc = "ComputeSpecDesc"
             case displayName = "DisplayName"
             case instanceQuota = "InstanceQuota"
+        }
+    }
+
+    /// 标签描述
+    public struct Tag: TCInputModel, TCOutputModel {
+        /// 标签的键
+        public let tagKey: String
+
+        /// 标签的值
+        public let tagValue: String
+
+        public init(tagKey: String, tagValue: String) {
+            self.tagKey = tagKey
+            self.tagValue = tagValue
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case tagKey = "TagKey"
+            case tagValue = "TagValue"
         }
     }
 }

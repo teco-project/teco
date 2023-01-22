@@ -50,6 +50,14 @@ extension Chdfs {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let degradeCapacityUsed: UInt64?
 
+        /// 已使用COS深度归档存储容量（byte）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let deepArchiveCapacityUsed: UInt64?
+
+        /// 已使用COS智能分层存储容量（byte）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let intelligentCapacityUsed: UInt64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -59,6 +67,8 @@ extension Chdfs {
             case archiveCapacityUsed = "ArchiveCapacityUsed"
             case standardCapacityUsed = "StandardCapacityUsed"
             case degradeCapacityUsed = "DegradeCapacityUsed"
+            case deepArchiveCapacityUsed = "DeepArchiveCapacityUsed"
+            case intelligentCapacityUsed = "IntelligentCapacityUsed"
             case requestId = "RequestId"
         }
     }

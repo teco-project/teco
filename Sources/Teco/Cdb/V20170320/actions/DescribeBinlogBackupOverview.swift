@@ -49,6 +49,12 @@ extension Cdb {
         /// 归档日志备份个数。
         public let binlogArchiveCount: Int64
 
+        /// 标准存储日志备份容量（单位为字节）。
+        public let binlogStandbyVolume: Int64
+
+        /// 标准存储日志备份个数。
+        public let binlogStandbyCount: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -59,6 +65,8 @@ extension Cdb {
             case remoteBinlogCount = "RemoteBinlogCount"
             case binlogArchiveVolume = "BinlogArchiveVolume"
             case binlogArchiveCount = "BinlogArchiveCount"
+            case binlogStandbyVolume = "BinlogStandbyVolume"
+            case binlogStandbyCount = "BinlogStandbyCount"
             case requestId = "RequestId"
         }
     }

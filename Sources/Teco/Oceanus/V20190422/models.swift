@@ -852,6 +852,14 @@ extension Oceanus {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serialId: String?
 
+        /// 耗时
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeConsuming: Int64?
+
+        /// 快照路径状态 1：可用；2：不可用；
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pathStatus: Int64?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case versionId = "VersionId"
@@ -865,6 +873,8 @@ extension Oceanus {
             case description = "Description"
             case timeout = "Timeout"
             case serialId = "SerialId"
+            case timeConsuming = "TimeConsuming"
+            case pathStatus = "PathStatus"
         }
     }
 

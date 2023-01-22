@@ -29,11 +29,15 @@ extension Cfw {
         /// 新增模式重新接入的vpc列表，其中NatGwList和NatgwList只能传递一个。
         public let vpcList: [String]?
 
-        public init(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil) {
+        /// 指定防火墙使用网段信息
+        public let fwCidrInfo: FwCidrInfo?
+
+        public init(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, fwCidrInfo: FwCidrInfo? = nil) {
             self.mode = mode
             self.cfwInstance = cfwInstance
             self.natGwList = natGwList
             self.vpcList = vpcList
+            self.fwCidrInfo = fwCidrInfo
         }
 
         enum CodingKeys: String, CodingKey {
@@ -41,6 +45,7 @@ extension Cfw {
             case cfwInstance = "CfwInstance"
             case natGwList = "NatGwList"
             case vpcList = "VpcList"
+            case fwCidrInfo = "FwCidrInfo"
         }
     }
 
@@ -68,13 +73,13 @@ extension Cfw {
 
     /// 防火墙实例重新选择vpc或nat
     @inlinable @discardableResult
-    public func modifyNatFwReSelect(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatFwReSelectResponse> {
-        self.modifyNatFwReSelect(ModifyNatFwReSelectRequest(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList), region: region, logger: logger, on: eventLoop)
+    public func modifyNatFwReSelect(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, fwCidrInfo: FwCidrInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatFwReSelectResponse> {
+        self.modifyNatFwReSelect(ModifyNatFwReSelectRequest(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList, fwCidrInfo: fwCidrInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 防火墙实例重新选择vpc或nat
     @inlinable @discardableResult
-    public func modifyNatFwReSelect(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwReSelectResponse {
-        try await self.modifyNatFwReSelect(ModifyNatFwReSelectRequest(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList), region: region, logger: logger, on: eventLoop)
+    public func modifyNatFwReSelect(mode: Int64, cfwInstance: String, natGwList: [String]? = nil, vpcList: [String]? = nil, fwCidrInfo: FwCidrInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatFwReSelectResponse {
+        try await self.modifyNatFwReSelect(ModifyNatFwReSelectRequest(mode: mode, cfwInstance: cfwInstance, natGwList: natGwList, vpcList: vpcList, fwCidrInfo: fwCidrInfo), region: region, logger: logger, on: eventLoop)
     }
 }

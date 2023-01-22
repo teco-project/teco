@@ -17,7 +17,7 @@
 extension Dts {
     /// ModifyCompareTask请求参数结构体
     public struct ModifyCompareTaskRequest: TCRequestModel {
-        /// 迁移任务 Id
+        /// 任务 Id
         public let jobId: String
 
         /// 对比任务 ID，形如：dts-8yv4w2i1-cmp-37skmii9
@@ -26,18 +26,22 @@ extension Dts {
         /// 任务名称
         public let taskName: String?
 
-        /// 数据对比对象模式，sameAsMigrate(全部迁移对象， **默认为此项配置**)，custom(自定义模式)
+        /// 数据对比对象模式，sameAsMigrate(全部迁移对象， 默认为此项配置)、custom(自定义)，注意自定义对比对象必须是迁移对象的子集
         public let objectMode: String?
 
         /// 对比对象，若CompareObjectMode取值为custom，则此项必填
         public let objects: CompareObject?
 
-        public init(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil) {
+        /// 一致性校验选项
+        public let options: CompareOptions?
+
+        public init(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, options: CompareOptions? = nil) {
             self.jobId = jobId
             self.compareTaskId = compareTaskId
             self.taskName = taskName
             self.objectMode = objectMode
             self.objects = objects
+            self.options = options
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +50,7 @@ extension Dts {
             case taskName = "TaskName"
             case objectMode = "ObjectMode"
             case objects = "Objects"
+            case options = "Options"
         }
     }
 
@@ -79,15 +84,15 @@ extension Dts {
     ///
     /// 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
     @inlinable @discardableResult
-    public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskResponse> {
-        self.modifyCompareTask(ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects), region: region, logger: logger, on: eventLoop)
+    public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, options: CompareOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCompareTaskResponse> {
+        self.modifyCompareTask(ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects, options: options), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改一致性校验任务
     ///
     /// 修改一致性校验任务，在任务创建后启动之前，可修改一致性校验参数
     @inlinable @discardableResult
-    public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskResponse {
-        try await self.modifyCompareTask(ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects), region: region, logger: logger, on: eventLoop)
+    public func modifyCompareTask(jobId: String, compareTaskId: String, taskName: String? = nil, objectMode: String? = nil, objects: CompareObject? = nil, options: CompareOptions? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCompareTaskResponse {
+        try await self.modifyCompareTask(ModifyCompareTaskRequest(jobId: jobId, compareTaskId: compareTaskId, taskName: taskName, objectMode: objectMode, objects: objects, options: options), region: region, logger: logger, on: eventLoop)
     }
 }

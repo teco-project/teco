@@ -64,6 +64,9 @@ extension Tiia {
     /// 查询图片信息
     ///
     /// 获取指定图片库中的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeImages(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
         self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -72,6 +75,9 @@ extension Tiia {
     /// 查询图片信息
     ///
     /// 获取指定图片库中的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeImages(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -80,6 +86,9 @@ extension Tiia {
     /// 查询图片信息
     ///
     /// 获取指定图片库中的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeImages(groupId: String, entityId: String, picName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
         self.describeImages(DescribeImagesRequest(groupId: groupId, entityId: entityId, picName: picName), region: region, logger: logger, on: eventLoop)
@@ -88,6 +97,9 @@ extension Tiia {
     /// 查询图片信息
     ///
     /// 获取指定图片库中的图片列表。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeImages(groupId: String, entityId: String, picName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
         try await self.describeImages(DescribeImagesRequest(groupId: groupId, entityId: entityId, picName: picName), region: region, logger: logger, on: eventLoop)

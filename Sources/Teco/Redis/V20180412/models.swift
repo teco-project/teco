@@ -624,36 +624,36 @@ extension Redis {
         }
     }
 
-    /// 实例详细信息列表
+    /// 实例详细信息列表。
     public struct InstanceSet: TCOutputModel {
         /// 实例名称。
         public let instanceName: String
 
-        /// 实例Id。
+        /// 实例 ID。
         public let instanceId: String
 
-        /// 用户的Appid。
+        /// 用户的 AppID。
         public let appid: Int64
 
-        /// 项目Id。
+        /// 项目 ID。
         public let projectId: Int64
 
-        /// 地域id 。1--广州 4--上海 5-- 中国香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）16--成都 17--德国 18--韩国 19--重庆 21--印度 22--美东（弗吉尼亚）23--泰国 24--俄罗斯 25--日本
+        /// 地域 ID。<ul><li>1：广州。</li><li>4：上海。</li><li>5：中国香港。</li><li>6：多伦多。</li> <li>7：上海金融。</li> <li>8：北京。</li> <li>9：新加坡。</li> <li>11：深圳金融。</li> <li>15：美西（硅谷）。</li><li>16：成都。</li><li>17：法兰克福。</li><li>18：首尔。</li><li>19：重庆。</li><li>21：孟买。</li><li>22：美东（弗吉尼亚）。</li><li>23：曼谷。</li><li>24：莫斯科。</li><li>25：东京。</li></ul>
         public let regionId: Int64
 
-        /// 区域id。
+        /// 区域 ID。
         public let zoneId: Int64
 
-        /// vpc网络id，例如75101。
+        /// vpc网络 ID，例如75101。
         public let vpcId: Int64
 
-        /// vpc网络下子网id 如：46315。
+        /// vpc网络下子网ID，如：46315。
         public let subnetId: Int64
 
         /// 实例当前状态。<ul><li>0：待初始化。</li><li>1：实例在流程中。</li><li>2：实例运行中。</li><li>-2：实例已隔离。</li><li>-3：实例待删除。</li></ul>
         public let status: Int64
 
-        /// 实例vip。
+        /// 实例 VIP。
         public let wanIp: String
 
         /// 实例端口号。
@@ -665,7 +665,7 @@ extension Redis {
         /// 实例容量大小，单位：MB。
         public let size: Float
 
-        /// 该字段已废弃。
+        /// 该字段已废弃。可使用云监控 API 接口 [GetMonitorData](https://cloud.tencent.com/document/product/248/31014) 获取实例已使用的内容容量。
         public let sizeUsed: Float
 
         /// 实例类型：<ul><li>1：Redis2.8内存版（集群架构）。</li><li>2：Redis2.8内存版（标准架构）。</li><li>3：CKV 3.2内存版(标准架构)。</li><li>4：CKV 3.2内存版(集群架构)。</li><li>5：Redis2.8内存版（单机）。</li></li><li>6：Redis4.0内存版（标准架构）。</li></li><li>7：Redis4.0内存版（集群架构）。</li></li><li>8：Redis5.0内存版（标准架构）。</li></li><li>9：Redis5.0内存版（集群架构）。</li></ul>
@@ -716,7 +716,7 @@ extension Redis {
         /// 副本数量。
         public let redisReplicasNum: Int64
 
-        /// 计费Id。
+        /// 计费 ID。
         public let priceId: Int64
 
         /// 隔离时间。
@@ -956,66 +956,66 @@ extension Redis {
 
     /// 复制组实例
     public struct Instances: TCOutputModel {
-        /// 用户AppID
+        /// 用户AppID。
         public let appId: Int64
 
-        /// 实例ID
+        /// 实例 ID。
         public let instanceId: String
 
-        /// 实例名称
+        /// 实例名称。
         public let instanceName: String
 
-        /// 地域ID 1--广州 4--上海 5-- 香港 6--多伦多 7--上海金融 8--北京 9-- 新加坡 11--深圳金融 15--美西（硅谷）
+        /// 地域ID。<ul><li>1：广州。</li><li>4：上海。</li><li> 5：香港。</li> <li> 6：多伦多。</li> <li> 7：上海金融。</li> <li> 8：北京。</li> <li> 9：新加坡。</li> <li> 11：深圳金融。</li> <li> 15：美西（硅谷）。</li> </ul>
         public let regionId: UInt64
 
-        /// 区域ID
+        /// 区域 ID。
         public let zoneId: UInt64
 
-        /// 副本数量
+        /// 副本数量。
         public let redisReplicasNum: UInt64
 
-        /// 分片数量
+        /// 分片数量。
         public let redisShardNum: Int64
 
-        /// 分片大小
+        /// 分片内存大小。
         public let redisShardSize: Int64
 
         /// 实例的磁盘大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: Int64?
 
-        /// 引擎：社区版Redis、腾讯云CKV
+        /// 引擎：社区版Redis、腾讯云CKV。
         public let engine: String
 
-        /// 实例角色，rw可读写，r只读
+        /// 实例读写权限。<ul><li>rw：可读写。</li><li>r：只读。</li></ul>
         public let role: String
 
-        /// 实例VIP
+        /// 实例 VIP 地址。
         public let vip: String
 
-        /// 内部参数，用户可忽略
+        /// 内部参数，用户可忽略。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vip6: String?
 
-        /// vpc网络ID 如：75101
+        /// VPC 网络ID，如：75101。
         public let vpcID: Int64
 
-        /// 实例端口
+        /// 实例端口。
         public let vPort: Int64
 
-        /// 实例状态：0-待初始化，1-流程中，2-运行中，-2-已隔离，-3-待删除
+        /// 实例状态。<ul><li>0：待初始化。</li><li>1：流程中。</li><li>2：运行中。</li><li>-2：已隔离。</li><li>-3：待删除。</li></ul>
         public let status: Int64
 
-        /// 仓库ID
+        /// 仓库ID。
         public let grocerySysId: Int64
 
-        /// 实例类型：1 – Redis2.8内存版（集群架构），2 – Redis2.8内存版（标准架构），3 – CKV 3.2内存版(标准架构)，4 – CKV 3.2内存版(集群架构)，5 – Redis2.8内存版（单机），6 – Redis4.0内存版（标准架构），7 – Redis4.0内存版（集群架构），8 – Redis5.0内存版（标准架构），9 – Redis5.0内存版（集群架构）
+        /// 实例类型。<ul><li>1：Redis 2.8 内存版（集群架构）。</li><li>2：Redis 2.8 内存版（标准架构）。</li><li>3：CKV 3.2 内存版（标准架构）。</li><li>4：CKV 3.2 内存版（集群架构）。</li><li>5：Redis 2.8 单机版。</li><li>6：Redis 4.0 内存版（标准架构）。</li><li>7：Redis 4.0 内存版（集群架构）。</li><li>8：Redis 5.0 内存版（标准架构）。</li><li>9：Redis 5.0 内存版（集群架构）。</li></ul>
         public let productType: Int64
 
-        /// 创建时间
+        /// 实例加入复制组的时间。
         public let createTime: String
 
-        /// 更新实例
+        /// 复制组中实例更新的时间。
         public let updateTime: String
 
         enum CodingKeys: String, CodingKey {
@@ -1354,18 +1354,18 @@ extension Redis {
         }
     }
 
-    /// 描述Redis实例的主节点或者副本节点信息
+    /// 描述 Redis 实例的主节点或者副本节点信息。
     public struct RedisNodeInfo: TCInputModel, TCOutputModel {
-        /// 节点类型，0 为主节点，1 为副本节点
+        /// 节点类型。<ul><li>0：为主节点。</li><li>1：为副本节点。</li></ul>
         public let nodeType: Int64
 
-        /// 主节点或者副本节点的ID，创建时不需要传递此参数。
+        /// 主节点或者副本节点的 ID。<ul><li>该参数用于创建 Redis 实例接口[CreateInstances](https://cloud.tencent.com/document/product/239/20026) 并不需要设置，而用于变更实例配置的接口 [UpgradeInstance](https://cloud.tencent.com/document/product/239/20013) 则需要设置。</li><li>该参数可使用接口 [DescribeInstances](https://cloud.tencent.com/document/product/239/20018) 获取Integer类型的节点 ID。</li></ul>
         public let nodeId: Int64?
 
-        /// 主节点或者副本节点的可用区ID
+        /// 主节点或者副本节点的可用区 ID。
         public let zoneId: UInt64?
 
-        /// 主节点或者副本节点的可用区名称
+        /// 主节点或者副本节点的可用区名称。
         public let zoneName: String?
 
         public init(nodeType: Int64, nodeId: Int64? = nil, zoneId: UInt64? = nil, zoneName: String? = nil) {

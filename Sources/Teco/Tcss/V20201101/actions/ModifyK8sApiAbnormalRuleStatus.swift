@@ -20,7 +20,7 @@ extension Tcss {
         /// 规则ID
         public let ruleID: String
 
-        /// 状态(ture:开 false:关)
+        /// 状态(true:开 false:关)
         public let status: Bool
 
         public init(ruleID: String, status: Bool) {

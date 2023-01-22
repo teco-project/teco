@@ -18,7 +18,7 @@
 
 /// 数据传输服务 (dts)
 ///
-/// 对数据传输服务进行操作，包括数据订阅、数据传输服务、灾备同步等。
+/// 对数据传输服务进行数据迁移、数据同步、数据订阅操作。
 public struct Dts: TCService {
     /// Client used to communicate with Tencent Cloud.
     public let client: TCClient

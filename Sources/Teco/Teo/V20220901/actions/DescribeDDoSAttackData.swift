@@ -39,48 +39,31 @@ extension Teo {
         /// <li>ddos_attackPackageRate：攻击包速率曲线。</li>
         public let metricNames: [String]
 
-        /// 端口号。
-        public let port: Int64?
-
-        /// 攻击类型，取值有：
-        /// <li>flood：泛洪攻击；</li>
-        /// <li>icmpFlood：icmp泛洪攻击；</li>
-        /// <li>all：全部攻击类型。</li>不填默认为all，表示查询全部攻击类型。
-        public let attackType: String?
-
         /// 站点集合，不填默认选择全部站点。
         public let zoneIds: [String]?
 
-        /// DDOS策略组id列表，不填默认选择全部策略id。
+        /// DDoS策略组ID列表，不填默认选择全部策略ID。
         public let policyIds: [Int64]?
-
-        /// 协议类型，取值有：
-        /// <li>tcp：tcp协议；</li>
-        /// <li>udp：udp协议；</li>
-        /// <li>all：全部协议。</li>不填默认为all，表示获取全部协议类型。
-        public let protocolType: String?
 
         /// 查询时间粒度，取值有：
         /// <li>min：1分钟；</li>
         /// <li>5min：5分钟；</li>
         /// <li>hour：1小时；</li>
-        /// <li>day：1天。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
+        /// <li>day：1天。</li>不填将根据开始时间与结束时间的间隔自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
         public let interval: String?
 
         /// 数据归属地区，取值有：
         /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        /// <li>mainland：中国大陆地区数据；</li>
+        /// <li>global：全球数据。</li>不填默认取值为global。
         public let area: String?
 
-        public init(startTime: Date, endTime: Date, metricNames: [String], port: Int64? = nil, attackType: String? = nil, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, interval: String? = nil, area: String? = nil) {
+        public init(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, interval: String? = nil, area: String? = nil) {
             self._startTime = .init(wrappedValue: startTime)
             self._endTime = .init(wrappedValue: endTime)
             self.metricNames = metricNames
-            self.port = port
-            self.attackType = attackType
             self.zoneIds = zoneIds
             self.policyIds = policyIds
-            self.protocolType = protocolType
             self.interval = interval
             self.area = area
         }
@@ -89,11 +72,8 @@ extension Teo {
             case startTime = "StartTime"
             case endTime = "EndTime"
             case metricNames = "MetricNames"
-            case port = "Port"
-            case attackType = "AttackType"
             case zoneIds = "ZoneIds"
             case policyIds = "PolicyIds"
-            case protocolType = "ProtocolType"
             case interval = "Interval"
             case area = "Area"
         }
@@ -101,19 +81,19 @@ extension Teo {
 
     /// DescribeDDoSAttackData返回参数结构体
     public struct DescribeDDoSAttackDataResponse: TCResponseModel {
+        /// 查询结果的总条数。
+        public let totalCount: UInt64
+
         /// DDoS攻击数据内容列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [SecEntry]?
-
-        /// 查询结果的总条数。
-        public let totalCount: UInt64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case data = "Data"
             case totalCount = "TotalCount"
+            case data = "Data"
             case requestId = "RequestId"
         }
     }
@@ -138,15 +118,15 @@ extension Teo {
     ///
     /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
     @inlinable
-    public func describeDDoSAttackData(startTime: Date, endTime: Date, metricNames: [String], port: Int64? = nil, attackType: String? = nil, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackDataResponse> {
-        self.describeDDoSAttackData(DescribeDDoSAttackDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, port: port, attackType: attackType, zoneIds: zoneIds, policyIds: policyIds, protocolType: protocolType, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
+    public func describeDDoSAttackData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSAttackDataResponse> {
+        self.describeDDoSAttackData(DescribeDDoSAttackDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, policyIds: policyIds, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询DDoS攻击时序数据
     ///
     /// 本接口（DescribeDDoSAttackData）用于查询DDoS攻击时序数据。
     @inlinable
-    public func describeDDoSAttackData(startTime: Date, endTime: Date, metricNames: [String], port: Int64? = nil, attackType: String? = nil, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, protocolType: String? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackDataResponse {
-        try await self.describeDDoSAttackData(DescribeDDoSAttackDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, port: port, attackType: attackType, zoneIds: zoneIds, policyIds: policyIds, protocolType: protocolType, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
+    public func describeDDoSAttackData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, policyIds: [Int64]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSAttackDataResponse {
+        try await self.describeDDoSAttackData(DescribeDDoSAttackDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, policyIds: policyIds, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 }

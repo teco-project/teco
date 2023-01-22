@@ -101,6 +101,10 @@ extension Emr {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let priceSpec: PriceResource?
 
+        /// 对应入参MultipleResources中多个规格的询价结果，其它出参返回的是第一个规格的询价结果
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let multipleEmrPrice: [EmrPrice]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -109,6 +113,7 @@ extension Emr {
             case discountCost = "DiscountCost"
             case unit = "Unit"
             case priceSpec = "PriceSpec"
+            case multipleEmrPrice = "MultipleEmrPrice"
             case requestId = "RequestId"
         }
     }

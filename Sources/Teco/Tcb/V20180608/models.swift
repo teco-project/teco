@@ -739,6 +739,12 @@ extension Tcb {
         }
     }
 
+    /// 主机路径挂载参数
+    public struct CloudBaseRunServiceVolumeHostPath: TCInputModel {
+        public init() {
+        }
+    }
+
     /// 对标 EKS VolumeMount
     public struct CloudBaseRunServiceVolumeMount: TCInputModel {
         /// Volume 名称
@@ -1192,12 +1198,17 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let emptyDir: CloudBaseRunEmptyDirVolumeSource?
 
-        public init(name: String? = nil, nfs: CloudBaseRunNfsVolumeSource? = nil, secretName: String? = nil, enableEmptyDirVolume: Bool? = nil, emptyDir: CloudBaseRunEmptyDirVolumeSource? = nil) {
+        /// 主机路径挂载信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let hostPath: CloudBaseRunServiceVolumeHostPath?
+
+        public init(name: String? = nil, nfs: CloudBaseRunNfsVolumeSource? = nil, secretName: String? = nil, enableEmptyDirVolume: Bool? = nil, emptyDir: CloudBaseRunEmptyDirVolumeSource? = nil, hostPath: CloudBaseRunServiceVolumeHostPath? = nil) {
             self.name = name
             self.nfs = nfs
             self.secretName = secretName
             self.enableEmptyDirVolume = enableEmptyDirVolume
             self.emptyDir = emptyDir
+            self.hostPath = hostPath
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1206,6 +1217,7 @@ extension Tcb {
             case secretName = "SecretName"
             case enableEmptyDirVolume = "EnableEmptyDirVolume"
             case emptyDir = "EmptyDir"
+            case hostPath = "HostPath"
         }
     }
 
@@ -2298,6 +2310,33 @@ extension Tcb {
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
+        }
+    }
+
+    /// tke集群信息
+    public struct TkeClusterInfo: TCInputModel, TCOutputModel {
+        /// 集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 集群的vpcId
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 版本内网CLB所在子网Id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let versionClbSubnetId: String?
+
+        public init(clusterId: String? = nil, vpcId: String? = nil, versionClbSubnetId: String? = nil) {
+            self.clusterId = clusterId
+            self.vpcId = vpcId
+            self.versionClbSubnetId = versionClbSubnetId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case clusterId = "ClusterId"
+            case vpcId = "VpcId"
+            case versionClbSubnetId = "VersionClbSubnetId"
         }
     }
 }

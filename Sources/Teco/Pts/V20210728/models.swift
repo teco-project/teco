@@ -1709,7 +1709,7 @@ extension Pts {
         public let scenarioId: String?
 
         /// 场景名
-        public let name: String
+        public let name: String?
 
         /// 场景描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1801,6 +1801,10 @@ extension Pts {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notificationHooks: [NotificationHook]?
 
+        /// 创建人员
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let owner: String?
+
         enum CodingKeys: String, CodingKey {
             case scenarioId = "ScenarioId"
             case name = "Name"
@@ -1827,6 +1831,7 @@ extension Pts {
             case plugins = "Plugins"
             case domainNameConfig = "DomainNameConfig"
             case notificationHooks = "NotificationHooks"
+            case owner = "Owner"
         }
     }
 

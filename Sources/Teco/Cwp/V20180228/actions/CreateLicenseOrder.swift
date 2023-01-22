@@ -44,10 +44,13 @@ extension Cwp {
         /// 该参数仅包年包月生效
         public let autoRenewFlag: Bool?
 
-        /// 自动防护授权配置值, 不空则表示开启
+        /// 该字段作废
         public let autoProtectOpenConfig: String?
 
-        public init(tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil) {
+        /// 变配参数
+        public let modifyConfig: OrderModifyObject?
+
+        public init(tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil, modifyConfig: OrderModifyObject? = nil) {
             self.tags = tags
             self.licenseType = licenseType
             self.licenseNum = licenseNum
@@ -56,6 +59,7 @@ extension Cwp {
             self.timeSpan = timeSpan
             self.autoRenewFlag = autoRenewFlag
             self.autoProtectOpenConfig = autoProtectOpenConfig
+            self.modifyConfig = modifyConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -67,6 +71,7 @@ extension Cwp {
             case timeSpan = "TimeSpan"
             case autoRenewFlag = "AutoRenewFlag"
             case autoProtectOpenConfig = "AutoProtectOpenConfig"
+            case modifyConfig = "ModifyConfig"
         }
     }
 
@@ -121,8 +126,8 @@ extension Cwp {
     /// 后付费订单直接创建成功
     /// 预付费订单仅下单不支付,需要调用计费支付接口进行支付
     @inlinable
-    public func createLicenseOrder(tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLicenseOrderResponse> {
-        self.createLicenseOrder(CreateLicenseOrderRequest(tags: tags, licenseType: licenseType, licenseNum: licenseNum, regionId: regionId, projectId: projectId, timeSpan: timeSpan, autoRenewFlag: autoRenewFlag, autoProtectOpenConfig: autoProtectOpenConfig), region: region, logger: logger, on: eventLoop)
+    public func createLicenseOrder(tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil, modifyConfig: OrderModifyObject? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLicenseOrderResponse> {
+        self.createLicenseOrder(CreateLicenseOrderRequest(tags: tags, licenseType: licenseType, licenseNum: licenseNum, regionId: regionId, projectId: projectId, timeSpan: timeSpan, autoRenewFlag: autoRenewFlag, autoProtectOpenConfig: autoProtectOpenConfig, modifyConfig: modifyConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建授权订单
@@ -132,7 +137,7 @@ extension Cwp {
     /// 后付费订单直接创建成功
     /// 预付费订单仅下单不支付,需要调用计费支付接口进行支付
     @inlinable
-    public func createLicenseOrder(tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseOrderResponse {
-        try await self.createLicenseOrder(CreateLicenseOrderRequest(tags: tags, licenseType: licenseType, licenseNum: licenseNum, regionId: regionId, projectId: projectId, timeSpan: timeSpan, autoRenewFlag: autoRenewFlag, autoProtectOpenConfig: autoProtectOpenConfig), region: region, logger: logger, on: eventLoop)
+    public func createLicenseOrder(tags: [Tags]? = nil, licenseType: UInt64? = nil, licenseNum: UInt64? = nil, regionId: UInt64? = nil, projectId: UInt64? = nil, timeSpan: UInt64? = nil, autoRenewFlag: Bool? = nil, autoProtectOpenConfig: String? = nil, modifyConfig: OrderModifyObject? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLicenseOrderResponse {
+        try await self.createLicenseOrder(CreateLicenseOrderRequest(tags: tags, licenseType: licenseType, licenseNum: licenseNum, regionId: regionId, projectId: projectId, timeSpan: timeSpan, autoRenewFlag: autoRenewFlag, autoProtectOpenConfig: autoProtectOpenConfig, modifyConfig: modifyConfig), region: region, logger: logger, on: eventLoop)
     }
 }

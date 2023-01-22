@@ -23,7 +23,7 @@ extension Redis {
 
     /// DescribeProductInfo返回参数结构体
     public struct DescribeProductInfoResponse: TCResponseModel {
-        /// 地域售卖信息
+        /// 地域售卖信息。
         public let regionSet: [RegionConf]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -37,7 +37,7 @@ extension Redis {
 
     /// 查询产品售卖规格
     ///
-    /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
+    /// 本接口（DescribeProductInfo）用于查询全地域 Redis 的售卖规格。
     @inlinable
     public func describeProductInfo(_ input: DescribeProductInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductInfoResponse> {
         self.client.execute(action: "DescribeProductInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -45,7 +45,7 @@ extension Redis {
 
     /// 查询产品售卖规格
     ///
-    /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
+    /// 本接口（DescribeProductInfo）用于查询全地域 Redis 的售卖规格。
     @inlinable
     public func describeProductInfo(_ input: DescribeProductInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
         try await self.client.execute(action: "DescribeProductInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -53,7 +53,7 @@ extension Redis {
 
     /// 查询产品售卖规格
     ///
-    /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
+    /// 本接口（DescribeProductInfo）用于查询全地域 Redis 的售卖规格。
     @inlinable
     public func describeProductInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductInfoResponse> {
         self.describeProductInfo(DescribeProductInfoRequest(), region: region, logger: logger, on: eventLoop)
@@ -61,7 +61,7 @@ extension Redis {
 
     /// 查询产品售卖规格
     ///
-    /// 本接口查询指定可用区和实例类型下 Redis 的售卖规格， 如果用户不在购买白名单中，将不能查询该可用区或该类型的售卖规格详情。申请购买某地域白名单可以提交工单
+    /// 本接口（DescribeProductInfo）用于查询全地域 Redis 的售卖规格。
     @inlinable
     public func describeProductInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
         try await self.describeProductInfo(DescribeProductInfoRequest(), region: region, logger: logger, on: eventLoop)

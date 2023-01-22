@@ -76,6 +76,18 @@ extension Cdb {
         /// 日志备份归档起始天数，日志备份达到归档起始天数时进行归档，最小为180天，不得大于日志备份保留天数
         public let binlogArchiveDays: Int64
 
+        /// 是否开启数据备份标准存储策略，off-关闭，on-打开，默认为off
+        public let enableBackupStandby: String
+
+        /// 数据备份标准存储起始天数，数据备份达到标准存储起始天数时进行转换，最小为30天，不得大于数据备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        public let backupStandbyDays: Int64
+
+        /// 是否开启日志备份标准存储策略，off-关闭，on-打开，默认为off
+        public let enableBinlogStandby: String
+
+        /// 日志备份标准存储起始天数，日志备份达到标准存储起始天数时进行转换，最小为30天，不得大于日志备份保留天数。如果开启备份归档，不得大于等于备份归档天数
+        public let binlogStandbyDays: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -95,6 +107,10 @@ extension Cdb {
             case backupArchiveDays = "BackupArchiveDays"
             case enableBinlogArchive = "EnableBinlogArchive"
             case binlogArchiveDays = "BinlogArchiveDays"
+            case enableBackupStandby = "EnableBackupStandby"
+            case backupStandbyDays = "BackupStandbyDays"
+            case enableBinlogStandby = "EnableBinlogStandby"
+            case binlogStandbyDays = "BinlogStandbyDays"
             case requestId = "RequestId"
         }
     }

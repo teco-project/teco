@@ -1436,26 +1436,26 @@ extension Tdmq {
     /// RocketMQ集群基本信息
     public struct RocketMQClusterInfo: TCOutputModel {
         /// 集群ID
-        public let clusterId: String
+        public let clusterId: String?
 
         /// 集群名称
-        public let clusterName: String
+        public let clusterName: String?
 
         /// 地域信息
-        public let region: String
+        public let region: String?
 
         /// 创建时间，毫秒为单位
-        public let createTime: UInt64
+        public let createTime: UInt64?
 
         /// 集群说明信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
 
         /// 公网接入地址
-        public let publicEndPoint: String
+        public let publicEndPoint: String?
 
         /// VPC接入地址
-        public let vpcEndPoint: String
+        public let vpcEndPoint: String?
 
         /// 是否支持命名空间接入点
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1473,6 +1473,22 @@ extension Tdmq {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rocketMQFlag: Bool?
 
+        /// 计费状态，1表示正常，2表示已停服，3表示已销毁
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: Int64?
+
+        /// 欠费停服时间，毫秒为单位
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isolateTime: Int64?
+
+        /// HTTP协议公网接入地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpPublicEndpoint: String?
+
+        /// HTTP协议VPC接入地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpVpcEndpoint: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -1485,6 +1501,10 @@ extension Tdmq {
             case vpcs = "Vpcs"
             case isVip = "IsVip"
             case rocketMQFlag = "RocketMQFlag"
+            case status = "Status"
+            case isolateTime = "IsolateTime"
+            case httpPublicEndpoint = "HttpPublicEndpoint"
+            case httpVpcEndpoint = "HttpVpcEndpoint"
         }
     }
 
@@ -1513,35 +1533,35 @@ extension Tdmq {
     /// RocketMQ消费组信息
     public struct RocketMQGroup: TCOutputModel {
         /// 消费组名称
-        public let name: String
+        public let name: String?
 
         /// 在线消费者数量
-        public let consumerNum: UInt64
+        public let consumerNum: UInt64?
 
         /// 消费TPS
-        public let tps: UInt64
+        public let tps: UInt64?
 
         /// 总堆积数量
-        public let totalAccumulative: Int64
+        public let totalAccumulative: Int64?
 
         /// 0表示集群消费模式，1表示广播消费模式，-1表示未知
-        public let consumptionMode: Int64
+        public let consumptionMode: Int64?
 
         /// 是否允许消费
-        public let readEnabled: Bool
+        public let readEnabled: Bool?
 
         /// 重试队列分区数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let retryPartitionNum: UInt64?
 
         /// 创建时间，以毫秒为单位
-        public let createTime: UInt64
+        public let createTime: UInt64?
 
         /// 修改时间，以毫秒为单位
-        public let updateTime: UInt64
+        public let updateTime: UInt64?
 
         /// 客户端协议
-        public let clientProtocol: String
+        public let clientProtocol: String?
 
         /// 说明信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -1552,7 +1572,15 @@ extension Tdmq {
         public let consumerType: String?
 
         /// 是否开启广播消费
-        public let broadcastEnabled: Bool
+        public let broadcastEnabled: Bool?
+
+        /// Group类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupType: String?
+
+        /// 重试次数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let retryMaxTimes: UInt64?
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
@@ -1568,6 +1596,8 @@ extension Tdmq {
             case remark = "Remark"
             case consumerType = "ConsumerType"
             case broadcastEnabled = "BroadcastEnabled"
+            case groupType = "GroupType"
+            case retryMaxTimes = "RetryMaxTimes"
         }
     }
 
@@ -1609,6 +1639,12 @@ extension Tdmq {
         /// 主题名称
         public let name: String
 
+        /// 主题的类别，为枚举类型，Normal，GlobalOrder，PartitionedOrder，Transaction，Retry及DeadLetter
+        public let type: String
+
+        /// 订阅组数量
+        public let groupNum: UInt64
+
         /// 说明
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
@@ -1624,6 +1660,8 @@ extension Tdmq {
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
+            case type = "Type"
+            case groupNum = "GroupNum"
             case remark = "Remark"
             case partitionNum = "PartitionNum"
             case createTime = "CreateTime"

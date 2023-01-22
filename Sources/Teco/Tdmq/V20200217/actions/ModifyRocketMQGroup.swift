@@ -35,13 +35,17 @@ extension Tdmq {
         /// 是否开启广播消费
         public let broadcastEnable: Bool?
 
-        public init(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil) {
+        /// 最大重试次数
+        public let retryMaxTimes: UInt64?
+
+        public init(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, retryMaxTimes: UInt64? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.groupId = groupId
             self.remark = remark
             self.readEnable = readEnable
             self.broadcastEnable = broadcastEnable
+            self.retryMaxTimes = retryMaxTimes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -51,6 +55,7 @@ extension Tdmq {
             case remark = "Remark"
             case readEnable = "ReadEnable"
             case broadcastEnable = "BroadcastEnable"
+            case retryMaxTimes = "RetryMaxTimes"
         }
     }
 
@@ -78,13 +83,13 @@ extension Tdmq {
 
     /// 更新RocketMQ消费组信息
     @inlinable @discardableResult
-    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQGroupResponse> {
-        self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable), region: region, logger: logger, on: eventLoop)
+    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, retryMaxTimes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQGroupResponse> {
+        self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable, retryMaxTimes: retryMaxTimes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ消费组信息
     @inlinable @discardableResult
-    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
-        try await self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable), region: region, logger: logger, on: eventLoop)
+    public func modifyRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, remark: String? = nil, readEnable: Bool? = nil, broadcastEnable: Bool? = nil, retryMaxTimes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQGroupResponse {
+        try await self.modifyRocketMQGroup(ModifyRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, remark: remark, readEnable: readEnable, broadcastEnable: broadcastEnable, retryMaxTimes: retryMaxTimes), region: region, logger: logger, on: eventLoop)
     }
 }

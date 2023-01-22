@@ -18,14 +18,29 @@ extension Cynosdb {
     /// DescribeProjectSecurityGroups请求参数结构体
     public struct DescribeProjectSecurityGroupsRequest: TCRequestModel {
         /// 项目ID
-        public let projectId: Int64
+        public let projectId: Int64?
 
-        public init(projectId: Int64) {
+        /// 限制量
+        public let limit: Int64?
+
+        /// 偏移量
+        public let offset: Int64?
+
+        /// 搜索关键字
+        public let searchKey: String?
+
+        public init(projectId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, searchKey: String? = nil) {
             self.projectId = projectId
+            self.limit = limit
+            self.offset = offset
+            self.searchKey = searchKey
         }
 
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
+            case limit = "Limit"
+            case offset = "Offset"
+            case searchKey = "SearchKey"
         }
     }
 
@@ -34,11 +49,15 @@ extension Cynosdb {
         /// 安全组详情
         public let groups: [SecurityGroup]
 
+        /// 总数量
+        public let total: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case groups = "Groups"
+            case total = "Total"
             case requestId = "RequestId"
         }
     }
@@ -57,13 +76,13 @@ extension Cynosdb {
 
     /// 查询项目安全组信息
     @inlinable
-    public func describeProjectSecurityGroups(projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
-        self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func describeProjectSecurityGroups(projectId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
+        self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(projectId: projectId, limit: limit, offset: offset, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组信息
     @inlinable
-    public func describeProjectSecurityGroups(projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
-        try await self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
+    public func describeProjectSecurityGroups(projectId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
+        try await self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(projectId: projectId, limit: limit, offset: offset, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 }

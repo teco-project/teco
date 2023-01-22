@@ -208,6 +208,26 @@ extension Ssl {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encryptAlgorithm: String?
 
+        /// 上传CA证书的加密算法
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let caEncryptAlgorithms: [String]?
+
+        /// 上传CA证书的过期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let caEndTimes: [String]?
+
+        /// 上传CA证书的通用名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let caCommonNames: [String]?
+
+        /// 证书预审核信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let preAuditInfo: PreAuditInfo?
+
+        /// 是否自动续费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoRenewFlag: Int64?
+
         enum CodingKeys: String, CodingKey {
             case ownerUin = "OwnerUin"
             case projectId = "ProjectId"
@@ -242,6 +262,11 @@ extension Ssl {
             case isIgnore = "IsIgnore"
             case isSM = "IsSM"
             case encryptAlgorithm = "EncryptAlgorithm"
+            case caEncryptAlgorithms = "CAEncryptAlgorithms"
+            case caEndTimes = "CAEndTimes"
+            case caCommonNames = "CACommonNames"
+            case preAuditInfo = "PreAuditInfo"
+            case autoRenewFlag = "AutoRenewFlag"
         }
     }
 
@@ -569,6 +594,27 @@ extension Ssl {
             case transferStatus = "TransferStatus"
             case receiverUin = "ReceiverUin"
             case receiveTime = "ReceiveTime"
+        }
+    }
+
+    /// 预审核信息列表
+    public struct PreAuditInfo: TCOutputModel {
+        /// 证书总年限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let totalPeriod: Int64?
+
+        /// 证书当前年限
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nowPeriod: Int64?
+
+        /// 证书预审核管理人ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let managerId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case totalPeriod = "TotalPeriod"
+            case nowPeriod = "NowPeriod"
+            case managerId = "ManagerId"
         }
     }
 

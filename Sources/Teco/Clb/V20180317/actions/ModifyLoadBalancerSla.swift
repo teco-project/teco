@@ -17,7 +17,7 @@
 extension Clb {
     /// ModifyLoadBalancerSla请求参数结构体
     public struct ModifyLoadBalancerSlaRequest: TCRequestModel {
-        /// 负载均衡实例信息
+        /// 负载均衡实例信息。
         public let loadBalancerSla: [SlaUpdateParam]
 
         public init(loadBalancerSla: [SlaUpdateParam]) {
@@ -39,33 +39,53 @@ extension Clb {
         }
     }
 
-    /// 性能容量型变配
+    /// 升级为性能容量型实例
     ///
-    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
+    /// 本接口（ModifyLoadBalancerSla）用于将按量计费模式的共享型实例升级为性能容量型实例。<br/>
+    /// 限制条件：
+    /// - 本接口只支持升级按量计费的CLB实例，包年包月的CLB实例升级请通过控制台进行升级。
+    /// - 升级为性能容量型实例后，不支持再回退到共享型实例。
+    /// - 目前性能容量型实例处于内测中，如需升级为性能容量型实例，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。
+    /// - 传统型负载均衡实例不支持升级为性能容量型实例。
     @inlinable @discardableResult
     public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
         self.client.execute(action: "ModifyLoadBalancerSla", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 性能容量型变配
+    /// 升级为性能容量型实例
     ///
-    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
+    /// 本接口（ModifyLoadBalancerSla）用于将按量计费模式的共享型实例升级为性能容量型实例。<br/>
+    /// 限制条件：
+    /// - 本接口只支持升级按量计费的CLB实例，包年包月的CLB实例升级请通过控制台进行升级。
+    /// - 升级为性能容量型实例后，不支持再回退到共享型实例。
+    /// - 目前性能容量型实例处于内测中，如需升级为性能容量型实例，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。
+    /// - 传统型负载均衡实例不支持升级为性能容量型实例。
     @inlinable @discardableResult
     public func modifyLoadBalancerSla(_ input: ModifyLoadBalancerSlaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
         try await self.client.execute(action: "ModifyLoadBalancerSla", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 性能容量型变配
+    /// 升级为性能容量型实例
     ///
-    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
+    /// 本接口（ModifyLoadBalancerSla）用于将按量计费模式的共享型实例升级为性能容量型实例。<br/>
+    /// 限制条件：
+    /// - 本接口只支持升级按量计费的CLB实例，包年包月的CLB实例升级请通过控制台进行升级。
+    /// - 升级为性能容量型实例后，不支持再回退到共享型实例。
+    /// - 目前性能容量型实例处于内测中，如需升级为性能容量型实例，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。
+    /// - 传统型负载均衡实例不支持升级为性能容量型实例。
     @inlinable @discardableResult
     public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
         self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 性能容量型变配
+    /// 升级为性能容量型实例
     ///
-    /// 支持共享型clb升级到性能容量型clb（不支持性能保障降级到共享型）。
+    /// 本接口（ModifyLoadBalancerSla）用于将按量计费模式的共享型实例升级为性能容量型实例。<br/>
+    /// 限制条件：
+    /// - 本接口只支持升级按量计费的CLB实例，包年包月的CLB实例升级请通过控制台进行升级。
+    /// - 升级为性能容量型实例后，不支持再回退到共享型实例。
+    /// - 目前性能容量型实例处于内测中，如需升级为性能容量型实例，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。
+    /// - 传统型负载均衡实例不支持升级为性能容量型实例。
     @inlinable @discardableResult
     public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
         try await self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), region: region, logger: logger, on: eventLoop)

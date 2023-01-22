@@ -216,15 +216,15 @@ extension Ess {
     /// 模板控件信息
     public struct Component: TCInputModel {
         /// 如果是Component控件类型，则可选的字段为：
-        /// TEXT - 普通文本控件；
-        /// MULTI_LINE_TEXT - 多行文本控件；
-        /// CHECK_BOX - 勾选框控件；
-        /// FILL_IMAGE - 图片控件；
+        /// TEXT - 普通文本控件，输入文本字符串；
+        /// MULTI_LINE_TEXT - 多行文本控件，输入文本字符串；
+        /// CHECK_BOX - 勾选框控件，若选中填写ComponentValue 填写 true或者 false 字符串；
+        /// FILL_IMAGE - 图片控件，ComponentValue 填写图片的资源 ID；
         /// DYNAMIC_TABLE - 动态表格控件；
-        /// ATTACHMENT - 附件控件；
-        /// SELECTOR - 选择器控件；
-        /// DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
-        /// DISTRICT - 省市区行政区划控件；
+        /// ATTACHMENT - 附件控件,ComponentValue 填写福建图片的资源 ID列表，以逗号分割；
+        /// SELECTOR - 选择器控件，ComponentValue填写选择的字符串内容；
+        /// DATE - 日期控件；默认是格式化为xxxx年xx月xx日字符串；
+        /// DISTRICT - 省市区行政区划控件，ComponentValue填写省市区行政区划字符串内容；
         ///
         /// 如果是SignComponent控件类型，则可选的字段为
         /// SIGN_SEAL - 签署印章控件；
@@ -297,6 +297,72 @@ extension Ess {
         /// DATE - 默认是格式化为xxxx年xx月xx日
         /// SIGN_SEAL - 印章ID，于控制台查询获取
         /// SIGN_PAGING_SEAL - 可以指定印章ID，于控制台查询获取
+        ///
+        /// 控件值约束说明：
+        /// 企业全称控件：
+        ///   约束：企业名称中文字符中文括号
+        ///   检查正则表达式：/^[\u3400-\u4dbf\u4e00-\u9fa5（）]+$/
+        ///
+        /// 统一社会信用代码控件：
+        ///   检查正则表达式：/^[A-Z0-9]{1,18}$/
+        ///
+        /// 法人名称控件：
+        ///   约束：最大50个字符，2到25个汉字或者1到50个字母
+        ///   检查正则表达式：/^([\u3400-\u4dbf\u4e00-\u9fa5.·]{2,25}|[a-zA-Z·,\s-]{1,50})$/
+        ///
+        /// 签署意见控件：
+        ///   约束：签署意见最大长度为50字符
+        ///
+        /// 签署人手机号控件：
+        ///   约束：国内手机号 13,14,15,16,17,18,19号段长度11位
+        ///
+        /// 签署人身份证控件：
+        ///   约束：合法的身份证号码检查
+        ///
+        /// 控件名称：
+        ///   约束：控件名称最大长度为20字符
+        ///
+        /// 单行文本控件：
+        ///   约束：只允许输入中文，英文，数字，中英文标点符号
+        ///
+        /// 多行文本控件：
+        ///   约束：只允许输入中文，英文，数字，中英文标点符号
+        ///
+        /// 勾选框控件：
+        ///   约束：选择填字符串true，不选填字符串false
+        ///
+        /// 选择器控件：
+        ///   约束：同单行文本控件约束，填写选择值中的字符串
+        ///
+        /// 数字控件：
+        ///   约束：请输入有效的数字(可带小数点)
+        ///   检查正则表达式：/^(-|\+)?\d+(\.\d+)?$/
+        ///
+        /// 日期控件：
+        ///   约束：格式：yyyy年mm月dd日
+        ///
+        /// 附件控件：
+        ///   约束：JPG或PNG图片，上传数量限制，1到6个，最大6个附件
+        ///
+        /// 图片控件：
+        ///   约束：JPG或PNG图片，填写上传的图片资源ID
+        ///
+        /// 邮箱控件：
+        ///   约束：请输入有效的邮箱地址, w3c标准
+        ///   检查正则表达式：/^([A-Za-z0-9_\-.!#$%&])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/
+        ///   参考：https://emailregex.com/
+        ///
+        /// 地址控件：
+        ///   同单行文本控件约束
+        ///
+        /// 省市区控件：
+        ///   同单行文本控件约束
+        ///
+        /// 性别控件：
+        ///   同单行文本控件约束，填写选择值中的字符串
+        ///
+        /// 学历控件：
+        ///   同单行文本控件约束，填写选择值中的字符串
         public let componentValue: String?
 
         /// NORMAL 正常模式，使用坐标制定签署控件位置
@@ -632,6 +698,32 @@ extension Ess {
             case customApproverTag = "CustomApproverTag"
             case organizationId = "OrganizationId"
             case organizationName = "OrganizationName"
+        }
+    }
+
+    /// 签署链接信息
+    public struct FlowApproverUrlInfo: TCOutputModel {
+        /// 签署链接，注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let signUrl: String?
+
+        /// 签署人手机号
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approverMobile: String?
+
+        /// 签署人姓名
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approverName: String?
+
+        /// 签署人类型 1-个人
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let approverType: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case signUrl = "SignUrl"
+            case approverMobile = "ApproverMobile"
+            case approverName = "ApproverName"
+            case approverType = "ApproverType"
         }
     }
 
@@ -1417,7 +1509,15 @@ extension Ess {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let previewUrl: String?
 
-        public init(templateId: String? = nil, templateName: String? = nil, description: String? = nil, documentResourceIds: [String]? = nil, fileInfos: [FileInfo]? = nil, attachmentResourceIds: [String]? = nil, signOrder: [Int64]? = nil, recipients: [Recipient]? = nil, components: [Component]? = nil, signComponents: [Component]? = nil, status: Int64? = nil, creator: String? = nil, createdOn: Int64? = nil, promoter: Recipient? = nil, organizationId: String? = nil, previewUrl: String? = nil) {
+        /// 模板版本。默认为空时，全数字字符，初始版本为yyyyMMdd001。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateVersion: String?
+
+        /// 模板是否已发布。true-已发布；false-未发布
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let published: Bool?
+
+        public init(templateId: String? = nil, templateName: String? = nil, description: String? = nil, documentResourceIds: [String]? = nil, fileInfos: [FileInfo]? = nil, attachmentResourceIds: [String]? = nil, signOrder: [Int64]? = nil, recipients: [Recipient]? = nil, components: [Component]? = nil, signComponents: [Component]? = nil, status: Int64? = nil, creator: String? = nil, createdOn: Int64? = nil, promoter: Recipient? = nil, organizationId: String? = nil, previewUrl: String? = nil, templateVersion: String? = nil, published: Bool? = nil) {
             self.templateId = templateId
             self.templateName = templateName
             self.description = description
@@ -1434,6 +1534,8 @@ extension Ess {
             self.promoter = promoter
             self.organizationId = organizationId
             self.previewUrl = previewUrl
+            self.templateVersion = templateVersion
+            self.published = published
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1453,6 +1555,8 @@ extension Ess {
             case promoter = "Promoter"
             case organizationId = "OrganizationId"
             case previewUrl = "PreviewUrl"
+            case templateVersion = "TemplateVersion"
+            case published = "Published"
         }
     }
 

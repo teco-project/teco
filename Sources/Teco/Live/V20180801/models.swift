@@ -105,19 +105,21 @@ extension Live {
     /// 规则信息
     public struct CallBackRuleInfo: TCOutputModel {
         /// 规则创建时间。
-        public let createTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let createTime: String?
 
         /// 规则更新时间。
-        public let updateTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let updateTime: String?
 
         /// 模板 ID。
-        public let templateId: Int64
+        public let templateId: Int64?
 
         /// 推流域名。
-        public let domainName: String
+        public let domainName: String?
 
         /// 推流路径。
-        public let appName: String
+        public let appName: String?
 
         enum CodingKeys: String, CodingKey {
             case createTime = "CreateTime"
@@ -160,6 +162,10 @@ extension Live {
         /// 回调的鉴权 key。
         public let callbackKey: String
 
+        /// 推流异常回调 URL。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let pushExceptionNotifyUrl: String?
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateName = "TemplateName"
@@ -171,6 +177,7 @@ extension Live {
             case snapshotNotifyUrl = "SnapshotNotifyUrl"
             case pornCensorshipNotifyUrl = "PornCensorshipNotifyUrl"
             case callbackKey = "CallbackKey"
+            case pushExceptionNotifyUrl = "PushExceptionNotifyUrl"
         }
     }
 
@@ -237,30 +244,32 @@ extension Live {
     /// 证书信息。
     public struct CertInfo: TCOutputModel {
         /// 证书 ID。
-        public let certId: Int64
+        public let certId: Int64?
 
         /// 证书名称。
-        public let certName: String
+        public let certName: String?
 
         /// 描述信息。
-        public let description: String
+        public let description: String?
 
         /// 创建时间，UTC 格式。
-        public let createTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let createTime: String?
 
         /// 证书内容。
-        public let httpsCrt: String
+        public let httpsCrt: String?
 
         /// 证书类型。
         /// 0：用户添加证书，
         /// 1：腾讯云托管证书。
-        public let certType: Int64
+        public let certType: Int64?
 
         /// 证书过期时间，UTC 格式。
-        public let certExpireTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let certExpireTime: String?
 
         /// 使用此证书的域名列表。
-        public let domainList: [String]
+        public let domainList: [String]?
 
         enum CodingKeys: String, CodingKey {
             case certId = "CertId"
@@ -618,33 +627,35 @@ extension Live {
     /// 域名证书信息
     public struct DomainCertInfo: TCOutputModel {
         /// 证书Id。
-        public let certId: Int64
+        public let certId: Int64?
 
         /// 证书名称。
-        public let certName: String
+        public let certName: String?
 
         /// 描述信息。
-        public let description: String
+        public let description: String?
 
         /// 创建时间，UTC格式。
-        public let createTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let createTime: String?
 
         /// 证书内容。
-        public let httpsCrt: String
+        public let httpsCrt: String?
 
         /// 证书类型。
         /// 0：用户添加证书，
         /// 1：腾讯云托管证书。
-        public let certType: Int64
+        public let certType: Int64?
 
         /// 证书过期时间，UTC格式。
-        public let certExpireTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let certExpireTime: String?
 
         /// 使用此证书的域名名称。
-        public let domainName: String
+        public let domainName: String?
 
         /// 证书状态。
-        public let status: Int64
+        public let status: Int64?
 
         /// 证书本身标识的域名列表。
         /// 比如: ["*.x.com"]
@@ -701,48 +712,50 @@ extension Live {
     /// 直播域名信息
     public struct DomainInfo: TCOutputModel {
         /// 直播域名。
-        public let name: String
+        public let name: String?
 
         /// 域名类型:
         /// 0: 推流。
         /// 1: 播放。
-        public let type: UInt64
+        public let type: UInt64?
 
         /// 域名状态:
         /// 0: 停用。
         /// 1: 启用。
-        public let status: UInt64
+        public let status: UInt64?
 
         /// 添加时间。
-        public let createTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let createTime: String?
 
         /// 是否有 CName 到固定规则域名:
         /// 0: 否。
         /// 1: 是。
-        public let bcName: UInt64
+        public let bcName: UInt64?
 
         /// cname 对应的域名。
-        public let targetDomain: String
+        public let targetDomain: String?
 
         /// 播放区域，只在 Type=1 时该参数有意义。
         /// 1: 国内。
         /// 2: 全球。
         /// 3: 海外。
-        public let playType: Int64
+        public let playType: Int64?
 
         /// 是否慢直播:
         /// 0: 普通直播。
         /// 1: 慢直播。
-        public let isDelayLive: Int64
+        public let isDelayLive: Int64?
 
         /// 当前客户使用的 cname 信息。
-        public let currentCName: String
+        public let currentCName: String?
 
         /// 失效参数，可忽略。
-        public let rentTag: Int64
+        public let rentTag: Int64?
 
         /// 失效参数，可忽略。
-        public let rentExpireTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let rentExpireTime: String?
 
         /// 0: 标准直播。
         /// 1: 小程序直播。
@@ -796,13 +809,15 @@ extension Live {
     /// 禁推流列表
     public struct ForbidStreamInfo: TCOutputModel {
         /// 流名称。
-        public let streamName: String
+        public let streamName: String?
 
         /// 创建时间。
-        public let createTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let createTime: String?
 
         /// 禁推过期时间。
-        public let expireTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let expireTime: String?
 
         /// 推流路径。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -941,34 +956,36 @@ extension Live {
     /// DescribeLiveDomainCertBindings, DescribeLiveDomainCertBindingsGray接口返回的域名证书信息
     public struct LiveDomainCertBindings: TCOutputModel {
         /// 域名。
-        public let domainName: String
+        public let domainName: String?
 
         /// 证书备注。与CertName同义。
-        public let certificateAlias: String
+        public let certificateAlias: String?
 
         /// 证书类型。
         /// 0：自有证书
         /// 1：腾讯云ssl托管证书
-        public let certType: Int64
+        public let certType: Int64?
 
         /// https状态。
         /// 1：已开启。
         /// 0：已关闭。
-        public let status: Int64
+        public let status: Int64?
 
         /// 证书过期时间。
+        /// 注：此字段为北京时间（UTC+8时区）。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampEncoding public var certExpireTime: Date
+        @TCTimestampEncoding public var certExpireTime: Date?
 
         /// 证书Id。
-        public let certId: Int64
+        public let certId: Int64?
 
         /// 腾讯云ssl的证书Id。
-        public let cloudCertId: String
+        public let cloudCertId: String?
 
         /// 规则最后更新时间。
+        /// 注：此字段为北京时间（UTC+8时区）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -990,37 +1007,39 @@ extension Live {
     /// 直播包信息。
     public struct LivePackageInfo: TCOutputModel {
         /// 包 ID。
-        public let id: String
+        public let id: String?
 
         /// 总量。
         /// 注意：当为流量包时单位为字节。
         /// 当为转码包时单位为分钟。
-        public let total: Int64
+        public let total: Int64?
 
         /// 使用量。
         /// 注意：当为流量包时单位为字节。
         /// 当为转码包时单位为分钟。
         /// 当为连麦包时单位为小时。
-        public let used: Int64
+        public let used: Int64?
 
         /// 剩余量。
         /// 注意：当为流量包时单位为字节。
         /// 当为转码包时单位为分钟。
         /// 当为连麦包时单位为小时。
-        public let left: Int64
+        public let left: Int64?
 
         /// 购买时间。
-        public let buyTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let buyTime: String?
 
         /// 过期时间。
-        public let expireTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let expireTime: String?
 
         /// 包类型，可选值:
         /// 0: 流量包。
         /// 1: 普通转码包。
         /// 2: 极速高清包。
         /// 3: 连麦包。
-        public let type: Int64
+        public let type: Int64?
 
         /// 包状态，可选值:
         /// 0: 未使用。
@@ -1029,7 +1048,7 @@ extension Live {
         /// 3: 已冻结。
         /// 4: 已耗尽。
         /// 5: 已退款
-        public let status: Int64
+        public let status: Int64?
 
         enum CodingKeys: String, CodingKey {
             case id = "Id"
@@ -1046,16 +1065,17 @@ extension Live {
     /// 日志url信息。
     public struct LogInfo: TCOutputModel {
         /// 日志名称。
-        public let logName: String
+        public let logName: String?
 
         /// 日志 URL。
-        public let logUrl: String
+        public let logUrl: String?
 
         /// 日志生成时间。
-        public let logTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let logTime: String?
 
         /// 文件大小。
-        public let fileSize: Int64
+        public let fileSize: Int64?
 
         enum CodingKeys: String, CodingKey {
             case logName = "LogName"
@@ -1958,22 +1978,24 @@ extension Live {
     /// 规则信息。
     public struct RuleInfo: TCOutputModel {
         /// 规则创建时间。
-        public let createTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let createTime: String?
 
         /// 规则更新时间。
-        public let updateTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let updateTime: String?
 
         /// 模板 ID。
-        public let templateId: Int64
+        public let templateId: Int64?
 
         /// 推流域名。
-        public let domainName: String
+        public let domainName: String?
 
         /// 推流路径。
-        public let appName: String
+        public let appName: String?
 
         /// 流名称。
-        public let streamName: String
+        public let streamName: String?
 
         enum CodingKeys: String, CodingKey {
             case createTime = "CreateTime"
@@ -2460,31 +2482,32 @@ extension Live {
     /// 水印信息。
     public struct WatermarkInfo: TCOutputModel {
         /// 水印 ID。
-        public let watermarkId: Int64
+        public let watermarkId: Int64?
 
         /// 水印图片 URL。
-        public let pictureUrl: String
+        public let pictureUrl: String?
 
         /// 显示位置，X 轴偏移。
-        public let xPosition: Int64
+        public let xPosition: Int64?
 
         /// 显示位置，Y 轴偏移。
-        public let yPosition: Int64
+        public let yPosition: Int64?
 
         /// 水印名称。
-        public let watermarkName: String
+        public let watermarkName: String?
 
         /// 当前状态。0：未使用，1:使用中。
-        public let status: Int64
+        public let status: Int64?
 
         /// 添加时间。
-        public let createTime: String
+        /// 注：此字段为北京时间（UTC+8时区）。
+        public let createTime: String?
 
         /// 水印宽。
-        public let width: Int64
+        public let width: Int64?
 
         /// 水印高。
-        public let height: Int64
+        public let height: Int64?
 
         enum CodingKeys: String, CodingKey {
             case watermarkId = "WatermarkId"

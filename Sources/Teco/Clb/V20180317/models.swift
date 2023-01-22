@@ -255,10 +255,10 @@ extension Clb {
         /// 上传证书的名称，如果没有 CertId，则此项必传。
         public let certName: String?
 
-        /// 上传证书的公钥，如果没有 CertId，则此项必传。
+        /// 上传证书的公钥；如果没有 CertId，则此项必传。
         public let certContent: String?
 
-        /// 上传服务端证书的私钥，如果没有 CertId，则此项必传。
+        /// 上传服务端证书的私钥；如果没有 CertId，则此项必传。
         public let certKey: String?
 
         public init(certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil) {
@@ -610,6 +610,10 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clustersVersion: String?
 
+        /// 集群容灾类型，如SINGLE-ZONE，DISASTER-RECOVERY，MUTUAL-DISASTER-RECOVERY
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let disasterRecoveryType: String?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case clusterName = "ClusterName"
@@ -633,6 +637,7 @@ extension Clb {
             case isp = "Isp"
             case clustersZone = "ClustersZone"
             case clustersVersion = "ClustersVersion"
+            case disasterRecoveryType = "DisasterRecoveryType"
         }
     }
 
@@ -685,6 +690,10 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isp: String?
 
+        /// 集群所在的可用区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clustersZone: ClustersZone?
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case vip = "Vip"
@@ -692,6 +701,7 @@ extension Clb {
             case idle = "Idle"
             case clusterName = "ClusterName"
             case isp = "Isp"
+            case clustersZone = "ClustersZone"
         }
     }
 
@@ -841,6 +851,56 @@ extension Clb {
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
+        }
+    }
+
+    /// SCF云函数（Serverless Cloud Function）相关信息。
+    public struct FunctionInfo: TCInputModel, TCOutputModel {
+        /// 函数命名空间
+        public let functionNamespace: String
+
+        /// 函数名称
+        public let functionName: String
+
+        /// 函数的版本名称或别名
+        public let functionQualifier: String
+
+        /// 标识 FunctionQualifier 参数的类型，可取值： VERSION（版本）、ALIAS（别名）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let functionQualifierType: String?
+
+        public init(functionNamespace: String, functionName: String, functionQualifier: String, functionQualifierType: String? = nil) {
+            self.functionNamespace = functionNamespace
+            self.functionName = functionName
+            self.functionQualifier = functionQualifier
+            self.functionQualifierType = functionQualifierType
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case functionNamespace = "FunctionNamespace"
+            case functionName = "FunctionName"
+            case functionQualifier = "FunctionQualifier"
+            case functionQualifierType = "FunctionQualifierType"
+        }
+    }
+
+    /// SCF云函数（Serverless Cloud Function）作为后端服务
+    public struct FunctionTarget: TCInputModel, TCOutputModel {
+        /// 云函数相关信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let function: FunctionInfo?
+
+        /// 权重
+        public let weight: UInt64?
+
+        public init(function: FunctionInfo, weight: UInt64? = nil) {
+            self.function = function
+            self.weight = weight
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case function = "Function"
+            case weight = "Weight"
         }
     }
 
@@ -1188,6 +1248,14 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetGroupList: [BasicTargetGroupInfo]?
 
+        /// 监听器最大连接数，-1表示监听器维度不限速。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxConn: Int64?
+
+        /// 监听器最大新增连接数，-1表示监听器维度不限速。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let maxCps: Int64?
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case `protocol` = "Protocol"
@@ -1209,6 +1277,8 @@ extension Clb {
             case deregisterTargetRst = "DeregisterTargetRst"
             case attrFlags = "AttrFlags"
             case targetGroupList = "TargetGroupList"
+            case maxConn = "MaxConn"
+            case maxCps = "MaxCps"
         }
     }
 
@@ -1469,7 +1539,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snatIps: [SnatIp]?
 
-        /// 性能保障规格
+        /// 性能容量型规格
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slaType: String?
 
@@ -1509,7 +1579,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let healthLogTopicId: String?
 
-        /// 集群ID.
+        /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterIds: [String]?
 
@@ -1700,7 +1770,7 @@ extension Clb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraInfo: ExtraInfo?
 
-        /// 负载均衡维度的个性化配置ID。
+        /// 负载均衡维度的个性化配置ID，多个配置用逗号隔开。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configId: String?
 
@@ -1920,9 +1990,28 @@ extension Clb {
         /// 运营商信息，如"CMCC", "CUCC", "CTCC", "BGP", "INTERNAL"。
         public let isp: String
 
+        /// 可用资源。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let availabilitySet: [ResourceAvailability]?
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case isp = "Isp"
+            case availabilitySet = "AvailabilitySet"
+        }
+    }
+
+    /// 资源可用性
+    public struct ResourceAvailability: TCOutputModel {
+        /// 运营商内具体资源信息，如"CMCC", "CUCC", "CTCC", "BGP"。
+        public let type: String
+
+        /// 资源可用性，"Available"：可用，"Unavailable"：不可用
+        public let availability: String
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case availability = "Availability"
         }
     }
 
@@ -2297,12 +2386,14 @@ extension Clb {
         }
     }
 
-    /// 性能容量型变配参数
+    /// 升级为性能容量型参数
     public struct SlaUpdateParam: TCInputModel {
         /// lb的字符串ID
         public let loadBalancerId: String
 
-        /// 变更为性能容量型，固定为SLA
+        /// 升级为性能容量型，固定取值为SLA。SLA表示升级为默认规格的性能容量型实例。
+        /// <ul><li>当您开通了普通规格的性能容量型时，SLA对应超强型1规格。普通规格的性能容量型正在内测中，请提交 [内测申请](https://cloud.tencent.com/apply/p/hf45esx99lf)。</li>
+        /// <li>当您开通了超大型规格的性能容量型时，SLA对应超强型4规格。超大型规格的性能容量型正在内测中，请提交 [工单申请](https://console.cloud.tencent.com/workorder/category)。</li></ul>
         public let slaType: String
 
         public init(loadBalancerId: String, slaType: String) {
@@ -2564,6 +2655,9 @@ extension Clb {
         public let targetId: String
 
         /// 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。
+        public let healthStatusDetail: String
+
+        /// 当前健康状态的详细信息。如：Alive、Dead、Unknown。Alive状态为健康，Dead状态为异常，Unknown状态包括尚未开始探测、探测中、状态未知。(该参数对象即将下线，不推荐使用，请使用HealthStatusDetail获取健康详情)
         public let healthStatusDetial: String
 
         enum CodingKeys: String, CodingKey {
@@ -2571,6 +2665,7 @@ extension Clb {
             case port = "Port"
             case healthStatus = "HealthStatus"
             case targetId = "TargetId"
+            case healthStatusDetail = "HealthStatusDetail"
             case healthStatusDetial = "HealthStatusDetial"
         }
     }
@@ -2652,6 +2747,12 @@ extension Clb {
         /// 可用区是否是LocalZone可用区，如：false
         public let localZone: Bool
 
+        /// 可用区资源的类型，SHARED表示共享资源，EXCLUSIVE表示独占资源。
+        public let zoneResourceType: String
+
+        /// 可用区是否是EdgeZone可用区，如：false
+        public let edgeZone: Bool
+
         enum CodingKeys: String, CodingKey {
             case masterZone = "MasterZone"
             case resourceSet = "ResourceSet"
@@ -2659,6 +2760,8 @@ extension Clb {
             case ipVersion = "IPVersion"
             case zoneRegion = "ZoneRegion"
             case localZone = "LocalZone"
+            case zoneResourceType = "ZoneResourceType"
+            case edgeZone = "EdgeZone"
         }
     }
 }

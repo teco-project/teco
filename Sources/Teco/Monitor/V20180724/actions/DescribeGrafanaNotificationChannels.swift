@@ -17,7 +17,7 @@
 extension Monitor {
     /// DescribeGrafanaNotificationChannels请求参数结构体
     public struct DescribeGrafanaNotificationChannelsRequest: TCRequestModel {
-        /// 实例 ID
+        /// Grafana 实例 ID，例如：grafana-12345678
         public let instanceId: String
 
         /// 偏移量
@@ -26,13 +26,13 @@ extension Monitor {
         /// 查询数量
         public let limit: Int64
 
-        /// 渠道名
+        /// 告警通道名称，例如：test
         public let channelName: String?
 
-        /// 渠道 ID
+        /// 告警通道 ID，例如：nchannel-abcd1234
         public let channelIDs: [String]?
 
-        /// 状态
+        /// 告警通道状态
         public let channelState: Int64?
 
         public init(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIDs: [String]? = nil, channelState: Int64? = nil) {

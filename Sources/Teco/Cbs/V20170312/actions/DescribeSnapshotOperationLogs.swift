@@ -24,28 +24,28 @@ extension Cbs {
         /// <li>snapshot-id - Array of String - 是否必填：是 - 按快照ID过滤，每个请求最多可指定10个快照ID。
         public let filters: [Filter]
 
-        /// 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCDateEncoding public var beginTime: Date?
-
         /// 要查询的操作日志的截止时间，例如：“2019-11-22 23:59:59"
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endTime: Date?
 
-        public init(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil) {
+        /// 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCDateEncoding public var beginTime: Date?
+
+        public init(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil) {
             self.filters = filters
-            self._beginTime = .init(wrappedValue: beginTime)
             self._endTime = .init(wrappedValue: endTime)
+            self._beginTime = .init(wrappedValue: beginTime)
         }
 
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
-            case beginTime = "BeginTime"
             case endTime = "EndTime"
+            case beginTime = "BeginTime"
         }
     }
 
@@ -65,9 +65,7 @@ extension Cbs {
 
     /// 查询快照操作日志列表
     ///
-    /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
-    ///
-    /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
+    /// 查询快照操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeSnapshotOperationLogs）即将下线，后续不再提供调用，请知悉。
     @inlinable
     public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
         self.client.execute(action: "DescribeSnapshotOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -75,9 +73,7 @@ extension Cbs {
 
     /// 查询快照操作日志列表
     ///
-    /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
-    ///
-    /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
+    /// 查询快照操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeSnapshotOperationLogs）即将下线，后续不再提供调用，请知悉。
     @inlinable
     public func describeSnapshotOperationLogs(_ input: DescribeSnapshotOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
         try await self.client.execute(action: "DescribeSnapshotOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -85,21 +81,17 @@ extension Cbs {
 
     /// 查询快照操作日志列表
     ///
-    /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
-    ///
-    /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
+    /// 查询快照操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeSnapshotOperationLogs）即将下线，后续不再提供调用，请知悉。
     @inlinable
-    public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
-        self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+    public func describeSnapshotOperationLogs(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
+        self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, endTime: endTime, beginTime: beginTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询快照操作日志列表
     ///
-    /// 本接口（DescribeSnapshotOperationLogs）用于查询快照操作日志列表。
-    ///
-    /// 可根据快照ID过滤。快照ID形如：snap-a1kmcp13。
+    /// 查询快照操作日志功能已迁移至LookUpEvents接口（https://cloud.tencent.com/document/product/629/12359），本接口（DescribeSnapshotOperationLogs）即将下线，后续不再提供调用，请知悉。
     @inlinable
-    public func describeSnapshotOperationLogs(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
-        try await self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+    public func describeSnapshotOperationLogs(filters: [Filter], endTime: Date? = nil, beginTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
+        try await self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(filters: filters, endTime: endTime, beginTime: beginTime), region: region, logger: logger, on: eventLoop)
     }
 }

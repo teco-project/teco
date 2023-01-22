@@ -40,7 +40,9 @@ extension Teo {
         /// <li> l4Flow_outPkt: 访问出包量。</li>
         public let metricNames: [String]
 
-        /// 站点集合，不填默认选择全部站点。
+        /// 站点集合。
+        /// 若不填写，默认选择全部站点，且最多只能查询近30天的数据；
+        /// 若填写，则可查询站点绑定套餐支持的<a href="https://cloud.tencent.com/document/product/1552/77380#edgeone-.E5.A5.97.E9.A4.90">数据分析最大查询范围</a>。
         public let zoneIds: [String]?
 
         /// 四层实例列表, 不填表示选择全部实例。
@@ -50,17 +52,18 @@ extension Teo {
         /// <li>min: 1分钟 ；</li>
         /// <li>5min: 5分钟 ；</li>
         /// <li>hour: 1小时 ；</li>
-        /// <li>day: 1天 。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：一小时范围内以min粒度查询，两天范围内以5min粒度查询，七天范围内以hour粒度查询，超过七天以day粒度查询。
+        /// <li>day: 1天 。</li>不填将根据开始时间跟结束时间的间距自动推算粒度，具体为：1小时范围内以min粒度查询，2天范围内以5min粒度查询，7天范围内以hour粒度查询，超过7天以day粒度查询。
         public let interval: String?
 
-        /// 筛选条件, key可选的值有：
-        /// <li>ruleId: 根据规则Id进行过滤；</li>
-        /// <li>proxyId: 根据通道Id进行过滤。</li>
+        /// 过滤条件，详细的过滤条件Key值如下：
+        /// <li>ruleId<br>   按照【<strong>转发规则ID</strong>】进行过滤。</li>
+        /// <li>proxyId<br>   按照【<strong>四层代理实例ID</strong>】进行过滤。</li>
         public let filters: [QueryCondition]?
 
         /// 数据归属地区，取值有：
         /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        /// <li>mainland：中国大陆地区数据；</li>
+        /// <li>global：全球数据。</li>不填默认取值为global。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, proxyIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil) {
@@ -105,7 +108,7 @@ extension Teo {
         }
     }
 
-    /// 查询四层时序流量数据
+    /// 查询四层流量时序数据
     ///
     /// 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
     @inlinable
@@ -113,7 +116,7 @@ extension Teo {
         self.client.execute(action: "DescribeTimingL4Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询四层时序流量数据
+    /// 查询四层流量时序数据
     ///
     /// 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
     @inlinable
@@ -121,7 +124,7 @@ extension Teo {
         try await self.client.execute(action: "DescribeTimingL4Data", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询四层时序流量数据
+    /// 查询四层流量时序数据
     ///
     /// 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
     @inlinable
@@ -129,7 +132,7 @@ extension Teo {
         self.describeTimingL4Data(DescribeTimingL4DataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, proxyIds: proxyIds, interval: interval, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询四层时序流量数据
+    /// 查询四层流量时序数据
     ///
     /// 本接口（DescribeTimingL4Data）用于查询四层时序流量数据列表。
     @inlinable

@@ -23,7 +23,7 @@ extension Tdmq {
         /// 主题所在的命名空间，目前支持在单个命名空间下创建主题
         public let namespaces: [String]
 
-        /// 主题类型，可选值为Normal, GlobalOrder, PartitionedOrder
+        /// 主题类型，可选值为Normal, PartitionedOrder, Transaction, DelayScheduled。
         public let type: String
 
         /// 集群ID

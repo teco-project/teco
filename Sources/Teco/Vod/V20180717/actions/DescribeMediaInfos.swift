@@ -20,6 +20,9 @@ extension Vod {
         /// 媒体文件 ID 列表，N 从 0 开始取值，最大 19。
         public let fileIds: [String]
 
+        /// <b>点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        public let subAppId: UInt64?
+
         /// 指定所有媒体文件需要返回的信息，可同时指定多个信息，N 从 0 开始递增。如果未填写该字段，默认返回所有信息。选项有：
         /// <li>basicInfo（视频基础信息）。</li>
         /// <li>metaData（视频元信息）。</li>
@@ -31,21 +34,20 @@ extension Vod {
         /// <li>keyFrameDescInfo（打点信息）。</li>
         /// <li>adaptiveDynamicStreamingInfo（转自适应码流信息）。</li>
         /// <li>miniProgramReviewInfo（小程序审核信息）。</li>
+        /// <li>subtitleInfo（字幕信息）。</li>
+        /// <li>reviewInfo（审核信息）。</li>
         public let filters: [String]?
 
-        /// 点播[子应用](/document/product/266/14574) ID 。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        public let subAppId: UInt64?
-
-        public init(fileIds: [String], filters: [String]? = nil, subAppId: UInt64? = nil) {
+        public init(fileIds: [String], subAppId: UInt64? = nil, filters: [String]? = nil) {
             self.fileIds = fileIds
-            self.filters = filters
             self.subAppId = subAppId
+            self.filters = filters
         }
 
         enum CodingKeys: String, CodingKey {
             case fileIds = "FileIds"
-            case filters = "Filters"
             case subAppId = "SubAppId"
+            case filters = "Filters"
         }
     }
 
@@ -79,6 +81,7 @@ extension Vod {
     ///     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
     ///     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
     ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
+    ///     10. 审核信息（reviewInfo）：包括媒体审核及媒体封面审核信息。
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
     public func describeMediaInfos(_ input: DescribeMediaInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaInfosResponse> {
@@ -97,6 +100,7 @@ extension Vod {
     ///     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
     ///     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
     ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
+    ///     10. 审核信息（reviewInfo）：包括媒体审核及媒体封面审核信息。
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
     public func describeMediaInfos(_ input: DescribeMediaInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
@@ -115,10 +119,11 @@ extension Vod {
     ///     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
     ///     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
     ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
+    ///     10. 审核信息（reviewInfo）：包括媒体审核及媒体封面审核信息。
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
-    public func describeMediaInfos(fileIds: [String], filters: [String]? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaInfosResponse> {
-        self.describeMediaInfos(DescribeMediaInfosRequest(fileIds: fileIds, filters: filters, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+    public func describeMediaInfos(fileIds: [String], subAppId: UInt64? = nil, filters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaInfosResponse> {
+        self.describeMediaInfos(DescribeMediaInfosRequest(fileIds: fileIds, subAppId: subAppId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体详细信息
@@ -133,9 +138,10 @@ extension Vod {
     ///     7. 指定时间点截图信息（snapshotByTimeOffsetInfo）：对视频依照指定时间点截图后，的截图信息。
     ///     8. 视频打点信息（keyFrameDescInfo）：对视频设置的打点信息。
     ///     9. 转自适应码流信息（adaptiveDynamicStreamingInfo）：包括规格、加密类型、打包格式等相关信息。
+    ///     10. 审核信息（reviewInfo）：包括媒体审核及媒体封面审核信息。
     /// 2. 可以指定回包只返回部分信息。
     @inlinable
-    public func describeMediaInfos(fileIds: [String], filters: [String]? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
-        try await self.describeMediaInfos(DescribeMediaInfosRequest(fileIds: fileIds, filters: filters, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+    public func describeMediaInfos(fileIds: [String], subAppId: UInt64? = nil, filters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaInfosResponse {
+        try await self.describeMediaInfos(DescribeMediaInfosRequest(fileIds: fileIds, subAppId: subAppId, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 }

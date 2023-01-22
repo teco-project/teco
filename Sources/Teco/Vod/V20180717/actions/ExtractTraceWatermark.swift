@@ -20,6 +20,10 @@ extension Vod {
         /// 需要提取水印的媒体 URL。
         public let url: String
 
+        /// 媒体文件 ID。Url 对应的原始媒体文件 ID。
+        /// <li><font color=red>注意</font>：此字段必填。</li>
+        public let fileId: String?
+
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
         public let subAppId: UInt64?
 
@@ -35,8 +39,9 @@ extension Vod {
         /// 保留字段，特殊用途时使用。
         public let extInfo: String?
 
-        public init(url: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil) {
+        public init(url: String, fileId: String? = nil, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil) {
             self.url = url
+            self.fileId = fileId
             self.subAppId = subAppId
             self.sessionContext = sessionContext
             self.sessionId = sessionId
@@ -46,6 +51,7 @@ extension Vod {
 
         enum CodingKeys: String, CodingKey {
             case url = "Url"
+            case fileId = "FileId"
             case subAppId = "SubAppId"
             case sessionContext = "SessionContext"
             case sessionId = "SessionId"
@@ -88,15 +94,15 @@ extension Vod {
     ///
     /// 用于提取溯源水印。
     @inlinable
-    public func extractTraceWatermark(url: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExtractTraceWatermarkResponse> {
-        self.extractTraceWatermark(ExtractTraceWatermarkRequest(url: url, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+    public func extractTraceWatermark(url: String, fileId: String? = nil, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExtractTraceWatermarkResponse> {
+        self.extractTraceWatermark(ExtractTraceWatermarkRequest(url: url, fileId: fileId, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 
     /// 提取溯源水印
     ///
     /// 用于提取溯源水印。
     @inlinable
-    public func extractTraceWatermark(url: String, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
-        try await self.extractTraceWatermark(ExtractTraceWatermarkRequest(url: url, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+    public func extractTraceWatermark(url: String, fileId: String? = nil, subAppId: UInt64? = nil, sessionContext: String? = nil, sessionId: String? = nil, tasksPriority: Int64? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExtractTraceWatermarkResponse {
+        try await self.extractTraceWatermark(ExtractTraceWatermarkRequest(url: url, fileId: fileId, subAppId: subAppId, sessionContext: sessionContext, sessionId: sessionId, tasksPriority: tasksPriority, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
     }
 }

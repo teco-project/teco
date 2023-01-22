@@ -47,7 +47,10 @@ extension Essbasic {
         /// 是否获取模板的PDF文件链接-渠道版需要开启白名单时才能使用。
         public let withPdfUrl: Bool?
 
-        public init(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil) {
+        /// 渠道模板ID
+        public let channelTemplateId: String?
+
+        public init(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, channelTemplateId: String? = nil) {
             self.agent = agent
             self.templateId = templateId
             self.contentType = contentType
@@ -58,6 +61,7 @@ extension Essbasic {
             self.`operator` = `operator`
             self.withPreviewUrl = withPreviewUrl
             self.withPdfUrl = withPdfUrl
+            self.channelTemplateId = channelTemplateId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -71,6 +75,7 @@ extension Essbasic {
             case `operator` = "Operator"
             case withPreviewUrl = "WithPreviewUrl"
             case withPdfUrl = "WithPdfUrl"
+            case channelTemplateId = "ChannelTemplateId"
         }
     }
 
@@ -120,15 +125,15 @@ extension Essbasic {
     ///
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
     @inlinable
-    public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplatesResponse> {
-        self.describeTemplates(DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl), region: region, logger: logger, on: eventLoop)
+    public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, channelTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplatesResponse> {
+        self.describeTemplates(DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询模板信息列表
     ///
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
     @inlinable
-    public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
-        try await self.describeTemplates(DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl), region: region, logger: logger, on: eventLoop)
+    public func describeTemplates(agent: Agent, templateId: String? = nil, contentType: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, queryAllComponents: Bool? = nil, templateName: String? = nil, operator: UserInfo? = nil, withPreviewUrl: Bool? = nil, withPdfUrl: Bool? = nil, channelTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplatesResponse {
+        try await self.describeTemplates(DescribeTemplatesRequest(agent: agent, templateId: templateId, contentType: contentType, limit: limit, offset: offset, queryAllComponents: queryAllComponents, templateName: templateName, operator: `operator`, withPreviewUrl: withPreviewUrl, withPdfUrl: withPdfUrl, channelTemplateId: channelTemplateId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -26,7 +26,7 @@ extension Wedata {
         /// Agent Name
         public let agentName: String?
 
-        /// 集群类型，1：TKE Agent，2：BOSS SDK，默认：1
+        /// 集群类型，1：TKE Agent，2：BOSS SDK，默认：1，3：CVM，4：自建服务器 【传多个用逗号分割】
         public let agentType: UInt64?
 
         /// Agent状态(running运行中，initializing 操作中，failed心跳异常)
@@ -44,7 +44,10 @@ extension Wedata {
         /// 名称搜索是否开启模糊匹配，1：开启，0：不开启（精确匹配）
         public let like: UInt64?
 
-        public init(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil) {
+        /// agent类型【多个用逗号分隔】
+        public let agentTypes: String?
+
+        public init(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, agentTypes: String? = nil) {
             self.projectId = projectId
             self.agentId = agentId
             self.agentName = agentName
@@ -54,6 +57,7 @@ extension Wedata {
             self.pageIndex = pageIndex
             self.pageSize = pageSize
             self.like = like
+            self.agentTypes = agentTypes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -66,6 +70,7 @@ extension Wedata {
             case pageIndex = "PageIndex"
             case pageSize = "PageSize"
             case like = "Like"
+            case agentTypes = "AgentTypes"
         }
     }
 
@@ -113,13 +118,13 @@ extension Wedata {
 
     /// 获取采集器列表
     @inlinable
-    public func describeInLongAgentList(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentListResponse> {
-        self.describeInLongAgentList(DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like), region: region, logger: logger, on: eventLoop)
+    public func describeInLongAgentList(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, agentTypes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentListResponse> {
+        self.describeInLongAgentList(DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like, agentTypes: agentTypes), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取采集器列表
     @inlinable
-    public func describeInLongAgentList(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentListResponse {
-        try await self.describeInLongAgentList(DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like), region: region, logger: logger, on: eventLoop)
+    public func describeInLongAgentList(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, agentTypes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentListResponse {
+        try await self.describeInLongAgentList(DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like, agentTypes: agentTypes), region: region, logger: logger, on: eventLoop)
     }
 }

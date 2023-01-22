@@ -93,7 +93,7 @@ extension Cynosdb {
         }
     }
 
-    /// 查询实例列表
+    /// 查询实例的列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
@@ -101,7 +101,7 @@ extension Cynosdb {
         self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例列表
+    /// 查询实例的列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
@@ -109,7 +109,7 @@ extension Cynosdb {
         try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询实例列表
+    /// 查询实例的列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable
@@ -117,7 +117,7 @@ extension Cynosdb {
         self.describeInstances(DescribeInstancesRequest(limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, filters: filters, dbType: dbType, status: status, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询实例列表
+    /// 查询实例的列表
     ///
     /// 本接口(DescribeInstances)用于查询实例列表。
     @inlinable

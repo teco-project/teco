@@ -45,7 +45,7 @@ extension Cynosdb {
 
     /// 集群详情
     ///
-    /// 显示集群详情
+    /// 该接口（DescribeClusterDetail）显示集群详情
     @inlinable
     public func describeClusterDetail(_ input: DescribeClusterDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterDetailResponse> {
         self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -53,7 +53,7 @@ extension Cynosdb {
 
     /// 集群详情
     ///
-    /// 显示集群详情
+    /// 该接口（DescribeClusterDetail）显示集群详情
     @inlinable
     public func describeClusterDetail(_ input: DescribeClusterDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
         try await self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -61,7 +61,7 @@ extension Cynosdb {
 
     /// 集群详情
     ///
-    /// 显示集群详情
+    /// 该接口（DescribeClusterDetail）显示集群详情
     @inlinable
     public func describeClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterDetailResponse> {
         self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
@@ -69,7 +69,7 @@ extension Cynosdb {
 
     /// 集群详情
     ///
-    /// 显示集群详情
+    /// 该接口（DescribeClusterDetail）显示集群详情
     @inlinable
     public func describeClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
         try await self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)

@@ -23,19 +23,19 @@ extension Ccc {
         /// 应用 ID（必填），可以查看 https://console.cloud.tencent.com/ccc
         public let sdkAppId: Int64?
 
-        /// 服务记录ID
+        /// 服务记录ID（废弃）
         public let cdrId: String?
 
-        /// 返回记录条数 最大为100默认20
+        /// 返回记录条数，最大为100 默认20
         public let limit: Int64?
 
-        /// 返回记录偏移 默认为0
+        /// 返回记录偏移，默认为 0
         public let offset: Int64?
 
         /// 1为从早到晚，2为从晚到早，默认为2
         public let order: Int64?
 
-        /// 服务记录SessionID
+        /// 服务记录 SessionID（必填）
         public let sessionId: String?
 
         public init(instanceId: Int64? = nil, sdkAppId: Int64? = nil, cdrId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: Int64? = nil, sessionId: String? = nil) {
@@ -80,7 +80,9 @@ extension Ccc {
 
     /// 查询服务的聊天记录
     ///
-    /// 包括具体聊天内容
+    /// 获取指定服务记录文本聊天内容，需要先使用查询在线客服记录（DescribeIMCdrs） API 获取服务记录 SessionId。
+    ///
+    /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
     @inlinable
     public func describeChatMessages(_ input: DescribeChatMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChatMessagesResponse> {
         self.client.execute(action: "DescribeChatMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -88,7 +90,9 @@ extension Ccc {
 
     /// 查询服务的聊天记录
     ///
-    /// 包括具体聊天内容
+    /// 获取指定服务记录文本聊天内容，需要先使用查询在线客服记录（DescribeIMCdrs） API 获取服务记录 SessionId。
+    ///
+    /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
     @inlinable
     public func describeChatMessages(_ input: DescribeChatMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChatMessagesResponse {
         try await self.client.execute(action: "DescribeChatMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -96,7 +100,9 @@ extension Ccc {
 
     /// 查询服务的聊天记录
     ///
-    /// 包括具体聊天内容
+    /// 获取指定服务记录文本聊天内容，需要先使用查询在线客服记录（DescribeIMCdrs） API 获取服务记录 SessionId。
+    ///
+    /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
     @inlinable
     public func describeChatMessages(instanceId: Int64? = nil, sdkAppId: Int64? = nil, cdrId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: Int64? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChatMessagesResponse> {
         self.describeChatMessages(DescribeChatMessagesRequest(instanceId: instanceId, sdkAppId: sdkAppId, cdrId: cdrId, limit: limit, offset: offset, order: order, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
@@ -104,7 +110,9 @@ extension Ccc {
 
     /// 查询服务的聊天记录
     ///
-    /// 包括具体聊天内容
+    /// 获取指定服务记录文本聊天内容，需要先使用查询在线客服记录（DescribeIMCdrs） API 获取服务记录 SessionId。
+    ///
+    /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
     @inlinable
     public func describeChatMessages(instanceId: Int64? = nil, sdkAppId: Int64? = nil, cdrId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: Int64? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChatMessagesResponse {
         try await self.describeChatMessages(DescribeChatMessagesRequest(instanceId: instanceId, sdkAppId: sdkAppId, cdrId: cdrId, limit: limit, offset: offset, order: order, sessionId: sessionId), region: region, logger: logger, on: eventLoop)

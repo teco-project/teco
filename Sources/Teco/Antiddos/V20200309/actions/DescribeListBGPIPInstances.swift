@@ -53,7 +53,7 @@ extension Antiddos {
         /// 是否只获取安全加速实例。填写时，只能填写1或者0。当填写1时，表示返回安全加速实例。当填写0时，表示返回非安全加速实例。
         public let filterDamDDoSStatus: Int64?
 
-        /// 获取特定状态的资源，运行中填idle，攻击中填attacking，封堵中填blocking
+        /// 获取特定状态的资源，运行中填idle，攻击中填attacking，封堵中填blocking，试用资源填trial
         public let filterStatus: String?
 
         /// 获取特定的实例Cname
@@ -68,7 +68,10 @@ extension Antiddos {
         /// 按照套餐类型进行过滤
         public let filterPackType: [String]?
 
-        public init(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil) {
+        /// 重保护航搜索
+        public let filterConvoy: UInt64?
+
+        public init(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, filterConvoy: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
             self.filterIp = filterIp
@@ -84,6 +87,7 @@ extension Antiddos {
             self.filterInstanceIdList = filterInstanceIdList
             self.filterTag = filterTag
             self.filterPackType = filterPackType
+            self.filterConvoy = filterConvoy
         }
 
         enum CodingKeys: String, CodingKey {
@@ -102,6 +106,7 @@ extension Antiddos {
             case filterInstanceIdList = "FilterInstanceIdList"
             case filterTag = "FilterTag"
             case filterPackType = "FilterPackType"
+            case filterConvoy = "FilterConvoy"
         }
     }
 
@@ -137,13 +142,13 @@ extension Antiddos {
 
     /// 获取高防IP资产实例列表
     @inlinable
-    public func describeListBGPIPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPIPInstancesResponse> {
-        self.describeListBGPIPInstances(DescribeListBGPIPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterLine: filterLine, filterRegion: filterRegion, filterName: filterName, filterEipType: filterEipType, filterEipEipAddressStatus: filterEipEipAddressStatus, filterDamDDoSStatus: filterDamDDoSStatus, filterStatus: filterStatus, filterCname: filterCname, filterInstanceIdList: filterInstanceIdList, filterTag: filterTag, filterPackType: filterPackType), region: region, logger: logger, on: eventLoop)
+    public func describeListBGPIPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, filterConvoy: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListBGPIPInstancesResponse> {
+        self.describeListBGPIPInstances(DescribeListBGPIPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterLine: filterLine, filterRegion: filterRegion, filterName: filterName, filterEipType: filterEipType, filterEipEipAddressStatus: filterEipEipAddressStatus, filterDamDDoSStatus: filterDamDDoSStatus, filterStatus: filterStatus, filterCname: filterCname, filterInstanceIdList: filterInstanceIdList, filterTag: filterTag, filterPackType: filterPackType, filterConvoy: filterConvoy), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP资产实例列表
     @inlinable
-    public func describeListBGPIPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPIPInstancesResponse {
-        try await self.describeListBGPIPInstances(DescribeListBGPIPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterLine: filterLine, filterRegion: filterRegion, filterName: filterName, filterEipType: filterEipType, filterEipEipAddressStatus: filterEipEipAddressStatus, filterDamDDoSStatus: filterDamDDoSStatus, filterStatus: filterStatus, filterCname: filterCname, filterInstanceIdList: filterInstanceIdList, filterTag: filterTag, filterPackType: filterPackType), region: region, logger: logger, on: eventLoop)
+    public func describeListBGPIPInstances(offset: UInt64, limit: UInt64, filterIp: String? = nil, filterInstanceId: String? = nil, filterLine: UInt64? = nil, filterRegion: String? = nil, filterName: String? = nil, filterEipType: Int64? = nil, filterEipEipAddressStatus: [String]? = nil, filterDamDDoSStatus: Int64? = nil, filterStatus: String? = nil, filterCname: String? = nil, filterInstanceIdList: [String]? = nil, filterTag: TagFilter? = nil, filterPackType: [String]? = nil, filterConvoy: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListBGPIPInstancesResponse {
+        try await self.describeListBGPIPInstances(DescribeListBGPIPInstancesRequest(offset: offset, limit: limit, filterIp: filterIp, filterInstanceId: filterInstanceId, filterLine: filterLine, filterRegion: filterRegion, filterName: filterName, filterEipType: filterEipType, filterEipEipAddressStatus: filterEipEipAddressStatus, filterDamDDoSStatus: filterDamDDoSStatus, filterStatus: filterStatus, filterCname: filterCname, filterInstanceIdList: filterInstanceIdList, filterTag: filterTag, filterPackType: filterPackType, filterConvoy: filterConvoy), region: region, logger: logger, on: eventLoop)
     }
 }

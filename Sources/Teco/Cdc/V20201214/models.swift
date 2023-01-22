@@ -248,6 +248,10 @@ extension Cdc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeSpan: Int64?
 
+        /// 订单类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let orderType: String?
+
         enum CodingKeys: String, CodingKey {
             case dedicatedClusterId = "DedicatedClusterId"
             case dedicatedClusterTypeId = "DedicatedClusterTypeId"
@@ -268,6 +272,7 @@ extension Cdc {
             case payType = "PayType"
             case timeUnit = "TimeUnit"
             case timeSpan = "TimeSpan"
+            case orderType = "OrderType"
         }
     }
 

@@ -64,99 +64,6 @@ extension Ims {
         }
     }
 
-    /// 违规数据分布
-    public struct EvilCount: TCOutputModel {
-        /// ----非必选，该参数功能暂未对外开放
-        public let evilType: String
-
-        /// 分布类型总量
-        public let count: Int64
-
-        enum CodingKeys: String, CodingKey {
-            case evilType = "EvilType"
-            case count = "Count"
-        }
-    }
-
-    /// 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
-    public struct Filter: TCInputModel {
-        /// 过滤键的名称。
-        public let name: String?
-
-        /// 一个或者多个过滤值。
-        public let values: [String]?
-
-        public init(name: String? = nil, values: [String]? = nil) {
-            self.name = name
-            self.values = values
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case name = "Name"
-            case values = "Values"
-        }
-    }
-
-    /// 图片过滤条件
-    public struct Filters: TCInputModel {
-        /// 查询字段：
-        /// 策略BizType
-        /// 子账号SubUin
-        /// 日期区间DateRange
-        public let name: String
-
-        /// 查询值
-        public let values: [String]
-
-        public init(name: String, values: [String]) {
-            self.name = name
-            self.values = values
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case name = "Name"
-            case values = "Values"
-        }
-    }
-
-    /// 机器审核详情列表数据项
-    public struct ImsDetail: TCOutputModel {
-        /// 文本内容
-        public let content: String
-
-        /// 数据方式， 0：我审，1：人审
-        public let dataSource: Int64
-
-        /// 最后更新时间
-        public let updateTime: String
-
-        /// ----非必选，该参数暂未对外开放
-        public let evilType: Int64
-
-        /// 机器审核时间
-        public let moderationTime: String
-
-        /// 最后更新人
-        public let updateUser: String
-
-        /// 内容RequestId
-        public let contentId: String
-
-        /// 自主审核结果
-        public let operEvilType: Int64
-
-        enum CodingKeys: String, CodingKey {
-            case content = "Content"
-            case dataSource = "DataSource"
-            case updateTime = "UpdateTime"
-            case evilType = "EvilType"
-            case moderationTime = "ModerationTime"
-            case updateUser = "UpdateUser"
-            case contentId = "ContentId"
-            case operEvilType = "OperEvilType"
-        }
-    }
-
     /// 分类模型命中子标签结果
     public struct LabelDetailItem: TCOutputModel {
         /// 序号
@@ -327,12 +234,16 @@ extension Ims {
         /// 检测框坐标
         public let location: Location
 
+        /// 二级标签名称
+        public let subLabel: String
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
             case value = "Value"
             case score = "Score"
             case location = "Location"
+            case subLabel = "SubLabel"
         }
     }
 
@@ -400,6 +311,9 @@ extension Ims {
         /// ocr识别出的文本结果
         public let text: String
 
+        /// 是否命中结果，0 未命中 1命中
+        public let hitFlag: UInt64
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case suggestion = "Suggestion"
@@ -408,6 +322,7 @@ extension Ims {
             case score = "Score"
             case details = "Details"
             case text = "Text"
+            case hitFlag = "HitFlag"
         }
     }
 
@@ -438,6 +353,9 @@ extension Ims {
         /// OCR文本识别置信度
         public let rate: UInt64
 
+        /// OCR文本命中的二级标签
+        public let subLabel: String
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case label = "Label"
@@ -447,95 +365,7 @@ extension Ims {
             case score = "Score"
             case location = "Location"
             case rate = "Rate"
-        }
-    }
-
-    /// 识别结果统计
-    public struct Overview: TCOutputModel {
-        /// 总调用量
-        public let totalCount: Int64
-
-        /// 总调用时长
-        public let totalHour: Int64
-
-        /// 通过量
-        public let passCount: Int64
-
-        /// 通过时长
-        public let passHour: Int64
-
-        /// 违规量
-        public let evilCount: Int64
-
-        /// 违规时长
-        public let evilHour: Int64
-
-        /// 疑似违规量
-        public let suspectCount: Int64
-
-        /// 疑似违规时长
-        public let suspectHour: Int64
-
-        enum CodingKeys: String, CodingKey {
-            case totalCount = "TotalCount"
-            case totalHour = "TotalHour"
-            case passCount = "PassCount"
-            case passHour = "PassHour"
-            case evilCount = "EvilCount"
-            case evilHour = "EvilHour"
-            case suspectCount = "SuspectCount"
-            case suspectHour = "SuspectHour"
-        }
-    }
-
-    /// 识别量统计
-    public struct TrendCount: TCOutputModel {
-        /// 总调用量
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let totalCount: Int64?
-
-        /// 总调用时长
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let totalHour: Int64?
-
-        /// 通过量
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let passCount: Int64?
-
-        /// 通过时长
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let passHour: Int64?
-
-        /// 违规量
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let evilCount: Int64?
-
-        /// 违规时长
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let evilHour: Int64?
-
-        /// 疑似违规量
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let suspectCount: Int64?
-
-        /// 疑似违规时长
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let suspectHour: Int64?
-
-        /// 日期
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let date: String?
-
-        enum CodingKeys: String, CodingKey {
-            case totalCount = "TotalCount"
-            case totalHour = "TotalHour"
-            case passCount = "PassCount"
-            case passHour = "PassHour"
-            case evilCount = "EvilCount"
-            case evilHour = "EvilHour"
-            case suspectCount = "SuspectCount"
-            case suspectHour = "SuspectHour"
-            case date = "Date"
+            case subLabel = "SubLabel"
         }
     }
 

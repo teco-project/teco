@@ -51,6 +51,10 @@ extension Cdb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let backupArchiveVolume: Int64?
 
+        /// 标准存储备份容量，包含数据备份以及日志备份。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let backupStandbyVolume: Int64?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -61,6 +65,7 @@ extension Cdb {
             case freeVolume = "FreeVolume"
             case remoteBackupVolume = "RemoteBackupVolume"
             case backupArchiveVolume = "BackupArchiveVolume"
+            case backupStandbyVolume = "BackupStandbyVolume"
             case requestId = "RequestId"
         }
     }

@@ -117,6 +117,7 @@ extension Tts {
     /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
     /// 内测期间免费使用。
     /// 基础合成支持 SSML，语法详见 [SSML 标记语言](https://cloud.tencent.com/document/product/1073/49575)。
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func textToVoice(_ input: TextToVoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToVoiceResponse> {
         self.client.execute(action: "TextToVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -128,6 +129,7 @@ extension Tts {
     /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
     /// 内测期间免费使用。
     /// 基础合成支持 SSML，语法详见 [SSML 标记语言](https://cloud.tencent.com/document/product/1073/49575)。
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func textToVoice(_ input: TextToVoiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
         try await self.client.execute(action: "TextToVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -139,6 +141,7 @@ extension Tts {
     /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
     /// 内测期间免费使用。
     /// 基础合成支持 SSML，语法详见 [SSML 标记语言](https://cloud.tencent.com/document/product/1073/49575)。
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func textToVoice(text: String, sessionId: String, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, modelType: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, enableSubtitle: Bool? = nil, segmentRate: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToVoiceResponse> {
         self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, volume: volume, speed: speed, projectId: projectId, modelType: modelType, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, enableSubtitle: enableSubtitle, segmentRate: segmentRate), region: region, logger: logger, on: eventLoop)
@@ -150,6 +153,7 @@ extension Tts {
     /// 腾讯TTS技术可以应用到很多场景，比如，移动APP语音播报新闻；智能设备语音提醒；依靠网上现有节目或少量录音，快速合成明星语音，降低邀约成本；支持车载导航语音合成的个性化语音播报。
     /// 内测期间免费使用。
     /// 基础合成支持 SSML，语法详见 [SSML 标记语言](https://cloud.tencent.com/document/product/1073/49575)。
+    /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func textToVoice(text: String, sessionId: String, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, modelType: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, enableSubtitle: Bool? = nil, segmentRate: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
         try await self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, volume: volume, speed: speed, projectId: projectId, modelType: modelType, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, enableSubtitle: enableSubtitle, segmentRate: segmentRate), region: region, logger: logger, on: eventLoop)

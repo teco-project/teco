@@ -271,6 +271,49 @@ extension Cfw {
         }
     }
 
+    /// 防火墙网段信息
+    public struct FwCidrInfo: TCInputModel {
+        /// 防火墙使用的网段类型，值VpcSelf/Assis/Custom分别代表自有网段优先/扩展网段优先/自定义
+        public let fwCidrType: String
+
+        /// 为每个vpc指定防火墙的网段
+        public let fwCidrLst: [FwVpcCidr]?
+
+        /// 其他防火墙占用网段，一般是防火墙需要独占vpc时指定的网段
+        public let comFwCidr: String?
+
+        public init(fwCidrType: String, fwCidrLst: [FwVpcCidr]? = nil, comFwCidr: String? = nil) {
+            self.fwCidrType = fwCidrType
+            self.fwCidrLst = fwCidrLst
+            self.comFwCidr = comFwCidr
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case fwCidrType = "FwCidrType"
+            case fwCidrLst = "FwCidrLst"
+            case comFwCidr = "ComFwCidr"
+        }
+    }
+
+    /// vpc的防火墙网段
+    public struct FwVpcCidr: TCInputModel, TCOutputModel {
+        /// vpc的id
+        public let vpcId: String
+
+        /// 防火墙网段，最少/24的网段
+        public let fwCidr: String
+
+        public init(vpcId: String, fwCidr: String) {
+            self.vpcId = vpcId
+            self.fwCidr = fwCidr
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case vpcId = "VpcId"
+            case fwCidr = "FwCidr"
+        }
+    }
+
     /// ip防护状态
     public struct IPDefendStatus: TCOutputModel {
         /// ip地址

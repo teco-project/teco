@@ -2133,6 +2133,30 @@ extension Monitor {
         }
     }
 
+    /// 查询过滤参数
+    public struct Filter: TCInputModel {
+        /// 过滤方式（=, !=, in）
+        public let type: String
+
+        /// 过滤维度名
+        public let key: String
+
+        /// 过滤值，in过滤方式用逗号分割多个值
+        public let value: String
+
+        public init(type: String, key: String, value: String) {
+            self.type = type
+            self.key = key
+            self.value = value
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case key = "Key"
+            case value = "Value"
+        }
+    }
+
     /// Grafana可视化服务 授权账户信息
     public struct GrafanaAccountInfo: TCOutputModel {
         /// 用户账号ID
@@ -2357,7 +2381,7 @@ extension Monitor {
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
         /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCDateEncoding public var updatedAt: Date
+        @TCTimestampISO8601Encoding public var updatedAt: Date
 
         /// 默认生效组织，已废弃，请使用 OrganizationIds
         public let orgId: String
@@ -2368,11 +2392,11 @@ extension Monitor {
 
         /// 生效组织，已废弃，请使用 OrganizationIds
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let orgIds: String?
+        public let orgIds: [String]?
 
         /// 告警渠道的所有生效组织
         /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let organizationIds: String?
+        public let organizationIds: [String]?
 
         enum CodingKeys: String, CodingKey {
             case channelId = "ChannelId"
@@ -2482,6 +2506,12 @@ extension Monitor {
             case category = "Category"
             case instanceDesc = "InstanceDesc"
             case grafanaDashboardURL = "GrafanaDashboardURL"
+        }
+    }
+
+    /// k8s中标签，一般以数组的方式存在
+    public struct Label: TCInputModel, TCOutputModel {
+        public init() {
         }
     }
 
@@ -2889,6 +2919,25 @@ extension Monitor {
         }
     }
 
+    /// 通知模版与策略绑定关系
+    public struct NoticeBindPolicys: TCInputModel {
+        /// 告警通知模板 ID
+        public let noticeId: String?
+
+        /// 告警通知模板绑定的告警策略ID列表
+        public let policyIds: [String]?
+
+        public init(noticeId: String? = nil, policyIds: [String]? = nil) {
+            self.noticeId = noticeId
+            self.policyIds = policyIds
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case noticeId = "NoticeId"
+            case policyIds = "PolicyIds"
+        }
+    }
+
     /// 维度支持的操作符信息
     public struct Operator: TCOutputModel {
         /// 运算符标识
@@ -3148,6 +3197,158 @@ extension Monitor {
         }
     }
 
+    /// 告警渠道使用自建alertmanager的配置
+    public struct PrometheusAlertManagerConfig: TCInputModel, TCOutputModel {
+        /// alertmanager url
+        public let url: String
+
+        /// alertmanager部署所在集群类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterType: String?
+
+        /// alertmanager部署所在集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        public init(url: String, clusterType: String? = nil, clusterId: String? = nil) {
+            self.url = url
+            self.clusterType = clusterType
+            self.clusterId = clusterId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case url = "Url"
+            case clusterType = "ClusterType"
+            case clusterId = "ClusterId"
+        }
+    }
+
+    /// 托管prometheus告警策略实例
+    public struct PrometheusAlertPolicyItem: TCInputModel, TCOutputModel {
+        /// 策略名称
+        public let name: String
+
+        /// 规则列表
+        public let rules: [PrometheusAlertRule]
+
+        /// 告警策略 id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let id: String?
+
+        /// 如果该告警来自模板下发，则TemplateId为模板id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: String?
+
+        /// 告警渠道，模板中使用可能返回null
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let notification: PrometheusNotificationItem?
+
+        /// 最后修改时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updatedAt: String?
+
+        /// 如果告警策略来源于用户集群CRD资源定义，则ClusterId为所属集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        public init(name: String, rules: [PrometheusAlertRule], id: String? = nil, templateId: String? = nil, notification: PrometheusNotificationItem? = nil, updatedAt: String? = nil, clusterId: String? = nil) {
+            self.name = name
+            self.rules = rules
+            self.id = id
+            self.templateId = templateId
+            self.notification = notification
+            self.updatedAt = updatedAt
+            self.clusterId = clusterId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case rules = "Rules"
+            case id = "Id"
+            case templateId = "TemplateId"
+            case notification = "Notification"
+            case updatedAt = "UpdatedAt"
+            case clusterId = "ClusterId"
+        }
+    }
+
+    /// Prometheus告警规则
+    public struct PrometheusAlertRule: TCInputModel, TCOutputModel {
+        /// 规则名称
+        public let name: String
+
+        /// prometheus语句
+        public let rule: String
+
+        /// 额外标签
+        public let labels: [Label]
+
+        /// 告警发送模板
+        public let template: String
+
+        /// 持续时间
+        public let `for`: String
+
+        /// 该条规则的描述信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let describe: String?
+
+        /// 参考prometheus rule中的annotations
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let annotations: [Label]?
+
+        /// 告警规则状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleState: Int64?
+
+        public init(name: String, rule: String, labels: [Label], template: String, for: String, describe: String? = nil, annotations: [Label]? = nil, ruleState: Int64? = nil) {
+            self.name = name
+            self.rule = rule
+            self.labels = labels
+            self.template = template
+            self.`for` = `for`
+            self.describe = describe
+            self.annotations = annotations
+            self.ruleState = ruleState
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case rule = "Rule"
+            case labels = "Labels"
+            case template = "Template"
+            case `for` = "For"
+            case describe = "Describe"
+            case annotations = "Annotations"
+            case ruleState = "RuleState"
+        }
+    }
+
+    /// prometheus配置
+    public struct PrometheusConfigItem: TCInputModel, TCOutputModel {
+        /// 名称
+        public let name: String
+
+        /// 配置内容
+        public let config: String
+
+        /// 用于出参，如果该配置来至模板，则为模板id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: String?
+
+        public init(name: String, config: String, templateId: String? = nil) {
+            self.name = name
+            self.config = config
+            self.templateId = templateId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case config = "Config"
+            case templateId = "TemplateId"
+        }
+    }
+
     /// 实例的授权信息
     public struct PrometheusInstanceGrantInfo: TCOutputModel {
         /// 是否有计费操作权限(1=有，2=无)
@@ -3175,6 +3376,37 @@ extension Monitor {
             case hasAgentManage = "HasAgentManage"
             case hasTkeManage = "HasTkeManage"
             case hasApiOperation = "HasApiOperation"
+        }
+    }
+
+    /// Prometheus用量信息
+    public struct PrometheusInstanceTenantUsage: TCOutputModel {
+        /// 实例ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
+        /// 计费周期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let calcDate: String?
+
+        /// 总用量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let total: Float?
+
+        /// 基础指标用量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let basic: Float?
+
+        /// 付费指标用量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fee: Float?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case calcDate = "CalcDate"
+            case total = "Total"
+            case basic = "Basic"
+            case fee = "Fee"
         }
     }
 
@@ -3366,6 +3598,202 @@ extension Monitor {
         }
     }
 
+    /// 托管prometheusV2实例概览
+    public struct PrometheusInstancesOverview: TCOutputModel {
+        /// 实例ID
+        public let instanceId: String
+
+        /// 实例名
+        public let instanceName: String
+
+        /// VPC ID
+        public let vpcId: String
+
+        /// 子网ID
+        public let subnetId: String
+
+        /// 运行状态（1:正在创建；2:运行中；3:异常；4:重启中；5:销毁中； 6:已停机； 7: 已删除）
+        public let instanceStatus: Int64
+
+        /// 计费状态（1:正常；2:过期; 3:销毁; 4:分配中; 5:分配失败）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let chargeStatus: Int64?
+
+        /// 是否开启 Grafana（0:不开启，1:开启）
+        public let enableGrafana: Int64
+
+        /// Grafana 面板 URL
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let grafanaURL: String?
+
+        /// 实例付费类型（1:试用版；2:预付费）
+        public let instanceChargeType: Int64
+
+        /// 规格名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let specName: String?
+
+        /// 存储周期
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataRetentionTime: Int64?
+
+        /// 购买的实例过期时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let expireTime: String?
+
+        /// 自动续费标记(0:不自动续费；1:开启自动续费；2:禁止自动续费；-1:无效)
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let autoRenewFlag: Int64?
+
+        /// 绑定集群总数
+        public let boundTotal: Int64
+
+        /// 绑定集群正常状态总数
+        public let boundNormal: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case instanceId = "InstanceId"
+            case instanceName = "InstanceName"
+            case vpcId = "VpcId"
+            case subnetId = "SubnetId"
+            case instanceStatus = "InstanceStatus"
+            case chargeStatus = "ChargeStatus"
+            case enableGrafana = "EnableGrafana"
+            case grafanaURL = "GrafanaURL"
+            case instanceChargeType = "InstanceChargeType"
+            case specName = "SpecName"
+            case dataRetentionTime = "DataRetentionTime"
+            case expireTime = "ExpireTime"
+            case autoRenewFlag = "AutoRenewFlag"
+            case boundTotal = "BoundTotal"
+            case boundNormal = "BoundNormal"
+        }
+    }
+
+    /// 告警通知渠道配置
+    public struct PrometheusNotificationItem: TCInputModel, TCOutputModel {
+        /// 是否启用
+        public let enabled: Bool
+
+        /// 通道类型，默认为amp，支持以下
+        /// amp
+        /// webhook
+        /// alertmanager
+        public let type: String
+
+        /// 如果Type为webhook, 则该字段为必填项
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let webHook: String?
+
+        /// 如果Type为alertmanager, 则该字段为必填项
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alertManager: PrometheusAlertManagerConfig?
+
+        /// 收敛时间
+        public let repeatInterval: String?
+
+        /// 生效起始时间
+        public let timeRangeStart: String?
+
+        /// 生效结束时间
+        public let timeRangeEnd: String?
+
+        /// 告警通知方式。目前有SMS、EMAIL、CALL、WECHAT方式。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let notifyWay: [String]?
+
+        /// 告警接收组（用户组）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let receiverGroups: [String]?
+
+        /// 电话告警顺序。
+        /// 注：NotifyWay选择CALL，采用该参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phoneNotifyOrder: [UInt64]?
+
+        /// 电话告警次数。
+        /// 注：NotifyWay选择CALL，采用该参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phoneCircleTimes: Int64?
+
+        /// 电话告警轮内间隔。单位：秒
+        /// 注：NotifyWay选择CALL，采用该参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phoneInnerInterval: Int64?
+
+        /// 电话告警轮外间隔。单位：秒
+        /// 注：NotifyWay选择CALL，采用该参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phoneCircleInterval: Int64?
+
+        /// 电话告警触达通知
+        /// 注：NotifyWay选择CALL，采用该参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let phoneArriveNotice: Bool?
+
+        public init(enabled: Bool, type: String, webHook: String? = nil, alertManager: PrometheusAlertManagerConfig? = nil, repeatInterval: String? = nil, timeRangeStart: String? = nil, timeRangeEnd: String? = nil, notifyWay: [String]? = nil, receiverGroups: [String]? = nil, phoneNotifyOrder: [UInt64]? = nil, phoneCircleTimes: Int64? = nil, phoneInnerInterval: Int64? = nil, phoneCircleInterval: Int64? = nil, phoneArriveNotice: Bool? = nil) {
+            self.enabled = enabled
+            self.type = type
+            self.webHook = webHook
+            self.alertManager = alertManager
+            self.repeatInterval = repeatInterval
+            self.timeRangeStart = timeRangeStart
+            self.timeRangeEnd = timeRangeEnd
+            self.notifyWay = notifyWay
+            self.receiverGroups = receiverGroups
+            self.phoneNotifyOrder = phoneNotifyOrder
+            self.phoneCircleTimes = phoneCircleTimes
+            self.phoneInnerInterval = phoneInnerInterval
+            self.phoneCircleInterval = phoneCircleInterval
+            self.phoneArriveNotice = phoneArriveNotice
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case enabled = "Enabled"
+            case type = "Type"
+            case webHook = "WebHook"
+            case alertManager = "AlertManager"
+            case repeatInterval = "RepeatInterval"
+            case timeRangeStart = "TimeRangeStart"
+            case timeRangeEnd = "TimeRangeEnd"
+            case notifyWay = "NotifyWay"
+            case receiverGroups = "ReceiverGroups"
+            case phoneNotifyOrder = "PhoneNotifyOrder"
+            case phoneCircleTimes = "PhoneCircleTimes"
+            case phoneInnerInterval = "PhoneInnerInterval"
+            case phoneCircleInterval = "PhoneCircleInterval"
+            case phoneArriveNotice = "PhoneArriveNotice"
+        }
+    }
+
+    /// prometheus聚合规则实例详情，包含所属集群ID
+    public struct PrometheusRecordRuleYamlItem: TCOutputModel {
+        /// 实例名称
+        public let name: String
+
+        /// 最近更新时间
+        public let updateTime: String
+
+        /// Yaml内容
+        public let templateId: String
+
+        /// 如果该聚合规则来至模板，则TemplateId为模板id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let content: String?
+
+        /// 该聚合规则如果来源于用户集群crd资源定义，则ClusterId为所属集群ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case updateTime = "UpdateTime"
+            case templateId = "TemplateId"
+            case content = "Content"
+            case clusterId = "ClusterId"
+        }
+    }
+
     /// prometheus 报警规则 KV 参数
     public struct PrometheusRuleKV: TCInputModel, TCOutputModel {
         /// 键
@@ -3492,6 +3920,207 @@ extension Monitor {
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
+        }
+    }
+
+    /// 模板实例
+    public struct PrometheusTemp: TCInputModel, TCOutputModel {
+        /// 模板名称
+        public let name: String
+
+        /// 模板维度，支持以下类型
+        /// instance 实例级别
+        /// cluster 集群级别
+        public let level: String
+
+        /// 模板描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let describe: String?
+
+        /// 当Level为instance时有效，
+        /// 模板中的聚合规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recordRules: [PrometheusConfigItem]?
+
+        /// 当Level为cluster时有效，
+        /// 模板中的ServiceMonitor规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceMonitors: [PrometheusConfigItem]?
+
+        /// 当Level为cluster时有效，
+        /// 模板中的PodMonitors规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podMonitors: [PrometheusConfigItem]?
+
+        /// 当Level为cluster时有效，
+        /// 模板中的RawJobs规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rawJobs: [PrometheusConfigItem]?
+
+        /// 模板的ID, 用于出参
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateId: String?
+
+        /// 最近更新时间，用于出参
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let updateTime: String?
+
+        /// 当前版本，用于出参
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
+
+        /// 是否系统提供的默认模板，用于出参
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let isDefault: Bool?
+
+        /// 当Level为instance时有效，
+        /// 模板中的告警配置列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alertDetailRules: [PrometheusAlertPolicyItem]?
+
+        /// 关联实例数目
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let targetsTotal: Int64?
+
+        public init(name: String, level: String, describe: String? = nil, recordRules: [PrometheusConfigItem]? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, templateId: String? = nil, updateTime: String? = nil, version: String? = nil, isDefault: Bool? = nil, alertDetailRules: [PrometheusAlertPolicyItem]? = nil, targetsTotal: Int64? = nil) {
+            self.name = name
+            self.level = level
+            self.describe = describe
+            self.recordRules = recordRules
+            self.serviceMonitors = serviceMonitors
+            self.podMonitors = podMonitors
+            self.rawJobs = rawJobs
+            self.templateId = templateId
+            self.updateTime = updateTime
+            self.version = version
+            self.isDefault = isDefault
+            self.alertDetailRules = alertDetailRules
+            self.targetsTotal = targetsTotal
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case level = "Level"
+            case describe = "Describe"
+            case recordRules = "RecordRules"
+            case serviceMonitors = "ServiceMonitors"
+            case podMonitors = "PodMonitors"
+            case rawJobs = "RawJobs"
+            case templateId = "TemplateId"
+            case updateTime = "UpdateTime"
+            case version = "Version"
+            case isDefault = "IsDefault"
+            case alertDetailRules = "AlertDetailRules"
+            case targetsTotal = "TargetsTotal"
+        }
+    }
+
+    /// 云原生Prometheus模板可修改项
+    public struct PrometheusTempModify: TCInputModel, TCOutputModel {
+        /// 修改名称
+        public let name: String?
+
+        /// 修改描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let describe: String?
+
+        /// 当Level为cluster时有效，
+        /// 模板中的ServiceMonitor规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let serviceMonitors: [PrometheusConfigItem]?
+
+        /// 当Level为cluster时有效，
+        /// 模板中的PodMonitors规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let podMonitors: [PrometheusConfigItem]?
+
+        /// 当Level为cluster时有效，
+        /// 模板中的RawJobs规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rawJobs: [PrometheusConfigItem]?
+
+        /// 当Level为instance时有效，
+        /// 模板中的聚合规则列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recordRules: [PrometheusConfigItem]?
+
+        /// 修改内容，只有当模板类型是Alert时生效
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let alertDetailRules: [PrometheusAlertPolicyItem]?
+
+        public init(name: String? = nil, describe: String? = nil, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, recordRules: [PrometheusConfigItem]? = nil, alertDetailRules: [PrometheusAlertPolicyItem]? = nil) {
+            self.name = name
+            self.describe = describe
+            self.serviceMonitors = serviceMonitors
+            self.podMonitors = podMonitors
+            self.rawJobs = rawJobs
+            self.recordRules = recordRules
+            self.alertDetailRules = alertDetailRules
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case describe = "Describe"
+            case serviceMonitors = "ServiceMonitors"
+            case podMonitors = "PodMonitors"
+            case rawJobs = "RawJobs"
+            case recordRules = "RecordRules"
+            case alertDetailRules = "AlertDetailRules"
+        }
+    }
+
+    /// 云原生Prometheus模板同步目标
+    public struct PrometheusTemplateSyncTarget: TCInputModel, TCOutputModel {
+        /// 目标所在地域
+        public let region: String
+
+        /// 目标实例
+        public let instanceId: String
+
+        /// 集群id，只有当采集模板的Level为cluster的时候需要
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterId: String?
+
+        /// 最后一次同步时间， 用于出参
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let syncTime: String?
+
+        /// 当前使用的模板版本，用于出参
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: String?
+
+        /// 集群类型，只有当采集模板的Level为cluster的时候需要
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterType: String?
+
+        /// 用于出参，实例名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceName: String?
+
+        /// 用于出参，集群名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let clusterName: String?
+
+        public init(region: String, instanceId: String, clusterId: String? = nil, syncTime: String? = nil, version: String? = nil, clusterType: String? = nil, instanceName: String? = nil, clusterName: String? = nil) {
+            self.region = region
+            self.instanceId = instanceId
+            self.clusterId = clusterId
+            self.syncTime = syncTime
+            self.version = version
+            self.clusterType = clusterType
+            self.instanceName = instanceName
+            self.clusterName = clusterName
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case instanceId = "InstanceId"
+            case clusterId = "ClusterId"
+            case syncTime = "SyncTime"
+            case version = "Version"
+            case clusterType = "ClusterType"
+            case instanceName = "InstanceName"
+            case clusterName = "ClusterName"
         }
     }
 
@@ -3738,6 +4367,39 @@ extension Monitor {
             case regionId = "RegionId"
             case bindingStatus = "BindingStatus"
             case tagStatus = "TagStatus"
+        }
+    }
+
+    /// 任务步骤信息
+    public struct TaskStepInfo: TCOutputModel {
+        /// 步骤名称
+        public let step: String
+
+        /// 生命周期
+        /// pending : 步骤未开始
+        /// running: 步骤执行中
+        /// success: 步骤成功完成
+        /// failed: 步骤失败
+        public let lifeState: String
+
+        /// 步骤开始时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let startAt: String?
+
+        /// 步骤结束时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let endAt: String?
+
+        /// 若步骤生命周期为failed,则此字段显示错误信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failedMsg: String?
+
+        enum CodingKeys: String, CodingKey {
+            case step = "Step"
+            case lifeState = "LifeState"
+            case startAt = "StartAt"
+            case endAt = "EndAt"
+            case failedMsg = "FailedMsg"
         }
     }
 

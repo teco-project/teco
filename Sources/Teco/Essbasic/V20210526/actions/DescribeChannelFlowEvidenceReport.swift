@@ -17,24 +17,24 @@
 extension Essbasic {
     /// DescribeChannelFlowEvidenceReport请求参数结构体
     public struct DescribeChannelFlowEvidenceReportRequest: TCRequestModel {
-        /// 出证报告编号
-        public let reportId: String
-
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
         public let agent: Agent
+
+        /// 出证报告编号
+        public let reportId: String
 
         /// 操作者的信息
         public let `operator`: UserInfo?
 
-        public init(reportId: String, agent: Agent, operator: UserInfo? = nil) {
-            self.reportId = reportId
+        public init(agent: Agent, reportId: String, operator: UserInfo? = nil) {
             self.agent = agent
+            self.reportId = reportId
             self.`operator` = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
-            case reportId = "ReportId"
             case agent = "Agent"
+            case reportId = "ReportId"
             case `operator` = "Operator"
         }
     }
@@ -80,15 +80,15 @@ extension Essbasic {
     ///
     /// 查询出证报告，返回报告 URL。
     @inlinable
-    public func describeChannelFlowEvidenceReport(reportId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelFlowEvidenceReportResponse> {
-        self.describeChannelFlowEvidenceReport(DescribeChannelFlowEvidenceReportRequest(reportId: reportId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func describeChannelFlowEvidenceReport(agent: Agent, reportId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelFlowEvidenceReportResponse> {
+        self.describeChannelFlowEvidenceReport(DescribeChannelFlowEvidenceReportRequest(agent: agent, reportId: reportId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询出证报告
     ///
     /// 查询出证报告，返回报告 URL。
     @inlinable
-    public func describeChannelFlowEvidenceReport(reportId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
-        try await self.describeChannelFlowEvidenceReport(DescribeChannelFlowEvidenceReportRequest(reportId: reportId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
+    public func describeChannelFlowEvidenceReport(agent: Agent, reportId: String, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelFlowEvidenceReportResponse {
+        try await self.describeChannelFlowEvidenceReport(DescribeChannelFlowEvidenceReportRequest(agent: agent, reportId: reportId, operator: `operator`), region: region, logger: logger, on: eventLoop)
     }
 }

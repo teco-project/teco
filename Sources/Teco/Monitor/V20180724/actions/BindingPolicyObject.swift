@@ -32,12 +32,20 @@ extension Monitor {
         /// 需要绑定的对象维度信息
         public let dimensions: [BindingPolicyObjectDimension]?
 
-        public init(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil) {
+        /// 事件配置的告警
+        public let ebSubject: String?
+
+        /// 是否配置了事件告警
+        public let ebEventFlag: Int64?
+
+        public init(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil) {
             self.module = module
             self.groupId = groupId
             self.policyId = policyId
             self.instanceGroupId = instanceGroupId
             self.dimensions = dimensions
+            self.ebSubject = ebSubject
+            self.ebEventFlag = ebEventFlag
         }
 
         enum CodingKeys: String, CodingKey {
@@ -46,6 +54,8 @@ extension Monitor {
             case policyId = "PolicyId"
             case instanceGroupId = "InstanceGroupId"
             case dimensions = "Dimensions"
+            case ebSubject = "EbSubject"
+            case ebEventFlag = "EbEventFlag"
         }
     }
 
@@ -79,15 +89,15 @@ extension Monitor {
     ///
     /// 将告警策略绑定到特定对象
     @inlinable @discardableResult
-    public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyObjectResponse> {
-        self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
+    public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyObjectResponse> {
+        self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions, ebSubject: ebSubject, ebEventFlag: ebEventFlag), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略对象
     ///
     /// 将告警策略绑定到特定对象
     @inlinable @discardableResult
-    public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
-        try await self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
+    public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
+        try await self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions, ebSubject: ebSubject, ebEventFlag: ebEventFlag), region: region, logger: logger, on: eventLoop)
     }
 }

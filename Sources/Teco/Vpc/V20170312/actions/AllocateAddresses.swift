@@ -69,7 +69,10 @@ extension Vpc {
         /// EIP名称，用于申请EIP时用户自定义该EIP的个性化名称，默认值：未命名
         public let addressName: String?
 
-        public init(addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil) {
+        /// 网络出口，默认是：center_egress1
+        public let egress: String?
+
+        public init(addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil, egress: String? = nil) {
             self.addressCount = addressCount
             self.internetServiceProvider = internetServiceProvider
             self.internetChargeType = internetChargeType
@@ -81,6 +84,7 @@ extension Vpc {
             self.tags = tags
             self.bandwidthPackageId = bandwidthPackageId
             self.addressName = addressName
+            self.egress = egress
         }
 
         enum CodingKeys: String, CodingKey {
@@ -95,6 +99,7 @@ extension Vpc {
             case tags = "Tags"
             case bandwidthPackageId = "BandwidthPackageId"
             case addressName = "AddressName"
+            case egress = "Egress"
         }
     }
 
@@ -145,8 +150,8 @@ extension Vpc {
     /// * 您的 EIP 与腾讯云账户相关联，而不是与某个实例相关联。在您选择显式释放该地址，或欠费超过24小时之前，它会一直与您的腾讯云账户保持关联。
     /// * 一个腾讯云账户在每个地域能申请的 EIP 最大配额有所限制，可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)，上述配额可通过 DescribeAddressQuota 接口获取。
     @inlinable
-    public func allocateAddresses(addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
-        self.allocateAddresses(AllocateAddressesRequest(addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid, addressType: addressType, anycastZone: anycastZone, applicableForCLB: applicableForCLB, tags: tags, bandwidthPackageId: bandwidthPackageId, addressName: addressName), region: region, logger: logger, on: eventLoop)
+    public func allocateAddresses(addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil, egress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
+        self.allocateAddresses(AllocateAddressesRequest(addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid, addressType: addressType, anycastZone: anycastZone, applicableForCLB: applicableForCLB, tags: tags, bandwidthPackageId: bandwidthPackageId, addressName: addressName, egress: egress), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性公网IP
@@ -156,7 +161,7 @@ extension Vpc {
     /// * 您的 EIP 与腾讯云账户相关联，而不是与某个实例相关联。在您选择显式释放该地址，或欠费超过24小时之前，它会一直与您的腾讯云账户保持关联。
     /// * 一个腾讯云账户在每个地域能申请的 EIP 最大配额有所限制，可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)，上述配额可通过 DescribeAddressQuota 接口获取。
     @inlinable
-    public func allocateAddresses(addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
-        try await self.allocateAddresses(AllocateAddressesRequest(addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid, addressType: addressType, anycastZone: anycastZone, applicableForCLB: applicableForCLB, tags: tags, bandwidthPackageId: bandwidthPackageId, addressName: addressName), region: region, logger: logger, on: eventLoop)
+    public func allocateAddresses(addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil, egress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
+        try await self.allocateAddresses(AllocateAddressesRequest(addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid, addressType: addressType, anycastZone: anycastZone, applicableForCLB: applicableForCLB, tags: tags, bandwidthPackageId: bandwidthPackageId, addressName: addressName, egress: egress), region: region, logger: logger, on: eventLoop)
     }
 }

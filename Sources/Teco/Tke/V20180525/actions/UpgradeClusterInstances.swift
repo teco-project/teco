@@ -44,7 +44,10 @@ extension Tke {
         /// 最大可容忍的不可用Pod比例
         public let maxNotReadyPercent: Float?
 
-        public init(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil) {
+        /// 是否升级节点运行时，默认false不升级
+        public let upgradeRunTime: Bool?
+
+        public init(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, upgradeRunTime: Bool? = nil) {
             self.clusterId = clusterId
             self.operation = operation
             self.upgradeType = upgradeType
@@ -52,6 +55,7 @@ extension Tke {
             self.resetParam = resetParam
             self.skipPreCheck = skipPreCheck
             self.maxNotReadyPercent = maxNotReadyPercent
+            self.upgradeRunTime = upgradeRunTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -62,6 +66,7 @@ extension Tke {
             case resetParam = "ResetParam"
             case skipPreCheck = "SkipPreCheck"
             case maxNotReadyPercent = "MaxNotReadyPercent"
+            case upgradeRunTime = "UpgradeRunTime"
         }
     }
 
@@ -95,15 +100,15 @@ extension Tke {
     ///
     /// 给集群的一批work节点进行升级
     @inlinable @discardableResult
-    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterInstancesResponse> {
-        self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent), region: region, logger: logger, on: eventLoop)
+    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, upgradeRunTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterInstancesResponse> {
+        self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent, upgradeRunTime: upgradeRunTime), region: region, logger: logger, on: eventLoop)
     }
 
     /// 集群节点升级
     ///
     /// 给集群的一批work节点进行升级
     @inlinable @discardableResult
-    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
-        try await self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent), region: region, logger: logger, on: eventLoop)
+    public func upgradeClusterInstances(clusterId: String, operation: String, upgradeType: String? = nil, instanceIds: [String]? = nil, resetParam: UpgradeNodeResetParam? = nil, skipPreCheck: Bool? = nil, maxNotReadyPercent: Float? = nil, upgradeRunTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterInstancesResponse {
+        try await self.upgradeClusterInstances(UpgradeClusterInstancesRequest(clusterId: clusterId, operation: operation, upgradeType: upgradeType, instanceIds: instanceIds, resetParam: resetParam, skipPreCheck: skipPreCheck, maxNotReadyPercent: maxNotReadyPercent, upgradeRunTime: upgradeRunTime), region: region, logger: logger, on: eventLoop)
     }
 }

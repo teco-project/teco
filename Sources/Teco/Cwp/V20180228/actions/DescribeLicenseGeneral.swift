@@ -68,6 +68,12 @@ extension Cwp {
         /// 可用惠普版授权数
         public let availableLHLicenseCnt: UInt64
 
+        /// 自动加购开关, true 开启, false 关闭
+        public let autoRepurchaseSwitch: Bool
+
+        /// 自动加购订单是否自动续费 ,true 开启, false 关闭
+        public let autoRepurchaseRenewSwitch: Bool
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -87,6 +93,8 @@ extension Cwp {
             case proVersionLicenseCnt = "ProVersionLicenseCnt"
             case cwpVersionLicenseCnt = "CwpVersionLicenseCnt"
             case availableLHLicenseCnt = "AvailableLHLicenseCnt"
+            case autoRepurchaseSwitch = "AutoRepurchaseSwitch"
+            case autoRepurchaseRenewSwitch = "AutoRepurchaseRenewSwitch"
             case requestId = "RequestId"
         }
     }

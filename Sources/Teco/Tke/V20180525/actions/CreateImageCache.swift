@@ -51,7 +51,17 @@ extension Tke {
         /// 镜像缓存保留时间天数，过期将会自动清理，默认为0，永不过期。
         public let retentionDays: UInt64?
 
-        public init(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil) {
+        /// 指定拉取镜像仓库的镜像时不校验证书。如["harbor.example.com"]。
+        public let registrySkipVerifyList: [String]?
+
+        /// 指定拉取镜像仓库的镜像时使用 HTTP 协议。如["harbor.example.com"]。
+        public let registryHttpEndPointList: [String]?
+
+        /// 自定义制作镜像缓存过程中容器实例的宿主机上的 DNS。如：
+        /// "nameserver 4.4.4.4\nnameserver 8.8.8.8"
+        public let resolveConfig: String?
+
+        public init(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, registrySkipVerifyList: [String]? = nil, registryHttpEndPointList: [String]? = nil, resolveConfig: String? = nil) {
             self.images = images
             self.subnetId = subnetId
             self.vpcId = vpcId
@@ -63,6 +73,9 @@ extension Tke {
             self.autoCreateEipAttribute = autoCreateEipAttribute
             self.imageCacheSize = imageCacheSize
             self.retentionDays = retentionDays
+            self.registrySkipVerifyList = registrySkipVerifyList
+            self.registryHttpEndPointList = registryHttpEndPointList
+            self.resolveConfig = resolveConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -77,6 +90,9 @@ extension Tke {
             case autoCreateEipAttribute = "AutoCreateEipAttribute"
             case imageCacheSize = "ImageCacheSize"
             case retentionDays = "RetentionDays"
+            case registrySkipVerifyList = "RegistrySkipVerifyList"
+            case registryHttpEndPointList = "RegistryHttpEndPointList"
+            case resolveConfig = "ResolveConfig"
         }
     }
 
@@ -114,15 +130,15 @@ extension Tke {
     ///
     /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
     @inlinable
-    public func createImageCache(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageCacheResponse> {
-        self.createImageCache(CreateImageCacheRequest(images: images, subnetId: subnetId, vpcId: vpcId, imageCacheName: imageCacheName, securityGroupIds: securityGroupIds, imageRegistryCredentials: imageRegistryCredentials, existedEipId: existedEipId, autoCreateEip: autoCreateEip, autoCreateEipAttribute: autoCreateEipAttribute, imageCacheSize: imageCacheSize, retentionDays: retentionDays), region: region, logger: logger, on: eventLoop)
+    public func createImageCache(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, registrySkipVerifyList: [String]? = nil, registryHttpEndPointList: [String]? = nil, resolveConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageCacheResponse> {
+        self.createImageCache(CreateImageCacheRequest(images: images, subnetId: subnetId, vpcId: vpcId, imageCacheName: imageCacheName, securityGroupIds: securityGroupIds, imageRegistryCredentials: imageRegistryCredentials, existedEipId: existedEipId, autoCreateEip: autoCreateEip, autoCreateEipAttribute: autoCreateEipAttribute, imageCacheSize: imageCacheSize, retentionDays: retentionDays, registrySkipVerifyList: registrySkipVerifyList, registryHttpEndPointList: registryHttpEndPointList, resolveConfig: resolveConfig), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像缓存
     ///
     /// 创建镜像缓存的接口。创建过程中，请勿删除EKSCI实例和云盘，否则镜像缓存将创建失败。
     @inlinable
-    public func createImageCache(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageCacheResponse {
-        try await self.createImageCache(CreateImageCacheRequest(images: images, subnetId: subnetId, vpcId: vpcId, imageCacheName: imageCacheName, securityGroupIds: securityGroupIds, imageRegistryCredentials: imageRegistryCredentials, existedEipId: existedEipId, autoCreateEip: autoCreateEip, autoCreateEipAttribute: autoCreateEipAttribute, imageCacheSize: imageCacheSize, retentionDays: retentionDays), region: region, logger: logger, on: eventLoop)
+    public func createImageCache(images: [String], subnetId: String, vpcId: String, imageCacheName: String? = nil, securityGroupIds: [String]? = nil, imageRegistryCredentials: [ImageRegistryCredential]? = nil, existedEipId: String? = nil, autoCreateEip: Bool? = nil, autoCreateEipAttribute: EipAttribute? = nil, imageCacheSize: UInt64? = nil, retentionDays: UInt64? = nil, registrySkipVerifyList: [String]? = nil, registryHttpEndPointList: [String]? = nil, resolveConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageCacheResponse {
+        try await self.createImageCache(CreateImageCacheRequest(images: images, subnetId: subnetId, vpcId: vpcId, imageCacheName: imageCacheName, securityGroupIds: securityGroupIds, imageRegistryCredentials: imageRegistryCredentials, existedEipId: existedEipId, autoCreateEip: autoCreateEip, autoCreateEipAttribute: autoCreateEipAttribute, imageCacheSize: imageCacheSize, retentionDays: retentionDays, registrySkipVerifyList: registrySkipVerifyList, registryHttpEndPointList: registryHttpEndPointList, resolveConfig: resolveConfig), region: region, logger: logger, on: eventLoop)
     }
 }

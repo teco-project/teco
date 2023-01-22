@@ -248,8 +248,8 @@ extension Gme {
         }
     }
 
-    /// 语音消息转文本自学习模型配置
-    public struct CustomizationConfigs: TCInputModel {
+    /// 语音消息转文本热句模型配置
+    public struct CustomizationConfigs: TCInputModel, TCOutputModel {
         /// 应用 ID，登录控制台创建应用得到的AppID
         public let bizId: Int64
 
@@ -393,7 +393,7 @@ extension Gme {
         }
     }
 
-    /// 用户进出房间信息
+    /// 房间内的事件
     public struct InOutTimeInfo: TCOutputModel {
         /// 进入房间时间
         public let startTime: Int64
@@ -505,10 +505,15 @@ extension Gme {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let strRoomId: String?
 
+        /// 房间里用户字符串uin列表
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strUins: [String]?
+
         enum CodingKeys: String, CodingKey {
             case roomId = "RoomId"
             case uins = "Uins"
             case strRoomId = "StrRoomId"
+            case strUins = "StrUins"
         }
     }
 

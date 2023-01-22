@@ -44,7 +44,10 @@ extension Tdmq {
         /// 订阅组名称，指定此参数后将只返回该订阅组信息
         public let filterOneGroup: String?
 
-        public init(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil) {
+        /// group类型
+        public let types: [String]?
+
+        public init(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, types: [String]? = nil) {
             self.clusterId = clusterId
             self.namespaceId = namespaceId
             self.offset = offset
@@ -54,6 +57,7 @@ extension Tdmq {
             self.sortedBy = sortedBy
             self.sortOrder = sortOrder
             self.filterOneGroup = filterOneGroup
+            self.types = types
         }
 
         enum CodingKeys: String, CodingKey {
@@ -66,6 +70,7 @@ extension Tdmq {
             case sortedBy = "SortedBy"
             case sortOrder = "SortOrder"
             case filterOneGroup = "FilterOneGroup"
+            case types = "Types"
         }
     }
 
@@ -101,13 +106,13 @@ extension Tdmq {
 
     /// 获取RocketMQ消费组列表
     @inlinable
-    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
-        self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup), region: region, logger: logger, on: eventLoop)
+    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, types: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQGroupsResponse> {
+        self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup, types: types), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取RocketMQ消费组列表
     @inlinable
-    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {
-        try await self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup), region: region, logger: logger, on: eventLoop)
+    public func describeRocketMQGroups(clusterId: String, namespaceId: String, offset: UInt64, limit: UInt64, filterTopic: String? = nil, filterGroup: String? = nil, sortedBy: String? = nil, sortOrder: String? = nil, filterOneGroup: String? = nil, types: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQGroupsResponse {
+        try await self.describeRocketMQGroups(DescribeRocketMQGroupsRequest(clusterId: clusterId, namespaceId: namespaceId, offset: offset, limit: limit, filterTopic: filterTopic, filterGroup: filterGroup, sortedBy: sortedBy, sortOrder: sortOrder, filterOneGroup: filterOneGroup, types: types), region: region, logger: logger, on: eventLoop)
     }
 }

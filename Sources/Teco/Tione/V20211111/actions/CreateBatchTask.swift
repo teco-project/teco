@@ -71,7 +71,10 @@ extension Tione {
         /// 备注
         public let remark: String?
 
-        public init(batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil) {
+        /// 任务执行结果回调URL，仅支持http和https。回调格式&内容详见: [TI-ONE 接口回调说明](https://cloud.tencent.com/document/product/851/84292)
+        public let callbackUrl: String?
+
+        public init(batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil, callbackUrl: String? = nil) {
             self.batchTaskName = batchTaskName
             self.chargeType = chargeType
             self.resourceConfigInfo = resourceConfigInfo
@@ -90,6 +93,7 @@ extension Tione {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.remark = remark
+            self.callbackUrl = callbackUrl
         }
 
         enum CodingKeys: String, CodingKey {
@@ -111,6 +115,7 @@ extension Tione {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
             case remark = "Remark"
+            case callbackUrl = "CallbackUrl"
         }
     }
 
@@ -142,13 +147,13 @@ extension Tione {
 
     /// 创建跑批任务
     @inlinable
-    public func createBatchTask(batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchTaskResponse> {
-        self.createBatchTask(CreateBatchTaskRequest(batchTaskName: batchTaskName, chargeType: chargeType, resourceConfigInfo: resourceConfigInfo, outputs: outputs, logEnable: logEnable, jobType: jobType, cronInfo: cronInfo, resourceGroupId: resourceGroupId, tags: tags, modelInfo: modelInfo, imageInfo: imageInfo, codePackage: codePackage, startCmd: startCmd, dataConfigs: dataConfigs, logConfig: logConfig, vpcId: vpcId, subnetId: subnetId, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func createBatchTask(batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchTaskResponse> {
+        self.createBatchTask(CreateBatchTaskRequest(batchTaskName: batchTaskName, chargeType: chargeType, resourceConfigInfo: resourceConfigInfo, outputs: outputs, logEnable: logEnable, jobType: jobType, cronInfo: cronInfo, resourceGroupId: resourceGroupId, tags: tags, modelInfo: modelInfo, imageInfo: imageInfo, codePackage: codePackage, startCmd: startCmd, dataConfigs: dataConfigs, logConfig: logConfig, vpcId: vpcId, subnetId: subnetId, remark: remark, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建跑批任务
     @inlinable
-    public func createBatchTask(batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchTaskResponse {
-        try await self.createBatchTask(CreateBatchTaskRequest(batchTaskName: batchTaskName, chargeType: chargeType, resourceConfigInfo: resourceConfigInfo, outputs: outputs, logEnable: logEnable, jobType: jobType, cronInfo: cronInfo, resourceGroupId: resourceGroupId, tags: tags, modelInfo: modelInfo, imageInfo: imageInfo, codePackage: codePackage, startCmd: startCmd, dataConfigs: dataConfigs, logConfig: logConfig, vpcId: vpcId, subnetId: subnetId, remark: remark), region: region, logger: logger, on: eventLoop)
+    public func createBatchTask(batchTaskName: String, chargeType: String, resourceConfigInfo: ResourceConfigInfo, outputs: [DataConfig], logEnable: Bool, jobType: UInt64? = nil, cronInfo: CronInfo? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, modelInfo: ModelInfo? = nil, imageInfo: ImageInfo? = nil, codePackage: CosPathInfo? = nil, startCmd: String? = nil, dataConfigs: [DataConfig]? = nil, logConfig: LogConfig? = nil, vpcId: String? = nil, subnetId: String? = nil, remark: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchTaskResponse {
+        try await self.createBatchTask(CreateBatchTaskRequest(batchTaskName: batchTaskName, chargeType: chargeType, resourceConfigInfo: resourceConfigInfo, outputs: outputs, logEnable: logEnable, jobType: jobType, cronInfo: cronInfo, resourceGroupId: resourceGroupId, tags: tags, modelInfo: modelInfo, imageInfo: imageInfo, codePackage: codePackage, startCmd: startCmd, dataConfigs: dataConfigs, logConfig: logConfig, vpcId: vpcId, subnetId: subnetId, remark: remark, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 }

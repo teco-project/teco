@@ -65,7 +65,7 @@ extension Clb {
         /// 公网独占集群ID或者CDCId。
         public let clusterIds: [String]?
 
-        /// 性能保障规格。
+        /// 性能容量型规格。
         public let slaType: String?
 
         /// Stgw独占集群的标签。

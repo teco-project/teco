@@ -15,6 +15,10 @@
 // DO NOT EDIT.
 
 extension Lcic {
+    /// 应用配置信息
+    public struct AppConfig: TCOutputModel {
+    }
+
     /// 应用自定义内容
     public struct AppCustomContent: TCInputModel {
         /// 场景参数，一个应用下可以设置多个不同场景。
@@ -97,5 +101,9 @@ extension Lcic {
             case lastQuitTimestamp = "LastQuitTimestamp"
             case rewords = "Rewords"
         }
+    }
+
+    /// 场景配置
+    public struct SceneItem: TCOutputModel {
     }
 }

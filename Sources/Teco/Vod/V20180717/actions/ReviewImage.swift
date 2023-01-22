@@ -20,7 +20,8 @@ extension Vod {
         /// 媒体文件 ID，即该文件在云点播上的全局唯一标识符。本接口要求媒体文件必须是图片格式。
         public let fileId: String
 
-        /// 图片审核模板 ID，当前固定填 10。
+        /// 图片审核模板 ID，取值范围：
+        /// <li>10：预置模板，支持检测的违规标签包括色情（Porn）、暴恐（Terror）和不适宜的信息（Polity）。</li>
         public let definition: UInt64
 
         /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
@@ -42,13 +43,19 @@ extension Vod {
     /// ReviewImage返回参数结构体
     public struct ReviewImageResponse: TCResponseModel {
         /// 图片审核任务结果。
+        /// <font color=red>注意：该字段已废弃，建议使用 MediaReviewResult。</font>
         public let reviewResultSet: [ContentReviewResult]
+
+        /// 图片审核任务结果。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mediaReviewResult: ReviewImageResult?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case reviewResultSet = "ReviewResultSet"
+            case mediaReviewResult = "MediaReviewResult"
             case requestId = "RequestId"
         }
     }

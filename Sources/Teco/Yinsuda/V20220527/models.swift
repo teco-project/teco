@@ -15,6 +15,24 @@
 // DO NOT EDIT.
 
 extension Yinsuda {
+    /// AME 曲库歌曲基础信息。
+    public struct AMEMusicBaseInfo: TCOutputModel {
+        /// 歌曲 Id。
+        public let musicId: String
+
+        /// 歌曲名称。
+        public let name: String
+
+        /// 歌手列表。
+        public let singerSet: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case musicId = "MusicId"
+            case name = "Name"
+            case singerSet = "SingerSet"
+        }
+    }
+
     /// 副歌片段信息。
     public struct ChorusClip: TCOutputModel {
         /// 开始时间，单位：毫秒。
@@ -69,9 +87,14 @@ extension Yinsuda {
         /// 命中规则。
         public let matchRule: KTVMatchRule
 
+        /// AME 歌曲基础信息，仅在使用音速达歌曲 Id 匹配 AME 曲库时有效。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ameMusicBaseInfo: AMEMusicBaseInfo?
+
         enum CodingKeys: String, CodingKey {
             case ktvMusicBaseInfo = "KTVMusicBaseInfo"
             case matchRule = "MatchRule"
+            case ameMusicBaseInfo = "AMEMusicBaseInfo"
         }
     }
 
@@ -84,14 +107,19 @@ extension Yinsuda {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let musicInfo: KTVMatchRuleMusicInfo?
 
-        public init(ameMusicId: String? = nil, musicInfo: KTVMatchRuleMusicInfo? = nil) {
+        /// 音速达歌曲 Id，用于匹配 AME 曲库歌曲。
+        public let musicIdToMatchAME: String?
+
+        public init(ameMusicId: String? = nil, musicInfo: KTVMatchRuleMusicInfo? = nil, musicIdToMatchAME: String? = nil) {
             self.ameMusicId = ameMusicId
             self.musicInfo = musicInfo
+            self.musicIdToMatchAME = musicIdToMatchAME
         }
 
         enum CodingKeys: String, CodingKey {
             case ameMusicId = "AMEMusicId"
             case musicInfo = "MusicInfo"
+            case musicIdToMatchAME = "MusicIdToMatchAME"
         }
     }
 

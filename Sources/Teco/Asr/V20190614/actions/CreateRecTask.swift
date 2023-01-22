@@ -88,10 +88,13 @@ extension Asr {
         /// 情绪能量值，取值为音量分贝值/10。取值范围：[1,10]。值越高情绪越强烈。0:不开启，1:开启
         public let emotionalEnergy: Int64?
 
-        /// 热词增强功能。1:开启后（仅支持8k_zh,16k_zh），将开启同音替换功能，同音字、词在热词中配置。举例：热词配置“蜜制”并开启增强功能后，与“蜜制”同拼音（mizhi）的“秘制”、“蜜汁”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。
+        /// 热词增强功能。1:开启后（仅支持8k_zh,16k_zh），将开启同音替换功能，同音字、词在热词中配置。举例：热词配置“蜜制”并开启增强功能后，与“蜜制”同拼音（mizhi）的“秘制”的识别结果会被强制替换成“蜜制”。因此建议客户根据自己的实际情况开启该功能。
         public let reinforceHotword: Int64?
 
-        public init(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil) {
+        /// 单标点最多字数，取值范围：[6，40]。默认为0，不开启该功能。该参数可用于字幕生成场景，控制单行字幕最大字数。
+        public let sentenceMaxLength: Int64?
+
+        public init(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, sentenceMaxLength: Int64? = nil) {
             self.engineModelType = engineModelType
             self.channelNum = channelNum
             self.resTextFormat = resTextFormat
@@ -111,6 +114,7 @@ extension Asr {
             self.filterModal = filterModal
             self.emotionalEnergy = emotionalEnergy
             self.reinforceHotword = reinforceHotword
+            self.sentenceMaxLength = sentenceMaxLength
         }
 
         enum CodingKeys: String, CodingKey {
@@ -133,6 +137,7 @@ extension Asr {
             case filterModal = "FilterModal"
             case emotionalEnergy = "EmotionalEnergy"
             case reinforceHotword = "ReinforceHotword"
+            case sentenceMaxLength = "SentenceMaxLength"
         }
     }
 
@@ -154,14 +159,11 @@ extension Asr {
     ///
     /// 本接口服务对时长5小时以内的录音文件进行识别，异步返回识别全部结果。
     /// • 支持中文普通话、英语、粤语、日语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
-    /// • 支持通用、音视频领域
-    /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式
-    /// • 支持语音 URL 和本地语音文件两种请求方式
-    /// • 语音 URL 的音频时长不能长于5小时，文件大小不超过512MB
-    /// • 本地语音文件不能大于5MB
-    /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天
+    /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式。
+    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。
+    /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天。
     /// • 支持回调或轮询的方式获取结果，结果获取请参考[ 录音文件识别结果查询](https://cloud.tencent.com/document/product/1093/37822)。
-    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    /// •   生成字幕场景可设置参数ResTextFormat为3，解析ResultDetail结构生成字幕，可参考 [生成字幕最佳实践](https://cloud.tencent.com/document/product/1093/84291)。
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
@@ -173,14 +175,11 @@ extension Asr {
     ///
     /// 本接口服务对时长5小时以内的录音文件进行识别，异步返回识别全部结果。
     /// • 支持中文普通话、英语、粤语、日语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
-    /// • 支持通用、音视频领域
-    /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式
-    /// • 支持语音 URL 和本地语音文件两种请求方式
-    /// • 语音 URL 的音频时长不能长于5小时，文件大小不超过512MB
-    /// • 本地语音文件不能大于5MB
-    /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天
+    /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式。
+    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。
+    /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天。
     /// • 支持回调或轮询的方式获取结果，结果获取请参考[ 录音文件识别结果查询](https://cloud.tencent.com/document/product/1093/37822)。
-    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    /// •   生成字幕场景可设置参数ResTextFormat为3，解析ResultDetail结构生成字幕，可参考 [生成字幕最佳实践](https://cloud.tencent.com/document/product/1093/84291)。
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
@@ -192,37 +191,31 @@ extension Asr {
     ///
     /// 本接口服务对时长5小时以内的录音文件进行识别，异步返回识别全部结果。
     /// • 支持中文普通话、英语、粤语、日语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
-    /// • 支持通用、音视频领域
-    /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式
-    /// • 支持语音 URL 和本地语音文件两种请求方式
-    /// • 语音 URL 的音频时长不能长于5小时，文件大小不超过512MB
-    /// • 本地语音文件不能大于5MB
-    /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天
+    /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式。
+    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。
+    /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天。
     /// • 支持回调或轮询的方式获取结果，结果获取请参考[ 录音文件识别结果查询](https://cloud.tencent.com/document/product/1093/37822)。
-    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    /// •   生成字幕场景可设置参数ResTextFormat为3，解析ResultDetail结构生成字幕，可参考 [生成字幕最佳实践](https://cloud.tencent.com/document/product/1093/84291)。
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecTaskResponse> {
-        self.createRecTask(CreateRecTaskRequest(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword), region: region, logger: logger, on: eventLoop)
+    public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, sentenceMaxLength: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecTaskResponse> {
+        self.createRecTask(CreateRecTaskRequest(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword, sentenceMaxLength: sentenceMaxLength), region: region, logger: logger, on: eventLoop)
     }
 
     /// 录音文件识别请求
     ///
     /// 本接口服务对时长5小时以内的录音文件进行识别，异步返回识别全部结果。
     /// • 支持中文普通话、英语、粤语、日语、上海话、四川话、武汉话、贵阳话、昆明话、西安话、郑州话、太原话、兰州话、银川话、西宁话、南京话、合肥话、南昌话、长沙话、苏州话、杭州话、济南话、天津话、石家庄话、黑龙江话、吉林话、辽宁话。
-    /// • 支持通用、音视频领域
-    /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式
-    /// • 支持语音 URL 和本地语音文件两种请求方式
-    /// • 语音 URL 的音频时长不能长于5小时，文件大小不超过512MB
-    /// • 本地语音文件不能大于5MB
-    /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天
+    /// • 支持wav、mp3、m4a、flv、mp4、wma、3gp、amr、aac、ogg-opus、flac格式。
+    /// • 支持语音 URL 和本地语音文件两种请求方式。语音 URL 的音频时长不能长于5小时，文件大小不超过1GB。本地语音文件调用不能大于5MB。
+    /// • 提交录音文件识别请求后，在3小时内完成识别（大多数情况下1小时音频约3分钟以内完成识别，半小时内发送超过1000小时录音或者2万条识别任务的除外），识别结果在服务端可保存7天。
     /// • 支持回调或轮询的方式获取结果，结果获取请参考[ 录音文件识别结果查询](https://cloud.tencent.com/document/product/1093/37822)。
-    /// •   请求方法为 HTTP POST , Content-Type为"application/json; charset=utf-8"
+    /// •   生成字幕场景可设置参数ResTextFormat为3，解析ResultDetail结构生成字幕，可参考 [生成字幕最佳实践](https://cloud.tencent.com/document/product/1093/84291)。
     /// •   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     /// • 默认接口请求频率限制：20次/秒，如您有提高请求频率限制的需求，请提[工单](https://console.cloud.tencent.com/workorder/category)进行咨询。
     @inlinable
-    public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecTaskResponse {
-        try await self.createRecTask(CreateRecTaskRequest(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword), region: region, logger: logger, on: eventLoop)
+    public func createRecTask(engineModelType: String, channelNum: UInt64, resTextFormat: UInt64, sourceType: UInt64, speakerDiarization: Int64? = nil, speakerNumber: Int64? = nil, callbackUrl: String? = nil, url: String? = nil, data: String? = nil, dataLen: UInt64? = nil, convertNumMode: Int64? = nil, filterDirty: Int64? = nil, hotwordId: String? = nil, customizationId: String? = nil, extra: String? = nil, filterPunc: Int64? = nil, filterModal: Int64? = nil, emotionalEnergy: Int64? = nil, reinforceHotword: Int64? = nil, sentenceMaxLength: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecTaskResponse {
+        try await self.createRecTask(CreateRecTaskRequest(engineModelType: engineModelType, channelNum: channelNum, resTextFormat: resTextFormat, sourceType: sourceType, speakerDiarization: speakerDiarization, speakerNumber: speakerNumber, callbackUrl: callbackUrl, url: url, data: data, dataLen: dataLen, convertNumMode: convertNumMode, filterDirty: filterDirty, hotwordId: hotwordId, customizationId: customizationId, extra: extra, filterPunc: filterPunc, filterModal: filterModal, emotionalEnergy: emotionalEnergy, reinforceHotword: reinforceHotword, sentenceMaxLength: sentenceMaxLength), region: region, logger: logger, on: eventLoop)
     }
 }

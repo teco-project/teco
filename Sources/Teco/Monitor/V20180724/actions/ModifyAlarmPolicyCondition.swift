@@ -41,7 +41,19 @@ extension Monitor {
         /// 日志告警创建请求参数信息
         public let logAlarmReqInfo: LogAlarmReq?
 
-        public init(module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil) {
+        /// 模版id，专供prom使用
+        public let noticeIds: [String]?
+
+        /// 启停状态，0=停用，1=启用
+        public let enable: Int64?
+
+        /// 专供prom策略名称
+        public let policyName: String?
+
+        /// 事件配置的告警
+        public let ebSubject: String?
+
+        public init(module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, noticeIds: [String]? = nil, enable: Int64? = nil, policyName: String? = nil, ebSubject: String? = nil) {
             self.module = module
             self.policyId = policyId
             self.conditionTemplateId = conditionTemplateId
@@ -50,6 +62,10 @@ extension Monitor {
             self.filter = filter
             self.groupBy = groupBy
             self.logAlarmReqInfo = logAlarmReqInfo
+            self.noticeIds = noticeIds
+            self.enable = enable
+            self.policyName = policyName
+            self.ebSubject = ebSubject
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +77,10 @@ extension Monitor {
             case filter = "Filter"
             case groupBy = "GroupBy"
             case logAlarmReqInfo = "LogAlarmReqInfo"
+            case noticeIds = "NoticeIds"
+            case enable = "Enable"
+            case policyName = "PolicyName"
+            case ebSubject = "EbSubject"
         }
     }
 
@@ -88,13 +108,13 @@ extension Monitor {
 
     /// 修改告警策略触发条件
     @inlinable @discardableResult
-    public func modifyAlarmPolicyCondition(module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyConditionResponse> {
-        self.modifyAlarmPolicyCondition(ModifyAlarmPolicyConditionRequest(module: module, policyId: policyId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, filter: filter, groupBy: groupBy, logAlarmReqInfo: logAlarmReqInfo), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarmPolicyCondition(module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, noticeIds: [String]? = nil, enable: Int64? = nil, policyName: String? = nil, ebSubject: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyConditionResponse> {
+        self.modifyAlarmPolicyCondition(ModifyAlarmPolicyConditionRequest(module: module, policyId: policyId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, filter: filter, groupBy: groupBy, logAlarmReqInfo: logAlarmReqInfo, noticeIds: noticeIds, enable: enable, policyName: policyName, ebSubject: ebSubject), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略触发条件
     @inlinable @discardableResult
-    public func modifyAlarmPolicyCondition(module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyConditionResponse {
-        try await self.modifyAlarmPolicyCondition(ModifyAlarmPolicyConditionRequest(module: module, policyId: policyId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, filter: filter, groupBy: groupBy, logAlarmReqInfo: logAlarmReqInfo), region: region, logger: logger, on: eventLoop)
+    public func modifyAlarmPolicyCondition(module: String, policyId: String, conditionTemplateId: Int64? = nil, condition: AlarmPolicyCondition? = nil, eventCondition: AlarmPolicyEventCondition? = nil, filter: AlarmPolicyFilter? = nil, groupBy: [String]? = nil, logAlarmReqInfo: LogAlarmReq? = nil, noticeIds: [String]? = nil, enable: Int64? = nil, policyName: String? = nil, ebSubject: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyConditionResponse {
+        try await self.modifyAlarmPolicyCondition(ModifyAlarmPolicyConditionRequest(module: module, policyId: policyId, conditionTemplateId: conditionTemplateId, condition: condition, eventCondition: eventCondition, filter: filter, groupBy: groupBy, logAlarmReqInfo: logAlarmReqInfo, noticeIds: noticeIds, enable: enable, policyName: policyName, ebSubject: ebSubject), region: region, logger: logger, on: eventLoop)
     }
 }

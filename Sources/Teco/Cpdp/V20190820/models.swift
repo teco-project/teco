@@ -5005,6 +5005,16 @@ extension Cpdp {
         }
     }
 
+    /// 收款用户资金账户信息
+    public struct PayeeFundingAccountResult: TCOutputModel {
+        /// 资金账户ID
+        public let fundingAccountBindSerialNo: String
+
+        enum CodingKeys: String, CodingKey {
+            case fundingAccountBindSerialNo = "FundingAccountBindSerialNo"
+        }
+    }
+
     /// 收款用户信息结果
     public struct PayeeInfoResult: TCOutputModel {
         /// 收款用户ID
@@ -5229,6 +5239,44 @@ extension Cpdp {
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case count = "Count"
+        }
+    }
+
+    /// 平台账户余额信息
+    public struct PlatformAccountBalanceResult: TCOutputModel {
+        /// 收入类型
+        /// LABOR:劳务所得
+        /// OCCASION:偶然所得
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let incomeType: String?
+
+        /// 总余额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let balance: String?
+
+        /// 系统冻结余额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let systemFreezeBalance: String?
+
+        /// 人工冻结余额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let manualFreezeBalance: String?
+
+        /// 可提现余额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let payableBalance: String?
+
+        /// 提现中余额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let inPayBalance: String?
+
+        enum CodingKeys: String, CodingKey {
+            case incomeType = "IncomeType"
+            case balance = "Balance"
+            case systemFreezeBalance = "SystemFreezeBalance"
+            case manualFreezeBalance = "ManualFreezeBalance"
+            case payableBalance = "PayableBalance"
+            case inPayBalance = "InPayBalance"
         }
     }
 
@@ -7591,6 +7639,16 @@ extension Cpdp {
             case localeCode = "LocaleCode"
             case regionCode = "RegionCode"
             case userClientIp = "UserClientIp"
+        }
+    }
+
+    /// 服务商账户余额返回信息
+    public struct ServiceProviderAccountBalanceResult: TCOutputModel {
+        /// 服务商账户余额
+        public let balance: String
+
+        enum CodingKeys: String, CodingKey {
+            case balance = "Balance"
         }
     }
 

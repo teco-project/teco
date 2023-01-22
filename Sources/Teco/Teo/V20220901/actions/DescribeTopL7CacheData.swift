@@ -45,13 +45,14 @@ extension Teo {
         /// 查询前多少个数据，不填默认默认为10， 表示查询前top 10的数据。
         public let limit: Int64?
 
-        /// 筛选条件，key可选的值有：
-        /// <li> cacheType：缓存类型(状态)；</li>
-        /// <li>domain：Host/域名；</li>
-        /// <li>resourceType：资源类型；</li>
-        /// <li>url：url地址；</li>
-        /// <li>tagKey：标签Key；</li>
-        /// <li>tagValue：标签Value。</li>
+        /// 过滤条件，详细的过滤条件如下：
+        /// <li>domain<br>   按照【<strong>子域名</strong>】进行过滤，子域名形如： test.example.com。<br>   类型：String<br>   必选：否</li>
+        /// <li>url<br>   按照【<strong>URL</strong>】进行过滤，此参数只支持30天的时间范围，URL形如：/content。<br>   类型：String<br>   必选：否</li>
+        /// <li>resourceType<br>   按照【<strong>资源类型</strong>】进行过滤，此参数只支持30天的时间范围，资源类型形如：jpg，png。<br>   类型：String<br>   必选：否</li>
+        /// <li>cacheType<br>   按照【<strong>缓存类型</strong>】进行过滤。<br>   类型：String<br>   必选：否<br>   可选项：<br>   hit：命中缓存；<br>   dynamic：资源不可缓存；<br>   miss：未命中缓存。</li>
+        /// <li>statusCode<br>   按照【<strong>状态码</strong>】进行过滤，此参数只支持30天的时间范围。<br>   类型：String<br>   必选：否<br>   可选项：<br>   1XX：1xx类型的状态码；<br>   100：100状态码；<br>   101：101状态码；<br>   102：102状态码；<br>   2XX：2xx类型的状态码；<br>   200：200状态码；<br>   201：201状态码；<br>   202：202状态码；<br>   203：203状态码；<br>   204：204状态码；<br>   100：100状态码；<br>   206：206状态码；<br>   207：207状态码；<br>   3XX：3xx类型的状态码；<br>   300：300状态码；<br>   301：301状态码；<br>   302：302状态码；<br>   303：303状态码；<br>   304：304状态码；<br>   305：305状态码；<br>   307：307状态码；<br>   4XX：4xx类型的状态码；<br>   400：400状态码；<br>   401：401状态码；<br>   402：402状态码；<br>   403：403状态码；<br>   404：404状态码；<br>   405：405状态码；<br>   406：406状态码；<br>   407：407状态码；<br>   408：408状态码；<br>   409：409状态码；<br>   410：410状态码；<br>   411：411状态码；<br>   412：412状态码；<br>   412：413状态码；<br>   414：414状态码；<br>   415：415状态码；<br>   416：416状态码；<br>   417：417状态码；<br>   422：422状态码；<br>   423：423状态码；<br>   424：424状态码；<br>   426：426状态码；<br>   451：451状态码；<br>   5XX：5xx类型的状态码；<br>   500：500状态码；<br>   501：501状态码；<br>   502：502状态码；<br>   503：503状态码；<br>   504：504状态码；<br>   505：505状态码；<br>   506：506状态码；<br>   507：507状态码；<br>   510：510状态码；<br>   514：514状态码；<br>   544：544状态码。</li>
+        /// <li>tagKey<br>   按照【<strong>标签Key</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
+        /// <li>tagValue<br>   按照【<strong>标签Value</strong>】进行过滤。<br>   类型：String<br>   必选：否</li>
         public let filters: [QueryCondition]?
 
         /// 查询时间粒度，取值有：
@@ -63,7 +64,8 @@ extension Teo {
 
         /// 数据归属地区，取值有：
         /// <li>overseas：全球（除中国大陆地区）数据；</li>
-        /// <li>mainland：中国大陆地区数据。</li>不填将根据用户所在地智能选择地区。
+        /// <li>mainland：中国大陆地区数据；</li>
+        /// <li>global：全球数据。</li>不填默认取值为global。
         public let area: String?
 
         public init(startTime: Date, endTime: Date, metricName: String, zoneIds: [String]? = nil, limit: Int64? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil) {
@@ -91,24 +93,24 @@ extension Teo {
 
     /// DescribeTopL7CacheData返回参数结构体
     public struct DescribeTopL7CacheDataResponse: TCResponseModel {
+        /// 查询结果的总条数。
+        public let totalCount: UInt64
+
         /// 七层缓存TopN流量数据列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [TopDataRecord]?
-
-        /// 查询结果的总条数。
-        public let totalCount: UInt64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
-            case data = "Data"
             case totalCount = "TotalCount"
+            case data = "Data"
             case requestId = "RequestId"
         }
     }
 
-    /// 查询七层缓存分析Top数据
+    /// 查询缓存分析Top数据
     ///
     /// 本接口（DescribeTopL7CacheData）用于查询七层缓存分析topN流量数据。
     @inlinable
@@ -116,7 +118,7 @@ extension Teo {
         self.client.execute(action: "DescribeTopL7CacheData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 查询七层缓存分析Top数据
+    /// 查询缓存分析Top数据
     ///
     /// 本接口（DescribeTopL7CacheData）用于查询七层缓存分析topN流量数据。
     @inlinable
@@ -124,7 +126,7 @@ extension Teo {
         try await self.client.execute(action: "DescribeTopL7CacheData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 查询七层缓存分析Top数据
+    /// 查询缓存分析Top数据
     ///
     /// 本接口（DescribeTopL7CacheData）用于查询七层缓存分析topN流量数据。
     @inlinable
@@ -132,7 +134,7 @@ extension Teo {
         self.describeTopL7CacheData(DescribeTopL7CacheDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, zoneIds: zoneIds, limit: limit, filters: filters, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 查询七层缓存分析Top数据
+    /// 查询缓存分析Top数据
     ///
     /// 本接口（DescribeTopL7CacheData）用于查询七层缓存分析topN流量数据。
     @inlinable

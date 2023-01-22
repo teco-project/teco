@@ -17,16 +17,16 @@
 extension Redis {
     /// DescribeReplicationGroup请求参数结构体
     public struct DescribeReplicationGroupRequest: TCRequestModel {
-        /// 实例列表的大小，参数默认值20
+        /// 每页输出实例列表的大小，参数默认值20。
         public let limit: Int64
 
-        /// 偏移量，取Limit整数倍
+        /// 分页偏移量，取Limit整数倍。计算公式：offset=limit*(页码-1)。
         public let offset: Int64
 
-        /// 复制组ID
+        /// 复制组ID。
         public let groupId: String?
 
-        /// 实例ID和实例名称，支持模糊查询
+        /// 设置模糊查询的关键字，可以设置为实例ID或实例名称进行模糊查询。
         public let searchKey: String?
 
         public init(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil) {
@@ -46,10 +46,10 @@ extension Redis {
 
     /// DescribeReplicationGroup返回参数结构体
     public struct DescribeReplicationGroupResponse: TCResponseModel {
-        /// 复制组数
+        /// 复制组数量。
         public let totalCount: Int64
 
-        /// 复制组信息
+        /// 复制组信息。
         public let groups: [Groups]
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -63,24 +63,32 @@ extension Redis {
     }
 
     /// 查询复制组
+    ///
+    /// 本接口（DescribeReplicationGroup）查询复制组。
     @inlinable
     public func describeReplicationGroup(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationGroupResponse> {
         self.client.execute(action: "DescribeReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询复制组
+    ///
+    /// 本接口（DescribeReplicationGroup）查询复制组。
     @inlinable
     public func describeReplicationGroup(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationGroupResponse {
         try await self.client.execute(action: "DescribeReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询复制组
+    ///
+    /// 本接口（DescribeReplicationGroup）查询复制组。
     @inlinable
     public func describeReplicationGroup(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationGroupResponse> {
         self.describeReplicationGroup(DescribeReplicationGroupRequest(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询复制组
+    ///
+    /// 本接口（DescribeReplicationGroup）查询复制组。
     @inlinable
     public func describeReplicationGroup(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationGroupResponse {
         try await self.describeReplicationGroup(DescribeReplicationGroupRequest(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey), region: region, logger: logger, on: eventLoop)

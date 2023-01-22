@@ -2625,6 +2625,10 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qnPrivateAccess: QnPrivateAccess?
 
+        /// HTTPS服务，缺省时默认开启
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let httpsBilling: HttpsBilling?
+
         enum CodingKeys: String, CodingKey {
             case resourceId = "ResourceId"
             case appId = "AppId"
@@ -2690,6 +2694,7 @@ extension Cdn {
             case parentHost = "ParentHost"
             case hwPrivateAccess = "HwPrivateAccess"
             case qnPrivateAccess = "QnPrivateAccess"
+            case httpsBilling = "HttpsBilling"
         }
     }
 
@@ -3026,6 +3031,70 @@ extension Cdn {
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case cappingRules = "CappingRules"
+        }
+    }
+
+    /// 动态打包任务过滤器
+    public struct EdgePackTaskFilter: TCInputModel {
+        /// 过滤字段名
+        /// apk: apk名称
+        /// status: 母包处理进度 done, failed, processing
+        public let name: String
+
+        /// 过滤字段值
+        public let value: [String]
+
+        /// 是否启用模糊查询，仅支持过滤字段名为 apk。
+        /// 模糊查询时，Value长度最大为1。
+        public let fuzzy: Bool
+
+        public init(name: String, value: [String], fuzzy: Bool) {
+            self.name = name
+            self.value = value
+            self.fuzzy = fuzzy
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case value = "Value"
+            case fuzzy = "Fuzzy"
+        }
+    }
+
+    /// 动态打包任务状态
+    public struct EdgePackTaskStatus: TCOutputModel {
+        /// APK 名称
+        public let apk: String
+
+        /// 输出目录
+        public let dstDir: String
+
+        /// 上传时间
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var uploadTime: Date
+
+        /// 任务状态
+        /// created: 创建成功
+        /// processing: 处理中
+        /// done: 处理完成
+        /// failed: 处理失败
+        public let status: String
+
+        /// 上传目录
+        public let srcDir: [String]
+
+        /// 失败任务状态详情
+        public let statusDesc: String
+
+        enum CodingKeys: String, CodingKey {
+            case apk = "Apk"
+            case dstDir = "DstDir"
+            case uploadTime = "UploadTime"
+            case status = "Status"
+            case srcDir = "SrcDir"
+            case statusDesc = "StatusDesc"
         }
     }
 
@@ -3432,6 +3501,20 @@ extension Cdn {
         }
     }
 
+    /// HTTPS服务，若关闭，下发配置拦截https请求，开启时会产生计费
+    public struct HttpsBilling: TCInputModel, TCOutputModel {
+        /// HTTPS服务，缺省时默认开启【会产生计费】
+        public let `switch`: String
+
+        public init(switch: String) {
+            self.`switch` = `switch`
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+        }
+    }
+
     /// 华为云对象存储回源鉴权
     public struct HwPrivateAccess: TCInputModel, TCOutputModel {
         /// 开关 on/off
@@ -3513,8 +3596,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterRules: [IpFilterPathRule]?
 
-        /// IP 黑白名单验证失败时返回的 HTTP Code
-        /// 合法值: 400~499
+        /// IP 黑白名单验证失败时返回的 code（即将下线）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let returnCode: Int64?
 
@@ -4769,7 +4851,7 @@ extension Cdn {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reorder: String?
 
-        /// includeAll | excludeAll | includeCustom | excludeAll 使用/排除部分url参数
+        /// includeAll | excludeAll | includeCustom | excludeCustom 使用/排除部分url参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
 

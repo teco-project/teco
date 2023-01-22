@@ -414,12 +414,18 @@ extension Wedata {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [CompareRuleItem]?
 
-        public init(items: [CompareRuleItem]? = nil) {
+        /// 周期性模板默认周期，单位秒
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cycleStep: UInt64?
+
+        public init(items: [CompareRuleItem]? = nil, cycleStep: UInt64? = nil) {
             self.items = items
+            self.cycleStep = cycleStep
         }
 
         enum CodingKeys: String, CodingKey {
             case items = "Items"
+            case cycleStep = "CycleStep"
         }
     }
 
@@ -453,6 +459,22 @@ extension Wedata {
             case `operator` = "Operator"
             case valueComputeType = "ValueComputeType"
             case valueList = "ValueList"
+        }
+    }
+
+    /// 采集器状态统计
+    public struct CvmAgentStatus: TCOutputModel {
+        /// agent状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let status: String?
+
+        /// 对应状态的agent总数
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let count: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case status = "Status"
+            case count = "Count"
         }
     }
 
@@ -1239,6 +1261,18 @@ extension Wedata {
         /// 关联任务数
         public let taskCount: UInt64
 
+        /// 采集器组ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let agentGroupId: String?
+
+        /// agent状态统计
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cvmAgentStatusList: [CvmAgentStatus]?
+
+        /// agent数量
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let agentTotal: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case agentId = "AgentId"
             case agentName = "AgentName"
@@ -1250,6 +1284,9 @@ extension Wedata {
             case executorGroupId = "ExecutorGroupId"
             case executorGroupName = "ExecutorGroupName"
             case taskCount = "TaskCount"
+            case agentGroupId = "AgentGroupId"
+            case cvmAgentStatusList = "CvmAgentStatusList"
+            case agentTotal = "AgentTotal"
         }
     }
 

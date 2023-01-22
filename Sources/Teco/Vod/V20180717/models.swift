@@ -3778,6 +3778,24 @@ extension Vod {
         }
     }
 
+    /// 画面动态范围信息。
+    public struct DynamicRangeInfo: TCOutputModel {
+        /// 画面动态范围信息。可取值：
+        /// <li>SDR：Standard Dynamic Range 标准动态范围；</li>
+        /// <li>HDR：High Dynamic Range 高动态范围。</li>
+        public let type: String?
+
+        /// 高动态范围类型，当 Type 为 HDR 时有效。目前支持的可取值：
+        /// <li>hdr10：表示 hdr10 标准；</li>
+        /// <li>hlg：表示 hlg 标准。</li>
+        public let hdrType: String?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case hdrType = "HDRType"
+        }
+    }
+
     /// 编辑点播视频文件信息
     public struct EditMediaFileInfo: TCInputModel, TCOutputModel {
         /// 视频的 ID。
@@ -3883,27 +3901,27 @@ extension Vod {
     /// 编辑视频任务信息
     public struct EditMediaTask: TCOutputModel {
         /// 任务 ID。
-        public let taskId: String
+        public let taskId: String?
 
         /// 任务流状态，取值：
         /// <li>PROCESSING：处理中；</li>
         /// <li>FINISH：已完成。</li>
-        public let status: String
+        public let status: String?
 
         /// 错误码，0 表示成功，其他值表示失败：
         /// <li>40000：输入参数不合法，请检查输入参数；</li>
         /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
         /// <li>70000：内部服务错误，建议重试。</li>
-        public let errCode: Int64
+        public let errCode: Int64?
 
         /// 错误码，空字符串表示成功，其他值表示失败，取值请参考 [视频处理类错误码](https://cloud.tencent.com/document/product/266/50368#.E8.A7.86.E9.A2.91.E5.A4.84.E7.90.86.E7.B1.BB.E9.94.99.E8.AF.AF.E7.A0.81) 列表。
-        public let errCodeExt: String
+        public let errCodeExt: String?
 
         /// 错误信息。
-        public let message: String
+        public let message: String?
 
         /// 编辑视频任务进度，取值范围 [0-100] 。
-        public let progress: Int64
+        public let progress: Int64?
 
         /// 视频编辑任务的输入。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -3914,16 +3932,19 @@ extension Vod {
         public let output: EditMediaTaskOutput?
 
         /// 输出视频的元信息。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
 
-        /// 若发起视频编辑任务时指定了视频处理流程，则该字段为流程任务 ID。
-        public let procedureTaskId: String
+        /// 任务类型为 Procedure 的任务 ID。若发起[编辑视频](https://cloud.tencent.com/document/api/266/34783)任务时指定了任务流模板(ProcedureName)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
+        public let procedureTaskId: String?
+
+        /// 任务类型为 ReviewAudioVideo 的任务 ID。若发起[编辑视频](https://cloud.tencent.com/document/api/266/34783)任务时指定了任务流模板(ProcedureName)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        public let reviewAudioVideoTaskId: String?
 
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
-        public let sessionId: String
+        public let sessionId: String?
 
         /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
-        public let sessionContext: String
+        public let sessionContext: String?
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
@@ -3936,6 +3957,7 @@ extension Vod {
             case output = "Output"
             case metaData = "MetaData"
             case procedureTaskId = "ProcedureTaskId"
+            case reviewAudioVideoTaskId = "ReviewAudioVideoTaskId"
             case sessionId = "SessionId"
             case sessionContext = "SessionContext"
         }
@@ -4361,16 +4383,39 @@ extension Vod {
         }
     }
 
+    /// 文件审核信息。
+    public struct FileReviewInfo: TCOutputModel {
+        /// 媒体审核信息\*。
+        ///
+        /// \* 只展示通过 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 发起的审核结果信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mediaReviewInfo: ReviewInfo?
+
+        /// 媒体封面审核信息\*。
+        ///
+        /// \* 只展示通过 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 或 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 发起的审核结果信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let coverReviewInfo: ReviewInfo?
+
+        enum CodingKeys: String, CodingKey {
+            case mediaReviewInfo = "MediaReviewInfo"
+            case coverReviewInfo = "CoverReviewInfo"
+        }
+    }
+
     /// 文件上传任务信息
     public struct FileUploadTask: TCOutputModel {
         /// 文件唯一 ID。
-        public let fileId: String
+        public let fileId: String?
 
         /// 上传完成后生成的媒体文件基础信息。
-        public let mediaBasicInfo: MediaBasicInfo
+        public let mediaBasicInfo: MediaBasicInfo?
 
-        /// 若视频上传时指定了视频处理流程，则该字段为流程任务 ID。
-        public let procedureTaskId: String
+        /// 任务类型为 Procedure 的任务 ID。若视频[上传时指定要执行的任务(procedure)](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E5.8F.91.E8.B5.B7)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
+        public let procedureTaskId: String?
+
+        /// 任务类型为 ReviewAudioVideo 的任务 ID。若视频[上传时指定要执行的任务(procedure)](https://cloud.tencent.com/document/product/266/33475#.E4.BB.BB.E5.8A.A1.E5.8F.91.E8.B5.B7)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        public let reviewAudioVideoTaskId: String?
 
         /// 元信息。包括大小、时长、视频流信息、音频流信息等。
         /// 注意：此字段可能返回 null，表示取不到有效值。
@@ -4380,6 +4425,7 @@ extension Vod {
             case fileId = "FileId"
             case mediaBasicInfo = "MediaBasicInfo"
             case procedureTaskId = "ProcedureTaskId"
+            case reviewAudioVideoTaskId = "ReviewAudioVideoTaskId"
             case metaData = "MetaData"
         }
     }
@@ -5621,7 +5667,11 @@ extension Vod {
         public let subtitleInfo: MediaSubtitleInfo?
 
         /// 媒体文件唯一标识 ID。
-        public let fileId: String
+        public let fileId: String?
+
+        /// 审核信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reviewInfo: FileReviewInfo?
 
         enum CodingKeys: String, CodingKey {
             case basicInfo = "BasicInfo"
@@ -5636,6 +5686,7 @@ extension Vod {
             case miniProgramReviewInfo = "MiniProgramReviewInfo"
             case subtitleInfo = "SubtitleInfo"
             case fileId = "FileId"
+            case reviewInfo = "ReviewInfo"
         }
     }
 
@@ -6533,22 +6584,26 @@ extension Vod {
     /// 点播文件视频流信息
     public struct MediaVideoStreamItem: TCOutputModel {
         /// 视频流的码率，单位：bps。
-        public let bitrate: Int64
+        public let bitrate: Int64?
 
         /// 视频流的高度，单位：px。
-        public let height: Int64
+        public let height: Int64?
 
         /// 视频流的宽度，单位：px。
-        public let width: Int64
+        public let width: Int64?
 
         /// 视频流的编码格式，例如 h264。
-        public let codec: String
+        public let codec: String?
 
         /// 帧率，单位：hz。
-        public let fps: Int64
+        public let fps: Int64?
 
         /// 编码标签，仅当 Codec 为 hevc 时有效。
-        public let codecTag: String
+        public let codecTag: String?
+
+        /// 画面动态范围信息。
+        /// <li><font color=red>注意</font>：在 2023-01-10T00:00:00Z 后处理的转码文件，此字段有效。</li>
+        public let dynamicRangeInfo: DynamicRangeInfo
 
         enum CodingKeys: String, CodingKey {
             case bitrate = "Bitrate"
@@ -6557,6 +6612,7 @@ extension Vod {
             case codec = "Codec"
             case fps = "Fps"
             case codecTag = "CodecTag"
+            case dynamicRangeInfo = "DynamicRangeInfo"
         }
     }
 
@@ -7435,6 +7491,28 @@ extension Vod {
         }
     }
 
+    /// 任务流模板音视频审核输入参数类型。
+    public struct ProcedureReviewAudioVideoTaskInput: TCInputModel, TCOutputModel {
+        /// 审核模板。
+        public let definition: UInt64
+
+        /// 审核的内容，可选值：
+        /// <li>Media：原始音视频；</li>
+        /// <li>Cover：封面。</li>
+        /// 不填或填空数组时，默认为审核 Media。
+        public let reviewContents: [String]?
+
+        public init(definition: UInt64, reviewContents: [String]? = nil) {
+            self.definition = definition
+            self.reviewContents = reviewContents
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case definition = "Definition"
+            case reviewContents = "ReviewContents"
+        }
+    }
+
     /// 音视频处理任务信息
     public struct ProcedureTask: TCOutputModel {
         /// 音视频处理任务 ID。
@@ -7530,21 +7608,22 @@ extension Vod {
     /// 任务流模板详情
     public struct ProcedureTemplate: TCOutputModel {
         /// 任务流名字。
-        public let name: String
+        public let name: String?
 
         /// 任务流模板类型，取值范围：
         /// <li>Preset：系统预置任务流模板；</li>
         /// <li>Custom：用户自定义任务流模板。</li>
-        public let type: String
+        public let type: String?
 
         /// 模板描述信息，长度限制：256 个字符。
-        public let comment: String
+        public let comment: String?
 
         /// 视频处理类型任务参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaProcessTask: MediaProcessTaskInput?
 
-        /// AI 智能审核类型任务参数。
+        /// AI 智能审核类型任务参数 \*。
+        /// <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aiContentReviewTask: AiContentReviewTaskInput?
 
@@ -7560,11 +7639,15 @@ extension Vod {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let miniProgramPublishTask: WechatMiniProgramPublishTaskInput?
 
+        /// 音视频审核类型任务参数。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput?
+
         /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
-        public let createTime: String
+        public let createTime: String?
 
         /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
-        public let updateTime: String
+        public let updateTime: String?
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
@@ -7575,6 +7658,7 @@ extension Vod {
             case aiAnalysisTask = "AiAnalysisTask"
             case aiRecognitionTask = "AiRecognitionTask"
             case miniProgramPublishTask = "MiniProgramPublishTask"
+            case reviewAudioVideoTask = "ReviewAudioVideoTask"
             case createTime = "CreateTime"
             case updateTime = "UpdateTime"
         }
@@ -7816,49 +7900,52 @@ extension Vod {
         }
     }
 
-    /// 视频转拉任务信息
+    /// 拉取上传任务信息
     public struct PullUploadTask: TCOutputModel {
-        /// 转拉上传任务 ID。
-        public let taskId: String
+        /// 拉取上传任务 ID。
+        public let taskId: String?
 
         /// 任务流状态，取值：
         /// <li>PROCESSING：处理中；</li>
         /// <li>FINISH：已完成。</li>
-        public let status: String
+        public let status: String?
 
         /// 错误码，0 表示成功，其他值表示失败：
         /// <li>40000：输入参数不合法，请检查输入参数；</li>
         /// <li>60000：源文件错误（如视频数据损坏），请确认源文件是否正常；</li>
         /// <li>70000：内部服务错误，建议重试。</li>
-        public let errCode: Int64
+        public let errCode: Int64?
 
         /// 错误信息。
-        public let message: String
+        public let message: String?
 
-        /// 转拉上传完成后生成的视频 ID。
-        public let fileId: String
+        /// 拉取上传完成后生成的视频 ID。
+        public let fileId: String?
 
-        /// 转拉完成后生成的媒体文件基础信息。
+        /// 拉取上传完成后生成的媒体文件基础信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaBasicInfo: MediaBasicInfo?
 
         /// 输出视频的元信息。
-        public let metaData: MediaMetaData
+        public let metaData: MediaMetaData?
 
-        /// 转拉上传完成后生成的播放地址。
-        public let fileUrl: String
+        /// 拉取上传完成后生成的播放地址。
+        public let fileUrl: String?
 
-        /// 若转拉上传时指定了视频处理流程，则该参数为流程任务 ID。
-        public let procedureTaskId: String
+        /// 任务类型为 Procedure 的任务 ID。若[拉取上传](https://cloud.tencent.com/document/api/266/35575)时指定了媒体后续任务操作(Procedure)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
+        public let procedureTaskId: String?
 
-        /// 来源上下文，用于透传用户请求信息，任务流状态变更回调将返回该字段值，最长 1000 个字符。
-        public let sessionContext: String
+        /// 任务类型为 ReviewAudioVideo 的任务 ID。若[拉取上传](https://cloud.tencent.com/document/api/266/35575)时指定了媒体后续任务操作(Procedure)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        public let reviewAudioVideoTaskId: String?
+
+        /// 来源上下文，用于透传用户请求信息，[URL 拉取视频上传完成](https://cloud.tencent.com/document/product/266/7831)将返回该字段值，最长 1000 个字符。
+        public let sessionContext: String?
 
         /// 用于去重的识别码，如果七天内曾有过相同的识别码的请求，则本次的请求会返回错误。最长 50 个字符，不带或者带空字符串表示不做去重。
-        public let sessionId: String
+        public let sessionId: String?
 
-        /// 转拉任务进度，取值范围 [0-100] 。
-        public let progress: Int64
+        /// 拉取上传进度，取值范围 [0-100] 。
+        public let progress: Int64?
 
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
@@ -7870,6 +7957,7 @@ extension Vod {
             case metaData = "MetaData"
             case fileUrl = "FileUrl"
             case procedureTaskId = "ProcedureTaskId"
+            case reviewAudioVideoTaskId = "ReviewAudioVideoTaskId"
             case sessionContext = "SessionContext"
             case sessionId = "SessionId"
             case progress = "Progress"
@@ -8317,14 +8405,20 @@ extension Vod {
     /// 音视频审核任务的输入。
     public struct ReviewAudioVideoTaskInput: TCOutputModel {
         /// 媒体文件 ID。
-        public let fileId: String
+        public let fileId: String?
 
         /// 音视频审核模板 ID。
-        public let definition: UInt64
+        public let definition: UInt64?
+
+        /// 审核的内容，可选值：
+        /// <li>Media：原始音视频；</li>
+        /// <li>Cover：封面。</li>
+        public let reviewContents: [String]?
 
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case definition = "Definition"
+            case reviewContents = "ReviewContents"
         }
     }
 
@@ -8364,6 +8458,10 @@ extension Vod {
         /// 涉及违规信息的嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
         public let segmentSetFileUrlExpireTime: String
 
+        /// 封面审核结果。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let coverReviewResult: ReviewImageResult?
+
         enum CodingKeys: String, CodingKey {
             case suggestion = "Suggestion"
             case label = "Label"
@@ -8371,6 +8469,174 @@ extension Vod {
             case segmentSet = "SegmentSet"
             case segmentSetFileUrl = "SegmentSetFileUrl"
             case segmentSetFileUrlExpireTime = "SegmentSetFileUrlExpireTime"
+            case coverReviewResult = "CoverReviewResult"
+        }
+    }
+
+    /// 图片审核结果。
+    public struct ReviewImageResult: TCOutputModel {
+        /// 图片审核的结果建议，取值范围：
+        /// <li>pass：建议通过；</li>
+        /// <li>review：建议复审；</li>
+        /// <li>block：建议封禁。</li>
+        public let suggestion: String?
+
+        /// 当 Suggestion 为 review 或 block 时有效，表示最可能的违规的标签，取值范围：
+        /// <li>Porn：色情；</li>
+        /// <li>Terror：暴恐；</li>
+        /// <li>Polity：不适宜的信息；</li>
+        /// <li>Ad：广告；</li>
+        /// <li>Illegal：违法；</li>
+        /// <li>Religion：宗教；</li>
+        /// <li>Abuse：谩骂。</li>
+        public let label: String?
+
+        /// 当 Suggestion 为 review 或 block 时有效，表示最可能的违禁的形式，取值范围：
+        /// <li>Image：画面上的人物或图标；</li>
+        /// <li>OCR：画面上的文字。</li>
+        public let form: String?
+
+        /// 有违规信息的嫌疑的视频片段列表。
+        /// <font color=red>注意</font> ：该列表最多仅展示前 10个 元素。如希望获得完整结果，请从 SegmentSetFileUrl 对应的文件中获取。
+        public let segmentSet: [ReviewImageSegmentItem]?
+
+        /// 涉及违规信息的嫌疑的视频片段列表文件 URL。文件的内容为 JSON，数据结构与 SegmentSet 字段一致。 （文件不会永久存储，到达SegmentSetFileUrlExpireTime 时间点后文件将被删除）。
+        public let segmentSetFileUrl: String?
+
+        /// 涉及违规信息的嫌疑的视频片段列表文件 URL 失效时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let segmentSetFileUrlExpireTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case suggestion = "Suggestion"
+            case label = "Label"
+            case form = "Form"
+            case segmentSet = "SegmentSet"
+            case segmentSetFileUrl = "SegmentSetFileUrl"
+            case segmentSetFileUrlExpireTime = "SegmentSetFileUrlExpireTime"
+        }
+    }
+
+    /// 图片审核片段。
+    public struct ReviewImageSegmentItem: TCOutputModel {
+        /// 嫌疑片段涉及令人反感的信息的分数。
+        public let confidence: Float?
+
+        /// 嫌疑片段鉴别涉及违规信息的结果建议，取值范围：
+        /// <li>review：疑似违规，建议复审；</li>
+        /// <li>block：确认违规，建议封禁。</li>
+        public let suggestion: String?
+
+        /// 嫌疑片段最可能的违规的标签，取值范围：
+        /// <li>Porn：色情；</li>
+        /// <li>Terror：暴恐；</li>
+        /// <li>Polity：不适宜的信息；</li>
+        /// <li>Ad：广告；</li>
+        /// <li>Illegal：违法；</li>
+        /// <li>Religion：宗教；</li>
+        /// <li>Abuse：谩骂。</li>
+        public let label: String?
+
+        /// 违规子标签。
+        public let subLabel: String?
+
+        /// 嫌疑片段违禁的形式，取值范围：
+        /// <li>Image：画面上的人物或图标；</li>
+        /// <li>OCR：画面上的文字。</li>
+        public let form: String?
+
+        /// 嫌疑人物、图标或文字出现的区域坐标 (像素级)，[x1, y1, x2, y2]，即左上角坐标、右下角坐标。
+        public let areaCoordSet: [Int64]?
+
+        /// 当 Form 为 OCR 时有效，表示识别出来的 OCR 文本内容。
+        public let text: String?
+
+        /// 当 Form 为 OCR 时有效，表示嫌疑片段命中的违规关键词列表。
+        public let keywordSet: [String]?
+
+        enum CodingKeys: String, CodingKey {
+            case confidence = "Confidence"
+            case suggestion = "Suggestion"
+            case label = "Label"
+            case subLabel = "SubLabel"
+            case form = "Form"
+            case areaCoordSet = "AreaCoordSet"
+            case text = "Text"
+            case keywordSet = "KeywordSet"
+        }
+    }
+
+    /// 审核信息。
+    public struct ReviewInfo: TCOutputModel {
+        /// 审核模板 ID。
+        public let definition: UInt64?
+
+        /// 审核的结果建议，取值范围：
+        /// <li>pass：建议通过；</li>
+        /// <li>review：建议复审；</li>
+        /// <li>block：建议封禁。</li>
+        public let suggestion: String?
+
+        /// 审核类型，当 Suggestion 为 review 或 block 时有效，格式为：Form.Label。
+        /// Form 表示违禁的形式，取值范围：
+        /// <li>Image：画面上的人物或图标；</li>
+        /// <li>OCR：画面上的文字；</li>
+        /// <li>ASR：语音中的文字；</li>
+        /// <li>Voice：声音。</li>
+        /// Label 表示违禁的标签，取值范围：
+        /// <li>Porn：色情；</li>
+        /// <li>Terror：暴恐；</li>
+        /// <li>Polity：不适宜的信息；</li>
+        /// <li>Ad：广告；</li>
+        /// <li>Illegal：违法；</li>
+        /// <li>Religion：宗教；</li>
+        /// <li>Abuse：谩骂；</li>
+        /// <li>Moan：娇喘。</li>
+        public let typeSet: [String]?
+
+        /// 审核时间，使用  [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let reviewTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case definition = "Definition"
+            case suggestion = "Suggestion"
+            case typeSet = "TypeSet"
+            case reviewTime = "ReviewTime"
+        }
+    }
+
+    /// 审核模版详情
+    public struct ReviewTemplate: TCOutputModel {
+        /// 审核模版唯一标签。
+        public let definition: Int64
+
+        /// 模板名称。
+        public let name: String
+
+        /// 模板描述信息。
+        public let comment: String
+
+        /// 模板类型，可选值：
+        /// <li>Preset：系统预置模板；</li>
+        /// <li>Custom：用户自定义模板。</li>
+        public let type: String
+
+        /// 需要返回的违规标签列表。
+        public let labels: [String]
+
+        /// 模板创建时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let createTime: String
+
+        /// 模板最后修改时间，使用 [ISO 日期格式](https://cloud.tencent.com/document/product/266/11732#I)。
+        public let updateTime: String
+
+        enum CodingKeys: String, CodingKey {
+            case definition = "Definition"
+            case name = "Name"
+            case comment = "Comment"
+            case type = "Type"
+            case labels = "Labels"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
         }
     }
 
@@ -8861,19 +9127,23 @@ extension Vod {
     /// 视频拆条任务信息。
     public struct SplitMediaTaskSegmentInfo: TCOutputModel {
         /// 视频拆条任务输入信息。
-        public let input: SplitMediaTaskInput
+        public let input: SplitMediaTaskInput?
 
         /// 视频拆条任务输出信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let output: TaskOutputMediaInfo?
 
-        /// 若发起视频拆条任务时指定了视频处理流程，则该字段为流程任务 ID。
-        public let procedureTaskId: String
+        /// 任务类型为 Procedure 的任务 ID。若发起[视频拆条](https://cloud.tencent.com/document/api/266/51098)任务时，视频拆条任务信息列表指定了任务流模板(ProcedureName)，当该任务流模板指定了 MediaProcessTask、AiAnalysisTask、AiRecognitionTask 中的一个或多个时发起该任务。
+        public let procedureTaskId: String?
+
+        /// 任务类型为 ReviewAudioVideo 的任务 ID。若发起[视频拆条](https://cloud.tencent.com/document/api/266/51098)任务时，视频拆条任务信息列表指定了任务流模板(ProcedureName)，当该任务流模板指定了 ReviewAudioVideoTask 时，发起该任务。
+        public let reviewAudioVideoTaskId: String?
 
         enum CodingKeys: String, CodingKey {
             case input = "Input"
             case output = "Output"
             case procedureTaskId = "ProcedureTaskId"
+            case reviewAudioVideoTaskId = "ReviewAudioVideoTaskId"
         }
     }
 
@@ -9270,9 +9540,10 @@ extension Vod {
 
         /// 任务类型，取值：
         /// <li>Procedure：视频处理任务；</li>
-        /// <li>EditMedia：视频编辑任务</li>
-        /// <li>ReduceMediaBitrate：降码率任务</li>
-        /// <li>WechatDistribute：微信发布任务。</li>
+        /// <li>EditMedia：视频编辑任务；</li>
+        /// <li>ReduceMediaBitrate：降码率任务；</li>
+        /// <li>WechatDistribute：微信发布任务；</li>
+        /// <li>ReviewAudioVideo：音视频审核任务。</li>
         /// 兼容 2017 版的任务类型：
         /// <li>Transcode：视频转码任务；</li>
         /// <li>SnapshotByTimeOffset：视频截图任务；</li>

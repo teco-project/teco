@@ -33,12 +33,12 @@ extension Teo {
         @TCTimestampISO8601Encoding public var endTime: Date
 
         /// 查询的统计指标，取值有：
-        /// <li>ddos_attackFlux_protocol：攻击总流量协议类型分布排行；</li>
-        /// <li>ddos_attackPackageNum_protocol：攻击总包量协议类型分布排行；</li>
-        /// <li>ddos_attackNum_attackType：攻击总次数攻击类型分布排行；</li>
-        /// <li>ddos_attackNum_sregion：攻击总次数攻击源地区分布排行；</li>
-        /// <li>ddos_attackFlux_sip：攻击总流量攻击源ip分布排行；</li>
-        /// <li>ddos_attackFlux_sregion：攻击总流量攻击源地区分布排行。</li>
+        /// <li>ddos_attackFlux_protocol：按各协议的攻击流量排行；</li>
+        /// <li>ddos_attackPackageNum_protocol：按各协议的攻击包量排行；</li>
+        /// <li>ddos_attackNum_attackType：按各攻击类型的攻击数量排行；</li>
+        /// <li>ddos_attackNum_sregion：按攻击源地区的攻击数量排行；</li>
+        /// <li>ddos_attackFlux_sip：按攻击源IP的攻击数量排行；</li>
+        /// <li>ddos_attackFlux_sregion：按攻击源地区的攻击数量排行。</li>
         public let metricName: String
 
         /// 站点ID集合，不填默认选择全部站点。

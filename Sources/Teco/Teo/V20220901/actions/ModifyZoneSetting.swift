@@ -88,7 +88,11 @@ extension Teo {
         /// 不填写表示保持原有配置。
         public let clientIpCountry: ClientIpCountry?
 
-        public init(zoneId: String, cacheConfig: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIpHeader? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6? = nil, clientIpCountry: ClientIpCountry? = nil) {
+        /// Grpc协议支持配置。
+        /// 不填写表示保持原有配置。
+        public let grpc: Grpc?
+
+        public init(zoneId: String, cacheConfig: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIpHeader? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6? = nil, clientIpCountry: ClientIpCountry? = nil, grpc: Grpc? = nil) {
             self.zoneId = zoneId
             self.cacheConfig = cacheConfig
             self.cacheKey = cacheKey
@@ -107,6 +111,7 @@ extension Teo {
             self.cachePrefresh = cachePrefresh
             self.ipv6 = ipv6
             self.clientIpCountry = clientIpCountry
+            self.grpc = grpc
         }
 
         enum CodingKeys: String, CodingKey {
@@ -128,6 +133,7 @@ extension Teo {
             case cachePrefresh = "CachePrefresh"
             case ipv6 = "Ipv6"
             case clientIpCountry = "ClientIpCountry"
+            case grpc = "Grpc"
         }
     }
 
@@ -161,15 +167,15 @@ extension Teo {
     ///
     /// 用于修改站点配置
     @inlinable @discardableResult
-    public func modifyZoneSetting(zoneId: String, cacheConfig: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIpHeader? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6? = nil, clientIpCountry: ClientIpCountry? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneSettingResponse> {
-        self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cacheConfig: cacheConfig, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6, clientIpCountry: clientIpCountry), region: region, logger: logger, on: eventLoop)
+    public func modifyZoneSetting(zoneId: String, cacheConfig: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIpHeader? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6? = nil, clientIpCountry: ClientIpCountry? = nil, grpc: Grpc? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneSettingResponse> {
+        self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cacheConfig: cacheConfig, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6, clientIpCountry: clientIpCountry, grpc: grpc), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改站点配置
     ///
     /// 用于修改站点配置
     @inlinable @discardableResult
-    public func modifyZoneSetting(zoneId: String, cacheConfig: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIpHeader? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6? = nil, clientIpCountry: ClientIpCountry? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
-        try await self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cacheConfig: cacheConfig, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6, clientIpCountry: clientIpCountry), region: region, logger: logger, on: eventLoop)
+    public func modifyZoneSetting(zoneId: String, cacheConfig: CacheConfig? = nil, cacheKey: CacheKey? = nil, maxAge: MaxAge? = nil, offlineCache: OfflineCache? = nil, quic: Quic? = nil, postMaxSize: PostMaxSize? = nil, compression: Compression? = nil, upstreamHttp2: UpstreamHttp2? = nil, forceRedirect: ForceRedirect? = nil, https: Https? = nil, origin: Origin? = nil, smartRouting: SmartRouting? = nil, webSocket: WebSocket? = nil, clientIpHeader: ClientIpHeader? = nil, cachePrefresh: CachePrefresh? = nil, ipv6: Ipv6? = nil, clientIpCountry: ClientIpCountry? = nil, grpc: Grpc? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneSettingResponse {
+        try await self.modifyZoneSetting(ModifyZoneSettingRequest(zoneId: zoneId, cacheConfig: cacheConfig, cacheKey: cacheKey, maxAge: maxAge, offlineCache: offlineCache, quic: quic, postMaxSize: postMaxSize, compression: compression, upstreamHttp2: upstreamHttp2, forceRedirect: forceRedirect, https: https, origin: origin, smartRouting: smartRouting, webSocket: webSocket, clientIpHeader: clientIpHeader, cachePrefresh: cachePrefresh, ipv6: ipv6, clientIpCountry: clientIpCountry, grpc: grpc), region: region, logger: logger, on: eventLoop)
     }
 }

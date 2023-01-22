@@ -573,6 +573,24 @@ extension Dbbrain {
         }
     }
 
+    /// 实时会话统计详情。
+    public struct ProcessStatistic: TCOutputModel {
+        /// 会话详情数组。
+        public let items: [SessionItem]
+
+        /// 总连接数。
+        public let allConnSum: Int64
+
+        /// 总活跃连接数。
+        public let activeConnSum: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case items = "Items"
+            case allConnSum = "AllConnSum"
+            case activeConnSum = "ActiveConnSum"
+        }
+    }
+
     /// 用户配置的信息
     public struct ProfileInfo: TCInputModel, TCOutputModel {
         /// 语言, 如"zh"。
@@ -895,6 +913,24 @@ extension Dbbrain {
             case logEndTime = "LogEndTime"
             case totalSize = "TotalSize"
             case dangerLevels = "DangerLevels"
+        }
+    }
+
+    /// 实时会话访问来源详情。
+    public struct SessionItem: TCOutputModel {
+        /// 访问来源。
+        public let ip: String
+
+        /// 当前访问来源活跃连接数
+        public let activeConn: String
+
+        /// 当前访问来源总连接数
+        public let allConn: Int64
+
+        enum CodingKeys: String, CodingKey {
+            case ip = "Ip"
+            case activeConn = "ActiveConn"
+            case allConn = "AllConn"
         }
     }
 

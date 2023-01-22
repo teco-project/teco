@@ -45,7 +45,7 @@ extension Mongodb {
 
     /// 全部账号列表
     ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
+    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(_ input: DescribeAccountUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
         self.client.execute(action: "DescribeAccountUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -53,7 +53,7 @@ extension Mongodb {
 
     /// 全部账号列表
     ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
+    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(_ input: DescribeAccountUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
         try await self.client.execute(action: "DescribeAccountUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -61,7 +61,7 @@ extension Mongodb {
 
     /// 全部账号列表
     ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
+    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountUsersResponse> {
         self.describeAccountUsers(DescribeAccountUsersRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
@@ -69,7 +69,7 @@ extension Mongodb {
 
     /// 全部账号列表
     ///
-    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号列表。
+    /// 本接口(DescribeAccountUsers)用于获取当前实例的全部账号。
     @inlinable
     public func describeAccountUsers(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountUsersResponse {
         try await self.describeAccountUsers(DescribeAccountUsersRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)

@@ -51,13 +51,13 @@ extension Sts {
 
     /// AssumeRoleWithWebIdentity返回参数结构体
     public struct AssumeRoleWithWebIdentityResponse: TCResponseModel {
-        /// 临时秘钥过期时间(时间戳)
+        /// 临时密钥过期时间(时间戳)
         public let expiredTime: UInt64
 
-        /// 临时秘钥过期时间
+        /// 临时密钥过期时间
         public let expiration: String
 
-        /// 临时秘钥
+        /// 临时密钥
         public let credentials: Credentials
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

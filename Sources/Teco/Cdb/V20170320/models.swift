@@ -920,7 +920,16 @@ extension Cdb {
         /// 周日的时间窗，格式如： 02:00-06:00
         public let sunday: String?
 
-        public init(monday: String? = nil, tuesday: String? = nil, wednesday: String? = nil, thursday: String? = nil, friday: String? = nil, saturday: String? = nil, sunday: String? = nil) {
+        /// 常规备份保留策略，weekly-按周备份，monthly-按月备份，默认为weekly
+        public let backupPeriodStrategy: String?
+
+        /// 如果设置为按月备份，需填入每月具体备份日期，相邻备份天数不得超过两天。例[1,4,7,9,11,14,17,19,22,25,28,30,31]
+        public let days: [Int64]?
+
+        /// 月度备份时间窗，BackupPeriodStrategy为monthly时必填。格式如： 02:00-06:00
+        public let backupPeriodTime: String?
+
+        public init(monday: String? = nil, tuesday: String? = nil, wednesday: String? = nil, thursday: String? = nil, friday: String? = nil, saturday: String? = nil, sunday: String? = nil, backupPeriodStrategy: String? = nil, days: [Int64]? = nil, backupPeriodTime: String? = nil) {
             self.monday = monday
             self.tuesday = tuesday
             self.wednesday = wednesday
@@ -928,6 +937,9 @@ extension Cdb {
             self.friday = friday
             self.saturday = saturday
             self.sunday = sunday
+            self.backupPeriodStrategy = backupPeriodStrategy
+            self.days = days
+            self.backupPeriodTime = backupPeriodTime
         }
 
         enum CodingKeys: String, CodingKey {
@@ -938,6 +950,9 @@ extension Cdb {
             case friday = "Friday"
             case saturday = "Saturday"
             case sunday = "Sunday"
+            case backupPeriodStrategy = "BackupPeriodStrategy"
+            case days = "Days"
+            case backupPeriodTime = "BackupPeriodTime"
         }
     }
 

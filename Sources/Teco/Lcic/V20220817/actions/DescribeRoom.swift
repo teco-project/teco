@@ -55,8 +55,8 @@ extension Lcic {
         /// 最大连麦人数（不包括老师）。取值范围[0, 16]
         public let maxMicNumber: UInt64
 
-        /// 进入房间时是否自动连麦。可以有以下取值：
-        /// 0 不自动连麦（默认值）
+        /// 进入课堂时是否自动连麦。可以有以下取值：
+        /// 0 不自动连麦（需要手动申请上麦，默认值）
         /// 1 自动连麦
         public let autoMic: UInt64
 
@@ -71,9 +71,10 @@ extension Lcic {
         /// coteaching 双师
         public let subType: String
 
-        /// 禁止录制。可以有以下取值：
-        /// 0 不禁止录制（默认值）
+        /// 上课后是否禁止自动录制。可以有以下取值：
+        /// 0 不禁止录制（自动开启录制，默认值）
         /// 1 禁止录制
+        /// 注：如果该配置取值为0，录制将从上课后开始，课堂结束后停止。
         public let disableRecord: UInt64
 
         /// 助教Id列表。
@@ -105,32 +106,24 @@ extension Lcic {
         }
     }
 
-    /// 房间信息
-    ///
     /// 获取房间信息
     @inlinable
     public func describeRoom(_ input: DescribeRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomResponse> {
         self.client.execute(action: "DescribeRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 房间信息
-    ///
     /// 获取房间信息
     @inlinable
     public func describeRoom(_ input: DescribeRoomRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {
         try await self.client.execute(action: "DescribeRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 房间信息
-    ///
     /// 获取房间信息
     @inlinable
     public func describeRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomResponse> {
         self.describeRoom(DescribeRoomRequest(roomId: roomId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 房间信息
-    ///
     /// 获取房间信息
     @inlinable
     public func describeRoom(roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomResponse {

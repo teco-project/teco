@@ -17,10 +17,10 @@
 extension Monitor {
     /// ModifyGrafanaInstance请求参数结构体
     public struct ModifyGrafanaInstanceRequest: TCRequestModel {
-        /// 实例 ID
+        /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
-        /// 实例名称
+        /// Grafana 实例名称，例如：test
         public let instanceName: String
 
         public init(instanceId: String, instanceName: String) {

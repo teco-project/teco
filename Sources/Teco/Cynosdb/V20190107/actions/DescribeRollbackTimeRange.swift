@@ -32,10 +32,12 @@ extension Cynosdb {
     /// DescribeRollbackTimeRange返回参数结构体
     public struct DescribeRollbackTimeRangeResponse: TCResponseModel {
         /// 有效回归时间范围开始时间点（已废弃）
-        public let timeRangeStart: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeRangeStart: String?
 
         /// 有效回归时间范围结束时间点（已废弃）
-        public let timeRangeEnd: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let timeRangeEnd: String?
 
         /// 可回档时间范围
         public let rollbackTimeRanges: [RollbackTimeRange]

@@ -44,11 +44,16 @@ extension Cls {
         /// 索引修改时间，初始值为索引创建时间。
         public let modifyTime: String
 
-        /// 全文索引系统预置字段标记，默认false。  false:不包含系统预置字段， true:包含系统预置字段
+        /// 内置保留字段（`__FILENAME__`，`__HOSTNAME__`及`__SOURCE__`）是否包含至全文索引
+        /// * false:不包含
+        /// * true:包含
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let includeInternalFields: Bool?
 
-        /// 元数据相关标志位，默认为0。 0：全文索引包括开启键值索引的元数据字段， 1：全文索引包括所有元数据字段，2：全文索引不包括元数据字段。
+        /// 元数据字段（前缀为`__TAG__`的字段）是否包含至全文索引
+        /// * 0:仅包含开启键值索引的元数据字段
+        /// * 1:包含所有元数据字段
+        /// * 2:不包含任何元数据字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metadataFlag: UInt64?
 

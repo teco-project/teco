@@ -101,14 +101,20 @@ extension Teo {
         /// 用户自定义规则。
         public let aclUserRules: [AclUserRule]
 
-        public init(switch: String, aclUserRules: [AclUserRule]) {
+        /// 托管定制规则
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let customizes: [AclUserRule]?
+
+        public init(switch: String, aclUserRules: [AclUserRule], customizes: [AclUserRule]? = nil) {
             self.`switch` = `switch`
             self.aclUserRules = aclUserRules
+            self.customizes = customizes
         }
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case aclUserRules = "AclUserRules"
+            case customizes = "Customizes"
         }
     }
 
@@ -284,30 +290,6 @@ extension Teo {
             case name = "Name"
             case values = "Values"
             case fuzzy = "Fuzzy"
-        }
-    }
-
-    /// 高级回源配置
-    public struct AdvancedOriginGroup: TCInputModel, TCOutputModel {
-        /// 高级回源配置的匹配条件。其中相同的Target只能出现一次。
-        public let originGroupConditions: [OriginGroupCondition]
-
-        /// 主源站组ID。
-        public let originGroupId: String
-
-        /// 备用源站组ID。
-        public let backupOriginGroupId: String?
-
-        public init(originGroupConditions: [OriginGroupCondition], originGroupId: String, backupOriginGroupId: String? = nil) {
-            self.originGroupConditions = originGroupConditions
-            self.originGroupId = originGroupId
-            self.backupOriginGroupId = backupOriginGroupId
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case originGroupConditions = "OriginGroupConditions"
-            case originGroupId = "OriginGroupId"
-            case backupOriginGroupId = "BackupOriginGroupId"
         }
     }
 
@@ -600,103 +582,6 @@ extension Teo {
         }
     }
 
-    /// Bot攻击日志
-    public struct BotLog: TCOutputModel {
-        /// 攻击时间，采用unix秒级时间戳。
-        public let attackTime: UInt64
-
-        /// 攻击源（客户端）ip。
-        public let attackIp: String
-
-        /// 受攻击域名。
-        public let domain: String
-
-        /// URI。
-        public let requestUri: String
-
-        /// 请求方法。
-        public let requestMethod: String
-
-        /// 攻击内容。
-        public let attackContent: String
-
-        /// IP所在国家iso-3166中alpha-2编码，编码信息请参考[ISO-3166](https://git.woa.com/edgeone/iso-3166/blob/master/all/all.json)。
-        public let sipCountryCode: String
-
-        /// user agent。
-        public let ua: String
-
-        /// 攻击事件ID。
-        public let eventId: String
-
-        /// 规则ID。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleId: UInt64?
-
-        /// 攻击类型。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let attackType: String?
-
-        /// 处置方式。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let disposalMethod: String?
-
-        /// HTTP日志。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let httpLog: String?
-
-        /// 攻击等级。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let riskLevel: String?
-
-        /// 检出方法。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let detectionMethod: String?
-
-        /// 置信度。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let confidence: String?
-
-        /// 恶意度。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let maliciousness: String?
-
-        /// 规则相关信息列表。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleDetailList: [SecRuleRelatedInfo]?
-
-        /// Bot标签。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let label: String?
-
-        /// 日志所属的区域。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let area: String?
-
-        enum CodingKeys: String, CodingKey {
-            case attackTime = "AttackTime"
-            case attackIp = "AttackIp"
-            case domain = "Domain"
-            case requestUri = "RequestUri"
-            case requestMethod = "RequestMethod"
-            case attackContent = "AttackContent"
-            case sipCountryCode = "SipCountryCode"
-            case ua = "Ua"
-            case eventId = "EventId"
-            case ruleId = "RuleId"
-            case attackType = "AttackType"
-            case disposalMethod = "DisposalMethod"
-            case httpLog = "HttpLog"
-            case riskLevel = "RiskLevel"
-            case detectionMethod = "DetectionMethod"
-            case confidence = "Confidence"
-            case maliciousness = "Maliciousness"
-            case ruleDetailList = "RuleDetailList"
-            case label = "Label"
-            case area = "Area"
-        }
-    }
-
     /// Bot 规则，下列规则ID可参考接口 DescribeBotManagedRules返回的ID信息
     public struct BotManagedRule: TCInputModel, TCOutputModel {
         /// 触发规则后的处置方式，取值有：
@@ -747,28 +632,6 @@ extension Teo {
             case capManagedIds = "CapManagedIds"
             case monManagedIds = "MonManagedIds"
             case dropManagedIds = "DropManagedIds"
-        }
-    }
-
-    /// bot托管规则详情
-    public struct BotManagedRuleDetail: TCOutputModel {
-        /// 规则ID。
-        public let ruleId: Int64
-
-        /// 规则描述。
-        public let description: String
-
-        /// 规则分类。
-        public let ruleTypeName: String
-
-        /// 该规则开启/关闭状态。
-        public let status: String
-
-        enum CodingKeys: String, CodingKey {
-            case ruleId = "RuleId"
-            case description = "Description"
-            case ruleTypeName = "RuleTypeName"
-            case status = "Status"
         }
     }
 
@@ -835,24 +698,6 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case policyId = "PolicyId"
-        }
-    }
-
-    /// CC拦截事件
-    public struct CCInterceptEvent: TCOutputModel {
-        /// 客户端IP。
-        public let clientIp: String
-
-        /// 拦截次数/min。
-        public let interceptNum: Int64
-
-        /// 速拦截时间，分钟时间/min，单位为s。
-        public let interceptTime: Int64
-
-        enum CodingKeys: String, CodingKey {
-            case clientIp = "ClientIp"
-            case interceptNum = "InterceptNum"
-            case interceptTime = "InterceptTime"
         }
     }
 
@@ -1179,657 +1024,6 @@ extension Teo {
         }
     }
 
-    /// DDoS端口过滤
-    public struct DDoSAcl: TCInputModel, TCOutputModel {
-        /// 端口过滤规则数组。
-        public let dDoSAclRules: [DDoSAclRule]
-
-        /// 清空规则标识，取值有：
-        /// <li>off ：清空端口过滤规则列表，DDoSAclRules无需填写；</li>
-        /// <li>on ：配置端口过滤规则，需填写DDoSAclRules参数。</li>
-        public let `switch`: String
-
-        public init(dDoSAclRules: [DDoSAclRule], switch: String) {
-            self.dDoSAclRules = dDoSAclRules
-            self.`switch` = `switch`
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case dDoSAclRules = "DDoSAclRules"
-            case `switch` = "Switch"
-        }
-    }
-
-    /// DDoS配置端口过滤
-    public struct DDoSAclRule: TCInputModel, TCOutputModel {
-        /// 目的端口结束，取值范围0-65535。
-        public let dportEnd: Int64
-
-        /// 目的端口开始，取值范围0-65535。
-        public let dportStart: Int64
-
-        /// 源端口结束，取值范围0-65535。
-        public let sportEnd: Int64
-
-        /// 源端口开始，取值范围0-65535。
-        public let sportStart: Int64
-
-        /// 协议，取值有：
-        /// <li>tcp ：tcp协议 ；</li>
-        /// <li>udp ：udp协议 ；</li>
-        /// <li>all ：全部协议 。</li>
-        public let `protocol`: String
-
-        /// 执行动作，取值为：
-        /// <li>drop ：丢弃 ；</li>
-        /// <li>transmit ：放行 ；</li>
-        /// <li>forward ：继续防护 。</li>
-        public let action: String
-
-        public init(dportEnd: Int64, dportStart: Int64, sportEnd: Int64, sportStart: Int64, protocol: String, action: String) {
-            self.dportEnd = dportEnd
-            self.dportStart = dportStart
-            self.sportEnd = sportEnd
-            self.sportStart = sportStart
-            self.`protocol` = `protocol`
-            self.action = action
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case dportEnd = "DportEnd"
-            case dportStart = "DportStart"
-            case sportEnd = "SportEnd"
-            case sportStart = "SportStart"
-            case `protocol` = "Protocol"
-            case action = "Action"
-        }
-    }
-
-    /// DDoS黑白名单
-    public struct DDoSAllowBlock: TCInputModel, TCOutputModel {
-        /// 黑白名单数组。
-        public let dDoSAllowBlockRules: [DDoSAllowBlockRule]
-
-        /// 开关标识防护是否清空，取值有：
-        /// <li>off ：关闭黑白名单；</li>
-        /// <li>on ：开启黑白名单，需填写UserAllowBlockIp参数。</li>
-        public let `switch`: String
-
-        public init(dDoSAllowBlockRules: [DDoSAllowBlockRule], switch: String) {
-            self.dDoSAllowBlockRules = dDoSAllowBlockRules
-            self.`switch` = `switch`
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case dDoSAllowBlockRules = "DDoSAllowBlockRules"
-            case `switch` = "Switch"
-        }
-    }
-
-    /// DDoS黑白名单规则详情
-    public struct DDoSAllowBlockRule: TCInputModel, TCOutputModel {
-        /// 客户端IP，支持格式有：单IP、IP范围、网段、网段范围。例如"1.1.1.1","1.1.1.2-1.1.1.3","1.2.1.0/24-1.2.2.0/24"。
-        public let ip: String
-
-        /// 类型，取值有：
-        /// <li> block ：丢弃 ；</li><li> allow ：允许。</li>
-        public let type: String
-
-        /// 10位时间戳，例如1199116800。不填写系统取当前时间。
-        public let updateTime: Int64?
-
-        public init(ip: String, type: String, updateTime: Int64? = nil) {
-            self.ip = ip
-            self.type = type
-            self.updateTime = updateTime
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case ip = "Ip"
-            case type = "Type"
-            case updateTime = "UpdateTime"
-        }
-    }
-
-    /// DDoS协议防护+连接防护
-    public struct DDoSAntiPly: TCInputModel, TCOutputModel {
-        /// tcp协议封禁，取值有：
-        /// <li>off ：关闭 ；</li>
-        /// <li>on ：开启 。</li>
-        public let dropTcp: String
-
-        /// udp协议封禁，取值有：
-        /// <li>off ：关闭 ；</li>
-        /// <li>on ：开启 。</li>
-        public let dropUdp: String
-
-        /// icmp协议封禁，取值有：
-        /// <li>off ：关闭 ；</li>
-        /// <li>on ：开启 。</li>
-        public let dropIcmp: String
-
-        /// 其他协议封禁，取值有：
-        /// <li>off ：关闭 ；</li>
-        /// <li>on ：开启 。</li>
-        public let dropOther: String
-
-        /// 源站每秒新连接限速，取值范围0-4294967295。
-        public let sourceCreateLimit: Int64
-
-        /// 源站并发连接控制，取值范围0-4294967295。
-        public let sourceConnectLimit: Int64
-
-        /// 目的端口每秒新连接限速，取值范围0-4294967295。
-        public let destinationCreateLimit: Int64
-
-        /// 目的端口并发连接控制，取值范围0-4294967295。
-        public let destinationConnectLimit: Int64
-
-        /// 每秒异常连接数阈值，取值范围0-4294967295。
-        public let abnormalConnectNum: Int64
-
-        /// 异常syn报文百分比阈值，取值范围0-100。
-        public let abnormalSynRatio: Int64
-
-        /// 异常syn报文阈值，取值范围0-65535。
-        public let abnormalSynNum: Int64
-
-        /// 每秒连接超时检测，取值范围0-65535。
-        public let connectTimeout: Int64
-
-        /// 空连接防护开启，取值有：
-        /// <li>off ：关闭 ；</li>
-        /// <li>on ：开启 。</li>
-        public let emptyConnectProtect: String
-
-        /// UDP分片开关，取值有：
-        /// <li>off ：关闭 ；</li>
-        /// <li>on ：开启 。</li>
-        public let udpShard: String?
-
-        public init(dropTcp: String, dropUdp: String, dropIcmp: String, dropOther: String, sourceCreateLimit: Int64, sourceConnectLimit: Int64, destinationCreateLimit: Int64, destinationConnectLimit: Int64, abnormalConnectNum: Int64, abnormalSynRatio: Int64, abnormalSynNum: Int64, connectTimeout: Int64, emptyConnectProtect: String, udpShard: String? = nil) {
-            self.dropTcp = dropTcp
-            self.dropUdp = dropUdp
-            self.dropIcmp = dropIcmp
-            self.dropOther = dropOther
-            self.sourceCreateLimit = sourceCreateLimit
-            self.sourceConnectLimit = sourceConnectLimit
-            self.destinationCreateLimit = destinationCreateLimit
-            self.destinationConnectLimit = destinationConnectLimit
-            self.abnormalConnectNum = abnormalConnectNum
-            self.abnormalSynRatio = abnormalSynRatio
-            self.abnormalSynNum = abnormalSynNum
-            self.connectTimeout = connectTimeout
-            self.emptyConnectProtect = emptyConnectProtect
-            self.udpShard = udpShard
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case dropTcp = "DropTcp"
-            case dropUdp = "DropUdp"
-            case dropIcmp = "DropIcmp"
-            case dropOther = "DropOther"
-            case sourceCreateLimit = "SourceCreateLimit"
-            case sourceConnectLimit = "SourceConnectLimit"
-            case destinationCreateLimit = "DestinationCreateLimit"
-            case destinationConnectLimit = "DestinationConnectLimit"
-            case abnormalConnectNum = "AbnormalConnectNum"
-            case abnormalSynRatio = "AbnormalSynRatio"
-            case abnormalSynNum = "AbnormalSynNum"
-            case connectTimeout = "ConnectTimeout"
-            case emptyConnectProtect = "EmptyConnectProtect"
-            case udpShard = "UdpShard"
-        }
-    }
-
-    /// DDoS攻击事件对象
-    public struct DDoSAttackEvent: TCOutputModel {
-        /// 事件ID。
-        public let eventId: String
-
-        /// 攻击类型(对应交互事件名称)。
-        public let attackType: String
-
-        /// 攻击状态。
-        public let attackStatus: Int64
-
-        /// 攻击最大带宽。
-        public let attackMaxBandWidth: Int64
-
-        /// 攻击包速率峰值。
-        public let attackPacketMaxRate: Int64
-
-        /// 攻击开始时间，单位为s。
-        public let attackStartTime: Int64
-
-        /// 攻击结束时间，单位为s。
-        public let attackEndTime: Int64
-
-        /// DDoS策略组ID。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let policyId: Int64?
-
-        /// 站点ID。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let zoneId: String?
-
-        enum CodingKeys: String, CodingKey {
-            case eventId = "EventId"
-            case attackType = "AttackType"
-            case attackStatus = "AttackStatus"
-            case attackMaxBandWidth = "AttackMaxBandWidth"
-            case attackPacketMaxRate = "AttackPacketMaxRate"
-            case attackStartTime = "AttackStartTime"
-            case attackEndTime = "AttackEndTime"
-            case policyId = "PolicyId"
-            case zoneId = "ZoneId"
-        }
-    }
-
-    /// DDoS攻击事件的详情
-    public struct DDoSAttackEventDetailData: TCOutputModel {
-        /// 攻击状态，取值有：
-        /// <li>1 ：观察中 ；</li>
-        /// <li>2 ：攻击开始 ；</li>
-        /// <li>3 ：攻击结束 。</li>
-        public let attackStatus: Int64
-
-        /// 攻击类型。
-        public let attackType: String
-
-        /// 结束时间。
-        public let endTime: Int64
-
-        /// 开始时间。
-        public let startTime: Int64
-
-        /// 最大带宽。
-        public let maxBandWidth: Int64
-
-        /// 最大包速率。
-        public let packetMaxRate: Int64
-
-        /// 事件Id。
-        public let eventId: String
-
-        /// DDoS策略组ID。
-        public let policyId: Int64
-
-        enum CodingKeys: String, CodingKey {
-            case attackStatus = "AttackStatus"
-            case attackType = "AttackType"
-            case endTime = "EndTime"
-            case startTime = "StartTime"
-            case maxBandWidth = "MaxBandWidth"
-            case packetMaxRate = "PacketMaxRate"
-            case eventId = "EventId"
-            case policyId = "PolicyId"
-        }
-    }
-
-    /// DDoS攻击事件对象
-    public struct DDoSAttackSourceEvent: TCOutputModel {
-        /// 攻击源ip。
-        public let attackSourceIp: String
-
-        /// 地区（国家）。
-        public let attackRegion: String
-
-        /// 累计攻击流量。
-        public let attackFlow: UInt64
-
-        /// 累计攻击包量。
-        public let attackPacketNum: UInt64
-
-        enum CodingKeys: String, CodingKey {
-            case attackSourceIp = "AttackSourceIp"
-            case attackRegion = "AttackRegion"
-            case attackFlow = "AttackFlow"
-            case attackPacketNum = "AttackPacketNum"
-        }
-    }
-
-    /// DDoS封禁解封信息
-    public struct DDoSBlockData: TCOutputModel {
-        /// 开始时间，采用unix时间戳。
-        public let startTime: Int64
-
-        /// 结束时间，采用unix时间戳。
-        public let endTime: Int64
-
-        enum CodingKeys: String, CodingKey {
-            case startTime = "StartTime"
-            case endTime = "EndTime"
-        }
-    }
-
-    /// DDoS特征过滤，下列可选入参按需求进行填写，可选字段不可全部不填写。
-    public struct DDoSFeaturesFilter: TCInputModel, TCOutputModel {
-        /// 执行动作，取值有：
-        /// <li>drop ：丢弃 ；</li>
-        /// <li>transmit ：放行 ；</li>
-        /// <li>drop_block ：丢弃并拉黑 ；</li>
-        /// <li>forward ：继续防护 。</li>
-        public let action: String
-
-        /// 协议，取值有：
-        /// <li>tcp ：tcp协议 ；</li>
-        /// <li>udp ：udp协议 ；</li>
-        /// <li>icmp ：icmp协议 ；</li>
-        /// <li>all ：全部协议 。</li>
-        public let `protocol`: String
-
-        /// 目标端口开始，取值范围0-65535。
-        public let dportStart: Int64?
-
-        /// 目标端口结束，取值范围0-65535。
-        public let dportEnd: Int64?
-
-        /// 最小包长，取值范围0-1500。
-        public let packetMin: Int64?
-
-        /// 最大包长，取值范围0-1500。
-        public let packetMax: Int64?
-
-        /// 源端口开始，取值范围0-65535。
-        public let sportStart: Int64?
-
-        /// 源端口结束，取值范围0-65535。
-        public let sportEnd: Int64?
-
-        /// 匹配方式1，【特征1】，取值有：
-        /// <li>pcre ：正则匹配 ；</li>
-        /// <li>sunday ：字符串匹配 。</li>默认为空字符串。
-        public let matchType: String?
-
-        /// 取非判断，该参数对MatchType配合使用，【特征1】，取值有：
-        /// <li>0 ：匹配 ；</li>
-        /// <li>1 ：不匹配 。</li>
-        public let isNot: Int64?
-
-        /// 偏移量1，【特征1】，取值范围0-1500。
-        public let offset: Int64?
-
-        /// 检测包字符深度，【特征1】，取值范围1-1500。
-        public let depth: Int64?
-
-        /// 匹配开始层级，层级参考计算机网络结构，取值有：
-        /// <li>begin_l5 ：载荷开始检测 ；</li>
-        /// <li>begin_l4 ：tcp/udp首部开始检测 ；</li>
-        /// <li>begin_l3 ：ip首部开始检测 。</li>
-        public let matchBegin: String?
-
-        /// 正则或字符串匹配的内容，【特征1】。
-        public let str: String?
-
-        /// 匹配方式2，【特征2】，取值有：
-        /// <li>pcre ：正则匹配 ；</li>
-        /// <li>sunday ：字符串匹配 。</li>默认为空字符串。
-        public let matchType2: String?
-
-        /// 取非判断2，该参数对MatchType2配合使用，【特征2】，取值有：
-        /// <li>0 ：匹配 ；</li>
-        /// <li>1 ：不匹配 。</li>
-        public let isNot2: Int64?
-
-        /// 偏移量2，【特征2】，取值范围0-1500。
-        public let offset2: Int64?
-
-        /// 检测包字符深度，【特征2】，取值范围1-1500。
-        public let depth2: Int64?
-
-        /// 匹配开始层级，层级参考计算机网络结构，取值有：
-        /// <li>begin_l5 ：载荷开始检测 ；</li>
-        /// <li>begin_l4 ：tcp/udp首部开始检测；</li>
-        /// <li>begin_l3 ：ip首部开始检测 。</li>
-        public let matchBegin2: String?
-
-        /// 正则或字符串匹配的内容，【特征2】。
-        public let str2: String?
-
-        /// 多特征关系，仅配置【特征1】时填 none，存在【特征2】配置可不填。
-        public let matchLogic: String?
-
-        public init(action: String, protocol: String, dportStart: Int64? = nil, dportEnd: Int64? = nil, packetMin: Int64? = nil, packetMax: Int64? = nil, sportStart: Int64? = nil, sportEnd: Int64? = nil, matchType: String? = nil, isNot: Int64? = nil, offset: Int64? = nil, depth: Int64? = nil, matchBegin: String? = nil, str: String? = nil, matchType2: String? = nil, isNot2: Int64? = nil, offset2: Int64? = nil, depth2: Int64? = nil, matchBegin2: String? = nil, str2: String? = nil, matchLogic: String? = nil) {
-            self.action = action
-            self.`protocol` = `protocol`
-            self.dportStart = dportStart
-            self.dportEnd = dportEnd
-            self.packetMin = packetMin
-            self.packetMax = packetMax
-            self.sportStart = sportStart
-            self.sportEnd = sportEnd
-            self.matchType = matchType
-            self.isNot = isNot
-            self.offset = offset
-            self.depth = depth
-            self.matchBegin = matchBegin
-            self.str = str
-            self.matchType2 = matchType2
-            self.isNot2 = isNot2
-            self.offset2 = offset2
-            self.depth2 = depth2
-            self.matchBegin2 = matchBegin2
-            self.str2 = str2
-            self.matchLogic = matchLogic
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case action = "Action"
-            case `protocol` = "Protocol"
-            case dportStart = "DportStart"
-            case dportEnd = "DportEnd"
-            case packetMin = "PacketMin"
-            case packetMax = "PacketMax"
-            case sportStart = "SportStart"
-            case sportEnd = "SportEnd"
-            case matchType = "MatchType"
-            case isNot = "IsNot"
-            case offset = "Offset"
-            case depth = "Depth"
-            case matchBegin = "MatchBegin"
-            case str = "Str"
-            case matchType2 = "MatchType2"
-            case isNot2 = "IsNot2"
-            case offset2 = "Offset2"
-            case depth2 = "Depth2"
-            case matchBegin2 = "MatchBegin2"
-            case str2 = "Str2"
-            case matchLogic = "MatchLogic"
-        }
-    }
-
-    /// DDoS地域封禁
-    public struct DDoSGeoIp: TCInputModel, TCOutputModel {
-        /// 区域封禁清空标识，取值有：
-        /// <li>off ：清空地域封禁列表 ；</li>
-        /// <li>on ：不做处理 。</li>
-        public let `switch`: String
-
-        /// 地域信息，ID参考[DescribeSecurityPolicyRegions](https://tcloud4api.woa.com/document/product/1657/81247?!preview&!document=1)。
-        public let regionIds: [Int64]
-
-        public init(switch: String, regionIds: [Int64]) {
-            self.`switch` = `switch`
-            self.regionIds = regionIds
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case `switch` = "Switch"
-            case regionIds = "RegionIds"
-        }
-    }
-
-    /// DDoS7层应用
-    public struct DDoSHost: TCOutputModel {
-        /// 二级域名
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let host: String?
-
-        /// 域名状态；
-        /// init  待切ns
-        /// offline 需要dns开启站点加速
-        /// process 在部署中，稍等一会
-        /// online 正常状态
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: String?
-
-        /// 加速开关；on-开启加速；off-关闭加速（AccelerateType：on，SecurityType：on，安全加速，未开防护增强；AccelerateType：off，SecurityType：on，安全加速，开启防护增强；AccelerateType：on，SecurityType：off，内容加速，未开防护增强）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let accelerateType: String?
-
-        /// 安全开关；on-开启安全；off-关闭安全（AccelerateType：on，SecurityType：on，安全加速，未开防护增强；AccelerateType：off，SecurityType：on，安全加速，开启防护增强；AccelerateType：on，SecurityType：off，内容加速，未开防护增强）
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let securityType: String?
-
-        enum CodingKeys: String, CodingKey {
-            case host = "Host"
-            case status = "Status"
-            case accelerateType = "AccelerateType"
-            case securityType = "SecurityType"
-        }
-    }
-
-    /// DDoS主攻击事件
-    public struct DDoSMajorAttackEvent: TCOutputModel {
-        /// ddos 策略组id。
-        public let policyId: Int64
-
-        /// 攻击最大带宽。
-        public let attackMaxBandWidth: Int64
-
-        /// 攻击请求时间，采用unix秒级时间戳。
-        public let attackTime: Int64
-
-        enum CodingKeys: String, CodingKey {
-            case policyId = "PolicyId"
-            case attackMaxBandWidth = "AttackMaxBandWidth"
-            case attackTime = "AttackTime"
-        }
-    }
-
-    /// DDoS特征过滤
-    public struct DDoSPacketFilter: TCInputModel, TCOutputModel {
-        /// 特征过滤规则数组。
-        public let dDoSFeaturesFilters: [DDoSFeaturesFilter]
-
-        /// 特征过滤清空标识，取值有：
-        /// <li>off ：清空特征过滤规则，无需填写 DDoSFeaturesFilters 参数 ；</li>
-        /// <li>on ：配置特征过滤规则，需填写 DDoSFeaturesFilters 参数。</li>
-        public let `switch`: String
-
-        public init(dDoSFeaturesFilters: [DDoSFeaturesFilter], switch: String) {
-            self.dDoSFeaturesFilters = dDoSFeaturesFilters
-            self.`switch` = `switch`
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case dDoSFeaturesFilters = "DDoSFeaturesFilters"
-            case `switch` = "Switch"
-        }
-    }
-
-    /// DDoS防护配置
-    public struct DDoSRule: TCInputModel, TCOutputModel {
-        /// DDoS防护等级。如果为null，默认使用历史配置。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dDoSStatusInfo: DDoSStatusInfo?
-
-        /// DDoS地域封禁。如果为null，默认使用历史配置。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dDoSGeoIp: DDoSGeoIp?
-
-        /// DDoS黑白名单。如果为null，默认使用历史配置。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dDoSAllowBlock: DDoSAllowBlock?
-
-        /// DDoS 协议封禁+连接防护。如果为null，默认使用历史配置。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dDoSAntiPly: DDoSAntiPly?
-
-        /// DDoS特征过滤。如果为null，默认使用历史配置。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dDoSPacketFilter: DDoSPacketFilter?
-
-        /// DDoS端口过滤。如果为null，默认使用历史配置。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dDoSAcl: DDoSAcl?
-
-        /// DDoS开关，取值有:
-        /// <li>on ：开启 ；</li>
-        /// <li>off ：关闭 。</li>如果为null，默认使用历史配置。
-        public let `switch`: String?
-
-        /// UDP分片功能是否支持，取值有:
-        /// <li>on ：支持 ；</li>
-        /// <li>off ：不支持 。</li>仅出参字段，入参无需填写。
-        public let udpShardOpen: String?
-
-        /// DDoS源站访问速率限制。如果为null，默认使用历史配置。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dDoSSpeedLimit: DDoSSpeedLimit?
-
-        public init(dDoSStatusInfo: DDoSStatusInfo? = nil, dDoSGeoIp: DDoSGeoIp? = nil, dDoSAllowBlock: DDoSAllowBlock? = nil, dDoSAntiPly: DDoSAntiPly? = nil, dDoSPacketFilter: DDoSPacketFilter? = nil, dDoSAcl: DDoSAcl? = nil, switch: String? = nil, udpShardOpen: String? = nil, dDoSSpeedLimit: DDoSSpeedLimit? = nil) {
-            self.dDoSStatusInfo = dDoSStatusInfo
-            self.dDoSGeoIp = dDoSGeoIp
-            self.dDoSAllowBlock = dDoSAllowBlock
-            self.dDoSAntiPly = dDoSAntiPly
-            self.dDoSPacketFilter = dDoSPacketFilter
-            self.dDoSAcl = dDoSAcl
-            self.`switch` = `switch`
-            self.udpShardOpen = udpShardOpen
-            self.dDoSSpeedLimit = dDoSSpeedLimit
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case dDoSStatusInfo = "DDoSStatusInfo"
-            case dDoSGeoIp = "DDoSGeoIp"
-            case dDoSAllowBlock = "DDoSAllowBlock"
-            case dDoSAntiPly = "DDoSAntiPly"
-            case dDoSPacketFilter = "DDoSPacketFilter"
-            case dDoSAcl = "DDoSAcl"
-            case `switch` = "Switch"
-            case udpShardOpen = "UdpShardOpen"
-            case dDoSSpeedLimit = "DDoSSpeedLimit"
-        }
-    }
-
-    /// DDoS端口限速
-    public struct DDoSSpeedLimit: TCInputModel, TCOutputModel {
-        /// 源站包量限制，支持单位有pps、Kpps、Mpps、Gpps。支持范围1 pps-10000 Gpps。"0 pps"或其他单位数值为0，即不限包。""为不更新。
-        public let packageLimit: String
-
-        /// 源站流量限制，支持单位有bps、Kbps、Mbps、Gbps，支持范围1 bps-10000 Gbps。"0 bps"或其他单位数值为0，即不限流。""为不更新。
-        public let fluxLimit: String
-
-        public init(packageLimit: String, fluxLimit: String) {
-            self.packageLimit = packageLimit
-            self.fluxLimit = fluxLimit
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case packageLimit = "PackageLimit"
-            case fluxLimit = "FluxLimit"
-        }
-    }
-
-    /// DDoS封禁等级
-    public struct DDoSStatusInfo: TCInputModel, TCOutputModel {
-        /// 策略等级，取值有:
-        /// <li>low ：宽松 ；</li>
-        /// <li>middle ：适中 ；</li>
-        /// <li>high : 严格。 </li>
-        public let plyLevel: String
-
-        public init(plyLevel: String) {
-            self.plyLevel = plyLevel
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case plyLevel = "PlyLevel"
-        }
-    }
-
     /// https 服务端证书配置
     public struct DefaultServerCertInfo: TCInputModel, TCOutputModel {
         /// 服务器证书 ID。
@@ -2028,6 +1222,28 @@ extension Teo {
         }
     }
 
+    /// 最新IP白名单列表相比于当前IP白名单列表的区别
+    public struct DiffIPWhitelist: TCOutputModel {
+        /// 最新IP白名单列表。
+        public let latestIPWhitelist: IPWhitelist
+
+        /// 最新IP白名单列表相比于当前IP白名单列表，新增部分。
+        public let addedIPWhitelist: IPWhitelist
+
+        /// 最新IP白名单列表相比于当前IP白名单列表，删减部分。
+        public let removedIPWhitelist: IPWhitelist
+
+        /// 最新IP白名单列表相比于当前IP白名单列表，不变部分。
+        public let noChangeIPWhitelist: IPWhitelist
+
+        enum CodingKeys: String, CodingKey {
+            case latestIPWhitelist = "LatestIPWhitelist"
+            case addedIPWhitelist = "AddedIPWhitelist"
+            case removedIPWhitelist = "RemovedIPWhitelist"
+            case noChangeIPWhitelist = "NoChangeIPWhitelist"
+        }
+    }
+
     /// 拨测分地域统计数据
     public struct DistrictStatistics: TCOutputModel {
         /// ISO 3166-2 国家/地区简写，详情请参考[ISO 3166-2](https://zh.m.wikipedia.org/zh-hans/ISO_3166-2)。
@@ -2056,136 +1272,6 @@ extension Teo {
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case value = "Value"
-        }
-    }
-
-    /// DNS 记录
-    public struct DnsRecord: TCOutputModel {
-        /// 记录 ID。
-        public let dnsRecordId: String
-
-        /// DNS记录类型，取值有：
-        /// <li>A：将域名指向一个外网 IPv4 地址，如 8.8.8.8；</li>
-        /// <li>AAAA：将域名指向一个外网 IPv6 地址；</li>
-        /// <li>MX：用于邮箱服务器，相关记录值/优先级参数由邮件注册商提供。存在多条 MX 记录时，优先级越低越优先；</li>
-        /// <li>CNAME：将域名指向另一个域名，再由该域名解析出最终 IP 地址；</li>
-        /// <li>TXT：对域名进行标识和说明，常用于域名验证和 SPF 记录（反垃圾邮件）；</li>
-        /// <li>NS：如果需要将子域名交给其他 DNS 服务商解析，则需要添加 NS 记录。根域名无法添加 NS 记录；</li>
-        /// <li>CAA：指定可为本站点颁发证书的 CA；</li>
-        /// <li>SRV：标识某台服务器使用了某个服务，常见于微软系统的目录管理。</li>
-        public let dnsRecordType: String
-
-        /// 记录名称。
-        public let dnsRecordName: String
-
-        /// 记录值。
-        public let content: String
-
-        /// 代理模式，取值有：
-        /// <li>dns_only：仅DNS解析；</li>
-        /// <li>proxied：代理加速。</li>
-        public let mode: String
-
-        /// 缓存时间，数值越小，修改记录各地生效时间越快，单位：秒。
-        public let ttl: Int64
-
-        /// MX记录优先级，数值越小越优先。
-        public let priority: Int64
-
-        /// 创建时间。
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var createdOn: Date
-
-        /// 修改时间。
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var modifiedOn: Date
-
-        /// 域名锁定状态。
-        public let locked: Bool
-
-        /// 站点 ID。
-        public let zoneId: String
-
-        /// 站点名称。
-        public let zoneName: String
-
-        /// 记录解析状态，取值有：
-        /// <li>active：生效；</li>
-        /// <li>pending：不生效。</li>
-        public let status: String
-
-        /// CNAME 地址。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let cname: String?
-
-        /// 域名服务类型，取值有：
-        /// <li>lb：负载均衡；</li>
-        /// <li>security：安全；</li>
-        /// <li>l4：四层代理。</li>
-        public let domainStatus: [String]
-
-        enum CodingKeys: String, CodingKey {
-            case dnsRecordId = "DnsRecordId"
-            case dnsRecordType = "DnsRecordType"
-            case dnsRecordName = "DnsRecordName"
-            case content = "Content"
-            case mode = "Mode"
-            case ttl = "TTL"
-            case priority = "Priority"
-            case createdOn = "CreatedOn"
-            case modifiedOn = "ModifiedOn"
-            case locked = "Locked"
-            case zoneId = "ZoneId"
-            case zoneName = "ZoneName"
-            case status = "Status"
-            case cname = "Cname"
-            case domainStatus = "DomainStatus"
-        }
-    }
-
-    /// DNSSEC 相关信息
-    public struct DnssecInfo: TCOutputModel {
-        /// 标志。
-        public let flags: Int64
-
-        /// 加密算法。
-        public let algorithm: String
-
-        /// 加密类型。
-        public let keyType: String
-
-        /// 摘要类型。
-        public let digestType: String
-
-        /// 摘要算法。
-        public let digestAlgorithm: String
-
-        /// 摘要信息。
-        public let digest: String
-
-        /// DS 记录值。
-        public let ds: String
-
-        /// 密钥标签。
-        public let keyTag: Int64
-
-        /// 公钥。
-        public let publicKey: String
-
-        enum CodingKeys: String, CodingKey {
-            case flags = "Flags"
-            case algorithm = "Algorithm"
-            case keyType = "KeyType"
-            case digestType = "DigestType"
-            case digestAlgorithm = "DigestAlgorithm"
-            case digest = "Digest"
-            case ds = "DS"
-            case keyTag = "KeyTag"
-            case publicKey = "PublicKey"
         }
     }
 
@@ -2470,6 +1556,29 @@ extension Teo {
         }
     }
 
+    /// 慢速攻击的首段包配置。
+    public struct FirstPartConfig: TCInputModel, TCOutputModel {
+        /// 开关，取值有：
+        /// <li>on：开启；</li>
+        /// <li>off：关闭。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let `switch`: String?
+
+        /// 首段包的统计时长，单位是秒，即期望首段包的统计时长是多少，默认5秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let statTime: UInt64?
+
+        public init(switch: String, statTime: UInt64? = nil) {
+            self.`switch` = `switch`
+            self.statTime = statTime
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case statTime = "StatTime"
+        }
+    }
+
     /// 缓存遵循源站配置
     public struct FollowOrigin: TCInputModel, TCOutputModel {
         /// 遵循源站配置开关，取值有：
@@ -2485,16 +1594,22 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let defaultCache: String?
 
-        public init(switch: String, defaultCacheTime: Int64? = nil, defaultCache: String? = nil) {
+        /// 源站未返回 Cache-Control 头时, 使用/不使用默认缓存策略
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let defaultCacheStrategy: String?
+
+        public init(switch: String, defaultCacheTime: Int64? = nil, defaultCache: String? = nil, defaultCacheStrategy: String? = nil) {
             self.`switch` = `switch`
             self.defaultCacheTime = defaultCacheTime
             self.defaultCache = defaultCache
+            self.defaultCacheStrategy = defaultCacheStrategy
         }
 
         enum CodingKeys: String, CodingKey {
             case `switch` = "Switch"
             case defaultCacheTime = "DefaultCacheTime"
             case defaultCache = "DefaultCache"
+            case defaultCacheStrategy = "DefaultCacheStrategy"
         }
     }
 
@@ -2522,25 +1637,19 @@ extension Teo {
         }
     }
 
-    /// 地域信息
-    public struct GeoIp: TCOutputModel {
-        /// 地域ID。
-        public let regionId: Int64
+    /// Grpc配置项
+    public struct Grpc: TCInputModel, TCOutputModel {
+        /// 是否开启Grpc配置，取值有：
+        /// <li>on：开启；</li>
+        /// <li>off：关闭。</li>
+        public let `switch`: String
 
-        /// 国家名。
-        public let country: String?
-
-        /// 所属洲。
-        public let continent: String?
-
-        /// 城市名。
-        public let province: String?
+        public init(switch: String) {
+            self.`switch` = `switch`
+        }
 
         enum CodingKeys: String, CodingKey {
-            case regionId = "RegionId"
-            case country = "Country"
-            case continent = "Continent"
-            case province = "Province"
+            case `switch` = "Switch"
         }
     }
 
@@ -2653,6 +1762,20 @@ extension Teo {
             case hsts = "Hsts"
             case certInfo = "CertInfo"
             case applyType = "ApplyType"
+        }
+    }
+
+    /// 源站防护IP白名单
+    public struct IPWhitelist: TCOutputModel {
+        /// IPv4列表。
+        public let iPv4: [String]
+
+        /// IPv6列表。
+        public let iPv6: [String]
+
+        enum CodingKeys: String, CodingKey {
+            case iPv4 = "IPv4"
+            case iPv6 = "IPv6"
         }
     }
 
@@ -2909,70 +2032,6 @@ extension Teo {
         }
     }
 
-    /// 负载均衡信息
-    public struct LoadBalancing: TCOutputModel {
-        /// 负载均衡ID。
-        public let loadBalancingId: String
-
-        /// 站点ID。
-        public let zoneId: String
-
-        /// 子域名，填写@表示根域。
-        public let host: String
-
-        /// 代理模式，取值有：
-        /// <li>dns_only：仅DNS；</li>
-        /// <li>proxied：开启代理。</li>
-        public let type: String
-
-        /// 当Type=dns_only表示DNS记录的缓存时间。
-        public let ttl: UInt64
-
-        /// 状态，取值有：
-        /// <li>online：部署成功；</li>
-        /// <li>process：部署中。</li>
-        public let status: String
-
-        /// 调度域名。
-        public let cname: String
-
-        /// 主源源站组ID。
-        public let originGroupId: String
-
-        /// 备用源站源站组ID。为空表示不适用备用源站。
-        public let backupOriginGroupId: String
-
-        /// 更新时间。
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var updateTime: Date
-
-        /// 回源类型，取值有：
-        /// <li>normal：主备回源；</li>
-        /// <li>advanced：高级回源配置。</li>
-        public let originType: String
-
-        /// 高级回源配置，当OriginType=advanced时有效。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let advancedOriginGroups: [AdvancedOriginGroup]?
-
-        enum CodingKeys: String, CodingKey {
-            case loadBalancingId = "LoadBalancingId"
-            case zoneId = "ZoneId"
-            case host = "Host"
-            case type = "Type"
-            case ttl = "TTL"
-            case status = "Status"
-            case cname = "Cname"
-            case originGroupId = "OriginGroupId"
-            case backupOriginGroupId = "BackupOriginGroupId"
-            case updateTime = "UpdateTime"
-            case originType = "OriginType"
-            case advancedOriginGroups = "AdvancedOriginGroups"
-        }
-    }
-
     /// 日志集基本信息
     public struct LogSetInfo: TCOutputModel {
         /// 日志集所属地区。
@@ -2993,78 +2052,6 @@ extension Teo {
             case logSetRegion = "LogSetRegion"
             case logSetName = "LogSetName"
             case logSetId = "LogSetId"
-            case deleted = "Deleted"
-        }
-    }
-
-    /// 推送任务详细信息
-    public struct LogTopicDetailInfo: TCOutputModel {
-        /// 推送任务的任务名称。
-        public let taskName: String
-
-        /// 日志集所属的地域。
-        public let logSetRegion: String
-
-        /// 推送任务的类型。
-        public let entityType: String
-
-        /// 任务实体列表。
-        public let entityList: [String]
-
-        /// 日志集ID。
-        public let logSetId: String
-
-        /// 日志集名称。
-        public let logSetName: String
-
-        /// 推送任务主题ID。
-        public let topicId: String
-
-        /// 推送任务主题名称。
-        public let topicName: String
-
-        /// 推送任务主题保存时间，单位为天。
-        public let period: UInt64
-
-        /// 推送任务是否开启。
-        public let enabled: Bool
-
-        /// 推送任务创建时间，时间格式为: YYYY-mm-dd HH:MM:SS。
-        public let createTime: String
-
-        /// 加速区域，取值有：
-        /// <li>mainland：中国大陆境内;</li>
-        /// <li>overseas：全球（不含中国大陆）。</li>
-        public let area: String
-
-        /// 站点ID。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let zoneId: String?
-
-        /// 站点名称。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let zoneName: String?
-
-        /// 是否被删除了，取值有：
-        /// <li>yes: 已经被删除；</li>
-        /// <li>no: 没有被删除。</li>
-        public let deleted: String
-
-        enum CodingKeys: String, CodingKey {
-            case taskName = "TaskName"
-            case logSetRegion = "LogSetRegion"
-            case entityType = "EntityType"
-            case entityList = "EntityList"
-            case logSetId = "LogSetId"
-            case logSetName = "LogSetName"
-            case topicId = "TopicId"
-            case topicName = "TopicName"
-            case period = "Period"
-            case enabled = "Enabled"
-            case createTime = "CreateTime"
-            case area = "Area"
-            case zoneId = "ZoneId"
-            case zoneName = "ZoneName"
             case deleted = "Deleted"
         }
     }
@@ -3257,30 +2244,50 @@ extension Teo {
         }
     }
 
-    /// 回源配置的条件参数
-    public struct OriginGroupCondition: TCInputModel, TCOutputModel {
-        /// 匹配类型，取值有：
-        /// <li>url：当前站点下匹配URL路径的请求，例如：/example 或 /example/foo.jpg。支持*表示通配符，支持?表示匹配一个字符。
-        /// </li>
-        public let target: String
+    /// 源站防护信息
+    public struct OriginProtectionInfo: TCOutputModel {
+        /// 站点ID。
+        public let zoneId: String
 
-        /// 运算符，取值有：
-        /// <li>equal：等于。</li>
-        public let `operator`: String
+        /// 域名列表。
+        public let hosts: [String]
 
-        /// 对应匹配类型的取值。
-        public let values: [String]
+        /// 代理ID列表。
+        public let proxyIds: [String]
 
-        public init(target: String, operator: String, values: [String]) {
-            self.target = target
-            self.`operator` = `operator`
-            self.values = values
-        }
+        /// 当前版本的IP白名单。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currentIPWhitelist: IPWhitelist?
+
+        /// 该站点是否需要更新源站白名单，取值有：
+        /// <li>true ：需要更新IP白名单 ；</li>
+        /// <li>false ：无需更新IP白名单。</li>
+        public let needUpdate: Bool
+
+        /// 源站防护状态，取值有：
+        /// <li>online ：源站防护启用中 ；</li>
+        /// <li>offline ：源站防护已停用 ；</li>
+        /// <li>nonactivate ：源站防护未激活，仅在从未使用过源站防护功能的站点调用中返回。</li>
+        public let status: String
+
+        /// 站点套餐是否支持源站防护，取值有：
+        /// <li>true ：支持 ；</li>
+        /// <li>false ：不支持。</li>
+        public let planSupport: Bool
+
+        /// 最新IP白名单与当前IP白名单的对比。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let diffIPWhitelist: DiffIPWhitelist?
 
         enum CodingKeys: String, CodingKey {
-            case target = "Target"
-            case `operator` = "Operator"
-            case values = "Values"
+            case zoneId = "ZoneId"
+            case hosts = "Hosts"
+            case proxyIds = "ProxyIds"
+            case currentIPWhitelist = "CurrentIPWhitelist"
+            case needUpdate = "NeedUpdate"
+            case status = "Status"
+            case planSupport = "PlanSupport"
+            case diffIPWhitelist = "DiffIPWhitelist"
         }
     }
 
@@ -3426,45 +2433,6 @@ extension Teo {
             case request = "Request"
             case siteNumber = "SiteNumber"
             case area = "Area"
-        }
-    }
-
-    /// 用户画像规则详情
-    public struct PortraitManagedRuleDetail: TCInputModel, TCOutputModel {
-        /// 规则唯一id。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleId: Int64?
-
-        /// 规则的描述。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let description: String?
-
-        /// 规则所属类型的名字, botdb(用户画像)。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleTypeName: String?
-
-        /// 规则内的功能分类Id。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let classificationId: Int64?
-
-        /// 规则当前所属动作状态。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: String?
-
-        public init(ruleId: Int64? = nil, description: String? = nil, ruleTypeName: String? = nil, classificationId: Int64? = nil, status: String? = nil) {
-            self.ruleId = ruleId
-            self.description = description
-            self.ruleTypeName = ruleTypeName
-            self.classificationId = classificationId
-            self.status = status
-        }
-
-        enum CodingKeys: String, CodingKey {
-            case ruleId = "RuleId"
-            case description = "Description"
-            case ruleTypeName = "RuleTypeName"
-            case classificationId = "ClassificationId"
-            case status = "Status"
         }
     }
 
@@ -3616,7 +2584,7 @@ extension Teo {
         }
     }
 
-    /// RateLimit配置
+    /// 速率限制规则
     public struct RateLimitConfig: TCInputModel, TCOutputModel {
         /// 开关，取值有：
         /// <li>on：开启；</li>
@@ -3634,11 +2602,16 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rateLimitIntelligence: RateLimitIntelligence?
 
-        public init(switch: String, rateLimitUserRules: [RateLimitUserRule]? = nil, rateLimitTemplate: RateLimitTemplate? = nil, rateLimitIntelligence: RateLimitIntelligence? = nil) {
+        /// 速率限制-托管定制规则。如果为null，默认使用历史配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let rateLimitCustomizes: [RateLimitUserRule]?
+
+        public init(switch: String, rateLimitUserRules: [RateLimitUserRule]? = nil, rateLimitTemplate: RateLimitTemplate? = nil, rateLimitIntelligence: RateLimitIntelligence? = nil, rateLimitCustomizes: [RateLimitUserRule]? = nil) {
             self.`switch` = `switch`
             self.rateLimitUserRules = rateLimitUserRules
             self.rateLimitTemplate = rateLimitTemplate
             self.rateLimitIntelligence = rateLimitIntelligence
+            self.rateLimitCustomizes = rateLimitCustomizes
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3646,6 +2619,7 @@ extension Teo {
             case rateLimitUserRules = "RateLimitUserRules"
             case rateLimitTemplate = "RateLimitTemplate"
             case rateLimitIntelligence = "RateLimitIntelligence"
+            case rateLimitCustomizes = "RateLimitCustomizes"
         }
     }
 
@@ -3674,42 +2648,6 @@ extension Teo {
             case `switch` = "Switch"
             case action = "Action"
             case ruleId = "RuleId"
-        }
-    }
-
-    /// 速率限制智能客户端过滤规则详情
-    public struct RateLimitIntelligenceRuleDetail: TCOutputModel {
-        /// 智能识别到的客户端IP。
-        public let matchContent: String
-
-        /// 应用的动作。
-        public let action: String
-
-        /// 更新时间。
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var effectiveTime: Date
-
-        /// 失效时间。
-        ///
-        /// While the wrapped date value is immutable just like other fields, you can customize the projected
-        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
-        @TCTimestampISO8601Encoding public var expireTime: Date
-
-        /// 规则id。
-        public let ruleId: Int64
-
-        /// 处置状态，allowed即已经人为放行。
-        public let status: String
-
-        enum CodingKeys: String, CodingKey {
-            case matchContent = "MatchContent"
-            case action = "Action"
-            case effectiveTime = "EffectiveTime"
-            case expireTime = "ExpireTime"
-            case ruleId = "RuleId"
-            case status = "Status"
         }
     }
 
@@ -3923,6 +2861,7 @@ extension Teo {
         /// 地域，取值有：
         /// <li>mainland：国内；</li>
         /// <li>overseas：海外。</li>
+        /// <li>global：全球。</li>
         public let area: String
 
         enum CodingKeys: String, CodingKey {
@@ -4555,7 +3494,11 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateConfig: TemplateConfig?
 
-        public init(wafConfig: WafConfig? = nil, rateLimitConfig: RateLimitConfig? = nil, aclConfig: AclConfig? = nil, botConfig: BotConfig? = nil, switchConfig: SwitchConfig? = nil, ipTableConfig: IpTableConfig? = nil, exceptConfig: ExceptConfig? = nil, dropPageConfig: DropPageConfig? = nil, templateConfig: TemplateConfig? = nil) {
+        /// 慢速攻击配置。如果为null，默认使用历史配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slowPostConfig: SlowPostConfig?
+
+        public init(wafConfig: WafConfig? = nil, rateLimitConfig: RateLimitConfig? = nil, aclConfig: AclConfig? = nil, botConfig: BotConfig? = nil, switchConfig: SwitchConfig? = nil, ipTableConfig: IpTableConfig? = nil, exceptConfig: ExceptConfig? = nil, dropPageConfig: DropPageConfig? = nil, templateConfig: TemplateConfig? = nil, slowPostConfig: SlowPostConfig? = nil) {
             self.wafConfig = wafConfig
             self.rateLimitConfig = rateLimitConfig
             self.aclConfig = aclConfig
@@ -4565,6 +3508,7 @@ extension Teo {
             self.exceptConfig = exceptConfig
             self.dropPageConfig = dropPageConfig
             self.templateConfig = templateConfig
+            self.slowPostConfig = slowPostConfig
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4577,76 +3521,7 @@ extension Teo {
             case exceptConfig = "ExceptConfig"
             case dropPageConfig = "DropPageConfig"
             case templateConfig = "TemplateConfig"
-        }
-    }
-
-    /// 安全防护实例
-    public struct SecurityEntity: TCOutputModel {
-        /// 站点Id。
-        public let zoneId: String
-
-        /// 子域名/应用名。
-        public let entity: String
-
-        /// 类型，取值有：
-        /// <li> domain：7层子域名； </li>
-        /// <li> application：4层应用名。 </li>
-        public let entityType: String
-
-        enum CodingKeys: String, CodingKey {
-            case zoneId = "ZoneId"
-            case entity = "Entity"
-            case entityType = "EntityType"
-        }
-    }
-
-    /// 托管规则详情
-    public struct SecurityRule: TCOutputModel {
-        /// 规则id。
-        public let ruleId: Int64
-
-        /// 规则描述。
-        public let description: String
-
-        /// 规则类型名。
-        public let ruleTypeName: String
-
-        /// 等级描述。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleLevelDesc: String?
-
-        /// 规则类型id。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleTypeId: Int64?
-
-        /// 规则类型描述。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleTypeDesc: String?
-
-        /// 规则标签。部分类型的规则不存在该参数。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleTags: [String]?
-
-        /// 状态，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>为空时对应接口Status无意义，例如仅查询规则详情时。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let status: String?
-
-        /// 子域名/应用名
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let entity: String?
-
-        enum CodingKeys: String, CodingKey {
-            case ruleId = "RuleId"
-            case description = "Description"
-            case ruleTypeName = "RuleTypeName"
-            case ruleLevelDesc = "RuleLevelDesc"
-            case ruleTypeId = "RuleTypeId"
-            case ruleTypeDesc = "RuleTypeDesc"
-            case ruleTags = "RuleTags"
-            case status = "Status"
-            case entity = "Entity"
+            case slowPostConfig = "SlowPostConfig"
         }
     }
 
@@ -4723,47 +3598,6 @@ extension Teo {
             case deployTime = "DeployTime"
             case signAlgo = "SignAlgo"
             case commonName = "CommonName"
-        }
-    }
-
-    /// DDoS防护分区
-    public struct ShieldArea: TCOutputModel {
-        /// 站点Id。
-        public let zoneId: String
-
-        /// DDoS策略Id。
-        public let policyId: Int64
-
-        /// 防护类型，参考值：
-        /// <li>domain：7层子域；</li>
-        /// <li>application：4层应用。</li>
-        public let type: String
-
-        /// 7层站点名。
-        public let entityName: String?
-
-        /// 该防护分区下的7层子域名。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let dDoSHosts: [DDoSHost]?
-
-        /// 四层tcp转发规则数。
-        public let tcpNum: Int64?
-
-        /// 四层udp转发规则数。
-        public let udpNum: Int64?
-
-        /// 实例名称。
-        public let entity: String?
-
-        enum CodingKeys: String, CodingKey {
-            case zoneId = "ZoneId"
-            case policyId = "PolicyId"
-            case type = "Type"
-            case entityName = "EntityName"
-            case dDoSHosts = "DDoSHosts"
-            case tcpNum = "TcpNum"
-            case udpNum = "UdpNum"
-            case entity = "Entity"
         }
     }
 
@@ -4850,6 +3684,76 @@ extension Teo {
             case matchFrom = "MatchFrom"
             case matchContentType = "MatchContentType"
             case matchContent = "MatchContent"
+        }
+    }
+
+    /// 慢速攻击配置。
+    public struct SlowPostConfig: TCInputModel, TCOutputModel {
+        /// 开关，取值有：
+        /// <li>on：开启；</li>
+        /// <li>off：关闭。</li>
+        public let `switch`: String
+
+        /// 首包配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let firstPartConfig: FirstPartConfig?
+
+        /// 基础配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let slowRateConfig: SlowRateConfig?
+
+        /// 慢速攻击的处置动作，取值有：
+        /// <li>monitor：观察；</li>
+        /// <li>drop：拦截。</li>
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let action: String?
+
+        /// 本规则的Id。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ruleId: UInt64?
+
+        public init(switch: String, firstPartConfig: FirstPartConfig? = nil, slowRateConfig: SlowRateConfig? = nil, action: String? = nil, ruleId: UInt64? = nil) {
+            self.`switch` = `switch`
+            self.firstPartConfig = firstPartConfig
+            self.slowRateConfig = slowRateConfig
+            self.action = action
+            self.ruleId = ruleId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case firstPartConfig = "FirstPartConfig"
+            case slowRateConfig = "SlowRateConfig"
+            case action = "Action"
+            case ruleId = "RuleId"
+        }
+    }
+
+    /// 慢速攻击的基础配置。
+    public struct SlowRateConfig: TCInputModel, TCOutputModel {
+        /// 开关，取值有：
+        /// <li>on：开启；</li>
+        /// <li>off：关闭。</li>
+        public let `switch`: String
+
+        /// 统计的间隔，单位是秒，即在首段包传输结束后，将数据传输轴按照本参数切分，每个分片独立计算慢速攻击。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let interval: UInt64?
+
+        /// 统计时应用的速率阈值，单位是bps，即如果本分片中的传输速率没达到本参数的值，则判定为慢速攻击，应用慢速攻击的处置方式。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let threshold: UInt64?
+
+        public init(switch: String, interval: UInt64? = nil, threshold: UInt64? = nil) {
+            self.`switch` = `switch`
+            self.interval = interval
+            self.threshold = threshold
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case `switch` = "Switch"
+            case interval = "Interval"
+            case threshold = "Threshold"
         }
     }
 
@@ -5139,12 +4043,17 @@ extension Teo {
     }
 
     /// 询价参数
-    public struct Sv: TCOutputModel {
+    public struct Sv: TCInputModel, TCOutputModel {
         /// 询价参数键。
         public let key: String
 
         /// 询价参数值。
         public let value: String
+
+        public init(key: String, value: String) {
+            self.key = key
+            self.value = value
+        }
 
         enum CodingKeys: String, CodingKey {
             case key = "Key"
@@ -5504,116 +4413,6 @@ extension Teo {
         }
     }
 
-    /// 托管规则组详情
-    public struct WafGroupDetail: TCOutputModel {
-        /// 规则类型ID。
-        public let ruleTypeId: Int64
-
-        /// 规则类型名称。
-        public let ruleTypeName: String
-
-        /// 规则类型描述。
-        public let ruleTypeDesc: String
-
-        /// 规则列表。
-        public let wafGroupRules: [WafGroupRule]
-
-        /// 规则等级。
-        public let level: String
-
-        /// 动作。
-        public let action: String
-
-        enum CodingKeys: String, CodingKey {
-            case ruleTypeId = "RuleTypeId"
-            case ruleTypeName = "RuleTypeName"
-            case ruleTypeDesc = "RuleTypeDesc"
-            case wafGroupRules = "WafGroupRules"
-            case level = "Level"
-            case action = "Action"
-        }
-    }
-
-    /// 托管规则
-    public struct WafGroupInfo: TCOutputModel {
-        /// 托管规则组列表。
-        public let wafGroupDetails: [WafGroupDetail]
-
-        /// 规则组等级，取值有：
-        /// <li> loose：宽松；</li>
-        /// <li> normal：正常；</li>
-        /// <li> strict：严格；</li>
-        /// <li> stricter：超严格。</li>
-        public let level: String
-
-        /// 保留字段。
-        public let act: String
-
-        /// 模式，取值有：
-        /// <li> block：阻断；</li>
-        /// <li> observe：观察。</li>
-        public let mode: String
-
-        /// 开关，取值有：
-        /// <li> on：开启；</li>
-        /// <li> off：关闭。</li>
-        public let `switch`: String
-
-        enum CodingKeys: String, CodingKey {
-            case wafGroupDetails = "WafGroupDetails"
-            case level = "Level"
-            case act = "Act"
-            case mode = "Mode"
-            case `switch` = "Switch"
-        }
-    }
-
-    /// 托管规则详情
-    public struct WafGroupRule: TCOutputModel {
-        /// 规则id。
-        public let ruleId: Int64?
-
-        /// 规则描述。
-        public let description: String?
-
-        /// 等级描述。
-        public let ruleLevelDesc: String?
-
-        /// 规则标签。部分类型的规则不存在该参数。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let ruleTags: [String]?
-
-        /// 更新时间，格式为YYYY-MM-DD hh:mm:ss。部分类型的规则不存在该参数。
-        /// 注意：此字段可能返回 null，表示取不到有效值。
-        public let updateTime: String?
-
-        /// 状态，取值有：
-        /// <li>on：开启；</li>
-        /// <li>off：关闭。</li>为空时对应接口Status无意义，例如仅查询规则详情时。
-        public let status: String?
-
-        /// 规则类型名。
-        public let ruleTypeName: String?
-
-        /// 规则类型id。
-        public let ruleTypeId: Int64?
-
-        /// 规则类型描述。
-        public let ruleTypeDesc: String?
-
-        enum CodingKeys: String, CodingKey {
-            case ruleId = "RuleId"
-            case description = "Description"
-            case ruleLevelDesc = "RuleLevelDesc"
-            case ruleTags = "RuleTags"
-            case updateTime = "UpdateTime"
-            case status = "Status"
-            case ruleTypeName = "RuleTypeName"
-            case ruleTypeId = "RuleTypeId"
-            case ruleTypeDesc = "RuleTypeDesc"
-        }
-    }
-
     /// Waf规则
     public struct WafRule: TCInputModel, TCOutputModel {
         /// 托管规则开关，取值有：
@@ -5896,6 +4695,10 @@ extension Teo {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clientIpCountry: ClientIpCountry?
 
+        /// Grpc协议支持配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let grpc: Grpc?
+
         enum CodingKeys: String, CodingKey {
             case zoneName = "ZoneName"
             case area = "Area"
@@ -5916,6 +4719,7 @@ extension Teo {
             case ipv6 = "Ipv6"
             case https = "Https"
             case clientIpCountry = "ClientIpCountry"
+            case grpc = "Grpc"
         }
     }
 }

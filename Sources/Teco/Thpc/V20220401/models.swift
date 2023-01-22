@@ -20,10 +20,10 @@ import TecoDateHelpers
 extension Thpc {
     /// 描述CFS文件系统版本和挂载信息
     public struct CFSOption: TCInputModel {
-        /// 文件系统本地挂载路径
+        /// 文件系统本地挂载路径。
         public let localPath: String
 
-        /// 文件系统远程挂载ip及路径
+        /// 文件系统远程挂载ip及路径。
         public let remotePath: String
 
         /// 文件系统协议类型，默认值NFS 3.0。
@@ -41,6 +41,31 @@ extension Thpc {
             self.`protocol` = `protocol`
             self.storageType = storageType
         }
+
+        enum CodingKeys: String, CodingKey {
+            case localPath = "LocalPath"
+            case remotePath = "RemotePath"
+            case `protocol` = "Protocol"
+            case storageType = "StorageType"
+        }
+    }
+
+    /// CFS存储选项概览信息。
+    public struct CFSOptionOverview: TCOutputModel {
+        /// 文件系统本地挂载路径。
+        public let localPath: String
+
+        /// 文件系统远程挂载ip及路径。
+        public let remotePath: String
+
+        /// 文件系统协议类型。
+        /// <li>NFS 3.0。
+        /// <li>NFS 4.0。
+        /// <li>TURBO。
+        public let `protocol`: String
+
+        /// 文件系统存储类型，默认值SD；其中 SD 为通用标准型标准型存储， HP为通用性能型存储， TB为turbo标准型， TP 为turbo性能型。
+        public let storageType: String
 
         enum CodingKeys: String, CodingKey {
             case localPath = "LocalPath"
@@ -283,15 +308,66 @@ extension Thpc {
         }
     }
 
+    /// 扩容节点配置信息概览。
+    public struct ExpansionNodeConfigOverview: TCOutputModel {
+        /// 节点机型。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceType: String?
+
+        /// 扩容实例所在的位置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let placement: Placement?
+
+        /// 节点[计费类型](https://cloud.tencent.com/document/product/213/2180)。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceChargeType: String?
+
+        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月节点的购买时长、是否设置自动续费等属性。若指定节点的付费模式为预付费则该参数必传。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceChargePrepaid: InstanceChargePrepaid?
+
+        /// 私有网络相关信息配置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let virtualPrivateCloud: VirtualPrivateCloud?
+
+        /// 指定有效的[镜像](https://cloud.tencent.com/document/product/213/4940)ID，格式形如`img-xxx`。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let imageId: String?
+
+        /// 公网带宽相关信息设置。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let internetAccessible: InternetAccessible?
+
+        /// 节点系统盘配置信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let systemDisk: SystemDisk?
+
+        /// 节点数据盘配置信息。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataDisks: [DataDisk]?
+
+        enum CodingKeys: String, CodingKey {
+            case instanceType = "InstanceType"
+            case placement = "Placement"
+            case instanceChargeType = "InstanceChargeType"
+            case instanceChargePrepaid = "InstanceChargePrepaid"
+            case virtualPrivateCloud = "VirtualPrivateCloud"
+            case imageId = "ImageId"
+            case internetAccessible = "InternetAccessible"
+            case systemDisk = "SystemDisk"
+            case dataDisks = "DataDisks"
+        }
+    }
+
     /// 描述GooseFS挂载信息
     public struct GooseFSOption: TCInputModel {
-        /// 文件系统本地挂载路径
+        /// 文件系统本地挂载路径。
         public let localPath: String
 
-        /// 文件系统远程挂载路径
+        /// 文件系统远程挂载路径。
         public let remotePath: String
 
-        /// 文件系统master的ip和端口
+        /// 文件系统master的ip和端口。
         public let masters: [String]
 
         public init(localPath: String, remotePath: String, masters: [String]) {
@@ -299,6 +375,24 @@ extension Thpc {
             self.remotePath = remotePath
             self.masters = masters
         }
+
+        enum CodingKeys: String, CodingKey {
+            case localPath = "LocalPath"
+            case remotePath = "RemotePath"
+            case masters = "Masters"
+        }
+    }
+
+    /// GooseFS存储选项概览信息。
+    public struct GooseFSOptionOverview: TCOutputModel {
+        /// 文件系统本地挂载路径。
+        public let localPath: String
+
+        /// 文件系统远程挂载路径。
+        public let remotePath: String
+
+        /// 文件系统master的ip和端口。
+        public let masters: [String]
 
         enum CodingKeys: String, CodingKey {
             case localPath = "LocalPath"
@@ -584,6 +678,36 @@ extension Thpc {
         }
     }
 
+    /// 扩容队列配置概览。
+    public struct QueueConfigOverview: TCOutputModel {
+        /// 队列名称。
+        public let queueName: String?
+
+        /// 队列中弹性节点数量最小值。取值范围0～200。
+        public let minSize: Int64?
+
+        /// 队列中弹性节点数量最大值。取值范围0～200。
+        public let maxSize: Int64?
+
+        /// 是否开启自动扩容。
+        public let enableAutoExpansion: Bool?
+
+        /// 是否开启自动缩容。
+        public let enableAutoShrink: Bool?
+
+        /// 扩容节点配置信息。
+        public let expansionNodeConfigs: [ExpansionNodeConfigOverview]?
+
+        enum CodingKeys: String, CodingKey {
+            case queueName = "QueueName"
+            case minSize = "MinSize"
+            case maxSize = "MaxSize"
+            case enableAutoExpansion = "EnableAutoExpansion"
+            case enableAutoShrink = "EnableAutoShrink"
+            case expansionNodeConfigs = "ExpansionNodeConfigs"
+        }
+    }
+
     /// 描述集群文件系统选项
     public struct StorageOption: TCInputModel {
         /// 集群挂载CFS文件系统选项
@@ -596,6 +720,20 @@ extension Thpc {
             self.cfsOptions = cfsOptions
             self.gooseFSOptions = gooseFSOptions
         }
+
+        enum CodingKeys: String, CodingKey {
+            case cfsOptions = "CFSOptions"
+            case gooseFSOptions = "GooseFSOptions"
+        }
+    }
+
+    /// 集群存储选项概览信息。
+    public struct StorageOptionOverview: TCOutputModel {
+        /// CFS存储选项概览信息列表。
+        public let cfsOptions: [CFSOptionOverview]
+
+        /// GooseFS存储选项概览信息列表。
+        public let gooseFSOptions: [GooseFSOptionOverview]
 
         enum CodingKeys: String, CodingKey {
             case cfsOptions = "CFSOptions"

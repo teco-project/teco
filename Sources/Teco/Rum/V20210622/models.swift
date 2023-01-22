@@ -399,6 +399,10 @@ extension Rum {
         /// Duration
         public let pageDuration: String
 
+        /// 时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
         enum CodingKeys: String, CodingKey {
             case staticDuration = "StaticDuration"
             case pagePv = "PagePv"
@@ -413,6 +417,7 @@ extension Rum {
             case staticNum = "StaticNum"
             case recordNum = "RecordNum"
             case pageDuration = "PageDuration"
+            case createTime = "CreateTime"
         }
     }
 

@@ -20,17 +20,22 @@ extension Cynosdb {
         /// 集群ID
         public let clusterId: String
 
-        /// 备份文件ID
-        public let snapshotIdList: [Int64]
+        /// 备份文件ID，旧版本使用的字段，不推荐使用
+        public let snapshotIdList: [Int64]?
 
-        public init(clusterId: String, snapshotIdList: [Int64]) {
+        /// 备份文件ID，推荐使用
+        public let backupIds: [Int64]?
+
+        public init(clusterId: String, snapshotIdList: [Int64]? = nil, backupIds: [Int64]? = nil) {
             self.clusterId = clusterId
             self.snapshotIdList = snapshotIdList
+            self.backupIds = backupIds
         }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case snapshotIdList = "SnapshotIdList"
+            case backupIds = "BackupIds"
         }
     }
 
@@ -64,15 +69,15 @@ extension Cynosdb {
     ///
     /// 为集群删除手动备份，无法删除自动备份
     @inlinable @discardableResult
-    public func deleteBackup(clusterId: String, snapshotIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
-        self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
+    public func deleteBackup(clusterId: String, snapshotIdList: [Int64]? = nil, backupIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBackupResponse> {
+        self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList, backupIds: backupIds), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除手动备份
     ///
     /// 为集群删除手动备份，无法删除自动备份
     @inlinable @discardableResult
-    public func deleteBackup(clusterId: String, snapshotIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
-        try await self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
+    public func deleteBackup(clusterId: String, snapshotIdList: [Int64]? = nil, backupIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBackupResponse {
+        try await self.deleteBackup(DeleteBackupRequest(clusterId: clusterId, snapshotIdList: snapshotIdList, backupIds: backupIds), region: region, logger: logger, on: eventLoop)
     }
 }

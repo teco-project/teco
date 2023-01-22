@@ -20,7 +20,7 @@ extension Tbaas {
         /// 网络ID，可在区块链网络详情或列表中获取
         public let clusterId: String
 
-        /// 业务链编号，可在业务链列表中获取
+        /// 业务链ID，可在网络概览页获取
         public let chainId: String
 
         /// 合约名称，可在合约管理中获取

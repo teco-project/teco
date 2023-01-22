@@ -20,12 +20,17 @@ extension Cynosdb {
         /// 集群ID
         public let clusterId: String
 
-        public init(clusterId: String) {
+        /// 参数名字
+        public let paramName: String?
+
+        public init(clusterId: String, paramName: String? = nil) {
             self.clusterId = clusterId
+            self.paramName = paramName
         }
 
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
+            case paramName = "ParamName"
         }
     }
 
@@ -35,7 +40,8 @@ extension Cynosdb {
         public let totalCount: Int64
 
         /// 实例参数列表
-        public let items: [ParamInfo]
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let items: [ParamInfo]?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
@@ -67,15 +73,15 @@ extension Cynosdb {
     ///
     /// 本接口（DescribeClusterParams）用于查询集群参数
     @inlinable
-    public func describeClusterParams(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamsResponse> {
-        self.describeClusterParams(DescribeClusterParamsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+    public func describeClusterParams(clusterId: String, paramName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamsResponse> {
+        self.describeClusterParams(DescribeClusterParamsRequest(clusterId: clusterId, paramName: paramName), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询集群参数
     ///
     /// 本接口（DescribeClusterParams）用于查询集群参数
     @inlinable
-    public func describeClusterParams(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamsResponse {
-        try await self.describeClusterParams(DescribeClusterParamsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+    public func describeClusterParams(clusterId: String, paramName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamsResponse {
+        try await self.describeClusterParams(DescribeClusterParamsRequest(clusterId: clusterId, paramName: paramName), region: region, logger: logger, on: eventLoop)
     }
 }

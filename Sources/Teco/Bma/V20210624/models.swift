@@ -198,6 +198,12 @@ extension Bma {
         /// 侵权站点数量
         public let tortSiteNum: Int64
 
+        /// 监测截止时间
+        public let monitorEndTime: String?
+
+        /// 是否自动续费
+        public let autoRenew: Int64?
+
         enum CodingKeys: String, CodingKey {
             case workId = "WorkId"
             case workName = "WorkName"
@@ -213,6 +219,8 @@ extension Bma {
             case evidenceStatus = "EvidenceStatus"
             case evidenceNote = "EvidenceNote"
             case tortSiteNum = "TortSiteNum"
+            case monitorEndTime = "MonitorEndTime"
+            case autoRenew = "AutoRenew"
         }
     }
 

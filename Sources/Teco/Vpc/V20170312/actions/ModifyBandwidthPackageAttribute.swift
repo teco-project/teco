@@ -23,24 +23,20 @@ extension Vpc {
         /// 带宽包名称
         public let bandwidthPackageName: String
 
-        /// 带宽包计费模式
+        /// 带宽包计费模式，示例 ：
+        /// 'TOP5_POSTPAID_BY_MONTH'（后付费-TOP5计费）
         public let chargeType: String?
 
-        /// 退款时迁移为后付费带宽包。默认值：否
-        public let migrateOnRefund: Bool?
-
-        public init(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, migrateOnRefund: Bool? = nil) {
+        public init(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil) {
             self.bandwidthPackageId = bandwidthPackageId
             self.bandwidthPackageName = bandwidthPackageName
             self.chargeType = chargeType
-            self.migrateOnRefund = migrateOnRefund
         }
 
         enum CodingKeys: String, CodingKey {
             case bandwidthPackageId = "BandwidthPackageId"
             case bandwidthPackageName = "BandwidthPackageName"
             case chargeType = "ChargeType"
-            case migrateOnRefund = "MigrateOnRefund"
         }
     }
 
@@ -74,15 +70,15 @@ extension Vpc {
     ///
     /// 接口用于修改带宽包属性，包括带宽包名字等
     @inlinable @discardableResult
-    public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, migrateOnRefund: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBandwidthPackageAttributeResponse> {
-        self.modifyBandwidthPackageAttribute(ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType, migrateOnRefund: migrateOnRefund), region: region, logger: logger, on: eventLoop)
+    public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBandwidthPackageAttributeResponse> {
+        self.modifyBandwidthPackageAttribute(ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 修改带宽包属性
     ///
     /// 接口用于修改带宽包属性，包括带宽包名字等
     @inlinable @discardableResult
-    public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, migrateOnRefund: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBandwidthPackageAttributeResponse {
-        try await self.modifyBandwidthPackageAttribute(ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType, migrateOnRefund: migrateOnRefund), region: region, logger: logger, on: eventLoop)
+    public func modifyBandwidthPackageAttribute(bandwidthPackageId: String, bandwidthPackageName: String, chargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBandwidthPackageAttributeResponse {
+        try await self.modifyBandwidthPackageAttribute(ModifyBandwidthPackageAttributeRequest(bandwidthPackageId: bandwidthPackageId, bandwidthPackageName: bandwidthPackageName, chargeType: chargeType), region: region, logger: logger, on: eventLoop)
     }
 }

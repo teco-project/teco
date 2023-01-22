@@ -80,7 +80,10 @@ extension Tione {
         /// 数据来源，eg：DATASET、COS、CFS、HDFS
         public let dataSource: String?
 
-        public init(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil) {
+        /// 回调地址，用于创建/启动/停止训练任务的异步回调。回调格式&内容详见：[[TI-ONE接口回调说明]](https://cloud.tencent.com/document/product/851/84292)
+        public let callbackUrl: String?
+
+        public init(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil, callbackUrl: String? = nil) {
             self.name = name
             self.chargeType = chargeType
             self.resourceConfigInfos = resourceConfigInfos
@@ -102,6 +105,7 @@ extension Tione {
             self.tuningParameters = tuningParameters
             self.remark = remark
             self.dataSource = dataSource
+            self.callbackUrl = callbackUrl
         }
 
         enum CodingKeys: String, CodingKey {
@@ -126,6 +130,7 @@ extension Tione {
             case tuningParameters = "TuningParameters"
             case remark = "Remark"
             case dataSource = "DataSource"
+            case callbackUrl = "CallbackUrl"
         }
     }
 
@@ -157,13 +162,13 @@ extension Tione {
 
     /// 创建模型训练任务
     @inlinable
-    public func createTrainingTask(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrainingTaskResponse> {
-        self.createTrainingTask(CreateTrainingTaskRequest(name: name, chargeType: chargeType, resourceConfigInfos: resourceConfigInfos, codePackagePath: codePackagePath, trainingMode: trainingMode, output: output, logEnable: logEnable, frameworkName: frameworkName, frameworkVersion: frameworkVersion, frameworkEnvironment: frameworkEnvironment, resourceGroupId: resourceGroupId, tags: tags, imageInfo: imageInfo, startCmdInfo: startCmdInfo, dataConfigs: dataConfigs, vpcId: vpcId, subnetId: subnetId, logConfig: logConfig, tuningParameters: tuningParameters, remark: remark, dataSource: dataSource), region: region, logger: logger, on: eventLoop)
+    public func createTrainingTask(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrainingTaskResponse> {
+        self.createTrainingTask(CreateTrainingTaskRequest(name: name, chargeType: chargeType, resourceConfigInfos: resourceConfigInfos, codePackagePath: codePackagePath, trainingMode: trainingMode, output: output, logEnable: logEnable, frameworkName: frameworkName, frameworkVersion: frameworkVersion, frameworkEnvironment: frameworkEnvironment, resourceGroupId: resourceGroupId, tags: tags, imageInfo: imageInfo, startCmdInfo: startCmdInfo, dataConfigs: dataConfigs, vpcId: vpcId, subnetId: subnetId, logConfig: logConfig, tuningParameters: tuningParameters, remark: remark, dataSource: dataSource, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建模型训练任务
     @inlinable
-    public func createTrainingTask(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingTaskResponse {
-        try await self.createTrainingTask(CreateTrainingTaskRequest(name: name, chargeType: chargeType, resourceConfigInfos: resourceConfigInfos, codePackagePath: codePackagePath, trainingMode: trainingMode, output: output, logEnable: logEnable, frameworkName: frameworkName, frameworkVersion: frameworkVersion, frameworkEnvironment: frameworkEnvironment, resourceGroupId: resourceGroupId, tags: tags, imageInfo: imageInfo, startCmdInfo: startCmdInfo, dataConfigs: dataConfigs, vpcId: vpcId, subnetId: subnetId, logConfig: logConfig, tuningParameters: tuningParameters, remark: remark, dataSource: dataSource), region: region, logger: logger, on: eventLoop)
+    public func createTrainingTask(name: String, chargeType: String, resourceConfigInfos: [ResourceConfigInfo], codePackagePath: CosPathInfo, trainingMode: String, output: CosPathInfo, logEnable: Bool, frameworkName: String? = nil, frameworkVersion: String? = nil, frameworkEnvironment: String? = nil, resourceGroupId: String? = nil, tags: [Tag]? = nil, imageInfo: ImageInfo? = nil, startCmdInfo: StartCmdInfo? = nil, dataConfigs: [DataConfig]? = nil, vpcId: String? = nil, subnetId: String? = nil, logConfig: LogConfig? = nil, tuningParameters: String? = nil, remark: String? = nil, dataSource: String? = nil, callbackUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrainingTaskResponse {
+        try await self.createTrainingTask(CreateTrainingTaskRequest(name: name, chargeType: chargeType, resourceConfigInfos: resourceConfigInfos, codePackagePath: codePackagePath, trainingMode: trainingMode, output: output, logEnable: logEnable, frameworkName: frameworkName, frameworkVersion: frameworkVersion, frameworkEnvironment: frameworkEnvironment, resourceGroupId: resourceGroupId, tags: tags, imageInfo: imageInfo, startCmdInfo: startCmdInfo, dataConfigs: dataConfigs, vpcId: vpcId, subnetId: subnetId, logConfig: logConfig, tuningParameters: tuningParameters, remark: remark, dataSource: dataSource, callbackUrl: callbackUrl), region: region, logger: logger, on: eventLoop)
     }
 }

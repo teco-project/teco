@@ -26,16 +26,26 @@ extension Dts {
         /// 分页偏移量
         public let offset: UInt64?
 
-        public init(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil) {
+        /// 校验任务 ID
+        public let compareTaskId: String?
+
+        /// 任务状态过滤，可能的值：created - 创建完成；readyRun - 等待运行；running - 运行中；success - 成功；stopping - 结束中；failed - 失败；canceled - 已终止
+        public let status: [String]?
+
+        public init(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, compareTaskId: String? = nil, status: [String]? = nil) {
             self.jobId = jobId
             self.limit = limit
             self.offset = offset
+            self.compareTaskId = compareTaskId
+            self.status = status
         }
 
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case limit = "Limit"
             case offset = "Offset"
+            case compareTaskId = "CompareTaskId"
+            case status = "Status"
         }
     }
 
@@ -79,15 +89,15 @@ extension Dts {
     ///
     /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
     @inlinable
-    public func describeCompareTasks(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompareTasksResponse> {
-        self.describeCompareTasks(DescribeCompareTasksRequest(jobId: jobId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeCompareTasks(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, compareTaskId: String? = nil, status: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompareTasksResponse> {
+        self.describeCompareTasks(DescribeCompareTasksRequest(jobId: jobId, limit: limit, offset: offset, compareTaskId: compareTaskId, status: status), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询一致性校验任务列表
     ///
     /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
     @inlinable
-    public func describeCompareTasks(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareTasksResponse {
-        try await self.describeCompareTasks(DescribeCompareTasksRequest(jobId: jobId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+    public func describeCompareTasks(jobId: String, limit: UInt64? = nil, offset: UInt64? = nil, compareTaskId: String? = nil, status: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareTasksResponse {
+        try await self.describeCompareTasks(DescribeCompareTasksRequest(jobId: jobId, limit: limit, offset: offset, compareTaskId: compareTaskId, status: status), region: region, logger: logger, on: eventLoop)
     }
 }

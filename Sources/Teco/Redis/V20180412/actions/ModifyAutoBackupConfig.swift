@@ -17,16 +17,16 @@
 extension Redis {
     /// ModifyAutoBackupConfig请求参数结构体
     public struct ModifyAutoBackupConfigRequest: TCRequestModel {
-        /// 实例ID
+        /// 实例ID。
         public let instanceId: String
 
-        /// 日期 Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday，该参数暂不支持修改。
+        /// 设置自动备份周期。可设置为Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。该参数暂不支持修改。
         public let weekDays: [String]
 
-        /// 时间段 00:00-01:00, 01:00-02:00...... 23:00-00:00
+        /// 备份时间段。可设置为每个整点。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
         public let timePeriod: String
 
-        /// 自动备份类型： 1 “定时回档”
+        /// 自动备份类型： 1 “定时回档”。
         public let autoBackupType: Int64?
 
         public init(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil) {
@@ -49,13 +49,13 @@ extension Redis {
         /// 自动备份类型： 1 “定时回档”
         public let autoBackupType: Int64
 
-        /// 日期Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
+        /// 自动备份周期。取值为：Monday，Tuesday，Wednesday，Thursday，Friday，Saturday，Sunday。
         public let weekDays: [String]
 
-        /// 时间段 00:00-01:00, 01:00-02:00...... 23:00-00:00
+        /// 自动备份时间段。格式如：00:00-01:00, 01:00-02:00...... 23:00-00:00。
         public let timePeriod: String
 
-        /// 全量备份文件保存天数,单位：天
+        /// 全量备份文件保存天数,单位：天。
         public let backupStorageDays: Int64
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。

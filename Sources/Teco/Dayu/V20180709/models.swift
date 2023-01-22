@@ -801,12 +801,16 @@ extension Dayu {
         /// 解封类型（user：自助解封；auto：自动解封； update：升级解封；bind：绑定高防包解封）
         public let actionType: String
 
+        /// 高防标记，0：非高防，1：高防
+        public let protectFlag: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case status = "Status"
             case blockTime = "BlockTime"
             case unBlockTime = "UnBlockTime"
             case actionType = "ActionType"
+            case protectFlag = "ProtectFlag"
         }
     }
 

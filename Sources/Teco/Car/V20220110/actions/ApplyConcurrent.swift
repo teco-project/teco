@@ -29,11 +29,15 @@ extension Car {
         /// 应用版本ID
         public let applicationVersionId: String?
 
-        public init(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil) {
+        /// 应用ID。如果是独享项目，将忽略该参数，使用项目绑定的应用。如果是共享项目，使用该参数来指定应用。
+        public let applicationId: String?
+
+        public init(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, applicationId: String? = nil) {
             self.userId = userId
             self.userIp = userIp
             self.projectId = projectId
             self.applicationVersionId = applicationVersionId
+            self.applicationId = applicationId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -41,6 +45,7 @@ extension Car {
             case userIp = "UserIp"
             case projectId = "ProjectId"
             case applicationVersionId = "ApplicationVersionId"
+            case applicationId = "ApplicationId"
         }
     }
 
@@ -68,13 +73,13 @@ extension Car {
 
     /// 申请并发
     @inlinable @discardableResult
-    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
-        self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), region: region, logger: logger, on: eventLoop)
+    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyConcurrentResponse> {
+        self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 申请并发
     @inlinable @discardableResult
-    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
-        try await self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId), region: region, logger: logger, on: eventLoop)
+    public func applyConcurrent(userId: String, userIp: String, projectId: String, applicationVersionId: String? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyConcurrentResponse {
+        try await self.applyConcurrent(ApplyConcurrentRequest(userId: userId, userIp: userIp, projectId: projectId, applicationVersionId: applicationVersionId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
     }
 }

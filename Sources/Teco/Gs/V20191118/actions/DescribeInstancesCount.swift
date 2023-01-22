@@ -26,16 +26,23 @@ extension Gs {
         /// 游戏区域
         public let gameRegion: String?
 
-        public init(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil) {
+        /// 游戏类型。
+        /// MOBILE：手游
+        /// PC：默认值，端游
+        public let gameType: String?
+
+        public init(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, gameType: String? = nil) {
             self.gameId = gameId
             self.groupId = groupId
             self.gameRegion = gameRegion
+            self.gameType = gameType
         }
 
         enum CodingKeys: String, CodingKey {
             case gameId = "GameId"
             case groupId = "GroupId"
             case gameRegion = "GameRegion"
+            case gameType = "GameType"
         }
     }
 
@@ -71,13 +78,13 @@ extension Gs {
 
     /// 获取并发总数和运行数
     @inlinable
-    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesCountResponse> {
-        self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion), region: region, logger: logger, on: eventLoop)
+    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, gameType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesCountResponse> {
+        self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion, gameType: gameType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 获取并发总数和运行数
     @inlinable
-    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
-        try await self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion), region: region, logger: logger, on: eventLoop)
+    public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, gameType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
+        try await self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion, gameType: gameType), region: region, logger: logger, on: eventLoop)
     }
 }

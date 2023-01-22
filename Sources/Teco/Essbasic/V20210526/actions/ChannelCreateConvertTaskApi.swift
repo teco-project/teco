@@ -29,7 +29,7 @@ extension Essbasic {
         /// 资源Id，通过UploadFiles获取
         public let resourceId: String
 
-        /// 操作者信息
+        /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo?
 
         /// 暂未开放

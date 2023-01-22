@@ -180,6 +180,14 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policyDetail: [HpaPolicy]?
 
+        /// Tke集群信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tkeClusterInfo: TkeClusterInfo?
+
+        /// 版本工作负载类型；deployment/deamonset
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tkeWorkloadType: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -221,6 +229,8 @@ extension Tcb {
             case entryPoint = "EntryPoint"
             case repoLanguage = "RepoLanguage"
             case policyDetail = "PolicyDetail"
+            case tkeClusterInfo = "TkeClusterInfo"
+            case tkeWorkloadType = "TkeWorkloadType"
             case requestId = "RequestId"
         }
     }

@@ -76,6 +76,9 @@ extension Ocr {
         /// 场所名称（允许返回空值）
         public let spotName: String
 
+        /// 疫苗接种时间
+        public let vaccinationTime: String
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -89,6 +92,7 @@ extension Ocr {
             case testingTime = "TestingTime"
             case vaccination = "Vaccination"
             case spotName = "SpotName"
+            case vaccinationTime = "VaccinationTime"
             case requestId = "RequestId"
         }
     }

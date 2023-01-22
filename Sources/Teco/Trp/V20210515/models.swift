@@ -179,7 +179,7 @@ extension Trp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amount: Int64?
 
-        /// 码长度
+        /// 防伪码长度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeLength: Int64?
 
@@ -561,11 +561,11 @@ extension Trp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let services: [String]?
 
-        /// 工厂配额
+        /// 商户配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let factoryQuota: Int64?
 
-        /// 产品配额
+        /// 商品配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemQuota: Int64?
 
@@ -589,7 +589,7 @@ extension Trp {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trackType: Int64?
 
-        /// 开通版本 basic standard enterprise
+        /// 开通版本 lite:轻量版, basic:基础版, standard:标准版
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
 
@@ -661,6 +661,12 @@ extension Trp {
         /// 产品名称
         public let productName: String
 
+        /// 渠道商ID
+        public let agentId: UInt64?
+
+        /// 码层级 0: 最小级, 1: 一级, 2: 二级
+        public let level: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case corpId = "CorpId"
@@ -673,6 +679,8 @@ extension Trp {
             case updateTime = "UpdateTime"
             case merchantName = "MerchantName"
             case productName = "ProductName"
+            case agentId = "AgentId"
+            case level = "Level"
         }
     }
 

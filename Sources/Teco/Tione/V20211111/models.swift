@@ -1636,6 +1636,10 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelSignature: String?
 
+        /// 是否是QAT模型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let qatModel: Bool?
+
         enum CodingKeys: String, CodingKey {
             case modelAccTaskId = "ModelAccTaskId"
             case modelAccTaskName = "ModelAccTaskName"
@@ -1664,6 +1668,7 @@ extension Tione {
             case tags = "Tags"
             case isSaved = "IsSaved"
             case modelSignature = "ModelSignature"
+            case qatModel = "QATModel"
         }
     }
 
@@ -2548,10 +2553,18 @@ extension Tione {
         /// 计费项显示名称
         public let specAlias: String
 
+        /// 是否售罄
+        public let available: Bool
+
+        /// 当前资源售罄时，可用的区域有哪些
+        public let availableRegion: [String]
+
         enum CodingKeys: String, CodingKey {
             case specId = "SpecId"
             case specName = "SpecName"
             case specAlias = "SpecAlias"
+            case available = "Available"
+            case availableRegion = "AvailableRegion"
         }
     }
 
@@ -3195,6 +3208,10 @@ extension Tione {
         /// 任务状态，eg：STARTING启动中、RUNNING运行中、STOPPING停止中、STOPPED已停止、FAILED异常、SUCCEED已完成
         public let status: String
 
+        /// 回调地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let callbackUrl: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -3234,6 +3251,7 @@ extension Tione {
             case resourceGroupName = "ResourceGroupName"
             case message = "Message"
             case status = "Status"
+            case callbackUrl = "CallbackUrl"
         }
     }
 
@@ -3320,6 +3338,10 @@ extension Tione {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
 
+        /// 回调地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let callbackUrl: String?
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -3344,6 +3366,7 @@ extension Tione {
             case imageInfo = "ImageInfo"
             case message = "Message"
             case tags = "Tags"
+            case callbackUrl = "CallbackUrl"
         }
     }
 

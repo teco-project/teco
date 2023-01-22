@@ -57,6 +57,9 @@ extension Tiia {
     /// 查询图片库
     ///
     /// 查询所有的图库信息。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeGroups(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
         self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -65,6 +68,9 @@ extension Tiia {
     /// 查询图片库
     ///
     /// 查询所有的图库信息。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeGroups(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
         try await self.client.execute(action: "DescribeGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -73,6 +79,9 @@ extension Tiia {
     /// 查询图片库
     ///
     /// 查询所有的图库信息。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupsResponse> {
         self.describeGroups(DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)
@@ -81,6 +90,9 @@ extension Tiia {
     /// 查询图片库
     ///
     /// 查询所有的图库信息。
+    ///
+    /// >
+    /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
     public func describeGroups(offset: Int64? = nil, limit: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupsResponse {
         try await self.describeGroups(DescribeGroupsRequest(offset: offset, limit: limit, groupId: groupId), region: region, logger: logger, on: eventLoop)

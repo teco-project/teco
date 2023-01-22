@@ -29,7 +29,7 @@ extension Trp {
         /// 批次类型 0:溯源 1:营销
         public let batchType: UInt64?
 
-        /// 批次ID，系统自动生成
+        /// 批次ID，留空时系统自动生成
         public let batchId: String?
 
         /// 备注
@@ -41,7 +41,10 @@ extension Trp {
         /// 克隆批次ID，同时会复制溯源信息
         public let cloneId: String?
 
-        public init(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil) {
+        /// 批次编号，业务字段不判断唯一性
+        public let batchCode: String?
+
+        public init(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil) {
             self.corpId = corpId
             self.merchantId = merchantId
             self.productId = productId
@@ -50,6 +53,7 @@ extension Trp {
             self.remark = remark
             self.mpTpl = mpTpl
             self.cloneId = cloneId
+            self.batchCode = batchCode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -61,6 +65,7 @@ extension Trp {
             case remark = "Remark"
             case mpTpl = "MpTpl"
             case cloneId = "CloneId"
+            case batchCode = "BatchCode"
         }
     }
 
@@ -92,13 +97,13 @@ extension Trp {
 
     /// 新增批次
     @inlinable
-    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodeBatchResponse> {
-        self.createCodeBatch(CreateCodeBatchRequest(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId), region: region, logger: logger, on: eventLoop)
+    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodeBatchResponse> {
+        self.createCodeBatch(CreateCodeBatchRequest(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 新增批次
     @inlinable
-    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {
-        try await self.createCodeBatch(CreateCodeBatchRequest(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId), region: region, logger: logger, on: eventLoop)
+    public func createCodeBatch(corpId: UInt64? = nil, merchantId: String? = nil, productId: String? = nil, batchType: UInt64? = nil, batchId: String? = nil, remark: String? = nil, mpTpl: String? = nil, cloneId: String? = nil, batchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodeBatchResponse {
+        try await self.createCodeBatch(CreateCodeBatchRequest(corpId: corpId, merchantId: merchantId, productId: productId, batchType: batchType, batchId: batchId, remark: remark, mpTpl: mpTpl, cloneId: cloneId, batchCode: batchCode), region: region, logger: logger, on: eventLoop)
     }
 }

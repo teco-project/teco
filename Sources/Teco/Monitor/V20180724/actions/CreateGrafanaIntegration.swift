@@ -17,13 +17,13 @@
 extension Monitor {
     /// CreateGrafanaIntegration请求参数结构体
     public struct CreateGrafanaIntegrationRequest: TCRequestModel {
-        /// 实例 ID
+        /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
-        /// 类型
+        /// 集成类型，可在实例详情-云产品集成-集成列表查看。例如：tencent-cloud-prometheus
         public let kind: String
 
-        /// 配置
+        /// 集成配置
         public let content: String
 
         public init(instanceId: String, kind: String, content: String) {

@@ -511,6 +511,81 @@ extension Lighthouse {
         }
     }
 
+    /// 描述了云硬盘备份点相关信息。
+    public struct DiskBackup: TCOutputModel {
+        /// 云硬盘备份点ID。
+        public let diskBackupId: String
+
+        /// 创建此云硬盘备份点的云硬盘类型。取值：<li>DATA_DISK：数据盘</li>
+        public let diskUsage: String
+
+        /// 创建此云硬盘备份点的云硬盘 ID。
+        public let diskId: String
+
+        /// 创建此云硬盘备份点的云硬盘大小，单位 GB。
+        public let diskSize: Int64
+
+        /// 云硬盘备份点名称，用户自定义的云硬盘备份点别名。
+        public let diskBackupName: String
+
+        /// 云硬盘备份点的状态。取值范围：
+        /// <li>NORMAL：正常。 </li>
+        /// <li>CREATING：创建中。</li>
+        /// <li>ROLLBACKING：回滚中。</li>
+        /// <li>DELETING：删除中。</li>
+        public let diskBackupState: String
+
+        /// 创建或回滚云硬盘备份点进度百分比，成功后此字段取值为 100。
+        public let percent: Int64
+
+        /// 上一次操作
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let latestOperation: String?
+
+        /// 上一次操作状态
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let latestOperationState: String?
+
+        /// 上一次请求ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let latestOperationRequestId: String?
+
+        /// 创建时间。按照 ISO8601 标准表示，并且使用 UTC 时间。
+        /// 格式为： YYYY-MM-DDThh:mm:ssZ。
+        ///
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
+        @TCTimestampISO8601Encoding public var createdTime: Date
+
+        enum CodingKeys: String, CodingKey {
+            case diskBackupId = "DiskBackupId"
+            case diskUsage = "DiskUsage"
+            case diskId = "DiskId"
+            case diskSize = "DiskSize"
+            case diskBackupName = "DiskBackupName"
+            case diskBackupState = "DiskBackupState"
+            case percent = "Percent"
+            case latestOperation = "LatestOperation"
+            case latestOperationState = "LatestOperationState"
+            case latestOperationRequestId = "LatestOperationRequestId"
+            case createdTime = "CreatedTime"
+        }
+    }
+
+    /// 云硬盘备份点操作限制列表。
+    public struct DiskBackupDeniedActions: TCOutputModel {
+        /// 云硬盘备份点ID。
+        public let diskBackupId: String
+
+        /// 操作限制列表。
+        public let deniedActions: [DeniedAction]
+
+        enum CodingKeys: String, CodingKey {
+            case diskBackupId = "DiskBackupId"
+            case deniedActions = "DeniedActions"
+        }
+    }
+
     /// 云硬盘包年包月相关参数设置
     public struct DiskChargePrepaid: TCInputModel {
         /// 新购周期。
@@ -1005,22 +1080,27 @@ extension Lighthouse {
     /// 关于Lighthouse Instance实例的价格信息
     public struct InstancePrice: TCOutputModel {
         /// 套餐单价原价。
-        public let originalBundlePrice: Float
+        public let originalBundlePrice: Float?
 
         /// 原价。
-        public let originalPrice: Float
+        public let originalPrice: Float?
 
         /// 折扣。
-        public let discount: Int64
+        public let discount: Int64?
 
         /// 折后价。
-        public let discountPrice: Float
+        public let discountPrice: Float?
+
+        /// 价格货币单位。取值范围CNY:人民币。USD:美元。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let currency: String?
 
         enum CodingKeys: String, CodingKey {
             case originalBundlePrice = "OriginalBundlePrice"
             case originalPrice = "OriginalPrice"
             case discount = "Discount"
             case discountPrice = "DiscountPrice"
+            case currency = "Currency"
         }
     }
 
@@ -1034,9 +1114,14 @@ extension Lighthouse {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instancePrice: InstancePrice?
 
+        /// 折扣梯度详情，每个梯度包含的信息有：时长，折扣数，总价，折扣价，折扣详情（用户折扣、官网折扣、最终折扣）。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let discountDetail: [DiscountDetail]?
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instancePrice = "InstancePrice"
+            case discountDetail = "DiscountDetail"
         }
     }
 
@@ -1196,18 +1281,29 @@ extension Lighthouse {
     /// 折扣详情信息。
     public struct PolicyDetail: TCOutputModel {
         /// 用户折扣。
-        public let userDiscount: Int64
+        public let userDiscount: Int64?
 
         /// 公共折扣。
-        public let commonDiscount: Int64
+        public let commonDiscount: Int64?
 
         /// 最终折扣。
-        public let finalDiscount: Int64
+        public let finalDiscount: Int64?
+
+        /// 活动折扣。取值为null，表示无有效值，即没有折扣。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let activityDiscount: Float?
+
+        /// 折扣类型。
+        /// user：用户折扣; common：官网折扣; activity：活动折扣。 取值为null，表示无有效值，即没有折扣。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let discountType: String?
 
         enum CodingKeys: String, CodingKey {
             case userDiscount = "UserDiscount"
             case commonDiscount = "CommonDiscount"
             case finalDiscount = "FinalDiscount"
+            case activityDiscount = "ActivityDiscount"
+            case discountType = "DiscountType"
         }
     }
 

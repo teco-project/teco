@@ -48,11 +48,19 @@ extension Tdid {
     }
 
     /// 本机构DID详情
+    ///
+    /// 该接口已废弃
+    ///
+    /// 本机构DID详情
     @inlinable
     public func getAgencyTDid(_ input: GetAgencyTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAgencyTDidResponse> {
         self.client.execute(action: "GetAgencyTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
+    /// 本机构DID详情
+    ///
+    /// 该接口已废弃
+    ///
     /// 本机构DID详情
     @inlinable
     public func getAgencyTDid(_ input: GetAgencyTDidRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
@@ -60,11 +68,19 @@ extension Tdid {
     }
 
     /// 本机构DID详情
+    ///
+    /// 该接口已废弃
+    ///
+    /// 本机构DID详情
     @inlinable
     public func getAgencyTDid(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAgencyTDidResponse> {
         self.getAgencyTDid(GetAgencyTDidRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
     }
 
+    /// 本机构DID详情
+    ///
+    /// 该接口已废弃
+    ///
     /// 本机构DID详情
     @inlinable
     public func getAgencyTDid(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {

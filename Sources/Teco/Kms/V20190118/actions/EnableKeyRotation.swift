@@ -20,12 +20,17 @@ extension Kms {
         /// CMK唯一标识符
         public let keyId: String
 
-        public init(keyId: String) {
+        /// 密钥轮转周期，单位天，允许范围 7 ~ 365，默认值 365。
+        public let rotateDays: UInt64?
+
+        public init(keyId: String, rotateDays: UInt64? = nil) {
             self.keyId = keyId
+            self.rotateDays = rotateDays
         }
 
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
+            case rotateDays = "RotateDays"
         }
     }
 
@@ -59,15 +64,15 @@ extension Kms {
     ///
     /// 对指定的CMK开启密钥轮换功能。
     @inlinable @discardableResult
-    public func enableKeyRotation(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeyRotationResponse> {
-        self.enableKeyRotation(EnableKeyRotationRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+    public func enableKeyRotation(keyId: String, rotateDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableKeyRotationResponse> {
+        self.enableKeyRotation(EnableKeyRotationRequest(keyId: keyId, rotateDays: rotateDays), region: region, logger: logger, on: eventLoop)
     }
 
     /// 开启密钥轮换
     ///
     /// 对指定的CMK开启密钥轮换功能。
     @inlinable @discardableResult
-    public func enableKeyRotation(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyRotationResponse {
-        try await self.enableKeyRotation(EnableKeyRotationRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+    public func enableKeyRotation(keyId: String, rotateDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableKeyRotationResponse {
+        try await self.enableKeyRotation(EnableKeyRotationRequest(keyId: keyId, rotateDays: rotateDays), region: region, logger: logger, on: eventLoop)
     }
 }

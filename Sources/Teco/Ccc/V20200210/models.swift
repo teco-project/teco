@@ -1143,6 +1143,10 @@ extension Ccc {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
 
+        /// 排队技能组名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let queuedSkillGroupName: String?
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case callee = "Callee"
@@ -1175,6 +1179,7 @@ extension Ccc {
             case asrUrl = "AsrUrl"
             case customRecordURL = "CustomRecordURL"
             case remark = "Remark"
+            case queuedSkillGroupName = "QueuedSkillGroupName"
         }
     }
 

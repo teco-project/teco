@@ -68,7 +68,10 @@ extension Pts {
         /// 域名解析配置
         public let domainNameConfig: DomainNameConfig?
 
-        public init(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil) {
+        /// 创建人名
+        public let owner: String?
+
+        public init(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, owner: String? = nil) {
             self.name = name
             self.type = type
             self.projectId = projectId
@@ -86,6 +89,7 @@ extension Pts {
             self.slaPolicy = slaPolicy
             self.plugins = plugins
             self.domainNameConfig = domainNameConfig
+            self.owner = owner
         }
 
         enum CodingKeys: String, CodingKey {
@@ -106,6 +110,7 @@ extension Pts {
             case slaPolicy = "SLAPolicy"
             case plugins = "Plugins"
             case domainNameConfig = "DomainNameConfig"
+            case owner = "Owner"
         }
     }
 
@@ -137,13 +142,13 @@ extension Pts {
 
     /// 创建场景
     @inlinable
-    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScenarioResponse> {
-        self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig), region: region, logger: logger, on: eventLoop)
+    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, owner: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScenarioResponse> {
+        self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig, owner: owner), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建场景
     @inlinable
-    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScenarioResponse {
-        try await self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig), region: region, logger: logger, on: eventLoop)
+    public func createScenario(name: String, type: String, projectId: String, description: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, slaId: String? = nil, cronId: String? = nil, scripts: [String]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, slaPolicy: SLAPolicy? = nil, plugins: [FileInfo]? = nil, domainNameConfig: DomainNameConfig? = nil, owner: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScenarioResponse {
+        try await self.createScenario(CreateScenarioRequest(name: name, type: type, projectId: projectId, description: description, load: load, configs: configs, datasets: datasets, extensions: extensions, slaId: slaId, cronId: cronId, scripts: scripts, testScripts: testScripts, protocols: protocols, requestFiles: requestFiles, slaPolicy: slaPolicy, plugins: plugins, domainNameConfig: domainNameConfig, owner: owner), region: region, logger: logger, on: eventLoop)
     }
 }

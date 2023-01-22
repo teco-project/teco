@@ -17,10 +17,10 @@
 extension Monitor {
     /// DeleteGrafanaNotificationChannel请求参数结构体
     public struct DeleteGrafanaNotificationChannelRequest: TCRequestModel {
-        /// 通道 ID 数组
+        /// 通道 ID 数组。例如：nchannel-abcd1234
         public let channelIDs: [String]
 
-        /// 实例名
+        /// Grafana 实例 ID，例如：grafana-abcdefgh
         public let instanceId: String
 
         public init(channelIDs: [String], instanceId: String) {

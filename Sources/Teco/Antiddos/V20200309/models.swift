@@ -205,6 +205,18 @@ extension Antiddos {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceVersion: UInt64?
 
+        /// 重保实例
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let convoyId: String?
+
+        /// 带宽后付费
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let elasticBandwidth: UInt64?
+
+        /// 是否为EO代播的ip: 1是，0不是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let eoFlag: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case instanceDetail = "InstanceDetail"
             case specificationLimit = "SpecificationLimit"
@@ -229,6 +241,9 @@ extension Antiddos {
             case tagInfoList = "TagInfoList"
             case anycastOutPackRelation = "AnycastOutPackRelation"
             case instanceVersion = "InstanceVersion"
+            case convoyId = "ConvoyId"
+            case elasticBandwidth = "ElasticBandwidth"
+            case eoFlag = "EOFlag"
         }
     }
 
@@ -361,6 +376,13 @@ extension Antiddos {
         /// 攻击封堵套餐标记
         public let vitalityVersion: UInt64
 
+        /// 网络线路
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let line: UInt64?
+
+        /// 弹性业务带宽开关
+        public let elasticServiceBandwidth: UInt64
+
         enum CodingKeys: String, CodingKey {
             case instanceDetail = "InstanceDetail"
             case specificationLimit = "SpecificationLimit"
@@ -378,6 +400,8 @@ extension Antiddos {
             case tagInfoList = "TagInfoList"
             case ipCountNewFlag = "IpCountNewFlag"
             case vitalityVersion = "VitalityVersion"
+            case line = "Line"
+            case elasticServiceBandwidth = "ElasticServiceBandwidth"
         }
     }
 
@@ -1244,6 +1268,52 @@ extension Antiddos {
         }
     }
 
+    /// 业务流量的http状态码聚合数据
+    public struct HttpStatusMap: TCOutputModel {
+        /// http2xx回源状态码
+        public let sourceHttp2xx: [Float]
+
+        /// http5xx状态码
+        public let http5xx: [Float]
+
+        /// http5xx回源状态码
+        public let sourceHttp5xx: [Float]
+
+        /// http404回源状态码
+        public let sourceHttp404: [Float]
+
+        /// http4xx状态码
+        public let http4xx: [Float]
+
+        /// http4xx回源状态码
+        public let sourceHttp4xx: [Float]
+
+        /// http2xx状态码
+        public let http2xx: [Float]
+
+        /// http404状态码
+        public let http404: [Float]
+
+        /// http3xx回源状态码
+        public let sourceHttp3xx: [Float]
+
+        /// http3xx状态码
+        public let http3xx: [Float]
+
+        enum CodingKeys: String, CodingKey {
+            case sourceHttp2xx = "SourceHttp2xx"
+            case http5xx = "Http5xx"
+            case sourceHttp5xx = "SourceHttp5xx"
+            case sourceHttp404 = "SourceHttp404"
+            case http4xx = "Http4xx"
+            case sourceHttp4xx = "SourceHttp4xx"
+            case http2xx = "Http2xx"
+            case http404 = "Http404"
+            case sourceHttp3xx = "SourceHttp3xx"
+            case http3xx = "Http3xx"
+        }
+    }
+
     /// 单IP告警阈值配置
     public struct IPAlarmThresholdRelation: TCInputModel, TCOutputModel {
         /// 告警阈值类型，取值[
@@ -1602,7 +1672,10 @@ extension Antiddos {
         /// 被动探测判定正常状态码，1xx =1, 2xx=2, 3xx=4, 4xx=8,5xx=16，多个状态码值加和
         public let passiveStatusCode: UInt64?
 
-        public init(status: UInt64, enable: UInt64, ruleId: String, url: String, interval: UInt64, aliveNum: UInt64, kickNum: UInt64, method: String, statusCode: UInt64, protocolFlag: UInt64? = nil, passiveEnable: UInt64? = nil, blockInter: UInt64? = nil, failedCountInter: UInt64? = nil, failedThreshold: UInt64? = nil, passiveStatusCode: UInt64? = nil) {
+        /// 被动探测配置状态，0： 正常，1：配置中，2：配置失败
+        public let passiveStatus: UInt64?
+
+        public init(status: UInt64, enable: UInt64, ruleId: String, url: String, interval: UInt64, aliveNum: UInt64, kickNum: UInt64, method: String, statusCode: UInt64, protocolFlag: UInt64? = nil, passiveEnable: UInt64? = nil, blockInter: UInt64? = nil, failedCountInter: UInt64? = nil, failedThreshold: UInt64? = nil, passiveStatusCode: UInt64? = nil, passiveStatus: UInt64? = nil) {
             self.status = status
             self.enable = enable
             self.ruleId = ruleId
@@ -1618,6 +1691,7 @@ extension Antiddos {
             self.failedCountInter = failedCountInter
             self.failedThreshold = failedThreshold
             self.passiveStatusCode = passiveStatusCode
+            self.passiveStatus = passiveStatus
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1636,6 +1710,7 @@ extension Antiddos {
             case failedCountInter = "FailedCountInter"
             case failedThreshold = "FailedThreshold"
             case passiveStatusCode = "PassiveStatusCode"
+            case passiveStatus = "PassiveStatus"
         }
     }
 
@@ -1821,7 +1896,11 @@ extension Antiddos {
         /// 规则配置失败时的详细错误原因(仅当Status=2时有效)，1001证书不存在，1002证书获取失败，1003证书上传失败，1004证书已过期
         public let errCode: UInt64?
 
-        public init(protocol: String, domain: String, lbType: UInt64, keepEnable: UInt64, keepTime: UInt64, sourceType: UInt64, sourceList: [L4RuleSource], region: UInt64? = nil, id: String? = nil, ip: String? = nil, ruleId: String? = nil, ruleName: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil, rewriteHttps: UInt64? = nil, errCode: UInt64? = nil) {
+        /// 版本
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let version: UInt64?
+
+        public init(protocol: String, domain: String, lbType: UInt64, keepEnable: UInt64, keepTime: UInt64, sourceType: UInt64, sourceList: [L4RuleSource], region: UInt64? = nil, id: String? = nil, ip: String? = nil, ruleId: String? = nil, ruleName: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil, rewriteHttps: UInt64? = nil, errCode: UInt64? = nil, version: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.domain = domain
             self.lbType = lbType
@@ -1848,6 +1927,7 @@ extension Antiddos {
             self.virtualPort = virtualPort
             self.rewriteHttps = rewriteHttps
             self.errCode = errCode
+            self.version = version
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1877,6 +1957,7 @@ extension Antiddos {
             case virtualPort = "VirtualPort"
             case rewriteHttps = "RewriteHttps"
             case errCode = "ErrCode"
+            case version = "Version"
         }
     }
 
@@ -2573,12 +2654,17 @@ extension Antiddos {
         /// ]
         public let verify: String?
 
-        public init(offset: Int64, openStatus: Int64, listeners: [ForwardListener], keys: [WaterPrintKey]? = nil, verify: String? = nil) {
+        /// 是否开启代理，1开启则忽略IP+端口校验；0关闭则需要IP+端口校验
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cloudSdkProxy: Int64?
+
+        public init(offset: Int64, openStatus: Int64, listeners: [ForwardListener], keys: [WaterPrintKey]? = nil, verify: String? = nil, cloudSdkProxy: Int64? = nil) {
             self.offset = offset
             self.openStatus = openStatus
             self.listeners = listeners
             self.keys = keys
             self.verify = verify
+            self.cloudSdkProxy = cloudSdkProxy
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2587,6 +2673,7 @@ extension Antiddos {
             case listeners = "Listeners"
             case keys = "Keys"
             case verify = "Verify"
+            case cloudSdkProxy = "CloudSdkProxy"
         }
     }
 

@@ -20,10 +20,10 @@ extension Cbs {
         /// 一个或多个待操作的云硬盘ID。每次请求批量云盘上限为100。
         public let diskIds: [String]
 
-        /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
+        /// 设置为预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。
         public let diskChargePrepaid: DiskChargePrepaid?
 
-        /// 后付费模式
+        /// 设置为后付费模式
         public let diskChargePostpaid: Bool?
 
         public init(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil) {
@@ -55,7 +55,6 @@ extension Cbs {
     ///
     /// 本接口 (ModifyDisksChargeType) 用于切换云盘的计费模式。
     ///
-    /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable @discardableResult
@@ -69,7 +68,6 @@ extension Cbs {
     ///
     /// 本接口 (ModifyDisksChargeType) 用于切换云盘的计费模式。
     ///
-    /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable @discardableResult
@@ -83,7 +81,6 @@ extension Cbs {
     ///
     /// 本接口 (ModifyDisksChargeType) 用于切换云盘的计费模式。
     ///
-    /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable @discardableResult
@@ -97,7 +94,6 @@ extension Cbs {
     ///
     /// 本接口 (ModifyDisksChargeType) 用于切换云盘的计费模式。
     ///
-    /// 只支持从 POSTPAID_BY_HOUR 计费模式切换为PREPAID计费模式。
     /// 非弹性云盘不支持此接口，请通过修改实例计费模式接口将实例连同非弹性云盘一起转换。
     /// 默认接口请求频率限制：10次/秒。
     @inlinable @discardableResult

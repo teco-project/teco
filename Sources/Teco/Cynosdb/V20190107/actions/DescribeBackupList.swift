@@ -54,7 +54,10 @@ extension Cynosdb {
         /// 备份备注名，模糊查询
         public let backupNames: [String]?
 
-        public init(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil) {
+        /// 快照备份Id列表
+        public let snapshotIdList: [Int64]?
+
+        public init(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil) {
             self.clusterId = clusterId
             self.limit = limit
             self.offset = offset
@@ -67,6 +70,7 @@ extension Cynosdb {
             self.endTime = endTime
             self.fileNames = fileNames
             self.backupNames = backupNames
+            self.snapshotIdList = snapshotIdList
         }
 
         enum CodingKeys: String, CodingKey {
@@ -82,6 +86,7 @@ extension Cynosdb {
             case endTime = "EndTime"
             case fileNames = "FileNames"
             case backupNames = "BackupNames"
+            case snapshotIdList = "SnapshotIdList"
         }
     }
 
@@ -117,13 +122,13 @@ extension Cynosdb {
 
     /// 查询备份文件列表
     @inlinable
-    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupListResponse> {
-        self.describeBackupList(DescribeBackupListRequest(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames), region: region, logger: logger, on: eventLoop)
+    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupListResponse> {
+        self.describeBackupList(DescribeBackupListRequest(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询备份文件列表
     @inlinable
-    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {
-        try await self.describeBackupList(DescribeBackupListRequest(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames), region: region, logger: logger, on: eventLoop)
+    public func describeBackupList(clusterId: String, limit: Int64? = nil, offset: Int64? = nil, dbType: String? = nil, backupIds: [Int64]? = nil, backupType: String? = nil, backupMethod: String? = nil, snapShotType: String? = nil, startTime: String? = nil, endTime: String? = nil, fileNames: [String]? = nil, backupNames: [String]? = nil, snapshotIdList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupListResponse {
+        try await self.describeBackupList(DescribeBackupListRequest(clusterId: clusterId, limit: limit, offset: offset, dbType: dbType, backupIds: backupIds, backupType: backupType, backupMethod: backupMethod, snapShotType: snapShotType, startTime: startTime, endTime: endTime, fileNames: fileNames, backupNames: backupNames, snapshotIdList: snapshotIdList), region: region, logger: logger, on: eventLoop)
     }
 }

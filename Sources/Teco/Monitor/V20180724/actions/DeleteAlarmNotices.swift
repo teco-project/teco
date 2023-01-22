@@ -23,14 +23,19 @@ extension Monitor {
         /// 告警通知模板id列表
         public let noticeIds: [String]
 
-        public init(module: String, noticeIds: [String]) {
+        /// 通知模版与策略绑定关系
+        public let noticeBindPolicys: [NoticeBindPolicys]?
+
+        public init(module: String, noticeIds: [String], noticeBindPolicys: [NoticeBindPolicys]? = nil) {
             self.module = module
             self.noticeIds = noticeIds
+            self.noticeBindPolicys = noticeBindPolicys
         }
 
         enum CodingKeys: String, CodingKey {
             case module = "Module"
             case noticeIds = "NoticeIds"
+            case noticeBindPolicys = "NoticeBindPolicys"
         }
     }
 
@@ -64,15 +69,15 @@ extension Monitor {
     ///
     /// 云监控告警删除告警通知模板
     @inlinable @discardableResult
-    public func deleteAlarmNotices(module: String, noticeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
-        self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), region: region, logger: logger, on: eventLoop)
+    public func deleteAlarmNotices(module: String, noticeIds: [String], noticeBindPolicys: [NoticeBindPolicys]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmNoticesResponse> {
+        self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds, noticeBindPolicys: noticeBindPolicys), region: region, logger: logger, on: eventLoop)
     }
 
     /// 删除告警通知模板（批量）
     ///
     /// 云监控告警删除告警通知模板
     @inlinable @discardableResult
-    public func deleteAlarmNotices(module: String, noticeIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
-        try await self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds), region: region, logger: logger, on: eventLoop)
+    public func deleteAlarmNotices(module: String, noticeIds: [String], noticeBindPolicys: [NoticeBindPolicys]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmNoticesResponse {
+        try await self.deleteAlarmNotices(DeleteAlarmNoticesRequest(module: module, noticeIds: noticeIds, noticeBindPolicys: noticeBindPolicys), region: region, logger: logger, on: eventLoop)
     }
 }

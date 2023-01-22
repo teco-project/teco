@@ -32,6 +32,9 @@ extension Cwp {
         /// 旗舰版数量
         public let ultimateVersionNum: UInt64
 
+        /// 普惠版数量
+        public let generalVersionNum: UInt64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -39,6 +42,7 @@ extension Cwp {
             case basicVersionNum = "BasicVersionNum"
             case proVersionNum = "ProVersionNum"
             case ultimateVersionNum = "UltimateVersionNum"
+            case generalVersionNum = "GeneralVersionNum"
             case requestId = "RequestId"
         }
     }

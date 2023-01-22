@@ -22,7 +22,7 @@ extension Sms {
         /// 1：表示国际/港澳台短信。
         public let international: UInt64
 
-        /// 模板 ID 数组。数组为空时默认查询模板列表信息（仅允许主账号使用），请使用 Limit 和 Offset 字段设置查询范围。
+        /// 模板 ID 数组。数组为空时默认查询模板列表信息，请使用 Limit 和 Offset 字段设置查询范围。
         /// <dx-alert infotype="notice" title="注意">默认数组长度最大100</dx-alert>
         public let templateIdSet: [UInt64]?
 

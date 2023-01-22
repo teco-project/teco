@@ -195,7 +195,7 @@ extension Cfg {
         }
     }
 
-    /// 从经验模版创建演练时需要配置的任务参数
+    /// 从经验模板创建演练时需要配置的任务参数
     public struct TaskConfig: TCInputModel {
         /// 动作组配置，需要保证配置个数和经验中的动作组个数一致
         public let taskGroupsConfig: [TaskGroupConfig]
@@ -616,6 +616,38 @@ extension Cfg {
             case instancesIds = "InstancesIds"
             case metricChineseName = "MetricChineseName"
             case unit = "Unit"
+        }
+    }
+
+    /// 演练报告状态信息
+    public struct TaskReportInfo: TCOutputModel {
+        /// 0--未开始，1--正在导出，2--导出成功，3--导出失败
+        public let stage: Int64
+
+        /// 创建时间
+        public let createTime: String
+
+        /// 有效期截止时间
+        public let expirationTime: String
+
+        /// 是否有效
+        public let expired: Bool
+
+        /// 演练报告cos文件地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cosUrl: String?
+
+        /// 演练报告导出日志
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let log: String?
+
+        enum CodingKeys: String, CodingKey {
+            case stage = "Stage"
+            case createTime = "CreateTime"
+            case expirationTime = "ExpirationTime"
+            case expired = "Expired"
+            case cosUrl = "CosUrl"
+            case log = "Log"
         }
     }
 

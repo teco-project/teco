@@ -53,7 +53,7 @@ extension Cloudhsm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceName: String?
 
-        /// 资源状态
+        /// 资源状态，1-正常，2-隔离，3-销毁
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
 
@@ -73,7 +73,7 @@ extension Cloudhsm {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let model: String?
 
-        /// 资源类型
+        /// 云加密机类型id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vsmType: Int64?
 

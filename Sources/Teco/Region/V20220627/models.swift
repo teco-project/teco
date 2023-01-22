@@ -26,10 +26,30 @@ extension Region {
         /// 地域是否可用状态
         public let regionState: String
 
+        /// 控制台类型，api调用时默认null
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionTypeMC: Int64?
+
+        /// 不同语言的地区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let locationMC: String?
+
+        /// 控制台展示的地域描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionNameMC: String?
+
+        /// 1
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionIdMC: String?
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionName = "RegionName"
             case regionState = "RegionState"
+            case regionTypeMC = "RegionTypeMC"
+            case locationMC = "LocationMC"
+            case regionNameMC = "RegionNameMC"
+            case regionIdMC = "RegionIdMC"
         }
     }
 
@@ -101,11 +121,41 @@ extension Region {
         /// 可用区状态，包含AVAILABLE和UNAVAILABLE。AVAILABLE代表可用，UNAVAILABLE代表不可用。
         public let zoneState: String
 
+        /// 父级zone
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parentZone: String?
+
+        /// 父级可用区ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parentZoneId: String?
+
+        /// 父级可用区描述
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let parentZoneName: String?
+
+        /// zone类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneType: String?
+
+        /// 控制台类型
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let machineRoomTypeMC: String?
+
+        /// 和ZoneId一样，适用于控制台调用。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let zoneIdMC: String?
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case zoneName = "ZoneName"
             case zoneId = "ZoneId"
             case zoneState = "ZoneState"
+            case parentZone = "ParentZone"
+            case parentZoneId = "ParentZoneId"
+            case parentZoneName = "ParentZoneName"
+            case zoneType = "ZoneType"
+            case machineRoomTypeMC = "MachineRoomTypeMC"
+            case zoneIdMC = "ZoneIdMC"
         }
     }
 }

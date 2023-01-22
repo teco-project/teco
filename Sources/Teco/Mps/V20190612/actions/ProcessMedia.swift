@@ -59,7 +59,12 @@ extension Mps {
         /// 注意3：编排的 Trigger 只是用来自动化触发场景，在手动发起的请求中已经配置的 Trigger 无意义。
         public let scheduleId: Int64?
 
-        public init(inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil) {
+        /// 任务类型，默认Online
+        /// <li> Online：实时任务</li>
+        /// <li> Offline：闲时任务，不保证实效性，默认3天内处理完</li>
+        public let taskType: String?
+
+        public init(inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, taskType: String? = nil) {
             self.inputInfo = inputInfo
             self.outputStorage = outputStorage
             self.outputDir = outputDir
@@ -72,6 +77,7 @@ extension Mps {
             self.sessionId = sessionId
             self.sessionContext = sessionContext
             self.scheduleId = scheduleId
+            self.taskType = taskType
         }
 
         enum CodingKeys: String, CodingKey {
@@ -87,6 +93,7 @@ extension Mps {
             case sessionId = "SessionId"
             case sessionContext = "SessionContext"
             case scheduleId = "ScheduleId"
+            case taskType = "TaskType"
         }
     }
 
@@ -151,8 +158,8 @@ extension Mps {
     /// 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾）；
     /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
     @inlinable
-    public func processMedia(inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaResponse> {
-        self.processMedia(ProcessMediaRequest(inputInfo: inputInfo, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext, scheduleId: scheduleId), region: region, logger: logger, on: eventLoop)
+    public func processMedia(inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, taskType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaResponse> {
+        self.processMedia(ProcessMediaRequest(inputInfo: inputInfo, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext, scheduleId: scheduleId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 
     /// 发起媒体处理
@@ -168,7 +175,7 @@ extension Mps {
     /// 8. 智能内容分析（标签、分类、封面、按帧标签、拆条、集锦、片头片尾）；
     /// 9. 智能内容识别（人脸、文本全文、文本关键词、语音全文、语音关键词、语音翻译、物体识别）。
     @inlinable
-    public func processMedia(inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
-        try await self.processMedia(ProcessMediaRequest(inputInfo: inputInfo, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext, scheduleId: scheduleId), region: region, logger: logger, on: eventLoop)
+    public func processMedia(inputInfo: MediaInputInfo, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, tasksPriority: Int64? = nil, sessionId: String? = nil, sessionContext: String? = nil, scheduleId: Int64? = nil, taskType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaResponse {
+        try await self.processMedia(ProcessMediaRequest(inputInfo: inputInfo, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, tasksPriority: tasksPriority, sessionId: sessionId, sessionContext: sessionContext, scheduleId: scheduleId, taskType: taskType), region: region, logger: logger, on: eventLoop)
     }
 }

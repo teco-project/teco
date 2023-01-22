@@ -38,7 +38,10 @@ extension Cynosdb {
         /// 回档数据库表列表
         public let rollbackTables: [RollbackTable]?
 
-        public init(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil) {
+        /// 按时间点回档模式，full: 普通; db: 快速; table: 极速  （默认是普通）
+        public let rollbackMode: String?
+
+        public init(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, rollbackMode: String? = nil) {
             self.clusterId = clusterId
             self.rollbackStrategy = rollbackStrategy
             self.rollbackId = rollbackId
@@ -46,6 +49,7 @@ extension Cynosdb {
             self.expectTimeThresh = expectTimeThresh
             self.rollbackDatabases = rollbackDatabases
             self.rollbackTables = rollbackTables
+            self.rollbackMode = rollbackMode
         }
 
         enum CodingKeys: String, CodingKey {
@@ -56,6 +60,7 @@ extension Cynosdb {
             case expectTimeThresh = "ExpectTimeThresh"
             case rollbackDatabases = "RollbackDatabases"
             case rollbackTables = "RollbackTables"
+            case rollbackMode = "RollbackMode"
         }
     }
 
@@ -93,15 +98,15 @@ extension Cynosdb {
     ///
     /// 本接口（RollBackCluster）用于回档集群
     @inlinable
-    public func rollBackCluster(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollBackClusterResponse> {
-        self.rollBackCluster(RollBackClusterRequest(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables), region: region, logger: logger, on: eventLoop)
+    public func rollBackCluster(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, rollbackMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollBackClusterResponse> {
+        self.rollBackCluster(RollBackClusterRequest(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables, rollbackMode: rollbackMode), region: region, logger: logger, on: eventLoop)
     }
 
     /// 回档集群
     ///
     /// 本接口（RollBackCluster）用于回档集群
     @inlinable
-    public func rollBackCluster(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollBackClusterResponse {
-        try await self.rollBackCluster(RollBackClusterRequest(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables), region: region, logger: logger, on: eventLoop)
+    public func rollBackCluster(clusterId: String, rollbackStrategy: String, rollbackId: UInt64, expectTime: String? = nil, expectTimeThresh: UInt64? = nil, rollbackDatabases: [RollbackDatabase]? = nil, rollbackTables: [RollbackTable]? = nil, rollbackMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollBackClusterResponse {
+        try await self.rollBackCluster(RollBackClusterRequest(clusterId: clusterId, rollbackStrategy: rollbackStrategy, rollbackId: rollbackId, expectTime: expectTime, expectTimeThresh: expectTimeThresh, rollbackDatabases: rollbackDatabases, rollbackTables: rollbackTables, rollbackMode: rollbackMode), region: region, logger: logger, on: eventLoop)
     }
 }

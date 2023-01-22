@@ -182,7 +182,7 @@ extension Bpaas {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scfName: String?
 
-        /// 状态（0：待审批，1：审批通过，2：拒绝，3：scf执行失败，4：scf执行成功）
+        /// 状态（0：待审批，1：审批通过，2：拒绝，3：scf执行失败，4：scf执行成功）18: 外部审批中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subStatus: UInt64?
 
@@ -222,6 +222,22 @@ extension Bpaas {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let callMethod: UInt64?
 
+        /// CKafka - 接入资源ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let dataHubId: String?
+
+        /// CKafka - 任务名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let taskName: String?
+
+        /// CKafka - 地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cKafkaRegion: String?
+
+        /// 外部审批Url
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let externalUrl: String?
+
         enum CodingKeys: String, CodingKey {
             case nodeId = "NodeId"
             case nodeName = "NodeName"
@@ -239,6 +255,10 @@ extension Bpaas {
             case approveMethod = "ApproveMethod"
             case approveType = "ApproveType"
             case callMethod = "CallMethod"
+            case dataHubId = "DataHubId"
+            case taskName = "TaskName"
+            case cKafkaRegion = "CKafkaRegion"
+            case externalUrl = "ExternalUrl"
         }
     }
 }

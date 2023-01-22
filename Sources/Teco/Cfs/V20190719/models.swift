@@ -584,12 +584,22 @@ extension Cfs {
         /// 文件系统ID
         public let fileSystemId: String
 
-        public init(userType: String, userId: String, capacityHardLimit: UInt64, fileHardLimit: UInt64, fileSystemId: String) {
+        /// 容量使用，单位GiB
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let capacityUsed: UInt64?
+
+        /// 文件使用个数，单位个
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let fileUsed: UInt64?
+
+        public init(userType: String, userId: String, capacityHardLimit: UInt64, fileHardLimit: UInt64, fileSystemId: String, capacityUsed: UInt64? = nil, fileUsed: UInt64? = nil) {
             self.userType = userType
             self.userId = userId
             self.capacityHardLimit = capacityHardLimit
             self.fileHardLimit = fileHardLimit
             self.fileSystemId = fileSystemId
+            self.capacityUsed = capacityUsed
+            self.fileUsed = fileUsed
         }
 
         enum CodingKeys: String, CodingKey {
@@ -598,6 +608,8 @@ extension Cfs {
             case capacityHardLimit = "CapacityHardLimit"
             case fileHardLimit = "FileHardLimit"
             case fileSystemId = "FileSystemId"
+            case capacityUsed = "CapacityUsed"
+            case fileUsed = "FileUsed"
         }
     }
 }

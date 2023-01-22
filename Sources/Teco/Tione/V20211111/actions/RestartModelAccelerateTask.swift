@@ -41,7 +41,7 @@ extension Tione {
         /// 模型输入cos路径
         public let modelInputPath: CosPathInfo?
 
-        /// 优化级别（NO_LOSS/FP16），默认FP16
+        /// 优化级别（NO_LOSS/FP16/INT8），默认FP16
         public let optimizationLevel: String?
 
         /// input节点个数（废弃）
@@ -59,7 +59,7 @@ extension Tione {
         /// 模型Tensor信息
         public let tensorInfos: [String]?
 
-        /// GPU类型（T4/V100），默认T4
+        /// GPU类型（T4/V100/A10），默认T4
         public let gpuType: String?
 
         /// 模型专业参数

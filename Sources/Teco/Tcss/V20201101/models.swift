@@ -1365,6 +1365,10 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let verifyInfo: String?
 
+        /// 主机实例id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
         enum CodingKeys: String, CodingKey {
             case customerAssetId = "CustomerAssetId"
             case assetName = "AssetName"
@@ -1376,6 +1380,7 @@ extension Tcss {
             case hostIP = "HostIP"
             case imageTag = "ImageTag"
             case verifyInfo = "VerifyInfo"
+            case instanceId = "InstanceId"
         }
     }
 
@@ -1508,6 +1513,10 @@ extension Tcss {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkResult: String?
 
+        /// 主机节点的实例id
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let instanceId: String?
+
         enum CodingKeys: String, CodingKey {
             case customerAssetId = "CustomerAssetId"
             case assetType = "AssetType"
@@ -1520,6 +1529,7 @@ extension Tcss {
             case failedPolicyItemCount = "FailedPolicyItemCount"
             case lastCheckTime = "LastCheckTime"
             case checkResult = "CheckResult"
+            case instanceId = "InstanceId"
         }
     }
 

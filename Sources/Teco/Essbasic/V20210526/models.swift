@@ -157,15 +157,15 @@ extension Essbasic {
         public let componentId: String?
 
         /// 如果是Component控件类型，则可选的字段为：
-        /// TEXT - 普通文本控件；
-        /// MULTI_LINE_TEXT - 多行文本控件；
-        /// CHECK_BOX - 勾选框控件；
-        /// FILL_IMAGE - 图片控件；
+        /// TEXT - 普通文本控件，输入文本字符串；
+        /// MULTI_LINE_TEXT - 多行文本控件，输入文本字符串；
+        /// CHECK_BOX - 勾选框控件，若选中填写ComponentValue 填写 true或者 false 字符串；
+        /// FILL_IMAGE - 图片控件，ComponentValue 填写图片的资源 ID；
         /// DYNAMIC_TABLE - 动态表格控件；
-        /// ATTACHMENT - 附件控件；
-        /// SELECTOR - 选择器控件；
-        /// DATE - 日期控件；默认是格式化为xxxx年xx月xx日；
-        /// DISTRICT - 省市区行政区划控件；
+        /// ATTACHMENT - 附件控件,ComponentValue 填写福建图片的资源 ID列表，以逗号分割；
+        /// SELECTOR - 选择器控件，ComponentValue填写选择的字符串内容；
+        /// DATE - 日期控件；默认是格式化为xxxx年xx月xx日字符串；
+        /// DISTRICT - 省市区行政区划控件，ComponentValue填写省市区行政区划字符串内容；
         ///
         /// 如果是SignComponent控件类型，则可选的字段为
         /// SIGN_SEAL - 签署印章控件；
@@ -247,6 +247,72 @@ extension Essbasic {
         /// DYNAMIC_TABLE - 传入json格式的表格内容，具体见数据结构FlowInfo：https://cloud.tencent.com/document/api/1420/61525#FlowInfo
         /// SIGN_SEAL - 印章ID
         /// SIGN_PAGING_SEAL - 可以指定印章ID
+        ///
+        /// 控件值约束说明：
+        /// 企业全称控件：
+        ///   约束：企业名称中文字符中文括号
+        ///   检查正则表达式：/^[\u3400-\u4dbf\u4e00-\u9fa5（）]+$/
+        ///
+        /// 统一社会信用代码控件：
+        ///   检查正则表达式：/^[A-Z0-9]{1,18}$/
+        ///
+        /// 法人名称控件：
+        ///   约束：最大50个字符，2到25个汉字或者1到50个字母
+        ///   检查正则表达式：/^([\u3400-\u4dbf\u4e00-\u9fa5.·]{2,25}|[a-zA-Z·,\s-]{1,50})$/
+        ///
+        /// 签署意见控件：
+        ///   约束：签署意见最大长度为50字符
+        ///
+        /// 签署人手机号控件：
+        ///   约束：国内手机号 13,14,15,16,17,18,19号段长度11位
+        ///
+        /// 签署人身份证控件：
+        ///   约束：合法的身份证号码检查
+        ///
+        /// 控件名称：
+        ///   约束：控件名称最大长度为20字符
+        ///
+        /// 单行文本控件：
+        ///   约束：只允许输入中文，英文，数字，中英文标点符号
+        ///
+        /// 多行文本控件：
+        ///   约束：只允许输入中文，英文，数字，中英文标点符号
+        ///
+        /// 勾选框控件：
+        ///   约束：选择填字符串true，不选填字符串false
+        ///
+        /// 选择器控件：
+        ///   约束：同单行文本控件约束，填写选择值中的字符串
+        ///
+        /// 数字控件：
+        ///   约束：请输入有效的数字(可带小数点)
+        ///   检查正则表达式：/^(-|\+)?\d+(\.\d+)?$/
+        ///
+        /// 日期控件：
+        ///   约束：格式：yyyy年mm月dd日
+        ///
+        /// 附件控件：
+        ///   约束：JPG或PNG图片，上传数量限制，1到6个，最大6个附件
+        ///
+        /// 图片控件：
+        ///   约束：JPG或PNG图片，填写上传的图片资源ID
+        ///
+        /// 邮箱控件：
+        ///   约束：请输入有效的邮箱地址, w3c标准
+        ///   检查正则表达式：/^([A-Za-z0-9_\-.!#$%&])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,4})$/
+        ///   参考：https://emailregex.com/
+        ///
+        /// 地址控件：
+        ///   同单行文本控件约束
+        ///
+        /// 省市区控件：
+        ///   同单行文本控件约束
+        ///
+        /// 性别控件：
+        ///   同单行文本控件约束，填写选择值中的字符串
+        ///
+        /// 学历控件：
+        ///   同单行文本控件约束，填写选择值中的字符串
         public let componentValue: String?
 
         /// 日期签署控件的字号，默认为 12
@@ -270,6 +336,10 @@ extension Essbasic {
         /// 如果不为空，属于渠道预设控件；
         public let channelComponentId: String?
 
+        /// 指定关键字排序规则，Positive-正序，Reverse-倒序。传入Positive时会根据关键字在PDF文件内的顺序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的第一个关键字。
+        /// 传入Reverse时会根据关键字在PDF文件内的反序进行排列。在指定KeywordIndexes时，0代表在PDF内查找内容时，查找到的最后一个关键字。
+        public let keywordOrder: String?
+
         /// 指定关键字页码，可选参数，指定页码后，将只在指定的页码内查找关键字，非该页码的关键字将不会查询出来
         public let keywordPage: Int64?
 
@@ -279,7 +349,7 @@ extension Essbasic {
         /// 关键字索引，可选参数，如果一个关键字在PDF文件中存在多个，可以通过关键字索引指定使用第几个关键字作为最后的结果，可指定多个索引。示例[0,2]，说明使用PDF文件内第1个和第3个关键字位置。
         public let keywordIndexes: [Int64]?
 
-        public init(componentId: String? = nil, componentType: String? = nil, componentName: String? = nil, componentRequired: Bool? = nil, componentRecipientId: String? = nil, fileIndex: Int64? = nil, generateMode: String? = nil, componentWidth: Float? = nil, componentHeight: Float? = nil, componentPage: Int64? = nil, componentPosX: Float? = nil, componentPosY: Float? = nil, componentExtra: String? = nil, componentValue: String? = nil, componentDateFontSize: Int64? = nil, documentId: String? = nil, componentDescription: String? = nil, offsetX: Float? = nil, offsetY: Float? = nil, channelComponentId: String? = nil, keywordPage: Int64? = nil, relativeLocation: String? = nil, keywordIndexes: [Int64]? = nil) {
+        public init(componentId: String? = nil, componentType: String? = nil, componentName: String? = nil, componentRequired: Bool? = nil, componentRecipientId: String? = nil, fileIndex: Int64? = nil, generateMode: String? = nil, componentWidth: Float? = nil, componentHeight: Float? = nil, componentPage: Int64? = nil, componentPosX: Float? = nil, componentPosY: Float? = nil, componentExtra: String? = nil, componentValue: String? = nil, componentDateFontSize: Int64? = nil, documentId: String? = nil, componentDescription: String? = nil, offsetX: Float? = nil, offsetY: Float? = nil, channelComponentId: String? = nil, keywordOrder: String? = nil, keywordPage: Int64? = nil, relativeLocation: String? = nil, keywordIndexes: [Int64]? = nil) {
             self.componentId = componentId
             self.componentType = componentType
             self.componentName = componentName
@@ -300,6 +370,7 @@ extension Essbasic {
             self.offsetX = offsetX
             self.offsetY = offsetY
             self.channelComponentId = channelComponentId
+            self.keywordOrder = keywordOrder
             self.keywordPage = keywordPage
             self.relativeLocation = relativeLocation
             self.keywordIndexes = keywordIndexes
@@ -326,6 +397,7 @@ extension Essbasic {
             case offsetX = "OffsetX"
             case offsetY = "OffsetY"
             case channelComponentId = "ChannelComponentId"
+            case keywordOrder = "KeywordOrder"
             case keywordPage = "KeywordPage"
             case relativeLocation = "RelativeLocation"
             case keywordIndexes = "KeywordIndexes"
@@ -364,6 +436,41 @@ extension Essbasic {
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case flowIdList = "FlowIdList"
+        }
+    }
+
+    /// 企业扩展服务授权信息
+    public struct ExtentServiceAuthInfo: TCOutputModel {
+        /// 扩展服务类型
+        ///   AUTO_SIGN             企业静默签（自动签署）
+        ///   OVERSEA_SIGN          企业与港澳台居民*签署合同
+        ///   MOBILE_CHECK_APPROVER 使用手机号验证签署方身份
+        ///   PAGING_SEAL           骑缝章
+        ///   DOWNLOAD_FLOW         授权渠道下载合同
+        public let type: String?
+
+        /// 扩展服务名称
+        public let name: String?
+
+        /// 服务状态
+        /// ENABLE 开启
+        /// DISABLE 关闭
+        public let status: String?
+
+        /// 最近操作人openid（经办人openid）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let operatorOpenId: String?
+
+        /// 最近操作时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let operateOn: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case type = "Type"
+            case name = "Name"
+            case status = "Status"
+            case operatorOpenId = "OperatorOpenId"
+            case operateOn = "OperateOn"
         }
     }
 
@@ -447,7 +554,7 @@ extension Essbasic {
     /// 非单C、单B、B2C合同，ApproverType、RecipientId（模板发起合同时）必传，建议都传。其他身份标识
     /// 1-个人：Name、Mobile必传
     /// 2-渠道子客企业指定经办人：OpenId必传，OrgName必传、OrgOpenId必传；
-    /// 3-渠道合作企业不指定经办人：（暂不支持）
+    /// 3-渠道合作企业不指定经办人：OrgName必传、OrgOpenId必传；
     /// 4-非渠道合作企业：Name、Mobile必传，OrgName必传，且NotChannelOrganization=True。
     ///
     /// RecipientId参数：
@@ -485,7 +592,7 @@ extension Essbasic {
         /// 签署人类型
         /// PERSON-个人/自然人；
         /// PERSON_AUTO_SIGN-个人自动签（定制化场景下使用）；
-        /// ORGANIZATION-企业（企业签署方或模版发起时的企业静默签）；
+        /// ORGANIZATION-企业（企业签署方或模板发起时的企业静默签）；
         /// ENTERPRISESERVER-企业静默签（文件发起时的企业静默签字）。
         public let approverType: String?
 
@@ -556,6 +663,28 @@ extension Essbasic {
             case jumpUrl = "JumpUrl"
             case approverOption = "ApproverOption"
             case approverNeedSignReview = "ApproverNeedSignReview"
+        }
+    }
+
+    /// 签署人签署链接信息
+    public struct FlowApproverUrlInfo: TCOutputModel {
+        /// 签署链接，注意该链接有效期为30分钟，同时需要注意保密，不要外泄给无关用户。
+        public let signUrl: String
+
+        /// 签署人手机号
+        public let mobile: String
+
+        /// 签署人姓名
+        public let name: String
+
+        /// 签署人类型 PERSON-个人
+        public let approverType: String
+
+        enum CodingKeys: String, CodingKey {
+            case signUrl = "SignUrl"
+            case mobile = "Mobile"
+            case name = "Name"
+            case approverType = "ApproverType"
         }
     }
 
@@ -1048,7 +1177,7 @@ extension Essbasic {
 
     /// 合作企业经办人列表信息
     public struct ProxyOrganizationOperator: TCInputModel {
-        /// 对应Agent-ProxyOperator-OpenId。渠道平台自定义，对渠道子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（比如，可以使用经办人企业名+员工身份证的hash值，需要渠道平台保存），最大64位字符串
+        /// 对应Agent-ProxyOperator-OpenId。渠道平台自定义，对渠道子客企业员的唯一标识。一个OpenId在一个子客企业内唯一对应一个真实员工，不可在其他子客企业内重复使用。（例如，可以使用经办人企业名+员工身份证的hash值，需要渠道平台保存），最大64位字符串
         public let id: String
 
         /// 经办人姓名，最大长度50个字符
@@ -1505,12 +1634,24 @@ extension Essbasic {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let previewUrl: String?
 
-        /// 渠道模板ID
-        public let channelTemplateId: String
-
         /// 渠道版-模板PDF文件链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pdfUrl: String?
+
+        /// 关联的渠道模板ID
+        public let channelTemplateId: String
+
+        /// 关联的渠道模板名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let channelTemplateName: String?
+
+        /// 0-需要渠道子客手动领取渠道的模板(默认); 1-渠道自动设置子客模板
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let channelAutoSave: Int64?
+
+        /// 模板版本，全数字字符。默认为空，初始版本为yyyyMMdd001。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let templateVersion: String?
 
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
@@ -1524,8 +1665,11 @@ extension Essbasic {
             case creator = "Creator"
             case createdOn = "CreatedOn"
             case previewUrl = "PreviewUrl"
-            case channelTemplateId = "ChannelTemplateId"
             case pdfUrl = "PdfUrl"
+            case channelTemplateId = "ChannelTemplateId"
+            case channelTemplateName = "ChannelTemplateName"
+            case channelAutoSave = "ChannelAutoSave"
+            case templateVersion = "TemplateVersion"
         }
     }
 

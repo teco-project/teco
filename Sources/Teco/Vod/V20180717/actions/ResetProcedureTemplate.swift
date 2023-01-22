@@ -20,13 +20,17 @@ extension Vod {
         /// 任务流名字
         public let name: String
 
+        /// <b>点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。</b>
+        public let subAppId: UInt64?
+
         /// 模板描述信息，长度限制：256 个字符。
         public let comment: String?
 
         /// 视频处理类型任务参数。
         public let mediaProcessTask: MediaProcessTaskInput?
 
-        /// AI 智能内容审核类型任务参数。
+        /// AI 智能内容审核类型任务参数 \*。
+        /// <font color=red>\*：该参数用于发起旧版审核，不建议使用。推荐使用 ReviewAudioVideoTask 参数发起审核。</font>
         public let aiContentReviewTask: AiContentReviewTaskInput?
 
         /// AI 智能内容分析类型任务参数。
@@ -35,27 +39,29 @@ extension Vod {
         /// AI 内容识别类型任务参数。
         public let aiRecognitionTask: AiRecognitionTaskInput?
 
-        /// 点播[子应用](/document/product/266/14574) ID。如果要访问子应用中的资源，则将该字段填写为子应用 ID；否则无需填写该字段。
-        public let subAppId: UInt64?
+        /// 音视频审核类型任务参数。
+        public let reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput?
 
-        public init(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil) {
+        public init(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil) {
             self.name = name
+            self.subAppId = subAppId
             self.comment = comment
             self.mediaProcessTask = mediaProcessTask
             self.aiContentReviewTask = aiContentReviewTask
             self.aiAnalysisTask = aiAnalysisTask
             self.aiRecognitionTask = aiRecognitionTask
-            self.subAppId = subAppId
+            self.reviewAudioVideoTask = reviewAudioVideoTask
         }
 
         enum CodingKeys: String, CodingKey {
             case name = "Name"
+            case subAppId = "SubAppId"
             case comment = "Comment"
             case mediaProcessTask = "MediaProcessTask"
             case aiContentReviewTask = "AiContentReviewTask"
             case aiAnalysisTask = "AiAnalysisTask"
             case aiRecognitionTask = "AiRecognitionTask"
-            case subAppId = "SubAppId"
+            case reviewAudioVideoTask = "ReviewAudioVideoTask"
         }
     }
 
@@ -89,15 +95,15 @@ extension Vod {
     ///
     /// 重新设置用户自定义任务流模板的内容。
     @inlinable @discardableResult
-    public func resetProcedureTemplate(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
-        self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+    public func resetProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetProcedureTemplateResponse> {
+        self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask), region: region, logger: logger, on: eventLoop)
     }
 
     /// 重设任务流模板
     ///
     /// 重新设置用户自定义任务流模板的内容。
     @inlinable @discardableResult
-    public func resetProcedureTemplate(name: String, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
-        try await self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+    public func resetProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetProcedureTemplateResponse {
+        try await self.resetProcedureTemplate(ResetProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -30,29 +30,37 @@ extension Bda {
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let url: String?
 
-        /// 返回图像方式（base64 或 url ) ，二选一。url有效期为30分钟。
+        /// 返回图像方式（base64 或 Url ) ，二选一。url有效期为30分钟。
         public let rspImgType: String?
 
-        public init(image: String? = nil, url: String? = nil, rspImgType: String? = nil) {
+        /// 适用场景类型。
+        ///
+        /// 取值：GEN/GS。GEN为通用场景模式；GS为绿幕场景模式，针对绿幕场景下的人像分割效果更好。
+        /// 两种模式选择一种传入，默认为GEN。
+        public let scene: String?
+
+        public init(image: String? = nil, url: String? = nil, rspImgType: String? = nil, scene: String? = nil) {
             self.image = image
             self.url = url
             self.rspImgType = rspImgType
+            self.scene = scene
         }
 
         enum CodingKeys: String, CodingKey {
             case image = "Image"
             case url = "Url"
             case rspImgType = "RspImgType"
+            case scene = "Scene"
         }
     }
 
     /// SegmentPortraitPic返回参数结构体
     public struct SegmentPortraitPicResponse: TCResponseModel {
-        /// 处理后的图片 base64 数据，透明背景图
+        /// 处理后的图片 base64 数据，透明背景图。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultImage: String?
 
-        /// 一个通过 Base64 编码的文件，解码后文件由 Float 型浮点数组成。这些浮点数代表原图从左上角开始的每一行的每一个像素点，每一个浮点数的值是原图相应像素点位于人体轮廓内的置信度（0-1）转化的灰度值（0-255）
+        /// 一个通过 base64 编码的文件，解码后文件由 Float 型浮点数组成。这些浮点数代表原图从左上角开始的每一行的每一个像素点，每一个浮点数的值是原图相应像素点位于人体轮廓内的置信度（0-1）转化的灰度值（0-255）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultMask: String?
 
@@ -60,11 +68,11 @@ extension Bda {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hasForeground: Bool?
 
-        /// 支持将处理过的图片 base64 数据，透明背景图以URL的形式返回值，URL有效期为30分钟。
+        /// 支持将处理过的图片 base64 数据，透明背景图以Url的形式返回值，Url有效期为30分钟。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultImageUrl: String?
 
-        /// 一个通过 Base64 编码的文件，解码后文件由 Float 型浮点数组成。支持以URL形式的返回值；URL有效期为30分钟。
+        /// 一个通过 base64 编码的文件，解码后文件由 Float 型浮点数组成。支持以Url形式的返回值；Url有效期为30分钟。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultMaskUrl: String?
 
@@ -101,15 +109,15 @@ extension Bda {
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
     @inlinable
-    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SegmentPortraitPicResponse> {
-        self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
+    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, scene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SegmentPortraitPicResponse> {
+        self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType, scene: scene), region: region, logger: logger, on: eventLoop)
     }
 
     /// 人像分割
     ///
     /// 即二分类人像分割，识别传入图片中人体的完整轮廓，进行抠像。
     @inlinable
-    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
-        try await self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
+    public func segmentPortraitPic(image: String? = nil, url: String? = nil, rspImgType: String? = nil, scene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SegmentPortraitPicResponse {
+        try await self.segmentPortraitPic(SegmentPortraitPicRequest(image: image, url: url, rspImgType: rspImgType, scene: scene), region: region, logger: logger, on: eventLoop)
     }
 }
