@@ -57,7 +57,7 @@ extension Essbasic {
             self.needAggregate = needAggregate
             self.limit = limit
             self.offset = offset
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

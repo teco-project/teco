@@ -33,7 +33,7 @@ extension Iotvideo {
             self.productId = productId
             self.number = number
             self.namePrefix = namePrefix
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

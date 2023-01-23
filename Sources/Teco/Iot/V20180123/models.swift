@@ -261,7 +261,7 @@ extension Iot {
         public init(number: NumberData? = nil, string: StringData? = nil, enum: EnumData? = nil, bool: BoolData? = nil) {
             self.number = number
             self.string = string
-            self.`enum` = `enum`
+            self.enum = `enum`
             self.bool = bool
         }
 

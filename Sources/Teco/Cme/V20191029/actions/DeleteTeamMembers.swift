@@ -33,7 +33,7 @@ extension Cme {
             self.platform = platform
             self.teamId = teamId
             self.memberIds = memberIds
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

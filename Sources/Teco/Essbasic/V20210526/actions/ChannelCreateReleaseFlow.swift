@@ -45,7 +45,7 @@ extension Essbasic {
             self.releasedApprovers = releasedApprovers
             self.callbackUrl = callbackUrl
             self.organization = organization
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

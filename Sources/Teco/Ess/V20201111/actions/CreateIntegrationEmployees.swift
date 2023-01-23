@@ -24,7 +24,7 @@ extension Ess {
         public let employees: [Staff]
 
         public init(operator: UserInfo, employees: [Staff]) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.employees = employees
         }
 

@@ -25,7 +25,7 @@ extension Tcr {
 
         public init(repoName: String, public: Int64) {
             self.repoName = repoName
-            self.`public` = `public`
+            self.public = `public`
         }
 
         enum CodingKeys: String, CodingKey {

@@ -910,7 +910,7 @@ extension Gse {
         public init(fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.toPort = toPort
         }
 
@@ -939,7 +939,7 @@ extension Gse {
         public init(fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.toPort = toPort
         }
 
@@ -968,7 +968,7 @@ extension Gse {
         public init(fromPort: UInt64? = nil, ipRange: String? = nil, protocol: String? = nil, toPort: UInt64? = nil) {
             self.fromPort = fromPort
             self.ipRange = ipRange
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.toPort = toPort
         }
 

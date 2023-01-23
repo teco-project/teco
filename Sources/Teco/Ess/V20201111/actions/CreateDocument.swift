@@ -46,7 +46,7 @@ extension Ess {
         public let clientToken: String?
 
         public init(operator: UserInfo, flowId: String, templateId: String, fileNames: [String], formFields: [FormField]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, agent: Agent? = nil, clientToken: String? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.flowId = flowId
             self.templateId = templateId
             self.fileNames = fileNames

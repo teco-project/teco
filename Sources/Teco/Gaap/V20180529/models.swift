@@ -1740,7 +1740,7 @@ extension Gaap {
             self.sourceCidr = sourceCidr
             self.action = action
             self.aliasName = aliasName
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.destPortRange = destPortRange
         }
 

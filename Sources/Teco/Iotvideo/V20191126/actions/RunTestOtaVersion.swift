@@ -36,7 +36,7 @@ extension Iotvideo {
             self.productId = productId
             self.otaVersion = otaVersion
             self.tids = tids
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.remark = remark
         }
 

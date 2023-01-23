@@ -79,7 +79,7 @@ extension Cfw {
             self.ruleAction = ruleAction
             self.enable = enable
             self.port = port
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.serviceTemplateId = serviceTemplateId
         }
 

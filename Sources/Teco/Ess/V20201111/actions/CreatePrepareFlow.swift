@@ -43,7 +43,7 @@ extension Ess {
         public let intelligentStatus: String?
 
         public init(operator: UserInfo, resourceId: String, flowName: String, unordered: Bool? = nil, deadline: Int64? = nil, userFlowTypeId: String? = nil, approvers: [FlowCreateApprover]? = nil, intelligentStatus: String? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.resourceId = resourceId
             self.flowName = flowName
             self.unordered = unordered

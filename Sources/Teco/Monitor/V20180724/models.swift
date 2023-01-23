@@ -617,7 +617,7 @@ extension Monitor {
         public init(metricName: String? = nil, period: Int64? = nil, operator: String? = nil, value: String? = nil, continuePeriod: Int64? = nil, noticeFrequency: Int64? = nil, isPowerNotice: Int64? = nil, filter: AlarmPolicyFilter? = nil, description: String? = nil, unit: String? = nil, ruleType: String? = nil, isAdvanced: Int64? = nil, isOpen: Int64? = nil, productId: String? = nil, valueMax: Float? = nil, valueMin: Float? = nil, hierarchicalValue: AlarmHierarchicalValue? = nil) {
             self.metricName = metricName
             self.period = period
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.value = value
             self.continuePeriod = continuePeriod
             self.noticeFrequency = noticeFrequency
@@ -2557,7 +2557,7 @@ extension Monitor {
 
         public init(key: String, operator: String, value: String) {
             self.key = key
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.value = value
         }
 
@@ -2793,7 +2793,7 @@ extension Monitor {
 
         public init(key: String, operator: String, value: [String]) {
             self.key = key
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.value = value
         }
 
@@ -3306,7 +3306,7 @@ extension Monitor {
             self.rule = rule
             self.labels = labels
             self.template = template
-            self.`for` = `for`
+            self.for = `for`
             self.describe = describe
             self.annotations = annotations
             self.ruleState = ruleState

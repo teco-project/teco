@@ -1403,7 +1403,7 @@ extension Antiddos {
         public init(status: UInt64, domain: String, protocol: String, insId: String, appId: String, virtualPort: String, sslId: String) {
             self.status = status
             self.domain = domain
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.insId = insId
             self.appId = appId
             self.virtualPort = virtualPort
@@ -1577,7 +1577,7 @@ extension Antiddos {
         public init(keepTime: UInt64, domain: String, protocol: String, sourceType: UInt64, lbType: UInt64, sourceList: [L4RuleSource], keepEnable: UInt64, status: UInt64? = nil, ruleId: String? = nil, ccThreshold: UInt64? = nil, privateKey: String? = nil, ccEnable: UInt64? = nil, httpsToHttpEnable: UInt64? = nil, certType: UInt64? = nil, cert: String? = nil, ccLevel: String? = nil, ruleName: String? = nil, ccStatus: UInt64? = nil, virtualPort: UInt64? = nil, sslId: String? = nil, id: String? = nil, ccaiEnable: UInt64? = nil) {
             self.keepTime = keepTime
             self.domain = domain
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.sourceType = sourceType
             self.lbType = lbType
             self.sourceList = sourceList
@@ -1740,7 +1740,7 @@ extension Antiddos {
         public init(backendPort: UInt64, frontendPort: UInt64, protocol: String, realServers: [SourceServer], instanceDetails: [InstanceRelation], instanceDetailRule: [RuleInstanceRelation]? = nil) {
             self.backendPort = backendPort
             self.frontendPort = frontendPort
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.realServers = realServers
             self.instanceDetails = instanceDetails
             self.instanceDetailRule = instanceDetailRule
@@ -1901,7 +1901,7 @@ extension Antiddos {
         public let version: UInt64?
 
         public init(protocol: String, domain: String, lbType: UInt64, keepEnable: UInt64, keepTime: UInt64, sourceType: UInt64, sourceList: [L4RuleSource], region: UInt64? = nil, id: String? = nil, ip: String? = nil, ruleId: String? = nil, ruleName: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil, rewriteHttps: UInt64? = nil, errCode: UInt64? = nil, version: UInt64? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.domain = domain
             self.lbType = lbType
             self.keepEnable = keepEnable
@@ -2141,7 +2141,7 @@ extension Antiddos {
         public let pktLenGT: Int64?
 
         public init(protocol: String, sportStart: Int64, sportEnd: Int64, dportStart: Int64, dportEnd: Int64, pktlenMin: Int64, pktlenMax: Int64, action: String, matchBegin: String? = nil, matchType: String? = nil, str: String? = nil, depth: Int64? = nil, offset: Int64? = nil, isNot: Int64? = nil, matchLogic: String? = nil, matchBegin2: String? = nil, matchType2: String? = nil, str2: String? = nil, depth2: Int64? = nil, offset2: Int64? = nil, isNot2: Int64? = nil, id: String? = nil, pktLenGT: Int64? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.sportStart = sportStart
             self.sportEnd = sportEnd
             self.dportStart = dportStart
@@ -2391,7 +2391,7 @@ extension Antiddos {
         public let port: UInt64
 
         public init(protocol: String, port: UInt64) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
         }
 

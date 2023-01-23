@@ -48,7 +48,7 @@ extension Gaap {
             self.policyId = policyId
             self.ruleAction = ruleAction
             self.sourceCidr = sourceCidr
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.destPortRange = destPortRange
         }
 

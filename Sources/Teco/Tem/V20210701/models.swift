@@ -595,7 +595,7 @@ extension Tem {
 
         public init(type: String, protocol: String? = nil, path: String? = nil, exec: String? = nil, port: Int64? = nil, initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil) {
             self.type = type
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.path = path
             self.exec = exec
             self.port = port
@@ -763,7 +763,7 @@ extension Tem {
         public init(http: IngressRuleValue, host: String? = nil, protocol: String? = nil) {
             self.http = http
             self.host = host
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1270,7 +1270,7 @@ extension Tem {
         public init(port: Int64, targetPort: Int64, protocol: String, serviceName: String? = nil) {
             self.port = port
             self.targetPort = targetPort
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.serviceName = serviceName
         }
 
@@ -1503,7 +1503,7 @@ extension Tem {
         public init(port: Int64? = nil, targetPort: Int64? = nil, protocol: String? = nil) {
             self.port = port
             self.targetPort = targetPort
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
         }
 
         enum CodingKeys: String, CodingKey {

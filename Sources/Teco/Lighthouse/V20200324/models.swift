@@ -761,7 +761,7 @@ extension Lighthouse {
             self.hostPort = hostPort
             self.containerPort = containerPort
             self.ip = ip
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -838,7 +838,7 @@ extension Lighthouse {
         public let firewallRuleDescription: String?
 
         public init(protocol: String, port: String? = nil, cidrBlock: String? = nil, action: String? = nil, firewallRuleDescription: String? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
             self.cidrBlock = cidrBlock
             self.action = action

@@ -113,7 +113,7 @@ extension Cfw {
             self.destType = destType
             self.destContent = destContent
             self.port = port
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.applicationName = applicationName
             self.enable = enable
         }

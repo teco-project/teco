@@ -1189,7 +1189,7 @@ extension Waf {
 
         public init(port: String, protocol: String, upstreamPort: String, upstreamProtocol: String, nginxServerId: String) {
             self.port = port
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.upstreamPort = upstreamPort
             self.upstreamProtocol = upstreamProtocol
             self.nginxServerId = nginxServerId

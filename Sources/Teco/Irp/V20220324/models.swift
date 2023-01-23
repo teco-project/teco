@@ -167,7 +167,7 @@ extension Irp {
             self.appVersion = appVersion
             self.osVersion = osVersion
             self.deviceModel = deviceModel
-            self.`extension` = `extension`
+            self.extension = `extension`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -331,7 +331,7 @@ extension Irp {
             self.score = score
             self.poolIdList = poolIdList
             self.tagInfoList = tagInfoList
-            self.`extension` = `extension`
+            self.extension = `extension`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -475,7 +475,7 @@ extension Irp {
             self.tagInfoList = tagInfoList
             self.authorInfoList = authorInfoList
             self.dislikeInfoList = dislikeInfoList
-            self.`extension` = `extension`
+            self.extension = `extension`
             self.oaid = oaid
             self.androidId = androidId
         }

@@ -33,7 +33,7 @@ extension Ess {
             self.flowId = flowId
             self.flowApproverInfos = flowApproverInfos
             self.organization = organization
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

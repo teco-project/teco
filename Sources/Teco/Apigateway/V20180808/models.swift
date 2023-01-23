@@ -1875,7 +1875,7 @@ extension Apigateway {
 
         public init(name: String, operator: String, value: String) {
             self.name = name
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.value = value
         }
 

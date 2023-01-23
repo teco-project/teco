@@ -112,7 +112,7 @@ extension Iotvideoindustry {
             self.deviceCode = deviceCode
             self.isRecord = isRecord
             self.recordable = recordable
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.groupId = groupId
             self.groupName = groupName
         }
@@ -433,7 +433,7 @@ extension Iotvideoindustry {
             self.deviceCode = deviceCode
             self.isRecord = isRecord
             self.recordable = recordable
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.createTime = createTime
             self.channelNum = channelNum
             self.videoChannelNum = videoChannelNum

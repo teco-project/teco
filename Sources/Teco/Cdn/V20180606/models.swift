@@ -32,7 +32,7 @@ extension Cdn {
         public let returnCode: Int64?
 
         public init(switch: String, accessControlRules: [AccessControlRule]? = nil, returnCode: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.accessControlRules = accessControlRules
             self.returnCode = returnCode
         }
@@ -213,7 +213,7 @@ extension Cdn {
         public let typeF: AdvancedAuthenticationTypeF?
 
         public init(switch: String, typeA: AdvancedAuthenticationTypeA? = nil, typeB: AdvancedAuthenticationTypeB? = nil, typeC: AdvancedAuthenticationTypeC? = nil, typeD: AdvancedAuthenticationTypeD? = nil, typeE: AdvancedAuthenticationTypeE? = nil, typeF: AdvancedAuthenticationTypeF? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.typeA = typeA
             self.typeB = typeB
             self.typeC = typeC
@@ -544,7 +544,7 @@ extension Cdn {
             self.action = action
             self.redirectUrl = redirectUrl
             self.configure = configure
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -924,7 +924,7 @@ extension Cdn {
         public let typeD: AuthenticationTypeD?
 
         public init(switch: String, typeA: AuthenticationTypeA? = nil, typeB: AuthenticationTypeB? = nil, typeC: AuthenticationTypeC? = nil, typeD: AuthenticationTypeD? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.typeA = typeA
             self.typeB = typeB
             self.typeC = typeC
@@ -1155,7 +1155,7 @@ extension Cdn {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1185,7 +1185,7 @@ extension Cdn {
         public let bucket: String?
 
         public init(switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
             self.region = region
@@ -1252,7 +1252,7 @@ extension Cdn {
         public let statisticItems: [StatisticItem]?
 
         public init(switch: String, bpsThreshold: Int64? = nil, counterMeasure: String? = nil, lastTriggerTime: Date? = nil, alertSwitch: String? = nil, alertPercentage: Int64? = nil, lastTriggerTimeOverseas: Date? = nil, metric: String? = nil, statisticItems: [StatisticItem]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.bpsThreshold = bpsThreshold
             self.counterMeasure = counterMeasure
             self._lastTriggerTime = .init(wrappedValue: lastTriggerTime)
@@ -1302,7 +1302,7 @@ extension Cdn {
         @TCTimestampEncoding public var updateTime: Date?
 
         public init(switch: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.ruleType = ruleType
             self.ruleValue = ruleValue
             self.action = action
@@ -1346,7 +1346,7 @@ extension Cdn {
         @TCTimestampEncoding public var updateTime: Date?
 
         public init(switch: String, ruleType: String, ruleValue: [String], action: String, redirectUrl: String? = nil, updateTime: Date? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.ruleType = ruleType
             self.ruleValue = ruleValue
             self.action = action
@@ -1703,7 +1703,7 @@ extension Cdn {
         public let ignoreSetCookie: String?
 
         public init(switch: String, cacheTime: Int64, compareMaxAge: String, ignoreCacheControl: String, ignoreSetCookie: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.cacheTime = cacheTime
             self.compareMaxAge = compareMaxAge
             self.ignoreCacheControl = ignoreCacheControl
@@ -1731,7 +1731,7 @@ extension Cdn {
         public let heuristicCache: HeuristicCache?
 
         public init(switch: String, heuristicCache: HeuristicCache? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.heuristicCache = heuristicCache
         }
 
@@ -1757,7 +1757,7 @@ extension Cdn {
         public let revalidate: String?
 
         public init(switch: String, revalidate: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.revalidate = revalidate
         }
 
@@ -1852,7 +1852,7 @@ extension Cdn {
         public let value: String?
 
         public init(switch: String, value: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.value = value
         }
 
@@ -2172,7 +2172,7 @@ extension Cdn {
         public let compressionRules: [CompressionRule]?
 
         public init(switch: String, compressionRules: [CompressionRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.compressionRules = compressionRules
         }
 
@@ -2259,7 +2259,7 @@ extension Cdn {
         public let value: String?
 
         public init(switch: String, value: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.value = value
         }
 
@@ -3024,7 +3024,7 @@ extension Cdn {
         public let cappingRules: [CappingRule]?
 
         public init(switch: String, cappingRules: [CappingRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.cappingRules = cappingRules
         }
 
@@ -3111,7 +3111,7 @@ extension Cdn {
         public let pageRules: [ErrorPageRule]?
 
         public init(switch: String, pageRules: [ErrorPageRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.pageRules = pageRules
         }
 
@@ -3190,7 +3190,7 @@ extension Cdn {
         public let redirectConfig: RedirectConfig?
 
         public init(switch: String, redirectConfig: RedirectConfig? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.redirectConfig = redirectConfig
         }
 
@@ -3224,7 +3224,7 @@ extension Cdn {
         public let carryHeaders: String?
 
         public init(switch: String, redirectType: String? = nil, redirectStatusCode: Int64? = nil, carryHeaders: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.redirectType = redirectType
             self.redirectStatusCode = redirectStatusCode
             self.carryHeaders = carryHeaders
@@ -3245,7 +3245,7 @@ extension Cdn {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3283,7 +3283,7 @@ extension Cdn {
         public let value: String?
 
         public init(switch: String? = nil, value: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.value = value
         }
 
@@ -3303,7 +3303,7 @@ extension Cdn {
         public let cacheConfig: CacheConfig?
 
         public init(switch: String, cacheConfig: CacheConfig? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.cacheConfig = cacheConfig
         }
 
@@ -3327,7 +3327,7 @@ extension Cdn {
         public let includeSubDomains: String?
 
         public init(switch: String, maxAge: Int64? = nil, includeSubDomains: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.maxAge = maxAge
             self.includeSubDomains = includeSubDomains
         }
@@ -3475,7 +3475,7 @@ extension Cdn {
         public let tlsVersion: [String]?
 
         public init(switch: String, http2: String? = nil, ocspStapling: String? = nil, verifyClient: String? = nil, certInfo: ServerCert? = nil, clientCertInfo: ClientCert? = nil, spdy: String? = nil, sslStatus: String? = nil, hsts: Hsts? = nil, tlsVersion: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.http2 = http2
             self.ocspStapling = ocspStapling
             self.verifyClient = verifyClient
@@ -3507,7 +3507,7 @@ extension Cdn {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3533,7 +3533,7 @@ extension Cdn {
         public let bucket: String?
 
         public init(switch: String, accessKey: String? = nil, secretKey: String? = nil, bucket: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
             self.bucket = bucket
@@ -3601,7 +3601,7 @@ extension Cdn {
         public let returnCode: Int64?
 
         public init(switch: String, filterType: String? = nil, filters: [String]? = nil, filterRules: [IpFilterPathRule]? = nil, returnCode: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.filterType = filterType
             self.filters = filters
             self.filterRules = filterRules
@@ -3675,7 +3675,7 @@ extension Cdn {
         public let qps: Int64?
 
         public init(switch: String, qps: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.qps = qps
         }
 
@@ -3736,7 +3736,7 @@ extension Cdn {
         public let `switch`: String?
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4065,7 +4065,7 @@ extension Cdn {
         public let maxAgeCodeRule: MaxAgeCodeRule?
 
         public init(switch: String, maxAgeRules: [MaxAgeRule]? = nil, maxAgeCodeRule: MaxAgeCodeRule? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.maxAgeRules = maxAgeRules
             self.maxAgeCodeRule = maxAgeCodeRule
         }
@@ -4145,7 +4145,7 @@ extension Cdn {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4296,7 +4296,7 @@ extension Cdn {
         public let typeA: OriginAuthenticationTypeA?
 
         public init(switch: String, typeA: OriginAuthenticationTypeA? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.typeA = typeA
         }
 
@@ -4327,7 +4327,7 @@ extension Cdn {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4359,7 +4359,7 @@ extension Cdn {
         public let optimizationType: String?
 
         public init(switch: String, optimizationType: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.optimizationType = optimizationType
         }
 
@@ -4412,7 +4412,7 @@ extension Cdn {
         public let bucket: String?
 
         public init(switch: String, accessKey: String? = nil, secretKey: String? = nil, region: String? = nil, bucket: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
             self.region = region
@@ -4718,7 +4718,7 @@ extension Cdn {
         public let maxSize: Int64?
 
         public init(switch: String, maxSize: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.maxSize = maxSize
         }
 
@@ -4829,7 +4829,7 @@ extension Cdn {
         public let secretKey: String?
 
         public init(switch: String, accessKey: String? = nil, secretKey: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.accessKey = accessKey
             self.secretKey = secretKey
         }
@@ -4860,7 +4860,7 @@ extension Cdn {
         public let value: String?
 
         public init(switch: String, reorder: String? = nil, action: String? = nil, value: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.reorder = reorder
             self.action = action
             self.value = value
@@ -4880,7 +4880,7 @@ extension Cdn {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4922,7 +4922,7 @@ extension Cdn {
         public let rangeRules: [RangeOriginPullRule]?
 
         public init(switch: String, rangeRules: [RangeOriginPullRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.rangeRules = rangeRules
         }
 
@@ -4952,7 +4952,7 @@ extension Cdn {
         public let rulePaths: [String]?
 
         public init(switch: String, ruleType: String, rulePaths: [String]) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.ruleType = ruleType
             self.rulePaths = rulePaths
         }
@@ -4976,7 +4976,7 @@ extension Cdn {
         public let followRedirectBackupHost: String?
 
         public init(switch: String, followRedirectHost: String, followRedirectBackupHost: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.followRedirectHost = followRedirectHost
             self.followRedirectBackupHost = followRedirectBackupHost
         }
@@ -5000,7 +5000,7 @@ extension Cdn {
         public let refererRules: [RefererRule]?
 
         public init(switch: String, refererRules: [RefererRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.refererRules = refererRules
         }
 
@@ -5089,7 +5089,7 @@ extension Cdn {
         public let server: String?
 
         public init(switch: String, remoteAuthenticationRules: [RemoteAuthenticationRule]? = nil, server: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.remoteAuthenticationRules = remoteAuthenticationRules
             self.server = server
         }
@@ -5201,7 +5201,7 @@ extension Cdn {
         public let headerRules: [HttpHeaderPathRule]?
 
         public init(switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.headerRules = headerRules
         }
 
@@ -5277,7 +5277,7 @@ extension Cdn {
         public let headerRules: [HttpHeaderPathRule]?
 
         public init(switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.headerRules = headerRules
         }
 
@@ -5295,7 +5295,7 @@ extension Cdn {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -5314,7 +5314,7 @@ extension Cdn {
         public let path: String?
 
         public init(switch: String, path: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.path = path
         }
 
@@ -5402,7 +5402,7 @@ extension Cdn {
         public let content: String?
 
         public init(switch: String, content: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.content = content
         }
 
@@ -5427,7 +5427,7 @@ extension Cdn {
         public let value: String?
 
         public init(switch: String, action: String, value: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.action = action
             self.value = value
         }
@@ -5457,7 +5457,7 @@ extension Cdn {
         public let advancedScriptData: [AdvancedScdnAclGroup]?
 
         public init(switch: String, scriptData: [ScdnAclGroup]? = nil, errorPage: ScdnErrorPage? = nil, advancedScriptData: [AdvancedScdnAclGroup]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.scriptData = scriptData
             self.errorPage = errorPage
             self.advancedScriptData = advancedScriptData
@@ -5544,7 +5544,7 @@ extension Cdn {
         public let botJavaScript: [BotJavaScript]?
 
         public init(switch: String, botCookie: [BotCookie]? = nil, botJavaScript: [BotJavaScript]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.botCookie = botCookie
             self.botJavaScript = botJavaScript
         }
@@ -5639,7 +5639,7 @@ extension Cdn {
         public let globalAdvancedRules: [AdvancedCCRules]?
 
         public init(switch: String, rules: [ScdnCCRules]? = nil, advancedRules: [AdvancedCCRules]? = nil, globalAdvancedRules: [AdvancedCCRules]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.rules = rules
             self.advancedRules = advancedRules
             self.globalAdvancedRules = globalAdvancedRules
@@ -5659,7 +5659,7 @@ extension Cdn {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -5753,7 +5753,7 @@ extension Cdn {
 
         public init(key: String, operator: String, value: String) {
             self.key = key
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.value = value
         }
 
@@ -6094,7 +6094,7 @@ extension Cdn {
         public let subRuleSwitch: [WafSubRuleStatus]?
 
         public init(switch: String, mode: String? = nil, errorPage: ScdnErrorPage? = nil, webShellSwitch: String? = nil, rules: [ScdnWafRule]? = nil, level: Int64? = nil, subRuleSwitch: [WafSubRuleStatus]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.mode = mode
             self.errorPage = errorPage
             self.webShellSwitch = webShellSwitch
@@ -6140,7 +6140,7 @@ extension Cdn {
         public let `switch`: String?
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6167,7 +6167,7 @@ extension Cdn {
         public let `switch`: String?
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6257,7 +6257,7 @@ extension Cdn {
         public let cname: String?
 
         public init(switch: String, cname: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.cname = cname
         }
 
@@ -6453,7 +6453,7 @@ extension Cdn {
             self.alertSwitch = alertSwitch
             self.metric = metric
             self.cycle = cycle
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6482,7 +6482,7 @@ extension Cdn {
         public let cacheRules: [StatusCodeCacheRule]?
 
         public init(switch: String, cacheRules: [StatusCodeCacheRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.cacheRules = cacheRules
         }
 
@@ -6676,7 +6676,7 @@ extension Cdn {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6834,7 +6834,7 @@ extension Cdn {
         public let pathRules: [UrlRedirectRule]?
 
         public init(switch: String, pathRules: [UrlRedirectRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.pathRules = pathRules
         }
 
@@ -6891,7 +6891,7 @@ extension Cdn {
         public let filterRules: [UserAgentFilterRule]?
 
         public init(switch: String, filterRules: [UserAgentFilterRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.filterRules = filterRules
         }
 
@@ -6946,7 +6946,7 @@ extension Cdn {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -7004,7 +7004,7 @@ extension Cdn {
         public let subIds: [Int64]
 
         public init(switch: String, subIds: [Int64]) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.subIds = subIds
         }
 
@@ -7026,7 +7026,7 @@ extension Cdn {
         public let timeout: Int64?
 
         public init(switch: String, timeout: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.timeout = timeout
         }
 
@@ -7043,7 +7043,7 @@ extension Cdn {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {

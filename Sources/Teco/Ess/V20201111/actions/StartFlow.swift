@@ -30,7 +30,7 @@ extension Ess {
         public let agent: Agent?
 
         public init(operator: UserInfo, flowId: String, clientToken: String? = nil, agent: Agent? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.flowId = flowId
             self.clientToken = clientToken
             self.agent = agent

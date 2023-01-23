@@ -75,7 +75,7 @@ extension Essbasic {
             self.openId = openId
             self.autoJumpBack = autoJumpBack
             self.jumpUrl = jumpUrl
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

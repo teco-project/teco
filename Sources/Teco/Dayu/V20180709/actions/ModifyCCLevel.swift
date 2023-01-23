@@ -36,7 +36,7 @@ extension Dayu {
             self.business = business
             self.id = id
             self.level = level
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.ruleId = ruleId
         }
 

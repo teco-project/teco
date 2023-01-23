@@ -51,7 +51,7 @@ extension Ess {
         public let approverRestrictions: ApproverRestriction?
 
         public init(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, agent: Agent? = nil, approverRestrictions: ApproverRestriction? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.templateId = templateId
             self.flowName = flowName
             self.maxFlowNum = maxFlowNum

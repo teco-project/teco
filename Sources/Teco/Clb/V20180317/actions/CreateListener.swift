@@ -72,7 +72,7 @@ extension Clb {
         public init(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, certificate: CertificateInput? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sniSwitch: Int64? = nil, targetType: String? = nil, sessionType: String? = nil, keepaliveEnable: Int64? = nil, endPort: UInt64? = nil, deregisterTargetRst: Bool? = nil, multiCertInfo: MultiCertInfo? = nil, maxConn: Int64? = nil, maxCps: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.ports = ports
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.listenerNames = listenerNames
             self.healthCheck = healthCheck
             self.certificate = certificate

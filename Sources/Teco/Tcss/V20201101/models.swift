@@ -4435,7 +4435,7 @@ extension Tcss {
         public let port: String?
 
         public init(protocol: String? = nil, port: String? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
         }
 
@@ -6961,7 +6961,7 @@ extension Tcss {
 
         public init(type: String, switch: String, beginTime: String, endTime: String, controlBits: String) {
             self.type = type
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.beginTime = beginTime
             self.endTime = endTime
             self.controlBits = controlBits

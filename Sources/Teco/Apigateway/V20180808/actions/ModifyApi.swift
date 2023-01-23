@@ -190,7 +190,7 @@ extension Apigateway {
             self.authType = authType
             self.authRequired = authRequired
             self.serviceTimeout = serviceTimeout
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.enableCORS = enableCORS
             self.constantParameters = constantParameters
             self.requestParameters = requestParameters

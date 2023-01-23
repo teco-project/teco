@@ -93,7 +93,7 @@ extension Wedata {
             self.taskName = taskName
             self.isSendSuccess = isSendSuccess
             self.messageId = messageId
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -449,7 +449,7 @@ extension Wedata {
 
         public init(compareType: UInt64? = nil, operator: String? = nil, valueComputeType: UInt64? = nil, valueList: [ThresholdValue]? = nil) {
             self.compareType = compareType
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.valueComputeType = valueComputeType
             self.valueList = valueList
         }
@@ -2798,7 +2798,7 @@ extension Wedata {
             self.compareRule = compareRule
             self.alarmLevel = alarmLevel
             self.description = description
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.targetDatabaseId = targetDatabaseId
             self.targetDatabaseName = targetDatabaseName
             self.targetTableId = targetTableId
@@ -4629,7 +4629,7 @@ extension Wedata {
             self.projectId = projectId
             self.creater = creater
             self.alarmIndicatorDesc = alarmIndicatorDesc
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.nodeId = nodeId
             self.nodeName = nodeName
         }

@@ -40,7 +40,7 @@ extension Essbasic {
             self.resourceType = resourceType
             self.resourceName = resourceName
             self.resourceId = resourceId
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.organization = organization
         }
 

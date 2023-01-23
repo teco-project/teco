@@ -76,7 +76,7 @@ extension Teo {
             self.interval = interval
             self.zoneIds = zoneIds
             self.domains = domains
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.area = area
             self.filters = filters
         }

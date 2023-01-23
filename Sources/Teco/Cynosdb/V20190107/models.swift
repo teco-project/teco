@@ -1999,7 +1999,7 @@ extension Cynosdb {
             self.values = values
             self.exactMatch = exactMatch
             self.name = name
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

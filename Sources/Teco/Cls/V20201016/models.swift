@@ -886,7 +886,7 @@ extension Cls {
             self.backtracking = backtracking
             self.isGBK = isGBK
             self.jsonStandard = jsonStandard
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.address = address
             self.parseProtocol = parseProtocol
         }

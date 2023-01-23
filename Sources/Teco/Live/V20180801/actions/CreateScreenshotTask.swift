@@ -51,7 +51,7 @@ extension Live {
             self.templateId = templateId
             self.startTime = startTime
             self.streamType = streamType
-            self.`extension` = `extension`
+            self.extension = `extension`
         }
 
         enum CodingKeys: String, CodingKey {

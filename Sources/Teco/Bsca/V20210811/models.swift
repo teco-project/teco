@@ -342,7 +342,7 @@ extension Bsca {
 
         public init(name: String, protocol: String? = nil, namespace: String? = nil, qualifiers: [Qualifier]? = nil, subpath: String? = nil, version: String? = nil) {
             self.name = name
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.namespace = namespace
             self.qualifiers = qualifiers
             self.subpath = subpath

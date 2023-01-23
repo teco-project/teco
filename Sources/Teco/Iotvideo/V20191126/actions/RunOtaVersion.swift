@@ -43,7 +43,7 @@ extension Iotvideo {
             self.otaVersion = otaVersion
             self.grayValue = grayValue
             self.oldVersions = oldVersions
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.remark = remark
             self.contents = contents
         }

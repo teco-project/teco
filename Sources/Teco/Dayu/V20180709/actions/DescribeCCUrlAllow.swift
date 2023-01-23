@@ -42,7 +42,7 @@ extension Dayu {
             self.type = type
             self.limit = limit
             self.offset = offset
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
         }
 
         enum CodingKeys: String, CodingKey {

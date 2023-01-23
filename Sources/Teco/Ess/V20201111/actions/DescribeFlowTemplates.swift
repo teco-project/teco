@@ -52,7 +52,7 @@ extension Ess {
         public let contentType: Int64?
 
         public init(operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.organization = organization
             self.agent = agent
             self.offset = offset

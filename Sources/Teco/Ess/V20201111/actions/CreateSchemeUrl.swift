@@ -48,7 +48,7 @@ extension Ess {
         public let agent: Agent?
 
         public init(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.organizationName = organizationName
             self.name = name
             self.mobile = mobile

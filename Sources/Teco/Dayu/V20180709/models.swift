@@ -237,11 +237,11 @@ extension Dayu {
             self.setId = setId
             self.frequency = frequency
             self.exeMode = exeMode
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.createTime = createTime
             self.ruleList = ruleList
             self.ipList = ipList
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.ruleId = ruleId
             self.domain = domain
         }
@@ -275,7 +275,7 @@ extension Dayu {
 
         public init(skey: String, operator: String, value: String) {
             self.skey = skey
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.value = value
         }
 
@@ -575,7 +575,7 @@ extension Dayu {
         public let action: String
 
         public init(protocol: String, sportStart: UInt64, sportEnd: UInt64, dportStart: UInt64, dportEnd: UInt64, pktlenMin: UInt64, pktlenMax: UInt64, matchBegin: String, matchType: String, str: String, depth: UInt64, offset: UInt64, isNot: UInt64, action: String) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.sportStart = sportStart
             self.sportEnd = sportEnd
             self.dportStart = dportStart
@@ -637,7 +637,7 @@ extension Dayu {
         public let kind: UInt64?
 
         public init(protocol: String, dPortStart: UInt64, dPortEnd: UInt64, sPortStart: UInt64? = nil, sPortEnd: UInt64? = nil, action: String? = nil, kind: UInt64? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.dPortStart = dPortStart
             self.dPortEnd = dPortEnd
             self.sPortStart = sPortStart
@@ -917,7 +917,7 @@ extension Dayu {
         public let keepTime: UInt64
 
         public init(protocol: String, virtualPort: UInt64, enable: UInt64, timeOut: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64, keepTime: UInt64) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.virtualPort = virtualPort
             self.enable = enable
             self.timeOut = timeOut
@@ -975,7 +975,7 @@ extension Dayu {
         public let removeSwitch: UInt64?
 
         public init(protocol: String, virtualPort: UInt64, sourcePort: UInt64, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, ruleName: String? = nil, removeSwitch: UInt64? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.virtualPort = virtualPort
             self.sourcePort = sourcePort
             self.sourceType = sourceType
@@ -1091,7 +1091,7 @@ extension Dayu {
         public let url: String
 
         public init(protocol: String, domain: String, enable: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64, method: String, statusCode: UInt64, url: String) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.domain = domain
             self.enable = enable
             self.interval = interval
@@ -1180,7 +1180,7 @@ extension Dayu {
         public let virtualPort: UInt64?
 
         public init(protocol: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, ruleName: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.domain = domain
             self.sourceType = sourceType
             self.keepTime = keepTime
@@ -1331,7 +1331,7 @@ extension Dayu {
         public let id: String?
 
         public init(protocol: String, virtualPort: UInt64, sourcePort: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, sourceType: UInt64, ruleId: String? = nil, ruleName: String? = nil, removeSwitch: UInt64? = nil, modifyTime: Date? = nil, region: UInt64? = nil, ip: String? = nil, id: String? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.virtualPort = virtualPort
             self.sourcePort = sourcePort
             self.keepTime = keepTime
@@ -1446,7 +1446,7 @@ extension Dayu {
         public let virtualPort: UInt64?
 
         public init(protocol: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, ruleName: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, region: UInt64? = nil, id: String? = nil, ip: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.domain = domain
             self.sourceType = sourceType
             self.keepTime = keepTime
@@ -1550,7 +1550,7 @@ extension Dayu {
         public let port: UInt64
 
         public init(protocol: String, port: UInt64) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
         }
 

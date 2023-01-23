@@ -56,7 +56,7 @@ extension Teo {
         public init(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil) {
             self.zoneId = zoneId
             self.entity = entity
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.level = level
             self.mode = mode
             self.wafRules = wafRules

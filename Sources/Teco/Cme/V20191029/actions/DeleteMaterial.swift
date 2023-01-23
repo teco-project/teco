@@ -29,7 +29,7 @@ extension Cme {
         public init(platform: String, materialId: String, operator: String? = nil) {
             self.platform = platform
             self.materialId = materialId
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

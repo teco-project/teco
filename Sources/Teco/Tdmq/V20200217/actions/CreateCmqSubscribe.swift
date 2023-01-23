@@ -44,7 +44,7 @@ extension Tdmq {
         public init(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil) {
             self.topicName = topicName
             self.subscriptionName = subscriptionName
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.endpoint = endpoint
             self.notifyStrategy = notifyStrategy
             self.filterTag = filterTag

@@ -31,7 +31,7 @@ extension Ess {
         public let offset: Int64?
 
         public init(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.limit = limit
             self.filters = filters
             self.offset = offset

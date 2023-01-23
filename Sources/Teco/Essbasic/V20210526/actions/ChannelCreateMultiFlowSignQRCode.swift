@@ -59,7 +59,7 @@ extension Essbasic {
             self.qrEffectiveDay = qrEffectiveDay
             self.restrictions = restrictions
             self.callbackUrl = callbackUrl
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.approverRestrictions = approverRestrictions
         }
 

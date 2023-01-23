@@ -60,7 +60,7 @@ extension Cme {
             self.coverData = coverData
             self.cmeExportInfo = cmeExportInfo
             self.vodExportInfo = vodExportInfo
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

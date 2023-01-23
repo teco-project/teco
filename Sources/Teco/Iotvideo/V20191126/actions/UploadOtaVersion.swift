@@ -47,7 +47,7 @@ extension Iotvideo {
             self.versionUrl = versionUrl
             self.fileSize = fileSize
             self.md5 = md5
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.remark = remark
             self.contents = contents
         }

@@ -38,7 +38,7 @@ extension Thpc {
         public init(localPath: String, remotePath: String, protocol: String? = nil, storageType: String? = nil) {
             self.localPath = localPath
             self.remotePath = remotePath
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.storageType = storageType
         }
 

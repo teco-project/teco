@@ -48,7 +48,7 @@ extension Cfw {
         public let instanceId: String?
 
         public init(protocol: String? = nil, strategy: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, direction: UInt64? = nil, edgeId: String? = nil, status: String? = nil, area: String? = nil, instanceId: String? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.strategy = strategy
             self.searchValue = searchValue
             self.limit = limit

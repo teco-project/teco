@@ -58,7 +58,7 @@ extension Essbasic {
             self.offset = offset
             self.queryAllComponents = queryAllComponents
             self.templateName = templateName
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.withPreviewUrl = withPreviewUrl
             self.withPdfUrl = withPdfUrl
             self.channelTemplateId = channelTemplateId

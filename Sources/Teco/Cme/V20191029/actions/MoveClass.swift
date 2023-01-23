@@ -37,7 +37,7 @@ extension Cme {
             self.owner = owner
             self.sourceClassPath = sourceClassPath
             self.destinationClassPath = destinationClassPath
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

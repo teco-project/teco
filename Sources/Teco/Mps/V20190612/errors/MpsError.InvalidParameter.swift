@@ -123,7 +123,7 @@ extension TCMpsError {
         }
 
         public static var `protocol`: InvalidParameter {
-            InvalidParameter(.`protocol`)
+            InvalidParameter(.protocol)
         }
 
         public static var sortType: InvalidParameter {
@@ -180,7 +180,7 @@ extension TCMpsError {
                 code = .invalidParameter_Period
             case .pipeline:
                 code = .invalidParameter_Pipeline
-            case .`protocol`:
+            case .protocol:
                 code = .invalidParameter_Protocol
             case .sortType:
                 code = .invalidParameter_SortType

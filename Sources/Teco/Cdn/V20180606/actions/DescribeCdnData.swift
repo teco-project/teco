@@ -131,7 +131,7 @@ extension Cdn {
             self.detail = detail
             self.isp = isp
             self.district = district
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.dataSource = dataSource
             self.ipProtocol = ipProtocol
             self.area = area

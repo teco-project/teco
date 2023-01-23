@@ -33,7 +33,7 @@ extension Essbasic {
             self.agent = agent
             self.sealName = sealName
             self.sealImage = sealImage
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

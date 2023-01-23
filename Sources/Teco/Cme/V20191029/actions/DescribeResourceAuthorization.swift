@@ -33,7 +33,7 @@ extension Cme {
             self.platform = platform
             self.owner = owner
             self.resource = resource
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

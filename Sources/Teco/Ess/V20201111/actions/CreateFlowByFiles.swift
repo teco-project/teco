@@ -86,7 +86,7 @@ extension Ess {
         public let signBeanTag: Int64?
 
         public init(operator: UserInfo, flowName: String, approvers: [ApproverInfo], fileIds: [String], flowType: String? = nil, components: [Component]? = nil, ccInfos: [CcInfo]? = nil, needPreview: Bool? = nil, previewType: Int64? = nil, deadline: Int64? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, userData: String? = nil, agent: Agent? = nil, approverVerifyType: String? = nil, flowDescription: String? = nil, signBeanTag: Int64? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.flowName = flowName
             self.approvers = approvers
             self.fileIds = fileIds

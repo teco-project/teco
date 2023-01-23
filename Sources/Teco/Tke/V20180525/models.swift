@@ -1379,7 +1379,7 @@ extension Tke {
             self.name = name
             self.type = type
             self.usage = usage
-            self.`default` = `default`
+            self.default = `default`
             self.constraint = constraint
         }
 
@@ -3299,7 +3299,7 @@ extension Tke {
             self.rule = rule
             self.labels = labels
             self.template = template
-            self.`for` = `for`
+            self.for = `for`
             self.describe = describe
             self.annotations = annotations
             self.ruleState = ruleState
@@ -4864,7 +4864,7 @@ extension Tke {
 
         public init(key: String? = nil, operator: String? = nil, effect: String? = nil) {
             self.key = key
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.effect = effect
         }
 

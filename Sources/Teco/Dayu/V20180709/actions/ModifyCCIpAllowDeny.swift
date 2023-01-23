@@ -48,7 +48,7 @@ extension Dayu {
             self.method = method
             self.type = type
             self.ipList = ipList
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.domain = domain
             self.ruleId = ruleId
         }

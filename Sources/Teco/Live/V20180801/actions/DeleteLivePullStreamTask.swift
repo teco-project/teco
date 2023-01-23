@@ -25,7 +25,7 @@ extension Live {
 
         public init(taskId: String, operator: String) {
             self.taskId = taskId
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

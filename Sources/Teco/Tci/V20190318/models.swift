@@ -767,7 +767,7 @@ extension Tci {
         public let width: Int64?
 
         public init(class: String? = nil, confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
-            self.`class` = `class`
+            self.class = `class`
             self.confidence = confidence
             self.height = height
             self.left = left
@@ -840,7 +840,7 @@ extension Tci {
         public let width: Int64?
 
         public init(class: String? = nil, confidence: Float? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
-            self.`class` = `class`
+            self.class = `class`
             self.confidence = confidence
             self.height = height
             self.left = left
@@ -1535,7 +1535,7 @@ extension Tci {
         public let width: Int64?
 
         public init(class: String? = nil, height: Int64? = nil, left: Int64? = nil, top: Int64? = nil, width: Int64? = nil) {
-            self.`class` = `class`
+            self.class = `class`
             self.height = height
             self.left = left
             self.top = top

@@ -42,7 +42,7 @@ extension Essbasic {
             self.businessLicense = businessLicense
             self.uniformSocialCreditCode = uniformSocialCreditCode
             self.proxyLegalName = proxyLegalName
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

@@ -74,7 +74,7 @@ extension Iotvideo {
             self.en = en
             self.cn = cn
             self.tc = tc
-            self.`default` = `default`
+            self.default = `default`
         }
 
         enum CodingKeys: String, CodingKey {

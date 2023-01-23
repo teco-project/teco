@@ -37,7 +37,7 @@ extension Vpc {
             self.bandwidthPackageId = bandwidthPackageId
             self.networkType = networkType
             self.resourceType = resourceType
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
         }
 
         enum CodingKeys: String, CodingKey {

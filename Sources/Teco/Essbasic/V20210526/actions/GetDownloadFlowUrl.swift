@@ -29,7 +29,7 @@ extension Essbasic {
         public init(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.downLoadFlows = downLoadFlows
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

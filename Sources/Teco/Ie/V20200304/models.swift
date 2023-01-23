@@ -171,7 +171,7 @@ extension Ie {
         public let customInfo: String?
 
         public init(switch: Int64, customInfo: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.customInfo = customInfo
         }
 
@@ -317,7 +317,7 @@ extension Ie {
         public let customInfo: String?
 
         public init(switch: Int64, customInfo: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.customInfo = customInfo
         }
 
@@ -723,7 +723,7 @@ extension Ie {
         public let customInfo: String?
 
         public init(switch: Int64, customInfo: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.customInfo = customInfo
         }
 
@@ -1440,7 +1440,7 @@ extension Ie {
         public let customInfo: String?
 
         public init(switch: Int64, customInfo: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.customInfo = customInfo
         }
 
@@ -2005,7 +2005,7 @@ extension Ie {
         public let customInfo: String?
 
         public init(switch: Int64, customInfo: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.customInfo = customInfo
         }
 
@@ -2234,7 +2234,7 @@ extension Ie {
         public let customInfo: String?
 
         public init(switch: Int64, customInfo: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.customInfo = customInfo
         }
 

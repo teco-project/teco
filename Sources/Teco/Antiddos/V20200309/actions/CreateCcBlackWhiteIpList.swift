@@ -41,7 +41,7 @@ extension Antiddos {
             self.type = type
             self.ip = ip
             self.domain = domain
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
         }
 
         enum CodingKeys: String, CodingKey {

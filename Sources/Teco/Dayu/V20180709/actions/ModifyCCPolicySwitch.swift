@@ -33,7 +33,7 @@ extension Dayu {
             self.business = business
             self.id = id
             self.setId = setId
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {

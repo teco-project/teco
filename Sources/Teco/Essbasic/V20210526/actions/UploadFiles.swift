@@ -35,7 +35,7 @@ extension Essbasic {
             self.agent = agent
             self.businessType = businessType
             self.fileInfos = fileInfos
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

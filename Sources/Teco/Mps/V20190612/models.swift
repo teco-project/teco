@@ -129,7 +129,7 @@ extension Mps {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2291,7 +2291,7 @@ extension Mps {
         public let type: String?
 
         public init(switch: String? = nil, type: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.type = type
         }
 
@@ -2313,7 +2313,7 @@ extension Mps {
         public let subtitleFormat: String?
 
         public init(switch: String, subtitleFormat: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.subtitleFormat = subtitleFormat
         }
 
@@ -2335,7 +2335,7 @@ extension Mps {
         public let subtitleFormat: String?
 
         public init(switch: String? = nil, subtitleFormat: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.subtitleFormat = subtitleFormat
         }
 
@@ -2357,7 +2357,7 @@ extension Mps {
         public let labelSet: [String]?
 
         public init(switch: String, labelSet: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
         }
 
@@ -2379,7 +2379,7 @@ extension Mps {
         public let labelSet: [String]?
 
         public init(switch: String? = nil, labelSet: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
         }
 
@@ -2507,7 +2507,7 @@ extension Mps {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2523,7 +2523,7 @@ extension Mps {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2548,7 +2548,7 @@ extension Mps {
         public let type: String?
 
         public init(switch: String? = nil, type: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.type = type
         }
 
@@ -2698,7 +2698,7 @@ extension Mps {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2714,7 +2714,7 @@ extension Mps {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2759,7 +2759,7 @@ extension Mps {
 
         public init(inputName: String, protocol: String, description: String? = nil, allowIpList: [String]? = nil, srtSettings: CreateInputSRTSettings? = nil, rtpSettings: CreateInputRTPSettings? = nil, failOver: String? = nil, rtmpPullSettings: CreateInputRTMPPullSettings? = nil, rtspPullSettings: CreateInputRTSPPullSettings? = nil, hlsPullSettings: CreateInputHLSPullSettings? = nil, resilientStream: ResilientStreamConf? = nil) {
             self.inputName = inputName
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.description = description
             self.allowIpList = allowIpList
             self.srtSettings = srtSettings
@@ -2931,7 +2931,7 @@ extension Mps {
         public init(outputName: String, description: String, protocol: String, outputRegion: String, srtSettings: CreateOutputSRTSettings? = nil, rtmpSettings: CreateOutputRTMPSettings? = nil, rtpSettings: CreateOutputInfoRTPSettings? = nil, allowIpList: [String]? = nil) {
             self.outputName = outputName
             self.description = description
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.outputRegion = outputRegion
             self.srtSettings = srtSettings
             self.rtmpSettings = rtmpSettings
@@ -3714,7 +3714,7 @@ extension Mps {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3750,7 +3750,7 @@ extension Mps {
         public let faceLibrary: String?
 
         public init(switch: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
             self.userDefineLibraryLabelSet = userDefineLibraryLabelSet
@@ -3793,7 +3793,7 @@ extension Mps {
         public let faceLibrary: String?
 
         public init(switch: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
             self.userDefineLibraryLabelSet = userDefineLibraryLabelSet
@@ -3823,7 +3823,7 @@ extension Mps {
         public let intensity: Float?
 
         public init(switch: String? = nil, intensity: Float? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.intensity = intensity
         }
 
@@ -4219,7 +4219,7 @@ extension Mps {
         public let fps: UInt64?
 
         public init(switch: String? = nil, fps: UInt64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.fps = fps
         }
 
@@ -4237,7 +4237,7 @@ extension Mps {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4253,7 +4253,7 @@ extension Mps {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4293,7 +4293,7 @@ extension Mps {
         public let type: String?
 
         public init(switch: String? = nil, type: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.type = type
         }
 
@@ -4339,7 +4339,7 @@ extension Mps {
         public let type: String?
 
         public init(switch: String? = nil, type: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.type = type
         }
 
@@ -5106,7 +5106,7 @@ extension Mps {
         public let type: String?
 
         public init(switch: String? = nil, type: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.type = type
         }
 
@@ -6050,7 +6050,7 @@ extension Mps {
             self.allowIpList = allowIpList
             self.srtSettings = srtSettings
             self.rtpSettings = rtpSettings
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.failOver = failOver
             self.rtmpPullSettings = rtmpPullSettings
             self.rtspPullSettings = rtspPullSettings
@@ -6105,7 +6105,7 @@ extension Mps {
             self.outputId = outputId
             self.outputName = outputName
             self.description = description
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.srtSettings = srtSettings
             self.rtpSettings = rtpSettings
             self.rtmpSettings = rtmpSettings
@@ -6225,7 +6225,7 @@ extension Mps {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6241,7 +6241,7 @@ extension Mps {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6261,7 +6261,7 @@ extension Mps {
         public let labelSet: [String]?
 
         public init(switch: String, labelSet: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
         }
 
@@ -6283,7 +6283,7 @@ extension Mps {
         public let labelSet: [String]?
 
         public init(switch: String? = nil, labelSet: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
         }
 
@@ -6384,7 +6384,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6410,7 +6410,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6495,7 +6495,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6534,7 +6534,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6562,7 +6562,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6588,7 +6588,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6614,7 +6614,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6640,7 +6640,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6721,7 +6721,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6756,7 +6756,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -6784,7 +6784,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6810,7 +6810,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6836,7 +6836,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6862,7 +6862,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6928,7 +6928,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -6954,7 +6954,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7488,7 +7488,7 @@ extension Mps {
         public let intensity: Float?
 
         public init(switch: String? = nil, intensity: Float? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.intensity = intensity
         }
 
@@ -7512,7 +7512,7 @@ extension Mps {
         public let intensity: Float?
 
         public init(switch: String? = nil, intensity: Float? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.intensity = intensity
         }
 
@@ -7719,7 +7719,7 @@ extension Mps {
         public let size: Int64?
 
         public init(switch: String? = nil, type: String? = nil, size: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.type = type
             self.size = size
         }
@@ -7852,7 +7852,7 @@ extension Mps {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -7868,7 +7868,7 @@ extension Mps {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -8037,7 +8037,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8077,7 +8077,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8105,7 +8105,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -8131,7 +8131,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -8398,7 +8398,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8430,7 +8430,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8510,7 +8510,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8542,7 +8542,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8574,7 +8574,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8606,7 +8606,7 @@ extension Mps {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -8636,7 +8636,7 @@ extension Mps {
         public let type: String?
 
         public init(switch: String? = nil, type: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.type = type
         }
 

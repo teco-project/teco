@@ -456,7 +456,7 @@ extension Ecdn {
         public let redirectStatusCode: Int64?
 
         public init(switch: String, redirectType: String? = nil, redirectStatusCode: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.redirectType = redirectType
             self.redirectStatusCode = redirectStatusCode
         }
@@ -482,7 +482,7 @@ extension Ecdn {
         public let includeSubDomains: String?
 
         public init(switch: String, maxAge: Int64? = nil, includeSubDomains: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.maxAge = maxAge
             self.includeSubDomains = includeSubDomains
         }
@@ -573,7 +573,7 @@ extension Ecdn {
         public let hsts: Hsts?
 
         public init(switch: String, http2: String? = nil, ocspStapling: String? = nil, verifyClient: String? = nil, certInfo: ServerCert? = nil, clientCertInfo: ClientCert? = nil, spdy: String? = nil, sslStatus: String? = nil, hsts: Hsts? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.http2 = http2
             self.ocspStapling = ocspStapling
             self.verifyClient = verifyClient
@@ -611,7 +611,7 @@ extension Ecdn {
         public let filters: [String]?
 
         public init(switch: String, filterType: String? = nil, filters: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.filterType = filterType
             self.filters = filters
         }
@@ -633,7 +633,7 @@ extension Ecdn {
         public let qps: Int64?
 
         public init(switch: String, qps: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.qps = qps
         }
 
@@ -809,7 +809,7 @@ extension Ecdn {
         public let headerRules: [HttpHeaderPathRule]?
 
         public init(switch: String, headerRules: [HttpHeaderPathRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.headerRules = headerRules
         }
 
@@ -948,7 +948,7 @@ extension Ecdn {
         public let timeout: Int64?
 
         public init(switch: String, timeout: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.timeout = timeout
         }
 

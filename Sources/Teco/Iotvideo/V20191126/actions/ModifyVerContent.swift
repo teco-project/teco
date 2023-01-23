@@ -35,7 +35,7 @@ extension Iotvideo {
         public init(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.remark = remark
             self.contents = contents
         }

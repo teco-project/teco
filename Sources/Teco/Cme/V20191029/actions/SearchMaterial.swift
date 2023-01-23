@@ -69,7 +69,7 @@ extension Cme {
             self.sort = sort
             self.offset = offset
             self.limit = limit
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

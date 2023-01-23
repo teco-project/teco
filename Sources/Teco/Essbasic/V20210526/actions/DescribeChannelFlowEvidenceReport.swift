@@ -29,7 +29,7 @@ extension Essbasic {
         public init(agent: Agent, reportId: String, operator: UserInfo? = nil) {
             self.agent = agent
             self.reportId = reportId
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

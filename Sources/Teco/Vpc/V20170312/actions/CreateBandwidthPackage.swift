@@ -50,7 +50,7 @@ extension Vpc {
             self.bandwidthPackageCount = bandwidthPackageCount
             self.internetMaxBandwidth = internetMaxBandwidth
             self.tags = tags
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
         }
 
         enum CodingKeys: String, CodingKey {

@@ -144,7 +144,7 @@ extension Irp {
             self.shareCnt = shareCnt
             self.rewardCnt = rewardCnt
             self.score = score
-            self.`extension` = `extension`
+            self.extension = `extension`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -264,7 +264,7 @@ extension Irp {
             self.appVersion = appVersion
             self.osVersion = osVersion
             self.deviceModel = deviceModel
-            self.`extension` = `extension`
+            self.extension = `extension`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -370,7 +370,7 @@ extension Irp {
             self.lastLoginTimestamp = lastLoginTimestamp
             self.lastLoginIp = lastLoginIp
             self.lastModifyTimestamp = lastModifyTimestamp
-            self.`extension` = `extension`
+            self.extension = `extension`
         }
 
         enum CodingKeys: String, CodingKey {

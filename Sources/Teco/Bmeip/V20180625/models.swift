@@ -98,7 +98,7 @@ extension Bmeip {
         public init(ip: String, port: String, protocol: String, action: String, description: String) {
             self.ip = ip
             self.port = port
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.action = action
             self.description = description
         }

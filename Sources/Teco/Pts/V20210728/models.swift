@@ -704,7 +704,7 @@ extension Pts {
         public let labelValue: String
 
         public init(operator: Int64, labelName: String, labelValue: String) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.labelName = labelName
             self.labelValue = labelValue
         }
@@ -1634,7 +1634,7 @@ extension Pts {
             self.value = value
             self.labelFilter = labelFilter
             self.abortFlag = abortFlag
-            self.`for` = `for`
+            self.for = `for`
         }
 
         enum CodingKeys: String, CodingKey {

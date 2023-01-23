@@ -71,7 +71,7 @@ extension Teo {
             self.metricNames = metricNames
             self.zoneIds = zoneIds
             self.instanceIds = instanceIds
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.interval = interval
             self.ruleId = ruleId
             self.filters = filters

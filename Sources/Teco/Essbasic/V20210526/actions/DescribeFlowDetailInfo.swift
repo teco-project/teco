@@ -33,7 +33,7 @@ extension Essbasic {
         public init(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil) {
             self.agent = agent
             self.flowIds = flowIds
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.flowGroupId = flowGroupId
         }
 

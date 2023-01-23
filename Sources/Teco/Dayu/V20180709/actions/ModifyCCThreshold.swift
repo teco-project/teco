@@ -68,7 +68,7 @@ extension Dayu {
             self.business = business
             self.threshold = threshold
             self.id = id
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.ruleId = ruleId
             self.basicIp = basicIp
             self.basicRegion = basicRegion

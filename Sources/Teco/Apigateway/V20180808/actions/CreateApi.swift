@@ -180,7 +180,7 @@ extension Apigateway {
             self.serviceId = serviceId
             self.serviceType = serviceType
             self.serviceTimeout = serviceTimeout
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.requestConfig = requestConfig
             self.apiName = apiName
             self.apiDesc = apiDesc

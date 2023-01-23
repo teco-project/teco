@@ -30,7 +30,7 @@ extension Essbasic {
         public init(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil) {
             self.agent = agent
             self.flowIds = flowIds
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

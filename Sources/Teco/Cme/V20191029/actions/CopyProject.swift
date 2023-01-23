@@ -37,7 +37,7 @@ extension Cme {
             self.projectId = projectId
             self.name = name
             self.owner = owner
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

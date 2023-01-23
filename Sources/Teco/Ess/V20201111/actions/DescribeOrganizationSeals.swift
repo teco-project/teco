@@ -33,7 +33,7 @@ extension Ess {
         public let sealId: String?
 
         public init(operator: UserInfo, limit: Int64, offset: Int64? = nil, infoType: Int64? = nil, sealId: String? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.limit = limit
             self.offset = offset
             self.infoType = infoType

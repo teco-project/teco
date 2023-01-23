@@ -48,7 +48,7 @@ extension Ecm {
         public init(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sessionType: String? = nil, endPorts: [Int64]? = nil) {
             self.loadBalancerId = loadBalancerId
             self.ports = ports
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.listenerNames = listenerNames
             self.healthCheck = healthCheck
             self.sessionExpireTime = sessionExpireTime

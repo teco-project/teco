@@ -1078,7 +1078,7 @@ extension Cms {
         public let resultType: Int64?
 
         public init(operator: String? = nil, resultCode: Int64? = nil, resultMsg: String? = nil, resultType: Int64? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.resultCode = resultCode
             self.resultMsg = resultMsg
             self.resultType = resultType

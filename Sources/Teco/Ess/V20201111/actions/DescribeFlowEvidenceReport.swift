@@ -24,7 +24,7 @@ extension Ess {
         public let reportId: String
 
         public init(operator: UserInfo, reportId: String) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.reportId = reportId
         }
 

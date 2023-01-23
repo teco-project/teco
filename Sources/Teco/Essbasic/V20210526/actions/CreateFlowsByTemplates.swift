@@ -39,7 +39,7 @@ extension Essbasic {
             self.flowInfos = flowInfos
             self.needPreview = needPreview
             self.previewType = previewType
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

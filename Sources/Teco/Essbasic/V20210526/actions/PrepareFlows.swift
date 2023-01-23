@@ -33,7 +33,7 @@ extension Essbasic {
             self.agent = agent
             self.flowInfos = flowInfos
             self.jumpUrl = jumpUrl
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

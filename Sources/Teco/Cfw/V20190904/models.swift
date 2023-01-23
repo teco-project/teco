@@ -678,7 +678,7 @@ extension Cfw {
             self.orderIndex = orderIndex
             self.sourceIp = sourceIp
             self.targetIp = targetIp
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.strategy = strategy
             self.sourceType = sourceType
             self.direction = direction
@@ -868,7 +868,7 @@ extension Cfw {
             self.sourceType = sourceType
             self.targetId = targetId
             self.targetType = targetType
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
             self.strategy = strategy
             self.direction = direction
@@ -998,7 +998,7 @@ extension Cfw {
             self.sourceType = sourceType
             self.targetId = targetId
             self.targetType = targetType
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
             self.strategy = strategy
             self.detail = detail
@@ -1129,7 +1129,7 @@ extension Cfw {
             self.ruleAction = ruleAction
             self.description = description
             self.orderIndex = orderIndex
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
             self.serviceTemplateId = serviceTemplateId
             self.id = id

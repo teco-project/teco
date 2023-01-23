@@ -39,7 +39,7 @@ extension Essbasic {
             self.agent = agent
             self.filters = filters
             self.offset = offset
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

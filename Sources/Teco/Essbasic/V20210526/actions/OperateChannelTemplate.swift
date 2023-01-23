@@ -41,7 +41,7 @@ extension Essbasic {
             self.templateId = templateId
             self.proxyOrganizationOpenIds = proxyOrganizationOpenIds
             self.authTag = authTag
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

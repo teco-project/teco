@@ -63,7 +63,7 @@ extension Cfs {
             self.zone = zone
             self.netInterface = netInterface
             self.pGroupId = pGroupId
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.storageType = storageType
             self.vpcId = vpcId
             self.subnetId = subnetId

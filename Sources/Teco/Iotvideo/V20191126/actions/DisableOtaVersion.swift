@@ -29,7 +29,7 @@ extension Iotvideo {
         public init(productId: String, otaVersion: String, operator: String? = nil) {
             self.productId = productId
             self.otaVersion = otaVersion
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

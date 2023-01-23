@@ -71,7 +71,7 @@ extension Ess {
         public let ccInfos: [CcInfo]?
 
         public init(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, relatedFlowId: String? = nil, deadLine: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, callbackUrl: String? = nil, agent: Agent? = nil, ccInfos: [CcInfo]? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.flowName = flowName
             self.approvers = approvers
             self.flowType = flowType

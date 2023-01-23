@@ -32,7 +32,7 @@ extension Essbasic {
         public init(agent: Agent, taskId: String, operator: UserInfo? = nil, organization: OrganizationInfo? = nil) {
             self.agent = agent
             self.taskId = taskId
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.organization = organization
         }
 

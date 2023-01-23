@@ -118,7 +118,7 @@ extension Live {
 
         public init(taskId: String, operator: String, sourceUrls: [String]? = nil, startTime: String? = nil, endTime: String? = nil, vodLoopTimes: Int64? = nil, vodRefreshType: String? = nil, status: String? = nil, callbackEvents: [String]? = nil, callbackUrl: String? = nil, fileIndex: Int64? = nil, offsetTime: Int64? = nil, comment: String? = nil, backupSourceType: String? = nil, backupSourceUrl: String? = nil, watermarkList: [PullPushWatermarkInfo]? = nil, vodLocalMode: Int64? = nil) {
             self.taskId = taskId
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.sourceUrls = sourceUrls
             self.startTime = startTime
             self.endTime = endTime

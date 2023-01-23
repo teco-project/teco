@@ -40,7 +40,7 @@ extension Essbasic {
             self.flowGroupName = flowGroupName
             self.agent = agent
             self.approverVerifyType = approverVerifyType
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

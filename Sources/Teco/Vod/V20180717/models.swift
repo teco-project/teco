@@ -2721,7 +2721,7 @@ extension Vod {
         public let subtitleFormat: String?
 
         public init(switch: String, subtitleFormats: [String]? = nil, subtitleFormat: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.subtitleFormats = subtitleFormats
             self.subtitleFormat = subtitleFormat
         }
@@ -2750,7 +2750,7 @@ extension Vod {
         public let subtitleFormat: String?
 
         public init(switch: String? = nil, subtitleFormatsOperation: SubtitleFormatsOperation? = nil, subtitleFormat: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.subtitleFormatsOperation = subtitleFormatsOperation
             self.subtitleFormat = subtitleFormat
         }
@@ -2774,7 +2774,7 @@ extension Vod {
         public let labelSet: [String]?
 
         public init(switch: String, labelSet: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
         }
 
@@ -2796,7 +2796,7 @@ extension Vod {
         public let labelSet: [String]?
 
         public init(switch: String? = nil, labelSet: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
         }
 
@@ -3064,7 +3064,7 @@ extension Vod {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3080,7 +3080,7 @@ extension Vod {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3527,7 +3527,7 @@ extension Vod {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3543,7 +3543,7 @@ extension Vod {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4295,7 +4295,7 @@ extension Vod {
         public let faceLibrary: String?
 
         public init(switch: String, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
             self.userDefineLibraryLabelSet = userDefineLibraryLabelSet
@@ -4338,7 +4338,7 @@ extension Vod {
         public let faceLibrary: String?
 
         public init(switch: String? = nil, score: Float? = nil, defaultLibraryLabelSet: [String]? = nil, userDefineLibraryLabelSet: [String]? = nil, faceLibrary: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.score = score
             self.defaultLibraryLabelSet = defaultLibraryLabelSet
             self.userDefineLibraryLabelSet = userDefineLibraryLabelSet
@@ -4441,7 +4441,7 @@ extension Vod {
         public let screenshotInterval: Float?
 
         public init(switch: String = "OFF", screenshotInterval: Float? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.screenshotInterval = screenshotInterval
         }
 
@@ -4462,7 +4462,7 @@ extension Vod {
         public let screenshotInterval: Float?
 
         public init(switch: String? = nil, screenshotInterval: Float? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.screenshotInterval = screenshotInterval
         }
 
@@ -4480,7 +4480,7 @@ extension Vod {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4496,7 +4496,7 @@ extension Vod {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4579,7 +4579,7 @@ extension Vod {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4595,7 +4595,7 @@ extension Vod {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6695,7 +6695,7 @@ extension Vod {
         public let objectLibrary: String?
 
         public init(switch: String = "OFF", objectLibrary: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.objectLibrary = objectLibrary
         }
 
@@ -6719,7 +6719,7 @@ extension Vod {
         public let objectLibrary: String?
 
         public init(switch: String? = nil, objectLibrary: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.objectLibrary = objectLibrary
         }
 
@@ -6737,7 +6737,7 @@ extension Vod {
         public let `switch`: String
 
         public init(switch: String = "OFF") {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6753,7 +6753,7 @@ extension Vod {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -6773,7 +6773,7 @@ extension Vod {
         public let labelSet: [String]?
 
         public init(switch: String, labelSet: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
         }
 
@@ -6795,7 +6795,7 @@ extension Vod {
         public let labelSet: [String]?
 
         public init(switch: String? = nil, labelSet: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
         }
 
@@ -6997,7 +6997,7 @@ extension Vod {
         public let blockConfidence: Int64?
 
         public init(switch: String, reviewConfidence: Int64? = nil, blockConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.reviewConfidence = reviewConfidence
             self.blockConfidence = blockConfidence
         }
@@ -7023,7 +7023,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7136,7 +7136,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7175,7 +7175,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7203,7 +7203,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7229,7 +7229,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7255,7 +7255,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7281,7 +7281,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7390,7 +7390,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7425,7 +7425,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -7453,7 +7453,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7479,7 +7479,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7770,7 +7770,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7796,7 +7796,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7862,7 +7862,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -7888,7 +7888,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -8774,7 +8774,7 @@ extension Vod {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -8790,7 +8790,7 @@ extension Vod {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -9489,7 +9489,7 @@ extension Vod {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -9505,7 +9505,7 @@ extension Vod {
         public let `switch`: String?
 
         public init(switch: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -9789,7 +9789,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -9829,7 +9829,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -9857,7 +9857,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -9883,7 +9883,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
         }
@@ -9994,7 +9994,7 @@ extension Vod {
         public let definition: UInt64?
 
         public init(switch: String? = nil, definition: UInt64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.definition = definition
         }
 
@@ -10315,7 +10315,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -10347,7 +10347,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -10430,7 +10430,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -10462,7 +10462,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -10494,7 +10494,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence
@@ -10526,7 +10526,7 @@ extension Vod {
         public let reviewConfidence: Int64?
 
         public init(switch: String? = nil, labelSet: [String]? = nil, blockConfidence: Int64? = nil, reviewConfidence: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.labelSet = labelSet
             self.blockConfidence = blockConfidence
             self.reviewConfidence = reviewConfidence

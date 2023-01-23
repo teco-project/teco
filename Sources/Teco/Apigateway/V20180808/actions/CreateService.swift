@@ -55,7 +55,7 @@ extension Apigateway {
 
         public init(serviceName: String, protocol: String, serviceDesc: String? = nil, exclusiveSetName: String? = nil, netTypes: [String]? = nil, ipVersion: String? = nil, setServerName: String? = nil, appIdType: String? = nil, tags: [Tag]? = nil, instanceId: String? = nil, uniqVpcId: String? = nil) {
             self.serviceName = serviceName
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.serviceDesc = serviceDesc
             self.exclusiveSetName = exclusiveSetName
             self.netTypes = netTypes

@@ -40,7 +40,7 @@ extension Essbasic {
             self.flowId = flowId
             self.agent = agent
             self.cancelMessage = cancelMessage
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.cancelMessageFormat = cancelMessageFormat
         }
 

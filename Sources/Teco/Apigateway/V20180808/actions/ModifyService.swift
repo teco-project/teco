@@ -36,7 +36,7 @@ extension Apigateway {
             self.serviceId = serviceId
             self.serviceName = serviceName
             self.serviceDesc = serviceDesc
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.netTypes = netTypes
         }
 

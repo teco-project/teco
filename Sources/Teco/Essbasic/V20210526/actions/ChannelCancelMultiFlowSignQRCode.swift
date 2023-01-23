@@ -29,7 +29,7 @@ extension Essbasic {
         public init(agent: Agent, qrCodeId: String, operator: UserInfo? = nil) {
             self.agent = agent
             self.qrCodeId = qrCodeId
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

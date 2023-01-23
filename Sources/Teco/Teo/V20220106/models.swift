@@ -35,7 +35,7 @@ extension Teo {
         public init(matchFrom: String, matchParam: String, operator: String, matchContent: String) {
             self.matchFrom = matchFrom
             self.matchParam = matchParam
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.matchContent = matchContent
         }
 
@@ -152,7 +152,7 @@ extension Teo {
         public let userRules: [ACLUserRule]
 
         public init(switch: String, userRules: [ACLUserRule]) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.userRules = userRules
         }
 
@@ -383,7 +383,7 @@ extension Teo {
         public let intelligenceRule: IntelligenceRule?
 
         public init(switch: String? = nil, managedRule: BotManagedRule? = nil, uaBotRule: BotManagedRule? = nil, ispBotRule: BotManagedRule? = nil, portraitRule: BotPortraitRule? = nil, intelligenceRule: IntelligenceRule? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.managedRule = managedRule
             self.uaBotRule = uaBotRule
             self.ispBotRule = ispBotRule
@@ -678,7 +678,7 @@ extension Teo {
         public let transManagedIds: [Int64]?
 
         public init(switch: String? = nil, ruleID: Int64? = nil, algManagedIds: [Int64]? = nil, capManagedIds: [Int64]? = nil, monManagedIds: [Int64]? = nil, dropManagedIds: [Int64]? = nil, managedIds: [Int64]? = nil, transManagedIds: [Int64]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.ruleID = ruleID
             self.algManagedIds = algManagedIds
             self.capManagedIds = capManagedIds
@@ -893,7 +893,7 @@ extension Teo {
         public let ignoreCacheControl: String?
 
         public init(switch: String, cacheTime: Int64? = nil, ignoreCacheControl: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.cacheTime = cacheTime
             self.ignoreCacheControl = ignoreCacheControl
         }
@@ -913,7 +913,7 @@ extension Teo {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -929,7 +929,7 @@ extension Teo {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -980,7 +980,7 @@ extension Teo {
         public let percent: Int64?
 
         public init(switch: String, percent: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.percent = percent
         }
 
@@ -1054,7 +1054,7 @@ extension Teo {
         public let headerName: String?
 
         public init(switch: String, headerName: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.headerName = headerName
         }
 
@@ -1100,7 +1100,7 @@ extension Teo {
         public let algorithms: [String]?
 
         public init(switch: String, algorithms: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.algorithms = algorithms
         }
 
@@ -1146,9 +1146,9 @@ extension Teo {
             self.dportStart = dportStart
             self.sportEnd = sportEnd
             self.sportStart = sportStart
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.action = action
-            self.`default` = `default`
+            self.default = `default`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1296,7 +1296,7 @@ extension Teo {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1393,7 +1393,7 @@ extension Teo {
 
         public init(action: String? = nil, protocol: String? = nil, dportStart: Int64? = nil, dportEnd: Int64? = nil, packetMin: Int64? = nil, packetMax: Int64? = nil, sportStart: Int64? = nil, sportEnd: Int64? = nil, matchType: String? = nil, isNot: Int64? = nil, offset: Int64? = nil, depth: Int64? = nil, matchBegin: String? = nil, str: String? = nil, matchType2: String? = nil, isNot2: Int64? = nil, offset2: Int64? = nil, depth2: Int64? = nil, matchBegin2: String? = nil, str2: String? = nil, matchLogic: String? = nil) {
             self.action = action
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.dportStart = dportStart
             self.dportEnd = dportEnd
             self.packetMin = packetMin
@@ -1451,7 +1451,7 @@ extension Teo {
         public let regionId: [Int64]?
 
         public init(switch: String? = nil, regionId: [Int64]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.regionId = regionId
         }
 
@@ -1788,7 +1788,7 @@ extension Teo {
 
         public init(acl: [DDoSAcl]? = nil, switch: String? = nil) {
             self.acl = acl
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1809,7 +1809,7 @@ extension Teo {
 
         public init(userAllowBlockIp: [DDoSUserAllowBlockIP]? = nil, switch: String? = nil) {
             self.userAllowBlockIp = userAllowBlockIp
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1830,7 +1830,7 @@ extension Teo {
 
         public init(packetFilter: [DDoSFeaturesFilter]? = nil, switch: String? = nil) {
             self.packetFilter = packetFilter
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1886,7 +1886,7 @@ extension Teo {
             self.ddosAntiPly = ddosAntiPly
             self.ddosPacketFilter = ddosPacketFilter
             self.ddosAcl = ddosAcl
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.udpShardOpen = udpShardOpen
             self.ddosSpeedLimit = ddosSpeedLimit
         }
@@ -2242,7 +2242,7 @@ extension Teo {
         public let acl: DropPageDetail?
 
         public init(switch: String, waf: DropPageDetail, acl: DropPageDetail) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.waf = waf
             self.acl = acl
         }
@@ -2297,7 +2297,7 @@ extension Teo {
         public let userRules: [ExceptUserRule]?
 
         public init(switch: String? = nil, userRules: [ExceptUserRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.userRules = userRules
         }
 
@@ -2390,7 +2390,7 @@ extension Teo {
         public init(matchFrom: String? = nil, matchParam: String? = nil, operator: String? = nil, matchContent: String? = nil) {
             self.matchFrom = matchFrom
             self.matchParam = matchParam
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.matchContent = matchContent
         }
 
@@ -2448,7 +2448,7 @@ extension Teo {
 
         public init(key: String, operator: String, value: [String]) {
             self.key = key
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.value = value
         }
 
@@ -2473,7 +2473,7 @@ extension Teo {
         public let redirectStatusCode: Int64?
 
         public init(switch: String, redirectStatusCode: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.redirectStatusCode = redirectStatusCode
         }
 
@@ -2576,7 +2576,7 @@ extension Teo {
         public let preload: String?
 
         public init(switch: String, maxAge: Int64? = nil, includeSubDomains: String? = nil, preload: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.maxAge = maxAge
             self.includeSubDomains = includeSubDomains
             self.preload = preload
@@ -2644,7 +2644,7 @@ extension Teo {
         public let items: [IntelligenceRuleItem]?
 
         public init(switch: String? = nil, items: [IntelligenceRuleItem]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.items = items
         }
 
@@ -2697,7 +2697,7 @@ extension Teo {
         public let rules: [IpTableRule]?
 
         public init(switch: String? = nil, rules: [IpTableRule]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.rules = rules
         }
 
@@ -2764,7 +2764,7 @@ extension Teo {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -2948,7 +2948,7 @@ extension Teo {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3137,7 +3137,7 @@ extension Teo {
             self.weight = weight
             self.port = port
             self.recordId = recordId
-            self.`private` = `private`
+            self.private = `private`
             self.privateParameter = privateParameter
             self.proto = proto
         }
@@ -3275,7 +3275,7 @@ extension Teo {
         public let maxSize: Int64?
 
         public init(switch: String, maxSize: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.maxSize = maxSize
         }
 
@@ -3306,7 +3306,7 @@ extension Teo {
 
         public init(key: String, operator: String, value: [String]) {
             self.key = key
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.value = value
         }
 
@@ -3335,7 +3335,7 @@ extension Teo {
         public let value: [String]?
 
         public init(switch: String, action: String? = nil, value: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.action = action
             self.value = value
         }
@@ -3355,7 +3355,7 @@ extension Teo {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3382,7 +3382,7 @@ extension Teo {
         public let intelligence: RateLimitIntelligence?
 
         public init(switch: String, userRules: [RateLimitUserRule], template: RateLimitTemplate? = nil, intelligence: RateLimitIntelligence? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.userRules = userRules
             self.template = template
             self.intelligence = intelligence
@@ -3411,7 +3411,7 @@ extension Teo {
         public let action: String?
 
         public init(switch: String? = nil, action: String? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.action = action
         }
 
@@ -3826,7 +3826,7 @@ extension Teo {
         public let values: [String]
 
         public init(operator: String, target: String, values: [String]) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.target = target
             self.values = values
         }
@@ -4416,7 +4416,7 @@ extension Teo {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4642,7 +4642,7 @@ extension Teo {
         public let `switch`: String
 
         public init(switch: String) {
-            self.`switch` = `switch`
+            self.switch = `switch`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -4661,7 +4661,7 @@ extension Teo {
         public let servers: [String]?
 
         public init(switch: String, servers: [String]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.servers = servers
         }
 
@@ -4713,7 +4713,7 @@ extension Teo {
         public let aiRule: AiRule?
 
         public init(switch: String, level: String, mode: String, wafRules: WafRule, aiRule: AiRule? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.level = level
             self.mode = mode
             self.wafRules = wafRules
@@ -4742,7 +4742,7 @@ extension Teo {
         public let observeRuleIDs: [Int64]?
 
         public init(switch: String, blockRuleIDs: [Int64], observeRuleIDs: [Int64]? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.blockRuleIDs = blockRuleIDs
             self.observeRuleIDs = observeRuleIDs
         }
@@ -4923,7 +4923,7 @@ extension Teo {
         public let timeout: Int64?
 
         public init(switch: String, timeout: Int64? = nil) {
-            self.`switch` = `switch`
+            self.switch = `switch`
             self.timeout = timeout
         }
 

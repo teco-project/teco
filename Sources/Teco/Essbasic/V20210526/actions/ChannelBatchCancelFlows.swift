@@ -41,7 +41,7 @@ extension Essbasic {
             self.flowIds = flowIds
             self.cancelMessage = cancelMessage
             self.cancelMessageFormat = cancelMessageFormat
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

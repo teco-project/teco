@@ -46,7 +46,7 @@ extension Apigateway {
             self.subDomain = subDomain
             self.isDefaultMapping = isDefaultMapping
             self.certificateId = certificateId
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.pathMappingSet = pathMappingSet
             self.netType = netType
             self.isForcedHttps = isForcedHttps

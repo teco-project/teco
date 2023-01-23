@@ -51,7 +51,7 @@ extension Antiddos {
             self.limit = limit
             self.ip = ip
             self.domain = domain
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.filterIp = filterIp
             self.filterType = filterType
         }

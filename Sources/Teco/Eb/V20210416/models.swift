@@ -27,7 +27,7 @@ extension Eb {
         public let method: String
 
         public init(protocol: String, method: String) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.method = method
         }
 

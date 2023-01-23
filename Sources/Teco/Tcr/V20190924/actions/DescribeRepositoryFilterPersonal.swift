@@ -36,7 +36,7 @@ extension Tcr {
             self.repoName = repoName
             self.offset = offset
             self.limit = limit
-            self.`public` = `public`
+            self.public = `public`
             self.namespace = namespace
         }
 

@@ -441,7 +441,7 @@ extension TCMpsError {
 
         /// 参数值错误：Switch 参数取值非法。
         public static var `switch`: InvalidParameterValue {
-            InvalidParameterValue(.`switch`)
+            InvalidParameterValue(.switch)
         }
 
         /// 参数值错误：智能标签控制字段参数错误。
@@ -640,7 +640,7 @@ extension TCMpsError {
                 code = .invalidParameterValue_SvgTemplateHeight
             case .svgTemplateWidth:
                 code = .invalidParameterValue_SvgTemplateWidth
-            case .`switch`:
+            case .switch:
                 code = .invalidParameterValue_Switch
             case .tagConfigure:
                 code = .invalidParameterValue_TagConfigure

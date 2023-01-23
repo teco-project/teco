@@ -154,7 +154,7 @@ extension Es {
             self.basicSecurityType = basicSecurityType
             self.sceneType = sceneType
             self.webNodeTypeInfo = webNodeTypeInfo
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.operationDuration = operationDuration
             self.enableHybridStorage = enableHybridStorage
             self.diskEnhance = diskEnhance

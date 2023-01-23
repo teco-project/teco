@@ -35,7 +35,7 @@ extension Iotvideo {
         public init(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil) {
             self.tid = tid
             self.accessId = accessId
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.address = address
             self.accessToken = accessToken
         }

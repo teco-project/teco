@@ -75,7 +75,7 @@ extension Cdn {
             self.metric = metric
             self.districts = districts
             self.isps = isps
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.ipProtocol = ipProtocol
             self.interval = interval
         }

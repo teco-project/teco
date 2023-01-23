@@ -35,7 +35,7 @@ extension Clb {
         public init(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, listenerPort: Int64? = nil, status: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerIds = listenerIds
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.listenerPort = listenerPort
             self.status = status
         }

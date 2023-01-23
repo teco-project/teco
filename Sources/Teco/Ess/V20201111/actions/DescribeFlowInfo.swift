@@ -25,7 +25,7 @@ extension Ess {
 
         public init(flowIds: [String], operator: UserInfo? = nil) {
             self.flowIds = flowIds
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

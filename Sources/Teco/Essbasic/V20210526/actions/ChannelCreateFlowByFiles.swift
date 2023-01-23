@@ -82,7 +82,7 @@ extension Essbasic {
             self.customShowMap = customShowMap
             self.customerData = customerData
             self.needSignReview = needSignReview
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.approverVerifyType = approverVerifyType
             self.signBeanTag = signBeanTag
         }

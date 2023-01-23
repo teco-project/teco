@@ -61,7 +61,7 @@ extension Essbasic {
             self.menuStatus = menuStatus
             self.endpoint = endpoint
             self.autoJumpBackEvent = autoJumpBackEvent
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.authorizationTypes = authorizationTypes
         }
 

@@ -985,7 +985,7 @@ extension Dlc {
             self.reAuth = reAuth
             self.source = source
             self.mode = mode
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.createTime = createTime
             self.sourceId = sourceId
             self.sourceName = sourceName

@@ -38,7 +38,7 @@ extension Antiddos {
         public init(instanceId: String, ip: String, protocol: String, domain: String, policy: CCReqLimitPolicyRecord, isGlobal: Int64? = nil) {
             self.instanceId = instanceId
             self.ip = ip
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.domain = domain
             self.policy = policy
             self.isGlobal = isGlobal

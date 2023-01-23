@@ -35,7 +35,7 @@ extension Cme {
             self.platform = platform
             self.materialIds = materialIds
             self.sort = sort
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

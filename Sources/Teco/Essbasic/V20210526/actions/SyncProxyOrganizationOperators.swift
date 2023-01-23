@@ -33,7 +33,7 @@ extension Essbasic {
             self.agent = agent
             self.operatorType = operatorType
             self.proxyOrganizationOperators = proxyOrganizationOperators
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

@@ -56,7 +56,7 @@ extension Cme {
             self.externalMediaInfo = externalMediaInfo
             self.name = name
             self.preProcessDefinition = preProcessDefinition
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

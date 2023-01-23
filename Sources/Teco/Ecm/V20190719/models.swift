@@ -2735,7 +2735,7 @@ extension Ecm {
 
         public init(policyIndex: Int64? = nil, protocol: String? = nil, port: String? = nil, serviceTemplate: ServiceTemplateSpecification? = nil, cidrBlock: String? = nil, securityGroupId: String? = nil, addressTemplate: AddressTemplateSpecification? = nil, action: String? = nil, policyDescription: String? = nil, modifyTime: String? = nil, ipv6CidrBlock: String? = nil) {
             self.policyIndex = policyIndex
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
             self.serviceTemplate = serviceTemplate
             self.cidrBlock = cidrBlock

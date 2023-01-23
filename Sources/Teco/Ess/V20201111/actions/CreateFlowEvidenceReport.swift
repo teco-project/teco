@@ -24,7 +24,7 @@ extension Ess {
         public let flowId: String
 
         public init(operator: UserInfo, flowId: String) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.flowId = flowId
         }
 

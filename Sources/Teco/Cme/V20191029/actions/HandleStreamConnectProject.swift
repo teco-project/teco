@@ -51,7 +51,7 @@ extension Cme {
             self.inputEndpoint = inputEndpoint
             self.outputInfo = outputInfo
             self.currentStopTime = currentStopTime
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

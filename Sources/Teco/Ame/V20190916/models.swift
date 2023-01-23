@@ -854,7 +854,7 @@ extension Ame {
 
         public init(message: String, repeat: UInt64? = nil) {
             self.message = message
-            self.`repeat` = `repeat`
+            self.repeat = `repeat`
         }
 
         enum CodingKeys: String, CodingKey {

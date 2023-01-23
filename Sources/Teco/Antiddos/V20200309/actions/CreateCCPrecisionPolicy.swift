@@ -38,7 +38,7 @@ extension Antiddos {
         public init(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord]) {
             self.instanceId = instanceId
             self.ip = ip
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.domain = domain
             self.policyAction = policyAction
             self.policyList = policyList

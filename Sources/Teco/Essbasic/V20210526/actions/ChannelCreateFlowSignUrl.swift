@@ -36,7 +36,7 @@ extension Essbasic {
             self.agent = agent
             self.flowId = flowId
             self.flowApproverInfos = flowApproverInfos
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.organization = organization
         }
 

@@ -58,7 +58,7 @@ extension Cme {
             self.externalMediaInfo = externalMediaInfo
             self.classPath = classPath
             self.preProcessDefinition = preProcessDefinition
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

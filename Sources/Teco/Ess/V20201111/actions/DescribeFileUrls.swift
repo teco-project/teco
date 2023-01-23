@@ -56,7 +56,7 @@ extension Ess {
         public let agent: Agent?
 
         public init(operator: UserInfo, businessType: String, businessIds: [String], fileName: String? = nil, fileType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, urlTtl: Int64? = nil, ccToken: String? = nil, scene: String? = nil, agent: Agent? = nil) {
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.businessType = businessType
             self.businessIds = businessIds
             self.fileName = fileName

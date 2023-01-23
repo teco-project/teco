@@ -216,7 +216,7 @@ extension TCCmeError {
 
         /// 无效的操作者。
         public static var `operator`: InvalidParameterValue {
-            InvalidParameterValue(.`operator`)
+            InvalidParameterValue(.operator)
         }
 
         /// 归属者 ID 不合法。
@@ -401,7 +401,7 @@ extension TCCmeError {
                 code = .invalidParameterValue_NotTeamMemberError
             case .offset:
                 code = .invalidParameterValue_Offset
-            case .`operator`:
+            case .operator:
                 code = .invalidParameterValue_Operator
             case .ownerId:
                 code = .invalidParameterValue_OwnerId

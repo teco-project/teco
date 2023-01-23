@@ -53,7 +53,7 @@ extension Cme {
             self.statusSet = statusSet
             self.offset = offset
             self.limit = limit
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

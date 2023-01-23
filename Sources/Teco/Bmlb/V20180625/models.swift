@@ -176,7 +176,7 @@ extension Bmlb {
 
         public init(loadBalancerPort: Int64, protocol: String, listenerName: String, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, bandwidth: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil) {
             self.loadBalancerPort = loadBalancerPort
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.listenerName = listenerName
             self.sessionExpire = sessionExpire
             self.healthSwitch = healthSwitch
@@ -256,7 +256,7 @@ extension Bmlb {
 
         public init(loadBalancerPort: Int64, protocol: String, listenerName: String, sslMode: Int64? = nil, certId: String? = nil, certName: String? = nil, certContent: String? = nil, certKey: String? = nil, certCaId: String? = nil, certCaName: String? = nil, certCaContent: String? = nil, bandwidth: Int64? = nil, forwardProtocol: Int64? = nil) {
             self.loadBalancerPort = loadBalancerPort
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.listenerName = listenerName
             self.sslMode = sslMode
             self.certId = certId
@@ -448,7 +448,7 @@ extension Bmlb {
 
         public init(listenerId: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, backendSet: [DevicesBindInfoBackend]? = nil) {
             self.listenerId = listenerId
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.loadBalancerPort = loadBalancerPort
             self.backendSet = backendSet
         }
@@ -477,7 +477,7 @@ extension Bmlb {
 
         public init(listenerId: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, ruleSet: [DevicesBindInfoRule]? = nil) {
             self.listenerId = listenerId
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.loadBalancerPort = loadBalancerPort
             self.ruleSet = ruleSet
         }
@@ -736,7 +736,7 @@ extension Bmlb {
         public init(listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, balanceMode: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.loadBalancerPort = loadBalancerPort
             self.bandwidth = bandwidth
             self.listenerType = listenerType
@@ -853,7 +853,7 @@ extension Bmlb {
         public init(listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, timeOut: Int64? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, status: Int64? = nil, addTimestamp: Date? = nil, customHealthSwitch: Int64? = nil, inputType: String? = nil, lineSeparatorType: Int64? = nil, healthRequest: String? = nil, healthResponse: String? = nil, toaFlag: Int64? = nil, balanceMode: String? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.loadBalancerPort = loadBalancerPort
             self.bandwidth = bandwidth
             self.listenerType = listenerType
@@ -1082,7 +1082,7 @@ extension Bmlb {
         public init(listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, forwardProtocol: Int64? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.loadBalancerPort = loadBalancerPort
             self.bandwidth = bandwidth
             self.listenerType = listenerType
@@ -1157,7 +1157,7 @@ extension Bmlb {
         public init(listenerId: String? = nil, listenerName: String? = nil, protocol: String? = nil, loadBalancerPort: Int64? = nil, bandwidth: Int64? = nil, listenerType: String? = nil, sslMode: Int64? = nil, certId: String? = nil, certCaId: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil, ruleSet: [L7ListenerInfoRule]? = nil, forwardProtocol: Int64? = nil) {
             self.listenerId = listenerId
             self.listenerName = listenerName
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.loadBalancerPort = loadBalancerPort
             self.bandwidth = bandwidth
             self.listenerType = listenerType
@@ -1741,7 +1741,7 @@ extension Bmlb {
 
         public init(listenerId: String, protocol: String, bandwidth: UInt64) {
             self.listenerId = listenerId
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.bandwidth = bandwidth
         }
 

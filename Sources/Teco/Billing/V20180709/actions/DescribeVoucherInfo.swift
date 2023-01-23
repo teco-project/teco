@@ -77,7 +77,7 @@ extension Billing {
             self.sortOrder = sortOrder
             self.payMode = payMode
             self.payScene = payScene
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

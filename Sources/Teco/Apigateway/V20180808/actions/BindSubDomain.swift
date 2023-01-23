@@ -47,7 +47,7 @@ extension Apigateway {
         public init(serviceId: String, subDomain: String, protocol: String, netType: String, isDefaultMapping: Bool, netSubDomain: String, certificateId: String? = nil, pathMappingSet: [PathMapping]? = nil, isForcedHttps: Bool? = nil) {
             self.serviceId = serviceId
             self.subDomain = subDomain
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.netType = netType
             self.isDefaultMapping = isDefaultMapping
             self.netSubDomain = netSubDomain

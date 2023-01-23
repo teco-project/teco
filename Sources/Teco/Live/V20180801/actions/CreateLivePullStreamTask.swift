@@ -154,7 +154,7 @@ extension Live {
             self.streamName = streamName
             self.startTime = startTime
             self.endTime = endTime
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.pushArgs = pushArgs
             self.callbackEvents = callbackEvents
             self.vodLoopTimes = vodLoopTimes

@@ -45,7 +45,7 @@ extension Cme {
             self.resources = resources
             self.authorizees = authorizees
             self.permissions = permissions
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

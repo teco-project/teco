@@ -43,7 +43,7 @@ extension Cme {
             self.memberId = memberId
             self.remark = remark
             self.role = role
-            self.`operator` = `operator`
+            self.operator = `operator`
         }
 
         enum CodingKeys: String, CodingKey {

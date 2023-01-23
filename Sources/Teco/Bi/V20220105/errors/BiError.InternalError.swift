@@ -45,7 +45,7 @@ extension TCBiError {
 
         /// 内部错误。
         public static var `internal`: InternalError {
-            InternalError(.`internal`)
+            InternalError(.internal)
         }
 
         /// 内部错误。
@@ -56,7 +56,7 @@ extension TCBiError {
         public func asBiError() -> TCBiError {
             let code: TCBiError.Code
             switch self.error {
-            case .`internal`:
+            case .internal:
                 code = .internalError_Internal
             case .other:
                 code = .internalError

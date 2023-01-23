@@ -31,7 +31,7 @@ extension Ess {
 
         public init(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil) {
             self.taskId = taskId
-            self.`operator` = `operator`
+            self.operator = `operator`
             self.agent = agent
             self.organization = organization
         }

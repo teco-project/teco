@@ -4852,7 +4852,7 @@ extension Tsf {
 
         public init(targetPort: UInt64, protocol: String) {
             self.targetPort = targetPort
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
         }
 
         enum CodingKeys: String, CodingKey {
@@ -5004,7 +5004,7 @@ extension Tsf {
         public let nodePort: Int64?
 
         public init(protocol: String, port: Int64, targetPort: Int64, nodePort: Int64? = nil) {
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.port = port
             self.targetPort = targetPort
             self.nodePort = nodePort

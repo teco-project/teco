@@ -67,7 +67,7 @@ extension Mna {
             self.duration = duration
             self.capacity = capacity
             self.templateId = templateId
-            self.`protocol` = `protocol`
+            self.protocol = `protocol`
             self.context = context
             self.extern = extern
         }
