@@ -23,7 +23,7 @@ extension Waf {
         /// 删除的ip数组
         public let items: [String]
 
-        /// 删除对应的域名下的所有黑/白IP名额单
+        /// 是否删除对应的域名下的所有黑/白IP名单，true表示全部删除，false表示只删除指定ip名单
         public let deleteAll: Bool?
 
         /// 是否为多域名黑白名单

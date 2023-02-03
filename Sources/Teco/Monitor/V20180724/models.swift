@@ -3197,6 +3197,57 @@ extension Monitor {
         }
     }
 
+    /// 托管Prometheus agent信息
+    public struct PrometheusAgentInfo: TCInputModel {
+        public init() {
+        }
+    }
+
+    /// 托管prometheus agent概览
+    public struct PrometheusAgentOverview: TCOutputModel {
+        /// 集群类型
+        public let clusterType: String
+
+        /// 集群id
+        public let clusterId: String
+
+        /// agent状态
+        /// normal = 正常
+        /// abnormal = 异常
+        public let status: String
+
+        /// 集群名称
+        public let clusterName: String
+
+        /// 额外labels
+        /// 本集群的所有指标都会带上这几个label
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let externalLabels: [Label]?
+
+        /// 集群所在地域
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let region: String?
+
+        /// 集群所在VPC ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let vpcId: String?
+
+        /// 记录关联等操作的失败信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let failedReason: String?
+
+        enum CodingKeys: String, CodingKey {
+            case clusterType = "ClusterType"
+            case clusterId = "ClusterId"
+            case status = "Status"
+            case clusterName = "ClusterName"
+            case externalLabels = "ExternalLabels"
+            case region = "Region"
+            case vpcId = "VpcId"
+            case failedReason = "FailedReason"
+        }
+    }
+
     /// 告警渠道使用自建alertmanager的配置
     public struct PrometheusAlertManagerConfig: TCInputModel, TCOutputModel {
         /// alertmanager url
@@ -3321,6 +3372,79 @@ extension Monitor {
             case describe = "Describe"
             case annotations = "Annotations"
             case ruleState = "RuleState"
+        }
+    }
+
+    /// 与云监控融合托管prometheus实例，关联集群基础信息
+    public struct PrometheusClusterAgentBasic: TCInputModel {
+        /// 集群ID
+        public let region: String
+
+        /// 集群类型
+        public let clusterType: String
+
+        /// 集群ID
+        public let clusterId: String
+
+        /// 是否开启公网CLB
+        public let enableExternal: Bool
+
+        /// 集群内部署组件的pod配置
+        public let inClusterPodConfig: PrometheusClusterAgentPodConfig?
+
+        /// 该集群采集的所有指标都会带上这些labels
+        public let externalLabels: [Label]?
+
+        /// 是否安装默认采集配置
+        public let notInstallBasicScrape: Bool?
+
+        /// 是否采集指标，true代表drop所有指标，false代表采集默认指标
+        public let notScrape: Bool?
+
+        public init(region: String, clusterType: String, clusterId: String, enableExternal: Bool, inClusterPodConfig: PrometheusClusterAgentPodConfig? = nil, externalLabels: [Label]? = nil, notInstallBasicScrape: Bool? = nil, notScrape: Bool? = nil) {
+            self.region = region
+            self.clusterType = clusterType
+            self.clusterId = clusterId
+            self.enableExternal = enableExternal
+            self.inClusterPodConfig = inClusterPodConfig
+            self.externalLabels = externalLabels
+            self.notInstallBasicScrape = notInstallBasicScrape
+            self.notScrape = notScrape
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case region = "Region"
+            case clusterType = "ClusterType"
+            case clusterId = "ClusterId"
+            case enableExternal = "EnableExternal"
+            case inClusterPodConfig = "InClusterPodConfig"
+            case externalLabels = "ExternalLabels"
+            case notInstallBasicScrape = "NotInstallBasicScrape"
+            case notScrape = "NotScrape"
+        }
+    }
+
+    /// 关联集群时在集群内部署组件的pod额外配置
+    public struct PrometheusClusterAgentPodConfig: TCInputModel {
+        /// 是否使用HostNetWork
+        public let hostNet: Bool?
+
+        /// 指定pod运行节点
+        public let nodeSelector: [Label]?
+
+        /// 容忍污点
+        public let tolerations: [Toleration]?
+
+        public init(hostNet: Bool? = nil, nodeSelector: [Label]? = nil, tolerations: [Toleration]? = nil) {
+            self.hostNet = hostNet
+            self.nodeSelector = nodeSelector
+            self.tolerations = tolerations
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case hostNet = "HostNet"
+            case nodeSelector = "NodeSelector"
+            case tolerations = "Tolerations"
         }
     }
 
@@ -3668,6 +3792,10 @@ extension Monitor {
             case boundTotal = "BoundTotal"
             case boundNormal = "BoundNormal"
         }
+    }
+
+    /// prometheus一个job的targets
+    public struct PrometheusJobTargets: TCOutputModel {
     }
 
     /// 告警通知渠道配置
@@ -4453,6 +4581,30 @@ extension Monitor {
             case updateTime = "UpdateTime"
             case viewName = "ViewName"
             case isUnionRule = "IsUnionRule"
+        }
+    }
+
+    /// kubernetes Taint
+    public struct Toleration: TCInputModel {
+        /// 容忍应用到的 taint key
+        public let key: String?
+
+        /// 键与值的关系
+        public let `operator`: String?
+
+        /// 要匹配的污点效果
+        public let effect: String?
+
+        public init(key: String? = nil, operator: String? = nil, effect: String? = nil) {
+            self.key = key
+            self.operator = `operator`
+            self.effect = effect
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case key = "Key"
+            case `operator` = "Operator"
+            case effect = "Effect"
         }
     }
 

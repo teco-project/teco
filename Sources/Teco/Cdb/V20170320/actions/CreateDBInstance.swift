@@ -38,7 +38,7 @@ extension Cdb {
         /// 私有网络下的子网 ID，如果设置了 UniqVpcId，则 UniqSubnetId 必填，请使用 [查询子网列表](/document/api/215/15784)。
         public let uniqSubnetId: String?
 
-        /// 项目 ID，不填为默认项目。请使用 [查询项目列表](https://cloud.tencent.com/document/product/378/4400) 接口获取项目 ID。购买只读实例和灾备实例时，项目 ID 默认和主实例保持一致。
+        /// 项目 ID，不填为默认项目。购买只读实例和灾备实例时，项目 ID 默认和主实例保持一致。
         public let projectId: Int64?
 
         /// 自定义端口，端口支持范围：[ 1024-65535 ]。

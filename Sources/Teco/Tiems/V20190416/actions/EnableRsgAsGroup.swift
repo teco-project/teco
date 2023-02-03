@@ -40,40 +40,28 @@ extension Tiems {
     }
 
     /// 启用资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    ///
-    /// 启用资源组的伸缩组
+    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func enableRsgAsGroup(_ input: EnableRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRsgAsGroupResponse> {
         self.client.execute(action: "EnableRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    ///
-    /// 启用资源组的伸缩组
+    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func enableRsgAsGroup(_ input: EnableRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRsgAsGroupResponse {
         try await self.client.execute(action: "EnableRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 启用资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    ///
-    /// 启用资源组的伸缩组
+    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func enableRsgAsGroup(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRsgAsGroupResponse> {
         self.enableRsgAsGroup(EnableRsgAsGroupRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
     /// 启用资源组的伸缩组
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    ///
-    /// 启用资源组的伸缩组
+    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable @discardableResult
     public func enableRsgAsGroup(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRsgAsGroupResponse {
         try await self.enableRsgAsGroup(EnableRsgAsGroupRequest(id: id), region: region, logger: logger, on: eventLoop)

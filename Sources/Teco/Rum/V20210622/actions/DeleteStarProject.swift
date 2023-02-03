@@ -49,7 +49,7 @@ extension Rum {
         }
     }
 
-    /// 删除星标项目
+    /// 删除星标应用
     ///
     /// 删除用户名下的星标项目
     @inlinable
@@ -57,7 +57,7 @@ extension Rum {
         self.client.execute(action: "DeleteStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除星标项目
+    /// 删除星标应用
     ///
     /// 删除用户名下的星标项目
     @inlinable
@@ -65,7 +65,7 @@ extension Rum {
         try await self.client.execute(action: "DeleteStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除星标项目
+    /// 删除星标应用
     ///
     /// 删除用户名下的星标项目
     @inlinable
@@ -73,7 +73,7 @@ extension Rum {
         self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除星标项目
+    /// 删除星标应用
     ///
     /// 删除用户名下的星标项目
     @inlinable

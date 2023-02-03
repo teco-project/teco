@@ -45,11 +45,15 @@ extension Tcb {
         /// 环境信息列表
         public let envList: [EnvInfo]
 
+        /// 环境个数
+        public let total: Int64
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
             case envList = "EnvList"
+            case total = "Total"
             case requestId = "RequestId"
         }
     }

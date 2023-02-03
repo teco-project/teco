@@ -732,20 +732,26 @@ extension Gme {
 
     /// 用户麦克风状态
     public struct UserMicStatus: TCInputModel {
-        /// 客户端用于标识用户的Openid。
-        public let uid: Int64
-
         /// 开麦状态。1表示关闭麦克风，2表示打开麦克风。
         public let enableMic: Int64
 
-        public init(uid: Int64, enableMic: Int64) {
-            self.uid = uid
+        /// 客户端用于标识用户的Openid。（Uid、StrUid必须填一个，优先处理StrUid。）
+        public let uid: Int64?
+
+        /// 客户端用于标识字符串型用户的Openid。（Uid、StrUid必须填一个，优先处理StrUid。）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let strUid: String?
+
+        public init(enableMic: Int64, uid: Int64? = nil, strUid: String? = nil) {
             self.enableMic = enableMic
+            self.uid = uid
+            self.strUid = strUid
         }
 
         enum CodingKeys: String, CodingKey {
-            case uid = "Uid"
             case enableMic = "EnableMic"
+            case uid = "Uid"
+            case strUid = "StrUid"
         }
     }
 

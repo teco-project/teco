@@ -32,19 +32,22 @@ extension Waf {
         /// 需要添加策略的域名
         public let domain: String
 
-        /// 动作类型
+        /// 动作类型，1代表阻断，2代表人机识别，3代表观察，4代表重定向
         public let actionType: String
 
         /// 如果动作是重定向，则表示重定向的地址；其他情况可以为空
         public let redirect: String?
 
-        /// "clb-waf"或者"sparta-waf"
+        /// WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         public let edition: String?
 
         /// 放行的详情
         public let bypass: String?
 
-        public init(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil) {
+        /// 添加规则的来源，默认为空
+        public let eventId: String?
+
+        public init(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, eventId: String? = nil) {
             self.name = name
             self.sortId = sortId
             self.expireTime = expireTime
@@ -54,6 +57,7 @@ extension Waf {
             self.redirect = redirect
             self.edition = edition
             self.bypass = bypass
+            self.eventId = eventId
         }
 
         enum CodingKeys: String, CodingKey {
@@ -66,6 +70,7 @@ extension Waf {
             case redirect = "Redirect"
             case edition = "Edition"
             case bypass = "Bypass"
+            case eventId = "EventId"
         }
     }
 
@@ -88,27 +93,27 @@ extension Waf {
         }
     }
 
-    /// 增加自定义策略
+    /// 增加访问控制（自定义策略）
     @inlinable
     public func addCustomRule(_ input: AddCustomRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCustomRuleResponse> {
         self.client.execute(action: "AddCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 增加自定义策略
+    /// 增加访问控制（自定义策略）
     @inlinable
     public func addCustomRule(_ input: AddCustomRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {
         try await self.client.execute(action: "AddCustomRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 增加自定义策略
+    /// 增加访问控制（自定义策略）
     @inlinable
-    public func addCustomRule(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCustomRuleResponse> {
-        self.addCustomRule(AddCustomRuleRequest(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass), region: region, logger: logger, on: eventLoop)
+    public func addCustomRule(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddCustomRuleResponse> {
+        self.addCustomRule(AddCustomRuleRequest(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 增加自定义策略
+    /// 增加访问控制（自定义策略）
     @inlinable
-    public func addCustomRule(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {
-        try await self.addCustomRule(AddCustomRuleRequest(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass), region: region, logger: logger, on: eventLoop)
+    public func addCustomRule(name: String, sortId: String, expireTime: String, strategies: [Strategy], domain: String, actionType: String, redirect: String? = nil, edition: String? = nil, bypass: String? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddCustomRuleResponse {
+        try await self.addCustomRule(AddCustomRuleRequest(name: name, sortId: sortId, expireTime: expireTime, strategies: strategies, domain: domain, actionType: actionType, redirect: redirect, edition: edition, bypass: bypass, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

@@ -49,9 +49,8 @@ extension Btoe {
 
     /// BTOE存证电子凭证查询
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(_ input: GetDepositCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
         self.client.execute(action: "GetDepositCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -59,9 +58,8 @@ extension Btoe {
 
     /// BTOE存证电子凭证查询
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(_ input: GetDepositCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
         try await self.client.execute(action: "GetDepositCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -69,9 +67,8 @@ extension Btoe {
 
     /// BTOE存证电子凭证查询
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
         self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
@@ -79,9 +76,8 @@ extension Btoe {
 
     /// BTOE存证电子凭证查询
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过存证编码向BTOE查询存证电子凭证信息。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
         try await self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)

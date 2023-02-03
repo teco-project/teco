@@ -39,7 +39,7 @@ extension Rum {
         }
     }
 
-    /// 删除实例
+    /// 删除 RUM 业务系统
     ///
     /// 删除实例，谨慎操作，不可恢复
     @inlinable @discardableResult
@@ -47,7 +47,7 @@ extension Rum {
         self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除实例
+    /// 删除 RUM 业务系统
     ///
     /// 删除实例，谨慎操作，不可恢复
     @inlinable @discardableResult
@@ -55,7 +55,7 @@ extension Rum {
         try await self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除实例
+    /// 删除 RUM 业务系统
     ///
     /// 删除实例，谨慎操作，不可恢复
     @inlinable @discardableResult
@@ -63,7 +63,7 @@ extension Rum {
         self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除实例
+    /// 删除 RUM 业务系统
     ///
     /// 删除实例，谨慎操作，不可恢复
     @inlinable @discardableResult

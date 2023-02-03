@@ -82,33 +82,33 @@ extension Rum {
         }
     }
 
-    /// 创建项目
+    /// 创建 RUM 应用
     ///
-    /// 创建项目（归属于某个团队）
+    /// 创建 RUM 应用（归属于某个团队）
     @inlinable
     public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
         self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 创建项目
+    /// 创建 RUM 应用
     ///
-    /// 创建项目（归属于某个团队）
+    /// 创建 RUM 应用（归属于某个团队）
     @inlinable
     public func createProject(_ input: CreateProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 创建项目
+    /// 创建 RUM 应用
     ///
-    /// 创建项目（归属于某个团队）
+    /// 创建 RUM 应用（归属于某个团队）
     @inlinable
     public func createProject(name: String, instanceID: String, rate: String, enableURLGroup: UInt64, type: String, repo: String? = nil, url: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
         self.createProject(CreateProjectRequest(name: name, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, repo: repo, url: url, desc: desc), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 创建项目
+    /// 创建 RUM 应用
     ///
-    /// 创建项目（归属于某个团队）
+    /// 创建 RUM 应用（归属于某个团队）
     @inlinable
     public func createProject(name: String, instanceID: String, rate: String, enableURLGroup: UInt64, type: String, repo: String? = nil, url: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
         try await self.createProject(CreateProjectRequest(name: name, instanceID: instanceID, rate: rate, enableURLGroup: enableURLGroup, type: type, repo: repo, url: url, desc: desc), region: region, logger: logger, on: eventLoop)

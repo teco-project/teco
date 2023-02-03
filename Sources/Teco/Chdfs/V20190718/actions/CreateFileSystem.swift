@@ -55,9 +55,8 @@ extension Chdfs {
 
     /// 创建文件系统
     ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    ///
     /// 创建文件系统（异步）。
+    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func createFileSystem(_ input: CreateFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSystemResponse> {
         self.client.execute(action: "CreateFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -65,9 +64,8 @@ extension Chdfs {
 
     /// 创建文件系统
     ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    ///
     /// 创建文件系统（异步）。
+    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func createFileSystem(_ input: CreateFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
         try await self.client.execute(action: "CreateFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -75,9 +73,8 @@ extension Chdfs {
 
     /// 创建文件系统
     ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    ///
     /// 创建文件系统（异步）。
+    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func createFileSystem(fileSystemName: String, capacityQuota: UInt64, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileSystemResponse> {
         self.createFileSystem(CreateFileSystemRequest(fileSystemName: fileSystemName, capacityQuota: capacityQuota, description: description), region: region, logger: logger, on: eventLoop)
@@ -85,9 +82,8 @@ extension Chdfs {
 
     /// 创建文件系统
     ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    ///
     /// 创建文件系统（异步）。
+    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func createFileSystem(fileSystemName: String, capacityQuota: UInt64, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileSystemResponse {
         try await self.createFileSystem(CreateFileSystemRequest(fileSystemName: fileSystemName, capacityQuota: capacityQuota, description: description), region: region, logger: logger, on: eventLoop)

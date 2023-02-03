@@ -96,34 +96,39 @@ extension Tcb {
 
     /// EstablishCloudBaseRunServer返回参数结构体
     public struct EstablishCloudBaseRunServerResponse: TCResponseModel {
+        /// 创建服务是否成功
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let result: String?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
         enum CodingKeys: String, CodingKey {
+            case result = "Result"
             case requestId = "RequestId"
         }
     }
 
     /// 创建云应用服务
-    @inlinable @discardableResult
+    @inlinable
     public func establishCloudBaseRunServer(_ input: EstablishCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstablishCloudBaseRunServerResponse> {
         self.client.execute(action: "EstablishCloudBaseRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云应用服务
-    @inlinable @discardableResult
+    @inlinable
     public func establishCloudBaseRunServer(_ input: EstablishCloudBaseRunServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishCloudBaseRunServerResponse {
         try await self.client.execute(action: "EstablishCloudBaseRunServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 创建云应用服务
-    @inlinable @discardableResult
+    @inlinable
     public func establishCloudBaseRunServer(envId: String, serviceName: String, isPublic: Bool, imageRepo: String? = nil, remark: String? = nil, esInfo: CloudBaseEsInfo? = nil, logType: String? = nil, operatorRemark: String? = nil, source: String? = nil, vpcInfo: CloudBaseRunVpcInfo? = nil, publicAccess: Int64? = nil, openAccessTypes: [String]? = nil, isCreatePath: Int64? = nil, serverPath: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EstablishCloudBaseRunServerResponse> {
         self.establishCloudBaseRunServer(EstablishCloudBaseRunServerRequest(envId: envId, serviceName: serviceName, isPublic: isPublic, imageRepo: imageRepo, remark: remark, esInfo: esInfo, logType: logType, operatorRemark: operatorRemark, source: source, vpcInfo: vpcInfo, publicAccess: publicAccess, openAccessTypes: openAccessTypes, isCreatePath: isCreatePath, serverPath: serverPath), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建云应用服务
-    @inlinable @discardableResult
+    @inlinable
     public func establishCloudBaseRunServer(envId: String, serviceName: String, isPublic: Bool, imageRepo: String? = nil, remark: String? = nil, esInfo: CloudBaseEsInfo? = nil, logType: String? = nil, operatorRemark: String? = nil, source: String? = nil, vpcInfo: CloudBaseRunVpcInfo? = nil, publicAccess: Int64? = nil, openAccessTypes: [String]? = nil, isCreatePath: Int64? = nil, serverPath: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EstablishCloudBaseRunServerResponse {
         try await self.establishCloudBaseRunServer(EstablishCloudBaseRunServerRequest(envId: envId, serviceName: serviceName, isPublic: isPublic, imageRepo: imageRepo, remark: remark, esInfo: esInfo, logType: logType, operatorRemark: operatorRemark, source: source, vpcInfo: vpcInfo, publicAccess: publicAccess, openAccessTypes: openAccessTypes, isCreatePath: isCreatePath, serverPath: serverPath), region: region, logger: logger, on: eventLoop)
     }

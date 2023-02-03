@@ -41,9 +41,8 @@ extension Gse {
 
     /// 获取上传的临时密钥
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadFederationToken(_ input: GetUploadFederationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadFederationTokenResponse> {
         self.client.execute(action: "GetUploadFederationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -51,9 +50,8 @@ extension Gse {
 
     /// 获取上传的临时密钥
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadFederationToken(_ input: GetUploadFederationTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadFederationTokenResponse {
         try await self.client.execute(action: "GetUploadFederationToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -61,9 +59,8 @@ extension Gse {
 
     /// 获取上传的临时密钥
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadFederationToken(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadFederationTokenResponse> {
         self.getUploadFederationToken(GetUploadFederationTokenRequest(), region: region, logger: logger, on: eventLoop)
@@ -71,9 +68,8 @@ extension Gse {
 
     /// 获取上传的临时密钥
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（GetUploadFederationToken）用于 获取生成包上传所需要的临时密钥。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadFederationToken(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadFederationTokenResponse {
         try await self.getUploadFederationToken(GetUploadFederationTokenRequest(), region: region, logger: logger, on: eventLoop)

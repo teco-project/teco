@@ -118,9 +118,8 @@ extension Gse {
 
     /// 搜索游戏服务器会话列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchGameServerSessionsResponse> {
         self.client.execute(action: "SearchGameServerSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -128,9 +127,8 @@ extension Gse {
 
     /// 搜索游戏服务器会话列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(_ input: SearchGameServerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
         try await self.client.execute(action: "SearchGameServerSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -138,9 +136,8 @@ extension Gse {
 
     /// 搜索游戏服务器会话列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchGameServerSessionsResponse> {
         self.searchGameServerSessions(SearchGameServerSessionsRequest(aliasId: aliasId, fleetId: fleetId, limit: limit, nextToken: nextToken, filterExpression: filterExpression, sortExpression: sortExpression), region: region, logger: logger, on: eventLoop)
@@ -148,9 +145,8 @@ extension Gse {
 
     /// 搜索游戏服务器会话列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（SearchGameServerSessions）用于搜索游戏服务器会话列表。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func searchGameServerSessions(aliasId: String? = nil, fleetId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, filterExpression: String? = nil, sortExpression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchGameServerSessionsResponse {
         try await self.searchGameServerSessions(SearchGameServerSessionsRequest(aliasId: aliasId, fleetId: fleetId, limit: limit, nextToken: nextToken, filterExpression: filterExpression, sortExpression: sortExpression), region: region, logger: logger, on: eventLoop)

@@ -355,6 +355,43 @@ extension Ims {
         }
     }
 
+    /// 识别类型标签结果信息
+    public struct RecognitionResult: TCOutputModel {
+        /// 当前可能的取值：Scene（图片场景模型）
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let label: String?
+
+        /// Label对应模型下的识别标签信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let tags: [RecognitionTag]?
+
+        enum CodingKeys: String, CodingKey {
+            case label = "Label"
+            case tags = "Tags"
+        }
+    }
+
+    /// 识别类型标签信息
+    public struct RecognitionTag: TCOutputModel {
+        /// 标签名称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 置信分：0～100，数值越大表示置信度越高
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let score: Int64?
+
+        /// 标签位置信息，若模型无位置信息，则可能为零值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let location: Location?
+
+        enum CodingKeys: String, CodingKey {
+            case name = "Name"
+            case score = "Score"
+            case location = "Location"
+        }
+    }
+
     /// 用于表示业务用户的账号相关信息
     public struct User: TCInputModel {
         /// 该字段表示业务用户ID,填写后，系统可根据账号过往违规历史优化审核结果判定，有利于存在可疑违规风险时的辅助判断。<br>

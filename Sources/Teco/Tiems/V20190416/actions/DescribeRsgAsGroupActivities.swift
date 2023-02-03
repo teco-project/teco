@@ -84,40 +84,28 @@ extension Tiems {
     }
 
     /// 查询伸缩组活动
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    ///
-    /// 查询伸缩组活动
+    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroupActivities(_ input: DescribeRsgAsGroupActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRsgAsGroupActivitiesResponse> {
         self.client.execute(action: "DescribeRsgAsGroupActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩组活动
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    ///
-    /// 查询伸缩组活动
+    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroupActivities(_ input: DescribeRsgAsGroupActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupActivitiesResponse {
         try await self.client.execute(action: "DescribeRsgAsGroupActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 查询伸缩组活动
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    ///
-    /// 查询伸缩组活动
+    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroupActivities(id: String, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRsgAsGroupActivitiesResponse> {
         self.describeRsgAsGroupActivities(DescribeRsgAsGroupActivitiesRequest(id: id, startTime: startTime, endTime: endTime, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩组活动
-    ///
-    /// 因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。
-    ///
-    /// 查询伸缩组活动
+    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRsgAsGroupActivities(id: String, startTime: String? = nil, endTime: String? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRsgAsGroupActivitiesResponse {
         try await self.describeRsgAsGroupActivities(DescribeRsgAsGroupActivitiesRequest(id: id, startTime: startTime, endTime: endTime, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)

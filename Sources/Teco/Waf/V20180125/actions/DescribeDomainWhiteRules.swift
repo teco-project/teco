@@ -29,7 +29,7 @@ extension Waf {
         /// 每页展示的条数
         public let count: UInt64?
 
-        /// 排序方式
+        /// 排序方式,desc表示降序，asc表示升序
         public let sort: String?
 
         /// 规则ID

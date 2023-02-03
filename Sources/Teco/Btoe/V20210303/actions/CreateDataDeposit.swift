@@ -75,9 +75,8 @@ extension Btoe {
 
     /// 业务数据明文存证
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDataDeposit(_ input: CreateDataDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
         self.client.execute(action: "CreateDataDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -85,9 +84,8 @@ extension Btoe {
 
     /// 业务数据明文存证
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDataDeposit(_ input: CreateDataDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
         try await self.client.execute(action: "CreateDataDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -95,9 +93,8 @@ extension Btoe {
 
     /// 业务数据明文存证
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDataDeposit(evidenceInfo: String, evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataDepositResponse> {
         self.createDataDeposit(CreateDataDepositRequest(evidenceInfo: evidenceInfo, evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
@@ -105,9 +102,8 @@ extension Btoe {
 
     /// 业务数据明文存证
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过本接口向BTOE写入待存证的业务数据明文，业务数据明文存证写入后不可修改，BTOE对业务数据明文存证生成含有电子签章的区块链存证电子凭证。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDataDeposit(evidenceInfo: String, evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataDepositResponse {
         try await self.createDataDeposit(CreateDataDepositRequest(evidenceInfo: evidenceInfo, evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)

@@ -43,7 +43,7 @@ extension Rum {
         }
     }
 
-    /// 删除 rum 项目
+    /// 删除 RUM 应用
     ///
     /// 删除给定的 rum 的项目
     @inlinable
@@ -51,7 +51,7 @@ extension Rum {
         self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 删除 rum 项目
+    /// 删除 RUM 应用
     ///
     /// 删除给定的 rum 的项目
     @inlinable
@@ -59,7 +59,7 @@ extension Rum {
         try await self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 删除 rum 项目
+    /// 删除 RUM 应用
     ///
     /// 删除给定的 rum 的项目
     @inlinable
@@ -67,7 +67,7 @@ extension Rum {
         self.deleteProject(DeleteProjectRequest(id: id), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 删除 rum 项目
+    /// 删除 RUM 应用
     ///
     /// 删除给定的 rum 的项目
     @inlinable

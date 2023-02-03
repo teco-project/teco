@@ -46,9 +46,8 @@ extension Gse {
 
     /// 获取别名详情
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeAlias）用于获取别名详情。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAlias(_ input: DescribeAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAliasResponse> {
         self.client.execute(action: "DescribeAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -56,9 +55,8 @@ extension Gse {
 
     /// 获取别名详情
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeAlias）用于获取别名详情。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAlias(_ input: DescribeAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAliasResponse {
         try await self.client.execute(action: "DescribeAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -66,9 +64,8 @@ extension Gse {
 
     /// 获取别名详情
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeAlias）用于获取别名详情。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAliasResponse> {
         self.describeAlias(DescribeAliasRequest(aliasId: aliasId), region: region, logger: logger, on: eventLoop)
@@ -76,9 +73,8 @@ extension Gse {
 
     /// 获取别名详情
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeAlias）用于获取别名详情。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAliasResponse {
         try await self.describeAlias(DescribeAliasRequest(aliasId: aliasId), region: region, logger: logger, on: eventLoop)

@@ -53,6 +53,63 @@ extension Lcic {
         }
     }
 
+    /// 批量注册用户信息
+    public struct BatchUserInfo: TCOutputModel {
+        /// 低代码互动课堂的SdkAppId。
+        public let sdkAppId: UInt64?
+
+        /// 用户ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userId: String?
+
+        /// 用户在客户系统的Id。 若用户注册时该字段为空，则默认为 UserId 值一致。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case sdkAppId = "SdkAppId"
+            case userId = "UserId"
+            case originId = "OriginId"
+        }
+    }
+
+    /// 用户注册请求信息
+    public struct BatchUserRequest: TCInputModel {
+        /// 低代码互动课堂的SdkAppId。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let sdkAppId: UInt64?
+
+        /// 用户名称。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let name: String?
+
+        /// 用户在客户系统的Id，需要在同一应用下唯一。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let originId: String?
+
+        /// 用户头像。
+        ///
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let avatar: String?
+
+        public init(sdkAppId: UInt64, name: String? = nil, originId: String? = nil, avatar: String? = nil) {
+            self.sdkAppId = sdkAppId
+            self.name = name
+            self.originId = originId
+            self.avatar = avatar
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case sdkAppId = "SdkAppId"
+            case name = "Name"
+            case originId = "OriginId"
+            case avatar = "Avatar"
+        }
+    }
+
     /// 成员记录信息。
     public struct MemberRecord: TCOutputModel {
         /// 用户ID。

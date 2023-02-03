@@ -107,6 +107,10 @@ extension Ims {
         /// 该字段用于返回检测对象对应的MD5校验值，以方便校验文件完整性。
         public let fileMD5: String
 
+        /// 该字段用于返回仅识别图片元素的模型结果；包括：场景模型命中的标签、置信度和位置信息
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let recognitionResults: [RecognitionResult]?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -123,6 +127,7 @@ extension Ims {
             case bizType = "BizType"
             case extra = "Extra"
             case fileMD5 = "FileMD5"
+            case recognitionResults = "RecognitionResults"
             case requestId = "RequestId"
         }
     }
@@ -145,11 +150,13 @@ extension Ims {
     ///
     /// ### 接口调用说明：
     /// - 图片文件大小支持：**文件 < 5M**
+    /// - 图片尺寸支持：**长或者宽 >50分辨率**和**长或者宽<10000分辨率**
     /// - 图片文件分辨率支持：建议**分辨率大于256x256**，否则可能会影响识别效果；
     /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式；
     /// - 图片文件链接支持的传输协议：HTTP、HTTPS；
     /// - 若传入图片文件的访问链接，则需要注意**图片下载时间限制为3秒**，为保障被检测图片的稳定性和可靠性，建议您使用腾讯云COS存储或者CDN缓存等；
     /// - 默认接口请求频率限制：**100次/秒**，超过此调用频率则会报错。
+    /// -审核列表中，排序是按照用户通过API接口上传调用的时间进行排序；
     ///
     /// <div class="rno-api-explorer" style="margin-bottom:20px">
     ///     <div class="rno-api-explorer-inner">
@@ -189,11 +196,13 @@ extension Ims {
     ///
     /// ### 接口调用说明：
     /// - 图片文件大小支持：**文件 < 5M**
+    /// - 图片尺寸支持：**长或者宽 >50分辨率**和**长或者宽<10000分辨率**
     /// - 图片文件分辨率支持：建议**分辨率大于256x256**，否则可能会影响识别效果；
     /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式；
     /// - 图片文件链接支持的传输协议：HTTP、HTTPS；
     /// - 若传入图片文件的访问链接，则需要注意**图片下载时间限制为3秒**，为保障被检测图片的稳定性和可靠性，建议您使用腾讯云COS存储或者CDN缓存等；
     /// - 默认接口请求频率限制：**100次/秒**，超过此调用频率则会报错。
+    /// -审核列表中，排序是按照用户通过API接口上传调用的时间进行排序；
     ///
     /// <div class="rno-api-explorer" style="margin-bottom:20px">
     ///     <div class="rno-api-explorer-inner">
@@ -233,11 +242,13 @@ extension Ims {
     ///
     /// ### 接口调用说明：
     /// - 图片文件大小支持：**文件 < 5M**
+    /// - 图片尺寸支持：**长或者宽 >50分辨率**和**长或者宽<10000分辨率**
     /// - 图片文件分辨率支持：建议**分辨率大于256x256**，否则可能会影响识别效果；
     /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式；
     /// - 图片文件链接支持的传输协议：HTTP、HTTPS；
     /// - 若传入图片文件的访问链接，则需要注意**图片下载时间限制为3秒**，为保障被检测图片的稳定性和可靠性，建议您使用腾讯云COS存储或者CDN缓存等；
     /// - 默认接口请求频率限制：**100次/秒**，超过此调用频率则会报错。
+    /// -审核列表中，排序是按照用户通过API接口上传调用的时间进行排序；
     ///
     /// <div class="rno-api-explorer" style="margin-bottom:20px">
     ///     <div class="rno-api-explorer-inner">
@@ -277,11 +288,13 @@ extension Ims {
     ///
     /// ### 接口调用说明：
     /// - 图片文件大小支持：**文件 < 5M**
+    /// - 图片尺寸支持：**长或者宽 >50分辨率**和**长或者宽<10000分辨率**
     /// - 图片文件分辨率支持：建议**分辨率大于256x256**，否则可能会影响识别效果；
     /// - 图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式；
     /// - 图片文件链接支持的传输协议：HTTP、HTTPS；
     /// - 若传入图片文件的访问链接，则需要注意**图片下载时间限制为3秒**，为保障被检测图片的稳定性和可靠性，建议您使用腾讯云COS存储或者CDN缓存等；
     /// - 默认接口请求频率限制：**100次/秒**，超过此调用频率则会报错。
+    /// -审核列表中，排序是按照用户通过API接口上传调用的时间进行排序；
     ///
     /// <div class="rno-api-explorer" style="margin-bottom:20px">
     ///     <div class="rno-api-explorer-inner">

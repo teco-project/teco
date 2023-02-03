@@ -2364,6 +2364,69 @@ extension Live {
         }
     }
 
+    /// 时移录制段。
+    public struct TimeShiftRecord: TCOutputModel {
+        /// 时移录制会话标识。
+        public let sid: String?
+
+        /// 录制会话开始时间，Unix 时间戳。
+        public let startTime: Int64?
+
+        /// 录制会话结束时间，Unix 时间戳。
+        public let endTime: Int64?
+
+        enum CodingKeys: String, CodingKey {
+            case sid = "Sid"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+        }
+    }
+
+    /// 时移流。
+    public struct TimeShiftStreamInfo: TCOutputModel {
+        /// 推流域名所属组。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let domainGroup: String?
+
+        /// 推流域名。
+        public let domain: String?
+
+        /// 推流路径。
+        public let appName: String?
+
+        /// 流名称。
+        public let streamName: String?
+
+        /// 流起始时间，Unix 时间戳。
+        public let startTime: Int64?
+
+        /// 截止查询时流结束时间，Unix 时间戳。
+        public let endTime: Int64?
+
+        /// 转码模板ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let transCodeId: UInt64?
+
+        /// 流类型，取值0为原始流，1为水印流，2为转码流。
+        public let streamType: Int64?
+
+        /// 时移数据存储时长，单位秒。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let duration: UInt64?
+
+        enum CodingKeys: String, CodingKey {
+            case domainGroup = "DomainGroup"
+            case domain = "Domain"
+            case appName = "AppName"
+            case streamName = "StreamName"
+            case startTime = "StartTime"
+            case endTime = "EndTime"
+            case transCodeId = "TransCodeId"
+            case streamType = "StreamType"
+            case duration = "Duration"
+        }
+    }
+
     /// 某个时间点的指标的数值是多少。
     public struct TimeValue: TCOutputModel {
         /// UTC 时间，时间格式：yyyy-mm-ddTHH:MM:SSZ。

@@ -50,9 +50,8 @@ extension Gse {
 
     /// 查询云联网实例
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeCcnInstances）用于查询云联网实例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeCcnInstances(_ input: DescribeCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnInstancesResponse> {
         self.client.execute(action: "DescribeCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -60,9 +59,8 @@ extension Gse {
 
     /// 查询云联网实例
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeCcnInstances）用于查询云联网实例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeCcnInstances(_ input: DescribeCcnInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnInstancesResponse {
         try await self.client.execute(action: "DescribeCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -70,9 +68,8 @@ extension Gse {
 
     /// 查询云联网实例
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeCcnInstances）用于查询云联网实例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeCcnInstances(fleetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnInstancesResponse> {
         self.describeCcnInstances(DescribeCcnInstancesRequest(fleetId: fleetId), region: region, logger: logger, on: eventLoop)
@@ -80,9 +77,8 @@ extension Gse {
 
     /// 查询云联网实例
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeCcnInstances）用于查询云联网实例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeCcnInstances(fleetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnInstancesResponse {
         try await self.describeCcnInstances(DescribeCcnInstancesRequest(fleetId: fleetId), region: region, logger: logger, on: eventLoop)

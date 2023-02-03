@@ -1300,6 +1300,24 @@ extension Ess {
         }
     }
 
+    /// 催办接口返回详细信息
+    public struct RemindFlowRecords: TCOutputModel {
+        /// 是否能够催办
+        public let canRemind: Bool
+
+        /// 合同id
+        public let flowId: String
+
+        /// 催办详情
+        public let remindMessage: String
+
+        enum CodingKeys: String, CodingKey {
+            case canRemind = "CanRemind"
+            case flowId = "FlowId"
+            case remindMessage = "RemindMessage"
+        }
+    }
+
     /// 一码多扫签署二维码对象
     public struct SignQrCode: TCOutputModel {
         /// 二维码id

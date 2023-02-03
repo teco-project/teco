@@ -20,13 +20,13 @@ extension Waf {
         /// 域名
         public let domain: String
 
-        /// 攻击次数阈值
+        /// 触发IP封禁的攻击次数阈值，范围为2~100次
         public let attackThreshold: Int64
 
-        /// 攻击时间阈值
+        /// IP封禁统计时间，范围为1-60分钟
         public let timeThreshold: Int64
 
-        /// 自动封禁时间
+        /// 触发IP封禁后的封禁时间，范围为5~360分钟
         public let denyTimeThreshold: Int64
 
         /// 自动封禁状态

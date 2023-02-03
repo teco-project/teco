@@ -94,8 +94,6 @@ extension Gse {
 
     /// 设置扩缩容策略
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（PutScalingPolicy）用于设置服务器舰队的动态扩缩容策略。
     ///
     /// 通过此接口可以增加或者更新服务器舰队的扩缩容策略。
@@ -194,6 +192,7 @@ extension Gse {
     /// **PercentChangeInCapacity**
     ///
     ///     按比例增加或减少的百分比。正值按比例扩容，负值按比例缩容；例如，值“-10”将按10%的比例缩容CVM实例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(_ input: PutScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutScalingPolicyResponse> {
         self.client.execute(action: "PutScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -201,8 +200,6 @@ extension Gse {
 
     /// 设置扩缩容策略
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（PutScalingPolicy）用于设置服务器舰队的动态扩缩容策略。
     ///
     /// 通过此接口可以增加或者更新服务器舰队的扩缩容策略。
@@ -301,6 +298,7 @@ extension Gse {
     /// **PercentChangeInCapacity**
     ///
     ///     按比例增加或减少的百分比。正值按比例扩容，负值按比例缩容；例如，值“-10”将按10%的比例缩容CVM实例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(_ input: PutScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutScalingPolicyResponse {
         try await self.client.execute(action: "PutScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -308,8 +306,6 @@ extension Gse {
 
     /// 设置扩缩容策略
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（PutScalingPolicy）用于设置服务器舰队的动态扩缩容策略。
     ///
     /// 通过此接口可以增加或者更新服务器舰队的扩缩容策略。
@@ -408,6 +404,7 @@ extension Gse {
     /// **PercentChangeInCapacity**
     ///
     ///     按比例增加或减少的百分比。正值按比例扩容，负值按比例缩容；例如，值“-10”将按10%的比例缩容CVM实例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutScalingPolicyResponse> {
         self.putScalingPolicy(PutScalingPolicyRequest(fleetId: fleetId, name: name, scalingAdjustment: scalingAdjustment, scalingAdjustmentType: scalingAdjustmentType, threshold: threshold, comparisonOperator: comparisonOperator, evaluationPeriods: evaluationPeriods, metricName: metricName, policyType: policyType, targetConfiguration: targetConfiguration), region: region, logger: logger, on: eventLoop)
@@ -415,8 +412,6 @@ extension Gse {
 
     /// 设置扩缩容策略
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（PutScalingPolicy）用于设置服务器舰队的动态扩缩容策略。
     ///
     /// 通过此接口可以增加或者更新服务器舰队的扩缩容策略。
@@ -515,6 +510,7 @@ extension Gse {
     /// **PercentChangeInCapacity**
     ///
     ///     按比例增加或减少的百分比。正值按比例扩容，负值按比例缩容；例如，值“-10”将按10%的比例缩容CVM实例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutScalingPolicyResponse {
         try await self.putScalingPolicy(PutScalingPolicyRequest(fleetId: fleetId, name: name, scalingAdjustment: scalingAdjustment, scalingAdjustmentType: scalingAdjustmentType, threshold: threshold, comparisonOperator: comparisonOperator, evaluationPeriods: evaluationPeriods, metricName: metricName, policyType: policyType, targetConfiguration: targetConfiguration), region: region, logger: logger, on: eventLoop)

@@ -48,7 +48,7 @@ extension Rum {
         }
     }
 
-    /// 添加星标项目
+    /// 添加星标应用
     ///
     /// 个人用户添加星标项目
     @inlinable
@@ -56,7 +56,7 @@ extension Rum {
         self.client.execute(action: "CreateStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 添加星标项目
+    /// 添加星标应用
     ///
     /// 个人用户添加星标项目
     @inlinable
@@ -64,7 +64,7 @@ extension Rum {
         try await self.client.execute(action: "CreateStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 添加星标项目
+    /// 添加星标应用
     ///
     /// 个人用户添加星标项目
     @inlinable
@@ -72,7 +72,7 @@ extension Rum {
         self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 添加星标项目
+    /// 添加星标应用
     ///
     /// 个人用户添加星标项目
     @inlinable

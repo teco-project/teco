@@ -23,25 +23,25 @@ extension Waf {
         /// 计数标识
         public let count: UInt64
 
-        /// 动作
+        /// 动作，40表示查询白名单，42表示查询黑名单
         public let actionType: UInt64?
 
-        /// 有效时间最小时间戳
+        /// 最小有效时间的时间戳
         public let vtsMin: UInt64?
 
-        /// 有效时间最大时间戳
+        /// 最大有效时间的时间戳
         public let vtsMax: UInt64?
 
-        /// 创建时间最小时间戳
+        /// 最小创建时间的时间戳
         public let ctsMin: UInt64?
 
-        /// 创建时间最大时间戳
+        /// 最大创建时间的时间戳
         public let ctsMax: UInt64?
 
-        /// 偏移
+        /// 分页开始条数
         public let offSet: UInt64?
 
-        /// 限制
+        /// 每页的条数
         public let limit: UInt64?
 
         /// 来源

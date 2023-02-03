@@ -65,9 +65,8 @@ extension Gse {
 
     /// 创建游戏服务器会话队列
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createGameServerSessionQueue(_ input: CreateGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionQueueResponse> {
         self.client.execute(action: "CreateGameServerSessionQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -75,9 +74,8 @@ extension Gse {
 
     /// 创建游戏服务器会话队列
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createGameServerSessionQueue(_ input: CreateGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionQueueResponse {
         try await self.client.execute(action: "CreateGameServerSessionQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -85,9 +83,8 @@ extension Gse {
 
     /// 创建游戏服务器会话队列
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGameServerSessionQueueResponse> {
         self.createGameServerSessionQueue(CreateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds, tags: tags), region: region, logger: logger, on: eventLoop)
@@ -95,9 +92,8 @@ extension Gse {
 
     /// 创建游戏服务器会话队列
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateGameServerSessionQueue）用于创建游戏服务器会话队列。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGameServerSessionQueueResponse {
         try await self.createGameServerSessionQueue(CreateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds, tags: tags), region: region, logger: logger, on: eventLoop)

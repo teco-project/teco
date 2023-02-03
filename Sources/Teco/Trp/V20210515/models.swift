@@ -626,6 +626,134 @@ extension Trp {
         }
     }
 
+    /// 扫码明细
+    public struct ScanLog: TCOutputModel {
+        /// 行ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let logId: Int64?
+
+        /// 微信openid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let openid: String?
+
+        /// 微信昵称
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let nickname: String?
+
+        /// 创建时间
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let createTime: String?
+
+        /// 码
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let code: String?
+
+        /// 企业ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let corpId: Int64?
+
+        /// 商户ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let merchantId: String?
+
+        /// 商品ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let productId: String?
+
+        /// ip地址
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ip: String?
+
+        /// 国家
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let country: String?
+
+        /// 省份
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let province: String?
+
+        /// 城市
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let city: String?
+
+        /// 县/区
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let district: String?
+
+        /// 微信 unionid
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let unionid: String?
+
+        /// 首次扫码 0:否, 1:是
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let first: Int64?
+
+        /// 批次ID
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let batchId: String?
+
+        enum CodingKeys: String, CodingKey {
+            case logId = "LogId"
+            case openid = "Openid"
+            case nickname = "Nickname"
+            case createTime = "CreateTime"
+            case code = "Code"
+            case corpId = "CorpId"
+            case merchantId = "MerchantId"
+            case productId = "ProductId"
+            case ip = "Ip"
+            case country = "Country"
+            case province = "Province"
+            case city = "City"
+            case district = "District"
+            case unionid = "Unionid"
+            case first = "First"
+            case batchId = "BatchId"
+        }
+    }
+
+    /// 扫码统计
+    public struct ScanStat: TCOutputModel {
+        /// 安心码
+        public let code: String?
+
+        /// 企业ID
+        public let corpId: UInt64?
+
+        /// 商户ID
+        public let merchantId: String?
+
+        /// 产品ID
+        public let productId: String?
+
+        /// 批次ID
+        public let batchId: String?
+
+        /// 扫码次数
+        public let pv: UInt64?
+
+        /// 扫码人数
+        public let uv: UInt64?
+
+        /// 创建时间
+        public let createTime: String?
+
+        /// 更新时间
+        public let updateTime: String?
+
+        enum CodingKeys: String, CodingKey {
+            case code = "Code"
+            case corpId = "CorpId"
+            case merchantId = "MerchantId"
+            case productId = "ProductId"
+            case batchId = "BatchId"
+            case pv = "Pv"
+            case uv = "Uv"
+            case createTime = "CreateTime"
+            case updateTime = "UpdateTime"
+        }
+    }
+
     /// 溯源码
     public struct TraceCode: TCOutputModel {
         /// 二维码

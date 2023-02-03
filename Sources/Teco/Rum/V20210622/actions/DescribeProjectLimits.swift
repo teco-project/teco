@@ -43,25 +43,25 @@ extension Rum {
         }
     }
 
-    /// 获取项目上报率列表
+    /// 获取应用上报抽样信息
     @inlinable
     public func describeProjectLimits(_ input: DescribeProjectLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectLimitsResponse> {
         self.client.execute(action: "DescribeProjectLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取项目上报率列表
+    /// 获取应用上报抽样信息
     @inlinable
     public func describeProjectLimits(_ input: DescribeProjectLimitsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectLimitsResponse {
         try await self.client.execute(action: "DescribeProjectLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取项目上报率列表
+    /// 获取应用上报抽样信息
     @inlinable
     public func describeProjectLimits(projectID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectLimitsResponse> {
         self.describeProjectLimits(DescribeProjectLimitsRequest(projectID: projectID), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取项目上报率列表
+    /// 获取应用上报抽样信息
     @inlinable
     public func describeProjectLimits(projectID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectLimitsResponse {
         try await self.describeProjectLimits(DescribeProjectLimitsRequest(projectID: projectID), region: region, logger: logger, on: eventLoop)

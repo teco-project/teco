@@ -50,9 +50,8 @@ extension Gse {
 
     /// 获取生成包支持的操作系统列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemsResponse> {
         self.client.execute(action: "DescribeAssetSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -60,9 +59,8 @@ extension Gse {
 
     /// 获取生成包支持的操作系统列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetSystems(_ input: DescribeAssetSystemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemsResponse {
         try await self.client.execute(action: "DescribeAssetSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -70,9 +68,8 @@ extension Gse {
 
     /// 获取生成包支持的操作系统列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetSystems(osType: String? = nil, osBit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSystemsResponse> {
         self.describeAssetSystems(DescribeAssetSystemsRequest(osType: osType, osBit: osBit), region: region, logger: logger, on: eventLoop)
@@ -80,9 +77,8 @@ extension Gse {
 
     /// 获取生成包支持的操作系统列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeAssetSystems）用于获取生成包支持的操作系统。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssetSystems(osType: String? = nil, osBit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSystemsResponse {
         try await self.describeAssetSystems(DescribeAssetSystemsRequest(osType: osType, osBit: osBit), region: region, logger: logger, on: eventLoop)

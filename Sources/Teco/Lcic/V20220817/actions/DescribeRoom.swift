@@ -40,7 +40,7 @@ extension Lcic {
         /// 预定的房间结束时间，unix时间戳。
         public let endTime: UInt64
 
-        /// 老师ID。
+        /// 老师的UserId。
         public let teacherId: String
 
         /// 低代码互动课堂的SdkAppId。
@@ -77,7 +77,7 @@ extension Lcic {
         /// 注：如果该配置取值为0，录制将从上课后开始，课堂结束后停止。
         public let disableRecord: UInt64
 
-        /// 助教Id列表。
+        /// 助教UserId列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assistants: [String]?
 

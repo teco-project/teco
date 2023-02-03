@@ -39,24 +39,32 @@ extension Rum {
         }
     }
 
+    /// 停止RUM业务系统
+    ///
     /// 停止实例
     @inlinable @discardableResult
     public func stopInstance(_ input: StopInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstanceResponse> {
         self.client.execute(action: "StopInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
+    /// 停止RUM业务系统
+    ///
     /// 停止实例
     @inlinable @discardableResult
     public func stopInstance(_ input: StopInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {
         try await self.client.execute(action: "StopInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
+    /// 停止RUM业务系统
+    ///
     /// 停止实例
     @inlinable @discardableResult
     public func stopInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstanceResponse> {
         self.stopInstance(StopInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
     }
 
+    /// 停止RUM业务系统
+    ///
     /// 停止实例
     @inlinable @discardableResult
     public func stopInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {

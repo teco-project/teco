@@ -76,9 +76,8 @@ extension Gse {
 
     /// 查询玩家会话列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayerSessions(_ input: DescribePlayerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayerSessionsResponse> {
         self.client.execute(action: "DescribePlayerSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -86,9 +85,8 @@ extension Gse {
 
     /// 查询玩家会话列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayerSessions(_ input: DescribePlayerSessionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerSessionsResponse {
         try await self.client.execute(action: "DescribePlayerSessions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -96,9 +94,8 @@ extension Gse {
 
     /// 查询玩家会话列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayerSessions(gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, playerId: String? = nil, playerSessionId: String? = nil, playerSessionStatusFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayerSessionsResponse> {
         self.describePlayerSessions(DescribePlayerSessionsRequest(gameServerSessionId: gameServerSessionId, limit: limit, nextToken: nextToken, playerId: playerId, playerSessionId: playerSessionId, playerSessionStatusFilter: playerSessionStatusFilter), region: region, logger: logger, on: eventLoop)
@@ -106,9 +103,8 @@ extension Gse {
 
     /// 查询玩家会话列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribePlayerSessions）用于获取玩家会话列表。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describePlayerSessions(gameServerSessionId: String? = nil, limit: UInt64? = nil, nextToken: String? = nil, playerId: String? = nil, playerSessionId: String? = nil, playerSessionStatusFilter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayerSessionsResponse {
         try await self.describePlayerSessions(DescribePlayerSessionsRequest(gameServerSessionId: gameServerSessionId, limit: limit, nextToken: nextToken, playerId: playerId, playerSessionId: playerSessionId, playerSessionStatusFilter: playerSessionStatusFilter), region: region, logger: logger, on: eventLoop)

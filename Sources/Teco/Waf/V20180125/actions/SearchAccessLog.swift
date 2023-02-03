@@ -64,10 +64,10 @@ extension Waf {
         /// 加载后续内容的Context
         public let context: String
 
-        /// 日志查询结果是否全部返回
+        /// 日志查询结果是否全部返回，其中，“true”表示结果返回，“false”表示结果为返回
         public let listOver: Bool
 
-        /// 返回的是否为分析结果
+        /// 返回的是否为分析结果，其中，“true”表示返回分析结果，“false”表示未返回分析结果
         public let analysis: Bool
 
         /// 如果Analysis为True，则返回分析结果的列名，否则为空

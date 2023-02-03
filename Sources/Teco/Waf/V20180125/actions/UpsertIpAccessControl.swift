@@ -23,7 +23,7 @@ extension Waf {
         /// ip 参数列表，json数组由ip，source，note，action，valid_ts组成。ip对应配置的ip地址，source固定为custom值，note为注释，action值42为黑名单，40为白名单，valid_ts为有效日期，值为秒级时间戳
         public let items: [String]
 
-        /// clb-waf或者sparta-waf
+        /// WAF实例类型，sparta-waf表示SAAS型WAF，clb-waf表示负载均衡型WAF
         public let edition: String?
 
         /// 是否为多域名黑白名单

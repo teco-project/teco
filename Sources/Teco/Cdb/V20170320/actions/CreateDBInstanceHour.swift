@@ -35,7 +35,7 @@ extension Cdb {
         /// 私有网络下的子网 ID，如果设置了 UniqVpcId，则 UniqSubnetId 必填，请使用[查询子网列表](/document/api/215/15784)。
         public let uniqSubnetId: String?
 
-        /// 项目 ID，不填为默认项目。请使用 [查询项目列表](https://cloud.tencent.com/document/product/378/4400) 接口获取项目 ID。
+        /// 项目 ID，不填为默认项目。
         public let projectId: Int64?
 
         /// 可用区信息，该参数缺省时，系统会自动选择一个可用区，请使用 [获取云数据库可售卖规格](https://cloud.tencent.com/document/api/236/17229) 接口获取可创建的可用区。
@@ -237,7 +237,7 @@ extension Cdb {
     /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
     /// 3. 支持创建 MySQL 5.5、MySQL 5.6 、MySQL 5.7 和 MySQL 8.0 版本；
     /// 4. 支持创建主实例、灾备实例和只读实例；
-    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（暂不支持基础版实例）；
+    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作；
     @inlinable
     public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceHourResponse> {
         self.client.execute(action: "CreateDBInstanceHour", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -253,7 +253,7 @@ extension Cdb {
     /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
     /// 3. 支持创建 MySQL 5.5、MySQL 5.6 、MySQL 5.7 和 MySQL 8.0 版本；
     /// 4. 支持创建主实例、灾备实例和只读实例；
-    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（暂不支持基础版实例）；
+    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作；
     @inlinable
     public func createDBInstanceHour(_ input: CreateDBInstanceHourRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
         try await self.client.execute(action: "CreateDBInstanceHour", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -269,7 +269,7 @@ extension Cdb {
     /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
     /// 3. 支持创建 MySQL 5.5、MySQL 5.6 、MySQL 5.7 和 MySQL 8.0 版本；
     /// 4. 支持创建主实例、灾备实例和只读实例；
-    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（暂不支持基础版实例）；
+    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作；
     @inlinable
     public func createDBInstanceHour(goodsNum: Int64, memory: Int64, volume: Int64, engineVersion: String? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, projectId: Int64? = nil, zone: String? = nil, masterInstanceId: String? = nil, instanceRole: String? = nil, masterRegion: String? = nil, port: Int64? = nil, password: String? = nil, paramList: [ParamInfo]? = nil, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, backupZone: String? = nil, securityGroup: [String]? = nil, roGroup: RoGroup? = nil, autoRenewFlag: Int64? = nil, instanceName: String? = nil, resourceTags: [TagInfo]? = nil, deployGroupId: String? = nil, clientToken: String? = nil, deviceType: String? = nil, paramTemplateId: Int64? = nil, alarmPolicyList: [Int64]? = nil, instanceNodes: Int64? = nil, cpu: Int64? = nil, autoSyncFlag: Int64? = nil, cageId: String? = nil, paramTemplateType: String? = nil, alarmPolicyIdList: [String]? = nil, dryRun: Bool? = nil, engineType: String? = nil, vips: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBInstanceHourResponse> {
         self.createDBInstanceHour(CreateDBInstanceHourRequest(goodsNum: goodsNum, memory: memory, volume: volume, engineVersion: engineVersion, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, projectId: projectId, zone: zone, masterInstanceId: masterInstanceId, instanceRole: instanceRole, masterRegion: masterRegion, port: port, password: password, paramList: paramList, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, backupZone: backupZone, securityGroup: securityGroup, roGroup: roGroup, autoRenewFlag: autoRenewFlag, instanceName: instanceName, resourceTags: resourceTags, deployGroupId: deployGroupId, clientToken: clientToken, deviceType: deviceType, paramTemplateId: paramTemplateId, alarmPolicyList: alarmPolicyList, instanceNodes: instanceNodes, cpu: cpu, autoSyncFlag: autoSyncFlag, cageId: cageId, paramTemplateType: paramTemplateType, alarmPolicyIdList: alarmPolicyIdList, dryRun: dryRun, engineType: engineType, vips: vips), region: region, logger: logger, on: eventLoop)
@@ -285,7 +285,7 @@ extension Cdb {
     /// 2. 单次创建实例最大支持 100 个，实例时长最大支持 36 个月；
     /// 3. 支持创建 MySQL 5.5、MySQL 5.6 、MySQL 5.7 和 MySQL 8.0 版本；
     /// 4. 支持创建主实例、灾备实例和只读实例；
-    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作（暂不支持基础版实例）；
+    /// 5. 当入参指定 Port，ParamList 或 Password 时，该实例会进行初始化操作；
     @inlinable
     public func createDBInstanceHour(goodsNum: Int64, memory: Int64, volume: Int64, engineVersion: String? = nil, uniqVpcId: String? = nil, uniqSubnetId: String? = nil, projectId: Int64? = nil, zone: String? = nil, masterInstanceId: String? = nil, instanceRole: String? = nil, masterRegion: String? = nil, port: Int64? = nil, password: String? = nil, paramList: [ParamInfo]? = nil, protectMode: Int64? = nil, deployMode: Int64? = nil, slaveZone: String? = nil, backupZone: String? = nil, securityGroup: [String]? = nil, roGroup: RoGroup? = nil, autoRenewFlag: Int64? = nil, instanceName: String? = nil, resourceTags: [TagInfo]? = nil, deployGroupId: String? = nil, clientToken: String? = nil, deviceType: String? = nil, paramTemplateId: Int64? = nil, alarmPolicyList: [Int64]? = nil, instanceNodes: Int64? = nil, cpu: Int64? = nil, autoSyncFlag: Int64? = nil, cageId: String? = nil, paramTemplateType: String? = nil, alarmPolicyIdList: [String]? = nil, dryRun: Bool? = nil, engineType: String? = nil, vips: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBInstanceHourResponse {
         try await self.createDBInstanceHour(CreateDBInstanceHourRequest(goodsNum: goodsNum, memory: memory, volume: volume, engineVersion: engineVersion, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, projectId: projectId, zone: zone, masterInstanceId: masterInstanceId, instanceRole: instanceRole, masterRegion: masterRegion, port: port, password: password, paramList: paramList, protectMode: protectMode, deployMode: deployMode, slaveZone: slaveZone, backupZone: backupZone, securityGroup: securityGroup, roGroup: roGroup, autoRenewFlag: autoRenewFlag, instanceName: instanceName, resourceTags: resourceTags, deployGroupId: deployGroupId, clientToken: clientToken, deviceType: deviceType, paramTemplateId: paramTemplateId, alarmPolicyList: alarmPolicyList, instanceNodes: instanceNodes, cpu: cpu, autoSyncFlag: autoSyncFlag, cageId: cageId, paramTemplateType: paramTemplateType, alarmPolicyIdList: alarmPolicyIdList, dryRun: dryRun, engineType: engineType, vips: vips), region: region, logger: logger, on: eventLoop)

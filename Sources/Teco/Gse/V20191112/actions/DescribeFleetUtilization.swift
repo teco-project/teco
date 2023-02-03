@@ -50,9 +50,8 @@ extension Gse {
 
     /// 查询服务器舰队的利用率信息
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetUtilization(_ input: DescribeFleetUtilizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetUtilizationResponse> {
         self.client.execute(action: "DescribeFleetUtilization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -60,9 +59,8 @@ extension Gse {
 
     /// 查询服务器舰队的利用率信息
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetUtilization(_ input: DescribeFleetUtilizationRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetUtilizationResponse {
         try await self.client.execute(action: "DescribeFleetUtilization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -70,9 +68,8 @@ extension Gse {
 
     /// 查询服务器舰队的利用率信息
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetUtilization(fleetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetUtilizationResponse> {
         self.describeFleetUtilization(DescribeFleetUtilizationRequest(fleetIds: fleetIds), region: region, logger: logger, on: eventLoop)
@@ -80,9 +77,8 @@ extension Gse {
 
     /// 查询服务器舰队的利用率信息
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeFleetUtilization）用于查询服务器舰队的利用率信息。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetUtilization(fleetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetUtilizationResponse {
         try await self.describeFleetUtilization(DescribeFleetUtilizationRequest(fleetIds: fleetIds), region: region, logger: logger, on: eventLoop)

@@ -45,9 +45,8 @@ extension Gse {
 
     /// 查询游戏服务器会话的放置
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeGameServerSessionPlacement）用于查询游戏服务器会话的放置。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeGameServerSessionPlacement(_ input: DescribeGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGameServerSessionPlacementResponse> {
         self.client.execute(action: "DescribeGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -55,9 +54,8 @@ extension Gse {
 
     /// 查询游戏服务器会话的放置
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeGameServerSessionPlacement）用于查询游戏服务器会话的放置。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeGameServerSessionPlacement(_ input: DescribeGameServerSessionPlacementRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionPlacementResponse {
         try await self.client.execute(action: "DescribeGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,9 +63,8 @@ extension Gse {
 
     /// 查询游戏服务器会话的放置
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeGameServerSessionPlacement）用于查询游戏服务器会话的放置。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeGameServerSessionPlacement(placementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGameServerSessionPlacementResponse> {
         self.describeGameServerSessionPlacement(DescribeGameServerSessionPlacementRequest(placementId: placementId), region: region, logger: logger, on: eventLoop)
@@ -75,9 +72,8 @@ extension Gse {
 
     /// 查询游戏服务器会话的放置
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeGameServerSessionPlacement）用于查询游戏服务器会话的放置。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeGameServerSessionPlacement(placementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGameServerSessionPlacementResponse {
         try await self.describeGameServerSessionPlacement(DescribeGameServerSessionPlacementRequest(placementId: placementId), region: region, logger: logger, on: eventLoop)

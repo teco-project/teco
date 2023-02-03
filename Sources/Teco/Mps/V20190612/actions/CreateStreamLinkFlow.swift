@@ -24,18 +24,23 @@ extension Mps {
         public let maxBandwidth: Int64
 
         /// 流的输入组。
-        public let inputGroup: [CreateInput]
+        public let inputGroup: [CreateInput]?
 
-        public init(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput]) {
+        /// 该Flow关联的媒体传输事件ID，每个flow只能关联一个Event。
+        public let eventId: String?
+
+        public init(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput]? = nil, eventId: String? = nil) {
             self.flowName = flowName
             self.maxBandwidth = maxBandwidth
             self.inputGroup = inputGroup
+            self.eventId = eventId
         }
 
         enum CodingKeys: String, CodingKey {
             case flowName = "FlowName"
             case maxBandwidth = "MaxBandwidth"
             case inputGroup = "InputGroup"
+            case eventId = "EventId"
         }
     }
 
@@ -73,15 +78,15 @@ extension Mps {
     ///
     /// 创建媒体传输的传输流配置。
     @inlinable
-    public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkFlowResponse> {
-        self.createStreamLinkFlow(CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup), region: region, logger: logger, on: eventLoop)
+    public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput]? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStreamLinkFlowResponse> {
+        self.createStreamLinkFlow(CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体传输流
     ///
     /// 创建媒体传输的传输流配置。
     @inlinable
-    public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
-        try await self.createStreamLinkFlow(CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup), region: region, logger: logger, on: eventLoop)
+    public func createStreamLinkFlow(flowName: String, maxBandwidth: Int64, inputGroup: [CreateInput]? = nil, eventId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStreamLinkFlowResponse {
+        try await self.createStreamLinkFlow(CreateStreamLinkFlowRequest(flowName: flowName, maxBandwidth: maxBandwidth, inputGroup: inputGroup, eventId: eventId), region: region, logger: logger, on: eventLoop)
     }
 }

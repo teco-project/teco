@@ -20,27 +20,27 @@ extension Gme {
         /// 要操作的房间id
         public let roomId: String
 
-        /// 要剔除的用户列表
-        public let uids: [String]
-
         /// 剔除类型 1-删除房间 2-剔除用户
         public let deleteType: UInt64
 
         /// 应用id
         public let bizId: UInt64
 
-        public init(roomId: String, uids: [String], deleteType: UInt64, bizId: UInt64) {
+        /// 要剔除的用户列表
+        public let uids: [String]?
+
+        public init(roomId: String, deleteType: UInt64, bizId: UInt64, uids: [String]? = nil) {
             self.roomId = roomId
-            self.uids = uids
             self.deleteType = deleteType
             self.bizId = bizId
+            self.uids = uids
         }
 
         enum CodingKeys: String, CodingKey {
             case roomId = "RoomId"
-            case uids = "Uids"
             case deleteType = "DeleteType"
             case bizId = "BizId"
+            case uids = "Uids"
         }
     }
 
@@ -78,15 +78,15 @@ extension Gme {
     ///
     /// 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
     @inlinable
-    public func deleteRoomMember(roomId: String, uids: [String], deleteType: UInt64, bizId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomMemberResponse> {
-        self.deleteRoomMember(DeleteRoomMemberRequest(roomId: roomId, uids: uids, deleteType: deleteType, bizId: bizId), region: region, logger: logger, on: eventLoop)
+    public func deleteRoomMember(roomId: String, deleteType: UInt64, bizId: UInt64, uids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoomMemberResponse> {
+        self.deleteRoomMember(DeleteRoomMemberRequest(roomId: roomId, deleteType: deleteType, bizId: bizId, uids: uids), region: region, logger: logger, on: eventLoop)
     }
 
     /// 剔除房间或房间成员
     ///
     /// 本接口(DeleteRoomMember)用户删除房间或者剔除房间内用户
     @inlinable
-    public func deleteRoomMember(roomId: String, uids: [String], deleteType: UInt64, bizId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomMemberResponse {
-        try await self.deleteRoomMember(DeleteRoomMemberRequest(roomId: roomId, uids: uids, deleteType: deleteType, bizId: bizId), region: region, logger: logger, on: eventLoop)
+    public func deleteRoomMember(roomId: String, deleteType: UInt64, bizId: UInt64, uids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoomMemberResponse {
+        try await self.deleteRoomMember(DeleteRoomMemberRequest(roomId: roomId, deleteType: deleteType, bizId: bizId, uids: uids), region: region, logger: logger, on: eventLoop)
     }
 }

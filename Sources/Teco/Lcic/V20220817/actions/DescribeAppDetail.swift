@@ -17,7 +17,7 @@
 extension Lcic {
     /// DescribeAppDetail请求参数结构体
     public struct DescribeAppDetailRequest: TCRequestModel {
-        /// 应用ID
+        /// 应用ID。低代码互动课堂的SdkAppId。
         public let applicationId: String
 
         /// 开发商ID
@@ -36,7 +36,7 @@ extension Lcic {
 
     /// DescribeAppDetail返回参数结构体
     public struct DescribeAppDetailResponse: TCResponseModel {
-        /// SdkAppId
+        /// SDK 对应的AppId
         public let sdkAppId: String
 
         /// 应用配置

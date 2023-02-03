@@ -66,9 +66,8 @@ extension Gse {
 
     /// 更新服务器舰队容量配置
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（UpdateFleetCapacity）用于更新服务器舰队容量配置。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetCapacity(_ input: UpdateFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetCapacityResponse> {
         self.client.execute(action: "UpdateFleetCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -76,9 +75,8 @@ extension Gse {
 
     /// 更新服务器舰队容量配置
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（UpdateFleetCapacity）用于更新服务器舰队容量配置。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetCapacity(_ input: UpdateFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetCapacityResponse {
         try await self.client.execute(action: "UpdateFleetCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -86,9 +84,8 @@ extension Gse {
 
     /// 更新服务器舰队容量配置
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（UpdateFleetCapacity）用于更新服务器舰队容量配置。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetCapacity(fleetId: String, desiredInstances: UInt64? = nil, minSize: UInt64? = nil, maxSize: UInt64? = nil, scalingInterval: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetCapacityResponse> {
         self.updateFleetCapacity(UpdateFleetCapacityRequest(fleetId: fleetId, desiredInstances: desiredInstances, minSize: minSize, maxSize: maxSize, scalingInterval: scalingInterval), region: region, logger: logger, on: eventLoop)
@@ -96,9 +93,8 @@ extension Gse {
 
     /// 更新服务器舰队容量配置
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（UpdateFleetCapacity）用于更新服务器舰队容量配置。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetCapacity(fleetId: String, desiredInstances: UInt64? = nil, minSize: UInt64? = nil, maxSize: UInt64? = nil, scalingInterval: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetCapacityResponse {
         try await self.updateFleetCapacity(UpdateFleetCapacityRequest(fleetId: fleetId, desiredInstances: desiredInstances, minSize: minSize, maxSize: maxSize, scalingInterval: scalingInterval), region: region, logger: logger, on: eventLoop)

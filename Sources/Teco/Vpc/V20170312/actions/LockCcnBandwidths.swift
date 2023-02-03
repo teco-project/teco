@@ -17,7 +17,15 @@
 extension Vpc {
     /// LockCcnBandwidths请求参数结构体
     public struct LockCcnBandwidthsRequest: TCRequestModel {
-        public init() {
+        /// 带宽实例的唯一ID数组。
+        public let instances: [CcnFlowLock]
+
+        public init(instances: [CcnFlowLock]) {
+            self.instances = instances
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case instances = "Instances"
         }
     }
 
@@ -57,8 +65,8 @@ extension Vpc {
     /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（LockCcns）。
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
     @inlinable @discardableResult
-    public func lockCcnBandwidths(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockCcnBandwidthsResponse> {
-        self.lockCcnBandwidths(LockCcnBandwidthsRequest(), region: region, logger: logger, on: eventLoop)
+    public func lockCcnBandwidths(instances: [CcnFlowLock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockCcnBandwidthsResponse> {
+        self.lockCcnBandwidths(LockCcnBandwidthsRequest(instances: instances), region: region, logger: logger, on: eventLoop)
     }
 
     /// 安全锁定云联网带宽
@@ -67,7 +75,7 @@ extension Vpc {
     /// 该接口一般用来封禁地域间限速的云联网实例下的限速实例, 目前联通内部运营系统通过云API调用, 如果是出口限速, 一般使用更粗的云联网实例粒度封禁（LockCcns）。
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
     @inlinable @discardableResult
-    public func lockCcnBandwidths(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockCcnBandwidthsResponse {
-        try await self.lockCcnBandwidths(LockCcnBandwidthsRequest(), region: region, logger: logger, on: eventLoop)
+    public func lockCcnBandwidths(instances: [CcnFlowLock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockCcnBandwidthsResponse {
+        try await self.lockCcnBandwidths(LockCcnBandwidthsRequest(instances: instances), region: region, logger: logger, on: eventLoop)
     }
 }

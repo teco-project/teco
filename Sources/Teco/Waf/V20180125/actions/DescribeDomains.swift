@@ -58,24 +58,32 @@ extension Waf {
         }
     }
 
+    /// 获取域名列表
+    ///
     /// 查询用户所有域名的详细信息
     @inlinable
     public func describeDomains(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
         self.client.execute(action: "DescribeDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
+    /// 获取域名列表
+    ///
     /// 查询用户所有域名的详细信息
     @inlinable
     public func describeDomains(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
         try await self.client.execute(action: "DescribeDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
+    /// 获取域名列表
+    ///
     /// 查询用户所有域名的详细信息
     @inlinable
     public func describeDomains(offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
         self.describeDomains(DescribeDomainsRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
     }
 
+    /// 获取域名列表
+    ///
     /// 查询用户所有域名的详细信息
     @inlinable
     public func describeDomains(offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {

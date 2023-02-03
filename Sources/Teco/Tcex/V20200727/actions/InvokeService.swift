@@ -56,9 +56,8 @@ extension Tcex {
 
     /// 调用服务
     ///
-    /// 产品控制台已经下线
-    ///
     /// 通过传入文档url，测试服务算法。此接口需要和DescribeInvocationResult接口配置使用，该接口使用InvokeService返回的RequestId作为InvokeId参数，用于查询调用结果。
+    @available(*, unavailable, message: "产品控制台已经下线")
     @inlinable @discardableResult
     public func invokeService(_ input: InvokeServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeServiceResponse> {
         self.client.execute(action: "InvokeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -66,9 +65,8 @@ extension Tcex {
 
     /// 调用服务
     ///
-    /// 产品控制台已经下线
-    ///
     /// 通过传入文档url，测试服务算法。此接口需要和DescribeInvocationResult接口配置使用，该接口使用InvokeService返回的RequestId作为InvokeId参数，用于查询调用结果。
+    @available(*, unavailable, message: "产品控制台已经下线")
     @inlinable @discardableResult
     public func invokeService(_ input: InvokeServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeServiceResponse {
         try await self.client.execute(action: "InvokeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,9 +74,8 @@ extension Tcex {
 
     /// 调用服务
     ///
-    /// 产品控制台已经下线
-    ///
     /// 通过传入文档url，测试服务算法。此接口需要和DescribeInvocationResult接口配置使用，该接口使用InvokeService返回的RequestId作为InvokeId参数，用于查询调用结果。
+    @available(*, unavailable, message: "产品控制台已经下线")
     @inlinable @discardableResult
     public func invokeService(serviceId: String, serviceStatus: Int64, fileUrl: String? = nil, input: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeServiceResponse> {
         self.invokeService(InvokeServiceRequest(serviceId: serviceId, serviceStatus: serviceStatus, fileUrl: fileUrl, input: input), region: region, logger: logger, on: eventLoop)
@@ -86,9 +83,8 @@ extension Tcex {
 
     /// 调用服务
     ///
-    /// 产品控制台已经下线
-    ///
     /// 通过传入文档url，测试服务算法。此接口需要和DescribeInvocationResult接口配置使用，该接口使用InvokeService返回的RequestId作为InvokeId参数，用于查询调用结果。
+    @available(*, unavailable, message: "产品控制台已经下线")
     @inlinable @discardableResult
     public func invokeService(serviceId: String, serviceStatus: Int64, fileUrl: String? = nil, input: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeServiceResponse {
         try await self.invokeService(InvokeServiceRequest(serviceId: serviceId, serviceStatus: serviceStatus, fileUrl: fileUrl, input: input), region: region, logger: logger, on: eventLoop)

@@ -51,11 +51,10 @@ extension Gse {
 
     /// 设置实例保留
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（SetServerReserved）用于将异常的实例标记为保留，用于问题排查。
     ///
     /// 字段ReserveValue：0默认值，不保留；1 保留
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func setServerReserved(_ input: SetServerReservedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerReservedResponse> {
         self.client.execute(action: "SetServerReserved", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -63,11 +62,10 @@ extension Gse {
 
     /// 设置实例保留
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（SetServerReserved）用于将异常的实例标记为保留，用于问题排查。
     ///
     /// 字段ReserveValue：0默认值，不保留；1 保留
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func setServerReserved(_ input: SetServerReservedRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerReservedResponse {
         try await self.client.execute(action: "SetServerReserved", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -75,11 +73,10 @@ extension Gse {
 
     /// 设置实例保留
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（SetServerReserved）用于将异常的实例标记为保留，用于问题排查。
     ///
     /// 字段ReserveValue：0默认值，不保留；1 保留
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func setServerReserved(fleetId: String, instanceId: String, reserveValue: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetServerReservedResponse> {
         self.setServerReserved(SetServerReservedRequest(fleetId: fleetId, instanceId: instanceId, reserveValue: reserveValue), region: region, logger: logger, on: eventLoop)
@@ -87,11 +84,10 @@ extension Gse {
 
     /// 设置实例保留
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（SetServerReserved）用于将异常的实例标记为保留，用于问题排查。
     ///
     /// 字段ReserveValue：0默认值，不保留；1 保留
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func setServerReserved(fleetId: String, instanceId: String, reserveValue: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetServerReservedResponse {
         try await self.setServerReserved(SetServerReservedRequest(fleetId: fleetId, instanceId: instanceId, reserveValue: reserveValue), region: region, logger: logger, on: eventLoop)

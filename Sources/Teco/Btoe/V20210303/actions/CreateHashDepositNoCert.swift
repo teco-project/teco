@@ -77,9 +77,8 @@ extension Btoe {
 
     /// 哈希上链存证(无证书)
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，本接口不生成区块链存证电子凭证。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(_ input: CreateHashDepositNoCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoCertResponse> {
         self.client.execute(action: "CreateHashDepositNoCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -87,9 +86,8 @@ extension Btoe {
 
     /// 哈希上链存证(无证书)
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，本接口不生成区块链存证电子凭证。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(_ input: CreateHashDepositNoCertRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
         try await self.client.execute(action: "CreateHashDepositNoCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -97,9 +95,8 @@ extension Btoe {
 
     /// 哈希上链存证(无证书)
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，本接口不生成区块链存证电子凭证。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoCertResponse> {
         self.createHashDepositNoCert(CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo), region: region, logger: logger, on: eventLoop)
@@ -107,9 +104,8 @@ extension Btoe {
 
     /// 哈希上链存证(无证书)
     ///
-    /// 功能迭代，已上线更高版本的接口2021-05-14
-    ///
     /// 用户通过本接口向BTOE写入待存证的原文数据Hash值，BTOE对业务数据Hash值存证上链，本接口不生成区块链存证电子凭证。
+    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
         try await self.createHashDepositNoCert(CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo), region: region, logger: logger, on: eventLoop)

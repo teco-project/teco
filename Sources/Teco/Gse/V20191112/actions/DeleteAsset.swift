@@ -41,9 +41,8 @@ extension Gse {
 
     /// 删除生成包
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DeleteAsset）用于删除生成包。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAsset(_ input: DeleteAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssetResponse> {
         self.client.execute(action: "DeleteAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -51,9 +50,8 @@ extension Gse {
 
     /// 删除生成包
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DeleteAsset）用于删除生成包。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAsset(_ input: DeleteAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssetResponse {
         try await self.client.execute(action: "DeleteAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -61,9 +59,8 @@ extension Gse {
 
     /// 删除生成包
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DeleteAsset）用于删除生成包。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAsset(assetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAssetResponse> {
         self.deleteAsset(DeleteAssetRequest(assetId: assetId), region: region, logger: logger, on: eventLoop)
@@ -71,9 +68,8 @@ extension Gse {
 
     /// 删除生成包
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DeleteAsset）用于删除生成包。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAsset(assetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAssetResponse {
         try await self.deleteAsset(DeleteAssetRequest(assetId: assetId), region: region, logger: logger, on: eventLoop)

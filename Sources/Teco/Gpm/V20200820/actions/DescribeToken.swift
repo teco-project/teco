@@ -51,9 +51,8 @@ extension Gpm {
 
     /// 查询匹配Token
     ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    ///
     /// 查询匹配Token，Token用于push消息验证。
+    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeToken(_ input: DescribeTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
         self.client.execute(action: "DescribeToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -61,9 +60,8 @@ extension Gpm {
 
     /// 查询匹配Token
     ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    ///
     /// 查询匹配Token，Token用于push消息验证。
+    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeToken(_ input: DescribeTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
         try await self.client.execute(action: "DescribeToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,9 +69,8 @@ extension Gpm {
 
     /// 查询匹配Token
     ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    ///
     /// 查询匹配Token，Token用于push消息验证。
+    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeToken(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
         self.describeToken(DescribeTokenRequest(matchCode: matchCode), region: region, logger: logger, on: eventLoop)
@@ -81,9 +78,8 @@ extension Gpm {
 
     /// 查询匹配Token
     ///
-    /// 此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持
-    ///
     /// 查询匹配Token，Token用于push消息验证。
+    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeToken(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
         try await self.describeToken(DescribeTokenRequest(matchCode: matchCode), region: region, logger: logger, on: eventLoop)

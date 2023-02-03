@@ -3126,6 +3126,12 @@ extension Mps {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputGroup: [DescribeOutput]?
 
+        /// 该Flow关联的媒体传输事件EventId。
+        public let eventId: String
+
+        /// 媒体传输输入流所属的区域，取值和InputRegion相同。
+        public let region: String
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case flowName = "FlowName"
@@ -3133,6 +3139,8 @@ extension Mps {
             case maxBandwidth = "MaxBandwidth"
             case inputGroup = "InputGroup"
             case outputGroup = "OutputGroup"
+            case eventId = "EventId"
+            case region = "Region"
         }
     }
 

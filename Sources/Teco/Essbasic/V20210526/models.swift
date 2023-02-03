@@ -1366,6 +1366,24 @@ extension Essbasic {
         }
     }
 
+    /// 催办接口返回详细信息
+    public struct RemindFlowRecords: TCOutputModel {
+        /// 是否能够催办
+        public let canRemind: Bool
+
+        /// 合同id
+        public let flowId: String
+
+        /// 催办详情
+        public let remindMessage: String
+
+        enum CodingKeys: String, CodingKey {
+            case canRemind = "CanRemind"
+            case flowId = "FlowId"
+            case remindMessage = "RemindMessage"
+        }
+    }
+
     /// 资源链接信息
     public struct ResourceUrlInfo: TCOutputModel {
         /// 资源链接地址，过期时间5分钟

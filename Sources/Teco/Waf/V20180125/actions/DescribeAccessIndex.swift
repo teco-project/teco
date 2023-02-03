@@ -23,7 +23,7 @@ extension Waf {
 
     /// DescribeAccessIndex返回参数结构体
     public struct DescribeAccessIndexResponse: TCResponseModel {
-        /// 是否生效
+        /// 是否生效，true表示生效，false表示未生效
         public let status: Bool
 
         /// 索引配置信息

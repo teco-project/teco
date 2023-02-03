@@ -46,9 +46,8 @@ extension Chdfs {
 
     /// 修改资源标签列表
     ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    ///
     /// 修改资源标签列表，全量覆盖。
+    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyResourceTags(_ input: ModifyResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceTagsResponse> {
         self.client.execute(action: "ModifyResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -56,9 +55,8 @@ extension Chdfs {
 
     /// 修改资源标签列表
     ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    ///
     /// 修改资源标签列表，全量覆盖。
+    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyResourceTags(_ input: ModifyResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
         try await self.client.execute(action: "ModifyResourceTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -66,9 +64,8 @@ extension Chdfs {
 
     /// 修改资源标签列表
     ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    ///
     /// 修改资源标签列表，全量覆盖。
+    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyResourceTags(fileSystemId: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceTagsResponse> {
         self.modifyResourceTags(ModifyResourceTagsRequest(fileSystemId: fileSystemId, tags: tags), region: region, logger: logger, on: eventLoop)
@@ -76,9 +73,8 @@ extension Chdfs {
 
     /// 修改资源标签列表
     ///
-    /// 云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。
-    ///
     /// 修改资源标签列表，全量覆盖。
+    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyResourceTags(fileSystemId: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceTagsResponse {
         try await self.modifyResourceTags(ModifyResourceTagsRequest(fileSystemId: fileSystemId, tags: tags), region: region, logger: logger, on: eventLoop)

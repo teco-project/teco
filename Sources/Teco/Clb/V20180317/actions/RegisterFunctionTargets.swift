@@ -17,7 +17,40 @@
 extension Clb {
     /// RegisterFunctionTargets请求参数结构体
     public struct RegisterFunctionTargetsRequest: TCRequestModel {
-        public init() {
+        /// 负载均衡实例 ID。
+        public let loadBalancerId: String
+
+        /// 负载均衡监听器 ID。
+        public let listenerId: String
+
+        /// 待绑定的云函数列表。
+        public let functionTargets: [FunctionTarget]
+
+        /// 目标转发规则的 ID，当将云函数绑定到七层转发规则时，必须输入此参数或 Domain+Url 参数。
+        public let locationId: String?
+
+        /// 目标转发规则的域名，若已经输入 LocationId 参数，则本参数不生效。
+        public let domain: String?
+
+        /// 目标转发规则的 URL，若已经输入 LocationId 参数，则本参数不生效。
+        public let url: String?
+
+        public init(loadBalancerId: String, listenerId: String, functionTargets: [FunctionTarget], locationId: String? = nil, domain: String? = nil, url: String? = nil) {
+            self.loadBalancerId = loadBalancerId
+            self.listenerId = listenerId
+            self.functionTargets = functionTargets
+            self.locationId = locationId
+            self.domain = domain
+            self.url = url
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case loadBalancerId = "LoadBalancerId"
+            case listenerId = "ListenerId"
+            case functionTargets = "FunctionTargets"
+            case locationId = "LocationId"
+            case domain = "Domain"
+            case url = "Url"
         }
     }
 
@@ -81,8 +114,8 @@ extension Clb {
     /// - 仅七层（HTTP、HTTPS）监听器支持绑定 SCF，四层（TCP、UDP、TCP SSL）监听器和七层 QUIC 监听器不支持。
     /// - CLB 绑定 SCF 仅支持绑定“Event 函数”类型的云函数。
     @inlinable @discardableResult
-    public func registerFunctionTargets(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterFunctionTargetsResponse> {
-        self.registerFunctionTargets(RegisterFunctionTargetsRequest(), region: region, logger: logger, on: eventLoop)
+    public func registerFunctionTargets(loadBalancerId: String, listenerId: String, functionTargets: [FunctionTarget], locationId: String? = nil, domain: String? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterFunctionTargetsResponse> {
+        self.registerFunctionTargets(RegisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url), region: region, logger: logger, on: eventLoop)
     }
 
     /// 绑定云函数到转发规则上
@@ -99,7 +132,7 @@ extension Clb {
     /// - 仅七层（HTTP、HTTPS）监听器支持绑定 SCF，四层（TCP、UDP、TCP SSL）监听器和七层 QUIC 监听器不支持。
     /// - CLB 绑定 SCF 仅支持绑定“Event 函数”类型的云函数。
     @inlinable @discardableResult
-    public func registerFunctionTargets(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterFunctionTargetsResponse {
-        try await self.registerFunctionTargets(RegisterFunctionTargetsRequest(), region: region, logger: logger, on: eventLoop)
+    public func registerFunctionTargets(loadBalancerId: String, listenerId: String, functionTargets: [FunctionTarget], locationId: String? = nil, domain: String? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterFunctionTargetsResponse {
+        try await self.registerFunctionTargets(RegisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url), region: region, logger: logger, on: eventLoop)
     }
 }

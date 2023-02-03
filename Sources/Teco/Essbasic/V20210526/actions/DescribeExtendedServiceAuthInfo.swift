@@ -18,6 +18,8 @@ extension Essbasic {
     /// DescribeExtendedServiceAuthInfo请求参数结构体
     public struct DescribeExtendedServiceAuthInfoRequest: TCRequestModel {
         /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        ///
+        /// 注: 此接口 参数Agent. ProxyOperator.OpenId 需要传递超管或者法人的OpenId
         public let agent: Agent
 
         public init(agent: Agent) {
@@ -46,7 +48,7 @@ extension Essbasic {
 
     /// 查询企业扩展服务授权信息
     ///
-    /// 查询企业扩展服务授权信息，企业经办人需要时企业超管或者法人
+    /// 查询企业扩展服务授权信息，企业经办人需要是企业超管或者法人
     @inlinable
     public func describeExtendedServiceAuthInfo(_ input: DescribeExtendedServiceAuthInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtendedServiceAuthInfoResponse> {
         self.client.execute(action: "DescribeExtendedServiceAuthInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -54,7 +56,7 @@ extension Essbasic {
 
     /// 查询企业扩展服务授权信息
     ///
-    /// 查询企业扩展服务授权信息，企业经办人需要时企业超管或者法人
+    /// 查询企业扩展服务授权信息，企业经办人需要是企业超管或者法人
     @inlinable
     public func describeExtendedServiceAuthInfo(_ input: DescribeExtendedServiceAuthInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtendedServiceAuthInfoResponse {
         try await self.client.execute(action: "DescribeExtendedServiceAuthInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -62,7 +64,7 @@ extension Essbasic {
 
     /// 查询企业扩展服务授权信息
     ///
-    /// 查询企业扩展服务授权信息，企业经办人需要时企业超管或者法人
+    /// 查询企业扩展服务授权信息，企业经办人需要是企业超管或者法人
     @inlinable
     public func describeExtendedServiceAuthInfo(agent: Agent, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtendedServiceAuthInfoResponse> {
         self.describeExtendedServiceAuthInfo(DescribeExtendedServiceAuthInfoRequest(agent: agent), region: region, logger: logger, on: eventLoop)
@@ -70,7 +72,7 @@ extension Essbasic {
 
     /// 查询企业扩展服务授权信息
     ///
-    /// 查询企业扩展服务授权信息，企业经办人需要时企业超管或者法人
+    /// 查询企业扩展服务授权信息，企业经办人需要是企业超管或者法人
     @inlinable
     public func describeExtendedServiceAuthInfo(agent: Agent, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtendedServiceAuthInfoResponse {
         try await self.describeExtendedServiceAuthInfo(DescribeExtendedServiceAuthInfoRequest(agent: agent), region: region, logger: logger, on: eventLoop)

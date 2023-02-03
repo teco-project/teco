@@ -154,6 +154,18 @@ extension Tcb {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memSize: Float?
 
+        /// 扩缩容策略详情
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let policyDetail: [HpaPolicy]?
+
+        /// Cpu的Request值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let cpu: Float?
+
+        /// Mem的Request值
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let mem: Float?
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
 
@@ -188,6 +200,9 @@ extension Tcb {
             case imageUrl = "ImageUrl"
             case cpuSize = "CpuSize"
             case memSize = "MemSize"
+            case policyDetail = "PolicyDetail"
+            case cpu = "Cpu"
+            case mem = "Mem"
             case requestId = "RequestId"
         }
     }

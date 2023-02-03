@@ -17,7 +17,9 @@
 extension Essbasic {
     /// ModifyExtendedService请求参数结构体
     public struct ModifyExtendedServiceRequest: TCRequestModel {
-        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填
+        /// 渠道应用相关信息。 此接口Agent.ProxyOrganizationOpenId、Agent. ProxyOperator.OpenId、Agent.AppId 和 Agent.ProxyAppId 均必填。
+        ///
+        /// 注: 此接口 参数Agent. ProxyOperator.OpenId 需要传递超管或者法人的OpenId
         public let agent: Agent
 
         /// 扩展服务类型
@@ -49,9 +51,10 @@ extension Essbasic {
     /// ModifyExtendedService返回参数结构体
     public struct ModifyExtendedServiceResponse: TCResponseModel {
         /// 操作跳转链接，有效期24小时
-        /// 仅当操作类型是 OPEN 且 扩展服务类型是  AUTO_SIGN 或 DOWNLOAD_FLOW 或者 OVERSEA_SIGN 时返回 ，此时需要经办人(操作人)点击链接完成服务开通操作。若开通操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通服务
+        /// 若操作时没有返回跳转链接，表示无需跳转操作，此时会直接开通/关闭服务。
         ///
-        /// 操作类型是CLOSE时，不会返回此链接，会直接关闭企业该扩展服务
+        /// 当操作类型是 OPEN 且 扩展服务类型是  AUTO_SIGN 或 DOWNLOAD_FLOW 或者 OVERSEA_SIGN 时返回操作链接，
+        /// 返回的链接需要平台方自行触达超管或法人，超管或法人点击链接完成服务开通操作。
         public let operateUrl: String
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
@@ -65,7 +68,7 @@ extension Essbasic {
 
     /// 修改企业扩展服务
     ///
-    /// 修改（操作）企业扩展服务 ，企业经办人需要时企业超管或者法人
+    /// 修改（操作）企业扩展服务 ，企业经办人需要是企业超管或者法人
     @inlinable
     public func modifyExtendedService(_ input: ModifyExtendedServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExtendedServiceResponse> {
         self.client.execute(action: "ModifyExtendedService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -73,7 +76,7 @@ extension Essbasic {
 
     /// 修改企业扩展服务
     ///
-    /// 修改（操作）企业扩展服务 ，企业经办人需要时企业超管或者法人
+    /// 修改（操作）企业扩展服务 ，企业经办人需要是企业超管或者法人
     @inlinable
     public func modifyExtendedService(_ input: ModifyExtendedServiceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtendedServiceResponse {
         try await self.client.execute(action: "ModifyExtendedService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,7 +84,7 @@ extension Essbasic {
 
     /// 修改企业扩展服务
     ///
-    /// 修改（操作）企业扩展服务 ，企业经办人需要时企业超管或者法人
+    /// 修改（操作）企业扩展服务 ，企业经办人需要是企业超管或者法人
     @inlinable
     public func modifyExtendedService(agent: Agent, serviceType: String, operate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyExtendedServiceResponse> {
         self.modifyExtendedService(ModifyExtendedServiceRequest(agent: agent, serviceType: serviceType, operate: operate), region: region, logger: logger, on: eventLoop)
@@ -89,7 +92,7 @@ extension Essbasic {
 
     /// 修改企业扩展服务
     ///
-    /// 修改（操作）企业扩展服务 ，企业经办人需要时企业超管或者法人
+    /// 修改（操作）企业扩展服务 ，企业经办人需要是企业超管或者法人
     @inlinable
     public func modifyExtendedService(agent: Agent, serviceType: String, operate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyExtendedServiceResponse {
         try await self.modifyExtendedService(ModifyExtendedServiceRequest(agent: agent, serviceType: serviceType, operate: operate), region: region, logger: logger, on: eventLoop)

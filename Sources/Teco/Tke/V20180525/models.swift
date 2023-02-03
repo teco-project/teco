@@ -4780,7 +4780,7 @@ extension Tke {
     }
 
     /// kubernetes Taint
-    public struct Taint: TCInputModel {
+    public struct Taint: TCInputModel, TCOutputModel {
         /// Key
         public let key: String?
 

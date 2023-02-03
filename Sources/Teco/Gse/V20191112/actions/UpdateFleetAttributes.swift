@@ -71,9 +71,8 @@ extension Gse {
 
     /// 更新服务器舰队属性
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetAttributes(_ input: UpdateFleetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetAttributesResponse> {
         self.client.execute(action: "UpdateFleetAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -81,9 +80,8 @@ extension Gse {
 
     /// 更新服务器舰队属性
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetAttributes(_ input: UpdateFleetAttributesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetAttributesResponse {
         try await self.client.execute(action: "UpdateFleetAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -91,9 +89,8 @@ extension Gse {
 
     /// 更新服务器舰队属性
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetAttributes(fleetId: String, description: String? = nil, name: String? = nil, newGameSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateFleetAttributesResponse> {
         self.updateFleetAttributes(UpdateFleetAttributesRequest(fleetId: fleetId, description: description, name: name, newGameSessionProtectionPolicy: newGameSessionProtectionPolicy, resourceCreationLimitPolicy: resourceCreationLimitPolicy, gameServerSessionProtectionTimeLimit: gameServerSessionProtectionTimeLimit), region: region, logger: logger, on: eventLoop)
@@ -101,9 +98,8 @@ extension Gse {
 
     /// 更新服务器舰队属性
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（UpdateFleetAttributes）用于更新服务器舰队属性。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateFleetAttributes(fleetId: String, description: String? = nil, name: String? = nil, newGameSessionProtectionPolicy: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateFleetAttributesResponse {
         try await self.updateFleetAttributes(UpdateFleetAttributesRequest(fleetId: fleetId, description: description, name: name, newGameSessionProtectionPolicy: newGameSessionProtectionPolicy, resourceCreationLimitPolicy: resourceCreationLimitPolicy, gameServerSessionProtectionTimeLimit: gameServerSessionProtectionTimeLimit), region: region, logger: logger, on: eventLoop)

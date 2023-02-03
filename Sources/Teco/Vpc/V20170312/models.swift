@@ -606,6 +606,33 @@ extension Vpc {
         }
     }
 
+    /// 云联网限速实例锁对象，该对象特用于运营端使用，用于封禁实例流量。
+    public struct CcnFlowLock: TCInputModel {
+        /// 带宽所属的云联网ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let ccnId: String?
+
+        /// 实例所属用户主账号ID。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let userAccountID: String?
+
+        /// 带宽实例的唯一ID。作为`UnlockCcnBandwidths`接口和`LockCcnBandwidths`接口的入参时，该字段必传。
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let regionFlowControlId: String?
+
+        public init(ccnId: String, userAccountID: String, regionFlowControlId: String? = nil) {
+            self.ccnId = ccnId
+            self.userAccountID = userAccountID
+            self.regionFlowControlId = regionFlowControlId
+        }
+
+        enum CodingKeys: String, CodingKey {
+            case ccnId = "CcnId"
+            case userAccountID = "UserAccountID"
+            case regionFlowControlId = "RegionFlowControlId"
+        }
+    }
+
     /// 云联网（CCN）关联实例（Instance）对象。
     public struct CcnInstance: TCInputModel, TCOutputModel {
         /// 关联实例ID。

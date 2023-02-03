@@ -79,8 +79,6 @@ extension Gse {
 
     /// 创建生成包
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateAsset）用于创建生成包。
     /// 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
     ///
@@ -95,6 +93,7 @@ extension Gse {
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
     ///
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAsset(_ input: CreateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
         self.client.execute(action: "CreateAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -102,8 +101,6 @@ extension Gse {
 
     /// 创建生成包
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateAsset）用于创建生成包。
     /// 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
     ///
@@ -118,6 +115,7 @@ extension Gse {
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
     ///
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAsset(_ input: CreateAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {
         try await self.client.execute(action: "CreateAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -125,8 +123,6 @@ extension Gse {
 
     /// 创建生成包
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateAsset）用于创建生成包。
     /// 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
     ///
@@ -141,6 +137,7 @@ extension Gse {
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
     ///
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
         self.createAsset(CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags), region: region, logger: logger, on: eventLoop)
@@ -148,8 +145,6 @@ extension Gse {
 
     /// 创建生成包
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateAsset）用于创建生成包。
     /// 通过获取上传cos的临时密钥，将文件上传至cos，然后将生成包的zip名称下发给本接口完成资源创建。
     ///
@@ -164,6 +159,7 @@ extension Gse {
     ///     3. 使用 COS API 进行上传([参考文档](https://cloud.tencent.com/document/product/436/7742))
     ///
     /// 具体使用场景可以参考 [GetUploadCredentials](https://cloud.tencent.com/document/product/1165/48727) ,  [GetUploadFederationToken](https://cloud.tencent.com/document/product/1165/48742)和下面 CreateAsset 示例。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {
         try await self.createAsset(CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags), region: region, logger: logger, on: eventLoop)

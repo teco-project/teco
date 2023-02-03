@@ -2315,7 +2315,7 @@ extension Cvm {
     }
 
     /// 标签键值对
-    public struct Tag: TCInputModel {
+    public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         public let key: String
 

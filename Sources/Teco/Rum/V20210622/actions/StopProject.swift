@@ -39,7 +39,7 @@ extension Rum {
         }
     }
 
-    /// 停止项目上报
+    /// 停止应用上报
     ///
     /// 停止项目使用与上报数据
     @inlinable @discardableResult
@@ -47,7 +47,7 @@ extension Rum {
         self.client.execute(action: "StopProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 停止项目上报
+    /// 停止应用上报
     ///
     /// 停止项目使用与上报数据
     @inlinable @discardableResult
@@ -55,7 +55,7 @@ extension Rum {
         try await self.client.execute(action: "StopProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 停止项目上报
+    /// 停止应用上报
     ///
     /// 停止项目使用与上报数据
     @inlinable @discardableResult
@@ -63,7 +63,7 @@ extension Rum {
         self.stopProject(StopProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 停止项目上报
+    /// 停止应用上报
     ///
     /// 停止项目使用与上报数据
     @inlinable @discardableResult

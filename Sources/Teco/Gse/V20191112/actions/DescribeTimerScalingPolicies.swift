@@ -76,9 +76,8 @@ extension Gse {
 
     /// 查询定时器列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeTimerScalingPolicies）用于查询fleet下的定时器列表。可以通过fleetid，定时器名称分页查询。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimerScalingPoliciesResponse> {
         self.client.execute(action: "DescribeTimerScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -86,9 +85,8 @@ extension Gse {
 
     /// 查询定时器列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeTimerScalingPolicies）用于查询fleet下的定时器列表。可以通过fleetid，定时器名称分页查询。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(_ input: DescribeTimerScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimerScalingPoliciesResponse {
         try await self.client.execute(action: "DescribeTimerScalingPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -96,9 +94,8 @@ extension Gse {
 
     /// 查询定时器列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeTimerScalingPolicies）用于查询fleet下的定时器列表。可以通过fleetid，定时器名称分页查询。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(fleetId: String? = nil, timerName: String? = nil, beginTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimerScalingPoliciesResponse> {
         self.describeTimerScalingPolicies(DescribeTimerScalingPoliciesRequest(fleetId: fleetId, timerName: timerName, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
@@ -106,9 +103,8 @@ extension Gse {
 
     /// 查询定时器列表
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DescribeTimerScalingPolicies）用于查询fleet下的定时器列表。可以通过fleetid，定时器名称分页查询。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeTimerScalingPolicies(fleetId: String? = nil, timerName: String? = nil, beginTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimerScalingPoliciesResponse {
         try await self.describeTimerScalingPolicies(DescribeTimerScalingPoliciesRequest(fleetId: fleetId, timerName: timerName, beginTime: beginTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)

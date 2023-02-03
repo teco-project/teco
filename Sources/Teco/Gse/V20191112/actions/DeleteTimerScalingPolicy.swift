@@ -51,9 +51,8 @@ extension Gse {
 
     /// 删除定时器
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteTimerScalingPolicy(_ input: DeleteTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimerScalingPolicyResponse> {
         self.client.execute(action: "DeleteTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -61,9 +60,8 @@ extension Gse {
 
     /// 删除定时器
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteTimerScalingPolicy(_ input: DeleteTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimerScalingPolicyResponse {
         try await self.client.execute(action: "DeleteTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,9 +69,8 @@ extension Gse {
 
     /// 删除定时器
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteTimerScalingPolicy(timerId: String? = nil, fleetId: String? = nil, timerName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTimerScalingPolicyResponse> {
         self.deleteTimerScalingPolicy(DeleteTimerScalingPolicyRequest(timerId: timerId, fleetId: fleetId, timerName: timerName), region: region, logger: logger, on: eventLoop)
@@ -81,9 +78,8 @@ extension Gse {
 
     /// 删除定时器
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（DeleteTimerScalingPolicy）用于删除fleet下的定时器。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteTimerScalingPolicy(timerId: String? = nil, fleetId: String? = nil, timerName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTimerScalingPolicyResponse {
         try await self.deleteTimerScalingPolicy(DeleteTimerScalingPolicyRequest(timerId: timerId, fleetId: fleetId, timerName: timerName), region: region, logger: logger, on: eventLoop)

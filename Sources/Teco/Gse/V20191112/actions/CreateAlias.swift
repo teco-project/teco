@@ -60,9 +60,8 @@ extension Gse {
 
     /// 创建别名
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateAlias）用于创建别名。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAlias(_ input: CreateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasResponse> {
         self.client.execute(action: "CreateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -70,9 +69,8 @@ extension Gse {
 
     /// 创建别名
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateAlias）用于创建别名。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAlias(_ input: CreateAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
         try await self.client.execute(action: "CreateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -80,9 +78,8 @@ extension Gse {
 
     /// 创建别名
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateAlias）用于创建别名。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAlias(name: String, routingStrategy: RoutingStrategy, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAliasResponse> {
         self.createAlias(CreateAliasRequest(name: name, routingStrategy: routingStrategy, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
@@ -90,9 +87,8 @@ extension Gse {
 
     /// 创建别名
     ///
-    /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
-    ///
     /// 本接口（CreateAlias）用于创建别名。
+    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAlias(name: String, routingStrategy: RoutingStrategy, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAliasResponse {
         try await self.createAlias(CreateAliasRequest(name: name, routingStrategy: routingStrategy, description: description, tags: tags), region: region, logger: logger, on: eventLoop)

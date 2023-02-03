@@ -62,7 +62,7 @@ extension Rum {
         }
     }
 
-    /// 获取项目列表
+    /// 获取 RUM 应用列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
@@ -70,7 +70,7 @@ extension Rum {
         self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
-    /// 获取项目列表
+    /// 获取 RUM 应用列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
@@ -78,7 +78,7 @@ extension Rum {
         try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
-    /// 获取项目列表
+    /// 获取 RUM 应用列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
@@ -86,7 +86,7 @@ extension Rum {
         self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), region: region, logger: logger, on: eventLoop)
     }
 
-    /// 获取项目列表
+    /// 获取 RUM 应用列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable

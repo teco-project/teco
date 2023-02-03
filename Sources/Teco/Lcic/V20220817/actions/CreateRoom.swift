@@ -44,7 +44,7 @@ extension Lcic {
         /// coteaching 双师
         public let subType: String
 
-        /// 老师ID。通过[注册用户]接口获取的UserId。
+        /// 老师ID。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有老师权限。
         public let teacherId: String?
 
         /// 进入课堂时是否自动连麦。可以有以下取值：
@@ -63,7 +63,7 @@ extension Lcic {
         /// 注：如果该配置取值为0，录制将从上课后开始，课堂结束后停止。
         public let disableRecord: UInt64?
 
-        /// 助教Id列表。通过[注册用户]接口获取的UserId。
+        /// 助教Id列表。通过[注册用户]接口获取的UserId。指定后该用户在房间内拥有助教权限。
         public let assistants: [String]?
 
         /// 录制布局。

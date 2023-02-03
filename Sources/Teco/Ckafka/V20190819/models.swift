@@ -2564,9 +2564,14 @@ extension Ckafka {
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupList: [DescribeGroup]?
 
+        /// 消费分组配额
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let groupCountQuota: UInt64?
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case groupList = "GroupList"
+            case groupCountQuota = "GroupCountQuota"
         }
     }
 

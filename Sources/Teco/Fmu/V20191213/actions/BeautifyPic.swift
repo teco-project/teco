@@ -67,10 +67,12 @@ extension Fmu {
     /// BeautifyPic返回参数结构体
     public struct BeautifyPicResponse: TCResponseModel {
         /// RspImgType 为 base64 时，返回处理后的图片 base64 数据。默认返回base64
-        public let resultImage: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resultImage: String?
 
         /// RspImgType 为 url 时，返回处理后的图片 url 数据。
-        public let resultUrl: String
+        /// 注意：此字段可能返回 null，表示取不到有效值。
+        public let resultUrl: String?
 
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
