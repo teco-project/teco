@@ -74,7 +74,8 @@ extension Ckafka {
     /// 本接口用于增加主题中的分区
     @inlinable
     public func createPartition(instanceId: String, topicName: String, partitionNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePartitionResponse> {
-        self.createPartition(CreatePartitionRequest(instanceId: instanceId, topicName: topicName, partitionNum: partitionNum), region: region, logger: logger, on: eventLoop)
+        let input = CreatePartitionRequest(instanceId: instanceId, topicName: topicName, partitionNum: partitionNum)
+        return self.client.execute(action: "CreatePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增加主题分区
@@ -82,6 +83,7 @@ extension Ckafka {
     /// 本接口用于增加主题中的分区
     @inlinable
     public func createPartition(instanceId: String, topicName: String, partitionNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePartitionResponse {
-        try await self.createPartition(CreatePartitionRequest(instanceId: instanceId, topicName: topicName, partitionNum: partitionNum), region: region, logger: logger, on: eventLoop)
+        let input = CreatePartitionRequest(instanceId: instanceId, topicName: topicName, partitionNum: partitionNum)
+        return try await self.client.execute(action: "CreatePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

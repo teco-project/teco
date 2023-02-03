@@ -81,12 +81,14 @@ extension Billing {
     /// 支付订单
     @inlinable
     public func payDeals(orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayDealsResponse> {
-        self.payDeals(PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds), region: region, logger: logger, on: eventLoop)
+        let input = PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds)
+        return self.client.execute(action: "PayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 支付订单
     @inlinable
     public func payDeals(orderIds: [String]? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, bigDealIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayDealsResponse {
-        try await self.payDeals(PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds), region: region, logger: logger, on: eventLoop)
+        let input = PayDealsRequest(orderIds: orderIds, autoVoucher: autoVoucher, voucherIds: voucherIds, bigDealIds: bigDealIds)
+        return try await self.client.execute(action: "PayDeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

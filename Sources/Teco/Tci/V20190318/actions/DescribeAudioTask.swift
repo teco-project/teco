@@ -106,7 +106,8 @@ extension Tci {
     /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
     public func describeAudioTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAudioTaskResponse> {
-        self.describeAudioTask(DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeAudioTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 音频分析结果查询
@@ -114,6 +115,7 @@ extension Tci {
     /// 音频评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
     public func describeAudioTask(jobId: Int64, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioTaskResponse {
-        try await self.describeAudioTask(DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAudioTaskRequest(jobId: jobId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeAudioTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -94,7 +94,8 @@ extension Goosefs {
     /// 创建数据流通任务,包括从将文件系统的数据上传到存储桶下, 以及从存储桶下载到文件系统里。
     @inlinable
     public func createDataRepositoryTask(taskType: String, bucket: String, fileSystemId: String, taskPath: String, taskName: String, repositoryType: String? = nil, textLocation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDataRepositoryTaskResponse> {
-        self.createDataRepositoryTask(CreateDataRepositoryTaskRequest(taskType: taskType, bucket: bucket, fileSystemId: fileSystemId, taskPath: taskPath, taskName: taskName, repositoryType: repositoryType, textLocation: textLocation), region: region, logger: logger, on: eventLoop)
+        let input = CreateDataRepositoryTaskRequest(taskType: taskType, bucket: bucket, fileSystemId: fileSystemId, taskPath: taskPath, taskName: taskName, repositoryType: repositoryType, textLocation: textLocation)
+        return self.client.execute(action: "CreateDataRepositoryTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建数据流通任务
@@ -102,6 +103,7 @@ extension Goosefs {
     /// 创建数据流通任务,包括从将文件系统的数据上传到存储桶下, 以及从存储桶下载到文件系统里。
     @inlinable
     public func createDataRepositoryTask(taskType: String, bucket: String, fileSystemId: String, taskPath: String, taskName: String, repositoryType: String? = nil, textLocation: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDataRepositoryTaskResponse {
-        try await self.createDataRepositoryTask(CreateDataRepositoryTaskRequest(taskType: taskType, bucket: bucket, fileSystemId: fileSystemId, taskPath: taskPath, taskName: taskName, repositoryType: repositoryType, textLocation: textLocation), region: region, logger: logger, on: eventLoop)
+        let input = CreateDataRepositoryTaskRequest(taskType: taskType, bucket: bucket, fileSystemId: fileSystemId, taskPath: taskPath, taskName: taskName, repositoryType: repositoryType, textLocation: textLocation)
+        return try await self.client.execute(action: "CreateDataRepositoryTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

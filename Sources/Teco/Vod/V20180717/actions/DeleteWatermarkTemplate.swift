@@ -65,7 +65,8 @@ extension Vod {
     /// 删除用户自定义水印模板。
     @inlinable @discardableResult
     public func deleteWatermarkTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWatermarkTemplateResponse> {
-        self.deleteWatermarkTemplate(DeleteWatermarkTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWatermarkTemplateRequest(definition: definition, subAppId: subAppId)
+        return self.client.execute(action: "DeleteWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除水印模板
@@ -73,6 +74,7 @@ extension Vod {
     /// 删除用户自定义水印模板。
     @inlinable @discardableResult
     public func deleteWatermarkTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWatermarkTemplateResponse {
-        try await self.deleteWatermarkTemplate(DeleteWatermarkTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWatermarkTemplateRequest(definition: definition, subAppId: subAppId)
+        return try await self.client.execute(action: "DeleteWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

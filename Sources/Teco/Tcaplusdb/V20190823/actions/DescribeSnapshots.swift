@@ -82,12 +82,14 @@ extension Tcaplusdb {
     /// 查询快照列表
     @inlinable
     public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, selectedTables: [SelectedTableInfoNew]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotsResponse> {
-        self.describeSnapshots(DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName, selectedTables: selectedTables)
+        return self.client.execute(action: "DescribeSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询快照列表
     @inlinable
     public func describeSnapshots(clusterId: String, tableGroupId: String? = nil, tableName: String? = nil, snapshotName: String? = nil, selectedTables: [SelectedTableInfoNew]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotsResponse {
-        try await self.describeSnapshots(DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotsRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableName: tableName, snapshotName: snapshotName, selectedTables: selectedTables)
+        return try await self.client.execute(action: "DescribeSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -95,7 +95,8 @@ extension Iotvideo {
     /// 本接口（DescribeDevices）用于获取设备信息列表。
     @inlinable
     public func describeDevices(productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
-        self.describeDevices(DescribeDevicesRequest(productId: productId, returnModel: returnModel, limit: limit, offset: offset, otaVersion: otaVersion, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicesRequest(productId: productId, returnModel: returnModel, limit: limit, offset: offset, otaVersion: otaVersion, deviceName: deviceName)
+        return self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备信息列表
@@ -103,6 +104,7 @@ extension Iotvideo {
     /// 本接口（DescribeDevices）用于获取设备信息列表。
     @inlinable
     public func describeDevices(productId: String, returnModel: Bool, limit: UInt64, offset: UInt64, otaVersion: String? = nil, deviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.describeDevices(DescribeDevicesRequest(productId: productId, returnModel: returnModel, limit: limit, offset: offset, otaVersion: otaVersion, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicesRequest(productId: productId, returnModel: returnModel, limit: limit, offset: offset, otaVersion: otaVersion, deviceName: deviceName)
+        return try await self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

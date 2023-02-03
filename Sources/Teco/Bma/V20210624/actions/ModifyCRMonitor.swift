@@ -70,7 +70,8 @@ extension Bma {
     /// 开启/关闭监测
     @inlinable @discardableResult
     public func modifyCRMonitor(workId: Int64, monitorStatus: String, monitorEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRMonitorResponse> {
-        self.modifyCRMonitor(ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd)
+        return self.client.execute(action: "ModifyCRMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭监测
@@ -78,6 +79,7 @@ extension Bma {
     /// 开启/关闭监测
     @inlinable @discardableResult
     public func modifyCRMonitor(workId: Int64, monitorStatus: String, monitorEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRMonitorResponse {
-        try await self.modifyCRMonitor(ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCRMonitorRequest(workId: workId, monitorStatus: monitorStatus, monitorEnd: monitorEnd)
+        return try await self.client.execute(action: "ModifyCRMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,12 +69,14 @@ extension Tke {
     /// 获取TKE支持的App列表
     @inlinable
     public func getTkeAppChartList(kind: String? = nil, arch: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTkeAppChartListResponse> {
-        self.getTkeAppChartList(GetTkeAppChartListRequest(kind: kind, arch: arch, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
+        let input = GetTkeAppChartListRequest(kind: kind, arch: arch, clusterType: clusterType)
+        return self.client.execute(action: "GetTkeAppChartList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取TKE支持的App列表
     @inlinable
     public func getTkeAppChartList(kind: String? = nil, arch: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTkeAppChartListResponse {
-        try await self.getTkeAppChartList(GetTkeAppChartListRequest(kind: kind, arch: arch, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
+        let input = GetTkeAppChartListRequest(kind: kind, arch: arch, clusterType: clusterType)
+        return try await self.client.execute(action: "GetTkeAppChartList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

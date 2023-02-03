@@ -74,7 +74,8 @@ extension Cfg {
     /// 获取演练过程中的所有日志
     @inlinable
     public func describeTaskExecuteLogs(taskId: UInt64, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskExecuteLogsResponse> {
-        self.describeTaskExecuteLogs(DescribeTaskExecuteLogsRequest(taskId: taskId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskExecuteLogsRequest(taskId: taskId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeTaskExecuteLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取演练过程日志
@@ -82,6 +83,7 @@ extension Cfg {
     /// 获取演练过程中的所有日志
     @inlinable
     public func describeTaskExecuteLogs(taskId: UInt64, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskExecuteLogsResponse {
-        try await self.describeTaskExecuteLogs(DescribeTaskExecuteLogsRequest(taskId: taskId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskExecuteLogsRequest(taskId: taskId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeTaskExecuteLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

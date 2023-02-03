@@ -108,12 +108,14 @@ extension Cpdp {
     /// 云企付-查询联行号
     @inlinable
     public func queryOpenBankBankBranchList(channelMerchantId: String, channelName: String, paymentMethod: String, bankBranchName: String, bankAbbreviation: String, pageNumber: Paging, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBankBranchListResponse> {
-        self.queryOpenBankBankBranchList(QueryOpenBankBankBranchListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, bankBranchName: bankBranchName, bankAbbreviation: bankAbbreviation, pageNumber: pageNumber, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankBankBranchListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, bankBranchName: bankBranchName, bankAbbreviation: bankAbbreviation, pageNumber: pageNumber, environment: environment)
+        return self.client.execute(action: "QueryOpenBankBankBranchList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-查询联行号
     @inlinable
     public func queryOpenBankBankBranchList(channelMerchantId: String, channelName: String, paymentMethod: String, bankBranchName: String, bankAbbreviation: String, pageNumber: Paging, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBankBranchListResponse {
-        try await self.queryOpenBankBankBranchList(QueryOpenBankBankBranchListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, bankBranchName: bankBranchName, bankAbbreviation: bankAbbreviation, pageNumber: pageNumber, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankBankBranchListRequest(channelMerchantId: channelMerchantId, channelName: channelName, paymentMethod: paymentMethod, bankBranchName: bankBranchName, bankAbbreviation: bankAbbreviation, pageNumber: pageNumber, environment: environment)
+        return try await self.client.execute(action: "QueryOpenBankBankBranchList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

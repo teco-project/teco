@@ -73,12 +73,14 @@ extension Tcr {
     /// 更新实例公网访问白名单
     @inlinable
     public func modifySecurityPolicy(registryId: String, policyIndex: Int64, cidrBlock: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
-        self.modifySecurityPolicy(ModifySecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, cidrBlock: cidrBlock, description: description), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, cidrBlock: cidrBlock, description: description)
+        return self.client.execute(action: "ModifySecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新实例公网访问白名单
     @inlinable
     public func modifySecurityPolicy(registryId: String, policyIndex: Int64, cidrBlock: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
-        try await self.modifySecurityPolicy(ModifySecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, cidrBlock: cidrBlock, description: description), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityPolicyRequest(registryId: registryId, policyIndex: policyIndex, cidrBlock: cidrBlock, description: description)
+        return try await self.client.execute(action: "ModifySecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

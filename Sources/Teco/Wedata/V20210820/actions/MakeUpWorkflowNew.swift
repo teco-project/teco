@@ -82,7 +82,8 @@ extension Wedata {
     /// 工作流下所有任务的补录
     @inlinable
     public func makeUpWorkflowNew(workFlowId: String, startTime: String, endTime: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MakeUpWorkflowNewResponse> {
-        self.makeUpWorkflowNew(MakeUpWorkflowNewRequest(workFlowId: workFlowId, startTime: startTime, endTime: endTime, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = MakeUpWorkflowNewRequest(workFlowId: workFlowId, startTime: startTime, endTime: endTime, projectId: projectId)
+        return self.client.execute(action: "MakeUpWorkflowNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 工作流任务补录【Beta版本】
@@ -91,6 +92,7 @@ extension Wedata {
     /// 工作流下所有任务的补录
     @inlinable
     public func makeUpWorkflowNew(workFlowId: String, startTime: String, endTime: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MakeUpWorkflowNewResponse {
-        try await self.makeUpWorkflowNew(MakeUpWorkflowNewRequest(workFlowId: workFlowId, startTime: startTime, endTime: endTime, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = MakeUpWorkflowNewRequest(workFlowId: workFlowId, startTime: startTime, endTime: endTime, projectId: projectId)
+        return try await self.client.execute(action: "MakeUpWorkflowNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

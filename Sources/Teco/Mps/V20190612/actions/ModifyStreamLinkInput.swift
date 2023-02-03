@@ -69,7 +69,8 @@ extension Mps {
     /// 修改媒体传输流的输入信息。
     @inlinable
     public func modifyStreamLinkInput(flowId: String, input: ModifyInput, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStreamLinkInputResponse> {
-        self.modifyStreamLinkInput(ModifyStreamLinkInputRequest(flowId: flowId, input: input), region: region, logger: logger, on: eventLoop)
+        let input = ModifyStreamLinkInputRequest(flowId: flowId, input: input)
+        return self.client.execute(action: "ModifyStreamLinkInput", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改媒体传输输入
@@ -77,6 +78,7 @@ extension Mps {
     /// 修改媒体传输流的输入信息。
     @inlinable
     public func modifyStreamLinkInput(flowId: String, input: ModifyInput, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStreamLinkInputResponse {
-        try await self.modifyStreamLinkInput(ModifyStreamLinkInputRequest(flowId: flowId, input: input), region: region, logger: logger, on: eventLoop)
+        let input = ModifyStreamLinkInputRequest(flowId: flowId, input: input)
+        return try await self.client.execute(action: "ModifyStreamLinkInput", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

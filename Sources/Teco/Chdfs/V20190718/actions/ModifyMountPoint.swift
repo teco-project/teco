@@ -78,7 +78,8 @@ extension Chdfs {
     @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyMountPoint(mountPointId: String, mountPointName: String? = nil, mountPointStatus: UInt64? = nil, accessGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMountPointResponse> {
-        self.modifyMountPoint(ModifyMountPointRequest(mountPointId: mountPointId, mountPointName: mountPointName, mountPointStatus: mountPointStatus, accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMountPointRequest(mountPointId: mountPointId, mountPointName: mountPointName, mountPointStatus: mountPointStatus, accessGroupId: accessGroupId)
+        return self.client.execute(action: "ModifyMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改挂载点属性
@@ -87,6 +88,7 @@ extension Chdfs {
     @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyMountPoint(mountPointId: String, mountPointName: String? = nil, mountPointStatus: UInt64? = nil, accessGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMountPointResponse {
-        try await self.modifyMountPoint(ModifyMountPointRequest(mountPointId: mountPointId, mountPointName: mountPointName, mountPointStatus: mountPointStatus, accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMountPointRequest(mountPointId: mountPointId, mountPointName: mountPointName, mountPointStatus: mountPointStatus, accessGroupId: accessGroupId)
+        return try await self.client.execute(action: "ModifyMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

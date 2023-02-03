@@ -74,7 +74,8 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancesAttributeResponse> {
-        self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName)
+        return self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例的属性
@@ -85,6 +86,7 @@ extension Lighthouse {
     /// * 本接口为异步接口，请求发送成功后会返回一个 RequestId，此时操作并未立即完成。实例操作结果可以通过调用 DescribeInstances 接口查询，如果实例的最新操作状态（LatestOperationState）为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func modifyInstancesAttribute(instanceIds: [String], instanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesAttributeResponse {
-        try await self.modifyInstancesAttribute(ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstancesAttributeRequest(instanceIds: instanceIds, instanceName: instanceName)
+        return try await self.client.execute(action: "ModifyInstancesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

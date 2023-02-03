@@ -77,12 +77,14 @@ extension Cpdp {
     /// 灵云-上传主播信息
     @inlinable
     public func uploadExternalAnchorInfo(anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadExternalAnchorInfoResponse> {
-        self.uploadExternalAnchorInfo(UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse), region: region, logger: logger, on: eventLoop)
+        let input = UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse)
+        return self.client.execute(action: "UploadExternalAnchorInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-上传主播信息
     @inlinable
     public func uploadExternalAnchorInfo(anchorId: String, idCardFront: String? = nil, idCardReverse: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadExternalAnchorInfoResponse {
-        try await self.uploadExternalAnchorInfo(UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse), region: region, logger: logger, on: eventLoop)
+        let input = UploadExternalAnchorInfoRequest(anchorId: anchorId, idCardFront: idCardFront, idCardReverse: idCardReverse)
+        return try await self.client.execute(action: "UploadExternalAnchorInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

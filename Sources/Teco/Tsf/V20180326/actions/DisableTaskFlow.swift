@@ -58,12 +58,14 @@ extension Tsf {
     /// 停用工作流
     @inlinable
     public func disableTaskFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTaskFlowResponse> {
-        self.disableTaskFlow(DisableTaskFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DisableTaskFlowRequest(flowId: flowId)
+        return self.client.execute(action: "DisableTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用工作流
     @inlinable
     public func disableTaskFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskFlowResponse {
-        try await self.disableTaskFlow(DisableTaskFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DisableTaskFlowRequest(flowId: flowId)
+        return try await self.client.execute(action: "DisableTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

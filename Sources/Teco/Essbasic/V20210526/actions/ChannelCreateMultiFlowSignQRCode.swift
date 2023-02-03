@@ -119,7 +119,8 @@ extension Essbasic {
     /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
     @inlinable
     public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, operator: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateMultiFlowSignQRCodeResponse> {
-        self.channelCreateMultiFlowSignQRCode(ChannelCreateMultiFlowSignQRCodeRequest(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, operator: `operator`, approverRestrictions: approverRestrictions), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCreateMultiFlowSignQRCodeRequest(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, operator: `operator`, approverRestrictions: approverRestrictions)
+        return self.client.execute(action: "ChannelCreateMultiFlowSignQRCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建一码多扫签署流程二维码
@@ -128,6 +129,7 @@ extension Essbasic {
     /// 适用的模版仅限于B2C（1、无序签署，2、顺序签署时B静默签署，3、顺序签署时B非首位签署）、单C的模版，且模版中发起方没有填写控件。
     @inlinable
     public func channelCreateMultiFlowSignQRCode(agent: Agent, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, operator: UserInfo? = nil, approverRestrictions: ApproverRestriction? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateMultiFlowSignQRCodeResponse {
-        try await self.channelCreateMultiFlowSignQRCode(ChannelCreateMultiFlowSignQRCodeRequest(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, operator: `operator`, approverRestrictions: approverRestrictions), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCreateMultiFlowSignQRCodeRequest(agent: agent, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, operator: `operator`, approverRestrictions: approverRestrictions)
+        return try await self.client.execute(action: "ChannelCreateMultiFlowSignQRCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

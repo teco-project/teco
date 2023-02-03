@@ -84,7 +84,8 @@ extension Iotvideo {
     /// 当终端用户与设备有强绑定关系时，可以不用调用此接口
     @inlinable
     public func createDevToken(accessId: String, tids: [String], ttlMinutes: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDevTokenResponse> {
-        self.createDevToken(CreateDevTokenRequest(accessId: accessId, tids: tids, ttlMinutes: ttlMinutes), region: region, logger: logger, on: eventLoop)
+        let input = CreateDevTokenRequest(accessId: accessId, tids: tids, ttlMinutes: ttlMinutes)
+        return self.client.execute(action: "CreateDevToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端用户临时访问设备授权
@@ -95,6 +96,7 @@ extension Iotvideo {
     /// 当终端用户与设备有强绑定关系时，可以不用调用此接口
     @inlinable
     public func createDevToken(accessId: String, tids: [String], ttlMinutes: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevTokenResponse {
-        try await self.createDevToken(CreateDevTokenRequest(accessId: accessId, tids: tids, ttlMinutes: ttlMinutes), region: region, logger: logger, on: eventLoop)
+        let input = CreateDevTokenRequest(accessId: accessId, tids: tids, ttlMinutes: ttlMinutes)
+        return try await self.client.execute(action: "CreateDevToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

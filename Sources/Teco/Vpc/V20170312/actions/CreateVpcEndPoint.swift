@@ -89,7 +89,8 @@ extension Vpc {
     /// 创建终端节点。
     @inlinable
     public func createVpcEndPoint(vpcId: String, subnetId: String, endPointName: String, endPointServiceId: String, endPointVip: String? = nil, securityGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointResponse> {
-        self.createVpcEndPoint(CreateVpcEndPointRequest(vpcId: vpcId, subnetId: subnetId, endPointName: endPointName, endPointServiceId: endPointServiceId, endPointVip: endPointVip, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateVpcEndPointRequest(vpcId: vpcId, subnetId: subnetId, endPointName: endPointName, endPointServiceId: endPointServiceId, endPointVip: endPointVip, securityGroupId: securityGroupId)
+        return self.client.execute(action: "CreateVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建终端节点
@@ -97,6 +98,7 @@ extension Vpc {
     /// 创建终端节点。
     @inlinable
     public func createVpcEndPoint(vpcId: String, subnetId: String, endPointName: String, endPointServiceId: String, endPointVip: String? = nil, securityGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointResponse {
-        try await self.createVpcEndPoint(CreateVpcEndPointRequest(vpcId: vpcId, subnetId: subnetId, endPointName: endPointName, endPointServiceId: endPointServiceId, endPointVip: endPointVip, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateVpcEndPointRequest(vpcId: vpcId, subnetId: subnetId, endPointName: endPointName, endPointServiceId: endPointServiceId, endPointVip: endPointVip, securityGroupId: securityGroupId)
+        return try await self.client.execute(action: "CreateVpcEndPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

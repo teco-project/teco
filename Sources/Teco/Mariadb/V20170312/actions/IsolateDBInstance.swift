@@ -68,7 +68,8 @@ extension Mariadb {
     /// 本接口(IsolateDBInstance)用于隔离云数据库实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
     @inlinable
     public func isolateDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDBInstanceResponse> {
-        self.isolateDBInstance(IsolateDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = IsolateDBInstanceRequest(instanceIds: instanceIds)
+        return self.client.execute(action: "IsolateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离云数据库实例（包年包月）
@@ -76,6 +77,7 @@ extension Mariadb {
     /// 本接口(IsolateDBInstance)用于隔离云数据库实例（包年包月），隔离后不能通过IP和端口访问数据库。隔离的实例可在回收站中进行开机。若为欠费隔离，请尽快进行充值。
     @inlinable
     public func isolateDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDBInstanceResponse {
-        try await self.isolateDBInstance(IsolateDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = IsolateDBInstanceRequest(instanceIds: instanceIds)
+        return try await self.client.execute(action: "IsolateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

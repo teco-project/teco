@@ -72,7 +72,8 @@ extension Market {
     /// 该接口可以根据InstanceId查询实例的api的使用情况。
     @inlinable
     public func getUsagePlanUsageAmount(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUsagePlanUsageAmountResponse> {
-        self.getUsagePlanUsageAmount(GetUsagePlanUsageAmountRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = GetUsagePlanUsageAmountRequest(instanceId: instanceId)
+        return self.client.execute(action: "GetUsagePlanUsageAmount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询使用计划使用量
@@ -80,6 +81,7 @@ extension Market {
     /// 该接口可以根据InstanceId查询实例的api的使用情况。
     @inlinable
     public func getUsagePlanUsageAmount(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUsagePlanUsageAmountResponse {
-        try await self.getUsagePlanUsageAmount(GetUsagePlanUsageAmountRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = GetUsagePlanUsageAmountRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "GetUsagePlanUsageAmount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

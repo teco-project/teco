@@ -69,12 +69,14 @@ extension Wedata {
     /// 获取数据表信息
     @inlinable
     public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTableInfoListResponse> {
-        self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog)
+        return self.client.execute(action: "DescribeTableInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据表信息
     @inlinable
     public func describeTableInfoList(filters: [Filter], connectionType: String, catalog: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTableInfoListResponse {
-        try await self.describeTableInfoList(DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTableInfoListRequest(filters: filters, connectionType: connectionType, catalog: catalog)
+        return try await self.client.execute(action: "DescribeTableInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

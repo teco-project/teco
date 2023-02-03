@@ -88,7 +88,8 @@ extension Wedata {
     /// 拉取文件夹目录
     @inlinable
     public func describeFolderList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFolderListResponse> {
-        self.describeFolderList(DescribeFolderListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFolderListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize)
+        return self.client.execute(action: "DescribeFolderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取文件夹目录【Beta版本】
@@ -97,6 +98,7 @@ extension Wedata {
     /// 拉取文件夹目录
     @inlinable
     public func describeFolderList(projectId: String, parentsFolderId: String, keyWords: String? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFolderListResponse {
-        try await self.describeFolderList(DescribeFolderListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFolderListRequest(projectId: projectId, parentsFolderId: parentsFolderId, keyWords: keyWords, pageNumber: pageNumber, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeFolderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

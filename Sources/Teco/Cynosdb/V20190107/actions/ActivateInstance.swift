@@ -69,7 +69,8 @@ extension Cynosdb {
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
     @inlinable
     public func activateInstance(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ActivateInstanceResponse> {
-        self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
+        let input = ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList)
+        return self.client.execute(action: "ActivateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复实例访问
@@ -77,6 +78,7 @@ extension Cynosdb {
     /// 本接口(ActivateInstance)用于恢复已隔离的实例访问。
     @inlinable
     public func activateInstance(clusterId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ActivateInstanceResponse {
-        try await self.activateInstance(ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
+        let input = ActivateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList)
+        return try await self.client.execute(action: "ActivateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

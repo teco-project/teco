@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（DetachSnapshotInstances）用于快照策略解关联实例。
     @inlinable @discardableResult
     public func detachSnapshotInstances(snapshotPolicyId: String, instances: [SnapshotInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachSnapshotInstancesResponse> {
-        self.detachSnapshotInstances(DetachSnapshotInstancesRequest(snapshotPolicyId: snapshotPolicyId, instances: instances), region: region, logger: logger, on: eventLoop)
+        let input = DetachSnapshotInstancesRequest(snapshotPolicyId: snapshotPolicyId, instances: instances)
+        return self.client.execute(action: "DetachSnapshotInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 快照策略解关联实例
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（DetachSnapshotInstances）用于快照策略解关联实例。
     @inlinable @discardableResult
     public func detachSnapshotInstances(snapshotPolicyId: String, instances: [SnapshotInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachSnapshotInstancesResponse {
-        try await self.detachSnapshotInstances(DetachSnapshotInstancesRequest(snapshotPolicyId: snapshotPolicyId, instances: instances), region: region, logger: logger, on: eventLoop)
+        let input = DetachSnapshotInstancesRequest(snapshotPolicyId: snapshotPolicyId, instances: instances)
+        return try await self.client.execute(action: "DetachSnapshotInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

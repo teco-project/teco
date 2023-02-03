@@ -75,12 +75,14 @@ extension Monitor {
     /// 获取targets信息
     @inlinable
     public func describePrometheusTargetsTMP(instanceId: String, clusterType: String, clusterId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTargetsTMPResponse> {
-        self.describePrometheusTargetsTMP(DescribePrometheusTargetsTMPRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusTargetsTMPRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, filters: filters)
+        return self.client.execute(action: "DescribePrometheusTargetsTMP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取targets信息
     @inlinable
     public func describePrometheusTargetsTMP(instanceId: String, clusterType: String, clusterId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTargetsTMPResponse {
-        try await self.describePrometheusTargetsTMP(DescribePrometheusTargetsTMPRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusTargetsTMPRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, filters: filters)
+        return try await self.client.execute(action: "DescribePrometheusTargetsTMP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -139,7 +139,8 @@ extension Emr {
     /// 扩容询价. 当扩容时候，请通过该接口查询价格。
     @inlinable
     public func inquiryPriceScaleOutInstance(timeUnit: String, timeSpan: UInt64, zoneId: UInt64, payMode: UInt64, instanceId: String, coreCount: UInt64, taskCount: UInt64, currency: String, routerCount: UInt64? = nil, masterCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceScaleOutInstanceResponse> {
-        self.inquiryPriceScaleOutInstance(InquiryPriceScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, zoneId: zoneId, payMode: payMode, instanceId: instanceId, coreCount: coreCount, taskCount: taskCount, currency: currency, routerCount: routerCount, masterCount: masterCount), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, zoneId: zoneId, payMode: payMode, instanceId: instanceId, coreCount: coreCount, taskCount: taskCount, currency: currency, routerCount: routerCount, masterCount: masterCount)
+        return self.client.execute(action: "InquiryPriceScaleOutInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 扩容询价
@@ -147,6 +148,7 @@ extension Emr {
     /// 扩容询价. 当扩容时候，请通过该接口查询价格。
     @inlinable
     public func inquiryPriceScaleOutInstance(timeUnit: String, timeSpan: UInt64, zoneId: UInt64, payMode: UInt64, instanceId: String, coreCount: UInt64, taskCount: UInt64, currency: String, routerCount: UInt64? = nil, masterCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceScaleOutInstanceResponse {
-        try await self.inquiryPriceScaleOutInstance(InquiryPriceScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, zoneId: zoneId, payMode: payMode, instanceId: instanceId, coreCount: coreCount, taskCount: taskCount, currency: currency, routerCount: routerCount, masterCount: masterCount), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceScaleOutInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, zoneId: zoneId, payMode: payMode, instanceId: instanceId, coreCount: coreCount, taskCount: taskCount, currency: currency, routerCount: routerCount, masterCount: masterCount)
+        return try await self.client.execute(action: "InquiryPriceScaleOutInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

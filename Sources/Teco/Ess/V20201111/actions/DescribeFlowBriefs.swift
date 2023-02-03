@@ -80,7 +80,8 @@ extension Ess {
     /// 日调用量默认10W
     @inlinable
     public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowBriefsResponse> {
-        self.describeFlowBriefs(DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent)
+        return self.client.execute(action: "DescribeFlowBriefs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流程摘要
@@ -90,6 +91,7 @@ extension Ess {
     /// 日调用量默认10W
     @inlinable
     public func describeFlowBriefs(operator: UserInfo, flowIds: [String], agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowBriefsResponse {
-        try await self.describeFlowBriefs(DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowBriefsRequest(operator: `operator`, flowIds: flowIds, agent: agent)
+        return try await self.client.execute(action: "DescribeFlowBriefs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

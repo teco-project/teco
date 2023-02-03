@@ -88,7 +88,8 @@ extension Tcss {
     /// 查询运行时运行时高危系统调用列表信息
     @inlinable
     public func describeRiskSyscallEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallEventsResponse> {
-        self.describeRiskSyscallEvents(DescribeRiskSyscallEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRiskSyscallEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return self.client.execute(action: "DescribeRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时高危系统调用列表
@@ -96,6 +97,7 @@ extension Tcss {
     /// 查询运行时运行时高危系统调用列表信息
     @inlinable
     public func describeRiskSyscallEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallEventsResponse {
-        try await self.describeRiskSyscallEvents(DescribeRiskSyscallEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRiskSyscallEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return try await self.client.execute(action: "DescribeRiskSyscallEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

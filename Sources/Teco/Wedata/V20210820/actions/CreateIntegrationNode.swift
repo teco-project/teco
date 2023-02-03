@@ -73,12 +73,14 @@ extension Wedata {
     /// 创建集成节点
     @inlinable
     public func createIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationNodeResponse> {
-        self.createIntegrationNode(CreateIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = CreateIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType)
+        return self.client.execute(action: "CreateIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集成节点
     @inlinable
     public func createIntegrationNode(nodeInfo: IntegrationNodeInfo, projectId: String, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationNodeResponse {
-        try await self.createIntegrationNode(CreateIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = CreateIntegrationNodeRequest(nodeInfo: nodeInfo, projectId: projectId, taskType: taskType)
+        return try await self.client.execute(action: "CreateIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

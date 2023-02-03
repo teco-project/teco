@@ -94,12 +94,14 @@ extension Tcss {
     /// 运行时查询文件查杀任务列表
     @inlinable
     public func describeVirusTaskList(taskId: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusTaskListResponse> {
-        self.describeVirusTaskList(DescribeVirusTaskListRequest(taskId: taskId, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusTaskListRequest(taskId: taskId, limit: limit, offset: offset, filters: filters, by: by, order: order)
+        return self.client.execute(action: "DescribeVirusTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时查询文件查杀任务列表
     @inlinable
     public func describeVirusTaskList(taskId: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusTaskListResponse {
-        try await self.describeVirusTaskList(DescribeVirusTaskListRequest(taskId: taskId, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusTaskListRequest(taskId: taskId, limit: limit, offset: offset, filters: filters, by: by, order: order)
+        return try await self.client.execute(action: "DescribeVirusTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

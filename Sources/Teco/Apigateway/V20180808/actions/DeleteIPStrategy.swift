@@ -70,7 +70,8 @@ extension Apigateway {
     /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
     @inlinable
     public func deleteIPStrategy(serviceId: String, strategyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIPStrategyResponse> {
-        self.deleteIPStrategy(DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId)
+        return self.client.execute(action: "DeleteIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除服务IP策略
@@ -78,6 +79,7 @@ extension Apigateway {
     /// 本接口（DeleteIPStrategy）用于删除服务IP策略。
     @inlinable
     public func deleteIPStrategy(serviceId: String, strategyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIPStrategyResponse {
-        try await self.deleteIPStrategy(DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIPStrategyRequest(serviceId: serviceId, strategyId: strategyId)
+        return try await self.client.execute(action: "DeleteIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

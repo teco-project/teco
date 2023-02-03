@@ -140,12 +140,14 @@ extension Ssm {
     /// 创建云产品凭据
     @inlinable
     public func createProductSecret(secretName: String, userNamePrefix: String, productName: String, instanceID: String, domains: [String], privilegesList: [ProductPrivilegeUnit], description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, rotationBeginTime: String? = nil, enableRotation: Bool? = nil, rotationFrequency: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductSecretResponse> {
-        self.createProductSecret(CreateProductSecretRequest(secretName: secretName, userNamePrefix: userNamePrefix, productName: productName, instanceID: instanceID, domains: domains, privilegesList: privilegesList, description: description, kmsKeyId: kmsKeyId, tags: tags, rotationBeginTime: rotationBeginTime, enableRotation: enableRotation, rotationFrequency: rotationFrequency), region: region, logger: logger, on: eventLoop)
+        let input = CreateProductSecretRequest(secretName: secretName, userNamePrefix: userNamePrefix, productName: productName, instanceID: instanceID, domains: domains, privilegesList: privilegesList, description: description, kmsKeyId: kmsKeyId, tags: tags, rotationBeginTime: rotationBeginTime, enableRotation: enableRotation, rotationFrequency: rotationFrequency)
+        return self.client.execute(action: "CreateProductSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云产品凭据
     @inlinable
     public func createProductSecret(secretName: String, userNamePrefix: String, productName: String, instanceID: String, domains: [String], privilegesList: [ProductPrivilegeUnit], description: String? = nil, kmsKeyId: String? = nil, tags: [Tag]? = nil, rotationBeginTime: String? = nil, enableRotation: Bool? = nil, rotationFrequency: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductSecretResponse {
-        try await self.createProductSecret(CreateProductSecretRequest(secretName: secretName, userNamePrefix: userNamePrefix, productName: productName, instanceID: instanceID, domains: domains, privilegesList: privilegesList, description: description, kmsKeyId: kmsKeyId, tags: tags, rotationBeginTime: rotationBeginTime, enableRotation: enableRotation, rotationFrequency: rotationFrequency), region: region, logger: logger, on: eventLoop)
+        let input = CreateProductSecretRequest(secretName: secretName, userNamePrefix: userNamePrefix, productName: productName, instanceID: instanceID, domains: domains, privilegesList: privilegesList, description: description, kmsKeyId: kmsKeyId, tags: tags, rotationBeginTime: rotationBeginTime, enableRotation: enableRotation, rotationFrequency: rotationFrequency)
+        return try await self.client.execute(action: "CreateProductSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

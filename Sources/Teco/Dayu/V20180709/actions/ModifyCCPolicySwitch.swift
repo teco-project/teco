@@ -73,12 +73,14 @@ extension Dayu {
     /// 修改CC自定义策略开关
     @inlinable
     public func modifyCCPolicySwitch(business: String, id: String, setId: String, switch: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCPolicySwitchResponse> {
-        self.modifyCCPolicySwitch(ModifyCCPolicySwitchRequest(business: business, id: id, setId: setId, switch: `switch`), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCPolicySwitchRequest(business: business, id: id, setId: setId, switch: `switch`)
+        return self.client.execute(action: "ModifyCCPolicySwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC自定义策略开关
     @inlinable
     public func modifyCCPolicySwitch(business: String, id: String, setId: String, switch: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCPolicySwitchResponse {
-        try await self.modifyCCPolicySwitch(ModifyCCPolicySwitchRequest(business: business, id: id, setId: setId, switch: `switch`), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCPolicySwitchRequest(business: business, id: id, setId: setId, switch: `switch`)
+        return try await self.client.execute(action: "ModifyCCPolicySwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

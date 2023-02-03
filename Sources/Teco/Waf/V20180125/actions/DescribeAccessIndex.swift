@@ -66,7 +66,8 @@ extension Waf {
     /// 本接口用于获取访问日志索引配置信息
     @inlinable
     public func describeAccessIndex(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessIndexResponse> {
-        self.describeAccessIndex(DescribeAccessIndexRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccessIndexRequest()
+        return self.client.execute(action: "DescribeAccessIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取访问日志索引配置信息
@@ -74,6 +75,7 @@ extension Waf {
     /// 本接口用于获取访问日志索引配置信息
     @inlinable
     public func describeAccessIndex(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessIndexResponse {
-        try await self.describeAccessIndex(DescribeAccessIndexRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccessIndexRequest()
+        return try await self.client.execute(action: "DescribeAccessIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

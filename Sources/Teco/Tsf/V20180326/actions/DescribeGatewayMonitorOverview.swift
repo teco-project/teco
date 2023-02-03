@@ -58,12 +58,14 @@ extension Tsf {
     /// 查询网关监控概览
     @inlinable
     public func describeGatewayMonitorOverview(gatewayDeployGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGatewayMonitorOverviewResponse> {
-        self.describeGatewayMonitorOverview(DescribeGatewayMonitorOverviewRequest(gatewayDeployGroupId: gatewayDeployGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGatewayMonitorOverviewRequest(gatewayDeployGroupId: gatewayDeployGroupId)
+        return self.client.execute(action: "DescribeGatewayMonitorOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网关监控概览
     @inlinable
     public func describeGatewayMonitorOverview(gatewayDeployGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGatewayMonitorOverviewResponse {
-        try await self.describeGatewayMonitorOverview(DescribeGatewayMonitorOverviewRequest(gatewayDeployGroupId: gatewayDeployGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGatewayMonitorOverviewRequest(gatewayDeployGroupId: gatewayDeployGroupId)
+        return try await self.client.execute(action: "DescribeGatewayMonitorOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

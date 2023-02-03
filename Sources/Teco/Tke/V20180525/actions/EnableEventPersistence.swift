@@ -64,12 +64,14 @@ extension Tke {
     /// 开启事件持久化功能
     @inlinable @discardableResult
     public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableEventPersistenceResponse> {
-        self.enableEventPersistence(EnableEventPersistenceRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = EnableEventPersistenceRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId)
+        return self.client.execute(action: "EnableEventPersistence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启事件持久化功能
     @inlinable @discardableResult
     public func enableEventPersistence(clusterId: String, logsetId: String? = nil, topicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableEventPersistenceResponse {
-        try await self.enableEventPersistence(EnableEventPersistenceRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = EnableEventPersistenceRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId)
+        return try await self.client.execute(action: "EnableEventPersistence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -71,12 +71,14 @@ extension Teo {
     /// 查询Bot用户画像规则
     @inlinable
     public func describeSecurityPortraitRules(zoneId: String, entity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPortraitRulesResponse> {
-        self.describeSecurityPortraitRules(DescribeSecurityPortraitRulesRequest(zoneId: zoneId, entity: entity), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityPortraitRulesRequest(zoneId: zoneId, entity: entity)
+        return self.client.execute(action: "DescribeSecurityPortraitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Bot用户画像规则
     @inlinable
     public func describeSecurityPortraitRules(zoneId: String, entity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPortraitRulesResponse {
-        try await self.describeSecurityPortraitRules(DescribeSecurityPortraitRulesRequest(zoneId: zoneId, entity: entity), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityPortraitRulesRequest(zoneId: zoneId, entity: entity)
+        return try await self.client.execute(action: "DescribeSecurityPortraitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

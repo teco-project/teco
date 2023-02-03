@@ -104,7 +104,8 @@ extension Tci {
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
     public func submitOpenClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitOpenClassTaskResponse> {
-        self.submitOpenClassTask(SubmitOpenClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), region: region, logger: logger, on: eventLoop)
+        let input = SubmitOpenClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration)
+        return self.client.execute(action: "SubmitOpenClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交线下小班（无课桌）课任务
@@ -119,6 +120,7 @@ extension Tci {
     /// **结果查询方式：**图像任务直接返回结果，点播及直播任务通过DescribeAITaskResult查询结果。
     @inlinable
     public func submitOpenClassTask(fileContent: String, fileType: String, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitOpenClassTaskResponse {
-        try await self.submitOpenClassTask(SubmitOpenClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration), region: region, logger: logger, on: eventLoop)
+        let input = SubmitOpenClassTaskRequest(fileContent: fileContent, fileType: fileType, librarySet: librarySet, maxVideoDuration: maxVideoDuration)
+        return try await self.client.execute(action: "SubmitOpenClassTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

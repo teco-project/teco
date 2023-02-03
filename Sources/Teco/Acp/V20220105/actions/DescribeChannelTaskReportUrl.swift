@@ -97,7 +97,8 @@ extension Acp {
     /// 获取子渠道的App合规诊断任务报告url
     @inlinable
     public func describeChannelTaskReportUrl(source: Int64, platform: Int64, taskID: String, taskType: Int64, reportType: Int64, appMD5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelTaskReportUrlResponse> {
-        self.describeChannelTaskReportUrl(DescribeChannelTaskReportUrlRequest(source: source, platform: platform, taskID: taskID, taskType: taskType, reportType: reportType, appMD5: appMD5), region: region, logger: logger, on: eventLoop)
+        let input = DescribeChannelTaskReportUrlRequest(source: source, platform: platform, taskID: taskID, taskType: taskType, reportType: reportType, appMD5: appMD5)
+        return self.client.execute(action: "DescribeChannelTaskReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取子渠道应用合规隐私诊断任务报告url
@@ -105,6 +106,7 @@ extension Acp {
     /// 获取子渠道的App合规诊断任务报告url
     @inlinable
     public func describeChannelTaskReportUrl(source: Int64, platform: Int64, taskID: String, taskType: Int64, reportType: Int64, appMD5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelTaskReportUrlResponse {
-        try await self.describeChannelTaskReportUrl(DescribeChannelTaskReportUrlRequest(source: source, platform: platform, taskID: taskID, taskType: taskType, reportType: reportType, appMD5: appMD5), region: region, logger: logger, on: eventLoop)
+        let input = DescribeChannelTaskReportUrlRequest(source: source, platform: platform, taskID: taskID, taskType: taskType, reportType: reportType, appMD5: appMD5)
+        return try await self.client.execute(action: "DescribeChannelTaskReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

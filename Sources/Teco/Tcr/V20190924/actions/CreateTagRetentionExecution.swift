@@ -64,12 +64,14 @@ extension Tcr {
     /// 手动执行版本保留
     @inlinable @discardableResult
     public func createTagRetentionExecution(registryId: String, retentionId: Int64, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTagRetentionExecutionResponse> {
-        self.createTagRetentionExecution(CreateTagRetentionExecutionRequest(registryId: registryId, retentionId: retentionId, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = CreateTagRetentionExecutionRequest(registryId: registryId, retentionId: retentionId, dryRun: dryRun)
+        return self.client.execute(action: "CreateTagRetentionExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手动执行版本保留
     @inlinable @discardableResult
     public func createTagRetentionExecution(registryId: String, retentionId: Int64, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTagRetentionExecutionResponse {
-        try await self.createTagRetentionExecution(CreateTagRetentionExecutionRequest(registryId: registryId, retentionId: retentionId, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = CreateTagRetentionExecutionRequest(registryId: registryId, retentionId: retentionId, dryRun: dryRun)
+        return try await self.client.execute(action: "CreateTagRetentionExecution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -116,12 +116,14 @@ extension Cfw {
     /// 访问控制列表
     @inlinable
     public func describeAcLists(protocol: String? = nil, strategy: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, direction: UInt64? = nil, edgeId: String? = nil, status: String? = nil, area: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAcListsResponse> {
-        self.describeAcLists(DescribeAcListsRequest(protocol: `protocol`, strategy: strategy, searchValue: searchValue, limit: limit, offset: offset, direction: direction, edgeId: edgeId, status: status, area: area, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAcListsRequest(protocol: `protocol`, strategy: strategy, searchValue: searchValue, limit: limit, offset: offset, direction: direction, edgeId: edgeId, status: status, area: area, instanceId: instanceId)
+        return self.client.execute(action: "DescribeAcLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 访问控制列表
     @inlinable
     public func describeAcLists(protocol: String? = nil, strategy: String? = nil, searchValue: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, direction: UInt64? = nil, edgeId: String? = nil, status: String? = nil, area: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAcListsResponse {
-        try await self.describeAcLists(DescribeAcListsRequest(protocol: `protocol`, strategy: strategy, searchValue: searchValue, limit: limit, offset: offset, direction: direction, edgeId: edgeId, status: status, area: area, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAcListsRequest(protocol: `protocol`, strategy: strategy, searchValue: searchValue, limit: limit, offset: offset, direction: direction, edgeId: edgeId, status: status, area: area, instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeAcLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

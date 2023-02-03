@@ -80,7 +80,8 @@ extension Rum {
     /// 获取项目下的PV列表
     @inlinable
     public func describePvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePvListResponse> {
-        self.describePvList(DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), region: region, logger: logger, on: eventLoop)
+        let input = DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension)
+        return self.client.execute(action: "DescribePvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取PV列表
@@ -88,6 +89,7 @@ extension Rum {
     /// 获取项目下的PV列表
     @inlinable
     public func describePvList(projectId: Int64, endTime: String, startTime: String, dimension: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePvListResponse {
-        try await self.describePvList(DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension), region: region, logger: logger, on: eventLoop)
+        let input = DescribePvListRequest(projectId: projectId, endTime: endTime, startTime: startTime, dimension: dimension)
+        return try await self.client.execute(action: "DescribePvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

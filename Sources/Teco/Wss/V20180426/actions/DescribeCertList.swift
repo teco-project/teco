@@ -103,7 +103,8 @@ extension Wss {
     /// 本接口(DescribeCertList)用于获取证书列表。
     @inlinable
     public func describeCertList(moduleType: String, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certType: String? = nil, id: String? = nil, withCert: String? = nil, altDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertListResponse> {
-        self.describeCertList(DescribeCertListRequest(moduleType: moduleType, offset: offset, limit: limit, searchKey: searchKey, certType: certType, id: id, withCert: withCert, altDomain: altDomain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCertListRequest(moduleType: moduleType, offset: offset, limit: limit, searchKey: searchKey, certType: certType, id: id, withCert: withCert, altDomain: altDomain)
+        return self.client.execute(action: "DescribeCertList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取证书列表
@@ -111,6 +112,7 @@ extension Wss {
     /// 本接口(DescribeCertList)用于获取证书列表。
     @inlinable
     public func describeCertList(moduleType: String, offset: UInt64? = nil, limit: UInt64? = nil, searchKey: String? = nil, certType: String? = nil, id: String? = nil, withCert: String? = nil, altDomain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertListResponse {
-        try await self.describeCertList(DescribeCertListRequest(moduleType: moduleType, offset: offset, limit: limit, searchKey: searchKey, certType: certType, id: id, withCert: withCert, altDomain: altDomain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCertListRequest(moduleType: moduleType, offset: offset, limit: limit, searchKey: searchKey, certType: certType, id: id, withCert: withCert, altDomain: altDomain)
+        return try await self.client.execute(action: "DescribeCertList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

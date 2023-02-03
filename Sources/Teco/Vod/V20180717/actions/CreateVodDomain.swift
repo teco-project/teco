@@ -77,7 +77,8 @@ extension Vod {
     /// 1.域名添加成功后点播会进行域名的部署，域名由部署状态变为在线状态大概需要2分钟的时间。
     @inlinable @discardableResult
     public func createVodDomain(domain: String, subAppId: UInt64? = nil, accelerateArea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVodDomainResponse> {
-        self.createVodDomain(CreateVodDomainRequest(domain: domain, subAppId: subAppId, accelerateArea: accelerateArea), region: region, logger: logger, on: eventLoop)
+        let input = CreateVodDomainRequest(domain: domain, subAppId: subAppId, accelerateArea: accelerateArea)
+        return self.client.execute(action: "CreateVodDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加点播加速域名
@@ -86,6 +87,7 @@ extension Vod {
     /// 1.域名添加成功后点播会进行域名的部署，域名由部署状态变为在线状态大概需要2分钟的时间。
     @inlinable @discardableResult
     public func createVodDomain(domain: String, subAppId: UInt64? = nil, accelerateArea: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVodDomainResponse {
-        try await self.createVodDomain(CreateVodDomainRequest(domain: domain, subAppId: subAppId, accelerateArea: accelerateArea), region: region, logger: logger, on: eventLoop)
+        let input = CreateVodDomainRequest(domain: domain, subAppId: subAppId, accelerateArea: accelerateArea)
+        return try await self.client.execute(action: "CreateVodDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

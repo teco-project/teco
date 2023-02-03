@@ -83,12 +83,14 @@ extension Wedata {
     /// 查询集成任务版本节点信息
     @inlinable
     public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationVersionNodesInfoResponse> {
-        self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion)
+        return self.client.execute(action: "DescribeIntegrationVersionNodesInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集成任务版本节点信息
     @inlinable
     public func describeIntegrationVersionNodesInfo(taskId: String, projectId: String, taskVersionPath: String, taskVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationVersionNodesInfoResponse {
-        try await self.describeIntegrationVersionNodesInfo(DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIntegrationVersionNodesInfoRequest(taskId: taskId, projectId: projectId, taskVersionPath: taskVersionPath, taskVersion: taskVersion)
+        return try await self.client.execute(action: "DescribeIntegrationVersionNodesInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

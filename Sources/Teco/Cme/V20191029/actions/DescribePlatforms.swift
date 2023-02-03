@@ -92,7 +92,8 @@ extension Cme {
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
     public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlatformsResponse> {
-        self.describePlatforms(DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribePlatforms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取平台列表
@@ -103,6 +104,7 @@ extension Cme {
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
     public func describePlatforms(platforms: [String]? = nil, licenseIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlatformsResponse {
-        try await self.describePlatforms(DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePlatformsRequest(platforms: platforms, licenseIds: licenseIds, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribePlatforms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

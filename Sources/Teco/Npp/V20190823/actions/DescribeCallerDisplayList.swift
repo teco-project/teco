@@ -73,12 +73,14 @@ extension Npp {
     /// 回拨拉取主叫显号号码集合
     @inlinable
     public func describeCallerDisplayList(bizAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallerDisplayListResponse> {
-        self.describeCallerDisplayList(DescribeCallerDisplayListRequest(bizAppId: bizAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCallerDisplayListRequest(bizAppId: bizAppId)
+        return self.client.execute(action: "DescribeCallerDisplayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回拨拉取主叫显号号码集合
     @inlinable
     public func describeCallerDisplayList(bizAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallerDisplayListResponse {
-        try await self.describeCallerDisplayList(DescribeCallerDisplayListRequest(bizAppId: bizAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCallerDisplayListRequest(bizAppId: bizAppId)
+        return try await self.client.execute(action: "DescribeCallerDisplayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

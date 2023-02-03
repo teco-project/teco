@@ -62,12 +62,14 @@ extension Cwp {
     /// 导出本地提权事件
     @inlinable
     public func exportPrivilegeEvents(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportPrivilegeEventsResponse> {
-        self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ExportPrivilegeEventsRequest(filters: filters)
+        return self.client.execute(action: "ExportPrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出本地提权事件
     @inlinable
     public func exportPrivilegeEvents(filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportPrivilegeEventsResponse {
-        try await self.exportPrivilegeEvents(ExportPrivilegeEventsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ExportPrivilegeEventsRequest(filters: filters)
+        return try await self.client.execute(action: "ExportPrivilegeEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

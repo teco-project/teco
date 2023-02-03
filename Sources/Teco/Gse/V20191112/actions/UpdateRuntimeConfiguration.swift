@@ -73,7 +73,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateRuntimeConfiguration(fleetId: String, runtimeConfiguration: RuntimeConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRuntimeConfigurationResponse> {
-        self.updateRuntimeConfiguration(UpdateRuntimeConfigurationRequest(fleetId: fleetId, runtimeConfiguration: runtimeConfiguration), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRuntimeConfigurationRequest(fleetId: fleetId, runtimeConfiguration: runtimeConfiguration)
+        return self.client.execute(action: "UpdateRuntimeConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新服务器舰队配置
@@ -82,6 +83,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateRuntimeConfiguration(fleetId: String, runtimeConfiguration: RuntimeConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRuntimeConfigurationResponse {
-        try await self.updateRuntimeConfiguration(UpdateRuntimeConfigurationRequest(fleetId: fleetId, runtimeConfiguration: runtimeConfiguration), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRuntimeConfigurationRequest(fleetId: fleetId, runtimeConfiguration: runtimeConfiguration)
+        return try await self.client.execute(action: "UpdateRuntimeConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

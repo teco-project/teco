@@ -70,7 +70,8 @@ extension Vpc {
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
     @inlinable @discardableResult
     public func modifyServiceTemplateGroupAttribute(serviceTemplateGroupId: String, serviceTemplateGroupName: String? = nil, serviceTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyServiceTemplateGroupAttributeResponse> {
-        self.modifyServiceTemplateGroupAttribute(ModifyServiceTemplateGroupAttributeRequest(serviceTemplateGroupId: serviceTemplateGroupId, serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyServiceTemplateGroupAttributeRequest(serviceTemplateGroupId: serviceTemplateGroupId, serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds)
+        return self.client.execute(action: "ModifyServiceTemplateGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改协议端口模板集合
@@ -78,6 +79,7 @@ extension Vpc {
     /// 本接口（ModifyServiceTemplateGroupAttribute）用于修改协议端口模板集合。
     @inlinable @discardableResult
     public func modifyServiceTemplateGroupAttribute(serviceTemplateGroupId: String, serviceTemplateGroupName: String? = nil, serviceTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyServiceTemplateGroupAttributeResponse {
-        try await self.modifyServiceTemplateGroupAttribute(ModifyServiceTemplateGroupAttributeRequest(serviceTemplateGroupId: serviceTemplateGroupId, serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyServiceTemplateGroupAttributeRequest(serviceTemplateGroupId: serviceTemplateGroupId, serviceTemplateGroupName: serviceTemplateGroupName, serviceTemplateIds: serviceTemplateIds)
+        return try await self.client.execute(action: "ModifyServiceTemplateGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

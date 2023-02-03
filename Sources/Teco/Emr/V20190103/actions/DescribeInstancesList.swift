@@ -87,12 +87,14 @@ extension Emr {
     /// 查询集群列表
     @inlinable
     public func describeInstancesList(displayStrategy: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, asc: Int64? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesListResponse> {
-        self.describeInstancesList(DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters)
+        return self.client.execute(action: "DescribeInstancesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群列表
     @inlinable
     public func describeInstancesList(displayStrategy: String, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, asc: Int64? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesListResponse {
-        try await self.describeInstancesList(DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesListRequest(displayStrategy: displayStrategy, offset: offset, limit: limit, orderField: orderField, asc: asc, filters: filters)
+        return try await self.client.execute(action: "DescribeInstancesList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -60,7 +60,8 @@ extension Iotcloud {
     /// 本接口（CancelTask）用于取消一个未被调度的任务。
     @inlinable @discardableResult
     public func cancelTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelTaskResponse> {
-        self.cancelTask(CancelTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = CancelTaskRequest(id: id)
+        return self.client.execute(action: "CancelTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消任务
@@ -68,6 +69,7 @@ extension Iotcloud {
     /// 本接口（CancelTask）用于取消一个未被调度的任务。
     @inlinable @discardableResult
     public func cancelTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
-        try await self.cancelTask(CancelTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = CancelTaskRequest(id: id)
+        return try await self.client.execute(action: "CancelTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

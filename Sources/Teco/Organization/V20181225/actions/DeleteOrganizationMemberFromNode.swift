@@ -59,12 +59,14 @@ extension Organization {
     /// 删除企业组织成员
     @inlinable @discardableResult
     public func deleteOrganizationMemberFromNode(memberUin: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOrganizationMemberFromNodeResponse> {
-        self.deleteOrganizationMemberFromNode(DeleteOrganizationMemberFromNodeRequest(memberUin: memberUin, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteOrganizationMemberFromNodeRequest(memberUin: memberUin, nodeId: nodeId)
+        return self.client.execute(action: "DeleteOrganizationMemberFromNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除企业组织成员
     @inlinable @discardableResult
     public func deleteOrganizationMemberFromNode(memberUin: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrganizationMemberFromNodeResponse {
-        try await self.deleteOrganizationMemberFromNode(DeleteOrganizationMemberFromNodeRequest(memberUin: memberUin, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteOrganizationMemberFromNodeRequest(memberUin: memberUin, nodeId: nodeId)
+        return try await self.client.execute(action: "DeleteOrganizationMemberFromNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

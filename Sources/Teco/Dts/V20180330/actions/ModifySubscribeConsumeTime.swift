@@ -65,7 +65,8 @@ extension Dts {
     /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
     @inlinable @discardableResult
     public func modifySubscribeConsumeTime(subscribeId: String, consumeStartTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubscribeConsumeTimeResponse> {
-        self.modifySubscribeConsumeTime(ModifySubscribeConsumeTimeRequest(subscribeId: subscribeId, consumeStartTime: consumeStartTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifySubscribeConsumeTimeRequest(subscribeId: subscribeId, consumeStartTime: consumeStartTime)
+        return self.client.execute(action: "ModifySubscribeConsumeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据订阅实例通道的消费时间点
@@ -73,6 +74,7 @@ extension Dts {
     /// 本接口(ModifySubscribeConsumeTime)用于修改数据订阅通道的消费时间点
     @inlinable @discardableResult
     public func modifySubscribeConsumeTime(subscribeId: String, consumeStartTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubscribeConsumeTimeResponse {
-        try await self.modifySubscribeConsumeTime(ModifySubscribeConsumeTimeRequest(subscribeId: subscribeId, consumeStartTime: consumeStartTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifySubscribeConsumeTimeRequest(subscribeId: subscribeId, consumeStartTime: consumeStartTime)
+        return try await self.client.execute(action: "ModifySubscribeConsumeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

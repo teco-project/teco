@@ -78,7 +78,8 @@ extension Wedata {
     /// 查询任务具体详情
     @inlinable
     public func describeTaskDetail(projectId: String, taskId: String, taskAlarmStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskDetailResponse> {
-        self.describeTaskDetail(DescribeTaskDetailRequest(projectId: projectId, taskId: taskId, taskAlarmStatus: taskAlarmStatus), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskDetailRequest(projectId: projectId, taskId: taskId, taskAlarmStatus: taskAlarmStatus)
+        return self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务具体详情【Beta版本】
@@ -87,6 +88,7 @@ extension Wedata {
     /// 查询任务具体详情
     @inlinable
     public func describeTaskDetail(projectId: String, taskId: String, taskAlarmStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskDetailResponse {
-        try await self.describeTaskDetail(DescribeTaskDetailRequest(projectId: projectId, taskId: taskId, taskAlarmStatus: taskAlarmStatus), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskDetailRequest(projectId: projectId, taskId: taskId, taskAlarmStatus: taskAlarmStatus)
+        return try await self.client.execute(action: "DescribeTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

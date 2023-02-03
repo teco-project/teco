@@ -85,7 +85,8 @@ extension Cvm {
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewInstancesResponse> {
-        self.inquiryPriceRenewInstances(InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk)
+        return self.client.execute(action: "InquiryPriceRenewInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
@@ -95,6 +96,7 @@ extension Cvm {
     /// * 只支持查询包年包月实例的续费价格。
     @inlinable
     public func inquiryPriceRenewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, dryRun: Bool? = nil, renewPortableDataDisk: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewInstancesResponse {
-        try await self.inquiryPriceRenewInstances(InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceRenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, dryRun: dryRun, renewPortableDataDisk: renewPortableDataDisk)
+        return try await self.client.execute(action: "InquiryPriceRenewInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

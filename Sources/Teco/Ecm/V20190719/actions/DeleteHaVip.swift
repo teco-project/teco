@@ -60,7 +60,8 @@ extension Ecm {
     /// 用于删除高可用虚拟IP（HAVIP）
     @inlinable @discardableResult
     public func deleteHaVip(haVipId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHaVipResponse> {
-        self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteHaVipRequest(haVipId: haVipId)
+        return self.client.execute(action: "DeleteHaVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除HAVIP
@@ -68,6 +69,7 @@ extension Ecm {
     /// 用于删除高可用虚拟IP（HAVIP）
     @inlinable @discardableResult
     public func deleteHaVip(haVipId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
-        try await self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteHaVipRequest(haVipId: haVipId)
+        return try await self.client.execute(action: "DeleteHaVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

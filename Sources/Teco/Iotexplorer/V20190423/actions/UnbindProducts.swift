@@ -63,12 +63,14 @@ extension Iotexplorer {
     /// 批量解绑子产品
     @inlinable
     public func unbindProducts(gatewayProductId: String, productIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindProductsResponse> {
-        self.unbindProducts(UnbindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds), region: region, logger: logger, on: eventLoop)
+        let input = UnbindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds)
+        return self.client.execute(action: "UnbindProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑子产品
     @inlinable
     public func unbindProducts(gatewayProductId: String, productIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindProductsResponse {
-        try await self.unbindProducts(UnbindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds), region: region, logger: logger, on: eventLoop)
+        let input = UnbindProductsRequest(gatewayProductId: gatewayProductId, productIds: productIds)
+        return try await self.client.execute(action: "UnbindProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

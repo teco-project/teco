@@ -73,7 +73,8 @@ extension Tcaplusdb {
     /// 删除表格的快照
     @inlinable
     public func deleteSnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
-        self.deleteSnapshots(DeleteSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables)
+        return self.client.execute(action: "DeleteSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除表格快照
@@ -81,6 +82,7 @@ extension Tcaplusdb {
     /// 删除表格的快照
     @inlinable
     public func deleteSnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
-        try await self.deleteSnapshots(DeleteSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables)
+        return try await self.client.execute(action: "DeleteSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

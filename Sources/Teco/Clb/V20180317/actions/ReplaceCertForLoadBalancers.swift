@@ -74,7 +74,8 @@ extension Clb {
     /// 注：本接口仅可从广州地域调用。
     @inlinable @discardableResult
     public func replaceCertForLoadBalancers(oldCertificateId: String, certificate: CertificateInput, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertForLoadBalancersResponse> {
-        self.replaceCertForLoadBalancers(ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate), region: region, logger: logger, on: eventLoop)
+        let input = ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate)
+        return self.client.execute(action: "ReplaceCertForLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 替换负载均衡实例所关联的证书
@@ -85,6 +86,7 @@ extension Clb {
     /// 注：本接口仅可从广州地域调用。
     @inlinable @discardableResult
     public func replaceCertForLoadBalancers(oldCertificateId: String, certificate: CertificateInput, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertForLoadBalancersResponse {
-        try await self.replaceCertForLoadBalancers(ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate), region: region, logger: logger, on: eventLoop)
+        let input = ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate)
+        return try await self.client.execute(action: "ReplaceCertForLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

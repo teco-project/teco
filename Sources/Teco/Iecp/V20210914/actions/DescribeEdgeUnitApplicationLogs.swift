@@ -79,12 +79,14 @@ extension Iecp {
     /// 获取应用日志
     @inlinable
     public func describeEdgeUnitApplicationLogs(edgeUnitId: UInt64, applicationId: UInt64, limit: UInt64, podName: String, containerName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationLogsResponse> {
-        self.describeEdgeUnitApplicationLogs(DescribeEdgeUnitApplicationLogsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, limit: limit, podName: podName, containerName: containerName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitApplicationLogsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, limit: limit, podName: podName, containerName: containerName)
+        return self.client.execute(action: "DescribeEdgeUnitApplicationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用日志
     @inlinable
     public func describeEdgeUnitApplicationLogs(edgeUnitId: UInt64, applicationId: UInt64, limit: UInt64, podName: String, containerName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationLogsResponse {
-        try await self.describeEdgeUnitApplicationLogs(DescribeEdgeUnitApplicationLogsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, limit: limit, podName: podName, containerName: containerName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitApplicationLogsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId, limit: limit, podName: podName, containerName: containerName)
+        return try await self.client.execute(action: "DescribeEdgeUnitApplicationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

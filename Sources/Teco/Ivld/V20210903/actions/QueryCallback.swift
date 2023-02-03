@@ -60,7 +60,8 @@ extension Ivld {
     /// 查询用户回调设置
     @inlinable
     public func queryCallback(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCallbackResponse> {
-        self.queryCallback(QueryCallbackRequest(), region: region, logger: logger, on: eventLoop)
+        let input = QueryCallbackRequest()
+        return self.client.execute(action: "QueryCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询回调设置
@@ -68,6 +69,7 @@ extension Ivld {
     /// 查询用户回调设置
     @inlinable
     public func queryCallback(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCallbackResponse {
-        try await self.queryCallback(QueryCallbackRequest(), region: region, logger: logger, on: eventLoop)
+        let input = QueryCallbackRequest()
+        return try await self.client.execute(action: "QueryCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

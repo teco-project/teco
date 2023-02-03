@@ -83,7 +83,8 @@ extension Vpc {
     /// 该接口用于给IPv6地址初次分配公网带宽
     @inlinable
     public func allocateIp6AddressesBandwidth(ip6Addresses: [String], internetMaxBandwidthOut: Int64? = nil, internetChargeType: String? = nil, bandwidthPackageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateIp6AddressesBandwidthResponse> {
-        self.allocateIp6AddressesBandwidth(AllocateIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, internetMaxBandwidthOut: internetMaxBandwidthOut, internetChargeType: internetChargeType, bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
+        let input = AllocateIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, internetMaxBandwidthOut: internetMaxBandwidthOut, internetChargeType: internetChargeType, bandwidthPackageId: bandwidthPackageId)
+        return self.client.execute(action: "AllocateIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// IPv6地址分配公网带宽
@@ -91,6 +92,7 @@ extension Vpc {
     /// 该接口用于给IPv6地址初次分配公网带宽
     @inlinable
     public func allocateIp6AddressesBandwidth(ip6Addresses: [String], internetMaxBandwidthOut: Int64? = nil, internetChargeType: String? = nil, bandwidthPackageId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateIp6AddressesBandwidthResponse {
-        try await self.allocateIp6AddressesBandwidth(AllocateIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, internetMaxBandwidthOut: internetMaxBandwidthOut, internetChargeType: internetChargeType, bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
+        let input = AllocateIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, internetMaxBandwidthOut: internetMaxBandwidthOut, internetChargeType: internetChargeType, bandwidthPackageId: bandwidthPackageId)
+        return try await self.client.execute(action: "AllocateIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

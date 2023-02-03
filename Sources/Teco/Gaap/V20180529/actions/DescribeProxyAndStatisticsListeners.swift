@@ -68,7 +68,8 @@ extension Gaap {
     /// 该接口为内部接口，用于查询可以获取统计数据的通道和监听器信息
     @inlinable
     public func describeProxyAndStatisticsListeners(projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyAndStatisticsListenersResponse> {
-        self.describeProxyAndStatisticsListeners(DescribeProxyAndStatisticsListenersRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyAndStatisticsListenersRequest(projectId: projectId)
+        return self.client.execute(action: "DescribeProxyAndStatisticsListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询统计通道和监听器信息
@@ -76,6 +77,7 @@ extension Gaap {
     /// 该接口为内部接口，用于查询可以获取统计数据的通道和监听器信息
     @inlinable
     public func describeProxyAndStatisticsListeners(projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyAndStatisticsListenersResponse {
-        try await self.describeProxyAndStatisticsListeners(DescribeProxyAndStatisticsListenersRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyAndStatisticsListenersRequest(projectId: projectId)
+        return try await self.client.execute(action: "DescribeProxyAndStatisticsListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

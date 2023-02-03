@@ -79,12 +79,14 @@ extension Tke {
     /// 创建prometheus配置
     @inlinable @discardableResult
     public func createPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusConfigResponse> {
-        self.createPrometheusConfig(CreatePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs)
+        return self.client.execute(action: "CreatePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建prometheus配置
     @inlinable @discardableResult
     public func createPrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [PrometheusConfigItem]? = nil, podMonitors: [PrometheusConfigItem]? = nil, rawJobs: [PrometheusConfigItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusConfigResponse {
-        try await self.createPrometheusConfig(CreatePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs)
+        return try await self.client.execute(action: "CreatePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

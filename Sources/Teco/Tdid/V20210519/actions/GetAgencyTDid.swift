@@ -65,13 +65,15 @@ extension Tdid {
     @available(*, deprecated, message: "该接口已废弃")
     @inlinable
     public func getAgencyTDid(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAgencyTDidResponse> {
-        self.getAgencyTDid(GetAgencyTDidRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetAgencyTDidRequest(clusterId: clusterId)
+        return self.client.execute(action: "GetAgencyTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 本机构DID详情
     @available(*, deprecated, message: "该接口已废弃")
     @inlinable
     public func getAgencyTDid(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAgencyTDidResponse {
-        try await self.getAgencyTDid(GetAgencyTDidRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetAgencyTDidRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "GetAgencyTDid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

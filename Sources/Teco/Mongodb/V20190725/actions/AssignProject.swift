@@ -69,7 +69,8 @@ extension Mongodb {
     /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
     @inlinable
     public func assignProject(instanceIds: [String], projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignProjectResponse> {
-        self.assignProject(AssignProjectRequest(instanceIds: instanceIds, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = AssignProjectRequest(instanceIds: instanceIds, projectId: projectId)
+        return self.client.execute(action: "AssignProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 指定云数据库实例的所属项目
@@ -77,6 +78,7 @@ extension Mongodb {
     /// 本接口(AssignProject)用于指定云数据库实例的所属项目。
     @inlinable
     public func assignProject(instanceIds: [String], projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignProjectResponse {
-        try await self.assignProject(AssignProjectRequest(instanceIds: instanceIds, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = AssignProjectRequest(instanceIds: instanceIds, projectId: projectId)
+        return try await self.client.execute(action: "AssignProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

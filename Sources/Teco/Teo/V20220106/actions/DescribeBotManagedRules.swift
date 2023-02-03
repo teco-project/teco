@@ -86,12 +86,14 @@ extension Teo {
     /// 分页查询Bot托管规则
     @inlinable
     public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotManagedRulesResponse> {
-        self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType)
+        return self.client.execute(action: "DescribeBotManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询Bot托管规则
     @inlinable
     public func describeBotManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, ruleType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotManagedRulesResponse {
-        try await self.describeBotManagedRules(DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBotManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage, ruleType: ruleType)
+        return try await self.client.execute(action: "DescribeBotManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

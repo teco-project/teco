@@ -58,12 +58,14 @@ extension Zj {
     /// 获取账号短信额度配置信息
     @inlinable
     public func getSmsAmountInfo(license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSmsAmountInfoResponse> {
-        self.getSmsAmountInfo(GetSmsAmountInfoRequest(license: license), region: region, logger: logger, on: eventLoop)
+        let input = GetSmsAmountInfoRequest(license: license)
+        return self.client.execute(action: "GetSmsAmountInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取账号短信额度配置信息
     @inlinable
     public func getSmsAmountInfo(license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSmsAmountInfoResponse {
-        try await self.getSmsAmountInfo(GetSmsAmountInfoRequest(license: license), region: region, logger: logger, on: eventLoop)
+        let input = GetSmsAmountInfoRequest(license: license)
+        return try await self.client.execute(action: "GetSmsAmountInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

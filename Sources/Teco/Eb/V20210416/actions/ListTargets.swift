@@ -87,12 +87,14 @@ extension Eb {
     /// 获取事件目标列表
     @inlinable
     public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTargetsResponse> {
-        self.listTargets(ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
+        let input = ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order)
+        return self.client.execute(action: "ListTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件目标列表
     @inlinable
     public func listTargets(eventBusId: String, orderBy: String? = nil, ruleId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTargetsResponse {
-        try await self.listTargets(ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
+        let input = ListTargetsRequest(eventBusId: eventBusId, orderBy: orderBy, ruleId: ruleId, limit: limit, offset: offset, order: order)
+        return try await self.client.execute(action: "ListTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

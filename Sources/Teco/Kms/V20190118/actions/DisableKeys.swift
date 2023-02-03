@@ -60,7 +60,8 @@ extension Kms {
     /// 该接口用于批量禁止CMK的使用。
     @inlinable @discardableResult
     public func disableKeys(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableKeysResponse> {
-        self.disableKeys(DisableKeysRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
+        let input = DisableKeysRequest(keyIds: keyIds)
+        return self.client.execute(action: "DisableKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量禁用主密钥
@@ -68,6 +69,7 @@ extension Kms {
     /// 该接口用于批量禁止CMK的使用。
     @inlinable @discardableResult
     public func disableKeys(keyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableKeysResponse {
-        try await self.disableKeys(DisableKeysRequest(keyIds: keyIds), region: region, logger: logger, on: eventLoop)
+        let input = DisableKeysRequest(keyIds: keyIds)
+        return try await self.client.execute(action: "DisableKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

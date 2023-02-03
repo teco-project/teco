@@ -100,7 +100,8 @@ extension As {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
     public func describeAutoScalingGroups(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingGroupsResponse> {
-        self.describeAutoScalingGroups(DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeAutoScalingGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询伸缩组
@@ -111,6 +112,7 @@ extension As {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的伸缩组。
     @inlinable
     public func describeAutoScalingGroups(autoScalingGroupIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingGroupsResponse {
-        try await self.describeAutoScalingGroups(DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoScalingGroupsRequest(autoScalingGroupIds: autoScalingGroupIds, filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeAutoScalingGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

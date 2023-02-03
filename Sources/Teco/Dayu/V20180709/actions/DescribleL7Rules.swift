@@ -107,7 +107,8 @@ extension Dayu {
     /// 获取七层转发规则
     @inlinable
     public func describleL7Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribleL7RulesResponse> {
-        self.describleL7Rules(DescribleL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList), region: region, logger: logger, on: eventLoop)
+        let input = DescribleL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList)
+        return self.client.execute(action: "DescribleL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取L7转发规则
@@ -115,6 +116,7 @@ extension Dayu {
     /// 获取七层转发规则
     @inlinable
     public func describleL7Rules(business: String, id: String, ruleIdList: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, domain: String? = nil, protocolList: [String]? = nil, statusList: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribleL7RulesResponse {
-        try await self.describleL7Rules(DescribleL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList), region: region, logger: logger, on: eventLoop)
+        let input = DescribleL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList, limit: limit, offset: offset, domain: domain, protocolList: protocolList, statusList: statusList)
+        return try await self.client.execute(action: "DescribleL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

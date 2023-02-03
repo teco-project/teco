@@ -75,12 +75,14 @@ extension Tke {
     /// 获取实例列表
     @inlinable
     public func describePrometheusOverviews(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusOverviewsResponse> {
-        self.describePrometheusOverviews(DescribePrometheusOverviewsRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusOverviewsRequest(offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribePrometheusOverviews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例列表
     @inlinable
     public func describePrometheusOverviews(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusOverviewsResponse {
-        try await self.describePrometheusOverviews(DescribePrometheusOverviewsRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusOverviewsRequest(offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribePrometheusOverviews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

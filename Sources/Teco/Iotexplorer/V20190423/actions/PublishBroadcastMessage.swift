@@ -73,12 +73,14 @@ extension Iotexplorer {
     /// 发布广播消息
     @inlinable
     public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishBroadcastMessageResponse> {
-        self.publishBroadcastMessage(PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
+        let input = PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding)
+        return self.client.execute(action: "PublishBroadcastMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布广播消息
     @inlinable
     public func publishBroadcastMessage(productId: String, payload: String, qos: Int64, payloadEncoding: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishBroadcastMessageResponse {
-        try await self.publishBroadcastMessage(PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding), region: region, logger: logger, on: eventLoop)
+        let input = PublishBroadcastMessageRequest(productId: productId, payload: payload, qos: qos, payloadEncoding: payloadEncoding)
+        return try await self.client.execute(action: "PublishBroadcastMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

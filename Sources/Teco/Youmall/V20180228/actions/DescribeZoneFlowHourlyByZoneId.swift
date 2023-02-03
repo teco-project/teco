@@ -94,12 +94,14 @@ extension Youmall {
     /// 获取指定区域分时客流量
     @inlinable
     public func describeZoneFlowHourlyByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowHourlyByZoneIdResponse> {
-        self.describeZoneFlowHourlyByZoneId(DescribeZoneFlowHourlyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeZoneFlowHourlyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate)
+        return self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定区域分时客流量
     @inlinable
     public func describeZoneFlowHourlyByZoneId(companyId: String, shopId: Int64, zoneId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowHourlyByZoneIdResponse {
-        try await self.describeZoneFlowHourlyByZoneId(DescribeZoneFlowHourlyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeZoneFlowHourlyByZoneIdRequest(companyId: companyId, shopId: shopId, zoneId: zoneId, startDate: startDate, endDate: endDate)
+        return try await self.client.execute(action: "DescribeZoneFlowHourlyByZoneId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

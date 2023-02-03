@@ -77,7 +77,8 @@ extension Wedata {
     /// 批量修改任务责任人
     @inlinable
     public func batchModifyOwnersNew(taskIdList: [String], owners: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchModifyOwnersNewResponse> {
-        self.batchModifyOwnersNew(BatchModifyOwnersNewRequest(taskIdList: taskIdList, owners: owners, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchModifyOwnersNewRequest(taskIdList: taskIdList, owners: owners, projectId: projectId)
+        return self.client.execute(action: "BatchModifyOwnersNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量修改任务责任人【Beta版本】
@@ -86,6 +87,7 @@ extension Wedata {
     /// 批量修改任务责任人
     @inlinable
     public func batchModifyOwnersNew(taskIdList: [String], owners: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchModifyOwnersNewResponse {
-        try await self.batchModifyOwnersNew(BatchModifyOwnersNewRequest(taskIdList: taskIdList, owners: owners, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchModifyOwnersNewRequest(taskIdList: taskIdList, owners: owners, projectId: projectId)
+        return try await self.client.execute(action: "BatchModifyOwnersNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

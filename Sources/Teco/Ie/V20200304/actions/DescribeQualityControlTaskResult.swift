@@ -58,12 +58,14 @@ extension Ie {
     /// 获取媒体质检任务结果
     @inlinable
     public func describeQualityControlTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityControlTaskResultResponse> {
-        self.describeQualityControlTaskResult(DescribeQualityControlTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQualityControlTaskResultRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeQualityControlTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体质检任务结果
     @inlinable
     public func describeQualityControlTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityControlTaskResultResponse {
-        try await self.describeQualityControlTaskResult(DescribeQualityControlTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQualityControlTaskResultRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeQualityControlTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

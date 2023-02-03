@@ -125,7 +125,8 @@ extension Tmt {
     /// 文本翻译的批量接口
     @inlinable
     public func textTranslateBatch(source: String, target: String, projectId: Int64, sourceTextList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextTranslateBatchResponse> {
-        self.textTranslateBatch(TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList), region: region, logger: logger, on: eventLoop)
+        let input = TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList)
+        return self.client.execute(action: "TextTranslateBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量文本翻译
@@ -133,6 +134,7 @@ extension Tmt {
     /// 文本翻译的批量接口
     @inlinable
     public func textTranslateBatch(source: String, target: String, projectId: Int64, sourceTextList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateBatchResponse {
-        try await self.textTranslateBatch(TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList), region: region, logger: logger, on: eventLoop)
+        let input = TextTranslateBatchRequest(source: source, target: target, projectId: projectId, sourceTextList: sourceTextList)
+        return try await self.client.execute(action: "TextTranslateBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

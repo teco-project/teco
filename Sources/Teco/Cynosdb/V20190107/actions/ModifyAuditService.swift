@@ -85,7 +85,8 @@ extension Cynosdb {
     /// 本接口(ModifyAuditService)用于修改云数据库审计日志保存时长、审计规则等服务配置。
     @inlinable @discardableResult
     public func modifyAuditService(instanceId: String, logExpireDay: UInt64? = nil, highLogExpireDay: UInt64? = nil, auditAll: Bool? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditServiceResponse> {
-        self.modifyAuditService(ModifyAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditAll: auditAll, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditAll: auditAll, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds)
+        return self.client.execute(action: "ModifyAuditService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例修改审计服务
@@ -93,6 +94,7 @@ extension Cynosdb {
     /// 本接口(ModifyAuditService)用于修改云数据库审计日志保存时长、审计规则等服务配置。
     @inlinable @discardableResult
     public func modifyAuditService(instanceId: String, logExpireDay: UInt64? = nil, highLogExpireDay: UInt64? = nil, auditAll: Bool? = nil, auditRuleFilters: [AuditRuleFilters]? = nil, ruleTemplateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditServiceResponse {
-        try await self.modifyAuditService(ModifyAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditAll: auditAll, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay, auditAll: auditAll, auditRuleFilters: auditRuleFilters, ruleTemplateIds: ruleTemplateIds)
+        return try await self.client.execute(action: "ModifyAuditService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

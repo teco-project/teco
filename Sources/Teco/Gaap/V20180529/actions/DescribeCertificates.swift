@@ -85,7 +85,8 @@ extension Gaap {
     /// 本接口（DescribeCertificates）用来查询可以使用的证书列表。
     @inlinable
     public func describeCertificates(certificateType: Int64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificatesResponse> {
-        self.describeCertificates(DescribeCertificatesRequest(certificateType: certificateType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCertificatesRequest(certificateType: certificateType, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeCertificates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务器证书列表
@@ -93,6 +94,7 @@ extension Gaap {
     /// 本接口（DescribeCertificates）用来查询可以使用的证书列表。
     @inlinable
     public func describeCertificates(certificateType: Int64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificatesResponse {
-        try await self.describeCertificates(DescribeCertificatesRequest(certificateType: certificateType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCertificatesRequest(certificateType: certificateType, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeCertificates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

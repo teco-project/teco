@@ -83,7 +83,8 @@ extension Vod {
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
     public func describeImageReviewUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageReviewUsageDataResponse> {
-        self.describeImageReviewUsageData(DescribeImageReviewUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageReviewUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId)
+        return self.client.execute(action: "DescribeImageReviewUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询图片审核用量统计数据
@@ -94,6 +95,7 @@ extension Vod {
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
     public func describeImageReviewUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageReviewUsageDataResponse {
-        try await self.describeImageReviewUsageData(DescribeImageReviewUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageReviewUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId)
+        return try await self.client.execute(action: "DescribeImageReviewUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

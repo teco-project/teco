@@ -73,12 +73,14 @@ extension Dnspod {
     /// 查询解析记录分组列表
     @inlinable
     public func describeRecordGroupList(domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordGroupListResponse> {
-        self.describeRecordGroupList(DescribeRecordGroupListRequest(domain: domain, domainId: domainId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRecordGroupListRequest(domain: domain, domainId: domainId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeRecordGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询解析记录分组列表
     @inlinable
     public func describeRecordGroupList(domain: String, domainId: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordGroupListResponse {
-        try await self.describeRecordGroupList(DescribeRecordGroupListRequest(domain: domain, domainId: domainId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRecordGroupListRequest(domain: domain, domainId: domainId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeRecordGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

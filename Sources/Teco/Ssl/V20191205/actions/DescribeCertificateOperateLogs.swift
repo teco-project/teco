@@ -97,7 +97,8 @@ extension Ssl {
     /// 获取用户账号下有关证书的操作日志。
     @inlinable
     public func describeCertificateOperateLogs(offset: UInt64? = nil, limit: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCertificateOperateLogsResponse> {
-        self.describeCertificateOperateLogs(DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeCertificateOperateLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取证书操作日志
@@ -105,6 +106,7 @@ extension Ssl {
     /// 获取用户账号下有关证书的操作日志。
     @inlinable
     public func describeCertificateOperateLogs(offset: UInt64? = nil, limit: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCertificateOperateLogsResponse {
-        try await self.describeCertificateOperateLogs(DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCertificateOperateLogsRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeCertificateOperateLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

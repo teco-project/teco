@@ -94,7 +94,8 @@ extension Sqlserver {
     /// 本接口（CreateMigration）作用是创建一个迁移任务
     @inlinable
     public func createMigration(migrateName: String, migrateType: UInt64, sourceType: UInt64, source: MigrateSource, target: MigrateTarget, migrateDBSet: [MigrateDB]? = nil, renameRestore: [RenameRestoreDatabase]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrationResponse> {
-        self.createMigration(CreateMigrationRequest(migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet, renameRestore: renameRestore), region: region, logger: logger, on: eventLoop)
+        let input = CreateMigrationRequest(migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet, renameRestore: renameRestore)
+        return self.client.execute(action: "CreateMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建迁移任务
@@ -102,6 +103,7 @@ extension Sqlserver {
     /// 本接口（CreateMigration）作用是创建一个迁移任务
     @inlinable
     public func createMigration(migrateName: String, migrateType: UInt64, sourceType: UInt64, source: MigrateSource, target: MigrateTarget, migrateDBSet: [MigrateDB]? = nil, renameRestore: [RenameRestoreDatabase]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrationResponse {
-        try await self.createMigration(CreateMigrationRequest(migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet, renameRestore: renameRestore), region: region, logger: logger, on: eventLoop)
+        let input = CreateMigrationRequest(migrateName: migrateName, migrateType: migrateType, sourceType: sourceType, source: source, target: target, migrateDBSet: migrateDBSet, renameRestore: renameRestore)
+        return try await self.client.execute(action: "CreateMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

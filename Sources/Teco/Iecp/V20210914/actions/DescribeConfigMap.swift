@@ -89,12 +89,14 @@ extension Iecp {
     /// 获取ConfigMap详情
     @inlinable
     public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapResponse> {
-        self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace)
+        return self.client.execute(action: "DescribeConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取ConfigMap详情
     @inlinable
     public func describeConfigMap(edgeUnitID: UInt64, configMapName: String, configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapResponse {
-        try await self.describeConfigMap(DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapNamespace: configMapNamespace)
+        return try await self.client.execute(action: "DescribeConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

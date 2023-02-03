@@ -68,7 +68,8 @@ extension Cws {
     /// 本接口 (DescribeSitesVerification) 用于查询一个或多个待验证站点的验证信息。
     @inlinable
     public func describeSitesVerification(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSitesVerificationResponse> {
-        self.describeSitesVerification(DescribeSitesVerificationRequest(urls: urls), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSitesVerificationRequest(urls: urls)
+        return self.client.execute(action: "DescribeSitesVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看站点列表的验证信息列表
@@ -76,6 +77,7 @@ extension Cws {
     /// 本接口 (DescribeSitesVerification) 用于查询一个或多个待验证站点的验证信息。
     @inlinable
     public func describeSitesVerification(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesVerificationResponse {
-        try await self.describeSitesVerification(DescribeSitesVerificationRequest(urls: urls), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSitesVerificationRequest(urls: urls)
+        return try await self.client.execute(action: "DescribeSitesVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

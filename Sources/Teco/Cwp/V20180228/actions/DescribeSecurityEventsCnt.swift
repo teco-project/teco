@@ -118,7 +118,8 @@ extension Cwp {
     /// 获取安全概览相关事件统计数据接口
     @inlinable
     public func describeSecurityEventsCnt(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityEventsCntResponse> {
-        self.describeSecurityEventsCnt(DescribeSecurityEventsCntRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityEventsCntRequest()
+        return self.client.execute(action: "DescribeSecurityEventsCnt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件数统计数据
@@ -126,6 +127,7 @@ extension Cwp {
     /// 获取安全概览相关事件统计数据接口
     @inlinable
     public func describeSecurityEventsCnt(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventsCntResponse {
-        try await self.describeSecurityEventsCnt(DescribeSecurityEventsCntRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityEventsCntRequest()
+        return try await self.client.execute(action: "DescribeSecurityEventsCnt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

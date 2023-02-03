@@ -74,7 +74,8 @@ extension Dayu {
     /// 删除七层转发规则
     @inlinable
     public func deleteL7Rules(business: String, id: String, ruleIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteL7RulesResponse> {
-        self.deleteL7Rules(DeleteL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
+        let input = DeleteL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList)
+        return self.client.execute(action: "DeleteL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除L7转发规则
@@ -82,6 +83,7 @@ extension Dayu {
     /// 删除七层转发规则
     @inlinable
     public func deleteL7Rules(business: String, id: String, ruleIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteL7RulesResponse {
-        try await self.deleteL7Rules(DeleteL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
+        let input = DeleteL7RulesRequest(business: business, id: id, ruleIdList: ruleIdList)
+        return try await self.client.execute(action: "DeleteL7Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

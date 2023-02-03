@@ -65,7 +65,8 @@ extension Iotexplorer {
     /// 提供修改产品的数据模板的能力
     @inlinable @discardableResult
     public func modifyModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModelDefinitionResponse> {
-        self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
+        let input = ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema)
+        return self.client.execute(action: "ModifyModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改产品数据模板
@@ -73,6 +74,7 @@ extension Iotexplorer {
     /// 提供修改产品的数据模板的能力
     @inlinable @discardableResult
     public func modifyModelDefinition(productId: String, modelSchema: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModelDefinitionResponse {
-        try await self.modifyModelDefinition(ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema), region: region, logger: logger, on: eventLoop)
+        let input = ModifyModelDefinitionRequest(productId: productId, modelSchema: modelSchema)
+        return try await self.client.execute(action: "ModifyModelDefinition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

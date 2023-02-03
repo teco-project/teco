@@ -65,7 +65,8 @@ extension Cfs {
     /// 本接口（DeleteMountTarget）用于删除挂载点
     @inlinable @discardableResult
     public func deleteMountTarget(fileSystemId: String, mountTargetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMountTargetResponse> {
-        self.deleteMountTarget(DeleteMountTargetRequest(fileSystemId: fileSystemId, mountTargetId: mountTargetId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMountTargetRequest(fileSystemId: fileSystemId, mountTargetId: mountTargetId)
+        return self.client.execute(action: "DeleteMountTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除挂载点
@@ -73,6 +74,7 @@ extension Cfs {
     /// 本接口（DeleteMountTarget）用于删除挂载点
     @inlinable @discardableResult
     public func deleteMountTarget(fileSystemId: String, mountTargetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMountTargetResponse {
-        try await self.deleteMountTarget(DeleteMountTargetRequest(fileSystemId: fileSystemId, mountTargetId: mountTargetId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMountTargetRequest(fileSystemId: fileSystemId, mountTargetId: mountTargetId)
+        return try await self.client.execute(action: "DeleteMountTarget", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

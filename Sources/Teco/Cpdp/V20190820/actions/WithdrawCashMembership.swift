@@ -152,7 +152,8 @@ extension Cpdp {
     /// 会员提现-不验证。此接口受理会员发起的提现申请。会员子账户的可提现余额、可用余额会减少，市场的资金汇总账户(监管账户)会减少相应的发生金额，提现到会员申请的收款账户。
     @inlinable
     public func withdrawCashMembership(mrchCode: String, tranWebName: String, memberGlobalType: String, memberGlobalId: String, tranNetMemberCode: String, memberName: String, takeCashAcctNo: String, outAmtAcctName: String, ccy: String, cashAmt: String, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WithdrawCashMembershipResponse> {
-        self.withdrawCashMembership(WithdrawCashMembershipRequest(mrchCode: mrchCode, tranWebName: tranWebName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, tranNetMemberCode: tranNetMemberCode, memberName: memberName, takeCashAcctNo: takeCashAcctNo, outAmtAcctName: outAmtAcctName, ccy: ccy, cashAmt: cashAmt, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = WithdrawCashMembershipRequest(mrchCode: mrchCode, tranWebName: tranWebName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, tranNetMemberCode: tranNetMemberCode, memberName: memberName, takeCashAcctNo: takeCashAcctNo, outAmtAcctName: outAmtAcctName, ccy: ccy, cashAmt: cashAmt, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile)
+        return self.client.execute(action: "WithdrawCashMembership", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员提现-不验证
@@ -160,6 +161,7 @@ extension Cpdp {
     /// 会员提现-不验证。此接口受理会员发起的提现申请。会员子账户的可提现余额、可用余额会减少，市场的资金汇总账户(监管账户)会减少相应的发生金额，提现到会员申请的收款账户。
     @inlinable
     public func withdrawCashMembership(mrchCode: String, tranWebName: String, memberGlobalType: String, memberGlobalId: String, tranNetMemberCode: String, memberName: String, takeCashAcctNo: String, outAmtAcctName: String, ccy: String, cashAmt: String, remark: String? = nil, reservedMsg: String? = nil, webSign: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WithdrawCashMembershipResponse {
-        try await self.withdrawCashMembership(WithdrawCashMembershipRequest(mrchCode: mrchCode, tranWebName: tranWebName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, tranNetMemberCode: tranNetMemberCode, memberName: memberName, takeCashAcctNo: takeCashAcctNo, outAmtAcctName: outAmtAcctName, ccy: ccy, cashAmt: cashAmt, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = WithdrawCashMembershipRequest(mrchCode: mrchCode, tranWebName: tranWebName, memberGlobalType: memberGlobalType, memberGlobalId: memberGlobalId, tranNetMemberCode: tranNetMemberCode, memberName: memberName, takeCashAcctNo: takeCashAcctNo, outAmtAcctName: outAmtAcctName, ccy: ccy, cashAmt: cashAmt, remark: remark, reservedMsg: reservedMsg, webSign: webSign, profile: profile)
+        return try await self.client.execute(action: "WithdrawCashMembership", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

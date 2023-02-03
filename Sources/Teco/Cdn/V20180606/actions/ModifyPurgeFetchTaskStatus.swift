@@ -83,7 +83,8 @@ extension Cdn {
     /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
     @inlinable @discardableResult
     public func modifyPurgeFetchTaskStatus(executionTime: Date, executionStatus: String, id: String, executionStatusDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPurgeFetchTaskStatusResponse> {
-        self.modifyPurgeFetchTaskStatus(ModifyPurgeFetchTaskStatusRequest(executionTime: executionTime, executionStatus: executionStatus, id: id, executionStatusDesc: executionStatusDesc), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPurgeFetchTaskStatusRequest(executionTime: executionTime, executionStatus: executionStatus, id: id, executionStatusDesc: executionStatusDesc)
+        return self.client.execute(action: "ModifyPurgeFetchTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报定时刷新预热任务执行状态
@@ -91,6 +92,7 @@ extension Cdn {
     /// ModifyPurgeFetchTaskStatus 用于上报定时刷新预热任务执行状态
     @inlinable @discardableResult
     public func modifyPurgeFetchTaskStatus(executionTime: Date, executionStatus: String, id: String, executionStatusDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPurgeFetchTaskStatusResponse {
-        try await self.modifyPurgeFetchTaskStatus(ModifyPurgeFetchTaskStatusRequest(executionTime: executionTime, executionStatus: executionStatus, id: id, executionStatusDesc: executionStatusDesc), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPurgeFetchTaskStatusRequest(executionTime: executionTime, executionStatus: executionStatus, id: id, executionStatusDesc: executionStatusDesc)
+        return try await self.client.execute(action: "ModifyPurgeFetchTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

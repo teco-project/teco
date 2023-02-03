@@ -64,12 +64,14 @@ extension Cdb {
     /// 关闭数据库代理
     @inlinable @discardableResult
     public func closeCDBProxy(instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseCDBProxyResponse> {
-        self.closeCDBProxy(CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW), region: region, logger: logger, on: eventLoop)
+        let input = CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW)
+        return self.client.execute(action: "CloseCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭数据库代理
     @inlinable @discardableResult
     public func closeCDBProxy(instanceId: String, proxyGroupId: String? = nil, onlyCloseRW: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseCDBProxyResponse {
-        try await self.closeCDBProxy(CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW), region: region, logger: logger, on: eventLoop)
+        let input = CloseCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId, onlyCloseRW: onlyCloseRW)
+        return try await self.client.execute(action: "CloseCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

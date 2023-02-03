@@ -73,12 +73,14 @@ extension Dayu {
     /// 开启或关闭CC防护的访问频率控制规则
     @inlinable
     public func modifyCCFrequencyRulesStatus(business: String, id: String, ruleId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCFrequencyRulesStatusResponse> {
-        self.modifyCCFrequencyRulesStatus(ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method)
+        return self.client.execute(action: "ModifyCCFrequencyRulesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭CC防护的访问频率控制规则
     @inlinable
     public func modifyCCFrequencyRulesStatus(business: String, id: String, ruleId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCFrequencyRulesStatusResponse {
-        try await self.modifyCCFrequencyRulesStatus(ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCFrequencyRulesStatusRequest(business: business, id: id, ruleId: ruleId, method: method)
+        return try await self.client.execute(action: "ModifyCCFrequencyRulesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

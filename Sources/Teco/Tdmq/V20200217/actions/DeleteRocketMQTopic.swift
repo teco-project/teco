@@ -64,12 +64,14 @@ extension Tdmq {
     /// 删除RocketMQ主题
     @inlinable @discardableResult
     public func deleteRocketMQTopic(clusterId: String, namespaceId: String, topic: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQTopicResponse> {
-        self.deleteRocketMQTopic(DeleteRocketMQTopicRequest(clusterId: clusterId, namespaceId: namespaceId, topic: topic), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRocketMQTopicRequest(clusterId: clusterId, namespaceId: namespaceId, topic: topic)
+        return self.client.execute(action: "DeleteRocketMQTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除RocketMQ主题
     @inlinable @discardableResult
     public func deleteRocketMQTopic(clusterId: String, namespaceId: String, topic: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQTopicResponse {
-        try await self.deleteRocketMQTopic(DeleteRocketMQTopicRequest(clusterId: clusterId, namespaceId: namespaceId, topic: topic), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRocketMQTopicRequest(clusterId: clusterId, namespaceId: namespaceId, topic: topic)
+        return try await self.client.execute(action: "DeleteRocketMQTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

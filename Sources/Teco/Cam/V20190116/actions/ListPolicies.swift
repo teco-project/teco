@@ -97,7 +97,8 @@ extension Cam {
     /// 本接口（ListPolicies）可用于查询策略列表。
     @inlinable
     public func listPolicies(rp: UInt64? = nil, page: UInt64? = nil, scope: String? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPoliciesResponse> {
-        self.listPolicies(ListPoliciesRequest(rp: rp, page: page, scope: scope, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = ListPoliciesRequest(rp: rp, page: page, scope: scope, keyword: keyword)
+        return self.client.execute(action: "ListPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询策略列表
@@ -105,6 +106,7 @@ extension Cam {
     /// 本接口（ListPolicies）可用于查询策略列表。
     @inlinable
     public func listPolicies(rp: UInt64? = nil, page: UInt64? = nil, scope: String? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesResponse {
-        try await self.listPolicies(ListPoliciesRequest(rp: rp, page: page, scope: scope, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = ListPoliciesRequest(rp: rp, page: page, scope: scope, keyword: keyword)
+        return try await self.client.execute(action: "ListPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Ump {
     /// 上报所有进程监控信息
     @inlinable @discardableResult
     public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProgramStateResponse> {
-        self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), region: region, logger: logger, on: eventLoop)
+        let input = CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId)
+        return self.client.execute(action: "CreateProgramState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 进程监控信息上报
@@ -78,6 +79,7 @@ extension Ump {
     /// 上报所有进程监控信息
     @inlinable @discardableResult
     public func createProgramState(groupCode: String, programStateItems: [ProgramStateItem], mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProgramStateResponse {
-        try await self.createProgramState(CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId), region: region, logger: logger, on: eventLoop)
+        let input = CreateProgramStateRequest(groupCode: groupCode, programStateItems: programStateItems, mallId: mallId)
+        return try await self.client.execute(action: "CreateProgramState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -89,12 +89,14 @@ extension Tem {
     /// 重启实例
     @inlinable
     public func restartServiceRunPod(namespaceId: String, serviceId: String, podName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartServiceRunPodResponse> {
-        self.restartServiceRunPod(RestartServiceRunPodRequest(namespaceId: namespaceId, serviceId: serviceId, podName: podName, limit: limit, offset: offset, status: status, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
+        let input = RestartServiceRunPodRequest(namespaceId: namespaceId, serviceId: serviceId, podName: podName, limit: limit, offset: offset, status: status, sourceChannel: sourceChannel)
+        return self.client.execute(action: "RestartServiceRunPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
     @inlinable
     public func restartServiceRunPod(namespaceId: String, serviceId: String, podName: String, limit: Int64? = nil, offset: Int64? = nil, status: String? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartServiceRunPodResponse {
-        try await self.restartServiceRunPod(RestartServiceRunPodRequest(namespaceId: namespaceId, serviceId: serviceId, podName: podName, limit: limit, offset: offset, status: status, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
+        let input = RestartServiceRunPodRequest(namespaceId: namespaceId, serviceId: serviceId, podName: podName, limit: limit, offset: offset, status: status, sourceChannel: sourceChannel)
+        return try await self.client.execute(action: "RestartServiceRunPod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

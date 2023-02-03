@@ -74,7 +74,8 @@ extension Tcb {
     /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
     @inlinable
     public func turnOffStandaloneGateway(envId: String, gatewayName: String, serviceNameList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TurnOffStandaloneGatewayResponse> {
-        self.turnOffStandaloneGateway(TurnOffStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList), region: region, logger: logger, on: eventLoop)
+        let input = TurnOffStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList)
+        return self.client.execute(action: "TurnOffStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭小租户网关
@@ -82,6 +83,7 @@ extension Tcb {
     /// 本接口（TurnOffStandaloneGateway）用于关闭小租户网关。
     @inlinable
     public func turnOffStandaloneGateway(envId: String, gatewayName: String, serviceNameList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TurnOffStandaloneGatewayResponse {
-        try await self.turnOffStandaloneGateway(TurnOffStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList), region: region, logger: logger, on: eventLoop)
+        let input = TurnOffStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, serviceNameList: serviceNameList)
+        return try await self.client.execute(action: "TurnOffStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

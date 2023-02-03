@@ -58,12 +58,14 @@ extension Redis {
     /// 查询实例访问来源信息
     @inlinable
     public func describeInstanceMonitorSIP(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorSIPResponse> {
-        self.describeInstanceMonitorSIP(DescribeInstanceMonitorSIPRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceMonitorSIPRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeInstanceMonitorSIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问来源信息
     @inlinable
     public func describeInstanceMonitorSIP(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorSIPResponse {
-        try await self.describeInstanceMonitorSIP(DescribeInstanceMonitorSIPRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceMonitorSIPRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeInstanceMonitorSIP", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

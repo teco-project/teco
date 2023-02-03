@@ -76,7 +76,8 @@ extension Rum {
     /// 默认接口请求频率限制：20次/秒
     @inlinable
     public func describeLogExports(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogExportsResponse> {
-        self.describeLogExports(DescribeLogExportsRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogExportsRequest(id: id)
+        return self.client.execute(action: "DescribeLogExports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志下载任务列表
@@ -88,6 +89,7 @@ extension Rum {
     /// 默认接口请求频率限制：20次/秒
     @inlinable
     public func describeLogExports(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogExportsResponse {
-        try await self.describeLogExports(DescribeLogExportsRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogExportsRequest(id: id)
+        return try await self.client.execute(action: "DescribeLogExports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

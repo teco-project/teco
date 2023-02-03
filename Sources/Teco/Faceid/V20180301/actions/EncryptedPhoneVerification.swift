@@ -101,7 +101,8 @@ extension Faceid {
     /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性，入参支持明文、MD5和SHA256加密传输。
     @inlinable
     public func encryptedPhoneVerification(idCard: String, name: String, phone: String, encryptionMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EncryptedPhoneVerificationResponse> {
-        self.encryptedPhoneVerification(EncryptedPhoneVerificationRequest(idCard: idCard, name: name, phone: phone, encryptionMode: encryptionMode), region: region, logger: logger, on: eventLoop)
+        let input = EncryptedPhoneVerificationRequest(idCard: idCard, name: name, phone: phone, encryptionMode: encryptionMode)
+        return self.client.execute(action: "EncryptedPhoneVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运营商三要素核验（加密）
@@ -109,6 +110,7 @@ extension Faceid {
     /// 本接口用于校验手机号、姓名和身份证号的真实性和一致性，入参支持明文、MD5和SHA256加密传输。
     @inlinable
     public func encryptedPhoneVerification(idCard: String, name: String, phone: String, encryptionMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EncryptedPhoneVerificationResponse {
-        try await self.encryptedPhoneVerification(EncryptedPhoneVerificationRequest(idCard: idCard, name: name, phone: phone, encryptionMode: encryptionMode), region: region, logger: logger, on: eventLoop)
+        let input = EncryptedPhoneVerificationRequest(idCard: idCard, name: name, phone: phone, encryptionMode: encryptionMode)
+        return try await self.client.execute(action: "EncryptedPhoneVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

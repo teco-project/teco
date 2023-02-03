@@ -58,12 +58,14 @@ extension Tdid {
     /// 获取联盟bcos网络列表
     @inlinable
     public func getConsortiumClusterList(consortiumId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetConsortiumClusterListResponse> {
-        self.getConsortiumClusterList(GetConsortiumClusterListRequest(consortiumId: consortiumId), region: region, logger: logger, on: eventLoop)
+        let input = GetConsortiumClusterListRequest(consortiumId: consortiumId)
+        return self.client.execute(action: "GetConsortiumClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取联盟bcos网络列表
     @inlinable
     public func getConsortiumClusterList(consortiumId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetConsortiumClusterListResponse {
-        try await self.getConsortiumClusterList(GetConsortiumClusterListRequest(consortiumId: consortiumId), region: region, logger: logger, on: eventLoop)
+        let input = GetConsortiumClusterListRequest(consortiumId: consortiumId)
+        return try await self.client.execute(action: "GetConsortiumClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

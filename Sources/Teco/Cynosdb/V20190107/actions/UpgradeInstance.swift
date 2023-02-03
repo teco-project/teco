@@ -108,12 +108,14 @@ extension Cynosdb {
     /// 升级实例
     @inlinable
     public func upgradeInstance(instanceId: String, cpu: Int64, memory: Int64, upgradeType: String, storageLimit: UInt64? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, dealMode: Int64? = nil, upgradeMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceResponse> {
-        self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, cpu: cpu, memory: memory, upgradeType: upgradeType, storageLimit: storageLimit, autoVoucher: autoVoucher, dbType: dbType, dealMode: dealMode, upgradeMode: upgradeMode), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeInstanceRequest(instanceId: instanceId, cpu: cpu, memory: memory, upgradeType: upgradeType, storageLimit: storageLimit, autoVoucher: autoVoucher, dbType: dbType, dealMode: dealMode, upgradeMode: upgradeMode)
+        return self.client.execute(action: "UpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例
     @inlinable
     public func upgradeInstance(instanceId: String, cpu: Int64, memory: Int64, upgradeType: String, storageLimit: UInt64? = nil, autoVoucher: Int64? = nil, dbType: String? = nil, dealMode: Int64? = nil, upgradeMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceResponse {
-        try await self.upgradeInstance(UpgradeInstanceRequest(instanceId: instanceId, cpu: cpu, memory: memory, upgradeType: upgradeType, storageLimit: storageLimit, autoVoucher: autoVoucher, dbType: dbType, dealMode: dealMode, upgradeMode: upgradeMode), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeInstanceRequest(instanceId: instanceId, cpu: cpu, memory: memory, upgradeType: upgradeType, storageLimit: storageLimit, autoVoucher: autoVoucher, dbType: dbType, dealMode: dealMode, upgradeMode: upgradeMode)
+        return try await self.client.execute(action: "UpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

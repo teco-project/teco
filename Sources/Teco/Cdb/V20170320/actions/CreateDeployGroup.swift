@@ -84,7 +84,8 @@ extension Cdb {
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
     @inlinable
     public func createDeployGroup(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeployGroupResponse> {
-        self.createDeployGroup(CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass), region: region, logger: logger, on: eventLoop)
+        let input = CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass)
+        return self.client.execute(action: "CreateDeployGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建置放群组
@@ -92,6 +93,7 @@ extension Cdb {
     /// 本接口(CreateDeployGroup)用于创建放置实例的置放群组
     @inlinable
     public func createDeployGroup(deployGroupName: String, description: String? = nil, affinity: [Int64]? = nil, limitNum: Int64? = nil, devClass: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeployGroupResponse {
-        try await self.createDeployGroup(CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass), region: region, logger: logger, on: eventLoop)
+        let input = CreateDeployGroupRequest(deployGroupName: deployGroupName, description: description, affinity: affinity, limitNum: limitNum, devClass: devClass)
+        return try await self.client.execute(action: "CreateDeployGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

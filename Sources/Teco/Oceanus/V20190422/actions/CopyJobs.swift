@@ -80,7 +80,8 @@ extension Oceanus {
     /// 单条和批量复制作业
     @inlinable
     public func copyJobs(jobItems: [CopyJobItem], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyJobsResponse> {
-        self.copyJobs(CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId)
+        return self.client.execute(action: "CopyJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制作业
@@ -88,6 +89,7 @@ extension Oceanus {
     /// 单条和批量复制作业
     @inlinable
     public func copyJobs(jobItems: [CopyJobItem], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyJobsResponse {
-        try await self.copyJobs(CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = CopyJobsRequest(jobItems: jobItems, workSpaceId: workSpaceId)
+        return try await self.client.execute(action: "CopyJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

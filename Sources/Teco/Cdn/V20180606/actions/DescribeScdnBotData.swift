@@ -91,12 +91,14 @@ extension Cdn {
     /// 获取BOT统计数据列表
     @inlinable
     public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScdnBotDataResponse> {
-        self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains)
+        return self.client.execute(action: "DescribeScdnBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取BOT统计数据列表
     @inlinable
     public func describeScdnBotData(startTime: Date, endTime: Date, area: String, interval: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScdnBotDataResponse {
-        try await self.describeScdnBotData(DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScdnBotDataRequest(startTime: startTime, endTime: endTime, area: area, interval: interval, domains: domains)
+        return try await self.client.execute(action: "DescribeScdnBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

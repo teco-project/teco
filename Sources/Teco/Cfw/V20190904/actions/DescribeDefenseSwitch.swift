@@ -74,12 +74,14 @@ extension Cfw {
     /// 获取入侵防御按钮列表
     @inlinable
     public func describeDefenseSwitch(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefenseSwitchResponse> {
-        self.describeDefenseSwitch(DescribeDefenseSwitchRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDefenseSwitchRequest()
+        return self.client.execute(action: "DescribeDefenseSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取入侵防御按钮列表
     @inlinable
     public func describeDefenseSwitch(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefenseSwitchResponse {
-        try await self.describeDefenseSwitch(DescribeDefenseSwitchRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDefenseSwitchRequest()
+        return try await self.client.execute(action: "DescribeDefenseSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

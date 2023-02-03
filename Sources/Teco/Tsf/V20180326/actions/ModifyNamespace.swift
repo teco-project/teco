@@ -69,12 +69,14 @@ extension Tsf {
     /// 修改命名空间
     @inlinable @discardableResult
     public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, namespaceDesc: String? = nil, isHaEnable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNamespaceResponse> {
-        self.modifyNamespace(ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, namespaceDesc: namespaceDesc, isHaEnable: isHaEnable), region: region, logger: logger, on: eventLoop)
+        let input = ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, namespaceDesc: namespaceDesc, isHaEnable: isHaEnable)
+        return self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改命名空间
     @inlinable @discardableResult
     public func modifyNamespace(namespaceId: String, namespaceName: String? = nil, namespaceDesc: String? = nil, isHaEnable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNamespaceResponse {
-        try await self.modifyNamespace(ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, namespaceDesc: namespaceDesc, isHaEnable: isHaEnable), region: region, logger: logger, on: eventLoop)
+        let input = ModifyNamespaceRequest(namespaceId: namespaceId, namespaceName: namespaceName, namespaceDesc: namespaceDesc, isHaEnable: isHaEnable)
+        return try await self.client.execute(action: "ModifyNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

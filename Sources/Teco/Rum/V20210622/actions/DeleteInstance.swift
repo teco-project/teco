@@ -60,7 +60,8 @@ extension Rum {
     /// 删除实例，谨慎操作，不可恢复
     @inlinable @discardableResult
     public func deleteInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
-        self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 RUM 业务系统
@@ -68,6 +69,7 @@ extension Rum {
     /// 删除实例，谨慎操作，不可恢复
     @inlinable @discardableResult
     public func deleteInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
-        try await self.deleteInstance(DeleteInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

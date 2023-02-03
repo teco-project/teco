@@ -83,7 +83,8 @@ extension Mongodb {
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
     public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
-        self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeDBBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例备份列表
@@ -91,6 +92,7 @@ extension Mongodb {
     /// 本接口（DescribeDBBackups）用于查询实例备份列表，目前只支持查询7天内的备份记录。
     @inlinable
     public func describeDBBackups(instanceId: String, backupMethod: Int64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
-        try await self.describeDBBackups(DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBBackupsRequest(instanceId: instanceId, backupMethod: backupMethod, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeDBBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

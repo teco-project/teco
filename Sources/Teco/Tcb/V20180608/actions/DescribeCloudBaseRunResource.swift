@@ -85,7 +85,8 @@ extension Tcb {
     /// 查看容器托管的集群状态
     @inlinable
     public func describeCloudBaseRunResource(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunResourceResponse> {
-        self.describeCloudBaseRunResource(DescribeCloudBaseRunResourceRequest(envId: envId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudBaseRunResourceRequest(envId: envId)
+        return self.client.execute(action: "DescribeCloudBaseRunResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看容器托管的资源状态
@@ -93,6 +94,7 @@ extension Tcb {
     /// 查看容器托管的集群状态
     @inlinable
     public func describeCloudBaseRunResource(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunResourceResponse {
-        try await self.describeCloudBaseRunResource(DescribeCloudBaseRunResourceRequest(envId: envId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudBaseRunResourceRequest(envId: envId)
+        return try await self.client.execute(action: "DescribeCloudBaseRunResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

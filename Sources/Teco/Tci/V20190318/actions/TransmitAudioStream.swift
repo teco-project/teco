@@ -129,7 +129,8 @@ extension Tci {
     /// 分析音频信息
     @inlinable
     public func transmitAudioStream(functions: Function, seqId: Int64, sessionId: String, userVoiceData: String, voiceEncodeType: Int64, voiceFileType: Int64, isEnd: Int64? = nil, lang: Int64? = nil, storageMode: Int64? = nil, vocabLibNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransmitAudioStreamResponse> {
-        self.transmitAudioStream(TransmitAudioStreamRequest(functions: functions, seqId: seqId, sessionId: sessionId, userVoiceData: userVoiceData, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, isEnd: isEnd, lang: lang, storageMode: storageMode, vocabLibNameList: vocabLibNameList), region: region, logger: logger, on: eventLoop)
+        let input = TransmitAudioStreamRequest(functions: functions, seqId: seqId, sessionId: sessionId, userVoiceData: userVoiceData, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, isEnd: isEnd, lang: lang, storageMode: storageMode, vocabLibNameList: vocabLibNameList)
+        return self.client.execute(action: "TransmitAudioStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 流式音频分析
@@ -137,6 +138,7 @@ extension Tci {
     /// 分析音频信息
     @inlinable
     public func transmitAudioStream(functions: Function, seqId: Int64, sessionId: String, userVoiceData: String, voiceEncodeType: Int64, voiceFileType: Int64, isEnd: Int64? = nil, lang: Int64? = nil, storageMode: Int64? = nil, vocabLibNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransmitAudioStreamResponse {
-        try await self.transmitAudioStream(TransmitAudioStreamRequest(functions: functions, seqId: seqId, sessionId: sessionId, userVoiceData: userVoiceData, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, isEnd: isEnd, lang: lang, storageMode: storageMode, vocabLibNameList: vocabLibNameList), region: region, logger: logger, on: eventLoop)
+        let input = TransmitAudioStreamRequest(functions: functions, seqId: seqId, sessionId: sessionId, userVoiceData: userVoiceData, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, isEnd: isEnd, lang: lang, storageMode: storageMode, vocabLibNameList: vocabLibNameList)
+        return try await self.client.execute(action: "TransmitAudioStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

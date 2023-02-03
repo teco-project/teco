@@ -73,7 +73,8 @@ extension Mariadb {
     /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
     public func initDBInstances(instanceIds: [String], params: [DBParamValue], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDBInstancesResponse> {
-        self.initDBInstances(InitDBInstancesRequest(instanceIds: instanceIds, params: params), region: region, logger: logger, on: eventLoop)
+        let input = InitDBInstancesRequest(instanceIds: instanceIds, params: params)
+        return self.client.execute(action: "InitDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 初始化实例
@@ -81,6 +82,7 @@ extension Mariadb {
     /// 本接口(InitDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
     public func initDBInstances(instanceIds: [String], params: [DBParamValue], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDBInstancesResponse {
-        try await self.initDBInstances(InitDBInstancesRequest(instanceIds: instanceIds, params: params), region: region, logger: logger, on: eventLoop)
+        let input = InitDBInstancesRequest(instanceIds: instanceIds, params: params)
+        return try await self.client.execute(action: "InitDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

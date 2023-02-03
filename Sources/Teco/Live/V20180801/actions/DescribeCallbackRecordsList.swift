@@ -115,7 +115,8 @@ extension Live {
     /// 用于查询回调事件。
     @inlinable
     public func describeCallbackRecordsList(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallbackRecordsListResponse> {
-        self.describeCallbackRecordsList(DescribeCallbackRecordsListRequest(startTime: startTime, endTime: endTime, streamName: streamName, pageNum: pageNum, pageSize: pageSize, eventType: eventType, resultCode: resultCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCallbackRecordsListRequest(startTime: startTime, endTime: endTime, streamName: streamName, pageNum: pageNum, pageSize: pageSize, eventType: eventType, resultCode: resultCode)
+        return self.client.execute(action: "DescribeCallbackRecordsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回调事件查询
@@ -123,6 +124,7 @@ extension Live {
     /// 用于查询回调事件。
     @inlinable
     public func describeCallbackRecordsList(startTime: String, endTime: String, streamName: String, pageNum: UInt64, pageSize: UInt64, eventType: UInt64? = nil, resultCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallbackRecordsListResponse {
-        try await self.describeCallbackRecordsList(DescribeCallbackRecordsListRequest(startTime: startTime, endTime: endTime, streamName: streamName, pageNum: pageNum, pageSize: pageSize, eventType: eventType, resultCode: resultCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCallbackRecordsListRequest(startTime: startTime, endTime: endTime, streamName: streamName, pageNum: pageNum, pageSize: pageSize, eventType: eventType, resultCode: resultCode)
+        return try await self.client.execute(action: "DescribeCallbackRecordsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

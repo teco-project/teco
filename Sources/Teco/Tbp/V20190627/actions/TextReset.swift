@@ -120,7 +120,8 @@ extension Tbp {
     /// 会话重置接口。
     @inlinable
     public func textReset(botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextResetResponse> {
-        self.textReset(TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId), region: region, logger: logger, on: eventLoop)
+        let input = TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId)
+        return self.client.execute(action: "TextReset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 会话重置
@@ -128,6 +129,7 @@ extension Tbp {
     /// 会话重置接口。
     @inlinable
     public func textReset(botId: String, botEnv: String, terminalId: String, platformType: String? = nil, platformId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextResetResponse {
-        try await self.textReset(TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId), region: region, logger: logger, on: eventLoop)
+        let input = TextResetRequest(botId: botId, botEnv: botEnv, terminalId: terminalId, platformType: platformType, platformId: platformId)
+        return try await self.client.execute(action: "TextReset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

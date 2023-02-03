@@ -70,7 +70,8 @@ extension Trp {
     /// 冻结或者激活二维码，所属的批次的冻结状态优先级大于单个二维码的状态，即如果批次是冻结的，那么该批次下二维码的状态都是冻结的
     @inlinable @discardableResult
     public func modifyTraceCode(code: String, corpId: UInt64? = nil, status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceCodeResponse> {
-        self.modifyTraceCode(ModifyTraceCodeRequest(code: code, corpId: corpId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTraceCodeRequest(code: code, corpId: corpId, status: status)
+        return self.client.execute(action: "ModifyTraceCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改二维码的状态
@@ -78,6 +79,7 @@ extension Trp {
     /// 冻结或者激活二维码，所属的批次的冻结状态优先级大于单个二维码的状态，即如果批次是冻结的，那么该批次下二维码的状态都是冻结的
     @inlinable @discardableResult
     public func modifyTraceCode(code: String, corpId: UInt64? = nil, status: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceCodeResponse {
-        try await self.modifyTraceCode(ModifyTraceCodeRequest(code: code, corpId: corpId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTraceCodeRequest(code: code, corpId: corpId, status: status)
+        return try await self.client.execute(action: "ModifyTraceCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

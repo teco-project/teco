@@ -65,7 +65,8 @@ extension Domain {
     /// 此接口用于发送手机邮箱验证码。
     @inlinable @discardableResult
     public func sendPhoneEmailCode(code: String, type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendPhoneEmailCodeResponse> {
-        self.sendPhoneEmailCode(SendPhoneEmailCodeRequest(code: code, type: type), region: region, logger: logger, on: eventLoop)
+        let input = SendPhoneEmailCodeRequest(code: code, type: type)
+        return self.client.execute(action: "SendPhoneEmailCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送手机邮箱验证码
@@ -73,6 +74,7 @@ extension Domain {
     /// 此接口用于发送手机邮箱验证码。
     @inlinable @discardableResult
     public func sendPhoneEmailCode(code: String, type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendPhoneEmailCodeResponse {
-        try await self.sendPhoneEmailCode(SendPhoneEmailCodeRequest(code: code, type: type), region: region, logger: logger, on: eventLoop)
+        let input = SendPhoneEmailCodeRequest(code: code, type: type)
+        return try await self.client.execute(action: "SendPhoneEmailCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

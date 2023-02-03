@@ -62,12 +62,14 @@ extension Redis {
     /// 查询Redis节点详细信息
     @inlinable
     public func describeInstanceZoneInfo(instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceZoneInfoResponse> {
-        self.describeInstanceZoneInfo(DescribeInstanceZoneInfoRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceZoneInfoRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeInstanceZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis节点详细信息
     @inlinable
     public func describeInstanceZoneInfo(instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceZoneInfoResponse {
-        try await self.describeInstanceZoneInfo(DescribeInstanceZoneInfoRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceZoneInfoRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeInstanceZoneInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

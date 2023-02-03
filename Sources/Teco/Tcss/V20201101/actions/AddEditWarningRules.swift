@@ -54,12 +54,14 @@ extension Tcss {
     /// 添加编辑告警策略
     @inlinable @discardableResult
     public func addEditWarningRules(warningRules: [WarningRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddEditWarningRulesResponse> {
-        self.addEditWarningRules(AddEditWarningRulesRequest(warningRules: warningRules), region: region, logger: logger, on: eventLoop)
+        let input = AddEditWarningRulesRequest(warningRules: warningRules)
+        return self.client.execute(action: "AddEditWarningRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加编辑告警策略
     @inlinable @discardableResult
     public func addEditWarningRules(warningRules: [WarningRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEditWarningRulesResponse {
-        try await self.addEditWarningRules(AddEditWarningRulesRequest(warningRules: warningRules), region: region, logger: logger, on: eventLoop)
+        let input = AddEditWarningRulesRequest(warningRules: warningRules)
+        return try await self.client.execute(action: "AddEditWarningRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

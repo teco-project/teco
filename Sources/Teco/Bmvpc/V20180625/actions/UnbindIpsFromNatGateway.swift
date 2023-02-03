@@ -74,7 +74,8 @@ extension Bmvpc {
     /// NAT网关解绑IP接口，可将子网的部分IP从NAT网关中解绑
     @inlinable
     public func unbindIpsFromNatGateway(natId: String, vpcId: String, ipInfoSet: [IpInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindIpsFromNatGatewayResponse> {
-        self.unbindIpsFromNatGateway(UnbindIpsFromNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet), region: region, logger: logger, on: eventLoop)
+        let input = UnbindIpsFromNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet)
+        return self.client.execute(action: "UnbindIpsFromNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// NAT网关解绑IP
@@ -82,6 +83,7 @@ extension Bmvpc {
     /// NAT网关解绑IP接口，可将子网的部分IP从NAT网关中解绑
     @inlinable
     public func unbindIpsFromNatGateway(natId: String, vpcId: String, ipInfoSet: [IpInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindIpsFromNatGatewayResponse {
-        try await self.unbindIpsFromNatGateway(UnbindIpsFromNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet), region: region, logger: logger, on: eventLoop)
+        let input = UnbindIpsFromNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet)
+        return try await self.client.execute(action: "UnbindIpsFromNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

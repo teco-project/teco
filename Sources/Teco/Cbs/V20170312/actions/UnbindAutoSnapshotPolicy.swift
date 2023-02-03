@@ -74,7 +74,8 @@ extension Cbs {
     /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
     @inlinable @discardableResult
     public func unbindAutoSnapshotPolicy(autoSnapshotPolicyId: String, diskIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindAutoSnapshotPolicyResponse> {
-        self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, diskIds: diskIds), region: region, logger: logger, on: eventLoop)
+        let input = UnbindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, diskIds: diskIds)
+        return self.client.execute(action: "UnbindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑定期快照策略
@@ -85,6 +86,7 @@ extension Cbs {
     /// * 如果传入的云盘未绑定到当前定期快照策略，接口将自动跳过，仅解绑与当前定期快照策略绑定的云盘。
     @inlinable @discardableResult
     public func unbindAutoSnapshotPolicy(autoSnapshotPolicyId: String, diskIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
-        try await self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, diskIds: diskIds), region: region, logger: logger, on: eventLoop)
+        let input = UnbindAutoSnapshotPolicyRequest(autoSnapshotPolicyId: autoSnapshotPolicyId, diskIds: diskIds)
+        return try await self.client.execute(action: "UnbindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

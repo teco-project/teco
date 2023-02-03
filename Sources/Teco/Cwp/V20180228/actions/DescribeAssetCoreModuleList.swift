@@ -96,12 +96,14 @@ extension Cwp {
     /// 查询资产管理内核模块列表
     @inlinable
     public func describeAssetCoreModuleList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetCoreModuleListResponse> {
-        self.describeAssetCoreModuleList(DescribeAssetCoreModuleListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetCoreModuleListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by)
+        return self.client.execute(action: "DescribeAssetCoreModuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资产管理内核模块列表
     @inlinable
     public func describeAssetCoreModuleList(uuid: String? = nil, quuid: String? = nil, filters: [AssetFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetCoreModuleListResponse {
-        try await self.describeAssetCoreModuleList(DescribeAssetCoreModuleListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetCoreModuleListRequest(uuid: uuid, quuid: quuid, filters: filters, offset: offset, limit: limit, order: order, by: by)
+        return try await self.client.execute(action: "DescribeAssetCoreModuleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -60,7 +60,8 @@ extension Iotvideo {
     /// 本接口（DeleteAppUsr）用于删除终端用户。
     @inlinable @discardableResult
     public func deleteAppUsr(accessId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAppUsrResponse> {
-        self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAppUsrRequest(accessId: accessId)
+        return self.client.execute(action: "DeleteAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除终端用户
@@ -68,6 +69,7 @@ extension Iotvideo {
     /// 本接口（DeleteAppUsr）用于删除终端用户。
     @inlinable @discardableResult
     public func deleteAppUsr(accessId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAppUsrResponse {
-        try await self.deleteAppUsr(DeleteAppUsrRequest(accessId: accessId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAppUsrRequest(accessId: accessId)
+        return try await self.client.execute(action: "DeleteAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

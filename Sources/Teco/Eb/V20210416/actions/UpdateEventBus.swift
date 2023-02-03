@@ -64,12 +64,14 @@ extension Eb {
     /// 更新事件集
     @inlinable @discardableResult
     public func updateEventBus(eventBusId: String, description: String? = nil, eventBusName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEventBusResponse> {
-        self.updateEventBus(UpdateEventBusRequest(eventBusId: eventBusId, description: description, eventBusName: eventBusName), region: region, logger: logger, on: eventLoop)
+        let input = UpdateEventBusRequest(eventBusId: eventBusId, description: description, eventBusName: eventBusName)
+        return self.client.execute(action: "UpdateEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新事件集
     @inlinable @discardableResult
     public func updateEventBus(eventBusId: String, description: String? = nil, eventBusName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEventBusResponse {
-        try await self.updateEventBus(UpdateEventBusRequest(eventBusId: eventBusId, description: description, eventBusName: eventBusName), region: region, logger: logger, on: eventLoop)
+        let input = UpdateEventBusRequest(eventBusId: eventBusId, description: description, eventBusName: eventBusName)
+        return try await self.client.execute(action: "UpdateEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

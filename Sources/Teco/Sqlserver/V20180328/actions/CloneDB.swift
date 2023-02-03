@@ -69,7 +69,8 @@ extension Sqlserver {
     /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
     @inlinable
     public func cloneDB(instanceId: String, renameRestore: [RenameRestoreDatabase], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneDBResponse> {
-        self.cloneDB(CloneDBRequest(instanceId: instanceId, renameRestore: renameRestore), region: region, logger: logger, on: eventLoop)
+        let input = CloneDBRequest(instanceId: instanceId, renameRestore: renameRestore)
+        return self.client.execute(action: "CloneDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 克隆数据库
@@ -77,6 +78,7 @@ extension Sqlserver {
     /// 本接口（CloneDB）用于克隆数据库，只支持克隆到本实例，克隆时必须指定新库名称。
     @inlinable
     public func cloneDB(instanceId: String, renameRestore: [RenameRestoreDatabase], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneDBResponse {
-        try await self.cloneDB(CloneDBRequest(instanceId: instanceId, renameRestore: renameRestore), region: region, logger: logger, on: eventLoop)
+        let input = CloneDBRequest(instanceId: instanceId, renameRestore: renameRestore)
+        return try await self.client.execute(action: "CloneDB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

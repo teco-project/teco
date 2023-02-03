@@ -59,12 +59,14 @@ extension Cloudstudio {
     /// 恢复工作空间
     @inlinable @discardableResult
     public func recoverWorkspace(cloudStudioSessionTeam: String, spaceKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecoverWorkspaceResponse> {
-        self.recoverWorkspace(RecoverWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), region: region, logger: logger, on: eventLoop)
+        let input = RecoverWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey)
+        return self.client.execute(action: "RecoverWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复工作空间
     @inlinable @discardableResult
     public func recoverWorkspace(cloudStudioSessionTeam: String, spaceKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecoverWorkspaceResponse {
-        try await self.recoverWorkspace(RecoverWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), region: region, logger: logger, on: eventLoop)
+        let input = RecoverWorkspaceRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey)
+        return try await self.client.execute(action: "RecoverWorkspace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

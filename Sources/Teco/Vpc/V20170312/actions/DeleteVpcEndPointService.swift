@@ -60,7 +60,8 @@ extension Vpc {
     /// 删除终端节点服务。
     @inlinable @discardableResult
     public func deleteVpcEndPointService(endPointServiceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcEndPointServiceResponse> {
-        self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId)
+        return self.client.execute(action: "DeleteVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除终端节点服务
@@ -68,6 +69,7 @@ extension Vpc {
     /// 删除终端节点服务。
     @inlinable @discardableResult
     public func deleteVpcEndPointService(endPointServiceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcEndPointServiceResponse {
-        try await self.deleteVpcEndPointService(DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpcEndPointServiceRequest(endPointServiceId: endPointServiceId)
+        return try await self.client.execute(action: "DeleteVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -84,7 +84,8 @@ extension Cwp {
     /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
     @inlinable
     public func describeHistoryAccounts(uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHistoryAccountsResponse> {
-        self.describeHistoryAccounts(DescribeHistoryAccountsRequest(uuid: uuid, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHistoryAccountsRequest(uuid: uuid, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeHistoryAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取帐号变更历史列表
@@ -92,6 +93,7 @@ extension Cwp {
     /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
     @inlinable
     public func describeHistoryAccounts(uuid: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryAccountsResponse {
-        try await self.describeHistoryAccounts(DescribeHistoryAccountsRequest(uuid: uuid, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHistoryAccountsRequest(uuid: uuid, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeHistoryAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

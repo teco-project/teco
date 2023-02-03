@@ -59,12 +59,14 @@ extension Hasim {
     /// 编辑自动化规则状态
     @inlinable @discardableResult
     public func modifyRuleStatus(ruleID: UInt64, isActive: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleStatusResponse> {
-        self.modifyRuleStatus(ModifyRuleStatusRequest(ruleID: ruleID, isActive: isActive), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRuleStatusRequest(ruleID: ruleID, isActive: isActive)
+        return self.client.execute(action: "ModifyRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑自动化规则状态
     @inlinable @discardableResult
     public func modifyRuleStatus(ruleID: UInt64, isActive: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleStatusResponse {
-        try await self.modifyRuleStatus(ModifyRuleStatusRequest(ruleID: ruleID, isActive: isActive), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRuleStatusRequest(ruleID: ruleID, isActive: isActive)
+        return try await self.client.execute(action: "ModifyRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Postgres {
     /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组信息。
     @inlinable
     public func describeDBInstanceSecurityGroups(dbInstanceId: String? = nil, readOnlyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSecurityGroupsResponse> {
-        self.describeDBInstanceSecurityGroups(DescribeDBInstanceSecurityGroupsRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBInstanceSecurityGroupsRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId)
+        return self.client.execute(action: "DescribeDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例安全组信息
@@ -77,6 +78,7 @@ extension Postgres {
     /// 本接口（DescribeDBInstanceSecurityGroups）用于查询实例安全组信息。
     @inlinable
     public func describeDBInstanceSecurityGroups(dbInstanceId: String? = nil, readOnlyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSecurityGroupsResponse {
-        try await self.describeDBInstanceSecurityGroups(DescribeDBInstanceSecurityGroupsRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBInstanceSecurityGroupsRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId)
+        return try await self.client.execute(action: "DescribeDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

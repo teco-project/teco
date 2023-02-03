@@ -117,12 +117,14 @@ extension Dlc {
     /// DMS元数据获取分区
     @inlinable
     public func describeDMSPartitions(databaseName: String, tableName: String, schemaName: String? = nil, name: String? = nil, values: [String]? = nil, partitionNames: [String]? = nil, partValues: [String]? = nil, filter: String? = nil, maxParts: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, expression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDMSPartitionsResponse> {
-        self.describeDMSPartitions(DescribeDMSPartitionsRequest(databaseName: databaseName, tableName: tableName, schemaName: schemaName, name: name, values: values, partitionNames: partitionNames, partValues: partValues, filter: filter, maxParts: maxParts, offset: offset, limit: limit, expression: expression), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDMSPartitionsRequest(databaseName: databaseName, tableName: tableName, schemaName: schemaName, name: name, values: values, partitionNames: partitionNames, partValues: partValues, filter: filter, maxParts: maxParts, offset: offset, limit: limit, expression: expression)
+        return self.client.execute(action: "DescribeDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据获取分区
     @inlinable
     public func describeDMSPartitions(databaseName: String, tableName: String, schemaName: String? = nil, name: String? = nil, values: [String]? = nil, partitionNames: [String]? = nil, partValues: [String]? = nil, filter: String? = nil, maxParts: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, expression: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDMSPartitionsResponse {
-        try await self.describeDMSPartitions(DescribeDMSPartitionsRequest(databaseName: databaseName, tableName: tableName, schemaName: schemaName, name: name, values: values, partitionNames: partitionNames, partValues: partValues, filter: filter, maxParts: maxParts, offset: offset, limit: limit, expression: expression), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDMSPartitionsRequest(databaseName: databaseName, tableName: tableName, schemaName: schemaName, name: name, values: values, partitionNames: partitionNames, partValues: partValues, filter: filter, maxParts: maxParts, offset: offset, limit: limit, expression: expression)
+        return try await self.client.execute(action: "DescribeDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

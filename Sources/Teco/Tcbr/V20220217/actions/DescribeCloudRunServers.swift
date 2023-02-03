@@ -80,7 +80,8 @@ extension Tcbr {
     /// 查询云托管服务列表接口
     @inlinable
     public func describeCloudRunServers(envId: String, pageSize: Int64? = nil, pageNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRunServersResponse> {
-        self.describeCloudRunServers(DescribeCloudRunServersRequest(envId: envId, pageSize: pageSize, pageNum: pageNum), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudRunServersRequest(envId: envId, pageSize: pageSize, pageNum: pageNum)
+        return self.client.execute(action: "DescribeCloudRunServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云托管服务列表
@@ -88,6 +89,7 @@ extension Tcbr {
     /// 查询云托管服务列表接口
     @inlinable
     public func describeCloudRunServers(envId: String, pageSize: Int64? = nil, pageNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServersResponse {
-        try await self.describeCloudRunServers(DescribeCloudRunServersRequest(envId: envId, pageSize: pageSize, pageNum: pageNum), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudRunServersRequest(envId: envId, pageSize: pageSize, pageNum: pageNum)
+        return try await self.client.execute(action: "DescribeCloudRunServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

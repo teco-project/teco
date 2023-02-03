@@ -74,7 +74,8 @@ extension Gme {
     /// 用户使用该接口可以创建语音消息转文本热句模型，以供识别调用
     @inlinable
     public func createCustomization(bizId: Int64, textUrl: String, modelName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
-        self.createCustomization(CreateCustomizationRequest(bizId: bizId, textUrl: textUrl, modelName: modelName), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomizationRequest(bizId: bizId, textUrl: textUrl, modelName: modelName)
+        return self.client.execute(action: "CreateCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建语音消息转文本热句模型
@@ -82,6 +83,7 @@ extension Gme {
     /// 用户使用该接口可以创建语音消息转文本热句模型，以供识别调用
     @inlinable
     public func createCustomization(bizId: Int64, textUrl: String, modelName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
-        try await self.createCustomization(CreateCustomizationRequest(bizId: bizId, textUrl: textUrl, modelName: modelName), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomizationRequest(bizId: bizId, textUrl: textUrl, modelName: modelName)
+        return try await self.client.execute(action: "CreateCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

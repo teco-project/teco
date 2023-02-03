@@ -65,7 +65,8 @@ extension Monitor {
     /// 批量删除 Prometheus 报警规则
     @inlinable @discardableResult
     public func deleteAlertRules(ruleIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlertRulesResponse> {
-        self.deleteAlertRules(DeleteAlertRulesRequest(ruleIds: ruleIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAlertRulesRequest(ruleIds: ruleIds, instanceId: instanceId)
+        return self.client.execute(action: "DeleteAlertRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除报警规则
@@ -73,6 +74,7 @@ extension Monitor {
     /// 批量删除 Prometheus 报警规则
     @inlinable @discardableResult
     public func deleteAlertRules(ruleIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlertRulesResponse {
-        try await self.deleteAlertRules(DeleteAlertRulesRequest(ruleIds: ruleIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAlertRulesRequest(ruleIds: ruleIds, instanceId: instanceId)
+        return try await self.client.execute(action: "DeleteAlertRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

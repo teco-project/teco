@@ -69,7 +69,8 @@ extension Rum {
     /// 个人用户添加星标项目
     @inlinable
     public func createStarProject(instanceID: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStarProjectResponse> {
-        self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
+        let input = CreateStarProjectRequest(instanceID: instanceID, id: id)
+        return self.client.execute(action: "CreateStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加星标应用
@@ -77,6 +78,7 @@ extension Rum {
     /// 个人用户添加星标项目
     @inlinable
     public func createStarProject(instanceID: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStarProjectResponse {
-        try await self.createStarProject(CreateStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
+        let input = CreateStarProjectRequest(instanceID: instanceID, id: id)
+        return try await self.client.execute(action: "CreateStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

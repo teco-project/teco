@@ -82,12 +82,14 @@ extension Billing {
     /// 获取代金券使用记录
     @inlinable
     public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherUsageDetailsResponse> {
-        self.describeVoucherUsageDetails(DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`)
+        return self.client.execute(action: "DescribeVoucherUsageDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取代金券使用记录
     @inlinable
     public func describeVoucherUsageDetails(limit: Int64, offset: Int64, voucherId: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherUsageDetailsResponse {
-        try await self.describeVoucherUsageDetails(DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVoucherUsageDetailsRequest(limit: limit, offset: offset, voucherId: voucherId, operator: `operator`)
+        return try await self.client.execute(action: "DescribeVoucherUsageDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

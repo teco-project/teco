@@ -109,12 +109,14 @@ extension Tcss {
     /// 容器网络创建网络策略更新任务
     @inlinable
     public func updateNetworkFirewallPolicyDetail(clusterId: String, id: UInt64, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateNetworkFirewallPolicyDetailResponse> {
-        self.updateNetworkFirewallPolicyDetail(UpdateNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), region: region, logger: logger, on: eventLoop)
+        let input = UpdateNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy)
+        return self.client.execute(action: "UpdateNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略更新任务
     @inlinable
     public func updateNetworkFirewallPolicyDetail(clusterId: String, id: UInt64, fromPolicyRule: Int64, toPolicyRule: Int64, podSelector: String, namespace: String? = nil, description: String? = nil, customPolicy: [NetworkCustomPolicy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNetworkFirewallPolicyDetailResponse {
-        try await self.updateNetworkFirewallPolicyDetail(UpdateNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy), region: region, logger: logger, on: eventLoop)
+        let input = UpdateNetworkFirewallPolicyDetailRequest(clusterId: clusterId, id: id, fromPolicyRule: fromPolicyRule, toPolicyRule: toPolicyRule, podSelector: podSelector, namespace: namespace, description: description, customPolicy: customPolicy)
+        return try await self.client.execute(action: "UpdateNetworkFirewallPolicyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

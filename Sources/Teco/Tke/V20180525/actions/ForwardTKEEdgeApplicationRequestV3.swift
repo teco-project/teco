@@ -88,12 +88,14 @@ extension Tke {
     /// 操作TKEEdge集群的addon
     @inlinable
     public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForwardTKEEdgeApplicationRequestV3Response> {
-        self.forwardTKEEdgeApplicationRequestV3(ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), region: region, logger: logger, on: eventLoop)
+        let input = ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody)
+        return self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 操作TKEEdge集群的addon
     @inlinable
     public func forwardTKEEdgeApplicationRequestV3(method: String, path: String, accept: String? = nil, contentType: String? = nil, requestBody: String? = nil, clusterName: String? = nil, encodedBody: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForwardTKEEdgeApplicationRequestV3Response {
-        try await self.forwardTKEEdgeApplicationRequestV3(ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody), region: region, logger: logger, on: eventLoop)
+        let input = ForwardTKEEdgeApplicationRequestV3Request(method: method, path: path, accept: accept, contentType: contentType, requestBody: requestBody, clusterName: clusterName, encodedBody: encodedBody)
+        return try await self.client.execute(action: "ForwardTKEEdgeApplicationRequestV3", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -100,7 +100,8 @@ extension Tiia {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectProductBeta(imageUrl: String? = nil, imageBase64: String? = nil, needLemma: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectProductBetaResponse> {
-        self.detectProductBeta(DetectProductBetaRequest(imageUrl: imageUrl, imageBase64: imageBase64, needLemma: needLemma), region: region, logger: logger, on: eventLoop)
+        let input = DetectProductBetaRequest(imageUrl: imageUrl, imageBase64: imageBase64, needLemma: needLemma)
+        return self.client.execute(action: "DetectProductBeta", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 商品识别-微信识物版
@@ -112,6 +113,7 @@ extension Tiia {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectProductBeta(imageUrl: String? = nil, imageBase64: String? = nil, needLemma: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectProductBetaResponse {
-        try await self.detectProductBeta(DetectProductBetaRequest(imageUrl: imageUrl, imageBase64: imageBase64, needLemma: needLemma), region: region, logger: logger, on: eventLoop)
+        let input = DetectProductBetaRequest(imageUrl: imageUrl, imageBase64: imageBase64, needLemma: needLemma)
+        return try await self.client.execute(action: "DetectProductBeta", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

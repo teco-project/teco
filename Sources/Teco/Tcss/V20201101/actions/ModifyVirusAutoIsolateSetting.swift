@@ -59,12 +59,14 @@ extension Tcss {
     /// 修改木马自动隔离设置
     @inlinable @discardableResult
     public func modifyVirusAutoIsolateSetting(autoIsolateSwitch: Bool, isKillProgress: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusAutoIsolateSettingResponse> {
-        self.modifyVirusAutoIsolateSetting(ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress)
+        return self.client.execute(action: "ModifyVirusAutoIsolateSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改木马自动隔离设置
     @inlinable @discardableResult
     public func modifyVirusAutoIsolateSetting(autoIsolateSwitch: Bool, isKillProgress: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusAutoIsolateSettingResponse {
-        try await self.modifyVirusAutoIsolateSetting(ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVirusAutoIsolateSettingRequest(autoIsolateSwitch: autoIsolateSwitch, isKillProgress: isKillProgress)
+        return try await self.client.execute(action: "ModifyVirusAutoIsolateSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

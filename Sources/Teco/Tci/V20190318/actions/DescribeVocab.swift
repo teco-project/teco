@@ -58,12 +58,14 @@ extension Tci {
     /// 查询词汇
     @inlinable
     public func describeVocab(vocabLibName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVocabResponse> {
-        self.describeVocab(DescribeVocabRequest(vocabLibName: vocabLibName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVocabRequest(vocabLibName: vocabLibName)
+        return self.client.execute(action: "DescribeVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询词汇
     @inlinable
     public func describeVocab(vocabLibName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVocabResponse {
-        try await self.describeVocab(DescribeVocabRequest(vocabLibName: vocabLibName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVocabRequest(vocabLibName: vocabLibName)
+        return try await self.client.execute(action: "DescribeVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -91,7 +91,8 @@ extension Ssm {
     /// 获取SSH密钥对凭据明文信息。
     @inlinable
     public func getSSHKeyPairValue(secretName: String? = nil, sshKeyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSSHKeyPairValueResponse> {
-        self.getSSHKeyPairValue(GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId), region: region, logger: logger, on: eventLoop)
+        let input = GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId)
+        return self.client.execute(action: "GetSSHKeyPairValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SSH密钥对凭据明文
@@ -99,6 +100,7 @@ extension Ssm {
     /// 获取SSH密钥对凭据明文信息。
     @inlinable
     public func getSSHKeyPairValue(secretName: String? = nil, sshKeyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSSHKeyPairValueResponse {
-        try await self.getSSHKeyPairValue(GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId), region: region, logger: logger, on: eventLoop)
+        let input = GetSSHKeyPairValueRequest(secretName: secretName, sshKeyId: sshKeyId)
+        return try await self.client.execute(action: "GetSSHKeyPairValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

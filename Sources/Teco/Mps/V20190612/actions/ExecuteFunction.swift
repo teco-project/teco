@@ -69,7 +69,8 @@ extension Mps {
     /// 本接口仅用于定制开发的特殊场景，除非云媒体处理客服人员主动告知您需要使用本接口，其它情况请勿调用。
     @inlinable
     public func executeFunction(functionName: String, functionArg: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExecuteFunctionResponse> {
-        self.executeFunction(ExecuteFunctionRequest(functionName: functionName, functionArg: functionArg), region: region, logger: logger, on: eventLoop)
+        let input = ExecuteFunctionRequest(functionName: functionName, functionArg: functionArg)
+        return self.client.execute(action: "ExecuteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行定制 API
@@ -77,6 +78,7 @@ extension Mps {
     /// 本接口仅用于定制开发的特殊场景，除非云媒体处理客服人员主动告知您需要使用本接口，其它情况请勿调用。
     @inlinable
     public func executeFunction(functionName: String, functionArg: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExecuteFunctionResponse {
-        try await self.executeFunction(ExecuteFunctionRequest(functionName: functionName, functionArg: functionArg), region: region, logger: logger, on: eventLoop)
+        let input = ExecuteFunctionRequest(functionName: functionName, functionArg: functionArg)
+        return try await self.client.execute(action: "ExecuteFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

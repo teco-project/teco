@@ -87,7 +87,8 @@ extension Sqlserver {
     /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
     @inlinable
     public func renewDBInstance(instanceId: String, period: UInt64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstanceResponse> {
-        self.renewDBInstance(RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag)
+        return self.client.execute(action: "RenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
@@ -96,6 +97,7 @@ extension Sqlserver {
     /// 按量计费实例转包年包月询价可通过(InquiryPriceRenewDBInstance)接口获得。
     @inlinable
     public func renewDBInstance(instanceId: String, period: UInt64? = nil, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, autoRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstanceResponse {
-        try await self.renewDBInstance(RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = RenewDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds, autoRenewFlag: autoRenewFlag)
+        return try await self.client.execute(action: "RenewDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

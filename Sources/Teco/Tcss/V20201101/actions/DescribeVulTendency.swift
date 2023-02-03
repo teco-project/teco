@@ -85,7 +85,8 @@ extension Tcss {
     /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
     @inlinable
     public func describeVulTendency(startTime: Date, endTime: Date, sphereOfInfluence: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulTendencyResponse> {
-        self.describeVulTendency(DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence)
+        return self.client.execute(action: "DescribeVulTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞风险趋势
@@ -93,6 +94,7 @@ extension Tcss {
     /// 查询本地镜像、仓库镜像中严重&高危的漏洞趋势
     @inlinable
     public func describeVulTendency(startTime: Date, endTime: Date, sphereOfInfluence: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulTendencyResponse {
-        try await self.describeVulTendency(DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulTendencyRequest(startTime: startTime, endTime: endTime, sphereOfInfluence: sphereOfInfluence)
+        return try await self.client.execute(action: "DescribeVulTendency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

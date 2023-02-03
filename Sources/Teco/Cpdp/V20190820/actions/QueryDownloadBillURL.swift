@@ -78,7 +78,8 @@ extension Cpdp {
     /// 云鉴-查询对账单下载地址的接口
     @inlinable
     public func queryDownloadBillURL(merchantAppId: String, channelCode: String, billDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryDownloadBillURLResponse> {
-        self.queryDownloadBillURL(QueryDownloadBillURLRequest(merchantAppId: merchantAppId, channelCode: channelCode, billDate: billDate), region: region, logger: logger, on: eventLoop)
+        let input = QueryDownloadBillURLRequest(merchantAppId: merchantAppId, channelCode: channelCode, billDate: billDate)
+        return self.client.execute(action: "QueryDownloadBillURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询对账单下载地址接口
@@ -86,6 +87,7 @@ extension Cpdp {
     /// 云鉴-查询对账单下载地址的接口
     @inlinable
     public func queryDownloadBillURL(merchantAppId: String, channelCode: String, billDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryDownloadBillURLResponse {
-        try await self.queryDownloadBillURL(QueryDownloadBillURLRequest(merchantAppId: merchantAppId, channelCode: channelCode, billDate: billDate), region: region, logger: logger, on: eventLoop)
+        let input = QueryDownloadBillURLRequest(merchantAppId: merchantAppId, channelCode: channelCode, billDate: billDate)
+        return try await self.client.execute(action: "QueryDownloadBillURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

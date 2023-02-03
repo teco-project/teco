@@ -65,7 +65,8 @@ extension Postgres {
     /// 获取实例的密钥信息列表。
     @inlinable
     public func describeEncryptionKeys(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEncryptionKeysResponse> {
-        self.describeEncryptionKeys(DescribeEncryptionKeysRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEncryptionKeysRequest(dbInstanceId: dbInstanceId)
+        return self.client.execute(action: "DescribeEncryptionKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例密钥信息列表
@@ -73,6 +74,7 @@ extension Postgres {
     /// 获取实例的密钥信息列表。
     @inlinable
     public func describeEncryptionKeys(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEncryptionKeysResponse {
-        try await self.describeEncryptionKeys(DescribeEncryptionKeysRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEncryptionKeysRequest(dbInstanceId: dbInstanceId)
+        return try await self.client.execute(action: "DescribeEncryptionKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -58,12 +58,14 @@ extension Cloudaudit {
     /// 关闭跟踪集
     @inlinable
     public func stopLogging(auditName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopLoggingResponse> {
-        self.stopLogging(StopLoggingRequest(auditName: auditName), region: region, logger: logger, on: eventLoop)
+        let input = StopLoggingRequest(auditName: auditName)
+        return self.client.execute(action: "StopLogging", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭跟踪集
     @inlinable
     public func stopLogging(auditName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLoggingResponse {
-        try await self.stopLogging(StopLoggingRequest(auditName: auditName), region: region, logger: logger, on: eventLoop)
+        let input = StopLoggingRequest(auditName: auditName)
+        return try await self.client.execute(action: "StopLogging", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

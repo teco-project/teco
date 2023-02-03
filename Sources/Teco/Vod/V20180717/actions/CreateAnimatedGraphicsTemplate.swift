@@ -117,7 +117,8 @@ extension Vod {
     /// 创建用户自定义转动图模板，数量上限：16。
     @inlinable
     public func createAnimatedGraphicsTemplate(fps: UInt64, subAppId: UInt64? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, quality: Float? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnimatedGraphicsTemplateResponse> {
-        self.createAnimatedGraphicsTemplate(CreateAnimatedGraphicsTemplateRequest(fps: fps, subAppId: subAppId, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, quality: quality, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
+        let input = CreateAnimatedGraphicsTemplateRequest(fps: fps, subAppId: subAppId, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, quality: quality, name: name, comment: comment)
+        return self.client.execute(action: "CreateAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建转动图模板
@@ -125,6 +126,7 @@ extension Vod {
     /// 创建用户自定义转动图模板，数量上限：16。
     @inlinable
     public func createAnimatedGraphicsTemplate(fps: UInt64, subAppId: UInt64? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, quality: Float? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnimatedGraphicsTemplateResponse {
-        try await self.createAnimatedGraphicsTemplate(CreateAnimatedGraphicsTemplateRequest(fps: fps, subAppId: subAppId, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, quality: quality, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
+        let input = CreateAnimatedGraphicsTemplateRequest(fps: fps, subAppId: subAppId, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, quality: quality, name: name, comment: comment)
+        return try await self.client.execute(action: "CreateAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

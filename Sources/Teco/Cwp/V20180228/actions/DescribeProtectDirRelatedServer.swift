@@ -97,7 +97,8 @@ extension Cwp {
     /// 查询防护目录关联服务器列表信息
     @inlinable
     public func describeProtectDirRelatedServer(id: String, limit: UInt64, offset: UInt64, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectDirRelatedServerResponse> {
-        self.describeProtectDirRelatedServer(DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return self.client.execute(action: "DescribeProtectDirRelatedServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询防护目录关联服务器
@@ -105,6 +106,7 @@ extension Cwp {
     /// 查询防护目录关联服务器列表信息
     @inlinable
     public func describeProtectDirRelatedServer(id: String, limit: UInt64, offset: UInt64, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectDirRelatedServerResponse {
-        try await self.describeProtectDirRelatedServer(DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProtectDirRelatedServerRequest(id: id, limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return try await self.client.execute(action: "DescribeProtectDirRelatedServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Cynosdb {
     /// 本接口（DescribeInstanceSpecs）用于查询实例规格
     @inlinable
     public func describeInstanceSpecs(dbType: String, includeZoneStocks: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSpecsResponse> {
-        self.describeInstanceSpecs(DescribeInstanceSpecsRequest(dbType: dbType, includeZoneStocks: includeZoneStocks), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceSpecsRequest(dbType: dbType, includeZoneStocks: includeZoneStocks)
+        return self.client.execute(action: "DescribeInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例规格
@@ -78,6 +79,7 @@ extension Cynosdb {
     /// 本接口（DescribeInstanceSpecs）用于查询实例规格
     @inlinable
     public func describeInstanceSpecs(dbType: String, includeZoneStocks: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSpecsResponse {
-        try await self.describeInstanceSpecs(DescribeInstanceSpecsRequest(dbType: dbType, includeZoneStocks: includeZoneStocks), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceSpecsRequest(dbType: dbType, includeZoneStocks: includeZoneStocks)
+        return try await self.client.execute(action: "DescribeInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

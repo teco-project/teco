@@ -76,7 +76,8 @@ extension Tat {
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
     @inlinable @discardableResult
     public func cancelInvocation(invocationId: String, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelInvocationResponse> {
-        self.cancelInvocation(CancelInvocationRequest(invocationId: invocationId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = CancelInvocationRequest(invocationId: invocationId, instanceIds: instanceIds)
+        return self.client.execute(action: "CancelInvocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消命令执行
@@ -87,6 +88,7 @@ extension Tat {
     /// * 如果命令已下发到agent，任务状态处于RUNNING， 取消后任务状态是TERMINATED
     @inlinable @discardableResult
     public func cancelInvocation(invocationId: String, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelInvocationResponse {
-        try await self.cancelInvocation(CancelInvocationRequest(invocationId: invocationId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = CancelInvocationRequest(invocationId: invocationId, instanceIds: instanceIds)
+        return try await self.client.execute(action: "CancelInvocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

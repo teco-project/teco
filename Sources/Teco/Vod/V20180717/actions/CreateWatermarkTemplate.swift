@@ -127,7 +127,8 @@ extension Vod {
     /// 创建用户自定义水印模板，数量上限：1000。
     @inlinable
     public func createWatermarkTemplate(type: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInput? = nil, textTemplate: TextWatermarkTemplateInput? = nil, svgTemplate: SvgWatermarkInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWatermarkTemplateResponse> {
-        self.createWatermarkTemplate(CreateWatermarkTemplateRequest(type: type, subAppId: subAppId, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), region: region, logger: logger, on: eventLoop)
+        let input = CreateWatermarkTemplateRequest(type: type, subAppId: subAppId, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate)
+        return self.client.execute(action: "CreateWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建水印模板
@@ -135,6 +136,7 @@ extension Vod {
     /// 创建用户自定义水印模板，数量上限：1000。
     @inlinable
     public func createWatermarkTemplate(type: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, coordinateOrigin: String? = nil, xPos: String? = nil, yPos: String? = nil, imageTemplate: ImageWatermarkInput? = nil, textTemplate: TextWatermarkTemplateInput? = nil, svgTemplate: SvgWatermarkInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWatermarkTemplateResponse {
-        try await self.createWatermarkTemplate(CreateWatermarkTemplateRequest(type: type, subAppId: subAppId, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate), region: region, logger: logger, on: eventLoop)
+        let input = CreateWatermarkTemplateRequest(type: type, subAppId: subAppId, name: name, comment: comment, coordinateOrigin: coordinateOrigin, xPos: xPos, yPos: yPos, imageTemplate: imageTemplate, textTemplate: textTemplate, svgTemplate: svgTemplate)
+        return try await self.client.execute(action: "CreateWatermarkTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -56,7 +56,8 @@ extension Vpc {
     /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
     @inlinable
     public func describeTemplateLimits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateLimitsResponse> {
-        self.describeTemplateLimits(DescribeTemplateLimitsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTemplateLimitsRequest()
+        return self.client.execute(action: "DescribeTemplateLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询参数模板配额列表
@@ -64,6 +65,7 @@ extension Vpc {
     /// 本接口（DescribeTemplateLimits）用于查询参数模板配额列表。
     @inlinable
     public func describeTemplateLimits(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateLimitsResponse {
-        try await self.describeTemplateLimits(DescribeTemplateLimitsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTemplateLimitsRequest()
+        return try await self.client.execute(action: "DescribeTemplateLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

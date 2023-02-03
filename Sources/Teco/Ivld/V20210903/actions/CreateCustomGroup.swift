@@ -90,7 +90,8 @@ extension Ivld {
     /// **重要**：请务必确保本接口指定的COS存储桶存在(不要手动删除COS桶)。COS存储桶一旦指定，将不能修改。
     @inlinable @discardableResult
     public func createCustomGroup(bucket: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomGroupResponse> {
-        self.createCustomGroup(CreateCustomGroupRequest(bucket: bucket), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomGroupRequest(bucket: bucket)
+        return self.client.execute(action: "CreateCustomGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义人物库
@@ -108,6 +109,7 @@ extension Ivld {
     /// **重要**：请务必确保本接口指定的COS存储桶存在(不要手动删除COS桶)。COS存储桶一旦指定，将不能修改。
     @inlinable @discardableResult
     public func createCustomGroup(bucket: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomGroupResponse {
-        try await self.createCustomGroup(CreateCustomGroupRequest(bucket: bucket), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomGroupRequest(bucket: bucket)
+        return try await self.client.execute(action: "CreateCustomGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

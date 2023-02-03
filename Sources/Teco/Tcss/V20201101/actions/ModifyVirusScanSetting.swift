@@ -99,12 +99,14 @@ extension Tcss {
     /// 运行时更新文件查杀设置
     @inlinable @discardableResult
     public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusScanSettingResponse> {
-        self.modifyVirusScanSetting(ModifyVirusScanSettingRequest(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVirusScanSettingRequest(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath)
+        return self.client.execute(action: "ModifyVirusScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新文件查杀设置
     @inlinable @discardableResult
     public func modifyVirusScanSetting(enableScan: Bool, cycle: UInt64, beginScanAt: String, scanPathAll: Bool, scanPathType: UInt64, timeout: UInt64, scanRangeType: UInt64, scanRangeAll: Bool, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusScanSettingResponse {
-        try await self.modifyVirusScanSetting(ModifyVirusScanSettingRequest(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVirusScanSettingRequest(enableScan: enableScan, cycle: cycle, beginScanAt: beginScanAt, scanPathAll: scanPathAll, scanPathType: scanPathType, timeout: timeout, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, scanIds: scanIds, scanPath: scanPath)
+        return try await self.client.execute(action: "ModifyVirusScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

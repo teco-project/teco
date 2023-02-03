@@ -110,12 +110,14 @@ extension Tci {
     /// 提交图像分析任务
     @inlinable
     public func submitImageTask(fileContent: String, fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, eventsCallBack: String? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskResponse> {
-        self.submitImageTask(SubmitImageTaskRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, eventsCallBack: eventsCallBack, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
+        let input = SubmitImageTaskRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, eventsCallBack: eventsCallBack, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold)
+        return self.client.execute(action: "SubmitImageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交图像分析任务
     @inlinable
     public func submitImageTask(fileContent: String, fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, eventsCallBack: String? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskResponse {
-        try await self.submitImageTask(SubmitImageTaskRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, eventsCallBack: eventsCallBack, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
+        let input = SubmitImageTaskRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, eventsCallBack: eventsCallBack, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold)
+        return try await self.client.execute(action: "SubmitImageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

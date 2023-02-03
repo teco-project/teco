@@ -65,7 +65,8 @@ extension Cdb {
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
     @inlinable @discardableResult
     public func switchCDBProxy(instanceId: String, proxyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchCDBProxyResponse> {
-        self.switchCDBProxy(SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId)
+        return self.client.execute(action: "SwitchCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换数据库代理
@@ -73,6 +74,7 @@ extension Cdb {
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
     @inlinable @discardableResult
     public func switchCDBProxy(instanceId: String, proxyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchCDBProxyResponse {
-        try await self.switchCDBProxy(SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId)
+        return try await self.client.execute(action: "SwitchCDBProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Cfs {
     /// 解除文件系统绑定的快照策略
     @inlinable
     public func unbindAutoSnapshotPolicy(fileSystemIds: String, autoSnapshotPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindAutoSnapshotPolicyResponse> {
-        self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId), region: region, logger: logger, on: eventLoop)
+        let input = UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId)
+        return self.client.execute(action: "UnbindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑快照策略
@@ -77,6 +78,7 @@ extension Cfs {
     /// 解除文件系统绑定的快照策略
     @inlinable
     public func unbindAutoSnapshotPolicy(fileSystemIds: String, autoSnapshotPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindAutoSnapshotPolicyResponse {
-        try await self.unbindAutoSnapshotPolicy(UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId), region: region, logger: logger, on: eventLoop)
+        let input = UnbindAutoSnapshotPolicyRequest(fileSystemIds: fileSystemIds, autoSnapshotPolicyId: autoSnapshotPolicyId)
+        return try await self.client.execute(action: "UnbindAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

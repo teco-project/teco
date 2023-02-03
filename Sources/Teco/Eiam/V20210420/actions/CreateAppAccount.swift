@@ -74,12 +74,14 @@ extension Eiam {
     /// 创建应用账号
     @inlinable
     public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppAccountResponse> {
-        self.createAppAccount(CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description)
+        return self.client.execute(action: "CreateAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用账号
     @inlinable
     public func createAppAccount(applicationId: String, accountName: String, password: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppAccountResponse {
-        try await self.createAppAccount(CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateAppAccountRequest(applicationId: applicationId, accountName: accountName, password: password, description: description)
+        return try await self.client.execute(action: "CreateAppAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

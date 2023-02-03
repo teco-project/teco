@@ -83,12 +83,14 @@ extension Cpdp {
     /// 云支付-查询合同可关联门店接口
     @inlinable
     public func queryContractRelateShop(openId: String, openKey: String, contractId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryContractRelateShopResponse> {
-        self.queryContractRelateShop(QueryContractRelateShopRequest(openId: openId, openKey: openKey, contractId: contractId, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryContractRelateShopRequest(openId: openId, openKey: openKey, contractId: contractId, profile: profile)
+        return self.client.execute(action: "QueryContractRelateShop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询合同可关联门店接口
     @inlinable
     public func queryContractRelateShop(openId: String, openKey: String, contractId: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractRelateShopResponse {
-        try await self.queryContractRelateShop(QueryContractRelateShopRequest(openId: openId, openKey: openKey, contractId: contractId, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryContractRelateShopRequest(openId: openId, openKey: openKey, contractId: contractId, profile: profile)
+        return try await self.client.execute(action: "QueryContractRelateShop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

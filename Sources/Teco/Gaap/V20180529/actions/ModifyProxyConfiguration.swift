@@ -88,7 +88,8 @@ extension Gaap {
     /// 本接口（ModifyProxyConfiguration）用于修改通道的配置。根据当前业务的容量需求，扩容或缩容相关通道的配置。仅支持Scalarable为1的通道,Scalarable可通过接口DescribeProxies获取。
     @inlinable @discardableResult
     public func modifyProxyConfiguration(instanceId: String? = nil, bandwidth: UInt64? = nil, concurrent: UInt64? = nil, clientToken: String? = nil, proxyId: String? = nil, billingType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProxyConfigurationResponse> {
-        self.modifyProxyConfiguration(ModifyProxyConfigurationRequest(instanceId: instanceId, bandwidth: bandwidth, concurrent: concurrent, clientToken: clientToken, proxyId: proxyId, billingType: billingType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProxyConfigurationRequest(instanceId: instanceId, bandwidth: bandwidth, concurrent: concurrent, clientToken: clientToken, proxyId: proxyId, billingType: billingType)
+        return self.client.execute(action: "ModifyProxyConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改通道配置
@@ -96,6 +97,7 @@ extension Gaap {
     /// 本接口（ModifyProxyConfiguration）用于修改通道的配置。根据当前业务的容量需求，扩容或缩容相关通道的配置。仅支持Scalarable为1的通道,Scalarable可通过接口DescribeProxies获取。
     @inlinable @discardableResult
     public func modifyProxyConfiguration(instanceId: String? = nil, bandwidth: UInt64? = nil, concurrent: UInt64? = nil, clientToken: String? = nil, proxyId: String? = nil, billingType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProxyConfigurationResponse {
-        try await self.modifyProxyConfiguration(ModifyProxyConfigurationRequest(instanceId: instanceId, bandwidth: bandwidth, concurrent: concurrent, clientToken: clientToken, proxyId: proxyId, billingType: billingType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProxyConfigurationRequest(instanceId: instanceId, bandwidth: bandwidth, concurrent: concurrent, clientToken: clientToken, proxyId: proxyId, billingType: billingType)
+        return try await self.client.execute(action: "ModifyProxyConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

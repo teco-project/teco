@@ -171,12 +171,14 @@ extension Cfw {
     /// 添加互联网边界规则
     @inlinable
     public func addAcRule(orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, protocol: String? = nil, applicationName: String? = nil, enable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddAcRuleResponse> {
-        self.addAcRule(AddAcRuleRequest(orderIndex: orderIndex, ruleAction: ruleAction, direction: direction, description: description, sourceType: sourceType, sourceContent: sourceContent, destType: destType, destContent: destContent, port: port, protocol: `protocol`, applicationName: applicationName, enable: enable), region: region, logger: logger, on: eventLoop)
+        let input = AddAcRuleRequest(orderIndex: orderIndex, ruleAction: ruleAction, direction: direction, description: description, sourceType: sourceType, sourceContent: sourceContent, destType: destType, destContent: destContent, port: port, protocol: `protocol`, applicationName: applicationName, enable: enable)
+        return self.client.execute(action: "AddAcRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加互联网边界规则
     @inlinable
     public func addAcRule(orderIndex: String, ruleAction: String, direction: String, description: String, sourceType: String, sourceContent: String, destType: String, destContent: String, port: String, protocol: String? = nil, applicationName: String? = nil, enable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddAcRuleResponse {
-        try await self.addAcRule(AddAcRuleRequest(orderIndex: orderIndex, ruleAction: ruleAction, direction: direction, description: description, sourceType: sourceType, sourceContent: sourceContent, destType: destType, destContent: destContent, port: port, protocol: `protocol`, applicationName: applicationName, enable: enable), region: region, logger: logger, on: eventLoop)
+        let input = AddAcRuleRequest(orderIndex: orderIndex, ruleAction: ruleAction, direction: direction, description: description, sourceType: sourceType, sourceContent: sourceContent, destType: destType, destContent: destContent, port: port, protocol: `protocol`, applicationName: applicationName, enable: enable)
+        return try await self.client.execute(action: "AddAcRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

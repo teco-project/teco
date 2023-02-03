@@ -58,12 +58,14 @@ extension Tsw {
     /// 查询token
     @inlinable
     public func describeToken(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTokenResponse> {
-        self.describeToken(DescribeTokenRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTokenRequest(namespace: namespace)
+        return self.client.execute(action: "DescribeToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询token
     @inlinable
     public func describeToken(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTokenResponse {
-        try await self.describeToken(DescribeTokenRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTokenRequest(namespace: namespace)
+        return try await self.client.execute(action: "DescribeToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

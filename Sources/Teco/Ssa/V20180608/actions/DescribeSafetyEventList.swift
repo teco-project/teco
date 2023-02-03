@@ -106,12 +106,14 @@ extension Ssa {
     /// 获取安全事件列表
     @inlinable
     public func describeSafetyEventList(filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafetyEventListResponse> {
-        self.describeSafetyEventList(DescribeSafetyEventListRequest(filter: filter, limit: limit, offset: offset, order: order, by: by, startTime: startTime, endTime: endTime, isFilterResponseTime: isFilterResponseTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSafetyEventListRequest(filter: filter, limit: limit, offset: offset, order: order, by: by, startTime: startTime, endTime: endTime, isFilterResponseTime: isFilterResponseTime)
+        return self.client.execute(action: "DescribeSafetyEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件列表
     @inlinable
     public func describeSafetyEventList(filter: String, limit: UInt64, offset: UInt64, order: String? = nil, by: String? = nil, startTime: Date? = nil, endTime: Date? = nil, isFilterResponseTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafetyEventListResponse {
-        try await self.describeSafetyEventList(DescribeSafetyEventListRequest(filter: filter, limit: limit, offset: offset, order: order, by: by, startTime: startTime, endTime: endTime, isFilterResponseTime: isFilterResponseTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSafetyEventListRequest(filter: filter, limit: limit, offset: offset, order: order, by: by, startTime: startTime, endTime: endTime, isFilterResponseTime: isFilterResponseTime)
+        return try await self.client.execute(action: "DescribeSafetyEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

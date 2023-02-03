@@ -65,7 +65,8 @@ extension Chdfs {
     /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
     @inlinable @discardableResult
     public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRestoreTasksResponse> {
-        self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), region: region, logger: logger, on: eventLoop)
+        let input = CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks)
+        return self.client.execute(action: "CreateRestoreTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建回热任务
@@ -73,6 +74,7 @@ extension Chdfs {
     /// 批量创建回热任务，回热任务ID、状态和创建时间无需填写。
     @inlinable @discardableResult
     public func createRestoreTasks(fileSystemId: String, restoreTasks: [RestoreTask], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRestoreTasksResponse {
-        try await self.createRestoreTasks(CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks), region: region, logger: logger, on: eventLoop)
+        let input = CreateRestoreTasksRequest(fileSystemId: fileSystemId, restoreTasks: restoreTasks)
+        return try await self.client.execute(action: "CreateRestoreTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -59,12 +59,14 @@ extension Dnspod {
     /// DNS 解析套餐自动续费设置
     @inlinable @discardableResult
     public func modifyPackageAutoRenew(resourceId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPackageAutoRenewResponse> {
-        self.modifyPackageAutoRenew(ModifyPackageAutoRenewRequest(resourceId: resourceId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPackageAutoRenewRequest(resourceId: resourceId, status: status)
+        return self.client.execute(action: "ModifyPackageAutoRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DNS 解析套餐自动续费设置
     @inlinable @discardableResult
     public func modifyPackageAutoRenew(resourceId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPackageAutoRenewResponse {
-        try await self.modifyPackageAutoRenew(ModifyPackageAutoRenewRequest(resourceId: resourceId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPackageAutoRenewRequest(resourceId: resourceId, status: status)
+        return try await self.client.execute(action: "ModifyPackageAutoRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

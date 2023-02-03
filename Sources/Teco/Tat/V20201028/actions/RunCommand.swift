@@ -175,7 +175,8 @@ extension Tat {
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
     public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunCommandResponse> {
-        self.runCommand(RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
+        let input = RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix)
+        return self.client.execute(action: "RunCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行命令
@@ -189,6 +190,7 @@ extension Tat {
     /// * 不可同时指定 CVM 和 Lighthouse
     @inlinable
     public func runCommand(content: String, instanceIds: [String], commandName: String? = nil, description: String? = nil, commandType: String? = nil, workingDirectory: String? = nil, timeout: UInt64? = nil, saveCommand: Bool? = nil, enableParameter: Bool? = nil, defaultParameters: String? = nil, parameters: String? = nil, tags: [Tag]? = nil, username: String? = nil, outputCOSBucketUrl: String? = nil, outputCOSKeyPrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunCommandResponse {
-        try await self.runCommand(RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix), region: region, logger: logger, on: eventLoop)
+        let input = RunCommandRequest(content: content, instanceIds: instanceIds, commandName: commandName, description: description, commandType: commandType, workingDirectory: workingDirectory, timeout: timeout, saveCommand: saveCommand, enableParameter: enableParameter, defaultParameters: defaultParameters, parameters: parameters, tags: tags, username: username, outputCOSBucketUrl: outputCOSBucketUrl, outputCOSKeyPrefix: outputCOSKeyPrefix)
+        return try await self.client.execute(action: "RunCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -88,12 +88,14 @@ extension Cpdp {
     /// 云支付-分账解除分账接收方接口
     @inlinable
     public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeRemoveReceiverResponse> {
-        self.distributeRemoveReceiver(DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile)
+        return self.client.execute(action: "DistributeRemoveReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-分账解除分账接收方接口
     @inlinable
     public func distributeRemoveReceiver(openId: String, openKey: String, merchantNo: String, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeRemoveReceiverResponse {
-        try await self.distributeRemoveReceiver(DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = DistributeRemoveReceiverRequest(openId: openId, openKey: openKey, merchantNo: merchantNo, remark: remark, profile: profile)
+        return try await self.client.execute(action: "DistributeRemoveReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

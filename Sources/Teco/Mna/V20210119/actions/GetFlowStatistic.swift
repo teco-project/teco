@@ -96,7 +96,8 @@ extension Mna {
     /// 获取指定设备Id，指定时间点数据流量使用情况
     @inlinable
     public func getFlowStatistic(deviceId: String, beginTime: Int64, endTime: Int64, type: Int64, timeGranularity: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFlowStatisticResponse> {
-        self.getFlowStatistic(GetFlowStatisticRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, type: type, timeGranularity: timeGranularity), region: region, logger: logger, on: eventLoop)
+        let input = GetFlowStatisticRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, type: type, timeGranularity: timeGranularity)
+        return self.client.execute(action: "GetFlowStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据流量统计数据
@@ -104,6 +105,7 @@ extension Mna {
     /// 获取指定设备Id，指定时间点数据流量使用情况
     @inlinable
     public func getFlowStatistic(deviceId: String, beginTime: Int64, endTime: Int64, type: Int64, timeGranularity: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFlowStatisticResponse {
-        try await self.getFlowStatistic(GetFlowStatisticRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, type: type, timeGranularity: timeGranularity), region: region, logger: logger, on: eventLoop)
+        let input = GetFlowStatisticRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, type: type, timeGranularity: timeGranularity)
+        return try await self.client.execute(action: "GetFlowStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

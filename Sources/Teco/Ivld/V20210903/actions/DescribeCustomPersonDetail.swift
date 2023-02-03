@@ -69,7 +69,8 @@ extension Ivld {
     /// 描述自定义人物详细信息，包括人物信息与人物信息
     @inlinable
     public func describeCustomPersonDetail(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomPersonDetailResponse> {
-        self.describeCustomPersonDetail(DescribeCustomPersonDetailRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomPersonDetailRequest(personId: personId)
+        return self.client.execute(action: "DescribeCustomPersonDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述自定义人物详细信息
@@ -77,6 +78,7 @@ extension Ivld {
     /// 描述自定义人物详细信息，包括人物信息与人物信息
     @inlinable
     public func describeCustomPersonDetail(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomPersonDetailResponse {
-        try await self.describeCustomPersonDetail(DescribeCustomPersonDetailRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomPersonDetailRequest(personId: personId)
+        return try await self.client.execute(action: "DescribeCustomPersonDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

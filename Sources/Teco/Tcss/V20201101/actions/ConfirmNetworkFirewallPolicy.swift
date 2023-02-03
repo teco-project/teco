@@ -67,12 +67,14 @@ extension Tcss {
     /// 容器网络创建网络策略确认任务
     @inlinable
     public func confirmNetworkFirewallPolicy(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmNetworkFirewallPolicyResponse> {
-        self.confirmNetworkFirewallPolicy(ConfirmNetworkFirewallPolicyRequest(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
+        let input = ConfirmNetworkFirewallPolicyRequest(clusterId: clusterId, id: id)
+        return self.client.execute(action: "ConfirmNetworkFirewallPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建网络策略确认任务
     @inlinable
     public func confirmNetworkFirewallPolicy(clusterId: String, id: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmNetworkFirewallPolicyResponse {
-        try await self.confirmNetworkFirewallPolicy(ConfirmNetworkFirewallPolicyRequest(clusterId: clusterId, id: id), region: region, logger: logger, on: eventLoop)
+        let input = ConfirmNetworkFirewallPolicyRequest(clusterId: clusterId, id: id)
+        return try await self.client.execute(action: "ConfirmNetworkFirewallPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

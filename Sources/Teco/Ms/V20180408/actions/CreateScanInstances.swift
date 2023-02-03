@@ -85,7 +85,8 @@ extension Ms {
     /// 用户通过该接口批量提交应用进行应用扫描，扫描后需通过DescribeScanResults接口查询扫描结果
     @inlinable
     public func createScanInstances(appInfos: [AppInfo], scanInfo: ScanInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScanInstancesResponse> {
-        self.createScanInstances(CreateScanInstancesRequest(appInfos: appInfos, scanInfo: scanInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateScanInstancesRequest(appInfos: appInfos, scanInfo: scanInfo)
+        return self.client.execute(action: "CreateScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量提交安全扫描
@@ -93,6 +94,7 @@ extension Ms {
     /// 用户通过该接口批量提交应用进行应用扫描，扫描后需通过DescribeScanResults接口查询扫描结果
     @inlinable
     public func createScanInstances(appInfos: [AppInfo], scanInfo: ScanInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScanInstancesResponse {
-        try await self.createScanInstances(CreateScanInstancesRequest(appInfos: appInfos, scanInfo: scanInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateScanInstancesRequest(appInfos: appInfos, scanInfo: scanInfo)
+        return try await self.client.execute(action: "CreateScanInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

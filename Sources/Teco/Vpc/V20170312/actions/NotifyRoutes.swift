@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
     @inlinable @discardableResult
     public func notifyRoutes(routeTableId: String, routeItemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<NotifyRoutesResponse> {
-        self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
+        let input = NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds)
+        return self.client.execute(action: "NotifyRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布路由至云联网
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（NotifyRoutes）用于路由表列表页操作增加“发布到云联网”，发布路由到云联网。
     @inlinable @discardableResult
     public func notifyRoutes(routeTableId: String, routeItemIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> NotifyRoutesResponse {
-        try await self.notifyRoutes(NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds), region: region, logger: logger, on: eventLoop)
+        let input = NotifyRoutesRequest(routeTableId: routeTableId, routeItemIds: routeItemIds)
+        return try await self.client.execute(action: "NotifyRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

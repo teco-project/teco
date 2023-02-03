@@ -92,7 +92,8 @@ extension Tcss {
     /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
     @inlinable @discardableResult
     public func modifyEscapeEventStatus(eventIdSet: [String], status: String, remark: String? = nil, imageIDs: [String]? = nil, eventType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEscapeEventStatusResponse> {
-        self.modifyEscapeEventStatus(ModifyEscapeEventStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, imageIDs: imageIDs, eventType: eventType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEscapeEventStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, imageIDs: imageIDs, eventType: eventType)
+        return self.client.execute(action: "ModifyEscapeEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改容器逃逸扫描事件状态
@@ -100,6 +101,7 @@ extension Tcss {
     /// ModifyEscapeEventStatus  修改容器逃逸扫描事件状态
     @inlinable @discardableResult
     public func modifyEscapeEventStatus(eventIdSet: [String], status: String, remark: String? = nil, imageIDs: [String]? = nil, eventType: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEscapeEventStatusResponse {
-        try await self.modifyEscapeEventStatus(ModifyEscapeEventStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, imageIDs: imageIDs, eventType: eventType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEscapeEventStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark, imageIDs: imageIDs, eventType: eventType)
+        return try await self.client.execute(action: "ModifyEscapeEventStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

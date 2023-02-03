@@ -74,7 +74,8 @@ extension Redis {
     /// 创建复制组
     @inlinable
     public func createReplicationGroup(instanceId: String, groupName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationGroupResponse> {
-        self.createReplicationGroup(CreateReplicationGroupRequest(instanceId: instanceId, groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateReplicationGroupRequest(instanceId: instanceId, groupName: groupName, remark: remark)
+        return self.client.execute(action: "CreateReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建复制组接口
@@ -82,6 +83,7 @@ extension Redis {
     /// 创建复制组
     @inlinable
     public func createReplicationGroup(instanceId: String, groupName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationGroupResponse {
-        try await self.createReplicationGroup(CreateReplicationGroupRequest(instanceId: instanceId, groupName: groupName, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateReplicationGroupRequest(instanceId: instanceId, groupName: groupName, remark: remark)
+        return try await self.client.execute(action: "CreateReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

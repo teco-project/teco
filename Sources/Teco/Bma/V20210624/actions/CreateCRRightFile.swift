@@ -63,12 +63,14 @@ extension Bma {
     /// 权属文件添加
     @inlinable
     public func createCRRightFile(workId: Int64, fileList: [File], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRRightFileResponse> {
-        self.createCRRightFile(CreateCRRightFileRequest(workId: workId, fileList: fileList), region: region, logger: logger, on: eventLoop)
+        let input = CreateCRRightFileRequest(workId: workId, fileList: fileList)
+        return self.client.execute(action: "CreateCRRightFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 权属文件添加
     @inlinable
     public func createCRRightFile(workId: Int64, fileList: [File], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRRightFileResponse {
-        try await self.createCRRightFile(CreateCRRightFileRequest(workId: workId, fileList: fileList), region: region, logger: logger, on: eventLoop)
+        let input = CreateCRRightFileRequest(workId: workId, fileList: fileList)
+        return try await self.client.execute(action: "CreateCRRightFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

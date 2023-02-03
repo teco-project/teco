@@ -64,7 +64,8 @@ extension Mongodb {
     /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
     @inlinable
     public func terminateDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
-        self.terminateDBInstance(TerminateDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = TerminateDBInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "TerminateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁云数据库实例（按量计费）
@@ -72,6 +73,7 @@ extension Mongodb {
     /// 本接口(TerminateDBInstance)用于销毁按量计费的MongoDB云数据库实例
     @inlinable
     public func terminateDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
-        try await self.terminateDBInstance(TerminateDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = TerminateDBInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "TerminateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

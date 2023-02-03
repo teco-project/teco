@@ -78,12 +78,14 @@ extension Solar {
     /// 创建项目
     @inlinable
     public func createProject(projectName: String, projectOrg: String, projectBudget: String, projectIntroduction: String, projectOrgId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProjectResponse> {
-        self.createProject(CreateProjectRequest(projectName: projectName, projectOrg: projectOrg, projectBudget: projectBudget, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), region: region, logger: logger, on: eventLoop)
+        let input = CreateProjectRequest(projectName: projectName, projectOrg: projectOrg, projectBudget: projectBudget, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId)
+        return self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建项目
     @inlinable
     public func createProject(projectName: String, projectOrg: String, projectBudget: String, projectIntroduction: String, projectOrgId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProjectResponse {
-        try await self.createProject(CreateProjectRequest(projectName: projectName, projectOrg: projectOrg, projectBudget: projectBudget, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), region: region, logger: logger, on: eventLoop)
+        let input = CreateProjectRequest(projectName: projectName, projectOrg: projectOrg, projectBudget: projectBudget, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId)
+        return try await self.client.execute(action: "CreateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

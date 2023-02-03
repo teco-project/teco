@@ -94,12 +94,14 @@ extension Tcss {
     /// 查询镜像自动授权任务列表
     @inlinable
     public func describeImageAutoAuthorizedTaskList(startTime: Date, endTime: Date, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAutoAuthorizedTaskListResponse> {
-        self.describeImageAutoAuthorizedTaskList(DescribeImageAutoAuthorizedTaskListRequest(startTime: startTime, endTime: endTime, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageAutoAuthorizedTaskListRequest(startTime: startTime, endTime: endTime, filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像自动授权任务列表
     @inlinable
     public func describeImageAutoAuthorizedTaskList(startTime: Date, endTime: Date, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAutoAuthorizedTaskListResponse {
-        try await self.describeImageAutoAuthorizedTaskList(DescribeImageAutoAuthorizedTaskListRequest(startTime: startTime, endTime: endTime, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageAutoAuthorizedTaskListRequest(startTime: startTime, endTime: endTime, filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeImageAutoAuthorizedTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

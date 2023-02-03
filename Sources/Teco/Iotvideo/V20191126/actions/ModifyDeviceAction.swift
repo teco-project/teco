@@ -109,7 +109,8 @@ extension Iotvideo {
     ///   3.value的内容必须与实际物模型的定义一致
     @inlinable
     public func modifyDeviceAction(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceActionResponse> {
-        self.modifyDeviceAction(ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum)
+        return self.client.execute(action: "ModifyDeviceAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备物模型行为
@@ -123,6 +124,7 @@ extension Iotvideo {
     ///   3.value的内容必须与实际物模型的定义一致
     @inlinable
     public func modifyDeviceAction(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceActionResponse {
-        try await self.modifyDeviceAction(ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceActionRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum)
+        return try await self.client.execute(action: "ModifyDeviceAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

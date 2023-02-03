@@ -96,7 +96,8 @@ extension Cls {
     /// 该接口用于获取通知渠道组列表
     @inlinable
     public func describeAlarmNotices(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticesResponse> {
-        self.describeAlarmNotices(DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取通知渠道组列表
@@ -104,6 +105,7 @@ extension Cls {
     /// 该接口用于获取通知渠道组列表
     @inlinable
     public func describeAlarmNotices(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
-        try await self.describeAlarmNotices(DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmNoticesRequest(filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

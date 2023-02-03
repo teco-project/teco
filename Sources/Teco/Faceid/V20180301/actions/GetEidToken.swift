@@ -100,7 +100,8 @@ extension Faceid {
     /// 每次调用E证通服务前，需先调用本接口获取EidToken，用来串联E证通流程，在验证完成后，用于获取E证通结果信息。
     @inlinable
     public func getEidToken(merchantId: String, idCard: String? = nil, name: String? = nil, extra: String? = nil, config: GetEidTokenConfig? = nil, redirectUrl: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEidTokenResponse> {
-        self.getEidToken(GetEidTokenRequest(merchantId: merchantId, idCard: idCard, name: name, extra: extra, config: config, redirectUrl: redirectUrl, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = GetEidTokenRequest(merchantId: merchantId, idCard: idCard, name: name, extra: extra, config: config, redirectUrl: redirectUrl, encryption: encryption)
+        return self.client.execute(action: "GetEidToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取E证通Token
@@ -108,6 +109,7 @@ extension Faceid {
     /// 每次调用E证通服务前，需先调用本接口获取EidToken，用来串联E证通流程，在验证完成后，用于获取E证通结果信息。
     @inlinable
     public func getEidToken(merchantId: String, idCard: String? = nil, name: String? = nil, extra: String? = nil, config: GetEidTokenConfig? = nil, redirectUrl: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEidTokenResponse {
-        try await self.getEidToken(GetEidTokenRequest(merchantId: merchantId, idCard: idCard, name: name, extra: extra, config: config, redirectUrl: redirectUrl, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = GetEidTokenRequest(merchantId: merchantId, idCard: idCard, name: name, extra: extra, config: config, redirectUrl: redirectUrl, encryption: encryption)
+        return try await self.client.execute(action: "GetEidToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

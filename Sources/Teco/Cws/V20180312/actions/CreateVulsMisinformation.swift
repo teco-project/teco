@@ -60,7 +60,8 @@ extension Cws {
     /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
     @inlinable @discardableResult
     public func createVulsMisinformation(vulIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVulsMisinformationResponse> {
-        self.createVulsMisinformation(CreateVulsMisinformationRequest(vulIds: vulIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateVulsMisinformationRequest(vulIds: vulIds)
+        return self.client.execute(action: "CreateVulsMisinformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增漏洞误报信息
@@ -68,6 +69,7 @@ extension Cws {
     /// 本接口（CreateVulsMisinformation）可以用于新增一个或多个漏洞误报信息。
     @inlinable @discardableResult
     public func createVulsMisinformation(vulIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVulsMisinformationResponse {
-        try await self.createVulsMisinformation(CreateVulsMisinformationRequest(vulIds: vulIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateVulsMisinformationRequest(vulIds: vulIds)
+        return try await self.client.execute(action: "CreateVulsMisinformation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

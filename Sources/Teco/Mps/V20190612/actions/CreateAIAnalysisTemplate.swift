@@ -89,7 +89,8 @@ extension Mps {
     /// 创建用户自定义内容分析模板，数量上限：50。
     @inlinable
     public func createAIAnalysisTemplate(name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAIAnalysisTemplateResponse> {
-        self.createAIAnalysisTemplate(CreateAIAnalysisTemplateRequest(name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure), region: region, logger: logger, on: eventLoop)
+        let input = CreateAIAnalysisTemplateRequest(name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure)
+        return self.client.execute(action: "CreateAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建内容分析模板
@@ -97,6 +98,7 @@ extension Mps {
     /// 创建用户自定义内容分析模板，数量上限：50。
     @inlinable
     public func createAIAnalysisTemplate(name: String? = nil, comment: String? = nil, classificationConfigure: ClassificationConfigureInfo? = nil, tagConfigure: TagConfigureInfo? = nil, coverConfigure: CoverConfigureInfo? = nil, frameTagConfigure: FrameTagConfigureInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAIAnalysisTemplateResponse {
-        try await self.createAIAnalysisTemplate(CreateAIAnalysisTemplateRequest(name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure), region: region, logger: logger, on: eventLoop)
+        let input = CreateAIAnalysisTemplateRequest(name: name, comment: comment, classificationConfigure: classificationConfigure, tagConfigure: tagConfigure, coverConfigure: coverConfigure, frameTagConfigure: frameTagConfigure)
+        return try await self.client.execute(action: "CreateAIAnalysisTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

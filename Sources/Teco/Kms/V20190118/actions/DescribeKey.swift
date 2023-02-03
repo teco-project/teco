@@ -65,7 +65,8 @@ extension Kms {
     /// 用于获取指定KeyId的主密钥属性详情信息。
     @inlinable
     public func describeKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyResponse> {
-        self.describeKey(DescribeKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKeyRequest(keyId: keyId)
+        return self.client.execute(action: "DescribeKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主密钥属性
@@ -73,6 +74,7 @@ extension Kms {
     /// 用于获取指定KeyId的主密钥属性详情信息。
     @inlinable
     public func describeKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyResponse {
-        try await self.describeKey(DescribeKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKeyRequest(keyId: keyId)
+        return try await self.client.execute(action: "DescribeKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

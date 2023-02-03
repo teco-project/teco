@@ -105,7 +105,8 @@ extension Cdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41954"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeIpStatus(domain: String, layer: String? = nil, area: String? = nil, segment: Bool? = nil, showIpv6: Bool? = nil, abbreviationIpv6: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpStatusResponse> {
-        self.describeIpStatus(DescribeIpStatusRequest(domain: domain, layer: layer, area: area, segment: segment, showIpv6: showIpv6, abbreviationIpv6: abbreviationIpv6), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIpStatusRequest(domain: domain, layer: layer, area: area, segment: segment, showIpv6: showIpv6, abbreviationIpv6: abbreviationIpv6)
+        return self.client.execute(action: "DescribeIpStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询域名节点状态
@@ -115,6 +116,7 @@ extension Cdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41954"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeIpStatus(domain: String, layer: String? = nil, area: String? = nil, segment: Bool? = nil, showIpv6: Bool? = nil, abbreviationIpv6: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpStatusResponse {
-        try await self.describeIpStatus(DescribeIpStatusRequest(domain: domain, layer: layer, area: area, segment: segment, showIpv6: showIpv6, abbreviationIpv6: abbreviationIpv6), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIpStatusRequest(domain: domain, layer: layer, area: area, segment: segment, showIpv6: showIpv6, abbreviationIpv6: abbreviationIpv6)
+        return try await self.client.execute(action: "DescribeIpStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

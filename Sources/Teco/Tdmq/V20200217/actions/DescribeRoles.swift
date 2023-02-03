@@ -85,12 +85,14 @@ extension Tdmq {
     /// 获取角色列表
     @inlinable
     public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRolesResponse> {
-        self.describeRoles(DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters)
+        return self.client.execute(action: "DescribeRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取角色列表
     @inlinable
     public func describeRoles(roleName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterId: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRolesResponse {
-        try await self.describeRoles(DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRolesRequest(roleName: roleName, offset: offset, limit: limit, clusterId: clusterId, filters: filters)
+        return try await self.client.execute(action: "DescribeRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

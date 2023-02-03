@@ -58,12 +58,14 @@ extension Apigateway {
     /// 重置API文档密码
     @inlinable
     public func resetAPIDocPassword(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAPIDocPasswordResponse> {
-        self.resetAPIDocPassword(ResetAPIDocPasswordRequest(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
+        let input = ResetAPIDocPasswordRequest(apiDocId: apiDocId)
+        return self.client.execute(action: "ResetAPIDocPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置API文档密码
     @inlinable
     public func resetAPIDocPassword(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAPIDocPasswordResponse {
-        try await self.resetAPIDocPassword(ResetAPIDocPasswordRequest(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
+        let input = ResetAPIDocPasswordRequest(apiDocId: apiDocId)
+        return try await self.client.execute(action: "ResetAPIDocPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -95,7 +95,8 @@ extension Tcss {
     /// 容器安全查询镜像漏洞列表
     @inlinable
     public func describeAssetImageVulList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVulListResponse> {
-        self.describeAssetImageVulList(DescribeAssetImageVulListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageVulListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order)
+        return self.client.execute(action: "DescribeAssetImageVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像漏洞列表
@@ -103,6 +104,7 @@ extension Tcss {
     /// 容器安全查询镜像漏洞列表
     @inlinable
     public func describeAssetImageVulList(imageID: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVulListResponse {
-        try await self.describeAssetImageVulList(DescribeAssetImageVulListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageVulListRequest(imageID: imageID, limit: limit, offset: offset, filters: filters, by: by, order: order)
+        return try await self.client.execute(action: "DescribeAssetImageVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

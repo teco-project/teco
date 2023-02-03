@@ -60,12 +60,14 @@ extension Monitor {
     /// 获取关联目标集群的实例列表
     @inlinable
     public func describePrometheusAgentInstances(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAgentInstancesResponse> {
-        self.describePrometheusAgentInstances(DescribePrometheusAgentInstancesRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusAgentInstancesRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribePrometheusAgentInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取关联目标集群的实例列表
     @inlinable
     public func describePrometheusAgentInstances(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentInstancesResponse {
-        try await self.describePrometheusAgentInstances(DescribePrometheusAgentInstancesRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusAgentInstancesRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribePrometheusAgentInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

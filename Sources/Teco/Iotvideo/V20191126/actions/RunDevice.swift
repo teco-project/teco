@@ -60,7 +60,8 @@ extension Iotvideo {
     /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable @discardableResult
     public func runDevice(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunDeviceResponse> {
-        self.runDevice(RunDeviceRequest(tids: tids), region: region, logger: logger, on: eventLoop)
+        let input = RunDeviceRequest(tids: tids)
+        return self.client.execute(action: "RunDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用设备
@@ -68,6 +69,7 @@ extension Iotvideo {
     /// 本接口（RunDevice）用于启用设备，可进行批量操作，每次操作最多100台设备。
     @inlinable @discardableResult
     public func runDevice(tids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunDeviceResponse {
-        try await self.runDevice(RunDeviceRequest(tids: tids), region: region, logger: logger, on: eventLoop)
+        let input = RunDeviceRequest(tids: tids)
+        return try await self.client.execute(action: "RunDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

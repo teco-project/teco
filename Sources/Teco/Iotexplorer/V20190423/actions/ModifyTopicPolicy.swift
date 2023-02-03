@@ -75,7 +75,8 @@ extension Iotexplorer {
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable @discardableResult
     public func modifyTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicPolicyResponse> {
-        self.modifyTopicPolicy(ModifyTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege)
+        return self.client.execute(action: "ModifyTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新Topic
@@ -83,6 +84,7 @@ extension Iotexplorer {
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable @discardableResult
     public func modifyTopicPolicy(productId: String, topicName: String, newTopicName: String, privilege: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicPolicyResponse {
-        try await self.modifyTopicPolicy(ModifyTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTopicPolicyRequest(productId: productId, topicName: topicName, newTopicName: newTopicName, privilege: privilege)
+        return try await self.client.execute(action: "ModifyTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

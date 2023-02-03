@@ -62,12 +62,14 @@ extension Cwp {
     /// 导出ES查询文档列表
     @inlinable
     public func describeSearchExportList(query: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchExportListResponse> {
-        self.describeSearchExportList(DescribeSearchExportListRequest(query: query), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSearchExportListRequest(query: query)
+        return self.client.execute(action: "DescribeSearchExportList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出ES查询文档列表
     @inlinable
     public func describeSearchExportList(query: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchExportListResponse {
-        try await self.describeSearchExportList(DescribeSearchExportListRequest(query: query), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSearchExportListRequest(query: query)
+        return try await self.client.execute(action: "DescribeSearchExportList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

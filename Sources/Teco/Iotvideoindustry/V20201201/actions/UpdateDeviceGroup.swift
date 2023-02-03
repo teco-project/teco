@@ -75,7 +75,8 @@ extension Iotvideoindustry {
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
     @inlinable @discardableResult
     public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDeviceGroupResponse> {
-        self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId)
+        return self.client.execute(action: "UpdateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改分组信息
@@ -83,6 +84,7 @@ extension Iotvideoindustry {
     /// 本接口(UpdateDeviceGroup)用于修改分组信息。
     @inlinable @discardableResult
     public func updateDeviceGroup(groupName: String, groupId: String, groupDescribe: String? = nil, newParentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDeviceGroupResponse {
-        try await self.updateDeviceGroup(UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateDeviceGroupRequest(groupName: groupName, groupId: groupId, groupDescribe: groupDescribe, newParentId: newParentId)
+        return try await self.client.execute(action: "UpdateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

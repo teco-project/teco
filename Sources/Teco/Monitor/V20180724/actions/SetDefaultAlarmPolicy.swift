@@ -68,7 +68,8 @@ extension Monitor {
     /// 同一项目下相同的告警策略类型，就会被设置为非默认。
     @inlinable @discardableResult
     public func setDefaultAlarmPolicy(module: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDefaultAlarmPolicyResponse> {
-        self.setDefaultAlarmPolicy(SetDefaultAlarmPolicyRequest(module: module, policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = SetDefaultAlarmPolicyRequest(module: module, policyId: policyId)
+        return self.client.execute(action: "SetDefaultAlarmPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设为默认告警策略
@@ -77,6 +78,7 @@ extension Monitor {
     /// 同一项目下相同的告警策略类型，就会被设置为非默认。
     @inlinable @discardableResult
     public func setDefaultAlarmPolicy(module: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultAlarmPolicyResponse {
-        try await self.setDefaultAlarmPolicy(SetDefaultAlarmPolicyRequest(module: module, policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = SetDefaultAlarmPolicyRequest(module: module, policyId: policyId)
+        return try await self.client.execute(action: "SetDefaultAlarmPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Bm {
     /// 销毁黑石物理机实例：可以销毁物理机列表中的竞价实例，或回收站列表中所有计费模式的实例
     @inlinable
     public func offlineDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineDevicesResponse> {
-        self.offlineDevices(OfflineDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = OfflineDevicesRequest(instanceIds: instanceIds)
+        return self.client.execute(action: "OfflineDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退还服务器
@@ -72,6 +73,7 @@ extension Bm {
     /// 销毁黑石物理机实例：可以销毁物理机列表中的竞价实例，或回收站列表中所有计费模式的实例
     @inlinable
     public func offlineDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineDevicesResponse {
-        try await self.offlineDevices(OfflineDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = OfflineDevicesRequest(instanceIds: instanceIds)
+        return try await self.client.execute(action: "OfflineDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

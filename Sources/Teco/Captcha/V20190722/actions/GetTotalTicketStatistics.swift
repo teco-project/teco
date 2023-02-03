@@ -86,7 +86,8 @@ extension Captcha {
     /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
     @inlinable
     public func getTotalTicketStatistics(startTimeStr: String, endTimeStr: String, dimension: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTotalTicketStatisticsResponse> {
-        self.getTotalTicketStatistics(GetTotalTicketStatisticsRequest(startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), region: region, logger: logger, on: eventLoop)
+        let input = GetTotalTicketStatisticsRequest(startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension)
+        return self.client.execute(action: "GetTotalTicketStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询全部票据校验统计数据
@@ -94,6 +95,7 @@ extension Captcha {
     /// 查询全部票据校验的统计数据，包括：总票据校验量、总票据校验通过量、总票据校验拦截量。
     @inlinable
     public func getTotalTicketStatistics(startTimeStr: String, endTimeStr: String, dimension: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTotalTicketStatisticsResponse {
-        try await self.getTotalTicketStatistics(GetTotalTicketStatisticsRequest(startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension), region: region, logger: logger, on: eventLoop)
+        let input = GetTotalTicketStatisticsRequest(startTimeStr: startTimeStr, endTimeStr: endTimeStr, dimension: dimension)
+        return try await self.client.execute(action: "GetTotalTicketStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

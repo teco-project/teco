@@ -68,7 +68,8 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func haVipAssociateAddressIp(haVipId: String, addressIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HaVipAssociateAddressIpResponse> {
-        self.haVipAssociateAddressIp(HaVipAssociateAddressIpRequest(haVipId: haVipId, addressIp: addressIp), region: region, logger: logger, on: eventLoop)
+        let input = HaVipAssociateAddressIpRequest(haVipId: haVipId, addressIp: addressIp)
+        return self.client.execute(action: "HaVipAssociateAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// HAVIP绑定EIP
@@ -77,6 +78,7 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func haVipAssociateAddressIp(haVipId: String, addressIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HaVipAssociateAddressIpResponse {
-        try await self.haVipAssociateAddressIp(HaVipAssociateAddressIpRequest(haVipId: haVipId, addressIp: addressIp), region: region, logger: logger, on: eventLoop)
+        let input = HaVipAssociateAddressIpRequest(haVipId: haVipId, addressIp: addressIp)
+        return try await self.client.execute(action: "HaVipAssociateAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

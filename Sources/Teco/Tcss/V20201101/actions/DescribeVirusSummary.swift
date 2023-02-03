@@ -85,12 +85,14 @@ extension Tcss {
     /// 运行时查询木马概览信息
     @inlinable
     public func describeVirusSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusSummaryResponse> {
-        self.describeVirusSummary(DescribeVirusSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusSummaryRequest()
+        return self.client.execute(action: "DescribeVirusSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时查询木马概览信息
     @inlinable
     public func describeVirusSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSummaryResponse {
-        try await self.describeVirusSummary(DescribeVirusSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusSummaryRequest()
+        return try await self.client.execute(action: "DescribeVirusSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

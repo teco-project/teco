@@ -81,7 +81,8 @@ extension Essbasic {
     /// 注意：默认印章不支持删除
     @inlinable @discardableResult
     public func deleteSeal(caller: Caller, sealId: String, sourceIp: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSealResponse> {
-        self.deleteSeal(DeleteSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp, userId: userId)
+        return self.client.execute(action: "DeleteSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除印章
@@ -91,6 +92,7 @@ extension Essbasic {
     /// 注意：默认印章不支持删除
     @inlinable @discardableResult
     public func deleteSeal(caller: Caller, sealId: String, sourceIp: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSealResponse {
-        try await self.deleteSeal(DeleteSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSealRequest(caller: caller, sealId: sealId, sourceIp: sourceIp, userId: userId)
+        return try await self.client.execute(action: "DeleteSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

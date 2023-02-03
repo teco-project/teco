@@ -50,12 +50,14 @@ extension Iotcloud {
     /// 查询私有CA证书列表
     @inlinable
     public func describePrivateCAs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateCAsResponse> {
-        self.describePrivateCAs(DescribePrivateCAsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrivateCAsRequest()
+        return self.client.execute(action: "DescribePrivateCAs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询私有CA证书列表
     @inlinable
     public func describePrivateCAs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCAsResponse {
-        try await self.describePrivateCAs(DescribePrivateCAsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrivateCAsRequest()
+        return try await self.client.execute(action: "DescribePrivateCAs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

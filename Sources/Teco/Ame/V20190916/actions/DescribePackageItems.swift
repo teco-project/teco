@@ -75,7 +75,8 @@ extension Ame {
     /// 获取曲库包下已核销歌曲列表接口
     @inlinable
     public func describePackageItems(orderId: String, offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackageItemsResponse> {
-        self.describePackageItems(DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length), region: region, logger: logger, on: eventLoop)
+        let input = DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length)
+        return self.client.execute(action: "DescribePackageItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取曲库包已核销歌曲列表
@@ -83,6 +84,7 @@ extension Ame {
     /// 获取曲库包下已核销歌曲列表接口
     @inlinable
     public func describePackageItems(orderId: String, offset: UInt64? = nil, length: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackageItemsResponse {
-        try await self.describePackageItems(DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length), region: region, logger: logger, on: eventLoop)
+        let input = DescribePackageItemsRequest(orderId: orderId, offset: offset, length: length)
+        return try await self.client.execute(action: "DescribePackageItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

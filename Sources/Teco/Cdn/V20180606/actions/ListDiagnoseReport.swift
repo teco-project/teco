@@ -74,7 +74,8 @@ extension Cdn {
     /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
     @inlinable
     public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDiagnoseReportResponse> {
-        self.listDiagnoseReport(ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), region: region, logger: logger, on: eventLoop)
+        let input = ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin)
+        return self.client.execute(action: "ListDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断任务列表
@@ -82,6 +83,7 @@ extension Cdn {
     /// ListDiagnoseReport 用于获取用户诊断URL访问后各个子任务的简要详情。
     @inlinable
     public func listDiagnoseReport(keyWords: String? = nil, diagnoseLink: String? = nil, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDiagnoseReportResponse {
-        try await self.listDiagnoseReport(ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin), region: region, logger: logger, on: eventLoop)
+        let input = ListDiagnoseReportRequest(keyWords: keyWords, diagnoseLink: diagnoseLink, origin: origin)
+        return try await self.client.execute(action: "ListDiagnoseReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

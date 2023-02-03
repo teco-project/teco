@@ -64,12 +64,14 @@ extension Wedata {
     /// 查询实时任务实例节点信息
     @inlinable
     public func describeRealTimeTaskInstanceNodeInfo(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealTimeTaskInstanceNodeInfoResponse> {
-        self.describeRealTimeTaskInstanceNodeInfo(DescribeRealTimeTaskInstanceNodeInfoRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRealTimeTaskInstanceNodeInfoRequest(taskId: taskId, projectId: projectId)
+        return self.client.execute(action: "DescribeRealTimeTaskInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实时任务实例节点信息
     @inlinable
     public func describeRealTimeTaskInstanceNodeInfo(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealTimeTaskInstanceNodeInfoResponse {
-        try await self.describeRealTimeTaskInstanceNodeInfo(DescribeRealTimeTaskInstanceNodeInfoRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRealTimeTaskInstanceNodeInfoRequest(taskId: taskId, projectId: projectId)
+        return try await self.client.execute(action: "DescribeRealTimeTaskInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

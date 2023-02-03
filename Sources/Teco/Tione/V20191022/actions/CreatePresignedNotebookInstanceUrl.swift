@@ -64,12 +64,14 @@ extension Tione {
     /// 创建Notebook授权Url
     @inlinable
     public func createPresignedNotebookInstanceUrl(notebookInstanceName: String, sessionExpirationDurationInSeconds: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePresignedNotebookInstanceUrlResponse> {
-        self.createPresignedNotebookInstanceUrl(CreatePresignedNotebookInstanceUrlRequest(notebookInstanceName: notebookInstanceName, sessionExpirationDurationInSeconds: sessionExpirationDurationInSeconds), region: region, logger: logger, on: eventLoop)
+        let input = CreatePresignedNotebookInstanceUrlRequest(notebookInstanceName: notebookInstanceName, sessionExpirationDurationInSeconds: sessionExpirationDurationInSeconds)
+        return self.client.execute(action: "CreatePresignedNotebookInstanceUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Notebook授权Url
     @inlinable
     public func createPresignedNotebookInstanceUrl(notebookInstanceName: String, sessionExpirationDurationInSeconds: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePresignedNotebookInstanceUrlResponse {
-        try await self.createPresignedNotebookInstanceUrl(CreatePresignedNotebookInstanceUrlRequest(notebookInstanceName: notebookInstanceName, sessionExpirationDurationInSeconds: sessionExpirationDurationInSeconds), region: region, logger: logger, on: eventLoop)
+        let input = CreatePresignedNotebookInstanceUrlRequest(notebookInstanceName: notebookInstanceName, sessionExpirationDurationInSeconds: sessionExpirationDurationInSeconds)
+        return try await self.client.execute(action: "CreatePresignedNotebookInstanceUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -97,7 +97,8 @@ extension Lighthouse {
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable @discardableResult
     public func deleteFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFirewallRulesResponse> {
-        self.deleteFirewallRules(DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
+        let input = DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion)
+        return self.client.execute(action: "DeleteFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除防火墙规则
@@ -114,6 +115,7 @@ extension Lighthouse {
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable @discardableResult
     public func deleteFirewallRules(instanceId: String, firewallRules: [FirewallRule], firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFirewallRulesResponse {
-        try await self.deleteFirewallRules(DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
+        let input = DeleteFirewallRulesRequest(instanceId: instanceId, firewallRules: firewallRules, firewallVersion: firewallVersion)
+        return try await self.client.execute(action: "DeleteFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -136,12 +136,14 @@ extension Dayu {
     /// 获取DDoS攻击占比分析
     @inlinable
     public func describeDDoSCount(business: String, id: String, ip: String, startTime: Date, endTime: Date, metricName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSCountResponse> {
-        self.describeDDoSCount(DescribeDDoSCountRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime, metricName: metricName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSCountRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime, metricName: metricName)
+        return self.client.execute(action: "DescribeDDoSCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击占比分析
     @inlinable
     public func describeDDoSCount(business: String, id: String, ip: String, startTime: Date, endTime: Date, metricName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSCountResponse {
-        try await self.describeDDoSCount(DescribeDDoSCountRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime, metricName: metricName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSCountRequest(business: business, id: id, ip: ip, startTime: startTime, endTime: endTime, metricName: metricName)
+        return try await self.client.execute(action: "DescribeDDoSCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

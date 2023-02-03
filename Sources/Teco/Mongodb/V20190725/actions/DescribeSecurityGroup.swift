@@ -58,12 +58,14 @@ extension Mongodb {
     /// 查询实例绑定的安全组
     @inlinable
     public func describeSecurityGroup(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupResponse> {
-        self.describeSecurityGroup(DescribeSecurityGroupRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityGroupRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例绑定的安全组
     @inlinable
     public func describeSecurityGroup(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupResponse {
-        try await self.describeSecurityGroup(DescribeSecurityGroupRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityGroupRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -98,12 +98,14 @@ extension Wedata {
     /// 告警事件列表
     @inlinable
     public func describeAlarmEvents(filters: [Filter], orderFields: [OrderField], taskType: UInt64, startTime: String, endTime: String, projectId: String, pageNumber: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmEventsResponse> {
-        self.describeAlarmEvents(DescribeAlarmEventsRequest(filters: filters, orderFields: orderFields, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmEventsRequest(filters: filters, orderFields: orderFields, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize)
+        return self.client.execute(action: "DescribeAlarmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警事件列表
     @inlinable
     public func describeAlarmEvents(filters: [Filter], orderFields: [OrderField], taskType: UInt64, startTime: String, endTime: String, projectId: String, pageNumber: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmEventsResponse {
-        try await self.describeAlarmEvents(DescribeAlarmEventsRequest(filters: filters, orderFields: orderFields, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmEventsRequest(filters: filters, orderFields: orderFields, taskType: taskType, startTime: startTime, endTime: endTime, projectId: projectId, pageNumber: pageNumber, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeAlarmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

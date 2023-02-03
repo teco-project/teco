@@ -122,7 +122,8 @@ extension Live {
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
     public func describeLiveStreamPublishedList(domainName: String, endTime: String, startTime: String, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamPublishedListResponse> {
-        self.describeLiveStreamPublishedList(DescribeLiveStreamPublishedListRequest(domainName: domainName, endTime: endTime, startTime: startTime, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveStreamPublishedListRequest(domainName: domainName, endTime: endTime, startTime: startTime, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName)
+        return self.client.execute(action: "DescribeLiveStreamPublishedList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询历史流列表
@@ -131,6 +132,7 @@ extension Live {
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
     public func describeLiveStreamPublishedList(domainName: String, endTime: String, startTime: String, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamPublishedListResponse {
-        try await self.describeLiveStreamPublishedList(DescribeLiveStreamPublishedListRequest(domainName: domainName, endTime: endTime, startTime: startTime, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveStreamPublishedListRequest(domainName: domainName, endTime: endTime, startTime: startTime, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName)
+        return try await self.client.execute(action: "DescribeLiveStreamPublishedList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

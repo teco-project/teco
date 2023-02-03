@@ -87,7 +87,8 @@ extension Cbs {
     /// * 如果是弹性云盘，则云盘必须处于未挂载状态，云硬盘挂载状态可以通过[DescribeDisks](/document/product/362/16315)接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云盘，则实例必须处于关机状态，实例状态可以通过[DescribeInstancesStatus](/document/product/213/15738)接口查询。
     @inlinable @discardableResult
     public func applySnapshot(snapshotId: String, diskId: String, autoStopInstance: Bool? = nil, autoStartInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplySnapshotResponse> {
-        self.applySnapshot(ApplySnapshotRequest(snapshotId: snapshotId, diskId: diskId, autoStopInstance: autoStopInstance, autoStartInstance: autoStartInstance), region: region, logger: logger, on: eventLoop)
+        let input = ApplySnapshotRequest(snapshotId: snapshotId, diskId: diskId, autoStopInstance: autoStopInstance, autoStartInstance: autoStartInstance)
+        return self.client.execute(action: "ApplySnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回滚快照
@@ -99,6 +100,7 @@ extension Cbs {
     /// * 如果是弹性云盘，则云盘必须处于未挂载状态，云硬盘挂载状态可以通过[DescribeDisks](/document/product/362/16315)接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云盘，则实例必须处于关机状态，实例状态可以通过[DescribeInstancesStatus](/document/product/213/15738)接口查询。
     @inlinable @discardableResult
     public func applySnapshot(snapshotId: String, diskId: String, autoStopInstance: Bool? = nil, autoStartInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplySnapshotResponse {
-        try await self.applySnapshot(ApplySnapshotRequest(snapshotId: snapshotId, diskId: diskId, autoStopInstance: autoStopInstance, autoStartInstance: autoStartInstance), region: region, logger: logger, on: eventLoop)
+        let input = ApplySnapshotRequest(snapshotId: snapshotId, diskId: diskId, autoStopInstance: autoStopInstance, autoStartInstance: autoStartInstance)
+        return try await self.client.execute(action: "ApplySnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

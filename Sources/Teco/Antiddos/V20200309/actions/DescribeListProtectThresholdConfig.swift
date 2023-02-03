@@ -93,7 +93,8 @@ extension Antiddos {
     /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
     @inlinable
     public func describeListProtectThresholdConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, filterDomain: String? = nil, filterProtocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListProtectThresholdConfigResponse> {
-        self.describeListProtectThresholdConfig(DescribeListProtectThresholdConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp, filterDomain: filterDomain, filterProtocol: filterProtocol), region: region, logger: logger, on: eventLoop)
+        let input = DescribeListProtectThresholdConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp, filterDomain: filterDomain, filterProtocol: filterProtocol)
+        return self.client.execute(action: "DescribeListProtectThresholdConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取防护阈值配置列表
@@ -101,6 +102,7 @@ extension Antiddos {
     /// 获取防护阈值配置列表，包括DDoS的AI、等级、CC阈值开关等
     @inlinable
     public func describeListProtectThresholdConfig(offset: UInt64, limit: UInt64, filterInstanceId: String, filterIp: String? = nil, filterDomain: String? = nil, filterProtocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListProtectThresholdConfigResponse {
-        try await self.describeListProtectThresholdConfig(DescribeListProtectThresholdConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp, filterDomain: filterDomain, filterProtocol: filterProtocol), region: region, logger: logger, on: eventLoop)
+        let input = DescribeListProtectThresholdConfigRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp, filterDomain: filterDomain, filterProtocol: filterProtocol)
+        return try await self.client.execute(action: "DescribeListProtectThresholdConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

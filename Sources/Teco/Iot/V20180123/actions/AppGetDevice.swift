@@ -74,7 +74,8 @@ extension Iot {
     /// 获取绑定设备的基本信息与数据模板定义
     @inlinable
     public func appGetDevice(accessToken: String, productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDeviceResponse> {
-        self.appGetDevice(AppGetDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = AppGetDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName)
+        return self.client.execute(action: "AppGetDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取绑定设备信息
@@ -82,6 +83,7 @@ extension Iot {
     /// 获取绑定设备的基本信息与数据模板定义
     @inlinable
     public func appGetDevice(accessToken: String, productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceResponse {
-        try await self.appGetDevice(AppGetDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = AppGetDeviceRequest(accessToken: accessToken, productId: productId, deviceName: deviceName)
+        return try await self.client.execute(action: "AppGetDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

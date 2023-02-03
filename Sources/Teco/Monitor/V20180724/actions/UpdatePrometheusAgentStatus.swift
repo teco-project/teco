@@ -66,12 +66,14 @@ extension Monitor {
     /// 更新 Prometheus CVM Agent 状态
     @inlinable @discardableResult
     public func updatePrometheusAgentStatus(instanceId: String, agentIds: [String], status: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePrometheusAgentStatusResponse> {
-        self.updatePrometheusAgentStatus(UpdatePrometheusAgentStatusRequest(instanceId: instanceId, agentIds: agentIds, status: status), region: region, logger: logger, on: eventLoop)
+        let input = UpdatePrometheusAgentStatusRequest(instanceId: instanceId, agentIds: agentIds, status: status)
+        return self.client.execute(action: "UpdatePrometheusAgentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新 Prometheus CVM Agent 状态
     @inlinable @discardableResult
     public func updatePrometheusAgentStatus(instanceId: String, agentIds: [String], status: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePrometheusAgentStatusResponse {
-        try await self.updatePrometheusAgentStatus(UpdatePrometheusAgentStatusRequest(instanceId: instanceId, agentIds: agentIds, status: status), region: region, logger: logger, on: eventLoop)
+        let input = UpdatePrometheusAgentStatusRequest(instanceId: instanceId, agentIds: agentIds, status: status)
+        return try await self.client.execute(action: "UpdatePrometheusAgentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

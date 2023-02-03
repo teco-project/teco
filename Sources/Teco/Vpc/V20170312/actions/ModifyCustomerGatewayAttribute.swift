@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
     @inlinable @discardableResult
     public func modifyCustomerGatewayAttribute(customerGatewayId: String, customerGatewayName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomerGatewayAttributeResponse> {
-        self.modifyCustomerGatewayAttribute(ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName)
+        return self.client.execute(action: "ModifyCustomerGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改对端网关
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（ModifyCustomerGatewayAttribute）用于修改对端网关信息。
     @inlinable @discardableResult
     public func modifyCustomerGatewayAttribute(customerGatewayId: String, customerGatewayName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomerGatewayAttributeResponse {
-        try await self.modifyCustomerGatewayAttribute(ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCustomerGatewayAttributeRequest(customerGatewayId: customerGatewayId, customerGatewayName: customerGatewayName)
+        return try await self.client.execute(action: "ModifyCustomerGatewayAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

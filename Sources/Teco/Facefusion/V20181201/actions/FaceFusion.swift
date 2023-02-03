@@ -105,7 +105,8 @@ extension Facefusion {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func faceFusion(projectId: String, modelId: String, rspImgType: String, image: String? = nil, pornDetect: Int64? = nil, celebrityIdentify: Int64? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionResponse> {
-        self.faceFusion(FaceFusionRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, image: image, pornDetect: pornDetect, celebrityIdentify: celebrityIdentify, url: url), region: region, logger: logger, on: eventLoop)
+        let input = FaceFusionRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, image: image, pornDetect: pornDetect, celebrityIdentify: celebrityIdentify, url: url)
+        return self.client.execute(action: "FaceFusion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸融合
@@ -115,6 +116,7 @@ extension Facefusion {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func faceFusion(projectId: String, modelId: String, rspImgType: String, image: String? = nil, pornDetect: Int64? = nil, celebrityIdentify: Int64? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionResponse {
-        try await self.faceFusion(FaceFusionRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, image: image, pornDetect: pornDetect, celebrityIdentify: celebrityIdentify, url: url), region: region, logger: logger, on: eventLoop)
+        let input = FaceFusionRequest(projectId: projectId, modelId: modelId, rspImgType: rspImgType, image: image, pornDetect: pornDetect, celebrityIdentify: celebrityIdentify, url: url)
+        return try await self.client.execute(action: "FaceFusion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

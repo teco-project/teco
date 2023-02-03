@@ -69,7 +69,8 @@ extension Bm {
     /// 获取设备类型
     @inlinable
     public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClassResponse> {
-        self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo)
+        return self.client.execute(action: "DescribeDeviceClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备型号
@@ -77,6 +78,7 @@ extension Bm {
     /// 获取设备类型
     @inlinable
     public func describeDeviceClass(onSale: UInt64? = nil, needPriceInfo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClassResponse {
-        try await self.describeDeviceClass(DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceClassRequest(onSale: onSale, needPriceInfo: needPriceInfo)
+        return try await self.client.execute(action: "DescribeDeviceClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

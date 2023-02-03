@@ -73,7 +73,8 @@ extension Vod {
     ///   3. 查询默认使用的存储园区。
     @inlinable
     public func describeStorageRegions(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageRegionsResponse> {
-        self.describeStorageRegions(DescribeStorageRegionsRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStorageRegionsRequest(subAppId: subAppId)
+        return self.client.execute(action: "DescribeStorageRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询存储地域列表
@@ -84,6 +85,7 @@ extension Vod {
     ///   3. 查询默认使用的存储园区。
     @inlinable
     public func describeStorageRegions(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageRegionsResponse {
-        try await self.describeStorageRegions(DescribeStorageRegionsRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStorageRegionsRequest(subAppId: subAppId)
+        return try await self.client.execute(action: "DescribeStorageRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

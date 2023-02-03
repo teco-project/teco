@@ -78,7 +78,8 @@ extension Iotcloud {
     /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
     @inlinable
     public func describeProductTasks(productId: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductTasksResponse> {
-        self.describeProductTasks(DescribeProductTasksRequest(productId: productId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductTasksRequest(productId: productId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeProductTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品级任务列表
@@ -86,6 +87,7 @@ extension Iotcloud {
     /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
     @inlinable
     public func describeProductTasks(productId: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductTasksResponse {
-        try await self.describeProductTasks(DescribeProductTasksRequest(productId: productId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductTasksRequest(productId: productId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeProductTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,12 +63,14 @@ extension Tdid {
     /// 主群组配置列表
     @inlinable
     public func getGroupList(status: Int64, clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupListResponse> {
-        self.getGroupList(GetGroupListRequest(status: status, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetGroupListRequest(status: status, clusterId: clusterId)
+        return self.client.execute(action: "GetGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 主群组配置列表
     @inlinable
     public func getGroupList(status: Int64, clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupListResponse {
-        try await self.getGroupList(GetGroupListRequest(status: status, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetGroupListRequest(status: status, clusterId: clusterId)
+        return try await self.client.execute(action: "GetGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

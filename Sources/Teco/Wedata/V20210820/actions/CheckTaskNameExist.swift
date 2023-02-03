@@ -68,12 +68,14 @@ extension Wedata {
     /// 离线任务重名校验
     @inlinable
     public func checkTaskNameExist(projectId: String, typeId: Int64, taskName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckTaskNameExistResponse> {
-        self.checkTaskNameExist(CheckTaskNameExistRequest(projectId: projectId, typeId: typeId, taskName: taskName), region: region, logger: logger, on: eventLoop)
+        let input = CheckTaskNameExistRequest(projectId: projectId, typeId: typeId, taskName: taskName)
+        return self.client.execute(action: "CheckTaskNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 离线任务重名校验
     @inlinable
     public func checkTaskNameExist(projectId: String, typeId: Int64, taskName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTaskNameExistResponse {
-        try await self.checkTaskNameExist(CheckTaskNameExistRequest(projectId: projectId, typeId: typeId, taskName: taskName), region: region, logger: logger, on: eventLoop)
+        let input = CheckTaskNameExistRequest(projectId: projectId, typeId: typeId, taskName: taskName)
+        return try await self.client.execute(action: "CheckTaskNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

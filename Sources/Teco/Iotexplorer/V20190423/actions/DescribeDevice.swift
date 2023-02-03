@@ -74,7 +74,8 @@ extension Iotexplorer {
     /// 用于查看某个设备的详细信息
     @inlinable
     public func describeDevice(productId: String, deviceName: String, deviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResponse> {
-        self.describeDevice(DescribeDeviceRequest(productId: productId, deviceName: deviceName, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceRequest(productId: productId, deviceName: deviceName, deviceId: deviceId)
+        return self.client.execute(action: "DescribeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看设备详情
@@ -82,6 +83,7 @@ extension Iotexplorer {
     /// 用于查看某个设备的详细信息
     @inlinable
     public func describeDevice(productId: String, deviceName: String, deviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
-        try await self.describeDevice(DescribeDeviceRequest(productId: productId, deviceName: deviceName, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceRequest(productId: productId, deviceName: deviceName, deviceId: deviceId)
+        return try await self.client.execute(action: "DescribeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

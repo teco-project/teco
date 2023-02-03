@@ -54,12 +54,14 @@ extension Solar {
     /// 删除项目
     @inlinable @discardableResult
     public func deleteProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProjectResponse> {
-        self.deleteProject(DeleteProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteProjectRequest(projectId: projectId)
+        return self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除项目
     @inlinable @discardableResult
     public func deleteProject(projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProjectResponse {
-        try await self.deleteProject(DeleteProjectRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteProjectRequest(projectId: projectId)
+        return try await self.client.execute(action: "DeleteProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

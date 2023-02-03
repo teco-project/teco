@@ -58,12 +58,14 @@ extension Cwp {
     /// 添加历史搜索记录
     @inlinable
     public func createSearchLog(searchContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSearchLogResponse> {
-        self.createSearchLog(CreateSearchLogRequest(searchContent: searchContent), region: region, logger: logger, on: eventLoop)
+        let input = CreateSearchLogRequest(searchContent: searchContent)
+        return self.client.execute(action: "CreateSearchLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加历史搜索记录
     @inlinable
     public func createSearchLog(searchContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSearchLogResponse {
-        try await self.createSearchLog(CreateSearchLogRequest(searchContent: searchContent), region: region, logger: logger, on: eventLoop)
+        let input = CreateSearchLogRequest(searchContent: searchContent)
+        return try await self.client.execute(action: "CreateSearchLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

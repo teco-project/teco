@@ -90,7 +90,8 @@ extension Monitor {
     /// 将告警策略绑定到特定对象
     @inlinable @discardableResult
     public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindingPolicyObjectResponse> {
-        self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions, ebSubject: ebSubject, ebEventFlag: ebEventFlag), region: region, logger: logger, on: eventLoop)
+        let input = BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions, ebSubject: ebSubject, ebEventFlag: ebEventFlag)
+        return self.client.execute(action: "BindingPolicyObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略对象
@@ -98,6 +99,7 @@ extension Monitor {
     /// 将告警策略绑定到特定对象
     @inlinable @discardableResult
     public func bindingPolicyObject(module: String, groupId: Int64? = nil, policyId: String? = nil, instanceGroupId: Int64? = nil, dimensions: [BindingPolicyObjectDimension]? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindingPolicyObjectResponse {
-        try await self.bindingPolicyObject(BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions, ebSubject: ebSubject, ebEventFlag: ebEventFlag), region: region, logger: logger, on: eventLoop)
+        let input = BindingPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, instanceGroupId: instanceGroupId, dimensions: dimensions, ebSubject: ebSubject, ebEventFlag: ebEventFlag)
+        return try await self.client.execute(action: "BindingPolicyObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -97,12 +97,14 @@ extension Tdmq {
     /// 获取某个租户的虚拟集群列表
     @inlinable
     public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllTenantsResponse> {
-        self.describeAllTenants(DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder)
+        return self.client.execute(action: "DescribeAllTenants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取某个租户的虚拟集群列表
     @inlinable
     public func describeAllTenants(offset: Int64, limit: Int64, clusterName: String? = nil, tenantId: String? = nil, tenantName: String? = nil, types: [String]? = nil, sortBy: String? = nil, sortOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllTenantsResponse {
-        try await self.describeAllTenants(DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAllTenantsRequest(offset: offset, limit: limit, clusterName: clusterName, tenantId: tenantId, tenantName: tenantName, types: types, sortBy: sortBy, sortOrder: sortOrder)
+        return try await self.client.execute(action: "DescribeAllTenants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

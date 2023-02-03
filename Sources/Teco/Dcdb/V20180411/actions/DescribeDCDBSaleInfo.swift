@@ -56,7 +56,8 @@ extension Dcdb {
     /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
     @inlinable
     public func describeDCDBSaleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBSaleInfoResponse> {
-        self.describeDCDBSaleInfo(DescribeDCDBSaleInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDCDBSaleInfoRequest()
+        return self.client.execute(action: "DescribeDCDBSaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询分布式数据库可售卖地域和可用区信息
@@ -64,6 +65,7 @@ extension Dcdb {
     /// 本接口(DescribeDCDBSaleInfo)用于查询分布式数据库可售卖的地域和可用区信息。
     @inlinable
     public func describeDCDBSaleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBSaleInfoResponse {
-        try await self.describeDCDBSaleInfo(DescribeDCDBSaleInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDCDBSaleInfoRequest()
+        return try await self.client.execute(action: "DescribeDCDBSaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

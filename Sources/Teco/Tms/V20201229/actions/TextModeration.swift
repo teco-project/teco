@@ -179,7 +179,8 @@ extension Tms {
     /// - 默认接口请求频率限制：**1000次/秒**，超过该频率限制则接口会报错。
     @inlinable
     public func textModeration(content: String, bizType: String? = nil, dataId: String? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextModerationResponse> {
-        self.textModeration(TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device), region: region, logger: logger, on: eventLoop)
+        let input = TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device)
+        return self.client.execute(action: "TextModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文本内容安全
@@ -203,6 +204,7 @@ extension Tms {
     /// - 默认接口请求频率限制：**1000次/秒**，超过该频率限制则接口会报错。
     @inlinable
     public func textModeration(content: String, bizType: String? = nil, dataId: String? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextModerationResponse {
-        try await self.textModeration(TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device), region: region, logger: logger, on: eventLoop)
+        let input = TextModerationRequest(content: content, bizType: bizType, dataId: dataId, user: user, device: device)
+        return try await self.client.execute(action: "TextModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

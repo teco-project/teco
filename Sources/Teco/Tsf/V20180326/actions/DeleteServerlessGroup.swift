@@ -64,7 +64,8 @@ extension Tsf {
     /// 删除Serverless部署组
     @inlinable
     public func deleteServerlessGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServerlessGroupResponse> {
-        self.deleteServerlessGroup(DeleteServerlessGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteServerlessGroupRequest(groupId: groupId)
+        return self.client.execute(action: "DeleteServerlessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除部署组
@@ -72,6 +73,7 @@ extension Tsf {
     /// 删除Serverless部署组
     @inlinable
     public func deleteServerlessGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServerlessGroupResponse {
-        try await self.deleteServerlessGroup(DeleteServerlessGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteServerlessGroupRequest(groupId: groupId)
+        return try await self.client.execute(action: "DeleteServerlessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

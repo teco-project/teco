@@ -65,7 +65,8 @@ extension Bmlb {
     /// 设置流量镜像的别名。
     @inlinable @discardableResult
     public func setTrafficMirrorAlias(trafficMirrorId: String, alias: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTrafficMirrorAliasResponse> {
-        self.setTrafficMirrorAlias(SetTrafficMirrorAliasRequest(trafficMirrorId: trafficMirrorId, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = SetTrafficMirrorAliasRequest(trafficMirrorId: trafficMirrorId, alias: alias)
+        return self.client.execute(action: "SetTrafficMirrorAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置流量镜像的别名
@@ -73,6 +74,7 @@ extension Bmlb {
     /// 设置流量镜像的别名。
     @inlinable @discardableResult
     public func setTrafficMirrorAlias(trafficMirrorId: String, alias: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTrafficMirrorAliasResponse {
-        try await self.setTrafficMirrorAlias(SetTrafficMirrorAliasRequest(trafficMirrorId: trafficMirrorId, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = SetTrafficMirrorAliasRequest(trafficMirrorId: trafficMirrorId, alias: alias)
+        return try await self.client.execute(action: "SetTrafficMirrorAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

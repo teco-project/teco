@@ -75,7 +75,8 @@ extension Drm {
     /// 该接口用来设置加密的密钥。注意，同一个content id，只能设置一次！
     @inlinable @discardableResult
     public func createEncryptKeys(drmType: String, keys: [KeyParam], contentId: String? = nil, contentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEncryptKeysResponse> {
-        self.createEncryptKeys(CreateEncryptKeysRequest(drmType: drmType, keys: keys, contentId: contentId, contentType: contentType), region: region, logger: logger, on: eventLoop)
+        let input = CreateEncryptKeysRequest(drmType: drmType, keys: keys, contentId: contentId, contentType: contentType)
+        return self.client.execute(action: "CreateEncryptKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置加密密钥
@@ -83,6 +84,7 @@ extension Drm {
     /// 该接口用来设置加密的密钥。注意，同一个content id，只能设置一次！
     @inlinable @discardableResult
     public func createEncryptKeys(drmType: String, keys: [KeyParam], contentId: String? = nil, contentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEncryptKeysResponse {
-        try await self.createEncryptKeys(CreateEncryptKeysRequest(drmType: drmType, keys: keys, contentId: contentId, contentType: contentType), region: region, logger: logger, on: eventLoop)
+        let input = CreateEncryptKeysRequest(drmType: drmType, keys: keys, contentId: contentId, contentType: contentType)
+        return try await self.client.execute(action: "CreateEncryptKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

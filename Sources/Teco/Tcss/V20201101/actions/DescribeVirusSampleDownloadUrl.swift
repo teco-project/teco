@@ -58,12 +58,14 @@ extension Tcss {
     /// 查询木马样本下载url
     @inlinable
     public func describeVirusSampleDownloadUrl(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusSampleDownloadUrlResponse> {
-        self.describeVirusSampleDownloadUrl(DescribeVirusSampleDownloadUrlRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusSampleDownloadUrlRequest(id: id)
+        return self.client.execute(action: "DescribeVirusSampleDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询木马样本下载url
     @inlinable
     public func describeVirusSampleDownloadUrl(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusSampleDownloadUrlResponse {
-        try await self.describeVirusSampleDownloadUrl(DescribeVirusSampleDownloadUrlRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusSampleDownloadUrlRequest(id: id)
+        return try await self.client.execute(action: "DescribeVirusSampleDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

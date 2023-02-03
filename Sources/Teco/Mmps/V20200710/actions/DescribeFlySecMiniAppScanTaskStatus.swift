@@ -83,7 +83,8 @@ extension Mmps {
     /// 查询翼扬安全诊断任务状态
     @inlinable
     public func describeFlySecMiniAppScanTaskStatus(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanTaskStatusResponse> {
-        self.describeFlySecMiniAppScanTaskStatus(DescribeFlySecMiniAppScanTaskStatusRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlySecMiniAppScanTaskStatusRequest(taskID: taskID)
+        return self.client.execute(action: "DescribeFlySecMiniAppScanTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询诊断任务状态
@@ -91,6 +92,7 @@ extension Mmps {
     /// 查询翼扬安全诊断任务状态
     @inlinable
     public func describeFlySecMiniAppScanTaskStatus(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanTaskStatusResponse {
-        try await self.describeFlySecMiniAppScanTaskStatus(DescribeFlySecMiniAppScanTaskStatusRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlySecMiniAppScanTaskStatusRequest(taskID: taskID)
+        return try await self.client.execute(action: "DescribeFlySecMiniAppScanTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

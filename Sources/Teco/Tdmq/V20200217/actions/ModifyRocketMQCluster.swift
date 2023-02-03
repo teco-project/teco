@@ -64,12 +64,14 @@ extension Tdmq {
     /// 更新RocketMQ集群信息
     @inlinable @discardableResult
     public func modifyRocketMQCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQClusterResponse> {
-        self.modifyRocketMQCluster(ModifyRocketMQClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRocketMQClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark)
+        return self.client.execute(action: "ModifyRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ集群信息
     @inlinable @discardableResult
     public func modifyRocketMQCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQClusterResponse {
-        try await self.modifyRocketMQCluster(ModifyRocketMQClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRocketMQClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark)
+        return try await self.client.execute(action: "ModifyRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

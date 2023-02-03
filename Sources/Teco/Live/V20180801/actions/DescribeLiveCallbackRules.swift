@@ -50,12 +50,14 @@ extension Live {
     /// 获取回调规则列表
     @inlinable
     public func describeLiveCallbackRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackRulesResponse> {
-        self.describeLiveCallbackRules(DescribeLiveCallbackRulesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveCallbackRulesRequest()
+        return self.client.execute(action: "DescribeLiveCallbackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取回调规则列表
     @inlinable
     public func describeLiveCallbackRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackRulesResponse {
-        try await self.describeLiveCallbackRules(DescribeLiveCallbackRulesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveCallbackRulesRequest()
+        return try await self.client.execute(action: "DescribeLiveCallbackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

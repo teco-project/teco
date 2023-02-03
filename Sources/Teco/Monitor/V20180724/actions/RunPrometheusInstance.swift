@@ -65,7 +65,8 @@ extension Monitor {
     /// 初始化TMP实例，开启集成中心时调用
     @inlinable @discardableResult
     public func runPrometheusInstance(instanceId: String, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunPrometheusInstanceResponse> {
-        self.runPrometheusInstance(RunPrometheusInstanceRequest(instanceId: instanceId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = RunPrometheusInstanceRequest(instanceId: instanceId, subnetId: subnetId)
+        return self.client.execute(action: "RunPrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 初始化TMP实例
@@ -73,6 +74,7 @@ extension Monitor {
     /// 初始化TMP实例，开启集成中心时调用
     @inlinable @discardableResult
     public func runPrometheusInstance(instanceId: String, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunPrometheusInstanceResponse {
-        try await self.runPrometheusInstance(RunPrometheusInstanceRequest(instanceId: instanceId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = RunPrometheusInstanceRequest(instanceId: instanceId, subnetId: subnetId)
+        return try await self.client.execute(action: "RunPrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

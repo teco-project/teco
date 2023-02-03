@@ -77,7 +77,8 @@ extension Cvm {
     /// * 只支持查询包年包月`CDH`实例的续费价格。
     @inlinable
     public func inquiryPriceRenewHosts(hostIds: [String], hostChargePrepaid: ChargePrepaid, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceRenewHostsResponse> {
-        self.inquiryPriceRenewHosts(InquiryPriceRenewHostsRequest(hostIds: hostIds, hostChargePrepaid: hostChargePrepaid, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceRenewHostsRequest(hostIds: hostIds, hostChargePrepaid: hostChargePrepaid, dryRun: dryRun)
+        return self.client.execute(action: "InquiryPriceRenewHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费CDH实例询价
@@ -86,6 +87,7 @@ extension Cvm {
     /// * 只支持查询包年包月`CDH`实例的续费价格。
     @inlinable
     public func inquiryPriceRenewHosts(hostIds: [String], hostChargePrepaid: ChargePrepaid, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceRenewHostsResponse {
-        try await self.inquiryPriceRenewHosts(InquiryPriceRenewHostsRequest(hostIds: hostIds, hostChargePrepaid: hostChargePrepaid, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceRenewHostsRequest(hostIds: hostIds, hostChargePrepaid: hostChargePrepaid, dryRun: dryRun)
+        return try await self.client.execute(action: "InquiryPriceRenewHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -88,7 +88,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesExtendResponse> {
-        self.describeInstancesExtend(DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress)
+        return self.client.execute(action: "DescribeInstancesExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例扩展信息列表
@@ -97,6 +98,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstancesExtend(fleetId: String, offset: Int64, limit: Int64, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesExtendResponse {
-        try await self.describeInstancesExtend(DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesExtendRequest(fleetId: fleetId, offset: offset, limit: limit, ipAddress: ipAddress)
+        return try await self.client.execute(action: "DescribeInstancesExtend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

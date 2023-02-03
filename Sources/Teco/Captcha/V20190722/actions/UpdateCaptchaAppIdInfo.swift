@@ -123,12 +123,14 @@ extension Captcha {
     /// 更新验证码应用APPId信息
     @inlinable
     public func updateCaptchaAppIdInfo(captchaAppId: Int64, appName: String, domainLimit: String, sceneType: Int64, capType: Int64, evilInterceptGrade: Int64, smartVerify: Int64, smartEngine: Int64, schemeColor: String, captchaLanguage: Int64, mailAlarm: String, topFullScreen: Int64, trafficThreshold: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCaptchaAppIdInfoResponse> {
-        self.updateCaptchaAppIdInfo(UpdateCaptchaAppIdInfoRequest(captchaAppId: captchaAppId, appName: appName, domainLimit: domainLimit, sceneType: sceneType, capType: capType, evilInterceptGrade: evilInterceptGrade, smartVerify: smartVerify, smartEngine: smartEngine, schemeColor: schemeColor, captchaLanguage: captchaLanguage, mailAlarm: mailAlarm, topFullScreen: topFullScreen, trafficThreshold: trafficThreshold), region: region, logger: logger, on: eventLoop)
+        let input = UpdateCaptchaAppIdInfoRequest(captchaAppId: captchaAppId, appName: appName, domainLimit: domainLimit, sceneType: sceneType, capType: capType, evilInterceptGrade: evilInterceptGrade, smartVerify: smartVerify, smartEngine: smartEngine, schemeColor: schemeColor, captchaLanguage: captchaLanguage, mailAlarm: mailAlarm, topFullScreen: topFullScreen, trafficThreshold: trafficThreshold)
+        return self.client.execute(action: "UpdateCaptchaAppIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新验证码应用APPId信息
     @inlinable
     public func updateCaptchaAppIdInfo(captchaAppId: Int64, appName: String, domainLimit: String, sceneType: Int64, capType: Int64, evilInterceptGrade: Int64, smartVerify: Int64, smartEngine: Int64, schemeColor: String, captchaLanguage: Int64, mailAlarm: String, topFullScreen: Int64, trafficThreshold: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCaptchaAppIdInfoResponse {
-        try await self.updateCaptchaAppIdInfo(UpdateCaptchaAppIdInfoRequest(captchaAppId: captchaAppId, appName: appName, domainLimit: domainLimit, sceneType: sceneType, capType: capType, evilInterceptGrade: evilInterceptGrade, smartVerify: smartVerify, smartEngine: smartEngine, schemeColor: schemeColor, captchaLanguage: captchaLanguage, mailAlarm: mailAlarm, topFullScreen: topFullScreen, trafficThreshold: trafficThreshold), region: region, logger: logger, on: eventLoop)
+        let input = UpdateCaptchaAppIdInfoRequest(captchaAppId: captchaAppId, appName: appName, domainLimit: domainLimit, sceneType: sceneType, capType: capType, evilInterceptGrade: evilInterceptGrade, smartVerify: smartVerify, smartEngine: smartEngine, schemeColor: schemeColor, captchaLanguage: captchaLanguage, mailAlarm: mailAlarm, topFullScreen: topFullScreen, trafficThreshold: trafficThreshold)
+        return try await self.client.execute(action: "UpdateCaptchaAppIdInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

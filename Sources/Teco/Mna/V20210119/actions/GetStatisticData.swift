@@ -81,7 +81,8 @@ extension Mna {
     /// 在用量统计页面下载流量数据
     @inlinable
     public func getStatisticData(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetStatisticDataResponse> {
-        self.getStatisticData(GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity), region: region, logger: logger, on: eventLoop)
+        let input = GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity)
+        return self.client.execute(action: "GetStatisticData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载用量统计数据
@@ -89,6 +90,7 @@ extension Mna {
     /// 在用量统计页面下载流量数据
     @inlinable
     public func getStatisticData(deviceId: String, beginTime: Int64, endTime: Int64, timeGranularity: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetStatisticDataResponse {
-        try await self.getStatisticData(GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity), region: region, logger: logger, on: eventLoop)
+        let input = GetStatisticDataRequest(deviceId: deviceId, beginTime: beginTime, endTime: endTime, timeGranularity: timeGranularity)
+        return try await self.client.execute(action: "GetStatisticData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

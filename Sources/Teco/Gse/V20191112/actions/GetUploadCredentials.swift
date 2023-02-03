@@ -83,7 +83,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadCredentials(assetRegion: String, bucketKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUploadCredentialsResponse> {
-        self.getUploadCredentials(GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey), region: region, logger: logger, on: eventLoop)
+        let input = GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey)
+        return self.client.execute(action: "GetUploadCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取上传文件授权信息
@@ -93,6 +94,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getUploadCredentials(assetRegion: String, bucketKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
-        try await self.getUploadCredentials(GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey), region: region, logger: logger, on: eventLoop)
+        let input = GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey)
+        return try await self.client.execute(action: "GetUploadCredentials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

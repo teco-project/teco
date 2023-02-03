@@ -73,12 +73,14 @@ extension Cwp {
     /// 导出基线列表
     @inlinable
     public func exportBaselineList(filters: [Filters]? = nil, ifDetail: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportBaselineListResponse> {
-        self.exportBaselineList(ExportBaselineListRequest(filters: filters, ifDetail: ifDetail), region: region, logger: logger, on: eventLoop)
+        let input = ExportBaselineListRequest(filters: filters, ifDetail: ifDetail)
+        return self.client.execute(action: "ExportBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出基线列表
     @inlinable
     public func exportBaselineList(filters: [Filters]? = nil, ifDetail: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportBaselineListResponse {
-        try await self.exportBaselineList(ExportBaselineListRequest(filters: filters, ifDetail: ifDetail), region: region, logger: logger, on: eventLoop)
+        let input = ExportBaselineListRequest(filters: filters, ifDetail: ifDetail)
+        return try await self.client.execute(action: "ExportBaselineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

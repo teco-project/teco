@@ -95,7 +95,8 @@ extension As {
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
     public func createAutoScalingGroupFromInstance(autoScalingGroupName: String, instanceId: String, minSize: Int64, maxSize: Int64, desiredCapacity: Int64? = nil, inheritInstanceTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoScalingGroupFromInstanceResponse> {
-        self.createAutoScalingGroupFromInstance(CreateAutoScalingGroupFromInstanceRequest(autoScalingGroupName: autoScalingGroupName, instanceId: instanceId, minSize: minSize, maxSize: maxSize, desiredCapacity: desiredCapacity, inheritInstanceTag: inheritInstanceTag), region: region, logger: logger, on: eventLoop)
+        let input = CreateAutoScalingGroupFromInstanceRequest(autoScalingGroupName: autoScalingGroupName, instanceId: instanceId, minSize: minSize, maxSize: maxSize, desiredCapacity: desiredCapacity, inheritInstanceTag: inheritInstanceTag)
+        return self.client.execute(action: "CreateAutoScalingGroupFromInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据实例创建启动配置及伸缩组
@@ -105,6 +106,7 @@ extension As {
     /// 说明：根据按包年包月计费的实例所创建的伸缩组，其扩容的实例为按量计费实例。
     @inlinable
     public func createAutoScalingGroupFromInstance(autoScalingGroupName: String, instanceId: String, minSize: Int64, maxSize: Int64, desiredCapacity: Int64? = nil, inheritInstanceTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoScalingGroupFromInstanceResponse {
-        try await self.createAutoScalingGroupFromInstance(CreateAutoScalingGroupFromInstanceRequest(autoScalingGroupName: autoScalingGroupName, instanceId: instanceId, minSize: minSize, maxSize: maxSize, desiredCapacity: desiredCapacity, inheritInstanceTag: inheritInstanceTag), region: region, logger: logger, on: eventLoop)
+        let input = CreateAutoScalingGroupFromInstanceRequest(autoScalingGroupName: autoScalingGroupName, instanceId: instanceId, minSize: minSize, maxSize: maxSize, desiredCapacity: desiredCapacity, inheritInstanceTag: inheritInstanceTag)
+        return try await self.client.execute(action: "CreateAutoScalingGroupFromInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

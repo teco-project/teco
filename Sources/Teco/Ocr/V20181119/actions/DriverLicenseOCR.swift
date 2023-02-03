@@ -180,7 +180,8 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func driverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DriverLicenseOCRResponse> {
-        self.driverLicenseOCR(DriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
+        let input = DriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide)
+        return self.client.execute(action: "DriverLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 驾驶证识别
@@ -198,6 +199,7 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func driverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DriverLicenseOCRResponse {
-        try await self.driverLicenseOCR(DriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
+        let input = DriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide)
+        return try await self.client.execute(action: "DriverLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

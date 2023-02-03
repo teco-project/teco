@@ -80,7 +80,8 @@ extension Vpc {
     /// 查询终端节点服务的服务白名单列表。
     @inlinable
     public func describeVpcEndPointServiceWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcEndPointServiceWhiteListResponse> {
-        self.describeVpcEndPointServiceWhiteList(DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询终端节点服务的服务白名单列表
@@ -88,6 +89,7 @@ extension Vpc {
     /// 查询终端节点服务的服务白名单列表。
     @inlinable
     public func describeVpcEndPointServiceWhiteList(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcEndPointServiceWhiteListResponse {
-        try await self.describeVpcEndPointServiceWhiteList(DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpcEndPointServiceWhiteListRequest(offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeVpcEndPointServiceWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

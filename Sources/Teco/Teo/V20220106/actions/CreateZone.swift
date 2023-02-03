@@ -121,7 +121,8 @@ extension Teo {
     /// 用于用户接入新的站点
     @inlinable
     public func createZone(name: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateZoneResponse> {
-        self.createZone(CreateZoneRequest(name: name, type: type, jumpStart: jumpStart, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateZoneRequest(name: name, type: type, jumpStart: jumpStart, tags: tags)
+        return self.client.execute(action: "CreateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建站点
@@ -129,6 +130,7 @@ extension Teo {
     /// 用于用户接入新的站点
     @inlinable
     public func createZone(name: String, type: String? = nil, jumpStart: Bool? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateZoneResponse {
-        try await self.createZone(CreateZoneRequest(name: name, type: type, jumpStart: jumpStart, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateZoneRequest(name: name, type: type, jumpStart: jumpStart, tags: tags)
+        return try await self.client.execute(action: "CreateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

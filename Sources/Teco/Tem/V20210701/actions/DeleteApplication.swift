@@ -88,7 +88,8 @@ extension Tem {
     ///   - 删除服务
     @inlinable
     public func deleteApplication(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationResponse> {
-        self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion), region: region, logger: logger, on: eventLoop)
+        let input = DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion)
+        return self.client.execute(action: "DeleteApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务删除
@@ -99,6 +100,7 @@ extension Tem {
     ///   - 删除服务
     @inlinable
     public func deleteApplication(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, deleteApplicationIfNoRunningVersion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationResponse {
-        try await self.deleteApplication(DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion), region: region, logger: logger, on: eventLoop)
+        let input = DeleteApplicationRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, deleteApplicationIfNoRunningVersion: deleteApplicationIfNoRunningVersion)
+        return try await self.client.execute(action: "DeleteApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

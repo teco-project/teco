@@ -68,12 +68,14 @@ extension Redis {
     /// 查询实例大Key
     @inlinable
     public func describeInstanceMonitorBigKey(instanceId: String, reqType: Int64, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeyResponse> {
-        self.describeInstanceMonitorBigKey(DescribeInstanceMonitorBigKeyRequest(instanceId: instanceId, reqType: reqType, date: date), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceMonitorBigKeyRequest(instanceId: instanceId, reqType: reqType, date: date)
+        return self.client.execute(action: "DescribeInstanceMonitorBigKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例大Key
     @inlinable
     public func describeInstanceMonitorBigKey(instanceId: String, reqType: Int64, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeyResponse {
-        try await self.describeInstanceMonitorBigKey(DescribeInstanceMonitorBigKeyRequest(instanceId: instanceId, reqType: reqType, date: date), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceMonitorBigKeyRequest(instanceId: instanceId, reqType: reqType, date: date)
+        return try await self.client.execute(action: "DescribeInstanceMonitorBigKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

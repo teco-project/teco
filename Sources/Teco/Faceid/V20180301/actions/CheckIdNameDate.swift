@@ -98,7 +98,8 @@ extension Faceid {
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
     @inlinable
     public func checkIdNameDate(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdNameDateResponse> {
-        self.checkIdNameDate(CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption)
+        return self.client.execute(action: "CheckIdNameDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 身份信息及有效期核验
@@ -106,6 +107,7 @@ extension Faceid {
     /// 本接口用于校验姓名、身份证号、身份证有效期的真实性和一致性。
     @inlinable
     public func checkIdNameDate(name: String, idCard: String, validityBegin: String, validityEnd: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdNameDateResponse {
-        try await self.checkIdNameDate(CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = CheckIdNameDateRequest(name: name, idCard: idCard, validityBegin: validityBegin, validityEnd: validityEnd, encryption: encryption)
+        return try await self.client.execute(action: "CheckIdNameDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

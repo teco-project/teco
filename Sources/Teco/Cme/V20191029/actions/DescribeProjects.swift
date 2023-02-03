@@ -129,7 +129,8 @@ extension Cme {
     /// 支持根据多种条件过滤出项目列表。
     @inlinable
     public func describeProjects(platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        self.describeProjects(DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`)
+        return self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取项目列表
@@ -137,6 +138,7 @@ extension Cme {
     /// 支持根据多种条件过滤出项目列表。
     @inlinable
     public func describeProjects(platform: String, projectIds: [String]? = nil, aspectRatioSet: [String]? = nil, categorySet: [String]? = nil, modes: [String]? = nil, sort: SortBy? = nil, owner: Entity? = nil, offset: UInt64? = nil, limit: UInt64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.describeProjects(DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectsRequest(platform: platform, projectIds: projectIds, aspectRatioSet: aspectRatioSet, categorySet: categorySet, modes: modes, sort: sort, owner: owner, offset: offset, limit: limit, operator: `operator`)
+        return try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

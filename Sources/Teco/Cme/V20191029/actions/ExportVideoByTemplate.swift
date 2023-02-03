@@ -104,7 +104,8 @@ extension Cme {
     /// 使用视频剪辑模板直接导出视频。
     @inlinable
     public func exportVideoByTemplate(platform: String, templateId: String, definition: Int64, exportDestination: String, slotReplacements: [SlotReplacementInfo]? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoByTemplateResponse> {
-        self.exportVideoByTemplate(ExportVideoByTemplateRequest(platform: platform, templateId: templateId, definition: definition, exportDestination: exportDestination, slotReplacements: slotReplacements, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = ExportVideoByTemplateRequest(platform: platform, templateId: templateId, definition: definition, exportDestination: exportDestination, slotReplacements: slotReplacements, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`)
+        return self.client.execute(action: "ExportVideoByTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用视频剪辑模板导出视频
@@ -112,6 +113,7 @@ extension Cme {
     /// 使用视频剪辑模板直接导出视频。
     @inlinable
     public func exportVideoByTemplate(platform: String, templateId: String, definition: Int64, exportDestination: String, slotReplacements: [SlotReplacementInfo]? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoByTemplateResponse {
-        try await self.exportVideoByTemplate(ExportVideoByTemplateRequest(platform: platform, templateId: templateId, definition: definition, exportDestination: exportDestination, slotReplacements: slotReplacements, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = ExportVideoByTemplateRequest(platform: platform, templateId: templateId, definition: definition, exportDestination: exportDestination, slotReplacements: slotReplacements, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, operator: `operator`)
+        return try await self.client.execute(action: "ExportVideoByTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

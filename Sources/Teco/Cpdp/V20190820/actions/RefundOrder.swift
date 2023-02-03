@@ -84,7 +84,8 @@ extension Cpdp {
     /// 云鉴-消费订单退款的接口
     @inlinable
     public func refundOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundOrderResponse> {
-        self.refundOrder(RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
+        let input = RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo)
+        return self.client.execute(action: "RefundOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-消费订单退款接口
@@ -92,6 +93,7 @@ extension Cpdp {
     /// 云鉴-消费订单退款的接口
     @inlinable
     public func refundOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundOrderResponse {
-        try await self.refundOrder(RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
+        let input = RefundOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo)
+        return try await self.client.execute(action: "RefundOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

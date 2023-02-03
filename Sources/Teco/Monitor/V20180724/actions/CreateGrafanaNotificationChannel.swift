@@ -84,12 +84,14 @@ extension Monitor {
     /// 创建 Grafana 告警通道
     @inlinable
     public func createGrafanaNotificationChannel(instanceId: String, channelName: String, orgId: Int64, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaNotificationChannelResponse> {
-        self.createGrafanaNotificationChannel(CreateGrafanaNotificationChannelRequest(instanceId: instanceId, channelName: channelName, orgId: orgId, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateGrafanaNotificationChannelRequest(instanceId: instanceId, channelName: channelName, orgId: orgId, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds)
+        return self.client.execute(action: "CreateGrafanaNotificationChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 告警通道
     @inlinable
     public func createGrafanaNotificationChannel(instanceId: String, channelName: String, orgId: Int64, receivers: [String], extraOrgIds: [String]? = nil, organizationIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaNotificationChannelResponse {
-        try await self.createGrafanaNotificationChannel(CreateGrafanaNotificationChannelRequest(instanceId: instanceId, channelName: channelName, orgId: orgId, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateGrafanaNotificationChannelRequest(instanceId: instanceId, channelName: channelName, orgId: orgId, receivers: receivers, extraOrgIds: extraOrgIds, organizationIds: organizationIds)
+        return try await self.client.execute(action: "CreateGrafanaNotificationChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

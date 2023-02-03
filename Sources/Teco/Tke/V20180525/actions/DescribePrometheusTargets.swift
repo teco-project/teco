@@ -75,12 +75,14 @@ extension Tke {
     /// 获取targets信息
     @inlinable
     public func describePrometheusTargets(instanceId: String, clusterType: String, clusterId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusTargetsResponse> {
-        self.describePrometheusTargets(DescribePrometheusTargetsRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusTargetsRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, filters: filters)
+        return self.client.execute(action: "DescribePrometheusTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取targets信息
     @inlinable
     public func describePrometheusTargets(instanceId: String, clusterType: String, clusterId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusTargetsResponse {
-        try await self.describePrometheusTargets(DescribePrometheusTargetsRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusTargetsRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, filters: filters)
+        return try await self.client.execute(action: "DescribePrometheusTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

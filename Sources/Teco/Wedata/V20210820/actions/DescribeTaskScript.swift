@@ -73,7 +73,8 @@ extension Wedata {
     /// 查询任务脚本
     @inlinable
     public func describeTaskScript(projectId: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskScriptResponse> {
-        self.describeTaskScript(DescribeTaskScriptRequest(projectId: projectId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskScriptRequest(projectId: projectId, taskId: taskId)
+        return self.client.execute(action: "DescribeTaskScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务脚本【Beta版本】
@@ -82,6 +83,7 @@ extension Wedata {
     /// 查询任务脚本
     @inlinable
     public func describeTaskScript(projectId: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskScriptResponse {
-        try await self.describeTaskScript(DescribeTaskScriptRequest(projectId: projectId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskScriptRequest(projectId: projectId, taskId: taskId)
+        return try await self.client.execute(action: "DescribeTaskScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

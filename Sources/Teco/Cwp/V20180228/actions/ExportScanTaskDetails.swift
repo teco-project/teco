@@ -74,7 +74,8 @@ extension Cwp {
     /// 根据任务id导出指定扫描任务详情
     @inlinable
     public func exportScanTaskDetails(taskId: UInt64, moduleType: String, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportScanTaskDetailsResponse> {
-        self.exportScanTaskDetails(ExportScanTaskDetailsRequest(taskId: taskId, moduleType: moduleType, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ExportScanTaskDetailsRequest(taskId: taskId, moduleType: moduleType, filters: filters)
+        return self.client.execute(action: "ExportScanTaskDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出扫描任务详情
@@ -82,6 +83,7 @@ extension Cwp {
     /// 根据任务id导出指定扫描任务详情
     @inlinable
     public func exportScanTaskDetails(taskId: UInt64, moduleType: String, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportScanTaskDetailsResponse {
-        try await self.exportScanTaskDetails(ExportScanTaskDetailsRequest(taskId: taskId, moduleType: moduleType, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ExportScanTaskDetailsRequest(taskId: taskId, moduleType: moduleType, filters: filters)
+        return try await self.client.execute(action: "ExportScanTaskDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

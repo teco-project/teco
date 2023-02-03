@@ -64,12 +64,14 @@ extension Tione {
     /// 停止模型加速任务
     @inlinable
     public func stopModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopModelAccelerateTaskResponse> {
-        self.stopModelAccelerateTask(StopModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
+        let input = StopModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId)
+        return self.client.execute(action: "StopModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止模型加速任务
     @inlinable
     public func stopModelAccelerateTask(modelAccTaskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopModelAccelerateTaskResponse {
-        try await self.stopModelAccelerateTask(StopModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId), region: region, logger: logger, on: eventLoop)
+        let input = StopModelAccelerateTaskRequest(modelAccTaskId: modelAccTaskId)
+        return try await self.client.execute(action: "StopModelAccelerateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

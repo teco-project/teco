@@ -114,7 +114,8 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证银行卡四要素
     @inlinable
     public func checkBankCard4EVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCard4EVerificationResponse> {
-        self.checkBankCard4EVerification(CheckBankCard4EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
+        let input = CheckBankCard4EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType)
+        return self.client.execute(action: "CheckBankCard4EVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 银行卡四要素检测
@@ -122,6 +123,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证银行卡四要素
     @inlinable
     public func checkBankCard4EVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCard4EVerificationResponse {
-        try await self.checkBankCard4EVerification(CheckBankCard4EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
+        let input = CheckBankCard4EVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType)
+        return try await self.client.execute(action: "CheckBankCard4EVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

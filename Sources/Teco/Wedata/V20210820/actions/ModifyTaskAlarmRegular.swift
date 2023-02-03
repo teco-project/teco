@@ -69,12 +69,14 @@ extension Wedata {
     /// 修改任务告警规则
     @inlinable
     public func modifyTaskAlarmRegular(id: String, taskAlarmInfo: TaskAlarmInfo, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskAlarmRegularResponse> {
-        self.modifyTaskAlarmRegular(ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId)
+        return self.client.execute(action: "ModifyTaskAlarmRegular", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改任务告警规则
     @inlinable
     public func modifyTaskAlarmRegular(id: String, taskAlarmInfo: TaskAlarmInfo, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskAlarmRegularResponse {
-        try await self.modifyTaskAlarmRegular(ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTaskAlarmRegularRequest(id: id, taskAlarmInfo: taskAlarmInfo, projectId: projectId)
+        return try await self.client.execute(action: "ModifyTaskAlarmRegular", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

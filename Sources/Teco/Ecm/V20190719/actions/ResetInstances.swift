@@ -90,7 +90,8 @@ extension Ecm {
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
     @inlinable @discardableResult
     public func resetInstances(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesResponse> {
-        self.resetInstances(ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin), region: region, logger: logger, on: eventLoop)
+        let input = ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin)
+        return self.client.execute(action: "ResetInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重装实例
@@ -98,6 +99,7 @@ extension Ecm {
     /// 重装实例，若指定了ImageId参数，则使用指定的镜像重装；否则按照当前实例使用的镜像进行重装；若未指定密码，则密码通过站内信形式随后发送。
     @inlinable @discardableResult
     public func resetInstances(instanceIdSet: [String], imageId: String? = nil, password: String? = nil, enhancedService: EnhancedService? = nil, keepData: String? = nil, keepImageLogin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesResponse {
-        try await self.resetInstances(ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin), region: region, logger: logger, on: eventLoop)
+        let input = ResetInstancesRequest(instanceIdSet: instanceIdSet, imageId: imageId, password: password, enhancedService: enhancedService, keepData: keepData, keepImageLogin: keepImageLogin)
+        return try await self.client.execute(action: "ResetInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

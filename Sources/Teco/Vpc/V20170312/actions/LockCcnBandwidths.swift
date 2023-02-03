@@ -66,7 +66,8 @@ extension Vpc {
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
     @inlinable @discardableResult
     public func lockCcnBandwidths(instances: [CcnFlowLock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockCcnBandwidthsResponse> {
-        self.lockCcnBandwidths(LockCcnBandwidthsRequest(instances: instances), region: region, logger: logger, on: eventLoop)
+        let input = LockCcnBandwidthsRequest(instances: instances)
+        return self.client.execute(action: "LockCcnBandwidths", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全锁定云联网带宽
@@ -76,6 +77,7 @@ extension Vpc {
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统。
     @inlinable @discardableResult
     public func lockCcnBandwidths(instances: [CcnFlowLock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockCcnBandwidthsResponse {
-        try await self.lockCcnBandwidths(LockCcnBandwidthsRequest(instances: instances), region: region, logger: logger, on: eventLoop)
+        let input = LockCcnBandwidthsRequest(instances: instances)
+        return try await self.client.execute(action: "LockCcnBandwidths", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

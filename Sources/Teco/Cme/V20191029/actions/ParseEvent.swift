@@ -69,7 +69,8 @@ extension Cme {
     /// 该接口接受制作云回调给客户的事件内容，将其转化为对应的 EventContent 结构，请不要实际调用该接口，只需要将接收到的事件内容直接使用 JSON 解析到 EventContent  即可使用。
     @inlinable
     public func parseEvent(platform: String, eventContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseEventResponse> {
-        self.parseEvent(ParseEventRequest(platform: platform, eventContent: eventContent), region: region, logger: logger, on: eventLoop)
+        let input = ParseEventRequest(platform: platform, eventContent: eventContent)
+        return self.client.execute(action: "ParseEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回调事件内容解析
@@ -77,6 +78,7 @@ extension Cme {
     /// 该接口接受制作云回调给客户的事件内容，将其转化为对应的 EventContent 结构，请不要实际调用该接口，只需要将接收到的事件内容直接使用 JSON 解析到 EventContent  即可使用。
     @inlinable
     public func parseEvent(platform: String, eventContent: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseEventResponse {
-        try await self.parseEvent(ParseEventRequest(platform: platform, eventContent: eventContent), region: region, logger: logger, on: eventLoop)
+        let input = ParseEventRequest(platform: platform, eventContent: eventContent)
+        return try await self.client.execute(action: "ParseEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

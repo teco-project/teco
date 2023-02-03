@@ -74,7 +74,8 @@ extension Bmvpc {
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
     @inlinable
     public func createCustomerGateway(customerGatewayName: String, ipAddress: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomerGatewayResponse> {
-        self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, zone: zone), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, zone: zone)
+        return self.client.execute(action: "CreateCustomerGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建对端网关
@@ -82,6 +83,7 @@ extension Bmvpc {
     /// 本接口（CreateCustomerGateway）用于创建对端网关。
     @inlinable
     public func createCustomerGateway(customerGatewayName: String, ipAddress: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomerGatewayResponse {
-        try await self.createCustomerGateway(CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, zone: zone), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomerGatewayRequest(customerGatewayName: customerGatewayName, ipAddress: ipAddress, zone: zone)
+        return try await self.client.execute(action: "CreateCustomerGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

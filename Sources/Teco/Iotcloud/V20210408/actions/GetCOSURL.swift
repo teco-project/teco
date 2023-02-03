@@ -74,7 +74,8 @@ extension Iotcloud {
     /// 本接口（GetCOSURL）用于获取固件存储在COS的URL
     @inlinable
     public func getCOSURL(productId: String, firmwareVersion: String, fileSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCOSURLResponse> {
-        self.getCOSURL(GetCOSURLRequest(productId: productId, firmwareVersion: firmwareVersion, fileSize: fileSize), region: region, logger: logger, on: eventLoop)
+        let input = GetCOSURLRequest(productId: productId, firmwareVersion: firmwareVersion, fileSize: fileSize)
+        return self.client.execute(action: "GetCOSURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取固件下载地址
@@ -82,6 +83,7 @@ extension Iotcloud {
     /// 本接口（GetCOSURL）用于获取固件存储在COS的URL
     @inlinable
     public func getCOSURL(productId: String, firmwareVersion: String, fileSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCOSURLResponse {
-        try await self.getCOSURL(GetCOSURLRequest(productId: productId, firmwareVersion: firmwareVersion, fileSize: fileSize), region: region, logger: logger, on: eventLoop)
+        let input = GetCOSURLRequest(productId: productId, firmwareVersion: firmwareVersion, fileSize: fileSize)
+        return try await self.client.execute(action: "GetCOSURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

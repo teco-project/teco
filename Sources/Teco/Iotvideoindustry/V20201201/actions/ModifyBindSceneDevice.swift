@@ -70,7 +70,8 @@ extension Iotvideoindustry {
     /// 场景绑定/解绑通道接口
     @inlinable @discardableResult
     public func modifyBindSceneDevice(sceneId: Int64, type: Int64, devices: [DeviceItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindSceneDeviceResponse> {
-        self.modifyBindSceneDevice(ModifyBindSceneDeviceRequest(sceneId: sceneId, type: type, devices: devices), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBindSceneDeviceRequest(sceneId: sceneId, type: type, devices: devices)
+        return self.client.execute(action: "ModifyBindSceneDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 场景绑定解绑通道接口(旧)
@@ -78,6 +79,7 @@ extension Iotvideoindustry {
     /// 场景绑定/解绑通道接口
     @inlinable @discardableResult
     public func modifyBindSceneDevice(sceneId: Int64, type: Int64, devices: [DeviceItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindSceneDeviceResponse {
-        try await self.modifyBindSceneDevice(ModifyBindSceneDeviceRequest(sceneId: sceneId, type: type, devices: devices), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBindSceneDeviceRequest(sceneId: sceneId, type: type, devices: devices)
+        return try await self.client.execute(action: "ModifyBindSceneDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

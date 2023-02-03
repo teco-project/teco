@@ -80,7 +80,8 @@ extension Cdb {
     /// 本接口(DescribeRemoteBackupConfig)用于查询数据库异地备份配置信息。
     @inlinable
     public func describeRemoteBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRemoteBackupConfigResponse> {
-        self.describeRemoteBackupConfig(DescribeRemoteBackupConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRemoteBackupConfigRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeRemoteBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库异地备份配置信息
@@ -88,6 +89,7 @@ extension Cdb {
     /// 本接口(DescribeRemoteBackupConfig)用于查询数据库异地备份配置信息。
     @inlinable
     public func describeRemoteBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRemoteBackupConfigResponse {
-        try await self.describeRemoteBackupConfig(DescribeRemoteBackupConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRemoteBackupConfigRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeRemoteBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

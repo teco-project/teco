@@ -70,7 +70,8 @@ extension Lighthouse {
     /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
     @inlinable @discardableResult
     public func modifyBlueprintAttribute(blueprintId: String, blueprintName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlueprintAttributeResponse> {
-        self.modifyBlueprintAttribute(ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description)
+        return self.client.execute(action: "ModifyBlueprintAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改镜像属性
@@ -78,6 +79,7 @@ extension Lighthouse {
     /// 本接口 (ModifyBlueprintAttribute) 用于修改镜像属性。
     @inlinable @discardableResult
     public func modifyBlueprintAttribute(blueprintId: String, blueprintName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlueprintAttributeResponse {
-        try await self.modifyBlueprintAttribute(ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBlueprintAttributeRequest(blueprintId: blueprintId, blueprintName: blueprintName, description: description)
+        return try await self.client.execute(action: "ModifyBlueprintAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

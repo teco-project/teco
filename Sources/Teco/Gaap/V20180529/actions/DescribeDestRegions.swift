@@ -60,7 +60,8 @@ extension Gaap {
     /// 本接口（DescribeDestRegions）用于查询源站区域，即源站服务器所在区域。
     @inlinable
     public func describeDestRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDestRegionsResponse> {
-        self.describeDestRegions(DescribeDestRegionsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDestRegionsRequest()
+        return self.client.execute(action: "DescribeDestRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询源站区域
@@ -68,6 +69,7 @@ extension Gaap {
     /// 本接口（DescribeDestRegions）用于查询源站区域，即源站服务器所在区域。
     @inlinable
     public func describeDestRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDestRegionsResponse {
-        try await self.describeDestRegions(DescribeDestRegionsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDestRegionsRequest()
+        return try await self.client.execute(action: "DescribeDestRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -57,7 +57,8 @@ extension Dlc {
     /// 查询计算结果存储位置。
     @inlinable
     public func describeStoreLocation(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStoreLocationResponse> {
-        self.describeStoreLocation(DescribeStoreLocationRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStoreLocationRequest()
+        return self.client.execute(action: "DescribeStoreLocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询结果存储位置
@@ -65,6 +66,7 @@ extension Dlc {
     /// 查询计算结果存储位置。
     @inlinable
     public func describeStoreLocation(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStoreLocationResponse {
-        try await self.describeStoreLocation(DescribeStoreLocationRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStoreLocationRequest()
+        return try await self.client.execute(action: "DescribeStoreLocation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

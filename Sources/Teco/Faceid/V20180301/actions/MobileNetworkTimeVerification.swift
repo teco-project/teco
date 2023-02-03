@@ -85,7 +85,8 @@ extension Faceid {
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
     @inlinable
     public func mobileNetworkTimeVerification(mobile: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileNetworkTimeVerificationResponse> {
-        self.mobileNetworkTimeVerification(MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption)
+        return self.client.execute(action: "MobileNetworkTimeVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号在网时长核验
@@ -93,6 +94,7 @@ extension Faceid {
     /// 本接口用于查询手机号在网时长，输入手机号进行查询。
     @inlinable
     public func mobileNetworkTimeVerification(mobile: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileNetworkTimeVerificationResponse {
-        try await self.mobileNetworkTimeVerification(MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = MobileNetworkTimeVerificationRequest(mobile: mobile, encryption: encryption)
+        return try await self.client.execute(action: "MobileNetworkTimeVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -68,12 +68,14 @@ extension Iotvideo {
     /// 获取具有云存的日期
     @inlinable
     public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageDateResponse> {
-        self.describeCloudStorageDate(DescribeCloudStorageDateRequest(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudStorageDateRequest(productId: productId, deviceName: deviceName, userId: userId)
+        return self.client.execute(action: "DescribeCloudStorageDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取具有云存的日期
     @inlinable
     public func describeCloudStorageDate(productId: String, deviceName: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageDateResponse {
-        try await self.describeCloudStorageDate(DescribeCloudStorageDateRequest(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudStorageDateRequest(productId: productId, deviceName: deviceName, userId: userId)
+        return try await self.client.execute(action: "DescribeCloudStorageDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

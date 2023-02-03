@@ -58,12 +58,14 @@ extension Tsf {
     /// 网关与API分组批量绑定
     @inlinable
     public func bindApiGroup(groupGatewayList: [GatewayGroupIds], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindApiGroupResponse> {
-        self.bindApiGroup(BindApiGroupRequest(groupGatewayList: groupGatewayList), region: region, logger: logger, on: eventLoop)
+        let input = BindApiGroupRequest(groupGatewayList: groupGatewayList)
+        return self.client.execute(action: "BindApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 网关与API分组批量绑定
     @inlinable
     public func bindApiGroup(groupGatewayList: [GatewayGroupIds], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindApiGroupResponse {
-        try await self.bindApiGroup(BindApiGroupRequest(groupGatewayList: groupGatewayList), region: region, logger: logger, on: eventLoop)
+        let input = BindApiGroupRequest(groupGatewayList: groupGatewayList)
+        return try await self.client.execute(action: "BindApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

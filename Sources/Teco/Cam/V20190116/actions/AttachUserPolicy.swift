@@ -65,7 +65,8 @@ extension Cam {
     /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
     @inlinable @discardableResult
     public func attachUserPolicy(policyId: UInt64, attachUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachUserPolicyResponse> {
-        self.attachUserPolicy(AttachUserPolicyRequest(policyId: policyId, attachUin: attachUin), region: region, logger: logger, on: eventLoop)
+        let input = AttachUserPolicyRequest(policyId: policyId, attachUin: attachUin)
+        return self.client.execute(action: "AttachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定策略到用户
@@ -73,6 +74,7 @@ extension Cam {
     /// 本接口（AttachUserPolicy）可用于绑定到用户的策略。
     @inlinable @discardableResult
     public func attachUserPolicy(policyId: UInt64, attachUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachUserPolicyResponse {
-        try await self.attachUserPolicy(AttachUserPolicyRequest(policyId: policyId, attachUin: attachUin), region: region, logger: logger, on: eventLoop)
+        let input = AttachUserPolicyRequest(policyId: policyId, attachUin: attachUin)
+        return try await self.client.execute(action: "AttachUserPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

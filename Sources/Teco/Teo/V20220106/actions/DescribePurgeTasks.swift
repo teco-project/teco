@@ -117,12 +117,14 @@ extension Teo {
     /// 查询清除缓存历史记录
     @inlinable
     public func describePurgeTasks(jobId: String? = nil, type: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
-        self.describePurgeTasks(DescribePurgeTasksRequest(jobId: jobId, type: type, startTime: startTime, endTime: endTime, offset: offset, limit: limit, statuses: statuses, zoneId: zoneId, domains: domains, target: target), region: region, logger: logger, on: eventLoop)
+        let input = DescribePurgeTasksRequest(jobId: jobId, type: type, startTime: startTime, endTime: endTime, offset: offset, limit: limit, statuses: statuses, zoneId: zoneId, domains: domains, target: target)
+        return self.client.execute(action: "DescribePurgeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询清除缓存历史记录
     @inlinable
     public func describePurgeTasks(jobId: String? = nil, type: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, statuses: [String]? = nil, zoneId: String? = nil, domains: [String]? = nil, target: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
-        try await self.describePurgeTasks(DescribePurgeTasksRequest(jobId: jobId, type: type, startTime: startTime, endTime: endTime, offset: offset, limit: limit, statuses: statuses, zoneId: zoneId, domains: domains, target: target), region: region, logger: logger, on: eventLoop)
+        let input = DescribePurgeTasksRequest(jobId: jobId, type: type, startTime: startTime, endTime: endTime, offset: offset, limit: limit, statuses: statuses, zoneId: zoneId, domains: domains, target: target)
+        return try await self.client.execute(action: "DescribePurgeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

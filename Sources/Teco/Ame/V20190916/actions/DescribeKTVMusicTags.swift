@@ -56,7 +56,8 @@ extension Ame {
     /// 获取直播互动曲库标签分组信息和标签信息
     @inlinable
     public func describeKTVMusicTags(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMusicTagsResponse> {
-        self.describeKTVMusicTags(DescribeKTVMusicTagsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVMusicTagsRequest()
+        return self.client.execute(action: "DescribeKTVMusicTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播互动曲库标签信息
@@ -64,6 +65,7 @@ extension Ame {
     /// 获取直播互动曲库标签分组信息和标签信息
     @inlinable
     public func describeKTVMusicTags(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicTagsResponse {
-        try await self.describeKTVMusicTags(DescribeKTVMusicTagsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVMusicTagsRequest()
+        return try await self.client.execute(action: "DescribeKTVMusicTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

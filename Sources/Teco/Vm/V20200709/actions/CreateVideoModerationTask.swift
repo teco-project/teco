@@ -90,7 +90,8 @@ extension Vm {
     /// 通过URL或存储桶创建审核任务
     @inlinable
     public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoModerationTaskResponse> {
-        self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
+        let input = CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority)
+        return self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建视频审核任务
@@ -98,6 +99,7 @@ extension Vm {
     /// 通过URL或存储桶创建审核任务
     @inlinable
     public func createVideoModerationTask(bizType: String, type: String, tasks: [TaskInput], seed: String? = nil, callbackUrl: String? = nil, priority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoModerationTaskResponse {
-        try await self.createVideoModerationTask(CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority), region: region, logger: logger, on: eventLoop)
+        let input = CreateVideoModerationTaskRequest(bizType: bizType, type: type, tasks: tasks, seed: seed, callbackUrl: callbackUrl, priority: priority)
+        return try await self.client.execute(action: "CreateVideoModerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

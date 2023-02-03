@@ -146,12 +146,14 @@ extension Cwp {
     /// 获取安全事件统计
     @inlinable
     public func describeSecurityEventStat(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityEventStatResponse> {
-        self.describeSecurityEventStat(DescribeSecurityEventStatRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityEventStatRequest(filters: filters)
+        return self.client.execute(action: "DescribeSecurityEventStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件统计
     @inlinable
     public func describeSecurityEventStat(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityEventStatResponse {
-        try await self.describeSecurityEventStat(DescribeSecurityEventStatRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityEventStatRequest(filters: filters)
+        return try await self.client.execute(action: "DescribeSecurityEventStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

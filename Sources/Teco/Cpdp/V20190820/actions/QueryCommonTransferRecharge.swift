@@ -132,7 +132,8 @@ extension Cpdp {
     /// 查询普通转账充值明细。接口用于查询会员主动转账进资金汇总账户的明细情况。若会员使用绑定账号转入，则直接入账到会员子账户。若未使用绑定账号转入，则系统无法自动清分到对应子账户，则转入挂账子账户由平台自行清分。若是 “见证+收单充值”T0充值记录时备注Note为“见证+收单充值,订单号” 此接口可以查到T0到账的“见证+收单充值”充值记录。
     @inlinable
     public func queryCommonTransferRecharge(mrchCode: String, functionFlag: String, startDate: String, endDate: String, pageNum: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCommonTransferRechargeResponse> {
-        self.queryCommonTransferRecharge(QueryCommonTransferRechargeRequest(mrchCode: mrchCode, functionFlag: functionFlag, startDate: startDate, endDate: endDate, pageNum: pageNum, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryCommonTransferRechargeRequest(mrchCode: mrchCode, functionFlag: functionFlag, startDate: startDate, endDate: endDate, pageNum: pageNum, reservedMsg: reservedMsg, profile: profile)
+        return self.client.execute(action: "QueryCommonTransferRecharge", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询普通转账充值明细
@@ -140,6 +141,7 @@ extension Cpdp {
     /// 查询普通转账充值明细。接口用于查询会员主动转账进资金汇总账户的明细情况。若会员使用绑定账号转入，则直接入账到会员子账户。若未使用绑定账号转入，则系统无法自动清分到对应子账户，则转入挂账子账户由平台自行清分。若是 “见证+收单充值”T0充值记录时备注Note为“见证+收单充值,订单号” 此接口可以查到T0到账的“见证+收单充值”充值记录。
     @inlinable
     public func queryCommonTransferRecharge(mrchCode: String, functionFlag: String, startDate: String, endDate: String, pageNum: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCommonTransferRechargeResponse {
-        try await self.queryCommonTransferRecharge(QueryCommonTransferRechargeRequest(mrchCode: mrchCode, functionFlag: functionFlag, startDate: startDate, endDate: endDate, pageNum: pageNum, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryCommonTransferRechargeRequest(mrchCode: mrchCode, functionFlag: functionFlag, startDate: startDate, endDate: endDate, pageNum: pageNum, reservedMsg: reservedMsg, profile: profile)
+        return try await self.client.execute(action: "QueryCommonTransferRecharge", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

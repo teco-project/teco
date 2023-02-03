@@ -151,7 +151,8 @@ extension Vpc {
     /// * 一个腾讯云账户在每个地域能申请的 EIP 最大配额有所限制，可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)，上述配额可通过 DescribeAddressQuota 接口获取。
     @inlinable
     public func allocateAddresses(addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil, egress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateAddressesResponse> {
-        self.allocateAddresses(AllocateAddressesRequest(addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid, addressType: addressType, anycastZone: anycastZone, applicableForCLB: applicableForCLB, tags: tags, bandwidthPackageId: bandwidthPackageId, addressName: addressName, egress: egress), region: region, logger: logger, on: eventLoop)
+        let input = AllocateAddressesRequest(addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid, addressType: addressType, anycastZone: anycastZone, applicableForCLB: applicableForCLB, tags: tags, bandwidthPackageId: bandwidthPackageId, addressName: addressName, egress: egress)
+        return self.client.execute(action: "AllocateAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性公网IP
@@ -162,6 +163,7 @@ extension Vpc {
     /// * 一个腾讯云账户在每个地域能申请的 EIP 最大配额有所限制，可参见 [EIP 产品简介](https://cloud.tencent.com/document/product/213/5733)，上述配额可通过 DescribeAddressQuota 接口获取。
     @inlinable
     public func allocateAddresses(addressCount: Int64? = nil, internetServiceProvider: String? = nil, internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, addressChargePrepaid: AddressChargePrepaid? = nil, addressType: String? = nil, anycastZone: String? = nil, applicableForCLB: Bool? = nil, tags: [Tag]? = nil, bandwidthPackageId: String? = nil, addressName: String? = nil, egress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateAddressesResponse {
-        try await self.allocateAddresses(AllocateAddressesRequest(addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid, addressType: addressType, anycastZone: anycastZone, applicableForCLB: applicableForCLB, tags: tags, bandwidthPackageId: bandwidthPackageId, addressName: addressName, egress: egress), region: region, logger: logger, on: eventLoop)
+        let input = AllocateAddressesRequest(addressCount: addressCount, internetServiceProvider: internetServiceProvider, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid, addressType: addressType, anycastZone: anycastZone, applicableForCLB: applicableForCLB, tags: tags, bandwidthPackageId: bandwidthPackageId, addressName: addressName, egress: egress)
+        return try await self.client.execute(action: "AllocateAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

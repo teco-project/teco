@@ -126,12 +126,14 @@ extension Tcss {
     /// 查询账户容器、镜像等统计信息
     @inlinable
     public func describeAssetSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetSummaryResponse> {
-        self.describeAssetSummary(DescribeAssetSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetSummaryRequest()
+        return self.client.execute(action: "DescribeAssetSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账户容器、镜像等统计信息
     @inlinable
     public func describeAssetSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetSummaryResponse {
-        try await self.describeAssetSummary(DescribeAssetSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetSummaryRequest()
+        return try await self.client.execute(action: "DescribeAssetSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

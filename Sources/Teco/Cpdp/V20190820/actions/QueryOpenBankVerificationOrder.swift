@@ -92,7 +92,8 @@ extension Cpdp {
     /// 云企付-查询核销订单状态，客户可以使用该接口来查询核销申请的订单状态。目前仅支持TENPAY渠道EBANK_PAYMENT付款方式的担保支付订单查询。
     @inlinable
     public func queryOpenBankVerificationOrder(channelMerchantId: String, channelVerificationId: String? = nil, outVerificationId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankVerificationOrderResponse> {
-        self.queryOpenBankVerificationOrder(QueryOpenBankVerificationOrderRequest(channelMerchantId: channelMerchantId, channelVerificationId: channelVerificationId, outVerificationId: outVerificationId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankVerificationOrderRequest(channelMerchantId: channelMerchantId, channelVerificationId: channelVerificationId, outVerificationId: outVerificationId, environment: environment)
+        return self.client.execute(action: "QueryOpenBankVerificationOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-查询核销订单状态
@@ -100,6 +101,7 @@ extension Cpdp {
     /// 云企付-查询核销订单状态，客户可以使用该接口来查询核销申请的订单状态。目前仅支持TENPAY渠道EBANK_PAYMENT付款方式的担保支付订单查询。
     @inlinable
     public func queryOpenBankVerificationOrder(channelMerchantId: String, channelVerificationId: String? = nil, outVerificationId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankVerificationOrderResponse {
-        try await self.queryOpenBankVerificationOrder(QueryOpenBankVerificationOrderRequest(channelMerchantId: channelMerchantId, channelVerificationId: channelVerificationId, outVerificationId: outVerificationId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankVerificationOrderRequest(channelMerchantId: channelMerchantId, channelVerificationId: channelVerificationId, outVerificationId: outVerificationId, environment: environment)
+        return try await self.client.execute(action: "QueryOpenBankVerificationOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

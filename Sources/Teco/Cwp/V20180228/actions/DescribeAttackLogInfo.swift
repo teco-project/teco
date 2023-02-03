@@ -118,12 +118,14 @@ extension Cwp {
     /// 网络攻击日志详情
     @inlinable
     public func describeAttackLogInfo(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackLogInfoResponse> {
-        self.describeAttackLogInfo(DescribeAttackLogInfoRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAttackLogInfoRequest(id: id)
+        return self.client.execute(action: "DescribeAttackLogInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 网络攻击日志详情
     @inlinable
     public func describeAttackLogInfo(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackLogInfoResponse {
-        try await self.describeAttackLogInfo(DescribeAttackLogInfoRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAttackLogInfoRequest(id: id)
+        return try await self.client.execute(action: "DescribeAttackLogInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

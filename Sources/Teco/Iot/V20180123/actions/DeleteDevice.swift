@@ -65,7 +65,8 @@ extension Iot {
     /// 提供在指定的产品Id下删除一个设备的能力。
     @inlinable @discardableResult
     public func deleteDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
-        self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDeviceRequest(productId: productId, deviceName: deviceName)
+        return self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除设备
@@ -73,6 +74,7 @@ extension Iot {
     /// 提供在指定的产品Id下删除一个设备的能力。
     @inlinable @discardableResult
     public func deleteDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
-        try await self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDeviceRequest(productId: productId, deviceName: deviceName)
+        return try await self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

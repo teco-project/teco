@@ -65,7 +65,8 @@ extension Monitor {
     /// 云监控告警获取告警通知模板所有回调URL
     @inlinable
     public func describeAlarmNoticeCallbacks(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticeCallbacksResponse> {
-        self.describeAlarmNoticeCallbacks(DescribeAlarmNoticeCallbacksRequest(module: module), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmNoticeCallbacksRequest(module: module)
+        return self.client.execute(action: "DescribeAlarmNoticeCallbacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账号下所有回调URL列表
@@ -73,6 +74,7 @@ extension Monitor {
     /// 云监控告警获取告警通知模板所有回调URL
     @inlinable
     public func describeAlarmNoticeCallbacks(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeCallbacksResponse {
-        try await self.describeAlarmNoticeCallbacks(DescribeAlarmNoticeCallbacksRequest(module: module), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmNoticeCallbacksRequest(module: module)
+        return try await self.client.execute(action: "DescribeAlarmNoticeCallbacks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

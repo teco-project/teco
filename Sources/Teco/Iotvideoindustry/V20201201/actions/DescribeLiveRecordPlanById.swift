@@ -74,12 +74,14 @@ extension Iotvideoindustry {
     /// 获取直播录制计划详情
     @inlinable
     public func describeLiveRecordPlanById(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordPlanByIdResponse> {
-        self.describeLiveRecordPlanById(DescribeLiveRecordPlanByIdRequest(planId: planId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveRecordPlanByIdRequest(planId: planId)
+        return self.client.execute(action: "DescribeLiveRecordPlanById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播录制计划详情
     @inlinable
     public func describeLiveRecordPlanById(planId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanByIdResponse {
-        try await self.describeLiveRecordPlanById(DescribeLiveRecordPlanByIdRequest(planId: planId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveRecordPlanByIdRequest(planId: planId)
+        return try await self.client.execute(action: "DescribeLiveRecordPlanById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

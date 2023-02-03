@@ -78,12 +78,14 @@ extension Live {
     /// 修改播放鉴权key
     @inlinable @discardableResult
     public func modifyLivePlayAuthKey(domainName: String, enable: Int64? = nil, authKey: String? = nil, authDelta: UInt64? = nil, authBackKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayAuthKeyResponse> {
-        self.modifyLivePlayAuthKey(ModifyLivePlayAuthKeyRequest(domainName: domainName, enable: enable, authKey: authKey, authDelta: authDelta, authBackKey: authBackKey), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLivePlayAuthKeyRequest(domainName: domainName, enable: enable, authKey: authKey, authDelta: authDelta, authBackKey: authBackKey)
+        return self.client.execute(action: "ModifyLivePlayAuthKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改播放鉴权key
     @inlinable @discardableResult
     public func modifyLivePlayAuthKey(domainName: String, enable: Int64? = nil, authKey: String? = nil, authDelta: UInt64? = nil, authBackKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayAuthKeyResponse {
-        try await self.modifyLivePlayAuthKey(ModifyLivePlayAuthKeyRequest(domainName: domainName, enable: enable, authKey: authKey, authDelta: authDelta, authBackKey: authBackKey), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLivePlayAuthKeyRequest(domainName: domainName, enable: enable, authKey: authKey, authDelta: authDelta, authBackKey: authBackKey)
+        return try await self.client.execute(action: "ModifyLivePlayAuthKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

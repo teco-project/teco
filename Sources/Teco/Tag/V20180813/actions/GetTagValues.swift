@@ -82,7 +82,8 @@ extension Tag {
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
     public func getTagValues(tagKeys: [String], paginationToken: String? = nil, maxResults: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagValuesResponse> {
-        self.getTagValues(GetTagValuesRequest(tagKeys: tagKeys, paginationToken: paginationToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
+        let input = GetTagValuesRequest(tagKeys: tagKeys, paginationToken: paginationToken, maxResults: maxResults)
+        return self.client.execute(action: "GetTagValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询标签值列表
@@ -90,6 +91,7 @@ extension Tag {
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
     public func getTagValues(tagKeys: [String], paginationToken: String? = nil, maxResults: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagValuesResponse {
-        try await self.getTagValues(GetTagValuesRequest(tagKeys: tagKeys, paginationToken: paginationToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
+        let input = GetTagValuesRequest(tagKeys: tagKeys, paginationToken: paginationToken, maxResults: maxResults)
+        return try await self.client.execute(action: "GetTagValues", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

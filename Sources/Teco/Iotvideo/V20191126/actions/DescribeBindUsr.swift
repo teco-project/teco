@@ -70,7 +70,8 @@ extension Iotvideo {
     /// 本接口（DescribeBindUsr）用于查询设备被分享的所有用户列表。
     @inlinable
     public func describeBindUsr(tid: String, accessId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindUsrResponse> {
-        self.describeBindUsr(DescribeBindUsrRequest(tid: tid, accessId: accessId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBindUsrRequest(tid: tid, accessId: accessId)
+        return self.client.execute(action: "DescribeBindUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备绑定的终端用户列表
@@ -78,6 +79,7 @@ extension Iotvideo {
     /// 本接口（DescribeBindUsr）用于查询设备被分享的所有用户列表。
     @inlinable
     public func describeBindUsr(tid: String, accessId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindUsrResponse {
-        try await self.describeBindUsr(DescribeBindUsrRequest(tid: tid, accessId: accessId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBindUsrRequest(tid: tid, accessId: accessId)
+        return try await self.client.execute(action: "DescribeBindUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

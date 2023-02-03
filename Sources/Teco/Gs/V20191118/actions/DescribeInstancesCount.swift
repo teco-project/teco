@@ -79,12 +79,14 @@ extension Gs {
     /// 获取并发总数和运行数
     @inlinable
     public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, gameType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesCountResponse> {
-        self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion, gameType: gameType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion, gameType: gameType)
+        return self.client.execute(action: "DescribeInstancesCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取并发总数和运行数
     @inlinable
     public func describeInstancesCount(gameId: String? = nil, groupId: String? = nil, gameRegion: String? = nil, gameType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesCountResponse {
-        try await self.describeInstancesCount(DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion, gameType: gameType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesCountRequest(gameId: gameId, groupId: groupId, gameRegion: gameRegion, gameType: gameType)
+        return try await self.client.execute(action: "DescribeInstancesCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

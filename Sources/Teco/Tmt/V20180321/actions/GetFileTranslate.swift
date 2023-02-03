@@ -70,7 +70,8 @@ extension Tmt {
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
     public func getFileTranslate(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFileTranslateResponse> {
-        self.getFileTranslate(GetFileTranslateRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = GetFileTranslateRequest(taskId: taskId)
+        return self.client.execute(action: "GetFileTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件翻译结果查询
@@ -80,6 +81,7 @@ extension Tmt {
     /// • 当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见参数说明。
     @inlinable
     public func getFileTranslate(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFileTranslateResponse {
-        try await self.getFileTranslate(GetFileTranslateRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = GetFileTranslateRequest(taskId: taskId)
+        return try await self.client.execute(action: "GetFileTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

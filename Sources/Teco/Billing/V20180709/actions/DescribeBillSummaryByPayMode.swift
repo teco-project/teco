@@ -73,12 +73,14 @@ extension Billing {
     /// 获取按付费模式汇总费用分布
     @inlinable
     public func describeBillSummaryByPayMode(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByPayModeResponse> {
-        self.describeBillSummaryByPayMode(DescribeBillSummaryByPayModeRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillSummaryByPayModeRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin)
+        return self.client.execute(action: "DescribeBillSummaryByPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按付费模式汇总费用分布
     @inlinable
     public func describeBillSummaryByPayMode(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByPayModeResponse {
-        try await self.describeBillSummaryByPayMode(DescribeBillSummaryByPayModeRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillSummaryByPayModeRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin)
+        return try await self.client.execute(action: "DescribeBillSummaryByPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

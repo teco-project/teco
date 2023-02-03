@@ -100,12 +100,14 @@ extension Tke {
     /// 创建虚拟节点池
     @inlinable
     public func createClusterVirtualNodePool(clusterId: String, name: String, subnetIds: [String]? = nil, securityGroupIds: [String]? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, virtualNodes: [VirtualNodeSpec]? = nil, deletionProtection: Bool? = nil, os: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterVirtualNodePoolResponse> {
-        self.createClusterVirtualNodePool(CreateClusterVirtualNodePoolRequest(clusterId: clusterId, name: name, subnetIds: subnetIds, securityGroupIds: securityGroupIds, labels: labels, taints: taints, virtualNodes: virtualNodes, deletionProtection: deletionProtection, os: os), region: region, logger: logger, on: eventLoop)
+        let input = CreateClusterVirtualNodePoolRequest(clusterId: clusterId, name: name, subnetIds: subnetIds, securityGroupIds: securityGroupIds, labels: labels, taints: taints, virtualNodes: virtualNodes, deletionProtection: deletionProtection, os: os)
+        return self.client.execute(action: "CreateClusterVirtualNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建虚拟节点池
     @inlinable
     public func createClusterVirtualNodePool(clusterId: String, name: String, subnetIds: [String]? = nil, securityGroupIds: [String]? = nil, labels: [Label]? = nil, taints: [Taint]? = nil, virtualNodes: [VirtualNodeSpec]? = nil, deletionProtection: Bool? = nil, os: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterVirtualNodePoolResponse {
-        try await self.createClusterVirtualNodePool(CreateClusterVirtualNodePoolRequest(clusterId: clusterId, name: name, subnetIds: subnetIds, securityGroupIds: securityGroupIds, labels: labels, taints: taints, virtualNodes: virtualNodes, deletionProtection: deletionProtection, os: os), region: region, logger: logger, on: eventLoop)
+        let input = CreateClusterVirtualNodePoolRequest(clusterId: clusterId, name: name, subnetIds: subnetIds, securityGroupIds: securityGroupIds, labels: labels, taints: taints, virtualNodes: virtualNodes, deletionProtection: deletionProtection, os: os)
+        return try await self.client.execute(action: "CreateClusterVirtualNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

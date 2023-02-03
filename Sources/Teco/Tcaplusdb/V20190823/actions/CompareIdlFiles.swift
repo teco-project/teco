@@ -87,7 +87,8 @@ extension Tcaplusdb {
     /// 选中目标表格，上传并校验改表文件，返回是否允许修改表格结构的结果。
     @inlinable
     public func compareIdlFiles(clusterId: String, selectedTables: [SelectedTableInfoNew], existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompareIdlFilesResponse> {
-        self.compareIdlFiles(CompareIdlFilesRequest(clusterId: clusterId, selectedTables: selectedTables, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), region: region, logger: logger, on: eventLoop)
+        let input = CompareIdlFilesRequest(clusterId: clusterId, selectedTables: selectedTables, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles)
+        return self.client.execute(action: "CompareIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传并校验改表文件
@@ -95,6 +96,7 @@ extension Tcaplusdb {
     /// 选中目标表格，上传并校验改表文件，返回是否允许修改表格结构的结果。
     @inlinable
     public func compareIdlFiles(clusterId: String, selectedTables: [SelectedTableInfoNew], existingIdlFiles: [IdlFileInfo]? = nil, newIdlFiles: [IdlFileInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompareIdlFilesResponse {
-        try await self.compareIdlFiles(CompareIdlFilesRequest(clusterId: clusterId, selectedTables: selectedTables, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles), region: region, logger: logger, on: eventLoop)
+        let input = CompareIdlFilesRequest(clusterId: clusterId, selectedTables: selectedTables, existingIdlFiles: existingIdlFiles, newIdlFiles: newIdlFiles)
+        return try await self.client.execute(action: "CompareIdlFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

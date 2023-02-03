@@ -89,7 +89,8 @@ extension Yunjing {
     /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
     @inlinable
     public func describeVuls(vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsResponse> {
-        self.describeVuls(DescribeVulsRequest(vulType: vulType, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulsRequest(vulType: vulType, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞列表
@@ -97,6 +98,7 @@ extension Yunjing {
     /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
     @inlinable
     public func describeVuls(vulType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsResponse {
-        try await self.describeVuls(DescribeVulsRequest(vulType: vulType, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulsRequest(vulType: vulType, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeVuls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

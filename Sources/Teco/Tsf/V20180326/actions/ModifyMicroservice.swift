@@ -65,12 +65,14 @@ extension Tsf {
     /// 修改微服务详情
     @inlinable
     public func modifyMicroservice(microserviceId: String, microserviceDesc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMicroserviceResponse> {
-        self.modifyMicroservice(ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc)
+        return self.client.execute(action: "ModifyMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改微服务详情
     @inlinable
     public func modifyMicroservice(microserviceId: String, microserviceDesc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMicroserviceResponse {
-        try await self.modifyMicroservice(ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMicroserviceRequest(microserviceId: microserviceId, microserviceDesc: microserviceDesc)
+        return try await self.client.execute(action: "ModifyMicroservice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

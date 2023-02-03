@@ -63,12 +63,14 @@ extension Wedata {
     /// 日志获取详情页面
     @inlinable
     public func describeInstanceLastLog(taskId: String, curRunDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLastLogResponse> {
-        self.describeInstanceLastLog(DescribeInstanceLastLogRequest(taskId: taskId, curRunDate: curRunDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLastLogRequest(taskId: taskId, curRunDate: curRunDate)
+        return self.client.execute(action: "DescribeInstanceLastLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 日志获取详情页面
     @inlinable
     public func describeInstanceLastLog(taskId: String, curRunDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLastLogResponse {
-        try await self.describeInstanceLastLog(DescribeInstanceLastLogRequest(taskId: taskId, curRunDate: curRunDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLastLogRequest(taskId: taskId, curRunDate: curRunDate)
+        return try await self.client.execute(action: "DescribeInstanceLastLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

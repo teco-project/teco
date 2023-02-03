@@ -84,7 +84,8 @@ extension Cme {
     /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
     @inlinable
     public func copyProject(platform: String, projectId: String, name: String? = nil, owner: Entity? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CopyProjectResponse> {
-        self.copyProject(CopyProjectRequest(platform: platform, projectId: projectId, name: name, owner: owner, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = CopyProjectRequest(platform: platform, projectId: projectId, name: name, owner: owner, operator: `operator`)
+        return self.client.execute(action: "CopyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制项目
@@ -92,6 +93,7 @@ extension Cme {
     /// 复制一个项目，包括项目素材及轨道数据。目前仅普通剪辑及模板制作项目可复制，其它类型的项目不支持复制。
     @inlinable
     public func copyProject(platform: String, projectId: String, name: String? = nil, owner: Entity? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopyProjectResponse {
-        try await self.copyProject(CopyProjectRequest(platform: platform, projectId: projectId, name: name, owner: owner, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = CopyProjectRequest(platform: platform, projectId: projectId, name: name, owner: owner, operator: `operator`)
+        return try await self.client.execute(action: "CopyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -75,7 +75,8 @@ extension Ess {
     /// 该接口需要开白后使用
     @inlinable
     public func createFlowReminds(operator: UserInfo, flowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowRemindsResponse> {
-        self.createFlowReminds(CreateFlowRemindsRequest(operator: `operator`, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowRemindsRequest(operator: `operator`, flowIds: flowIds)
+        return self.client.execute(action: "CreateFlowReminds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 电子签企业版-合同催办接口
@@ -85,6 +86,7 @@ extension Ess {
     /// 该接口需要开白后使用
     @inlinable
     public func createFlowReminds(operator: UserInfo, flowIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowRemindsResponse {
-        try await self.createFlowReminds(CreateFlowRemindsRequest(operator: `operator`, flowIds: flowIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowRemindsRequest(operator: `operator`, flowIds: flowIds)
+        return try await self.client.execute(action: "CreateFlowReminds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

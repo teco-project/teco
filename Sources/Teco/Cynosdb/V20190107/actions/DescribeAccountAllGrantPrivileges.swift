@@ -79,12 +79,14 @@ extension Cynosdb {
     /// 账号所有权限
     @inlinable
     public func describeAccountAllGrantPrivileges(clusterId: String, account: InputAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountAllGrantPrivilegesResponse> {
-        self.describeAccountAllGrantPrivileges(DescribeAccountAllGrantPrivilegesRequest(clusterId: clusterId, account: account), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountAllGrantPrivilegesRequest(clusterId: clusterId, account: account)
+        return self.client.execute(action: "DescribeAccountAllGrantPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 账号所有权限
     @inlinable
     public func describeAccountAllGrantPrivileges(clusterId: String, account: InputAccount, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountAllGrantPrivilegesResponse {
-        try await self.describeAccountAllGrantPrivileges(DescribeAccountAllGrantPrivilegesRequest(clusterId: clusterId, account: account), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountAllGrantPrivilegesRequest(clusterId: clusterId, account: account)
+        return try await self.client.execute(action: "DescribeAccountAllGrantPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

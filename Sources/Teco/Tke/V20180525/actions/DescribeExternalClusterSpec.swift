@@ -72,12 +72,14 @@ extension Tke {
     /// 获取导入第三方集群YAML定义
     @inlinable
     public func describeExternalClusterSpec(clusterId: String, isExtranet: Bool? = nil, isRefreshExpirationTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExternalClusterSpecResponse> {
-        self.describeExternalClusterSpec(DescribeExternalClusterSpecRequest(clusterId: clusterId, isExtranet: isExtranet, isRefreshExpirationTime: isRefreshExpirationTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExternalClusterSpecRequest(clusterId: clusterId, isExtranet: isExtranet, isRefreshExpirationTime: isRefreshExpirationTime)
+        return self.client.execute(action: "DescribeExternalClusterSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取导入第三方集群YAML定义
     @inlinable
     public func describeExternalClusterSpec(clusterId: String, isExtranet: Bool? = nil, isRefreshExpirationTime: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExternalClusterSpecResponse {
-        try await self.describeExternalClusterSpec(DescribeExternalClusterSpecRequest(clusterId: clusterId, isExtranet: isExtranet, isRefreshExpirationTime: isRefreshExpirationTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExternalClusterSpecRequest(clusterId: clusterId, isExtranet: isExtranet, isRefreshExpirationTime: isRefreshExpirationTime)
+        return try await self.client.execute(action: "DescribeExternalClusterSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

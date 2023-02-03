@@ -67,12 +67,14 @@ extension Dlc {
     /// 创建spark任务
     @inlinable
     public func createSparkAppTask(jobName: String, cmdArgs: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSparkAppTaskResponse> {
-        self.createSparkAppTask(CreateSparkAppTaskRequest(jobName: jobName, cmdArgs: cmdArgs), region: region, logger: logger, on: eventLoop)
+        let input = CreateSparkAppTaskRequest(jobName: jobName, cmdArgs: cmdArgs)
+        return self.client.execute(action: "CreateSparkAppTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建spark任务
     @inlinable
     public func createSparkAppTask(jobName: String, cmdArgs: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSparkAppTaskResponse {
-        try await self.createSparkAppTask(CreateSparkAppTaskRequest(jobName: jobName, cmdArgs: cmdArgs), region: region, logger: logger, on: eventLoop)
+        let input = CreateSparkAppTaskRequest(jobName: jobName, cmdArgs: cmdArgs)
+        return try await self.client.execute(action: "CreateSparkAppTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

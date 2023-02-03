@@ -69,7 +69,8 @@ extension Bmlb {
     /// 解绑流量镜像监听器。
     @inlinable
     public func unbindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindTrafficMirrorListenersResponse> {
-        self.unbindTrafficMirrorListeners(UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
+        let input = UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds)
+        return self.client.execute(action: "UnbindTrafficMirrorListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑流量镜像监听器
@@ -77,6 +78,7 @@ extension Bmlb {
     /// 解绑流量镜像监听器。
     @inlinable
     public func unbindTrafficMirrorListeners(trafficMirrorId: String, listenerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindTrafficMirrorListenersResponse {
-        try await self.unbindTrafficMirrorListeners(UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
+        let input = UnbindTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, listenerIds: listenerIds)
+        return try await self.client.execute(action: "UnbindTrafficMirrorListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

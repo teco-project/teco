@@ -101,7 +101,8 @@ extension Dcdb {
     /// 注意：相同用户名，不同Host是不同的账号。
     @inlinable @discardableResult
     public func grantAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GrantAccountPrivilegesResponse> {
-        self.grantAccountPrivileges(GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName), region: region, logger: logger, on: eventLoop)
+        let input = GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName)
+        return self.client.execute(action: "GrantAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置账号权限
@@ -110,6 +111,7 @@ extension Dcdb {
     /// 注意：相同用户名，不同Host是不同的账号。
     @inlinable @discardableResult
     public func grantAccountPrivileges(instanceId: String, userName: String, host: String, dbName: String, privileges: [String], type: String? = nil, object: String? = nil, colName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GrantAccountPrivilegesResponse {
-        try await self.grantAccountPrivileges(GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName), region: region, logger: logger, on: eventLoop)
+        let input = GrantAccountPrivilegesRequest(instanceId: instanceId, userName: userName, host: host, dbName: dbName, privileges: privileges, type: type, object: object, colName: colName)
+        return try await self.client.execute(action: "GrantAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

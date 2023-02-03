@@ -106,7 +106,8 @@ extension Live {
     /// 修改回调模板。
     @inlinable @discardableResult
     public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, pushExceptionNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveCallbackTemplateResponse> {
-        self.modifyLiveCallbackTemplate(ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, pushExceptionNotifyUrl: pushExceptionNotifyUrl), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, pushExceptionNotifyUrl: pushExceptionNotifyUrl)
+        return self.client.execute(action: "ModifyLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改回调模板
@@ -114,6 +115,7 @@ extension Live {
     /// 修改回调模板。
     @inlinable @discardableResult
     public func modifyLiveCallbackTemplate(templateId: Int64, templateName: String? = nil, description: String? = nil, streamBeginNotifyUrl: String? = nil, streamEndNotifyUrl: String? = nil, recordNotifyUrl: String? = nil, snapshotNotifyUrl: String? = nil, pornCensorshipNotifyUrl: String? = nil, callbackKey: String? = nil, pushExceptionNotifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveCallbackTemplateResponse {
-        try await self.modifyLiveCallbackTemplate(ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, pushExceptionNotifyUrl: pushExceptionNotifyUrl), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLiveCallbackTemplateRequest(templateId: templateId, templateName: templateName, description: description, streamBeginNotifyUrl: streamBeginNotifyUrl, streamEndNotifyUrl: streamEndNotifyUrl, recordNotifyUrl: recordNotifyUrl, snapshotNotifyUrl: snapshotNotifyUrl, pornCensorshipNotifyUrl: pornCensorshipNotifyUrl, callbackKey: callbackKey, pushExceptionNotifyUrl: pushExceptionNotifyUrl)
+        return try await self.client.execute(action: "ModifyLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

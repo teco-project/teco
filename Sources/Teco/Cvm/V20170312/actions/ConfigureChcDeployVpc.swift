@@ -64,12 +64,14 @@ extension Cvm {
     /// 配置CHC物理服务器部署网络
     @inlinable @discardableResult
     public func configureChcDeployVpc(chcIds: [String], deployVirtualPrivateCloud: VirtualPrivateCloud, deploySecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureChcDeployVpcResponse> {
-        self.configureChcDeployVpc(ConfigureChcDeployVpcRequest(chcIds: chcIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = ConfigureChcDeployVpcRequest(chcIds: chcIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds)
+        return self.client.execute(action: "ConfigureChcDeployVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置CHC物理服务器部署网络
     @inlinable @discardableResult
     public func configureChcDeployVpc(chcIds: [String], deployVirtualPrivateCloud: VirtualPrivateCloud, deploySecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureChcDeployVpcResponse {
-        try await self.configureChcDeployVpc(ConfigureChcDeployVpcRequest(chcIds: chcIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = ConfigureChcDeployVpcRequest(chcIds: chcIds, deployVirtualPrivateCloud: deployVirtualPrivateCloud, deploySecurityGroupIds: deploySecurityGroupIds)
+        return try await self.client.execute(action: "ConfigureChcDeployVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

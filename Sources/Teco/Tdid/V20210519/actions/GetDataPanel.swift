@@ -102,12 +102,14 @@ extension Tdid {
     /// 概览
     @inlinable
     public func getDataPanel(clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataPanelResponse> {
-        self.getDataPanel(GetDataPanelRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetDataPanelRequest(clusterId: clusterId)
+        return self.client.execute(action: "GetDataPanel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 概览
     @inlinable
     public func getDataPanel(clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataPanelResponse {
-        try await self.getDataPanel(GetDataPanelRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetDataPanelRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "GetDataPanel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

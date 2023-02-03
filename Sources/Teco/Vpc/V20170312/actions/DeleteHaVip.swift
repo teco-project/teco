@@ -63,7 +63,8 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func deleteHaVip(haVipId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHaVipResponse> {
-        self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteHaVipRequest(haVipId: haVipId)
+        return self.client.execute(action: "DeleteHaVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除HAVIP
@@ -72,6 +73,7 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func deleteHaVip(haVipId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHaVipResponse {
-        try await self.deleteHaVip(DeleteHaVipRequest(haVipId: haVipId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteHaVipRequest(haVipId: haVipId)
+        return try await self.client.execute(action: "DeleteHaVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

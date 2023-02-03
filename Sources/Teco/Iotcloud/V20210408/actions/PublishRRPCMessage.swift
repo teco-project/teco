@@ -72,12 +72,14 @@ extension Iotcloud {
     /// 发布RRPC消息
     @inlinable
     public func publishRRPCMessage(productId: String, deviceName: String, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishRRPCMessageResponse> {
-        self.publishRRPCMessage(PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload), region: region, logger: logger, on: eventLoop)
+        let input = PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload)
+        return self.client.execute(action: "PublishRRPCMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布RRPC消息
     @inlinable
     public func publishRRPCMessage(productId: String, deviceName: String, payload: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishRRPCMessageResponse {
-        try await self.publishRRPCMessage(PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload), region: region, logger: logger, on: eventLoop)
+        let input = PublishRRPCMessageRequest(productId: productId, deviceName: deviceName, payload: payload)
+        return try await self.client.execute(action: "PublishRRPCMessage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

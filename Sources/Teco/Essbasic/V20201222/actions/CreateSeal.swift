@@ -112,7 +112,8 @@ extension Essbasic {
     /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
     @inlinable
     public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSealResponse> {
-        self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
+        let input = CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault)
+        return self.client.execute(action: "CreateSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建印章
@@ -122,6 +123,7 @@ extension Essbasic {
     /// 注意：使用FileId参数指定印章，需先调用多文件上传 (UploadFiles) 上传印章图片。
     @inlinable
     public func createSeal(caller: Caller, sealType: String, sealName: String, sourceIp: String, image: String? = nil, fileId: String? = nil, userId: String? = nil, isDefault: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSealResponse {
-        try await self.createSeal(CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault), region: region, logger: logger, on: eventLoop)
+        let input = CreateSealRequest(caller: caller, sealType: sealType, sealName: sealName, sourceIp: sourceIp, image: image, fileId: fileId, userId: userId, isDefault: isDefault)
+        return try await self.client.execute(action: "CreateSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

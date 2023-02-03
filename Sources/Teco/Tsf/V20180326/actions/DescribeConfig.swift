@@ -59,12 +59,14 @@ extension Tsf {
     /// 查询配置
     @inlinable
     public func describeConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
-        self.describeConfig(DescribeConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigRequest(configId: configId)
+        return self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询配置
     @inlinable
     public func describeConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        try await self.describeConfig(DescribeConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigRequest(configId: configId)
+        return try await self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

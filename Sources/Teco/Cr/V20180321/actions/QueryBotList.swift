@@ -63,12 +63,14 @@ extension Cr {
     /// 查询机器人任务状态列表
     @inlinable
     public func queryBotList(module: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBotListResponse> {
-        self.queryBotList(QueryBotListRequest(module: module, operation: operation), region: region, logger: logger, on: eventLoop)
+        let input = QueryBotListRequest(module: module, operation: operation)
+        return self.client.execute(action: "QueryBotList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询机器人任务状态列表
     @inlinable
     public func queryBotList(module: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBotListResponse {
-        try await self.queryBotList(QueryBotListRequest(module: module, operation: operation), region: region, logger: logger, on: eventLoop)
+        let input = QueryBotListRequest(module: module, operation: operation)
+        return try await self.client.execute(action: "QueryBotList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

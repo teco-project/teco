@@ -73,12 +73,14 @@ extension Cam {
     /// 获取所有已授权服务
     @inlinable
     public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPoliciesGrantingServiceAccessResponse> {
-        self.listPoliciesGrantingServiceAccess(ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
+        let input = ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType)
+        return self.client.execute(action: "ListPoliciesGrantingServiceAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取所有已授权服务
     @inlinable
     public func listPoliciesGrantingServiceAccess(targetUin: UInt64? = nil, roleId: UInt64? = nil, groupId: UInt64? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesGrantingServiceAccessResponse {
-        try await self.listPoliciesGrantingServiceAccess(ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
+        let input = ListPoliciesGrantingServiceAccessRequest(targetUin: targetUin, roleId: roleId, groupId: groupId, serviceType: serviceType)
+        return try await self.client.execute(action: "ListPoliciesGrantingServiceAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

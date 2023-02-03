@@ -73,12 +73,14 @@ extension Tem {
     /// 编辑配置
     @inlinable
     public func modifyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigDataResponse> {
-        self.modifyConfigData(ModifyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data), region: region, logger: logger, on: eventLoop)
+        let input = ModifyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data)
+        return self.client.execute(action: "ModifyConfigData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑配置
     @inlinable
     public func modifyConfigData(environmentId: String, name: String, sourceChannel: Int64? = nil, data: [Pair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigDataResponse {
-        try await self.modifyConfigData(ModifyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data), region: region, logger: logger, on: eventLoop)
+        let input = ModifyConfigDataRequest(environmentId: environmentId, name: name, sourceChannel: sourceChannel, data: data)
+        return try await self.client.execute(action: "ModifyConfigData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

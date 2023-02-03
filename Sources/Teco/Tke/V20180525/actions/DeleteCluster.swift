@@ -70,7 +70,8 @@ extension Tke {
     /// 删除集群(YUNAPI V3版本)
     @inlinable @discardableResult
     public func deleteCluster(clusterId: String, instanceDeleteMode: String, resourceDeleteOptions: [ResourceDeleteOption]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterResponse> {
-        self.deleteCluster(DeleteClusterRequest(clusterId: clusterId, instanceDeleteMode: instanceDeleteMode, resourceDeleteOptions: resourceDeleteOptions), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterRequest(clusterId: clusterId, instanceDeleteMode: instanceDeleteMode, resourceDeleteOptions: resourceDeleteOptions)
+        return self.client.execute(action: "DeleteCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集群
@@ -78,6 +79,7 @@ extension Tke {
     /// 删除集群(YUNAPI V3版本)
     @inlinable @discardableResult
     public func deleteCluster(clusterId: String, instanceDeleteMode: String, resourceDeleteOptions: [ResourceDeleteOption]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
-        try await self.deleteCluster(DeleteClusterRequest(clusterId: clusterId, instanceDeleteMode: instanceDeleteMode, resourceDeleteOptions: resourceDeleteOptions), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterRequest(clusterId: clusterId, instanceDeleteMode: instanceDeleteMode, resourceDeleteOptions: resourceDeleteOptions)
+        return try await self.client.execute(action: "DeleteCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -84,7 +84,8 @@ extension Apigateway {
     /// 创建API网关插件。
     @inlinable
     public func createPlugin(pluginName: String, pluginType: String, pluginData: String, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePluginResponse> {
-        self.createPlugin(CreatePluginRequest(pluginName: pluginName, pluginType: pluginType, pluginData: pluginData, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreatePluginRequest(pluginName: pluginName, pluginType: pluginType, pluginData: pluginData, description: description, tags: tags)
+        return self.client.execute(action: "CreatePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建插件
@@ -92,6 +93,7 @@ extension Apigateway {
     /// 创建API网关插件。
     @inlinable
     public func createPlugin(pluginName: String, pluginType: String, pluginData: String, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePluginResponse {
-        try await self.createPlugin(CreatePluginRequest(pluginName: pluginName, pluginType: pluginType, pluginData: pluginData, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreatePluginRequest(pluginName: pluginName, pluginType: pluginType, pluginData: pluginData, description: description, tags: tags)
+        return try await self.client.execute(action: "CreatePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

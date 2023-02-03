@@ -155,7 +155,8 @@ extension Live {
     /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
     @inlinable
     public func describeLiveStreamEventList(startTime: String, endTime: String, appName: String? = nil, domainName: String? = nil, streamName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, isFilter: Int64? = nil, isStrict: Int64? = nil, isAsc: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamEventListResponse> {
-        self.describeLiveStreamEventList(DescribeLiveStreamEventListRequest(startTime: startTime, endTime: endTime, appName: appName, domainName: domainName, streamName: streamName, pageNum: pageNum, pageSize: pageSize, isFilter: isFilter, isStrict: isStrict, isAsc: isAsc), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveStreamEventListRequest(startTime: startTime, endTime: endTime, appName: appName, domainName: domainName, streamName: streamName, pageNum: pageNum, pageSize: pageSize, isFilter: isFilter, isStrict: isStrict, isAsc: isAsc)
+        return self.client.execute(action: "DescribeLiveStreamEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询推断流事件
@@ -167,6 +168,7 @@ extension Live {
     /// 2. 该接口可通过使用IsFilter进行过滤，返回推流历史记录。
     @inlinable
     public func describeLiveStreamEventList(startTime: String, endTime: String, appName: String? = nil, domainName: String? = nil, streamName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, isFilter: Int64? = nil, isStrict: Int64? = nil, isAsc: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamEventListResponse {
-        try await self.describeLiveStreamEventList(DescribeLiveStreamEventListRequest(startTime: startTime, endTime: endTime, appName: appName, domainName: domainName, streamName: streamName, pageNum: pageNum, pageSize: pageSize, isFilter: isFilter, isStrict: isStrict, isAsc: isAsc), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveStreamEventListRequest(startTime: startTime, endTime: endTime, appName: appName, domainName: domainName, streamName: streamName, pageNum: pageNum, pageSize: pageSize, isFilter: isFilter, isStrict: isStrict, isAsc: isAsc)
+        return try await self.client.execute(action: "DescribeLiveStreamEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

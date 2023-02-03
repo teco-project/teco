@@ -65,7 +65,8 @@ extension Iotvideo {
     /// 本接口（DescribeDevice）获取设备信息。
     @inlinable
     public func describeDevice(tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResponse> {
-        self.describeDevice(DescribeDeviceRequest(tid: tid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceRequest(tid: tid)
+        return self.client.execute(action: "DescribeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备信息
@@ -73,6 +74,7 @@ extension Iotvideo {
     /// 本接口（DescribeDevice）获取设备信息。
     @inlinable
     public func describeDevice(tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResponse {
-        try await self.describeDevice(DescribeDeviceRequest(tid: tid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceRequest(tid: tid)
+        return try await self.client.execute(action: "DescribeDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

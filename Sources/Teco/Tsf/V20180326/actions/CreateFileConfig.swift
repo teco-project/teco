@@ -109,12 +109,14 @@ extension Tsf {
     /// 创建文件配置项
     @inlinable
     public func createFileConfig(configName: String, configVersion: String, configFileName: String, configFileValue: String, applicationId: String, configFilePath: String, configVersionDesc: String? = nil, configFileCode: String? = nil, configPostCmd: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFileConfigResponse> {
-        self.createFileConfig(CreateFileConfigRequest(configName: configName, configVersion: configVersion, configFileName: configFileName, configFileValue: configFileValue, applicationId: applicationId, configFilePath: configFilePath, configVersionDesc: configVersionDesc, configFileCode: configFileCode, configPostCmd: configPostCmd, encodeWithBase64: encodeWithBase64, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
+        let input = CreateFileConfigRequest(configName: configName, configVersion: configVersion, configFileName: configFileName, configFileValue: configFileValue, applicationId: applicationId, configFilePath: configFilePath, configVersionDesc: configVersionDesc, configFileCode: configFileCode, configPostCmd: configPostCmd, encodeWithBase64: encodeWithBase64, programIdList: programIdList)
+        return self.client.execute(action: "CreateFileConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文件配置项
     @inlinable
     public func createFileConfig(configName: String, configVersion: String, configFileName: String, configFileValue: String, applicationId: String, configFilePath: String, configVersionDesc: String? = nil, configFileCode: String? = nil, configPostCmd: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFileConfigResponse {
-        try await self.createFileConfig(CreateFileConfigRequest(configName: configName, configVersion: configVersion, configFileName: configFileName, configFileValue: configFileValue, applicationId: applicationId, configFilePath: configFilePath, configVersionDesc: configVersionDesc, configFileCode: configFileCode, configPostCmd: configPostCmd, encodeWithBase64: encodeWithBase64, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
+        let input = CreateFileConfigRequest(configName: configName, configVersion: configVersion, configFileName: configFileName, configFileValue: configFileValue, applicationId: applicationId, configFilePath: configFilePath, configVersionDesc: configVersionDesc, configFileCode: configFileCode, configPostCmd: configPostCmd, encodeWithBase64: encodeWithBase64, programIdList: programIdList)
+        return try await self.client.execute(action: "CreateFileConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

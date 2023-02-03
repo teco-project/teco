@@ -105,7 +105,8 @@ extension Dlc {
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
     @inlinable
     public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTaskJobLogDetailResponse> {
-        self.listTaskJobLogDetail(ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters)
+        return self.client.execute(action: "ListTaskJobLogDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 日志列表
@@ -113,6 +114,7 @@ extension Dlc {
     /// 本接口（ListTaskJobLogDetail）用于获取spark-jar日志列表
     @inlinable
     public func listTaskJobLogDetail(taskId: String, startTime: Int64, endTime: Int64, limit: Int64, context: String, asc: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTaskJobLogDetailResponse {
-        try await self.listTaskJobLogDetail(ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ListTaskJobLogDetailRequest(taskId: taskId, startTime: startTime, endTime: endTime, limit: limit, context: context, asc: asc, filters: filters)
+        return try await self.client.execute(action: "ListTaskJobLogDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,7 +63,8 @@ extension Lighthouse {
     /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
     @inlinable @discardableResult
     public func deleteSnapshots(snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
-        self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotsRequest(snapshotIds: snapshotIds)
+        return self.client.execute(action: "DeleteSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除快照
@@ -72,6 +73,7 @@ extension Lighthouse {
     /// 快照必须处于 NORMAL 状态，快照状态可以通过 DescribeSnapshots 接口查询，见输出参数中 SnapshotState 字段解释。
     @inlinable @discardableResult
     public func deleteSnapshots(snapshotIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
-        try await self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotsRequest(snapshotIds: snapshotIds)
+        return try await self.client.execute(action: "DeleteSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

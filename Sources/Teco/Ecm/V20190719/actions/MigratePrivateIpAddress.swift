@@ -81,7 +81,8 @@ extension Ecm {
     /// 迁移前后的弹性网卡必须在同一个子网内。
     @inlinable @discardableResult
     public func migratePrivateIpAddress(ecmRegion: String, sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigratePrivateIpAddressResponse> {
-        self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(ecmRegion: ecmRegion, sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), region: region, logger: logger, on: eventLoop)
+        let input = MigratePrivateIpAddressRequest(ecmRegion: ecmRegion, sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress)
+        return self.client.execute(action: "MigratePrivateIpAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡内网IP迁移
@@ -91,6 +92,7 @@ extension Ecm {
     /// 迁移前后的弹性网卡必须在同一个子网内。
     @inlinable @discardableResult
     public func migratePrivateIpAddress(ecmRegion: String, sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
-        try await self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(ecmRegion: ecmRegion, sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), region: region, logger: logger, on: eventLoop)
+        let input = MigratePrivateIpAddressRequest(ecmRegion: ecmRegion, sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress)
+        return try await self.client.execute(action: "MigratePrivateIpAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

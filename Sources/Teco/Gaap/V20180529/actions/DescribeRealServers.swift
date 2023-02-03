@@ -94,7 +94,8 @@ extension Gaap {
     /// 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP或者域名的源站模糊查询。
     @inlinable
     public func describeRealServers(projectId: Int64, searchValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagSet: [TagPair]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRealServersResponse> {
-        self.describeRealServers(DescribeRealServersRequest(projectId: projectId, searchValue: searchValue, offset: offset, limit: limit, tagSet: tagSet, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRealServersRequest(projectId: projectId, searchValue: searchValue, offset: offset, limit: limit, tagSet: tagSet, filters: filters)
+        return self.client.execute(action: "DescribeRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询源站信息
@@ -102,6 +103,7 @@ extension Gaap {
     /// 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP或者域名的源站模糊查询。
     @inlinable
     public func describeRealServers(projectId: Int64, searchValue: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, tagSet: [TagPair]? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRealServersResponse {
-        try await self.describeRealServers(DescribeRealServersRequest(projectId: projectId, searchValue: searchValue, offset: offset, limit: limit, tagSet: tagSet, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRealServersRequest(projectId: projectId, searchValue: searchValue, offset: offset, limit: limit, tagSet: tagSet, filters: filters)
+        return try await self.client.execute(action: "DescribeRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

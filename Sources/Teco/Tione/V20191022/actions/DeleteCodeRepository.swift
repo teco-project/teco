@@ -58,12 +58,14 @@ extension Tione {
     /// 删除存储库
     @inlinable
     public func deleteCodeRepository(codeRepositoryName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCodeRepositoryResponse> {
-        self.deleteCodeRepository(DeleteCodeRepositoryRequest(codeRepositoryName: codeRepositoryName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCodeRepositoryRequest(codeRepositoryName: codeRepositoryName)
+        return self.client.execute(action: "DeleteCodeRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除存储库
     @inlinable
     public func deleteCodeRepository(codeRepositoryName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCodeRepositoryResponse {
-        try await self.deleteCodeRepository(DeleteCodeRepositoryRequest(codeRepositoryName: codeRepositoryName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCodeRepositoryRequest(codeRepositoryName: codeRepositoryName)
+        return try await self.client.execute(action: "DeleteCodeRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,12 +63,14 @@ extension Cynosdb {
     /// 删除从可用区
     @inlinable
     public func removeClusterSlaveZone(clusterId: String, slaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveClusterSlaveZoneResponse> {
-        self.removeClusterSlaveZone(RemoveClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone), region: region, logger: logger, on: eventLoop)
+        let input = RemoveClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone)
+        return self.client.execute(action: "RemoveClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除从可用区
     @inlinable
     public func removeClusterSlaveZone(clusterId: String, slaveZone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveClusterSlaveZoneResponse {
-        try await self.removeClusterSlaveZone(RemoveClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone), region: region, logger: logger, on: eventLoop)
+        let input = RemoveClusterSlaveZoneRequest(clusterId: clusterId, slaveZone: slaveZone)
+        return try await self.client.execute(action: "RemoveClusterSlaveZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

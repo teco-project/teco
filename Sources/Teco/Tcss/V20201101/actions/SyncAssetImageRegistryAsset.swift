@@ -46,12 +46,14 @@ extension Tcss {
     /// 镜像仓库资产刷新
     @inlinable @discardableResult
     public func syncAssetImageRegistryAsset(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncAssetImageRegistryAssetResponse> {
-        self.syncAssetImageRegistryAsset(SyncAssetImageRegistryAssetRequest(), region: region, logger: logger, on: eventLoop)
+        let input = SyncAssetImageRegistryAssetRequest()
+        return self.client.execute(action: "SyncAssetImageRegistryAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库资产刷新
     @inlinable @discardableResult
     public func syncAssetImageRegistryAsset(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncAssetImageRegistryAssetResponse {
-        try await self.syncAssetImageRegistryAsset(SyncAssetImageRegistryAssetRequest(), region: region, logger: logger, on: eventLoop)
+        let input = SyncAssetImageRegistryAssetRequest()
+        return try await self.client.execute(action: "SyncAssetImageRegistryAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

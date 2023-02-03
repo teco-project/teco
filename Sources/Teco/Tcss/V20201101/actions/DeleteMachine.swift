@@ -54,12 +54,14 @@ extension Tcss {
     /// 卸载Agent客户端
     @inlinable @discardableResult
     public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMachineResponse> {
-        self.deleteMachine(DeleteMachineRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMachineRequest(uuid: uuid)
+        return self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 卸载Agent客户端
     @inlinable @discardableResult
     public func deleteMachine(uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMachineResponse {
-        try await self.deleteMachine(DeleteMachineRequest(uuid: uuid), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMachineRequest(uuid: uuid)
+        return try await self.client.execute(action: "DeleteMachine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

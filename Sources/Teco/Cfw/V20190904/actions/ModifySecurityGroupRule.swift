@@ -77,12 +77,14 @@ extension Cfw {
     /// 编辑单条安全组规则
     @inlinable
     public func modifySecurityGroupRule(direction: UInt64, enable: UInt64, data: [SecurityGroupListData], sgRuleOriginSequence: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupRuleResponse> {
-        self.modifySecurityGroupRule(ModifySecurityGroupRuleRequest(direction: direction, enable: enable, data: data, sgRuleOriginSequence: sgRuleOriginSequence), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityGroupRuleRequest(direction: direction, enable: enable, data: data, sgRuleOriginSequence: sgRuleOriginSequence)
+        return self.client.execute(action: "ModifySecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑单条安全组规则
     @inlinable
     public func modifySecurityGroupRule(direction: UInt64, enable: UInt64, data: [SecurityGroupListData], sgRuleOriginSequence: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupRuleResponse {
-        try await self.modifySecurityGroupRule(ModifySecurityGroupRuleRequest(direction: direction, enable: enable, data: data, sgRuleOriginSequence: sgRuleOriginSequence), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityGroupRuleRequest(direction: direction, enable: enable, data: data, sgRuleOriginSequence: sgRuleOriginSequence)
+        return try await self.client.execute(action: "ModifySecurityGroupRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

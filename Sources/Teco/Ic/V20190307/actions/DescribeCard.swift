@@ -70,7 +70,8 @@ extension Ic {
     /// 查询卡片详细信息
     @inlinable
     public func describeCard(sdkappid: Int64, iccid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCardResponse> {
-        self.describeCard(DescribeCardRequest(sdkappid: sdkappid, iccid: iccid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCardRequest(sdkappid: sdkappid, iccid: iccid)
+        return self.client.execute(action: "DescribeCard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询卡片详情
@@ -78,6 +79,7 @@ extension Ic {
     /// 查询卡片详细信息
     @inlinable
     public func describeCard(sdkappid: Int64, iccid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCardResponse {
-        try await self.describeCard(DescribeCardRequest(sdkappid: sdkappid, iccid: iccid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCardRequest(sdkappid: sdkappid, iccid: iccid)
+        return try await self.client.execute(action: "DescribeCard", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

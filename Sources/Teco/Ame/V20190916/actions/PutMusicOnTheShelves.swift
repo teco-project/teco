@@ -73,7 +73,8 @@ extension Ame {
     /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
     @inlinable
     public func putMusicOnTheShelves(musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMusicOnTheShelvesResponse> {
-        self.putMusicOnTheShelves(PutMusicOnTheShelvesRequest(musicIds: musicIds), region: region, logger: logger, on: eventLoop)
+        let input = PutMusicOnTheShelvesRequest(musicIds: musicIds)
+        return self.client.execute(action: "PutMusicOnTheShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上架歌曲
@@ -81,6 +82,7 @@ extension Ame {
     /// 根据资源方所传歌曲信息，进行歌曲上架，多个歌曲同时请求时，需构造复合结构进行请求
     @inlinable
     public func putMusicOnTheShelves(musicIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMusicOnTheShelvesResponse {
-        try await self.putMusicOnTheShelves(PutMusicOnTheShelvesRequest(musicIds: musicIds), region: region, logger: logger, on: eventLoop)
+        let input = PutMusicOnTheShelvesRequest(musicIds: musicIds)
+        return try await self.client.execute(action: "PutMusicOnTheShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

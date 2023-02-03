@@ -64,7 +64,8 @@ extension Bmlb {
     /// 删除用户指定的黑石负载均衡实例。
     @inlinable
     public func deleteLoadBalancer(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerResponse> {
-        self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId)
+        return self.client.execute(action: "DeleteLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户指定的黑石负载均衡实例
@@ -72,6 +73,7 @@ extension Bmlb {
     /// 删除用户指定的黑石负载均衡实例。
     @inlinable
     public func deleteLoadBalancer(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerResponse {
-        try await self.deleteLoadBalancer(DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLoadBalancerRequest(loadBalancerId: loadBalancerId)
+        return try await self.client.execute(action: "DeleteLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

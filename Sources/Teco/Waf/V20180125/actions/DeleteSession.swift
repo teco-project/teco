@@ -64,12 +64,14 @@ extension Waf {
     /// 删除CC攻击的session设置
     @inlinable
     public func deleteSession(domain: String, edition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSessionResponse> {
-        self.deleteSession(DeleteSessionRequest(domain: domain, edition: edition), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSessionRequest(domain: domain, edition: edition)
+        return self.client.execute(action: "DeleteSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除CC攻击的session设置
     @inlinable
     public func deleteSession(domain: String, edition: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSessionResponse {
-        try await self.deleteSession(DeleteSessionRequest(domain: domain, edition: edition), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSessionRequest(domain: domain, edition: edition)
+        return try await self.client.execute(action: "DeleteSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

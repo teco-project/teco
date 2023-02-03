@@ -108,7 +108,8 @@ extension As {
     /// 本接口（CreateScheduledAction）用于创建定时任务。
     @inlinable
     public func createScheduledAction(autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateScheduledActionResponse> {
-        self.createScheduledAction(CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), region: region, logger: logger, on: eventLoop)
+        let input = CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence)
+        return self.client.execute(action: "CreateScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建定时任务
@@ -116,6 +117,7 @@ extension As {
     /// 本接口（CreateScheduledAction）用于创建定时任务。
     @inlinable
     public func createScheduledAction(autoScalingGroupId: String, scheduledActionName: String, maxSize: UInt64, minSize: UInt64, desiredCapacity: UInt64, startTime: Date, endTime: Date? = nil, recurrence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateScheduledActionResponse {
-        try await self.createScheduledAction(CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), region: region, logger: logger, on: eventLoop)
+        let input = CreateScheduledActionRequest(autoScalingGroupId: autoScalingGroupId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence)
+        return try await self.client.execute(action: "CreateScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

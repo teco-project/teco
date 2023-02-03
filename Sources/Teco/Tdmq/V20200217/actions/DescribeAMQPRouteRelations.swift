@@ -92,12 +92,14 @@ extension Tdmq {
     /// 获取Amqp路由关系列表
     @inlinable
     public func describeAMQPRouteRelations(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterSourceExchange: String? = nil, filterDestType: String? = nil, filterDestValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPRouteRelationsResponse> {
-        self.describeAMQPRouteRelations(DescribeAMQPRouteRelationsRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterSourceExchange: filterSourceExchange, filterDestType: filterDestType, filterDestValue: filterDestValue), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAMQPRouteRelationsRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterSourceExchange: filterSourceExchange, filterDestType: filterDestType, filterDestValue: filterDestValue)
+        return self.client.execute(action: "DescribeAMQPRouteRelations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Amqp路由关系列表
     @inlinable
     public func describeAMQPRouteRelations(offset: UInt64, limit: UInt64, clusterId: String, vHostId: String, filterSourceExchange: String? = nil, filterDestType: String? = nil, filterDestValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPRouteRelationsResponse {
-        try await self.describeAMQPRouteRelations(DescribeAMQPRouteRelationsRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterSourceExchange: filterSourceExchange, filterDestType: filterDestType, filterDestValue: filterDestValue), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAMQPRouteRelationsRequest(offset: offset, limit: limit, clusterId: clusterId, vHostId: vHostId, filterSourceExchange: filterSourceExchange, filterDestType: filterDestType, filterDestValue: filterDestValue)
+        return try await self.client.execute(action: "DescribeAMQPRouteRelations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

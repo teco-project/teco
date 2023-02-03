@@ -69,7 +69,8 @@ extension Iotcloud {
     /// 获取证书认证类型设备的私钥，刚生成或者重置设备后仅可调用一次
     @inlinable
     public func describeDeviceClientKey(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceClientKeyResponse> {
-        self.describeDeviceClientKey(DescribeDeviceClientKeyRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceClientKeyRequest(productId: productId, deviceName: deviceName)
+        return self.client.execute(action: "DescribeDeviceClientKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备私钥
@@ -77,6 +78,7 @@ extension Iotcloud {
     /// 获取证书认证类型设备的私钥，刚生成或者重置设备后仅可调用一次
     @inlinable
     public func describeDeviceClientKey(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceClientKeyResponse {
-        try await self.describeDeviceClientKey(DescribeDeviceClientKeyRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceClientKeyRequest(productId: productId, deviceName: deviceName)
+        return try await self.client.execute(action: "DescribeDeviceClientKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

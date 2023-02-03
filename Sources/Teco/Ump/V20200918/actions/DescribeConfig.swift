@@ -108,7 +108,8 @@ extension Ump {
     /// mac为空返回对应GroupCode和MallId全量配置
     @inlinable
     public func describeConfig(sessionId: String, cameraSign: String, cameraAppId: String, cameraTimestamp: Int64, serverMac: String? = nil, groupCode: String? = nil, mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
-        self.describeConfig(DescribeConfigRequest(sessionId: sessionId, cameraSign: cameraSign, cameraAppId: cameraAppId, cameraTimestamp: cameraTimestamp, serverMac: serverMac, groupCode: groupCode, mallId: mallId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigRequest(sessionId: sessionId, cameraSign: cameraSign, cameraAppId: cameraAppId, cameraTimestamp: cameraTimestamp, serverMac: serverMac, groupCode: groupCode, mallId: mallId)
+        return self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取摄像头配置信息
@@ -118,6 +119,7 @@ extension Ump {
     /// mac为空返回对应GroupCode和MallId全量配置
     @inlinable
     public func describeConfig(sessionId: String, cameraSign: String, cameraAppId: String, cameraTimestamp: Int64, serverMac: String? = nil, groupCode: String? = nil, mallId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        try await self.describeConfig(DescribeConfigRequest(sessionId: sessionId, cameraSign: cameraSign, cameraAppId: cameraAppId, cameraTimestamp: cameraTimestamp, serverMac: serverMac, groupCode: groupCode, mallId: mallId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigRequest(sessionId: sessionId, cameraSign: cameraSign, cameraAppId: cameraAppId, cameraTimestamp: cameraTimestamp, serverMac: serverMac, groupCode: groupCode, mallId: mallId)
+        return try await self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

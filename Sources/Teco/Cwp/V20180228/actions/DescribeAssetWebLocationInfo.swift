@@ -69,12 +69,14 @@ extension Cwp {
     /// 获取Web站点详情
     @inlinable
     public func describeAssetWebLocationInfo(quuid: String, uuid: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebLocationInfoResponse> {
-        self.describeAssetWebLocationInfo(DescribeAssetWebLocationInfoRequest(quuid: quuid, uuid: uuid, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetWebLocationInfoRequest(quuid: quuid, uuid: uuid, id: id)
+        return self.client.execute(action: "DescribeAssetWebLocationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Web站点详情
     @inlinable
     public func describeAssetWebLocationInfo(quuid: String, uuid: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebLocationInfoResponse {
-        try await self.describeAssetWebLocationInfo(DescribeAssetWebLocationInfoRequest(quuid: quuid, uuid: uuid, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetWebLocationInfoRequest(quuid: quuid, uuid: uuid, id: id)
+        return try await self.client.execute(action: "DescribeAssetWebLocationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

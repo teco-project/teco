@@ -74,7 +74,8 @@ extension Tcr {
     /// 预付费实例续费，同时支持按量计费转包年包月
     @inlinable
     public func renewInstance(registryId: String, registryChargePrepaid: RegistryChargePrepaid, flag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewInstanceResponse> {
-        self.renewInstance(RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag), region: region, logger: logger, on: eventLoop)
+        let input = RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag)
+        return self.client.execute(action: "RenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
@@ -82,6 +83,7 @@ extension Tcr {
     /// 预付费实例续费，同时支持按量计费转包年包月
     @inlinable
     public func renewInstance(registryId: String, registryChargePrepaid: RegistryChargePrepaid, flag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
-        try await self.renewInstance(RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag), region: region, logger: logger, on: eventLoop)
+        let input = RenewInstanceRequest(registryId: registryId, registryChargePrepaid: registryChargePrepaid, flag: flag)
+        return try await self.client.execute(action: "RenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

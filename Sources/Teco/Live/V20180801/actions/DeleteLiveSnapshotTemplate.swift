@@ -56,12 +56,14 @@ extension Live {
     /// 删除截图模板
     @inlinable @discardableResult
     public func deleteLiveSnapshotTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveSnapshotTemplateResponse> {
-        self.deleteLiveSnapshotTemplate(DeleteLiveSnapshotTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLiveSnapshotTemplateRequest(templateId: templateId)
+        return self.client.execute(action: "DeleteLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除截图模板
     @inlinable @discardableResult
     public func deleteLiveSnapshotTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveSnapshotTemplateResponse {
-        try await self.deleteLiveSnapshotTemplate(DeleteLiveSnapshotTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLiveSnapshotTemplateRequest(templateId: templateId)
+        return try await self.client.execute(action: "DeleteLiveSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

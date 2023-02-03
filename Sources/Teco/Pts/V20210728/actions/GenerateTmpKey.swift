@@ -71,12 +71,14 @@ extension Pts {
     /// 生成临时COS凭证
     @inlinable
     public func generateTmpKey(projectId: String, scenarioId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateTmpKeyResponse> {
-        self.generateTmpKey(GenerateTmpKeyRequest(projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
+        let input = GenerateTmpKeyRequest(projectId: projectId, scenarioId: scenarioId)
+        return self.client.execute(action: "GenerateTmpKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成临时COS凭证
     @inlinable
     public func generateTmpKey(projectId: String, scenarioId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateTmpKeyResponse {
-        try await self.generateTmpKey(GenerateTmpKeyRequest(projectId: projectId, scenarioId: scenarioId), region: region, logger: logger, on: eventLoop)
+        let input = GenerateTmpKeyRequest(projectId: projectId, scenarioId: scenarioId)
+        return try await self.client.execute(action: "GenerateTmpKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

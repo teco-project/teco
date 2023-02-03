@@ -93,12 +93,14 @@ extension Cfw {
     /// 资产扫描
     @inlinable
     public func modifyAssetScan(scanRange: Int64, scanDeep: String, rangeType: Int64, scanPeriod: String? = nil, scanFilterIp: [String]? = nil, scanType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetScanResponse> {
-        self.modifyAssetScan(ModifyAssetScanRequest(scanRange: scanRange, scanDeep: scanDeep, rangeType: rangeType, scanPeriod: scanPeriod, scanFilterIp: scanFilterIp, scanType: scanType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssetScanRequest(scanRange: scanRange, scanDeep: scanDeep, rangeType: rangeType, scanPeriod: scanPeriod, scanFilterIp: scanFilterIp, scanType: scanType)
+        return self.client.execute(action: "ModifyAssetScan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资产扫描
     @inlinable
     public func modifyAssetScan(scanRange: Int64, scanDeep: String, rangeType: Int64, scanPeriod: String? = nil, scanFilterIp: [String]? = nil, scanType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetScanResponse {
-        try await self.modifyAssetScan(ModifyAssetScanRequest(scanRange: scanRange, scanDeep: scanDeep, rangeType: rangeType, scanPeriod: scanPeriod, scanFilterIp: scanFilterIp, scanType: scanType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssetScanRequest(scanRange: scanRange, scanDeep: scanDeep, rangeType: rangeType, scanPeriod: scanPeriod, scanFilterIp: scanFilterIp, scanType: scanType)
+        return try await self.client.execute(action: "ModifyAssetScan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

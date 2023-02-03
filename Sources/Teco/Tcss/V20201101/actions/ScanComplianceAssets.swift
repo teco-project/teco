@@ -64,7 +64,8 @@ extension Tcss {
     /// 重新检测选定的资产
     @inlinable
     public func scanComplianceAssets(customerAssetIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanComplianceAssetsResponse> {
-        self.scanComplianceAssets(ScanComplianceAssetsRequest(customerAssetIdSet: customerAssetIdSet), region: region, logger: logger, on: eventLoop)
+        let input = ScanComplianceAssetsRequest(customerAssetIdSet: customerAssetIdSet)
+        return self.client.execute(action: "ScanComplianceAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规重新检测选定的资产
@@ -72,6 +73,7 @@ extension Tcss {
     /// 重新检测选定的资产
     @inlinable
     public func scanComplianceAssets(customerAssetIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanComplianceAssetsResponse {
-        try await self.scanComplianceAssets(ScanComplianceAssetsRequest(customerAssetIdSet: customerAssetIdSet), region: region, logger: logger, on: eventLoop)
+        let input = ScanComplianceAssetsRequest(customerAssetIdSet: customerAssetIdSet)
+        return try await self.client.execute(action: "ScanComplianceAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

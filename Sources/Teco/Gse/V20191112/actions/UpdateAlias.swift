@@ -83,7 +83,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateAlias(aliasId: String, name: String? = nil, description: String? = nil, routingStrategy: RoutingStrategy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAliasResponse> {
-        self.updateAlias(UpdateAliasRequest(aliasId: aliasId, name: name, description: description, routingStrategy: routingStrategy), region: region, logger: logger, on: eventLoop)
+        let input = UpdateAliasRequest(aliasId: aliasId, name: name, description: description, routingStrategy: routingStrategy)
+        return self.client.execute(action: "UpdateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新别名的属性
@@ -92,6 +93,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateAlias(aliasId: String, name: String? = nil, description: String? = nil, routingStrategy: RoutingStrategy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAliasResponse {
-        try await self.updateAlias(UpdateAliasRequest(aliasId: aliasId, name: name, description: description, routingStrategy: routingStrategy), region: region, logger: logger, on: eventLoop)
+        let input = UpdateAliasRequest(aliasId: aliasId, name: name, description: description, routingStrategy: routingStrategy)
+        return try await self.client.execute(action: "UpdateAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

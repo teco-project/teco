@@ -82,12 +82,14 @@ extension Ssa {
     /// 获取泄露列表
     @inlinable
     public func describeLeakDetectionList(filters: [Filter], limit: Int64, page: Int64, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLeakDetectionListResponse> {
-        self.describeLeakDetectionList(DescribeLeakDetectionListRequest(filters: filters, limit: limit, page: page, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLeakDetectionListRequest(filters: filters, limit: limit, page: page, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeLeakDetectionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取泄露列表
     @inlinable
     public func describeLeakDetectionList(filters: [Filter], limit: Int64, page: Int64, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLeakDetectionListResponse {
-        try await self.describeLeakDetectionList(DescribeLeakDetectionListRequest(filters: filters, limit: limit, page: page, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLeakDetectionListRequest(filters: filters, limit: limit, page: page, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeLeakDetectionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

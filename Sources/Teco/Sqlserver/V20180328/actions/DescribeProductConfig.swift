@@ -73,7 +73,8 @@ extension Sqlserver {
     /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
     @inlinable
     public func describeProductConfig(zone: String, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductConfigResponse> {
-        self.describeProductConfig(DescribeProductConfigRequest(zone: zone, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductConfigRequest(zone: zone, instanceType: instanceType)
+        return self.client.execute(action: "DescribeProductConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询售卖规格配置
@@ -81,6 +82,7 @@ extension Sqlserver {
     /// 本接口 (DescribeProductConfig) 用于查询售卖规格配置。
     @inlinable
     public func describeProductConfig(zone: String, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductConfigResponse {
-        try await self.describeProductConfig(DescribeProductConfigRequest(zone: zone, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductConfigRequest(zone: zone, instanceType: instanceType)
+        return try await self.client.execute(action: "DescribeProductConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

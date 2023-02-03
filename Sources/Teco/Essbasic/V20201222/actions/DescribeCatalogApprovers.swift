@@ -74,7 +74,8 @@ extension Essbasic {
     /// 第三方应用可通过此接口（DescribeCatalogApprovers）查询指定目录的参与者列表
     @inlinable
     public func describeCatalogApprovers(caller: Caller, catalogId: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCatalogApproversResponse> {
-        self.describeCatalogApprovers(DescribeCatalogApproversRequest(caller: caller, catalogId: catalogId, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCatalogApproversRequest(caller: caller, catalogId: catalogId, userId: userId)
+        return self.client.execute(action: "DescribeCatalogApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取流程目录参与者的信息
@@ -82,6 +83,7 @@ extension Essbasic {
     /// 第三方应用可通过此接口（DescribeCatalogApprovers）查询指定目录的参与者列表
     @inlinable
     public func describeCatalogApprovers(caller: Caller, catalogId: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogApproversResponse {
-        try await self.describeCatalogApprovers(DescribeCatalogApproversRequest(caller: caller, catalogId: catalogId, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCatalogApproversRequest(caller: caller, catalogId: catalogId, userId: userId)
+        return try await self.client.execute(action: "DescribeCatalogApprovers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

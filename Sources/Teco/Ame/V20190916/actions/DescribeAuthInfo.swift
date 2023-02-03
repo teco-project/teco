@@ -78,7 +78,8 @@ extension Ame {
     /// 获取授权项目信息列表
     @inlinable
     public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuthInfoResponse> {
-        self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAuthInfoRequest(offset: offset, limit: limit, key: key)
+        return self.client.execute(action: "DescribeAuthInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取授权项目列表
@@ -86,6 +87,7 @@ extension Ame {
     /// 获取授权项目信息列表
     @inlinable
     public func describeAuthInfo(offset: Int64? = nil, limit: Int64? = nil, key: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuthInfoResponse {
-        try await self.describeAuthInfo(DescribeAuthInfoRequest(offset: offset, limit: limit, key: key), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAuthInfoRequest(offset: offset, limit: limit, key: key)
+        return try await self.client.execute(action: "DescribeAuthInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

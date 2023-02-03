@@ -70,7 +70,8 @@ extension Rum {
     /// 删除用户名下的星标项目
     @inlinable
     public func deleteStarProject(instanceID: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStarProjectResponse> {
-        self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteStarProjectRequest(instanceID: instanceID, id: id)
+        return self.client.execute(action: "DeleteStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除星标应用
@@ -78,6 +79,7 @@ extension Rum {
     /// 删除用户名下的星标项目
     @inlinable
     public func deleteStarProject(instanceID: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStarProjectResponse {
-        try await self.deleteStarProject(DeleteStarProjectRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteStarProjectRequest(instanceID: instanceID, id: id)
+        return try await self.client.execute(action: "DeleteStarProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

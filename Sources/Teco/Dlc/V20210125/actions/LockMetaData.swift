@@ -82,12 +82,14 @@ extension Dlc {
     /// 元数据锁
     @inlinable
     public func lockMetaData(lockComponentList: [LockComponentInfo], datasourceConnectionName: String? = nil, txnId: Int64? = nil, agentInfo: String? = nil, hostname: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LockMetaDataResponse> {
-        self.lockMetaData(LockMetaDataRequest(lockComponentList: lockComponentList, datasourceConnectionName: datasourceConnectionName, txnId: txnId, agentInfo: agentInfo, hostname: hostname), region: region, logger: logger, on: eventLoop)
+        let input = LockMetaDataRequest(lockComponentList: lockComponentList, datasourceConnectionName: datasourceConnectionName, txnId: txnId, agentInfo: agentInfo, hostname: hostname)
+        return self.client.execute(action: "LockMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 元数据锁
     @inlinable
     public func lockMetaData(lockComponentList: [LockComponentInfo], datasourceConnectionName: String? = nil, txnId: Int64? = nil, agentInfo: String? = nil, hostname: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LockMetaDataResponse {
-        try await self.lockMetaData(LockMetaDataRequest(lockComponentList: lockComponentList, datasourceConnectionName: datasourceConnectionName, txnId: txnId, agentInfo: agentInfo, hostname: hostname), region: region, logger: logger, on: eventLoop)
+        let input = LockMetaDataRequest(lockComponentList: lockComponentList, datasourceConnectionName: datasourceConnectionName, txnId: txnId, agentInfo: agentInfo, hostname: hostname)
+        return try await self.client.execute(action: "LockMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

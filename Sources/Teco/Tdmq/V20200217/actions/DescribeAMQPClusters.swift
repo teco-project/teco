@@ -93,12 +93,14 @@ extension Tdmq {
     /// 获取amqp集群列表
     @inlinable
     public func describeAMQPClusters(offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPClustersResponse> {
-        self.describeAMQPClusters(DescribeAMQPClustersRequest(offset: offset, limit: limit, idKeyword: idKeyword, nameKeyword: nameKeyword, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAMQPClustersRequest(offset: offset, limit: limit, idKeyword: idKeyword, nameKeyword: nameKeyword, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters)
+        return self.client.execute(action: "DescribeAMQPClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取amqp集群列表
     @inlinable
     public func describeAMQPClusters(offset: UInt64, limit: UInt64, idKeyword: String? = nil, nameKeyword: String? = nil, clusterIdList: [String]? = nil, isTagFilter: Bool? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPClustersResponse {
-        try await self.describeAMQPClusters(DescribeAMQPClustersRequest(offset: offset, limit: limit, idKeyword: idKeyword, nameKeyword: nameKeyword, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAMQPClustersRequest(offset: offset, limit: limit, idKeyword: idKeyword, nameKeyword: nameKeyword, clusterIdList: clusterIdList, isTagFilter: isTagFilter, filters: filters)
+        return try await self.client.execute(action: "DescribeAMQPClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

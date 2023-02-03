@@ -78,7 +78,8 @@ extension Partners {
     /// 代理商可查询自己名下全部返佣信息
     @inlinable
     public func describeRebateInfosNew(rebateMonth: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRebateInfosNewResponse> {
-        self.describeRebateInfosNew(DescribeRebateInfosNewRequest(rebateMonth: rebateMonth, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRebateInfosNewRequest(rebateMonth: rebateMonth, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeRebateInfosNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询代理商返佣信息V2
@@ -86,6 +87,7 @@ extension Partners {
     /// 代理商可查询自己名下全部返佣信息
     @inlinable
     public func describeRebateInfosNew(rebateMonth: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRebateInfosNewResponse {
-        try await self.describeRebateInfosNew(DescribeRebateInfosNewRequest(rebateMonth: rebateMonth, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRebateInfosNewRequest(rebateMonth: rebateMonth, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeRebateInfosNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -95,7 +95,8 @@ extension Tcss {
     /// 查询运行时反弹shell事件列表信息导出
     @inlinable
     public func describeReverseShellEventsExport(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellEventsExportResponse> {
-        self.describeReverseShellEventsExport(DescribeReverseShellEventsExportRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReverseShellEventsExportRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField)
+        return self.client.execute(action: "DescribeReverseShellEventsExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时反弹shell列表导出
@@ -103,6 +104,7 @@ extension Tcss {
     /// 查询运行时反弹shell事件列表信息导出
     @inlinable
     public func describeReverseShellEventsExport(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsExportResponse {
-        try await self.describeReverseShellEventsExport(DescribeReverseShellEventsExportRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReverseShellEventsExportRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField)
+        return try await self.client.execute(action: "DescribeReverseShellEventsExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

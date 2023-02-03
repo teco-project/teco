@@ -109,12 +109,14 @@ extension Wedata {
     /// 保存用户自定义函数
     @inlinable
     public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SaveCustomFunctionResponse> {
-        self.saveCustomFunction(SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example), region: region, logger: logger, on: eventLoop)
+        let input = SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example)
+        return self.client.execute(action: "SaveCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 保存用户自定义函数
     @inlinable
     public func saveCustomFunction(functionId: String, kind: String, clusterIdentifier: String, className: String, resourceList: [FunctionResource], description: String, usage: String, paramDesc: String, returnDesc: String, example: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SaveCustomFunctionResponse {
-        try await self.saveCustomFunction(SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example), region: region, logger: logger, on: eventLoop)
+        let input = SaveCustomFunctionRequest(functionId: functionId, kind: kind, clusterIdentifier: clusterIdentifier, className: className, resourceList: resourceList, description: description, usage: usage, paramDesc: paramDesc, returnDesc: returnDesc, example: example)
+        return try await self.client.execute(action: "SaveCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

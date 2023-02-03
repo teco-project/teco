@@ -63,12 +63,14 @@ extension Trp {
     /// 查询二维码信息
     @inlinable
     public func describeTraceCodeById(corpId: UInt64? = nil, code: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTraceCodeByIdResponse> {
-        self.describeTraceCodeById(DescribeTraceCodeByIdRequest(corpId: corpId, code: code), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTraceCodeByIdRequest(corpId: corpId, code: code)
+        return self.client.execute(action: "DescribeTraceCodeById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询二维码信息
     @inlinable
     public func describeTraceCodeById(corpId: UInt64? = nil, code: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTraceCodeByIdResponse {
-        try await self.describeTraceCodeById(DescribeTraceCodeByIdRequest(corpId: corpId, code: code), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTraceCodeByIdRequest(corpId: corpId, code: code)
+        return try await self.client.execute(action: "DescribeTraceCodeById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

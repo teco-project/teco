@@ -88,7 +88,8 @@ extension Tcss {
     /// 容器安全查询镜像扫描状态
     @inlinable
     public func describeAssetImageScanStatus(taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageScanStatusResponse> {
-        self.describeAssetImageScanStatus(DescribeAssetImageScanStatusRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageScanStatusRequest(taskID: taskID)
+        return self.client.execute(action: "DescribeAssetImageScanStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像扫描状态
@@ -96,6 +97,7 @@ extension Tcss {
     /// 容器安全查询镜像扫描状态
     @inlinable
     public func describeAssetImageScanStatus(taskID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageScanStatusResponse {
-        try await self.describeAssetImageScanStatus(DescribeAssetImageScanStatusRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageScanStatusRequest(taskID: taskID)
+        return try await self.client.execute(action: "DescribeAssetImageScanStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

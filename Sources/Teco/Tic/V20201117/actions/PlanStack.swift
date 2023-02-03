@@ -78,7 +78,8 @@ extension Tic {
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
     public func planStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PlanStackResponse> {
-        self.planStack(PlanStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = PlanStackRequest(stackId: stackId, versionId: versionId)
+        return self.client.execute(action: "PlanStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行Plan事件
@@ -89,6 +90,7 @@ extension Tic {
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
     public func planStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PlanStackResponse {
-        try await self.planStack(PlanStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = PlanStackRequest(stackId: stackId, versionId: versionId)
+        return try await self.client.execute(action: "PlanStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

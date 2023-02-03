@@ -54,12 +54,14 @@ extension Tcss {
     /// 开通容器安全服务试用
     @inlinable
     public func openTcssTrial(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenTcssTrialResponse> {
-        self.openTcssTrial(OpenTcssTrialRequest(), region: region, logger: logger, on: eventLoop)
+        let input = OpenTcssTrialRequest()
+        return self.client.execute(action: "OpenTcssTrial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通容器安全服务试用
     @inlinable
     public func openTcssTrial(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenTcssTrialResponse {
-        try await self.openTcssTrial(OpenTcssTrialRequest(), region: region, logger: logger, on: eventLoop)
+        let input = OpenTcssTrialRequest()
+        return try await self.client.execute(action: "OpenTcssTrial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

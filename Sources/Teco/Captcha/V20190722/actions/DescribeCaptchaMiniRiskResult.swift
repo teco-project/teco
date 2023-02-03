@@ -129,12 +129,14 @@ extension Captcha {
     /// 核查验证码小程序插件票据接入风控结果(已停用)
     @inlinable
     public func describeCaptchaMiniRiskResult(captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, sceneCode: Int64? = nil, weChatOpenId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaMiniRiskResultResponse> {
-        self.describeCaptchaMiniRiskResult(DescribeCaptchaMiniRiskResultRequest(captchaType: captchaType, ticket: ticket, userIp: userIp, captchaAppId: captchaAppId, appSecretKey: appSecretKey, businessId: businessId, sceneId: sceneId, macAddress: macAddress, imei: imei, sceneCode: sceneCode, weChatOpenId: weChatOpenId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCaptchaMiniRiskResultRequest(captchaType: captchaType, ticket: ticket, userIp: userIp, captchaAppId: captchaAppId, appSecretKey: appSecretKey, businessId: businessId, sceneId: sceneId, macAddress: macAddress, imei: imei, sceneCode: sceneCode, weChatOpenId: weChatOpenId)
+        return self.client.execute(action: "DescribeCaptchaMiniRiskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 核查验证码小程序插件票据接入风控结果(已停用)
     @inlinable
     public func describeCaptchaMiniRiskResult(captchaType: UInt64, ticket: String, userIp: String, captchaAppId: UInt64, appSecretKey: String, businessId: UInt64? = nil, sceneId: UInt64? = nil, macAddress: String? = nil, imei: String? = nil, sceneCode: Int64? = nil, weChatOpenId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaMiniRiskResultResponse {
-        try await self.describeCaptchaMiniRiskResult(DescribeCaptchaMiniRiskResultRequest(captchaType: captchaType, ticket: ticket, userIp: userIp, captchaAppId: captchaAppId, appSecretKey: appSecretKey, businessId: businessId, sceneId: sceneId, macAddress: macAddress, imei: imei, sceneCode: sceneCode, weChatOpenId: weChatOpenId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCaptchaMiniRiskResultRequest(captchaType: captchaType, ticket: ticket, userIp: userIp, captchaAppId: captchaAppId, appSecretKey: appSecretKey, businessId: businessId, sceneId: sceneId, macAddress: macAddress, imei: imei, sceneCode: sceneCode, weChatOpenId: weChatOpenId)
+        return try await self.client.execute(action: "DescribeCaptchaMiniRiskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

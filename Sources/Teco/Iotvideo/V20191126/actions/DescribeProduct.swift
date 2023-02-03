@@ -65,7 +65,8 @@ extension Iotvideo {
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
     @inlinable
     public func describeProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResponse> {
-        self.describeProduct(DescribeProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductRequest(productId: productId)
+        return self.client.execute(action: "DescribeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单个产品详细信息
@@ -73,6 +74,7 @@ extension Iotvideo {
     /// 本接口（DescribeProduct）用于获取单个产品的详细信息。
     @inlinable
     public func describeProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
-        try await self.describeProduct(DescribeProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductRequest(productId: productId)
+        return try await self.client.execute(action: "DescribeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

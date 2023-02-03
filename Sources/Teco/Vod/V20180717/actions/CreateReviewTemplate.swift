@@ -90,7 +90,8 @@ extension Vod {
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     @inlinable
     public func createReviewTemplate(labels: [String], subAppId: String? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReviewTemplateResponse> {
-        self.createReviewTemplate(CreateReviewTemplateRequest(labels: labels, subAppId: subAppId, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
+        let input = CreateReviewTemplateRequest(labels: labels, subAppId: subAppId, name: name, comment: comment)
+        return self.client.execute(action: "CreateReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建审核模板
@@ -99,6 +100,7 @@ extension Vod {
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     @inlinable
     public func createReviewTemplate(labels: [String], subAppId: String? = nil, name: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReviewTemplateResponse {
-        try await self.createReviewTemplate(CreateReviewTemplateRequest(labels: labels, subAppId: subAppId, name: name, comment: comment), region: region, logger: logger, on: eventLoop)
+        let input = CreateReviewTemplateRequest(labels: labels, subAppId: subAppId, name: name, comment: comment)
+        return try await self.client.execute(action: "CreateReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

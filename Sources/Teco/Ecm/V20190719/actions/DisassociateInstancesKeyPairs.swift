@@ -80,7 +80,8 @@ extension Ecm {
     /// 用于解除实例的密钥绑定关系。
     @inlinable @discardableResult
     public func disassociateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateInstancesKeyPairsResponse> {
-        self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop)
+        return self.client.execute(action: "DisassociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑密钥对
@@ -88,6 +89,7 @@ extension Ecm {
     /// 用于解除实例的密钥绑定关系。
     @inlinable @discardableResult
     public func disassociateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
-        try await self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop)
+        return try await self.client.execute(action: "DisassociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

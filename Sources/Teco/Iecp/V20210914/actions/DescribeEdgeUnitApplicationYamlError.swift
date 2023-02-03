@@ -68,12 +68,14 @@ extension Iecp {
     /// 检查单元应用的Yaml配置
     @inlinable
     public func describeEdgeUnitApplicationYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationYamlErrorResponse> {
-        self.describeEdgeUnitApplicationYamlError(DescribeEdgeUnitApplicationYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitApplicationYamlErrorRequest(yaml: yaml)
+        return self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查单元应用的Yaml配置
     @inlinable
     public func describeEdgeUnitApplicationYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationYamlErrorResponse {
-        try await self.describeEdgeUnitApplicationYamlError(DescribeEdgeUnitApplicationYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitApplicationYamlErrorRequest(yaml: yaml)
+        return try await self.client.execute(action: "DescribeEdgeUnitApplicationYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

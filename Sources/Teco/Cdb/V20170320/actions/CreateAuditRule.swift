@@ -79,7 +79,8 @@ extension Cdb {
     /// 本接口(CreateAuditRule)用于创建用户在当前地域的审计规则。
     @inlinable
     public func createAuditRule(ruleName: String, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAuditRuleResponse> {
-        self.createAuditRule(CreateAuditRuleRequest(ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll), region: region, logger: logger, on: eventLoop)
+        let input = CreateAuditRuleRequest(ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll)
+        return self.client.execute(action: "CreateAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建审计规则
@@ -87,6 +88,7 @@ extension Cdb {
     /// 本接口(CreateAuditRule)用于创建用户在当前地域的审计规则。
     @inlinable
     public func createAuditRule(ruleName: String, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAuditRuleResponse {
-        try await self.createAuditRule(CreateAuditRuleRequest(ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll), region: region, logger: logger, on: eventLoop)
+        let input = CreateAuditRuleRequest(ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll)
+        return try await self.client.execute(action: "CreateAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -146,7 +146,8 @@ extension Cpdp {
     /// 聚鑫-开户信息查询
     @inlinable
     public func queryAcctInfo(midasAppId: String, subMchId: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAcctInfoResponse> {
-        self.queryAcctInfo(QueryAcctInfoRequest(midasAppId: midasAppId, subMchId: subMchId, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryAcctInfoRequest(midasAppId: midasAppId, subMchId: subMchId, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment)
+        return self.client.execute(action: "QueryAcctInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-开户查询
@@ -154,6 +155,7 @@ extension Cpdp {
     /// 聚鑫-开户信息查询
     @inlinable
     public func queryAcctInfo(midasAppId: String, subMchId: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAcctInfoResponse {
-        try await self.queryAcctInfo(QueryAcctInfoRequest(midasAppId: midasAppId, subMchId: subMchId, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryAcctInfoRequest(midasAppId: midasAppId, subMchId: subMchId, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment)
+        return try await self.client.execute(action: "QueryAcctInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -101,7 +101,8 @@ extension Tag {
     /// 用于批量查询已有资源关联的标签键值对
     @inlinable
     public func describeResourceTagsByResourceIds(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTagsByResourceIdsResponse> {
-        self.describeResourceTagsByResourceIds(DescribeResourceTagsByResourceIdsRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceTagsByResourceIdsRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeResourceTagsByResourceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量查看资源关联的标签
@@ -109,6 +110,7 @@ extension Tag {
     /// 用于批量查询已有资源关联的标签键值对
     @inlinable
     public func describeResourceTagsByResourceIds(serviceType: String, resourcePrefix: String, resourceIds: [String], resourceRegion: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTagsByResourceIdsResponse {
-        try await self.describeResourceTagsByResourceIds(DescribeResourceTagsByResourceIdsRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceTagsByResourceIdsRequest(serviceType: serviceType, resourcePrefix: resourcePrefix, resourceIds: resourceIds, resourceRegion: resourceRegion, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeResourceTagsByResourceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

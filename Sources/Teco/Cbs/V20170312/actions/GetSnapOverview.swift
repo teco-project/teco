@@ -62,12 +62,14 @@ extension Cbs {
     /// 获取快照概览信息
     @inlinable
     public func getSnapOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSnapOverviewResponse> {
-        self.getSnapOverview(GetSnapOverviewRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetSnapOverviewRequest()
+        return self.client.execute(action: "GetSnapOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取快照概览信息
     @inlinable
     public func getSnapOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSnapOverviewResponse {
-        try await self.getSnapOverview(GetSnapOverviewRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetSnapOverviewRequest()
+        return try await self.client.execute(action: "GetSnapOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

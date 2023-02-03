@@ -58,12 +58,14 @@ extension Apcas {
     /// 查询画像洞察任务详情
     @inlinable
     public func getTaskDetail(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskDetailResponse> {
-        self.getTaskDetail(GetTaskDetailRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = GetTaskDetailRequest(id: id)
+        return self.client.execute(action: "GetTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询画像洞察任务详情
     @inlinable
     public func getTaskDetail(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskDetailResponse {
-        try await self.getTaskDetail(GetTaskDetailRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = GetTaskDetailRequest(id: id)
+        return try await self.client.execute(action: "GetTaskDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

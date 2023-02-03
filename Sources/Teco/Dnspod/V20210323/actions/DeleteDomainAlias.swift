@@ -64,12 +64,14 @@ extension Dnspod {
     /// 删除域名别名
     @inlinable @discardableResult
     public func deleteDomainAlias(domainAliasId: Int64, domain: String, domainId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainAliasResponse> {
-        self.deleteDomainAlias(DeleteDomainAliasRequest(domainAliasId: domainAliasId, domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDomainAliasRequest(domainAliasId: domainAliasId, domain: domain, domainId: domainId)
+        return self.client.execute(action: "DeleteDomainAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除域名别名
     @inlinable @discardableResult
     public func deleteDomainAlias(domainAliasId: Int64, domain: String, domainId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainAliasResponse {
-        try await self.deleteDomainAlias(DeleteDomainAliasRequest(domainAliasId: domainAliasId, domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDomainAliasRequest(domainAliasId: domainAliasId, domain: domain, domainId: domainId)
+        return try await self.client.execute(action: "DeleteDomainAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,12 +63,14 @@ extension Smpn {
     /// 企业号码认证
     @inlinable
     public func createSmpnEpa(requestData: EPARequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSmpnEpaResponse> {
-        self.createSmpnEpa(CreateSmpnEpaRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateSmpnEpaRequest(requestData: requestData, resourceId: resourceId)
+        return self.client.execute(action: "CreateSmpnEpa", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 企业号码认证
     @inlinable
     public func createSmpnEpa(requestData: EPARequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSmpnEpaResponse {
-        try await self.createSmpnEpa(CreateSmpnEpaRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateSmpnEpaRequest(requestData: requestData, resourceId: resourceId)
+        return try await self.client.execute(action: "CreateSmpnEpa", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

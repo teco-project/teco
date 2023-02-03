@@ -58,12 +58,14 @@ extension Tsf {
     /// API分组批量与网关解绑
     @inlinable
     public func unbindApiGroup(groupGatewayList: [GatewayGroupIds], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindApiGroupResponse> {
-        self.unbindApiGroup(UnbindApiGroupRequest(groupGatewayList: groupGatewayList), region: region, logger: logger, on: eventLoop)
+        let input = UnbindApiGroupRequest(groupGatewayList: groupGatewayList)
+        return self.client.execute(action: "UnbindApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// API分组批量与网关解绑
     @inlinable
     public func unbindApiGroup(groupGatewayList: [GatewayGroupIds], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindApiGroupResponse {
-        try await self.unbindApiGroup(UnbindApiGroupRequest(groupGatewayList: groupGatewayList), region: region, logger: logger, on: eventLoop)
+        let input = UnbindApiGroupRequest(groupGatewayList: groupGatewayList)
+        return try await self.client.execute(action: "UnbindApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

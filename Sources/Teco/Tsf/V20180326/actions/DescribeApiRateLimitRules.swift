@@ -58,12 +58,14 @@ extension Tsf {
     /// 查询API限流规则
     @inlinable
     public func describeApiRateLimitRules(apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiRateLimitRulesResponse> {
-        self.describeApiRateLimitRules(DescribeApiRateLimitRulesRequest(apiId: apiId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApiRateLimitRulesRequest(apiId: apiId)
+        return self.client.execute(action: "DescribeApiRateLimitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询API限流规则
     @inlinable
     public func describeApiRateLimitRules(apiId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiRateLimitRulesResponse {
-        try await self.describeApiRateLimitRules(DescribeApiRateLimitRulesRequest(apiId: apiId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApiRateLimitRulesRequest(apiId: apiId)
+        return try await self.client.execute(action: "DescribeApiRateLimitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

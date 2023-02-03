@@ -68,12 +68,14 @@ extension Tsf {
     /// 批量更新API限流规则
     @inlinable
     public func updateApiRateLimitRules(apiIds: [String], usableStatus: String, maxQps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiRateLimitRulesResponse> {
-        self.updateApiRateLimitRules(UpdateApiRateLimitRulesRequest(apiIds: apiIds, usableStatus: usableStatus, maxQps: maxQps), region: region, logger: logger, on: eventLoop)
+        let input = UpdateApiRateLimitRulesRequest(apiIds: apiIds, usableStatus: usableStatus, maxQps: maxQps)
+        return self.client.execute(action: "UpdateApiRateLimitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量更新API限流规则
     @inlinable
     public func updateApiRateLimitRules(apiIds: [String], usableStatus: String, maxQps: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiRateLimitRulesResponse {
-        try await self.updateApiRateLimitRules(UpdateApiRateLimitRulesRequest(apiIds: apiIds, usableStatus: usableStatus, maxQps: maxQps), region: region, logger: logger, on: eventLoop)
+        let input = UpdateApiRateLimitRulesRequest(apiIds: apiIds, usableStatus: usableStatus, maxQps: maxQps)
+        return try await self.client.execute(action: "UpdateApiRateLimitRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

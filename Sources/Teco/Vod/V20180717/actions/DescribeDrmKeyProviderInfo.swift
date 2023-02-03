@@ -65,7 +65,8 @@ extension Vod {
     /// 查询 DRM 密钥提供商信息。
     @inlinable
     public func describeDrmKeyProviderInfo(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDrmKeyProviderInfoResponse> {
-        self.describeDrmKeyProviderInfo(DescribeDrmKeyProviderInfoRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDrmKeyProviderInfoRequest(subAppId: subAppId)
+        return self.client.execute(action: "DescribeDrmKeyProviderInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 DRM 密钥提供商信息
@@ -73,6 +74,7 @@ extension Vod {
     /// 查询 DRM 密钥提供商信息。
     @inlinable
     public func describeDrmKeyProviderInfo(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDrmKeyProviderInfoResponse {
-        try await self.describeDrmKeyProviderInfo(DescribeDrmKeyProviderInfoRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDrmKeyProviderInfoRequest(subAppId: subAppId)
+        return try await self.client.execute(action: "DescribeDrmKeyProviderInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -82,7 +82,8 @@ extension Lighthouse {
     /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
     @inlinable
     public func describeFirewallRules(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirewallRulesResponse> {
-        self.describeFirewallRules(DescribeFirewallRulesRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirewallRulesRequest(instanceId: instanceId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询防火墙规则
@@ -90,6 +91,7 @@ extension Lighthouse {
     /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
     @inlinable
     public func describeFirewallRules(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirewallRulesResponse {
-        try await self.describeFirewallRules(DescribeFirewallRulesRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirewallRulesRequest(instanceId: instanceId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeFirewallRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

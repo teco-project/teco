@@ -63,7 +63,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstanceLimit(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLimitResponse> {
-        self.describeInstanceLimit(DescribeInstanceLimitRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLimitRequest()
+        return self.client.execute(action: "DescribeInstanceLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户实例数限额
@@ -72,6 +73,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstanceLimit(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLimitResponse {
-        try await self.describeInstanceLimit(DescribeInstanceLimitRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLimitRequest()
+        return try await self.client.execute(action: "DescribeInstanceLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

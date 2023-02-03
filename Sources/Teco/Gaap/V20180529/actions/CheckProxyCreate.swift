@@ -104,7 +104,8 @@ extension Gaap {
     /// 本接口(CheckProxyCreate)用于查询能否创建指定配置的加速通道。
     @inlinable
     public func checkProxyCreate(accessRegion: String, realServerRegion: String, bandwidth: UInt64, concurrent: UInt64, groupId: String? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckProxyCreateResponse> {
-        self.checkProxyCreate(CheckProxyCreateRequest(accessRegion: accessRegion, realServerRegion: realServerRegion, bandwidth: bandwidth, concurrent: concurrent, groupId: groupId, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
+        let input = CheckProxyCreateRequest(accessRegion: accessRegion, realServerRegion: realServerRegion, bandwidth: bandwidth, concurrent: concurrent, groupId: groupId, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported)
+        return self.client.execute(action: "CheckProxyCreate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通道是否可以创建
@@ -112,6 +113,7 @@ extension Gaap {
     /// 本接口(CheckProxyCreate)用于查询能否创建指定配置的加速通道。
     @inlinable
     public func checkProxyCreate(accessRegion: String, realServerRegion: String, bandwidth: UInt64, concurrent: UInt64, groupId: String? = nil, ipAddressVersion: String? = nil, networkType: String? = nil, packageType: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckProxyCreateResponse {
-        try await self.checkProxyCreate(CheckProxyCreateRequest(accessRegion: accessRegion, realServerRegion: realServerRegion, bandwidth: bandwidth, concurrent: concurrent, groupId: groupId, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
+        let input = CheckProxyCreateRequest(accessRegion: accessRegion, realServerRegion: realServerRegion, bandwidth: bandwidth, concurrent: concurrent, groupId: groupId, ipAddressVersion: ipAddressVersion, networkType: networkType, packageType: packageType, http3Supported: http3Supported)
+        return try await self.client.execute(action: "CheckProxyCreate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

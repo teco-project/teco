@@ -88,7 +88,8 @@ extension Mps {
     /// * 只能查询到最近七天（168小时）内的任务。
     @inlinable
     public func describeTasks(status: String, limit: UInt64? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        self.describeTasks(DescribeTasksRequest(status: status, limit: limit, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksRequest(status: status, limit: limit, scrollToken: scrollToken)
+        return self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务列表
@@ -98,6 +99,7 @@ extension Mps {
     /// * 只能查询到最近七天（168小时）内的任务。
     @inlinable
     public func describeTasks(status: String, limit: UInt64? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.describeTasks(DescribeTasksRequest(status: status, limit: limit, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksRequest(status: status, limit: limit, scrollToken: scrollToken)
+        return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Ape {
     /// 核销图片，获取原图URL地址
     @inlinable
     public func createOrderAndDownloads(imageInfos: [ImageInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndDownloadsResponse> {
-        self.createOrderAndDownloads(CreateOrderAndDownloadsRequest(imageInfos: imageInfos), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrderAndDownloadsRequest(imageInfos: imageInfos)
+        return self.client.execute(action: "CreateOrderAndDownloads", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取图片下载地址
@@ -77,6 +78,7 @@ extension Ape {
     /// 核销图片，获取原图URL地址
     @inlinable
     public func createOrderAndDownloads(imageInfos: [ImageInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndDownloadsResponse {
-        try await self.createOrderAndDownloads(CreateOrderAndDownloadsRequest(imageInfos: imageInfos), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrderAndDownloadsRequest(imageInfos: imageInfos)
+        return try await self.client.execute(action: "CreateOrderAndDownloads", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

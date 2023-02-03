@@ -75,7 +75,8 @@ extension Wav {
     /// 根据游标拉取活动列表信息
     @inlinable
     public func queryActivityList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityListResponse> {
-        self.queryActivityList(QueryActivityListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = QueryActivityListRequest(cursor: cursor, limit: limit)
+        return self.client.execute(action: "QueryActivityList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询活动列表接口
@@ -83,6 +84,7 @@ extension Wav {
     /// 根据游标拉取活动列表信息
     @inlinable
     public func queryActivityList(cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityListResponse {
-        try await self.queryActivityList(QueryActivityListRequest(cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = QueryActivityListRequest(cursor: cursor, limit: limit)
+        return try await self.client.execute(action: "QueryActivityList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

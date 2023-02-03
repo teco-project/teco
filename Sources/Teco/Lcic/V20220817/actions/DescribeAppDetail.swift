@@ -71,12 +71,14 @@ extension Lcic {
     /// 获取应用详情
     @inlinable
     public func describeAppDetail(applicationId: String, developerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAppDetailResponse> {
-        self.describeAppDetail(DescribeAppDetailRequest(applicationId: applicationId, developerId: developerId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAppDetailRequest(applicationId: applicationId, developerId: developerId)
+        return self.client.execute(action: "DescribeAppDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用详情
     @inlinable
     public func describeAppDetail(applicationId: String, developerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAppDetailResponse {
-        try await self.describeAppDetail(DescribeAppDetailRequest(applicationId: applicationId, developerId: developerId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAppDetailRequest(applicationId: applicationId, developerId: developerId)
+        return try await self.client.execute(action: "DescribeAppDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

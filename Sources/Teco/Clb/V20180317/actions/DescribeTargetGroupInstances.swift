@@ -82,7 +82,8 @@ extension Clb {
     /// 获取目标组绑定的服务器信息
     @inlinable
     public func describeTargetGroupInstances(filters: [Filter], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetGroupInstancesResponse> {
-        self.describeTargetGroupInstances(DescribeTargetGroupInstancesRequest(filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTargetGroupInstancesRequest(filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeTargetGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取目标组绑定的服务器
@@ -90,6 +91,7 @@ extension Clb {
     /// 获取目标组绑定的服务器信息
     @inlinable
     public func describeTargetGroupInstances(filters: [Filter], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetGroupInstancesResponse {
-        try await self.describeTargetGroupInstances(DescribeTargetGroupInstancesRequest(filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTargetGroupInstancesRequest(filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeTargetGroupInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

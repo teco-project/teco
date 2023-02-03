@@ -74,12 +74,14 @@ extension Cwp {
     /// 查询日志检索服务信息
     @inlinable
     public func describeHistoryService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHistoryServiceResponse> {
-        self.describeHistoryService(DescribeHistoryServiceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHistoryServiceRequest()
+        return self.client.execute(action: "DescribeHistoryService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询日志检索服务信息
     @inlinable
     public func describeHistoryService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHistoryServiceResponse {
-        try await self.describeHistoryService(DescribeHistoryServiceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHistoryServiceRequest()
+        return try await self.client.execute(action: "DescribeHistoryService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

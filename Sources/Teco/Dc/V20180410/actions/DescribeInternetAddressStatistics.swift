@@ -61,7 +61,8 @@ extension Dc {
     /// 获取用户互联网公网地址分配统计信息
     @inlinable
     public func describeInternetAddressStatistics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressStatisticsResponse> {
-        self.describeInternetAddressStatistics(DescribeInternetAddressStatisticsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInternetAddressStatisticsRequest()
+        return self.client.execute(action: "DescribeInternetAddressStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户互联网公网地址统计信息
@@ -69,6 +70,7 @@ extension Dc {
     /// 获取用户互联网公网地址分配统计信息
     @inlinable
     public func describeInternetAddressStatistics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressStatisticsResponse {
-        try await self.describeInternetAddressStatistics(DescribeInternetAddressStatisticsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInternetAddressStatisticsRequest()
+        return try await self.client.execute(action: "DescribeInternetAddressStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

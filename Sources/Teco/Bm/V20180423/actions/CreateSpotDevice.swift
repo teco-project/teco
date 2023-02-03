@@ -102,12 +102,14 @@ extension Bm {
     /// 创建黑石竞价实例
     @inlinable
     public func createSpotDevice(zone: String, computeType: String, osTypeId: UInt64, vpcId: String, subnetId: String, goodsNum: UInt64, spotStrategy: String, spotPriceLimit: Float? = nil, passwd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSpotDeviceResponse> {
-        self.createSpotDevice(CreateSpotDeviceRequest(zone: zone, computeType: computeType, osTypeId: osTypeId, vpcId: vpcId, subnetId: subnetId, goodsNum: goodsNum, spotStrategy: spotStrategy, spotPriceLimit: spotPriceLimit, passwd: passwd), region: region, logger: logger, on: eventLoop)
+        let input = CreateSpotDeviceRequest(zone: zone, computeType: computeType, osTypeId: osTypeId, vpcId: vpcId, subnetId: subnetId, goodsNum: goodsNum, spotStrategy: spotStrategy, spotPriceLimit: spotPriceLimit, passwd: passwd)
+        return self.client.execute(action: "CreateSpotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石竞价实例
     @inlinable
     public func createSpotDevice(zone: String, computeType: String, osTypeId: UInt64, vpcId: String, subnetId: String, goodsNum: UInt64, spotStrategy: String, spotPriceLimit: Float? = nil, passwd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSpotDeviceResponse {
-        try await self.createSpotDevice(CreateSpotDeviceRequest(zone: zone, computeType: computeType, osTypeId: osTypeId, vpcId: vpcId, subnetId: subnetId, goodsNum: goodsNum, spotStrategy: spotStrategy, spotPriceLimit: spotPriceLimit, passwd: passwd), region: region, logger: logger, on: eventLoop)
+        let input = CreateSpotDeviceRequest(zone: zone, computeType: computeType, osTypeId: osTypeId, vpcId: vpcId, subnetId: subnetId, goodsNum: goodsNum, spotStrategy: spotStrategy, spotPriceLimit: spotPriceLimit, passwd: passwd)
+        return try await self.client.execute(action: "CreateSpotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

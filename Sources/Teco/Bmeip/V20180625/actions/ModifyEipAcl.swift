@@ -74,12 +74,14 @@ extension Bmeip {
     /// 修改弹性公网IP ACL
     @inlinable @discardableResult
     public func modifyEipAcl(aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEipAclResponse> {
-        self.modifyEipAcl(ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules)
+        return self.client.execute(action: "ModifyEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP ACL
     @inlinable @discardableResult
     public func modifyEipAcl(aclId: String, aclName: String? = nil, status: Int64? = nil, type: String? = nil, rules: [EipAclRule]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEipAclResponse {
-        try await self.modifyEipAcl(ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEipAclRequest(aclId: aclId, aclName: aclName, status: status, type: type, rules: rules)
+        return try await self.client.execute(action: "ModifyEipAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

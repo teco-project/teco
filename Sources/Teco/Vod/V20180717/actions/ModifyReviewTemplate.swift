@@ -93,7 +93,8 @@ extension Vod {
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     @inlinable @discardableResult
     public func modifyReviewTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, labels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyReviewTemplateResponse> {
-        self.modifyReviewTemplate(ModifyReviewTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, labels: labels), region: region, logger: logger, on: eventLoop)
+        let input = ModifyReviewTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, labels: labels)
+        return self.client.execute(action: "ModifyReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改审核模板
@@ -102,6 +103,7 @@ extension Vod {
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     @inlinable @discardableResult
     public func modifyReviewTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, labels: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyReviewTemplateResponse {
-        try await self.modifyReviewTemplate(ModifyReviewTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, labels: labels), region: region, logger: logger, on: eventLoop)
+        let input = ModifyReviewTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, labels: labels)
+        return try await self.client.execute(action: "ModifyReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

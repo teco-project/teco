@@ -73,12 +73,14 @@ extension Tdmq {
     /// 删除订阅关系
     @inlinable
     public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSubscriptionsResponse> {
-        self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force)
+        return self.client.execute(action: "DeleteSubscriptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除订阅关系
     @inlinable
     public func deleteSubscriptions(subscriptionTopicSets: [SubscriptionTopic], clusterId: String? = nil, environmentId: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubscriptionsResponse {
-        try await self.deleteSubscriptions(DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSubscriptionsRequest(subscriptionTopicSets: subscriptionTopicSets, clusterId: clusterId, environmentId: environmentId, force: force)
+        return try await self.client.execute(action: "DeleteSubscriptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

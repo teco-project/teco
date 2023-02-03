@@ -79,7 +79,8 @@ extension Monitor {
     /// Grafana实例授权其他腾讯云用户
     @inlinable
     public func createSSOAccount(instanceId: String, userId: String, role: [GrafanaAccountRole], notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSSOAccountResponse> {
-        self.createSSOAccount(CreateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes), region: region, logger: logger, on: eventLoop)
+        let input = CreateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes)
+        return self.client.execute(action: "CreateSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 授权腾讯云用户
@@ -87,6 +88,7 @@ extension Monitor {
     /// Grafana实例授权其他腾讯云用户
     @inlinable
     public func createSSOAccount(instanceId: String, userId: String, role: [GrafanaAccountRole], notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSSOAccountResponse {
-        try await self.createSSOAccount(CreateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes), region: region, logger: logger, on: eventLoop)
+        let input = CreateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes)
+        return try await self.client.execute(action: "CreateSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -125,7 +125,8 @@ extension Teo {
     /// 本接口（DescribeTimingL7CacheData）用于查询七层缓存分析时序类流量数据。
     @inlinable
     public func describeTimingL7CacheData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL7CacheDataResponse> {
-        self.describeTimingL7CacheData(DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area)
+        return self.client.execute(action: "DescribeTimingL7CacheData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询缓存分析时序数据
@@ -133,6 +134,7 @@ extension Teo {
     /// 本接口（DescribeTimingL7CacheData）用于查询七层缓存分析时序类流量数据。
     @inlinable
     public func describeTimingL7CacheData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, filters: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7CacheDataResponse {
-        try await self.describeTimingL7CacheData(DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimingL7CacheDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, filters: filters, interval: interval, area: area)
+        return try await self.client.execute(action: "DescribeTimingL7CacheData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

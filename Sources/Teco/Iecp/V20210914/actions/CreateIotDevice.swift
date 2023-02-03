@@ -69,12 +69,14 @@ extension Iecp {
     /// 创建子设备
     @inlinable @discardableResult
     public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIotDeviceResponse> {
-        self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), region: region, logger: logger, on: eventLoop)
+        let input = CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID)
+        return self.client.execute(action: "CreateIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建子设备
     @inlinable @discardableResult
     public func createIotDevice(deviceName: String, productId: String, description: String? = nil, unitID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIotDeviceResponse {
-        try await self.createIotDevice(CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID), region: region, logger: logger, on: eventLoop)
+        let input = CreateIotDeviceRequest(deviceName: deviceName, productId: productId, description: description, unitID: unitID)
+        return try await self.client.execute(action: "CreateIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -68,7 +68,8 @@ extension Redis {
     /// 开通外网
     @inlinable
     public func allocateWanAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AllocateWanAddressResponse> {
-        self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = AllocateWanAddressRequest(instanceId: instanceId)
+        return self.client.execute(action: "AllocateWanAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通外网接口
@@ -76,6 +77,7 @@ extension Redis {
     /// 开通外网
     @inlinable
     public func allocateWanAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AllocateWanAddressResponse {
-        try await self.allocateWanAddress(AllocateWanAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = AllocateWanAddressRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "AllocateWanAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Tag {
     /// 本接口用于修改资源已关联的标签值（标签键不变）
     @inlinable @discardableResult
     public func updateResourceTagValue(tagKey: String, tagValue: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateResourceTagValueResponse> {
-        self.updateResourceTagValue(UpdateResourceTagValueRequest(tagKey: tagKey, tagValue: tagValue, resource: resource), region: region, logger: logger, on: eventLoop)
+        let input = UpdateResourceTagValueRequest(tagKey: tagKey, tagValue: tagValue, resource: resource)
+        return self.client.execute(action: "UpdateResourceTagValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改资源标签值
@@ -78,6 +79,7 @@ extension Tag {
     /// 本接口用于修改资源已关联的标签值（标签键不变）
     @inlinable @discardableResult
     public func updateResourceTagValue(tagKey: String, tagValue: String, resource: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateResourceTagValueResponse {
-        try await self.updateResourceTagValue(UpdateResourceTagValueRequest(tagKey: tagKey, tagValue: tagValue, resource: resource), region: region, logger: logger, on: eventLoop)
+        let input = UpdateResourceTagValueRequest(tagKey: tagKey, tagValue: tagValue, resource: resource)
+        return try await self.client.execute(action: "UpdateResourceTagValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

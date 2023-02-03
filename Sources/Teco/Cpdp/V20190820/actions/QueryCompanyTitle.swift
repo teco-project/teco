@@ -82,12 +82,14 @@ extension Cpdp {
     /// 智慧零售-查询公司抬头
     @inlinable
     public func queryCompanyTitle(companyTitleKeyword: String, invoicePlatformId: Int64, sellerTaxpayerNum: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCompanyTitleResponse> {
-        self.queryCompanyTitle(QueryCompanyTitleRequest(companyTitleKeyword: companyTitleKeyword, invoicePlatformId: invoicePlatformId, sellerTaxpayerNum: sellerTaxpayerNum, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryCompanyTitleRequest(companyTitleKeyword: companyTitleKeyword, invoicePlatformId: invoicePlatformId, sellerTaxpayerNum: sellerTaxpayerNum, profile: profile)
+        return self.client.execute(action: "QueryCompanyTitle", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-查询公司抬头
     @inlinable
     public func queryCompanyTitle(companyTitleKeyword: String, invoicePlatformId: Int64, sellerTaxpayerNum: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCompanyTitleResponse {
-        try await self.queryCompanyTitle(QueryCompanyTitleRequest(companyTitleKeyword: companyTitleKeyword, invoicePlatformId: invoicePlatformId, sellerTaxpayerNum: sellerTaxpayerNum, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryCompanyTitleRequest(companyTitleKeyword: companyTitleKeyword, invoicePlatformId: invoicePlatformId, sellerTaxpayerNum: sellerTaxpayerNum, profile: profile)
+        return try await self.client.execute(action: "QueryCompanyTitle", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

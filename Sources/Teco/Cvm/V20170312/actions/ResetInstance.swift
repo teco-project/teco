@@ -115,7 +115,8 @@ extension Cvm {
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func resetInstance(instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil, hostName: String? = nil, userData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstanceResponse> {
-        self.resetInstance(ResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService, hostName: hostName, userData: userData), region: region, logger: logger, on: eventLoop)
+        let input = ResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService, hostName: hostName, userData: userData)
+        return self.client.execute(action: "ResetInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重装实例
@@ -131,6 +132,7 @@ extension Cvm {
     /// * 实例操作结果可以通过调用 [DescribeInstances](https://cloud.tencent.com/document/api/213/15728#.E7.A4.BA.E4.BE.8B3-.E6.9F.A5.E8.AF.A2.E5.AE.9E.E4.BE.8B.E7.9A.84.E6.9C.80.E6.96.B0.E6.93.8D.E4.BD.9C.E6.83.85.E5.86.B5) 接口查询，如果实例的最新操作状态(LatestOperationState)为“SUCCESS”，则代表操作成功。
     @inlinable @discardableResult
     public func resetInstance(instanceId: String, imageId: String? = nil, systemDisk: SystemDisk? = nil, loginSettings: LoginSettings? = nil, enhancedService: EnhancedService? = nil, hostName: String? = nil, userData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstanceResponse {
-        try await self.resetInstance(ResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService, hostName: hostName, userData: userData), region: region, logger: logger, on: eventLoop)
+        let input = ResetInstanceRequest(instanceId: instanceId, imageId: imageId, systemDisk: systemDisk, loginSettings: loginSettings, enhancedService: enhancedService, hostName: hostName, userData: userData)
+        return try await self.client.execute(action: "ResetInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

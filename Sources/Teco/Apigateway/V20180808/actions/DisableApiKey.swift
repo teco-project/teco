@@ -65,7 +65,8 @@ extension Apigateway {
     /// 本接口（DisableApiKey）用于禁用一对 API 密钥。
     @inlinable
     public func disableApiKey(accessKeyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableApiKeyResponse> {
-        self.disableApiKey(DisableApiKeyRequest(accessKeyId: accessKeyId), region: region, logger: logger, on: eventLoop)
+        let input = DisableApiKeyRequest(accessKeyId: accessKeyId)
+        return self.client.execute(action: "DisableApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用密钥
@@ -73,6 +74,7 @@ extension Apigateway {
     /// 本接口（DisableApiKey）用于禁用一对 API 密钥。
     @inlinable
     public func disableApiKey(accessKeyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableApiKeyResponse {
-        try await self.disableApiKey(DisableApiKeyRequest(accessKeyId: accessKeyId), region: region, logger: logger, on: eventLoop)
+        let input = DisableApiKeyRequest(accessKeyId: accessKeyId)
+        return try await self.client.execute(action: "DisableApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

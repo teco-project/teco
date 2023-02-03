@@ -68,7 +68,8 @@ extension Mariadb {
     /// 本接口(DescribeLogFileRetentionPeriod)用于查看数据库备份日志的备份天数的设置情况。
     @inlinable
     public func describeLogFileRetentionPeriod(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogFileRetentionPeriodResponse> {
-        self.describeLogFileRetentionPeriod(DescribeLogFileRetentionPeriodRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogFileRetentionPeriodRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeLogFileRetentionPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看备份日志备份天数
@@ -76,6 +77,7 @@ extension Mariadb {
     /// 本接口(DescribeLogFileRetentionPeriod)用于查看数据库备份日志的备份天数的设置情况。
     @inlinable
     public func describeLogFileRetentionPeriod(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogFileRetentionPeriodResponse {
-        try await self.describeLogFileRetentionPeriod(DescribeLogFileRetentionPeriodRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogFileRetentionPeriodRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeLogFileRetentionPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

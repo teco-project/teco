@@ -87,7 +87,8 @@ extension Lighthouse {
     /// 注意：强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏。
     @inlinable @discardableResult
     public func resetInstancesPassword(instanceIds: [String], password: String, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetInstancesPasswordResponse> {
-        self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIds: instanceIds, password: password, userName: userName), region: region, logger: logger, on: eventLoop)
+        let input = ResetInstancesPasswordRequest(instanceIds: instanceIds, password: password, userName: userName)
+        return self.client.execute(action: "ResetInstancesPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置实例密码
@@ -100,6 +101,7 @@ extension Lighthouse {
     /// 注意：强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏。
     @inlinable @discardableResult
     public func resetInstancesPassword(instanceIds: [String], password: String, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesPasswordResponse {
-        try await self.resetInstancesPassword(ResetInstancesPasswordRequest(instanceIds: instanceIds, password: password, userName: userName), region: region, logger: logger, on: eventLoop)
+        let input = ResetInstancesPasswordRequest(instanceIds: instanceIds, password: password, userName: userName)
+        return try await self.client.execute(action: "ResetInstancesPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

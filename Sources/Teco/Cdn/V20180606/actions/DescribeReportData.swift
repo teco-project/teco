@@ -118,7 +118,8 @@ extension Cdn {
     /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
     @inlinable
     public func describeReportData(startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64? = nil, limit: Int64? = nil, project: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportDataResponse> {
-        self.describeReportData(DescribeReportDataRequest(startTime: startTime, endTime: endTime, reportType: reportType, area: area, offset: offset, limit: limit, project: project), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReportDataRequest(startTime: startTime, endTime: endTime, reportType: reportType, area: area, offset: offset, limit: limit, project: project)
+        return self.client.execute(action: "DescribeReportData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询报表数据
@@ -126,6 +127,7 @@ extension Cdn {
     /// DescribeReportData 用于查询域名/项目维度的日/周/月报表数据。
     @inlinable
     public func describeReportData(startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64? = nil, limit: Int64? = nil, project: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportDataResponse {
-        try await self.describeReportData(DescribeReportDataRequest(startTime: startTime, endTime: endTime, reportType: reportType, area: area, offset: offset, limit: limit, project: project), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReportDataRequest(startTime: startTime, endTime: endTime, reportType: reportType, area: area, offset: offset, limit: limit, project: project)
+        return try await self.client.execute(action: "DescribeReportData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

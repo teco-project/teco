@@ -64,12 +64,14 @@ extension Trp {
     /// 删除商户
     @inlinable
     public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMerchantResponse> {
-        self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMerchantRequest(merchantId: merchantId, corpId: corpId)
+        return self.client.execute(action: "DeleteMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除商户
     @inlinable
     public func deleteMerchant(merchantId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMerchantResponse {
-        try await self.deleteMerchant(DeleteMerchantRequest(merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMerchantRequest(merchantId: merchantId, corpId: corpId)
+        return try await self.client.execute(action: "DeleteMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -61,7 +61,8 @@ extension Cdn {
     /// StartCdnDomain 用于启用已停用域名的加速服务
     @inlinable @discardableResult
     public func startCdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartCdnDomainResponse> {
-        self.startCdnDomain(StartCdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = StartCdnDomainRequest(domain: domain)
+        return self.client.execute(action: "StartCdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用加速域名
@@ -69,6 +70,7 @@ extension Cdn {
     /// StartCdnDomain 用于启用已停用域名的加速服务
     @inlinable @discardableResult
     public func startCdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartCdnDomainResponse {
-        try await self.startCdnDomain(StartCdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = StartCdnDomainRequest(domain: domain)
+        return try await self.client.execute(action: "StartCdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

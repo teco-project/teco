@@ -59,12 +59,14 @@ extension Cwp {
     /// 设置高危命令事件状态
     @inlinable @discardableResult
     public func setBashEventsStatus(ids: [UInt64], status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetBashEventsStatusResponse> {
-        self.setBashEventsStatus(SetBashEventsStatusRequest(ids: ids, status: status), region: region, logger: logger, on: eventLoop)
+        let input = SetBashEventsStatusRequest(ids: ids, status: status)
+        return self.client.execute(action: "SetBashEventsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置高危命令事件状态
     @inlinable @discardableResult
     public func setBashEventsStatus(ids: [UInt64], status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetBashEventsStatusResponse {
-        try await self.setBashEventsStatus(SetBashEventsStatusRequest(ids: ids, status: status), region: region, logger: logger, on: eventLoop)
+        let input = SetBashEventsStatusRequest(ids: ids, status: status)
+        return try await self.client.execute(action: "SetBashEventsStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

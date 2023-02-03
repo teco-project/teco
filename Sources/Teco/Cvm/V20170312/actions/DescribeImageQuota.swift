@@ -56,7 +56,8 @@ extension Cvm {
     /// 本接口(DescribeImageQuota)用于查询用户帐号的镜像配额。
     @inlinable
     public func describeImageQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageQuotaResponse> {
-        self.describeImageQuota(DescribeImageQuotaRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageQuotaRequest()
+        return self.client.execute(action: "DescribeImageQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像配额上限
@@ -64,6 +65,7 @@ extension Cvm {
     /// 本接口(DescribeImageQuota)用于查询用户帐号的镜像配额。
     @inlinable
     public func describeImageQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageQuotaResponse {
-        try await self.describeImageQuota(DescribeImageQuotaRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageQuotaRequest()
+        return try await self.client.execute(action: "DescribeImageQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

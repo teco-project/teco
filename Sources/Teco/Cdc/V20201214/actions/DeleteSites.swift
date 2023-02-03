@@ -54,12 +54,14 @@ extension Cdc {
     /// 删除站点
     @inlinable @discardableResult
     public func deleteSites(siteIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSitesResponse> {
-        self.deleteSites(DeleteSitesRequest(siteIds: siteIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSitesRequest(siteIds: siteIds)
+        return self.client.execute(action: "DeleteSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除站点
     @inlinable @discardableResult
     public func deleteSites(siteIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSitesResponse {
-        try await self.deleteSites(DeleteSitesRequest(siteIds: siteIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSitesRequest(siteIds: siteIds)
+        return try await self.client.execute(action: "DeleteSites", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

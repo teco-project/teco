@@ -63,12 +63,14 @@ extension Ccc {
     /// 重置话机注册密码
     @inlinable
     public func resetExtensionPassword(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetExtensionPasswordResponse> {
-        self.resetExtensionPassword(ResetExtensionPasswordRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
+        let input = ResetExtensionPasswordRequest(sdkAppId: sdkAppId, extensionId: extensionId)
+        return self.client.execute(action: "ResetExtensionPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置话机注册密码
     @inlinable
     public func resetExtensionPassword(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetExtensionPasswordResponse {
-        try await self.resetExtensionPassword(ResetExtensionPasswordRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
+        let input = ResetExtensionPasswordRequest(sdkAppId: sdkAppId, extensionId: extensionId)
+        return try await self.client.execute(action: "ResetExtensionPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

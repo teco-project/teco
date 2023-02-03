@@ -68,12 +68,14 @@ extension Billing {
     /// 获取COS产品用量明细
     @inlinable
     public func describeDosageCosDetailByDate(startDate: String, endDate: String, bucketName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDosageCosDetailByDateResponse> {
-        self.describeDosageCosDetailByDate(DescribeDosageCosDetailByDateRequest(startDate: startDate, endDate: endDate, bucketName: bucketName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDosageCosDetailByDateRequest(startDate: startDate, endDate: endDate, bucketName: bucketName)
+        return self.client.execute(action: "DescribeDosageCosDetailByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取COS产品用量明细
     @inlinable
     public func describeDosageCosDetailByDate(startDate: String, endDate: String, bucketName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDosageCosDetailByDateResponse {
-        try await self.describeDosageCosDetailByDate(DescribeDosageCosDetailByDateRequest(startDate: startDate, endDate: endDate, bucketName: bucketName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDosageCosDetailByDateRequest(startDate: startDate, endDate: endDate, bucketName: bucketName)
+        return try await self.client.execute(action: "DescribeDosageCosDetailByDate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

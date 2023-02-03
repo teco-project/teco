@@ -60,7 +60,8 @@ extension Kms {
     /// 用于删除导入的密钥材料，仅对EXTERNAL类型的CMK有效，该接口将CMK设置为PendingImport 状态，并不会删除CMK，在重新进行密钥导入后可继续使用。彻底删除CMK请使用 ScheduleKeyDeletion 接口。
     @inlinable @discardableResult
     public func deleteImportedKeyMaterial(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImportedKeyMaterialResponse> {
-        self.deleteImportedKeyMaterial(DeleteImportedKeyMaterialRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteImportedKeyMaterialRequest(keyId: keyId)
+        return self.client.execute(action: "DeleteImportedKeyMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除导入的密钥材料
@@ -68,6 +69,7 @@ extension Kms {
     /// 用于删除导入的密钥材料，仅对EXTERNAL类型的CMK有效，该接口将CMK设置为PendingImport 状态，并不会删除CMK，在重新进行密钥导入后可继续使用。彻底删除CMK请使用 ScheduleKeyDeletion 接口。
     @inlinable @discardableResult
     public func deleteImportedKeyMaterial(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImportedKeyMaterialResponse {
-        try await self.deleteImportedKeyMaterial(DeleteImportedKeyMaterialRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteImportedKeyMaterialRequest(keyId: keyId)
+        return try await self.client.execute(action: "DeleteImportedKeyMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

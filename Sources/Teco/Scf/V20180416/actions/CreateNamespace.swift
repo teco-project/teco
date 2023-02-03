@@ -65,7 +65,8 @@ extension Scf {
     /// 该接口根据传入的参数创建命名空间。
     @inlinable @discardableResult
     public func createNamespace(namespace: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNamespaceResponse> {
-        self.createNamespace(CreateNamespaceRequest(namespace: namespace, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateNamespaceRequest(namespace: namespace, description: description)
+        return self.client.execute(action: "CreateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建命名空间
@@ -73,6 +74,7 @@ extension Scf {
     /// 该接口根据传入的参数创建命名空间。
     @inlinable @discardableResult
     public func createNamespace(namespace: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespaceResponse {
-        try await self.createNamespace(CreateNamespaceRequest(namespace: namespace, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateNamespaceRequest(namespace: namespace, description: description)
+        return try await self.client.execute(action: "CreateNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Dlc {
     /// 解绑用户上的用户组
     @inlinable @discardableResult
     public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindWorkGroupsFromUserResponse> {
-        self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
+        let input = UnbindWorkGroupsFromUserRequest(addInfo: addInfo)
+        return self.client.execute(action: "UnbindWorkGroupsFromUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑用户上的用户组
     @inlinable @discardableResult
     public func unbindWorkGroupsFromUser(addInfo: WorkGroupIdSetOfUserId, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindWorkGroupsFromUserResponse {
-        try await self.unbindWorkGroupsFromUser(UnbindWorkGroupsFromUserRequest(addInfo: addInfo), region: region, logger: logger, on: eventLoop)
+        let input = UnbindWorkGroupsFromUserRequest(addInfo: addInfo)
+        return try await self.client.execute(action: "UnbindWorkGroupsFromUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

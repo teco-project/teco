@@ -107,7 +107,8 @@ extension Captcha {
     /// 安全验证码查询请求数据概况，例如：按照时间段查询数据  昨日请求量、昨日恶意比例、昨日验证量、昨日通过量、昨日恶意拦截量……
     @inlinable
     public func describeCaptchaDataSum(captchaAppId: Int64, start: Int64, end: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaDataSumResponse> {
-        self.describeCaptchaDataSum(DescribeCaptchaDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCaptchaDataSumRequest(captchaAppId: captchaAppId, start: start, end: end)
+        return self.client.execute(action: "DescribeCaptchaDataSum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码查询请求数据概况
@@ -115,6 +116,7 @@ extension Captcha {
     /// 安全验证码查询请求数据概况，例如：按照时间段查询数据  昨日请求量、昨日恶意比例、昨日验证量、昨日通过量、昨日恶意拦截量……
     @inlinable
     public func describeCaptchaDataSum(captchaAppId: Int64, start: Int64, end: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaDataSumResponse {
-        try await self.describeCaptchaDataSum(DescribeCaptchaDataSumRequest(captchaAppId: captchaAppId, start: start, end: end), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCaptchaDataSumRequest(captchaAppId: captchaAppId, start: start, end: end)
+        return try await self.client.execute(action: "DescribeCaptchaDataSum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

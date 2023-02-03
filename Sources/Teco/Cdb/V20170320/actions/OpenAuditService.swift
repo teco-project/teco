@@ -82,7 +82,8 @@ extension Cdb {
     /// CDB实例开通审计服务
     @inlinable @discardableResult
     public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenAuditServiceResponse> {
-        self.openAuditService(OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay), region: region, logger: logger, on: eventLoop)
+        let input = OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay)
+        return self.client.execute(action: "OpenAuditService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通审计服务
@@ -90,6 +91,7 @@ extension Cdb {
     /// CDB实例开通审计服务
     @inlinable @discardableResult
     public func openAuditService(instanceId: String, logExpireDay: UInt64, highLogExpireDay: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenAuditServiceResponse {
-        try await self.openAuditService(OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay), region: region, logger: logger, on: eventLoop)
+        let input = OpenAuditServiceRequest(instanceId: instanceId, logExpireDay: logExpireDay, highLogExpireDay: highLogExpireDay)
+        return try await self.client.execute(action: "OpenAuditService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

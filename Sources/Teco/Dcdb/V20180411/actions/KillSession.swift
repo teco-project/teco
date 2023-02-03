@@ -79,7 +79,8 @@ extension Dcdb {
     /// 本接口（KillSession）用于杀死指定会话。
     @inlinable
     public func killSession(instanceId: String, sessionId: [Int64], shardId: String? = nil, shardSerialId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<KillSessionResponse> {
-        self.killSession(KillSessionRequest(instanceId: instanceId, sessionId: sessionId, shardId: shardId, shardSerialId: shardSerialId), region: region, logger: logger, on: eventLoop)
+        let input = KillSessionRequest(instanceId: instanceId, sessionId: sessionId, shardId: shardId, shardSerialId: shardSerialId)
+        return self.client.execute(action: "KillSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 杀死指定会话
@@ -87,6 +88,7 @@ extension Dcdb {
     /// 本接口（KillSession）用于杀死指定会话。
     @inlinable
     public func killSession(instanceId: String, sessionId: [Int64], shardId: String? = nil, shardSerialId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> KillSessionResponse {
-        try await self.killSession(KillSessionRequest(instanceId: instanceId, sessionId: sessionId, shardId: shardId, shardSerialId: shardSerialId), region: region, logger: logger, on: eventLoop)
+        let input = KillSessionRequest(instanceId: instanceId, sessionId: sessionId, shardId: shardId, shardSerialId: shardSerialId)
+        return try await self.client.execute(action: "KillSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

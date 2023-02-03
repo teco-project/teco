@@ -78,12 +78,14 @@ extension Dayu {
     /// 修改CC防护等级
     @inlinable
     public func modifyCCLevel(business: String, id: String, level: String, protocol: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCLevelResponse> {
-        self.modifyCCLevel(ModifyCCLevelRequest(business: business, id: id, level: level, protocol: `protocol`, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCLevelRequest(business: business, id: id, level: level, protocol: `protocol`, ruleId: ruleId)
+        return self.client.execute(action: "ModifyCCLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC防护等级
     @inlinable
     public func modifyCCLevel(business: String, id: String, level: String, protocol: String, ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelResponse {
-        try await self.modifyCCLevel(ModifyCCLevelRequest(business: business, id: id, level: level, protocol: `protocol`, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCLevelRequest(business: business, id: id, level: level, protocol: `protocol`, ruleId: ruleId)
+        return try await self.client.execute(action: "ModifyCCLevel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,12 +78,14 @@ extension Oceanus {
     /// 创建资源配置接口
     @inlinable
     public func createResourceConfig(resourceId: String, resourceLoc: ResourceLoc, remark: String? = nil, autoDelete: Int64? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceConfigResponse> {
-        self.createResourceConfig(CreateResourceConfigRequest(resourceId: resourceId, resourceLoc: resourceLoc, remark: remark, autoDelete: autoDelete, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateResourceConfigRequest(resourceId: resourceId, resourceLoc: resourceLoc, remark: remark, autoDelete: autoDelete, workSpaceId: workSpaceId)
+        return self.client.execute(action: "CreateResourceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建资源配置接口
     @inlinable
     public func createResourceConfig(resourceId: String, resourceLoc: ResourceLoc, remark: String? = nil, autoDelete: Int64? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceConfigResponse {
-        try await self.createResourceConfig(CreateResourceConfigRequest(resourceId: resourceId, resourceLoc: resourceLoc, remark: remark, autoDelete: autoDelete, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateResourceConfigRequest(resourceId: resourceId, resourceLoc: resourceLoc, remark: remark, autoDelete: autoDelete, workSpaceId: workSpaceId)
+        return try await self.client.execute(action: "CreateResourceConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

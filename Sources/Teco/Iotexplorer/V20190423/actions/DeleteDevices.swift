@@ -64,12 +64,14 @@ extension Iotexplorer {
     /// 批量删除设备
     @inlinable
     public func deleteDevices(devicesItems: [DevicesItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDevicesResponse> {
-        self.deleteDevices(DeleteDevicesRequest(devicesItems: devicesItems), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDevicesRequest(devicesItems: devicesItems)
+        return self.client.execute(action: "DeleteDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除设备
     @inlinable
     public func deleteDevices(devicesItems: [DevicesItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDevicesResponse {
-        try await self.deleteDevices(DeleteDevicesRequest(devicesItems: devicesItems), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDevicesRequest(devicesItems: devicesItems)
+        return try await self.client.execute(action: "DeleteDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

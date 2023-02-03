@@ -93,12 +93,14 @@ extension Dtf {
     /// 查询主事务列表
     @inlinable
     public func describeTransactions(groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTransactionsResponse> {
-        self.describeTransactions(DescribeTransactionsRequest(groupId: groupId, transactionBeginFrom: transactionBeginFrom, transactionBeginTo: transactionBeginTo, searchError: searchError, transactionId: transactionId, transactionIdList: transactionIdList, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTransactionsRequest(groupId: groupId, transactionBeginFrom: transactionBeginFrom, transactionBeginTo: transactionBeginTo, searchError: searchError, transactionId: transactionId, transactionIdList: transactionIdList, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeTransactions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询主事务列表
     @inlinable
     public func describeTransactions(groupId: String, transactionBeginFrom: Int64? = nil, transactionBeginTo: Int64? = nil, searchError: Bool? = nil, transactionId: Int64? = nil, transactionIdList: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTransactionsResponse {
-        try await self.describeTransactions(DescribeTransactionsRequest(groupId: groupId, transactionBeginFrom: transactionBeginFrom, transactionBeginTo: transactionBeginTo, searchError: searchError, transactionId: transactionId, transactionIdList: transactionIdList, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTransactionsRequest(groupId: groupId, transactionBeginFrom: transactionBeginFrom, transactionBeginTo: transactionBeginTo, searchError: searchError, transactionId: transactionId, transactionIdList: transactionIdList, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeTransactions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

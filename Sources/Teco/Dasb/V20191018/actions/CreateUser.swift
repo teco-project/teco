@@ -114,12 +114,14 @@ extension Dasb {
     /// 新建用户
     @inlinable
     public func createUser(userName: String, realName: String, phone: String, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserResponse> {
-        self.createUser(CreateUserRequest(userName: userName, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserRequest(userName: userName, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId)
+        return self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建用户
     @inlinable
     public func createUser(userName: String, realName: String, phone: String, email: String? = nil, validateFrom: Date? = nil, validateTo: Date? = nil, groupIdSet: [UInt64]? = nil, authType: UInt64? = nil, validateTime: String? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserResponse {
-        try await self.createUser(CreateUserRequest(userName: userName, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserRequest(userName: userName, realName: realName, phone: phone, email: email, validateFrom: validateFrom, validateTo: validateTo, groupIdSet: groupIdSet, authType: authType, validateTime: validateTime, departmentId: departmentId)
+        return try await self.client.execute(action: "CreateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

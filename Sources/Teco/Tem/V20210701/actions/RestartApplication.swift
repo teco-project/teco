@@ -68,12 +68,14 @@ extension Tem {
     /// 服务重启
     @inlinable
     public func restartApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartApplicationResponse> {
-        self.restartApplication(RestartApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
+        let input = RestartApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId)
+        return self.client.execute(action: "RestartApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务重启
     @inlinable
     public func restartApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartApplicationResponse {
-        try await self.restartApplication(RestartApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
+        let input = RestartApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId)
+        return try await self.client.execute(action: "RestartApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

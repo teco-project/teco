@@ -66,7 +66,8 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func disassociateDhcpIpWithAddressIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDhcpIpWithAddressIpResponse> {
-        self.disassociateDhcpIpWithAddressIp(DisassociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId)
+        return self.client.execute(action: "DisassociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DhcpIp解绑EIP
@@ -76,6 +77,7 @@ extension Vpc {
     /// >
     @inlinable @discardableResult
     public func disassociateDhcpIpWithAddressIp(dhcpIpId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDhcpIpWithAddressIpResponse {
-        try await self.disassociateDhcpIpWithAddressIp(DisassociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateDhcpIpWithAddressIpRequest(dhcpIpId: dhcpIpId)
+        return try await self.client.execute(action: "DisassociateDhcpIpWithAddressIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

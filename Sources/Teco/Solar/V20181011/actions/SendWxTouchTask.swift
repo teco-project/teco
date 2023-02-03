@@ -115,7 +115,8 @@ extension Solar {
     /// 发送企业微信触达任务
     @inlinable @discardableResult
     public func sendWxTouchTask(groupId: String, distinctFlag: Bool, isSendNow: Bool, sendDate: Int64, taskName: String, wxTouchType: String, title: String? = nil, content: String? = nil, newsId: String? = nil, smallProgramId: String? = nil, templateId: String? = nil, wxAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendWxTouchTaskResponse> {
-        self.sendWxTouchTask(SendWxTouchTaskRequest(groupId: groupId, distinctFlag: distinctFlag, isSendNow: isSendNow, sendDate: sendDate, taskName: taskName, wxTouchType: wxTouchType, title: title, content: content, newsId: newsId, smallProgramId: smallProgramId, templateId: templateId, wxAppId: wxAppId), region: region, logger: logger, on: eventLoop)
+        let input = SendWxTouchTaskRequest(groupId: groupId, distinctFlag: distinctFlag, isSendNow: isSendNow, sendDate: sendDate, taskName: taskName, wxTouchType: wxTouchType, title: title, content: content, newsId: newsId, smallProgramId: smallProgramId, templateId: templateId, wxAppId: wxAppId)
+        return self.client.execute(action: "SendWxTouchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送微信触达任务
@@ -123,6 +124,7 @@ extension Solar {
     /// 发送企业微信触达任务
     @inlinable @discardableResult
     public func sendWxTouchTask(groupId: String, distinctFlag: Bool, isSendNow: Bool, sendDate: Int64, taskName: String, wxTouchType: String, title: String? = nil, content: String? = nil, newsId: String? = nil, smallProgramId: String? = nil, templateId: String? = nil, wxAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendWxTouchTaskResponse {
-        try await self.sendWxTouchTask(SendWxTouchTaskRequest(groupId: groupId, distinctFlag: distinctFlag, isSendNow: isSendNow, sendDate: sendDate, taskName: taskName, wxTouchType: wxTouchType, title: title, content: content, newsId: newsId, smallProgramId: smallProgramId, templateId: templateId, wxAppId: wxAppId), region: region, logger: logger, on: eventLoop)
+        let input = SendWxTouchTaskRequest(groupId: groupId, distinctFlag: distinctFlag, isSendNow: isSendNow, sendDate: sendDate, taskName: taskName, wxTouchType: wxTouchType, title: title, content: content, newsId: newsId, smallProgramId: smallProgramId, templateId: templateId, wxAppId: wxAppId)
+        return try await self.client.execute(action: "SendWxTouchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

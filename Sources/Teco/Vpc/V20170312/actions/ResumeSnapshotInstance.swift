@@ -70,7 +70,8 @@ extension Vpc {
     /// 本接口（ResumeSnapshotInstance）用于根据备份内容恢复安全组策略。
     @inlinable @discardableResult
     public func resumeSnapshotInstance(snapshotPolicyId: String, snapshotFileId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeSnapshotInstanceResponse> {
-        self.resumeSnapshotInstance(ResumeSnapshotInstanceRequest(snapshotPolicyId: snapshotPolicyId, snapshotFileId: snapshotFileId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = ResumeSnapshotInstanceRequest(snapshotPolicyId: snapshotPolicyId, snapshotFileId: snapshotFileId, instanceId: instanceId)
+        return self.client.execute(action: "ResumeSnapshotInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复安全组策略
@@ -78,6 +79,7 @@ extension Vpc {
     /// 本接口（ResumeSnapshotInstance）用于根据备份内容恢复安全组策略。
     @inlinable @discardableResult
     public func resumeSnapshotInstance(snapshotPolicyId: String, snapshotFileId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeSnapshotInstanceResponse {
-        try await self.resumeSnapshotInstance(ResumeSnapshotInstanceRequest(snapshotPolicyId: snapshotPolicyId, snapshotFileId: snapshotFileId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = ResumeSnapshotInstanceRequest(snapshotPolicyId: snapshotPolicyId, snapshotFileId: snapshotFileId, instanceId: instanceId)
+        return try await self.client.execute(action: "ResumeSnapshotInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

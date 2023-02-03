@@ -83,12 +83,14 @@ extension Vod {
     /// 智能去除水印
     @inlinable
     public func removeWatermark(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveWatermarkResponse> {
-        self.removeWatermark(RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode), region: region, logger: logger, on: eventLoop)
+        let input = RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode)
+        return self.client.execute(action: "RemoveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智能去除水印
     @inlinable
     public func removeWatermark(fileId: String, subAppId: UInt64? = nil, sessionId: String? = nil, sessionContext: String? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveWatermarkResponse {
-        try await self.removeWatermark(RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode), region: region, logger: logger, on: eventLoop)
+        let input = RemoveWatermarkRequest(fileId: fileId, subAppId: subAppId, sessionId: sessionId, sessionContext: sessionContext, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode)
+        return try await self.client.execute(action: "RemoveWatermark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

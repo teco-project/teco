@@ -407,7 +407,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutScalingPolicyResponse> {
-        self.putScalingPolicy(PutScalingPolicyRequest(fleetId: fleetId, name: name, scalingAdjustment: scalingAdjustment, scalingAdjustmentType: scalingAdjustmentType, threshold: threshold, comparisonOperator: comparisonOperator, evaluationPeriods: evaluationPeriods, metricName: metricName, policyType: policyType, targetConfiguration: targetConfiguration), region: region, logger: logger, on: eventLoop)
+        let input = PutScalingPolicyRequest(fleetId: fleetId, name: name, scalingAdjustment: scalingAdjustment, scalingAdjustmentType: scalingAdjustmentType, threshold: threshold, comparisonOperator: comparisonOperator, evaluationPeriods: evaluationPeriods, metricName: metricName, policyType: policyType, targetConfiguration: targetConfiguration)
+        return self.client.execute(action: "PutScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置扩缩容策略
@@ -513,6 +514,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func putScalingPolicy(fleetId: String, name: String? = nil, scalingAdjustment: Int64? = nil, scalingAdjustmentType: String? = nil, threshold: Float? = nil, comparisonOperator: String? = nil, evaluationPeriods: Int64? = nil, metricName: String? = nil, policyType: String? = nil, targetConfiguration: TargetConfiguration? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutScalingPolicyResponse {
-        try await self.putScalingPolicy(PutScalingPolicyRequest(fleetId: fleetId, name: name, scalingAdjustment: scalingAdjustment, scalingAdjustmentType: scalingAdjustmentType, threshold: threshold, comparisonOperator: comparisonOperator, evaluationPeriods: evaluationPeriods, metricName: metricName, policyType: policyType, targetConfiguration: targetConfiguration), region: region, logger: logger, on: eventLoop)
+        let input = PutScalingPolicyRequest(fleetId: fleetId, name: name, scalingAdjustment: scalingAdjustment, scalingAdjustmentType: scalingAdjustmentType, threshold: threshold, comparisonOperator: comparisonOperator, evaluationPeriods: evaluationPeriods, metricName: metricName, policyType: policyType, targetConfiguration: targetConfiguration)
+        return try await self.client.execute(action: "PutScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

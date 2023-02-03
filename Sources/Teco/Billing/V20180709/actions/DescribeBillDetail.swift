@@ -151,12 +151,14 @@ extension Billing {
     /// 查询账单明细数据
     @inlinable
     public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillDetailResponse> {
-        self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode)
+        return self.client.execute(action: "DescribeBillDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账单明细数据
     @inlinable
     public func describeBillDetail(offset: UInt64, limit: UInt64, periodType: String? = nil, month: String? = nil, beginTime: String? = nil, endTime: String? = nil, needRecordNum: Int64? = nil, productCode: String? = nil, payMode: String? = nil, resourceId: String? = nil, actionType: String? = nil, projectId: Int64? = nil, businessCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillDetailResponse {
-        try await self.describeBillDetail(DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillDetailRequest(offset: offset, limit: limit, periodType: periodType, month: month, beginTime: beginTime, endTime: endTime, needRecordNum: needRecordNum, productCode: productCode, payMode: payMode, resourceId: resourceId, actionType: actionType, projectId: projectId, businessCode: businessCode)
+        return try await self.client.execute(action: "DescribeBillDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

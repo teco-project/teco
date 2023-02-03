@@ -65,7 +65,8 @@ extension Apigateway {
     /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。
     @inlinable
     public func describeApiApp(apiAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiAppResponse> {
-        self.describeApiApp(DescribeApiAppRequest(apiAppId: apiAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApiAppRequest(apiAppId: apiAppId)
+        return self.client.execute(action: "DescribeApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索应用
@@ -73,6 +74,7 @@ extension Apigateway {
     /// 本接口（DescribeApiApp）用于根据应用ID搜索应用。
     @inlinable
     public func describeApiApp(apiAppId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiAppResponse {
-        try await self.describeApiApp(DescribeApiAppRequest(apiAppId: apiAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApiAppRequest(apiAppId: apiAppId)
+        return try await self.client.execute(action: "DescribeApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

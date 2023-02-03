@@ -59,12 +59,14 @@ extension Monitor {
     /// 更新 Grafana 环境变量
     @inlinable @discardableResult
     public func updateGrafanaEnvironments(instanceId: String, envs: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaEnvironmentsResponse> {
-        self.updateGrafanaEnvironments(UpdateGrafanaEnvironmentsRequest(instanceId: instanceId, envs: envs), region: region, logger: logger, on: eventLoop)
+        let input = UpdateGrafanaEnvironmentsRequest(instanceId: instanceId, envs: envs)
+        return self.client.execute(action: "UpdateGrafanaEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新 Grafana 环境变量
     @inlinable @discardableResult
     public func updateGrafanaEnvironments(instanceId: String, envs: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaEnvironmentsResponse {
-        try await self.updateGrafanaEnvironments(UpdateGrafanaEnvironmentsRequest(instanceId: instanceId, envs: envs), region: region, logger: logger, on: eventLoop)
+        let input = UpdateGrafanaEnvironmentsRequest(instanceId: instanceId, envs: envs)
+        return try await self.client.execute(action: "UpdateGrafanaEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

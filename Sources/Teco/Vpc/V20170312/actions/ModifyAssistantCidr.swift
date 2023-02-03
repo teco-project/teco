@@ -75,7 +75,8 @@ extension Vpc {
     /// 本接口(ModifyAssistantCidr)用于批量修改辅助CIDR，支持新增和删除。
     @inlinable
     public func modifyAssistantCidr(vpcId: String, newCidrBlocks: [String]? = nil, oldCidrBlocks: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssistantCidrResponse> {
-        self.modifyAssistantCidr(ModifyAssistantCidrRequest(vpcId: vpcId, newCidrBlocks: newCidrBlocks, oldCidrBlocks: oldCidrBlocks), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssistantCidrRequest(vpcId: vpcId, newCidrBlocks: newCidrBlocks, oldCidrBlocks: oldCidrBlocks)
+        return self.client.execute(action: "ModifyAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改辅助CIDR
@@ -83,6 +84,7 @@ extension Vpc {
     /// 本接口(ModifyAssistantCidr)用于批量修改辅助CIDR，支持新增和删除。
     @inlinable
     public func modifyAssistantCidr(vpcId: String, newCidrBlocks: [String]? = nil, oldCidrBlocks: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssistantCidrResponse {
-        try await self.modifyAssistantCidr(ModifyAssistantCidrRequest(vpcId: vpcId, newCidrBlocks: newCidrBlocks, oldCidrBlocks: oldCidrBlocks), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssistantCidrRequest(vpcId: vpcId, newCidrBlocks: newCidrBlocks, oldCidrBlocks: oldCidrBlocks)
+        return try await self.client.execute(action: "ModifyAssistantCidr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

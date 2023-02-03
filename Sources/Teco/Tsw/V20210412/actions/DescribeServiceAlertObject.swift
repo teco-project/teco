@@ -46,12 +46,14 @@ extension Tsw {
     /// 获取告警对象-服务告警表
     @inlinable @discardableResult
     public func describeServiceAlertObject(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceAlertObjectResponse> {
-        self.describeServiceAlertObject(DescribeServiceAlertObjectRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceAlertObjectRequest()
+        return self.client.execute(action: "DescribeServiceAlertObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警对象-服务告警表
     @inlinable @discardableResult
     public func describeServiceAlertObject(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceAlertObjectResponse {
-        try await self.describeServiceAlertObject(DescribeServiceAlertObjectRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceAlertObjectRequest()
+        return try await self.client.execute(action: "DescribeServiceAlertObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

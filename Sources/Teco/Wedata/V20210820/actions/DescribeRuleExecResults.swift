@@ -64,12 +64,14 @@ extension Wedata {
     /// 规则执行结果列表查询
     @inlinable
     public func describeRuleExecResults(ruleGroupExecId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecResultsResponse> {
-        self.describeRuleExecResults(DescribeRuleExecResultsRequest(ruleGroupExecId: ruleGroupExecId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleExecResultsRequest(ruleGroupExecId: ruleGroupExecId, projectId: projectId)
+        return self.client.execute(action: "DescribeRuleExecResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 规则执行结果列表查询
     @inlinable
     public func describeRuleExecResults(ruleGroupExecId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsResponse {
-        try await self.describeRuleExecResults(DescribeRuleExecResultsRequest(ruleGroupExecId: ruleGroupExecId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleExecResultsRequest(ruleGroupExecId: ruleGroupExecId, projectId: projectId)
+        return try await self.client.execute(action: "DescribeRuleExecResults", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

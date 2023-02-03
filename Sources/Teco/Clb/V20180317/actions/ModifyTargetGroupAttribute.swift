@@ -70,7 +70,8 @@ extension Clb {
     /// 修改目标组的名称或者默认端口属性
     @inlinable @discardableResult
     public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetGroupAttributeResponse> {
-        self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port)
+        return self.client.execute(action: "ModifyTargetGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改目标组属性
@@ -78,6 +79,7 @@ extension Clb {
     /// 修改目标组的名称或者默认端口属性
     @inlinable @discardableResult
     public func modifyTargetGroupAttribute(targetGroupId: String, targetGroupName: String? = nil, port: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupAttributeResponse {
-        try await self.modifyTargetGroupAttribute(ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTargetGroupAttributeRequest(targetGroupId: targetGroupId, targetGroupName: targetGroupName, port: port)
+        return try await self.client.execute(action: "ModifyTargetGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

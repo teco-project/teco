@@ -74,7 +74,8 @@ extension Clb {
     /// 创建CLB专有日志集，此日志集用于存储CLB的日志。
     @inlinable
     public func createClsLogSet(logsetName: String? = nil, period: UInt64? = nil, logsetType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClsLogSetResponse> {
-        self.createClsLogSet(CreateClsLogSetRequest(logsetName: logsetName, period: period, logsetType: logsetType), region: region, logger: logger, on: eventLoop)
+        let input = CreateClsLogSetRequest(logsetName: logsetName, period: period, logsetType: logsetType)
+        return self.client.execute(action: "CreateClsLogSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建CLB专有日志集
@@ -82,6 +83,7 @@ extension Clb {
     /// 创建CLB专有日志集，此日志集用于存储CLB的日志。
     @inlinable
     public func createClsLogSet(logsetName: String? = nil, period: UInt64? = nil, logsetType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClsLogSetResponse {
-        try await self.createClsLogSet(CreateClsLogSetRequest(logsetName: logsetName, period: period, logsetType: logsetType), region: region, logger: logger, on: eventLoop)
+        let input = CreateClsLogSetRequest(logsetName: logsetName, period: period, logsetType: logsetType)
+        return try await self.client.execute(action: "CreateClsLogSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

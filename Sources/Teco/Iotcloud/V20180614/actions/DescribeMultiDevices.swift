@@ -87,7 +87,8 @@ extension Iotcloud {
     /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
     @inlinable
     public func describeMultiDevices(productId: String, taskId: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevicesResponse> {
-        self.describeMultiDevices(DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeMultiDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取创建多设备结果
@@ -95,6 +96,7 @@ extension Iotcloud {
     /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
     @inlinable
     public func describeMultiDevices(productId: String, taskId: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevicesResponse {
-        try await self.describeMultiDevices(DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMultiDevicesRequest(productId: productId, taskId: taskId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeMultiDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

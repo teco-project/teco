@@ -89,7 +89,8 @@ extension As {
     /// * 本接口支持批量操作，每次请求关机实例的上限为100
     @inlinable
     public func stopAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopAutoScalingInstancesResponse> {
-        self.stopAutoScalingInstances(StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode), region: region, logger: logger, on: eventLoop)
+        let input = StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode)
+        return self.client.execute(action: "StopAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭伸缩组内 CVM 实例
@@ -101,6 +102,7 @@ extension As {
     /// * 本接口支持批量操作，每次请求关机实例的上限为100
     @inlinable
     public func stopAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], stoppedMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopAutoScalingInstancesResponse {
-        try await self.stopAutoScalingInstances(StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode), region: region, logger: logger, on: eventLoop)
+        let input = StopAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, stoppedMode: stoppedMode)
+        return try await self.client.execute(action: "StopAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

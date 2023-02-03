@@ -82,7 +82,8 @@ extension Habo {
     /// 上传样本到哈勃进行分析，异步生成分析日志。
     @inlinable
     public func startAnalyse(pk: String, md5: String, dlUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAnalyseResponse> {
-        self.startAnalyse(StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl), region: region, logger: logger, on: eventLoop)
+        let input = StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl)
+        return self.client.execute(action: "StartAnalyse", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分析样本
@@ -90,6 +91,7 @@ extension Habo {
     /// 上传样本到哈勃进行分析，异步生成分析日志。
     @inlinable
     public func startAnalyse(pk: String, md5: String, dlUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAnalyseResponse {
-        try await self.startAnalyse(StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl), region: region, logger: logger, on: eventLoop)
+        let input = StartAnalyseRequest(pk: pk, md5: md5, dlUrl: dlUrl)
+        return try await self.client.execute(action: "StartAnalyse", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

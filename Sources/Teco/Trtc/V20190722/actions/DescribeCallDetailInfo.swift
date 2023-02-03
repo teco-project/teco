@@ -137,7 +137,8 @@ extension Trtc {
     /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
     @inlinable
     public func describeCallDetailInfo(commId: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, userIds: [String]? = nil, dataType: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallDetailInfoResponse> {
-        self.describeCallDetailInfo(DescribeCallDetailInfoRequest(commId: commId, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, userIds: userIds, dataType: dataType, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCallDetailInfoRequest(commId: commId, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, userIds: userIds, dataType: dataType, pageNumber: pageNumber, pageSize: pageSize)
+        return self.client.execute(action: "DescribeCallDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询历史用户列表与通话指标
@@ -148,6 +149,7 @@ extension Trtc {
     /// 2.该接口目前免费提供中，监控仪表盘商业化计费后该接口需要订阅付费版后方可调用，仪表盘商业化说明请见：https://cloud.tencent.com/document/product/647/77735
     @inlinable
     public func describeCallDetailInfo(commId: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, userIds: [String]? = nil, dataType: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallDetailInfoResponse {
-        try await self.describeCallDetailInfo(DescribeCallDetailInfoRequest(commId: commId, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, userIds: userIds, dataType: dataType, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCallDetailInfoRequest(commId: commId, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, userIds: userIds, dataType: dataType, pageNumber: pageNumber, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeCallDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

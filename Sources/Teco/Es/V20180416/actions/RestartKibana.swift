@@ -54,12 +54,14 @@ extension Es {
     /// 重启Kibana
     @inlinable @discardableResult
     public func restartKibana(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartKibanaResponse> {
-        self.restartKibana(RestartKibanaRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = RestartKibanaRequest(instanceId: instanceId)
+        return self.client.execute(action: "RestartKibana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启Kibana
     @inlinable @discardableResult
     public func restartKibana(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartKibanaResponse {
-        try await self.restartKibana(RestartKibanaRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = RestartKibanaRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "RestartKibana", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

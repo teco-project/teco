@@ -83,7 +83,8 @@ extension Domain {
     /// 本接口用于获取已验证的手机邮箱列表
     @inlinable
     public func describePhoneEmailList(type: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, code: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePhoneEmailListResponse> {
-        self.describePhoneEmailList(DescribePhoneEmailListRequest(type: type, offset: offset, limit: limit, code: code), region: region, logger: logger, on: eventLoop)
+        let input = DescribePhoneEmailListRequest(type: type, offset: offset, limit: limit, code: code)
+        return self.client.execute(action: "DescribePhoneEmailList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 已验证手机邮箱列表
@@ -91,6 +92,7 @@ extension Domain {
     /// 本接口用于获取已验证的手机邮箱列表
     @inlinable
     public func describePhoneEmailList(type: UInt64? = nil, offset: UInt64? = nil, limit: UInt64? = nil, code: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePhoneEmailListResponse {
-        try await self.describePhoneEmailList(DescribePhoneEmailListRequest(type: type, offset: offset, limit: limit, code: code), region: region, logger: logger, on: eventLoop)
+        let input = DescribePhoneEmailListRequest(type: type, offset: offset, limit: limit, code: code)
+        return try await self.client.execute(action: "DescribePhoneEmailList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

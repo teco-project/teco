@@ -119,7 +119,8 @@ extension Teo {
     /// 七层查询缓存分析top类流量数据
     @inlinable
     public func describeTopL7CacheData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopL7CacheDataResponse> {
-        self.describeTopL7CacheData(DescribeTopL7CacheDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopL7CacheDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area)
+        return self.client.execute(action: "DescribeTopL7CacheData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 七层缓存分析类top流量数据接口
@@ -127,6 +128,7 @@ extension Teo {
     /// 七层查询缓存分析top类流量数据
     @inlinable
     public func describeTopL7CacheData(startTime: Date, endTime: Date, metricName: String, limit: Int64, interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopL7CacheDataResponse {
-        try await self.describeTopL7CacheData(DescribeTopL7CacheDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopL7CacheDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, interval: interval, zoneIds: zoneIds, filters: filters, area: area)
+        return try await self.client.execute(action: "DescribeTopL7CacheData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

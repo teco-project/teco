@@ -111,12 +111,14 @@ extension Teo {
     /// 查询七层数据分析类时序流量数据
     @inlinable
     public func describeTimingL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL7AnalysisDataResponse> {
-        self.describeTimingL7AnalysisData(DescribeTimingL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimingL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area)
+        return self.client.execute(action: "DescribeTimingL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询七层数据分析类时序流量数据
     @inlinable
     public func describeTimingL7AnalysisData(startTime: Date, endTime: Date, metricNames: [String], interval: String, zoneIds: [String]? = nil, filters: [Filter]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7AnalysisDataResponse {
-        try await self.describeTimingL7AnalysisData(DescribeTimingL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimingL7AnalysisDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, interval: interval, zoneIds: zoneIds, filters: filters, area: area)
+        return try await self.client.execute(action: "DescribeTimingL7AnalysisData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

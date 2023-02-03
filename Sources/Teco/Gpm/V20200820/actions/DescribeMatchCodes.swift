@@ -77,13 +77,15 @@ extension Gpm {
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(offset: Int64, limit: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchCodesResponse> {
-        self.describeMatchCodes(DescribeMatchCodesRequest(offset: offset, limit: limit, matchCode: matchCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMatchCodesRequest(offset: offset, limit: limit, matchCode: matchCode)
+        return self.client.execute(action: "DescribeMatchCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询匹配Code
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(offset: Int64, limit: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {
-        try await self.describeMatchCodes(DescribeMatchCodesRequest(offset: offset, limit: limit, matchCode: matchCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMatchCodesRequest(offset: offset, limit: limit, matchCode: matchCode)
+        return try await self.client.execute(action: "DescribeMatchCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -83,12 +83,14 @@ extension Iotvideo {
     /// 开通云存服务
     @inlinable @discardableResult
     public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudStorageResponse> {
-        self.createCloudStorage(CreateCloudStorageRequest(productId: productId, deviceName: deviceName, packageId: packageId, override: override), region: region, logger: logger, on: eventLoop)
+        let input = CreateCloudStorageRequest(productId: productId, deviceName: deviceName, packageId: packageId, override: override)
+        return self.client.execute(action: "CreateCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通云存服务
     @inlinable @discardableResult
     public func createCloudStorage(productId: String, deviceName: String, packageId: String, override: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudStorageResponse {
-        try await self.createCloudStorage(CreateCloudStorageRequest(productId: productId, deviceName: deviceName, packageId: packageId, override: override), region: region, logger: logger, on: eventLoop)
+        let input = CreateCloudStorageRequest(productId: productId, deviceName: deviceName, packageId: packageId, override: override)
+        return try await self.client.execute(action: "CreateCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

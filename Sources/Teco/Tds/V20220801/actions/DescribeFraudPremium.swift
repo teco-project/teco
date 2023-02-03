@@ -102,12 +102,14 @@ extension Tds {
     /// 查询设备标识及风险
     @inlinable
     public func describeFraudPremium(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFraudPremiumResponse> {
-        self.describeFraudPremium(DescribeFraudPremiumRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFraudPremiumRequest(deviceToken: deviceToken)
+        return self.client.execute(action: "DescribeFraudPremium", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备标识及风险
     @inlinable
     public func describeFraudPremium(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFraudPremiumResponse {
-        try await self.describeFraudPremium(DescribeFraudPremiumRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFraudPremiumRequest(deviceToken: deviceToken)
+        return try await self.client.execute(action: "DescribeFraudPremium", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

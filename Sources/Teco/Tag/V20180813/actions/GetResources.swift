@@ -91,7 +91,8 @@ extension Tag {
     /// 查询绑定了标签的资源列表。
     @inlinable
     public func getResources(resourceList: [String]? = nil, tagFilters: [TagFilter]? = nil, paginationToken: String? = nil, maxResults: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetResourcesResponse> {
-        self.getResources(GetResourcesRequest(resourceList: resourceList, tagFilters: tagFilters, paginationToken: paginationToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
+        let input = GetResourcesRequest(resourceList: resourceList, tagFilters: tagFilters, paginationToken: paginationToken, maxResults: maxResults)
+        return self.client.execute(action: "GetResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资源标签列表
@@ -99,6 +100,7 @@ extension Tag {
     /// 查询绑定了标签的资源列表。
     @inlinable
     public func getResources(resourceList: [String]? = nil, tagFilters: [TagFilter]? = nil, paginationToken: String? = nil, maxResults: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetResourcesResponse {
-        try await self.getResources(GetResourcesRequest(resourceList: resourceList, tagFilters: tagFilters, paginationToken: paginationToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
+        let input = GetResourcesRequest(resourceList: resourceList, tagFilters: tagFilters, paginationToken: paginationToken, maxResults: maxResults)
+        return try await self.client.execute(action: "GetResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,12 +64,14 @@ extension Cloudstudio {
     /// 获取工作空间元信息
     @inlinable
     public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWorkspaceStatusResponse> {
-        self.describeWorkspaceStatus(DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey)
+        return self.client.execute(action: "DescribeWorkspaceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取工作空间元信息
     @inlinable
     public func describeWorkspaceStatus(cloudStudioSessionTeam: String, spaceKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWorkspaceStatusResponse {
-        try await self.describeWorkspaceStatus(DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWorkspaceStatusRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, spaceKey: spaceKey)
+        return try await self.client.execute(action: "DescribeWorkspaceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Gaap {
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
     @inlinable
     public func describeProxyGroupDetails(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupDetailsResponse> {
-        self.describeProxyGroupDetails(DescribeProxyGroupDetailsRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyGroupDetailsRequest(groupId: groupId)
+        return self.client.execute(action: "DescribeProxyGroupDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通道组详情
@@ -72,6 +73,7 @@ extension Gaap {
     /// 本接口（DescribeProxyGroupDetails）用于查询通道组详情。
     @inlinable
     public func describeProxyGroupDetails(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupDetailsResponse {
-        try await self.describeProxyGroupDetails(DescribeProxyGroupDetailsRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyGroupDetailsRequest(groupId: groupId)
+        return try await self.client.execute(action: "DescribeProxyGroupDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

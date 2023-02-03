@@ -79,7 +79,8 @@ extension Ess {
     /// 创建签署链接，需要联系运营人员开白后才可使用
     @inlinable
     public func createFlowSignUrl(flowId: String, flowApproverInfos: [FlowCreateApprover], organization: OrganizationInfo, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowSignUrlResponse> {
-        self.createFlowSignUrl(CreateFlowSignUrlRequest(flowId: flowId, flowApproverInfos: flowApproverInfos, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowSignUrlRequest(flowId: flowId, flowApproverInfos: flowApproverInfos, organization: organization, operator: `operator`)
+        return self.client.execute(action: "CreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建签署链接
@@ -87,6 +88,7 @@ extension Ess {
     /// 创建签署链接，需要联系运营人员开白后才可使用
     @inlinable
     public func createFlowSignUrl(flowId: String, flowApproverInfos: [FlowCreateApprover], organization: OrganizationInfo, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowSignUrlResponse {
-        try await self.createFlowSignUrl(CreateFlowSignUrlRequest(flowId: flowId, flowApproverInfos: flowApproverInfos, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowSignUrlRequest(flowId: flowId, flowApproverInfos: flowApproverInfos, organization: organization, operator: `operator`)
+        return try await self.client.execute(action: "CreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

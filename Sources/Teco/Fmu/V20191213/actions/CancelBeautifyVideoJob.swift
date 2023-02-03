@@ -60,7 +60,8 @@ extension Fmu {
     /// 撤销视频美颜任务请求
     @inlinable @discardableResult
     public func cancelBeautifyVideoJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelBeautifyVideoJobResponse> {
-        self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = CancelBeautifyVideoJobRequest(jobId: jobId)
+        return self.client.execute(action: "CancelBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤销视频美颜任务
@@ -68,6 +69,7 @@ extension Fmu {
     /// 撤销视频美颜任务请求
     @inlinable @discardableResult
     public func cancelBeautifyVideoJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelBeautifyVideoJobResponse {
-        try await self.cancelBeautifyVideoJob(CancelBeautifyVideoJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = CancelBeautifyVideoJobRequest(jobId: jobId)
+        return try await self.client.execute(action: "CancelBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,7 +78,8 @@ extension As {
     /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
     @inlinable
     public func removeInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveInstancesResponse> {
-        self.removeInstances(RemoveInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = RemoveInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds)
+        return self.client.execute(action: "RemoveInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 从伸缩组中删除 CVM 实例
@@ -89,6 +90,7 @@ extension As {
     /// * 对于伸缩组配置的 CLB，实例在离开伸缩组时，AS 会进行解挂载动作
     @inlinable
     public func removeInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveInstancesResponse {
-        try await self.removeInstances(RemoveInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = RemoveInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds)
+        return try await self.client.execute(action: "RemoveInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

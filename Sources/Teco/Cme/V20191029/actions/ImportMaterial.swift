@@ -113,7 +113,8 @@ extension Cme {
     /// 将云点播媒资文件导入到多媒体创作引擎媒体资源库。支持导入媒体归属团队或者个人。
     @inlinable
     public func importMaterial(platform: String, owner: Entity, name: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, classPath: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportMaterialResponse> {
-        self.importMaterial(ImportMaterialRequest(platform: platform, owner: owner, name: name, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, classPath: classPath, preProcessDefinition: preProcessDefinition, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = ImportMaterialRequest(platform: platform, owner: owner, name: name, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, classPath: classPath, preProcessDefinition: preProcessDefinition, operator: `operator`)
+        return self.client.execute(action: "ImportMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入媒体
@@ -121,6 +122,7 @@ extension Cme {
     /// 将云点播媒资文件导入到多媒体创作引擎媒体资源库。支持导入媒体归属团队或者个人。
     @inlinable
     public func importMaterial(platform: String, owner: Entity, name: String, sourceType: String? = nil, vodFileId: String? = nil, externalMediaInfo: ExternalMediaInfo? = nil, classPath: String? = nil, preProcessDefinition: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportMaterialResponse {
-        try await self.importMaterial(ImportMaterialRequest(platform: platform, owner: owner, name: name, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, classPath: classPath, preProcessDefinition: preProcessDefinition, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = ImportMaterialRequest(platform: platform, owner: owner, name: name, sourceType: sourceType, vodFileId: vodFileId, externalMediaInfo: externalMediaInfo, classPath: classPath, preProcessDefinition: preProcessDefinition, operator: `operator`)
+        return try await self.client.execute(action: "ImportMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

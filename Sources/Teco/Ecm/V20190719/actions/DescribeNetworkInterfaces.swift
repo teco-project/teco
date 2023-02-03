@@ -94,12 +94,14 @@ extension Ecm {
     /// 查询弹性网卡列表
     @inlinable
     public func describeNetworkInterfaces(networkInterfaceIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ecmRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetworkInterfacesResponse> {
-        self.describeNetworkInterfaces(DescribeNetworkInterfacesRequest(networkInterfaceIds: networkInterfaceIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNetworkInterfacesRequest(networkInterfaceIds: networkInterfaceIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion)
+        return self.client.execute(action: "DescribeNetworkInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性网卡列表
     @inlinable
     public func describeNetworkInterfaces(networkInterfaceIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ecmRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetworkInterfacesResponse {
-        try await self.describeNetworkInterfaces(DescribeNetworkInterfacesRequest(networkInterfaceIds: networkInterfaceIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNetworkInterfacesRequest(networkInterfaceIds: networkInterfaceIds, filters: filters, offset: offset, limit: limit, ecmRegion: ecmRegion)
+        return try await self.client.execute(action: "DescribeNetworkInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -74,7 +74,8 @@ extension Ump {
     /// 实时获取底图接口
     @inlinable
     public func describeImage(groupCode: String, mallId: UInt64, cameraId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageResponse> {
-        self.describeImage(DescribeImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId)
+        return self.client.execute(action: "DescribeImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取底图
@@ -82,6 +83,7 @@ extension Ump {
     /// 实时获取底图接口
     @inlinable
     public func describeImage(groupCode: String, mallId: UInt64, cameraId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
-        try await self.describeImage(DescribeImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId)
+        return try await self.client.execute(action: "DescribeImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

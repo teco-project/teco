@@ -69,7 +69,8 @@ extension Dlc {
     /// 本接口用于控制暂停或恢复数据引擎
     @inlinable
     public func suspendResumeDataEngine(dataEngineName: String, operate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SuspendResumeDataEngineResponse> {
-        self.suspendResumeDataEngine(SuspendResumeDataEngineRequest(dataEngineName: dataEngineName, operate: operate), region: region, logger: logger, on: eventLoop)
+        let input = SuspendResumeDataEngineRequest(dataEngineName: dataEngineName, operate: operate)
+        return self.client.execute(action: "SuspendResumeDataEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 暂停或恢复数据引擎
@@ -77,6 +78,7 @@ extension Dlc {
     /// 本接口用于控制暂停或恢复数据引擎
     @inlinable
     public func suspendResumeDataEngine(dataEngineName: String, operate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SuspendResumeDataEngineResponse {
-        try await self.suspendResumeDataEngine(SuspendResumeDataEngineRequest(dataEngineName: dataEngineName, operate: operate), region: region, logger: logger, on: eventLoop)
+        let input = SuspendResumeDataEngineRequest(dataEngineName: dataEngineName, operate: operate)
+        return try await self.client.execute(action: "SuspendResumeDataEngine", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡内网IPv6地址属性。
     @inlinable @discardableResult
     public func modifyIpv6AddressesAttribute(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIpv6AddressesAttributeResponse> {
-        self.modifyIpv6AddressesAttribute(ModifyIpv6AddressesAttributeRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
+        let input = ModifyIpv6AddressesAttributeRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses)
+        return self.client.execute(action: "ModifyIpv6AddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性网卡IPv6地址属性
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（ModifyIpv6AddressesAttribute）用于修改弹性网卡内网IPv6地址属性。
     @inlinable @discardableResult
     public func modifyIpv6AddressesAttribute(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIpv6AddressesAttributeResponse {
-        try await self.modifyIpv6AddressesAttribute(ModifyIpv6AddressesAttributeRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
+        let input = ModifyIpv6AddressesAttributeRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses)
+        return try await self.client.execute(action: "ModifyIpv6AddressesAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

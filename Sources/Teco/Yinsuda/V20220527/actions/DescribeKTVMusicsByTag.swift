@@ -95,7 +95,8 @@ extension Yinsuda {
     /// 通过标签过滤歌曲列表。
     @inlinable
     public func describeKTVMusicsByTag(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVMusicsByTagResponse> {
-        self.describeKTVMusicsByTag(DescribeKTVMusicsByTagRequest(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVMusicsByTagRequest(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters)
+        return self.client.execute(action: "DescribeKTVMusicsByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取标签歌曲
@@ -103,6 +104,7 @@ extension Yinsuda {
     /// 通过标签过滤歌曲列表。
     @inlinable
     public func describeKTVMusicsByTag(appName: String, userId: String, tagId: String, scrollToken: String? = nil, limit: Int64? = nil, rightFilters: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicsByTagResponse {
-        try await self.describeKTVMusicsByTag(DescribeKTVMusicsByTagRequest(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVMusicsByTagRequest(appName: appName, userId: userId, tagId: tagId, scrollToken: scrollToken, limit: limit, rightFilters: rightFilters)
+        return try await self.client.execute(action: "DescribeKTVMusicsByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

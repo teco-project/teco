@@ -64,12 +64,14 @@ extension Ciam {
     /// 查询任务详情
     @inlinable
     public func listJobs(userStoreId: String, jobIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListJobsResponse> {
-        self.listJobs(ListJobsRequest(userStoreId: userStoreId, jobIds: jobIds), region: region, logger: logger, on: eventLoop)
+        let input = ListJobsRequest(userStoreId: userStoreId, jobIds: jobIds)
+        return self.client.execute(action: "ListJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务详情
     @inlinable
     public func listJobs(userStoreId: String, jobIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListJobsResponse {
-        try await self.listJobs(ListJobsRequest(userStoreId: userStoreId, jobIds: jobIds), region: region, logger: logger, on: eventLoop)
+        let input = ListJobsRequest(userStoreId: userStoreId, jobIds: jobIds)
+        return try await self.client.execute(action: "ListJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

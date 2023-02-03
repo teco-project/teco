@@ -106,7 +106,8 @@ extension Scf {
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
     @inlinable
     public func getAlias(functionName: String, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAliasResponse> {
-        self.getAlias(GetAliasRequest(functionName: functionName, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = GetAliasRequest(functionName: functionName, name: name, namespace: namespace)
+        return self.client.execute(action: "GetAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取别名详细信息
@@ -114,6 +115,7 @@ extension Scf {
     /// 获取别名的详细信息，包括名称、描述、版本、路由信息等。
     @inlinable
     public func getAlias(functionName: String, name: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAliasResponse {
-        try await self.getAlias(GetAliasRequest(functionName: functionName, name: name, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = GetAliasRequest(functionName: functionName, name: name, namespace: namespace)
+        return try await self.client.execute(action: "GetAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

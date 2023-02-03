@@ -90,7 +90,8 @@ extension Iotvideo {
     /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
     @inlinable
     public func controlDeviceData(productId: String, deviceName: String, data: String, method: String? = nil, dataTimestamp: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlDeviceDataResponse> {
-        self.controlDeviceData(ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, dataTimestamp: dataTimestamp), region: region, logger: logger, on: eventLoop)
+        let input = ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, dataTimestamp: dataTimestamp)
+        return self.client.execute(action: "ControlDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设备远程控制
@@ -98,6 +99,7 @@ extension Iotvideo {
     /// 根据设备产品ID、设备名称，设置控制设备的属性数据。
     @inlinable
     public func controlDeviceData(productId: String, deviceName: String, data: String, method: String? = nil, dataTimestamp: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDeviceDataResponse {
-        try await self.controlDeviceData(ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, dataTimestamp: dataTimestamp), region: region, logger: logger, on: eventLoop)
+        let input = ControlDeviceDataRequest(productId: productId, deviceName: deviceName, data: data, method: method, dataTimestamp: dataTimestamp)
+        return try await self.client.execute(action: "ControlDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -76,12 +76,14 @@ extension Tbaas {
     /// trustsql服务统一接口
     @inlinable
     public func srvInvoke(service: String, method: String, param: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SrvInvokeResponse> {
-        self.srvInvoke(SrvInvokeRequest(service: service, method: method, param: param), region: region, logger: logger, on: eventLoop)
+        let input = SrvInvokeRequest(service: service, method: method, param: param)
+        return self.client.execute(action: "SrvInvoke", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// trustsql服务统一接口
     @inlinable
     public func srvInvoke(service: String, method: String, param: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SrvInvokeResponse {
-        try await self.srvInvoke(SrvInvokeRequest(service: service, method: method, param: param), region: region, logger: logger, on: eventLoop)
+        let input = SrvInvokeRequest(service: service, method: method, param: param)
+        return try await self.client.execute(action: "SrvInvoke", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

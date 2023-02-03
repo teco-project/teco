@@ -75,7 +75,8 @@ extension Scf {
     /// 终止正在运行中的函数异步事件
     @inlinable @discardableResult
     public func terminateAsyncEvent(functionName: String, invokeRequestId: String, namespace: String? = nil, graceShutdown: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateAsyncEventResponse> {
-        self.terminateAsyncEvent(TerminateAsyncEventRequest(functionName: functionName, invokeRequestId: invokeRequestId, namespace: namespace, graceShutdown: graceShutdown), region: region, logger: logger, on: eventLoop)
+        let input = TerminateAsyncEventRequest(functionName: functionName, invokeRequestId: invokeRequestId, namespace: namespace, graceShutdown: graceShutdown)
+        return self.client.execute(action: "TerminateAsyncEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止函数异步事件
@@ -83,6 +84,7 @@ extension Scf {
     /// 终止正在运行中的函数异步事件
     @inlinable @discardableResult
     public func terminateAsyncEvent(functionName: String, invokeRequestId: String, namespace: String? = nil, graceShutdown: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateAsyncEventResponse {
-        try await self.terminateAsyncEvent(TerminateAsyncEventRequest(functionName: functionName, invokeRequestId: invokeRequestId, namespace: namespace, graceShutdown: graceShutdown), region: region, logger: logger, on: eventLoop)
+        let input = TerminateAsyncEventRequest(functionName: functionName, invokeRequestId: invokeRequestId, namespace: namespace, graceShutdown: graceShutdown)
+        return try await self.client.execute(action: "TerminateAsyncEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -93,7 +93,8 @@ extension Gaap {
     /// 该接口仅支持version3.0的通道。
     @inlinable @discardableResult
     public func createDomain(listenerId: String, domain: String, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDomainResponse> {
-        self.createDomain(CreateDomainRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
+        let input = CreateDomainRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, http3Supported: http3Supported)
+        return self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建HTTPS监听器的访问域名
@@ -102,6 +103,7 @@ extension Gaap {
     /// 该接口仅支持version3.0的通道。
     @inlinable @discardableResult
     public func createDomain(listenerId: String, domain: String, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDomainResponse {
-        try await self.createDomain(CreateDomainRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
+        let input = CreateDomainRequest(listenerId: listenerId, domain: domain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, http3Supported: http3Supported)
+        return try await self.client.execute(action: "CreateDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

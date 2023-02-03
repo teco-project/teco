@@ -84,7 +84,8 @@ extension Iai {
     /// 获取人员库信息。
     @inlinable
     public func getGroupInfo(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGroupInfoResponse> {
-        self.getGroupInfo(GetGroupInfoRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = GetGroupInfoRequest(groupId: groupId)
+        return self.client.execute(action: "GetGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人员库信息
@@ -92,6 +93,7 @@ extension Iai {
     /// 获取人员库信息。
     @inlinable
     public func getGroupInfo(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGroupInfoResponse {
-        try await self.getGroupInfo(GetGroupInfoRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = GetGroupInfoRequest(groupId: groupId)
+        return try await self.client.execute(action: "GetGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

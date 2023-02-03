@@ -133,7 +133,8 @@ extension Tmt {
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
     public func textTranslate(sourceText: String, source: String, target: String, projectId: Int64, untranslatedText: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextTranslateResponse> {
-        self.textTranslate(TextTranslateRequest(sourceText: sourceText, source: source, target: target, projectId: projectId, untranslatedText: untranslatedText), region: region, logger: logger, on: eventLoop)
+        let input = TextTranslateRequest(sourceText: sourceText, source: source, target: target, projectId: projectId, untranslatedText: untranslatedText)
+        return self.client.execute(action: "TextTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文本翻译
@@ -142,6 +143,7 @@ extension Tmt {
     /// 提示：对于一般开发者，我们建议优先使用SDK接入简化开发。SDK使用介绍请直接查看 5. 开发者资源 部分。
     @inlinable
     public func textTranslate(sourceText: String, source: String, target: String, projectId: Int64, untranslatedText: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextTranslateResponse {
-        try await self.textTranslate(TextTranslateRequest(sourceText: sourceText, source: source, target: target, projectId: projectId, untranslatedText: untranslatedText), region: region, logger: logger, on: eventLoop)
+        let input = TextTranslateRequest(sourceText: sourceText, source: source, target: target, projectId: projectId, untranslatedText: untranslatedText)
+        return try await self.client.execute(action: "TextTranslate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

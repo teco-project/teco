@@ -64,12 +64,14 @@ extension Iotvideoindustry {
     /// 获取预置位列表
     @inlinable
     public func describePresetList(channelId: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePresetListResponse> {
-        self.describePresetList(DescribePresetListRequest(channelId: channelId, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePresetListRequest(channelId: channelId, deviceId: deviceId)
+        return self.client.execute(action: "DescribePresetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取预置位列表
     @inlinable
     public func describePresetList(channelId: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePresetListResponse {
-        try await self.describePresetList(DescribePresetListRequest(channelId: channelId, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePresetListRequest(channelId: channelId, deviceId: deviceId)
+        return try await self.client.execute(action: "DescribePresetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

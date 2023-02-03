@@ -60,7 +60,8 @@ extension Cws {
     /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
     @inlinable
     public func describeVulsNumberTimeline(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberTimelineResponse> {
-        self.describeVulsNumberTimeline(DescribeVulsNumberTimelineRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulsNumberTimelineRequest()
+        return self.client.execute(action: "DescribeVulsNumberTimeline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看漏洞数随时间变化统计信息
@@ -68,6 +69,7 @@ extension Cws {
     /// 本接口 (DescribeVulsNumberTimeline) 用于查询漏洞数随时间变化统计信息。
     @inlinable
     public func describeVulsNumberTimeline(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberTimelineResponse {
-        try await self.describeVulsNumberTimeline(DescribeVulsNumberTimelineRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulsNumberTimelineRequest()
+        return try await self.client.execute(action: "DescribeVulsNumberTimeline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

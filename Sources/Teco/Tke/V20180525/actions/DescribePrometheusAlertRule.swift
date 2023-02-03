@@ -78,12 +78,14 @@ extension Tke {
     /// 获取告警规则列表
     @inlinable
     public func describePrometheusAlertRule(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAlertRuleResponse> {
-        self.describePrometheusAlertRule(DescribePrometheusAlertRuleRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusAlertRuleRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribePrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警规则列表
     @inlinable
     public func describePrometheusAlertRule(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertRuleResponse {
-        try await self.describePrometheusAlertRule(DescribePrometheusAlertRuleRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusAlertRuleRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribePrometheusAlertRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

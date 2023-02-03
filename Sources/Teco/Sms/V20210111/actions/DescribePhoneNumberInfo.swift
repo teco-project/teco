@@ -68,7 +68,8 @@ extension Sms {
     /// >- 例如：查询号码 +86018845720123，可以得到国家码 86、规范的 E.164 号码 +8618845720123 等信息。
     @inlinable
     public func describePhoneNumberInfo(phoneNumberSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePhoneNumberInfoResponse> {
-        self.describePhoneNumberInfo(DescribePhoneNumberInfoRequest(phoneNumberSet: phoneNumberSet), region: region, logger: logger, on: eventLoop)
+        let input = DescribePhoneNumberInfoRequest(phoneNumberSet: phoneNumberSet)
+        return self.client.execute(action: "DescribePhoneNumberInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 号码信息查询
@@ -77,6 +78,7 @@ extension Sms {
     /// >- 例如：查询号码 +86018845720123，可以得到国家码 86、规范的 E.164 号码 +8618845720123 等信息。
     @inlinable
     public func describePhoneNumberInfo(phoneNumberSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePhoneNumberInfoResponse {
-        try await self.describePhoneNumberInfo(DescribePhoneNumberInfoRequest(phoneNumberSet: phoneNumberSet), region: region, logger: logger, on: eventLoop)
+        let input = DescribePhoneNumberInfoRequest(phoneNumberSet: phoneNumberSet)
+        return try await self.client.execute(action: "DescribePhoneNumberInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

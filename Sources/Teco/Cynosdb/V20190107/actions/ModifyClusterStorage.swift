@@ -84,12 +84,14 @@ extension Cynosdb {
     /// 升级预付费存储
     @inlinable
     public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterStorageResponse> {
-        self.modifyClusterStorage(ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode)
+        return self.client.execute(action: "ModifyClusterStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级预付费存储
     @inlinable
     public func modifyClusterStorage(clusterId: String, newStorageLimit: Int64, oldStorageLimit: Int64, dealMode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterStorageResponse {
-        try await self.modifyClusterStorage(ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterStorageRequest(clusterId: clusterId, newStorageLimit: newStorageLimit, oldStorageLimit: oldStorageLimit, dealMode: dealMode)
+        return try await self.client.execute(action: "ModifyClusterStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

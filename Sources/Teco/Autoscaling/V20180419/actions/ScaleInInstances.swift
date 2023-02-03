@@ -87,7 +87,8 @@ extension As {
     /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
     @inlinable
     public func scaleInInstances(autoScalingGroupId: String, scaleInNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInInstancesResponse> {
-        self.scaleInInstances(ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber), region: region, logger: logger, on: eventLoop)
+        let input = ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber)
+        return self.client.execute(action: "ScaleInInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 指定数量缩容实例
@@ -101,6 +102,7 @@ extension As {
     /// * 缩容如果失败或者部分成功，最后期望实例数只会扣减实际缩容成功的实例数量
     @inlinable
     public func scaleInInstances(autoScalingGroupId: String, scaleInNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInInstancesResponse {
-        try await self.scaleInInstances(ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber), region: region, logger: logger, on: eventLoop)
+        let input = ScaleInInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleInNumber: scaleInNumber)
+        return try await self.client.execute(action: "ScaleInInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

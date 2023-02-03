@@ -82,7 +82,8 @@ extension Domain {
     /// 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
     @inlinable
     public func renewDomainBatch(period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDomainBatchResponse> {
-        self.renewDomainBatch(RenewDomainBatchRequest(period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = RenewDomainBatchRequest(period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag)
+        return self.client.execute(action: "RenewDomainBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量域名续费
@@ -90,6 +91,7 @@ extension Domain {
     /// 本接口 ( RenewDomainBatch ) 用于批量续费域名 。
     @inlinable
     public func renewDomainBatch(period: Int64, domains: [String], payMode: Int64, autoRenewFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDomainBatchResponse {
-        try await self.renewDomainBatch(RenewDomainBatchRequest(period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = RenewDomainBatchRequest(period: period, domains: domains, payMode: payMode, autoRenewFlag: autoRenewFlag)
+        return try await self.client.execute(action: "RenewDomainBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

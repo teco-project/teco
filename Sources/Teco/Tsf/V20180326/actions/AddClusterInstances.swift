@@ -120,7 +120,8 @@ extension Tsf {
     /// 添加云主机节点至TSF集群
     @inlinable
     public func addClusterInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, osCustomizeType: String? = nil, featureIdList: [String]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddClusterInstancesResponse> {
-        self.addClusterInstances(AddClusterInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, osCustomizeType: osCustomizeType, featureIdList: featureIdList, instanceAdvancedSettings: instanceAdvancedSettings, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = AddClusterInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, osCustomizeType: osCustomizeType, featureIdList: featureIdList, instanceAdvancedSettings: instanceAdvancedSettings, securityGroupIds: securityGroupIds)
+        return self.client.execute(action: "AddClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群添加云主机
@@ -128,6 +129,7 @@ extension Tsf {
     /// 添加云主机节点至TSF集群
     @inlinable
     public func addClusterInstances(clusterId: String, instanceIdList: [String], osName: String? = nil, imageId: String? = nil, password: String? = nil, keyId: String? = nil, sgId: String? = nil, instanceImportMode: String? = nil, osCustomizeType: String? = nil, featureIdList: [String]? = nil, instanceAdvancedSettings: InstanceAdvancedSettings? = nil, securityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddClusterInstancesResponse {
-        try await self.addClusterInstances(AddClusterInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, osCustomizeType: osCustomizeType, featureIdList: featureIdList, instanceAdvancedSettings: instanceAdvancedSettings, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = AddClusterInstancesRequest(clusterId: clusterId, instanceIdList: instanceIdList, osName: osName, imageId: imageId, password: password, keyId: keyId, sgId: sgId, instanceImportMode: instanceImportMode, osCustomizeType: osCustomizeType, featureIdList: featureIdList, instanceAdvancedSettings: instanceAdvancedSettings, securityGroupIds: securityGroupIds)
+        return try await self.client.execute(action: "AddClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

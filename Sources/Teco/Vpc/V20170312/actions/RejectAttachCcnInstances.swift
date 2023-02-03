@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（RejectAttachCcnInstances）用于跨账号关联实例时，云联网所有者拒绝关联操作。
     @inlinable @discardableResult
     public func rejectAttachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RejectAttachCcnInstancesResponse> {
-        self.rejectAttachCcnInstances(RejectAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
+        let input = RejectAttachCcnInstancesRequest(ccnId: ccnId, instances: instances)
+        return self.client.execute(action: "RejectAttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云联网拒绝关联实例
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（RejectAttachCcnInstances）用于跨账号关联实例时，云联网所有者拒绝关联操作。
     @inlinable @discardableResult
     public func rejectAttachCcnInstances(ccnId: String, instances: [CcnInstance], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RejectAttachCcnInstancesResponse {
-        try await self.rejectAttachCcnInstances(RejectAttachCcnInstancesRequest(ccnId: ccnId, instances: instances), region: region, logger: logger, on: eventLoop)
+        let input = RejectAttachCcnInstancesRequest(ccnId: ccnId, instances: instances)
+        return try await self.client.execute(action: "RejectAttachCcnInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

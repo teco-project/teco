@@ -65,7 +65,8 @@ extension Tke {
     /// 删除容器实例，可批量删除
     @inlinable @discardableResult
     public func deleteEKSContainerInstances(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEKSContainerInstancesResponse> {
-        self.deleteEKSContainerInstances(DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip)
+        return self.client.execute(action: "DeleteEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除容器实例
@@ -73,6 +74,7 @@ extension Tke {
     /// 删除容器实例，可批量删除
     @inlinable @discardableResult
     public func deleteEKSContainerInstances(eksCiIds: [String], releaseAutoCreatedEip: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSContainerInstancesResponse {
-        try await self.deleteEKSContainerInstances(DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEKSContainerInstancesRequest(eksCiIds: eksCiIds, releaseAutoCreatedEip: releaseAutoCreatedEip)
+        return try await self.client.execute(action: "DeleteEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

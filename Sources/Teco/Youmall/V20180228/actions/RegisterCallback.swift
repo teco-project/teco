@@ -75,7 +75,8 @@ extension Youmall {
     /// 调用本接口在优Mall中注册自己集团的到店通知回调接口地址，接口协议为HTTP或HTTPS。注册后，若集团有特殊身份（例如老客）到店通知，优Mall后台将主动将到店信息push给该接口
     @inlinable @discardableResult
     public func registerCallback(companyId: String, backUrl: String, time: UInt64, needFacePic: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCallbackResponse> {
-        self.registerCallback(RegisterCallbackRequest(companyId: companyId, backUrl: backUrl, time: time, needFacePic: needFacePic), region: region, logger: logger, on: eventLoop)
+        let input = RegisterCallbackRequest(companyId: companyId, backUrl: backUrl, time: time, needFacePic: needFacePic)
+        return self.client.execute(action: "RegisterCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 门店到访通知回调地址注册
@@ -83,6 +84,7 @@ extension Youmall {
     /// 调用本接口在优Mall中注册自己集团的到店通知回调接口地址，接口协议为HTTP或HTTPS。注册后，若集团有特殊身份（例如老客）到店通知，优Mall后台将主动将到店信息push给该接口
     @inlinable @discardableResult
     public func registerCallback(companyId: String, backUrl: String, time: UInt64, needFacePic: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCallbackResponse {
-        try await self.registerCallback(RegisterCallbackRequest(companyId: companyId, backUrl: backUrl, time: time, needFacePic: needFacePic), region: region, logger: logger, on: eventLoop)
+        let input = RegisterCallbackRequest(companyId: companyId, backUrl: backUrl, time: time, needFacePic: needFacePic)
+        return try await self.client.execute(action: "RegisterCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Ecm {
     /// 查询安全组关联实例统计
     @inlinable
     public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupAssociationStatisticsResponse> {
-        self.describeSecurityGroupAssociationStatistics(DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds)
+        return self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组关联统计
@@ -72,6 +73,7 @@ extension Ecm {
     /// 查询安全组关联实例统计
     @inlinable
     public func describeSecurityGroupAssociationStatistics(securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupAssociationStatisticsResponse {
-        try await self.describeSecurityGroupAssociationStatistics(DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityGroupAssociationStatisticsRequest(securityGroupIds: securityGroupIds)
+        return try await self.client.execute(action: "DescribeSecurityGroupAssociationStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

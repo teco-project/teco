@@ -64,7 +64,8 @@ extension Tcr {
     /// 用于获取个人版仓库中自动清理策略
     @inlinable
     public func describeImageLifecyclePersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageLifecyclePersonalResponse> {
-        self.describeImageLifecyclePersonal(DescribeImageLifecyclePersonalRequest(repoName: repoName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageLifecyclePersonalRequest(repoName: repoName)
+        return self.client.execute(action: "DescribeImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取个人版仓库自动清理策略
@@ -72,6 +73,7 @@ extension Tcr {
     /// 用于获取个人版仓库中自动清理策略
     @inlinable
     public func describeImageLifecyclePersonal(repoName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageLifecyclePersonalResponse {
-        try await self.describeImageLifecyclePersonal(DescribeImageLifecyclePersonalRequest(repoName: repoName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageLifecyclePersonalRequest(repoName: repoName)
+        return try await self.client.execute(action: "DescribeImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

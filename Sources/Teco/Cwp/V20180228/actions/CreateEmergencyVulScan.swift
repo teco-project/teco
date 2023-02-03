@@ -65,7 +65,8 @@ extension Cwp {
     /// 创建应急漏洞扫描任务
     @inlinable @discardableResult
     public func createEmergencyVulScan(vulId: UInt64, uuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEmergencyVulScanResponse> {
-        self.createEmergencyVulScan(CreateEmergencyVulScanRequest(vulId: vulId, uuids: uuids), region: region, logger: logger, on: eventLoop)
+        let input = CreateEmergencyVulScanRequest(vulId: vulId, uuids: uuids)
+        return self.client.execute(action: "CreateEmergencyVulScan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 应急漏洞扫描
@@ -73,6 +74,7 @@ extension Cwp {
     /// 创建应急漏洞扫描任务
     @inlinable @discardableResult
     public func createEmergencyVulScan(vulId: UInt64, uuids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEmergencyVulScanResponse {
-        try await self.createEmergencyVulScan(CreateEmergencyVulScanRequest(vulId: vulId, uuids: uuids), region: region, logger: logger, on: eventLoop)
+        let input = CreateEmergencyVulScanRequest(vulId: vulId, uuids: uuids)
+        return try await self.client.execute(action: "CreateEmergencyVulScan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

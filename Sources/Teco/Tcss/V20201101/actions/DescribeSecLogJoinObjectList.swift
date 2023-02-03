@@ -94,12 +94,14 @@ extension Tcss {
     /// 查询安全日志接入对象列表
     @inlinable
     public func describeSecLogJoinObjectList(logType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogJoinObjectListResponse> {
-        self.describeSecLogJoinObjectList(DescribeSecLogJoinObjectListRequest(logType: logType, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecLogJoinObjectListRequest(logType: logType, limit: limit, offset: offset, filters: filters, by: by, order: order)
+        return self.client.execute(action: "DescribeSecLogJoinObjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志接入对象列表
     @inlinable
     public func describeSecLogJoinObjectList(logType: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogJoinObjectListResponse {
-        try await self.describeSecLogJoinObjectList(DescribeSecLogJoinObjectListRequest(logType: logType, limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecLogJoinObjectListRequest(logType: logType, limit: limit, offset: offset, filters: filters, by: by, order: order)
+        return try await self.client.execute(action: "DescribeSecLogJoinObjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

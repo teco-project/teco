@@ -115,7 +115,8 @@ extension Vpc {
     /// </ul>
     @inlinable @discardableResult
     public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupPoliciesResponse> {
-        self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys)
+        return self.client.execute(action: "ModifySecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全组出站和入站规则
@@ -138,6 +139,7 @@ extension Vpc {
     /// </ul>
     @inlinable @discardableResult
     public func modifySecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, sortPolicys: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupPoliciesResponse {
-        try await self.modifySecurityGroupPolicies(ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet, sortPolicys: sortPolicys)
+        return try await self.client.execute(action: "ModifySecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

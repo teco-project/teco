@@ -116,7 +116,8 @@ extension Gaap {
     /// 该接口（CreateHTTPSListener）用于在通道实例下创建HTTPS协议类型的监听器。
     @inlinable
     public func createHTTPSListener(listenerName: String, port: UInt64, certificateId: String, forwardProtocol: String, proxyId: String? = nil, authType: UInt64? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, groupId: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHTTPSListenerResponse> {
-        self.createHTTPSListener(CreateHTTPSListenerRequest(listenerName: listenerName, port: port, certificateId: certificateId, forwardProtocol: forwardProtocol, proxyId: proxyId, authType: authType, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, groupId: groupId, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
+        let input = CreateHTTPSListenerRequest(listenerName: listenerName, port: port, certificateId: certificateId, forwardProtocol: forwardProtocol, proxyId: proxyId, authType: authType, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, groupId: groupId, http3Supported: http3Supported)
+        return self.client.execute(action: "CreateHTTPSListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建HTTPS监听器
@@ -124,6 +125,7 @@ extension Gaap {
     /// 该接口（CreateHTTPSListener）用于在通道实例下创建HTTPS协议类型的监听器。
     @inlinable
     public func createHTTPSListener(listenerName: String, port: UInt64, certificateId: String, forwardProtocol: String, proxyId: String? = nil, authType: UInt64? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, groupId: String? = nil, http3Supported: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHTTPSListenerResponse {
-        try await self.createHTTPSListener(CreateHTTPSListenerRequest(listenerName: listenerName, port: port, certificateId: certificateId, forwardProtocol: forwardProtocol, proxyId: proxyId, authType: authType, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, groupId: groupId, http3Supported: http3Supported), region: region, logger: logger, on: eventLoop)
+        let input = CreateHTTPSListenerRequest(listenerName: listenerName, port: port, certificateId: certificateId, forwardProtocol: forwardProtocol, proxyId: proxyId, authType: authType, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds, groupId: groupId, http3Supported: http3Supported)
+        return try await self.client.execute(action: "CreateHTTPSListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

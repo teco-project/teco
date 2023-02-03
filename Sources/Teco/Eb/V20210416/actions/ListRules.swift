@@ -82,12 +82,14 @@ extension Eb {
     /// 获取事件规则列表
     @inlinable
     public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRulesResponse> {
-        self.listRules(ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
+        let input = ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order)
+        return self.client.execute(action: "ListRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件规则列表
     @inlinable
     public func listRules(eventBusId: String, orderBy: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRulesResponse {
-        try await self.listRules(ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order), region: region, logger: logger, on: eventLoop)
+        let input = ListRulesRequest(eventBusId: eventBusId, orderBy: orderBy, limit: limit, offset: offset, order: order)
+        return try await self.client.execute(action: "ListRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

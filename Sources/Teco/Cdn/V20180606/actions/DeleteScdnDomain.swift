@@ -58,12 +58,14 @@ extension Cdn {
     /// 删除SCDN域名
     @inlinable
     public func deleteScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScdnDomainResponse> {
-        self.deleteScdnDomain(DeleteScdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DeleteScdnDomainRequest(domain: domain)
+        return self.client.execute(action: "DeleteScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除SCDN域名
     @inlinable
     public func deleteScdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScdnDomainResponse {
-        try await self.deleteScdnDomain(DeleteScdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DeleteScdnDomainRequest(domain: domain)
+        return try await self.client.execute(action: "DeleteScdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

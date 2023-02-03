@@ -117,7 +117,8 @@ extension Ssm {
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
     @inlinable
     public func listSecrets(offset: UInt64? = nil, limit: UInt64? = nil, orderType: UInt64? = nil, state: UInt64? = nil, searchSecretName: String? = nil, tagFilters: [TagFilter]? = nil, secretType: UInt64? = nil, productName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretsResponse> {
-        self.listSecrets(ListSecretsRequest(offset: offset, limit: limit, orderType: orderType, state: state, searchSecretName: searchSecretName, tagFilters: tagFilters, secretType: secretType, productName: productName), region: region, logger: logger, on: eventLoop)
+        let input = ListSecretsRequest(offset: offset, limit: limit, orderType: orderType, state: state, searchSecretName: searchSecretName, tagFilters: tagFilters, secretType: secretType, productName: productName)
+        return self.client.execute(action: "ListSecrets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取凭据的详细信息列表
@@ -125,6 +126,7 @@ extension Ssm {
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
     @inlinable
     public func listSecrets(offset: UInt64? = nil, limit: UInt64? = nil, orderType: UInt64? = nil, state: UInt64? = nil, searchSecretName: String? = nil, tagFilters: [TagFilter]? = nil, secretType: UInt64? = nil, productName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretsResponse {
-        try await self.listSecrets(ListSecretsRequest(offset: offset, limit: limit, orderType: orderType, state: state, searchSecretName: searchSecretName, tagFilters: tagFilters, secretType: secretType, productName: productName), region: region, logger: logger, on: eventLoop)
+        let input = ListSecretsRequest(offset: offset, limit: limit, orderType: orderType, state: state, searchSecretName: searchSecretName, tagFilters: tagFilters, secretType: secretType, productName: productName)
+        return try await self.client.execute(action: "ListSecrets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

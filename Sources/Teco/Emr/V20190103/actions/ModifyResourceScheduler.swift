@@ -70,7 +70,8 @@ extension Emr {
     /// 修改了yarn的资源调度器，点击部署生效
     @inlinable @discardableResult
     public func modifyResourceScheduler(instanceId: String, oldValue: String, newValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceSchedulerResponse> {
-        self.modifyResourceScheduler(ModifyResourceSchedulerRequest(instanceId: instanceId, oldValue: oldValue, newValue: newValue), region: region, logger: logger, on: eventLoop)
+        let input = ModifyResourceSchedulerRequest(instanceId: instanceId, oldValue: oldValue, newValue: newValue)
+        return self.client.execute(action: "ModifyResourceScheduler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改YARN的资源调度器
@@ -78,6 +79,7 @@ extension Emr {
     /// 修改了yarn的资源调度器，点击部署生效
     @inlinable @discardableResult
     public func modifyResourceScheduler(instanceId: String, oldValue: String, newValue: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceSchedulerResponse {
-        try await self.modifyResourceScheduler(ModifyResourceSchedulerRequest(instanceId: instanceId, oldValue: oldValue, newValue: newValue), region: region, logger: logger, on: eventLoop)
+        let input = ModifyResourceSchedulerRequest(instanceId: instanceId, oldValue: oldValue, newValue: newValue)
+        return try await self.client.execute(action: "ModifyResourceScheduler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

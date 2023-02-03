@@ -74,7 +74,8 @@ extension Vpc {
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
     @inlinable
     public func describeIpGeolocationDatabaseUrl(type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpGeolocationDatabaseUrlResponse> {
-        self.describeIpGeolocationDatabaseUrl(DescribeIpGeolocationDatabaseUrlRequest(type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIpGeolocationDatabaseUrlRequest(type: type)
+        return self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取IP地理位置库下载链接
@@ -82,6 +83,7 @@ extension Vpc {
     /// 本接口（DescribeIpGeolocationDatabaseUrl）用于获取IP地理位置库下载链接。
     @inlinable
     public func describeIpGeolocationDatabaseUrl(type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpGeolocationDatabaseUrlResponse {
-        try await self.describeIpGeolocationDatabaseUrl(DescribeIpGeolocationDatabaseUrlRequest(type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIpGeolocationDatabaseUrlRequest(type: type)
+        return try await self.client.execute(action: "DescribeIpGeolocationDatabaseUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

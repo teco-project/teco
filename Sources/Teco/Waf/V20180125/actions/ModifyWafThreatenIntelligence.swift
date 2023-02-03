@@ -58,12 +58,14 @@ extension Waf {
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
     public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWafThreatenIntelligenceResponse> {
-        self.modifyWafThreatenIntelligence(ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), region: region, logger: logger, on: eventLoop)
+        let input = ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails)
+        return self.client.execute(action: "ModifyWafThreatenIntelligence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置WAF威胁情报封禁模块详情
     @inlinable
     public func modifyWafThreatenIntelligence(wafThreatenIntelligenceDetails: WafThreatenIntelligenceDetails, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWafThreatenIntelligenceResponse {
-        try await self.modifyWafThreatenIntelligence(ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails), region: region, logger: logger, on: eventLoop)
+        let input = ModifyWafThreatenIntelligenceRequest(wafThreatenIntelligenceDetails: wafThreatenIntelligenceDetails)
+        return try await self.client.execute(action: "ModifyWafThreatenIntelligence", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

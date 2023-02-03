@@ -96,7 +96,8 @@ extension Vod {
     /// * 时间粒度为天，结束时间和起始时间的跨度最大为90天。
     @inlinable
     public func describeMediaPlayStatDetails(fileId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaPlayStatDetailsResponse> {
-        self.describeMediaPlayStatDetails(DescribeMediaPlayStatDetailsRequest(fileId: fileId, startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMediaPlayStatDetailsRequest(fileId: fileId, startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval)
+        return self.client.execute(action: "DescribeMediaPlayStatDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体文件按指定时间粒度统计的播放数据
@@ -107,6 +108,7 @@ extension Vod {
     /// * 时间粒度为天，结束时间和起始时间的跨度最大为90天。
     @inlinable
     public func describeMediaPlayStatDetails(fileId: String, startTime: String, endTime: String, subAppId: UInt64? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaPlayStatDetailsResponse {
-        try await self.describeMediaPlayStatDetails(DescribeMediaPlayStatDetailsRequest(fileId: fileId, startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMediaPlayStatDetailsRequest(fileId: fileId, startTime: startTime, endTime: endTime, subAppId: subAppId, interval: interval)
+        return try await self.client.execute(action: "DescribeMediaPlayStatDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

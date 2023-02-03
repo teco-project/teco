@@ -77,7 +77,8 @@ extension Dc {
     /// 获取用户互联网公网地址配额
     @inlinable
     public func describeInternetAddressQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInternetAddressQuotaResponse> {
-        self.describeInternetAddressQuota(DescribeInternetAddressQuotaRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInternetAddressQuotaRequest()
+        return self.client.execute(action: "DescribeInternetAddressQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取互联网公网地址配额
@@ -85,6 +86,7 @@ extension Dc {
     /// 获取用户互联网公网地址配额
     @inlinable
     public func describeInternetAddressQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInternetAddressQuotaResponse {
-        try await self.describeInternetAddressQuota(DescribeInternetAddressQuotaRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInternetAddressQuotaRequest()
+        return try await self.client.execute(action: "DescribeInternetAddressQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

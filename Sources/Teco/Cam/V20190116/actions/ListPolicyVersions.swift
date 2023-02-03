@@ -65,7 +65,8 @@ extension Cam {
     /// 该接口（ListPolicyVersions）用于获取策略版本列表
     @inlinable
     public func listPolicyVersions(policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListPolicyVersionsResponse> {
-        self.listPolicyVersions(ListPolicyVersionsRequest(policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = ListPolicyVersionsRequest(policyId: policyId)
+        return self.client.execute(action: "ListPolicyVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取策略版本列表
@@ -73,6 +74,7 @@ extension Cam {
     /// 该接口（ListPolicyVersions）用于获取策略版本列表
     @inlinable
     public func listPolicyVersions(policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPolicyVersionsResponse {
-        try await self.listPolicyVersions(ListPolicyVersionsRequest(policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = ListPolicyVersionsRequest(policyId: policyId)
+        return try await self.client.execute(action: "ListPolicyVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

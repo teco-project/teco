@@ -62,12 +62,14 @@ extension Batch {
     /// 获取批量计算可用区机型配置信息
     @inlinable
     public func describeCvmZoneInstanceConfigInfos(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCvmZoneInstanceConfigInfosResponse> {
-        self.describeCvmZoneInstanceConfigInfos(DescribeCvmZoneInstanceConfigInfosRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCvmZoneInstanceConfigInfosRequest(filters: filters)
+        return self.client.execute(action: "DescribeCvmZoneInstanceConfigInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取批量计算可用区机型配置信息
     @inlinable
     public func describeCvmZoneInstanceConfigInfos(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmZoneInstanceConfigInfosResponse {
-        try await self.describeCvmZoneInstanceConfigInfos(DescribeCvmZoneInstanceConfigInfosRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCvmZoneInstanceConfigInfosRequest(filters: filters)
+        return try await self.client.execute(action: "DescribeCvmZoneInstanceConfigInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

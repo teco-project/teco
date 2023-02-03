@@ -63,12 +63,14 @@ extension Cfg {
     /// 查询任务
     @inlinable
     public func describeTask(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResponse> {
-        self.describeTask(DescribeTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务
     @inlinable
     public func describeTask(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.describeTask(DescribeTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -74,12 +74,14 @@ extension Monitor {
     /// 删除全部的关联对象
     @inlinable @discardableResult
     public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindingAllPolicyObjectResponse> {
-        self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, ebSubject: ebSubject, ebEventFlag: ebEventFlag), region: region, logger: logger, on: eventLoop)
+        let input = UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, ebSubject: ebSubject, ebEventFlag: ebEventFlag)
+        return self.client.execute(action: "UnBindingAllPolicyObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除全部的关联对象
     @inlinable @discardableResult
     public func unBindingAllPolicyObject(module: String, groupId: Int64, policyId: String? = nil, ebSubject: String? = nil, ebEventFlag: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindingAllPolicyObjectResponse {
-        try await self.unBindingAllPolicyObject(UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, ebSubject: ebSubject, ebEventFlag: ebEventFlag), region: region, logger: logger, on: eventLoop)
+        let input = UnBindingAllPolicyObjectRequest(module: module, groupId: groupId, policyId: policyId, ebSubject: ebSubject, ebEventFlag: ebEventFlag)
+        return try await self.client.execute(action: "UnBindingAllPolicyObject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Cynosdb {
     /// SetRenewFlag设置实例的自动续费功能
     @inlinable
     public func setRenewFlag(resourceIds: [String], autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetRenewFlagResponse> {
-        self.setRenewFlag(SetRenewFlagRequest(resourceIds: resourceIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = SetRenewFlagRequest(resourceIds: resourceIds, autoRenewFlag: autoRenewFlag)
+        return self.client.execute(action: "SetRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置自动续费
@@ -77,6 +78,7 @@ extension Cynosdb {
     /// SetRenewFlag设置实例的自动续费功能
     @inlinable
     public func setRenewFlag(resourceIds: [String], autoRenewFlag: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetRenewFlagResponse {
-        try await self.setRenewFlag(SetRenewFlagRequest(resourceIds: resourceIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = SetRenewFlagRequest(resourceIds: resourceIds, autoRenewFlag: autoRenewFlag)
+        return try await self.client.execute(action: "SetRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

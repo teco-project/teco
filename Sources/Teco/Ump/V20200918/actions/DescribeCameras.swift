@@ -69,7 +69,8 @@ extension Ump {
     /// 获取集团广场对应的摄像头列表
     @inlinable
     public func describeCameras(groupCode: String, mallId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCamerasResponse> {
-        self.describeCameras(DescribeCamerasRequest(groupCode: groupCode, mallId: mallId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCamerasRequest(groupCode: groupCode, mallId: mallId)
+        return self.client.execute(action: "DescribeCameras", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取摄像头状态列表
@@ -77,6 +78,7 @@ extension Ump {
     /// 获取集团广场对应的摄像头列表
     @inlinable
     public func describeCameras(groupCode: String, mallId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCamerasResponse {
-        try await self.describeCameras(DescribeCamerasRequest(groupCode: groupCode, mallId: mallId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCamerasRequest(groupCode: groupCode, mallId: mallId)
+        return try await self.client.execute(action: "DescribeCameras", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

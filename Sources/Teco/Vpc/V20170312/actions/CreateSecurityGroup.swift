@@ -88,7 +88,8 @@ extension Vpc {
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createSecurityGroup(groupName: String, groupDescription: String, projectId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupResponse> {
-        self.createSecurityGroup(CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, tags: tags)
+        return self.client.execute(action: "CreateSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建安全组
@@ -99,6 +100,7 @@ extension Vpc {
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createSecurityGroup(groupName: String, groupDescription: String, projectId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupResponse {
-        try await self.createSecurityGroup(CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateSecurityGroupRequest(groupName: groupName, groupDescription: groupDescription, projectId: projectId, tags: tags)
+        return try await self.client.execute(action: "CreateSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

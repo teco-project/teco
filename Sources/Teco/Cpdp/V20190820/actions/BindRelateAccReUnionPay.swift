@@ -107,7 +107,8 @@ extension Cpdp {
     /// 会员绑定提现账户-回填银联鉴权短信码。用于会员填写动态验证码后，发往银行进行验证，验证成功则完成绑定。
     @inlinable
     public func bindRelateAccReUnionPay(mrchCode: String, tranNetMemberCode: String, memberAcctNo: String, messageCheckCode: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindRelateAccReUnionPayResponse> {
-        self.bindRelateAccReUnionPay(BindRelateAccReUnionPayRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, messageCheckCode: messageCheckCode, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = BindRelateAccReUnionPayRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, messageCheckCode: messageCheckCode, reservedMsg: reservedMsg, profile: profile)
+        return self.client.execute(action: "BindRelateAccReUnionPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-会员绑定提现账户-回填银联鉴权短信码
@@ -115,6 +116,7 @@ extension Cpdp {
     /// 会员绑定提现账户-回填银联鉴权短信码。用于会员填写动态验证码后，发往银行进行验证，验证成功则完成绑定。
     @inlinable
     public func bindRelateAccReUnionPay(mrchCode: String, tranNetMemberCode: String, memberAcctNo: String, messageCheckCode: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindRelateAccReUnionPayResponse {
-        try await self.bindRelateAccReUnionPay(BindRelateAccReUnionPayRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, messageCheckCode: messageCheckCode, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = BindRelateAccReUnionPayRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, memberAcctNo: memberAcctNo, messageCheckCode: messageCheckCode, reservedMsg: reservedMsg, profile: profile)
+        return try await self.client.execute(action: "BindRelateAccReUnionPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

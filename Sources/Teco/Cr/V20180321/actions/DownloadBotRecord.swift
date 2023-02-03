@@ -84,7 +84,8 @@ extension Cr {
     /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
     @inlinable
     public func downloadBotRecord(module: String, operation: String, bizDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadBotRecordResponse> {
-        self.downloadBotRecord(DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate), region: region, logger: logger, on: eventLoop)
+        let input = DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate)
+        return self.client.execute(action: "DownloadBotRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载任务录音与文本
@@ -92,6 +93,7 @@ extension Cr {
     /// 下载任务录音与文本，第二天12点后可使用此接口获取对应的录音与文本
     @inlinable
     public func downloadBotRecord(module: String, operation: String, bizDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadBotRecordResponse {
-        try await self.downloadBotRecord(DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate), region: region, logger: logger, on: eventLoop)
+        let input = DownloadBotRecordRequest(module: module, operation: operation, bizDate: bizDate)
+        return try await self.client.execute(action: "DownloadBotRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -79,7 +79,8 @@ extension Ckafka {
     /// 批量添加ACL策略
     @inlinable
     public func batchCreateAcl(instanceId: String, resourceType: Int64, resourceNames: [String], ruleList: [AclRuleInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchCreateAclResponse> {
-        self.batchCreateAcl(BatchCreateAclRequest(instanceId: instanceId, resourceType: resourceType, resourceNames: resourceNames, ruleList: ruleList), region: region, logger: logger, on: eventLoop)
+        let input = BatchCreateAclRequest(instanceId: instanceId, resourceType: resourceType, resourceNames: resourceNames, ruleList: ruleList)
+        return self.client.execute(action: "BatchCreateAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量添加 ACL 策略
@@ -87,6 +88,7 @@ extension Ckafka {
     /// 批量添加ACL策略
     @inlinable
     public func batchCreateAcl(instanceId: String, resourceType: Int64, resourceNames: [String], ruleList: [AclRuleInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateAclResponse {
-        try await self.batchCreateAcl(BatchCreateAclRequest(instanceId: instanceId, resourceType: resourceType, resourceNames: resourceNames, ruleList: ruleList), region: region, logger: logger, on: eventLoop)
+        let input = BatchCreateAclRequest(instanceId: instanceId, resourceType: resourceType, resourceNames: resourceNames, ruleList: ruleList)
+        return try await self.client.execute(action: "BatchCreateAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

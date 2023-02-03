@@ -83,12 +83,14 @@ extension Tsf {
     /// 更新API
     @inlinable
     public func updateGatewayApi(apiId: String, path: String? = nil, method: String? = nil, pathMapping: String? = nil, host: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGatewayApiResponse> {
-        self.updateGatewayApi(UpdateGatewayApiRequest(apiId: apiId, path: path, method: method, pathMapping: pathMapping, host: host, description: description), region: region, logger: logger, on: eventLoop)
+        let input = UpdateGatewayApiRequest(apiId: apiId, path: path, method: method, pathMapping: pathMapping, host: host, description: description)
+        return self.client.execute(action: "UpdateGatewayApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新API
     @inlinable
     public func updateGatewayApi(apiId: String, path: String? = nil, method: String? = nil, pathMapping: String? = nil, host: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGatewayApiResponse {
-        try await self.updateGatewayApi(UpdateGatewayApiRequest(apiId: apiId, path: path, method: method, pathMapping: pathMapping, host: host, description: description), region: region, logger: logger, on: eventLoop)
+        let input = UpdateGatewayApiRequest(apiId: apiId, path: path, method: method, pathMapping: pathMapping, host: host, description: description)
+        return try await self.client.execute(action: "UpdateGatewayApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

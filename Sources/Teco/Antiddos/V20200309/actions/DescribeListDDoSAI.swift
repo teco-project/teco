@@ -77,12 +77,14 @@ extension Antiddos {
     /// 获取DDoS防护的AI防护开关列表
     @inlinable
     public func describeListDDoSAI(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListDDoSAIResponse> {
-        self.describeListDDoSAI(DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
+        let input = DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
+        return self.client.execute(action: "DescribeListDDoSAI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的AI防护开关列表
     @inlinable
     public func describeListDDoSAI(offset: Int64, limit: Int64, filterInstanceId: String, filterIp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListDDoSAIResponse {
-        try await self.describeListDDoSAI(DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp), region: region, logger: logger, on: eventLoop)
+        let input = DescribeListDDoSAIRequest(offset: offset, limit: limit, filterInstanceId: filterInstanceId, filterIp: filterIp)
+        return try await self.client.execute(action: "DescribeListDDoSAI", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

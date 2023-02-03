@@ -65,7 +65,8 @@ extension Cme {
     /// 删除用户登录态，使用户登出多媒体创作引擎平台。
     @inlinable @discardableResult
     public func deleteLoginStatus(platform: String, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginStatusResponse> {
-        self.deleteLoginStatus(DeleteLoginStatusRequest(platform: platform, userIds: userIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLoginStatusRequest(platform: platform, userIds: userIds)
+        return self.client.execute(action: "DeleteLoginStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除登录态
@@ -73,6 +74,7 @@ extension Cme {
     /// 删除用户登录态，使用户登出多媒体创作引擎平台。
     @inlinable @discardableResult
     public func deleteLoginStatus(platform: String, userIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginStatusResponse {
-        try await self.deleteLoginStatus(DeleteLoginStatusRequest(platform: platform, userIds: userIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLoginStatusRequest(platform: platform, userIds: userIds)
+        return try await self.client.execute(action: "DeleteLoginStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

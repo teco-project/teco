@@ -125,7 +125,8 @@ extension Teo {
     /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
     @inlinable
     public func describeWebManagedRulesHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesHitRuleDetailResponse> {
-        self.describeWebManagedRulesHitRuleDetail(DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area)
+        return self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Web攻击命中规则详情
@@ -133,6 +134,7 @@ extension Teo {
     /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
     @inlinable
     public func describeWebManagedRulesHitRuleDetail(startTime: Date, endTime: Date, zoneIds: [String]? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesHitRuleDetailResponse {
-        try await self.describeWebManagedRulesHitRuleDetail(DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesHitRuleDetailRequest(startTime: startTime, endTime: endTime, zoneIds: zoneIds, domains: domains, interval: interval, queryCondition: queryCondition, limit: limit, offset: offset, area: area)
+        return try await self.client.execute(action: "DescribeWebManagedRulesHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

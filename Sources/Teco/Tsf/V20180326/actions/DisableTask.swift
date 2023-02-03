@@ -58,12 +58,14 @@ extension Tsf {
     /// 停用任务
     @inlinable
     public func disableTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTaskResponse> {
-        self.disableTask(DisableTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DisableTaskRequest(taskId: taskId)
+        return self.client.execute(action: "DisableTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用任务
     @inlinable
     public func disableTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTaskResponse {
-        try await self.disableTask(DisableTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DisableTaskRequest(taskId: taskId)
+        return try await self.client.execute(action: "DisableTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Iotvideo {
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
     @inlinable
     public func describeRunLog(tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRunLogResponse> {
-        self.describeRunLog(DescribeRunLogRequest(tid: tid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRunLogRequest(tid: tid)
+        return self.client.execute(action: "DescribeRunLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备运行日志
@@ -73,6 +74,7 @@ extension Iotvideo {
     /// 本接口（DescribeRunLog）用于获取设备运行日志。
     @inlinable
     public func describeRunLog(tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRunLogResponse {
-        try await self.describeRunLog(DescribeRunLogRequest(tid: tid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRunLogRequest(tid: tid)
+        return try await self.client.execute(action: "DescribeRunLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

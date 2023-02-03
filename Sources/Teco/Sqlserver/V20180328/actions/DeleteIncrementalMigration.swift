@@ -70,7 +70,8 @@ extension Sqlserver {
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
     @inlinable @discardableResult
     public func deleteIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIncrementalMigrationResponse> {
-        self.deleteIncrementalMigration(DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId)
+        return self.client.execute(action: "DeleteIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除增量备份导入任务
@@ -78,6 +79,7 @@ extension Sqlserver {
     /// 本接口（DeleteIncrementalMigration）用于删除增量备份导入任务。
     @inlinable @discardableResult
     public func deleteIncrementalMigration(instanceId: String, backupMigrationId: String, incrementalMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIncrementalMigrationResponse {
-        try await self.deleteIncrementalMigration(DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIncrementalMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, incrementalMigrationId: incrementalMigrationId)
+        return try await self.client.execute(action: "DeleteIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

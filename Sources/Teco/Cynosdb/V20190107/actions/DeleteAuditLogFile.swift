@@ -65,7 +65,8 @@ extension Cynosdb {
     /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
     @inlinable @discardableResult
     public func deleteAuditLogFile(instanceId: String, fileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditLogFileResponse> {
-        self.deleteAuditLogFile(DeleteAuditLogFileRequest(instanceId: instanceId, fileName: fileName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAuditLogFileRequest(instanceId: instanceId, fileName: fileName)
+        return self.client.execute(action: "DeleteAuditLogFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除审计日志文件
@@ -73,6 +74,7 @@ extension Cynosdb {
     /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
     @inlinable @discardableResult
     public func deleteAuditLogFile(instanceId: String, fileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditLogFileResponse {
-        try await self.deleteAuditLogFile(DeleteAuditLogFileRequest(instanceId: instanceId, fileName: fileName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAuditLogFileRequest(instanceId: instanceId, fileName: fileName)
+        return try await self.client.execute(action: "DeleteAuditLogFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -84,7 +84,8 @@ extension Cdb {
     /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
     @inlinable
     public func describeDeployGroupList(deployGroupId: String? = nil, deployGroupName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployGroupListResponse> {
-        self.describeDeployGroupList(DescribeDeployGroupListRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeployGroupListRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeDeployGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询置放群组列表
@@ -92,6 +93,7 @@ extension Cdb {
     /// 本接口(DescribeDeployGroupList)用于查询用户的置放群组列表，可以指定置放群组 ID 或置放群组名称。
     @inlinable
     public func describeDeployGroupList(deployGroupId: String? = nil, deployGroupName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployGroupListResponse {
-        try await self.describeDeployGroupList(DescribeDeployGroupListRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeployGroupListRequest(deployGroupId: deployGroupId, deployGroupName: deployGroupName, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeDeployGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

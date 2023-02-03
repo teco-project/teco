@@ -89,7 +89,8 @@ extension Faceid {
     /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
     @inlinable
     public func mobileStatus(mobile: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MobileStatusResponse> {
-        self.mobileStatus(MobileStatusRequest(mobile: mobile, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = MobileStatusRequest(mobile: mobile, encryption: encryption)
+        return self.client.execute(action: "MobileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号状态查询
@@ -97,6 +98,7 @@ extension Faceid {
     /// 本接口用于验证手机号的状态，您可以输入手机号进行查询。
     @inlinable
     public func mobileStatus(mobile: String, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MobileStatusResponse {
-        try await self.mobileStatus(MobileStatusRequest(mobile: mobile, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = MobileStatusRequest(mobile: mobile, encryption: encryption)
+        return try await self.client.execute(action: "MobileStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -79,7 +79,8 @@ extension Clb {
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
     @inlinable
     public func describeIdleLoadBalancers(offset: UInt64? = nil, limit: UInt64? = nil, loadBalancerRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIdleLoadBalancersResponse> {
-        self.describeIdleLoadBalancers(DescribeIdleLoadBalancersRequest(offset: offset, limit: limit, loadBalancerRegion: loadBalancerRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIdleLoadBalancersRequest(offset: offset, limit: limit, loadBalancerRegion: loadBalancerRegion)
+        return self.client.execute(action: "DescribeIdleLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡闲置实例
@@ -87,6 +88,7 @@ extension Clb {
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
     @inlinable
     public func describeIdleLoadBalancers(offset: UInt64? = nil, limit: UInt64? = nil, loadBalancerRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIdleLoadBalancersResponse {
-        try await self.describeIdleLoadBalancers(DescribeIdleLoadBalancersRequest(offset: offset, limit: limit, loadBalancerRegion: loadBalancerRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIdleLoadBalancersRequest(offset: offset, limit: limit, loadBalancerRegion: loadBalancerRegion)
+        return try await self.client.execute(action: "DescribeIdleLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

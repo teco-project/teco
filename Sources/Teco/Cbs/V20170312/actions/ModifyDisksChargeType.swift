@@ -85,7 +85,8 @@ extension Cbs {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable @discardableResult
     public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDisksChargeTypeResponse> {
-        self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid)
+        return self.client.execute(action: "ModifyDisksChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性云盘计费模式
@@ -98,6 +99,7 @@ extension Cbs {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable @discardableResult
     public func modifyDisksChargeType(diskIds: [String], diskChargePrepaid: DiskChargePrepaid? = nil, diskChargePostpaid: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDisksChargeTypeResponse {
-        try await self.modifyDisksChargeType(ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDisksChargeTypeRequest(diskIds: diskIds, diskChargePrepaid: diskChargePrepaid, diskChargePostpaid: diskChargePostpaid)
+        return try await self.client.execute(action: "ModifyDisksChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

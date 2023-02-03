@@ -59,12 +59,14 @@ extension Cynosdb {
     /// 创建账号
     @inlinable @discardableResult
     public func createAccounts(clusterId: String, accounts: [NewAccount], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccountsResponse> {
-        self.createAccounts(CreateAccountsRequest(clusterId: clusterId, accounts: accounts), region: region, logger: logger, on: eventLoop)
+        let input = CreateAccountsRequest(clusterId: clusterId, accounts: accounts)
+        return self.client.execute(action: "CreateAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建账号
     @inlinable @discardableResult
     public func createAccounts(clusterId: String, accounts: [NewAccount], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccountsResponse {
-        try await self.createAccounts(CreateAccountsRequest(clusterId: clusterId, accounts: accounts), region: region, logger: logger, on: eventLoop)
+        let input = CreateAccountsRequest(clusterId: clusterId, accounts: accounts)
+        return try await self.client.execute(action: "CreateAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

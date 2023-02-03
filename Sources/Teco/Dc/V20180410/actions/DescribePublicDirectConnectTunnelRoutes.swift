@@ -85,7 +85,8 @@ extension Dc {
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
     @inlinable
     public func describePublicDirectConnectTunnelRoutes(directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicDirectConnectTunnelRoutesResponse> {
-        self.describePublicDirectConnectTunnelRoutes(DescribePublicDirectConnectTunnelRoutesRequest(directConnectTunnelId: directConnectTunnelId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePublicDirectConnectTunnelRoutesRequest(directConnectTunnelId: directConnectTunnelId, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询互联网通道路由列表
@@ -93,6 +94,7 @@ extension Dc {
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
     @inlinable
     public func describePublicDirectConnectTunnelRoutes(directConnectTunnelId: String, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicDirectConnectTunnelRoutesResponse {
-        try await self.describePublicDirectConnectTunnelRoutes(DescribePublicDirectConnectTunnelRoutesRequest(directConnectTunnelId: directConnectTunnelId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePublicDirectConnectTunnelRoutesRequest(directConnectTunnelId: directConnectTunnelId, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribePublicDirectConnectTunnelRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

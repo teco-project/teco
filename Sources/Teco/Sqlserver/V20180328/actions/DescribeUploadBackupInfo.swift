@@ -97,7 +97,8 @@ extension Sqlserver {
     /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
     @inlinable
     public func describeUploadBackupInfo(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadBackupInfoResponse> {
-        self.describeUploadBackupInfo(DescribeUploadBackupInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUploadBackupInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId)
+        return self.client.execute(action: "DescribeUploadBackupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备份上传权限
@@ -105,6 +106,7 @@ extension Sqlserver {
     /// 本接口（DescribeUploadBackupInfo）用于查询备份上传权限。
     @inlinable
     public func describeUploadBackupInfo(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadBackupInfoResponse {
-        try await self.describeUploadBackupInfo(DescribeUploadBackupInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUploadBackupInfoRequest(instanceId: instanceId, backupMigrationId: backupMigrationId)
+        return try await self.client.execute(action: "DescribeUploadBackupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

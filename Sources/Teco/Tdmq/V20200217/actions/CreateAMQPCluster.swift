@@ -63,12 +63,14 @@ extension Tdmq {
     /// 创建AMQP集群
     @inlinable
     public func createAMQPCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPClusterResponse> {
-        self.createAMQPCluster(CreateAMQPClusterRequest(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateAMQPClusterRequest(name: name, remark: remark)
+        return self.client.execute(action: "CreateAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP集群
     @inlinable
     public func createAMQPCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPClusterResponse {
-        try await self.createAMQPCluster(CreateAMQPClusterRequest(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateAMQPClusterRequest(name: name, remark: remark)
+        return try await self.client.execute(action: "CreateAMQPCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

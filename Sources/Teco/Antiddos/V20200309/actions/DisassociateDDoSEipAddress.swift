@@ -65,7 +65,8 @@ extension Antiddos {
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
     @inlinable @discardableResult
     public func disassociateDDoSEipAddress(instanceId: String, eip: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateDDoSEipAddressResponse> {
-        self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip)
+        return self.client.execute(action: "DisassociateDDoSEipAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑高防弹性公网IP
@@ -73,6 +74,7 @@ extension Antiddos {
     /// 本接口 (DisassociateDDoSEipAddress) 用于解绑高防弹性公网IP。
     @inlinable @discardableResult
     public func disassociateDDoSEipAddress(instanceId: String, eip: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateDDoSEipAddressResponse {
-        try await self.disassociateDDoSEipAddress(DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateDDoSEipAddressRequest(instanceId: instanceId, eip: eip)
+        return try await self.client.execute(action: "DisassociateDDoSEipAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

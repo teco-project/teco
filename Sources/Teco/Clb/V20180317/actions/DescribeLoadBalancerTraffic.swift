@@ -65,7 +65,8 @@ extension Clb {
     /// 查询账号下的高流量负载均衡，返回前10个负载均衡。如果是子账号登录，只返回子账号有权限的负载均衡。
     @inlinable
     public func describeLoadBalancerTraffic(loadBalancerRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerTrafficResponse> {
-        self.describeLoadBalancerTraffic(DescribeLoadBalancerTrafficRequest(loadBalancerRegion: loadBalancerRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalancerTrafficRequest(loadBalancerRegion: loadBalancerRegion)
+        return self.client.execute(action: "DescribeLoadBalancerTraffic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账号下高流量负载均衡
@@ -73,6 +74,7 @@ extension Clb {
     /// 查询账号下的高流量负载均衡，返回前10个负载均衡。如果是子账号登录，只返回子账号有权限的负载均衡。
     @inlinable
     public func describeLoadBalancerTraffic(loadBalancerRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerTrafficResponse {
-        try await self.describeLoadBalancerTraffic(DescribeLoadBalancerTrafficRequest(loadBalancerRegion: loadBalancerRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalancerTrafficRequest(loadBalancerRegion: loadBalancerRegion)
+        return try await self.client.execute(action: "DescribeLoadBalancerTraffic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

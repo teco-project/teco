@@ -79,12 +79,14 @@ extension Es {
     /// 创建索引
     @inlinable @discardableResult
     public func createIndex(instanceId: String, indexType: String, indexName: String, indexMetaJson: String? = nil, username: String? = nil, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIndexResponse> {
-        self.createIndex(CreateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, indexMetaJson: indexMetaJson, username: username, password: password), region: region, logger: logger, on: eventLoop)
+        let input = CreateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, indexMetaJson: indexMetaJson, username: username, password: password)
+        return self.client.execute(action: "CreateIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建索引
     @inlinable @discardableResult
     public func createIndex(instanceId: String, indexType: String, indexName: String, indexMetaJson: String? = nil, username: String? = nil, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIndexResponse {
-        try await self.createIndex(CreateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, indexMetaJson: indexMetaJson, username: username, password: password), region: region, logger: logger, on: eventLoop)
+        let input = CreateIndexRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, indexMetaJson: indexMetaJson, username: username, password: password)
+        return try await self.client.execute(action: "CreateIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

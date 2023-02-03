@@ -64,12 +64,14 @@ extension Antiddos {
     /// 添加DDoS防护的IP黑白名单
     @inlinable @discardableResult
     public func createBlackWhiteIpList(instanceId: String, ipList: [String], type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlackWhiteIpListResponse> {
-        self.createBlackWhiteIpList(CreateBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type), region: region, logger: logger, on: eventLoop)
+        let input = CreateBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type)
+        return self.client.execute(action: "CreateBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的IP黑白名单
     @inlinable @discardableResult
     public func createBlackWhiteIpList(instanceId: String, ipList: [String], type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlackWhiteIpListResponse {
-        try await self.createBlackWhiteIpList(CreateBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type), region: region, logger: logger, on: eventLoop)
+        let input = CreateBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type)
+        return try await self.client.execute(action: "CreateBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -72,7 +72,8 @@ extension Cms {
     /// 删除文本样本库，暂时只支持单个删除。
     @inlinable
     public func deleteTextSample(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTextSampleResponse> {
-        self.deleteTextSample(DeleteTextSampleRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTextSampleRequest(ids: ids)
+        return self.client.execute(action: "DeleteTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除文本样本库
@@ -82,6 +83,7 @@ extension Cms {
     /// 删除文本样本库，暂时只支持单个删除。
     @inlinable
     public func deleteTextSample(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTextSampleResponse {
-        try await self.deleteTextSample(DeleteTextSampleRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTextSampleRequest(ids: ids)
+        return try await self.client.execute(action: "DeleteTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

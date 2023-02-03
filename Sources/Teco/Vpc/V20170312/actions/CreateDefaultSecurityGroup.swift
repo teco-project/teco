@@ -73,7 +73,8 @@ extension Vpc {
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createDefaultSecurityGroup(projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultSecurityGroupResponse> {
-        self.createDefaultSecurityGroup(CreateDefaultSecurityGroupRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = CreateDefaultSecurityGroupRequest(projectId: projectId)
+        return self.client.execute(action: "CreateDefaultSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建默认安全组
@@ -84,6 +85,7 @@ extension Vpc {
     /// * 创建安全组同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createDefaultSecurityGroup(projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultSecurityGroupResponse {
-        try await self.createDefaultSecurityGroup(CreateDefaultSecurityGroupRequest(projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = CreateDefaultSecurityGroupRequest(projectId: projectId)
+        return try await self.client.execute(action: "CreateDefaultSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

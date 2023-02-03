@@ -73,12 +73,14 @@ extension Ump {
     /// 获取多经点位底图
     @inlinable
     public func describeMultiBizBaseImage(groupCode: String, mallId: UInt64, cameraId: UInt64, zoneId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiBizBaseImageResponse> {
-        self.describeMultiBizBaseImage(DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId)
+        return self.client.execute(action: "DescribeMultiBizBaseImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取多经点位底图
     @inlinable
     public func describeMultiBizBaseImage(groupCode: String, mallId: UInt64, cameraId: UInt64, zoneId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiBizBaseImageResponse {
-        try await self.describeMultiBizBaseImage(DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMultiBizBaseImageRequest(groupCode: groupCode, mallId: mallId, cameraId: cameraId, zoneId: zoneId)
+        return try await self.client.execute(action: "DescribeMultiBizBaseImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -86,7 +86,8 @@ extension Vpc {
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
     @inlinable
     public func describeNetDetectStates(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNetDetectStatesResponse> {
-        self.describeNetDetectStates(DescribeNetDetectStatesRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNetDetectStatesRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeNetDetectStates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网络探测验证结果列表
@@ -94,6 +95,7 @@ extension Vpc {
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
     @inlinable
     public func describeNetDetectStates(netDetectIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNetDetectStatesResponse {
-        try await self.describeNetDetectStates(DescribeNetDetectStatesRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNetDetectStatesRequest(netDetectIds: netDetectIds, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeNetDetectStates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

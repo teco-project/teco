@@ -89,7 +89,8 @@ extension As {
     /// * 通知的接收端类型不支持修改。
     @inlinable @discardableResult
     public func modifyNotificationConfiguration(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNotificationConfigurationResponse> {
-        self.modifyNotificationConfiguration(ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName)
+        return self.client.execute(action: "ModifyNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改通知
@@ -98,6 +99,7 @@ extension As {
     /// * 通知的接收端类型不支持修改。
     @inlinable @discardableResult
     public func modifyNotificationConfiguration(autoScalingNotificationId: String, notificationTypes: [String]? = nil, notificationUserGroupIds: [String]? = nil, queueName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNotificationConfigurationResponse {
-        try await self.modifyNotificationConfiguration(ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyNotificationConfigurationRequest(autoScalingNotificationId: autoScalingNotificationId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, queueName: queueName, topicName: topicName)
+        return try await self.client.execute(action: "ModifyNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

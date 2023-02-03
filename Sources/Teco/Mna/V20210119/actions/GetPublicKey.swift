@@ -56,7 +56,8 @@ extension Mna {
     /// 获取公钥用于验签
     @inlinable
     public func getPublicKey(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPublicKeyResponse> {
-        self.getPublicKey(GetPublicKeyRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetPublicKeyRequest()
+        return self.client.execute(action: "GetPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取公钥
@@ -64,6 +65,7 @@ extension Mna {
     /// 获取公钥用于验签
     @inlinable
     public func getPublicKey(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
-        try await self.getPublicKey(GetPublicKeyRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetPublicKeyRequest()
+        return try await self.client.execute(action: "GetPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

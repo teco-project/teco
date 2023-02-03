@@ -65,7 +65,8 @@ extension Pts {
     /// 调整任务的目标RPS
     @inlinable @discardableResult
     public func adjustJobSpeed(jobId: String, targetRequestsPerSecond: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AdjustJobSpeedResponse> {
-        self.adjustJobSpeed(AdjustJobSpeedRequest(jobId: jobId, targetRequestsPerSecond: targetRequestsPerSecond), region: region, logger: logger, on: eventLoop)
+        let input = AdjustJobSpeedRequest(jobId: jobId, targetRequestsPerSecond: targetRequestsPerSecond)
+        return self.client.execute(action: "AdjustJobSpeed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整任务目标RPS
@@ -73,6 +74,7 @@ extension Pts {
     /// 调整任务的目标RPS
     @inlinable @discardableResult
     public func adjustJobSpeed(jobId: String, targetRequestsPerSecond: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AdjustJobSpeedResponse {
-        try await self.adjustJobSpeed(AdjustJobSpeedRequest(jobId: jobId, targetRequestsPerSecond: targetRequestsPerSecond), region: region, logger: logger, on: eventLoop)
+        let input = AdjustJobSpeedRequest(jobId: jobId, targetRequestsPerSecond: targetRequestsPerSecond)
+        return try await self.client.execute(action: "AdjustJobSpeed", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

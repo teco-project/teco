@@ -65,7 +65,8 @@ extension Cme {
     /// 删除指定 ID 的视频编码配置
     @inlinable @discardableResult
     public func deleteVideoEncodingPreset(platform: String, id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVideoEncodingPresetResponse> {
-        self.deleteVideoEncodingPreset(DeleteVideoEncodingPresetRequest(platform: platform, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVideoEncodingPresetRequest(platform: platform, id: id)
+        return self.client.execute(action: "DeleteVideoEncodingPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除视频编码配置
@@ -73,6 +74,7 @@ extension Cme {
     /// 删除指定 ID 的视频编码配置
     @inlinable @discardableResult
     public func deleteVideoEncodingPreset(platform: String, id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVideoEncodingPresetResponse {
-        try await self.deleteVideoEncodingPreset(DeleteVideoEncodingPresetRequest(platform: platform, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVideoEncodingPresetRequest(platform: platform, id: id)
+        return try await self.client.execute(action: "DeleteVideoEncodingPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

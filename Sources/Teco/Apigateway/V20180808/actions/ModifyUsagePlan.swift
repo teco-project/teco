@@ -85,7 +85,8 @@ extension Apigateway {
     /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
     @inlinable
     public func modifyUsagePlan(usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUsagePlanResponse> {
-        self.modifyUsagePlan(ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), region: region, logger: logger, on: eventLoop)
+        let input = ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec)
+        return self.client.execute(action: "ModifyUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改使用计划
@@ -93,6 +94,7 @@ extension Apigateway {
     /// 本接口（ModifyUsagePlan）用于修改使用计划的名称，描述及 QPS。
     @inlinable
     public func modifyUsagePlan(usagePlanId: String, usagePlanName: String? = nil, usagePlanDesc: String? = nil, maxRequestNum: Int64? = nil, maxRequestNumPreSec: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUsagePlanResponse {
-        try await self.modifyUsagePlan(ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec), region: region, logger: logger, on: eventLoop)
+        let input = ModifyUsagePlanRequest(usagePlanId: usagePlanId, usagePlanName: usagePlanName, usagePlanDesc: usagePlanDesc, maxRequestNum: maxRequestNum, maxRequestNumPreSec: maxRequestNumPreSec)
+        return try await self.client.execute(action: "ModifyUsagePlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

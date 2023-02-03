@@ -65,7 +65,8 @@ extension Mongodb {
     /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
     @inlinable @discardableResult
     public func renewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDBInstancesResponse> {
-        self.renewDBInstances(RenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
+        let input = RenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid)
+        return self.client.execute(action: "RenewDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费云数据库实例
@@ -73,6 +74,7 @@ extension Mongodb {
     /// 本接口(RenewDBInstance)用于续费云数据库实例，仅支持付费模式为包年包月的实例。按量计费实例不需要续费。
     @inlinable @discardableResult
     public func renewDBInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDBInstancesResponse {
-        try await self.renewDBInstances(RenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid), region: region, logger: logger, on: eventLoop)
+        let input = RenewDBInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid)
+        return try await self.client.execute(action: "RenewDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

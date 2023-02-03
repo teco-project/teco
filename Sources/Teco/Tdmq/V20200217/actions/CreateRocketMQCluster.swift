@@ -69,7 +69,8 @@ extension Tdmq {
     /// 此接口用于创建一个RocketMQ集群
     @inlinable
     public func createRocketMQCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQClusterResponse> {
-        self.createRocketMQCluster(CreateRocketMQClusterRequest(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateRocketMQClusterRequest(name: name, remark: remark)
+        return self.client.execute(action: "CreateRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ集群
@@ -77,6 +78,7 @@ extension Tdmq {
     /// 此接口用于创建一个RocketMQ集群
     @inlinable
     public func createRocketMQCluster(name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQClusterResponse {
-        try await self.createRocketMQCluster(CreateRocketMQClusterRequest(name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateRocketMQClusterRequest(name: name, remark: remark)
+        return try await self.client.execute(action: "CreateRocketMQCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

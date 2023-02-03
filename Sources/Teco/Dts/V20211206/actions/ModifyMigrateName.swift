@@ -65,7 +65,8 @@ extension Dts {
     /// 修改迁移任务名
     @inlinable @discardableResult
     public func modifyMigrateName(jobId: String, jobName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateNameResponse> {
-        self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMigrateNameRequest(jobId: jobId, jobName: jobName)
+        return self.client.execute(action: "ModifyMigrateName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改迁移名称
@@ -73,6 +74,7 @@ extension Dts {
     /// 修改迁移任务名
     @inlinable @discardableResult
     public func modifyMigrateName(jobId: String, jobName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateNameResponse {
-        try await self.modifyMigrateName(ModifyMigrateNameRequest(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMigrateNameRequest(jobId: jobId, jobName: jobName)
+        return try await self.client.execute(action: "ModifyMigrateName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

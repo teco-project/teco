@@ -58,12 +58,14 @@ extension Bmvpc {
     /// 接受黑石对等连接
     @inlinable
     public func acceptVpcPeerConnection(vpcPeerConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptVpcPeerConnectionResponse> {
-        self.acceptVpcPeerConnection(AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), region: region, logger: logger, on: eventLoop)
+        let input = AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId)
+        return self.client.execute(action: "AcceptVpcPeerConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 接受黑石对等连接
     @inlinable
     public func acceptVpcPeerConnection(vpcPeerConnectionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptVpcPeerConnectionResponse {
-        try await self.acceptVpcPeerConnection(AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId), region: region, logger: logger, on: eventLoop)
+        let input = AcceptVpcPeerConnectionRequest(vpcPeerConnectionId: vpcPeerConnectionId)
+        return try await self.client.execute(action: "AcceptVpcPeerConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

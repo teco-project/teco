@@ -84,7 +84,8 @@ extension Cynosdb {
     /// 本接口(SwitchProxyVpc)更换数据库代理vpc
     @inlinable
     public func switchProxyVpc(clusterId: String, uniqVpcId: String, uniqSubnetId: String, oldIpReserveHours: Int64, proxyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchProxyVpcResponse> {
-        self.switchProxyVpc(SwitchProxyVpcRequest(clusterId: clusterId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, oldIpReserveHours: oldIpReserveHours, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = SwitchProxyVpcRequest(clusterId: clusterId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, oldIpReserveHours: oldIpReserveHours, proxyGroupId: proxyGroupId)
+        return self.client.execute(action: "SwitchProxyVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更换数据库代理vpc
@@ -92,6 +93,7 @@ extension Cynosdb {
     /// 本接口(SwitchProxyVpc)更换数据库代理vpc
     @inlinable
     public func switchProxyVpc(clusterId: String, uniqVpcId: String, uniqSubnetId: String, oldIpReserveHours: Int64, proxyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchProxyVpcResponse {
-        try await self.switchProxyVpc(SwitchProxyVpcRequest(clusterId: clusterId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, oldIpReserveHours: oldIpReserveHours, proxyGroupId: proxyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = SwitchProxyVpcRequest(clusterId: clusterId, uniqVpcId: uniqVpcId, uniqSubnetId: uniqSubnetId, oldIpReserveHours: oldIpReserveHours, proxyGroupId: proxyGroupId)
+        return try await self.client.execute(action: "SwitchProxyVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

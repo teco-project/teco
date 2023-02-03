@@ -58,12 +58,14 @@ extension Tke {
     /// 获取边缘计算外部访问的kubeconfig
     @inlinable
     public func describeTKEEdgeExternalKubeconfig(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeExternalKubeconfigResponse> {
-        self.describeTKEEdgeExternalKubeconfig(DescribeTKEEdgeExternalKubeconfigRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTKEEdgeExternalKubeconfigRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribeTKEEdgeExternalKubeconfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘计算外部访问的kubeconfig
     @inlinable
     public func describeTKEEdgeExternalKubeconfig(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeExternalKubeconfigResponse {
-        try await self.describeTKEEdgeExternalKubeconfig(DescribeTKEEdgeExternalKubeconfigRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTKEEdgeExternalKubeconfigRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeTKEEdgeExternalKubeconfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

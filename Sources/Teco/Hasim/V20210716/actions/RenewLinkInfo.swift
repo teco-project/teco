@@ -59,12 +59,14 @@ extension Hasim {
     /// 刷新云兔连接信息同步
     @inlinable @discardableResult
     public func renewLinkInfo(linkID: Int64, uinAccount: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewLinkInfoResponse> {
-        self.renewLinkInfo(RenewLinkInfoRequest(linkID: linkID, uinAccount: uinAccount), region: region, logger: logger, on: eventLoop)
+        let input = RenewLinkInfoRequest(linkID: linkID, uinAccount: uinAccount)
+        return self.client.execute(action: "RenewLinkInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 刷新云兔连接信息同步
     @inlinable @discardableResult
     public func renewLinkInfo(linkID: Int64, uinAccount: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewLinkInfoResponse {
-        try await self.renewLinkInfo(RenewLinkInfoRequest(linkID: linkID, uinAccount: uinAccount), region: region, logger: logger, on: eventLoop)
+        let input = RenewLinkInfoRequest(linkID: linkID, uinAccount: uinAccount)
+        return try await self.client.execute(action: "RenewLinkInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

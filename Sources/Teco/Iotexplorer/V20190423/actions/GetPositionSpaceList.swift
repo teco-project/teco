@@ -74,12 +74,14 @@ extension Iotexplorer {
     /// 获取位置空间列表
     @inlinable
     public func getPositionSpaceList(projectId: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPositionSpaceListResponse> {
-        self.getPositionSpaceList(GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit)
+        return self.client.execute(action: "GetPositionSpaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取位置空间列表
     @inlinable
     public func getPositionSpaceList(projectId: String, offset: Int64, limit: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPositionSpaceListResponse {
-        try await self.getPositionSpaceList(GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetPositionSpaceListRequest(projectId: projectId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "GetPositionSpaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

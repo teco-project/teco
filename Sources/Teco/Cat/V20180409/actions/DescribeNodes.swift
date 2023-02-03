@@ -98,12 +98,14 @@ extension Cat {
     /// 获取拨测节点
     @inlinable
     public func describeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNodesResponse> {
-        self.describeNodes(DescribeNodesRequest(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNodesRequest(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode, taskType: taskType)
+        return self.client.execute(action: "DescribeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取拨测节点
     @inlinable
     public func describeNodes(nodeType: Int64? = nil, location: Int64? = nil, isIPv6: Bool? = nil, nodeName: String? = nil, payMode: Int64? = nil, taskType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNodesResponse {
-        try await self.describeNodes(DescribeNodesRequest(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNodesRequest(nodeType: nodeType, location: location, isIPv6: isIPv6, nodeName: nodeName, payMode: payMode, taskType: taskType)
+        return try await self.client.execute(action: "DescribeNodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

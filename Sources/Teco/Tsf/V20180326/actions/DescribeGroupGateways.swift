@@ -73,12 +73,14 @@ extension Tsf {
     /// 查询某个网关绑定的API 分组信息列表
     @inlinable
     public func describeGroupGateways(gatewayDeployGroupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupGatewaysResponse> {
-        self.describeGroupGateways(DescribeGroupGatewaysRequest(gatewayDeployGroupId: gatewayDeployGroupId, offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupGatewaysRequest(gatewayDeployGroupId: gatewayDeployGroupId, offset: offset, limit: limit, searchWord: searchWord)
+        return self.client.execute(action: "DescribeGroupGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某个网关绑定的API 分组信息列表
     @inlinable
     public func describeGroupGateways(gatewayDeployGroupId: String, offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupGatewaysResponse {
-        try await self.describeGroupGateways(DescribeGroupGatewaysRequest(gatewayDeployGroupId: gatewayDeployGroupId, offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupGatewaysRequest(gatewayDeployGroupId: gatewayDeployGroupId, offset: offset, limit: limit, searchWord: searchWord)
+        return try await self.client.execute(action: "DescribeGroupGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

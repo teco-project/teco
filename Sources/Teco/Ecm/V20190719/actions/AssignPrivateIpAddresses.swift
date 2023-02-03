@@ -74,12 +74,14 @@ extension Ecm {
     /// 弹性网卡申请内网 IP
     @inlinable
     public func assignPrivateIpAddresses(networkInterfaceId: String, ecmRegion: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignPrivateIpAddressesResponse> {
-        self.assignPrivateIpAddresses(AssignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
+        let input = AssignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount)
+        return self.client.execute(action: "AssignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡申请内网 IP
     @inlinable
     public func assignPrivateIpAddresses(networkInterfaceId: String, ecmRegion: String, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignPrivateIpAddressesResponse {
-        try await self.assignPrivateIpAddresses(AssignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount), region: region, logger: logger, on: eventLoop)
+        let input = AssignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, ecmRegion: ecmRegion, privateIpAddresses: privateIpAddresses, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount)
+        return try await self.client.execute(action: "AssignPrivateIpAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

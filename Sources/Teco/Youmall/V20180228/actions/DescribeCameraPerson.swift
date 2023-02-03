@@ -115,7 +115,8 @@ extension Youmall {
     /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
     @inlinable
     public func describeCameraPerson(companyId: String, shopId: Int64, cameraId: Int64, startTime: Int64, endTime: Int64, posId: String? = nil, num: Int64? = nil, isNeedPic: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCameraPersonResponse> {
-        self.describeCameraPerson(DescribeCameraPersonRequest(companyId: companyId, shopId: shopId, cameraId: cameraId, startTime: startTime, endTime: endTime, posId: posId, num: num, isNeedPic: isNeedPic), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCameraPersonRequest(companyId: companyId, shopId: shopId, cameraId: cameraId, startTime: startTime, endTime: endTime, posId: posId, num: num, isNeedPic: isNeedPic)
+        return self.client.execute(action: "DescribeCameraPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取收银台前顾客身份ID
@@ -123,6 +124,7 @@ extension Youmall {
     /// 通过指定设备ID和指定时段，获取该时段内中收银台摄像设备抓取到顾客头像及身份ID
     @inlinable
     public func describeCameraPerson(companyId: String, shopId: Int64, cameraId: Int64, startTime: Int64, endTime: Int64, posId: String? = nil, num: Int64? = nil, isNeedPic: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCameraPersonResponse {
-        try await self.describeCameraPerson(DescribeCameraPersonRequest(companyId: companyId, shopId: shopId, cameraId: cameraId, startTime: startTime, endTime: endTime, posId: posId, num: num, isNeedPic: isNeedPic), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCameraPersonRequest(companyId: companyId, shopId: shopId, cameraId: cameraId, startTime: startTime, endTime: endTime, posId: posId, num: num, isNeedPic: isNeedPic)
+        return try await self.client.execute(action: "DescribeCameraPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -108,7 +108,8 @@ extension Mongodb {
     /// 本接口（DescribeSlowLogs）用于获取云数据库慢日志信息。接口只支持查询最近7天内慢日志。
     @inlinable
     public func describeSlowLogs(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogsResponse> {
-        self.describeSlowLogs(DescribeSlowLogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowLogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format)
+        return self.client.execute(action: "DescribeSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取慢日志信息
@@ -116,6 +117,7 @@ extension Mongodb {
     /// 本接口（DescribeSlowLogs）用于获取云数据库慢日志信息。接口只支持查询最近7天内慢日志。
     @inlinable
     public func describeSlowLogs(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, format: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogsResponse {
-        try await self.describeSlowLogs(DescribeSlowLogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowLogsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit, format: format)
+        return try await self.client.execute(action: "DescribeSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -59,12 +59,14 @@ extension Tcm {
     /// 关联集群
     @inlinable @discardableResult
     public func linkClusterList(meshId: String, clusterList: [Cluster], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LinkClusterListResponse> {
-        self.linkClusterList(LinkClusterListRequest(meshId: meshId, clusterList: clusterList), region: region, logger: logger, on: eventLoop)
+        let input = LinkClusterListRequest(meshId: meshId, clusterList: clusterList)
+        return self.client.execute(action: "LinkClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关联集群
     @inlinable @discardableResult
     public func linkClusterList(meshId: String, clusterList: [Cluster], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LinkClusterListResponse {
-        try await self.linkClusterList(LinkClusterListRequest(meshId: meshId, clusterList: clusterList), region: region, logger: logger, on: eventLoop)
+        let input = LinkClusterListRequest(meshId: meshId, clusterList: clusterList)
+        return try await self.client.execute(action: "LinkClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

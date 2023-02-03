@@ -58,12 +58,14 @@ extension Kms {
     /// 获取白盒解密密钥
     @inlinable
     public func describeWhiteBoxDecryptKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWhiteBoxDecryptKeyResponse> {
-        self.describeWhiteBoxDecryptKey(DescribeWhiteBoxDecryptKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWhiteBoxDecryptKeyRequest(keyId: keyId)
+        return self.client.execute(action: "DescribeWhiteBoxDecryptKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取白盒解密密钥
     @inlinable
     public func describeWhiteBoxDecryptKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWhiteBoxDecryptKeyResponse {
-        try await self.describeWhiteBoxDecryptKey(DescribeWhiteBoxDecryptKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWhiteBoxDecryptKeyRequest(keyId: keyId)
+        return try await self.client.execute(action: "DescribeWhiteBoxDecryptKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

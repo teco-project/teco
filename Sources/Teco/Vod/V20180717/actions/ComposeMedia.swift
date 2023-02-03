@@ -122,7 +122,8 @@ extension Vod {
     /// 合成后的媒体封装格式可以是 MP4（视频）或 MP3（音频）。如使用事件通知，事件通知的类型为 [视频合成完成](https://cloud.tencent.com/document/product/266/43000)。
     @inlinable
     public func composeMedia(tracks: [MediaTrack], output: ComposeMediaOutput, subAppId: UInt64? = nil, canvas: Canvas? = nil, sessionContext: String? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ComposeMediaResponse> {
-        self.composeMedia(ComposeMediaRequest(tracks: tracks, output: output, subAppId: subAppId, canvas: canvas, sessionContext: sessionContext, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = ComposeMediaRequest(tracks: tracks, output: output, subAppId: subAppId, canvas: canvas, sessionContext: sessionContext, sessionId: sessionId)
+        return self.client.execute(action: "ComposeMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 视频合成
@@ -141,6 +142,7 @@ extension Vod {
     /// 合成后的媒体封装格式可以是 MP4（视频）或 MP3（音频）。如使用事件通知，事件通知的类型为 [视频合成完成](https://cloud.tencent.com/document/product/266/43000)。
     @inlinable
     public func composeMedia(tracks: [MediaTrack], output: ComposeMediaOutput, subAppId: UInt64? = nil, canvas: Canvas? = nil, sessionContext: String? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ComposeMediaResponse {
-        try await self.composeMedia(ComposeMediaRequest(tracks: tracks, output: output, subAppId: subAppId, canvas: canvas, sessionContext: sessionContext, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = ComposeMediaRequest(tracks: tracks, output: output, subAppId: subAppId, canvas: canvas, sessionContext: sessionContext, sessionId: sessionId)
+        return try await self.client.execute(action: "ComposeMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

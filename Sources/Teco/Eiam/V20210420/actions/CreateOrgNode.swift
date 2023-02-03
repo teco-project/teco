@@ -80,7 +80,8 @@ extension Eiam {
     /// 新建一个机构节点
     @inlinable
     public func createOrgNode(displayName: String, parentOrgNodeId: String? = nil, description: String? = nil, customizedOrgNodeId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrgNodeResponse> {
-        self.createOrgNode(CreateOrgNodeRequest(displayName: displayName, parentOrgNodeId: parentOrgNodeId, description: description, customizedOrgNodeId: customizedOrgNodeId), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrgNodeRequest(displayName: displayName, parentOrgNodeId: parentOrgNodeId, description: description, customizedOrgNodeId: customizedOrgNodeId)
+        return self.client.execute(action: "CreateOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建机构节点
@@ -88,6 +89,7 @@ extension Eiam {
     /// 新建一个机构节点
     @inlinable
     public func createOrgNode(displayName: String, parentOrgNodeId: String? = nil, description: String? = nil, customizedOrgNodeId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrgNodeResponse {
-        try await self.createOrgNode(CreateOrgNodeRequest(displayName: displayName, parentOrgNodeId: parentOrgNodeId, description: description, customizedOrgNodeId: customizedOrgNodeId), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrgNodeRequest(displayName: displayName, parentOrgNodeId: parentOrgNodeId, description: description, customizedOrgNodeId: customizedOrgNodeId)
+        return try await self.client.execute(action: "CreateOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -83,12 +83,14 @@ extension Cam {
     /// 查询SAML身份提供商详情
     @inlinable
     public func getSAMLProvider(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSAMLProviderResponse> {
-        self.getSAMLProvider(GetSAMLProviderRequest(name: name), region: region, logger: logger, on: eventLoop)
+        let input = GetSAMLProviderRequest(name: name)
+        return self.client.execute(action: "GetSAMLProvider", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询SAML身份提供商详情
     @inlinable
     public func getSAMLProvider(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSAMLProviderResponse {
-        try await self.getSAMLProvider(GetSAMLProviderRequest(name: name), region: region, logger: logger, on: eventLoop)
+        let input = GetSAMLProviderRequest(name: name)
+        return try await self.client.execute(action: "GetSAMLProvider", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

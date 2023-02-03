@@ -89,12 +89,14 @@ extension Tdmq {
     /// 创建RocketMQ消费组
     @inlinable @discardableResult
     public func createRocketMQGroup(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, groupType: String? = nil, retryMaxTimes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRocketMQGroupResponse> {
-        self.createRocketMQGroup(CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark, groupType: groupType, retryMaxTimes: retryMaxTimes), region: region, logger: logger, on: eventLoop)
+        let input = CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark, groupType: groupType, retryMaxTimes: retryMaxTimes)
+        return self.client.execute(action: "CreateRocketMQGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建RocketMQ消费组
     @inlinable @discardableResult
     public func createRocketMQGroup(groupId: String, namespaces: [String], readEnable: Bool, broadcastEnable: Bool, clusterId: String, remark: String? = nil, groupType: String? = nil, retryMaxTimes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRocketMQGroupResponse {
-        try await self.createRocketMQGroup(CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark, groupType: groupType, retryMaxTimes: retryMaxTimes), region: region, logger: logger, on: eventLoop)
+        let input = CreateRocketMQGroupRequest(groupId: groupId, namespaces: namespaces, readEnable: readEnable, broadcastEnable: broadcastEnable, clusterId: clusterId, remark: remark, groupType: groupType, retryMaxTimes: retryMaxTimes)
+        return try await self.client.execute(action: "CreateRocketMQGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Yinsuda {
     /// 获取标签分组及分组下的标签列表信息。
     @inlinable
     public func describeKTVTags(appName: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVTagsResponse> {
-        self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVTagsRequest(appName: appName, userId: userId)
+        return self.client.execute(action: "DescribeKTVTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取标签列表
@@ -77,6 +78,7 @@ extension Yinsuda {
     /// 获取标签分组及分组下的标签列表信息。
     @inlinable
     public func describeKTVTags(appName: String, userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVTagsResponse {
-        try await self.describeKTVTags(DescribeKTVTagsRequest(appName: appName, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVTagsRequest(appName: appName, userId: userId)
+        return try await self.client.execute(action: "DescribeKTVTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

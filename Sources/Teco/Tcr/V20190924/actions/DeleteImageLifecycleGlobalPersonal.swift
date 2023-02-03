@@ -52,7 +52,8 @@ extension Tcr {
     /// 用于删除个人版全局镜像版本自动清理策略
     @inlinable @discardableResult
     public func deleteImageLifecycleGlobalPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageLifecycleGlobalPersonalResponse> {
-        self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DeleteImageLifecycleGlobalPersonalRequest()
+        return self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除个人版全局镜像版本自动清理策略
@@ -60,6 +61,7 @@ extension Tcr {
     /// 用于删除个人版全局镜像版本自动清理策略
     @inlinable @discardableResult
     public func deleteImageLifecycleGlobalPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageLifecycleGlobalPersonalResponse {
-        try await self.deleteImageLifecycleGlobalPersonal(DeleteImageLifecycleGlobalPersonalRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DeleteImageLifecycleGlobalPersonalRequest()
+        return try await self.client.execute(action: "DeleteImageLifecycleGlobalPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

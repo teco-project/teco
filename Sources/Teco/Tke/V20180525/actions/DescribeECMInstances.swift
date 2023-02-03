@@ -68,12 +68,14 @@ extension Tke {
     /// 获取ECM实例相关信息
     @inlinable
     public func describeECMInstances(clusterID: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeECMInstancesResponse> {
-        self.describeECMInstances(DescribeECMInstancesRequest(clusterID: clusterID, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeECMInstancesRequest(clusterID: clusterID, filters: filters)
+        return self.client.execute(action: "DescribeECMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取ECM实例相关信息
     @inlinable
     public func describeECMInstances(clusterID: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeECMInstancesResponse {
-        try await self.describeECMInstances(DescribeECMInstancesRequest(clusterID: clusterID, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeECMInstancesRequest(clusterID: clusterID, filters: filters)
+        return try await self.client.execute(action: "DescribeECMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

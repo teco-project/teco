@@ -78,12 +78,14 @@ extension Cwp {
     /// 同步基线检测进度概要
     @inlinable
     public func syncBaselineDetectSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncBaselineDetectSummaryResponse> {
-        self.syncBaselineDetectSummary(SyncBaselineDetectSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = SyncBaselineDetectSummaryRequest()
+        return self.client.execute(action: "SyncBaselineDetectSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步基线检测进度概要
     @inlinable
     public func syncBaselineDetectSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncBaselineDetectSummaryResponse {
-        try await self.syncBaselineDetectSummary(SyncBaselineDetectSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = SyncBaselineDetectSummaryRequest()
+        return try await self.client.execute(action: "SyncBaselineDetectSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

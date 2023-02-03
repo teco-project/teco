@@ -84,7 +84,8 @@ extension Dayu {
     /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
     @inlinable
     public func modifyL4KeepTime(business: String, id: String, ruleId: String, keepEnable: UInt64, keepTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4KeepTimeResponse> {
-        self.modifyL4KeepTime(ModifyL4KeepTimeRequest(business: business, id: id, ruleId: ruleId, keepEnable: keepEnable, keepTime: keepTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyL4KeepTimeRequest(business: business, id: id, ruleId: ruleId, keepEnable: keepEnable, keepTime: keepTime)
+        return self.client.execute(action: "ModifyL4KeepTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改L4转发规则的会话保持
@@ -92,6 +93,7 @@ extension Dayu {
     /// 修改L4转发规则的会话保持，支持的子产品：高防IP、高防IP专业版
     @inlinable
     public func modifyL4KeepTime(business: String, id: String, ruleId: String, keepEnable: UInt64, keepTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4KeepTimeResponse {
-        try await self.modifyL4KeepTime(ModifyL4KeepTimeRequest(business: business, id: id, ruleId: ruleId, keepEnable: keepEnable, keepTime: keepTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyL4KeepTimeRequest(business: business, id: id, ruleId: ruleId, keepEnable: keepEnable, keepTime: keepTime)
+        return try await self.client.execute(action: "ModifyL4KeepTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

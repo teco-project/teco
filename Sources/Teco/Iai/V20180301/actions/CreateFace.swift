@@ -139,7 +139,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func createFace(personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceResponse> {
-        self.createFace(CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
+        let input = CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection)
+        return self.client.execute(action: "CreateFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增加人脸
@@ -150,6 +151,7 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func createFace(personId: String, images: [String]? = nil, urls: [String]? = nil, faceMatchThreshold: Float? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceResponse {
-        try await self.createFace(CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
+        let input = CreateFaceRequest(personId: personId, images: images, urls: urls, faceMatchThreshold: faceMatchThreshold, qualityControl: qualityControl, needRotateDetection: needRotateDetection)
+        return try await self.client.execute(action: "CreateFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

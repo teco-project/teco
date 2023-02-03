@@ -54,12 +54,14 @@ extension Tcss {
     /// 查询检查报告
     @inlinable
     public func describeInspectionReport(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInspectionReportResponse> {
-        self.describeInspectionReport(DescribeInspectionReportRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInspectionReportRequest()
+        return self.client.execute(action: "DescribeInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询检查报告
     @inlinable
     public func describeInspectionReport(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInspectionReportResponse {
-        try await self.describeInspectionReport(DescribeInspectionReportRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInspectionReportRequest()
+        return try await self.client.execute(action: "DescribeInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

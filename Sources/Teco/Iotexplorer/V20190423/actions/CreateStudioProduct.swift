@@ -99,7 +99,8 @@ extension Iotexplorer {
     /// 为用户提供新建产品的能力，用于管理用户的设备
     @inlinable
     public func createStudioProduct(productName: String, categoryId: Int64, productType: Int64, encryptionType: String, netType: String, dataProtocol: Int64, productDesc: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStudioProductResponse> {
-        self.createStudioProduct(CreateStudioProductRequest(productName: productName, categoryId: categoryId, productType: productType, encryptionType: encryptionType, netType: netType, dataProtocol: dataProtocol, productDesc: productDesc, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = CreateStudioProductRequest(productName: productName, categoryId: categoryId, productType: productType, encryptionType: encryptionType, netType: netType, dataProtocol: dataProtocol, productDesc: productDesc, projectId: projectId)
+        return self.client.execute(action: "CreateStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建产品
@@ -107,6 +108,7 @@ extension Iotexplorer {
     /// 为用户提供新建产品的能力，用于管理用户的设备
     @inlinable
     public func createStudioProduct(productName: String, categoryId: Int64, productType: Int64, encryptionType: String, netType: String, dataProtocol: Int64, productDesc: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStudioProductResponse {
-        try await self.createStudioProduct(CreateStudioProductRequest(productName: productName, categoryId: categoryId, productType: productType, encryptionType: encryptionType, netType: netType, dataProtocol: dataProtocol, productDesc: productDesc, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = CreateStudioProductRequest(productName: productName, categoryId: categoryId, productType: productType, encryptionType: encryptionType, netType: netType, dataProtocol: dataProtocol, productDesc: productDesc, projectId: projectId)
+        return try await self.client.execute(action: "CreateStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

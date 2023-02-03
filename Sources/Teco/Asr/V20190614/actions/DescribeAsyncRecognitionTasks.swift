@@ -60,7 +60,8 @@ extension Asr {
     /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
     public func describeAsyncRecognitionTasks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRecognitionTasksResponse> {
-        self.describeAsyncRecognitionTasks(DescribeAsyncRecognitionTasksRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAsyncRecognitionTasksRequest()
+        return self.client.execute(action: "DescribeAsyncRecognitionTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 语音流异步识别任务列表
@@ -69,6 +70,7 @@ extension Asr {
     /// <br>•   签名方法参考 [公共参数](https://cloud.tencent.com/document/api/1093/35640) 中签名方法v3。
     @inlinable
     public func describeAsyncRecognitionTasks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRecognitionTasksResponse {
-        try await self.describeAsyncRecognitionTasks(DescribeAsyncRecognitionTasksRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAsyncRecognitionTasksRequest()
+        return try await self.client.execute(action: "DescribeAsyncRecognitionTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

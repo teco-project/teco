@@ -65,7 +65,8 @@ extension Oceanus {
     /// 批量停止作业，批量操作数量上限为20
     @inlinable @discardableResult
     public func stopJobs(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopJobsResponse> {
-        self.stopJobs(StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId)
+        return self.client.execute(action: "StopJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止作业
@@ -73,6 +74,7 @@ extension Oceanus {
     /// 批量停止作业，批量操作数量上限为20
     @inlinable @discardableResult
     public func stopJobs(stopJobDescriptions: [StopJobDescription], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopJobsResponse {
-        try await self.stopJobs(StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = StopJobsRequest(stopJobDescriptions: stopJobDescriptions, workSpaceId: workSpaceId)
+        return try await self.client.execute(action: "StopJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

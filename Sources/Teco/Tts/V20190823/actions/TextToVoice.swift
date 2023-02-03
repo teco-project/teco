@@ -144,7 +144,8 @@ extension Tts {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func textToVoice(text: String, sessionId: String, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, modelType: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, enableSubtitle: Bool? = nil, segmentRate: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToVoiceResponse> {
-        self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, volume: volume, speed: speed, projectId: projectId, modelType: modelType, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, enableSubtitle: enableSubtitle, segmentRate: segmentRate), region: region, logger: logger, on: eventLoop)
+        let input = TextToVoiceRequest(text: text, sessionId: sessionId, volume: volume, speed: speed, projectId: projectId, modelType: modelType, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, enableSubtitle: enableSubtitle, segmentRate: segmentRate)
+        return self.client.execute(action: "TextToVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 基础语音合成
@@ -156,6 +157,7 @@ extension Tts {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func textToVoice(text: String, sessionId: String, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, modelType: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, enableSubtitle: Bool? = nil, segmentRate: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
-        try await self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, volume: volume, speed: speed, projectId: projectId, modelType: modelType, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, enableSubtitle: enableSubtitle, segmentRate: segmentRate), region: region, logger: logger, on: eventLoop)
+        let input = TextToVoiceRequest(text: text, sessionId: sessionId, volume: volume, speed: speed, projectId: projectId, modelType: modelType, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, enableSubtitle: enableSubtitle, segmentRate: segmentRate)
+        return try await self.client.execute(action: "TextToVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

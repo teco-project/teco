@@ -73,12 +73,14 @@ extension Cpdp {
     /// 直播平台-上传代理商完税列表
     @inlinable
     public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadTaxListResponse> {
-        self.uploadTaxList(UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
+        let input = UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl)
+        return self.client.execute(action: "UploadTaxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-上传代理商完税列表
     @inlinable
     public func uploadTaxList(channel: Int64, beginMonth: String, endMonth: String, fileUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadTaxListResponse {
-        try await self.uploadTaxList(UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl), region: region, logger: logger, on: eventLoop)
+        let input = UploadTaxListRequest(channel: channel, beginMonth: beginMonth, endMonth: endMonth, fileUrl: fileUrl)
+        return try await self.client.execute(action: "UploadTaxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

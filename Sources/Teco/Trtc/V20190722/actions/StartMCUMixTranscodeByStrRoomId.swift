@@ -145,7 +145,8 @@ extension Trtc {
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable @discardableResult
     public func startMCUMixTranscodeByStrRoomId(sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeByStrRoomIdResponse> {
-        self.startMCUMixTranscodeByStrRoomId(StartMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), region: region, logger: logger, on: eventLoop)
+        let input = StartMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams)
+        return self.client.execute(action: "StartMCUMixTranscodeByStrRoomId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动云端混流（字符串房间号）
@@ -173,6 +174,7 @@ extension Trtc {
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable @discardableResult
     public func startMCUMixTranscodeByStrRoomId(sdkAppId: UInt64, strRoomId: String, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeByStrRoomIdResponse {
-        try await self.startMCUMixTranscodeByStrRoomId(StartMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), region: region, logger: logger, on: eventLoop)
+        let input = StartMCUMixTranscodeByStrRoomIdRequest(sdkAppId: sdkAppId, strRoomId: strRoomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams)
+        return try await self.client.execute(action: "StartMCUMixTranscodeByStrRoomId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -103,7 +103,8 @@ extension Dbbrain {
     /// 获取SQL优化建议。【产品用户回馈，此接口限免开放，后续将并入dbbrain专业版】
     @inlinable
     public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSqlAdviceResponse> {
-        self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema, product: product), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema, product: product)
+        return self.client.execute(action: "DescribeUserSqlAdvice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SQL优化建议
@@ -111,6 +112,7 @@ extension Dbbrain {
     /// 获取SQL优化建议。【产品用户回馈，此接口限免开放，后续将并入dbbrain专业版】
     @inlinable
     public func describeUserSqlAdvice(instanceId: String, sqlText: String, schema: String? = nil, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSqlAdviceResponse {
-        try await self.describeUserSqlAdvice(DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema, product: product), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserSqlAdviceRequest(instanceId: instanceId, sqlText: sqlText, schema: schema, product: product)
+        return try await self.client.execute(action: "DescribeUserSqlAdvice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -60,7 +60,8 @@ extension Cwp {
     /// 根据Ids删除反弹Shell事件
     @inlinable @discardableResult
     public func deleteReverseShellEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellEventsResponse> {
-        self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteReverseShellEventsRequest(ids: ids)
+        return self.client.execute(action: "DeleteReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除反弹Shell事件
@@ -68,6 +69,7 @@ extension Cwp {
     /// 根据Ids删除反弹Shell事件
     @inlinable @discardableResult
     public func deleteReverseShellEvents(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellEventsResponse {
-        try await self.deleteReverseShellEvents(DeleteReverseShellEventsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteReverseShellEventsRequest(ids: ids)
+        return try await self.client.execute(action: "DeleteReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

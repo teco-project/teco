@@ -60,7 +60,8 @@ extension Dts {
     /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
     @inlinable @discardableResult
     public func resetSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetSubscribeResponse> {
-        self.resetSubscribe(ResetSubscribeRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
+        let input = ResetSubscribeRequest(subscribeId: subscribeId)
+        return self.client.execute(action: "ResetSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置数据订阅实例
@@ -68,6 +69,7 @@ extension Dts {
     /// 本接口(ResetSubscribe)用于重置数据订阅实例，已经激活的数据订阅实例，重置后可以使用ActivateSubscribe接口绑定其他的数据库实例
     @inlinable @discardableResult
     public func resetSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetSubscribeResponse {
-        try await self.resetSubscribe(ResetSubscribeRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
+        let input = ResetSubscribeRequest(subscribeId: subscribeId)
+        return try await self.client.execute(action: "ResetSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

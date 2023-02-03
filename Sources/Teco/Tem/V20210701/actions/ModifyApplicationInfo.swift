@@ -74,12 +74,14 @@ extension Tem {
     /// 修改应用基本信息
     @inlinable
     public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationInfoResponse> {
-        self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing)
+        return self.client.execute(action: "ModifyApplicationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用基本信息
     @inlinable
     public func modifyApplicationInfo(applicationId: String, description: String, sourceChannel: Int64? = nil, enableTracing: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationInfoResponse {
-        try await self.modifyApplicationInfo(ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationInfoRequest(applicationId: applicationId, description: description, sourceChannel: sourceChannel, enableTracing: enableTracing)
+        return try await self.client.execute(action: "ModifyApplicationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

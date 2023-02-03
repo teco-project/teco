@@ -68,12 +68,14 @@ extension Apigateway {
     /// 查询专享实例列表（新）
     @inlinable
     public func describeExclusiveInstancesStatus(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveInstancesStatusResponse> {
-        self.describeExclusiveInstancesStatus(DescribeExclusiveInstancesStatusRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExclusiveInstancesStatusRequest(limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeExclusiveInstancesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专享实例列表（新）
     @inlinable
     public func describeExclusiveInstancesStatus(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstancesStatusResponse {
-        try await self.describeExclusiveInstancesStatus(DescribeExclusiveInstancesStatusRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExclusiveInstancesStatusRequest(limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeExclusiveInstancesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -91,12 +91,14 @@ extension Iai {
     /// 人员库升级结果查询
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionResultResponse> {
-        self.getUpgradeGroupFaceModelVersionResult(GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId)
+        return self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人员库升级结果查询
     @inlinable
     public func getUpgradeGroupFaceModelVersionResult(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionResultResponse {
-        try await self.getUpgradeGroupFaceModelVersionResult(GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = GetUpgradeGroupFaceModelVersionResultRequest(jobId: jobId)
+        return try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

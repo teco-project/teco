@@ -68,7 +68,8 @@ extension Iotcloud {
     /// 本接口（CreateTaskFileUrl）用于获取产品级任务文件上传链接
     @inlinable
     public func createTaskFileUrl(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFileUrlResponse> {
-        self.createTaskFileUrl(CreateTaskFileUrlRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = CreateTaskFileUrlRequest(productId: productId)
+        return self.client.execute(action: "CreateTaskFileUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务文件上传链接
@@ -76,6 +77,7 @@ extension Iotcloud {
     /// 本接口（CreateTaskFileUrl）用于获取产品级任务文件上传链接
     @inlinable
     public func createTaskFileUrl(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFileUrlResponse {
-        try await self.createTaskFileUrl(CreateTaskFileUrlRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = CreateTaskFileUrlRequest(productId: productId)
+        return try await self.client.execute(action: "CreateTaskFileUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

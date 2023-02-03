@@ -106,7 +106,8 @@ extension Youmall {
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
     public func describePersonInfo(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoResponse> {
-        self.describePersonInfo(DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType), region: region, logger: logger, on: eventLoop)
+        let input = DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType)
+        return self.client.execute(action: "DescribePersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取顾客详情列表
@@ -114,6 +115,7 @@ extension Youmall {
     /// 指定门店获取所有顾客详情列表，包含客户ID、图片、年龄、性别
     @inlinable
     public func describePersonInfo(companyId: String, shopId: UInt64, startPersonId: UInt64, offset: UInt64, limit: UInt64, pictureExpires: UInt64? = nil, personType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoResponse {
-        try await self.describePersonInfo(DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType), region: region, logger: logger, on: eventLoop)
+        let input = DescribePersonInfoRequest(companyId: companyId, shopId: shopId, startPersonId: startPersonId, offset: offset, limit: limit, pictureExpires: pictureExpires, personType: personType)
+        return try await self.client.execute(action: "DescribePersonInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

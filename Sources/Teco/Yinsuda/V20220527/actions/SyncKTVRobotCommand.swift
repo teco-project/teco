@@ -75,7 +75,8 @@ extension Yinsuda {
     /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
     @inlinable @discardableResult
     public func syncKTVRobotCommand(appName: String, userId: String, robotId: String, syncRobotCommands: [SyncRobotCommand], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncKTVRobotCommandResponse> {
-        self.syncKTVRobotCommand(SyncKTVRobotCommandRequest(appName: appName, userId: userId, robotId: robotId, syncRobotCommands: syncRobotCommands), region: region, logger: logger, on: eventLoop)
+        let input = SyncKTVRobotCommandRequest(appName: appName, userId: userId, robotId: robotId, syncRobotCommands: syncRobotCommands)
+        return self.client.execute(action: "SyncKTVRobotCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步机器人指令
@@ -83,6 +84,7 @@ extension Yinsuda {
     /// 下发操作机器人指令，支持播放、暂停、恢复、歌单设置等操作指令，实现对机器人行为的控制。
     @inlinable @discardableResult
     public func syncKTVRobotCommand(appName: String, userId: String, robotId: String, syncRobotCommands: [SyncRobotCommand], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncKTVRobotCommandResponse {
-        try await self.syncKTVRobotCommand(SyncKTVRobotCommandRequest(appName: appName, userId: userId, robotId: robotId, syncRobotCommands: syncRobotCommands), region: region, logger: logger, on: eventLoop)
+        let input = SyncKTVRobotCommandRequest(appName: appName, userId: userId, robotId: robotId, syncRobotCommands: syncRobotCommands)
+        return try await self.client.execute(action: "SyncKTVRobotCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

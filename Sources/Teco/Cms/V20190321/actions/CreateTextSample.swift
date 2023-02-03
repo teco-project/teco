@@ -100,7 +100,8 @@ extension Cms {
     /// 通过该接口可以将文本新增到样本库。
     @inlinable
     public func createTextSample(contents: [String], evilType: Int64, label: UInt64, test: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTextSampleResponse> {
-        self.createTextSample(CreateTextSampleRequest(contents: contents, evilType: evilType, label: label, test: test), region: region, logger: logger, on: eventLoop)
+        let input = CreateTextSampleRequest(contents: contents, evilType: evilType, label: label, test: test)
+        return self.client.execute(action: "CreateTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增文本样本库
@@ -110,6 +111,7 @@ extension Cms {
     /// 通过该接口可以将文本新增到样本库。
     @inlinable
     public func createTextSample(contents: [String], evilType: Int64, label: UInt64, test: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTextSampleResponse {
-        try await self.createTextSample(CreateTextSampleRequest(contents: contents, evilType: evilType, label: label, test: test), region: region, logger: logger, on: eventLoop)
+        let input = CreateTextSampleRequest(contents: contents, evilType: evilType, label: label, test: test)
+        return try await self.client.execute(action: "CreateTextSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -103,12 +103,14 @@ extension Cpdp {
     /// 云企付-子商户资质文件查询
     @inlinable
     public func queryOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String? = nil, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSubMerchantCredentialResponse> {
-        self.queryOpenBankSubMerchantCredential(QueryOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment)
+        return self.client.execute(action: "QueryOpenBankSubMerchantCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户资质文件查询
     @inlinable
     public func queryOpenBankSubMerchantCredential(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String? = nil, outApplyId: String? = nil, channelApplyId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantCredentialResponse {
-        try await self.queryOpenBankSubMerchantCredential(QueryOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankSubMerchantCredentialRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, outApplyId: outApplyId, channelApplyId: channelApplyId, environment: environment)
+        return try await self.client.execute(action: "QueryOpenBankSubMerchantCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

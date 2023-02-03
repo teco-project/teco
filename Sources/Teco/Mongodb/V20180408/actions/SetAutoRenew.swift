@@ -65,7 +65,8 @@ extension Mongodb {
     /// 本接口(SetAutoRenew)用于设置包年包月云数据库实例的续费选项。
     @inlinable @discardableResult
     public func setAutoRenew(instanceIds: [String], autoRenewFlag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAutoRenewResponse> {
-        self.setAutoRenew(SetAutoRenewRequest(instanceIds: instanceIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = SetAutoRenewRequest(instanceIds: instanceIds, autoRenewFlag: autoRenewFlag)
+        return self.client.execute(action: "SetAutoRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置云数据库实例的续费选项
@@ -73,6 +74,7 @@ extension Mongodb {
     /// 本接口(SetAutoRenew)用于设置包年包月云数据库实例的续费选项。
     @inlinable @discardableResult
     public func setAutoRenew(instanceIds: [String], autoRenewFlag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoRenewResponse {
-        try await self.setAutoRenew(SetAutoRenewRequest(instanceIds: instanceIds, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = SetAutoRenewRequest(instanceIds: instanceIds, autoRenewFlag: autoRenewFlag)
+        return try await self.client.execute(action: "SetAutoRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

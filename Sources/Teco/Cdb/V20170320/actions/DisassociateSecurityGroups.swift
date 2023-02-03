@@ -70,7 +70,8 @@ extension Cdb {
     /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
     @inlinable @discardableResult
     public func disassociateSecurityGroups(securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
-        self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance)
+        return self.client.execute(action: "DisassociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量解绑云资源
@@ -78,6 +79,7 @@ extension Cdb {
     /// 本接口(DisassociateSecurityGroups)用于安全组批量解绑实例。
     @inlinable @discardableResult
     public func disassociateSecurityGroups(securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
-        try await self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance)
+        return try await self.client.execute(action: "DisassociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

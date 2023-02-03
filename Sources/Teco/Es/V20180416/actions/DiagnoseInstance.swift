@@ -64,12 +64,14 @@ extension Es {
     /// 智能运维诊断集群
     @inlinable @discardableResult
     public func diagnoseInstance(instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DiagnoseInstanceResponse> {
-        self.diagnoseInstance(DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices), region: region, logger: logger, on: eventLoop)
+        let input = DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices)
+        return self.client.execute(action: "DiagnoseInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智能运维诊断集群
     @inlinable @discardableResult
     public func diagnoseInstance(instanceId: String, diagnoseJobs: [String]? = nil, diagnoseIndices: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DiagnoseInstanceResponse {
-        try await self.diagnoseInstance(DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices), region: region, logger: logger, on: eventLoop)
+        let input = DiagnoseInstanceRequest(instanceId: instanceId, diagnoseJobs: diagnoseJobs, diagnoseIndices: diagnoseIndices)
+        return try await self.client.execute(action: "DiagnoseInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -177,7 +177,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFaceAttributes(maxFaceNum: UInt64? = nil, image: String? = nil, url: String? = nil, faceAttributesType: String? = nil, needRotateDetection: UInt64? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectFaceAttributesResponse> {
-        self.detectFaceAttributes(DetectFaceAttributesRequest(maxFaceNum: maxFaceNum, image: image, url: url, faceAttributesType: faceAttributesType, needRotateDetection: needRotateDetection, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
+        let input = DetectFaceAttributesRequest(maxFaceNum: maxFaceNum, image: image, url: url, faceAttributesType: faceAttributesType, needRotateDetection: needRotateDetection, faceModelVersion: faceModelVersion)
+        return self.client.execute(action: "DetectFaceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸检测与属性分析
@@ -205,6 +206,7 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectFaceAttributes(maxFaceNum: UInt64? = nil, image: String? = nil, url: String? = nil, faceAttributesType: String? = nil, needRotateDetection: UInt64? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceAttributesResponse {
-        try await self.detectFaceAttributes(DetectFaceAttributesRequest(maxFaceNum: maxFaceNum, image: image, url: url, faceAttributesType: faceAttributesType, needRotateDetection: needRotateDetection, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
+        let input = DetectFaceAttributesRequest(maxFaceNum: maxFaceNum, image: image, url: url, faceAttributesType: faceAttributesType, needRotateDetection: needRotateDetection, faceModelVersion: faceModelVersion)
+        return try await self.client.execute(action: "DetectFaceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

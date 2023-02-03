@@ -64,12 +64,14 @@ extension Tcr {
     /// 删除从实例
     @inlinable @discardableResult
     public func deleteReplicationInstance(registryId: String, replicationRegistryId: String, replicationRegionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReplicationInstanceResponse> {
-        self.deleteReplicationInstance(DeleteReplicationInstanceRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteReplicationInstanceRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId)
+        return self.client.execute(action: "DeleteReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除从实例
     @inlinable @discardableResult
     public func deleteReplicationInstance(registryId: String, replicationRegistryId: String, replicationRegionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReplicationInstanceResponse {
-        try await self.deleteReplicationInstance(DeleteReplicationInstanceRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteReplicationInstanceRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId)
+        return try await self.client.execute(action: "DeleteReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

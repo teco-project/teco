@@ -79,7 +79,8 @@ extension Tcss {
     /// 容器安全停止镜像扫描
     @inlinable
     public func modifyAssetImageScanStop(taskID: String? = nil, images: [String]? = nil, filters: [AssetFilters]? = nil, excludeImageIds: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetImageScanStopResponse> {
-        self.modifyAssetImageScanStop(ModifyAssetImageScanStopRequest(taskID: taskID, images: images, filters: filters, excludeImageIds: excludeImageIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssetImageScanStopRequest(taskID: taskID, images: images, filters: filters, excludeImageIds: excludeImageIds)
+        return self.client.execute(action: "ModifyAssetImageScanStop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止镜像扫描
@@ -87,6 +88,7 @@ extension Tcss {
     /// 容器安全停止镜像扫描
     @inlinable
     public func modifyAssetImageScanStop(taskID: String? = nil, images: [String]? = nil, filters: [AssetFilters]? = nil, excludeImageIds: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageScanStopResponse {
-        try await self.modifyAssetImageScanStop(ModifyAssetImageScanStopRequest(taskID: taskID, images: images, filters: filters, excludeImageIds: excludeImageIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssetImageScanStopRequest(taskID: taskID, images: images, filters: filters, excludeImageIds: excludeImageIds)
+        return try await self.client.execute(action: "ModifyAssetImageScanStop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

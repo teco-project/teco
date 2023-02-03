@@ -92,7 +92,8 @@ extension Live {
     /// 最佳实践：https://cloud.tencent.com/document/product/267/45566
     @inlinable @discardableResult
     public func createCommonMixStream(mixStreamSessionId: String, inputStreamList: [CommonMixInputParam], outputParams: CommonMixOutputParams, mixStreamTemplateId: Int64? = nil, controlParams: CommonMixControlParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCommonMixStreamResponse> {
-        self.createCommonMixStream(CreateCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId, inputStreamList: inputStreamList, outputParams: outputParams, mixStreamTemplateId: mixStreamTemplateId, controlParams: controlParams), region: region, logger: logger, on: eventLoop)
+        let input = CreateCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId, inputStreamList: inputStreamList, outputParams: outputParams, mixStreamTemplateId: mixStreamTemplateId, controlParams: controlParams)
+        return self.client.execute(action: "CreateCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建通用混流
@@ -102,6 +103,7 @@ extension Live {
     /// 最佳实践：https://cloud.tencent.com/document/product/267/45566
     @inlinable @discardableResult
     public func createCommonMixStream(mixStreamSessionId: String, inputStreamList: [CommonMixInputParam], outputParams: CommonMixOutputParams, mixStreamTemplateId: Int64? = nil, controlParams: CommonMixControlParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCommonMixStreamResponse {
-        try await self.createCommonMixStream(CreateCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId, inputStreamList: inputStreamList, outputParams: outputParams, mixStreamTemplateId: mixStreamTemplateId, controlParams: controlParams), region: region, logger: logger, on: eventLoop)
+        let input = CreateCommonMixStreamRequest(mixStreamSessionId: mixStreamSessionId, inputStreamList: inputStreamList, outputParams: outputParams, mixStreamTemplateId: mixStreamTemplateId, controlParams: controlParams)
+        return try await self.client.execute(action: "CreateCommonMixStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

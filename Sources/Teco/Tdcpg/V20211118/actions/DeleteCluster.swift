@@ -60,7 +60,8 @@ extension Tdcpg {
     /// 删除集群，集群中的实例和数据都将被删除，且无法恢复。只有当集群状态处于isolated(已隔离)时才生效。
     @inlinable @discardableResult
     public func deleteCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterResponse> {
-        self.deleteCluster(DeleteClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterRequest(clusterId: clusterId)
+        return self.client.execute(action: "DeleteCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集群
@@ -68,6 +69,7 @@ extension Tdcpg {
     /// 删除集群，集群中的实例和数据都将被删除，且无法恢复。只有当集群状态处于isolated(已隔离)时才生效。
     @inlinable @discardableResult
     public func deleteCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
-        try await self.deleteCluster(DeleteClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DeleteCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

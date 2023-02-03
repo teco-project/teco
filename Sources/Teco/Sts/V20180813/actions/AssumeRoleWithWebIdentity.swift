@@ -86,12 +86,14 @@ extension Sts {
     /// 申请OIDC角色临时密钥
     @inlinable
     public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithWebIdentityResponse> {
-        self.assumeRoleWithWebIdentity(AssumeRoleWithWebIdentityRequest(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
+        let input = AssumeRoleWithWebIdentityRequest(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds)
+        return self.client.execute(action: "AssumeRoleWithWebIdentity", region: region, serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请OIDC角色临时密钥
     @inlinable
     public func assumeRoleWithWebIdentity(providerId: String, webIdentityToken: String, roleArn: String, roleSessionName: String, durationSeconds: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
-        try await self.assumeRoleWithWebIdentity(AssumeRoleWithWebIdentityRequest(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds), region: region, logger: logger, on: eventLoop)
+        let input = AssumeRoleWithWebIdentityRequest(providerId: providerId, webIdentityToken: webIdentityToken, roleArn: roleArn, roleSessionName: roleSessionName, durationSeconds: durationSeconds)
+        return try await self.client.execute(action: "AssumeRoleWithWebIdentity", region: region, serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop).get()
     }
 }

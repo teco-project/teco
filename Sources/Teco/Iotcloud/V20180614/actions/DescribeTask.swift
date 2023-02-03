@@ -112,7 +112,8 @@ extension Iotcloud {
     /// 本接口（DescribeTask）用于查询一个已创建任务的详情，任务保留一个月
     @inlinable
     public func describeTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResponse> {
-        self.describeTask(DescribeTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskRequest(id: id)
+        return self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务详情
@@ -120,6 +121,7 @@ extension Iotcloud {
     /// 本接口（DescribeTask）用于查询一个已创建任务的详情，任务保留一个月
     @inlinable
     public func describeTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.describeTask(DescribeTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskRequest(id: id)
+        return try await self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

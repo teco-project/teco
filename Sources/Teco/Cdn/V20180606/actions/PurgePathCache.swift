@@ -88,7 +88,8 @@ extension Cdn {
     /// 默认情况下境内、境外加速区域每日目录刷新额度为各 100 条，每次最多可提交 500 条。
     @inlinable
     public func purgePathCache(paths: [String], flushType: String, urlEncode: Bool? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PurgePathCacheResponse> {
-        self.purgePathCache(PurgePathCacheRequest(paths: paths, flushType: flushType, urlEncode: urlEncode, area: area), region: region, logger: logger, on: eventLoop)
+        let input = PurgePathCacheRequest(paths: paths, flushType: flushType, urlEncode: urlEncode, area: area)
+        return self.client.execute(action: "PurgePathCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 刷新目录
@@ -97,6 +98,7 @@ extension Cdn {
     /// 默认情况下境内、境外加速区域每日目录刷新额度为各 100 条，每次最多可提交 500 条。
     @inlinable
     public func purgePathCache(paths: [String], flushType: String, urlEncode: Bool? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PurgePathCacheResponse {
-        try await self.purgePathCache(PurgePathCacheRequest(paths: paths, flushType: flushType, urlEncode: urlEncode, area: area), region: region, logger: logger, on: eventLoop)
+        let input = PurgePathCacheRequest(paths: paths, flushType: flushType, urlEncode: urlEncode, area: area)
+        return try await self.client.execute(action: "PurgePathCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

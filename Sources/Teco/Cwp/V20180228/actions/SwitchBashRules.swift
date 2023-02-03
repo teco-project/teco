@@ -59,12 +59,14 @@ extension Cwp {
     /// 切换高危命令规则状态
     @inlinable @discardableResult
     public func switchBashRules(id: UInt64, disabled: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchBashRulesResponse> {
-        self.switchBashRules(SwitchBashRulesRequest(id: id, disabled: disabled), region: region, logger: logger, on: eventLoop)
+        let input = SwitchBashRulesRequest(id: id, disabled: disabled)
+        return self.client.execute(action: "SwitchBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换高危命令规则状态
     @inlinable @discardableResult
     public func switchBashRules(id: UInt64, disabled: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchBashRulesResponse {
-        try await self.switchBashRules(SwitchBashRulesRequest(id: id, disabled: disabled), region: region, logger: logger, on: eventLoop)
+        let input = SwitchBashRulesRequest(id: id, disabled: disabled)
+        return try await self.client.execute(action: "SwitchBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

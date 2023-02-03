@@ -80,7 +80,8 @@ extension Cwp {
     /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
     @inlinable
     public func describeUndoVulCounts(vulCategory: UInt64? = nil, ifEmergency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUndoVulCountsResponse> {
-        self.describeUndoVulCounts(DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency)
+        return self.client.execute(action: "DescribeUndoVulCounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定漏洞分类统计数
@@ -88,6 +89,7 @@ extension Cwp {
     /// 获取漏洞管理模块指定类型的待处理漏洞数、主机数和非专业版主机数量
     @inlinable
     public func describeUndoVulCounts(vulCategory: UInt64? = nil, ifEmergency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUndoVulCountsResponse {
-        try await self.describeUndoVulCounts(DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUndoVulCountsRequest(vulCategory: vulCategory, ifEmergency: ifEmergency)
+        return try await self.client.execute(action: "DescribeUndoVulCounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

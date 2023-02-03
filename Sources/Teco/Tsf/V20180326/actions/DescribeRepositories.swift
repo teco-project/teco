@@ -73,12 +73,14 @@ extension Tsf {
     /// 查询仓库列表
     @inlinable
     public func describeRepositories(searchWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoriesResponse> {
-        self.describeRepositories(DescribeRepositoriesRequest(searchWord: searchWord, offset: offset, limit: limit, repositoryType: repositoryType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRepositoriesRequest(searchWord: searchWord, offset: offset, limit: limit, repositoryType: repositoryType)
+        return self.client.execute(action: "DescribeRepositories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询仓库列表
     @inlinable
     public func describeRepositories(searchWord: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, repositoryType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
-        try await self.describeRepositories(DescribeRepositoriesRequest(searchWord: searchWord, offset: offset, limit: limit, repositoryType: repositoryType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRepositoriesRequest(searchWord: searchWord, offset: offset, limit: limit, repositoryType: repositoryType)
+        return try await self.client.execute(action: "DescribeRepositories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

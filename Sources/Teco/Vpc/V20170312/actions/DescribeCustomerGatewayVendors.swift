@@ -56,7 +56,8 @@ extension Vpc {
     /// 本接口（DescribeCustomerGatewayVendors）用于查询可支持的对端网关厂商信息。
     @inlinable
     public func describeCustomerGatewayVendors(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomerGatewayVendorsResponse> {
-        self.describeCustomerGatewayVendors(DescribeCustomerGatewayVendorsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomerGatewayVendorsRequest()
+        return self.client.execute(action: "DescribeCustomerGatewayVendors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可支持的对端网关厂商信息
@@ -64,6 +65,7 @@ extension Vpc {
     /// 本接口（DescribeCustomerGatewayVendors）用于查询可支持的对端网关厂商信息。
     @inlinable
     public func describeCustomerGatewayVendors(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomerGatewayVendorsResponse {
-        try await self.describeCustomerGatewayVendors(DescribeCustomerGatewayVendorsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomerGatewayVendorsRequest()
+        return try await self.client.execute(action: "DescribeCustomerGatewayVendors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Tcaplusdb {
     /// 修改TcaplusDB表格组名称
     @inlinable @discardableResult
     public func modifyTableGroupName(clusterId: String, tableGroupId: String, tableGroupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableGroupNameResponse> {
-        self.modifyTableGroupName(ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName)
+        return self.client.execute(action: "ModifyTableGroupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改表格组名称
@@ -78,6 +79,7 @@ extension Tcaplusdb {
     /// 修改TcaplusDB表格组名称
     @inlinable @discardableResult
     public func modifyTableGroupName(clusterId: String, tableGroupId: String, tableGroupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableGroupNameResponse {
-        try await self.modifyTableGroupName(ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTableGroupNameRequest(clusterId: clusterId, tableGroupId: tableGroupId, tableGroupName: tableGroupName)
+        return try await self.client.execute(action: "ModifyTableGroupName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

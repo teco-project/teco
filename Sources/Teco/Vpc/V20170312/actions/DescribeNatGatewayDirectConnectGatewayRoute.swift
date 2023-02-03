@@ -83,7 +83,8 @@ extension Vpc {
     /// 查询专线绑定NAT的路由
     @inlinable
     public func describeNatGatewayDirectConnectGatewayRoute(natGatewayId: String, vpcId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatGatewayDirectConnectGatewayRouteResponse> {
-        self.describeNatGatewayDirectConnectGatewayRoute(DescribeNatGatewayDirectConnectGatewayRouteRequest(natGatewayId: natGatewayId, vpcId: vpcId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNatGatewayDirectConnectGatewayRouteRequest(natGatewayId: natGatewayId, vpcId: vpcId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeNatGatewayDirectConnectGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专线绑定NAT路由
@@ -91,6 +92,7 @@ extension Vpc {
     /// 查询专线绑定NAT的路由
     @inlinable
     public func describeNatGatewayDirectConnectGatewayRoute(natGatewayId: String, vpcId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatGatewayDirectConnectGatewayRouteResponse {
-        try await self.describeNatGatewayDirectConnectGatewayRoute(DescribeNatGatewayDirectConnectGatewayRouteRequest(natGatewayId: natGatewayId, vpcId: vpcId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNatGatewayDirectConnectGatewayRouteRequest(natGatewayId: natGatewayId, vpcId: vpcId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeNatGatewayDirectConnectGatewayRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

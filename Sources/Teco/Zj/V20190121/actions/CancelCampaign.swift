@@ -69,7 +69,8 @@ extension Zj {
     /// 取消短信推送活动
     @inlinable
     public func cancelCampaign(license: String, campaignId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelCampaignResponse> {
-        self.cancelCampaign(CancelCampaignRequest(license: license, campaignId: campaignId), region: region, logger: logger, on: eventLoop)
+        let input = CancelCampaignRequest(license: license, campaignId: campaignId)
+        return self.client.execute(action: "CancelCampaign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消短信活动
@@ -77,6 +78,7 @@ extension Zj {
     /// 取消短信推送活动
     @inlinable
     public func cancelCampaign(license: String, campaignId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelCampaignResponse {
-        try await self.cancelCampaign(CancelCampaignRequest(license: license, campaignId: campaignId), region: region, logger: logger, on: eventLoop)
+        let input = CancelCampaignRequest(license: license, campaignId: campaignId)
+        return try await self.client.execute(action: "CancelCampaign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

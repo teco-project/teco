@@ -75,7 +75,8 @@ extension Dbbrain {
     /// 修改实例巡检开关。
     @inlinable @discardableResult
     public func modifyDiagDBInstanceConf(instanceConfs: InstanceConfs, regions: String, product: String, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiagDBInstanceConfResponse> {
-        self.modifyDiagDBInstanceConf(ModifyDiagDBInstanceConfRequest(instanceConfs: instanceConfs, regions: regions, product: product, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDiagDBInstanceConfRequest(instanceConfs: instanceConfs, regions: regions, product: product, instanceIds: instanceIds)
+        return self.client.execute(action: "ModifyDiagDBInstanceConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例巡检开关状态
@@ -83,6 +84,7 @@ extension Dbbrain {
     /// 修改实例巡检开关。
     @inlinable @discardableResult
     public func modifyDiagDBInstanceConf(instanceConfs: InstanceConfs, regions: String, product: String, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiagDBInstanceConfResponse {
-        try await self.modifyDiagDBInstanceConf(ModifyDiagDBInstanceConfRequest(instanceConfs: instanceConfs, regions: regions, product: product, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDiagDBInstanceConfRequest(instanceConfs: instanceConfs, regions: regions, product: product, instanceIds: instanceIds)
+        return try await self.client.execute(action: "ModifyDiagDBInstanceConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

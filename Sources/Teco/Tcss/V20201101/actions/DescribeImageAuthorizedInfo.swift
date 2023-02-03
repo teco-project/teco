@@ -72,7 +72,8 @@ extension Tcss {
     /// DescribeImageAuthorizedInfo  查询镜像授权信息
     @inlinable
     public func describeImageAuthorizedInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageAuthorizedInfoResponse> {
-        self.describeImageAuthorizedInfo(DescribeImageAuthorizedInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageAuthorizedInfoRequest()
+        return self.client.execute(action: "DescribeImageAuthorizedInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像授权信息
@@ -80,6 +81,7 @@ extension Tcss {
     /// DescribeImageAuthorizedInfo  查询镜像授权信息
     @inlinable
     public func describeImageAuthorizedInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageAuthorizedInfoResponse {
-        try await self.describeImageAuthorizedInfo(DescribeImageAuthorizedInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageAuthorizedInfoRequest()
+        return try await self.client.execute(action: "DescribeImageAuthorizedInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

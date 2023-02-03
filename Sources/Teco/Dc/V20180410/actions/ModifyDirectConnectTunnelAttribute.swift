@@ -89,12 +89,14 @@ extension Dc {
     /// 修改专用通道属性
     @inlinable @discardableResult
     public func modifyDirectConnectTunnelAttribute(directConnectTunnelId: String, directConnectTunnelName: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, tencentBackupAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDirectConnectTunnelAttributeResponse> {
-        self.modifyDirectConnectTunnelAttribute(ModifyDirectConnectTunnelAttributeRequest(directConnectTunnelId: directConnectTunnelId, directConnectTunnelName: directConnectTunnelName, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, customerAddress: customerAddress, bandwidth: bandwidth, tencentBackupAddress: tencentBackupAddress), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDirectConnectTunnelAttributeRequest(directConnectTunnelId: directConnectTunnelId, directConnectTunnelName: directConnectTunnelName, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, customerAddress: customerAddress, bandwidth: bandwidth, tencentBackupAddress: tencentBackupAddress)
+        return self.client.execute(action: "ModifyDirectConnectTunnelAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改专用通道属性
     @inlinable @discardableResult
     public func modifyDirectConnectTunnelAttribute(directConnectTunnelId: String, directConnectTunnelName: String? = nil, bgpPeer: BgpPeer? = nil, routeFilterPrefixes: [RouteFilterPrefix]? = nil, tencentAddress: String? = nil, customerAddress: String? = nil, bandwidth: Int64? = nil, tencentBackupAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDirectConnectTunnelAttributeResponse {
-        try await self.modifyDirectConnectTunnelAttribute(ModifyDirectConnectTunnelAttributeRequest(directConnectTunnelId: directConnectTunnelId, directConnectTunnelName: directConnectTunnelName, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, customerAddress: customerAddress, bandwidth: bandwidth, tencentBackupAddress: tencentBackupAddress), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDirectConnectTunnelAttributeRequest(directConnectTunnelId: directConnectTunnelId, directConnectTunnelName: directConnectTunnelName, bgpPeer: bgpPeer, routeFilterPrefixes: routeFilterPrefixes, tencentAddress: tencentAddress, customerAddress: customerAddress, bandwidth: bandwidth, tencentBackupAddress: tencentBackupAddress)
+        return try await self.client.execute(action: "ModifyDirectConnectTunnelAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

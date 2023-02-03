@@ -113,7 +113,8 @@ extension Bmlb {
     /// 获取流量镜像的监听器列表信息。
     @inlinable
     public func describeTrafficMirrorListeners(trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrafficMirrorListenersResponse> {
-        self.describeTrafficMirrorListeners(DescribeTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, offset: offset, limit: limit, searchLoadBalancerIds: searchLoadBalancerIds, searchLoadBalancerNames: searchLoadBalancerNames, searchVips: searchVips, searchListenerIds: searchListenerIds, searchListenerNames: searchListenerNames, searchProtocols: searchProtocols, searchLoadBalancerPorts: searchLoadBalancerPorts), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, offset: offset, limit: limit, searchLoadBalancerIds: searchLoadBalancerIds, searchLoadBalancerNames: searchLoadBalancerNames, searchVips: searchVips, searchListenerIds: searchListenerIds, searchListenerNames: searchListenerNames, searchProtocols: searchProtocols, searchLoadBalancerPorts: searchLoadBalancerPorts)
+        return self.client.execute(action: "DescribeTrafficMirrorListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取流量镜像的监听器列表信息
@@ -121,6 +122,7 @@ extension Bmlb {
     /// 获取流量镜像的监听器列表信息。
     @inlinable
     public func describeTrafficMirrorListeners(trafficMirrorId: String, offset: Int64? = nil, limit: Int64? = nil, searchLoadBalancerIds: [String]? = nil, searchLoadBalancerNames: [String]? = nil, searchVips: [String]? = nil, searchListenerIds: [String]? = nil, searchListenerNames: [String]? = nil, searchProtocols: [String]? = nil, searchLoadBalancerPorts: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrafficMirrorListenersResponse {
-        try await self.describeTrafficMirrorListeners(DescribeTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, offset: offset, limit: limit, searchLoadBalancerIds: searchLoadBalancerIds, searchLoadBalancerNames: searchLoadBalancerNames, searchVips: searchVips, searchListenerIds: searchListenerIds, searchListenerNames: searchListenerNames, searchProtocols: searchProtocols, searchLoadBalancerPorts: searchLoadBalancerPorts), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTrafficMirrorListenersRequest(trafficMirrorId: trafficMirrorId, offset: offset, limit: limit, searchLoadBalancerIds: searchLoadBalancerIds, searchLoadBalancerNames: searchLoadBalancerNames, searchVips: searchVips, searchListenerIds: searchListenerIds, searchListenerNames: searchListenerNames, searchProtocols: searchProtocols, searchLoadBalancerPorts: searchLoadBalancerPorts)
+        return try await self.client.execute(action: "DescribeTrafficMirrorListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

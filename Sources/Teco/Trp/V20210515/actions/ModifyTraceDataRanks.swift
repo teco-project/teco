@@ -74,12 +74,14 @@ extension Trp {
     /// 修改溯源信息的排序
     @inlinable
     public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceDataRanksResponse> {
-        self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds)
+        return self.client.execute(action: "ModifyTraceDataRanks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改溯源信息的排序
     @inlinable
     public func modifyTraceDataRanks(corpId: UInt64? = nil, batchId: String? = nil, taskId: String? = nil, traceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceDataRanksResponse {
-        try await self.modifyTraceDataRanks(ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTraceDataRanksRequest(corpId: corpId, batchId: batchId, taskId: taskId, traceIds: traceIds)
+        return try await self.client.execute(action: "ModifyTraceDataRanks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

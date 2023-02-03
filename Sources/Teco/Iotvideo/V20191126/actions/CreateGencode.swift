@@ -70,7 +70,8 @@ extension Iotvideo {
     /// 本接口（CreateGencode）用于生成设备物模型源代码
     @inlinable
     public func createGencode(productId: String, revision: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGencodeResponse> {
-        self.createGencode(CreateGencodeRequest(productId: productId, revision: revision), region: region, logger: logger, on: eventLoop)
+        let input = CreateGencodeRequest(productId: productId, revision: revision)
+        return self.client.execute(action: "CreateGencode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成设备物模型源代码
@@ -78,6 +79,7 @@ extension Iotvideo {
     /// 本接口（CreateGencode）用于生成设备物模型源代码
     @inlinable
     public func createGencode(productId: String, revision: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGencodeResponse {
-        try await self.createGencode(CreateGencodeRequest(productId: productId, revision: revision), region: region, logger: logger, on: eventLoop)
+        let input = CreateGencodeRequest(productId: productId, revision: revision)
+        return try await self.client.execute(action: "CreateGencode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

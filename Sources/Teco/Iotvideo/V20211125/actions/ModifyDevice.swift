@@ -64,12 +64,14 @@ extension Iotvideo {
     /// 修改设备信息
     @inlinable @discardableResult
     public func modifyDevice(productId: String, deviceName: String, enableState: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceResponse> {
-        self.modifyDevice(ModifyDeviceRequest(productId: productId, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceRequest(productId: productId, deviceName: deviceName, enableState: enableState)
+        return self.client.execute(action: "ModifyDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备信息
     @inlinable @discardableResult
     public func modifyDevice(productId: String, deviceName: String, enableState: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceResponse {
-        try await self.modifyDevice(ModifyDeviceRequest(productId: productId, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceRequest(productId: productId, deviceName: deviceName, enableState: enableState)
+        return try await self.client.execute(action: "ModifyDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

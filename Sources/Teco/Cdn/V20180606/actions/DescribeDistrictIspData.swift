@@ -132,7 +132,8 @@ extension Cdn {
     /// 注意事项：接口尚未全量开放，未在内测名单中的账号不支持调用
     @inlinable
     public func describeDistrictIspData(domains: [String], startTime: Date, endTime: Date, metric: String, districts: [Int64]? = nil, isps: [Int64]? = nil, protocol: String? = nil, ipProtocol: String? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDistrictIspDataResponse> {
-        self.describeDistrictIspData(DescribeDistrictIspDataRequest(domains: domains, startTime: startTime, endTime: endTime, metric: metric, districts: districts, isps: isps, protocol: `protocol`, ipProtocol: ipProtocol, interval: interval), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDistrictIspDataRequest(domains: domains, startTime: startTime, endTime: endTime, metric: metric, districts: districts, isps: isps, protocol: `protocol`, ipProtocol: ipProtocol, interval: interval)
+        return self.client.execute(action: "DescribeDistrictIspData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 地区运营商明细查询
@@ -141,6 +142,7 @@ extension Cdn {
     /// 注意事项：接口尚未全量开放，未在内测名单中的账号不支持调用
     @inlinable
     public func describeDistrictIspData(domains: [String], startTime: Date, endTime: Date, metric: String, districts: [Int64]? = nil, isps: [Int64]? = nil, protocol: String? = nil, ipProtocol: String? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDistrictIspDataResponse {
-        try await self.describeDistrictIspData(DescribeDistrictIspDataRequest(domains: domains, startTime: startTime, endTime: endTime, metric: metric, districts: districts, isps: isps, protocol: `protocol`, ipProtocol: ipProtocol, interval: interval), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDistrictIspDataRequest(domains: domains, startTime: startTime, endTime: endTime, metric: metric, districts: districts, isps: isps, protocol: `protocol`, ipProtocol: ipProtocol, interval: interval)
+        return try await self.client.execute(action: "DescribeDistrictIspData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

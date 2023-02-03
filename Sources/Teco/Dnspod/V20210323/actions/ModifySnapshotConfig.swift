@@ -64,12 +64,14 @@ extension Dnspod {
     /// 修改快照配置
     @inlinable @discardableResult
     public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotConfigResponse> {
-        self.modifySnapshotConfig(ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId)
+        return self.client.execute(action: "ModifySnapshotConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改快照配置
     @inlinable @discardableResult
     public func modifySnapshotConfig(domain: String, period: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotConfigResponse {
-        try await self.modifySnapshotConfig(ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = ModifySnapshotConfigRequest(domain: domain, period: period, domainId: domainId)
+        return try await self.client.execute(action: "ModifySnapshotConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

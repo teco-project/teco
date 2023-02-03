@@ -75,7 +75,8 @@ extension Eiam {
     /// 新建一个机构节点，
     @inlinable @discardableResult
     public func updateOrgNode(orgNodeId: String, displayName: String, description: String? = nil, customizedOrgNodeId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOrgNodeResponse> {
-        self.updateOrgNode(UpdateOrgNodeRequest(orgNodeId: orgNodeId, displayName: displayName, description: description, customizedOrgNodeId: customizedOrgNodeId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateOrgNodeRequest(orgNodeId: orgNodeId, displayName: displayName, description: description, customizedOrgNodeId: customizedOrgNodeId)
+        return self.client.execute(action: "UpdateOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新机构节点
@@ -83,6 +84,7 @@ extension Eiam {
     /// 新建一个机构节点，
     @inlinable @discardableResult
     public func updateOrgNode(orgNodeId: String, displayName: String, description: String? = nil, customizedOrgNodeId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOrgNodeResponse {
-        try await self.updateOrgNode(UpdateOrgNodeRequest(orgNodeId: orgNodeId, displayName: displayName, description: description, customizedOrgNodeId: customizedOrgNodeId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateOrgNodeRequest(orgNodeId: orgNodeId, displayName: displayName, description: description, customizedOrgNodeId: customizedOrgNodeId)
+        return try await self.client.execute(action: "UpdateOrgNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -83,12 +83,14 @@ extension Monitor {
     /// 列出 Grafana 所有告警通道
     @inlinable
     public func describeGrafanaChannels(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIds: [String]? = nil, channelState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaChannelsResponse> {
-        self.describeGrafanaChannels(DescribeGrafanaChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIds: channelIds, channelState: channelState), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGrafanaChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIds: channelIds, channelState: channelState)
+        return self.client.execute(action: "DescribeGrafanaChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 所有告警通道
     @inlinable
     public func describeGrafanaChannels(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIds: [String]? = nil, channelState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaChannelsResponse {
-        try await self.describeGrafanaChannels(DescribeGrafanaChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIds: channelIds, channelState: channelState), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGrafanaChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIds: channelIds, channelState: channelState)
+        return try await self.client.execute(action: "DescribeGrafanaChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

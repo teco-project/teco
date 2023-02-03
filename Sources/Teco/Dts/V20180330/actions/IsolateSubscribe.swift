@@ -60,7 +60,8 @@ extension Dts {
     /// 本接口（IsolateSubscribe）用于隔离小时计费的订阅实例。调用后，订阅实例将不能使用，同时停止计费。
     @inlinable @discardableResult
     public func isolateSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateSubscribeResponse> {
-        self.isolateSubscribe(IsolateSubscribeRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
+        let input = IsolateSubscribeRequest(subscribeId: subscribeId)
+        return self.client.execute(action: "IsolateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离订阅实例
@@ -68,6 +69,7 @@ extension Dts {
     /// 本接口（IsolateSubscribe）用于隔离小时计费的订阅实例。调用后，订阅实例将不能使用，同时停止计费。
     @inlinable @discardableResult
     public func isolateSubscribe(subscribeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateSubscribeResponse {
-        try await self.isolateSubscribe(IsolateSubscribeRequest(subscribeId: subscribeId), region: region, logger: logger, on: eventLoop)
+        let input = IsolateSubscribeRequest(subscribeId: subscribeId)
+        return try await self.client.execute(action: "IsolateSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

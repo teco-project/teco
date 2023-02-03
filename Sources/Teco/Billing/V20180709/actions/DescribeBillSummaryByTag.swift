@@ -88,12 +88,14 @@ extension Billing {
     /// 获取按标签汇总费用分布
     @inlinable
     public func describeBillSummaryByTag(beginTime: String, endTime: String, tagKey: String, payerUin: String? = nil, tagValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByTagResponse> {
-        self.describeBillSummaryByTag(DescribeBillSummaryByTagRequest(beginTime: beginTime, endTime: endTime, tagKey: tagKey, payerUin: payerUin, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillSummaryByTagRequest(beginTime: beginTime, endTime: endTime, tagKey: tagKey, payerUin: payerUin, tagValue: tagValue)
+        return self.client.execute(action: "DescribeBillSummaryByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按标签汇总费用分布
     @inlinable
     public func describeBillSummaryByTag(beginTime: String, endTime: String, tagKey: String, payerUin: String? = nil, tagValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByTagResponse {
-        try await self.describeBillSummaryByTag(DescribeBillSummaryByTagRequest(beginTime: beginTime, endTime: endTime, tagKey: tagKey, payerUin: payerUin, tagValue: tagValue), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillSummaryByTagRequest(beginTime: beginTime, endTime: endTime, tagKey: tagKey, payerUin: payerUin, tagValue: tagValue)
+        return try await self.client.execute(action: "DescribeBillSummaryByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

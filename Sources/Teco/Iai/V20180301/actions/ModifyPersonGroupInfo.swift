@@ -70,7 +70,8 @@ extension Iai {
     /// 修改指定人员库人员描述内容。
     @inlinable @discardableResult
     public func modifyPersonGroupInfo(groupId: String, personId: String, personExDescriptionInfos: [PersonExDescriptionInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPersonGroupInfoResponse> {
-        self.modifyPersonGroupInfo(ModifyPersonGroupInfoRequest(groupId: groupId, personId: personId, personExDescriptionInfos: personExDescriptionInfos), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPersonGroupInfoRequest(groupId: groupId, personId: personId, personExDescriptionInfos: personExDescriptionInfos)
+        return self.client.execute(action: "ModifyPersonGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改人员描述信息
@@ -78,6 +79,7 @@ extension Iai {
     /// 修改指定人员库人员描述内容。
     @inlinable @discardableResult
     public func modifyPersonGroupInfo(groupId: String, personId: String, personExDescriptionInfos: [PersonExDescriptionInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPersonGroupInfoResponse {
-        try await self.modifyPersonGroupInfo(ModifyPersonGroupInfoRequest(groupId: groupId, personId: personId, personExDescriptionInfos: personExDescriptionInfos), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPersonGroupInfoRequest(groupId: groupId, personId: personId, personExDescriptionInfos: personExDescriptionInfos)
+        return try await self.client.execute(action: "ModifyPersonGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

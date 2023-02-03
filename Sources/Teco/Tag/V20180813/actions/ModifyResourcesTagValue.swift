@@ -85,7 +85,8 @@ extension Tag {
     /// 修改多个资源关联的某个标签键对应的标签值
     @inlinable @discardableResult
     public func modifyResourcesTagValue(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourcesTagValueResponse> {
-        self.modifyResourcesTagValue(ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
+        let input = ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix)
+        return self.client.execute(action: "ModifyResourcesTagValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改批量资源关联的标签值
@@ -93,6 +94,7 @@ extension Tag {
     /// 修改多个资源关联的某个标签键对应的标签值
     @inlinable @discardableResult
     public func modifyResourcesTagValue(serviceType: String, resourceIds: [String], tagKey: String, tagValue: String, resourceRegion: String? = nil, resourcePrefix: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourcesTagValueResponse {
-        try await self.modifyResourcesTagValue(ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix), region: region, logger: logger, on: eventLoop)
+        let input = ModifyResourcesTagValueRequest(serviceType: serviceType, resourceIds: resourceIds, tagKey: tagKey, tagValue: tagValue, resourceRegion: resourceRegion, resourcePrefix: resourcePrefix)
+        return try await self.client.execute(action: "ModifyResourcesTagValue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

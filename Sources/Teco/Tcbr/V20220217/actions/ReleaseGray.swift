@@ -84,12 +84,14 @@ extension Tcbr {
     /// 灰度发布
     @inlinable @discardableResult
     public func releaseGray(envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseGrayResponse> {
-        self.releaseGray(ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio)
+        return self.client.execute(action: "ReleaseGray", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灰度发布
     @inlinable @discardableResult
     public func releaseGray(envId: String, serverName: String, grayType: String, trafficType: String, versionFlowItems: [VersionFlowInfo]? = nil, operatorRemark: String? = nil, grayFlowRatio: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseGrayResponse {
-        try await self.releaseGray(ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseGrayRequest(envId: envId, serverName: serverName, grayType: grayType, trafficType: trafficType, versionFlowItems: versionFlowItems, operatorRemark: operatorRemark, grayFlowRatio: grayFlowRatio)
+        return try await self.client.execute(action: "ReleaseGray", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

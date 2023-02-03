@@ -64,12 +64,14 @@ extension Tke {
     /// 开启集群审计
     @inlinable @discardableResult
     public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableClusterAuditResponse> {
-        self.enableClusterAudit(EnableClusterAuditRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = EnableClusterAuditRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId)
+        return self.client.execute(action: "EnableClusterAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启集群审计
     @inlinable @discardableResult
     public func enableClusterAudit(clusterId: String, logsetId: String? = nil, topicId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableClusterAuditResponse {
-        try await self.enableClusterAudit(EnableClusterAuditRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = EnableClusterAuditRequest(clusterId: clusterId, logsetId: logsetId, topicId: topicId)
+        return try await self.client.execute(action: "EnableClusterAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

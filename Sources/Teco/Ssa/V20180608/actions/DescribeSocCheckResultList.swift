@@ -80,12 +80,14 @@ extension Ssa {
     /// 云安全配置检查项结果列表
     @inlinable
     public func describeSocCheckResultList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, assetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCheckResultListResponse> {
-        self.describeSocCheckResultList(DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId)
+        return self.client.execute(action: "DescribeSocCheckResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云安全配置检查项结果列表
     @inlinable
     public func describeSocCheckResultList(filter: [QueryFilter]? = nil, sorter: [QuerySort]? = nil, pageSize: Int64? = nil, pageIndex: Int64? = nil, assetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCheckResultListResponse {
-        try await self.describeSocCheckResultList(DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSocCheckResultListRequest(filter: filter, sorter: sorter, pageSize: pageSize, pageIndex: pageIndex, assetId: assetId)
+        return try await self.client.execute(action: "DescribeSocCheckResultList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

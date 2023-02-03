@@ -65,7 +65,8 @@ extension Vod {
     /// 删除用户自定义采样截图模板。
     @inlinable @discardableResult
     public func deleteSampleSnapshotTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSampleSnapshotTemplateResponse> {
-        self.deleteSampleSnapshotTemplate(DeleteSampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId)
+        return self.client.execute(action: "DeleteSampleSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除采样截图模板
@@ -73,6 +74,7 @@ extension Vod {
     /// 删除用户自定义采样截图模板。
     @inlinable @discardableResult
     public func deleteSampleSnapshotTemplate(definition: UInt64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSampleSnapshotTemplateResponse {
-        try await self.deleteSampleSnapshotTemplate(DeleteSampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSampleSnapshotTemplateRequest(definition: definition, subAppId: subAppId)
+        return try await self.client.execute(action: "DeleteSampleSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

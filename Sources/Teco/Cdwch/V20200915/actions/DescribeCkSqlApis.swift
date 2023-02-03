@@ -91,7 +91,8 @@ extension Cdwch {
     /// 查询集群用户、集群表，数据库等相关信息
     @inlinable
     public func describeCkSqlApis(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCkSqlApisResponse> {
-        self.describeCkSqlApis(DescribeCkSqlApisRequest(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCkSqlApisRequest(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName)
+        return self.client.execute(action: "DescribeCkSqlApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群用户相关信息
@@ -99,6 +100,7 @@ extension Cdwch {
     /// 查询集群用户、集群表，数据库等相关信息
     @inlinable
     public func describeCkSqlApis(instanceId: String, apiType: String, cluster: String? = nil, userName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCkSqlApisResponse {
-        try await self.describeCkSqlApis(DescribeCkSqlApisRequest(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCkSqlApisRequest(instanceId: instanceId, apiType: apiType, cluster: cluster, userName: userName)
+        return try await self.client.execute(action: "DescribeCkSqlApis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

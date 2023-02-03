@@ -76,7 +76,8 @@ extension Zj {
     /// 获取模板信息
     @inlinable
     public func describeSmsTemplateList(license: String, templateIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
-        self.describeSmsTemplateList(DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international)
+        return self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 短信模板查询接口
@@ -84,6 +85,7 @@ extension Zj {
     /// 获取模板信息
     @inlinable
     public func describeSmsTemplateList(license: String, templateIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        try await self.describeSmsTemplateList(DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmsTemplateListRequest(license: license, templateIdSet: templateIdSet, international: international)
+        return try await self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

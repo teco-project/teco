@@ -62,12 +62,14 @@ extension Cloudhsm {
     /// 通过VpcId获取Hsm资源数
     @inlinable
     public func describeHSMByVpcId(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHSMByVpcIdResponse> {
-        self.describeHSMByVpcId(DescribeHSMByVpcIdRequest(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHSMByVpcIdRequest(vpcId: vpcId)
+        return self.client.execute(action: "DescribeHSMByVpcId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过VpcId获取Hsm资源数
     @inlinable
     public func describeHSMByVpcId(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHSMByVpcIdResponse {
-        try await self.describeHSMByVpcId(DescribeHSMByVpcIdRequest(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHSMByVpcIdRequest(vpcId: vpcId)
+        return try await self.client.execute(action: "DescribeHSMByVpcId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

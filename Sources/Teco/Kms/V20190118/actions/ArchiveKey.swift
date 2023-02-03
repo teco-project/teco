@@ -60,7 +60,8 @@ extension Kms {
     /// 对密钥进行归档，被归档的密钥只能用于解密，不能加密
     @inlinable @discardableResult
     public func archiveKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ArchiveKeyResponse> {
-        self.archiveKey(ArchiveKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = ArchiveKeyRequest(keyId: keyId)
+        return self.client.execute(action: "ArchiveKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 密钥归档
@@ -68,6 +69,7 @@ extension Kms {
     /// 对密钥进行归档，被归档的密钥只能用于解密，不能加密
     @inlinable @discardableResult
     public func archiveKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ArchiveKeyResponse {
-        try await self.archiveKey(ArchiveKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = ArchiveKeyRequest(keyId: keyId)
+        return try await self.client.execute(action: "ArchiveKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

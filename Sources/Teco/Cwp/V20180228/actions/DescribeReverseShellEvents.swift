@@ -83,12 +83,14 @@ extension Cwp {
     /// 获取反弹Shell列表
     @inlinable
     public func describeReverseShellEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReverseShellEventsResponse> {
-        self.describeReverseShellEvents(DescribeReverseShellEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReverseShellEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return self.client.execute(action: "DescribeReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取反弹Shell列表
     @inlinable
     public func describeReverseShellEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReverseShellEventsResponse {
-        try await self.describeReverseShellEvents(DescribeReverseShellEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReverseShellEventsRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return try await self.client.execute(action: "DescribeReverseShellEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

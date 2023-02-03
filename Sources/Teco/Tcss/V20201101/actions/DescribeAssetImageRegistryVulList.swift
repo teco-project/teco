@@ -86,12 +86,14 @@ extension Tcss {
     /// 镜像仓库查询镜像漏洞列表
     @inlinable
     public func describeAssetImageRegistryVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVulListResponse> {
-        self.describeAssetImageRegistryVulList(DescribeAssetImageRegistryVulListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageRegistryVulListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id)
+        return self.client.execute(action: "DescribeAssetImageRegistryVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像漏洞列表
     @inlinable
     public func describeAssetImageRegistryVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVulListResponse {
-        try await self.describeAssetImageRegistryVulList(DescribeAssetImageRegistryVulListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageRegistryVulListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id)
+        return try await self.client.execute(action: "DescribeAssetImageRegistryVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

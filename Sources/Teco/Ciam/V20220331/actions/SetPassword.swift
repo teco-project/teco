@@ -64,12 +64,14 @@ extension Ciam {
     /// 设置用户密码
     @inlinable @discardableResult
     public func setPassword(userStoreId: String, userId: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetPasswordResponse> {
-        self.setPassword(SetPasswordRequest(userStoreId: userStoreId, userId: userId, password: password), region: region, logger: logger, on: eventLoop)
+        let input = SetPasswordRequest(userStoreId: userStoreId, userId: userId, password: password)
+        return self.client.execute(action: "SetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置用户密码
     @inlinable @discardableResult
     public func setPassword(userStoreId: String, userId: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetPasswordResponse {
-        try await self.setPassword(SetPasswordRequest(userStoreId: userStoreId, userId: userId, password: password), region: region, logger: logger, on: eventLoop)
+        let input = SetPasswordRequest(userStoreId: userStoreId, userId: userId, password: password)
+        return try await self.client.execute(action: "SetPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

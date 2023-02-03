@@ -69,7 +69,8 @@ extension Tkgdq {
     /// 输入两个实体，返回两个实体间的关系，例如马化腾与腾讯公司不仅是相关实体，二者还存在隶属关系（马化腾属于腾讯公司）。
     @inlinable
     public func describeRelation(leftEntityName: String, rightEntityName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelationResponse> {
-        self.describeRelation(DescribeRelationRequest(leftEntityName: leftEntityName, rightEntityName: rightEntityName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRelationRequest(leftEntityName: leftEntityName, rightEntityName: rightEntityName)
+        return self.client.execute(action: "DescribeRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实体关系查询
@@ -77,6 +78,7 @@ extension Tkgdq {
     /// 输入两个实体，返回两个实体间的关系，例如马化腾与腾讯公司不仅是相关实体，二者还存在隶属关系（马化腾属于腾讯公司）。
     @inlinable
     public func describeRelation(leftEntityName: String, rightEntityName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelationResponse {
-        try await self.describeRelation(DescribeRelationRequest(leftEntityName: leftEntityName, rightEntityName: rightEntityName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRelationRequest(leftEntityName: leftEntityName, rightEntityName: rightEntityName)
+        return try await self.client.execute(action: "DescribeRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

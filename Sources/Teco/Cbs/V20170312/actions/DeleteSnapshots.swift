@@ -74,7 +74,8 @@ extension Cbs {
     /// * 支持批量操作。如果多个快照存在无法删除的快照，则操作不执行，以特定的错误码返回。
     @inlinable @discardableResult
     public func deleteSnapshots(snapshotIds: [String], deleteBindImages: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotsResponse> {
-        self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds, deleteBindImages: deleteBindImages), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotsRequest(snapshotIds: snapshotIds, deleteBindImages: deleteBindImages)
+        return self.client.execute(action: "DeleteSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除快照
@@ -85,6 +86,7 @@ extension Cbs {
     /// * 支持批量操作。如果多个快照存在无法删除的快照，则操作不执行，以特定的错误码返回。
     @inlinable @discardableResult
     public func deleteSnapshots(snapshotIds: [String], deleteBindImages: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
-        try await self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds, deleteBindImages: deleteBindImages), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotsRequest(snapshotIds: snapshotIds, deleteBindImages: deleteBindImages)
+        return try await self.client.execute(action: "DeleteSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

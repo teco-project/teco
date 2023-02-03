@@ -85,7 +85,8 @@ extension Trp {
     /// 注意：溯源码必须属于指定的批次才会解绑
     @inlinable
     public func modifyTraceCodeUnlink(batchId: String, codes: [String], corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTraceCodeUnlinkResponse> {
-        self.modifyTraceCodeUnlink(ModifyTraceCodeUnlinkRequest(batchId: batchId, codes: codes, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTraceCodeUnlinkRequest(batchId: batchId, codes: codes, corpId: corpId)
+        return self.client.execute(action: "ModifyTraceCodeUnlink", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑溯源码和批次的关系
@@ -94,6 +95,7 @@ extension Trp {
     /// 注意：溯源码必须属于指定的批次才会解绑
     @inlinable
     public func modifyTraceCodeUnlink(batchId: String, codes: [String], corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTraceCodeUnlinkResponse {
-        try await self.modifyTraceCodeUnlink(ModifyTraceCodeUnlinkRequest(batchId: batchId, codes: codes, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTraceCodeUnlinkRequest(batchId: batchId, codes: codes, corpId: corpId)
+        return try await self.client.execute(action: "ModifyTraceCodeUnlink", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

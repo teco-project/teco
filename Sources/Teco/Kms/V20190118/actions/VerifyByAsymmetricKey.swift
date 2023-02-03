@@ -84,7 +84,8 @@ extension Kms {
     /// 使用非对称密钥验签
     @inlinable
     public func verifyByAsymmetricKey(keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyByAsymmetricKeyResponse> {
-        self.verifyByAsymmetricKey(VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType), region: region, logger: logger, on: eventLoop)
+        let input = VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType)
+        return self.client.execute(action: "VerifyByAsymmetricKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证签名
@@ -92,6 +93,7 @@ extension Kms {
     /// 使用非对称密钥验签
     @inlinable
     public func verifyByAsymmetricKey(keyId: String, signatureValue: String, message: String, algorithm: String, messageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyByAsymmetricKeyResponse {
-        try await self.verifyByAsymmetricKey(VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType), region: region, logger: logger, on: eventLoop)
+        let input = VerifyByAsymmetricKeyRequest(keyId: keyId, signatureValue: signatureValue, message: message, algorithm: algorithm, messageType: messageType)
+        return try await self.client.execute(action: "VerifyByAsymmetricKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

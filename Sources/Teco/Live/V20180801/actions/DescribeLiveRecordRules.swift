@@ -50,12 +50,14 @@ extension Live {
     /// 获取录制规则列表
     @inlinable
     public func describeLiveRecordRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordRulesResponse> {
-        self.describeLiveRecordRules(DescribeLiveRecordRulesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveRecordRulesRequest()
+        return self.client.execute(action: "DescribeLiveRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取录制规则列表
     @inlinable
     public func describeLiveRecordRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordRulesResponse {
-        try await self.describeLiveRecordRules(DescribeLiveRecordRulesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveRecordRulesRequest()
+        return try await self.client.execute(action: "DescribeLiveRecordRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

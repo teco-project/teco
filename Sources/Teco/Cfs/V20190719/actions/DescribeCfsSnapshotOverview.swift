@@ -50,12 +50,14 @@ extension Cfs {
     /// 文件系统快照概览
     @inlinable
     public func describeCfsSnapshotOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsSnapshotOverviewResponse> {
-        self.describeCfsSnapshotOverview(DescribeCfsSnapshotOverviewRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCfsSnapshotOverviewRequest()
+        return self.client.execute(action: "DescribeCfsSnapshotOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件系统快照概览
     @inlinable
     public func describeCfsSnapshotOverview(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsSnapshotOverviewResponse {
-        try await self.describeCfsSnapshotOverview(DescribeCfsSnapshotOverviewRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCfsSnapshotOverviewRequest()
+        return try await self.client.execute(action: "DescribeCfsSnapshotOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

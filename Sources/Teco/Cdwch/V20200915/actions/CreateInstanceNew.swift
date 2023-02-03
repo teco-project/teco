@@ -140,7 +140,8 @@ extension Cdwch {
     /// 创建集群
     @inlinable
     public func createInstanceNew(zone: String, haFlag: Bool, userVPCId: String, userSubnetId: String, productVersion: String, chargeProperties: Charge, instanceName: String, dataSpec: NodeSpec, tags: Tag? = nil, clsLogSetId: String? = nil, cosBucketName: String? = nil, mountDiskType: Int64? = nil, haZk: Bool? = nil, commonSpec: NodeSpec? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceNewResponse> {
-        self.createInstanceNew(CreateInstanceNewRequest(zone: zone, haFlag: haFlag, userVPCId: userVPCId, userSubnetId: userSubnetId, productVersion: productVersion, chargeProperties: chargeProperties, instanceName: instanceName, dataSpec: dataSpec, tags: tags, clsLogSetId: clsLogSetId, cosBucketName: cosBucketName, mountDiskType: mountDiskType, haZk: haZk, commonSpec: commonSpec), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceNewRequest(zone: zone, haFlag: haFlag, userVPCId: userVPCId, userSubnetId: userSubnetId, productVersion: productVersion, chargeProperties: chargeProperties, instanceName: instanceName, dataSpec: dataSpec, tags: tags, clsLogSetId: clsLogSetId, cosBucketName: cosBucketName, mountDiskType: mountDiskType, haZk: haZk, commonSpec: commonSpec)
+        return self.client.execute(action: "CreateInstanceNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集群openApi
@@ -148,6 +149,7 @@ extension Cdwch {
     /// 创建集群
     @inlinable
     public func createInstanceNew(zone: String, haFlag: Bool, userVPCId: String, userSubnetId: String, productVersion: String, chargeProperties: Charge, instanceName: String, dataSpec: NodeSpec, tags: Tag? = nil, clsLogSetId: String? = nil, cosBucketName: String? = nil, mountDiskType: Int64? = nil, haZk: Bool? = nil, commonSpec: NodeSpec? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceNewResponse {
-        try await self.createInstanceNew(CreateInstanceNewRequest(zone: zone, haFlag: haFlag, userVPCId: userVPCId, userSubnetId: userSubnetId, productVersion: productVersion, chargeProperties: chargeProperties, instanceName: instanceName, dataSpec: dataSpec, tags: tags, clsLogSetId: clsLogSetId, cosBucketName: cosBucketName, mountDiskType: mountDiskType, haZk: haZk, commonSpec: commonSpec), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceNewRequest(zone: zone, haFlag: haFlag, userVPCId: userVPCId, userSubnetId: userSubnetId, productVersion: productVersion, chargeProperties: chargeProperties, instanceName: instanceName, dataSpec: dataSpec, tags: tags, clsLogSetId: clsLogSetId, cosBucketName: cosBucketName, mountDiskType: mountDiskType, haZk: haZk, commonSpec: commonSpec)
+        return try await self.client.execute(action: "CreateInstanceNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

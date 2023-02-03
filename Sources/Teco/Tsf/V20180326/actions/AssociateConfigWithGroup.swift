@@ -84,12 +84,14 @@ extension Tsf {
     /// 关联投递配置到部署组
     @inlinable
     public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateConfigWithGroupResponse> {
-        self.associateConfigWithGroup(AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord)
+        return self.client.execute(action: "AssociateConfigWithGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关联投递配置到部署组
     @inlinable
     public func associateConfigWithGroup(configId: String, groups: [GroupInfo]? = nil, selectAll: Int64? = nil, namespaceId: String? = nil, clusterId: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateConfigWithGroupResponse {
-        try await self.associateConfigWithGroup(AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = AssociateConfigWithGroupRequest(configId: configId, groups: groups, selectAll: selectAll, namespaceId: namespaceId, clusterId: clusterId, searchWord: searchWord)
+        return try await self.client.execute(action: "AssociateConfigWithGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

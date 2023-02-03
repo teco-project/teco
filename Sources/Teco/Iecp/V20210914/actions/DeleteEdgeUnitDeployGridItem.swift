@@ -69,12 +69,14 @@ extension Iecp {
     /// 重新部署边缘单元指定Grid下应用
     @inlinable @discardableResult
     public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitDeployGridItemResponse> {
-        self.deleteEdgeUnitDeployGridItem(DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace)
+        return self.client.execute(action: "DeleteEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新部署边缘单元指定Grid下应用
     @inlinable @discardableResult
     public func deleteEdgeUnitDeployGridItem(edgeUnitId: UInt64, workloadKind: String, gridItemName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitDeployGridItemResponse {
-        try await self.deleteEdgeUnitDeployGridItem(DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEdgeUnitDeployGridItemRequest(edgeUnitId: edgeUnitId, workloadKind: workloadKind, gridItemName: gridItemName, namespace: namespace)
+        return try await self.client.execute(action: "DeleteEdgeUnitDeployGridItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

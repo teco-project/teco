@@ -63,12 +63,14 @@ extension Tem {
     /// 销毁环境
     @inlinable
     public func destroyEnvironment(environmentId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyEnvironmentResponse> {
-        self.destroyEnvironment(DestroyEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
+        let input = DestroyEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel)
+        return self.client.execute(action: "DestroyEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁环境
     @inlinable
     public func destroyEnvironment(environmentId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyEnvironmentResponse {
-        try await self.destroyEnvironment(DestroyEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
+        let input = DestroyEnvironmentRequest(environmentId: environmentId, sourceChannel: sourceChannel)
+        return try await self.client.execute(action: "DestroyEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

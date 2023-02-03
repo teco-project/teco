@@ -64,7 +64,8 @@ extension Btoe {
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
     @inlinable
     public func verifyEvidenceHash(evidenceHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyEvidenceHashResponse> {
-        self.verifyEvidenceHash(VerifyEvidenceHashRequest(evidenceHash: evidenceHash), region: region, logger: logger, on: eventLoop)
+        let input = VerifyEvidenceHashRequest(evidenceHash: evidenceHash)
+        return self.client.execute(action: "VerifyEvidenceHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 核验存证内容hash
@@ -72,6 +73,7 @@ extension Btoe {
     /// 用户存证内容hash向BTOE核验存证记录的真实性。
     @inlinable
     public func verifyEvidenceHash(evidenceHash: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyEvidenceHashResponse {
-        try await self.verifyEvidenceHash(VerifyEvidenceHashRequest(evidenceHash: evidenceHash), region: region, logger: logger, on: eventLoop)
+        let input = VerifyEvidenceHashRequest(evidenceHash: evidenceHash)
+        return try await self.client.execute(action: "VerifyEvidenceHash", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

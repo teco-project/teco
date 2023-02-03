@@ -70,7 +70,8 @@ extension Chdfs {
     /// 批量创建权限规则，权限规则ID和创建时间无需填写。
     @inlinable
     public func createAccessRules(accessRules: [AccessRule], accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessRulesResponse> {
-        self.createAccessRules(CreateAccessRulesRequest(accessRules: accessRules, accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateAccessRulesRequest(accessRules: accessRules, accessGroupId: accessGroupId)
+        return self.client.execute(action: "CreateAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建权限规则
@@ -78,6 +79,7 @@ extension Chdfs {
     /// 批量创建权限规则，权限规则ID和创建时间无需填写。
     @inlinable
     public func createAccessRules(accessRules: [AccessRule], accessGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessRulesResponse {
-        try await self.createAccessRules(CreateAccessRulesRequest(accessRules: accessRules, accessGroupId: accessGroupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateAccessRulesRequest(accessRules: accessRules, accessGroupId: accessGroupId)
+        return try await self.client.execute(action: "CreateAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

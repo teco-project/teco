@@ -77,7 +77,8 @@ extension Cfs {
     /// 本接口（UpdateCfsFileSystemName）用于更新文件系统名
     @inlinable
     public func updateCfsFileSystemName(fileSystemId: String, fsName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCfsFileSystemNameResponse> {
-        self.updateCfsFileSystemName(UpdateCfsFileSystemNameRequest(fileSystemId: fileSystemId, fsName: fsName), region: region, logger: logger, on: eventLoop)
+        let input = UpdateCfsFileSystemNameRequest(fileSystemId: fileSystemId, fsName: fsName)
+        return self.client.execute(action: "UpdateCfsFileSystemName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新文件系统名
@@ -85,6 +86,7 @@ extension Cfs {
     /// 本接口（UpdateCfsFileSystemName）用于更新文件系统名
     @inlinable
     public func updateCfsFileSystemName(fileSystemId: String, fsName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCfsFileSystemNameResponse {
-        try await self.updateCfsFileSystemName(UpdateCfsFileSystemNameRequest(fileSystemId: fileSystemId, fsName: fsName), region: region, logger: logger, on: eventLoop)
+        let input = UpdateCfsFileSystemNameRequest(fileSystemId: fileSystemId, fsName: fsName)
+        return try await self.client.execute(action: "UpdateCfsFileSystemName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

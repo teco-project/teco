@@ -83,7 +83,8 @@ extension Dbdc {
     /// 本接口用于查询主机列表
     @inlinable
     public func describeHostList(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostListResponse> {
-        self.describeHostList(DescribeHostListRequest(instanceId: instanceId, limit: limit, offset: offset, assignStatus: assignStatus), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHostListRequest(instanceId: instanceId, limit: limit, offset: offset, assignStatus: assignStatus)
+        return self.client.execute(action: "DescribeHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询主机列表
@@ -91,6 +92,7 @@ extension Dbdc {
     /// 本接口用于查询主机列表
     @inlinable
     public func describeHostList(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, assignStatus: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostListResponse {
-        try await self.describeHostList(DescribeHostListRequest(instanceId: instanceId, limit: limit, offset: offset, assignStatus: assignStatus), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHostListRequest(instanceId: instanceId, limit: limit, offset: offset, assignStatus: assignStatus)
+        return try await self.client.execute(action: "DescribeHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

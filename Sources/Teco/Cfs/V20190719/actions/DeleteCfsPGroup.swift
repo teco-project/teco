@@ -68,7 +68,8 @@ extension Cfs {
     /// 本接口（DeleteCfsPGroup）用于删除权限组。
     @inlinable
     public func deleteCfsPGroup(pGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCfsPGroupResponse> {
-        self.deleteCfsPGroup(DeleteCfsPGroupRequest(pGroupId: pGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCfsPGroupRequest(pGroupId: pGroupId)
+        return self.client.execute(action: "DeleteCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除权限组
@@ -76,6 +77,7 @@ extension Cfs {
     /// 本接口（DeleteCfsPGroup）用于删除权限组。
     @inlinable
     public func deleteCfsPGroup(pGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCfsPGroupResponse {
-        try await self.deleteCfsPGroup(DeleteCfsPGroupRequest(pGroupId: pGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCfsPGroupRequest(pGroupId: pGroupId)
+        return try await self.client.execute(action: "DeleteCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

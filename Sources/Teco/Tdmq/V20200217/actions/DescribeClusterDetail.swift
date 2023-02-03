@@ -64,7 +64,8 @@ extension Tdmq {
     /// 获取集群的详细信息
     @inlinable
     public func describeClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterDetailResponse> {
-        self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterDetailRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群详情
@@ -72,6 +73,7 @@ extension Tdmq {
     /// 获取集群的详细信息
     @inlinable
     public func describeClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterDetailResponse {
-        try await self.describeClusterDetail(DescribeClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterDetailRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

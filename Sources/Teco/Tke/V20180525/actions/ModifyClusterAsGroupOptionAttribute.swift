@@ -59,12 +59,14 @@ extension Tke {
     /// 修改集群弹性伸缩属性
     @inlinable @discardableResult
     public func modifyClusterAsGroupOptionAttribute(clusterId: String, clusterAsGroupOption: ClusterAsGroupOption, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAsGroupOptionAttributeResponse> {
-        self.modifyClusterAsGroupOptionAttribute(ModifyClusterAsGroupOptionAttributeRequest(clusterId: clusterId, clusterAsGroupOption: clusterAsGroupOption), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterAsGroupOptionAttributeRequest(clusterId: clusterId, clusterAsGroupOption: clusterAsGroupOption)
+        return self.client.execute(action: "ModifyClusterAsGroupOptionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群弹性伸缩属性
     @inlinable @discardableResult
     public func modifyClusterAsGroupOptionAttribute(clusterId: String, clusterAsGroupOption: ClusterAsGroupOption, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAsGroupOptionAttributeResponse {
-        try await self.modifyClusterAsGroupOptionAttribute(ModifyClusterAsGroupOptionAttributeRequest(clusterId: clusterId, clusterAsGroupOption: clusterAsGroupOption), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterAsGroupOptionAttributeRequest(clusterId: clusterId, clusterAsGroupOption: clusterAsGroupOption)
+        return try await self.client.execute(action: "ModifyClusterAsGroupOptionAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

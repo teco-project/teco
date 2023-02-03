@@ -103,12 +103,14 @@ extension Trp {
     /// 生成普通码包
     @inlinable
     public func createCodePack(merchantId: String, codeLength: UInt64, codeType: String, amount: Int64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, batchId: String? = nil, serialType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCodePackResponse> {
-        self.createCodePack(CreateCodePackRequest(merchantId: merchantId, codeLength: codeLength, codeType: codeType, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, batchId: batchId, serialType: serialType), region: region, logger: logger, on: eventLoop)
+        let input = CreateCodePackRequest(merchantId: merchantId, codeLength: codeLength, codeType: codeType, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, batchId: batchId, serialType: serialType)
+        return self.client.execute(action: "CreateCodePack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成普通码包
     @inlinable
     public func createCodePack(merchantId: String, codeLength: UInt64, codeType: String, amount: Int64? = nil, corpId: UInt64? = nil, packType: UInt64? = nil, packLevel: UInt64? = nil, packSpec: [PackSpec]? = nil, batchId: String? = nil, serialType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCodePackResponse {
-        try await self.createCodePack(CreateCodePackRequest(merchantId: merchantId, codeLength: codeLength, codeType: codeType, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, batchId: batchId, serialType: serialType), region: region, logger: logger, on: eventLoop)
+        let input = CreateCodePackRequest(merchantId: merchantId, codeLength: codeLength, codeType: codeType, amount: amount, corpId: corpId, packType: packType, packLevel: packLevel, packSpec: packSpec, batchId: batchId, serialType: serialType)
+        return try await self.client.execute(action: "CreateCodePack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

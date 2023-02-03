@@ -109,7 +109,8 @@ extension Vod {
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
     public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdnLogsResponse> {
-        self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeCdnLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 CDN 日志下载链接列表
@@ -120,6 +121,7 @@ extension Vod {
     ///     3. CDN 日志下载链接的有效期为24小时。
     @inlinable
     public func describeCdnLogs(domainName: String, startTime: String, endTime: String, subAppId: UInt64? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdnLogsResponse {
-        try await self.describeCdnLogs(DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCdnLogsRequest(domainName: domainName, startTime: startTime, endTime: endTime, subAppId: subAppId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeCdnLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

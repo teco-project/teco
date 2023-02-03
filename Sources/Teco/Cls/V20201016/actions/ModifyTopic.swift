@@ -90,7 +90,8 @@ extension Cls {
     /// 本接口用于修改日志主题。
     @inlinable @discardableResult
     public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
-        self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period)
+        return self.client.execute(action: "ModifyTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改日志主题
@@ -98,6 +99,7 @@ extension Cls {
     /// 本接口用于修改日志主题。
     @inlinable @discardableResult
     public func modifyTopic(topicId: String, topicName: String? = nil, tags: [Tag]? = nil, status: Bool? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.modifyTopic(ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTopicRequest(topicId: topicId, topicName: topicName, tags: tags, status: status, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, period: period)
+        return try await self.client.execute(action: "ModifyTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

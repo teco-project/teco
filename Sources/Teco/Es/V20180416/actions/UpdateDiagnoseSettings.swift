@@ -64,12 +64,14 @@ extension Es {
     /// 更新智能运维配置
     @inlinable @discardableResult
     public func updateDiagnoseSettings(instanceId: String, status: Int64? = nil, cronTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDiagnoseSettingsResponse> {
-        self.updateDiagnoseSettings(UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime), region: region, logger: logger, on: eventLoop)
+        let input = UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime)
+        return self.client.execute(action: "UpdateDiagnoseSettings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新智能运维配置
     @inlinable @discardableResult
     public func updateDiagnoseSettings(instanceId: String, status: Int64? = nil, cronTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDiagnoseSettingsResponse {
-        try await self.updateDiagnoseSettings(UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime), region: region, logger: logger, on: eventLoop)
+        let input = UpdateDiagnoseSettingsRequest(instanceId: instanceId, status: status, cronTime: cronTime)
+        return try await self.client.execute(action: "UpdateDiagnoseSettings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

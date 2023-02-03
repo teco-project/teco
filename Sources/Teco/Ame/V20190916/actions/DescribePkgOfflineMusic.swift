@@ -78,7 +78,8 @@ extension Ame {
     /// 根据购买曲库包用户可查询已回退的歌曲信息
     @inlinable
     public func describePkgOfflineMusic(packageOrderId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePkgOfflineMusicResponse> {
-        self.describePkgOfflineMusic(DescribePkgOfflineMusicRequest(packageOrderId: packageOrderId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribePkgOfflineMusicRequest(packageOrderId: packageOrderId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribePkgOfflineMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 曲库包获取已核销歌曲回退数据
@@ -86,6 +87,7 @@ extension Ame {
     /// 根据购买曲库包用户可查询已回退的歌曲信息
     @inlinable
     public func describePkgOfflineMusic(packageOrderId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePkgOfflineMusicResponse {
-        try await self.describePkgOfflineMusic(DescribePkgOfflineMusicRequest(packageOrderId: packageOrderId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribePkgOfflineMusicRequest(packageOrderId: packageOrderId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribePkgOfflineMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Ckafka {
     /// 查询topic 生产端连接信息
     @inlinable
     public func describeTopicProduceConnection(instanceId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicProduceConnectionResponse> {
-        self.describeTopicProduceConnection(DescribeTopicProduceConnectionRequest(instanceId: instanceId, topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopicProduceConnectionRequest(instanceId: instanceId, topicName: topicName)
+        return self.client.execute(action: "DescribeTopicProduceConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询topic生产端连接信息
@@ -77,6 +78,7 @@ extension Ckafka {
     /// 查询topic 生产端连接信息
     @inlinable
     public func describeTopicProduceConnection(instanceId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicProduceConnectionResponse {
-        try await self.describeTopicProduceConnection(DescribeTopicProduceConnectionRequest(instanceId: instanceId, topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopicProduceConnectionRequest(instanceId: instanceId, topicName: topicName)
+        return try await self.client.execute(action: "DescribeTopicProduceConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

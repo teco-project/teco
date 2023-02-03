@@ -60,7 +60,8 @@ extension Cls {
     /// 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable @discardableResult
     public func deleteConfigExtra(configExtraId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigExtraResponse> {
-        self.deleteConfigExtra(DeleteConfigExtraRequest(configExtraId: configExtraId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteConfigExtraRequest(configExtraId: configExtraId)
+        return self.client.execute(action: "DeleteConfigExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除特殊采集规则配置
@@ -68,6 +69,7 @@ extension Cls {
     /// 本接口用于删除特殊采集规则配置，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable @discardableResult
     public func deleteConfigExtra(configExtraId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigExtraResponse {
-        try await self.deleteConfigExtra(DeleteConfigExtraRequest(configExtraId: configExtraId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteConfigExtraRequest(configExtraId: configExtraId)
+        return try await self.client.execute(action: "DeleteConfigExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

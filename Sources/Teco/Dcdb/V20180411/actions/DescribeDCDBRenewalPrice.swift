@@ -84,7 +84,8 @@ extension Dcdb {
     /// 本接口（DescribeDCDBRenewalPrice）用于在续费分布式数据库实例时，查询续费的价格。
     @inlinable
     public func describeDCDBRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBRenewalPriceResponse> {
-        self.describeDCDBRenewalPrice(DescribeDCDBRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDCDBRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit)
+        return self.client.execute(action: "DescribeDCDBRenewalPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例询价
@@ -92,6 +93,7 @@ extension Dcdb {
     /// 本接口（DescribeDCDBRenewalPrice）用于在续费分布式数据库实例时，查询续费的价格。
     @inlinable
     public func describeDCDBRenewalPrice(instanceId: String, period: Int64? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBRenewalPriceResponse {
-        try await self.describeDCDBRenewalPrice(DescribeDCDBRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDCDBRenewalPriceRequest(instanceId: instanceId, period: period, amountUnit: amountUnit)
+        return try await self.client.execute(action: "DescribeDCDBRenewalPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

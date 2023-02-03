@@ -68,7 +68,8 @@ extension Sqlserver {
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
     @inlinable
     public func describeDBsNormal(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBsNormalResponse> {
-        self.describeDBsNormal(DescribeDBsNormalRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBsNormalRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeDBsNormal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库配置信息
@@ -76,6 +77,7 @@ extension Sqlserver {
     /// 本接口(DescribeDBsNormal)用于查询数据库配置信息，此接口不包含数据库的关联账号
     @inlinable
     public func describeDBsNormal(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBsNormalResponse {
-        try await self.describeDBsNormal(DescribeDBsNormalRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBsNormalRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDBsNormal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

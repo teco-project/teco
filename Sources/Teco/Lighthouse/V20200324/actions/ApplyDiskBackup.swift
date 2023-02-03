@@ -83,7 +83,8 @@ extension Lighthouse {
     /// * 如果云硬盘处于 ATTACHED状态，相关RUNNING 状态的实例会强制关机，然后回滚云硬盘备份点。
     @inlinable @discardableResult
     public func applyDiskBackup(diskId: String, diskBackupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyDiskBackupResponse> {
-        self.applyDiskBackup(ApplyDiskBackupRequest(diskId: diskId, diskBackupId: diskBackupId), region: region, logger: logger, on: eventLoop)
+        let input = ApplyDiskBackupRequest(diskId: diskId, diskBackupId: diskBackupId)
+        return self.client.execute(action: "ApplyDiskBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回滚云硬盘备份点
@@ -97,6 +98,7 @@ extension Lighthouse {
     /// * 如果云硬盘处于 ATTACHED状态，相关RUNNING 状态的实例会强制关机，然后回滚云硬盘备份点。
     @inlinable @discardableResult
     public func applyDiskBackup(diskId: String, diskBackupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyDiskBackupResponse {
-        try await self.applyDiskBackup(ApplyDiskBackupRequest(diskId: diskId, diskBackupId: diskBackupId), region: region, logger: logger, on: eventLoop)
+        let input = ApplyDiskBackupRequest(diskId: diskId, diskBackupId: diskBackupId)
+        return try await self.client.execute(action: "ApplyDiskBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

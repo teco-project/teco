@@ -84,12 +84,14 @@ extension Tem {
     /// 绑定云资源
     @inlinable
     public func createResource(environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceResponse> {
-        self.createResource(CreateResourceRequest(environmentId: environmentId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel, resourceFrom: resourceFrom, resourceConfig: resourceConfig), region: region, logger: logger, on: eventLoop)
+        let input = CreateResourceRequest(environmentId: environmentId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel, resourceFrom: resourceFrom, resourceConfig: resourceConfig)
+        return self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定云资源
     @inlinable
     public func createResource(environmentId: String, resourceType: String, resourceId: String, sourceChannel: Int64? = nil, resourceFrom: String? = nil, resourceConfig: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceResponse {
-        try await self.createResource(CreateResourceRequest(environmentId: environmentId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel, resourceFrom: resourceFrom, resourceConfig: resourceConfig), region: region, logger: logger, on: eventLoop)
+        let input = CreateResourceRequest(environmentId: environmentId, resourceType: resourceType, resourceId: resourceId, sourceChannel: sourceChannel, resourceFrom: resourceFrom, resourceConfig: resourceConfig)
+        return try await self.client.execute(action: "CreateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

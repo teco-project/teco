@@ -66,12 +66,14 @@ extension Cpdp {
     /// 灵云-批量转账结果查询
     @inlinable
     public func queryBatchPaymentResult(batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBatchPaymentResultResponse> {
-        self.queryBatchPaymentResult(QueryBatchPaymentResultRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
+        let input = QueryBatchPaymentResultRequest(batchId: batchId)
+        return self.client.execute(action: "QueryBatchPaymentResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-批量转账结果查询
     @inlinable
     public func queryBatchPaymentResult(batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBatchPaymentResultResponse {
-        try await self.queryBatchPaymentResult(QueryBatchPaymentResultRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
+        let input = QueryBatchPaymentResultRequest(batchId: batchId)
+        return try await self.client.execute(action: "QueryBatchPaymentResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -98,12 +98,14 @@ extension Ckafka {
     /// 添加实例路由
     @inlinable
     public func createRoute(instanceId: String, vipType: Int64, vpcId: String? = nil, subnetId: String? = nil, accessType: Int64? = nil, authFlag: Int64? = nil, callerAppid: Int64? = nil, publicNetwork: Int64? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteResponse> {
-        self.createRoute(CreateRouteRequest(instanceId: instanceId, vipType: vipType, vpcId: vpcId, subnetId: subnetId, accessType: accessType, authFlag: authFlag, callerAppid: callerAppid, publicNetwork: publicNetwork, ip: ip), region: region, logger: logger, on: eventLoop)
+        let input = CreateRouteRequest(instanceId: instanceId, vipType: vipType, vpcId: vpcId, subnetId: subnetId, accessType: accessType, authFlag: authFlag, callerAppid: callerAppid, publicNetwork: publicNetwork, ip: ip)
+        return self.client.execute(action: "CreateRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加实例路由
     @inlinable
     public func createRoute(instanceId: String, vipType: Int64, vpcId: String? = nil, subnetId: String? = nil, accessType: Int64? = nil, authFlag: Int64? = nil, callerAppid: Int64? = nil, publicNetwork: Int64? = nil, ip: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteResponse {
-        try await self.createRoute(CreateRouteRequest(instanceId: instanceId, vipType: vipType, vpcId: vpcId, subnetId: subnetId, accessType: accessType, authFlag: authFlag, callerAppid: callerAppid, publicNetwork: publicNetwork, ip: ip), region: region, logger: logger, on: eventLoop)
+        let input = CreateRouteRequest(instanceId: instanceId, vipType: vipType, vpcId: vpcId, subnetId: subnetId, accessType: accessType, authFlag: authFlag, callerAppid: callerAppid, publicNetwork: publicNetwork, ip: ip)
+        return try await self.client.execute(action: "CreateRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

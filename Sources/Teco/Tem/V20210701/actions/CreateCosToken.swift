@@ -79,12 +79,14 @@ extension Tem {
     /// 生成Cos临时秘钥
     @inlinable
     public func createCosToken(applicationId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCosTokenResponse> {
-        self.createCosToken(CreateCosTokenRequest(applicationId: applicationId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), region: region, logger: logger, on: eventLoop)
+        let input = CreateCosTokenRequest(applicationId: applicationId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion)
+        return self.client.execute(action: "CreateCosToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成Cos临时秘钥
     @inlinable
     public func createCosToken(applicationId: String, pkgName: String, optType: Int64, sourceChannel: Int64? = nil, timeVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCosTokenResponse {
-        try await self.createCosToken(CreateCosTokenRequest(applicationId: applicationId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion), region: region, logger: logger, on: eventLoop)
+        let input = CreateCosTokenRequest(applicationId: applicationId, pkgName: pkgName, optType: optType, sourceChannel: sourceChannel, timeVersion: timeVersion)
+        return try await self.client.execute(action: "CreateCosToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

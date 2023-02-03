@@ -68,7 +68,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeUserQuota(resourceType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaResponse> {
-        self.describeUserQuota(DescribeUserQuotaRequest(resourceType: resourceType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserQuotaRequest(resourceType: resourceType)
+        return self.client.execute(action: "DescribeUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户单个模块配额
@@ -77,6 +78,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeUserQuota(resourceType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaResponse {
-        try await self.describeUserQuota(DescribeUserQuotaRequest(resourceType: resourceType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserQuotaRequest(resourceType: resourceType)
+        return try await self.client.execute(action: "DescribeUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

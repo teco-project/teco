@@ -88,7 +88,8 @@ extension Batch {
     /// 用于查询任务模板信息
     @inlinable
     public func describeTaskTemplates(taskTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskTemplatesResponse> {
-        self.describeTaskTemplates(DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeTaskTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务模板
@@ -96,6 +97,7 @@ extension Batch {
     /// 用于查询任务模板信息
     @inlinable
     public func describeTaskTemplates(taskTemplateIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskTemplatesResponse {
-        try await self.describeTaskTemplates(DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskTemplatesRequest(taskTemplateIds: taskTemplateIds, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeTaskTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

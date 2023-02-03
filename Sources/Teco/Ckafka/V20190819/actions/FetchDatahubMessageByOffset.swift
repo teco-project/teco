@@ -74,7 +74,8 @@ extension Ckafka {
     /// 根据指定offset位置的消息
     @inlinable
     public func fetchDatahubMessageByOffset(name: String, partition: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchDatahubMessageByOffsetResponse> {
-        self.fetchDatahubMessageByOffset(FetchDatahubMessageByOffsetRequest(name: name, partition: partition, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = FetchDatahubMessageByOffsetRequest(name: name, partition: partition, offset: offset)
+        return self.client.execute(action: "FetchDatahubMessageByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub Topic消息
@@ -82,6 +83,7 @@ extension Ckafka {
     /// 根据指定offset位置的消息
     @inlinable
     public func fetchDatahubMessageByOffset(name: String, partition: Int64, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchDatahubMessageByOffsetResponse {
-        try await self.fetchDatahubMessageByOffset(FetchDatahubMessageByOffsetRequest(name: name, partition: partition, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = FetchDatahubMessageByOffsetRequest(name: name, partition: partition, offset: offset)
+        return try await self.client.execute(action: "FetchDatahubMessageByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

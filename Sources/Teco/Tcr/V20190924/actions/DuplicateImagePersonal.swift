@@ -69,7 +69,8 @@ extension Tcr {
     /// 用于在个人版镜像仓库中复制镜像版本
     @inlinable
     public func duplicateImagePersonal(srcImage: String, destImage: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DuplicateImagePersonalResponse> {
-        self.duplicateImagePersonal(DuplicateImagePersonalRequest(srcImage: srcImage, destImage: destImage), region: region, logger: logger, on: eventLoop)
+        let input = DuplicateImagePersonalRequest(srcImage: srcImage, destImage: destImage)
+        return self.client.execute(action: "DuplicateImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制个人版仓库镜像版本
@@ -77,6 +78,7 @@ extension Tcr {
     /// 用于在个人版镜像仓库中复制镜像版本
     @inlinable
     public func duplicateImagePersonal(srcImage: String, destImage: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateImagePersonalResponse {
-        try await self.duplicateImagePersonal(DuplicateImagePersonalRequest(srcImage: srcImage, destImage: destImage), region: region, logger: logger, on: eventLoop)
+        let input = DuplicateImagePersonalRequest(srcImage: srcImage, destImage: destImage)
+        return try await self.client.execute(action: "DuplicateImagePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

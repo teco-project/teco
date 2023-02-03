@@ -106,12 +106,14 @@ extension Dayu {
     /// 获取高防IP专业版资源的DDoSIP攻击日志
     @inlinable
     public func describeDDoSNetIpLog(business: String, id: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetIpLogResponse> {
-        self.describeDDoSNetIpLog(DescribeDDoSNetIpLogRequest(business: business, id: id, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSNetIpLogRequest(business: business, id: id, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeDDoSNetIpLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoSIP攻击日志
     @inlinable
     public func describeDDoSNetIpLog(business: String, id: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetIpLogResponse {
-        try await self.describeDDoSNetIpLog(DescribeDDoSNetIpLogRequest(business: business, id: id, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSNetIpLogRequest(business: business, id: id, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeDDoSNetIpLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

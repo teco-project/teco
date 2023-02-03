@@ -74,7 +74,8 @@ extension Bmvpc {
     /// 可用于将子网的部分IP绑定到NAT网关
     @inlinable
     public func bindIpsToNatGateway(natId: String, vpcId: String, ipInfoSet: [IpInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIpsToNatGatewayResponse> {
-        self.bindIpsToNatGateway(BindIpsToNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet), region: region, logger: logger, on: eventLoop)
+        let input = BindIpsToNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet)
+        return self.client.execute(action: "BindIpsToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// NAT网关绑定IP
@@ -82,6 +83,7 @@ extension Bmvpc {
     /// 可用于将子网的部分IP绑定到NAT网关
     @inlinable
     public func bindIpsToNatGateway(natId: String, vpcId: String, ipInfoSet: [IpInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIpsToNatGatewayResponse {
-        try await self.bindIpsToNatGateway(BindIpsToNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet), region: region, logger: logger, on: eventLoop)
+        let input = BindIpsToNatGatewayRequest(natId: natId, vpcId: vpcId, ipInfoSet: ipInfoSet)
+        return try await self.client.execute(action: "BindIpsToNatGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

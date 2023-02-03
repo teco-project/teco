@@ -107,7 +107,8 @@ extension Vpc {
     /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, tags: [Tag]? = nil, cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubnetResponse> {
-        self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, tags: tags, cdcId: cdcId), region: region, logger: logger, on: eventLoop)
+        let input = CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, tags: tags, cdcId: cdcId)
+        return self.client.execute(action: "CreateSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建子网
@@ -121,6 +122,7 @@ extension Vpc {
     /// * 创建子网同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createSubnet(vpcId: String, subnetName: String, cidrBlock: String, zone: String, tags: [Tag]? = nil, cdcId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubnetResponse {
-        try await self.createSubnet(CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, tags: tags, cdcId: cdcId), region: region, logger: logger, on: eventLoop)
+        let input = CreateSubnetRequest(vpcId: vpcId, subnetName: subnetName, cidrBlock: cidrBlock, zone: zone, tags: tags, cdcId: cdcId)
+        return try await self.client.execute(action: "CreateSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

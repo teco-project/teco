@@ -64,12 +64,14 @@ extension Antiddos {
     /// 修改DDoS防护的端口acl策略
     @inlinable @discardableResult
     public func modifyPortAclConfig(instanceId: String, oldAclConfig: AclConfig, newAclConfig: AclConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPortAclConfigResponse> {
-        self.modifyPortAclConfig(ModifyPortAclConfigRequest(instanceId: instanceId, oldAclConfig: oldAclConfig, newAclConfig: newAclConfig), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPortAclConfigRequest(instanceId: instanceId, oldAclConfig: oldAclConfig, newAclConfig: newAclConfig)
+        return self.client.execute(action: "ModifyPortAclConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS防护的端口acl策略
     @inlinable @discardableResult
     public func modifyPortAclConfig(instanceId: String, oldAclConfig: AclConfig, newAclConfig: AclConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPortAclConfigResponse {
-        try await self.modifyPortAclConfig(ModifyPortAclConfigRequest(instanceId: instanceId, oldAclConfig: oldAclConfig, newAclConfig: newAclConfig), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPortAclConfigRequest(instanceId: instanceId, oldAclConfig: oldAclConfig, newAclConfig: newAclConfig)
+        return try await self.client.execute(action: "ModifyPortAclConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

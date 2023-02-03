@@ -58,12 +58,14 @@ extension Tdid {
     /// 获取DID服务列表
     @inlinable
     public func getDidServiceList(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidServiceListResponse> {
-        self.getDidServiceList(GetDidServiceListRequest(type: type), region: region, logger: logger, on: eventLoop)
+        let input = GetDidServiceListRequest(type: type)
+        return self.client.execute(action: "GetDidServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DID服务列表
     @inlinable
     public func getDidServiceList(type: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidServiceListResponse {
-        try await self.getDidServiceList(GetDidServiceListRequest(type: type), region: region, logger: logger, on: eventLoop)
+        let input = GetDidServiceListRequest(type: type)
+        return try await self.client.execute(action: "GetDidServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

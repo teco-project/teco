@@ -78,12 +78,14 @@ extension Iotexplorer {
     /// 获取设备历史位置
     @inlinable
     public func getDeviceLocationHistory(productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceLocationHistoryResponse> {
-        self.getDeviceLocationHistory(GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType), region: region, logger: logger, on: eventLoop)
+        let input = GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType)
+        return self.client.execute(action: "GetDeviceLocationHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史位置
     @inlinable
     public func getDeviceLocationHistory(productId: String, deviceName: String, startTime: Int64, endTime: Int64, coordinateType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceLocationHistoryResponse {
-        try await self.getDeviceLocationHistory(GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType), region: region, logger: logger, on: eventLoop)
+        let input = GetDeviceLocationHistoryRequest(productId: productId, deviceName: deviceName, startTime: startTime, endTime: endTime, coordinateType: coordinateType)
+        return try await self.client.execute(action: "GetDeviceLocationHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

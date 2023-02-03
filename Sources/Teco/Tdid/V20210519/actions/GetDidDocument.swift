@@ -62,12 +62,14 @@ extension Tdid {
     /// 查看DID文档
     @inlinable
     public func getDidDocument(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidDocumentResponse> {
-        self.getDidDocument(GetDidDocumentRequest(did: did), region: region, logger: logger, on: eventLoop)
+        let input = GetDidDocumentRequest(did: did)
+        return self.client.execute(action: "GetDidDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看DID文档
     @inlinable
     public func getDidDocument(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidDocumentResponse {
-        try await self.getDidDocument(GetDidDocumentRequest(did: did), region: region, logger: logger, on: eventLoop)
+        let input = GetDidDocumentRequest(did: did)
+        return try await self.client.execute(action: "GetDidDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

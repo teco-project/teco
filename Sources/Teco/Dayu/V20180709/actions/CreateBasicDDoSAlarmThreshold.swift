@@ -83,7 +83,8 @@ extension Dayu {
     /// 设置基础防护的DDoS告警阈值，只支持基础防护产品
     @inlinable
     public func createBasicDDoSAlarmThreshold(business: String, method: String, alarmType: UInt64? = nil, alarmThreshold: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBasicDDoSAlarmThresholdResponse> {
-        self.createBasicDDoSAlarmThreshold(CreateBasicDDoSAlarmThresholdRequest(business: business, method: method, alarmType: alarmType, alarmThreshold: alarmThreshold), region: region, logger: logger, on: eventLoop)
+        let input = CreateBasicDDoSAlarmThresholdRequest(business: business, method: method, alarmType: alarmType, alarmThreshold: alarmThreshold)
+        return self.client.execute(action: "CreateBasicDDoSAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置基础防护的DDoS告警阈值
@@ -91,6 +92,7 @@ extension Dayu {
     /// 设置基础防护的DDoS告警阈值，只支持基础防护产品
     @inlinable
     public func createBasicDDoSAlarmThreshold(business: String, method: String, alarmType: UInt64? = nil, alarmThreshold: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBasicDDoSAlarmThresholdResponse {
-        try await self.createBasicDDoSAlarmThreshold(CreateBasicDDoSAlarmThresholdRequest(business: business, method: method, alarmType: alarmType, alarmThreshold: alarmThreshold), region: region, logger: logger, on: eventLoop)
+        let input = CreateBasicDDoSAlarmThresholdRequest(business: business, method: method, alarmType: alarmType, alarmThreshold: alarmThreshold)
+        return try await self.client.execute(action: "CreateBasicDDoSAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

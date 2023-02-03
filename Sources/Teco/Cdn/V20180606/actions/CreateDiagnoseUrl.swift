@@ -69,7 +69,8 @@ extension Cdn {
     /// CreateDiagnoseUrl 用于添加域名诊断任务URL
     @inlinable
     public func createDiagnoseUrl(url: String, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDiagnoseUrlResponse> {
-        self.createDiagnoseUrl(CreateDiagnoseUrlRequest(url: url, origin: origin), region: region, logger: logger, on: eventLoop)
+        let input = CreateDiagnoseUrlRequest(url: url, origin: origin)
+        return self.client.execute(action: "CreateDiagnoseUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加诊断URL
@@ -77,6 +78,7 @@ extension Cdn {
     /// CreateDiagnoseUrl 用于添加域名诊断任务URL
     @inlinable
     public func createDiagnoseUrl(url: String, origin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDiagnoseUrlResponse {
-        try await self.createDiagnoseUrl(CreateDiagnoseUrlRequest(url: url, origin: origin), region: region, logger: logger, on: eventLoop)
+        let input = CreateDiagnoseUrlRequest(url: url, origin: origin)
+        return try await self.client.execute(action: "CreateDiagnoseUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

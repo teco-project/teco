@@ -64,12 +64,14 @@ extension Monitor {
     /// 发送自定义消息告警
     @inlinable @discardableResult
     public func sendCustomAlarmMsg(module: String, policyId: String, msg: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendCustomAlarmMsgResponse> {
-        self.sendCustomAlarmMsg(SendCustomAlarmMsgRequest(module: module, policyId: policyId, msg: msg), region: region, logger: logger, on: eventLoop)
+        let input = SendCustomAlarmMsgRequest(module: module, policyId: policyId, msg: msg)
+        return self.client.execute(action: "SendCustomAlarmMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送自定义消息告警
     @inlinable @discardableResult
     public func sendCustomAlarmMsg(module: String, policyId: String, msg: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendCustomAlarmMsgResponse {
-        try await self.sendCustomAlarmMsg(SendCustomAlarmMsgRequest(module: module, policyId: policyId, msg: msg), region: region, logger: logger, on: eventLoop)
+        let input = SendCustomAlarmMsgRequest(module: module, policyId: policyId, msg: msg)
+        return try await self.client.execute(action: "SendCustomAlarmMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

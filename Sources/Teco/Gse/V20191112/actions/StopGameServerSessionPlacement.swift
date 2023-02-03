@@ -67,7 +67,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func stopGameServerSessionPlacement(placementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameServerSessionPlacementResponse> {
-        self.stopGameServerSessionPlacement(StopGameServerSessionPlacementRequest(placementId: placementId), region: region, logger: logger, on: eventLoop)
+        let input = StopGameServerSessionPlacementRequest(placementId: placementId)
+        return self.client.execute(action: "StopGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止放置游戏服务器会话
@@ -76,6 +77,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func stopGameServerSessionPlacement(placementId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameServerSessionPlacementResponse {
-        try await self.stopGameServerSessionPlacement(StopGameServerSessionPlacementRequest(placementId: placementId), region: region, logger: logger, on: eventLoop)
+        let input = StopGameServerSessionPlacementRequest(placementId: placementId)
+        return try await self.client.execute(action: "StopGameServerSessionPlacement", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

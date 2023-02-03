@@ -69,7 +69,8 @@ extension Postgres {
     /// 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
     @inlinable
     public func removeDBInstanceFromReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveDBInstanceFromReadOnlyGroupResponse> {
-        self.removeDBInstanceFromReadOnlyGroup(RemoveDBInstanceFromReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = RemoveDBInstanceFromReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId)
+        return self.client.execute(action: "RemoveDBInstanceFromReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将只读实例从只读组中移除
@@ -77,6 +78,7 @@ extension Postgres {
     /// 本接口（RemoveDBInstanceFromReadOnlyGroup）用户将只读实例从只读组中移除
     @inlinable
     public func removeDBInstanceFromReadOnlyGroup(dbInstanceId: String, readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveDBInstanceFromReadOnlyGroupResponse {
-        try await self.removeDBInstanceFromReadOnlyGroup(RemoveDBInstanceFromReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = RemoveDBInstanceFromReadOnlyGroupRequest(dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId)
+        return try await self.client.execute(action: "RemoveDBInstanceFromReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

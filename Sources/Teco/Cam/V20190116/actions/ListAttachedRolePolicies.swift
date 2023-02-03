@@ -93,7 +93,8 @@ extension Cam {
     /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
     @inlinable
     public func listAttachedRolePolicies(page: UInt64, rp: UInt64, roleId: String? = nil, roleName: String? = nil, policyType: String? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedRolePoliciesResponse> {
-        self.listAttachedRolePolicies(ListAttachedRolePoliciesRequest(page: page, rp: rp, roleId: roleId, roleName: roleName, policyType: policyType, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = ListAttachedRolePoliciesRequest(page: page, rp: rp, roleId: roleId, roleName: roleName, policyType: policyType, keyword: keyword)
+        return self.client.execute(action: "ListAttachedRolePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取角色绑定的策略列表
@@ -101,6 +102,7 @@ extension Cam {
     /// 本接口（ListAttachedRolePolicies）用于获取角色绑定的策略列表。
     @inlinable
     public func listAttachedRolePolicies(page: UInt64, rp: UInt64, roleId: String? = nil, roleName: String? = nil, policyType: String? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedRolePoliciesResponse {
-        try await self.listAttachedRolePolicies(ListAttachedRolePoliciesRequest(page: page, rp: rp, roleId: roleId, roleName: roleName, policyType: policyType, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = ListAttachedRolePoliciesRequest(page: page, rp: rp, roleId: roleId, roleName: roleName, policyType: policyType, keyword: keyword)
+        return try await self.client.execute(action: "ListAttachedRolePolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

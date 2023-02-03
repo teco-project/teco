@@ -54,12 +54,14 @@ extension Cynosdb {
     /// 删除审计规则模版
     @inlinable @discardableResult
     public func deleteAuditRuleTemplates(ruleTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditRuleTemplatesResponse> {
-        self.deleteAuditRuleTemplates(DeleteAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds)
+        return self.client.execute(action: "DeleteAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除审计规则模版
     @inlinable @discardableResult
     public func deleteAuditRuleTemplates(ruleTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditRuleTemplatesResponse {
-        try await self.deleteAuditRuleTemplates(DeleteAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds)
+        return try await self.client.execute(action: "DeleteAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

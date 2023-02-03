@@ -69,7 +69,8 @@ extension Ssm {
     /// 该接口用于获取指定凭据下的版本列表信息
     @inlinable
     public func listSecretVersionIds(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListSecretVersionIdsResponse> {
-        self.listSecretVersionIds(ListSecretVersionIdsRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
+        let input = ListSecretVersionIdsRequest(secretName: secretName)
+        return self.client.execute(action: "ListSecretVersionIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定凭据下的版本列表信息。
@@ -77,6 +78,7 @@ extension Ssm {
     /// 该接口用于获取指定凭据下的版本列表信息
     @inlinable
     public func listSecretVersionIds(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListSecretVersionIdsResponse {
-        try await self.listSecretVersionIds(ListSecretVersionIdsRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
+        let input = ListSecretVersionIdsRequest(secretName: secretName)
+        return try await self.client.execute(action: "ListSecretVersionIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

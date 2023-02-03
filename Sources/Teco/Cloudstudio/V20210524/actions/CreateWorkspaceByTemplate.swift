@@ -69,7 +69,8 @@ extension Cloudstudio {
     /// 快速开始, 基于模板创建工作空间
     @inlinable
     public func createWorkspaceByTemplate(cloudStudioSessionTeam: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByTemplateResponse> {
-        self.createWorkspaceByTemplate(CreateWorkspaceByTemplateRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = CreateWorkspaceByTemplateRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId)
+        return self.client.execute(action: "CreateWorkspaceByTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 基于模板创建工作空间
@@ -77,6 +78,7 @@ extension Cloudstudio {
     /// 快速开始, 基于模板创建工作空间
     @inlinable
     public func createWorkspaceByTemplate(cloudStudioSessionTeam: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByTemplateResponse {
-        try await self.createWorkspaceByTemplate(CreateWorkspaceByTemplateRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = CreateWorkspaceByTemplateRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, templateId: templateId)
+        return try await self.client.execute(action: "CreateWorkspaceByTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Live {
     /// 查询直播域名信息。
     @inlinable
     public func describeLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainResponse> {
-        self.describeLiveDomain(DescribeLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveDomainRequest(domainName: domainName)
+        return self.client.execute(action: "DescribeLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询域名信息
@@ -73,6 +74,7 @@ extension Live {
     /// 查询直播域名信息。
     @inlinable
     public func describeLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainResponse {
-        try await self.describeLiveDomain(DescribeLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveDomainRequest(domainName: domainName)
+        return try await self.client.execute(action: "DescribeLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

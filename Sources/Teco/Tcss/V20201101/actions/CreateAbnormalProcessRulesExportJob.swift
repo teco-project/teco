@@ -75,12 +75,14 @@ extension Tcss {
     /// 创建异常进程规则导出任务
     @inlinable
     public func createAbnormalProcessRulesExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAbnormalProcessRulesExportJobResponse> {
-        self.createAbnormalProcessRulesExportJob(CreateAbnormalProcessRulesExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
+        let input = CreateAbnormalProcessRulesExportJobRequest(filters: filters, order: order, by: by, exportField: exportField)
+        return self.client.execute(action: "CreateAbnormalProcessRulesExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建异常进程规则导出任务
     @inlinable
     public func createAbnormalProcessRulesExportJob(filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAbnormalProcessRulesExportJobResponse {
-        try await self.createAbnormalProcessRulesExportJob(CreateAbnormalProcessRulesExportJobRequest(filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
+        let input = CreateAbnormalProcessRulesExportJobRequest(filters: filters, order: order, by: by, exportField: exportField)
+        return try await self.client.execute(action: "CreateAbnormalProcessRulesExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

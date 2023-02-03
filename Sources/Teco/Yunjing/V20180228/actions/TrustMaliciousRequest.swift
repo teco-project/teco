@@ -60,7 +60,8 @@ extension Yunjing {
     /// 本接口 (TrustMaliciousRequest) 用于恶意请求添加信任。
     @inlinable @discardableResult
     public func trustMaliciousRequest(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TrustMaliciousRequestResponse> {
-        self.trustMaliciousRequest(TrustMaliciousRequestRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = TrustMaliciousRequestRequest(id: id)
+        return self.client.execute(action: "TrustMaliciousRequest", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恶意请求添加信任
@@ -68,6 +69,7 @@ extension Yunjing {
     /// 本接口 (TrustMaliciousRequest) 用于恶意请求添加信任。
     @inlinable @discardableResult
     public func trustMaliciousRequest(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TrustMaliciousRequestResponse {
-        try await self.trustMaliciousRequest(TrustMaliciousRequestRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = TrustMaliciousRequestRequest(id: id)
+        return try await self.client.execute(action: "TrustMaliciousRequest", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

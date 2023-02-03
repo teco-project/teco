@@ -77,12 +77,14 @@ extension Dayu {
     /// IP解封操作
     @inlinable
     public func createUnblockIp(ip: String, actionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnblockIpResponse> {
-        self.createUnblockIp(CreateUnblockIpRequest(ip: ip, actionType: actionType), region: region, logger: logger, on: eventLoop)
+        let input = CreateUnblockIpRequest(ip: ip, actionType: actionType)
+        return self.client.execute(action: "CreateUnblockIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// IP解封操作
     @inlinable
     public func createUnblockIp(ip: String, actionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnblockIpResponse {
-        try await self.createUnblockIp(CreateUnblockIpRequest(ip: ip, actionType: actionType), region: region, logger: logger, on: eventLoop)
+        let input = CreateUnblockIpRequest(ip: ip, actionType: actionType)
+        return try await self.client.execute(action: "CreateUnblockIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

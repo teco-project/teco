@@ -112,7 +112,8 @@ extension Cvm {
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
     @inlinable
     public func describeImages(imageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImagesResponse> {
-        self.describeImages(DescribeImagesRequest(imageIds: imageIds, filters: filters, offset: offset, limit: limit, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImagesRequest(imageIds: imageIds, filters: filters, offset: offset, limit: limit, instanceType: instanceType)
+        return self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看镜像列表
@@ -123,6 +124,7 @@ extension Cvm {
     /// * 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个镜像信息。
     @inlinable
     public func describeImages(imageIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, instanceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImagesResponse {
-        try await self.describeImages(DescribeImagesRequest(imageIds: imageIds, filters: filters, offset: offset, limit: limit, instanceType: instanceType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImagesRequest(imageIds: imageIds, filters: filters, offset: offset, limit: limit, instanceType: instanceType)
+        return try await self.client.execute(action: "DescribeImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

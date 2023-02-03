@@ -69,12 +69,14 @@ extension Tsf {
     /// 发布公共配置
     @inlinable
     public func releasePublicConfig(configId: String, namespaceId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleasePublicConfigResponse> {
-        self.releasePublicConfig(ReleasePublicConfigRequest(configId: configId, namespaceId: namespaceId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
+        let input = ReleasePublicConfigRequest(configId: configId, namespaceId: namespaceId, releaseDesc: releaseDesc)
+        return self.client.execute(action: "ReleasePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布公共配置
     @inlinable
     public func releasePublicConfig(configId: String, namespaceId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleasePublicConfigResponse {
-        try await self.releasePublicConfig(ReleasePublicConfigRequest(configId: configId, namespaceId: namespaceId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
+        let input = ReleasePublicConfigRequest(configId: configId, namespaceId: namespaceId, releaseDesc: releaseDesc)
+        return try await self.client.execute(action: "ReleasePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

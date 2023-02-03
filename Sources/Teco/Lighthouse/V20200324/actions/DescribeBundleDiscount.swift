@@ -68,7 +68,8 @@ extension Lighthouse {
     /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
     @inlinable
     public func describeBundleDiscount(bundleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBundleDiscountResponse> {
-        self.describeBundleDiscount(DescribeBundleDiscountRequest(bundleId: bundleId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBundleDiscountRequest(bundleId: bundleId)
+        return self.client.execute(action: "DescribeBundleDiscount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询套餐折扣
@@ -76,6 +77,7 @@ extension Lighthouse {
     /// 本接口（DescribeBundleDiscount）用于查询套餐折扣信息。
     @inlinable
     public func describeBundleDiscount(bundleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBundleDiscountResponse {
-        try await self.describeBundleDiscount(DescribeBundleDiscountRequest(bundleId: bundleId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBundleDiscountRequest(bundleId: bundleId)
+        return try await self.client.execute(action: "DescribeBundleDiscount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

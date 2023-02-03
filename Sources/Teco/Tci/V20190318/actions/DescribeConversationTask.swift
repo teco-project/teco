@@ -107,7 +107,8 @@ extension Tci {
     /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
     public func describeConversationTask(jobId: Int64, identity: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConversationTaskResponse> {
-        self.describeConversationTask(DescribeConversationTaskRequest(jobId: jobId, identity: identity, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConversationTaskRequest(jobId: jobId, identity: identity, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeConversationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 音频对话任务分析结果查询
@@ -115,6 +116,7 @@ extension Tci {
     /// 音频对话任务评估任务信息查询接口，异步查询客户提交的请求的结果。
     @inlinable
     public func describeConversationTask(jobId: Int64, identity: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConversationTaskResponse {
-        try await self.describeConversationTask(DescribeConversationTaskRequest(jobId: jobId, identity: identity, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConversationTaskRequest(jobId: jobId, identity: identity, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeConversationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

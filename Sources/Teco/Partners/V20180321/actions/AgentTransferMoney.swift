@@ -65,7 +65,8 @@ extension Partners {
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
     @inlinable @discardableResult
     public func agentTransferMoney(clientUin: String, amount: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AgentTransferMoneyResponse> {
-        self.agentTransferMoney(AgentTransferMoneyRequest(clientUin: clientUin, amount: amount), region: region, logger: logger, on: eventLoop)
+        let input = AgentTransferMoneyRequest(clientUin: clientUin, amount: amount)
+        return self.client.execute(action: "AgentTransferMoney", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 给客户转账
@@ -73,6 +74,7 @@ extension Partners {
     /// 为合作伙伴提供转账给客户能力。仅支持合作伙伴为自己名下客户转账。
     @inlinable @discardableResult
     public func agentTransferMoney(clientUin: String, amount: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AgentTransferMoneyResponse {
-        try await self.agentTransferMoney(AgentTransferMoneyRequest(clientUin: clientUin, amount: amount), region: region, logger: logger, on: eventLoop)
+        let input = AgentTransferMoneyRequest(clientUin: clientUin, amount: amount)
+        return try await self.client.execute(action: "AgentTransferMoney", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

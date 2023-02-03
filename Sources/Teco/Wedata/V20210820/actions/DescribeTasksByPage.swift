@@ -83,7 +83,8 @@ extension Wedata {
     /// 根据工作流分页查询任务
     @inlinable
     public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksByPageResponse> {
-        self.describeTasksByPage(DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize)
+        return self.client.execute(action: "DescribeTasksByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据工作流分页查询任务【Beta版本】
@@ -92,6 +93,7 @@ extension Wedata {
     /// 根据工作流分页查询任务
     @inlinable
     public func describeTasksByPage(projectId: String, workflowId: String, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksByPageResponse {
-        try await self.describeTasksByPage(DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksByPageRequest(projectId: projectId, workflowId: workflowId, pageNumber: pageNumber, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeTasksByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

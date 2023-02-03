@@ -68,12 +68,14 @@ extension Organization {
     /// 添加企业组织节点
     @inlinable
     public func addOrganizationNode(parentNodeId: UInt64, name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddOrganizationNodeResponse> {
-        self.addOrganizationNode(AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark)
+        return self.client.execute(action: "AddOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加企业组织节点
     @inlinable
     public func addOrganizationNode(parentNodeId: UInt64, name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddOrganizationNodeResponse {
-        try await self.addOrganizationNode(AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = AddOrganizationNodeRequest(parentNodeId: parentNodeId, name: name, remark: remark)
+        return try await self.client.execute(action: "AddOrganizationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

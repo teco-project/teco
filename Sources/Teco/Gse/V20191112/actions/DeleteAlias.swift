@@ -63,7 +63,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
-        self.deleteAlias(DeleteAliasRequest(aliasId: aliasId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAliasRequest(aliasId: aliasId)
+        return self.client.execute(action: "DeleteAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除别名
@@ -72,6 +73,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
-        try await self.deleteAlias(DeleteAliasRequest(aliasId: aliasId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAliasRequest(aliasId: aliasId)
+        return try await self.client.execute(action: "DeleteAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

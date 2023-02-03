@@ -54,12 +54,14 @@ extension Tcss {
     /// 统计漏洞扫描页已授权和未扫描镜像数
     @inlinable
     public func describeVulScanAuthorizedImageSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanAuthorizedImageSummaryResponse> {
-        self.describeVulScanAuthorizedImageSummary(DescribeVulScanAuthorizedImageSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulScanAuthorizedImageSummaryRequest()
+        return self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 统计漏洞扫描页已授权和未扫描镜像数
     @inlinable
     public func describeVulScanAuthorizedImageSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanAuthorizedImageSummaryResponse {
-        try await self.describeVulScanAuthorizedImageSummary(DescribeVulScanAuthorizedImageSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulScanAuthorizedImageSummaryRequest()
+        return try await self.client.execute(action: "DescribeVulScanAuthorizedImageSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

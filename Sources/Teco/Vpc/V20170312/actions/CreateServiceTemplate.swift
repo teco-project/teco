@@ -74,7 +74,8 @@ extension Vpc {
     /// 本接口（CreateServiceTemplate）用于创建协议端口模板
     @inlinable
     public func createServiceTemplate(serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceTemplateResponse> {
-        self.createServiceTemplate(CreateServiceTemplateRequest(serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), region: region, logger: logger, on: eventLoop)
+        let input = CreateServiceTemplateRequest(serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra)
+        return self.client.execute(action: "CreateServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建协议端口模板
@@ -82,6 +83,7 @@ extension Vpc {
     /// 本接口（CreateServiceTemplate）用于创建协议端口模板
     @inlinable
     public func createServiceTemplate(serviceTemplateName: String, services: [String]? = nil, servicesExtra: [ServicesInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceTemplateResponse {
-        try await self.createServiceTemplate(CreateServiceTemplateRequest(serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra), region: region, logger: logger, on: eventLoop)
+        let input = CreateServiceTemplateRequest(serviceTemplateName: serviceTemplateName, services: services, servicesExtra: servicesExtra)
+        return try await self.client.execute(action: "CreateServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

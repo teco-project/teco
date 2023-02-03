@@ -90,7 +90,8 @@ extension Iotvideo {
     /// 本接口（UploadFirmware）用于上传设备固件信息
     @inlinable @discardableResult
     public func uploadFirmware(productID: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, fwType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFirmwareResponse> {
-        self.uploadFirmware(UploadFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription, fwType: fwType), region: region, logger: logger, on: eventLoop)
+        let input = UploadFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription, fwType: fwType)
+        return self.client.execute(action: "UploadFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传固件信息
@@ -98,6 +99,7 @@ extension Iotvideo {
     /// 本接口（UploadFirmware）用于上传设备固件信息
     @inlinable @discardableResult
     public func uploadFirmware(productID: String, firmwareVersion: String, md5sum: String, fileSize: UInt64, firmwareName: String? = nil, firmwareDescription: String? = nil, fwType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFirmwareResponse {
-        try await self.uploadFirmware(UploadFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription, fwType: fwType), region: region, logger: logger, on: eventLoop)
+        let input = UploadFirmwareRequest(productID: productID, firmwareVersion: firmwareVersion, md5sum: md5sum, fileSize: fileSize, firmwareName: firmwareName, firmwareDescription: firmwareDescription, fwType: fwType)
+        return try await self.client.execute(action: "UploadFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

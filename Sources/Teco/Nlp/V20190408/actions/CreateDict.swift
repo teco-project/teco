@@ -70,7 +70,8 @@ extension Nlp {
     /// 根据指定的名称、描述创建自定义词库。
     @inlinable
     public func createDict(name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDictResponse> {
-        self.createDict(CreateDictRequest(name: name, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateDictRequest(name: name, description: description)
+        return self.client.execute(action: "CreateDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义词库
@@ -78,6 +79,7 @@ extension Nlp {
     /// 根据指定的名称、描述创建自定义词库。
     @inlinable
     public func createDict(name: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDictResponse {
-        try await self.createDict(CreateDictRequest(name: name, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateDictRequest(name: name, description: description)
+        return try await self.client.execute(action: "CreateDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

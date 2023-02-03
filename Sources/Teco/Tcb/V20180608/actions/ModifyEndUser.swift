@@ -66,12 +66,14 @@ extension Tcb {
     /// 管理终端用户
     @inlinable @discardableResult
     public func modifyEndUser(envId: String, uuId: String, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEndUserResponse> {
-        self.modifyEndUser(ModifyEndUserRequest(envId: envId, uuId: uuId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEndUserRequest(envId: envId, uuId: uuId, status: status)
+        return self.client.execute(action: "ModifyEndUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 管理终端用户
     @inlinable @discardableResult
     public func modifyEndUser(envId: String, uuId: String, status: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEndUserResponse {
-        try await self.modifyEndUser(ModifyEndUserRequest(envId: envId, uuId: uuId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEndUserRequest(envId: envId, uuId: uuId, status: status)
+        return try await self.client.execute(action: "ModifyEndUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

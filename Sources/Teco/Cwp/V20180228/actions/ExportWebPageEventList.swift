@@ -71,12 +71,14 @@ extension Cwp {
     /// 导出篡改事件列表
     @inlinable
     public func exportWebPageEventList(filters: [AssetFilters]? = nil, by: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportWebPageEventListResponse> {
-        self.exportWebPageEventList(ExportWebPageEventListRequest(filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = ExportWebPageEventListRequest(filters: filters, by: by, order: order)
+        return self.client.execute(action: "ExportWebPageEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出篡改事件列表
     @inlinable
     public func exportWebPageEventList(filters: [AssetFilters]? = nil, by: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportWebPageEventListResponse {
-        try await self.exportWebPageEventList(ExportWebPageEventListRequest(filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = ExportWebPageEventListRequest(filters: filters, by: by, order: order)
+        return try await self.client.execute(action: "ExportWebPageEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -84,7 +84,8 @@ extension Wedata {
     /// 批量删除任务，仅对任务状态为”已停止“有效；
     @inlinable
     public func batchDeleteTasksNew(taskIdList: [String], deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDeleteTasksNewResponse> {
-        self.batchDeleteTasksNew(BatchDeleteTasksNewRequest(taskIdList: taskIdList, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchDeleteTasksNewRequest(taskIdList: taskIdList, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId)
+        return self.client.execute(action: "BatchDeleteTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除任务【Beta版本】
@@ -93,6 +94,7 @@ extension Wedata {
     /// 批量删除任务，仅对任务状态为”已停止“有效；
     @inlinable
     public func batchDeleteTasksNew(taskIdList: [String], deleteMode: Bool, enableNotify: Bool, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDeleteTasksNewResponse {
-        try await self.batchDeleteTasksNew(BatchDeleteTasksNewRequest(taskIdList: taskIdList, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchDeleteTasksNewRequest(taskIdList: taskIdList, deleteMode: deleteMode, enableNotify: enableNotify, projectId: projectId)
+        return try await self.client.execute(action: "BatchDeleteTasksNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

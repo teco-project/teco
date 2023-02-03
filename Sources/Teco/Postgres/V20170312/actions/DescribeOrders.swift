@@ -68,7 +68,8 @@ extension Postgres {
     /// 本接口（DescribeOrders）用于获取订单信息。
     @inlinable
     public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOrdersResponse> {
-        self.describeOrders(DescribeOrdersRequest(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOrdersRequest(dealNames: dealNames)
+        return self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取订单信息
@@ -76,6 +77,7 @@ extension Postgres {
     /// 本接口（DescribeOrders）用于获取订单信息。
     @inlinable
     public func describeOrders(dealNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOrdersResponse {
-        try await self.describeOrders(DescribeOrdersRequest(dealNames: dealNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOrdersRequest(dealNames: dealNames)
+        return try await self.client.execute(action: "DescribeOrders", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

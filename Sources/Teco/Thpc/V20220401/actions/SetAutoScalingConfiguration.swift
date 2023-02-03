@@ -84,7 +84,8 @@ extension Thpc {
     /// 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
     @inlinable @discardableResult
     public func setAutoScalingConfiguration(clusterId: String, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, queueConfigs: [QueueConfig]? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetAutoScalingConfigurationResponse> {
-        self.setAutoScalingConfiguration(SetAutoScalingConfigurationRequest(clusterId: clusterId, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, queueConfigs: queueConfigs, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = SetAutoScalingConfigurationRequest(clusterId: clusterId, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, queueConfigs: queueConfigs, dryRun: dryRun)
+        return self.client.execute(action: "SetAutoScalingConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置弹性伸缩配置信息
@@ -92,6 +93,7 @@ extension Thpc {
     /// 本接口(SetAutoScalingConfiguration)用于为集群设置集群弹性伸缩配置信息。
     @inlinable @discardableResult
     public func setAutoScalingConfiguration(clusterId: String, expansionBusyTime: Int64? = nil, shrinkIdleTime: Int64? = nil, queueConfigs: [QueueConfig]? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetAutoScalingConfigurationResponse {
-        try await self.setAutoScalingConfiguration(SetAutoScalingConfigurationRequest(clusterId: clusterId, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, queueConfigs: queueConfigs, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = SetAutoScalingConfigurationRequest(clusterId: clusterId, expansionBusyTime: expansionBusyTime, shrinkIdleTime: shrinkIdleTime, queueConfigs: queueConfigs, dryRun: dryRun)
+        return try await self.client.execute(action: "SetAutoScalingConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

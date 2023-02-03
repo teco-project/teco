@@ -71,12 +71,14 @@ extension Ecm {
     /// 销毁实例
     @inlinable @discardableResult
     public func terminateInstances(instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
-        self.terminateInstances(TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy), region: region, logger: logger, on: eventLoop)
+        let input = TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy)
+        return self.client.execute(action: "TerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁实例
     @inlinable @discardableResult
     public func terminateInstances(instanceIdSet: [String], terminateDelay: Bool? = nil, terminateTime: String? = nil, associatedResourceDestroy: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
-        try await self.terminateInstances(TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy), region: region, logger: logger, on: eventLoop)
+        let input = TerminateInstancesRequest(instanceIdSet: instanceIdSet, terminateDelay: terminateDelay, terminateTime: terminateTime, associatedResourceDestroy: associatedResourceDestroy)
+        return try await self.client.execute(action: "TerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

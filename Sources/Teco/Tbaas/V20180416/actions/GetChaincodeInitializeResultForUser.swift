@@ -97,12 +97,14 @@ extension Tbaas {
     /// 实例化结果查询
     @inlinable
     public func getChaincodeInitializeResultForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, chaincodeName: String, chaincodeVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetChaincodeInitializeResultForUserResponse> {
-        self.getChaincodeInitializeResultForUser(GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId)
+        return self.client.execute(action: "GetChaincodeInitializeResultForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例化结果查询
     @inlinable
     public func getChaincodeInitializeResultForUser(module: String, operation: String, clusterId: String, groupName: String, channelName: String, chaincodeName: String, chaincodeVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeInitializeResultForUserResponse {
-        try await self.getChaincodeInitializeResultForUser(GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = GetChaincodeInitializeResultForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, channelName: channelName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, taskId: taskId)
+        return try await self.client.execute(action: "GetChaincodeInitializeResultForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

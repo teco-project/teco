@@ -87,12 +87,14 @@ extension Vpc {
     /// 查询SSL-VPN-CLIENT 列表
     @inlinable
     public func describeVpnGatewaySslClients(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sslVpnClientIds: [String]? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaySslClientsResponse> {
-        self.describeVpnGatewaySslClients(DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal)
+        return self.client.execute(action: "DescribeVpnGatewaySslClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询SSL-VPN-CLIENT 列表
     @inlinable
     public func describeVpnGatewaySslClients(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sslVpnClientIds: [String]? = nil, isVpnPortal: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaySslClientsResponse {
-        try await self.describeVpnGatewaySslClients(DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpnGatewaySslClientsRequest(filters: filters, offset: offset, limit: limit, sslVpnClientIds: sslVpnClientIds, isVpnPortal: isVpnPortal)
+        return try await self.client.execute(action: "DescribeVpnGatewaySslClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

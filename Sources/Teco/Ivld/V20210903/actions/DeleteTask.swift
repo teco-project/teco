@@ -72,7 +72,8 @@ extension Ivld {
     /// 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
     @inlinable @discardableResult
     public func deleteTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskResponse> {
-        self.deleteTask(DeleteTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTaskRequest(taskId: taskId)
+        return self.client.execute(action: "DeleteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除任务
@@ -84,6 +85,7 @@ extension Ivld {
     /// 只有已完成(成功或者失败)的任务可以删除，**正在执行中的任务不支持删除**
     @inlinable @discardableResult
     public func deleteTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskResponse {
-        try await self.deleteTask(DeleteTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTaskRequest(taskId: taskId)
+        return try await self.client.execute(action: "DeleteTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

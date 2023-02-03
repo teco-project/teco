@@ -54,12 +54,14 @@ extension Tdmq {
     /// 删除cmq主题
     @inlinable @discardableResult
     public func deleteCmqTopic(topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCmqTopicResponse> {
-        self.deleteCmqTopic(DeleteCmqTopicRequest(topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCmqTopicRequest(topicName: topicName)
+        return self.client.execute(action: "DeleteCmqTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除cmq主题
     @inlinable @discardableResult
     public func deleteCmqTopic(topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqTopicResponse {
-        try await self.deleteCmqTopic(DeleteCmqTopicRequest(topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCmqTopicRequest(topicName: topicName)
+        return try await self.client.execute(action: "DeleteCmqTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

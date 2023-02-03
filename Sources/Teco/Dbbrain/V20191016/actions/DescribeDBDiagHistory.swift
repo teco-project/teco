@@ -88,7 +88,8 @@ extension Dbbrain {
     /// 获取实例诊断事件的列表。
     @inlinable
     public func describeDBDiagHistory(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBDiagHistoryResponse> {
-        self.describeDBDiagHistory(DescribeDBDiagHistoryRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBDiagHistoryRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product)
+        return self.client.execute(action: "DescribeDBDiagHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例诊断历史
@@ -96,6 +97,7 @@ extension Dbbrain {
     /// 获取实例诊断事件的列表。
     @inlinable
     public func describeDBDiagHistory(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBDiagHistoryResponse {
-        try await self.describeDBDiagHistory(DescribeDBDiagHistoryRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBDiagHistoryRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product)
+        return try await self.client.execute(action: "DescribeDBDiagHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

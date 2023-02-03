@@ -104,7 +104,8 @@ extension Cbs {
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的备份点列表。
     @inlinable
     public func describeDiskBackups(diskBackupIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskBackupsResponse> {
-        self.describeDiskBackups(DescribeDiskBackupsRequest(diskBackupIds: diskBackupIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDiskBackupsRequest(diskBackupIds: diskBackupIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField)
+        return self.client.execute(action: "DescribeDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备份点列表
@@ -115,6 +116,7 @@ extension Cbs {
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的备份点列表。
     @inlinable
     public func describeDiskBackups(diskBackupIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskBackupsResponse {
-        try await self.describeDiskBackups(DescribeDiskBackupsRequest(diskBackupIds: diskBackupIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDiskBackupsRequest(diskBackupIds: diskBackupIds, filters: filters, offset: offset, limit: limit, order: order, orderField: orderField)
+        return try await self.client.execute(action: "DescribeDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

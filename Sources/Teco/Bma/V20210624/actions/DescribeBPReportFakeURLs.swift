@@ -72,12 +72,14 @@ extension Bma {
     /// 查询举报列表
     @inlinable
     public func describeBPReportFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBPReportFakeURLsResponse> {
-        self.describeBPReportFakeURLs(DescribeBPReportFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBPReportFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
+        return self.client.execute(action: "DescribeBPReportFakeURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询举报列表
     @inlinable
     public func describeBPReportFakeURLs(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBPReportFakeURLsResponse {
-        try await self.describeBPReportFakeURLs(DescribeBPReportFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBPReportFakeURLsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
+        return try await self.client.execute(action: "DescribeBPReportFakeURLs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -87,7 +87,8 @@ extension Postgres {
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。只支持按量计费实例。
     @inlinable
     public func inquiryPriceUpgradeDBInstance(storage: Int64, memory: Int64, dbInstanceId: String, instanceChargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeDBInstanceResponse> {
-        self.inquiryPriceUpgradeDBInstance(InquiryPriceUpgradeDBInstanceRequest(storage: storage, memory: memory, dbInstanceId: dbInstanceId, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceUpgradeDBInstanceRequest(storage: storage, memory: memory, dbInstanceId: dbInstanceId, instanceChargeType: instanceChargeType)
+        return self.client.execute(action: "InquiryPriceUpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询升级实例价格
@@ -95,6 +96,7 @@ extension Postgres {
     /// 本接口（InquiryPriceUpgradeDBInstance）用于查询升级实例的价格。只支持按量计费实例。
     @inlinable
     public func inquiryPriceUpgradeDBInstance(storage: Int64, memory: Int64, dbInstanceId: String, instanceChargeType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeDBInstanceResponse {
-        try await self.inquiryPriceUpgradeDBInstance(InquiryPriceUpgradeDBInstanceRequest(storage: storage, memory: memory, dbInstanceId: dbInstanceId, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceUpgradeDBInstanceRequest(storage: storage, memory: memory, dbInstanceId: dbInstanceId, instanceChargeType: instanceChargeType)
+        return try await self.client.execute(action: "InquiryPriceUpgradeDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Tcr {
     /// 创建个人用户
     @inlinable @discardableResult
     public func createUserPersonal(password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserPersonalResponse> {
-        self.createUserPersonal(CreateUserPersonalRequest(password: password), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserPersonalRequest(password: password)
+        return self.client.execute(action: "CreateUserPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建个人用户
     @inlinable @discardableResult
     public func createUserPersonal(password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserPersonalResponse {
-        try await self.createUserPersonal(CreateUserPersonalRequest(password: password), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserPersonalRequest(password: password)
+        return try await self.client.execute(action: "CreateUserPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

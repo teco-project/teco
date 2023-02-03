@@ -74,7 +74,8 @@ extension Dcdb {
     /// 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。
     @inlinable
     public func describeFileDownloadUrl(instanceId: String, shardId: String, filePath: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileDownloadUrlResponse> {
-        self.describeFileDownloadUrl(DescribeFileDownloadUrlRequest(instanceId: instanceId, shardId: shardId, filePath: filePath), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileDownloadUrlRequest(instanceId: instanceId, shardId: shardId, filePath: filePath)
+        return self.client.execute(action: "DescribeFileDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取备份或日志的下载连接
@@ -82,6 +83,7 @@ extension Dcdb {
     /// 本接口(DescribeFileDownloadUrl)用于获取数据库指定备份或日志文件的下载连接。
     @inlinable
     public func describeFileDownloadUrl(instanceId: String, shardId: String, filePath: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileDownloadUrlResponse {
-        try await self.describeFileDownloadUrl(DescribeFileDownloadUrlRequest(instanceId: instanceId, shardId: shardId, filePath: filePath), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileDownloadUrlRequest(instanceId: instanceId, shardId: shardId, filePath: filePath)
+        return try await self.client.execute(action: "DescribeFileDownloadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

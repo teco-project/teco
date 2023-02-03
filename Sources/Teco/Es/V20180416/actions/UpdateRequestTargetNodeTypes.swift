@@ -59,12 +59,14 @@ extension Es {
     /// 更新接收客户端请求的节点类型
     @inlinable @discardableResult
     public func updateRequestTargetNodeTypes(instanceId: String, targetNodeTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRequestTargetNodeTypesResponse> {
-        self.updateRequestTargetNodeTypes(UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes)
+        return self.client.execute(action: "UpdateRequestTargetNodeTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新接收客户端请求的节点类型
     @inlinable @discardableResult
     public func updateRequestTargetNodeTypes(instanceId: String, targetNodeTypes: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRequestTargetNodeTypesResponse {
-        try await self.updateRequestTargetNodeTypes(UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRequestTargetNodeTypesRequest(instanceId: instanceId, targetNodeTypes: targetNodeTypes)
+        return try await self.client.execute(action: "UpdateRequestTargetNodeTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

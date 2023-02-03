@@ -54,12 +54,14 @@ extension Yunjing {
     /// 删除白名单规则
     @inlinable @discardableResult
     public func deleteLoginWhiteList(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoginWhiteListResponse> {
-        self.deleteLoginWhiteList(DeleteLoginWhiteListRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLoginWhiteListRequest(ids: ids)
+        return self.client.execute(action: "DeleteLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除白名单规则
     @inlinable @discardableResult
     public func deleteLoginWhiteList(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoginWhiteListResponse {
-        try await self.deleteLoginWhiteList(DeleteLoginWhiteListRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLoginWhiteListRequest(ids: ids)
+        return try await self.client.execute(action: "DeleteLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

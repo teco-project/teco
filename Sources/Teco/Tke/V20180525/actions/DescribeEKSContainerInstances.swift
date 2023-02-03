@@ -97,12 +97,14 @@ extension Tke {
     /// 查询容器实例
     @inlinable
     public func describeEKSContainerInstances(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, eksCiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSContainerInstancesResponse> {
-        self.describeEKSContainerInstances(DescribeEKSContainerInstancesRequest(limit: limit, offset: offset, filters: filters, eksCiIds: eksCiIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEKSContainerInstancesRequest(limit: limit, offset: offset, filters: filters, eksCiIds: eksCiIds)
+        return self.client.execute(action: "DescribeEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例
     @inlinable
     public func describeEKSContainerInstances(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, eksCiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSContainerInstancesResponse {
-        try await self.describeEKSContainerInstances(DescribeEKSContainerInstancesRequest(limit: limit, offset: offset, filters: filters, eksCiIds: eksCiIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEKSContainerInstancesRequest(limit: limit, offset: offset, filters: filters, eksCiIds: eksCiIds)
+        return try await self.client.execute(action: "DescribeEKSContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

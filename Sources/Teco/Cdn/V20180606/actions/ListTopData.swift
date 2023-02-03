@@ -183,7 +183,8 @@ extension Cdn {
     /// 注意：仅支持 90 天内数据查询
     @inlinable
     public func listTopData(startTime: Date, endTime: Date, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, code: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopDataResponse> {
-        self.listTopData(ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit)
+        return self.client.execute(action: "ListTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// TOP 数据查询
@@ -199,6 +200,7 @@ extension Cdn {
     /// 注意：仅支持 90 天内数据查询
     @inlinable
     public func listTopData(startTime: Date, endTime: Date, metric: String, filter: String, domains: [String]? = nil, project: Int64? = nil, detail: Bool? = nil, code: String? = nil, area: String? = nil, areaType: String? = nil, product: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopDataResponse {
-        try await self.listTopData(ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = ListTopDataRequest(startTime: startTime, endTime: endTime, metric: metric, filter: filter, domains: domains, project: project, detail: detail, code: code, area: area, areaType: areaType, product: product, limit: limit)
+        return try await self.client.execute(action: "ListTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

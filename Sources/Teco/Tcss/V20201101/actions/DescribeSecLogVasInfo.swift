@@ -81,12 +81,14 @@ extension Tcss {
     /// 查询安全日志商品信息
     @inlinable
     public func describeSecLogVasInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogVasInfoResponse> {
-        self.describeSecLogVasInfo(DescribeSecLogVasInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecLogVasInfoRequest()
+        return self.client.execute(action: "DescribeSecLogVasInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志商品信息
     @inlinable
     public func describeSecLogVasInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogVasInfoResponse {
-        try await self.describeSecLogVasInfo(DescribeSecLogVasInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecLogVasInfoRequest()
+        return try await self.client.execute(action: "DescribeSecLogVasInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

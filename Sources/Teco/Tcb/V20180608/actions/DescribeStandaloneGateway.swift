@@ -78,7 +78,8 @@ extension Tcb {
     /// 本接口（DescribeStandaloneGateway）查询小租户网关套餐信息。
     @inlinable
     public func describeStandaloneGateway(envId: String, gatewayName: String? = nil, gatewayAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStandaloneGatewayResponse> {
-        self.describeStandaloneGateway(DescribeStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, gatewayAlias: gatewayAlias), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, gatewayAlias: gatewayAlias)
+        return self.client.execute(action: "DescribeStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询小租户网关信息
@@ -86,6 +87,7 @@ extension Tcb {
     /// 本接口（DescribeStandaloneGateway）查询小租户网关套餐信息。
     @inlinable
     public func describeStandaloneGateway(envId: String, gatewayName: String? = nil, gatewayAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStandaloneGatewayResponse {
-        try await self.describeStandaloneGateway(DescribeStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, gatewayAlias: gatewayAlias), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, gatewayAlias: gatewayAlias)
+        return try await self.client.execute(action: "DescribeStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

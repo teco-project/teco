@@ -100,12 +100,14 @@ extension Cpdp {
     /// 灵云V2-查询结算订单列表
     @inlinable
     public func queryFlexSettlementOrderList(payeeId: String, startTime: String, endTime: String, pageNumber: Paging, operationType: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexSettlementOrderListResponse> {
-        self.queryFlexSettlementOrderList(QueryFlexSettlementOrderListRequest(payeeId: payeeId, startTime: startTime, endTime: endTime, pageNumber: pageNumber, operationType: operationType, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryFlexSettlementOrderListRequest(payeeId: payeeId, startTime: startTime, endTime: endTime, pageNumber: pageNumber, operationType: operationType, environment: environment)
+        return self.client.execute(action: "QueryFlexSettlementOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-查询结算订单列表
     @inlinable
     public func queryFlexSettlementOrderList(payeeId: String, startTime: String, endTime: String, pageNumber: Paging, operationType: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexSettlementOrderListResponse {
-        try await self.queryFlexSettlementOrderList(QueryFlexSettlementOrderListRequest(payeeId: payeeId, startTime: startTime, endTime: endTime, pageNumber: pageNumber, operationType: operationType, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryFlexSettlementOrderListRequest(payeeId: payeeId, startTime: startTime, endTime: endTime, pageNumber: pageNumber, operationType: operationType, environment: environment)
+        return try await self.client.execute(action: "QueryFlexSettlementOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

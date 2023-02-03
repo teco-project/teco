@@ -122,7 +122,8 @@ extension Cdb {
     /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
     @inlinable
     public func describeSlowLogData(instanceId: String, startTime: UInt64, endTime: UInt64, userHosts: [String]? = nil, userNames: [String]? = nil, dataBases: [String]? = nil, sortBy: String? = nil, orderBy: String? = nil, offset: Int64? = nil, limit: Int64? = nil, instType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogDataResponse> {
-        self.describeSlowLogData(DescribeSlowLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, userHosts: userHosts, userNames: userNames, dataBases: dataBases, sortBy: sortBy, orderBy: orderBy, offset: offset, limit: limit, instType: instType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, userHosts: userHosts, userNames: userNames, dataBases: dataBases, sortBy: sortBy, orderBy: orderBy, offset: offset, limit: limit, instType: instType)
+        return self.client.execute(action: "DescribeSlowLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例慢日志
@@ -131,6 +132,7 @@ extension Cdb {
     /// 使用时需要注意：可能存在单条慢日志太大，导致整个http请求的回包太大，进而引发接口超时。一旦发生超时，建议您缩小查询时的Limit参数值，从而降低包的大小，让接口能够及时返回内容。
     @inlinable
     public func describeSlowLogData(instanceId: String, startTime: UInt64, endTime: UInt64, userHosts: [String]? = nil, userNames: [String]? = nil, dataBases: [String]? = nil, sortBy: String? = nil, orderBy: String? = nil, offset: Int64? = nil, limit: Int64? = nil, instType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogDataResponse {
-        try await self.describeSlowLogData(DescribeSlowLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, userHosts: userHosts, userNames: userNames, dataBases: dataBases, sortBy: sortBy, orderBy: orderBy, offset: offset, limit: limit, instType: instType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowLogDataRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, userHosts: userHosts, userNames: userNames, dataBases: dataBases, sortBy: sortBy, orderBy: orderBy, offset: offset, limit: limit, instType: instType)
+        return try await self.client.execute(action: "DescribeSlowLogData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

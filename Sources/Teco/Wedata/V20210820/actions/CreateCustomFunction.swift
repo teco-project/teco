@@ -89,12 +89,14 @@ extension Wedata {
     /// 创建用户自定义函数
     @inlinable
     public func createCustomFunction(type: String, kind: String, name: String, clusterIdentifier: String, dbName: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomFunctionResponse> {
-        self.createCustomFunction(CreateCustomFunctionRequest(type: type, kind: kind, name: name, clusterIdentifier: clusterIdentifier, dbName: dbName, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomFunctionRequest(type: type, kind: kind, name: name, clusterIdentifier: clusterIdentifier, dbName: dbName, projectId: projectId)
+        return self.client.execute(action: "CreateCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建用户自定义函数
     @inlinable
     public func createCustomFunction(type: String, kind: String, name: String, clusterIdentifier: String, dbName: String? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomFunctionResponse {
-        try await self.createCustomFunction(CreateCustomFunctionRequest(type: type, kind: kind, name: name, clusterIdentifier: clusterIdentifier, dbName: dbName, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomFunctionRequest(type: type, kind: kind, name: name, clusterIdentifier: clusterIdentifier, dbName: dbName, projectId: projectId)
+        return try await self.client.execute(action: "CreateCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -72,7 +72,8 @@ extension Ses {
     /// 获取某个发信域名的配置详情
     @inlinable
     public func getEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEmailIdentityResponse> {
-        self.getEmailIdentity(GetEmailIdentityRequest(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
+        let input = GetEmailIdentityRequest(emailIdentity: emailIdentity)
+        return self.client.execute(action: "GetEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名配置详情
@@ -80,6 +81,7 @@ extension Ses {
     /// 获取某个发信域名的配置详情
     @inlinable
     public func getEmailIdentity(emailIdentity: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEmailIdentityResponse {
-        try await self.getEmailIdentity(GetEmailIdentityRequest(emailIdentity: emailIdentity), region: region, logger: logger, on: eventLoop)
+        let input = GetEmailIdentityRequest(emailIdentity: emailIdentity)
+        return try await self.client.execute(action: "GetEmailIdentity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

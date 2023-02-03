@@ -73,7 +73,8 @@ extension Iotcloud {
     /// 本接口（ListTopicRules）用于分页获取规则列表
     @inlinable
     public func listTopicRules(pageNum: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopicRulesResponse> {
-        self.listTopicRules(ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize)
+        return self.client.execute(action: "ListTopicRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取规则列表
@@ -81,6 +82,7 @@ extension Iotcloud {
     /// 本接口（ListTopicRules）用于分页获取规则列表
     @inlinable
     public func listTopicRules(pageNum: UInt64, pageSize: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicRulesResponse {
-        try await self.listTopicRules(ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = ListTopicRulesRequest(pageNum: pageNum, pageSize: pageSize)
+        return try await self.client.execute(action: "ListTopicRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Cls {
     /// 删除采集规则配置
     @inlinable @discardableResult
     public func deleteConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteConfigResponse> {
-        self.deleteConfig(DeleteConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteConfigRequest(configId: configId)
+        return self.client.execute(action: "DeleteConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除采集规则配置
     @inlinable @discardableResult
     public func deleteConfig(configId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteConfigResponse {
-        try await self.deleteConfig(DeleteConfigRequest(configId: configId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteConfigRequest(configId: configId)
+        return try await self.client.execute(action: "DeleteConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

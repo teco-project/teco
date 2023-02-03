@@ -69,12 +69,14 @@ extension Wedata {
     /// 分页查询规则执行结果列表
     @inlinable
     public func describeRuleExecResultsByPage(ruleGroupExecId: Int64? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecResultsByPageResponse> {
-        self.describeRuleExecResultsByPage(DescribeRuleExecResultsByPageRequest(ruleGroupExecId: ruleGroupExecId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleExecResultsByPageRequest(ruleGroupExecId: ruleGroupExecId, pageNumber: pageNumber, pageSize: pageSize)
+        return self.client.execute(action: "DescribeRuleExecResultsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询规则执行结果列表
     @inlinable
     public func describeRuleExecResultsByPage(ruleGroupExecId: Int64? = nil, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecResultsByPageResponse {
-        try await self.describeRuleExecResultsByPage(DescribeRuleExecResultsByPageRequest(ruleGroupExecId: ruleGroupExecId, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleExecResultsByPageRequest(ruleGroupExecId: ruleGroupExecId, pageNumber: pageNumber, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeRuleExecResultsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

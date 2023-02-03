@@ -69,7 +69,8 @@ extension Iot {
     /// 修改用户信息
     @inlinable
     public func appUpdateUser(accessToken: String, nickName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppUpdateUserResponse> {
-        self.appUpdateUser(AppUpdateUserRequest(accessToken: accessToken, nickName: nickName), region: region, logger: logger, on: eventLoop)
+        let input = AppUpdateUserRequest(accessToken: accessToken, nickName: nickName)
+        return self.client.execute(action: "AppUpdateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户信息修改
@@ -77,6 +78,7 @@ extension Iot {
     /// 修改用户信息
     @inlinable
     public func appUpdateUser(accessToken: String, nickName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppUpdateUserResponse {
-        try await self.appUpdateUser(AppUpdateUserRequest(accessToken: accessToken, nickName: nickName), region: region, logger: logger, on: eventLoop)
+        let input = AppUpdateUserRequest(accessToken: accessToken, nickName: nickName)
+        return try await self.client.execute(action: "AppUpdateUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

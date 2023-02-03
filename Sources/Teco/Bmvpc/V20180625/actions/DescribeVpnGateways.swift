@@ -97,7 +97,8 @@ extension Bmvpc {
     /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
     @inlinable
     public func describeVpnGateways(vpnGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpnGatewaysResponse> {
-        self.describeVpnGateways(DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
+        return self.client.execute(action: "DescribeVpnGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询VPN网关
@@ -105,6 +106,7 @@ extension Bmvpc {
     /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
     @inlinable
     public func describeVpnGateways(vpnGatewayIds: [String]? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpnGatewaysResponse {
-        try await self.describeVpnGateways(DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpnGatewaysRequest(vpnGatewayIds: vpnGatewayIds, filters: filters, offset: offset, limit: limit, orderField: orderField, orderDirection: orderDirection)
+        return try await self.client.execute(action: "DescribeVpnGateways", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

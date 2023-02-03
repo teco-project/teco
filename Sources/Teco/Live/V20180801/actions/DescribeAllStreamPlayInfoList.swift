@@ -73,7 +73,8 @@ extension Live {
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
     public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllStreamPlayInfoListResponse> {
-        self.describeAllStreamPlayInfoList(DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains)
+        return self.client.execute(action: "DescribeAllStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某个时间点所有流的下行播放数据
@@ -81,6 +82,7 @@ extension Live {
     /// 输入某个时间点（1分钟维度），查询该时间点所有流的下行信息。
     @inlinable
     public func describeAllStreamPlayInfoList(queryTime: String, playDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllStreamPlayInfoListResponse {
-        try await self.describeAllStreamPlayInfoList(DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAllStreamPlayInfoListRequest(queryTime: queryTime, playDomains: playDomains)
+        return try await self.client.execute(action: "DescribeAllStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -103,7 +103,8 @@ extension Vod {
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
     public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessImageResponse> {
-        self.processImage(ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId)
+        return self.client.execute(action: "ProcessImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图片处理
@@ -119,6 +120,7 @@ extension Vod {
     /// ><li>图片文件支持格式：PNG、JPG、JPEG、BMP、GIF、WEBP格式。</li>
     @inlinable
     public func processImage(fileId: String, operation: String, contentReviewInput: ImageContentReviewInput? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessImageResponse {
-        try await self.processImage(ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = ProcessImageRequest(fileId: fileId, operation: operation, contentReviewInput: contentReviewInput, subAppId: subAppId)
+        return try await self.client.execute(action: "ProcessImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

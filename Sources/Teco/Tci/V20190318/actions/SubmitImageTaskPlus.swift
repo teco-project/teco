@@ -111,7 +111,8 @@ extension Tci {
     /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
     @inlinable
     public func submitImageTaskPlus(fileContent: [String], fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitImageTaskPlusResponse> {
-        self.submitImageTaskPlus(SubmitImageTaskPlusRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
+        let input = SubmitImageTaskPlusRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold)
+        return self.client.execute(action: "SubmitImageTaskPlus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交高级图像分析任务
@@ -119,6 +120,7 @@ extension Tci {
     /// 高级图像分析任务，开放了图像任务里的所有开关，可以根据场景深度定制图像分析任务。支持的图像类别有，图片链接、图片二进制数据、点播链接和直播链接。
     @inlinable
     public func submitImageTaskPlus(fileContent: [String], fileType: String, functions: ImageTaskFunction? = nil, lightStandardSet: [LightStandard]? = nil, frameInterval: Int64? = nil, librarySet: [String]? = nil, maxVideoDuration: Int64? = nil, simThreshold: Float? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitImageTaskPlusResponse {
-        try await self.submitImageTaskPlus(SubmitImageTaskPlusRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold), region: region, logger: logger, on: eventLoop)
+        let input = SubmitImageTaskPlusRequest(fileContent: fileContent, fileType: fileType, functions: functions, lightStandardSet: lightStandardSet, frameInterval: frameInterval, librarySet: librarySet, maxVideoDuration: maxVideoDuration, simThreshold: simThreshold)
+        return try await self.client.execute(action: "SubmitImageTaskPlus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

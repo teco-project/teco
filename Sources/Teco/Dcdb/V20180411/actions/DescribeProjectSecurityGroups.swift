@@ -73,7 +73,8 @@ extension Dcdb {
     /// 本接口（DescribeProjectSecurityGroups）用于查询项目安全组信息
     @inlinable
     public func describeProjectSecurityGroups(product: String, projectId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupsResponse> {
-        self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId)
+        return self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组信息
@@ -81,6 +82,7 @@ extension Dcdb {
     /// 本接口（DescribeProjectSecurityGroups）用于查询项目安全组信息
     @inlinable
     public func describeProjectSecurityGroups(product: String, projectId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupsResponse {
-        try await self.describeProjectSecurityGroups(DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectSecurityGroupsRequest(product: product, projectId: projectId)
+        return try await self.client.execute(action: "DescribeProjectSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

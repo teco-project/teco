@@ -72,7 +72,8 @@ extension Cdb {
     /// 注意，实例下线后，相关资源和数据将无法找回，请谨慎操作。
     @inlinable @discardableResult
     public func offlineIsolatedInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OfflineIsolatedInstancesResponse> {
-        self.offlineIsolatedInstances(OfflineIsolatedInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = OfflineIsolatedInstancesRequest(instanceIds: instanceIds)
+        return self.client.execute(action: "OfflineIsolatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下线隔离状态的云数据库实例
@@ -84,6 +85,7 @@ extension Cdb {
     /// 注意，实例下线后，相关资源和数据将无法找回，请谨慎操作。
     @inlinable @discardableResult
     public func offlineIsolatedInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedInstancesResponse {
-        try await self.offlineIsolatedInstances(OfflineIsolatedInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = OfflineIsolatedInstancesRequest(instanceIds: instanceIds)
+        return try await self.client.execute(action: "OfflineIsolatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -67,12 +67,14 @@ extension Iai {
     /// 获取人员库升级任务列表
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUpgradeGroupFaceModelVersionJobListResponse> {
-        self.getUpgradeGroupFaceModelVersionJobList(GetUpgradeGroupFaceModelVersionJobListRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetUpgradeGroupFaceModelVersionJobListRequest(offset: offset, limit: limit)
+        return self.client.execute(action: "GetUpgradeGroupFaceModelVersionJobList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人员库升级任务列表
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobList(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUpgradeGroupFaceModelVersionJobListResponse {
-        try await self.getUpgradeGroupFaceModelVersionJobList(GetUpgradeGroupFaceModelVersionJobListRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetUpgradeGroupFaceModelVersionJobListRequest(offset: offset, limit: limit)
+        return try await self.client.execute(action: "GetUpgradeGroupFaceModelVersionJobList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

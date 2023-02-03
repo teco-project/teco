@@ -80,7 +80,8 @@ extension Tcss {
     /// 容器安全搜索查询镜像木马列表导出
     @inlinable
     public func describeAssetImageVirusListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageVirusListExportResponse> {
-        self.describeAssetImageVirusListExport(DescribeAssetImageVirusListExportRequest(exportField: exportField, imageID: imageID, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageVirusListExportRequest(exportField: exportField, imageID: imageID, filters: filters)
+        return self.client.execute(action: "DescribeAssetImageVirusListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像木马列表导出
@@ -88,6 +89,7 @@ extension Tcss {
     /// 容器安全搜索查询镜像木马列表导出
     @inlinable
     public func describeAssetImageVirusListExport(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageVirusListExportResponse {
-        try await self.describeAssetImageVirusListExport(DescribeAssetImageVirusListExportRequest(exportField: exportField, imageID: imageID, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageVirusListExportRequest(exportField: exportField, imageID: imageID, filters: filters)
+        return try await self.client.execute(action: "DescribeAssetImageVirusListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -94,7 +94,8 @@ extension Vpc {
     /// 本接口（DescribeSubnets）用于查询子网列表。
     @inlinable
     public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetsResponse> {
-        self.describeSubnets(DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询子网列表
@@ -102,6 +103,7 @@ extension Vpc {
     /// 本接口（DescribeSubnets）用于查询子网列表。
     @inlinable
     public func describeSubnets(subnetIds: [String]? = nil, filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetsResponse {
-        try await self.describeSubnets(DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSubnetsRequest(subnetIds: subnetIds, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -73,12 +73,14 @@ extension Yunjing {
     /// 获取高危命令列表
     @inlinable
     public func describeBashEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashEventsResponse> {
-        self.describeBashEvents(DescribeBashEventsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBashEventsRequest(limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高危命令列表
     @inlinable
     public func describeBashEvents(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashEventsResponse {
-        try await self.describeBashEvents(DescribeBashEventsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBashEventsRequest(limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeBashEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -228,7 +228,8 @@ extension Tcb {
     /// 查询服务版本详情(新)
     @inlinable
     public func describeCloudBaseRunVersion(envId: String, serverName: String, versionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunVersionResponse> {
-        self.describeCloudBaseRunVersion(DescribeCloudBaseRunVersionRequest(envId: envId, serverName: serverName, versionName: versionName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudBaseRunVersionRequest(envId: envId, serverName: serverName, versionName: versionName)
+        return self.client.execute(action: "DescribeCloudBaseRunVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务版本详情
@@ -236,6 +237,7 @@ extension Tcb {
     /// 查询服务版本详情(新)
     @inlinable
     public func describeCloudBaseRunVersion(envId: String, serverName: String, versionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunVersionResponse {
-        try await self.describeCloudBaseRunVersion(DescribeCloudBaseRunVersionRequest(envId: envId, serverName: serverName, versionName: versionName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudBaseRunVersionRequest(envId: envId, serverName: serverName, versionName: versionName)
+        return try await self.client.execute(action: "DescribeCloudBaseRunVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -111,7 +111,8 @@ extension Cdn {
     /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
     @inlinable
     public func describeIpVisit(startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpVisitResponse> {
-        self.describeIpVisit(DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval)
+        return self.client.execute(action: "DescribeIpVisit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 活跃用户查询
@@ -122,6 +123,7 @@ extension Cdn {
     /// + 日活跃用户数：根据日志中客户端 IP，按天粒度去重统计
     @inlinable
     public func describeIpVisit(startTime: Date, endTime: Date, domains: [String]? = nil, project: Int64? = nil, interval: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpVisitResponse {
-        try await self.describeIpVisit(DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIpVisitRequest(startTime: startTime, endTime: endTime, domains: domains, project: project, interval: interval)
+        return try await self.client.execute(action: "DescribeIpVisit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Mariadb {
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享云数据库实例。
     @inlinable
     public func terminateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDedicatedDBInstanceResponse> {
-        self.terminateDedicatedDBInstance(TerminateDedicatedDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = TerminateDedicatedDBInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "TerminateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁独享云数据库实例
@@ -72,6 +73,7 @@ extension Mariadb {
     /// 本接口（TerminateDedicatedDBInstance）用于销毁已隔离的独享云数据库实例。
     @inlinable
     public func terminateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDedicatedDBInstanceResponse {
-        try await self.terminateDedicatedDBInstance(TerminateDedicatedDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = TerminateDedicatedDBInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "TerminateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

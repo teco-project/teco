@@ -104,7 +104,8 @@ extension Zj {
     /// 创建超级短信的素材样例内容
     @inlinable
     public func createMmsInstance(license: String, instanceName: String, title: String, sign: String, contents: [CreateMmsInstanceItem], urls: [String]? = nil, phoneType: [UInt64]? = nil, commonParams: [UInt64]? = nil, urlParams: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMmsInstanceResponse> {
-        self.createMmsInstance(CreateMmsInstanceRequest(license: license, instanceName: instanceName, title: title, sign: sign, contents: contents, urls: urls, phoneType: phoneType, commonParams: commonParams, urlParams: urlParams), region: region, logger: logger, on: eventLoop)
+        let input = CreateMmsInstanceRequest(license: license, instanceName: instanceName, title: title, sign: sign, contents: contents, urls: urls, phoneType: phoneType, commonParams: commonParams, urlParams: urlParams)
+        return self.client.execute(action: "CreateMmsInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建超级短信素材样例
@@ -112,6 +113,7 @@ extension Zj {
     /// 创建超级短信的素材样例内容
     @inlinable
     public func createMmsInstance(license: String, instanceName: String, title: String, sign: String, contents: [CreateMmsInstanceItem], urls: [String]? = nil, phoneType: [UInt64]? = nil, commonParams: [UInt64]? = nil, urlParams: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMmsInstanceResponse {
-        try await self.createMmsInstance(CreateMmsInstanceRequest(license: license, instanceName: instanceName, title: title, sign: sign, contents: contents, urls: urls, phoneType: phoneType, commonParams: commonParams, urlParams: urlParams), region: region, logger: logger, on: eventLoop)
+        let input = CreateMmsInstanceRequest(license: license, instanceName: instanceName, title: title, sign: sign, contents: contents, urls: urls, phoneType: phoneType, commonParams: commonParams, urlParams: urlParams)
+        return try await self.client.execute(action: "CreateMmsInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -57,7 +57,8 @@ extension Ssa {
     /// 合规详情项
     @inlinable
     public func describeSocCspmCompliance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocCspmComplianceResponse> {
-        self.describeSocCspmCompliance(DescribeSocCspmComplianceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSocCspmComplianceRequest()
+        return self.client.execute(action: "DescribeSocCspmCompliance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合规详情
@@ -65,6 +66,7 @@ extension Ssa {
     /// 合规详情项
     @inlinable
     public func describeSocCspmCompliance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocCspmComplianceResponse {
-        try await self.describeSocCspmCompliance(DescribeSocCspmComplianceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSocCspmComplianceRequest()
+        return try await self.client.execute(action: "DescribeSocCspmCompliance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

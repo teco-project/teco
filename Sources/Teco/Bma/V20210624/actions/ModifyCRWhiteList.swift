@@ -84,12 +84,14 @@ extension Bma {
     /// 修改白名单列表
     @inlinable @discardableResult
     public func modifyCRWhiteList(whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCRWhiteListResponse> {
-        self.modifyCRWhiteList(ModifyCRWhiteListRequest(whiteListId: whiteListId, platForm: platForm, platUrl: platUrl, authorId: authorId, worksId: worksId, workId: workId, whiteSites: whiteSites), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCRWhiteListRequest(whiteListId: whiteListId, platForm: platForm, platUrl: platUrl, authorId: authorId, worksId: worksId, workId: workId, whiteSites: whiteSites)
+        return self.client.execute(action: "ModifyCRWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改白名单列表
     @inlinable @discardableResult
     public func modifyCRWhiteList(whiteListId: Int64? = nil, platForm: String? = nil, platUrl: String? = nil, authorId: String? = nil, worksId: Int64? = nil, workId: Int64? = nil, whiteSites: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCRWhiteListResponse {
-        try await self.modifyCRWhiteList(ModifyCRWhiteListRequest(whiteListId: whiteListId, platForm: platForm, platUrl: platUrl, authorId: authorId, worksId: worksId, workId: workId, whiteSites: whiteSites), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCRWhiteListRequest(whiteListId: whiteListId, platForm: platForm, platUrl: platUrl, authorId: authorId, worksId: worksId, workId: workId, whiteSites: whiteSites)
+        return try await self.client.execute(action: "ModifyCRWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -77,7 +77,8 @@ extension Vod {
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
     @inlinable @discardableResult
     public func confirmEvents(eventHandles: [String], extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmEventsResponse> {
-        self.confirmEvents(ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId)
+        return self.client.execute(action: "ConfirmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 确认事件通知
@@ -87,6 +88,7 @@ extension Vod {
     /// * 更多参考事件通知的[可靠回调](https://cloud.tencent.com/document/product/266/33779#.E5.8F.AF.E9.9D.A0.E5.9B.9E.E8.B0.83)。
     @inlinable @discardableResult
     public func confirmEvents(eventHandles: [String], extInfo: String? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmEventsResponse {
-        try await self.confirmEvents(ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = ConfirmEventsRequest(eventHandles: eventHandles, extInfo: extInfo, subAppId: subAppId)
+        return try await self.client.execute(action: "ConfirmEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

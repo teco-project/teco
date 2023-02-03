@@ -92,7 +92,8 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
-        self.createWebpageDeposit(CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
+        return self.client.execute(action: "CreateWebpageDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 网页快照存证
@@ -101,6 +102,7 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
-        try await self.createWebpageDeposit(CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
+        return try await self.client.execute(action: "CreateWebpageDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

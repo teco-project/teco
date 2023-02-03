@@ -69,12 +69,14 @@ extension Iecp {
     /// 更新边缘单元信息
     @inlinable @discardableResult
     public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEdgeUnitCloudApiResponse> {
-        self.modifyEdgeUnitCloudApi(ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor)
+        return self.client.execute(action: "ModifyEdgeUnitCloudApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新边缘单元信息
     @inlinable @discardableResult
     public func modifyEdgeUnitCloudApi(edgeUnitId: UInt64, name: String? = nil, description: String? = nil, openCloudMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEdgeUnitCloudApiResponse {
-        try await self.modifyEdgeUnitCloudApi(ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEdgeUnitCloudApiRequest(edgeUnitId: edgeUnitId, name: name, description: description, openCloudMonitor: openCloudMonitor)
+        return try await self.client.execute(action: "ModifyEdgeUnitCloudApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

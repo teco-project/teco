@@ -76,7 +76,8 @@ extension Waf {
     /// 返回ip惩罚规则详细信息
     @inlinable
     public func describeWafAutoDenyRules(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyRulesResponse> {
-        self.describeWafAutoDenyRules(DescribeWafAutoDenyRulesRequest(domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWafAutoDenyRulesRequest(domain: domain)
+        return self.client.execute(action: "DescribeWafAutoDenyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询ip惩罚规则
@@ -84,6 +85,7 @@ extension Waf {
     /// 返回ip惩罚规则详细信息
     @inlinable
     public func describeWafAutoDenyRules(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyRulesResponse {
-        try await self.describeWafAutoDenyRules(DescribeWafAutoDenyRulesRequest(domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWafAutoDenyRulesRequest(domain: domain)
+        return try await self.client.execute(action: "DescribeWafAutoDenyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

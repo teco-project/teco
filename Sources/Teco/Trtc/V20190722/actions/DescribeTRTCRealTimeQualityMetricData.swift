@@ -95,7 +95,8 @@ extension Trtc {
     /// 2.查询时间范围根据监控仪表盘功能版本而定，基础版可查近3小时，进阶版可查近12小时。
     @inlinable
     public func describeTRTCRealTimeQualityMetricData(sdkAppId: String, startTime: Int64, endTime: Int64, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTRTCRealTimeQualityMetricDataResponse> {
-        self.describeTRTCRealTimeQualityMetricData(DescribeTRTCRealTimeQualityMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTRTCRealTimeQualityMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId)
+        return self.client.execute(action: "DescribeTRTCRealTimeQualityMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC实时监控质量指标
@@ -108,6 +109,7 @@ extension Trtc {
     /// 2.查询时间范围根据监控仪表盘功能版本而定，基础版可查近3小时，进阶版可查近12小时。
     @inlinable
     public func describeTRTCRealTimeQualityMetricData(sdkAppId: String, startTime: Int64, endTime: Int64, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTRTCRealTimeQualityMetricDataResponse {
-        try await self.describeTRTCRealTimeQualityMetricData(DescribeTRTCRealTimeQualityMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTRTCRealTimeQualityMetricDataRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId)
+        return try await self.client.execute(action: "DescribeTRTCRealTimeQualityMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

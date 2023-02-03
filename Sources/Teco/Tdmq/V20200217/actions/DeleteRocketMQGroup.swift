@@ -64,12 +64,14 @@ extension Tdmq {
     /// 删除RocketMQ消费组
     @inlinable @discardableResult
     public func deleteRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRocketMQGroupResponse> {
-        self.deleteRocketMQGroup(DeleteRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId)
+        return self.client.execute(action: "DeleteRocketMQGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除RocketMQ消费组
     @inlinable @discardableResult
     public func deleteRocketMQGroup(clusterId: String, namespaceId: String, groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRocketMQGroupResponse {
-        try await self.deleteRocketMQGroup(DeleteRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRocketMQGroupRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId)
+        return try await self.client.execute(action: "DeleteRocketMQGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

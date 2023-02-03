@@ -74,7 +74,8 @@ extension Redis {
     /// 本接口（RenewInstance）可用于为实例续费。
     @inlinable
     public func renewInstance(period: UInt64, instanceId: String, modifyPayMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewInstanceResponse> {
-        self.renewInstance(RenewInstanceRequest(period: period, instanceId: instanceId, modifyPayMode: modifyPayMode), region: region, logger: logger, on: eventLoop)
+        let input = RenewInstanceRequest(period: period, instanceId: instanceId, modifyPayMode: modifyPayMode)
+        return self.client.execute(action: "RenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
@@ -82,6 +83,7 @@ extension Redis {
     /// 本接口（RenewInstance）可用于为实例续费。
     @inlinable
     public func renewInstance(period: UInt64, instanceId: String, modifyPayMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
-        try await self.renewInstance(RenewInstanceRequest(period: period, instanceId: instanceId, modifyPayMode: modifyPayMode), region: region, logger: logger, on: eventLoop)
+        let input = RenewInstanceRequest(period: period, instanceId: instanceId, modifyPayMode: modifyPayMode)
+        return try await self.client.execute(action: "RenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

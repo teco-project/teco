@@ -60,7 +60,8 @@ extension Tke {
     /// 删除弹性集群(yunapiv3)
     @inlinable @discardableResult
     public func deleteEKSCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEKSClusterResponse> {
-        self.deleteEKSCluster(DeleteEKSClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEKSClusterRequest(clusterId: clusterId)
+        return self.client.execute(action: "DeleteEKSCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除弹性集群
@@ -68,6 +69,7 @@ extension Tke {
     /// 删除弹性集群(yunapiv3)
     @inlinable @discardableResult
     public func deleteEKSCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEKSClusterResponse {
-        try await self.deleteEKSCluster(DeleteEKSClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEKSClusterRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DeleteEKSCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

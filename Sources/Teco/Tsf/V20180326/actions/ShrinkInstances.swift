@@ -63,12 +63,14 @@ extension Tsf {
     /// 虚拟机部署组下线实例
     @inlinable
     public func shrinkInstances(groupId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShrinkInstancesResponse> {
-        self.shrinkInstances(ShrinkInstancesRequest(groupId: groupId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
+        let input = ShrinkInstancesRequest(groupId: groupId, instanceIdList: instanceIdList)
+        return self.client.execute(action: "ShrinkInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 虚拟机部署组下线实例
     @inlinable
     public func shrinkInstances(groupId: String, instanceIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkInstancesResponse {
-        try await self.shrinkInstances(ShrinkInstancesRequest(groupId: groupId, instanceIdList: instanceIdList), region: region, logger: logger, on: eventLoop)
+        let input = ShrinkInstancesRequest(groupId: groupId, instanceIdList: instanceIdList)
+        return try await self.client.execute(action: "ShrinkInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

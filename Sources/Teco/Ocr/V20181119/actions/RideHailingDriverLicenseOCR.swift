@@ -87,7 +87,8 @@ extension Ocr {
     /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
     @inlinable
     public func rideHailingDriverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RideHailingDriverLicenseOCRResponse> {
-        self.rideHailingDriverLicenseOCR(RideHailingDriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = RideHailingDriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
+        return self.client.execute(action: "RideHailingDriverLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 网约车驾驶证识别
@@ -95,6 +96,7 @@ extension Ocr {
     /// 本接口支持网约车驾驶证关键字段的识别，包括姓名、证号、起始日期、截止日期、发证日期。
     @inlinable
     public func rideHailingDriverLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RideHailingDriverLicenseOCRResponse {
-        try await self.rideHailingDriverLicenseOCR(RideHailingDriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = RideHailingDriverLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
+        return try await self.client.execute(action: "RideHailingDriverLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

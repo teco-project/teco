@@ -66,12 +66,14 @@ extension Tcss {
     /// 查询最新披露漏洞列表
     @inlinable
     public func describeNewestVul(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNewestVulResponse> {
-        self.describeNewestVul(DescribeNewestVulRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNewestVulRequest()
+        return self.client.execute(action: "DescribeNewestVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询最新披露漏洞列表
     @inlinable
     public func describeNewestVul(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNewestVulResponse {
-        try await self.describeNewestVul(DescribeNewestVulRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNewestVulRequest()
+        return try await self.client.execute(action: "DescribeNewestVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

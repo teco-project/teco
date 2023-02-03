@@ -77,7 +77,8 @@ extension Vod {
     ///   禁播/解禁操作全网生效时间约 5~10 分钟。
     @inlinable
     public func forbidMediaDistribution(fileIds: [String], operation: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidMediaDistributionResponse> {
-        self.forbidMediaDistribution(ForbidMediaDistributionRequest(fileIds: fileIds, operation: operation, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = ForbidMediaDistributionRequest(fileIds: fileIds, operation: operation, subAppId: subAppId)
+        return self.client.execute(action: "ForbidMediaDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁播媒体
@@ -86,6 +87,7 @@ extension Vod {
     ///   禁播/解禁操作全网生效时间约 5~10 分钟。
     @inlinable
     public func forbidMediaDistribution(fileIds: [String], operation: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidMediaDistributionResponse {
-        try await self.forbidMediaDistribution(ForbidMediaDistributionRequest(fileIds: fileIds, operation: operation, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = ForbidMediaDistributionRequest(fileIds: fileIds, operation: operation, subAppId: subAppId)
+        return try await self.client.execute(action: "ForbidMediaDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

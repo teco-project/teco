@@ -101,12 +101,14 @@ extension Cdn {
     /// 获取CC攻击Top数据
     @inlinable
     public func listTopCcData(startTime: String, endTime: String, domain: String? = nil, metric: String? = nil, source: String? = nil, domains: [String]? = nil, actionName: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopCcDataResponse> {
-        self.listTopCcData(ListTopCcDataRequest(startTime: startTime, endTime: endTime, domain: domain, metric: metric, source: source, domains: domains, actionName: actionName, area: area), region: region, logger: logger, on: eventLoop)
+        let input = ListTopCcDataRequest(startTime: startTime, endTime: endTime, domain: domain, metric: metric, source: source, domains: domains, actionName: actionName, area: area)
+        return self.client.execute(action: "ListTopCcData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC攻击Top数据
     @inlinable
     public func listTopCcData(startTime: String, endTime: String, domain: String? = nil, metric: String? = nil, source: String? = nil, domains: [String]? = nil, actionName: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopCcDataResponse {
-        try await self.listTopCcData(ListTopCcDataRequest(startTime: startTime, endTime: endTime, domain: domain, metric: metric, source: source, domains: domains, actionName: actionName, area: area), region: region, logger: logger, on: eventLoop)
+        let input = ListTopCcDataRequest(startTime: startTime, endTime: endTime, domain: domain, metric: metric, source: source, domains: domains, actionName: actionName, area: area)
+        return try await self.client.execute(action: "ListTopCcData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

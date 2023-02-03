@@ -101,7 +101,8 @@ extension Cwp {
     /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
     @inlinable
     public func describeScanState(moduleType: String, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanStateResponse> {
-        self.describeScanState(DescribeScanStateRequest(moduleType: moduleType, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanStateRequest(moduleType: moduleType, filters: filters)
+        return self.client.execute(action: "DescribeScanState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询扫描状态
@@ -109,6 +110,7 @@ extension Cwp {
     /// DescribeScanState 该接口能查询对应模块正在进行的扫描任务状态
     @inlinable
     public func describeScanState(moduleType: String, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStateResponse {
-        try await self.describeScanState(DescribeScanStateRequest(moduleType: moduleType, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanStateRequest(moduleType: moduleType, filters: filters)
+        return try await self.client.execute(action: "DescribeScanState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

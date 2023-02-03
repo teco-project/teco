@@ -89,7 +89,8 @@ extension Tsf {
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表
     @inlinable
     public func describePluginInstances(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginInstancesResponse> {
-        self.describePluginInstances(DescribePluginInstancesRequest(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = DescribePluginInstancesRequest(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord)
+        return self.client.execute(action: "DescribePluginInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网关分组或API绑定（或未绑定）的插件列表
@@ -97,6 +98,7 @@ extension Tsf {
     /// 分页查询网关分组/API绑定（或未绑定）的插件列表
     @inlinable
     public func describePluginInstances(scopeValue: String, bound: Bool, offset: Int64, limit: Int64, type: String? = nil, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginInstancesResponse {
-        try await self.describePluginInstances(DescribePluginInstancesRequest(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = DescribePluginInstancesRequest(scopeValue: scopeValue, bound: bound, offset: offset, limit: limit, type: type, searchWord: searchWord)
+        return try await self.client.execute(action: "DescribePluginInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

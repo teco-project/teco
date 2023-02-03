@@ -80,7 +80,8 @@ extension Vpc {
     /// * 创建路由表同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createRouteTable(vpcId: String, routeTableName: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRouteTableResponse> {
-        self.createRouteTable(CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, tags: tags)
+        return self.client.execute(action: "CreateRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建路由表
@@ -90,6 +91,7 @@ extension Vpc {
     /// * 创建路由表同时可以绑定标签, 应答里的标签列表代表添加成功的标签。
     @inlinable
     public func createRouteTable(vpcId: String, routeTableName: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRouteTableResponse {
-        try await self.createRouteTable(CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateRouteTableRequest(vpcId: vpcId, routeTableName: routeTableName, tags: tags)
+        return try await self.client.execute(action: "CreateRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

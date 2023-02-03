@@ -154,12 +154,14 @@ extension Dts {
     /// 查询某个迁移任务详情
     @inlinable
     public func describeMigrationDetail(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationDetailResponse> {
-        self.describeMigrationDetail(DescribeMigrationDetailRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMigrationDetailRequest(jobId: jobId)
+        return self.client.execute(action: "DescribeMigrationDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某个迁移任务详情
     @inlinable
     public func describeMigrationDetail(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDetailResponse {
-        try await self.describeMigrationDetail(DescribeMigrationDetailRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMigrationDetailRequest(jobId: jobId)
+        return try await self.client.execute(action: "DescribeMigrationDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

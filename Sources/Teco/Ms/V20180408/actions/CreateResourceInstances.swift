@@ -79,7 +79,8 @@ extension Ms {
     /// 用户可以使用该接口自建资源，只支持白名单用户
     @inlinable
     public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateResourceInstancesResponse> {
-        self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), region: region, logger: logger, on: eventLoop)
+        let input = CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum)
+        return self.client.execute(action: "CreateResourceInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建资源
@@ -87,6 +88,7 @@ extension Ms {
     /// 用户可以使用该接口自建资源，只支持白名单用户
     @inlinable
     public func createResourceInstances(pid: UInt64, timeUnit: String, timeSpan: UInt64, resourceNum: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateResourceInstancesResponse {
-        try await self.createResourceInstances(CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum), region: region, logger: logger, on: eventLoop)
+        let input = CreateResourceInstancesRequest(pid: pid, timeUnit: timeUnit, timeSpan: timeSpan, resourceNum: resourceNum)
+        return try await self.client.execute(action: "CreateResourceInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,12 +63,14 @@ extension Redis {
     /// 查询实例访问命令
     @inlinable
     public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorTopNCmdResponse> {
-        self.describeInstanceMonitorTopNCmd(DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType)
+        return self.client.execute(action: "DescribeInstanceMonitorTopNCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例访问命令
     @inlinable
     public func describeInstanceMonitorTopNCmd(instanceId: String, spanType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorTopNCmdResponse {
-        try await self.describeInstanceMonitorTopNCmd(DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceMonitorTopNCmdRequest(instanceId: instanceId, spanType: spanType)
+        return try await self.client.execute(action: "DescribeInstanceMonitorTopNCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

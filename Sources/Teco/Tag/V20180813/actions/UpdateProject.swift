@@ -69,12 +69,14 @@ extension Tag {
     /// 修改项目
     @inlinable @discardableResult
     public func updateProject(projectId: UInt64, projectName: String? = nil, disable: Int64? = nil, info: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProjectResponse> {
-        self.updateProject(UpdateProjectRequest(projectId: projectId, projectName: projectName, disable: disable, info: info), region: region, logger: logger, on: eventLoop)
+        let input = UpdateProjectRequest(projectId: projectId, projectName: projectName, disable: disable, info: info)
+        return self.client.execute(action: "UpdateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
     @inlinable @discardableResult
     public func updateProject(projectId: UInt64, projectName: String? = nil, disable: Int64? = nil, info: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProjectResponse {
-        try await self.updateProject(UpdateProjectRequest(projectId: projectId, projectName: projectName, disable: disable, info: info), region: region, logger: logger, on: eventLoop)
+        let input = UpdateProjectRequest(projectId: projectId, projectName: projectName, disable: disable, info: info)
+        return try await self.client.execute(action: "UpdateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -74,12 +74,14 @@ extension Antiddos {
     /// 修改CC清洗阈值
     @inlinable @discardableResult
     public func modifyCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCThresholdPolicyResponse> {
-        self.modifyCCThresholdPolicy(ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold)
+        return self.client.execute(action: "ModifyCCThresholdPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC清洗阈值
     @inlinable @discardableResult
     public func modifyCCThresholdPolicy(instanceId: String, ip: String, domain: String, protocol: String, threshold: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCThresholdPolicyResponse {
-        try await self.modifyCCThresholdPolicy(ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCThresholdPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, threshold: threshold)
+        return try await self.client.execute(action: "ModifyCCThresholdPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

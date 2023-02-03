@@ -95,12 +95,14 @@ extension Cdn {
     /// 获取Bot攻击的Top信息
     @inlinable
     public func listTopBotData(topCount: Int64, startTime: Date, endTime: Date, metric: String? = nil, domain: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopBotDataResponse> {
-        self.listTopBotData(ListTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, metric: metric, domain: domain, domains: domains), region: region, logger: logger, on: eventLoop)
+        let input = ListTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, metric: metric, domain: domain, domains: domains)
+        return self.client.execute(action: "ListTopBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Bot攻击的Top信息
     @inlinable
     public func listTopBotData(topCount: Int64, startTime: Date, endTime: Date, metric: String? = nil, domain: String? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopBotDataResponse {
-        try await self.listTopBotData(ListTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, metric: metric, domain: domain, domains: domains), region: region, logger: logger, on: eventLoop)
+        let input = ListTopBotDataRequest(topCount: topCount, startTime: startTime, endTime: endTime, metric: metric, domain: domain, domains: domains)
+        return try await self.client.execute(action: "ListTopBotData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

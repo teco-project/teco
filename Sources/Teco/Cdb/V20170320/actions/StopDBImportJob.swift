@@ -60,7 +60,8 @@ extension Cdb {
     /// 本接口(StopDBImportJob)用于终止数据导入任务。
     @inlinable @discardableResult
     public func stopDBImportJob(asyncRequestId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopDBImportJobResponse> {
-        self.stopDBImportJob(StopDBImportJobRequest(asyncRequestId: asyncRequestId), region: region, logger: logger, on: eventLoop)
+        let input = StopDBImportJobRequest(asyncRequestId: asyncRequestId)
+        return self.client.execute(action: "StopDBImportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止数据导入任务
@@ -68,6 +69,7 @@ extension Cdb {
     /// 本接口(StopDBImportJob)用于终止数据导入任务。
     @inlinable @discardableResult
     public func stopDBImportJob(asyncRequestId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopDBImportJobResponse {
-        try await self.stopDBImportJob(StopDBImportJobRequest(asyncRequestId: asyncRequestId), region: region, logger: logger, on: eventLoop)
+        let input = StopDBImportJobRequest(asyncRequestId: asyncRequestId)
+        return try await self.client.execute(action: "StopDBImportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

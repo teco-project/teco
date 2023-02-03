@@ -78,12 +78,14 @@ extension Cr {
     /// 查询机器人文件模板
     @inlinable
     public func describeFileModel(module: String, operation: String, fileType: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileModelResponse> {
-        self.describeFileModel(DescribeFileModelRequest(module: module, operation: operation, fileType: fileType, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileModelRequest(module: module, operation: operation, fileType: fileType, botId: botId, botName: botName)
+        return self.client.execute(action: "DescribeFileModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询机器人文件模板
     @inlinable
     public func describeFileModel(module: String, operation: String, fileType: String, botId: String? = nil, botName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileModelResponse {
-        try await self.describeFileModel(DescribeFileModelRequest(module: module, operation: operation, fileType: fileType, botId: botId, botName: botName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileModelRequest(module: module, operation: operation, fileType: fileType, botId: botId, botName: botName)
+        return try await self.client.execute(action: "DescribeFileModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

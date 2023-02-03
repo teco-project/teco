@@ -64,7 +64,8 @@ extension Bmvpc {
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。
     @inlinable
     public func deleteVpnGateway(vpnGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewayResponse> {
-        self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId)
+        return self.client.execute(action: "DeleteVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除VPN网关
@@ -72,6 +73,7 @@ extension Bmvpc {
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。
     @inlinable
     public func deleteVpnGateway(vpnGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
-        try await self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId)
+        return try await self.client.execute(action: "DeleteVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

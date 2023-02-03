@@ -69,7 +69,8 @@ extension Vpc {
     /// * 删除的安全组无法再找回，请谨慎调用。
     @inlinable @discardableResult
     public func deleteSecurityGroup(securityGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityGroupResponse> {
-        self.deleteSecurityGroup(DeleteSecurityGroupRequest(securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSecurityGroupRequest(securityGroupId: securityGroupId)
+        return self.client.execute(action: "DeleteSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除安全组
@@ -80,6 +81,7 @@ extension Vpc {
     /// * 删除的安全组无法再找回，请谨慎调用。
     @inlinable @discardableResult
     public func deleteSecurityGroup(securityGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
-        try await self.deleteSecurityGroup(DeleteSecurityGroupRequest(securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSecurityGroupRequest(securityGroupId: securityGroupId)
+        return try await self.client.execute(action: "DeleteSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

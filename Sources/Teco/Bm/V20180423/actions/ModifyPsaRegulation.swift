@@ -80,7 +80,8 @@ extension Bm {
     /// 允许修改规则信息及关联故障类型
     @inlinable @discardableResult
     public func modifyPsaRegulation(psaId: String, psaName: String? = nil, repairLimit: UInt64? = nil, psaDescription: String? = nil, taskTypeIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPsaRegulationResponse> {
-        self.modifyPsaRegulation(ModifyPsaRegulationRequest(psaId: psaId, psaName: psaName, repairLimit: repairLimit, psaDescription: psaDescription, taskTypeIds: taskTypeIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPsaRegulationRequest(psaId: psaId, psaName: psaName, repairLimit: repairLimit, psaDescription: psaDescription, taskTypeIds: taskTypeIds)
+        return self.client.execute(action: "ModifyPsaRegulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改预授权规则
@@ -88,6 +89,7 @@ extension Bm {
     /// 允许修改规则信息及关联故障类型
     @inlinable @discardableResult
     public func modifyPsaRegulation(psaId: String, psaName: String? = nil, repairLimit: UInt64? = nil, psaDescription: String? = nil, taskTypeIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPsaRegulationResponse {
-        try await self.modifyPsaRegulation(ModifyPsaRegulationRequest(psaId: psaId, psaName: psaName, repairLimit: repairLimit, psaDescription: psaDescription, taskTypeIds: taskTypeIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPsaRegulationRequest(psaId: psaId, psaName: psaName, repairLimit: repairLimit, psaDescription: psaDescription, taskTypeIds: taskTypeIds)
+        return try await self.client.execute(action: "ModifyPsaRegulation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

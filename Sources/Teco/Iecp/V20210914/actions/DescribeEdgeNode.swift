@@ -103,12 +103,14 @@ extension Iecp {
     /// 获取边缘节点信息
     @inlinable
     public func describeEdgeNode(edgeUnitId: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodeResponse> {
-        self.describeEdgeNode(DescribeEdgeNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId)
+        return self.client.execute(action: "DescribeEdgeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘节点信息
     @inlinable
     public func describeEdgeNode(edgeUnitId: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodeResponse {
-        try await self.describeEdgeNode(DescribeEdgeNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeNodeRequest(edgeUnitId: edgeUnitId, nodeId: nodeId)
+        return try await self.client.execute(action: "DescribeEdgeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

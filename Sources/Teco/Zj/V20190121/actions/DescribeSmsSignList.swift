@@ -76,7 +76,8 @@ extension Zj {
     /// 获取普通短信签名信息
     @inlinable
     public func describeSmsSignList(license: String, signIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsSignListResponse> {
-        self.describeSmsSignList(DescribeSmsSignListRequest(license: license, signIdSet: signIdSet, international: international), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmsSignListRequest(license: license, signIdSet: signIdSet, international: international)
+        return self.client.execute(action: "DescribeSmsSignList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 短信签名查询接口
@@ -84,6 +85,7 @@ extension Zj {
     /// 获取普通短信签名信息
     @inlinable
     public func describeSmsSignList(license: String, signIdSet: [UInt64], international: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsSignListResponse {
-        try await self.describeSmsSignList(DescribeSmsSignListRequest(license: license, signIdSet: signIdSet, international: international), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmsSignListRequest(license: license, signIdSet: signIdSet, international: international)
+        return try await self.client.execute(action: "DescribeSmsSignList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

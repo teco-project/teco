@@ -70,7 +70,8 @@ extension Cdb {
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
     public func openWanService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenWanServiceResponse> {
-        self.openWanService(OpenWanServiceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = OpenWanServiceRequest(instanceId: instanceId)
+        return self.client.execute(action: "OpenWanService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通实例外网访问
@@ -80,6 +81,7 @@ extension Cdb {
     /// 注意，实例开通外网访问之前，需要先将实例进行 [实例初始化](https://cloud.tencent.com/document/api/236/15873) 操作。
     @inlinable
     public func openWanService(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenWanServiceResponse {
-        try await self.openWanService(OpenWanServiceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = OpenWanServiceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "OpenWanService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

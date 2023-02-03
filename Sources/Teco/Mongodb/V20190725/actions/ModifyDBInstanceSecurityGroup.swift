@@ -65,7 +65,8 @@ extension Mongodb {
     /// 修改实例绑定的安全组
     @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupResponse> {
-        self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds)
+        return self.client.execute(action: "ModifyDBInstanceSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例安全组
@@ -73,6 +74,7 @@ extension Mongodb {
     /// 修改实例绑定的安全组
     @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroup(instanceId: String, securityGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupResponse {
-        try await self.modifyDBInstanceSecurityGroup(ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstanceSecurityGroupRequest(instanceId: instanceId, securityGroupIds: securityGroupIds)
+        return try await self.client.execute(action: "ModifyDBInstanceSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

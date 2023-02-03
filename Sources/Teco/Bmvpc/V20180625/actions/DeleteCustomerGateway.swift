@@ -60,7 +60,8 @@ extension Bmvpc {
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
     @inlinable @discardableResult
     public func deleteCustomerGateway(customerGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomerGatewayResponse> {
-        self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId)
+        return self.client.execute(action: "DeleteCustomerGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除对端网关
@@ -68,6 +69,7 @@ extension Bmvpc {
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
     @inlinable @discardableResult
     public func deleteCustomerGateway(customerGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
-        try await self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId)
+        return try await self.client.execute(action: "DeleteCustomerGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

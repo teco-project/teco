@@ -63,7 +63,8 @@ extension Dts {
     /// 在迁移过程中允许调用该接口撤销迁移, 撤销迁移的任务会失败。通过DescribeMigrateJobs接口查询到任务状态为运行中（status=7）或准备完成（status=8）时，才能撤销数据迁移任务。
     @inlinable @discardableResult
     public func stopMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrateJobResponse> {
-        self.stopMigrateJob(StopMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = StopMigrateJobRequest(jobId: jobId)
+        return self.client.execute(action: "StopMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤销数据迁移任务
@@ -72,6 +73,7 @@ extension Dts {
     /// 在迁移过程中允许调用该接口撤销迁移, 撤销迁移的任务会失败。通过DescribeMigrateJobs接口查询到任务状态为运行中（status=7）或准备完成（status=8）时，才能撤销数据迁移任务。
     @inlinable @discardableResult
     public func stopMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrateJobResponse {
-        try await self.stopMigrateJob(StopMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = StopMigrateJobRequest(jobId: jobId)
+        return try await self.client.execute(action: "StopMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

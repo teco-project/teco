@@ -70,7 +70,8 @@ extension Ssa {
     /// 返回告警详情
     @inlinable
     public func describeSocAlertDetails(alertId: String, alertTimestamp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSocAlertDetailsResponse> {
-        self.describeSocAlertDetails(DescribeSocAlertDetailsRequest(alertId: alertId, alertTimestamp: alertTimestamp), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSocAlertDetailsRequest(alertId: alertId, alertTimestamp: alertTimestamp)
+        return self.client.execute(action: "DescribeSocAlertDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警详情
@@ -78,6 +79,7 @@ extension Ssa {
     /// 返回告警详情
     @inlinable
     public func describeSocAlertDetails(alertId: String, alertTimestamp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSocAlertDetailsResponse {
-        try await self.describeSocAlertDetails(DescribeSocAlertDetailsRequest(alertId: alertId, alertTimestamp: alertTimestamp), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSocAlertDetailsRequest(alertId: alertId, alertTimestamp: alertTimestamp)
+        return try await self.client.execute(action: "DescribeSocAlertDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

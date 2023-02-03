@@ -72,12 +72,14 @@ extension Monitor {
     /// 获取2.0实例初始化任务状态
     @inlinable
     public func describePrometheusInstanceInitStatus(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceInitStatusResponse> {
-        self.describePrometheusInstanceInitStatus(DescribePrometheusInstanceInitStatusRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusInstanceInitStatusRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribePrometheusInstanceInitStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取2.0实例初始化任务状态
     @inlinable
     public func describePrometheusInstanceInitStatus(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceInitStatusResponse {
-        try await self.describePrometheusInstanceInitStatus(DescribePrometheusInstanceInitStatusRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusInstanceInitStatusRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribePrometheusInstanceInitStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

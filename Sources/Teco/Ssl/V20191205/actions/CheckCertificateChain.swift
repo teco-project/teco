@@ -72,7 +72,8 @@ extension Ssl {
     /// 本接口（CheckCertificateChain）用于检查证书链是否完整。
     @inlinable
     public func checkCertificateChain(certificateChain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckCertificateChainResponse> {
-        self.checkCertificateChain(CheckCertificateChainRequest(certificateChain: certificateChain), region: region, logger: logger, on: eventLoop)
+        let input = CheckCertificateChainRequest(certificateChain: certificateChain)
+        return self.client.execute(action: "CheckCertificateChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查证书链完整性
@@ -80,6 +81,7 @@ extension Ssl {
     /// 本接口（CheckCertificateChain）用于检查证书链是否完整。
     @inlinable
     public func checkCertificateChain(certificateChain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckCertificateChainResponse {
-        try await self.checkCertificateChain(CheckCertificateChainRequest(certificateChain: certificateChain), region: region, logger: logger, on: eventLoop)
+        let input = CheckCertificateChainRequest(certificateChain: certificateChain)
+        return try await self.client.execute(action: "CheckCertificateChain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

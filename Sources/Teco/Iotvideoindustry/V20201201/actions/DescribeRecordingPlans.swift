@@ -62,7 +62,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeRecordingPlans)用于获取用户的全部录制计划。
     @inlinable
     public func describeRecordingPlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingPlansResponse> {
-        self.describeRecordingPlans(DescribeRecordingPlansRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRecordingPlansRequest()
+        return self.client.execute(action: "DescribeRecordingPlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取全部录制计划
@@ -70,6 +71,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeRecordingPlans)用于获取用户的全部录制计划。
     @inlinable
     public func describeRecordingPlans(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingPlansResponse {
-        try await self.describeRecordingPlans(DescribeRecordingPlansRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRecordingPlansRequest()
+        return try await self.client.execute(action: "DescribeRecordingPlans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

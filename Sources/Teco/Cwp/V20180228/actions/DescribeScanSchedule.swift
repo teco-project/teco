@@ -65,7 +65,8 @@ extension Cwp {
     /// 根据taskid查询检测进度
     @inlinable
     public func describeScanSchedule(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanScheduleResponse> {
-        self.describeScanSchedule(DescribeScanScheduleRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanScheduleRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeScanSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询检测进度
@@ -73,6 +74,7 @@ extension Cwp {
     /// 根据taskid查询检测进度
     @inlinable
     public func describeScanSchedule(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanScheduleResponse {
-        try await self.describeScanSchedule(DescribeScanScheduleRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanScheduleRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeScanSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

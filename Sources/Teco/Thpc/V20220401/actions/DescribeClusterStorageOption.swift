@@ -64,7 +64,8 @@ extension Thpc {
     /// 本接口 (DescribeClusterStorageOption) 用于查询集群存储选项信息。
     @inlinable
     public func describeClusterStorageOption(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterStorageOptionResponse> {
-        self.describeClusterStorageOption(DescribeClusterStorageOptionRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterStorageOptionRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribeClusterStorageOption", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群存储选项
@@ -72,6 +73,7 @@ extension Thpc {
     /// 本接口 (DescribeClusterStorageOption) 用于查询集群存储选项信息。
     @inlinable
     public func describeClusterStorageOption(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterStorageOptionResponse {
-        try await self.describeClusterStorageOption(DescribeClusterStorageOptionRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterStorageOptionRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeClusterStorageOption", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

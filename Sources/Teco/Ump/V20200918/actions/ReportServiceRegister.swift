@@ -85,7 +85,8 @@ extension Ump {
     /// 上报服务注册自身的服务地址作为回调地址, 用于信息回传。
     @inlinable @discardableResult
     public func reportServiceRegister(groupCode: String, mallId: UInt64, serviceRegisterInfos: [ServiceRegisterInfo], serverIp: String, serverNodeId: String, reportTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportServiceRegisterResponse> {
-        self.reportServiceRegister(ReportServiceRegisterRequest(groupCode: groupCode, mallId: mallId, serviceRegisterInfos: serviceRegisterInfos, serverIp: serverIp, serverNodeId: serverNodeId, reportTime: reportTime), region: region, logger: logger, on: eventLoop)
+        let input = ReportServiceRegisterRequest(groupCode: groupCode, mallId: mallId, serviceRegisterInfos: serviceRegisterInfos, serverIp: serverIp, serverNodeId: serverNodeId, reportTime: reportTime)
+        return self.client.execute(action: "ReportServiceRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报服务注册
@@ -93,6 +94,7 @@ extension Ump {
     /// 上报服务注册自身的服务地址作为回调地址, 用于信息回传。
     @inlinable @discardableResult
     public func reportServiceRegister(groupCode: String, mallId: UInt64, serviceRegisterInfos: [ServiceRegisterInfo], serverIp: String, serverNodeId: String, reportTime: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportServiceRegisterResponse {
-        try await self.reportServiceRegister(ReportServiceRegisterRequest(groupCode: groupCode, mallId: mallId, serviceRegisterInfos: serviceRegisterInfos, serverIp: serverIp, serverNodeId: serverNodeId, reportTime: reportTime), region: region, logger: logger, on: eventLoop)
+        let input = ReportServiceRegisterRequest(groupCode: groupCode, mallId: mallId, serviceRegisterInfos: serviceRegisterInfos, serverIp: serverIp, serverNodeId: serverNodeId, reportTime: reportTime)
+        return try await self.client.execute(action: "ReportServiceRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

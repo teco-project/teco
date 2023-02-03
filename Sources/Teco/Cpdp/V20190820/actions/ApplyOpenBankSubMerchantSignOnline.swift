@@ -93,7 +93,8 @@ extension Cpdp {
     /// 子商户在线签约
     @inlinable
     public func applyOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyOpenBankSubMerchantSignOnlineResponse> {
-        self.applyOpenBankSubMerchantSignOnline(ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
+        let input = ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl)
+        return self.client.execute(action: "ApplyOpenBankSubMerchantSignOnline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户在线签约
@@ -101,6 +102,7 @@ extension Cpdp {
     /// 子商户在线签约
     @inlinable
     public func applyOpenBankSubMerchantSignOnline(channelMerchantId: String, channelName: String, outSubMerchantId: String? = nil, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyOpenBankSubMerchantSignOnlineResponse {
-        try await self.applyOpenBankSubMerchantSignOnline(ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
+        let input = ApplyOpenBankSubMerchantSignOnlineRequest(channelMerchantId: channelMerchantId, channelName: channelName, outSubMerchantId: outSubMerchantId, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl)
+        return try await self.client.execute(action: "ApplyOpenBankSubMerchantSignOnline", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

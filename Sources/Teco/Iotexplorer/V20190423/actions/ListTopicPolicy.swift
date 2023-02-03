@@ -64,7 +64,8 @@ extension Iotexplorer {
     /// 本接口（ListTopicPolicy）用于获取Topic列表
     @inlinable
     public func listTopicPolicy(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListTopicPolicyResponse> {
-        self.listTopicPolicy(ListTopicPolicyRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = ListTopicPolicyRequest(productId: productId)
+        return self.client.execute(action: "ListTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Topic列表
@@ -72,6 +73,7 @@ extension Iotexplorer {
     /// 本接口（ListTopicPolicy）用于获取Topic列表
     @inlinable
     public func listTopicPolicy(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListTopicPolicyResponse {
-        try await self.listTopicPolicy(ListTopicPolicyRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = ListTopicPolicyRequest(productId: productId)
+        return try await self.client.execute(action: "ListTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

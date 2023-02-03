@@ -69,7 +69,8 @@ extension Vpc {
     /// 该接口用于给弹性公网IPv6地址释放带宽。
     @inlinable
     public func releaseIp6AddressesBandwidth(ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseIp6AddressesBandwidthResponse> {
-        self.releaseIp6AddressesBandwidth(ReleaseIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds)
+        return self.client.execute(action: "ReleaseIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放弹性公网IPv6地址带宽
@@ -77,6 +78,7 @@ extension Vpc {
     /// 该接口用于给弹性公网IPv6地址释放带宽。
     @inlinable
     public func releaseIp6AddressesBandwidth(ip6Addresses: [String]? = nil, ip6AddressIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseIp6AddressesBandwidthResponse {
-        try await self.releaseIp6AddressesBandwidth(ReleaseIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseIp6AddressesBandwidthRequest(ip6Addresses: ip6Addresses, ip6AddressIds: ip6AddressIds)
+        return try await self.client.execute(action: "ReleaseIp6AddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

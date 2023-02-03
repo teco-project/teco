@@ -58,12 +58,14 @@ extension Sts {
     /// 拉取API密钥列表
     @inlinable
     public func queryApiKey(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryApiKeyResponse> {
-        self.queryApiKey(QueryApiKeyRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
+        let input = QueryApiKeyRequest(targetUin: targetUin)
+        return self.client.execute(action: "QueryApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取API密钥列表
     @inlinable
     public func queryApiKey(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryApiKeyResponse {
-        try await self.queryApiKey(QueryApiKeyRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
+        let input = QueryApiKeyRequest(targetUin: targetUin)
+        return try await self.client.execute(action: "QueryApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

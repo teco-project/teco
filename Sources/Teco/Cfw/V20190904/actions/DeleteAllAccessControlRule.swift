@@ -73,12 +73,14 @@ extension Cfw {
     /// 全部删除规则
     @inlinable
     public func deleteAllAccessControlRule(direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAllAccessControlRuleResponse> {
-        self.deleteAllAccessControlRule(DeleteAllAccessControlRuleRequest(direction: direction, edgeId: edgeId, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAllAccessControlRuleRequest(direction: direction, edgeId: edgeId, area: area)
+        return self.client.execute(action: "DeleteAllAccessControlRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 全部删除规则
     @inlinable
     public func deleteAllAccessControlRule(direction: UInt64? = nil, edgeId: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAllAccessControlRuleResponse {
-        try await self.deleteAllAccessControlRule(DeleteAllAccessControlRuleRequest(direction: direction, edgeId: edgeId, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAllAccessControlRuleRequest(direction: direction, edgeId: edgeId, area: area)
+        return try await self.client.execute(action: "DeleteAllAccessControlRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -102,7 +102,8 @@ extension Cbs {
     /// * 每个地域可创建的快照有数量和容量的限制，具体请见腾讯云控制台快照页面提示，如果快照超配额，定期快照创建会失败。
     @inlinable
     public func createAutoSnapshotPolicy(policy: [Policy], dryRun: Bool? = nil, isActivated: Bool? = nil, autoSnapshotPolicyName: String? = nil, isPermanent: Bool? = nil, retentionDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAutoSnapshotPolicyResponse> {
-        self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(policy: policy, dryRun: dryRun, isActivated: isActivated, autoSnapshotPolicyName: autoSnapshotPolicyName, isPermanent: isPermanent, retentionDays: retentionDays), region: region, logger: logger, on: eventLoop)
+        let input = CreateAutoSnapshotPolicyRequest(policy: policy, dryRun: dryRun, isActivated: isActivated, autoSnapshotPolicyName: autoSnapshotPolicyName, isPermanent: isPermanent, retentionDays: retentionDays)
+        return self.client.execute(action: "CreateAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建定期快照策略
@@ -113,6 +114,7 @@ extension Cbs {
     /// * 每个地域可创建的快照有数量和容量的限制，具体请见腾讯云控制台快照页面提示，如果快照超配额，定期快照创建会失败。
     @inlinable
     public func createAutoSnapshotPolicy(policy: [Policy], dryRun: Bool? = nil, isActivated: Bool? = nil, autoSnapshotPolicyName: String? = nil, isPermanent: Bool? = nil, retentionDays: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAutoSnapshotPolicyResponse {
-        try await self.createAutoSnapshotPolicy(CreateAutoSnapshotPolicyRequest(policy: policy, dryRun: dryRun, isActivated: isActivated, autoSnapshotPolicyName: autoSnapshotPolicyName, isPermanent: isPermanent, retentionDays: retentionDays), region: region, logger: logger, on: eventLoop)
+        let input = CreateAutoSnapshotPolicyRequest(policy: policy, dryRun: dryRun, isActivated: isActivated, autoSnapshotPolicyName: autoSnapshotPolicyName, isPermanent: isPermanent, retentionDays: retentionDays)
+        return try await self.client.execute(action: "CreateAutoSnapshotPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

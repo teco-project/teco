@@ -64,12 +64,14 @@ extension Ccc {
     /// 删除坐席信息
     @inlinable
     public func deleteStaff(sdkAppId: Int64, staffList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStaffResponse> {
-        self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
+        let input = DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList)
+        return self.client.execute(action: "DeleteStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除坐席信息
     @inlinable
     public func deleteStaff(sdkAppId: Int64, staffList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStaffResponse {
-        try await self.deleteStaff(DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList), region: region, logger: logger, on: eventLoop)
+        let input = DeleteStaffRequest(sdkAppId: sdkAppId, staffList: staffList)
+        return try await self.client.execute(action: "DeleteStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

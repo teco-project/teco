@@ -68,7 +68,8 @@ extension Gaap {
     /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
     @inlinable @discardableResult
     public func bindListenerRealServers(listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindListenerRealServersResponse> {
-        self.bindListenerRealServers(BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet), region: region, logger: logger, on: eventLoop)
+        let input = BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet)
+        return self.client.execute(action: "BindListenerRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 监听器绑定源站
@@ -77,6 +78,7 @@ extension Gaap {
     /// 注意：本接口会解绑之前绑定的源站，绑定本次调用所选择的源站。例如：原来绑定的源站为A，B，C，本次调用的选择绑定的源站为C，D，E，那么调用后所绑定的源站为C，D，E。
     @inlinable @discardableResult
     public func bindListenerRealServers(listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindListenerRealServersResponse {
-        try await self.bindListenerRealServers(BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet), region: region, logger: logger, on: eventLoop)
+        let input = BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet)
+        return try await self.client.execute(action: "BindListenerRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -100,7 +100,8 @@ extension As {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的启动配置。
     @inlinable
     public func describeLaunchConfigurations(launchConfigurationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLaunchConfigurationsResponse> {
-        self.describeLaunchConfigurations(DescribeLaunchConfigurationsRequest(launchConfigurationIds: launchConfigurationIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLaunchConfigurationsRequest(launchConfigurationIds: launchConfigurationIds, filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeLaunchConfigurations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询启动配置
@@ -111,6 +112,7 @@ extension As {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的启动配置。
     @inlinable
     public func describeLaunchConfigurations(launchConfigurationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLaunchConfigurationsResponse {
-        try await self.describeLaunchConfigurations(DescribeLaunchConfigurationsRequest(launchConfigurationIds: launchConfigurationIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLaunchConfigurationsRequest(launchConfigurationIds: launchConfigurationIds, filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeLaunchConfigurations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

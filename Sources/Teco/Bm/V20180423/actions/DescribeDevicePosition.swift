@@ -93,7 +93,8 @@ extension Bm {
     /// 查询服务器所在的位置，如机架，上联交换机等信息
     @inlinable
     public func describeDevicePosition(offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceIds: [String]? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePositionResponse> {
-        self.describeDevicePosition(DescribeDevicePositionRequest(offset: offset, limit: limit, vpcId: vpcId, subnetId: subnetId, instanceIds: instanceIds, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePositionRequest(offset: offset, limit: limit, vpcId: vpcId, subnetId: subnetId, instanceIds: instanceIds, alias: alias)
+        return self.client.execute(action: "DescribeDevicePosition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备位置信息
@@ -101,6 +102,7 @@ extension Bm {
     /// 查询服务器所在的位置，如机架，上联交换机等信息
     @inlinable
     public func describeDevicePosition(offset: UInt64? = nil, limit: UInt64? = nil, vpcId: String? = nil, subnetId: String? = nil, instanceIds: [String]? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionResponse {
-        try await self.describeDevicePosition(DescribeDevicePositionRequest(offset: offset, limit: limit, vpcId: vpcId, subnetId: subnetId, instanceIds: instanceIds, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePositionRequest(offset: offset, limit: limit, vpcId: vpcId, subnetId: subnetId, instanceIds: instanceIds, alias: alias)
+        return try await self.client.execute(action: "DescribeDevicePosition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

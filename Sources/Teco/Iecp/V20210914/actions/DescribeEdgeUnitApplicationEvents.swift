@@ -64,12 +64,14 @@ extension Iecp {
     /// 获取应用事件列表
     @inlinable
     public func describeEdgeUnitApplicationEvents(edgeUnitId: UInt64, applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationEventsResponse> {
-        self.describeEdgeUnitApplicationEvents(DescribeEdgeUnitApplicationEventsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitApplicationEventsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId)
+        return self.client.execute(action: "DescribeEdgeUnitApplicationEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用事件列表
     @inlinable
     public func describeEdgeUnitApplicationEvents(edgeUnitId: UInt64, applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationEventsResponse {
-        try await self.describeEdgeUnitApplicationEvents(DescribeEdgeUnitApplicationEventsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitApplicationEventsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId)
+        return try await self.client.execute(action: "DescribeEdgeUnitApplicationEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

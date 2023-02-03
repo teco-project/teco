@@ -73,7 +73,8 @@ extension Iotcloud {
     /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
     @inlinable
     public func describeMultiDevTask(taskId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMultiDevTaskResponse> {
-        self.describeMultiDevTask(DescribeMultiDevTaskRequest(taskId: taskId, productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMultiDevTaskRequest(taskId: taskId, productId: productId)
+        return self.client.execute(action: "DescribeMultiDevTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取创建多设备任务状态
@@ -81,6 +82,7 @@ extension Iotcloud {
     /// 本接口（DescribeMultiDevTask）用于查询批量创建设备任务的执行状态。
     @inlinable
     public func describeMultiDevTask(taskId: String, productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMultiDevTaskResponse {
-        try await self.describeMultiDevTask(DescribeMultiDevTaskRequest(taskId: taskId, productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMultiDevTaskRequest(taskId: taskId, productId: productId)
+        return try await self.client.execute(action: "DescribeMultiDevTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

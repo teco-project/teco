@@ -74,7 +74,8 @@ extension Ocr {
     /// 产品优势：直联中国物品编码中心，查询结果更加准确、可靠。
     @inlinable
     public func queryBarCode(barCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBarCodeResponse> {
-        self.queryBarCode(QueryBarCodeRequest(barCode: barCode), region: region, logger: logger, on: eventLoop)
+        let input = QueryBarCodeRequest(barCode: barCode)
+        return self.client.execute(action: "QueryBarCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 条码信息查询
@@ -84,6 +85,7 @@ extension Ocr {
     /// 产品优势：直联中国物品编码中心，查询结果更加准确、可靠。
     @inlinable
     public func queryBarCode(barCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBarCodeResponse {
-        try await self.queryBarCode(QueryBarCodeRequest(barCode: barCode), region: region, logger: logger, on: eventLoop)
+        let input = QueryBarCodeRequest(barCode: barCode)
+        return try await self.client.execute(action: "QueryBarCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

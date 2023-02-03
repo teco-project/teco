@@ -80,7 +80,8 @@ extension Wav {
     /// 通过接口按类型拉取租户当前的素材列表及关键信息
     @inlinable
     public func queryMaterialList(materialType: Int64, cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMaterialListResponse> {
-        self.queryMaterialList(QueryMaterialListRequest(materialType: materialType, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = QueryMaterialListRequest(materialType: materialType, cursor: cursor, limit: limit)
+        return self.client.execute(action: "QueryMaterialList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取企业素材列表接口
@@ -88,6 +89,7 @@ extension Wav {
     /// 通过接口按类型拉取租户当前的素材列表及关键信息
     @inlinable
     public func queryMaterialList(materialType: Int64, cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaterialListResponse {
-        try await self.queryMaterialList(QueryMaterialListRequest(materialType: materialType, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = QueryMaterialListRequest(materialType: materialType, cursor: cursor, limit: limit)
+        return try await self.client.execute(action: "QueryMaterialList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

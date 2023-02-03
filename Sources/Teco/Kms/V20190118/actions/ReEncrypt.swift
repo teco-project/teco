@@ -91,7 +91,8 @@ extension Kms {
     /// 使用指定CMK对密文重新加密。
     @inlinable
     public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReEncryptResponse> {
-        self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), region: region, logger: logger, on: eventLoop)
+        let input = ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext)
+        return self.client.execute(action: "ReEncrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 密文刷新
@@ -99,6 +100,7 @@ extension Kms {
     /// 使用指定CMK对密文重新加密。
     @inlinable
     public func reEncrypt(ciphertextBlob: String, destinationKeyId: String? = nil, sourceEncryptionContext: String? = nil, destinationEncryptionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReEncryptResponse {
-        try await self.reEncrypt(ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext), region: region, logger: logger, on: eventLoop)
+        let input = ReEncryptRequest(ciphertextBlob: ciphertextBlob, destinationKeyId: destinationKeyId, sourceEncryptionContext: sourceEncryptionContext, destinationEncryptionContext: destinationEncryptionContext)
+        return try await self.client.execute(action: "ReEncrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

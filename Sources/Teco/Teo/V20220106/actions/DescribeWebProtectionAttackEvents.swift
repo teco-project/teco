@@ -100,12 +100,14 @@ extension Teo {
     /// 查询web防护攻击事件
     @inlinable
     public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]? = nil, zoneIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionAttackEventsResponse> {
-        self.describeWebProtectionAttackEvents(DescribeWebProtectionAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, domains: domains, zoneIds: zoneIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebProtectionAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, domains: domains, zoneIds: zoneIds)
+        return self.client.execute(action: "DescribeWebProtectionAttackEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询web防护攻击事件
     @inlinable
     public func describeWebProtectionAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, domains: [String]? = nil, zoneIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionAttackEventsResponse {
-        try await self.describeWebProtectionAttackEvents(DescribeWebProtectionAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, domains: domains, zoneIds: zoneIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebProtectionAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, domains: domains, zoneIds: zoneIds)
+        return try await self.client.execute(action: "DescribeWebProtectionAttackEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

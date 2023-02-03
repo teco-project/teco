@@ -74,12 +74,14 @@ extension Tem {
     /// 查询应用关联的 Ingress 规则列表
     @inlinable
     public func describeRelatedIngresses(environmentId: String? = nil, clusterNamespace: String? = nil, sourceChannel: Int64? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedIngressesResponse> {
-        self.describeRelatedIngresses(DescribeRelatedIngressesRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, sourceChannel: sourceChannel, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRelatedIngressesRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, sourceChannel: sourceChannel, applicationId: applicationId)
+        return self.client.execute(action: "DescribeRelatedIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用关联的 Ingress 规则列表
     @inlinable
     public func describeRelatedIngresses(environmentId: String? = nil, clusterNamespace: String? = nil, sourceChannel: Int64? = nil, applicationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedIngressesResponse {
-        try await self.describeRelatedIngresses(DescribeRelatedIngressesRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, sourceChannel: sourceChannel, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRelatedIngressesRequest(environmentId: environmentId, clusterNamespace: clusterNamespace, sourceChannel: sourceChannel, applicationId: applicationId)
+        return try await self.client.execute(action: "DescribeRelatedIngresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

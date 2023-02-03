@@ -54,12 +54,14 @@ extension Iecp {
     /// 删除消息路由
     @inlinable @discardableResult
     public func deleteMessageRoute(routeID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMessageRouteResponse> {
-        self.deleteMessageRoute(DeleteMessageRouteRequest(routeID: routeID), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMessageRouteRequest(routeID: routeID)
+        return self.client.execute(action: "DeleteMessageRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除消息路由
     @inlinable @discardableResult
     public func deleteMessageRoute(routeID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMessageRouteResponse {
-        try await self.deleteMessageRoute(DeleteMessageRouteRequest(routeID: routeID), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMessageRouteRequest(routeID: routeID)
+        return try await self.client.execute(action: "DeleteMessageRoute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

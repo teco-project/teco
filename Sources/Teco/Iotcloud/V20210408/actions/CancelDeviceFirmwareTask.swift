@@ -69,12 +69,14 @@ extension Iotcloud {
     /// 取消设备升级任务
     @inlinable @discardableResult
     public func cancelDeviceFirmwareTask(productId: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelDeviceFirmwareTaskResponse> {
-        self.cancelDeviceFirmwareTask(CancelDeviceFirmwareTaskRequest(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = CancelDeviceFirmwareTaskRequest(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId)
+        return self.client.execute(action: "CancelDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消设备升级任务
     @inlinable @discardableResult
     public func cancelDeviceFirmwareTask(productId: String, deviceName: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelDeviceFirmwareTaskResponse {
-        try await self.cancelDeviceFirmwareTask(CancelDeviceFirmwareTaskRequest(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = CancelDeviceFirmwareTaskRequest(productId: productId, deviceName: deviceName, firmwareVersion: firmwareVersion, taskId: taskId)
+        return try await self.client.execute(action: "CancelDeviceFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

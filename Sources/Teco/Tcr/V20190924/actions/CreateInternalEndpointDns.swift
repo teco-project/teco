@@ -87,7 +87,8 @@ extension Tcr {
     /// 创建tcr内网私有域名解析
     @inlinable @discardableResult
     public func createInternalEndpointDns(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, regionId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInternalEndpointDnsResponse> {
-        self.createInternalEndpointDns(CreateInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName, regionId: regionId), region: region, logger: logger, on: eventLoop)
+        let input = CreateInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName, regionId: regionId)
+        return self.client.execute(action: "CreateInternalEndpointDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建私有域名解析
@@ -95,6 +96,7 @@ extension Tcr {
     /// 创建tcr内网私有域名解析
     @inlinable @discardableResult
     public func createInternalEndpointDns(instanceId: String, vpcId: String, eniLBIp: String, usePublicDomain: Bool? = nil, regionName: String? = nil, regionId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInternalEndpointDnsResponse {
-        try await self.createInternalEndpointDns(CreateInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName, regionId: regionId), region: region, logger: logger, on: eventLoop)
+        let input = CreateInternalEndpointDnsRequest(instanceId: instanceId, vpcId: vpcId, eniLBIp: eniLBIp, usePublicDomain: usePublicDomain, regionName: regionName, regionId: regionId)
+        return try await self.client.execute(action: "CreateInternalEndpointDns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

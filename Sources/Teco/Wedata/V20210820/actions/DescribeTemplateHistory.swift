@@ -74,12 +74,14 @@ extension Wedata {
     /// 查询规则模版操作记录
     @inlinable
     public func describeTemplateHistory(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateHistoryResponse> {
-        self.describeTemplateHistory(DescribeTemplateHistoryRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTemplateHistoryRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, projectId: projectId)
+        return self.client.execute(action: "DescribeTemplateHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询规则模版操作记录
     @inlinable
     public func describeTemplateHistory(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateHistoryResponse {
-        try await self.describeTemplateHistory(DescribeTemplateHistoryRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTemplateHistoryRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, projectId: projectId)
+        return try await self.client.execute(action: "DescribeTemplateHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

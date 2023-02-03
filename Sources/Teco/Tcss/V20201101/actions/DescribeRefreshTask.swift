@@ -58,12 +58,14 @@ extension Tcss {
     /// 查询刷新任务
     @inlinable
     public func describeRefreshTask(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRefreshTaskResponse> {
-        self.describeRefreshTask(DescribeRefreshTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRefreshTaskRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询刷新任务
     @inlinable
     public func describeRefreshTask(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRefreshTaskResponse {
-        try await self.describeRefreshTask(DescribeRefreshTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRefreshTaskRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeRefreshTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

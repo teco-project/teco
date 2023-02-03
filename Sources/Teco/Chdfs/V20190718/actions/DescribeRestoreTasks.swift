@@ -67,7 +67,8 @@ extension Chdfs {
     @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeRestoreTasks(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRestoreTasksResponse> {
-        self.describeRestoreTasks(DescribeRestoreTasksRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRestoreTasksRequest(fileSystemId: fileSystemId)
+        return self.client.execute(action: "DescribeRestoreTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看回热任务列表
@@ -76,6 +77,7 @@ extension Chdfs {
     @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeRestoreTasks(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRestoreTasksResponse {
-        try await self.describeRestoreTasks(DescribeRestoreTasksRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRestoreTasksRequest(fileSystemId: fileSystemId)
+        return try await self.client.execute(action: "DescribeRestoreTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -66,12 +66,14 @@ extension Cfw {
     /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
     @inlinable
     public func describeNatFwInfoCount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInfoCountResponse> {
-        self.describeNatFwInfoCount(DescribeNatFwInfoCountRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNatFwInfoCountRequest()
+        return self.client.execute(action: "DescribeNatFwInfoCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取当前用户接入nat防火墙的所有子网数及natfw实例个数
     @inlinable
     public func describeNatFwInfoCount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInfoCountResponse {
-        try await self.describeNatFwInfoCount(DescribeNatFwInfoCountRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNatFwInfoCountRequest()
+        return try await self.client.execute(action: "DescribeNatFwInfoCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

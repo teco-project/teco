@@ -63,12 +63,14 @@ extension Ccc {
     /// 获取 PSTN 会话信息
     @inlinable
     public func describeTelSession(sdkAppId: Int64, sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelSessionResponse> {
-        self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId)
+        return self.client.execute(action: "DescribeTelSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取 PSTN 会话信息
     @inlinable
     public func describeTelSession(sdkAppId: Int64, sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelSessionResponse {
-        try await self.describeTelSession(DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTelSessionRequest(sdkAppId: sdkAppId, sessionId: sessionId)
+        return try await self.client.execute(action: "DescribeTelSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

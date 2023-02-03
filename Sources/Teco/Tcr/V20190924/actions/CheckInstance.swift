@@ -68,7 +68,8 @@ extension Tcr {
     /// 用于校验企业版实例信息
     @inlinable
     public func checkInstance(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstanceResponse> {
-        self.checkInstance(CheckInstanceRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
+        let input = CheckInstanceRequest(registryId: registryId)
+        return self.client.execute(action: "CheckInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 校验实例信息
@@ -76,6 +77,7 @@ extension Tcr {
     /// 用于校验企业版实例信息
     @inlinable
     public func checkInstance(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstanceResponse {
-        try await self.checkInstance(CheckInstanceRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
+        let input = CheckInstanceRequest(registryId: registryId)
+        return try await self.client.execute(action: "CheckInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -80,7 +80,8 @@ extension Apigateway {
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
     @inlinable
     public func bindIPStrategy(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindIPStrategyResponse> {
-        self.bindIPStrategy(BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds), region: region, logger: logger, on: eventLoop)
+        let input = BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds)
+        return self.client.execute(action: "BindIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// API绑定IP策略
@@ -88,6 +89,7 @@ extension Apigateway {
     /// 本接口（BindIPStrategy）用于API绑定IP策略。
     @inlinable
     public func bindIPStrategy(serviceId: String, strategyId: String, environmentName: String, bindApiIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindIPStrategyResponse {
-        try await self.bindIPStrategy(BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds), region: region, logger: logger, on: eventLoop)
+        let input = BindIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, bindApiIds: bindApiIds)
+        return try await self.client.execute(action: "BindIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

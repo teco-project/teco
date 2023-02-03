@@ -84,7 +84,8 @@ extension Tcr {
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
     @inlinable
     public func describeRepositoryFilterPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, public: Int64? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoryFilterPersonalResponse> {
-        self.describeRepositoryFilterPersonal(DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace)
+        return self.client.execute(action: "DescribeRepositoryFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取满足输入搜索条件的个人版镜像仓库
@@ -92,6 +93,7 @@ extension Tcr {
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
     @inlinable
     public func describeRepositoryFilterPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, public: Int64? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoryFilterPersonalResponse {
-        try await self.describeRepositoryFilterPersonal(DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRepositoryFilterPersonalRequest(repoName: repoName, offset: offset, limit: limit, public: `public`, namespace: namespace)
+        return try await self.client.execute(action: "DescribeRepositoryFilterPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

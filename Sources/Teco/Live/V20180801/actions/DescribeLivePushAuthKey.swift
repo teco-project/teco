@@ -64,7 +64,8 @@ extension Live {
     /// 查询直播推流鉴权key
     @inlinable
     public func describeLivePushAuthKey(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLivePushAuthKeyResponse> {
-        self.describeLivePushAuthKey(DescribeLivePushAuthKeyRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLivePushAuthKeyRequest(domainName: domainName)
+        return self.client.execute(action: "DescribeLivePushAuthKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询推流鉴权key
@@ -72,6 +73,7 @@ extension Live {
     /// 查询直播推流鉴权key
     @inlinable
     public func describeLivePushAuthKey(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLivePushAuthKeyResponse {
-        try await self.describeLivePushAuthKey(DescribeLivePushAuthKeyRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLivePushAuthKeyRequest(domainName: domainName)
+        return try await self.client.execute(action: "DescribeLivePushAuthKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

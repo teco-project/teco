@@ -85,7 +85,8 @@ extension Asr {
     /// 注意：调用该接口后，模型会自动训练。新建模型成功后，调用ModifyCustomizationState接口修改为上线状态，即可在识别请求中使用对应模型ID。
     @inlinable
     public func createCustomization(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomizationResponse> {
-        self.createCustomization(CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos)
+        return self.client.execute(action: "CreateCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自学习模型
@@ -95,6 +96,7 @@ extension Asr {
     /// 注意：调用该接口后，模型会自动训练。新建模型成功后，调用ModifyCustomizationState接口修改为上线状态，即可在识别请求中使用对应模型ID。
     @inlinable
     public func createCustomization(modelName: String, textUrl: String, modelType: String, tagInfos: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomizationResponse {
-        try await self.createCustomization(CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomizationRequest(modelName: modelName, textUrl: textUrl, modelType: modelType, tagInfos: tagInfos)
+        return try await self.client.execute(action: "CreateCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

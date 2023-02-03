@@ -64,12 +64,14 @@ extension Tke {
     /// 查询边缘容器集群可用的自定义参数
     @inlinable
     public func describeEdgeAvailableExtraArgs(clusterVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAvailableExtraArgsResponse> {
-        self.describeEdgeAvailableExtraArgs(DescribeEdgeAvailableExtraArgsRequest(clusterVersion: clusterVersion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeAvailableExtraArgsRequest(clusterVersion: clusterVersion)
+        return self.client.execute(action: "DescribeEdgeAvailableExtraArgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘容器集群可用的自定义参数
     @inlinable
     public func describeEdgeAvailableExtraArgs(clusterVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAvailableExtraArgsResponse {
-        try await self.describeEdgeAvailableExtraArgs(DescribeEdgeAvailableExtraArgsRequest(clusterVersion: clusterVersion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeAvailableExtraArgsRequest(clusterVersion: clusterVersion)
+        return try await self.client.execute(action: "DescribeEdgeAvailableExtraArgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Ecm {
     /// CPU 内存 硬盘等基础信息峰值数据
     @inlinable
     public func describePeakBaseOverview(startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePeakBaseOverviewResponse> {
-        self.describePeakBaseOverview(DescribePeakBaseOverviewRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribePeakBaseOverviewRequest(startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribePeakBaseOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 基础信息峰值数据
@@ -78,6 +79,7 @@ extension Ecm {
     /// CPU 内存 硬盘等基础信息峰值数据
     @inlinable
     public func describePeakBaseOverview(startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePeakBaseOverviewResponse {
-        try await self.describePeakBaseOverview(DescribePeakBaseOverviewRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribePeakBaseOverviewRequest(startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribePeakBaseOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

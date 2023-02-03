@@ -74,7 +74,8 @@ extension Cbs {
     /// * 本接口为异步接口，接口成功返回时，云盘并未立即扩容到指定大小，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态为“EXPANDING”，表示正在扩容中。
     @inlinable @discardableResult
     public func resizeDisk(diskSize: UInt64, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResizeDiskResponse> {
-        self.resizeDisk(ResizeDiskRequest(diskSize: diskSize, diskId: diskId), region: region, logger: logger, on: eventLoop)
+        let input = ResizeDiskRequest(diskSize: diskSize, diskId: diskId)
+        return self.client.execute(action: "ResizeDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 扩容云硬盘
@@ -85,6 +86,7 @@ extension Cbs {
     /// * 本接口为异步接口，接口成功返回时，云盘并未立即扩容到指定大小，可通过接口[DescribeDisks](/document/product/362/16315)来查询对应云盘的状态，如果云盘的状态为“EXPANDING”，表示正在扩容中。
     @inlinable @discardableResult
     public func resizeDisk(diskSize: UInt64, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResizeDiskResponse {
-        try await self.resizeDisk(ResizeDiskRequest(diskSize: diskSize, diskId: diskId), region: region, logger: logger, on: eventLoop)
+        let input = ResizeDiskRequest(diskSize: diskSize, diskId: diskId)
+        return try await self.client.execute(action: "ResizeDisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

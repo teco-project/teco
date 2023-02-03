@@ -133,7 +133,8 @@ extension Tiia {
     /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(imageUrl: String? = nil, imageBase64: String? = nil, enableDetect: Bool? = nil, enablePreferred: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectSecurityResponse> {
-        self.detectSecurity(DetectSecurityRequest(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred), region: region, logger: logger, on: eventLoop)
+        let input = DetectSecurityRequest(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred)
+        return self.client.execute(action: "DetectSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全属性识别
@@ -154,6 +155,7 @@ extension Tiia {
     /// | 9 | 反光衣识别<div style="width: 70pt"> |无反光衣、有反光衣、被优选过滤|
     @inlinable
     public func detectSecurity(imageUrl: String? = nil, imageBase64: String? = nil, enableDetect: Bool? = nil, enablePreferred: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectSecurityResponse {
-        try await self.detectSecurity(DetectSecurityRequest(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred), region: region, logger: logger, on: eventLoop)
+        let input = DetectSecurityRequest(imageUrl: imageUrl, imageBase64: imageBase64, enableDetect: enableDetect, enablePreferred: enablePreferred)
+        return try await self.client.execute(action: "DetectSecurity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

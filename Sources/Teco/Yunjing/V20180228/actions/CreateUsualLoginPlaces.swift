@@ -65,7 +65,8 @@ extension Yunjing {
     /// 此接口（CreateUsualLoginPlaces）用于添加常用登录地。
     @inlinable @discardableResult
     public func createUsualLoginPlaces(uuids: [String], places: [Place], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUsualLoginPlacesResponse> {
-        self.createUsualLoginPlaces(CreateUsualLoginPlacesRequest(uuids: uuids, places: places), region: region, logger: logger, on: eventLoop)
+        let input = CreateUsualLoginPlacesRequest(uuids: uuids, places: places)
+        return self.client.execute(action: "CreateUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加常用登录地
@@ -73,6 +74,7 @@ extension Yunjing {
     /// 此接口（CreateUsualLoginPlaces）用于添加常用登录地。
     @inlinable @discardableResult
     public func createUsualLoginPlaces(uuids: [String], places: [Place], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsualLoginPlacesResponse {
-        try await self.createUsualLoginPlaces(CreateUsualLoginPlacesRequest(uuids: uuids, places: places), region: region, logger: logger, on: eventLoop)
+        let input = CreateUsualLoginPlacesRequest(uuids: uuids, places: places)
+        return try await self.client.execute(action: "CreateUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

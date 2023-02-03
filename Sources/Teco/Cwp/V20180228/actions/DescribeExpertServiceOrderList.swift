@@ -78,7 +78,8 @@ extension Cwp {
     /// 专家服务-专家服务订单列表
     @inlinable
     public func describeExpertServiceOrderList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExpertServiceOrderListResponse> {
-        self.describeExpertServiceOrderList(DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeExpertServiceOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 专家服务订单列表
@@ -86,6 +87,7 @@ extension Cwp {
     /// 专家服务-专家服务订单列表
     @inlinable
     public func describeExpertServiceOrderList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExpertServiceOrderListResponse {
-        try await self.describeExpertServiceOrderList(DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExpertServiceOrderListRequest(filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeExpertServiceOrderList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

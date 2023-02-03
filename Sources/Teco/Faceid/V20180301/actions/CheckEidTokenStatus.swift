@@ -68,7 +68,8 @@ extension Faceid {
     /// 用于轮询E证通H5场景EidToken验证状态。
     @inlinable
     public func checkEidTokenStatus(eidToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckEidTokenStatusResponse> {
-        self.checkEidTokenStatus(CheckEidTokenStatusRequest(eidToken: eidToken), region: region, logger: logger, on: eventLoop)
+        let input = CheckEidTokenStatusRequest(eidToken: eidToken)
+        return self.client.execute(action: "CheckEidTokenStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取E证通Token状态
@@ -76,6 +77,7 @@ extension Faceid {
     /// 用于轮询E证通H5场景EidToken验证状态。
     @inlinable
     public func checkEidTokenStatus(eidToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckEidTokenStatusResponse {
-        try await self.checkEidTokenStatus(CheckEidTokenStatusRequest(eidToken: eidToken), region: region, logger: logger, on: eventLoop)
+        let input = CheckEidTokenStatusRequest(eidToken: eidToken)
+        return try await self.client.execute(action: "CheckEidTokenStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

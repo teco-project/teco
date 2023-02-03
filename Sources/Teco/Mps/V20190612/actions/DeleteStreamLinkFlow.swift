@@ -60,7 +60,8 @@ extension Mps {
     /// 删除媒体传输的传输流配置。
     @inlinable @discardableResult
     public func deleteStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStreamLinkFlowResponse> {
-        self.deleteStreamLinkFlow(DeleteStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteStreamLinkFlowRequest(flowId: flowId)
+        return self.client.execute(action: "DeleteStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除媒体传输流
@@ -68,6 +69,7 @@ extension Mps {
     /// 删除媒体传输的传输流配置。
     @inlinable @discardableResult
     public func deleteStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStreamLinkFlowResponse {
-        try await self.deleteStreamLinkFlow(DeleteStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteStreamLinkFlowRequest(flowId: flowId)
+        return try await self.client.execute(action: "DeleteStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

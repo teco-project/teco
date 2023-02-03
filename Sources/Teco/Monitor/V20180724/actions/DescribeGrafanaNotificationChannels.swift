@@ -83,12 +83,14 @@ extension Monitor {
     /// 列出 Grafana 告警通道
     @inlinable
     public func describeGrafanaNotificationChannels(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIDs: [String]? = nil, channelState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaNotificationChannelsResponse> {
-        self.describeGrafanaNotificationChannels(DescribeGrafanaNotificationChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIDs: channelIDs, channelState: channelState), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGrafanaNotificationChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIDs: channelIDs, channelState: channelState)
+        return self.client.execute(action: "DescribeGrafanaNotificationChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 告警通道
     @inlinable
     public func describeGrafanaNotificationChannels(instanceId: String, offset: Int64, limit: Int64, channelName: String? = nil, channelIDs: [String]? = nil, channelState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaNotificationChannelsResponse {
-        try await self.describeGrafanaNotificationChannels(DescribeGrafanaNotificationChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIDs: channelIDs, channelState: channelState), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGrafanaNotificationChannelsRequest(instanceId: instanceId, offset: offset, limit: limit, channelName: channelName, channelIDs: channelIDs, channelState: channelState)
+        return try await self.client.execute(action: "DescribeGrafanaNotificationChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

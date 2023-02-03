@@ -74,12 +74,14 @@ extension Tem {
     /// 删除一条访问方式
     @inlinable
     public func deleteApplicationService(applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteApplicationServiceResponse> {
-        self.deleteApplicationService(DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName)
+        return self.client.execute(action: "DeleteApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除一条访问方式
     @inlinable
     public func deleteApplicationService(applicationId: String? = nil, sourceChannel: Int64? = nil, environmentId: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteApplicationServiceResponse {
-        try await self.deleteApplicationService(DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteApplicationServiceRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId, serviceName: serviceName)
+        return try await self.client.execute(action: "DeleteApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

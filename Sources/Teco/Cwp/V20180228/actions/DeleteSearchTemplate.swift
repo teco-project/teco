@@ -58,12 +58,14 @@ extension Cwp {
     /// 删除检索模板
     @inlinable
     public func deleteSearchTemplate(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSearchTemplateResponse> {
-        self.deleteSearchTemplate(DeleteSearchTemplateRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSearchTemplateRequest(id: id)
+        return self.client.execute(action: "DeleteSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除检索模板
     @inlinable
     public func deleteSearchTemplate(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSearchTemplateResponse {
-        try await self.deleteSearchTemplate(DeleteSearchTemplateRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSearchTemplateRequest(id: id)
+        return try await self.client.execute(action: "DeleteSearchTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

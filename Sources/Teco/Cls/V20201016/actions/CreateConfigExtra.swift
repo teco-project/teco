@@ -144,7 +144,8 @@ extension Cls {
     /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
     public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigExtraResponse> {
-        self.createConfigExtra(CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds)
+        return self.client.execute(action: "CreateConfigExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建特殊采集配置任务
@@ -152,6 +153,7 @@ extension Cls {
     /// 本接口用于创建特殊采集配置任务，特殊采集配置应用于自建K8S环境的采集Agent
     @inlinable
     public func createConfigExtra(name: String, topicId: String, type: String, logType: String, configFlag: String, logsetId: String, logsetName: String, topicName: String, hostFile: HostFileInfo? = nil, containerFile: ContainerFileInfo? = nil, containerStdout: ContainerStdoutInfo? = nil, logFormat: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, userDefineRule: String? = nil, groupId: String? = nil, groupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigExtraResponse {
-        try await self.createConfigExtra(CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateConfigExtraRequest(name: name, topicId: topicId, type: type, logType: logType, configFlag: configFlag, logsetId: logsetId, logsetName: logsetName, topicName: topicName, hostFile: hostFile, containerFile: containerFile, containerStdout: containerStdout, logFormat: logFormat, extractRule: extractRule, excludePaths: excludePaths, userDefineRule: userDefineRule, groupId: groupId, groupIds: groupIds)
+        return try await self.client.execute(action: "CreateConfigExtra", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

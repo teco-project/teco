@@ -59,12 +59,14 @@ extension Monitor {
     /// 修改2.0实例告警策略
     @inlinable @discardableResult
     public func modifyPrometheusAlertPolicy(instanceId: String, alertRule: PrometheusAlertPolicyItem, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusAlertPolicyResponse> {
-        self.modifyPrometheusAlertPolicy(ModifyPrometheusAlertPolicyRequest(instanceId: instanceId, alertRule: alertRule), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPrometheusAlertPolicyRequest(instanceId: instanceId, alertRule: alertRule)
+        return self.client.execute(action: "ModifyPrometheusAlertPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改2.0实例告警策略
     @inlinable @discardableResult
     public func modifyPrometheusAlertPolicy(instanceId: String, alertRule: PrometheusAlertPolicyItem, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusAlertPolicyResponse {
-        try await self.modifyPrometheusAlertPolicy(ModifyPrometheusAlertPolicyRequest(instanceId: instanceId, alertRule: alertRule), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPrometheusAlertPolicyRequest(instanceId: instanceId, alertRule: alertRule)
+        return try await self.client.execute(action: "ModifyPrometheusAlertPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

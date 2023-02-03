@@ -91,12 +91,14 @@ extension Redis {
     /// 查询实例节点信息
     @inlinable
     public func describeInstanceNodeInfo(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceNodeInfoResponse> {
-        self.describeInstanceNodeInfo(DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例节点信息
     @inlinable
     public func describeInstanceNodeInfo(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceNodeInfoResponse {
-        try await self.describeInstanceNodeInfo(DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

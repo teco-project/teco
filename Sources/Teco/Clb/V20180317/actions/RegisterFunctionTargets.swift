@@ -115,7 +115,8 @@ extension Clb {
     /// - CLB 绑定 SCF 仅支持绑定“Event 函数”类型的云函数。
     @inlinable @discardableResult
     public func registerFunctionTargets(loadBalancerId: String, listenerId: String, functionTargets: [FunctionTarget], locationId: String? = nil, domain: String? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterFunctionTargetsResponse> {
-        self.registerFunctionTargets(RegisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url), region: region, logger: logger, on: eventLoop)
+        let input = RegisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url)
+        return self.client.execute(action: "RegisterFunctionTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定云函数到转发规则上
@@ -133,6 +134,7 @@ extension Clb {
     /// - CLB 绑定 SCF 仅支持绑定“Event 函数”类型的云函数。
     @inlinable @discardableResult
     public func registerFunctionTargets(loadBalancerId: String, listenerId: String, functionTargets: [FunctionTarget], locationId: String? = nil, domain: String? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterFunctionTargetsResponse {
-        try await self.registerFunctionTargets(RegisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url), region: region, logger: logger, on: eventLoop)
+        let input = RegisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url)
+        return try await self.client.execute(action: "RegisterFunctionTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

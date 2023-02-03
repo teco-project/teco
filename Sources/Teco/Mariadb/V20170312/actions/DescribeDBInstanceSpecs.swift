@@ -56,7 +56,8 @@ extension Mariadb {
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
     @inlinable
     public func describeDBInstanceSpecs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceSpecsResponse> {
-        self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBInstanceSpecsRequest()
+        return self.client.execute(action: "DescribeDBInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库可售卖规格
@@ -64,6 +65,7 @@ extension Mariadb {
     /// 本接口(DescribeDBInstanceSpecs)用于查询可创建的云数据库可售卖的规格配置。
     @inlinable
     public func describeDBInstanceSpecs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceSpecsResponse {
-        try await self.describeDBInstanceSpecs(DescribeDBInstanceSpecsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBInstanceSpecsRequest()
+        return try await self.client.execute(action: "DescribeDBInstanceSpecs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

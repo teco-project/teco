@@ -189,7 +189,8 @@ extension Vod {
     /// 剪辑不固化的优势在于其剪辑操作十分“轻量化”，不会产生额外的存储开销。但其不足之处在于生命周期与原始录制视频相同，且无法进一步进行转码等视频处理。
     @inlinable
     public func simpleHlsClip(url: String, subAppId: UInt64? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil, isPersistence: Int64? = nil, expireTime: String? = nil, procedure: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SimpleHlsClipResponse> {
-        self.simpleHlsClip(SimpleHlsClipRequest(url: url, subAppId: subAppId, startTimeOffset: startTimeOffset, endTimeOffset: endTimeOffset, isPersistence: isPersistence, expireTime: expireTime, procedure: procedure, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
+        let input = SimpleHlsClipRequest(url: url, subAppId: subAppId, startTimeOffset: startTimeOffset, endTimeOffset: endTimeOffset, isPersistence: isPersistence, expireTime: expireTime, procedure: procedure, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext)
+        return self.client.execute(action: "SimpleHlsClip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 简单 HLS 剪辑
@@ -219,6 +220,7 @@ extension Vod {
     /// 剪辑不固化的优势在于其剪辑操作十分“轻量化”，不会产生额外的存储开销。但其不足之处在于生命周期与原始录制视频相同，且无法进一步进行转码等视频处理。
     @inlinable
     public func simpleHlsClip(url: String, subAppId: UInt64? = nil, startTimeOffset: Float? = nil, endTimeOffset: Float? = nil, isPersistence: Int64? = nil, expireTime: String? = nil, procedure: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SimpleHlsClipResponse {
-        try await self.simpleHlsClip(SimpleHlsClipRequest(url: url, subAppId: subAppId, startTimeOffset: startTimeOffset, endTimeOffset: endTimeOffset, isPersistence: isPersistence, expireTime: expireTime, procedure: procedure, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
+        let input = SimpleHlsClipRequest(url: url, subAppId: subAppId, startTimeOffset: startTimeOffset, endTimeOffset: endTimeOffset, isPersistence: isPersistence, expireTime: expireTime, procedure: procedure, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext)
+        return try await self.client.execute(action: "SimpleHlsClip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

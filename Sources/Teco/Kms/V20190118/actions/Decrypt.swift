@@ -84,7 +84,8 @@ extension Kms {
     /// 本接口用于解密密文，得到明文数据。
     @inlinable
     public func decrypt(ciphertextBlob: String, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DecryptResponse> {
-        self.decrypt(DecryptRequest(ciphertextBlob: ciphertextBlob, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm), region: region, logger: logger, on: eventLoop)
+        let input = DecryptRequest(ciphertextBlob: ciphertextBlob, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm)
+        return self.client.execute(action: "Decrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解密
@@ -92,6 +93,7 @@ extension Kms {
     /// 本接口用于解密密文，得到明文数据。
     @inlinable
     public func decrypt(ciphertextBlob: String, encryptionContext: String? = nil, encryptionPublicKey: String? = nil, encryptionAlgorithm: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DecryptResponse {
-        try await self.decrypt(DecryptRequest(ciphertextBlob: ciphertextBlob, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm), region: region, logger: logger, on: eventLoop)
+        let input = DecryptRequest(ciphertextBlob: ciphertextBlob, encryptionContext: encryptionContext, encryptionPublicKey: encryptionPublicKey, encryptionAlgorithm: encryptionAlgorithm)
+        return try await self.client.execute(action: "Decrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

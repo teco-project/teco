@@ -64,7 +64,8 @@ extension Sqlserver {
     /// 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
     @inlinable
     public func describeReadOnlyGroupList(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReadOnlyGroupListResponse> {
-        self.describeReadOnlyGroupList(DescribeReadOnlyGroupListRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReadOnlyGroupListRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeReadOnlyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询只读组列表
@@ -72,6 +73,7 @@ extension Sqlserver {
     /// 本接口（DescribeReadOnlyGroupList）用于查询只读组列表。
     @inlinable
     public func describeReadOnlyGroupList(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReadOnlyGroupListResponse {
-        try await self.describeReadOnlyGroupList(DescribeReadOnlyGroupListRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReadOnlyGroupListRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeReadOnlyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

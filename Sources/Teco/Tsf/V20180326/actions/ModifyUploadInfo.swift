@@ -93,7 +93,8 @@ extension Tsf {
     /// 调用此接口完成后，才标志上传包流程结束。
     @inlinable @discardableResult
     public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUploadInfoResponse> {
-        self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId)
+        return self.client.execute(action: "ModifyUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新上传程序包信息
@@ -102,6 +103,7 @@ extension Tsf {
     /// 调用此接口完成后，才标志上传包流程结束。
     @inlinable @discardableResult
     public func modifyUploadInfo(applicationId: String, pkgId: String, result: Int64, md5: String, size: UInt64? = nil, repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUploadInfoResponse {
-        try await self.modifyUploadInfo(ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyUploadInfoRequest(applicationId: applicationId, pkgId: pkgId, result: result, md5: md5, size: size, repositoryType: repositoryType, repositoryId: repositoryId)
+        return try await self.client.execute(action: "ModifyUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

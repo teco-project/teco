@@ -88,7 +88,8 @@ extension Iotvideoindustry {
     /// 请使用ControlChannelPTZ接口
     @inlinable @discardableResult
     public func controlDevicePTZ(deviceId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlDevicePTZResponse> {
-        self.controlDevicePTZ(ControlDevicePTZRequest(deviceId: deviceId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
+        let input = ControlDevicePTZRequest(deviceId: deviceId, command: command, channelId: channelId)
+        return self.client.execute(action: "ControlDevicePTZ", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 远程PTZ控制设备通道（旧）
@@ -97,6 +98,7 @@ extension Iotvideoindustry {
     /// 请使用ControlChannelPTZ接口
     @inlinable @discardableResult
     public func controlDevicePTZ(deviceId: String, command: String, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlDevicePTZResponse {
-        try await self.controlDevicePTZ(ControlDevicePTZRequest(deviceId: deviceId, command: command, channelId: channelId), region: region, logger: logger, on: eventLoop)
+        let input = ControlDevicePTZRequest(deviceId: deviceId, command: command, channelId: channelId)
+        return try await self.client.execute(action: "ControlDevicePTZ", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

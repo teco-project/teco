@@ -82,12 +82,14 @@ extension Tcss {
     /// 查询自动授权规则授权范围主机信息
     @inlinable
     public func describeAutoAuthorizedRuleHost(ruleId: Int64, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoAuthorizedRuleHostResponse> {
-        self.describeAutoAuthorizedRuleHost(DescribeAutoAuthorizedRuleHostRequest(ruleId: ruleId, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoAuthorizedRuleHostRequest(ruleId: ruleId, limit: limit, offset: offset, order: order, by: by)
+        return self.client.execute(action: "DescribeAutoAuthorizedRuleHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询自动授权规则授权范围主机信息
     @inlinable
     public func describeAutoAuthorizedRuleHost(ruleId: Int64, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoAuthorizedRuleHostResponse {
-        try await self.describeAutoAuthorizedRuleHost(DescribeAutoAuthorizedRuleHostRequest(ruleId: ruleId, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoAuthorizedRuleHostRequest(ruleId: ruleId, limit: limit, offset: offset, order: order, by: by)
+        return try await self.client.execute(action: "DescribeAutoAuthorizedRuleHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

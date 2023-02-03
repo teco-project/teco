@@ -82,7 +82,8 @@ extension Bma {
     /// 版权保护-查询监测列表接口
     @inlinable
     public func describeCRMonitors(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCRMonitorsResponse> {
-        self.describeCRMonitors(DescribeCRMonitorsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCRMonitorsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
+        return self.client.execute(action: "DescribeCRMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询监测列表
@@ -90,6 +91,7 @@ extension Bma {
     /// 版权保护-查询监测列表接口
     @inlinable
     public func describeCRMonitors(filters: [Filter]? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCRMonitorsResponse {
-        try await self.describeCRMonitors(DescribeCRMonitorsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCRMonitorsRequest(filters: filters, pageSize: pageSize, pageNumber: pageNumber)
+        return try await self.client.execute(action: "DescribeCRMonitors", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

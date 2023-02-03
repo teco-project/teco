@@ -79,12 +79,14 @@ extension Tem {
     /// 修改服务访问方式列表
     @inlinable
     public func modifyApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: EksService? = nil, data: ServicePortMapping? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationServiceResponse> {
-        self.modifyApplicationService(ModifyApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service, data: data), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service, data: data)
+        return self.client.execute(action: "ModifyApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改服务访问方式列表
     @inlinable
     public func modifyApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: EksService? = nil, data: ServicePortMapping? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationServiceResponse {
-        try await self.modifyApplicationService(ModifyApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service, data: data), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service, data: data)
+        return try await self.client.execute(action: "ModifyApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

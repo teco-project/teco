@@ -75,12 +75,14 @@ extension Teo {
     /// 修改应用代理规则的状态
     @inlinable
     public func modifyApplicationProxyRuleStatus(zoneId: String, proxyId: String, ruleId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationProxyRuleStatusResponse> {
-        self.modifyApplicationProxyRuleStatus(ModifyApplicationProxyRuleStatusRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationProxyRuleStatusRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, status: status)
+        return self.client.execute(action: "ModifyApplicationProxyRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用代理规则的状态
     @inlinable
     public func modifyApplicationProxyRuleStatus(zoneId: String, proxyId: String, ruleId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationProxyRuleStatusResponse {
-        try await self.modifyApplicationProxyRuleStatus(ModifyApplicationProxyRuleStatusRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationProxyRuleStatusRequest(zoneId: zoneId, proxyId: proxyId, ruleId: ruleId, status: status)
+        return try await self.client.execute(action: "ModifyApplicationProxyRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

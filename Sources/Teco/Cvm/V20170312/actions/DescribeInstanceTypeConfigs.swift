@@ -77,7 +77,8 @@ extension Cvm {
     /// * 如果参数为空，返回指定地域的所有实例机型配置。
     @inlinable
     public func describeInstanceTypeConfigs(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceTypeConfigsResponse> {
-        self.describeInstanceTypeConfigs(DescribeInstanceTypeConfigsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceTypeConfigsRequest(filters: filters)
+        return self.client.execute(action: "DescribeInstanceTypeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例机型列表
@@ -88,6 +89,7 @@ extension Cvm {
     /// * 如果参数为空，返回指定地域的所有实例机型配置。
     @inlinable
     public func describeInstanceTypeConfigs(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypeConfigsResponse {
-        try await self.describeInstanceTypeConfigs(DescribeInstanceTypeConfigsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceTypeConfigsRequest(filters: filters)
+        return try await self.client.execute(action: "DescribeInstanceTypeConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

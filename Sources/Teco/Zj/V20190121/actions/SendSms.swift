@@ -100,12 +100,14 @@ extension Zj {
     /// 发送短信
     @inlinable
     public func sendSms(license: String, phone: [String], templateId: String? = nil, params: [String]? = nil, sign: String? = nil, senderId: String? = nil, smsType: UInt64? = nil, international: UInt64? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendSmsResponse> {
-        self.sendSms(SendSmsRequest(license: license, phone: phone, templateId: templateId, params: params, sign: sign, senderId: senderId, smsType: smsType, international: international, content: content), region: region, logger: logger, on: eventLoop)
+        let input = SendSmsRequest(license: license, phone: phone, templateId: templateId, params: params, sign: sign, senderId: senderId, smsType: smsType, international: international, content: content)
+        return self.client.execute(action: "SendSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送短信
     @inlinable
     public func sendSms(license: String, phone: [String], templateId: String? = nil, params: [String]? = nil, sign: String? = nil, senderId: String? = nil, smsType: UInt64? = nil, international: UInt64? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendSmsResponse {
-        try await self.sendSms(SendSmsRequest(license: license, phone: phone, templateId: templateId, params: params, sign: sign, senderId: senderId, smsType: smsType, international: international, content: content), region: region, logger: logger, on: eventLoop)
+        let input = SendSmsRequest(license: license, phone: phone, templateId: templateId, params: params, sign: sign, senderId: senderId, smsType: smsType, international: international, content: content)
+        return try await self.client.execute(action: "SendSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

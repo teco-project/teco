@@ -69,12 +69,14 @@ extension Iecp {
     /// 创建ConfigMap
     @inlinable @discardableResult
     public func createConfigMap(edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConfigMapResponse> {
-        self.createConfigMap(CreateConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapData: configMapData, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
+        let input = CreateConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapData: configMapData, configMapNamespace: configMapNamespace)
+        return self.client.execute(action: "CreateConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建ConfigMap
     @inlinable @discardableResult
     public func createConfigMap(edgeUnitID: UInt64, configMapName: String, configMapData: [KeyValueObj], configMapNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConfigMapResponse {
-        try await self.createConfigMap(CreateConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapData: configMapData, configMapNamespace: configMapNamespace), region: region, logger: logger, on: eventLoop)
+        let input = CreateConfigMapRequest(edgeUnitID: edgeUnitID, configMapName: configMapName, configMapData: configMapData, configMapNamespace: configMapNamespace)
+        return try await self.client.execute(action: "CreateConfigMap", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

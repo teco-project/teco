@@ -63,12 +63,14 @@ extension Tsf {
     /// 查询一键导入API分组任务的状态
     @inlinable
     public func describeCreateGatewayApiStatus(groupId: String? = nil, microserviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCreateGatewayApiStatusResponse> {
-        self.describeCreateGatewayApiStatus(DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId)
+        return self.client.execute(action: "DescribeCreateGatewayApiStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询一键导入API分组任务的状态
     @inlinable
     public func describeCreateGatewayApiStatus(groupId: String? = nil, microserviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCreateGatewayApiStatusResponse {
-        try await self.describeCreateGatewayApiStatus(DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCreateGatewayApiStatusRequest(groupId: groupId, microserviceId: microserviceId)
+        return try await self.client.execute(action: "DescribeCreateGatewayApiStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

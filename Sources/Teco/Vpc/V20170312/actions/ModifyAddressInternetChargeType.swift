@@ -81,7 +81,8 @@ extension Vpc {
     /// * 每个弹性公网IP支持调整两次，次数超出则无法调整。
     @inlinable @discardableResult
     public func modifyAddressInternetChargeType(addressId: String, internetChargeType: String, internetMaxBandwidthOut: UInt64, addressChargePrepaid: AddressChargePrepaid? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressInternetChargeTypeResponse> {
-        self.modifyAddressInternetChargeType(ModifyAddressInternetChargeTypeRequest(addressId: addressId, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAddressInternetChargeTypeRequest(addressId: addressId, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid)
+        return self.client.execute(action: "ModifyAddressInternetChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整弹性公网ip计费模式
@@ -91,6 +92,7 @@ extension Vpc {
     /// * 每个弹性公网IP支持调整两次，次数超出则无法调整。
     @inlinable @discardableResult
     public func modifyAddressInternetChargeType(addressId: String, internetChargeType: String, internetMaxBandwidthOut: UInt64, addressChargePrepaid: AddressChargePrepaid? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressInternetChargeTypeResponse {
-        try await self.modifyAddressInternetChargeType(ModifyAddressInternetChargeTypeRequest(addressId: addressId, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAddressInternetChargeTypeRequest(addressId: addressId, internetChargeType: internetChargeType, internetMaxBandwidthOut: internetMaxBandwidthOut, addressChargePrepaid: addressChargePrepaid)
+        return try await self.client.execute(action: "ModifyAddressInternetChargeType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

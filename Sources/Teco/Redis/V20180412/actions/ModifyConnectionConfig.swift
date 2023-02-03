@@ -76,7 +76,8 @@ extension Redis {
     /// 修改实例的连接配置，包括带宽和最大连接数。
     @inlinable
     public func modifyConnectionConfig(instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConnectionConfigResponse> {
-        self.modifyConnectionConfig(ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit), region: region, logger: logger, on: eventLoop)
+        let input = ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit)
+        return self.client.execute(action: "ModifyConnectionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例连接配置
@@ -84,6 +85,7 @@ extension Redis {
     /// 修改实例的连接配置，包括带宽和最大连接数。
     @inlinable
     public func modifyConnectionConfig(instanceId: String, bandwidth: Int64? = nil, clientLimit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConnectionConfigResponse {
-        try await self.modifyConnectionConfig(ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit), region: region, logger: logger, on: eventLoop)
+        let input = ModifyConnectionConfigRequest(instanceId: instanceId, bandwidth: bandwidth, clientLimit: clientLimit)
+        return try await self.client.execute(action: "ModifyConnectionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

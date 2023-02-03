@@ -78,7 +78,8 @@ extension Cam {
     /// 本接口（ListAttachedUserPolicies）可用于查询子账号关联的策略列表。
     @inlinable
     public func listAttachedUserPolicies(targetUin: UInt64, page: UInt64? = nil, rp: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedUserPoliciesResponse> {
-        self.listAttachedUserPolicies(ListAttachedUserPoliciesRequest(targetUin: targetUin, page: page, rp: rp), region: region, logger: logger, on: eventLoop)
+        let input = ListAttachedUserPoliciesRequest(targetUin: targetUin, page: page, rp: rp)
+        return self.client.execute(action: "ListAttachedUserPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询子账号关联的策略列表
@@ -86,6 +87,7 @@ extension Cam {
     /// 本接口（ListAttachedUserPolicies）可用于查询子账号关联的策略列表。
     @inlinable
     public func listAttachedUserPolicies(targetUin: UInt64, page: UInt64? = nil, rp: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserPoliciesResponse {
-        try await self.listAttachedUserPolicies(ListAttachedUserPoliciesRequest(targetUin: targetUin, page: page, rp: rp), region: region, logger: logger, on: eventLoop)
+        let input = ListAttachedUserPoliciesRequest(targetUin: targetUin, page: page, rp: rp)
+        return try await self.client.execute(action: "ListAttachedUserPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,12 +63,14 @@ extension Cpdp {
     /// 直播平台-查询批次信息
     @inlinable
     public func queryAgentTaxPaymentBatch(batchNum: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAgentTaxPaymentBatchResponse> {
-        self.queryAgentTaxPaymentBatch(QueryAgentTaxPaymentBatchRequest(batchNum: batchNum, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryAgentTaxPaymentBatchRequest(batchNum: batchNum, profile: profile)
+        return self.client.execute(action: "QueryAgentTaxPaymentBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-查询批次信息
     @inlinable
     public func queryAgentTaxPaymentBatch(batchNum: Int64, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAgentTaxPaymentBatchResponse {
-        try await self.queryAgentTaxPaymentBatch(QueryAgentTaxPaymentBatchRequest(batchNum: batchNum, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryAgentTaxPaymentBatchRequest(batchNum: batchNum, profile: profile)
+        return try await self.client.execute(action: "QueryAgentTaxPaymentBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

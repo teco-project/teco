@@ -92,7 +92,8 @@ extension Cls {
     /// 本接口用于获取索引配置信息
     @inlinable
     public func describeIndex(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexResponse> {
-        self.describeIndex(DescribeIndexRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIndexRequest(topicId: topicId)
+        return self.client.execute(action: "DescribeIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取索引配置信息
@@ -100,6 +101,7 @@ extension Cls {
     /// 本接口用于获取索引配置信息
     @inlinable
     public func describeIndex(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexResponse {
-        try await self.describeIndex(DescribeIndexRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIndexRequest(topicId: topicId)
+        return try await self.client.execute(action: "DescribeIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

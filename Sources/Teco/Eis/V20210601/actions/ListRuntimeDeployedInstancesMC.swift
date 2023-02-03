@@ -105,12 +105,14 @@ extension Eis {
     /// 获取运行时部署的应用实例列表
     @inlinable
     public func listRuntimeDeployedInstancesMC(runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimeDeployedInstancesMCResponse> {
-        self.listRuntimeDeployedInstancesMC(ListRuntimeDeployedInstancesMCRequest(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ListRuntimeDeployedInstancesMCRequest(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status)
+        return self.client.execute(action: "ListRuntimeDeployedInstancesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时部署的应用实例列表
     @inlinable
     public func listRuntimeDeployedInstancesMC(runtimeId: Int64, limit: Int64, offset: Int64, sortType: Int64, sort: String, zone: String, apiVersion: Int64? = nil, groupId: Int64? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimeDeployedInstancesMCResponse {
-        try await self.listRuntimeDeployedInstancesMC(ListRuntimeDeployedInstancesMCRequest(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = ListRuntimeDeployedInstancesMCRequest(runtimeId: runtimeId, limit: limit, offset: offset, sortType: sortType, sort: sort, zone: zone, apiVersion: apiVersion, groupId: groupId, status: status)
+        return try await self.client.execute(action: "ListRuntimeDeployedInstancesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
     @inlinable @discardableResult
     public func createNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRules: [SourceIpTranslationNatRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNatGatewaySourceIpTranslationNatRuleResponse> {
-        self.createNatGatewaySourceIpTranslationNatRule(CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules), region: region, logger: logger, on: eventLoop)
+        let input = CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules)
+        return self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建NAT网关SNAT规则
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口(CreateNatGatewaySourceIpTranslationNatRule)用于创建NAT网关SNAT规则
     @inlinable @discardableResult
     public func createNatGatewaySourceIpTranslationNatRule(natGatewayId: String, sourceIpTranslationNatRules: [SourceIpTranslationNatRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNatGatewaySourceIpTranslationNatRuleResponse {
-        try await self.createNatGatewaySourceIpTranslationNatRule(CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules), region: region, logger: logger, on: eventLoop)
+        let input = CreateNatGatewaySourceIpTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceIpTranslationNatRules: sourceIpTranslationNatRules)
+        return try await self.client.execute(action: "CreateNatGatewaySourceIpTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -84,12 +84,14 @@ extension Tdmq {
     /// 创建AMQP路由关系
     @inlinable @discardableResult
     public func createAMQPRouteRelation(clusterId: String, vHostId: String, sourceExchange: String, destType: String, destValue: String, remark: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAMQPRouteRelationResponse> {
-        self.createAMQPRouteRelation(CreateAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, sourceExchange: sourceExchange, destType: destType, destValue: destValue, remark: remark, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
+        let input = CreateAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, sourceExchange: sourceExchange, destType: destType, destValue: destValue, remark: remark, routingKey: routingKey)
+        return self.client.execute(action: "CreateAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建AMQP路由关系
     @inlinable @discardableResult
     public func createAMQPRouteRelation(clusterId: String, vHostId: String, sourceExchange: String, destType: String, destValue: String, remark: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAMQPRouteRelationResponse {
-        try await self.createAMQPRouteRelation(CreateAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, sourceExchange: sourceExchange, destType: destType, destValue: destValue, remark: remark, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
+        let input = CreateAMQPRouteRelationRequest(clusterId: clusterId, vHostId: vHostId, sourceExchange: sourceExchange, destType: destType, destValue: destValue, remark: remark, routingKey: routingKey)
+        return try await self.client.execute(action: "CreateAMQPRouteRelation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

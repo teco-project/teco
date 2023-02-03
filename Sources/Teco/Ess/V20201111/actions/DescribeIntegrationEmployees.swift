@@ -94,7 +94,8 @@ extension Ess {
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
     public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationEmployeesResponse> {
-        self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset)
+        return self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询员工信息
@@ -102,6 +103,7 @@ extension Ess {
     /// 查询员工信息，每次返回的数据量最大为20
     @inlinable
     public func describeIntegrationEmployees(operator: UserInfo, limit: Int64, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationEmployeesResponse {
-        try await self.describeIntegrationEmployees(DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIntegrationEmployeesRequest(operator: `operator`, limit: limit, filters: filters, offset: offset)
+        return try await self.client.execute(action: "DescribeIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

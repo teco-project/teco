@@ -89,7 +89,8 @@ extension Zj {
     /// 推送超级短信
     @inlinable
     public func pushMmsContent(license: String, instanceId: Int64, tel: String, session: String? = nil, dynamicParaKey: [String]? = nil, dynamicParaValue: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushMmsContentResponse> {
-        self.pushMmsContent(PushMmsContentRequest(license: license, instanceId: instanceId, tel: tel, session: session, dynamicParaKey: dynamicParaKey, dynamicParaValue: dynamicParaValue), region: region, logger: logger, on: eventLoop)
+        let input = PushMmsContentRequest(license: license, instanceId: instanceId, tel: tel, session: session, dynamicParaKey: dynamicParaKey, dynamicParaValue: dynamicParaValue)
+        return self.client.execute(action: "PushMmsContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 推送超级短信内容
@@ -97,6 +98,7 @@ extension Zj {
     /// 推送超级短信
     @inlinable
     public func pushMmsContent(license: String, instanceId: Int64, tel: String, session: String? = nil, dynamicParaKey: [String]? = nil, dynamicParaValue: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushMmsContentResponse {
-        try await self.pushMmsContent(PushMmsContentRequest(license: license, instanceId: instanceId, tel: tel, session: session, dynamicParaKey: dynamicParaKey, dynamicParaValue: dynamicParaValue), region: region, logger: logger, on: eventLoop)
+        let input = PushMmsContentRequest(license: license, instanceId: instanceId, tel: tel, session: session, dynamicParaKey: dynamicParaKey, dynamicParaValue: dynamicParaValue)
+        return try await self.client.execute(action: "PushMmsContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

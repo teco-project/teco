@@ -64,12 +64,14 @@ extension Monitor {
     /// 安装 Grafana Plugin
     @inlinable
     public func installPlugins(plugins: [GrafanaPlugin], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InstallPluginsResponse> {
-        self.installPlugins(InstallPluginsRequest(plugins: plugins, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = InstallPluginsRequest(plugins: plugins, instanceId: instanceId)
+        return self.client.execute(action: "InstallPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安装 Grafana Plugin
     @inlinable
     public func installPlugins(plugins: [GrafanaPlugin], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InstallPluginsResponse {
-        try await self.installPlugins(InstallPluginsRequest(plugins: plugins, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = InstallPluginsRequest(plugins: plugins, instanceId: instanceId)
+        return try await self.client.execute(action: "InstallPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

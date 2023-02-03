@@ -64,7 +64,8 @@ extension Bmvpc {
     /// 根据任务ID，获取任务的执行状态
     @inlinable
     public func describeTaskStatus(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
-        self.describeTaskStatus(DescribeTaskStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskStatusRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务状态
@@ -72,6 +73,7 @@ extension Bmvpc {
     /// 根据任务ID，获取任务的执行状态
     @inlinable
     public func describeTaskStatus(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        try await self.describeTaskStatus(DescribeTaskStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskStatusRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

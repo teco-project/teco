@@ -84,7 +84,8 @@ extension Lighthouse {
     /// 本接口（InquirePriceCreateDisks）用于新购云硬盘询价。
     @inlinable
     public func inquirePriceCreateDisks(diskSize: Int64, diskType: String, diskChargePrepaid: DiskChargePrepaid, diskCount: Int64? = nil, diskBackupQuota: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDisksResponse> {
-        self.inquirePriceCreateDisks(InquirePriceCreateDisksRequest(diskSize: diskSize, diskType: diskType, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceCreateDisksRequest(diskSize: diskSize, diskType: diskType, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, diskBackupQuota: diskBackupQuota)
+        return self.client.execute(action: "InquirePriceCreateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新购云硬盘询价
@@ -92,6 +93,7 @@ extension Lighthouse {
     /// 本接口（InquirePriceCreateDisks）用于新购云硬盘询价。
     @inlinable
     public func inquirePriceCreateDisks(diskSize: Int64, diskType: String, diskChargePrepaid: DiskChargePrepaid, diskCount: Int64? = nil, diskBackupQuota: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDisksResponse {
-        try await self.inquirePriceCreateDisks(InquirePriceCreateDisksRequest(diskSize: diskSize, diskType: diskType, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, diskBackupQuota: diskBackupQuota), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceCreateDisksRequest(diskSize: diskSize, diskType: diskType, diskChargePrepaid: diskChargePrepaid, diskCount: diskCount, diskBackupQuota: diskBackupQuota)
+        return try await self.client.execute(action: "InquirePriceCreateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

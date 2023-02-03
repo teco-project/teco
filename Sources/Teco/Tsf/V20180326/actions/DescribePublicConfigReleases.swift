@@ -79,12 +79,14 @@ extension Tsf {
     /// 查询公共配置发布信息
     @inlinable
     public func describePublicConfigReleases(configName: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, configId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicConfigReleasesResponse> {
-        self.describePublicConfigReleases(DescribePublicConfigReleasesRequest(configName: configName, namespaceId: namespaceId, limit: limit, offset: offset, configId: configId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePublicConfigReleasesRequest(configName: configName, namespaceId: namespaceId, limit: limit, offset: offset, configId: configId)
+        return self.client.execute(action: "DescribePublicConfigReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询公共配置发布信息
     @inlinable
     public func describePublicConfigReleases(configName: String? = nil, namespaceId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, configId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicConfigReleasesResponse {
-        try await self.describePublicConfigReleases(DescribePublicConfigReleasesRequest(configName: configName, namespaceId: namespaceId, limit: limit, offset: offset, configId: configId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePublicConfigReleasesRequest(configName: configName, namespaceId: namespaceId, limit: limit, offset: offset, configId: configId)
+        return try await self.client.execute(action: "DescribePublicConfigReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

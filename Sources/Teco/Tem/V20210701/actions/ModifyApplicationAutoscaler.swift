@@ -79,12 +79,14 @@ extension Tem {
     /// 修改弹性伸缩策略组合
     @inlinable
     public func modifyApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, autoscaler: Autoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationAutoscalerResponse> {
-        self.modifyApplicationAutoscaler(ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler)
+        return self.client.execute(action: "ModifyApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性伸缩策略组合
     @inlinable
     public func modifyApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscalerId: String? = nil, autoscaler: Autoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationAutoscalerResponse {
-        try await self.modifyApplicationAutoscaler(ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscalerId: autoscalerId, autoscaler: autoscaler)
+        return try await self.client.execute(action: "ModifyApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -123,12 +123,14 @@ extension Wedata {
     /// 离线任务周期统计明细
     @inlinable
     public func describeTaskReportDetailList(projectId: String, taskId: String, beginDate: Date, endDate: Date, stateList: String? = nil, sortItem: String? = nil, sortType: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskReportDetailListResponse> {
-        self.describeTaskReportDetailList(DescribeTaskReportDetailListRequest(projectId: projectId, taskId: taskId, beginDate: beginDate, endDate: endDate, stateList: stateList, sortItem: sortItem, sortType: sortType, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskReportDetailListRequest(projectId: projectId, taskId: taskId, beginDate: beginDate, endDate: endDate, stateList: stateList, sortItem: sortItem, sortType: sortType, pageIndex: pageIndex, pageSize: pageSize)
+        return self.client.execute(action: "DescribeTaskReportDetailList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 离线任务周期统计明细
     @inlinable
     public func describeTaskReportDetailList(projectId: String, taskId: String, beginDate: Date, endDate: Date, stateList: String? = nil, sortItem: String? = nil, sortType: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskReportDetailListResponse {
-        try await self.describeTaskReportDetailList(DescribeTaskReportDetailListRequest(projectId: projectId, taskId: taskId, beginDate: beginDate, endDate: endDate, stateList: stateList, sortItem: sortItem, sortType: sortType, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskReportDetailListRequest(projectId: projectId, taskId: taskId, beginDate: beginDate, endDate: endDate, stateList: stateList, sortItem: sortItem, sortType: sortType, pageIndex: pageIndex, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeTaskReportDetailList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

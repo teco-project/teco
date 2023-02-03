@@ -87,12 +87,14 @@ extension Iecp {
     /// 获取消息路由列表
     @inlinable
     public func describeMessageRouteList(limit: Int64, offset: Int64, filter: String? = nil, startTime: String? = nil, endTime: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageRouteListResponse> {
-        self.describeMessageRouteList(DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order)
+        return self.client.execute(action: "DescribeMessageRouteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取消息路由列表
     @inlinable
     public func describeMessageRouteList(limit: Int64, offset: Int64, filter: String? = nil, startTime: String? = nil, endTime: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageRouteListResponse {
-        try await self.describeMessageRouteList(DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMessageRouteListRequest(limit: limit, offset: offset, filter: filter, startTime: startTime, endTime: endTime, order: order)
+        return try await self.client.execute(action: "DescribeMessageRouteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

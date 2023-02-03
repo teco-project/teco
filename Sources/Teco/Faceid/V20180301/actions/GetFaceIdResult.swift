@@ -122,7 +122,8 @@ extension Faceid {
     /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
     public func getFaceIdResult(faceIdToken: String, isNeedVideo: Bool? = nil, isNeedBestFrame: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetFaceIdResultResponse> {
-        self.getFaceIdResult(GetFaceIdResultRequest(faceIdToken: faceIdToken, isNeedVideo: isNeedVideo, isNeedBestFrame: isNeedBestFrame), region: region, logger: logger, on: eventLoop)
+        let input = GetFaceIdResultRequest(faceIdToken: faceIdToken, isNeedVideo: isNeedVideo, isNeedBestFrame: isNeedBestFrame)
+        return self.client.execute(action: "GetFaceIdResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SDK核验结果
@@ -130,6 +131,7 @@ extension Faceid {
     /// 完成验证后，用FaceIdToken调用本接口获取结果信息，FaceIdToken生成后三天内（3\*24\*3,600秒）可多次拉取。
     @inlinable
     public func getFaceIdResult(faceIdToken: String, isNeedVideo: Bool? = nil, isNeedBestFrame: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetFaceIdResultResponse {
-        try await self.getFaceIdResult(GetFaceIdResultRequest(faceIdToken: faceIdToken, isNeedVideo: isNeedVideo, isNeedBestFrame: isNeedBestFrame), region: region, logger: logger, on: eventLoop)
+        let input = GetFaceIdResultRequest(faceIdToken: faceIdToken, isNeedVideo: isNeedVideo, isNeedBestFrame: isNeedBestFrame)
+        return try await self.client.execute(action: "GetFaceIdResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

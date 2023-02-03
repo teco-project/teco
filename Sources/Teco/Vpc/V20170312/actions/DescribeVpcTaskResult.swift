@@ -68,7 +68,8 @@ extension Vpc {
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
     @inlinable
     public func describeVpcTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcTaskResultResponse> {
-        self.describeVpcTaskResult(DescribeVpcTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpcTaskResultRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeVpcTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询VPC异步任务执行结果
@@ -76,6 +77,7 @@ extension Vpc {
     /// 本接口（DescribeVpcTaskResult）用于查询VPC任务执行结果。
     @inlinable
     public func describeVpcTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcTaskResultResponse {
-        try await self.describeVpcTaskResult(DescribeVpcTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpcTaskResultRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeVpcTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -133,7 +133,8 @@ extension Monitor {
     /// </ul>
     @inlinable
     public func describePrometheusInstances(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesResponse> {
-        self.describePrometheusInstances(DescribePrometheusInstancesRequest(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusInstancesRequest(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType)
+        return self.client.execute(action: "DescribePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看 Prometheus 实例列表
@@ -145,6 +146,7 @@ extension Monitor {
     /// </ul>
     @inlinable
     public func describePrometheusInstances(instanceIds: [String]? = nil, instanceStatus: [Int64]? = nil, instanceName: String? = nil, zones: [String]? = nil, tagFilters: [PrometheusTag]? = nil, iPv4Address: [String]? = nil, limit: Int64? = nil, offset: Int64? = nil, instanceChargeType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesResponse {
-        try await self.describePrometheusInstances(DescribePrometheusInstancesRequest(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusInstancesRequest(instanceIds: instanceIds, instanceStatus: instanceStatus, instanceName: instanceName, zones: zones, tagFilters: tagFilters, iPv4Address: iPv4Address, limit: limit, offset: offset, instanceChargeType: instanceChargeType)
+        return try await self.client.execute(action: "DescribePrometheusInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

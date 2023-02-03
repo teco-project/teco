@@ -92,12 +92,14 @@ extension Tcss {
     /// 查询k8s api异常事件列表
     @inlinable
     public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeK8sApiAbnormalEventListResponse> {
-        self.describeK8sApiAbnormalEventList(DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return self.client.execute(action: "DescribeK8sApiAbnormalEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询k8s api异常事件列表
     @inlinable
     public func describeK8sApiAbnormalEventList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeK8sApiAbnormalEventListResponse {
-        try await self.describeK8sApiAbnormalEventList(DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeK8sApiAbnormalEventListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return try await self.client.execute(action: "DescribeK8sApiAbnormalEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

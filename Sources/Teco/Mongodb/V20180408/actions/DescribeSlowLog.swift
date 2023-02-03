@@ -102,7 +102,8 @@ extension Mongodb {
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
     @inlinable
     public func describeSlowLog(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogResponse> {
-        self.describeSlowLog(DescribeSlowLogRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowLogRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeSlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例慢日志
@@ -110,6 +111,7 @@ extension Mongodb {
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
     @inlinable
     public func describeSlowLog(instanceId: String, startTime: Date, endTime: Date, slowMS: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogResponse {
-        try await self.describeSlowLog(DescribeSlowLogRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowLogRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, slowMS: slowMS, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeSlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -58,12 +58,14 @@ extension Vpc {
     /// 禁用SSL-VPN-CLIENT 证书
     @inlinable
     public func disableVpnGatewaySslClientCert(sslVpnClientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableVpnGatewaySslClientCertResponse> {
-        self.disableVpnGatewaySslClientCert(DisableVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId), region: region, logger: logger, on: eventLoop)
+        let input = DisableVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId)
+        return self.client.execute(action: "DisableVpnGatewaySslClientCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用SSL-VPN-CLIENT 证书
     @inlinable
     public func disableVpnGatewaySslClientCert(sslVpnClientId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpnGatewaySslClientCertResponse {
-        try await self.disableVpnGatewaySslClientCert(DisableVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId), region: region, logger: logger, on: eventLoop)
+        let input = DisableVpnGatewaySslClientCertRequest(sslVpnClientId: sslVpnClientId)
+        return try await self.client.execute(action: "DisableVpnGatewaySslClientCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

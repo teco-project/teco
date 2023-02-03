@@ -63,12 +63,14 @@ extension Teo {
     /// 批量删除 DNS 记录
     @inlinable
     public func deleteDnsRecords(zoneId: String, ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDnsRecordsResponse> {
-        self.deleteDnsRecords(DeleteDnsRecordsRequest(zoneId: zoneId, ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDnsRecordsRequest(zoneId: zoneId, ids: ids)
+        return self.client.execute(action: "DeleteDnsRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除 DNS 记录
     @inlinable
     public func deleteDnsRecords(zoneId: String, ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDnsRecordsResponse {
-        try await self.deleteDnsRecords(DeleteDnsRecordsRequest(zoneId: zoneId, ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDnsRecordsRequest(zoneId: zoneId, ids: ids)
+        return try await self.client.execute(action: "DeleteDnsRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

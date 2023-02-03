@@ -230,7 +230,8 @@ extension Cpdp {
     /// 通过商家批次单号或者微信批次号查询批次单
     @inlinable
     public func queryTransferBatch(merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryTransferBatchResponse> {
-        self.queryTransferBatch(QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus), region: region, logger: logger, on: eventLoop)
+        let input = QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus)
+        return self.client.execute(action: "QueryTransferBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智慧薪酬-通过商家或者微信批次号查询批次单
@@ -238,6 +239,7 @@ extension Cpdp {
     /// 通过商家批次单号或者微信批次号查询批次单
     @inlinable
     public func queryTransferBatch(merchantId: String, needQueryDetail: Bool, merchantBatchNo: String? = nil, batchId: String? = nil, profile: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, detailStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryTransferBatchResponse {
-        try await self.queryTransferBatch(QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus), region: region, logger: logger, on: eventLoop)
+        let input = QueryTransferBatchRequest(merchantId: merchantId, needQueryDetail: needQueryDetail, merchantBatchNo: merchantBatchNo, batchId: batchId, profile: profile, offset: offset, limit: limit, detailStatus: detailStatus)
+        return try await self.client.execute(action: "QueryTransferBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

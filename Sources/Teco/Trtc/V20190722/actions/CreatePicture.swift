@@ -94,7 +94,8 @@ extension Trtc {
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁新增自定义背景图或水印，可通过此接口上传新的图片素材。无需频繁新增图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
     @inlinable
     public func createPicture(sdkAppId: UInt64, content: String, suffix: String, height: UInt64, width: UInt64, xPosition: UInt64, yPosition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePictureResponse> {
-        self.createPicture(CreatePictureRequest(sdkAppId: sdkAppId, content: content, suffix: suffix, height: height, width: width, xPosition: xPosition, yPosition: yPosition), region: region, logger: logger, on: eventLoop)
+        let input = CreatePictureRequest(sdkAppId: sdkAppId, content: content, suffix: suffix, height: height, width: width, xPosition: xPosition, yPosition: yPosition)
+        return self.client.execute(action: "CreatePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传图片
@@ -102,6 +103,7 @@ extension Trtc {
     /// 如果您需要在 [云端混流转码](https://cloud.tencent.com/document/product/647/16827) 时频繁新增自定义背景图或水印，可通过此接口上传新的图片素材。无需频繁新增图片的场景，建议直接在 [控制台 > 应用管理 > 素材管理](https://cloud.tencent.com/document/product/647/50769) 中操作。
     @inlinable
     public func createPicture(sdkAppId: UInt64, content: String, suffix: String, height: UInt64, width: UInt64, xPosition: UInt64, yPosition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePictureResponse {
-        try await self.createPicture(CreatePictureRequest(sdkAppId: sdkAppId, content: content, suffix: suffix, height: height, width: width, xPosition: xPosition, yPosition: yPosition), region: region, logger: logger, on: eventLoop)
+        let input = CreatePictureRequest(sdkAppId: sdkAppId, content: content, suffix: suffix, height: height, width: width, xPosition: xPosition, yPosition: yPosition)
+        return try await self.client.execute(action: "CreatePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

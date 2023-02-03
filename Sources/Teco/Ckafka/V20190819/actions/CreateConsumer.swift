@@ -73,12 +73,14 @@ extension Ckafka {
     /// 创建消费者组
     @inlinable
     public func createConsumer(instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateConsumerResponse> {
-        self.createConsumer(CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList), region: region, logger: logger, on: eventLoop)
+        let input = CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList)
+        return self.client.execute(action: "CreateConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建消费者组
     @inlinable
     public func createConsumer(instanceId: String, groupName: String, topicName: String? = nil, topicNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateConsumerResponse {
-        try await self.createConsumer(CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList), region: region, logger: logger, on: eventLoop)
+        let input = CreateConsumerRequest(instanceId: instanceId, groupName: groupName, topicName: topicName, topicNameList: topicNameList)
+        return try await self.client.execute(action: "CreateConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

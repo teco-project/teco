@@ -74,7 +74,8 @@ extension Nlp {
     /// 该句向量服务由腾讯云自然语言处理团队联合微信智言团队共同打造，基于千亿级大规模互联网语料并采用Bert等领先的深度神经网络模型训练而成，在腾讯内部诸多业务的NLP任务上实测效果显著。
     @inlinable
     public func sentenceEmbedding(text: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SentenceEmbeddingResponse> {
-        self.sentenceEmbedding(SentenceEmbeddingRequest(text: text), region: region, logger: logger, on: eventLoop)
+        let input = SentenceEmbeddingRequest(text: text)
+        return self.client.execute(action: "SentenceEmbedding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 句向量
@@ -84,6 +85,7 @@ extension Nlp {
     /// 该句向量服务由腾讯云自然语言处理团队联合微信智言团队共同打造，基于千亿级大规模互联网语料并采用Bert等领先的深度神经网络模型训练而成，在腾讯内部诸多业务的NLP任务上实测效果显著。
     @inlinable
     public func sentenceEmbedding(text: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SentenceEmbeddingResponse {
-        try await self.sentenceEmbedding(SentenceEmbeddingRequest(text: text), region: region, logger: logger, on: eventLoop)
+        let input = SentenceEmbeddingRequest(text: text)
+        return try await self.client.execute(action: "SentenceEmbedding", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

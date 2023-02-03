@@ -79,12 +79,14 @@ extension Tcss {
     /// 镜像仓库停止镜像扫描任务
     @inlinable @discardableResult
     public func modifyAssetImageRegistryScanStop(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetImageRegistryScanStopResponse> {
-        self.modifyAssetImageRegistryScanStop(ModifyAssetImageRegistryScanStopRequest(all: all, images: images, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssetImageRegistryScanStopRequest(all: all, images: images, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest)
+        return self.client.execute(action: "ModifyAssetImageRegistryScanStop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库停止镜像扫描任务
     @inlinable @discardableResult
     public func modifyAssetImageRegistryScanStop(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, filters: [AssetFilters]? = nil, excludeImageList: [UInt64]? = nil, onlyScanLatest: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopResponse {
-        try await self.modifyAssetImageRegistryScanStop(ModifyAssetImageRegistryScanStopRequest(all: all, images: images, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssetImageRegistryScanStopRequest(all: all, images: images, id: id, filters: filters, excludeImageList: excludeImageList, onlyScanLatest: onlyScanLatest)
+        return try await self.client.execute(action: "ModifyAssetImageRegistryScanStop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,12 +63,14 @@ extension Tsf {
     /// 一键导入API分组
     @inlinable
     public func createAllGatewayApiAsync(groupId: String, microserviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAllGatewayApiAsyncResponse> {
-        self.createAllGatewayApiAsync(CreateAllGatewayApiAsyncRequest(groupId: groupId, microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateAllGatewayApiAsyncRequest(groupId: groupId, microserviceId: microserviceId)
+        return self.client.execute(action: "CreateAllGatewayApiAsync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 一键导入API分组
     @inlinable
     public func createAllGatewayApiAsync(groupId: String, microserviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAllGatewayApiAsyncResponse {
-        try await self.createAllGatewayApiAsync(CreateAllGatewayApiAsyncRequest(groupId: groupId, microserviceId: microserviceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateAllGatewayApiAsyncRequest(groupId: groupId, microserviceId: microserviceId)
+        return try await self.client.execute(action: "CreateAllGatewayApiAsync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

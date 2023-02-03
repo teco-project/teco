@@ -56,7 +56,8 @@ extension Dcdb {
     /// 本接口（DescribeProjects）用于查询项目列表
     @inlinable
     public func describeProjects(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        self.describeProjects(DescribeProjectsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectsRequest()
+        return self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询项目列表
@@ -64,6 +65,7 @@ extension Dcdb {
     /// 本接口（DescribeProjects）用于查询项目列表
     @inlinable
     public func describeProjects(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.describeProjects(DescribeProjectsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectsRequest()
+        return try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

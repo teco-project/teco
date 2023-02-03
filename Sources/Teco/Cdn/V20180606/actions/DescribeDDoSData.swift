@@ -84,12 +84,14 @@ extension Cdn {
     /// DDoS统计数据查询
     @inlinable
     public func describeDDoSData(startTime: String, endTime: String, interval: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSDataResponse> {
-        self.describeDDoSData(DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval)
+        return self.client.execute(action: "DescribeDDoSData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DDoS统计数据查询
     @inlinable
     public func describeDDoSData(startTime: String, endTime: String, interval: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSDataResponse {
-        try await self.describeDDoSData(DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSDataRequest(startTime: startTime, endTime: endTime, interval: interval)
+        return try await self.client.execute(action: "DescribeDDoSData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

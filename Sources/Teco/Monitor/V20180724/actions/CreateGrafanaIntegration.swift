@@ -69,12 +69,14 @@ extension Monitor {
     /// 创建 Grafana 集成配置
     @inlinable
     public func createGrafanaIntegration(instanceId: String, kind: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaIntegrationResponse> {
-        self.createGrafanaIntegration(CreateGrafanaIntegrationRequest(instanceId: instanceId, kind: kind, content: content), region: region, logger: logger, on: eventLoop)
+        let input = CreateGrafanaIntegrationRequest(instanceId: instanceId, kind: kind, content: content)
+        return self.client.execute(action: "CreateGrafanaIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 集成配置
     @inlinable
     public func createGrafanaIntegration(instanceId: String, kind: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaIntegrationResponse {
-        try await self.createGrafanaIntegration(CreateGrafanaIntegrationRequest(instanceId: instanceId, kind: kind, content: content), region: region, logger: logger, on: eventLoop)
+        let input = CreateGrafanaIntegrationRequest(instanceId: instanceId, kind: kind, content: content)
+        return try await self.client.execute(action: "CreateGrafanaIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

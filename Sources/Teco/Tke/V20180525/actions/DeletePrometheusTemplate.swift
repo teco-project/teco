@@ -60,7 +60,8 @@ extension Tke {
     /// 删除一个云原生Prometheus配置模板
     @inlinable @discardableResult
     public func deletePrometheusTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTemplateResponse> {
-        self.deletePrometheusTemplate(DeletePrometheusTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePrometheusTemplateRequest(templateId: templateId)
+        return self.client.execute(action: "DeletePrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除模板
@@ -68,6 +69,7 @@ extension Tke {
     /// 删除一个云原生Prometheus配置模板
     @inlinable @discardableResult
     public func deletePrometheusTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTemplateResponse {
-        try await self.deletePrometheusTemplate(DeletePrometheusTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePrometheusTemplateRequest(templateId: templateId)
+        return try await self.client.execute(action: "DeletePrometheusTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

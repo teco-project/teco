@@ -96,7 +96,8 @@ extension Tcss {
     /// 查询容器资产概览信息
     @inlinable
     public func describeContainerAssetSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerAssetSummaryResponse> {
-        self.describeContainerAssetSummary(DescribeContainerAssetSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeContainerAssetSummaryRequest()
+        return self.client.execute(action: "DescribeContainerAssetSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器安全资产概览
@@ -104,6 +105,7 @@ extension Tcss {
     /// 查询容器资产概览信息
     @inlinable
     public func describeContainerAssetSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerAssetSummaryResponse {
-        try await self.describeContainerAssetSummary(DescribeContainerAssetSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeContainerAssetSummaryRequest()
+        return try await self.client.execute(action: "DescribeContainerAssetSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

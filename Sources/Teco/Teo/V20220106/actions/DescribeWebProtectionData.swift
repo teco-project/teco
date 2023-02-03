@@ -140,12 +140,14 @@ extension Teo {
     /// 查询CC防护时序数据
     @inlinable
     public func describeWebProtectionData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, protocolType: String? = nil, attackType: String? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionDataResponse> {
-        self.describeWebProtectionData(DescribeWebProtectionDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, protocolType: protocolType, attackType: attackType, interval: interval, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebProtectionDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, protocolType: protocolType, attackType: attackType, interval: interval, queryCondition: queryCondition, area: area)
+        return self.client.execute(action: "DescribeWebProtectionData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询CC防护时序数据
     @inlinable
     public func describeWebProtectionData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, protocolType: String? = nil, attackType: String? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionDataResponse {
-        try await self.describeWebProtectionData(DescribeWebProtectionDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, protocolType: protocolType, attackType: attackType, interval: interval, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebProtectionDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, protocolType: protocolType, attackType: attackType, interval: interval, queryCondition: queryCondition, area: area)
+        return try await self.client.execute(action: "DescribeWebProtectionData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

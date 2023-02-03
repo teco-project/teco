@@ -59,12 +59,14 @@ extension Hasim {
     /// 编辑云兔策略
     @inlinable @discardableResult
     public func modifyLinkTactic(linkID: Int64, tacticID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLinkTacticResponse> {
-        self.modifyLinkTactic(ModifyLinkTacticRequest(linkID: linkID, tacticID: tacticID), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLinkTacticRequest(linkID: linkID, tacticID: tacticID)
+        return self.client.execute(action: "ModifyLinkTactic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑云兔策略
     @inlinable @discardableResult
     public func modifyLinkTactic(linkID: Int64, tacticID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLinkTacticResponse {
-        try await self.modifyLinkTactic(ModifyLinkTacticRequest(linkID: linkID, tacticID: tacticID), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLinkTacticRequest(linkID: linkID, tacticID: tacticID)
+        return try await self.client.execute(action: "ModifyLinkTactic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

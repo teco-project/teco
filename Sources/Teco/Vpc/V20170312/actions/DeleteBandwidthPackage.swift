@@ -60,7 +60,8 @@ extension Vpc {
     /// 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
     @inlinable @discardableResult
     public func deleteBandwidthPackage(bandwidthPackageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBandwidthPackageResponse> {
-        self.deleteBandwidthPackage(DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId)
+        return self.client.execute(action: "DeleteBandwidthPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除共享带宽包
@@ -68,6 +69,7 @@ extension Vpc {
     /// 接口支持删除共享带宽包，包括[设备带宽包](https://cloud.tencent.com/document/product/684/15246#.E8.AE.BE.E5.A4.87.E5.B8.A6.E5.AE.BD.E5.8C.85)和[IP带宽包](https://cloud.tencent.com/document/product/684/15246#ip-.E5.B8.A6.E5.AE.BD.E5.8C.85)
     @inlinable @discardableResult
     public func deleteBandwidthPackage(bandwidthPackageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBandwidthPackageResponse {
-        try await self.deleteBandwidthPackage(DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteBandwidthPackageRequest(bandwidthPackageId: bandwidthPackageId)
+        return try await self.client.execute(action: "DeleteBandwidthPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

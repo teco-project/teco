@@ -64,7 +64,8 @@ extension Vpc {
     /// 本接口（DescribeCcnRegionBandwidthLimits）用于查询云联网各地域出带宽上限，该接口只返回已关联网络实例包含的地域
     @inlinable
     public func describeCcnRegionBandwidthLimits(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnRegionBandwidthLimitsResponse> {
-        self.describeCcnRegionBandwidthLimits(DescribeCcnRegionBandwidthLimitsRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCcnRegionBandwidthLimitsRequest(ccnId: ccnId)
+        return self.client.execute(action: "DescribeCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云联网各地域出带宽上限
@@ -72,6 +73,7 @@ extension Vpc {
     /// 本接口（DescribeCcnRegionBandwidthLimits）用于查询云联网各地域出带宽上限，该接口只返回已关联网络实例包含的地域
     @inlinable
     public func describeCcnRegionBandwidthLimits(ccnId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnRegionBandwidthLimitsResponse {
-        try await self.describeCcnRegionBandwidthLimits(DescribeCcnRegionBandwidthLimitsRequest(ccnId: ccnId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCcnRegionBandwidthLimitsRequest(ccnId: ccnId)
+        return try await self.client.execute(action: "DescribeCcnRegionBandwidthLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

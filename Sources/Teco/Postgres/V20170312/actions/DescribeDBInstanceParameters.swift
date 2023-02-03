@@ -67,12 +67,14 @@ extension Postgres {
     /// 获取实例可修改参数列表
     @inlinable
     public func describeDBInstanceParameters(dbInstanceId: String, paramName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceParametersResponse> {
-        self.describeDBInstanceParameters(DescribeDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramName: paramName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramName: paramName)
+        return self.client.execute(action: "DescribeDBInstanceParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例可修改参数列表
     @inlinable
     public func describeDBInstanceParameters(dbInstanceId: String, paramName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceParametersResponse {
-        try await self.describeDBInstanceParameters(DescribeDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramName: paramName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBInstanceParametersRequest(dbInstanceId: dbInstanceId, paramName: paramName)
+        return try await self.client.execute(action: "DescribeDBInstanceParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

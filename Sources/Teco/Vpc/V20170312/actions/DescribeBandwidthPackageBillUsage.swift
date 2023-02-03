@@ -64,7 +64,8 @@ extension Vpc {
     /// 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
     @inlinable
     public func describeBandwidthPackageBillUsage(bandwidthPackageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBandwidthPackageBillUsageResponse> {
-        self.describeBandwidthPackageBillUsage(DescribeBandwidthPackageBillUsageRequest(bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBandwidthPackageBillUsageRequest(bandwidthPackageId: bandwidthPackageId)
+        return self.client.execute(action: "DescribeBandwidthPackageBillUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询后付费共享带宽包当前的用量
@@ -72,6 +73,7 @@ extension Vpc {
     /// 本接口 (DescribeBandwidthPackageBillUsage) 用于查询后付费共享带宽包当前的计费用量.
     @inlinable
     public func describeBandwidthPackageBillUsage(bandwidthPackageId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBandwidthPackageBillUsageResponse {
-        try await self.describeBandwidthPackageBillUsage(DescribeBandwidthPackageBillUsageRequest(bandwidthPackageId: bandwidthPackageId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBandwidthPackageBillUsageRequest(bandwidthPackageId: bandwidthPackageId)
+        return try await self.client.execute(action: "DescribeBandwidthPackageBillUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

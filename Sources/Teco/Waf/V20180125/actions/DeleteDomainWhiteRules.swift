@@ -64,12 +64,14 @@ extension Waf {
     /// 删除域名规则白名单
     @inlinable
     public func deleteDomainWhiteRules(domain: String, ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDomainWhiteRulesResponse> {
-        self.deleteDomainWhiteRules(DeleteDomainWhiteRulesRequest(domain: domain, ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDomainWhiteRulesRequest(domain: domain, ids: ids)
+        return self.client.execute(action: "DeleteDomainWhiteRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除域名规则白名单
     @inlinable
     public func deleteDomainWhiteRules(domain: String, ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDomainWhiteRulesResponse {
-        try await self.deleteDomainWhiteRules(DeleteDomainWhiteRulesRequest(domain: domain, ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDomainWhiteRulesRequest(domain: domain, ids: ids)
+        return try await self.client.execute(action: "DeleteDomainWhiteRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -60,7 +60,8 @@ extension Cls {
     /// 本接口用于删除日志下载任务
     @inlinable @discardableResult
     public func deleteExport(exportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExportResponse> {
-        self.deleteExport(DeleteExportRequest(exportId: exportId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteExportRequest(exportId: exportId)
+        return self.client.execute(action: "DeleteExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除日志下载任务
@@ -68,6 +69,7 @@ extension Cls {
     /// 本接口用于删除日志下载任务
     @inlinable @discardableResult
     public func deleteExport(exportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExportResponse {
-        try await self.deleteExport(DeleteExportRequest(exportId: exportId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteExportRequest(exportId: exportId)
+        return try await self.client.execute(action: "DeleteExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

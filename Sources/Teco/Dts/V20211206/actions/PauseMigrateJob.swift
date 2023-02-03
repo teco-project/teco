@@ -60,7 +60,8 @@ extension Dts {
     /// 暂停一个迁移任务。
     @inlinable @discardableResult
     public func pauseMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PauseMigrateJobResponse> {
-        self.pauseMigrateJob(PauseMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = PauseMigrateJobRequest(jobId: jobId)
+        return self.client.execute(action: "PauseMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 暂停迁移任务
@@ -68,6 +69,7 @@ extension Dts {
     /// 暂停一个迁移任务。
     @inlinable @discardableResult
     public func pauseMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PauseMigrateJobResponse {
-        try await self.pauseMigrateJob(PauseMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = PauseMigrateJobRequest(jobId: jobId)
+        return try await self.client.execute(action: "PauseMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

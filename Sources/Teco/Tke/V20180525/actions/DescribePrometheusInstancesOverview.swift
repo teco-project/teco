@@ -81,7 +81,8 @@ extension Tke {
     /// 获取与云监控融合实例列表
     @inlinable
     public func describePrometheusInstancesOverview(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstancesOverviewResponse> {
-        self.describePrometheusInstancesOverview(DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribePrometheusInstancesOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取2.0实例列表
@@ -89,6 +90,7 @@ extension Tke {
     /// 获取与云监控融合实例列表
     @inlinable
     public func describePrometheusInstancesOverview(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstancesOverviewResponse {
-        try await self.describePrometheusInstancesOverview(DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusInstancesOverviewRequest(offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribePrometheusInstancesOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

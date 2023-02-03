@@ -69,7 +69,8 @@ extension Trtc {
     /// 成功开启录制后，可以使用此接口来停止录制任务。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
     @inlinable
     public func deleteCloudRecording(sdkAppId: UInt64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCloudRecordingResponse> {
-        self.deleteCloudRecording(DeleteCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return self.client.execute(action: "DeleteCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止云端录制任务
@@ -77,6 +78,7 @@ extension Trtc {
     /// 成功开启录制后，可以使用此接口来停止录制任务。停止录制成功后不代表文件全部传输完成，如果未完成后台将会继续上传文件，成功后通过事件回调通知客户文件全部传输完成状态。
     @inlinable
     public func deleteCloudRecording(sdkAppId: UInt64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudRecordingResponse {
-        try await self.deleteCloudRecording(DeleteCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return try await self.client.execute(action: "DeleteCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

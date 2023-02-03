@@ -134,7 +134,8 @@ extension Cpdp {
     /// 商户绑定提现银行卡的验证接口
     @inlinable
     public func checkAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAcctResponse> {
-        self.checkAcct(CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment)
+        return self.client.execute(action: "CheckAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-提现银行卡验证
@@ -142,6 +143,7 @@ extension Cpdp {
     /// 商户绑定提现银行卡的验证接口
     @inlinable
     public func checkAcct(midasAppId: String, subAppId: String, bindType: Int64, settleAcctNo: String, midasSecretId: String, midasSignature: String, checkCode: String? = nil, currencyType: String? = nil, currencyUnit: Int64? = nil, currencyAmt: String? = nil, encryptType: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAcctResponse {
-        try await self.checkAcct(CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = CheckAcctRequest(midasAppId: midasAppId, subAppId: subAppId, bindType: bindType, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, checkCode: checkCode, currencyType: currencyType, currencyUnit: currencyUnit, currencyAmt: currencyAmt, encryptType: encryptType, midasEnvironment: midasEnvironment)
+        return try await self.client.execute(action: "CheckAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

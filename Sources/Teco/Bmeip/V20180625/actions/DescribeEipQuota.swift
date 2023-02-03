@@ -66,12 +66,14 @@ extension Bmeip {
     /// 查询黑石EIP 限额
     @inlinable
     public func describeEipQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipQuotaResponse> {
-        self.describeEipQuota(DescribeEipQuotaRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEipQuotaRequest()
+        return self.client.execute(action: "DescribeEipQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询黑石EIP 限额
     @inlinable
     public func describeEipQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipQuotaResponse {
-        try await self.describeEipQuota(DescribeEipQuotaRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEipQuotaRequest()
+        return try await self.client.execute(action: "DescribeEipQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

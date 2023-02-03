@@ -65,7 +65,8 @@ extension Ecm {
     /// 设置负载均衡实例的安全组。
     @inlinable @discardableResult
     public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetLoadBalancerSecurityGroupsResponse> {
-        self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
+        let input = SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups)
+        return self.client.execute(action: "SetLoadBalancerSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置负载均衡实例的安全组
@@ -73,6 +74,7 @@ extension Ecm {
     /// 设置负载均衡实例的安全组。
     @inlinable @discardableResult
     public func setLoadBalancerSecurityGroups(loadBalancerId: String, securityGroups: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetLoadBalancerSecurityGroupsResponse {
-        try await self.setLoadBalancerSecurityGroups(SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups), region: region, logger: logger, on: eventLoop)
+        let input = SetLoadBalancerSecurityGroupsRequest(loadBalancerId: loadBalancerId, securityGroups: securityGroups)
+        return try await self.client.execute(action: "SetLoadBalancerSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,7 +78,8 @@ extension Eiam {
     /// 通过用户名或用户 id 获取用户的第三方账号绑定信息。
     @inlinable
     public func describeUserThirdPartyAccountInfo(userName: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserThirdPartyAccountInfoResponse> {
-        self.describeUserThirdPartyAccountInfo(DescribeUserThirdPartyAccountInfoRequest(userName: userName, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserThirdPartyAccountInfoRequest(userName: userName, userId: userId)
+        return self.client.execute(action: "DescribeUserThirdPartyAccountInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户的第三方账号绑定信息
@@ -86,6 +87,7 @@ extension Eiam {
     /// 通过用户名或用户 id 获取用户的第三方账号绑定信息。
     @inlinable
     public func describeUserThirdPartyAccountInfo(userName: String? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserThirdPartyAccountInfoResponse {
-        try await self.describeUserThirdPartyAccountInfo(DescribeUserThirdPartyAccountInfoRequest(userName: userName, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserThirdPartyAccountInfoRequest(userName: userName, userId: userId)
+        return try await self.client.execute(action: "DescribeUserThirdPartyAccountInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

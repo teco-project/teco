@@ -71,7 +71,8 @@ extension Dts {
     /// 通过DescribeMigrateJobs接口查询到任务的状态为准备完成（status=8）时，此时可以调用本接口完成迁移任务。
     @inlinable @discardableResult
     public func completeMigrateJob(jobId: String, completeMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteMigrateJobResponse> {
-        self.completeMigrateJob(CompleteMigrateJobRequest(jobId: jobId, completeMode: completeMode), region: region, logger: logger, on: eventLoop)
+        let input = CompleteMigrateJobRequest(jobId: jobId, completeMode: completeMode)
+        return self.client.execute(action: "CompleteMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 完成数据迁移任务
@@ -81,6 +82,7 @@ extension Dts {
     /// 通过DescribeMigrateJobs接口查询到任务的状态为准备完成（status=8）时，此时可以调用本接口完成迁移任务。
     @inlinable @discardableResult
     public func completeMigrateJob(jobId: String, completeMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteMigrateJobResponse {
-        try await self.completeMigrateJob(CompleteMigrateJobRequest(jobId: jobId, completeMode: completeMode), region: region, logger: logger, on: eventLoop)
+        let input = CompleteMigrateJobRequest(jobId: jobId, completeMode: completeMode)
+        return try await self.client.execute(action: "CompleteMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

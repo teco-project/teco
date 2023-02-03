@@ -78,7 +78,8 @@ extension Ds {
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
     @inlinable
     public func describeTaskStatus(module: String, operation: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
-        self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId)
+        return self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务状态
@@ -86,6 +87,7 @@ extension Ds {
     /// 接口使用于：客户平台可使用该接口查询任务执行状态或者执行结果
     @inlinable
     public func describeTaskStatus(module: String, operation: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        try await self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId)
+        return try await self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

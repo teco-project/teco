@@ -60,7 +60,8 @@ extension Domain {
     /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
     @inlinable @discardableResult
     public func deleteTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTemplateResponse> {
-        self.deleteTemplate(DeleteTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTemplateRequest(templateId: templateId)
+        return self.client.execute(action: "DeleteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除信息模板
@@ -68,6 +69,7 @@ extension Domain {
     /// 本接口 ( DeleteTemplate ) 用于删除信息模板。
     @inlinable @discardableResult
     public func deleteTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTemplateResponse {
-        try await self.deleteTemplate(DeleteTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTemplateRequest(templateId: templateId)
+        return try await self.client.execute(action: "DeleteTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

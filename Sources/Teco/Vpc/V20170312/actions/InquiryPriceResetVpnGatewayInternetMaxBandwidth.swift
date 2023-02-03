@@ -69,7 +69,8 @@ extension Vpc {
     /// 本接口（InquiryPriceResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限询价。
     @inlinable
     public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(vpnGatewayId: String, internetMaxBandwidthOut: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse> {
-        self.inquiryPriceResetVpnGatewayInternetMaxBandwidth(InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest(vpnGatewayId: vpnGatewayId, internetMaxBandwidthOut: internetMaxBandwidthOut), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest(vpnGatewayId: vpnGatewayId, internetMaxBandwidthOut: internetMaxBandwidthOut)
+        return self.client.execute(action: "InquiryPriceResetVpnGatewayInternetMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整VPN网关带宽上限询价
@@ -77,6 +78,7 @@ extension Vpc {
     /// 本接口（InquiryPriceResetVpnGatewayInternetMaxBandwidth）调整VPN网关带宽上限询价。
     @inlinable
     public func inquiryPriceResetVpnGatewayInternetMaxBandwidth(vpnGatewayId: String, internetMaxBandwidthOut: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetVpnGatewayInternetMaxBandwidthResponse {
-        try await self.inquiryPriceResetVpnGatewayInternetMaxBandwidth(InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest(vpnGatewayId: vpnGatewayId, internetMaxBandwidthOut: internetMaxBandwidthOut), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceResetVpnGatewayInternetMaxBandwidthRequest(vpnGatewayId: vpnGatewayId, internetMaxBandwidthOut: internetMaxBandwidthOut)
+        return try await self.client.execute(action: "InquiryPriceResetVpnGatewayInternetMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

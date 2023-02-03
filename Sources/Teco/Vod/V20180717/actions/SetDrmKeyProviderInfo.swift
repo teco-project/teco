@@ -65,7 +65,8 @@ extension Vod {
     /// 设置 DRM 密钥提供商信息。
     @inlinable @discardableResult
     public func setDrmKeyProviderInfo(sdmcInfo: SDMCDrmKeyProviderInfo? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDrmKeyProviderInfoResponse> {
-        self.setDrmKeyProviderInfo(SetDrmKeyProviderInfoRequest(sdmcInfo: sdmcInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = SetDrmKeyProviderInfoRequest(sdmcInfo: sdmcInfo, subAppId: subAppId)
+        return self.client.execute(action: "SetDrmKeyProviderInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置 DRM 密钥提供商信息
@@ -73,6 +74,7 @@ extension Vod {
     /// 设置 DRM 密钥提供商信息。
     @inlinable @discardableResult
     public func setDrmKeyProviderInfo(sdmcInfo: SDMCDrmKeyProviderInfo? = nil, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDrmKeyProviderInfoResponse {
-        try await self.setDrmKeyProviderInfo(SetDrmKeyProviderInfoRequest(sdmcInfo: sdmcInfo, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = SetDrmKeyProviderInfoRequest(sdmcInfo: sdmcInfo, subAppId: subAppId)
+        return try await self.client.execute(action: "SetDrmKeyProviderInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

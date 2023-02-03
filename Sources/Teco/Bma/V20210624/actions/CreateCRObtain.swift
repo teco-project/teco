@@ -108,7 +108,8 @@ extension Bma {
     /// 版权保护-新建取证接口
     @inlinable
     public func createCRObtain(workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRObtainResponse> {
-        self.createCRObtain(CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType), region: region, logger: logger, on: eventLoop)
+        let input = CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType)
+        return self.client.execute(action: "CreateCRObtain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建取证
@@ -116,6 +117,7 @@ extension Bma {
     /// 版权保护-新建取证接口
     @inlinable
     public func createCRObtain(workId: Int64, tortUrl: String, obtainType: Int64, workTitle: String? = nil, tortPlat: String? = nil, obtainDuration: Int64? = nil, obtainUrl: String? = nil, workCategory: String? = nil, workType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRObtainResponse {
-        try await self.createCRObtain(CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType), region: region, logger: logger, on: eventLoop)
+        let input = CreateCRObtainRequest(workId: workId, tortUrl: tortUrl, obtainType: obtainType, workTitle: workTitle, tortPlat: tortPlat, obtainDuration: obtainDuration, obtainUrl: obtainUrl, workCategory: workCategory, workType: workType)
+        return try await self.client.execute(action: "CreateCRObtain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

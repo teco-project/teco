@@ -114,7 +114,8 @@ extension Mps {
     /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
     public func processLiveStream(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessLiveStreamResponse> {
-        self.processLiveStream(ProcessLiveStreamRequest(url: url, taskNotifyConfig: taskNotifyConfig, outputStorage: outputStorage, outputDir: outputDir, aiContentReviewTask: aiContentReviewTask, aiRecognitionTask: aiRecognitionTask, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
+        let input = ProcessLiveStreamRequest(url: url, taskNotifyConfig: taskNotifyConfig, outputStorage: outputStorage, outputDir: outputDir, aiContentReviewTask: aiContentReviewTask, aiRecognitionTask: aiRecognitionTask, sessionId: sessionId, sessionContext: sessionContext)
+        return self.client.execute(action: "ProcessLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 对直播流发起处理
@@ -127,6 +128,7 @@ extension Mps {
     /// 直播流处理事件通知实时写入用户指定的消息队列 CMQ 中，用户需要从消息队列 CMQ 中获取事件通知结果，同时处理过程中存在输出文件的，会写入用户指定的输出文件的目标存储中。
     @inlinable
     public func processLiveStream(url: String, taskNotifyConfig: LiveStreamTaskNotifyConfig, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, sessionId: String? = nil, sessionContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessLiveStreamResponse {
-        try await self.processLiveStream(ProcessLiveStreamRequest(url: url, taskNotifyConfig: taskNotifyConfig, outputStorage: outputStorage, outputDir: outputDir, aiContentReviewTask: aiContentReviewTask, aiRecognitionTask: aiRecognitionTask, sessionId: sessionId, sessionContext: sessionContext), region: region, logger: logger, on: eventLoop)
+        let input = ProcessLiveStreamRequest(url: url, taskNotifyConfig: taskNotifyConfig, outputStorage: outputStorage, outputDir: outputDir, aiContentReviewTask: aiContentReviewTask, aiRecognitionTask: aiRecognitionTask, sessionId: sessionId, sessionContext: sessionContext)
+        return try await self.client.execute(action: "ProcessLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

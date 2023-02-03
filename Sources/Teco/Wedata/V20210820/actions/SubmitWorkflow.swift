@@ -82,7 +82,8 @@ extension Wedata {
     /// 提交工作流
     @inlinable
     public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitWorkflowResponse> {
-        self.submitWorkflow(SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling), region: region, logger: logger, on: eventLoop)
+        let input = SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling)
+        return self.client.execute(action: "SubmitWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交工作流【Beta版本】
@@ -91,6 +92,7 @@ extension Wedata {
     /// 提交工作流
     @inlinable
     public func submitWorkflow(projectId: String, workflowId: String, versionRemark: String, startScheduling: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitWorkflowResponse {
-        try await self.submitWorkflow(SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling), region: region, logger: logger, on: eventLoop)
+        let input = SubmitWorkflowRequest(projectId: projectId, workflowId: workflowId, versionRemark: versionRemark, startScheduling: startScheduling)
+        return try await self.client.execute(action: "SubmitWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

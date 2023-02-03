@@ -68,12 +68,14 @@ extension Cfw {
     /// 启用停用单条企业安全组规则
     @inlinable
     public func modifySecurityGroupItemRuleStatus(direction: UInt64, status: UInt64, ruleSequence: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupItemRuleStatusResponse> {
-        self.modifySecurityGroupItemRuleStatus(ModifySecurityGroupItemRuleStatusRequest(direction: direction, status: status, ruleSequence: ruleSequence), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityGroupItemRuleStatusRequest(direction: direction, status: status, ruleSequence: ruleSequence)
+        return self.client.execute(action: "ModifySecurityGroupItemRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用停用单条企业安全组规则
     @inlinable
     public func modifySecurityGroupItemRuleStatus(direction: UInt64, status: UInt64, ruleSequence: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupItemRuleStatusResponse {
-        try await self.modifySecurityGroupItemRuleStatus(ModifySecurityGroupItemRuleStatusRequest(direction: direction, status: status, ruleSequence: ruleSequence), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityGroupItemRuleStatusRequest(direction: direction, status: status, ruleSequence: ruleSequence)
+        return try await self.client.execute(action: "ModifySecurityGroupItemRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

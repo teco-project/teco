@@ -64,12 +64,14 @@ extension Pts {
     /// 删除场景
     @inlinable @discardableResult
     public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScenariosResponse> {
-        self.deleteScenarios(DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs), region: region, logger: logger, on: eventLoop)
+        let input = DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs)
+        return self.client.execute(action: "DeleteScenarios", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除场景
     @inlinable @discardableResult
     public func deleteScenarios(scenarioIds: [String], projectId: String, deleteJobs: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScenariosResponse {
-        try await self.deleteScenarios(DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs), region: region, logger: logger, on: eventLoop)
+        let input = DeleteScenariosRequest(scenarioIds: scenarioIds, projectId: projectId, deleteJobs: deleteJobs)
+        return try await self.client.execute(action: "DeleteScenarios", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

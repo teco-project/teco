@@ -72,12 +72,14 @@ extension Ciam {
     /// 根据ID查询用户信息
     @inlinable
     public func describeUserById(userStoreId: String, userId: String, original: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserByIdResponse> {
-        self.describeUserById(DescribeUserByIdRequest(userStoreId: userStoreId, userId: userId, original: original), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserByIdRequest(userStoreId: userStoreId, userId: userId, original: original)
+        return self.client.execute(action: "DescribeUserById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据ID查询用户信息
     @inlinable
     public func describeUserById(userStoreId: String, userId: String, original: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserByIdResponse {
-        try await self.describeUserById(DescribeUserByIdRequest(userStoreId: userStoreId, userId: userId, original: original), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserByIdRequest(userStoreId: userStoreId, userId: userId, original: original)
+        return try await self.client.execute(action: "DescribeUserById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -58,12 +58,14 @@ extension Tdmq {
     /// 查询cmq队列详情
     @inlinable
     public func describeCmqQueueDetail(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCmqQueueDetailResponse> {
-        self.describeCmqQueueDetail(DescribeCmqQueueDetailRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCmqQueueDetailRequest(queueName: queueName)
+        return self.client.execute(action: "DescribeCmqQueueDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询cmq队列详情
     @inlinable
     public func describeCmqQueueDetail(queueName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCmqQueueDetailResponse {
-        try await self.describeCmqQueueDetail(DescribeCmqQueueDetailRequest(queueName: queueName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCmqQueueDetailRequest(queueName: queueName)
+        return try await self.client.execute(action: "DescribeCmqQueueDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

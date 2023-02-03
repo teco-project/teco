@@ -65,7 +65,8 @@ extension Gaap {
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
     @inlinable @discardableResult
     public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateAttributesResponse> {
-        self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias)
+        return self.client.execute(action: "ModifyCertificateAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改证书属性
@@ -73,6 +74,7 @@ extension Gaap {
     /// 本接口（ModifyCertificateAttributes）用于修改证书，包括证书名字以及证书内容。
     @inlinable @discardableResult
     public func modifyCertificateAttributes(certificateId: String, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateAttributesResponse {
-        try await self.modifyCertificateAttributes(ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCertificateAttributesRequest(certificateId: certificateId, certificateAlias: certificateAlias)
+        return try await self.client.execute(action: "ModifyCertificateAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

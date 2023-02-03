@@ -63,12 +63,14 @@ extension Ess {
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationEmployeesResponse> {
-        self.deleteIntegrationEmployees(DeleteIntegrationEmployeesRequest(operator: `operator`, employees: employees), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIntegrationEmployeesRequest(operator: `operator`, employees: employees)
+        return self.client.execute(action: "DeleteIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 移除员工
     @inlinable
     public func deleteIntegrationEmployees(operator: UserInfo, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationEmployeesResponse {
-        try await self.deleteIntegrationEmployees(DeleteIntegrationEmployeesRequest(operator: `operator`, employees: employees), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIntegrationEmployeesRequest(operator: `operator`, employees: employees)
+        return try await self.client.execute(action: "DeleteIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

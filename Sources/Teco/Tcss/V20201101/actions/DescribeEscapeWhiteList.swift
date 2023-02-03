@@ -85,12 +85,14 @@ extension Tcss {
     /// 查询逃逸白名单
     @inlinable
     public func describeEscapeWhiteList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEscapeWhiteListResponse> {
-        self.describeEscapeWhiteList(DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return self.client.execute(action: "DescribeEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询逃逸白名单
     @inlinable
     public func describeEscapeWhiteList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEscapeWhiteListResponse {
-        try await self.describeEscapeWhiteList(DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEscapeWhiteListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return try await self.client.execute(action: "DescribeEscapeWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

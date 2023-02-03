@@ -77,12 +77,14 @@ extension Privatedns {
     /// 获取私有域解析账号的VPC列表
     @inlinable
     public func describeAccountVpcList(accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountVpcListResponse> {
-        self.describeAccountVpcList(DescribeAccountVpcListRequest(accountUin: accountUin, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountVpcListRequest(accountUin: accountUin, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeAccountVpcList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取私有域解析账号的VPC列表
     @inlinable
     public func describeAccountVpcList(accountUin: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountVpcListResponse {
-        try await self.describeAccountVpcList(DescribeAccountVpcListRequest(accountUin: accountUin, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountVpcListRequest(accountUin: accountUin, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeAccountVpcList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

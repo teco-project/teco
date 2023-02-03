@@ -68,7 +68,8 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deleteLoadBalancerListeners(loadBalancerId: String, listenerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLoadBalancerListenersResponse> {
-        self.deleteLoadBalancerListeners(DeleteLoadBalancerListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLoadBalancerListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds)
+        return self.client.execute(action: "DeleteLoadBalancerListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除负载均衡多个监听器
@@ -77,6 +78,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的 RequestID 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deleteLoadBalancerListeners(loadBalancerId: String, listenerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerListenersResponse {
-        try await self.deleteLoadBalancerListeners(DeleteLoadBalancerListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLoadBalancerListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds)
+        return try await self.client.execute(action: "DeleteLoadBalancerListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

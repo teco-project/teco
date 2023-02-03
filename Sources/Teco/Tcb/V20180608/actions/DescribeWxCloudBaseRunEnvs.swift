@@ -63,12 +63,14 @@ extension Tcb {
     /// 查询微信云托管环境信息
     @inlinable
     public func describeWxCloudBaseRunEnvs(wxAppId: String? = nil, allRegions: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWxCloudBaseRunEnvsResponse> {
-        self.describeWxCloudBaseRunEnvs(DescribeWxCloudBaseRunEnvsRequest(wxAppId: wxAppId, allRegions: allRegions), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWxCloudBaseRunEnvsRequest(wxAppId: wxAppId, allRegions: allRegions)
+        return self.client.execute(action: "DescribeWxCloudBaseRunEnvs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询微信云托管环境信息
     @inlinable
     public func describeWxCloudBaseRunEnvs(wxAppId: String? = nil, allRegions: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWxCloudBaseRunEnvsResponse {
-        try await self.describeWxCloudBaseRunEnvs(DescribeWxCloudBaseRunEnvsRequest(wxAppId: wxAppId, allRegions: allRegions), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWxCloudBaseRunEnvsRequest(wxAppId: wxAppId, allRegions: allRegions)
+        return try await self.client.execute(action: "DescribeWxCloudBaseRunEnvs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

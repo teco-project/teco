@@ -69,12 +69,14 @@ extension Cwp {
     /// 导出漏洞影响主机列表
     @inlinable
     public func exportVulEffectHostList(vulId: UInt64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulEffectHostListResponse> {
-        self.exportVulEffectHostList(ExportVulEffectHostListRequest(vulId: vulId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ExportVulEffectHostListRequest(vulId: vulId, filters: filters)
+        return self.client.execute(action: "ExportVulEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出漏洞影响主机列表
     @inlinable
     public func exportVulEffectHostList(vulId: UInt64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulEffectHostListResponse {
-        try await self.exportVulEffectHostList(ExportVulEffectHostListRequest(vulId: vulId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ExportVulEffectHostListRequest(vulId: vulId, filters: filters)
+        return try await self.client.execute(action: "ExportVulEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

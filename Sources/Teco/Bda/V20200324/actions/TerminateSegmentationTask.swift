@@ -60,7 +60,8 @@ extension Bda {
     /// 终止指定视频人像分割处理任务
     @inlinable @discardableResult
     public func terminateSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateSegmentationTaskResponse> {
-        self.terminateSegmentationTask(TerminateSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
+        let input = TerminateSegmentationTaskRequest(taskID: taskID)
+        return self.client.execute(action: "TerminateSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止视频人像分割处理任务
@@ -68,6 +69,7 @@ extension Bda {
     /// 终止指定视频人像分割处理任务
     @inlinable @discardableResult
     public func terminateSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateSegmentationTaskResponse {
-        try await self.terminateSegmentationTask(TerminateSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
+        let input = TerminateSegmentationTaskRequest(taskID: taskID)
+        return try await self.client.execute(action: "TerminateSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

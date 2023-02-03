@@ -79,7 +79,8 @@ extension Bmlb {
     /// 查找绑定了某主机或者有某转发域名黑石负载均衡七层监听器。
     @inlinable
     public func describeL7ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, ifGetBackendInfo: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7ListenerInfoResponse> {
-        self.describeL7ListenerInfo(DescribeL7ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds, ifGetBackendInfo: ifGetBackendInfo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL7ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds, ifGetBackendInfo: ifGetBackendInfo)
+        return self.client.execute(action: "DescribeL7ListenerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查找绑定了某主机或者有某转发域名黑石负载均衡七层监听器
@@ -87,6 +88,7 @@ extension Bmlb {
     /// 查找绑定了某主机或者有某转发域名黑石负载均衡七层监听器。
     @inlinable
     public func describeL7ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, ifGetBackendInfo: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7ListenerInfoResponse {
-        try await self.describeL7ListenerInfo(DescribeL7ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds, ifGetBackendInfo: ifGetBackendInfo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL7ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds, ifGetBackendInfo: ifGetBackendInfo)
+        return try await self.client.execute(action: "DescribeL7ListenerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

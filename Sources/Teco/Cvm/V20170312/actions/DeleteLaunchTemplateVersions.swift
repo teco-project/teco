@@ -65,7 +65,8 @@ extension Cvm {
     /// 本接口（DeleteLaunchTemplateVersions）用于删除一个或者多个实例启动模板版本。
     @inlinable @discardableResult
     public func deleteLaunchTemplateVersions(launchTemplateId: String, launchTemplateVersions: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaunchTemplateVersionsResponse> {
-        self.deleteLaunchTemplateVersions(DeleteLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions)
+        return self.client.execute(action: "DeleteLaunchTemplateVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例启动模板版本
@@ -73,6 +74,7 @@ extension Cvm {
     /// 本接口（DeleteLaunchTemplateVersions）用于删除一个或者多个实例启动模板版本。
     @inlinable @discardableResult
     public func deleteLaunchTemplateVersions(launchTemplateId: String, launchTemplateVersions: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaunchTemplateVersionsResponse {
-        try await self.deleteLaunchTemplateVersions(DeleteLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLaunchTemplateVersionsRequest(launchTemplateId: launchTemplateId, launchTemplateVersions: launchTemplateVersions)
+        return try await self.client.execute(action: "DeleteLaunchTemplateVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

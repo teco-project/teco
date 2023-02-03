@@ -69,12 +69,14 @@ extension Iecp {
     /// 修改Secret
     @inlinable @discardableResult
     public func modifySecret(edgeUnitID: UInt64, secretName: String, yaml: String, secretNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecretResponse> {
-        self.modifySecret(ModifySecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, yaml: yaml, secretNamespace: secretNamespace), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, yaml: yaml, secretNamespace: secretNamespace)
+        return self.client.execute(action: "ModifySecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改Secret
     @inlinable @discardableResult
     public func modifySecret(edgeUnitID: UInt64, secretName: String, yaml: String, secretNamespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecretResponse {
-        try await self.modifySecret(ModifySecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, yaml: yaml, secretNamespace: secretNamespace), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecretRequest(edgeUnitID: edgeUnitID, secretName: secretName, yaml: yaml, secretNamespace: secretNamespace)
+        return try await self.client.execute(action: "ModifySecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

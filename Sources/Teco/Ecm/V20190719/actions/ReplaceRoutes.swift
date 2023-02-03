@@ -59,12 +59,14 @@ extension Ecm {
     /// 替换路由策略
     @inlinable @discardableResult
     public func replaceRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRoutesResponse> {
-        self.replaceRoutes(ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes)
+        return self.client.execute(action: "ReplaceRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 替换路由策略
     @inlinable @discardableResult
     public func replaceRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRoutesResponse {
-        try await self.replaceRoutes(ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes)
+        return try await self.client.execute(action: "ReplaceRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

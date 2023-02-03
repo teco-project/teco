@@ -63,7 +63,8 @@ extension Tat {
     /// 如果命令与执行器关联，则无法被删除。
     @inlinable @discardableResult
     public func deleteCommand(commandId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCommandResponse> {
-        self.deleteCommand(DeleteCommandRequest(commandId: commandId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCommandRequest(commandId: commandId)
+        return self.client.execute(action: "DeleteCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除命令
@@ -72,6 +73,7 @@ extension Tat {
     /// 如果命令与执行器关联，则无法被删除。
     @inlinable @discardableResult
     public func deleteCommand(commandId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCommandResponse {
-        try await self.deleteCommand(DeleteCommandRequest(commandId: commandId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCommandRequest(commandId: commandId)
+        return try await self.client.execute(action: "DeleteCommand", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -75,7 +75,8 @@ extension Postgres {
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
     @inlinable @discardableResult
     public func disIsolateDBInstances(dbInstanceIdSet: [String], period: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisIsolateDBInstancesResponse> {
-        self.disIsolateDBInstances(DisIsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
+        let input = DisIsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds)
+        return self.client.execute(action: "DisIsolateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解隔离实例
@@ -83,6 +84,7 @@ extension Postgres {
     /// 本接口（DisIsolateDBInstances）用于解隔离实例
     @inlinable @discardableResult
     public func disIsolateDBInstances(dbInstanceIdSet: [String], period: Int64? = nil, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisIsolateDBInstancesResponse {
-        try await self.disIsolateDBInstances(DisIsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
+        let input = DisIsolateDBInstancesRequest(dbInstanceIdSet: dbInstanceIdSet, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds)
+        return try await self.client.execute(action: "DisIsolateDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

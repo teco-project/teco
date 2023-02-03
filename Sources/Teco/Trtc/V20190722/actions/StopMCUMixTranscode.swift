@@ -65,7 +65,8 @@ extension Trtc {
     /// 接口说明：结束云端混流
     @inlinable @discardableResult
     public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMCUMixTranscodeResponse> {
-        self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
+        let input = StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId)
+        return self.client.execute(action: "StopMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 结束云端混流
@@ -73,6 +74,7 @@ extension Trtc {
     /// 接口说明：结束云端混流
     @inlinable @discardableResult
     public func stopMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMCUMixTranscodeResponse {
-        try await self.stopMCUMixTranscode(StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId), region: region, logger: logger, on: eventLoop)
+        let input = StopMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId)
+        return try await self.client.execute(action: "StopMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

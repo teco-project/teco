@@ -92,7 +92,8 @@ extension Essbasic {
     /// 注：调用此接口前，请确保您已提前调用了发送流程接口（SendFlow）指定相关签署方。
     @inlinable
     public func createPreviewSignUrl(caller: Caller, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePreviewSignUrlResponse> {
-        self.createPreviewSignUrl(CreatePreviewSignUrlRequest(caller: caller, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType), region: region, logger: logger, on: eventLoop)
+        let input = CreatePreviewSignUrlRequest(caller: caller, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType)
+        return self.client.execute(action: "CreatePreviewSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成预览签署URL
@@ -102,6 +103,7 @@ extension Essbasic {
     /// 注：调用此接口前，请确保您已提前调用了发送流程接口（SendFlow）指定相关签署方。
     @inlinable
     public func createPreviewSignUrl(caller: Caller, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePreviewSignUrlResponse {
-        try await self.createPreviewSignUrl(CreatePreviewSignUrlRequest(caller: caller, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType), region: region, logger: logger, on: eventLoop)
+        let input = CreatePreviewSignUrlRequest(caller: caller, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType)
+        return try await self.client.execute(action: "CreatePreviewSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

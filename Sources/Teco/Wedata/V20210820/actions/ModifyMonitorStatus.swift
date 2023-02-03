@@ -69,12 +69,14 @@ extension Wedata {
     /// 更新监控状态
     @inlinable
     public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMonitorStatusResponse> {
-        self.modifyMonitorStatus(ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus)
+        return self.client.execute(action: "ModifyMonitorStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新监控状态
     @inlinable
     public func modifyMonitorStatus(projectId: String? = nil, ruleGroupId: UInt64? = nil, monitorStatus: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorStatusResponse {
-        try await self.modifyMonitorStatus(ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMonitorStatusRequest(projectId: projectId, ruleGroupId: ruleGroupId, monitorStatus: monitorStatus)
+        return try await self.client.execute(action: "ModifyMonitorStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

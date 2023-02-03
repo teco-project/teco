@@ -69,7 +69,8 @@ extension Ssl {
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
     @inlinable
     public func modifyCertificatesExpiringNotificationSwitch(certificateIds: [String], switchStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificatesExpiringNotificationSwitchResponse> {
-        self.modifyCertificatesExpiringNotificationSwitch(ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus)
+        return self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改是否忽略证书到期通知
@@ -77,6 +78,7 @@ extension Ssl {
     /// 修改忽略证书到期通知。打开或关闭证书到期通知。
     @inlinable
     public func modifyCertificatesExpiringNotificationSwitch(certificateIds: [String], switchStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificatesExpiringNotificationSwitchResponse {
-        try await self.modifyCertificatesExpiringNotificationSwitch(ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCertificatesExpiringNotificationSwitchRequest(certificateIds: certificateIds, switchStatus: switchStatus)
+        return try await self.client.execute(action: "ModifyCertificatesExpiringNotificationSwitch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

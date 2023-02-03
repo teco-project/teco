@@ -69,12 +69,14 @@ extension Tcr {
     /// 删除指定镜像
     @inlinable @discardableResult
     public func deleteImage(registryId: String, repositoryName: String, imageVersion: String, namespaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteImageResponse> {
-        self.deleteImage(DeleteImageRequest(registryId: registryId, repositoryName: repositoryName, imageVersion: imageVersion, namespaceName: namespaceName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteImageRequest(registryId: registryId, repositoryName: repositoryName, imageVersion: imageVersion, namespaceName: namespaceName)
+        return self.client.execute(action: "DeleteImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除指定镜像
     @inlinable @discardableResult
     public func deleteImage(registryId: String, repositoryName: String, imageVersion: String, namespaceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImageResponse {
-        try await self.deleteImage(DeleteImageRequest(registryId: registryId, repositoryName: repositoryName, imageVersion: imageVersion, namespaceName: namespaceName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteImageRequest(registryId: registryId, repositoryName: repositoryName, imageVersion: imageVersion, namespaceName: namespaceName)
+        return try await self.client.execute(action: "DeleteImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

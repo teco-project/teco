@@ -103,12 +103,14 @@ extension Cpdp {
     /// 云企付-绑定分账收款方
     @inlinable
     public func bindOpenBankProfitSharePayee(channelMerchantId: String, accountNo: String, channelName: String, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, profitSharePayeeInfo: OpenBankProfitSharePayeeInfo? = nil, externalProfitSharingData: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindOpenBankProfitSharePayeeResponse> {
-        self.bindOpenBankProfitSharePayee(BindOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, accountNo: accountNo, channelName: channelName, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, profitSharePayeeInfo: profitSharePayeeInfo, externalProfitSharingData: externalProfitSharingData, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = BindOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, accountNo: accountNo, channelName: channelName, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, profitSharePayeeInfo: profitSharePayeeInfo, externalProfitSharingData: externalProfitSharingData, environment: environment)
+        return self.client.execute(action: "BindOpenBankProfitSharePayee", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-绑定分账收款方
     @inlinable
     public func bindOpenBankProfitSharePayee(channelMerchantId: String, accountNo: String, channelName: String, channelSubMerchantId: String? = nil, notifyUrl: String? = nil, profitSharePayeeInfo: OpenBankProfitSharePayeeInfo? = nil, externalProfitSharingData: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindOpenBankProfitSharePayeeResponse {
-        try await self.bindOpenBankProfitSharePayee(BindOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, accountNo: accountNo, channelName: channelName, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, profitSharePayeeInfo: profitSharePayeeInfo, externalProfitSharingData: externalProfitSharingData, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = BindOpenBankProfitSharePayeeRequest(channelMerchantId: channelMerchantId, accountNo: accountNo, channelName: channelName, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, profitSharePayeeInfo: profitSharePayeeInfo, externalProfitSharingData: externalProfitSharingData, environment: environment)
+        return try await self.client.execute(action: "BindOpenBankProfitSharePayee", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Live {
     /// 获取单个转码模板。
     @inlinable
     public func describeLiveTranscodeTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeTemplateResponse> {
-        self.describeLiveTranscodeTemplate(DescribeLiveTranscodeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveTranscodeTemplateRequest(templateId: templateId)
+        return self.client.execute(action: "DescribeLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单个转码模板
@@ -73,6 +74,7 @@ extension Live {
     /// 获取单个转码模板。
     @inlinable
     public func describeLiveTranscodeTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeTemplateResponse {
-        try await self.describeLiveTranscodeTemplate(DescribeLiveTranscodeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveTranscodeTemplateRequest(templateId: templateId)
+        return try await self.client.execute(action: "DescribeLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

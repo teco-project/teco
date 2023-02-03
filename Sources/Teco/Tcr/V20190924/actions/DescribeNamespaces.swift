@@ -98,7 +98,8 @@ extension Tcr {
     /// 查询命名空间列表或指定命名空间信息
     @inlinable
     public func describeNamespaces(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, all: Bool? = nil, filters: [Filter]? = nil, kmsSignPolicy: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespacesResponse> {
-        self.describeNamespaces(DescribeNamespacesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset, all: all, filters: filters, kmsSignPolicy: kmsSignPolicy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNamespacesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset, all: all, filters: filters, kmsSignPolicy: kmsSignPolicy)
+        return self.client.execute(action: "DescribeNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询命名空间信息
@@ -106,6 +107,7 @@ extension Tcr {
     /// 查询命名空间列表或指定命名空间信息
     @inlinable
     public func describeNamespaces(registryId: String, namespaceName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, all: Bool? = nil, filters: [Filter]? = nil, kmsSignPolicy: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
-        try await self.describeNamespaces(DescribeNamespacesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset, all: all, filters: filters, kmsSignPolicy: kmsSignPolicy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNamespacesRequest(registryId: registryId, namespaceName: namespaceName, limit: limit, offset: offset, all: all, filters: filters, kmsSignPolicy: kmsSignPolicy)
+        return try await self.client.execute(action: "DescribeNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -79,7 +79,8 @@ extension Tcss {
     /// 创建合规检查任务，在资产级别触发重新检测时使用。
     @inlinable
     public func createComplianceTask(assetTypeSet: [String]? = nil, policySetId: UInt64? = nil, periodTaskId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateComplianceTaskResponse> {
-        self.createComplianceTask(CreateComplianceTaskRequest(assetTypeSet: assetTypeSet, policySetId: policySetId, periodTaskId: periodTaskId), region: region, logger: logger, on: eventLoop)
+        let input = CreateComplianceTaskRequest(assetTypeSet: assetTypeSet, policySetId: policySetId, periodTaskId: periodTaskId)
+        return self.client.execute(action: "CreateComplianceTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规创建合规检查任务
@@ -87,6 +88,7 @@ extension Tcss {
     /// 创建合规检查任务，在资产级别触发重新检测时使用。
     @inlinable
     public func createComplianceTask(assetTypeSet: [String]? = nil, policySetId: UInt64? = nil, periodTaskId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateComplianceTaskResponse {
-        try await self.createComplianceTask(CreateComplianceTaskRequest(assetTypeSet: assetTypeSet, policySetId: policySetId, periodTaskId: periodTaskId), region: region, logger: logger, on: eventLoop)
+        let input = CreateComplianceTaskRequest(assetTypeSet: assetTypeSet, policySetId: policySetId, periodTaskId: periodTaskId)
+        return try await self.client.execute(action: "CreateComplianceTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

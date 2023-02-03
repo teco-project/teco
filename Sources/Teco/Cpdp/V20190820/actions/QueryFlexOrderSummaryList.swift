@@ -91,12 +91,14 @@ extension Cpdp {
     /// 灵云V2-订单汇总列表查询
     @inlinable
     public func queryFlexOrderSummaryList(summaryDate: String, pageNumber: Paging, orderType: String, payeeId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexOrderSummaryListResponse> {
-        self.queryFlexOrderSummaryList(QueryFlexOrderSummaryListRequest(summaryDate: summaryDate, pageNumber: pageNumber, orderType: orderType, payeeId: payeeId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryFlexOrderSummaryListRequest(summaryDate: summaryDate, pageNumber: pageNumber, orderType: orderType, payeeId: payeeId, environment: environment)
+        return self.client.execute(action: "QueryFlexOrderSummaryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-订单汇总列表查询
     @inlinable
     public func queryFlexOrderSummaryList(summaryDate: String, pageNumber: Paging, orderType: String, payeeId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexOrderSummaryListResponse {
-        try await self.queryFlexOrderSummaryList(QueryFlexOrderSummaryListRequest(summaryDate: summaryDate, pageNumber: pageNumber, orderType: orderType, payeeId: payeeId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryFlexOrderSummaryListRequest(summaryDate: summaryDate, pageNumber: pageNumber, orderType: orderType, payeeId: payeeId, environment: environment)
+        return try await self.client.execute(action: "QueryFlexOrderSummaryList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

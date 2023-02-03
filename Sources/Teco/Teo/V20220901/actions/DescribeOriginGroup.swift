@@ -73,12 +73,14 @@ extension Teo {
     /// 获取源站组列表
     @inlinable
     public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOriginGroupResponse> {
-        self.describeOriginGroup(DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取源站组列表
     @inlinable
     public func describeOriginGroup(offset: UInt64, limit: UInt64, filters: [AdvancedFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOriginGroupResponse {
-        try await self.describeOriginGroup(DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOriginGroupRequest(offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

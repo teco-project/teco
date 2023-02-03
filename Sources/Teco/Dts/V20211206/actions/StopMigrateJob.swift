@@ -63,7 +63,8 @@ extension Dts {
     /// 调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable @discardableResult
     public func stopMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrateJobResponse> {
-        self.stopMigrateJob(StopMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = StopMigrateJobRequest(jobId: jobId)
+        return self.client.execute(action: "StopMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止数据迁移任务
@@ -72,6 +73,7 @@ extension Dts {
     /// 调用此接口后可通过查询迁移服务列表接口`DescribeMigrationJobs`来查询当前任务状态。
     @inlinable @discardableResult
     public func stopMigrateJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrateJobResponse {
-        try await self.stopMigrateJob(StopMigrateJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = StopMigrateJobRequest(jobId: jobId)
+        return try await self.client.execute(action: "StopMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

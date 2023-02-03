@@ -78,7 +78,8 @@ extension Scf {
     /// 获取函数或函数某一版本的预置并发详情。
     @inlinable
     public func getProvisionedConcurrencyConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetProvisionedConcurrencyConfigResponse> {
-        self.getProvisionedConcurrencyConfig(GetProvisionedConcurrencyConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
+        let input = GetProvisionedConcurrencyConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier)
+        return self.client.execute(action: "GetProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数预置并发详情
@@ -86,6 +87,7 @@ extension Scf {
     /// 获取函数或函数某一版本的预置并发详情。
     @inlinable
     public func getProvisionedConcurrencyConfig(functionName: String, namespace: String? = nil, qualifier: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetProvisionedConcurrencyConfigResponse {
-        try await self.getProvisionedConcurrencyConfig(GetProvisionedConcurrencyConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier), region: region, logger: logger, on: eventLoop)
+        let input = GetProvisionedConcurrencyConfigRequest(functionName: functionName, namespace: namespace, qualifier: qualifier)
+        return try await self.client.execute(action: "GetProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

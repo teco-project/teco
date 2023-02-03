@@ -70,7 +70,8 @@ extension Postgres {
     /// 本接口（ModifyDBInstanceSecurityGroups）用于修改实例安全组。
     @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(securityGroupIdSet: [String], dbInstanceId: String? = nil, readOnlyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceSecurityGroupsResponse> {
-        self.modifyDBInstanceSecurityGroups(ModifyDBInstanceSecurityGroupsRequest(securityGroupIdSet: securityGroupIdSet, dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstanceSecurityGroupsRequest(securityGroupIdSet: securityGroupIdSet, dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId)
+        return self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例的安全组
@@ -78,6 +79,7 @@ extension Postgres {
     /// 本接口（ModifyDBInstanceSecurityGroups）用于修改实例安全组。
     @inlinable @discardableResult
     public func modifyDBInstanceSecurityGroups(securityGroupIdSet: [String], dbInstanceId: String? = nil, readOnlyGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceSecurityGroupsResponse {
-        try await self.modifyDBInstanceSecurityGroups(ModifyDBInstanceSecurityGroupsRequest(securityGroupIdSet: securityGroupIdSet, dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstanceSecurityGroupsRequest(securityGroupIdSet: securityGroupIdSet, dbInstanceId: dbInstanceId, readOnlyGroupId: readOnlyGroupId)
+        return try await self.client.execute(action: "ModifyDBInstanceSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

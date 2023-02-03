@@ -74,7 +74,8 @@ extension Iotvideo {
     /// 获取设备的绑定签名
     @inlinable
     public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenSingleDeviceSignatureOfPublicResponse> {
-        self.genSingleDeviceSignatureOfPublic(GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire), region: region, logger: logger, on: eventLoop)
+        let input = GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire)
+        return self.client.execute(action: "GenSingleDeviceSignatureOfPublic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成单个设备绑定的签名
@@ -82,6 +83,7 @@ extension Iotvideo {
     /// 获取设备的绑定签名
     @inlinable
     public func genSingleDeviceSignatureOfPublic(productId: String, deviceName: String, expire: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenSingleDeviceSignatureOfPublicResponse {
-        try await self.genSingleDeviceSignatureOfPublic(GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire), region: region, logger: logger, on: eventLoop)
+        let input = GenSingleDeviceSignatureOfPublicRequest(productId: productId, deviceName: deviceName, expire: expire)
+        return try await self.client.execute(action: "GenSingleDeviceSignatureOfPublic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

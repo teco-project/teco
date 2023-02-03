@@ -108,12 +108,14 @@ extension Cpdp {
     /// 灵云V2-付款
     @inlinable
     public func applyFlexPayment(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, fundingAccountInfo: FlexFundingAccountInfo, remark: String? = nil, environment: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyFlexPaymentResponse> {
-        self.applyFlexPayment(ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
+        let input = ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl)
+        return self.client.execute(action: "ApplyFlexPayment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-付款
     @inlinable
     public func applyFlexPayment(payeeId: String, incomeType: String, amountBeforeTax: String, outOrderId: String, fundingAccountInfo: FlexFundingAccountInfo, remark: String? = nil, environment: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyFlexPaymentResponse {
-        try await self.applyFlexPayment(ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
+        let input = ApplyFlexPaymentRequest(payeeId: payeeId, incomeType: incomeType, amountBeforeTax: amountBeforeTax, outOrderId: outOrderId, fundingAccountInfo: fundingAccountInfo, remark: remark, environment: environment, notifyUrl: notifyUrl)
+        return try await self.client.execute(action: "ApplyFlexPayment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

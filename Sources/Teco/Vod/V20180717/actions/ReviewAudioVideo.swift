@@ -109,7 +109,8 @@ extension Vod {
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, reviewContents: [String]? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviewAudioVideoResponse> {
-        self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+        let input = ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo)
+        return self.client.execute(action: "ReviewAudioVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 音视频审核
@@ -119,6 +120,7 @@ extension Vod {
     /// 如使用事件通知，事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func reviewAudioVideo(fileId: String, subAppId: UInt64? = nil, reviewContents: [String]? = nil, definition: UInt64? = nil, tasksPriority: Int64? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviewAudioVideoResponse {
-        try await self.reviewAudioVideo(ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+        let input = ReviewAudioVideoRequest(fileId: fileId, subAppId: subAppId, reviewContents: reviewContents, definition: definition, tasksPriority: tasksPriority, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo)
+        return try await self.client.execute(action: "ReviewAudioVideo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

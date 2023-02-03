@@ -132,7 +132,8 @@ extension Cpdp {
     /// 查询银行在途清算结果。查询时间段内交易网的在途清算结果。
     @inlinable
     public func queryBankClear(mrchCode: String, functionFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBankClearResponse> {
-        self.queryBankClear(QueryBankClearRequest(mrchCode: mrchCode, functionFlag: functionFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryBankClearRequest(mrchCode: mrchCode, functionFlag: functionFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile)
+        return self.client.execute(action: "QueryBankClear", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询银行在途清算结果
@@ -140,6 +141,7 @@ extension Cpdp {
     /// 查询银行在途清算结果。查询时间段内交易网的在途清算结果。
     @inlinable
     public func queryBankClear(mrchCode: String, functionFlag: String, pageNum: String, startDate: String? = nil, endDate: String? = nil, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBankClearResponse {
-        try await self.queryBankClear(QueryBankClearRequest(mrchCode: mrchCode, functionFlag: functionFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryBankClearRequest(mrchCode: mrchCode, functionFlag: functionFlag, pageNum: pageNum, startDate: startDate, endDate: endDate, reservedMsg: reservedMsg, profile: profile)
+        return try await self.client.execute(action: "QueryBankClear", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

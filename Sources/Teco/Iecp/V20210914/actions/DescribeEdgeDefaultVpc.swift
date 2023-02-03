@@ -66,12 +66,14 @@ extension Iecp {
     /// 获取边缘集群默认VPC信息
     @inlinable
     public func describeEdgeDefaultVpc(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeDefaultVpcResponse> {
-        self.describeEdgeDefaultVpc(DescribeEdgeDefaultVpcRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeDefaultVpcRequest()
+        return self.client.execute(action: "DescribeEdgeDefaultVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取边缘集群默认VPC信息
     @inlinable
     public func describeEdgeDefaultVpc(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeDefaultVpcResponse {
-        try await self.describeEdgeDefaultVpc(DescribeEdgeDefaultVpcRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeDefaultVpcRequest()
+        return try await self.client.execute(action: "DescribeEdgeDefaultVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

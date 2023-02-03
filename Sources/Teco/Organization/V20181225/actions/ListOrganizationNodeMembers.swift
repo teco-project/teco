@@ -72,12 +72,14 @@ extension Organization {
     /// 获取企业组织单元成员列表
     @inlinable
     public func listOrganizationNodeMembers(nodeId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListOrganizationNodeMembersResponse> {
-        self.listOrganizationNodeMembers(ListOrganizationNodeMembersRequest(nodeId: nodeId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = ListOrganizationNodeMembersRequest(nodeId: nodeId, offset: offset, limit: limit)
+        return self.client.execute(action: "ListOrganizationNodeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取企业组织单元成员列表
     @inlinable
     public func listOrganizationNodeMembers(nodeId: UInt64, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListOrganizationNodeMembersResponse {
-        try await self.listOrganizationNodeMembers(ListOrganizationNodeMembersRequest(nodeId: nodeId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = ListOrganizationNodeMembersRequest(nodeId: nodeId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "ListOrganizationNodeMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

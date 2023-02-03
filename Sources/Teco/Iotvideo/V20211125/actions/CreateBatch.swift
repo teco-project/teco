@@ -68,12 +68,14 @@ extension Iotvideo {
     /// 创建批次
     @inlinable
     public func createBatch(productId: String, devNum: UInt64, devPre: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchResponse> {
-        self.createBatch(CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre), region: region, logger: logger, on: eventLoop)
+        let input = CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre)
+        return self.client.execute(action: "CreateBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建批次
     @inlinable
     public func createBatch(productId: String, devNum: UInt64, devPre: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchResponse {
-        try await self.createBatch(CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre), region: region, logger: logger, on: eventLoop)
+        let input = CreateBatchRequest(productId: productId, devNum: devNum, devPre: devPre)
+        return try await self.client.execute(action: "CreateBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

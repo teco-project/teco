@@ -83,12 +83,14 @@ extension Ckafka {
     /// 获取消费分组offset
     @inlinable
     public func describeGroupOffsets(instanceId: String, group: String, topics: [String]? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupOffsetsResponse> {
-        self.describeGroupOffsets(DescribeGroupOffsetsRequest(instanceId: instanceId, group: group, topics: topics, searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupOffsetsRequest(instanceId: instanceId, group: group, topics: topics, searchWord: searchWord, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取消费分组offset
     @inlinable
     public func describeGroupOffsets(instanceId: String, group: String, topics: [String]? = nil, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupOffsetsResponse {
-        try await self.describeGroupOffsets(DescribeGroupOffsetsRequest(instanceId: instanceId, group: group, topics: topics, searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupOffsetsRequest(instanceId: instanceId, group: group, topics: topics, searchWord: searchWord, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeGroupOffsets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

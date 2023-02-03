@@ -89,12 +89,14 @@ extension Cwp {
     /// 一键检测
     @inlinable
     public func scanVul(vulLevels: String, hostType: UInt64, vulCategories: String? = nil, quuidList: [String]? = nil, vulEmergency: UInt64? = nil, timeoutPeriod: UInt64? = nil, vulIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulResponse> {
-        self.scanVul(ScanVulRequest(vulLevels: vulLevels, hostType: hostType, vulCategories: vulCategories, quuidList: quuidList, vulEmergency: vulEmergency, timeoutPeriod: timeoutPeriod, vulIds: vulIds), region: region, logger: logger, on: eventLoop)
+        let input = ScanVulRequest(vulLevels: vulLevels, hostType: hostType, vulCategories: vulCategories, quuidList: quuidList, vulEmergency: vulEmergency, timeoutPeriod: timeoutPeriod, vulIds: vulIds)
+        return self.client.execute(action: "ScanVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 一键检测
     @inlinable
     public func scanVul(vulLevels: String, hostType: UInt64, vulCategories: String? = nil, quuidList: [String]? = nil, vulEmergency: UInt64? = nil, timeoutPeriod: UInt64? = nil, vulIds: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulResponse {
-        try await self.scanVul(ScanVulRequest(vulLevels: vulLevels, hostType: hostType, vulCategories: vulCategories, quuidList: quuidList, vulEmergency: vulEmergency, timeoutPeriod: timeoutPeriod, vulIds: vulIds), region: region, logger: logger, on: eventLoop)
+        let input = ScanVulRequest(vulLevels: vulLevels, hostType: hostType, vulCategories: vulCategories, quuidList: quuidList, vulEmergency: vulEmergency, timeoutPeriod: timeoutPeriod, vulIds: vulIds)
+        return try await self.client.execute(action: "ScanVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

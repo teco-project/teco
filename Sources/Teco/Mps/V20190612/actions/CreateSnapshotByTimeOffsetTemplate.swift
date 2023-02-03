@@ -112,7 +112,8 @@ extension Mps {
     /// 创建用户自定义指定时间点截图模板，数量上限：16。
     @inlinable
     public func createSnapshotByTimeOffsetTemplate(name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotByTimeOffsetTemplateResponse> {
-        self.createSnapshotByTimeOffsetTemplate(CreateSnapshotByTimeOffsetTemplateRequest(name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
+        let input = CreateSnapshotByTimeOffsetTemplateRequest(name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType)
+        return self.client.execute(action: "CreateSnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建指定时间点截图模板
@@ -120,6 +121,7 @@ extension Mps {
     /// 创建用户自定义指定时间点截图模板，数量上限：16。
     @inlinable
     public func createSnapshotByTimeOffsetTemplate(name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotByTimeOffsetTemplateResponse {
-        try await self.createSnapshotByTimeOffsetTemplate(CreateSnapshotByTimeOffsetTemplateRequest(name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
+        let input = CreateSnapshotByTimeOffsetTemplateRequest(name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType)
+        return try await self.client.execute(action: "CreateSnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

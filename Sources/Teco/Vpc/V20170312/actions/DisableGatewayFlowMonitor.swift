@@ -63,7 +63,8 @@ extension Vpc {
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
     @inlinable @discardableResult
     public func disableGatewayFlowMonitor(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableGatewayFlowMonitorResponse> {
-        self.disableGatewayFlowMonitor(DisableGatewayFlowMonitorRequest(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
+        let input = DisableGatewayFlowMonitorRequest(gatewayId: gatewayId)
+        return self.client.execute(action: "DisableGatewayFlowMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭网关流量监控
@@ -71,6 +72,7 @@ extension Vpc {
     /// 本接口（DisableGatewayFlowMonitor）用于关闭网关流量监控。
     @inlinable @discardableResult
     public func disableGatewayFlowMonitor(gatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableGatewayFlowMonitorResponse {
-        try await self.disableGatewayFlowMonitor(DisableGatewayFlowMonitorRequest(gatewayId: gatewayId), region: region, logger: logger, on: eventLoop)
+        let input = DisableGatewayFlowMonitorRequest(gatewayId: gatewayId)
+        return try await self.client.execute(action: "DisableGatewayFlowMonitor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

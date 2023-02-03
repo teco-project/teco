@@ -50,12 +50,14 @@ extension Cwp {
     /// 获取历史搜索记录
     @inlinable
     public func describeSearchLogs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSearchLogsResponse> {
-        self.describeSearchLogs(DescribeSearchLogsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSearchLogsRequest()
+        return self.client.execute(action: "DescribeSearchLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取历史搜索记录
     @inlinable
     public func describeSearchLogs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSearchLogsResponse {
-        try await self.describeSearchLogs(DescribeSearchLogsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSearchLogsRequest()
+        return try await self.client.execute(action: "DescribeSearchLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

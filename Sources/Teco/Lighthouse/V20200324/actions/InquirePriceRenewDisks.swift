@@ -69,7 +69,8 @@ extension Lighthouse {
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
     @inlinable
     public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewDisksResponse> {
-        self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid)
+        return self.client.execute(action: "InquirePriceRenewDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费云硬盘询价
@@ -77,6 +78,7 @@ extension Lighthouse {
     /// 本接口（InquirePriceRenewDisks）用于续费云硬盘询价。
     @inlinable
     public func inquirePriceRenewDisks(diskIds: [String], renewDiskChargePrepaid: RenewDiskChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewDisksResponse {
-        try await self.inquirePriceRenewDisks(InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceRenewDisksRequest(diskIds: diskIds, renewDiskChargePrepaid: renewDiskChargePrepaid)
+        return try await self.client.execute(action: "InquirePriceRenewDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

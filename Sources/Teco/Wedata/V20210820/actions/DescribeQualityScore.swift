@@ -75,7 +75,8 @@ extension Wedata {
     /// 质量报告-质量评分
     @inlinable
     public func describeQualityScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQualityScoreResponse> {
-        self.describeQualityScore(DescribeQualityScoreRequest(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQualityScoreRequest(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId)
+        return self.client.execute(action: "DescribeQualityScore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询质量评分
@@ -83,6 +84,7 @@ extension Wedata {
     /// 质量报告-质量评分
     @inlinable
     public func describeQualityScore(statisticsDate: Int64, projectId: String, datasourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQualityScoreResponse {
-        try await self.describeQualityScore(DescribeQualityScoreRequest(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQualityScoreRequest(statisticsDate: statisticsDate, projectId: projectId, datasourceId: datasourceId)
+        return try await self.client.execute(action: "DescribeQualityScore", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

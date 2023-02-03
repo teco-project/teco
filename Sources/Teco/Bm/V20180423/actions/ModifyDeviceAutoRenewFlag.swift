@@ -59,12 +59,14 @@ extension Bm {
     /// 修改物理机服务器自动续费标志
     @inlinable @discardableResult
     public func modifyDeviceAutoRenewFlag(autoRenewFlag: UInt64, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAutoRenewFlagResponse> {
-        self.modifyDeviceAutoRenewFlag(ModifyDeviceAutoRenewFlagRequest(autoRenewFlag: autoRenewFlag, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceAutoRenewFlagRequest(autoRenewFlag: autoRenewFlag, instanceIds: instanceIds)
+        return self.client.execute(action: "ModifyDeviceAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改物理机服务器自动续费标志
     @inlinable @discardableResult
     public func modifyDeviceAutoRenewFlag(autoRenewFlag: UInt64, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAutoRenewFlagResponse {
-        try await self.modifyDeviceAutoRenewFlag(ModifyDeviceAutoRenewFlagRequest(autoRenewFlag: autoRenewFlag, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceAutoRenewFlagRequest(autoRenewFlag: autoRenewFlag, instanceIds: instanceIds)
+        return try await self.client.execute(action: "ModifyDeviceAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

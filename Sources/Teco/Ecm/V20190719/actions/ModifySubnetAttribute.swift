@@ -74,12 +74,14 @@ extension Ecm {
     /// 修改子网属性
     @inlinable @discardableResult
     public func modifySubnetAttribute(subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetAttributeResponse> {
-        self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags)
+        return self.client.execute(action: "ModifySubnetAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改子网属性
     @inlinable @discardableResult
     public func modifySubnetAttribute(subnetId: String, ecmRegion: String, subnetName: String? = nil, enableBroadcast: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
-        try await self.modifySubnetAttribute(ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = ModifySubnetAttributeRequest(subnetId: subnetId, ecmRegion: ecmRegion, subnetName: subnetName, enableBroadcast: enableBroadcast, tags: tags)
+        return try await self.client.execute(action: "ModifySubnetAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

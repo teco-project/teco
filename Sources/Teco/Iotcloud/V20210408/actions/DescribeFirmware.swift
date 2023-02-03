@@ -95,12 +95,14 @@ extension Iotcloud {
     /// 查询固件信息
     @inlinable
     public func describeFirmware(productId: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareResponse> {
-        self.describeFirmware(DescribeFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion)
+        return self.client.execute(action: "DescribeFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询固件信息
     @inlinable
     public func describeFirmware(productId: String, firmwareVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareResponse {
-        try await self.describeFirmware(DescribeFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion)
+        return try await self.client.execute(action: "DescribeFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

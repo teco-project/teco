@@ -84,7 +84,8 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeDomains(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainsResponse> {
-        self.describeDomains(DescribeDomainsRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainsRequest(offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询域名基本信息
@@ -94,6 +95,7 @@ extension Ecdn {
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/41118"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
     @inlinable
     public func describeDomains(offset: Int64? = nil, limit: Int64? = nil, filters: [DomainFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainsResponse {
-        try await self.describeDomains(DescribeDomainsRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainsRequest(offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

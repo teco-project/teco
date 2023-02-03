@@ -83,12 +83,14 @@ extension Cpdp {
     /// 云支付-获取门店OpenId接口
     @inlinable
     public func queryShopOpenId(openId: String, openKey: String, shopNo: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryShopOpenIdResponse> {
-        self.queryShopOpenId(QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile)
+        return self.client.execute(action: "QueryShopOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-获取门店OpenId接口
     @inlinable
     public func queryShopOpenId(openId: String, openKey: String, shopNo: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryShopOpenIdResponse {
-        try await self.queryShopOpenId(QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryShopOpenIdRequest(openId: openId, openKey: openKey, shopNo: shopNo, profile: profile)
+        return try await self.client.execute(action: "QueryShopOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

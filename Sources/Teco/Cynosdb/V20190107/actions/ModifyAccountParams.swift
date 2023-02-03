@@ -64,12 +64,14 @@ extension Cynosdb {
     /// 修改账号参数
     @inlinable @discardableResult
     public func modifyAccountParams(clusterId: String, account: InputAccount, accountParams: [AccountParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountParamsResponse> {
-        self.modifyAccountParams(ModifyAccountParamsRequest(clusterId: clusterId, account: account, accountParams: accountParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountParamsRequest(clusterId: clusterId, account: account, accountParams: accountParams)
+        return self.client.execute(action: "ModifyAccountParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改账号参数
     @inlinable @discardableResult
     public func modifyAccountParams(clusterId: String, account: InputAccount, accountParams: [AccountParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountParamsResponse {
-        try await self.modifyAccountParams(ModifyAccountParamsRequest(clusterId: clusterId, account: account, accountParams: accountParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountParamsRequest(clusterId: clusterId, account: account, accountParams: accountParams)
+        return try await self.client.execute(action: "ModifyAccountParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

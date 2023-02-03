@@ -93,7 +93,8 @@ extension Monitor {
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
     @inlinable @discardableResult
     public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutMonitorDataResponse> {
-        self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), region: region, logger: logger, on: eventLoop)
+        let input = PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance)
+        return self.client.execute(action: "PutMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 自定义监控上报数据
@@ -107,6 +108,7 @@ extension Monitor {
     /// 同一 IP 指标对的数据需按分钟先后顺序上报。
     @inlinable @discardableResult
     public func putMonitorData(metrics: [MetricDatum], announceIp: String? = nil, announceTimestamp: UInt64? = nil, announceInstance: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutMonitorDataResponse {
-        try await self.putMonitorData(PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance), region: region, logger: logger, on: eventLoop)
+        let input = PutMonitorDataRequest(metrics: metrics, announceIp: announceIp, announceTimestamp: announceTimestamp, announceInstance: announceInstance)
+        return try await self.client.execute(action: "PutMonitorData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

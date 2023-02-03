@@ -80,7 +80,8 @@ extension Mongodb {
     /// 本接口(ModifyDBInstanceNetworkAddress)用于修改云数据库实例的网络信息，可进行基础网络转VPC网络和VPC网络之间的变换。
     @inlinable @discardableResult
     public func modifyDBInstanceNetworkAddress(instanceId: String, oldIpExpiredTime: UInt64, newUniqVpcId: String, newUniqSubnetId: String, networkAddresses: [ModifyNetworkAddress]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceNetworkAddressResponse> {
-        self.modifyDBInstanceNetworkAddress(ModifyDBInstanceNetworkAddressRequest(instanceId: instanceId, oldIpExpiredTime: oldIpExpiredTime, newUniqVpcId: newUniqVpcId, newUniqSubnetId: newUniqSubnetId, networkAddresses: networkAddresses), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstanceNetworkAddressRequest(instanceId: instanceId, oldIpExpiredTime: oldIpExpiredTime, newUniqVpcId: newUniqVpcId, newUniqSubnetId: newUniqSubnetId, networkAddresses: networkAddresses)
+        return self.client.execute(action: "ModifyDBInstanceNetworkAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例网络信息
@@ -88,6 +89,7 @@ extension Mongodb {
     /// 本接口(ModifyDBInstanceNetworkAddress)用于修改云数据库实例的网络信息，可进行基础网络转VPC网络和VPC网络之间的变换。
     @inlinable @discardableResult
     public func modifyDBInstanceNetworkAddress(instanceId: String, oldIpExpiredTime: UInt64, newUniqVpcId: String, newUniqSubnetId: String, networkAddresses: [ModifyNetworkAddress]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceNetworkAddressResponse {
-        try await self.modifyDBInstanceNetworkAddress(ModifyDBInstanceNetworkAddressRequest(instanceId: instanceId, oldIpExpiredTime: oldIpExpiredTime, newUniqVpcId: newUniqVpcId, newUniqSubnetId: newUniqSubnetId, networkAddresses: networkAddresses), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstanceNetworkAddressRequest(instanceId: instanceId, oldIpExpiredTime: oldIpExpiredTime, newUniqVpcId: newUniqVpcId, newUniqSubnetId: newUniqSubnetId, networkAddresses: networkAddresses)
+        return try await self.client.execute(action: "ModifyDBInstanceNetworkAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

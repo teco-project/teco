@@ -83,7 +83,8 @@ extension Iottid {
     /// 上传硬件唯一标识码，是软加固设备身份参数。本接口如遇到错误数据，则所有当次上传数据失效。
     @inlinable
     public func uploadDeviceUniqueCode(codeSet: [String], orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadDeviceUniqueCodeResponse> {
-        self.uploadDeviceUniqueCode(UploadDeviceUniqueCodeRequest(codeSet: codeSet, orderId: orderId), region: region, logger: logger, on: eventLoop)
+        let input = UploadDeviceUniqueCodeRequest(codeSet: codeSet, orderId: orderId)
+        return self.client.execute(action: "UploadDeviceUniqueCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传硬件唯一标识码
@@ -91,6 +92,7 @@ extension Iottid {
     /// 上传硬件唯一标识码，是软加固设备身份参数。本接口如遇到错误数据，则所有当次上传数据失效。
     @inlinable
     public func uploadDeviceUniqueCode(codeSet: [String], orderId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadDeviceUniqueCodeResponse {
-        try await self.uploadDeviceUniqueCode(UploadDeviceUniqueCodeRequest(codeSet: codeSet, orderId: orderId), region: region, logger: logger, on: eventLoop)
+        let input = UploadDeviceUniqueCodeRequest(codeSet: codeSet, orderId: orderId)
+        return try await self.client.execute(action: "UploadDeviceUniqueCode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

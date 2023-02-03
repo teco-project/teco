@@ -79,12 +79,14 @@ extension Eiam {
     /// 查询指定用户组下的资源授权列表
     @inlinable
     public func describeUserGroupResourcesAuthorization(applicationId: String, userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserGroupResourcesAuthorizationResponse> {
-        self.describeUserGroupResourcesAuthorization(DescribeUserGroupResourcesAuthorizationRequest(applicationId: applicationId, userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserGroupResourcesAuthorizationRequest(applicationId: applicationId, userGroupId: userGroupId)
+        return self.client.execute(action: "DescribeUserGroupResourcesAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定用户组下的资源授权列表
     @inlinable
     public func describeUserGroupResourcesAuthorization(applicationId: String, userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserGroupResourcesAuthorizationResponse {
-        try await self.describeUserGroupResourcesAuthorization(DescribeUserGroupResourcesAuthorizationRequest(applicationId: applicationId, userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserGroupResourcesAuthorizationRequest(applicationId: applicationId, userGroupId: userGroupId)
+        return try await self.client.execute(action: "DescribeUserGroupResourcesAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

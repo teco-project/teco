@@ -64,7 +64,8 @@ extension Eis {
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
     public func listRuntimesMC(runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListRuntimesMCResponse> {
-        self.listRuntimesMC(ListRuntimesMCRequest(runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
+        let input = ListRuntimesMCRequest(runtimeClass: runtimeClass)
+        return self.client.execute(action: "ListRuntimesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时列表
@@ -72,6 +73,7 @@ extension Eis {
     /// 返回用户的运行时列表，运行时管理主页使用，包含沙箱、共享运行时及独立运行时环境，不包含已经删除的运行时
     @inlinable
     public func listRuntimesMC(runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListRuntimesMCResponse {
-        try await self.listRuntimesMC(ListRuntimesMCRequest(runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
+        let input = ListRuntimesMCRequest(runtimeClass: runtimeClass)
+        return try await self.client.execute(action: "ListRuntimesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

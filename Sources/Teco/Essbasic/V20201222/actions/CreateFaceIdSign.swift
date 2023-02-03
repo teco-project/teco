@@ -69,7 +69,8 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
     @inlinable
     public func createFaceIdSign(caller: Caller, values: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFaceIdSignResponse> {
-        self.createFaceIdSign(CreateFaceIdSignRequest(caller: caller, values: values), region: region, logger: logger, on: eventLoop)
+        let input = CreateFaceIdSignRequest(caller: caller, values: values)
+        return self.client.execute(action: "CreateFaceIdSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成慧眼API签名
@@ -77,6 +78,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台获取慧眼慧眼API签名
     @inlinable
     public func createFaceIdSign(caller: Caller, values: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFaceIdSignResponse {
-        try await self.createFaceIdSign(CreateFaceIdSignRequest(caller: caller, values: values), region: region, logger: logger, on: eventLoop)
+        let input = CreateFaceIdSignRequest(caller: caller, values: values)
+        return try await self.client.execute(action: "CreateFaceIdSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -126,13 +126,15 @@ extension Gpm {
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func modifyMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchCode: String, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMatchResponse> {
-        self.modifyMatch(ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags)
+        return self.client.execute(action: "ModifyMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改匹配
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func modifyMatch(matchName: String, ruleCode: String, timeout: Int64, serverType: Int64, matchCode: String, matchDesc: String? = nil, notifyUrl: String? = nil, serverRegion: String? = nil, serverQueue: String? = nil, customPushData: String? = nil, serverSessionData: String? = nil, gameProperties: [StringKV]? = nil, logSwitch: Int64? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMatchResponse {
-        try await self.modifyMatch(ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMatchRequest(matchName: matchName, ruleCode: ruleCode, timeout: timeout, serverType: serverType, matchCode: matchCode, matchDesc: matchDesc, notifyUrl: notifyUrl, serverRegion: serverRegion, serverQueue: serverQueue, customPushData: customPushData, serverSessionData: serverSessionData, gameProperties: gameProperties, logSwitch: logSwitch, tags: tags)
+        return try await self.client.execute(action: "ModifyMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

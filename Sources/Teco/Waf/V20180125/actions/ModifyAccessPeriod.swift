@@ -65,7 +65,8 @@ extension Waf {
     /// 本接口用于修改访问日志保存期限
     @inlinable @discardableResult
     public func modifyAccessPeriod(period: Int64, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessPeriodResponse> {
-        self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccessPeriodRequest(period: period, topicId: topicId)
+        return self.client.execute(action: "ModifyAccessPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改访问日志保存期限
@@ -73,6 +74,7 @@ extension Waf {
     /// 本接口用于修改访问日志保存期限
     @inlinable @discardableResult
     public func modifyAccessPeriod(period: Int64, topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessPeriodResponse {
-        try await self.modifyAccessPeriod(ModifyAccessPeriodRequest(period: period, topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccessPeriodRequest(period: period, topicId: topicId)
+        return try await self.client.execute(action: "ModifyAccessPeriod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

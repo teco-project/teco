@@ -147,7 +147,8 @@ extension Vod {
     /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
     @inlinable
     public func applyUpload(mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyUploadResponse> {
-        self.applyUpload(ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+        let input = ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo)
+        return self.client.execute(action: "ApplyUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请上传
@@ -157,6 +158,7 @@ extension Vod {
     /// * 上传流程请参考 [服务端上传综述](/document/product/266/9759)。
     @inlinable
     public func applyUpload(mediaType: String, subAppId: UInt64? = nil, mediaName: String? = nil, coverType: String? = nil, procedure: String? = nil, expireTime: Date? = nil, storageRegion: String? = nil, classId: Int64? = nil, sourceContext: String? = nil, sessionContext: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyUploadResponse {
-        try await self.applyUpload(ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+        let input = ApplyUploadRequest(mediaType: mediaType, subAppId: subAppId, mediaName: mediaName, coverType: coverType, procedure: procedure, expireTime: expireTime, storageRegion: storageRegion, classId: classId, sourceContext: sourceContext, sessionContext: sessionContext, extInfo: extInfo)
+        return try await self.client.execute(action: "ApplyUpload", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

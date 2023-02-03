@@ -127,12 +127,14 @@ extension Dayu {
     /// 获取DDoS攻击事件列表
     @inlinable
     public func describeDDoSEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, overLoad: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSEvListResponse> {
-        self.describeDDoSEvList(DescribeDDoSEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, overLoad: overLoad, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, overLoad: overLoad, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeDDoSEvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS攻击事件列表
     @inlinable
     public func describeDDoSEvList(business: String, startTime: Date, endTime: Date, id: String? = nil, ipList: [String]? = nil, overLoad: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSEvListResponse {
-        try await self.describeDDoSEvList(DescribeDDoSEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, overLoad: overLoad, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSEvListRequest(business: business, startTime: startTime, endTime: endTime, id: id, ipList: ipList, overLoad: overLoad, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeDDoSEvList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

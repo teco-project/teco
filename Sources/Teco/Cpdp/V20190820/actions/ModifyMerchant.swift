@@ -70,7 +70,8 @@ extension Cpdp {
     /// 云鉴-商户信息修改的接口
     @inlinable @discardableResult
     public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
-        self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag)
+        return self.client.execute(action: "ModifyMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-商户信息修改接口
@@ -78,6 +79,7 @@ extension Cpdp {
     /// 云鉴-商户信息修改的接口
     @inlinable @discardableResult
     public func modifyMerchant(merchantAppId: String, merchantName: String, businessPayFlag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
-        try await self.modifyMerchant(ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMerchantRequest(merchantAppId: merchantAppId, merchantName: merchantName, businessPayFlag: businessPayFlag)
+        return try await self.client.execute(action: "ModifyMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

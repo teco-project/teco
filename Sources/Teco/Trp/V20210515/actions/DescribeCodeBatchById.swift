@@ -63,12 +63,14 @@ extension Trp {
     /// 查询批次信息
     @inlinable
     public func describeCodeBatchById(corpId: UInt64? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCodeBatchByIdResponse> {
-        self.describeCodeBatchById(DescribeCodeBatchByIdRequest(corpId: corpId, batchId: batchId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCodeBatchByIdRequest(corpId: corpId, batchId: batchId)
+        return self.client.execute(action: "DescribeCodeBatchById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询批次信息
     @inlinable
     public func describeCodeBatchById(corpId: UInt64? = nil, batchId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchByIdResponse {
-        try await self.describeCodeBatchById(DescribeCodeBatchByIdRequest(corpId: corpId, batchId: batchId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCodeBatchByIdRequest(corpId: corpId, batchId: batchId)
+        return try await self.client.execute(action: "DescribeCodeBatchById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

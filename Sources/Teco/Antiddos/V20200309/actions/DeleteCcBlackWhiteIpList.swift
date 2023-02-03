@@ -59,12 +59,14 @@ extension Antiddos {
     /// 删除CC四层黑白名单
     @inlinable @discardableResult
     public func deleteCcBlackWhiteIpList(instanceId: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCcBlackWhiteIpListResponse> {
-        self.deleteCcBlackWhiteIpList(DeleteCcBlackWhiteIpListRequest(instanceId: instanceId, policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCcBlackWhiteIpListRequest(instanceId: instanceId, policyId: policyId)
+        return self.client.execute(action: "DeleteCcBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除CC四层黑白名单
     @inlinable @discardableResult
     public func deleteCcBlackWhiteIpList(instanceId: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCcBlackWhiteIpListResponse {
-        try await self.deleteCcBlackWhiteIpList(DeleteCcBlackWhiteIpListRequest(instanceId: instanceId, policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCcBlackWhiteIpListRequest(instanceId: instanceId, policyId: policyId)
+        return try await self.client.execute(action: "DeleteCcBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

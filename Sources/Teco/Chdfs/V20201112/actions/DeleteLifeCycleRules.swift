@@ -60,7 +60,8 @@ extension Chdfs {
     /// 批量删除生命周期规则。
     @inlinable @discardableResult
     public func deleteLifeCycleRules(lifeCycleRuleIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLifeCycleRulesResponse> {
-        self.deleteLifeCycleRules(DeleteLifeCycleRulesRequest(lifeCycleRuleIds: lifeCycleRuleIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLifeCycleRulesRequest(lifeCycleRuleIds: lifeCycleRuleIds)
+        return self.client.execute(action: "DeleteLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除生命周期规则
@@ -68,6 +69,7 @@ extension Chdfs {
     /// 批量删除生命周期规则。
     @inlinable @discardableResult
     public func deleteLifeCycleRules(lifeCycleRuleIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLifeCycleRulesResponse {
-        try await self.deleteLifeCycleRules(DeleteLifeCycleRulesRequest(lifeCycleRuleIds: lifeCycleRuleIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLifeCycleRulesRequest(lifeCycleRuleIds: lifeCycleRuleIds)
+        return try await self.client.execute(action: "DeleteLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

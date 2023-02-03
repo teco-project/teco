@@ -77,7 +77,8 @@ extension Apigateway {
     /// 当用户使用自定义域名，并使用了自定义映射时，可使用此接口。但需注意，若删除了所有环境的映射时，调用此 API 均会返回失败。
     @inlinable
     public func deleteServiceSubDomainMapping(serviceId: String, subDomain: String, environment: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceSubDomainMappingResponse> {
-        self.deleteServiceSubDomainMapping(DeleteServiceSubDomainMappingRequest(serviceId: serviceId, subDomain: subDomain, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = DeleteServiceSubDomainMappingRequest(serviceId: serviceId, subDomain: subDomain, environment: environment)
+        return self.client.execute(action: "DeleteServiceSubDomainMapping", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义域名的路径映射
@@ -86,6 +87,7 @@ extension Apigateway {
     /// 当用户使用自定义域名，并使用了自定义映射时，可使用此接口。但需注意，若删除了所有环境的映射时，调用此 API 均会返回失败。
     @inlinable
     public func deleteServiceSubDomainMapping(serviceId: String, subDomain: String, environment: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceSubDomainMappingResponse {
-        try await self.deleteServiceSubDomainMapping(DeleteServiceSubDomainMappingRequest(serviceId: serviceId, subDomain: subDomain, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = DeleteServiceSubDomainMappingRequest(serviceId: serviceId, subDomain: subDomain, environment: environment)
+        return try await self.client.execute(action: "DeleteServiceSubDomainMapping", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

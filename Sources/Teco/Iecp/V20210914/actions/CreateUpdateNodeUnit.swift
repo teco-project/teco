@@ -79,12 +79,14 @@ extension Iecp {
     /// 创建或更新边缘单元NodeUnit
     @inlinable @discardableResult
     public func createUpdateNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitName: String? = nil, nodes: [String]? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUpdateNodeUnitResponse> {
-        self.createUpdateNodeUnit(CreateUpdateNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitName: nodeUnitName, nodes: nodes, nodeUnitTemplateIDs: nodeUnitTemplateIDs), region: region, logger: logger, on: eventLoop)
+        let input = CreateUpdateNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitName: nodeUnitName, nodes: nodes, nodeUnitTemplateIDs: nodeUnitTemplateIDs)
+        return self.client.execute(action: "CreateUpdateNodeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建或更新边缘单元NodeUnit
     @inlinable @discardableResult
     public func createUpdateNodeUnit(edgeUnitId: UInt64, nodeGroupName: String, namespace: String? = nil, nodeUnitName: String? = nil, nodes: [String]? = nil, nodeUnitTemplateIDs: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUpdateNodeUnitResponse {
-        try await self.createUpdateNodeUnit(CreateUpdateNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitName: nodeUnitName, nodes: nodes, nodeUnitTemplateIDs: nodeUnitTemplateIDs), region: region, logger: logger, on: eventLoop)
+        let input = CreateUpdateNodeUnitRequest(edgeUnitId: edgeUnitId, nodeGroupName: nodeGroupName, namespace: namespace, nodeUnitName: nodeUnitName, nodes: nodes, nodeUnitTemplateIDs: nodeUnitTemplateIDs)
+        return try await self.client.execute(action: "CreateUpdateNodeUnit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -74,7 +74,8 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
     @inlinable
     public func describeFaceIdPhotos(caller: Caller, wbAppId: String, orderNumbers: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFaceIdPhotosResponse> {
-        self.describeFaceIdPhotos(DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers)
+        return self.client.execute(action: "DescribeFaceIdPhotos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询慧眼人脸核身照片
@@ -82,6 +83,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台获取慧眼人脸核身照片
     @inlinable
     public func describeFaceIdPhotos(caller: Caller, wbAppId: String, orderNumbers: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFaceIdPhotosResponse {
-        try await self.describeFaceIdPhotos(DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFaceIdPhotosRequest(caller: caller, wbAppId: wbAppId, orderNumbers: orderNumbers)
+        return try await self.client.execute(action: "DescribeFaceIdPhotos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

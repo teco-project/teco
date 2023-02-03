@@ -64,7 +64,8 @@ extension Sqlserver {
     /// 本接口（ModifyDBInstanceRenewFlag）用于修改实例续费标记
     @inlinable
     public func modifyDBInstanceRenewFlag(renewFlags: [InstanceRenewInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstanceRenewFlagResponse> {
-        self.modifyDBInstanceRenewFlag(ModifyDBInstanceRenewFlagRequest(renewFlags: renewFlags), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstanceRenewFlagRequest(renewFlags: renewFlags)
+        return self.client.execute(action: "ModifyDBInstanceRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例续费标记
@@ -72,6 +73,7 @@ extension Sqlserver {
     /// 本接口（ModifyDBInstanceRenewFlag）用于修改实例续费标记
     @inlinable
     public func modifyDBInstanceRenewFlag(renewFlags: [InstanceRenewInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstanceRenewFlagResponse {
-        try await self.modifyDBInstanceRenewFlag(ModifyDBInstanceRenewFlagRequest(renewFlags: renewFlags), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstanceRenewFlagRequest(renewFlags: renewFlags)
+        return try await self.client.execute(action: "ModifyDBInstanceRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

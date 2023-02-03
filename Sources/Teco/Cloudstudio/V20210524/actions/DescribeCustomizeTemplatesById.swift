@@ -64,12 +64,14 @@ extension Cloudstudio {
     /// 获取特定模板信息
     @inlinable
     public func describeCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizeTemplatesByIdResponse> {
-        self.describeCustomizeTemplatesById(DescribeCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id)
+        return self.client.execute(action: "DescribeCustomizeTemplatesById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取特定模板信息
     @inlinable
     public func describeCustomizeTemplatesById(cloudStudioSessionTeam: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizeTemplatesByIdResponse {
-        try await self.describeCustomizeTemplatesById(DescribeCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomizeTemplatesByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id)
+        return try await self.client.execute(action: "DescribeCustomizeTemplatesById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

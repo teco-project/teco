@@ -68,7 +68,8 @@ extension Redis {
     /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
     @inlinable
     public func describeMaintenanceWindow(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintenanceWindowResponse> {
-        self.describeMaintenanceWindow(DescribeMaintenanceWindowRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMaintenanceWindowRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeMaintenanceWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例维护时间窗
@@ -76,6 +77,7 @@ extension Redis {
     /// 查询实例维护时间窗，在实例需要进行版本升级或者架构升级的时候，会在维护时间窗时间内进行切换
     @inlinable
     public func describeMaintenanceWindow(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceWindowResponse {
-        try await self.describeMaintenanceWindow(DescribeMaintenanceWindowRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMaintenanceWindowRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeMaintenanceWindow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

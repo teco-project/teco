@@ -56,7 +56,8 @@ extension Monitor {
     /// 列出可安装的所有 Grafana 插件
     @inlinable
     public func describePluginOverviews(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginOverviewsResponse> {
-        self.describePluginOverviews(DescribePluginOverviewsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePluginOverviewsRequest()
+        return self.client.execute(action: "DescribePluginOverviews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出所有 Grafana 插件
@@ -64,6 +65,7 @@ extension Monitor {
     /// 列出可安装的所有 Grafana 插件
     @inlinable
     public func describePluginOverviews(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginOverviewsResponse {
-        try await self.describePluginOverviews(DescribePluginOverviewsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePluginOverviewsRequest()
+        return try await self.client.execute(action: "DescribePluginOverviews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,12 +78,14 @@ extension Apigateway {
     /// 修改 API 文档
     @inlinable
     public func modifyAPIDoc(apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAPIDocResponse> {
-        self.modifyAPIDoc(ModifyAPIDocRequest(apiDocId: apiDocId, apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAPIDocRequest(apiDocId: apiDocId, apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds)
+        return self.client.execute(action: "ModifyAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改 API 文档
     @inlinable
     public func modifyAPIDoc(apiDocId: String, apiDocName: String? = nil, serviceId: String? = nil, environment: String? = nil, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAPIDocResponse {
-        try await self.modifyAPIDoc(ModifyAPIDocRequest(apiDocId: apiDocId, apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAPIDocRequest(apiDocId: apiDocId, apiDocName: apiDocName, serviceId: serviceId, environment: environment, apiIds: apiIds)
+        return try await self.client.execute(action: "ModifyAPIDoc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

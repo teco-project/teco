@@ -69,7 +69,8 @@ extension Iot {
     /// 提供在指定的产品Id下创建一个设备的能力，生成设备名称与设备秘钥。
     @inlinable
     public func addDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDeviceResponse> {
-        self.addDevice(AddDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = AddDeviceRequest(productId: productId, deviceName: deviceName)
+        return self.client.execute(action: "AddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增设备
@@ -77,6 +78,7 @@ extension Iot {
     /// 提供在指定的产品Id下创建一个设备的能力，生成设备名称与设备秘钥。
     @inlinable
     public func addDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDeviceResponse {
-        try await self.addDevice(AddDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = AddDeviceRequest(productId: productId, deviceName: deviceName)
+        return try await self.client.execute(action: "AddDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

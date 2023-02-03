@@ -64,12 +64,14 @@ extension Ecm {
     /// 展示模块详细信息
     @inlinable
     public func describeModuleDetail(moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeModuleDetailResponse> {
-        self.describeModuleDetail(DescribeModuleDetailRequest(moduleId: moduleId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeModuleDetailRequest(moduleId: moduleId)
+        return self.client.execute(action: "DescribeModuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 展示模块详细信息
     @inlinable
     public func describeModuleDetail(moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeModuleDetailResponse {
-        try await self.describeModuleDetail(DescribeModuleDetailRequest(moduleId: moduleId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeModuleDetailRequest(moduleId: moduleId)
+        return try await self.client.execute(action: "DescribeModuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

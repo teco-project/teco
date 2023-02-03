@@ -105,7 +105,8 @@ extension Tcr {
     /// 用于创建应用更新触发器
     @inlinable @discardableResult
     public func createApplicationTriggerPersonal(repoName: String, triggerName: String, invokeMethod: String, clusterId: String, namespace: String, workloadType: String, workloadName: String, containerName: String, clusterRegion: Int64, invokeExpr: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationTriggerPersonalResponse> {
-        self.createApplicationTriggerPersonal(CreateApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, invokeExpr: invokeExpr), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, invokeExpr: invokeExpr)
+        return self.client.execute(action: "CreateApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用更新触发器
@@ -113,6 +114,7 @@ extension Tcr {
     /// 用于创建应用更新触发器
     @inlinable @discardableResult
     public func createApplicationTriggerPersonal(repoName: String, triggerName: String, invokeMethod: String, clusterId: String, namespace: String, workloadType: String, workloadName: String, containerName: String, clusterRegion: Int64, invokeExpr: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationTriggerPersonalResponse {
-        try await self.createApplicationTriggerPersonal(CreateApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, invokeExpr: invokeExpr), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationTriggerPersonalRequest(repoName: repoName, triggerName: triggerName, invokeMethod: invokeMethod, clusterId: clusterId, namespace: namespace, workloadType: workloadType, workloadName: workloadName, containerName: containerName, clusterRegion: clusterRegion, invokeExpr: invokeExpr)
+        return try await self.client.execute(action: "CreateApplicationTriggerPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

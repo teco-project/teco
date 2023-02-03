@@ -82,7 +82,8 @@ extension Wedata {
     /// 文件夹更新
     @inlinable
     public func modifyFolder(projectId: String, folderName: String, folderId: String, parentsFolderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFolderResponse> {
-        self.modifyFolder(ModifyFolderRequest(projectId: projectId, folderName: folderName, folderId: folderId, parentsFolderId: parentsFolderId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyFolderRequest(projectId: projectId, folderName: folderName, folderId: folderId, parentsFolderId: parentsFolderId)
+        return self.client.execute(action: "ModifyFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件夹更新【Beta版本】
@@ -91,6 +92,7 @@ extension Wedata {
     /// 文件夹更新
     @inlinable
     public func modifyFolder(projectId: String, folderName: String, folderId: String, parentsFolderId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFolderResponse {
-        try await self.modifyFolder(ModifyFolderRequest(projectId: projectId, folderName: folderName, folderId: folderId, parentsFolderId: parentsFolderId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyFolderRequest(projectId: projectId, folderName: folderName, folderId: folderId, parentsFolderId: parentsFolderId)
+        return try await self.client.execute(action: "ModifyFolder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

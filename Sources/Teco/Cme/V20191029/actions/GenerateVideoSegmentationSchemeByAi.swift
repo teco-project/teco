@@ -80,7 +80,8 @@ extension Cme {
     /// <li>【本接口内测中，暂不建议使用】</li>
     @inlinable
     public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateVideoSegmentationSchemeByAiResponse> {
-        self.generateVideoSegmentationSchemeByAi(GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`)
+        return self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 视频智能拆条
@@ -90,6 +91,7 @@ extension Cme {
     /// <li>【本接口内测中，暂不建议使用】</li>
     @inlinable
     public func generateVideoSegmentationSchemeByAi(platform: String, projectId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateVideoSegmentationSchemeByAiResponse {
-        try await self.generateVideoSegmentationSchemeByAi(GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = GenerateVideoSegmentationSchemeByAiRequest(platform: platform, projectId: projectId, operator: `operator`)
+        return try await self.client.execute(action: "GenerateVideoSegmentationSchemeByAi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

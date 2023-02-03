@@ -56,7 +56,8 @@ extension Tdid {
     /// 获取用户的DID网络列表
     @inlinable
     public func getDidClusterList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterListResponse> {
-        self.getDidClusterList(GetDidClusterListRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetDidClusterListRequest()
+        return self.client.execute(action: "GetDidClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DID网络列表
@@ -64,6 +65,7 @@ extension Tdid {
     /// 获取用户的DID网络列表
     @inlinable
     public func getDidClusterList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterListResponse {
-        try await self.getDidClusterList(GetDidClusterListRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetDidClusterListRequest()
+        return try await self.client.execute(action: "GetDidClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

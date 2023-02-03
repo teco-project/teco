@@ -69,7 +69,8 @@ extension Iot {
     /// 提供查询某个设备详细信息的能力。
     @inlinable
     public func getDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceResponse> {
-        self.getDevice(GetDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = GetDeviceRequest(productId: productId, deviceName: deviceName)
+        return self.client.execute(action: "GetDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备信息
@@ -77,6 +78,7 @@ extension Iot {
     /// 提供查询某个设备详细信息的能力。
     @inlinable
     public func getDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceResponse {
-        try await self.getDevice(GetDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = GetDeviceRequest(productId: productId, deviceName: deviceName)
+        return try await self.client.execute(action: "GetDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

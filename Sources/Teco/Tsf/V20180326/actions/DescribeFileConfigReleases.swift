@@ -94,12 +94,14 @@ extension Tsf {
     /// 查询文件配置项发布信息
     @inlinable
     public func describeFileConfigReleases(configId: String? = nil, configName: String? = nil, groupId: String? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileConfigReleasesResponse> {
-        self.describeFileConfigReleases(DescribeFileConfigReleasesRequest(configId: configId, configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileConfigReleasesRequest(configId: configId, configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeFileConfigReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件配置项发布信息
     @inlinable
     public func describeFileConfigReleases(configId: String? = nil, configName: String? = nil, groupId: String? = nil, namespaceId: String? = nil, clusterId: String? = nil, applicationId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileConfigReleasesResponse {
-        try await self.describeFileConfigReleases(DescribeFileConfigReleasesRequest(configId: configId, configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileConfigReleasesRequest(configId: configId, configName: configName, groupId: groupId, namespaceId: namespaceId, clusterId: clusterId, applicationId: applicationId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeFileConfigReleases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

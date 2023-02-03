@@ -75,7 +75,8 @@ extension Essbasic {
     /// 注：此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
     @inlinable
     public func verifySubOrganization(caller: Caller, openId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifySubOrganizationResponse> {
-        self.verifySubOrganization(VerifySubOrganizationRequest(caller: caller, openId: openId), region: region, logger: logger, on: eventLoop)
+        let input = VerifySubOrganizationRequest(caller: caller, openId: openId)
+        return self.client.execute(action: "VerifySubOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 子机构通过实名认证
@@ -85,6 +86,7 @@ extension Essbasic {
     /// 注：此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
     @inlinable
     public func verifySubOrganization(caller: Caller, openId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifySubOrganizationResponse {
-        try await self.verifySubOrganization(VerifySubOrganizationRequest(caller: caller, openId: openId), region: region, logger: logger, on: eventLoop)
+        let input = VerifySubOrganizationRequest(caller: caller, openId: openId)
+        return try await self.client.execute(action: "VerifySubOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Cam {
     /// 查询用户SAML配置
     @inlinable
     public func describeUserSAMLConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserSAMLConfigResponse> {
-        self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserSAMLConfigRequest()
+        return self.client.execute(action: "DescribeUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户SAML配置
     @inlinable
     public func describeUserSAMLConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserSAMLConfigResponse {
-        try await self.describeUserSAMLConfig(DescribeUserSAMLConfigRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserSAMLConfigRequest()
+        return try await self.client.execute(action: "DescribeUserSAMLConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

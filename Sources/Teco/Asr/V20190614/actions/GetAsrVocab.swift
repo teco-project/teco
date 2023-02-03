@@ -97,7 +97,8 @@ extension Asr {
     /// 用户根据词表的ID可以获取对应的热词表信息
     @inlinable
     public func getAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabResponse> {
-        self.getAsrVocab(GetAsrVocabRequest(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
+        let input = GetAsrVocabRequest(vocabId: vocabId)
+        return self.client.execute(action: "GetAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取热词表
@@ -105,6 +106,7 @@ extension Asr {
     /// 用户根据词表的ID可以获取对应的热词表信息
     @inlinable
     public func getAsrVocab(vocabId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabResponse {
-        try await self.getAsrVocab(GetAsrVocabRequest(vocabId: vocabId), region: region, logger: logger, on: eventLoop)
+        let input = GetAsrVocabRequest(vocabId: vocabId)
+        return try await self.client.execute(action: "GetAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -60,7 +60,8 @@ extension Live {
     /// 查询水印列表。
     @inlinable
     public func describeLiveWatermarks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveWatermarksResponse> {
-        self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveWatermarksRequest()
+        return self.client.execute(action: "DescribeLiveWatermarks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询水印列表
@@ -68,6 +69,7 @@ extension Live {
     /// 查询水印列表。
     @inlinable
     public func describeLiveWatermarks(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveWatermarksResponse {
-        try await self.describeLiveWatermarks(DescribeLiveWatermarksRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveWatermarksRequest()
+        return try await self.client.execute(action: "DescribeLiveWatermarks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

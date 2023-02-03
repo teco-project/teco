@@ -78,7 +78,8 @@ extension Live {
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable @discardableResult
     public func createLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveTranscodeRuleResponse> {
-        self.createLiveTranscodeRule(CreateLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = CreateLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId)
+        return self.client.execute(action: "CreateLiveTranscodeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建转码规则
@@ -87,6 +88,7 @@ extension Live {
     /// <br>转码相关文档：[直播转封装及转码](/document/product/267/32736)。
     @inlinable @discardableResult
     public func createLiveTranscodeRule(domainName: String, appName: String, streamName: String, templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveTranscodeRuleResponse {
-        try await self.createLiveTranscodeRule(CreateLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = CreateLiveTranscodeRuleRequest(domainName: domainName, appName: appName, streamName: streamName, templateId: templateId)
+        return try await self.client.execute(action: "CreateLiveTranscodeRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

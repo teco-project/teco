@@ -74,7 +74,8 @@ extension Wedata {
     /// 数据质量概览页面触发维度分布统计接口
     @inlinable
     public func describeRuleDimStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleDimStatResponse> {
-        self.describeRuleDimStat(DescribeRuleDimStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleDimStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate)
+        return self.client.execute(action: "DescribeRuleDimStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据质量触发维度分布统计接口
@@ -82,6 +83,7 @@ extension Wedata {
     /// 数据质量概览页面触发维度分布统计接口
     @inlinable
     public func describeRuleDimStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleDimStatResponse {
-        try await self.describeRuleDimStat(DescribeRuleDimStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleDimStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate)
+        return try await self.client.execute(action: "DescribeRuleDimStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

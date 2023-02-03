@@ -73,7 +73,8 @@ extension Tcex {
     @available(*, unavailable, message: "产品控制台已经下线")
     @inlinable
     public func describeInvocationResult(invokeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationResultResponse> {
-        self.describeInvocationResult(DescribeInvocationResultRequest(invokeId: invokeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInvocationResultRequest(invokeId: invokeId)
+        return self.client.execute(action: "DescribeInvocationResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务调用结果
@@ -82,6 +83,7 @@ extension Tcex {
     @available(*, unavailable, message: "产品控制台已经下线")
     @inlinable
     public func describeInvocationResult(invokeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
-        try await self.describeInvocationResult(DescribeInvocationResultRequest(invokeId: invokeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInvocationResultRequest(invokeId: invokeId)
+        return try await self.client.execute(action: "DescribeInvocationResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

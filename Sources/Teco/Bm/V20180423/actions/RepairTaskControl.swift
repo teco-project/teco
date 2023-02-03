@@ -141,7 +141,8 @@ extension Bm {
     /// 详细信息请访问：https://cloud.tencent.com/document/product/386/18190
     @inlinable
     public func repairTaskControl(taskId: String, operate: String, operateRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RepairTaskControlResponse> {
-        self.repairTaskControl(RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark), region: region, logger: logger, on: eventLoop)
+        let input = RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark)
+        return self.client.execute(action: "RepairTaskControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 维修任务管理
@@ -171,6 +172,7 @@ extension Bm {
     /// 详细信息请访问：https://cloud.tencent.com/document/product/386/18190
     @inlinable
     public func repairTaskControl(taskId: String, operate: String, operateRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RepairTaskControlResponse {
-        try await self.repairTaskControl(RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark), region: region, logger: logger, on: eventLoop)
+        let input = RepairTaskControlRequest(taskId: taskId, operate: operate, operateRemark: operateRemark)
+        return try await self.client.execute(action: "RepairTaskControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

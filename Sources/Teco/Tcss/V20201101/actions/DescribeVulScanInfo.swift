@@ -111,12 +111,14 @@ extension Tcss {
     /// 查询漏洞扫描任务信息
     @inlinable
     public func describeVulScanInfo(localTaskID: Int64? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulScanInfoResponse> {
-        self.describeVulScanInfo(DescribeVulScanInfoRequest(localTaskID: localTaskID, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulScanInfoRequest(localTaskID: localTaskID, registryTaskID: registryTaskID)
+        return self.client.execute(action: "DescribeVulScanInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞扫描任务信息
     @inlinable
     public func describeVulScanInfo(localTaskID: Int64? = nil, registryTaskID: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulScanInfoResponse {
-        try await self.describeVulScanInfo(DescribeVulScanInfoRequest(localTaskID: localTaskID, registryTaskID: registryTaskID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulScanInfoRequest(localTaskID: localTaskID, registryTaskID: registryTaskID)
+        return try await self.client.execute(action: "DescribeVulScanInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

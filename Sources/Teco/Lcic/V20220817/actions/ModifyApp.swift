@@ -64,12 +64,14 @@ extension Lcic {
     /// 修改应用
     @inlinable @discardableResult
     public func modifyApp(sdkAppId: UInt64, callback: String? = nil, callbackKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAppResponse> {
-        self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAppRequest(sdkAppId: sdkAppId, callback: callback, callbackKey: callbackKey)
+        return self.client.execute(action: "ModifyApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
     @inlinable @discardableResult
     public func modifyApp(sdkAppId: UInt64, callback: String? = nil, callbackKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAppResponse {
-        try await self.modifyApp(ModifyAppRequest(sdkAppId: sdkAppId, callback: callback, callbackKey: callbackKey), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAppRequest(sdkAppId: sdkAppId, callback: callback, callbackKey: callbackKey)
+        return try await self.client.execute(action: "ModifyApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

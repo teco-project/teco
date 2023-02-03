@@ -54,12 +54,14 @@ extension Cvm {
     /// 清理CHC物理服务器的带外网络和部署网络
     @inlinable @discardableResult
     public func removeChcAssistVpc(chcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveChcAssistVpcResponse> {
-        self.removeChcAssistVpc(RemoveChcAssistVpcRequest(chcIds: chcIds), region: region, logger: logger, on: eventLoop)
+        let input = RemoveChcAssistVpcRequest(chcIds: chcIds)
+        return self.client.execute(action: "RemoveChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 清理CHC物理服务器的带外网络和部署网络
     @inlinable @discardableResult
     public func removeChcAssistVpc(chcIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveChcAssistVpcResponse {
-        try await self.removeChcAssistVpc(RemoveChcAssistVpcRequest(chcIds: chcIds), region: region, logger: logger, on: eventLoop)
+        let input = RemoveChcAssistVpcRequest(chcIds: chcIds)
+        return try await self.client.execute(action: "RemoveChcAssistVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

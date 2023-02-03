@@ -81,7 +81,8 @@ extension Cme {
     /// 根据媒体 Id 批量获取媒体详情。
     @inlinable
     public func describeMaterials(platform: String, materialIds: [String], sort: SortBy? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaterialsResponse> {
-        self.describeMaterials(DescribeMaterialsRequest(platform: platform, materialIds: materialIds, sort: sort, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMaterialsRequest(platform: platform, materialIds: materialIds, sort: sort, operator: `operator`)
+        return self.client.execute(action: "DescribeMaterials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体详情
@@ -89,6 +90,7 @@ extension Cme {
     /// 根据媒体 Id 批量获取媒体详情。
     @inlinable
     public func describeMaterials(platform: String, materialIds: [String], sort: SortBy? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaterialsResponse {
-        try await self.describeMaterials(DescribeMaterialsRequest(platform: platform, materialIds: materialIds, sort: sort, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMaterialsRequest(platform: platform, materialIds: materialIds, sort: sort, operator: `operator`)
+        return try await self.client.execute(action: "DescribeMaterials", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

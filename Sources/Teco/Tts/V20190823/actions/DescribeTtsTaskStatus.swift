@@ -73,7 +73,8 @@ extension Tts {
     /// <li>当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。</li>
     @inlinable
     public func describeTtsTaskStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTtsTaskStatusResponse> {
-        self.describeTtsTaskStatus(DescribeTtsTaskStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTtsTaskStatusRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeTtsTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 长文本语音合成结果查询
@@ -84,6 +85,7 @@ extension Tts {
     /// <li>当采用轮询方式时，需要主动提交任务ID来轮询识别结果，共有任务成功、等待、执行中和失败四种结果，具体信息请参见下文说明。</li>
     @inlinable
     public func describeTtsTaskStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTtsTaskStatusResponse {
-        try await self.describeTtsTaskStatus(DescribeTtsTaskStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTtsTaskStatusRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeTtsTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

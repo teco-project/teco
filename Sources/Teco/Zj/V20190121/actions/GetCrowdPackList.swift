@@ -84,7 +84,8 @@ extension Zj {
     /// 获取人群包列表接口
     @inlinable
     public func getCrowdPackList(license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdPackListResponse> {
-        self.getCrowdPackList(GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status), region: region, logger: logger, on: eventLoop)
+        let input = GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status)
+        return self.client.execute(action: "GetCrowdPackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人群包列表
@@ -92,6 +93,7 @@ extension Zj {
     /// 获取人群包列表接口
     @inlinable
     public func getCrowdPackList(license: String, offset: Int64, limit: Int64, name: String? = nil, status: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdPackListResponse {
-        try await self.getCrowdPackList(GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status), region: region, logger: logger, on: eventLoop)
+        let input = GetCrowdPackListRequest(license: license, offset: offset, limit: limit, name: name, status: status)
+        return try await self.client.execute(action: "GetCrowdPackList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

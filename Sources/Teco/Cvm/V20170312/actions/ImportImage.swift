@@ -108,7 +108,8 @@ extension Cvm {
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
     @inlinable @discardableResult
     public func importImage(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
-        self.importImage(ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType), region: region, logger: logger, on: eventLoop)
+        let input = ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType)
+        return self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 外部镜像导入
@@ -116,6 +117,7 @@ extension Cvm {
     /// 本接口(ImportImage)用于导入镜像，导入后的镜像可用于创建实例。目前支持 RAW、VHD、QCOW2、VMDK 镜像格式。
     @inlinable @discardableResult
     public func importImage(architecture: String, osType: String, osVersion: String, imageUrl: String, imageName: String, imageDescription: String? = nil, dryRun: Bool? = nil, force: Bool? = nil, tagSpecification: [TagSpecification]? = nil, licenseType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
-        try await self.importImage(ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType), region: region, logger: logger, on: eventLoop)
+        let input = ImportImageRequest(architecture: architecture, osType: osType, osVersion: osVersion, imageUrl: imageUrl, imageName: imageName, imageDescription: imageDescription, dryRun: dryRun, force: force, tagSpecification: tagSpecification, licenseType: licenseType)
+        return try await self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

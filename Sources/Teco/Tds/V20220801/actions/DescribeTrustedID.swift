@@ -94,12 +94,14 @@ extension Tds {
     /// 查询设备标识
     @inlinable
     public func describeTrustedID(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrustedIDResponse> {
-        self.describeTrustedID(DescribeTrustedIDRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTrustedIDRequest(deviceToken: deviceToken)
+        return self.client.execute(action: "DescribeTrustedID", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备标识
     @inlinable
     public func describeTrustedID(deviceToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrustedIDResponse {
-        try await self.describeTrustedID(DescribeTrustedIDRequest(deviceToken: deviceToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTrustedIDRequest(deviceToken: deviceToken)
+        return try await self.client.execute(action: "DescribeTrustedID", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

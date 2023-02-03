@@ -79,7 +79,8 @@ extension Dayu {
     /// 为高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
     @inlinable
     public func modifyCCAlarmThreshold(business: String, rsId: String, alarmThreshold: UInt64, ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCAlarmThresholdResponse> {
-        self.modifyCCAlarmThreshold(ModifyCCAlarmThresholdRequest(business: business, rsId: rsId, alarmThreshold: alarmThreshold, ipList: ipList), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCAlarmThresholdRequest(business: business, rsId: rsId, alarmThreshold: alarmThreshold, ipList: ipList)
+        return self.client.execute(action: "ModifyCCAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置CC告警通知阈值
@@ -87,6 +88,7 @@ extension Dayu {
     /// 为高防包、高防IP、高防IP专业版、棋牌盾产品设置CC攻击的告警通知阈值
     @inlinable
     public func modifyCCAlarmThreshold(business: String, rsId: String, alarmThreshold: UInt64, ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCAlarmThresholdResponse {
-        try await self.modifyCCAlarmThreshold(ModifyCCAlarmThresholdRequest(business: business, rsId: rsId, alarmThreshold: alarmThreshold, ipList: ipList), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCAlarmThresholdRequest(business: business, rsId: rsId, alarmThreshold: alarmThreshold, ipList: ipList)
+        return try await self.client.execute(action: "ModifyCCAlarmThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

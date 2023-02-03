@@ -60,7 +60,8 @@ extension Fmu {
     /// 删除已注册的唇色素材。
     @inlinable @discardableResult
     public func deleteModel(modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteModelResponse> {
-        self.deleteModel(DeleteModelRequest(modelId: modelId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteModelRequest(modelId: modelId)
+        return self.client.execute(action: "DeleteModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除唇色素材
@@ -68,6 +69,7 @@ extension Fmu {
     /// 删除已注册的唇色素材。
     @inlinable @discardableResult
     public func deleteModel(modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelResponse {
-        try await self.deleteModel(DeleteModelRequest(modelId: modelId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteModelRequest(modelId: modelId)
+        return try await self.client.execute(action: "DeleteModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -114,7 +114,8 @@ extension Mmps {
     /// 获取小程序隐私合规诊断任务列表
     @inlinable
     public func describeScanTaskList(source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskListResponse> {
-        self.describeScanTaskList(DescribeScanTaskListRequest(source: source, platform: platform, taskStatuses: taskStatuses, taskTypes: taskTypes, pageNo: pageNo, pageSize: pageSize, appName: appName, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanTaskListRequest(source: source, platform: platform, taskStatuses: taskStatuses, taskTypes: taskTypes, pageNo: pageNo, pageSize: pageSize, appName: appName, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeScanTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取隐私合规诊断任务列表
@@ -122,6 +123,7 @@ extension Mmps {
     /// 获取小程序隐私合规诊断任务列表
     @inlinable
     public func describeScanTaskList(source: Int64, platform: Int64, taskStatuses: String, taskTypes: String, pageNo: Int64, pageSize: Int64, appName: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskListResponse {
-        try await self.describeScanTaskList(DescribeScanTaskListRequest(source: source, platform: platform, taskStatuses: taskStatuses, taskTypes: taskTypes, pageNo: pageNo, pageSize: pageSize, appName: appName, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanTaskListRequest(source: source, platform: platform, taskStatuses: taskStatuses, taskTypes: taskTypes, pageNo: pageNo, pageSize: pageSize, appName: appName, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeScanTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

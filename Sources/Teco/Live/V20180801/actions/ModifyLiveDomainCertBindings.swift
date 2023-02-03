@@ -96,7 +96,8 @@ extension Live {
     /// 新建自有证书将自动上传至腾讯云ssl。
     @inlinable
     public func modifyLiveDomainCertBindings(domainInfos: [LiveCertDomainInfo], cloudCertId: String? = nil, certificatePublicKey: String? = nil, certificatePrivateKey: String? = nil, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveDomainCertBindingsResponse> {
-        self.modifyLiveDomainCertBindings(ModifyLiveDomainCertBindingsRequest(domainInfos: domainInfos, cloudCertId: cloudCertId, certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLiveDomainCertBindingsRequest(domainInfos: domainInfos, cloudCertId: cloudCertId, certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateAlias: certificateAlias)
+        return self.client.execute(action: "ModifyLiveDomainCertBindings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定证书对应的播放域名
@@ -105,6 +106,7 @@ extension Live {
     /// 新建自有证书将自动上传至腾讯云ssl。
     @inlinable
     public func modifyLiveDomainCertBindings(domainInfos: [LiveCertDomainInfo], cloudCertId: String? = nil, certificatePublicKey: String? = nil, certificatePrivateKey: String? = nil, certificateAlias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveDomainCertBindingsResponse {
-        try await self.modifyLiveDomainCertBindings(ModifyLiveDomainCertBindingsRequest(domainInfos: domainInfos, cloudCertId: cloudCertId, certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateAlias: certificateAlias), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLiveDomainCertBindingsRequest(domainInfos: domainInfos, cloudCertId: cloudCertId, certificatePublicKey: certificatePublicKey, certificatePrivateKey: certificatePrivateKey, certificateAlias: certificateAlias)
+        return try await self.client.execute(action: "ModifyLiveDomainCertBindings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

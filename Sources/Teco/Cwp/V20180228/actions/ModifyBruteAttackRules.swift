@@ -54,12 +54,14 @@ extension Cwp {
     /// 修改暴力破解规则
     @inlinable @discardableResult
     public func modifyBruteAttackRules(rules: [BruteAttackRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBruteAttackRulesResponse> {
-        self.modifyBruteAttackRules(ModifyBruteAttackRulesRequest(rules: rules), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBruteAttackRulesRequest(rules: rules)
+        return self.client.execute(action: "ModifyBruteAttackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改暴力破解规则
     @inlinable @discardableResult
     public func modifyBruteAttackRules(rules: [BruteAttackRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBruteAttackRulesResponse {
-        try await self.modifyBruteAttackRules(ModifyBruteAttackRulesRequest(rules: rules), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBruteAttackRulesRequest(rules: rules)
+        return try await self.client.execute(action: "ModifyBruteAttackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

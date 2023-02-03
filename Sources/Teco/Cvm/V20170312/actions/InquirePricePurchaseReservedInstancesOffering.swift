@@ -84,7 +84,8 @@ extension Cvm {
     /// 本接口(InquirePricePurchaseReservedInstancesOffering)用于创建预留实例询价。本接口仅允许针对购买限制范围内的预留实例配置进行询价。预留实例当前只针对国际站白名单用户开放。
     @inlinable
     public func inquirePricePurchaseReservedInstancesOffering(instanceCount: UInt64, reservedInstancesOfferingId: String, dryRun: Bool? = nil, clientToken: String? = nil, reservedInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePricePurchaseReservedInstancesOfferingResponse> {
-        self.inquirePricePurchaseReservedInstancesOffering(InquirePricePurchaseReservedInstancesOfferingRequest(instanceCount: instanceCount, reservedInstancesOfferingId: reservedInstancesOfferingId, dryRun: dryRun, clientToken: clientToken, reservedInstanceName: reservedInstanceName), region: region, logger: logger, on: eventLoop)
+        let input = InquirePricePurchaseReservedInstancesOfferingRequest(instanceCount: instanceCount, reservedInstancesOfferingId: reservedInstancesOfferingId, dryRun: dryRun, clientToken: clientToken, reservedInstanceName: reservedInstanceName)
+        return self.client.execute(action: "InquirePricePurchaseReservedInstancesOffering", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建预留实例询价
@@ -92,6 +93,7 @@ extension Cvm {
     /// 本接口(InquirePricePurchaseReservedInstancesOffering)用于创建预留实例询价。本接口仅允许针对购买限制范围内的预留实例配置进行询价。预留实例当前只针对国际站白名单用户开放。
     @inlinable
     public func inquirePricePurchaseReservedInstancesOffering(instanceCount: UInt64, reservedInstancesOfferingId: String, dryRun: Bool? = nil, clientToken: String? = nil, reservedInstanceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePricePurchaseReservedInstancesOfferingResponse {
-        try await self.inquirePricePurchaseReservedInstancesOffering(InquirePricePurchaseReservedInstancesOfferingRequest(instanceCount: instanceCount, reservedInstancesOfferingId: reservedInstancesOfferingId, dryRun: dryRun, clientToken: clientToken, reservedInstanceName: reservedInstanceName), region: region, logger: logger, on: eventLoop)
+        let input = InquirePricePurchaseReservedInstancesOfferingRequest(instanceCount: instanceCount, reservedInstancesOfferingId: reservedInstancesOfferingId, dryRun: dryRun, clientToken: clientToken, reservedInstanceName: reservedInstanceName)
+        return try await self.client.execute(action: "InquirePricePurchaseReservedInstancesOffering", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

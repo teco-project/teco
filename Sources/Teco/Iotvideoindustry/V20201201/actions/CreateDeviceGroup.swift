@@ -80,7 +80,8 @@ extension Iotvideoindustry {
     /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
     @inlinable
     public func createDeviceGroup(groupName: String, parentId: String, groupDescribe: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceGroupResponse> {
-        self.createDeviceGroup(CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe), region: region, logger: logger, on: eventLoop)
+        let input = CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe)
+        return self.client.execute(action: "CreateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建分组
@@ -88,6 +89,7 @@ extension Iotvideoindustry {
     /// 本接口(CreateDeviceGroup) 用于创建设备管理分组。
     @inlinable
     public func createDeviceGroup(groupName: String, parentId: String, groupDescribe: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceGroupResponse {
-        try await self.createDeviceGroup(CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe), region: region, logger: logger, on: eventLoop)
+        let input = CreateDeviceGroupRequest(groupName: groupName, parentId: parentId, groupDescribe: groupDescribe)
+        return try await self.client.execute(action: "CreateDeviceGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

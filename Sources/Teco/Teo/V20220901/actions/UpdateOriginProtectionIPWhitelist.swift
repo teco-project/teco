@@ -54,12 +54,14 @@ extension Teo {
     /// 更新源站防护IP白名单
     @inlinable @discardableResult
     public func updateOriginProtectionIPWhitelist(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateOriginProtectionIPWhitelistResponse> {
-        self.updateOriginProtectionIPWhitelist(UpdateOriginProtectionIPWhitelistRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateOriginProtectionIPWhitelistRequest(zoneId: zoneId)
+        return self.client.execute(action: "UpdateOriginProtectionIPWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新源站防护IP白名单
     @inlinable @discardableResult
     public func updateOriginProtectionIPWhitelist(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateOriginProtectionIPWhitelistResponse {
-        try await self.updateOriginProtectionIPWhitelist(UpdateOriginProtectionIPWhitelistRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateOriginProtectionIPWhitelistRequest(zoneId: zoneId)
+        return try await self.client.execute(action: "UpdateOriginProtectionIPWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

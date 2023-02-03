@@ -80,7 +80,8 @@ extension Cfs {
     /// 设置文件系统配额，提供UID/GID的配额设置的接口
     @inlinable @discardableResult
     public func setUserQuota(fileSystemId: String, userType: String, userId: String, capacityHardLimit: UInt64? = nil, fileHardLimit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetUserQuotaResponse> {
-        self.setUserQuota(SetUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId, capacityHardLimit: capacityHardLimit, fileHardLimit: fileHardLimit), region: region, logger: logger, on: eventLoop)
+        let input = SetUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId, capacityHardLimit: capacityHardLimit, fileHardLimit: fileHardLimit)
+        return self.client.execute(action: "SetUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置文件系统配额
@@ -88,6 +89,7 @@ extension Cfs {
     /// 设置文件系统配额，提供UID/GID的配额设置的接口
     @inlinable @discardableResult
     public func setUserQuota(fileSystemId: String, userType: String, userId: String, capacityHardLimit: UInt64? = nil, fileHardLimit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetUserQuotaResponse {
-        try await self.setUserQuota(SetUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId, capacityHardLimit: capacityHardLimit, fileHardLimit: fileHardLimit), region: region, logger: logger, on: eventLoop)
+        let input = SetUserQuotaRequest(fileSystemId: fileSystemId, userType: userType, userId: userId, capacityHardLimit: capacityHardLimit, fileHardLimit: fileHardLimit)
+        return try await self.client.execute(action: "SetUserQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

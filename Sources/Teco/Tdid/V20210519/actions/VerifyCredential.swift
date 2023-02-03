@@ -66,12 +66,14 @@ extension Tdid {
     /// 验证凭证
     @inlinable
     public func verifyCredential(functionArg: VerifyFunctionArg, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyCredentialResponse> {
-        self.verifyCredential(VerifyCredentialRequest(functionArg: functionArg), region: region, logger: logger, on: eventLoop)
+        let input = VerifyCredentialRequest(functionArg: functionArg)
+        return self.client.execute(action: "VerifyCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证凭证
     @inlinable
     public func verifyCredential(functionArg: VerifyFunctionArg, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyCredentialResponse {
-        try await self.verifyCredential(VerifyCredentialRequest(functionArg: functionArg), region: region, logger: logger, on: eventLoop)
+        let input = VerifyCredentialRequest(functionArg: functionArg)
+        return try await self.client.execute(action: "VerifyCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

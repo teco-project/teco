@@ -121,7 +121,8 @@ extension Teo {
     /// 本接口（DescribeWebManagedRulesData）用于查询WAF攻击的时序数据。
     @inlinable
     public func describeWebManagedRulesData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesDataResponse> {
-        self.describeWebManagedRulesData(DescribeWebManagedRulesDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, interval: interval, area: area)
+        return self.client.execute(action: "DescribeWebManagedRulesData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询WAF攻击时序数据
@@ -129,6 +130,7 @@ extension Teo {
     /// 本接口（DescribeWebManagedRulesData）用于查询WAF攻击的时序数据。
     @inlinable
     public func describeWebManagedRulesData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesDataResponse {
-        try await self.describeWebManagedRulesData(DescribeWebManagedRulesDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, interval: interval, area: area)
+        return try await self.client.execute(action: "DescribeWebManagedRulesData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

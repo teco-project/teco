@@ -70,7 +70,8 @@ extension Cfw {
     /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
     @inlinable @discardableResult
     public func setNatFwEip(operationType: String, cfwInstance: String, eipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNatFwEipResponse> {
-        self.setNatFwEip(SetNatFwEipRequest(operationType: operationType, cfwInstance: cfwInstance, eipList: eipList), region: region, logger: logger, on: eventLoop)
+        let input = SetNatFwEipRequest(operationType: operationType, cfwInstance: cfwInstance, eipList: eipList)
+        return self.client.execute(action: "SetNatFwEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置防火墙实例弹性公网ip
@@ -78,6 +79,7 @@ extension Cfw {
     /// 设置防火墙实例弹性公网ip，目前仅支持新增模式的防火墙实例
     @inlinable @discardableResult
     public func setNatFwEip(operationType: String, cfwInstance: String, eipList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwEipResponse {
-        try await self.setNatFwEip(SetNatFwEipRequest(operationType: operationType, cfwInstance: cfwInstance, eipList: eipList), region: region, logger: logger, on: eventLoop)
+        let input = SetNatFwEipRequest(operationType: operationType, cfwInstance: cfwInstance, eipList: eipList)
+        return try await self.client.execute(action: "SetNatFwEip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

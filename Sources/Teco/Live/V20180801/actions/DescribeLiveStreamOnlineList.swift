@@ -114,7 +114,8 @@ extension Live {
     /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
     @inlinable
     public func describeLiveStreamOnlineList(domainName: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveStreamOnlineListResponse> {
-        self.describeLiveStreamOnlineList(DescribeLiveStreamOnlineListRequest(domainName: domainName, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveStreamOnlineListRequest(domainName: domainName, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName)
+        return self.client.execute(action: "DescribeLiveStreamOnlineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询直播中的流
@@ -126,6 +127,7 @@ extension Live {
     /// 2. 该接口仅适用于流数少于2万路的情况，对于流数较大用户请联系售后。
     @inlinable
     public func describeLiveStreamOnlineList(domainName: String? = nil, appName: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveStreamOnlineListResponse {
-        try await self.describeLiveStreamOnlineList(DescribeLiveStreamOnlineListRequest(domainName: domainName, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveStreamOnlineListRequest(domainName: domainName, appName: appName, pageNum: pageNum, pageSize: pageSize, streamName: streamName)
+        return try await self.client.execute(action: "DescribeLiveStreamOnlineList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

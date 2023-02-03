@@ -79,12 +79,14 @@ extension Wedata {
     /// 获取资源管理目录树
     @inlinable
     public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceManagePathTreesResponse> {
-        self.describeResourceManagePathTrees(DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType)
+        return self.client.execute(action: "DescribeResourceManagePathTrees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资源管理目录树
     @inlinable
     public func describeResourceManagePathTrees(projectId: String? = nil, name: String? = nil, fileType: String? = nil, filePath: String? = nil, dirType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceManagePathTreesResponse {
-        try await self.describeResourceManagePathTrees(DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceManagePathTreesRequest(projectId: projectId, name: name, fileType: fileType, filePath: filePath, dirType: dirType)
+        return try await self.client.execute(action: "DescribeResourceManagePathTrees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

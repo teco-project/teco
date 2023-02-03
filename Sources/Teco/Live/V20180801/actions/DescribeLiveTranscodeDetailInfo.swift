@@ -118,7 +118,8 @@ extension Live {
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     @inlinable
     public func describeLiveTranscodeDetailInfo(pushDomain: String? = nil, streamName: String? = nil, dayTime: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, startDayTime: String? = nil, endDayTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveTranscodeDetailInfoResponse> {
-        self.describeLiveTranscodeDetailInfo(DescribeLiveTranscodeDetailInfoRequest(pushDomain: pushDomain, streamName: streamName, dayTime: dayTime, pageNum: pageNum, pageSize: pageSize, startDayTime: startDayTime, endDayTime: endDayTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveTranscodeDetailInfoRequest(pushDomain: pushDomain, streamName: streamName, dayTime: dayTime, pageNum: pageNum, pageSize: pageSize, startDayTime: startDayTime, endDayTime: endDayTime)
+        return self.client.execute(action: "DescribeLiveTranscodeDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询直播转码统计信息
@@ -126,6 +127,7 @@ extension Live {
     /// 支持查询某天或某段时间的转码详细信息。由于转码数据量较大，如果查询时间跨度太长可能会拉不到数据，可以尝试将查询时间范围缩小些再重试。
     @inlinable
     public func describeLiveTranscodeDetailInfo(pushDomain: String? = nil, streamName: String? = nil, dayTime: String? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, startDayTime: String? = nil, endDayTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveTranscodeDetailInfoResponse {
-        try await self.describeLiveTranscodeDetailInfo(DescribeLiveTranscodeDetailInfoRequest(pushDomain: pushDomain, streamName: streamName, dayTime: dayTime, pageNum: pageNum, pageSize: pageSize, startDayTime: startDayTime, endDayTime: endDayTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveTranscodeDetailInfoRequest(pushDomain: pushDomain, streamName: streamName, dayTime: dayTime, pageNum: pageNum, pageSize: pageSize, startDayTime: startDayTime, endDayTime: endDayTime)
+        return try await self.client.execute(action: "DescribeLiveTranscodeDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

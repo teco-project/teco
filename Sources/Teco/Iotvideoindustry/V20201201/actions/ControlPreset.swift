@@ -72,12 +72,14 @@ extension Iotvideoindustry {
     /// 预置位控制
     @inlinable @discardableResult
     public func controlPreset(channelId: String, command: String, presetId: Int64, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ControlPresetResponse> {
-        self.controlPreset(ControlPresetRequest(channelId: channelId, command: command, presetId: presetId, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = ControlPresetRequest(channelId: channelId, command: command, presetId: presetId, deviceId: deviceId)
+        return self.client.execute(action: "ControlPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 预置位控制
     @inlinable @discardableResult
     public func controlPreset(channelId: String, command: String, presetId: Int64, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ControlPresetResponse {
-        try await self.controlPreset(ControlPresetRequest(channelId: channelId, command: command, presetId: presetId, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = ControlPresetRequest(channelId: channelId, command: command, presetId: presetId, deviceId: deviceId)
+        return try await self.client.execute(action: "ControlPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

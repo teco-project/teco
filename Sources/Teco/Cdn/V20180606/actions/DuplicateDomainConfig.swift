@@ -65,7 +65,8 @@ extension Cdn {
     /// 拷贝参考域名的配置至新域名。暂不支持自有证书以及定制化配置
     @inlinable @discardableResult
     public func duplicateDomainConfig(domain: String, referenceDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DuplicateDomainConfigResponse> {
-        self.duplicateDomainConfig(DuplicateDomainConfigRequest(domain: domain, referenceDomain: referenceDomain), region: region, logger: logger, on: eventLoop)
+        let input = DuplicateDomainConfigRequest(domain: domain, referenceDomain: referenceDomain)
+        return self.client.execute(action: "DuplicateDomainConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拷贝域名
@@ -73,6 +74,7 @@ extension Cdn {
     /// 拷贝参考域名的配置至新域名。暂不支持自有证书以及定制化配置
     @inlinable @discardableResult
     public func duplicateDomainConfig(domain: String, referenceDomain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DuplicateDomainConfigResponse {
-        try await self.duplicateDomainConfig(DuplicateDomainConfigRequest(domain: domain, referenceDomain: referenceDomain), region: region, logger: logger, on: eventLoop)
+        let input = DuplicateDomainConfigRequest(domain: domain, referenceDomain: referenceDomain)
+        return try await self.client.execute(action: "DuplicateDomainConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -77,7 +77,8 @@ extension Essbasic {
     /// 当前接口限制最多合同（流程）50个.
     @inlinable
     public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDownloadFlowUrlResponse> {
-        self.getDownloadFlowUrl(GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`)
+        return self.client.execute(action: "GetDownloadFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取合同（流程）批量下载链接
@@ -86,6 +87,7 @@ extension Essbasic {
     /// 当前接口限制最多合同（流程）50个.
     @inlinable
     public func getDownloadFlowUrl(agent: Agent, downLoadFlows: [DownloadFlowInfo]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDownloadFlowUrlResponse {
-        try await self.getDownloadFlowUrl(GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = GetDownloadFlowUrlRequest(agent: agent, downLoadFlows: downLoadFlows, operator: `operator`)
+        return try await self.client.execute(action: "GetDownloadFlowUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

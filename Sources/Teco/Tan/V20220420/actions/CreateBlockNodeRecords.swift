@@ -64,12 +64,14 @@ extension Tan {
     /// 推送节点数据
     @inlinable @discardableResult
     public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlockNodeRecordsResponse> {
-        self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), region: region, logger: logger, on: eventLoop)
+        let input = CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records)
+        return self.client.execute(action: "CreateBlockNodeRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 推送节点数据
     @inlinable @discardableResult
     public func createBlockNodeRecords(groupId: String, nodeId: String, records: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlockNodeRecordsResponse {
-        try await self.createBlockNodeRecords(CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records), region: region, logger: logger, on: eventLoop)
+        let input = CreateBlockNodeRecordsRequest(groupId: groupId, nodeId: nodeId, records: records)
+        return try await self.client.execute(action: "CreateBlockNodeRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

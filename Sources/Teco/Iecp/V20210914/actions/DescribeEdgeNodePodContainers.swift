@@ -74,12 +74,14 @@ extension Iecp {
     /// 查询节点Pod内的容器列表
     @inlinable
     public func describeEdgeNodePodContainers(edgeUnitId: UInt64, nodeId: UInt64, podName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeNodePodContainersResponse> {
-        self.describeEdgeNodePodContainers(DescribeEdgeNodePodContainersRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeNodePodContainersRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, podName: podName, namespace: namespace)
+        return self.client.execute(action: "DescribeEdgeNodePodContainers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询节点Pod内的容器列表
     @inlinable
     public func describeEdgeNodePodContainers(edgeUnitId: UInt64, nodeId: UInt64, podName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeNodePodContainersResponse {
-        try await self.describeEdgeNodePodContainers(DescribeEdgeNodePodContainersRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, podName: podName, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeNodePodContainersRequest(edgeUnitId: edgeUnitId, nodeId: nodeId, podName: podName, namespace: namespace)
+        return try await self.client.execute(action: "DescribeEdgeNodePodContainers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,12 +64,14 @@ extension Ckafka {
     /// 获取消费分组信息
     @inlinable
     public func describeGroupInfo(instanceId: String, groupList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupInfoResponse> {
-        self.describeGroupInfo(DescribeGroupInfoRequest(instanceId: instanceId, groupList: groupList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupInfoRequest(instanceId: instanceId, groupList: groupList)
+        return self.client.execute(action: "DescribeGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取消费分组信息
     @inlinable
     public func describeGroupInfo(instanceId: String, groupList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupInfoResponse {
-        try await self.describeGroupInfo(DescribeGroupInfoRequest(instanceId: instanceId, groupList: groupList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupInfoRequest(instanceId: instanceId, groupList: groupList)
+        return try await self.client.execute(action: "DescribeGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

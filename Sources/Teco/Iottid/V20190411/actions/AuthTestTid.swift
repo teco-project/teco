@@ -58,12 +58,14 @@ extension Iottid {
     /// 单向认证测试TID
     @inlinable
     public func authTestTid(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuthTestTidResponse> {
-        self.authTestTid(AuthTestTidRequest(data: data), region: region, logger: logger, on: eventLoop)
+        let input = AuthTestTidRequest(data: data)
+        return self.client.execute(action: "AuthTestTid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 单向认证测试TID
     @inlinable
     public func authTestTid(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuthTestTidResponse {
-        try await self.authTestTid(AuthTestTidRequest(data: data), region: region, logger: logger, on: eventLoop)
+        let input = AuthTestTidRequest(data: data)
+        return try await self.client.execute(action: "AuthTestTid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

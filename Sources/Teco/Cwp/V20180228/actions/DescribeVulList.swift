@@ -102,7 +102,8 @@ extension Cwp {
     /// 获取漏洞列表数据
     @inlinable
     public func describeVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulListResponse> {
-        self.describeVulList(DescribeVulListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
+        return self.client.execute(action: "DescribeVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞列表
@@ -110,6 +111,7 @@ extension Cwp {
     /// 获取漏洞列表数据
     @inlinable
     public func describeVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filters]? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulListResponse {
-        try await self.describeVulList(DescribeVulListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulListRequest(limit: limit, offset: offset, filters: filters, by: by, order: order)
+        return try await self.client.execute(action: "DescribeVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -60,7 +60,8 @@ extension Yunjing {
     /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
     @inlinable @discardableResult
     public func rescanImpactedHost(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RescanImpactedHostResponse> {
-        self.rescanImpactedHost(RescanImpactedHostRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = RescanImpactedHostRequest(id: id)
+        return self.client.execute(action: "RescanImpactedHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞重新检测
@@ -68,6 +69,7 @@ extension Yunjing {
     /// 本接口 (RescanImpactedHost) 用于漏洞重新检测。
     @inlinable @discardableResult
     public func rescanImpactedHost(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RescanImpactedHostResponse {
-        try await self.rescanImpactedHost(RescanImpactedHostRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = RescanImpactedHostRequest(id: id)
+        return try await self.client.execute(action: "RescanImpactedHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -59,12 +59,14 @@ extension Ckafka {
     /// 查询Datahub连接源
     @inlinable
     public func describeConnectResource(resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConnectResourceResponse> {
-        self.describeConnectResource(DescribeConnectResourceRequest(resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConnectResourceRequest(resourceId: resourceId)
+        return self.client.execute(action: "DescribeConnectResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub连接源
     @inlinable
     public func describeConnectResource(resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConnectResourceResponse {
-        try await self.describeConnectResource(DescribeConnectResourceRequest(resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConnectResourceRequest(resourceId: resourceId)
+        return try await self.client.execute(action: "DescribeConnectResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

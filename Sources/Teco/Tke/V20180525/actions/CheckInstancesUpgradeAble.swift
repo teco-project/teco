@@ -103,7 +103,8 @@ extension Tke {
     /// 检查给定节点列表中哪些是可升级的
     @inlinable
     public func checkInstancesUpgradeAble(clusterId: String, instanceIds: [String]? = nil, upgradeType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filter: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckInstancesUpgradeAbleResponse> {
-        self.checkInstancesUpgradeAble(CheckInstancesUpgradeAbleRequest(clusterId: clusterId, instanceIds: instanceIds, upgradeType: upgradeType, offset: offset, limit: limit, filter: filter), region: region, logger: logger, on: eventLoop)
+        let input = CheckInstancesUpgradeAbleRequest(clusterId: clusterId, instanceIds: instanceIds, upgradeType: upgradeType, offset: offset, limit: limit, filter: filter)
+        return self.client.execute(action: "CheckInstancesUpgradeAble", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 节点是否可升级
@@ -111,6 +112,7 @@ extension Tke {
     /// 检查给定节点列表中哪些是可升级的
     @inlinable
     public func checkInstancesUpgradeAble(clusterId: String, instanceIds: [String]? = nil, upgradeType: String? = nil, offset: Int64? = nil, limit: Int64? = nil, filter: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckInstancesUpgradeAbleResponse {
-        try await self.checkInstancesUpgradeAble(CheckInstancesUpgradeAbleRequest(clusterId: clusterId, instanceIds: instanceIds, upgradeType: upgradeType, offset: offset, limit: limit, filter: filter), region: region, logger: logger, on: eventLoop)
+        let input = CheckInstancesUpgradeAbleRequest(clusterId: clusterId, instanceIds: instanceIds, upgradeType: upgradeType, offset: offset, limit: limit, filter: filter)
+        return try await self.client.execute(action: "CheckInstancesUpgradeAble", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

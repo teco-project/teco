@@ -120,7 +120,8 @@ extension Tcb {
     /// 修改服务版本的副本数，环境变量
     @inlinable
     public func modifyCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, envParams: String? = nil, minNum: String? = nil, maxNum: String? = nil, containerPort: String? = nil, remark: String? = nil, customLogs: String? = nil, isResetRemark: Bool? = nil, basicModify: Bool? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudBaseRunServerVersionResponse> {
-        self.modifyCloudBaseRunServerVersion(ModifyCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, envParams: envParams, minNum: minNum, maxNum: maxNum, containerPort: containerPort, remark: remark, customLogs: customLogs, isResetRemark: isResetRemark, basicModify: basicModify, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, envParams: envParams, minNum: minNum, maxNum: maxNum, containerPort: containerPort, remark: remark, customLogs: customLogs, isResetRemark: isResetRemark, basicModify: basicModify, operatorRemark: operatorRemark)
+        return self.client.execute(action: "ModifyCloudBaseRunServerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改服务版本信息
@@ -128,6 +129,7 @@ extension Tcb {
     /// 修改服务版本的副本数，环境变量
     @inlinable
     public func modifyCloudBaseRunServerVersion(envId: String, serverName: String, versionName: String, envParams: String? = nil, minNum: String? = nil, maxNum: String? = nil, containerPort: String? = nil, remark: String? = nil, customLogs: String? = nil, isResetRemark: Bool? = nil, basicModify: Bool? = nil, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudBaseRunServerVersionResponse {
-        try await self.modifyCloudBaseRunServerVersion(ModifyCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, envParams: envParams, minNum: minNum, maxNum: maxNum, containerPort: containerPort, remark: remark, customLogs: customLogs, isResetRemark: isResetRemark, basicModify: basicModify, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCloudBaseRunServerVersionRequest(envId: envId, serverName: serverName, versionName: versionName, envParams: envParams, minNum: minNum, maxNum: maxNum, containerPort: containerPort, remark: remark, customLogs: customLogs, isResetRemark: isResetRemark, basicModify: basicModify, operatorRemark: operatorRemark)
+        return try await self.client.execute(action: "ModifyCloudBaseRunServerVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

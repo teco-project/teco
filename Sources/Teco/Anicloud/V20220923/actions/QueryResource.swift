@@ -74,12 +74,14 @@ extension Anicloud {
     /// 查询购买资源
     @inlinable
     public func queryResource(type: Int64, pageNumber: Int64, pageSize: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryResourceResponse> {
-        self.queryResource(QueryResourceRequest(type: type, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = QueryResourceRequest(type: type, pageNumber: pageNumber, pageSize: pageSize)
+        return self.client.execute(action: "QueryResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询购买资源
     @inlinable
     public func queryResource(type: Int64, pageNumber: Int64, pageSize: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResourceResponse {
-        try await self.queryResource(QueryResourceRequest(type: type, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = QueryResourceRequest(type: type, pageNumber: pageNumber, pageSize: pageSize)
+        return try await self.client.execute(action: "QueryResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -92,7 +92,8 @@ extension Yunjing {
     /// 本接口 (DescribeVulInfo) 用于获取漏洞详情。
     @inlinable
     public func describeVulInfo(vulId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulInfoResponse> {
-        self.describeVulInfo(DescribeVulInfoRequest(vulId: vulId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulInfoRequest(vulId: vulId)
+        return self.client.execute(action: "DescribeVulInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取漏洞详情
@@ -100,6 +101,7 @@ extension Yunjing {
     /// 本接口 (DescribeVulInfo) 用于获取漏洞详情。
     @inlinable
     public func describeVulInfo(vulId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulInfoResponse {
-        try await self.describeVulInfo(DescribeVulInfoRequest(vulId: vulId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulInfoRequest(vulId: vulId)
+        return try await self.client.execute(action: "DescribeVulInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

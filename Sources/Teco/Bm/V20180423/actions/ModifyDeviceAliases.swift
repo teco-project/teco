@@ -54,12 +54,14 @@ extension Bm {
     /// 修改服务器名称
     @inlinable @discardableResult
     public func modifyDeviceAliases(deviceAliases: [DeviceAlias], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceAliasesResponse> {
-        self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceAliasesRequest(deviceAliases: deviceAliases)
+        return self.client.execute(action: "ModifyDeviceAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改服务器名称
     @inlinable @discardableResult
     public func modifyDeviceAliases(deviceAliases: [DeviceAlias], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceAliasesResponse {
-        try await self.modifyDeviceAliases(ModifyDeviceAliasesRequest(deviceAliases: deviceAliases), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceAliasesRequest(deviceAliases: deviceAliases)
+        return try await self.client.execute(action: "ModifyDeviceAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

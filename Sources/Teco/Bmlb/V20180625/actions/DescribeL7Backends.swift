@@ -84,7 +84,8 @@ extension Bmlb {
     /// 获取黑石负载均衡七层监听器绑定的主机列表
     @inlinable
     public func describeL7Backends(loadBalancerId: String, listenerId: String, domainId: String? = nil, locationId: String? = nil, queryType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL7BackendsResponse> {
-        self.describeL7Backends(DescribeL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, queryType: queryType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, queryType: queryType)
+        return self.client.execute(action: "DescribeL7Backends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡七层转发路径绑定的主机列表
@@ -92,6 +93,7 @@ extension Bmlb {
     /// 获取黑石负载均衡七层监听器绑定的主机列表
     @inlinable
     public func describeL7Backends(loadBalancerId: String, listenerId: String, domainId: String? = nil, locationId: String? = nil, queryType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL7BackendsResponse {
-        try await self.describeL7Backends(DescribeL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, queryType: queryType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, queryType: queryType)
+        return try await self.client.execute(action: "DescribeL7Backends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

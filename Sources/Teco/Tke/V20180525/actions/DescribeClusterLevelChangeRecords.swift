@@ -82,12 +82,14 @@ extension Tke {
     /// 查询集群变配记录
     @inlinable
     public func describeClusterLevelChangeRecords(clusterID: String, startAt: String? = nil, endAt: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterLevelChangeRecordsResponse> {
-        self.describeClusterLevelChangeRecords(DescribeClusterLevelChangeRecordsRequest(clusterID: clusterID, startAt: startAt, endAt: endAt, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterLevelChangeRecordsRequest(clusterID: clusterID, startAt: startAt, endAt: endAt, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeClusterLevelChangeRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群变配记录
     @inlinable
     public func describeClusterLevelChangeRecords(clusterID: String, startAt: String? = nil, endAt: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterLevelChangeRecordsResponse {
-        try await self.describeClusterLevelChangeRecords(DescribeClusterLevelChangeRecordsRequest(clusterID: clusterID, startAt: startAt, endAt: endAt, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterLevelChangeRecordsRequest(clusterID: clusterID, startAt: startAt, endAt: endAt, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeClusterLevelChangeRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

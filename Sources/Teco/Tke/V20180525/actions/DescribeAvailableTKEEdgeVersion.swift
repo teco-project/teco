@@ -74,7 +74,8 @@ extension Tke {
     /// 边缘计算支持版本和k8s版本
     @inlinable
     public func describeAvailableTKEEdgeVersion(clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAvailableTKEEdgeVersionResponse> {
-        self.describeAvailableTKEEdgeVersion(DescribeAvailableTKEEdgeVersionRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAvailableTKEEdgeVersionRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribeAvailableTKEEdgeVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 边缘计算支持的k8s版本
@@ -82,6 +83,7 @@ extension Tke {
     /// 边缘计算支持版本和k8s版本
     @inlinable
     public func describeAvailableTKEEdgeVersion(clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAvailableTKEEdgeVersionResponse {
-        try await self.describeAvailableTKEEdgeVersion(DescribeAvailableTKEEdgeVersionRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAvailableTKEEdgeVersionRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeAvailableTKEEdgeVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

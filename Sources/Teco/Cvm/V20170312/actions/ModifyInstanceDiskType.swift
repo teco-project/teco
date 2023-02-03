@@ -88,7 +88,8 @@ extension Cvm {
     /// * 修改前请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/378/4397)接口查询账户余额。
     @inlinable @discardableResult
     public func modifyInstanceDiskType(instanceId: String, dataDisks: [DataDisk]? = nil, systemDisk: SystemDisk? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceDiskTypeResponse> {
-        self.modifyInstanceDiskType(ModifyInstanceDiskTypeRequest(instanceId: instanceId, dataDisks: dataDisks, systemDisk: systemDisk), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceDiskTypeRequest(instanceId: instanceId, dataDisks: dataDisks, systemDisk: systemDisk)
+        return self.client.execute(action: "ModifyInstanceDiskType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例的硬盘介质
@@ -102,6 +103,7 @@ extension Cvm {
     /// * 修改前请确保账户余额充足。可通过[`DescribeAccountBalance`](https://cloud.tencent.com/document/product/378/4397)接口查询账户余额。
     @inlinable @discardableResult
     public func modifyInstanceDiskType(instanceId: String, dataDisks: [DataDisk]? = nil, systemDisk: SystemDisk? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceDiskTypeResponse {
-        try await self.modifyInstanceDiskType(ModifyInstanceDiskTypeRequest(instanceId: instanceId, dataDisks: dataDisks, systemDisk: systemDisk), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceDiskTypeRequest(instanceId: instanceId, dataDisks: dataDisks, systemDisk: systemDisk)
+        return try await self.client.execute(action: "ModifyInstanceDiskType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

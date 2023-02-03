@@ -60,7 +60,8 @@ extension Kms {
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
     @inlinable @discardableResult
     public func cancelKeyArchive(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyArchiveResponse> {
-        self.cancelKeyArchive(CancelKeyArchiveRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = CancelKeyArchiveRequest(keyId: keyId)
+        return self.client.execute(action: "CancelKeyArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消密钥归档
@@ -68,6 +69,7 @@ extension Kms {
     /// 取消密钥归档，取消后密钥的状态变为Enabled。
     @inlinable @discardableResult
     public func cancelKeyArchive(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyArchiveResponse {
-        try await self.cancelKeyArchive(CancelKeyArchiveRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = CancelKeyArchiveRequest(keyId: keyId)
+        return try await self.client.execute(action: "CancelKeyArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,12 +78,14 @@ extension Privatedns {
     /// 获取操作日志列表
     @inlinable
     public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditLogResponse> {
-        self.describeAuditLog(DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeAuditLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取操作日志列表
     @inlinable
     public func describeAuditLog(timeRangeBegin: String, filters: [Filter]? = nil, timeRangeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditLogResponse {
-        try await self.describeAuditLog(DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAuditLogRequest(timeRangeBegin: timeRangeBegin, filters: filters, timeRangeEnd: timeRangeEnd, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeAuditLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

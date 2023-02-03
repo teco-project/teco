@@ -59,12 +59,14 @@ extension Antiddos {
     /// 删除DDoS防护的访问限速配置
     @inlinable @discardableResult
     public func deleteDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSSpeedLimitConfigResponse> {
-        self.deleteDDoSSpeedLimitConfig(DeleteDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig)
+        return self.client.execute(action: "DeleteDDoSSpeedLimitConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS防护的访问限速配置
     @inlinable @discardableResult
     public func deleteDDoSSpeedLimitConfig(instanceId: String, dDoSSpeedLimitConfig: DDoSSpeedLimitConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSSpeedLimitConfigResponse {
-        try await self.deleteDDoSSpeedLimitConfig(DeleteDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDDoSSpeedLimitConfigRequest(instanceId: instanceId, dDoSSpeedLimitConfig: dDoSSpeedLimitConfig)
+        return try await self.client.execute(action: "DeleteDDoSSpeedLimitConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -74,7 +74,8 @@ extension Essbasic {
     /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
     @inlinable
     public func describeSeals(caller: Caller, sealIds: [String], userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSealsResponse> {
-        self.describeSeals(DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId)
+        return self.client.execute(action: "DescribeSeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询电子印章
@@ -82,6 +83,7 @@ extension Essbasic {
     /// 此接口（DescribeSeals）用于查询指定ID的印章信息。
     @inlinable
     public func describeSeals(caller: Caller, sealIds: [String], userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSealsResponse {
-        try await self.describeSeals(DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSealsRequest(caller: caller, sealIds: sealIds, userId: userId)
+        return try await self.client.execute(action: "DescribeSeals", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

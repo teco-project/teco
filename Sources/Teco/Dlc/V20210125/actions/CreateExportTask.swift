@@ -79,7 +79,8 @@ extension Dlc {
     /// 该接口（CreateExportTask）用于创建导出任务
     @inlinable
     public func createExportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateExportTaskResponse> {
-        self.createExportTask(CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), region: region, logger: logger, on: eventLoop)
+        let input = CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType)
+        return self.client.execute(action: "CreateExportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建导出任务
@@ -87,6 +88,7 @@ extension Dlc {
     /// 该接口（CreateExportTask）用于创建导出任务
     @inlinable
     public func createExportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateExportTaskResponse {
-        try await self.createExportTask(CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), region: region, logger: logger, on: eventLoop)
+        let input = CreateExportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType)
+        return try await self.client.execute(action: "CreateExportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

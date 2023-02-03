@@ -93,12 +93,14 @@ extension Tdmq {
     /// 创建cmq订阅接口
     @inlinable
     public func createCmqSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCmqSubscribeResponse> {
-        self.createCmqSubscribe(CreateCmqSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), region: region, logger: logger, on: eventLoop)
+        let input = CreateCmqSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat)
+        return self.client.execute(action: "CreateCmqSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建cmq订阅接口
     @inlinable
     public func createCmqSubscribe(topicName: String, subscriptionName: String, protocol: String, endpoint: String, notifyStrategy: String? = nil, filterTag: [String]? = nil, bindingKey: [String]? = nil, notifyContentFormat: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCmqSubscribeResponse {
-        try await self.createCmqSubscribe(CreateCmqSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat), region: region, logger: logger, on: eventLoop)
+        let input = CreateCmqSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName, protocol: `protocol`, endpoint: endpoint, notifyStrategy: notifyStrategy, filterTag: filterTag, bindingKey: bindingKey, notifyContentFormat: notifyContentFormat)
+        return try await self.client.execute(action: "CreateCmqSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

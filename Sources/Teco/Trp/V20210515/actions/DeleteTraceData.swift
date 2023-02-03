@@ -70,7 +70,8 @@ extension Trp {
     /// 删除溯源信息，如果已经上链则不可删除
     @inlinable
     public func deleteTraceData(traceId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTraceDataResponse> {
-        self.deleteTraceData(DeleteTraceDataRequest(traceId: traceId, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTraceDataRequest(traceId: traceId, corpId: corpId)
+        return self.client.execute(action: "DeleteTraceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除溯源信息
@@ -78,6 +79,7 @@ extension Trp {
     /// 删除溯源信息，如果已经上链则不可删除
     @inlinable
     public func deleteTraceData(traceId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTraceDataResponse {
-        try await self.deleteTraceData(DeleteTraceDataRequest(traceId: traceId, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTraceDataRequest(traceId: traceId, corpId: corpId)
+        return try await self.client.execute(action: "DeleteTraceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

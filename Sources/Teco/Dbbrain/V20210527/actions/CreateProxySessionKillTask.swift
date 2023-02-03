@@ -69,7 +69,8 @@ extension Dbbrain {
     /// 创建中止所有代理节点连接会话的异步任务。当前仅支持 Redis。得到的返回值为异步任务 id，可以作为参数传入接口 DescribeProxySessionKillTasks 查询kill会话任务执行状态。
     @inlinable
     public func createProxySessionKillTask(instanceId: String, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxySessionKillTaskResponse> {
-        self.createProxySessionKillTask(CreateProxySessionKillTaskRequest(instanceId: instanceId, product: product), region: region, logger: logger, on: eventLoop)
+        let input = CreateProxySessionKillTaskRequest(instanceId: instanceId, product: product)
+        return self.client.execute(action: "CreateProxySessionKillTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建中止代理节点会话的任务
@@ -77,6 +78,7 @@ extension Dbbrain {
     /// 创建中止所有代理节点连接会话的异步任务。当前仅支持 Redis。得到的返回值为异步任务 id，可以作为参数传入接口 DescribeProxySessionKillTasks 查询kill会话任务执行状态。
     @inlinable
     public func createProxySessionKillTask(instanceId: String, product: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxySessionKillTaskResponse {
-        try await self.createProxySessionKillTask(CreateProxySessionKillTaskRequest(instanceId: instanceId, product: product), region: region, logger: logger, on: eventLoop)
+        let input = CreateProxySessionKillTaskRequest(instanceId: instanceId, product: product)
+        return try await self.client.execute(action: "CreateProxySessionKillTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

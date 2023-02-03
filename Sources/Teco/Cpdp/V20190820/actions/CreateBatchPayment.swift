@@ -83,12 +83,14 @@ extension Cpdp {
     /// 灵云-批量主播转账接口
     @inlinable
     public func createBatchPayment(transferType: Int64, recipientList: [CreateBatchPaymentRecipient], reqReserved: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchPaymentResponse> {
-        self.createBatchPayment(CreateBatchPaymentRequest(transferType: transferType, recipientList: recipientList, reqReserved: reqReserved, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
+        let input = CreateBatchPaymentRequest(transferType: transferType, recipientList: recipientList, reqReserved: reqReserved, notifyUrl: notifyUrl)
+        return self.client.execute(action: "CreateBatchPayment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-批量主播转账接口
     @inlinable
     public func createBatchPayment(transferType: Int64, recipientList: [CreateBatchPaymentRecipient], reqReserved: String? = nil, notifyUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchPaymentResponse {
-        try await self.createBatchPayment(CreateBatchPaymentRequest(transferType: transferType, recipientList: recipientList, reqReserved: reqReserved, notifyUrl: notifyUrl), region: region, logger: logger, on: eventLoop)
+        let input = CreateBatchPaymentRequest(transferType: transferType, recipientList: recipientList, reqReserved: reqReserved, notifyUrl: notifyUrl)
+        return try await self.client.execute(action: "CreateBatchPayment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

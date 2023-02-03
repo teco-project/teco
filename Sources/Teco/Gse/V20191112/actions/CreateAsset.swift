@@ -140,7 +140,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetResponse> {
-        self.createAsset(CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags)
+        return self.client.execute(action: "CreateAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建生成包
@@ -162,6 +163,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createAsset(bucketKey: String, assetName: String, assetVersion: String, assetRegion: String, operateSystem: String, imageId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetResponse {
-        try await self.createAsset(CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateAssetRequest(bucketKey: bucketKey, assetName: assetName, assetVersion: assetVersion, assetRegion: assetRegion, operateSystem: operateSystem, imageId: imageId, tags: tags)
+        return try await self.client.execute(action: "CreateAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

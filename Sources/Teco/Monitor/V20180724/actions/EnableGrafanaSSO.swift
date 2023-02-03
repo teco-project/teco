@@ -65,7 +65,8 @@ extension Monitor {
     /// 设置 Grafana 单点登录，使用腾讯云账号
     @inlinable @discardableResult
     public func enableGrafanaSSO(enableSSO: Bool, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableGrafanaSSOResponse> {
-        self.enableGrafanaSSO(EnableGrafanaSSORequest(enableSSO: enableSSO, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = EnableGrafanaSSORequest(enableSSO: enableSSO, instanceId: instanceId)
+        return self.client.execute(action: "EnableGrafanaSSO", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置 Grafana 单点登录
@@ -73,6 +74,7 @@ extension Monitor {
     /// 设置 Grafana 单点登录，使用腾讯云账号
     @inlinable @discardableResult
     public func enableGrafanaSSO(enableSSO: Bool, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableGrafanaSSOResponse {
-        try await self.enableGrafanaSSO(EnableGrafanaSSORequest(enableSSO: enableSSO, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = EnableGrafanaSSORequest(enableSSO: enableSSO, instanceId: instanceId)
+        return try await self.client.execute(action: "EnableGrafanaSSO", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

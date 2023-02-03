@@ -64,7 +64,8 @@ extension Sqlserver {
     /// 本接口（CompleteMigration）作用是完成一个迁移任务
     @inlinable
     public func completeMigration(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CompleteMigrationResponse> {
-        self.completeMigration(CompleteMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
+        let input = CompleteMigrationRequest(migrateId: migrateId)
+        return self.client.execute(action: "CompleteMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 完成迁移任务
@@ -72,6 +73,7 @@ extension Sqlserver {
     /// 本接口（CompleteMigration）作用是完成一个迁移任务
     @inlinable
     public func completeMigration(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CompleteMigrationResponse {
-        try await self.completeMigration(CompleteMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
+        let input = CompleteMigrationRequest(migrateId: migrateId)
+        return try await self.client.execute(action: "CompleteMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

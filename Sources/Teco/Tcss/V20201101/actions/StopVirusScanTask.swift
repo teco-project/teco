@@ -59,12 +59,14 @@ extension Tcss {
     /// 运行时停止木马查杀任务
     @inlinable @discardableResult
     public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopVirusScanTaskResponse> {
-        self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), region: region, logger: logger, on: eventLoop)
+        let input = StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds)
+        return self.client.execute(action: "StopVirusScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时停止木马查杀任务
     @inlinable @discardableResult
     public func stopVirusScanTask(taskId: String, containerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopVirusScanTaskResponse {
-        try await self.stopVirusScanTask(StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds), region: region, logger: logger, on: eventLoop)
+        let input = StopVirusScanTaskRequest(taskId: taskId, containerIds: containerIds)
+        return try await self.client.execute(action: "StopVirusScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

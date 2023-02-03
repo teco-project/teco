@@ -100,7 +100,8 @@ extension Dts {
     /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
     @inlinable @discardableResult
     public func modifyMigrationJob(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrationJobResponse> {
-        self.modifyMigrationJob(ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes)
+        return self.client.execute(action: "ModifyMigrationJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置迁移服务
@@ -108,6 +109,7 @@ extension Dts {
     /// 配置迁移服务，配置成功后可通过`CreateMigrationCheckJob` 创建迁移校验任务接口发起校验任务，只有校验通过才能启动迁移任务。
     @inlinable @discardableResult
     public func modifyMigrationJob(jobId: String, runMode: String, migrateOption: MigrateOption, srcInfo: DBEndpointInfo, dstInfo: DBEndpointInfo, jobName: String? = nil, expectRunTime: String? = nil, tags: [TagItem]? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrationJobResponse {
-        try await self.modifyMigrationJob(ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMigrationJobRequest(jobId: jobId, runMode: runMode, migrateOption: migrateOption, srcInfo: srcInfo, dstInfo: dstInfo, jobName: jobName, expectRunTime: expectRunTime, tags: tags, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes)
+        return try await self.client.execute(action: "ModifyMigrationJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -98,7 +98,8 @@ extension Iotvideo {
     /// 物模型写入数据时,不需要传入时标信息,平台以当前时标作为数据的时标更新物模型中的时标信息。
     @inlinable @discardableResult
     public func modifyDeviceProperty(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDevicePropertyResponse> {
-        self.modifyDeviceProperty(ModifyDevicePropertyRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDevicePropertyRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum)
+        return self.client.execute(action: "ModifyDeviceProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改设备物模型属性
@@ -112,6 +113,7 @@ extension Iotvideo {
     /// 物模型写入数据时,不需要传入时标信息,平台以当前时标作为数据的时标更新物模型中的时标信息。
     @inlinable @discardableResult
     public func modifyDeviceProperty(tid: String, wakeup: Bool, branch: String, value: String, isNum: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDevicePropertyResponse {
-        try await self.modifyDeviceProperty(ModifyDevicePropertyRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDevicePropertyRequest(tid: tid, wakeup: wakeup, branch: branch, value: value, isNum: isNum)
+        return try await self.client.execute(action: "ModifyDeviceProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

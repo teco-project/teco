@@ -67,12 +67,14 @@ extension Tcr {
     /// 查询创建从实例任务状态
     @inlinable
     public func describeReplicationInstanceCreateTasks(replicationRegistryId: String, replicationRegionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationInstanceCreateTasksResponse> {
-        self.describeReplicationInstanceCreateTasks(DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId)
+        return self.client.execute(action: "DescribeReplicationInstanceCreateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询创建从实例任务状态
     @inlinable
     public func describeReplicationInstanceCreateTasks(replicationRegistryId: String, replicationRegionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceCreateTasksResponse {
-        try await self.describeReplicationInstanceCreateTasks(DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReplicationInstanceCreateTasksRequest(replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId)
+        return try await self.client.execute(action: "DescribeReplicationInstanceCreateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

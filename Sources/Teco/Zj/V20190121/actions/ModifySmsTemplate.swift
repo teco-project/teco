@@ -116,7 +116,8 @@ extension Zj {
     /// 对未审核或者审核未通过的短信模板内容进行编辑修改
     @inlinable
     public func modifySmsTemplate(license: String, templateId: Int64, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsTemplateResponse> {
-        self.modifySmsTemplate(ModifySmsTemplateRequest(license: license, templateId: templateId, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifySmsTemplateRequest(license: license, templateId: templateId, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams)
+        return self.client.execute(action: "ModifySmsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 短信模板编辑接口
@@ -124,6 +125,7 @@ extension Zj {
     /// 对未审核或者审核未通过的短信模板内容进行编辑修改
     @inlinable
     public func modifySmsTemplate(license: String, templateId: Int64, signID: UInt64, templateName: String, templateContent: String, smsType: UInt64, international: UInt64, remark: String, urls: [String]? = nil, commonParams: [Int64]? = nil, urlParams: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsTemplateResponse {
-        try await self.modifySmsTemplate(ModifySmsTemplateRequest(license: license, templateId: templateId, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifySmsTemplateRequest(license: license, templateId: templateId, signID: signID, templateName: templateName, templateContent: templateContent, smsType: smsType, international: international, remark: remark, urls: urls, commonParams: commonParams, urlParams: urlParams)
+        return try await self.client.execute(action: "ModifySmsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

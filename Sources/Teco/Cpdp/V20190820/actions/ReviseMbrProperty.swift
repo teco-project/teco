@@ -97,7 +97,8 @@ extension Cpdp {
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
     @inlinable
     public func reviseMbrProperty(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReviseMbrPropertyResponse> {
-        self.reviseMbrProperty(ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile)
+        return self.client.execute(action: "ReviseMbrProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-修改会员属性-普通商户子账户
@@ -105,6 +106,7 @@ extension Cpdp {
     /// 修改会员属性-普通商户子账户。修改会员的会员属性。
     @inlinable
     public func reviseMbrProperty(mrchCode: String, subAcctNo: String, memberProperty: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReviseMbrPropertyResponse {
-        try await self.reviseMbrProperty(ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = ReviseMbrPropertyRequest(mrchCode: mrchCode, subAcctNo: subAcctNo, memberProperty: memberProperty, reservedMsg: reservedMsg, profile: profile)
+        return try await self.client.execute(action: "ReviseMbrProperty", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Bizlive {
     /// 强制退出游戏
     @inlinable @discardableResult
     public func stopGame(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopGameResponse> {
-        self.stopGame(StopGameRequest(userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = StopGameRequest(userId: userId)
+        return self.client.execute(action: "StopGame", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 强制退出游戏
     @inlinable @discardableResult
     public func stopGame(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopGameResponse {
-        try await self.stopGame(StopGameRequest(userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = StopGameRequest(userId: userId)
+        return try await self.client.execute(action: "StopGame", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

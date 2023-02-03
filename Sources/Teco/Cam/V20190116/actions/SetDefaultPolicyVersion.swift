@@ -65,7 +65,8 @@ extension Cam {
     /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
     @inlinable @discardableResult
     public func setDefaultPolicyVersion(policyId: UInt64, versionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetDefaultPolicyVersionResponse> {
-        self.setDefaultPolicyVersion(SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId)
+        return self.client.execute(action: "SetDefaultPolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置生效的策略版本
@@ -73,6 +74,7 @@ extension Cam {
     /// 本接口（SetDefaultPolicyVersion）可用于设置生效的策略版本。
     @inlinable @discardableResult
     public func setDefaultPolicyVersion(policyId: UInt64, versionId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetDefaultPolicyVersionResponse {
-        try await self.setDefaultPolicyVersion(SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = SetDefaultPolicyVersionRequest(policyId: policyId, versionId: versionId)
+        return try await self.client.execute(action: "SetDefaultPolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

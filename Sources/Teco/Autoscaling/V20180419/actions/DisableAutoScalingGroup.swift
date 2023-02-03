@@ -99,7 +99,8 @@ extension As {
     ///     - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
     @inlinable @discardableResult
     public func disableAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableAutoScalingGroupResponse> {
-        self.disableAutoScalingGroup(DisableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DisableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId)
+        return self.client.execute(action: "DisableAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用伸缩组
@@ -120,6 +121,7 @@ extension As {
     ///     - 开启伸缩组内 CVM 实例（StartAutoScalingInstances）
     @inlinable @discardableResult
     public func disableAutoScalingGroup(autoScalingGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableAutoScalingGroupResponse {
-        try await self.disableAutoScalingGroup(DisableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DisableAutoScalingGroupRequest(autoScalingGroupId: autoScalingGroupId)
+        return try await self.client.execute(action: "DisableAutoScalingGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

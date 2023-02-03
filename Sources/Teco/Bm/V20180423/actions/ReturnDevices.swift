@@ -64,7 +64,8 @@ extension Bm {
     /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
     @inlinable
     public func returnDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReturnDevicesResponse> {
-        self.returnDevices(ReturnDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = ReturnDevicesRequest(instanceIds: instanceIds)
+        return self.client.execute(action: "ReturnDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退回物理机
@@ -72,6 +73,7 @@ extension Bm {
     /// 退回物理机至回收站，支持批量退还不同计费模式的物理机（包括预付费、后付费、预付费转后付费）
     @inlinable
     public func returnDevices(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReturnDevicesResponse {
-        try await self.returnDevices(ReturnDevicesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = ReturnDevicesRequest(instanceIds: instanceIds)
+        return try await self.client.execute(action: "ReturnDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

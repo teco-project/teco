@@ -80,7 +80,8 @@ extension Antiddos {
     /// 修改CC防护等级
     @inlinable @discardableResult
     public func modifyCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, level: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCLevelPolicyResponse> {
-        self.modifyCCLevelPolicy(ModifyCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, level: level), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, level: level)
+        return self.client.execute(action: "ModifyCCLevelPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CC的防护等级
@@ -88,6 +89,7 @@ extension Antiddos {
     /// 修改CC防护等级
     @inlinable @discardableResult
     public func modifyCCLevelPolicy(instanceId: String, ip: String, domain: String, protocol: String, level: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCLevelPolicyResponse {
-        try await self.modifyCCLevelPolicy(ModifyCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, level: level), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCLevelPolicyRequest(instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`, level: level)
+        return try await self.client.execute(action: "ModifyCCLevelPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

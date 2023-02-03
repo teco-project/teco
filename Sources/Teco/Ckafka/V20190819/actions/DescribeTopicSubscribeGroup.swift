@@ -73,12 +73,14 @@ extension Ckafka {
     /// 查询订阅某主题消息分组信息
     @inlinable
     public func describeTopicSubscribeGroup(instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicSubscribeGroupResponse> {
-        self.describeTopicSubscribeGroup(DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeTopicSubscribeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询订阅某主题消息分组信息
     @inlinable
     public func describeTopicSubscribeGroup(instanceId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicSubscribeGroupResponse {
-        try await self.describeTopicSubscribeGroup(DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopicSubscribeGroupRequest(instanceId: instanceId, topicName: topicName, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeTopicSubscribeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

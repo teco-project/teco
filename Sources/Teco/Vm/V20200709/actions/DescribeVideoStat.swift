@@ -77,7 +77,8 @@ extension Vm {
     /// 控制台识别统计
     @inlinable
     public func describeVideoStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoStatResponse> {
-        self.describeVideoStat(DescribeVideoStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVideoStatRequest(auditType: auditType, filters: filters)
+        return self.client.execute(action: "DescribeVideoStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
@@ -85,6 +86,7 @@ extension Vm {
     /// 控制台识别统计
     @inlinable
     public func describeVideoStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoStatResponse {
-        try await self.describeVideoStat(DescribeVideoStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVideoStatRequest(auditType: auditType, filters: filters)
+        return try await self.client.execute(action: "DescribeVideoStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

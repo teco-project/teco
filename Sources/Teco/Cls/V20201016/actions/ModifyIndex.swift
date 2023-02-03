@@ -85,7 +85,8 @@ extension Cls {
     /// 本接口用于修改索引配置，该接口除受默认接口请求频率限制外，针对单个日志主题，并发数不能超过1，即同一时间同一个日志主题只能有一个正在执行的索引配置修改操作。
     @inlinable @discardableResult
     public func modifyIndex(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIndexResponse> {
-        self.modifyIndex(ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag)
+        return self.client.execute(action: "ModifyIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改索引
@@ -93,6 +94,7 @@ extension Cls {
     /// 本接口用于修改索引配置，该接口除受默认接口请求频率限制外，针对单个日志主题，并发数不能超过1，即同一时间同一个日志主题只能有一个正在执行的索引配置修改操作。
     @inlinable @discardableResult
     public func modifyIndex(topicId: String, status: Bool? = nil, rule: RuleInfo? = nil, includeInternalFields: Bool? = nil, metadataFlag: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIndexResponse {
-        try await self.modifyIndex(ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyIndexRequest(topicId: topicId, status: status, rule: rule, includeInternalFields: includeInternalFields, metadataFlag: metadataFlag)
+        return try await self.client.execute(action: "ModifyIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

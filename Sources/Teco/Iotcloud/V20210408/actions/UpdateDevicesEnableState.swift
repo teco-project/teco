@@ -70,7 +70,8 @@ extension Iotcloud {
     /// 批量启用或者禁用设备
     @inlinable @discardableResult
     public func updateDevicesEnableState(productId: String, deviceNames: [String], status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDevicesEnableStateResponse> {
-        self.updateDevicesEnableState(UpdateDevicesEnableStateRequest(productId: productId, deviceNames: deviceNames, status: status), region: region, logger: logger, on: eventLoop)
+        let input = UpdateDevicesEnableStateRequest(productId: productId, deviceNames: deviceNames, status: status)
+        return self.client.execute(action: "UpdateDevicesEnableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量切换设备可用状态
@@ -78,6 +79,7 @@ extension Iotcloud {
     /// 批量启用或者禁用设备
     @inlinable @discardableResult
     public func updateDevicesEnableState(productId: String, deviceNames: [String], status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDevicesEnableStateResponse {
-        try await self.updateDevicesEnableState(UpdateDevicesEnableStateRequest(productId: productId, deviceNames: deviceNames, status: status), region: region, logger: logger, on: eventLoop)
+        let input = UpdateDevicesEnableStateRequest(productId: productId, deviceNames: deviceNames, status: status)
+        return try await self.client.execute(action: "UpdateDevicesEnableState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

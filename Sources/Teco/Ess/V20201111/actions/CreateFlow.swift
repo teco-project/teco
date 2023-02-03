@@ -148,7 +148,8 @@ extension Ess {
     /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。配合“创建电子文档”接口和“发起流程”接口使用。
     @inlinable
     public func createFlow(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, relatedFlowId: String? = nil, deadLine: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, callbackUrl: String? = nil, agent: Agent? = nil, ccInfos: [CcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowResponse> {
-        self.createFlow(CreateFlowRequest(operator: `operator`, flowName: flowName, approvers: approvers, flowType: flowType, clientToken: clientToken, relatedFlowId: relatedFlowId, deadLine: deadLine, userData: userData, flowDescription: flowDescription, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, callbackUrl: callbackUrl, agent: agent, ccInfos: ccInfos), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowRequest(operator: `operator`, flowName: flowName, approvers: approvers, flowType: flowType, clientToken: clientToken, relatedFlowId: relatedFlowId, deadLine: deadLine, userData: userData, flowDescription: flowDescription, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, callbackUrl: callbackUrl, agent: agent, ccInfos: ccInfos)
+        return self.client.execute(action: "CreateFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建签署流程
@@ -158,6 +159,7 @@ extension Ess {
     /// 注：该接口是通过模板生成合同流程的前置接口，先创建一个不包含签署文件的流程。配合“创建电子文档”接口和“发起流程”接口使用。
     @inlinable
     public func createFlow(operator: UserInfo, flowName: String, approvers: [FlowCreateApprover], flowType: String? = nil, clientToken: String? = nil, relatedFlowId: String? = nil, deadLine: Int64? = nil, userData: String? = nil, flowDescription: String? = nil, unordered: Bool? = nil, customShowMap: String? = nil, needSignReview: Bool? = nil, callbackUrl: String? = nil, agent: Agent? = nil, ccInfos: [CcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowResponse {
-        try await self.createFlow(CreateFlowRequest(operator: `operator`, flowName: flowName, approvers: approvers, flowType: flowType, clientToken: clientToken, relatedFlowId: relatedFlowId, deadLine: deadLine, userData: userData, flowDescription: flowDescription, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, callbackUrl: callbackUrl, agent: agent, ccInfos: ccInfos), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowRequest(operator: `operator`, flowName: flowName, approvers: approvers, flowType: flowType, clientToken: clientToken, relatedFlowId: relatedFlowId, deadLine: deadLine, userData: userData, flowDescription: flowDescription, unordered: unordered, customShowMap: customShowMap, needSignReview: needSignReview, callbackUrl: callbackUrl, agent: agent, ccInfos: ccInfos)
+        return try await self.client.execute(action: "CreateFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
     @inlinable @discardableResult
     public func modifyNetworkAclAttribute(networkAclId: String, networkAclName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNetworkAclAttributeResponse> {
-        self.modifyNetworkAclAttribute(ModifyNetworkAclAttributeRequest(networkAclId: networkAclId, networkAclName: networkAclName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyNetworkAclAttributeRequest(networkAclId: networkAclId, networkAclName: networkAclName)
+        return self.client.execute(action: "ModifyNetworkAclAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改网络ACL属性
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（ModifyNetworkAclAttribute）用于修改网络ACL属性。
     @inlinable @discardableResult
     public func modifyNetworkAclAttribute(networkAclId: String, networkAclName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNetworkAclAttributeResponse {
-        try await self.modifyNetworkAclAttribute(ModifyNetworkAclAttributeRequest(networkAclId: networkAclId, networkAclName: networkAclName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyNetworkAclAttributeRequest(networkAclId: networkAclId, networkAclName: networkAclName)
+        return try await self.client.execute(action: "ModifyNetworkAclAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

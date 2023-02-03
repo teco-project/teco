@@ -69,7 +69,8 @@ extension Cls {
     /// 本接口用于合并一个读写态的主题分区，合并时指定一个主题分区 ID，日志服务会自动合并范围右相邻的分区。
     @inlinable
     public func mergePartition(topicId: String, partitionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MergePartitionResponse> {
-        self.mergePartition(MergePartitionRequest(topicId: topicId, partitionId: partitionId), region: region, logger: logger, on: eventLoop)
+        let input = MergePartitionRequest(topicId: topicId, partitionId: partitionId)
+        return self.client.execute(action: "MergePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合并分区
@@ -77,6 +78,7 @@ extension Cls {
     /// 本接口用于合并一个读写态的主题分区，合并时指定一个主题分区 ID，日志服务会自动合并范围右相邻的分区。
     @inlinable
     public func mergePartition(topicId: String, partitionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MergePartitionResponse {
-        try await self.mergePartition(MergePartitionRequest(topicId: topicId, partitionId: partitionId), region: region, logger: logger, on: eventLoop)
+        let input = MergePartitionRequest(topicId: topicId, partitionId: partitionId)
+        return try await self.client.execute(action: "MergePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

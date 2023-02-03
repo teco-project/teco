@@ -93,7 +93,8 @@ extension Redis {
     /// 查询 CRS 实例备份列表
     @inlinable
     public func describeInstanceBackups(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, status: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceBackupsResponse> {
-        self.describeInstanceBackups(DescribeInstanceBackupsRequest(instanceId: instanceId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, status: status), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceBackupsRequest(instanceId: instanceId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, status: status)
+        return self.client.execute(action: "DescribeInstanceBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Redis实例备份列表
@@ -101,6 +102,7 @@ extension Redis {
     /// 查询 CRS 实例备份列表
     @inlinable
     public func describeInstanceBackups(instanceId: String, limit: Int64? = nil, offset: Int64? = nil, beginTime: String? = nil, endTime: String? = nil, status: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceBackupsResponse {
-        try await self.describeInstanceBackups(DescribeInstanceBackupsRequest(instanceId: instanceId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, status: status), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceBackupsRequest(instanceId: instanceId, limit: limit, offset: offset, beginTime: beginTime, endTime: endTime, status: status)
+        return try await self.client.execute(action: "DescribeInstanceBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

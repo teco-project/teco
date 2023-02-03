@@ -73,7 +73,8 @@ extension Ame {
     /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
     @inlinable
     public func takeMusicOffShelves(takeMusicOffShelves: [TakeMusicOffShelves], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TakeMusicOffShelvesResponse> {
-        self.takeMusicOffShelves(TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves), region: region, logger: logger, on: eventLoop)
+        let input = TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves)
+        return self.client.execute(action: "TakeMusicOffShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下架歌曲
@@ -81,6 +82,7 @@ extension Ame {
     /// 根据资源方所传MusicId进行将歌曲进行下架，多个MusicId使用逗号隔开
     @inlinable
     public func takeMusicOffShelves(takeMusicOffShelves: [TakeMusicOffShelves], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TakeMusicOffShelvesResponse {
-        try await self.takeMusicOffShelves(TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves), region: region, logger: logger, on: eventLoop)
+        let input = TakeMusicOffShelvesRequest(takeMusicOffShelves: takeMusicOffShelves)
+        return try await self.client.execute(action: "TakeMusicOffShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

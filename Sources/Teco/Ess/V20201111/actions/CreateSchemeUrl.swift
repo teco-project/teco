@@ -137,7 +137,8 @@ extension Ess {
     /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
     @inlinable
     public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchemeUrlResponse> {
-        self.createSchemeUrl(CreateSchemeUrlRequest(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent), region: region, logger: logger, on: eventLoop)
+        let input = CreateSchemeUrlRequest(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent)
+        return self.client.execute(action: "CreateSchemeUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取小程序跳转链接
@@ -155,6 +156,7 @@ extension Ess {
     /// 如您需要自主配置小程序跳转链接，请参考: <a href="https://cloud.tencent.com/document/product/1323/74774">跳转小程序链接配置说明</a>
     @inlinable
     public func createSchemeUrl(operator: UserInfo, organizationName: String? = nil, name: String? = nil, mobile: String? = nil, endPoint: String? = nil, flowId: String? = nil, pathType: UInt64? = nil, autoJumpBack: Bool? = nil, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchemeUrlResponse {
-        try await self.createSchemeUrl(CreateSchemeUrlRequest(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent), region: region, logger: logger, on: eventLoop)
+        let input = CreateSchemeUrlRequest(operator: `operator`, organizationName: organizationName, name: name, mobile: mobile, endPoint: endPoint, flowId: flowId, pathType: pathType, autoJumpBack: autoJumpBack, agent: agent)
+        return try await self.client.execute(action: "CreateSchemeUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

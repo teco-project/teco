@@ -74,7 +74,8 @@ extension Tdid {
     /// 凭证颁发按机构排行
     @inlinable
     public func getCredentialIssueRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialIssueRankResponse> {
-        self.getCredentialIssueRank(GetCredentialIssueRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetCredentialIssueRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId)
+        return self.client.execute(action: "GetCredentialIssueRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证颁发机构排行
@@ -82,6 +83,7 @@ extension Tdid {
     /// 凭证颁发按机构排行
     @inlinable
     public func getCredentialIssueRank(startTime: String, endTime: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialIssueRankResponse {
-        try await self.getCredentialIssueRank(GetCredentialIssueRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetCredentialIssueRankRequest(startTime: startTime, endTime: endTime, clusterId: clusterId)
+        return try await self.client.execute(action: "GetCredentialIssueRank", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

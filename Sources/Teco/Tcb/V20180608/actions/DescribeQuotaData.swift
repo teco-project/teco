@@ -110,7 +110,8 @@ extension Tcb {
     /// 查询指定指标的配额使用量
     @inlinable
     public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaDataResponse> {
-        self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID)
+        return self.client.execute(action: "DescribeQuotaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询环境的配额使用量
@@ -118,6 +119,7 @@ extension Tcb {
     /// 查询指定指标的配额使用量
     @inlinable
     public func describeQuotaData(envId: String, metricName: String, resourceID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaDataResponse {
-        try await self.describeQuotaData(DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQuotaDataRequest(envId: envId, metricName: metricName, resourceID: resourceID)
+        return try await self.client.execute(action: "DescribeQuotaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

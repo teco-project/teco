@@ -73,12 +73,14 @@ extension Tem {
     /// 查询配置列表
     @inlinable
     public func describeConfigDataList(environmentId: String, sourceChannel: Int64? = nil, continueToken: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigDataListResponse> {
-        self.describeConfigDataList(DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit)
+        return self.client.execute(action: "DescribeConfigDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询配置列表
     @inlinable
     public func describeConfigDataList(environmentId: String, sourceChannel: Int64? = nil, continueToken: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigDataListResponse {
-        try await self.describeConfigDataList(DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigDataListRequest(environmentId: environmentId, sourceChannel: sourceChannel, continueToken: continueToken, limit: limit)
+        return try await self.client.execute(action: "DescribeConfigDataList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

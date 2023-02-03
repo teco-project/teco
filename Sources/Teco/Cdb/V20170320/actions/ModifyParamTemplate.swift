@@ -75,7 +75,8 @@ extension Cdb {
     /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
     @inlinable @discardableResult
     public func modifyParamTemplate(templateId: Int64, name: String? = nil, description: String? = nil, paramList: [Parameter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyParamTemplateResponse> {
-        self.modifyParamTemplate(ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList), region: region, logger: logger, on: eventLoop)
+        let input = ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList)
+        return self.client.execute(action: "ModifyParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改参数模板
@@ -83,6 +84,7 @@ extension Cdb {
     /// 该接口（ModifyParamTemplate）用于修改参数模板，全地域公共参数Region均为ap-guangzhou。
     @inlinable @discardableResult
     public func modifyParamTemplate(templateId: Int64, name: String? = nil, description: String? = nil, paramList: [Parameter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyParamTemplateResponse {
-        try await self.modifyParamTemplate(ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList), region: region, logger: logger, on: eventLoop)
+        let input = ModifyParamTemplateRequest(templateId: templateId, name: name, description: description, paramList: paramList)
+        return try await self.client.execute(action: "ModifyParamTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

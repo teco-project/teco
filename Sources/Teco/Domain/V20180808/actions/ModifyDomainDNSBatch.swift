@@ -69,7 +69,8 @@ extension Domain {
     /// 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
     @inlinable
     public func modifyDomainDNSBatch(domains: [String], dns: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainDNSBatchResponse> {
-        self.modifyDomainDNSBatch(ModifyDomainDNSBatchRequest(domains: domains, dns: dns), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainDNSBatchRequest(domains: domains, dns: dns)
+        return self.client.execute(action: "ModifyDomainDNSBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量域名 DNS 修改
@@ -77,6 +78,7 @@ extension Domain {
     /// 本接口 ( ModifyDomainDNSBatch) 用于批量域名 DNS 修改 。
     @inlinable
     public func modifyDomainDNSBatch(domains: [String], dns: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainDNSBatchResponse {
-        try await self.modifyDomainDNSBatch(ModifyDomainDNSBatchRequest(domains: domains, dns: dns), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainDNSBatchRequest(domains: domains, dns: dns)
+        return try await self.client.execute(action: "ModifyDomainDNSBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

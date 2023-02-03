@@ -75,7 +75,8 @@ extension Tcb {
     /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
     @inlinable
     public func createCloudBaseRunResource(envId: String, vpcId: String? = nil, subnetIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudBaseRunResourceResponse> {
-        self.createCloudBaseRunResource(CreateCloudBaseRunResourceRequest(envId: envId, vpcId: vpcId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateCloudBaseRunResourceRequest(envId: envId, vpcId: vpcId, subnetIds: subnetIds)
+        return self.client.execute(action: "CreateCloudBaseRunResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通容器托管的资源
@@ -83,6 +84,7 @@ extension Tcb {
     /// 开通容器托管的资源，包括集群创建，VPC配置，异步任务创建，镜像托管，Coding等，查看创建结果需要根据DescribeCloudBaseRunResource接口来查看
     @inlinable
     public func createCloudBaseRunResource(envId: String, vpcId: String? = nil, subnetIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudBaseRunResourceResponse {
-        try await self.createCloudBaseRunResource(CreateCloudBaseRunResourceRequest(envId: envId, vpcId: vpcId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateCloudBaseRunResourceRequest(envId: envId, vpcId: vpcId, subnetIds: subnetIds)
+        return try await self.client.execute(action: "CreateCloudBaseRunResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -81,7 +81,8 @@ extension Ess {
     /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
     @inlinable @discardableResult
     public func cancelFlow(operator: UserInfo, flowId: String, cancelMessage: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelFlowResponse> {
-        self.cancelFlow(CancelFlowRequest(operator: `operator`, flowId: flowId, cancelMessage: cancelMessage, agent: agent), region: region, logger: logger, on: eventLoop)
+        let input = CancelFlowRequest(operator: `operator`, flowId: flowId, cancelMessage: cancelMessage, agent: agent)
+        return self.client.execute(action: "CancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 撤销签署流程
@@ -91,6 +92,7 @@ extension Ess {
     /// 注：如果合同流程中的参与方均已签署完毕，则无法通过该接口撤销合同。
     @inlinable @discardableResult
     public func cancelFlow(operator: UserInfo, flowId: String, cancelMessage: String, agent: Agent? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelFlowResponse {
-        try await self.cancelFlow(CancelFlowRequest(operator: `operator`, flowId: flowId, cancelMessage: cancelMessage, agent: agent), region: region, logger: logger, on: eventLoop)
+        let input = CancelFlowRequest(operator: `operator`, flowId: flowId, cancelMessage: cancelMessage, agent: agent)
+        return try await self.client.execute(action: "CancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

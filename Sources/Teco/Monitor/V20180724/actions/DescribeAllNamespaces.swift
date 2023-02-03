@@ -90,12 +90,14 @@ extension Monitor {
     /// 查询所有名字空间
     @inlinable
     public func describeAllNamespaces(sceneType: String, module: String, monitorTypes: [String]? = nil, ids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAllNamespacesResponse> {
-        self.describeAllNamespaces(DescribeAllNamespacesRequest(sceneType: sceneType, module: module, monitorTypes: monitorTypes, ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAllNamespacesRequest(sceneType: sceneType, module: module, monitorTypes: monitorTypes, ids: ids)
+        return self.client.execute(action: "DescribeAllNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所有名字空间
     @inlinable
     public func describeAllNamespaces(sceneType: String, module: String, monitorTypes: [String]? = nil, ids: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAllNamespacesResponse {
-        try await self.describeAllNamespaces(DescribeAllNamespacesRequest(sceneType: sceneType, module: module, monitorTypes: monitorTypes, ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAllNamespacesRequest(sceneType: sceneType, module: module, monitorTypes: monitorTypes, ids: ids)
+        return try await self.client.execute(action: "DescribeAllNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

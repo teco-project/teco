@@ -59,12 +59,14 @@ extension Cfw {
     /// 中止安全组规则下发
     @inlinable
     public func stopSecurityGroupRuleDispatch(stopType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopSecurityGroupRuleDispatchResponse> {
-        self.stopSecurityGroupRuleDispatch(StopSecurityGroupRuleDispatchRequest(stopType: stopType), region: region, logger: logger, on: eventLoop)
+        let input = StopSecurityGroupRuleDispatchRequest(stopType: stopType)
+        return self.client.execute(action: "StopSecurityGroupRuleDispatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 中止安全组规则下发
     @inlinable
     public func stopSecurityGroupRuleDispatch(stopType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopSecurityGroupRuleDispatchResponse {
-        try await self.stopSecurityGroupRuleDispatch(StopSecurityGroupRuleDispatchRequest(stopType: stopType), region: region, logger: logger, on: eventLoop)
+        let input = StopSecurityGroupRuleDispatchRequest(stopType: stopType)
+        return try await self.client.execute(action: "StopSecurityGroupRuleDispatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -90,7 +90,8 @@ extension Iotvideo {
     /// 本接口（RunOtaVersion）用于固件版本正式发布。
     @inlinable @discardableResult
     public func runOtaVersion(productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunOtaVersionResponse> {
-        self.runOtaVersion(RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
+        let input = RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents)
+        return self.client.execute(action: "RunOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 固件版本正式发布
@@ -98,6 +99,7 @@ extension Iotvideo {
     /// 本接口（RunOtaVersion）用于固件版本正式发布。
     @inlinable @discardableResult
     public func runOtaVersion(productId: String, otaVersion: String, grayValue: UInt64, oldVersions: [String]? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunOtaVersionResponse {
-        try await self.runOtaVersion(RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
+        let input = RunOtaVersionRequest(productId: productId, otaVersion: otaVersion, grayValue: grayValue, oldVersions: oldVersions, operator: `operator`, remark: remark, contents: contents)
+        return try await self.client.execute(action: "RunOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

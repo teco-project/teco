@@ -147,12 +147,14 @@ extension Teo {
     /// 查询waf攻击top数据
     @inlinable
     public func describeWebManagedRulesTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesTopDataResponse> {
-        self.describeWebManagedRulesTopData(DescribeWebManagedRulesTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, zoneIds: zoneIds, policyIds: policyIds, port: port, protocolType: protocolType, attackType: attackType, domains: domains, interval: interval, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, zoneIds: zoneIds, policyIds: policyIds, port: port, protocolType: protocolType, attackType: attackType, domains: domains, interval: interval, queryCondition: queryCondition, area: area)
+        return self.client.execute(action: "DescribeWebManagedRulesTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询waf攻击top数据
     @inlinable
     public func describeWebManagedRulesTopData(startTime: Date, endTime: Date, metricName: String, limit: Int64, zoneIds: [String]? = nil, policyIds: [Int64]? = nil, port: Int64? = nil, protocolType: String? = nil, attackType: String? = nil, domains: [String]? = nil, interval: String? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesTopDataResponse {
-        try await self.describeWebManagedRulesTopData(DescribeWebManagedRulesTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, zoneIds: zoneIds, policyIds: policyIds, port: port, protocolType: protocolType, attackType: attackType, domains: domains, interval: interval, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, limit: limit, zoneIds: zoneIds, policyIds: policyIds, port: port, protocolType: protocolType, attackType: attackType, domains: domains, interval: interval, queryCondition: queryCondition, area: area)
+        return try await self.client.execute(action: "DescribeWebManagedRulesTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

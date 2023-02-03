@@ -125,7 +125,8 @@ extension Live {
     /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
     @inlinable
     public func describeVisitTopSumInfoList(startTime: String, endTime: String, topIndex: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVisitTopSumInfoListResponse> {
-        self.describeVisitTopSumInfoList(DescribeVisitTopSumInfoListRequest(startTime: startTime, endTime: endTime, topIndex: topIndex, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVisitTopSumInfoListRequest(startTime: startTime, endTime: endTime, topIndex: topIndex, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam)
+        return self.client.execute(action: "DescribeVisitTopSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某时间段top n的域名或流id信息
@@ -133,6 +134,7 @@ extension Live {
     /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
     @inlinable
     public func describeVisitTopSumInfoList(startTime: String, endTime: String, topIndex: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, orderParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVisitTopSumInfoListResponse {
-        try await self.describeVisitTopSumInfoList(DescribeVisitTopSumInfoListRequest(startTime: startTime, endTime: endTime, topIndex: topIndex, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVisitTopSumInfoListRequest(startTime: startTime, endTime: endTime, topIndex: topIndex, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, orderParam: orderParam)
+        return try await self.client.execute(action: "DescribeVisitTopSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

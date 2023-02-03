@@ -83,7 +83,8 @@ extension Rum {
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
     public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo)
+        return self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取 RUM 应用列表
@@ -91,6 +92,7 @@ extension Rum {
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
     public func describeProjects(limit: UInt64, offset: UInt64, filters: [Filter]? = nil, isDemo: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.describeProjects(DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectsRequest(limit: limit, offset: offset, filters: filters, isDemo: isDemo)
+        return try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

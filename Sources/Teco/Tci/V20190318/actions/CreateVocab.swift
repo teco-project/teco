@@ -59,12 +59,14 @@ extension Tci {
     /// 创建词汇
     @inlinable @discardableResult
     public func createVocab(vocabLibName: String, vocabList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVocabResponse> {
-        self.createVocab(CreateVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), region: region, logger: logger, on: eventLoop)
+        let input = CreateVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList)
+        return self.client.execute(action: "CreateVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建词汇
     @inlinable @discardableResult
     public func createVocab(vocabLibName: String, vocabList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVocabResponse {
-        try await self.createVocab(CreateVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), region: region, logger: logger, on: eventLoop)
+        let input = CreateVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList)
+        return try await self.client.execute(action: "CreateVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

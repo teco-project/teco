@@ -114,12 +114,14 @@ extension Hasim {
     /// 创建自动化规则
     @inlinable @discardableResult
     public func createRule(name: String, type: Int64, isActive: Bool, notice: Int64, email: String? = nil, url: String? = nil, dataThreshold: Int64? = nil, district: Int64? = nil, distance: Int64? = nil, signalStrength: Int64? = nil, lostDay: Int64? = nil, tagIDs: [Int64]? = nil, salePlan: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.createRule(CreateRuleRequest(name: name, type: type, isActive: isActive, notice: notice, email: email, url: url, dataThreshold: dataThreshold, district: district, distance: distance, signalStrength: signalStrength, lostDay: lostDay, tagIDs: tagIDs, salePlan: salePlan), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(name: name, type: type, isActive: isActive, notice: notice, email: email, url: url, dataThreshold: dataThreshold, district: district, distance: distance, signalStrength: signalStrength, lostDay: lostDay, tagIDs: tagIDs, salePlan: salePlan)
+        return self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自动化规则
     @inlinable @discardableResult
     public func createRule(name: String, type: Int64, isActive: Bool, notice: Int64, email: String? = nil, url: String? = nil, dataThreshold: Int64? = nil, district: Int64? = nil, distance: Int64? = nil, signalStrength: Int64? = nil, lostDay: Int64? = nil, tagIDs: [Int64]? = nil, salePlan: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.createRule(CreateRuleRequest(name: name, type: type, isActive: isActive, notice: notice, email: email, url: url, dataThreshold: dataThreshold, district: district, distance: distance, signalStrength: signalStrength, lostDay: lostDay, tagIDs: tagIDs, salePlan: salePlan), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(name: name, type: type, isActive: isActive, notice: notice, email: email, url: url, dataThreshold: dataThreshold, district: district, distance: distance, signalStrength: signalStrength, lostDay: lostDay, tagIDs: tagIDs, salePlan: salePlan)
+        return try await self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

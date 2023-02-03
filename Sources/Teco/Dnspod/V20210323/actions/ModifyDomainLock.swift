@@ -68,12 +68,14 @@ extension Dnspod {
     /// 锁定域名
     @inlinable
     public func modifyDomainLock(domain: String, lockDays: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainLockResponse> {
-        self.modifyDomainLock(ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId)
+        return self.client.execute(action: "ModifyDomainLock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 锁定域名
     @inlinable
     public func modifyDomainLock(domain: String, lockDays: UInt64, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainLockResponse {
-        try await self.modifyDomainLock(ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainLockRequest(domain: domain, lockDays: lockDays, domainId: domainId)
+        return try await self.client.execute(action: "ModifyDomainLock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

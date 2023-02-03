@@ -94,7 +94,8 @@ extension Wedata {
     /// 创建hive表，返回表名称
     @inlinable
     public func createHiveTableByDDL(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, type: String, incharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHiveTableByDDLResponse> {
-        self.createHiveTableByDDL(CreateHiveTableByDDLRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, type: type, incharge: incharge), region: region, logger: logger, on: eventLoop)
+        let input = CreateHiveTableByDDLRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, type: type, incharge: incharge)
+        return self.client.execute(action: "CreateHiveTableByDDL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建hive表
@@ -102,6 +103,7 @@ extension Wedata {
     /// 创建hive表，返回表名称
     @inlinable
     public func createHiveTableByDDL(datasourceId: String, database: String, ddlSql: String, privilege: Int64, projectId: String, type: String, incharge: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHiveTableByDDLResponse {
-        try await self.createHiveTableByDDL(CreateHiveTableByDDLRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, type: type, incharge: incharge), region: region, logger: logger, on: eventLoop)
+        let input = CreateHiveTableByDDLRequest(datasourceId: datasourceId, database: database, ddlSql: ddlSql, privilege: privilege, projectId: projectId, type: type, incharge: incharge)
+        return try await self.client.execute(action: "CreateHiveTableByDDL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

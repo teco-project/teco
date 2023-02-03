@@ -98,7 +98,8 @@ extension Vpc {
     /// 本接口（DescribeSgSnapshotFileContent）用于查询安全组快照文件内容。
     @inlinable
     public func describeSgSnapshotFileContent(snapshotPolicyId: String, snapshotFileId: String, securityGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSgSnapshotFileContentResponse> {
-        self.describeSgSnapshotFileContent(DescribeSgSnapshotFileContentRequest(snapshotPolicyId: snapshotPolicyId, snapshotFileId: snapshotFileId, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSgSnapshotFileContentRequest(snapshotPolicyId: snapshotPolicyId, snapshotFileId: snapshotFileId, securityGroupId: securityGroupId)
+        return self.client.execute(action: "DescribeSgSnapshotFileContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组快照文件内容
@@ -106,6 +107,7 @@ extension Vpc {
     /// 本接口（DescribeSgSnapshotFileContent）用于查询安全组快照文件内容。
     @inlinable
     public func describeSgSnapshotFileContent(snapshotPolicyId: String, snapshotFileId: String, securityGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSgSnapshotFileContentResponse {
-        try await self.describeSgSnapshotFileContent(DescribeSgSnapshotFileContentRequest(snapshotPolicyId: snapshotPolicyId, snapshotFileId: snapshotFileId, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSgSnapshotFileContentRequest(snapshotPolicyId: snapshotPolicyId, snapshotFileId: snapshotFileId, securityGroupId: securityGroupId)
+        return try await self.client.execute(action: "DescribeSgSnapshotFileContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

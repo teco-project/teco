@@ -80,7 +80,8 @@ extension Cdn {
     /// UpdateImageConfig 用于更新控制台图片优化的相关配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable @discardableResult
     public func updateImageConfig(domain: String, webpAdapter: WebpAdapter? = nil, tpgAdapter: TpgAdapter? = nil, guetzliAdapter: GuetzliAdapter? = nil, avifAdapter: AvifAdapter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageConfigResponse> {
-        self.updateImageConfig(UpdateImageConfigRequest(domain: domain, webpAdapter: webpAdapter, tpgAdapter: tpgAdapter, guetzliAdapter: guetzliAdapter, avifAdapter: avifAdapter), region: region, logger: logger, on: eventLoop)
+        let input = UpdateImageConfigRequest(domain: domain, webpAdapter: webpAdapter, tpgAdapter: tpgAdapter, guetzliAdapter: guetzliAdapter, avifAdapter: avifAdapter)
+        return self.client.execute(action: "UpdateImageConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新图片优化配置
@@ -88,6 +89,7 @@ extension Cdn {
     /// UpdateImageConfig 用于更新控制台图片优化的相关配置，支持Webp、TPG、 Guetzli 和 Avif。
     @inlinable @discardableResult
     public func updateImageConfig(domain: String, webpAdapter: WebpAdapter? = nil, tpgAdapter: TpgAdapter? = nil, guetzliAdapter: GuetzliAdapter? = nil, avifAdapter: AvifAdapter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageConfigResponse {
-        try await self.updateImageConfig(UpdateImageConfigRequest(domain: domain, webpAdapter: webpAdapter, tpgAdapter: tpgAdapter, guetzliAdapter: guetzliAdapter, avifAdapter: avifAdapter), region: region, logger: logger, on: eventLoop)
+        let input = UpdateImageConfigRequest(domain: domain, webpAdapter: webpAdapter, tpgAdapter: tpgAdapter, guetzliAdapter: guetzliAdapter, avifAdapter: avifAdapter)
+        return try await self.client.execute(action: "UpdateImageConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

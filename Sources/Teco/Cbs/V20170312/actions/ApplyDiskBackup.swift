@@ -77,7 +77,8 @@ extension Cbs {
     /// * 如果是弹性云硬盘，则云硬盘必须处于未挂载状态，云硬盘挂载状态可以通过DescribeDisks接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云硬盘，则实例必须处于关机状态，实例状态可以通过DescribeInstancesStatus接口查询。
     @inlinable @discardableResult
     public func applyDiskBackup(diskBackupId: String, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyDiskBackupResponse> {
-        self.applyDiskBackup(ApplyDiskBackupRequest(diskBackupId: diskBackupId, diskId: diskId), region: region, logger: logger, on: eventLoop)
+        let input = ApplyDiskBackupRequest(diskBackupId: diskBackupId, diskId: diskId)
+        return self.client.execute(action: "ApplyDiskBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回滚备份点
@@ -89,6 +90,7 @@ extension Cbs {
     /// * 如果是弹性云硬盘，则云硬盘必须处于未挂载状态，云硬盘挂载状态可以通过DescribeDisks接口查询，见Attached字段解释；如果是随实例一起购买的非弹性云硬盘，则实例必须处于关机状态，实例状态可以通过DescribeInstancesStatus接口查询。
     @inlinable @discardableResult
     public func applyDiskBackup(diskBackupId: String, diskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyDiskBackupResponse {
-        try await self.applyDiskBackup(ApplyDiskBackupRequest(diskBackupId: diskBackupId, diskId: diskId), region: region, logger: logger, on: eventLoop)
+        let input = ApplyDiskBackupRequest(diskBackupId: diskBackupId, diskId: diskId)
+        return try await self.client.execute(action: "ApplyDiskBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

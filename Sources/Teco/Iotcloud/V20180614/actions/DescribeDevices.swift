@@ -93,7 +93,8 @@ extension Iotcloud {
     /// 本接口（DescribeDevices）用于查询物联网通信设备的设备列表。
     @inlinable
     public func describeDevices(productId: String, offset: UInt64, limit: UInt64, firmwareVersion: String? = nil, deviceName: String? = nil, enableState: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicesResponse> {
-        self.describeDevices(DescribeDevicesRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicesRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, enableState: enableState)
+        return self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备列表
@@ -101,6 +102,7 @@ extension Iotcloud {
     /// 本接口（DescribeDevices）用于查询物联网通信设备的设备列表。
     @inlinable
     public func describeDevices(productId: String, offset: UInt64, limit: UInt64, firmwareVersion: String? = nil, deviceName: String? = nil, enableState: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicesResponse {
-        try await self.describeDevices(DescribeDevicesRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, enableState: enableState), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicesRequest(productId: productId, offset: offset, limit: limit, firmwareVersion: firmwareVersion, deviceName: deviceName, enableState: enableState)
+        return try await self.client.execute(action: "DescribeDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Kms {
     /// 随机数生成接口。
     @inlinable
     public func generateRandom(numberOfBytes: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateRandomResponse> {
-        self.generateRandom(GenerateRandomRequest(numberOfBytes: numberOfBytes), region: region, logger: logger, on: eventLoop)
+        let input = GenerateRandomRequest(numberOfBytes: numberOfBytes)
+        return self.client.execute(action: "GenerateRandom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 随机数生成接口
@@ -72,6 +73,7 @@ extension Kms {
     /// 随机数生成接口。
     @inlinable
     public func generateRandom(numberOfBytes: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateRandomResponse {
-        try await self.generateRandom(GenerateRandomRequest(numberOfBytes: numberOfBytes), region: region, logger: logger, on: eventLoop)
+        let input = GenerateRandomRequest(numberOfBytes: numberOfBytes)
+        return try await self.client.execute(action: "GenerateRandom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

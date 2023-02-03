@@ -114,7 +114,8 @@ extension Cpdp {
     /// 云支付订单退款接口
     @inlinable
     public func refundTlinxOrder(openId: String, openKey: String, developerNo: String, refundOutNo: String, refundOrderName: String, refundAmount: String, shopPassword: String, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RefundTlinxOrderResponse> {
-        self.refundTlinxOrder(RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile)
+        return self.client.execute(action: "RefundTlinxOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-订单退款接口
@@ -122,6 +123,7 @@ extension Cpdp {
     /// 云支付订单退款接口
     @inlinable
     public func refundTlinxOrder(openId: String, openKey: String, developerNo: String, refundOutNo: String, refundOrderName: String, refundAmount: String, shopPassword: String, remark: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RefundTlinxOrderResponse {
-        try await self.refundTlinxOrder(RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = RefundTlinxOrderRequest(openId: openId, openKey: openKey, developerNo: developerNo, refundOutNo: refundOutNo, refundOrderName: refundOrderName, refundAmount: refundAmount, shopPassword: shopPassword, remark: remark, profile: profile)
+        return try await self.client.execute(action: "RefundTlinxOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

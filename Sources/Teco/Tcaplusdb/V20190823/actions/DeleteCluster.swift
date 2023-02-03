@@ -64,7 +64,8 @@ extension Tcaplusdb {
     /// 删除TcaplusDB集群，必须在集群所属所有资源（包括表格组，表）都已经释放的情况下才会成功。
     @inlinable
     public func deleteCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterResponse> {
-        self.deleteCluster(DeleteClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterRequest(clusterId: clusterId)
+        return self.client.execute(action: "DeleteCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集群
@@ -72,6 +73,7 @@ extension Tcaplusdb {
     /// 删除TcaplusDB集群，必须在集群所属所有资源（包括表格组，表）都已经释放的情况下才会成功。
     @inlinable
     public func deleteCluster(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterResponse {
-        try await self.deleteCluster(DeleteClusterRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DeleteCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

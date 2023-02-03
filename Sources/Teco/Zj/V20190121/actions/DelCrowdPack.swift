@@ -63,12 +63,14 @@ extension Zj {
     /// 删除人群包
     @inlinable
     public func delCrowdPack(license: String, id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelCrowdPackResponse> {
-        self.delCrowdPack(DelCrowdPackRequest(license: license, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DelCrowdPackRequest(license: license, id: id)
+        return self.client.execute(action: "DelCrowdPack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除人群包
     @inlinable
     public func delCrowdPack(license: String, id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelCrowdPackResponse {
-        try await self.delCrowdPack(DelCrowdPackRequest(license: license, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DelCrowdPackRequest(license: license, id: id)
+        return try await self.client.execute(action: "DelCrowdPack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

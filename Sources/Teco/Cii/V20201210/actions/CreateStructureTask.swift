@@ -102,7 +102,8 @@ extension Cii {
     /// 基于提供的客户及保单信息，启动结构化识别任务。
     @inlinable
     public func createStructureTask(policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStructureTaskResponse> {
-        self.createStructureTask(CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList), region: region, logger: logger, on: eventLoop)
+        let input = CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList)
+        return self.client.execute(action: "CreateStructureTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建结构化任务
@@ -110,6 +111,7 @@ extension Cii {
     /// 基于提供的客户及保单信息，启动结构化识别任务。
     @inlinable
     public func createStructureTask(policyId: String, customerId: String, customerName: String, taskType: String, year: String, fileList: [String], insuranceTypes: [String]? = nil, imageList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStructureTaskResponse {
-        try await self.createStructureTask(CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList), region: region, logger: logger, on: eventLoop)
+        let input = CreateStructureTaskRequest(policyId: policyId, customerId: customerId, customerName: customerName, taskType: taskType, year: year, fileList: fileList, insuranceTypes: insuranceTypes, imageList: imageList)
+        return try await self.client.execute(action: "CreateStructureTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

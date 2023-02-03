@@ -73,7 +73,8 @@ extension Iotcloud {
     /// 本接口（DescribeProducts）用于列出产品列表。
     @inlinable
     public func describeProducts(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
-        self.describeProducts(DescribeProductsRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductsRequest(offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品列表
@@ -81,6 +82,7 @@ extension Iotcloud {
     /// 本接口（DescribeProducts）用于列出产品列表。
     @inlinable
     public func describeProducts(offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        try await self.describeProducts(DescribeProductsRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductsRequest(offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

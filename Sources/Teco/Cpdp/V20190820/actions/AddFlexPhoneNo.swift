@@ -81,12 +81,14 @@ extension Cpdp {
     /// 灵云V2-补充手机号信息
     @inlinable
     public func addFlexPhoneNo(phoneNo: String, payeeId: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddFlexPhoneNoResponse> {
-        self.addFlexPhoneNo(AddFlexPhoneNoRequest(phoneNo: phoneNo, payeeId: payeeId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = AddFlexPhoneNoRequest(phoneNo: phoneNo, payeeId: payeeId, environment: environment)
+        return self.client.execute(action: "AddFlexPhoneNo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-补充手机号信息
     @inlinable
     public func addFlexPhoneNo(phoneNo: String, payeeId: String, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddFlexPhoneNoResponse {
-        try await self.addFlexPhoneNo(AddFlexPhoneNoRequest(phoneNo: phoneNo, payeeId: payeeId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = AddFlexPhoneNoRequest(phoneNo: phoneNo, payeeId: payeeId, environment: environment)
+        return try await self.client.execute(action: "AddFlexPhoneNo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Vm {
     /// 取消任务
     @inlinable @discardableResult
     public func cancelTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelTaskResponse> {
-        self.cancelTask(CancelTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = CancelTaskRequest(taskId: taskId)
+        return self.client.execute(action: "CancelTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消任务
     @inlinable @discardableResult
     public func cancelTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelTaskResponse {
-        try await self.cancelTask(CancelTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = CancelTaskRequest(taskId: taskId)
+        return try await self.client.execute(action: "CancelTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

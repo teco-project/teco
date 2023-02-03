@@ -115,7 +115,8 @@ extension Tke {
     /// 修改弹性集群名称等属性
     @inlinable @discardableResult
     public func updateEKSCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, subnetIds: [String]? = nil, publicLB: ClusterPublicLB? = nil, internalLB: ClusterInternalLB? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, clearDnsServer: String? = nil, needDeleteCbs: Bool? = nil, proxyLB: Bool? = nil, extraParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEKSClusterResponse> {
-        self.updateEKSCluster(UpdateEKSClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, subnetIds: subnetIds, publicLB: publicLB, internalLB: internalLB, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, clearDnsServer: clearDnsServer, needDeleteCbs: needDeleteCbs, proxyLB: proxyLB, extraParam: extraParam), region: region, logger: logger, on: eventLoop)
+        let input = UpdateEKSClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, subnetIds: subnetIds, publicLB: publicLB, internalLB: internalLB, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, clearDnsServer: clearDnsServer, needDeleteCbs: needDeleteCbs, proxyLB: proxyLB, extraParam: extraParam)
+        return self.client.execute(action: "UpdateEKSCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性集群EKS
@@ -123,6 +124,7 @@ extension Tke {
     /// 修改弹性集群名称等属性
     @inlinable @discardableResult
     public func updateEKSCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, subnetIds: [String]? = nil, publicLB: ClusterPublicLB? = nil, internalLB: ClusterInternalLB? = nil, serviceSubnetId: String? = nil, dnsServers: [DnsServerConf]? = nil, clearDnsServer: String? = nil, needDeleteCbs: Bool? = nil, proxyLB: Bool? = nil, extraParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEKSClusterResponse {
-        try await self.updateEKSCluster(UpdateEKSClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, subnetIds: subnetIds, publicLB: publicLB, internalLB: internalLB, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, clearDnsServer: clearDnsServer, needDeleteCbs: needDeleteCbs, proxyLB: proxyLB, extraParam: extraParam), region: region, logger: logger, on: eventLoop)
+        let input = UpdateEKSClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, subnetIds: subnetIds, publicLB: publicLB, internalLB: internalLB, serviceSubnetId: serviceSubnetId, dnsServers: dnsServers, clearDnsServer: clearDnsServer, needDeleteCbs: needDeleteCbs, proxyLB: proxyLB, extraParam: extraParam)
+        return try await self.client.execute(action: "UpdateEKSCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

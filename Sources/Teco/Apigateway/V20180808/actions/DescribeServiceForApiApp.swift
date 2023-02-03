@@ -172,7 +172,8 @@ extension Apigateway {
     /// 本接口（DescribeServiceForApiApp）用于应用使用者查询一个服务的详细信息、包括服务的描述、域名、协议等信息。
     @inlinable
     public func describeServiceForApiApp(serviceId: String, apiRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceForApiAppResponse> {
-        self.describeServiceForApiApp(DescribeServiceForApiAppRequest(serviceId: serviceId, apiRegion: apiRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceForApiAppRequest(serviceId: serviceId, apiRegion: apiRegion)
+        return self.client.execute(action: "DescribeServiceForApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 应用使用者查询服务详情
@@ -180,6 +181,7 @@ extension Apigateway {
     /// 本接口（DescribeServiceForApiApp）用于应用使用者查询一个服务的详细信息、包括服务的描述、域名、协议等信息。
     @inlinable
     public func describeServiceForApiApp(serviceId: String, apiRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceForApiAppResponse {
-        try await self.describeServiceForApiApp(DescribeServiceForApiAppRequest(serviceId: serviceId, apiRegion: apiRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceForApiAppRequest(serviceId: serviceId, apiRegion: apiRegion)
+        return try await self.client.execute(action: "DescribeServiceForApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

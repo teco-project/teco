@@ -68,12 +68,14 @@ extension Tem {
     /// 获取分批发布详情
     @inlinable
     public func describeDeployApplicationDetail(applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeployApplicationDetailResponse> {
-        self.describeDeployApplicationDetail(DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId)
+        return self.client.execute(action: "DescribeDeployApplicationDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取分批发布详情
     @inlinable
     public func describeDeployApplicationDetail(applicationId: String? = nil, environmentId: String? = nil, versionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeployApplicationDetailResponse {
-        try await self.describeDeployApplicationDetail(DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeployApplicationDetailRequest(applicationId: applicationId, environmentId: environmentId, versionId: versionId)
+        return try await self.client.execute(action: "DescribeDeployApplicationDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

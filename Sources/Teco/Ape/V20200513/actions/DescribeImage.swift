@@ -116,7 +116,8 @@ extension Ape {
     /// 根据ID查询一张图片的详细信息
     @inlinable
     public func describeImage(imageId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageResponse> {
-        self.describeImage(DescribeImageRequest(imageId: imageId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageRequest(imageId: imageId)
+        return self.client.execute(action: "DescribeImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询图片详情
@@ -124,6 +125,7 @@ extension Ape {
     /// 根据ID查询一张图片的详细信息
     @inlinable
     public func describeImage(imageId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageResponse {
-        try await self.describeImage(DescribeImageRequest(imageId: imageId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageRequest(imageId: imageId)
+        return try await self.client.execute(action: "DescribeImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

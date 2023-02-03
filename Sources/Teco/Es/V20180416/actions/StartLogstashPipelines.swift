@@ -65,7 +65,8 @@ extension Es {
     /// 用于启动Logstash管道
     @inlinable @discardableResult
     public func startLogstashPipelines(instanceId: String, pipelineIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartLogstashPipelinesResponse> {
-        self.startLogstashPipelines(StartLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
+        let input = StartLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds)
+        return self.client.execute(action: "StartLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动Logstash管道
@@ -73,6 +74,7 @@ extension Es {
     /// 用于启动Logstash管道
     @inlinable @discardableResult
     public func startLogstashPipelines(instanceId: String, pipelineIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartLogstashPipelinesResponse {
-        try await self.startLogstashPipelines(StartLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
+        let input = StartLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds)
+        return try await self.client.execute(action: "StartLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

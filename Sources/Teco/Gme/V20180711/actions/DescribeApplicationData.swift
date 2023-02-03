@@ -83,7 +83,8 @@ extension Gme {
     /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
     @inlinable
     public func describeApplicationData(bizId: UInt64, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationDataResponse> {
-        self.describeApplicationData(DescribeApplicationDataRequest(bizId: bizId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationDataRequest(bizId: bizId, startDate: startDate, endDate: endDate)
+        return self.client.execute(action: "DescribeApplicationData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据详情
@@ -91,6 +92,7 @@ extension Gme {
     /// 本接口(DescribeApplicationData)用于获取数据详情信息，最多可拉取最近90天的数据。
     @inlinable
     public func describeApplicationData(bizId: UInt64, startDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationDataResponse {
-        try await self.describeApplicationData(DescribeApplicationDataRequest(bizId: bizId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationDataRequest(bizId: bizId, startDate: startDate, endDate: endDate)
+        return try await self.client.execute(action: "DescribeApplicationData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Cwp {
     /// 漏洞数量等级分布统计
     @inlinable
     public func describeVulLevelCount(vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulLevelCountResponse> {
-        self.describeVulLevelCount(DescribeVulLevelCountRequest(vulCategory: vulCategory, isFollowVul: isFollowVul), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulLevelCountRequest(vulCategory: vulCategory, isFollowVul: isFollowVul)
+        return self.client.execute(action: "DescribeVulLevelCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询漏洞数量等级分布统计
@@ -78,6 +79,7 @@ extension Cwp {
     /// 漏洞数量等级分布统计
     @inlinable
     public func describeVulLevelCount(vulCategory: UInt64? = nil, isFollowVul: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulLevelCountResponse {
-        try await self.describeVulLevelCount(DescribeVulLevelCountRequest(vulCategory: vulCategory, isFollowVul: isFollowVul), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulLevelCountRequest(vulCategory: vulCategory, isFollowVul: isFollowVul)
+        return try await self.client.execute(action: "DescribeVulLevelCount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

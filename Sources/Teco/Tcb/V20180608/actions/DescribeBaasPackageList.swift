@@ -105,7 +105,8 @@ extension Tcb {
     /// 获取新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
     @inlinable
     public func describeBaasPackageList(packageName: String? = nil, envId: String? = nil, source: String? = nil, envChannel: String? = nil, targetAction: String? = nil, groupName: String? = nil, packageTypeList: [String]? = nil, paymentChannel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaasPackageListResponse> {
-        self.describeBaasPackageList(DescribeBaasPackageListRequest(packageName: packageName, envId: envId, source: source, envChannel: envChannel, targetAction: targetAction, groupName: groupName, packageTypeList: packageTypeList, paymentChannel: paymentChannel), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaasPackageListRequest(packageName: packageName, envId: envId, source: source, envChannel: envChannel, targetAction: targetAction, groupName: groupName, packageTypeList: packageTypeList, paymentChannel: paymentChannel)
+        return self.client.execute(action: "DescribeBaasPackageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取新套餐
@@ -113,6 +114,7 @@ extension Tcb {
     /// 获取新套餐列表，含详情，如果传了PackageId，则只获取指定套餐详情
     @inlinable
     public func describeBaasPackageList(packageName: String? = nil, envId: String? = nil, source: String? = nil, envChannel: String? = nil, targetAction: String? = nil, groupName: String? = nil, packageTypeList: [String]? = nil, paymentChannel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaasPackageListResponse {
-        try await self.describeBaasPackageList(DescribeBaasPackageListRequest(packageName: packageName, envId: envId, source: source, envChannel: envChannel, targetAction: targetAction, groupName: groupName, packageTypeList: packageTypeList, paymentChannel: paymentChannel), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaasPackageListRequest(packageName: packageName, envId: envId, source: source, envChannel: envChannel, targetAction: targetAction, groupName: groupName, packageTypeList: packageTypeList, paymentChannel: paymentChannel)
+        return try await self.client.execute(action: "DescribeBaasPackageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

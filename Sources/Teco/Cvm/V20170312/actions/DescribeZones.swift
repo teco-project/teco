@@ -60,7 +60,8 @@ extension Cvm {
     /// 本接口(DescribeZones)用于查询可用区信息。
     @inlinable
     public func describeZones(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZonesResponse> {
-        self.describeZones(DescribeZonesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeZonesRequest()
+        return self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可用区列表
@@ -68,6 +69,7 @@ extension Cvm {
     /// 本接口(DescribeZones)用于查询可用区信息。
     @inlinable
     public func describeZones(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZonesResponse {
-        try await self.describeZones(DescribeZonesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeZonesRequest()
+        return try await self.client.execute(action: "DescribeZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

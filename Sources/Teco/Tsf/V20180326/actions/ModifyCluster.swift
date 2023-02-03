@@ -75,12 +75,14 @@ extension Tsf {
     /// 修改集群信息
     @inlinable
     public func modifyCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, clusterRemarkName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterResponse> {
-        self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, clusterRemarkName: clusterRemarkName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, clusterRemarkName: clusterRemarkName)
+        return self.client.execute(action: "ModifyCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群信息
     @inlinable
     public func modifyCluster(clusterId: String, clusterName: String? = nil, clusterDesc: String? = nil, clusterRemarkName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
-        try await self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, clusterRemarkName: clusterRemarkName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, clusterDesc: clusterDesc, clusterRemarkName: clusterRemarkName)
+        return try await self.client.execute(action: "ModifyCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

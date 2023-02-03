@@ -69,7 +69,8 @@ extension Dbbrain {
     /// 终止中断会话任务。
     @inlinable
     public func cancelKillTask(instanceId: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKillTaskResponse> {
-        self.cancelKillTask(CancelKillTaskRequest(instanceId: instanceId, product: product), region: region, logger: logger, on: eventLoop)
+        let input = CancelKillTaskRequest(instanceId: instanceId, product: product)
+        return self.client.execute(action: "CancelKillTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止中断会话任务
@@ -77,6 +78,7 @@ extension Dbbrain {
     /// 终止中断会话任务。
     @inlinable
     public func cancelKillTask(instanceId: String, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKillTaskResponse {
-        try await self.cancelKillTask(CancelKillTaskRequest(instanceId: instanceId, product: product), region: region, logger: logger, on: eventLoop)
+        let input = CancelKillTaskRequest(instanceId: instanceId, product: product)
+        return try await self.client.execute(action: "CancelKillTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

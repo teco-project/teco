@@ -82,7 +82,8 @@ extension Ecdn {
     /// 由于产品服务节点常有更新，对于源站开白的使用场景，请定期调用接口获取最新节点信息，若新增服务节点发布7日后您尚未更新加白导致回源失败等问题，ECDN侧不对此承担责任。
     @inlinable
     public func describeIpStatus(domain: String, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIpStatusResponse> {
-        self.describeIpStatus(DescribeIpStatusRequest(domain: domain, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIpStatusRequest(domain: domain, area: area)
+        return self.client.execute(action: "DescribeIpStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询平台服务节点IP
@@ -92,6 +93,7 @@ extension Ecdn {
     /// 由于产品服务节点常有更新，对于源站开白的使用场景，请定期调用接口获取最新节点信息，若新增服务节点发布7日后您尚未更新加白导致回源失败等问题，ECDN侧不对此承担责任。
     @inlinable
     public func describeIpStatus(domain: String, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIpStatusResponse {
-        try await self.describeIpStatus(DescribeIpStatusRequest(domain: domain, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIpStatusRequest(domain: domain, area: area)
+        return try await self.client.execute(action: "DescribeIpStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

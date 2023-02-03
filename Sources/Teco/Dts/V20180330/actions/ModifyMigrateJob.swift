@@ -121,7 +121,8 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable @discardableResult
     public func modifyMigrateJob(jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMigrateJobResponse> {
-        self.modifyMigrateJob(ModifyMigrateJobRequest(jobId: jobId, jobName: jobName, migrateOption: migrateOption, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMigrateJobRequest(jobId: jobId, jobName: jobName, migrateOption: migrateOption, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti)
+        return self.client.execute(action: "ModifyMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据迁移任务
@@ -132,6 +133,7 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable @discardableResult
     public func modifyMigrateJob(jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobResponse {
-        try await self.modifyMigrateJob(ModifyMigrateJobRequest(jobId: jobId, jobName: jobName, migrateOption: migrateOption, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMigrateJobRequest(jobId: jobId, jobName: jobName, migrateOption: migrateOption, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti)
+        return try await self.client.execute(action: "ModifyMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

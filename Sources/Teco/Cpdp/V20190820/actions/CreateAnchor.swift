@@ -100,12 +100,14 @@ extension Cpdp {
     /// 直播平台-主播入驻
     @inlinable
     public func createAnchor(anchorUid: String, anchorName: String, anchorPhone: String, anchorEmail: String, anchorAddress: String, anchorIdNo: String, anchorType: String, anchorExtendInfo: [AnchorExtendInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAnchorResponse> {
-        self.createAnchor(CreateAnchorRequest(anchorUid: anchorUid, anchorName: anchorName, anchorPhone: anchorPhone, anchorEmail: anchorEmail, anchorAddress: anchorAddress, anchorIdNo: anchorIdNo, anchorType: anchorType, anchorExtendInfo: anchorExtendInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateAnchorRequest(anchorUid: anchorUid, anchorName: anchorName, anchorPhone: anchorPhone, anchorEmail: anchorEmail, anchorAddress: anchorAddress, anchorIdNo: anchorIdNo, anchorType: anchorType, anchorExtendInfo: anchorExtendInfo)
+        return self.client.execute(action: "CreateAnchor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-主播入驻
     @inlinable
     public func createAnchor(anchorUid: String, anchorName: String, anchorPhone: String, anchorEmail: String, anchorAddress: String, anchorIdNo: String, anchorType: String, anchorExtendInfo: [AnchorExtendInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAnchorResponse {
-        try await self.createAnchor(CreateAnchorRequest(anchorUid: anchorUid, anchorName: anchorName, anchorPhone: anchorPhone, anchorEmail: anchorEmail, anchorAddress: anchorAddress, anchorIdNo: anchorIdNo, anchorType: anchorType, anchorExtendInfo: anchorExtendInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateAnchorRequest(anchorUid: anchorUid, anchorName: anchorName, anchorPhone: anchorPhone, anchorEmail: anchorEmail, anchorAddress: anchorAddress, anchorIdNo: anchorIdNo, anchorType: anchorType, anchorExtendInfo: anchorExtendInfo)
+        return try await self.client.execute(action: "CreateAnchor", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

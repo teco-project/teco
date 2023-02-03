@@ -78,12 +78,14 @@ extension Ckafka {
     /// 根据位点查询消息列表
     @inlinable
     public func fetchMessageListByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64, singlePartitionRecordNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchMessageListByOffsetResponse> {
-        self.fetchMessageListByOffset(FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber), region: region, logger: logger, on: eventLoop)
+        let input = FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber)
+        return self.client.execute(action: "FetchMessageListByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据位点查询消息列表
     @inlinable
     public func fetchMessageListByOffset(instanceId: String, topic: String, partition: Int64, offset: Int64, singlePartitionRecordNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchMessageListByOffsetResponse {
-        try await self.fetchMessageListByOffset(FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber), region: region, logger: logger, on: eventLoop)
+        let input = FetchMessageListByOffsetRequest(instanceId: instanceId, topic: topic, partition: partition, offset: offset, singlePartitionRecordNumber: singlePartitionRecordNumber)
+        return try await self.client.execute(action: "FetchMessageListByOffset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

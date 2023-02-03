@@ -97,7 +97,8 @@ extension Essbasic {
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
     public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateReleaseFlowResponse> {
-        self.channelCreateReleaseFlow(ChannelCreateReleaseFlowRequest(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCreateReleaseFlowRequest(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`)
+        return self.client.execute(action: "ChannelCreateReleaseFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起解除协议
@@ -106,6 +107,7 @@ extension Essbasic {
     /// 合同发起人必须在电子签已经进行实名。
     @inlinable
     public func channelCreateReleaseFlow(agent: Agent, needRelievedFlowId: String, reliveInfo: RelieveInfo, releasedApprovers: [ReleasedApprover]? = nil, callbackUrl: String? = nil, organization: OrganizationInfo? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateReleaseFlowResponse {
-        try await self.channelCreateReleaseFlow(ChannelCreateReleaseFlowRequest(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCreateReleaseFlowRequest(agent: agent, needRelievedFlowId: needRelievedFlowId, reliveInfo: reliveInfo, releasedApprovers: releasedApprovers, callbackUrl: callbackUrl, organization: organization, operator: `operator`)
+        return try await self.client.execute(action: "ChannelCreateReleaseFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

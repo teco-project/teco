@@ -82,7 +82,8 @@ extension Gaap {
     /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
     @inlinable
     public func describeResourcesByTag(tagKey: String, tagValue: String, resourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByTagResponse> {
-        self.describeResourcesByTag(DescribeResourcesByTagRequest(tagKey: tagKey, tagValue: tagValue, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourcesByTagRequest(tagKey: tagKey, tagValue: tagValue, resourceType: resourceType)
+        return self.client.execute(action: "DescribeResourcesByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据标签拉取资源列表
@@ -90,6 +91,7 @@ extension Gaap {
     /// 本接口（DescribeResourcesByTag）用于根据标签来查询对应的资源信息，包括通道，通道组和源站。
     @inlinable
     public func describeResourcesByTag(tagKey: String, tagValue: String, resourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByTagResponse {
-        try await self.describeResourcesByTag(DescribeResourcesByTagRequest(tagKey: tagKey, tagValue: tagValue, resourceType: resourceType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourcesByTagRequest(tagKey: tagKey, tagValue: tagValue, resourceType: resourceType)
+        return try await self.client.execute(action: "DescribeResourcesByTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

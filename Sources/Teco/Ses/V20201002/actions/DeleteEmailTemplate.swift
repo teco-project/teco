@@ -54,12 +54,14 @@ extension Ses {
     /// 删除发信模板
     @inlinable @discardableResult
     public func deleteEmailTemplate(templateID: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEmailTemplateResponse> {
-        self.deleteEmailTemplate(DeleteEmailTemplateRequest(templateID: templateID), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEmailTemplateRequest(templateID: templateID)
+        return self.client.execute(action: "DeleteEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除发信模板
     @inlinable @discardableResult
     public func deleteEmailTemplate(templateID: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailTemplateResponse {
-        try await self.deleteEmailTemplate(DeleteEmailTemplateRequest(templateID: templateID), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEmailTemplateRequest(templateID: templateID)
+        return try await self.client.execute(action: "DeleteEmailTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

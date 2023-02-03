@@ -93,7 +93,8 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func sendStatusStatistics(startDateTime: UInt64, endDataTime: UInt64, smsSdkAppid: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendStatusStatisticsResponse> {
-        self.sendStatusStatistics(SendStatusStatisticsRequest(startDateTime: startDateTime, endDataTime: endDataTime, smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = SendStatusStatisticsRequest(startDateTime: startDateTime, endDataTime: endDataTime, smsSdkAppid: smsSdkAppid, limit: limit, offset: offset)
+        return self.client.execute(action: "SendStatusStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送短信数据统计
@@ -103,6 +104,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func sendStatusStatistics(startDateTime: UInt64, endDataTime: UInt64, smsSdkAppid: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendStatusStatisticsResponse {
-        try await self.sendStatusStatistics(SendStatusStatisticsRequest(startDateTime: startDateTime, endDataTime: endDataTime, smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = SendStatusStatisticsRequest(startDateTime: startDateTime, endDataTime: endDataTime, smsSdkAppid: smsSdkAppid, limit: limit, offset: offset)
+        return try await self.client.execute(action: "SendStatusStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

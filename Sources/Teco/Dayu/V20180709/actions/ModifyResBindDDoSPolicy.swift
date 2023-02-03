@@ -79,7 +79,8 @@ extension Dayu {
     /// 资源实例绑定DDoS高级策略
     @inlinable
     public func modifyResBindDDoSPolicy(business: String, id: String, policyId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResBindDDoSPolicyResponse> {
-        self.modifyResBindDDoSPolicy(ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method), region: region, logger: logger, on: eventLoop)
+        let input = ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method)
+        return self.client.execute(action: "ModifyResBindDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资源绑定DDoS高级策略
@@ -87,6 +88,7 @@ extension Dayu {
     /// 资源实例绑定DDoS高级策略
     @inlinable
     public func modifyResBindDDoSPolicy(business: String, id: String, policyId: String, method: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResBindDDoSPolicyResponse {
-        try await self.modifyResBindDDoSPolicy(ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method), region: region, logger: logger, on: eventLoop)
+        let input = ModifyResBindDDoSPolicyRequest(business: business, id: id, policyId: policyId, method: method)
+        return try await self.client.execute(action: "ModifyResBindDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

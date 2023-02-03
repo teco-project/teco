@@ -80,12 +80,14 @@ extension Tke {
     /// 拉取Prometheus配置
     @inlinable
     public func describePrometheusConfig(instanceId: String, clusterId: String, clusterType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusConfigResponse> {
-        self.describePrometheusConfig(DescribePrometheusConfigRequest(instanceId: instanceId, clusterId: clusterId, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusConfigRequest(instanceId: instanceId, clusterId: clusterId, clusterType: clusterType)
+        return self.client.execute(action: "DescribePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取Prometheus配置
     @inlinable
     public func describePrometheusConfig(instanceId: String, clusterId: String, clusterType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusConfigResponse {
-        try await self.describePrometheusConfig(DescribePrometheusConfigRequest(instanceId: instanceId, clusterId: clusterId, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusConfigRequest(instanceId: instanceId, clusterId: clusterId, clusterType: clusterType)
+        return try await self.client.execute(action: "DescribePrometheusConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

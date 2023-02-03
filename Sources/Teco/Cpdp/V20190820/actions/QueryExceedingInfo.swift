@@ -77,12 +77,14 @@ extension Cpdp {
     /// 灵云-查询超额信息
     @inlinable
     public func queryExceedingInfo(timeStr: String, dimension: String? = nil, pageNumber: Paging? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryExceedingInfoResponse> {
-        self.queryExceedingInfo(QueryExceedingInfoRequest(timeStr: timeStr, dimension: dimension, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+        let input = QueryExceedingInfoRequest(timeStr: timeStr, dimension: dimension, pageNumber: pageNumber)
+        return self.client.execute(action: "QueryExceedingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-查询超额信息
     @inlinable
     public func queryExceedingInfo(timeStr: String, dimension: String? = nil, pageNumber: Paging? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryExceedingInfoResponse {
-        try await self.queryExceedingInfo(QueryExceedingInfoRequest(timeStr: timeStr, dimension: dimension, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+        let input = QueryExceedingInfoRequest(timeStr: timeStr, dimension: dimension, pageNumber: pageNumber)
+        return try await self.client.execute(action: "QueryExceedingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

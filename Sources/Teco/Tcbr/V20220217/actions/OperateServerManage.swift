@@ -74,12 +74,14 @@ extension Tcbr {
     /// 操作发布单
     @inlinable @discardableResult
     public func operateServerManage(envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OperateServerManageResponse> {
-        self.operateServerManage(OperateServerManageRequest(envId: envId, serverName: serverName, taskId: taskId, operateType: operateType, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
+        let input = OperateServerManageRequest(envId: envId, serverName: serverName, taskId: taskId, operateType: operateType, operatorRemark: operatorRemark)
+        return self.client.execute(action: "OperateServerManage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 操作发布单
     @inlinable @discardableResult
     public func operateServerManage(envId: String, serverName: String, taskId: Int64, operateType: String, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OperateServerManageResponse {
-        try await self.operateServerManage(OperateServerManageRequest(envId: envId, serverName: serverName, taskId: taskId, operateType: operateType, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
+        let input = OperateServerManageRequest(envId: envId, serverName: serverName, taskId: taskId, operateType: operateType, operatorRemark: operatorRemark)
+        return try await self.client.execute(action: "OperateServerManage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

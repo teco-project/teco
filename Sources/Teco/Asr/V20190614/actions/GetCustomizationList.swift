@@ -74,12 +74,14 @@ extension Asr {
     /// 查询自学习模型列表
     @inlinable
     public func getCustomizationList(tagInfos: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomizationListResponse> {
-        self.getCustomizationList(GetCustomizationListRequest(tagInfos: tagInfos, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = GetCustomizationListRequest(tagInfos: tagInfos, limit: limit, offset: offset)
+        return self.client.execute(action: "GetCustomizationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询自学习模型列表
     @inlinable
     public func getCustomizationList(tagInfos: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
-        try await self.getCustomizationList(GetCustomizationListRequest(tagInfos: tagInfos, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = GetCustomizationListRequest(tagInfos: tagInfos, limit: limit, offset: offset)
+        return try await self.client.execute(action: "GetCustomizationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

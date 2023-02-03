@@ -64,12 +64,14 @@ extension Cam {
     /// 设置角色权限边界
     @inlinable @discardableResult
     public func putRolePermissionsBoundary(policyId: Int64, roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutRolePermissionsBoundaryResponse> {
-        self.putRolePermissionsBoundary(PutRolePermissionsBoundaryRequest(policyId: policyId, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
+        let input = PutRolePermissionsBoundaryRequest(policyId: policyId, roleId: roleId, roleName: roleName)
+        return self.client.execute(action: "PutRolePermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置角色权限边界
     @inlinable @discardableResult
     public func putRolePermissionsBoundary(policyId: Int64, roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutRolePermissionsBoundaryResponse {
-        try await self.putRolePermissionsBoundary(PutRolePermissionsBoundaryRequest(policyId: policyId, roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
+        let input = PutRolePermissionsBoundaryRequest(policyId: policyId, roleId: roleId, roleName: roleName)
+        return try await self.client.execute(action: "PutRolePermissionsBoundary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

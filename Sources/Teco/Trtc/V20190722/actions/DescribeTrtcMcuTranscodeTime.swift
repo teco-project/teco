@@ -96,7 +96,8 @@ extension Trtc {
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
     public func describeTrtcMcuTranscodeTime(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrtcMcuTranscodeTimeResponse> {
-        self.describeTrtcMcuTranscodeTime(DescribeTrtcMcuTranscodeTimeRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTrtcMcuTranscodeTimeRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId)
+        return self.client.execute(action: "DescribeTrtcMcuTranscodeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询旁路转码计费时长(旧)
@@ -108,6 +109,7 @@ extension Trtc {
     /// - 日结后付费将于次日上午推送账单，建议次日上午9点以后再来查询前一天的用量。
     @inlinable
     public func describeTrtcMcuTranscodeTime(startTime: Date, endTime: Date, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrtcMcuTranscodeTimeResponse {
-        try await self.describeTrtcMcuTranscodeTime(DescribeTrtcMcuTranscodeTimeRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTrtcMcuTranscodeTimeRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId)
+        return try await self.client.execute(action: "DescribeTrtcMcuTranscodeTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

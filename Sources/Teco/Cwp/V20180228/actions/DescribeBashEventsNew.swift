@@ -92,12 +92,14 @@ extension Cwp {
     /// 获取高危命令列表(新)
     @inlinable
     public func describeBashEventsNew(limit: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashEventsNewResponse> {
-        self.describeBashEventsNew(DescribeBashEventsNewRequest(limit: limit, filters: filters, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBashEventsNewRequest(limit: limit, filters: filters, offset: offset, order: order, by: by)
+        return self.client.execute(action: "DescribeBashEventsNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高危命令列表(新)
     @inlinable
     public func describeBashEventsNew(limit: UInt64? = nil, filters: [Filter]? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashEventsNewResponse {
-        try await self.describeBashEventsNew(DescribeBashEventsNewRequest(limit: limit, filters: filters, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBashEventsNewRequest(limit: limit, filters: filters, offset: offset, order: order, by: by)
+        return try await self.client.execute(action: "DescribeBashEventsNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

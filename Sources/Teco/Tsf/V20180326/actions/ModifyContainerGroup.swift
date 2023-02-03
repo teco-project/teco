@@ -91,12 +91,14 @@ extension Tsf {
     /// 修改容器部署组
     @inlinable
     public func modifyContainerGroup(groupId: String? = nil, accessType: Int64? = nil, protocolPorts: [ProtocolPort]? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, subnetId: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContainerGroupResponse> {
-        self.modifyContainerGroup(ModifyContainerGroupRequest(groupId: groupId, accessType: accessType, protocolPorts: protocolPorts, updateType: updateType, updateIvl: updateIvl, subnetId: subnetId, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = ModifyContainerGroupRequest(groupId: groupId, accessType: accessType, protocolPorts: protocolPorts, updateType: updateType, updateIvl: updateIvl, subnetId: subnetId, alias: alias)
+        return self.client.execute(action: "ModifyContainerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改容器部署组
     @inlinable
     public func modifyContainerGroup(groupId: String? = nil, accessType: Int64? = nil, protocolPorts: [ProtocolPort]? = nil, updateType: Int64? = nil, updateIvl: Int64? = nil, subnetId: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContainerGroupResponse {
-        try await self.modifyContainerGroup(ModifyContainerGroupRequest(groupId: groupId, accessType: accessType, protocolPorts: protocolPorts, updateType: updateType, updateIvl: updateIvl, subnetId: subnetId, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = ModifyContainerGroupRequest(groupId: groupId, accessType: accessType, protocolPorts: protocolPorts, updateType: updateType, updateIvl: updateIvl, subnetId: subnetId, alias: alias)
+        return try await self.client.execute(action: "ModifyContainerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

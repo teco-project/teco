@@ -54,12 +54,14 @@ extension Ecm {
     /// 删除路由表
     @inlinable @discardableResult
     public func deleteRouteTable(routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRouteTableResponse> {
-        self.deleteRouteTable(DeleteRouteTableRequest(routeTableId: routeTableId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRouteTableRequest(routeTableId: routeTableId)
+        return self.client.execute(action: "DeleteRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除路由表
     @inlinable @discardableResult
     public func deleteRouteTable(routeTableId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRouteTableResponse {
-        try await self.deleteRouteTable(DeleteRouteTableRequest(routeTableId: routeTableId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRouteTableRequest(routeTableId: routeTableId)
+        return try await self.client.execute(action: "DeleteRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

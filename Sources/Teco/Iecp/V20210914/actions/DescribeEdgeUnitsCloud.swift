@@ -79,12 +79,14 @@ extension Iecp {
     /// 查询边缘单元列表
     @inlinable
     public func describeEdgeUnitsCloud(offset: UInt64, limit: UInt64, namePattern: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitsCloudResponse> {
-        self.describeEdgeUnitsCloud(DescribeEdgeUnitsCloudRequest(offset: offset, limit: limit, namePattern: namePattern, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitsCloudRequest(offset: offset, limit: limit, namePattern: namePattern, order: order)
+        return self.client.execute(action: "DescribeEdgeUnitsCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元列表
     @inlinable
     public func describeEdgeUnitsCloud(offset: UInt64, limit: UInt64, namePattern: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitsCloudResponse {
-        try await self.describeEdgeUnitsCloud(DescribeEdgeUnitsCloudRequest(offset: offset, limit: limit, namePattern: namePattern, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitsCloudRequest(offset: offset, limit: limit, namePattern: namePattern, order: order)
+        return try await self.client.execute(action: "DescribeEdgeUnitsCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

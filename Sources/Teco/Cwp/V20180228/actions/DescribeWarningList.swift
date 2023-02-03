@@ -50,12 +50,14 @@ extension Cwp {
     /// 获取当前用户告警列表
     @inlinable
     public func describeWarningList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningListResponse> {
-        self.describeWarningList(DescribeWarningListRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWarningListRequest()
+        return self.client.execute(action: "DescribeWarningList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取当前用户告警列表
     @inlinable
     public func describeWarningList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningListResponse {
-        try await self.describeWarningList(DescribeWarningListRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWarningListRequest()
+        return try await self.client.execute(action: "DescribeWarningList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,12 +64,14 @@ extension Tcss {
     /// 编辑漏洞防御设置
     @inlinable @discardableResult
     public func modifyVulDefenceSetting(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVulDefenceSettingResponse> {
-        self.modifyVulDefenceSetting(ModifyVulDefenceSettingRequest(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVulDefenceSettingRequest(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs)
+        return self.client.execute(action: "ModifyVulDefenceSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑漏洞防御设置
     @inlinable @discardableResult
     public func modifyVulDefenceSetting(isEnabled: Int64, scope: Int64? = nil, hostIDs: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVulDefenceSettingResponse {
-        try await self.modifyVulDefenceSetting(ModifyVulDefenceSettingRequest(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVulDefenceSettingRequest(isEnabled: isEnabled, scope: scope, hostIDs: hostIDs)
+        return try await self.client.execute(action: "ModifyVulDefenceSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

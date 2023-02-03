@@ -88,7 +88,8 @@ extension Tdmq {
     /// 修改主题备注和分区数
     @inlinable
     public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTopicResponse> {
-        self.modifyTopic(ModifyTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId)
+        return self.client.execute(action: "ModifyTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改主题
@@ -96,6 +97,7 @@ extension Tdmq {
     /// 修改主题备注和分区数
     @inlinable
     public func modifyTopic(environmentId: String, topicName: String, partitions: UInt64, remark: String? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTopicResponse {
-        try await self.modifyTopic(ModifyTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTopicRequest(environmentId: environmentId, topicName: topicName, partitions: partitions, remark: remark, clusterId: clusterId)
+        return try await self.client.execute(action: "ModifyTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

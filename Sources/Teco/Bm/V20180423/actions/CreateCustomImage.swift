@@ -81,7 +81,8 @@ extension Bm {
     /// 每个AppId在每个可用区最多保留20个自定义镜像
     @inlinable
     public func createCustomImage(instanceId: String, imageName: String, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomImageResponse> {
-        self.createCustomImage(CreateCustomImageRequest(instanceId: instanceId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomImageRequest(instanceId: instanceId, imageName: imageName, imageDescription: imageDescription)
+        return self.client.execute(action: "CreateCustomImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义镜像
@@ -90,6 +91,7 @@ extension Bm {
     /// 每个AppId在每个可用区最多保留20个自定义镜像
     @inlinable
     public func createCustomImage(instanceId: String, imageName: String, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomImageResponse {
-        try await self.createCustomImage(CreateCustomImageRequest(instanceId: instanceId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomImageRequest(instanceId: instanceId, imageName: imageName, imageDescription: imageDescription)
+        return try await self.client.execute(action: "CreateCustomImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

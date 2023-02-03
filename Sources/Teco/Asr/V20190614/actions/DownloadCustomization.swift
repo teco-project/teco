@@ -64,7 +64,8 @@ extension Asr {
     /// 用户通过该接口可以下载自学习模型的语料
     @inlinable
     public func downloadCustomization(modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadCustomizationResponse> {
-        self.downloadCustomization(DownloadCustomizationRequest(modelId: modelId), region: region, logger: logger, on: eventLoop)
+        let input = DownloadCustomizationRequest(modelId: modelId)
+        return self.client.execute(action: "DownloadCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载自学习模型语料
@@ -72,6 +73,7 @@ extension Asr {
     /// 用户通过该接口可以下载自学习模型的语料
     @inlinable
     public func downloadCustomization(modelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadCustomizationResponse {
-        try await self.downloadCustomization(DownloadCustomizationRequest(modelId: modelId), region: region, logger: logger, on: eventLoop)
+        let input = DownloadCustomizationRequest(modelId: modelId)
+        return try await self.client.execute(action: "DownloadCustomization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

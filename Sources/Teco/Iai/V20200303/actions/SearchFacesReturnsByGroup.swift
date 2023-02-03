@@ -179,7 +179,8 @@ extension Iai {
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
     public func searchFacesReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchFacesReturnsByGroupResponse> {
-        self.searchFacesReturnsByGroup(SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
+        let input = SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection)
+        return self.client.execute(action: "SearchFacesReturnsByGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸搜索分库返回
@@ -201,6 +202,7 @@ extension Iai {
     /// - 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
     @inlinable
     public func searchFacesReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesReturnsByGroupResponse {
-        try await self.searchFacesReturnsByGroup(SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
+        let input = SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection)
+        return try await self.client.execute(action: "SearchFacesReturnsByGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -76,12 +76,14 @@ extension Live {
     /// 直播上行路数查询
     @inlinable
     public func describeUploadStreamNums(startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUploadStreamNumsResponse> {
-        self.describeUploadStreamNums(DescribeUploadStreamNumsRequest(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUploadStreamNumsRequest(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity)
+        return self.client.execute(action: "DescribeUploadStreamNums", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播上行路数查询
     @inlinable
     public func describeUploadStreamNums(startTime: String, endTime: String, domains: [String]? = nil, granularity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUploadStreamNumsResponse {
-        try await self.describeUploadStreamNums(DescribeUploadStreamNumsRequest(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUploadStreamNumsRequest(startTime: startTime, endTime: endTime, domains: domains, granularity: granularity)
+        return try await self.client.execute(action: "DescribeUploadStreamNums", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

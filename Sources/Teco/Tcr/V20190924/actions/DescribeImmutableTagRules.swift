@@ -68,12 +68,14 @@ extension Tcr {
     /// 列出镜像不可变规则
     @inlinable
     public func describeImmutableTagRules(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImmutableTagRulesResponse> {
-        self.describeImmutableTagRules(DescribeImmutableTagRulesRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImmutableTagRulesRequest(registryId: registryId)
+        return self.client.execute(action: "DescribeImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出镜像不可变规则
     @inlinable
     public func describeImmutableTagRules(registryId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImmutableTagRulesResponse {
-        try await self.describeImmutableTagRules(DescribeImmutableTagRulesRequest(registryId: registryId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImmutableTagRulesRequest(registryId: registryId)
+        return try await self.client.execute(action: "DescribeImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

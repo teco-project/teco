@@ -79,7 +79,8 @@ extension Iotexplorer {
     /// 列出量产数据列表信息。
     @inlinable
     public func getBatchProductionsList(projectId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBatchProductionsListResponse> {
-        self.getBatchProductionsList(GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit)
+        return self.client.execute(action: "GetBatchProductionsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出量产数据列表
@@ -87,6 +88,7 @@ extension Iotexplorer {
     /// 列出量产数据列表信息。
     @inlinable
     public func getBatchProductionsList(projectId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBatchProductionsListResponse {
-        try await self.getBatchProductionsList(GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetBatchProductionsListRequest(projectId: projectId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "GetBatchProductionsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

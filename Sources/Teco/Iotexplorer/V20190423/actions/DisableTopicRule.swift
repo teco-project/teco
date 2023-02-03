@@ -54,12 +54,14 @@ extension Iotexplorer {
     /// 禁用规则
     @inlinable @discardableResult
     public func disableTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableTopicRuleResponse> {
-        self.disableTopicRule(DisableTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
+        let input = DisableTopicRuleRequest(ruleName: ruleName)
+        return self.client.execute(action: "DisableTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用规则
     @inlinable @discardableResult
     public func disableTopicRule(ruleName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableTopicRuleResponse {
-        try await self.disableTopicRule(DisableTopicRuleRequest(ruleName: ruleName), region: region, logger: logger, on: eventLoop)
+        let input = DisableTopicRuleRequest(ruleName: ruleName)
+        return try await self.client.execute(action: "DisableTopicRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

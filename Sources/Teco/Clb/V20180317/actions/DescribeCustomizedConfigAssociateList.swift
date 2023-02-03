@@ -83,7 +83,8 @@ extension Clb {
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
     public func describeCustomizedConfigAssociateList(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomizedConfigAssociateListResponse> {
-        self.describeCustomizedConfigAssociateList(DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain)
+        return self.client.execute(action: "DescribeCustomizedConfigAssociateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取配置绑定的server或location。
@@ -91,6 +92,7 @@ extension Clb {
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
     public func describeCustomizedConfigAssociateList(uconfigId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomizedConfigAssociateListResponse {
-        try await self.describeCustomizedConfigAssociateList(DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomizedConfigAssociateListRequest(uconfigId: uconfigId, offset: offset, limit: limit, domain: domain)
+        return try await self.client.execute(action: "DescribeCustomizedConfigAssociateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

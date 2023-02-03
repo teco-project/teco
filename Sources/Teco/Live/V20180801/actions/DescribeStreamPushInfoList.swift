@@ -84,7 +84,8 @@ extension Live {
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
     public func describeStreamPushInfoList(streamName: String, startTime: String, endTime: String, pushDomain: String? = nil, appName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPushInfoListResponse> {
-        self.describeStreamPushInfoList(DescribeStreamPushInfoListRequest(streamName: streamName, startTime: startTime, endTime: endTime, pushDomain: pushDomain, appName: appName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamPushInfoListRequest(streamName: streamName, startTime: startTime, endTime: endTime, pushDomain: pushDomain, appName: appName)
+        return self.client.execute(action: "DescribeStreamPushInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询某条流上行推流质量数据
@@ -92,6 +93,7 @@ extension Live {
     /// 查询流id的上行推流质量数据，包括音视频的帧率，码率，流逝时间，编码格式等。
     @inlinable
     public func describeStreamPushInfoList(streamName: String, startTime: String, endTime: String, pushDomain: String? = nil, appName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPushInfoListResponse {
-        try await self.describeStreamPushInfoList(DescribeStreamPushInfoListRequest(streamName: streamName, startTime: startTime, endTime: endTime, pushDomain: pushDomain, appName: appName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamPushInfoListRequest(streamName: streamName, startTime: startTime, endTime: endTime, pushDomain: pushDomain, appName: appName)
+        return try await self.client.execute(action: "DescribeStreamPushInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

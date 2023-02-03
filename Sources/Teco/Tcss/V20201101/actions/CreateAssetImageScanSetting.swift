@@ -89,12 +89,14 @@ extension Tcss {
     /// 添加容器安全镜像扫描设置
     @inlinable @discardableResult
     public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageScanSettingResponse> {
-        self.createAssetImageScanSetting(CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images), region: region, logger: logger, on: eventLoop)
+        let input = CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images)
+        return self.client.execute(action: "CreateAssetImageScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加容器安全镜像扫描设置
     @inlinable @discardableResult
     public func createAssetImageScanSetting(enable: Bool, scanTime: String, scanPeriod: UInt64, scanVirus: Bool, scanRisk: Bool, scanVul: Bool, all: Bool, images: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageScanSettingResponse {
-        try await self.createAssetImageScanSetting(CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images), region: region, logger: logger, on: eventLoop)
+        let input = CreateAssetImageScanSettingRequest(enable: enable, scanTime: scanTime, scanPeriod: scanPeriod, scanVirus: scanVirus, scanRisk: scanRisk, scanVul: scanVul, all: all, images: images)
+        return try await self.client.execute(action: "CreateAssetImageScanSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

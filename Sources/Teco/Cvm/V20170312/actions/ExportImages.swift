@@ -98,7 +98,8 @@ extension Cvm {
     /// 提供导出自定义镜像到指定COS存储桶的能力
     @inlinable
     public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportImagesResponse> {
-        self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), region: region, logger: logger, on: eventLoop)
+        let input = ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName)
+        return self.client.execute(action: "ExportImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出自定义镜像
@@ -106,6 +107,7 @@ extension Cvm {
     /// 提供导出自定义镜像到指定COS存储桶的能力
     @inlinable
     public func exportImages(bucketName: String, imageIds: [String]? = nil, exportFormat: String? = nil, fileNamePrefixList: [String]? = nil, onlyExportRootDisk: Bool? = nil, dryRun: Bool? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportImagesResponse {
-        try await self.exportImages(ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName), region: region, logger: logger, on: eventLoop)
+        let input = ExportImagesRequest(bucketName: bucketName, imageIds: imageIds, exportFormat: exportFormat, fileNamePrefixList: fileNamePrefixList, onlyExportRootDisk: onlyExportRootDisk, dryRun: dryRun, roleName: roleName)
+        return try await self.client.execute(action: "ExportImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

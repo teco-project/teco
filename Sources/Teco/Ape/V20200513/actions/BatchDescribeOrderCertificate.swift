@@ -58,12 +58,14 @@ extension Ape {
     /// 批量获取授权书下载地址
     @inlinable
     public func batchDescribeOrderCertificate(orderIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchDescribeOrderCertificateResponse> {
-        self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), region: region, logger: logger, on: eventLoop)
+        let input = BatchDescribeOrderCertificateRequest(orderIds: orderIds)
+        return self.client.execute(action: "BatchDescribeOrderCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量获取授权书下载地址
     @inlinable
     public func batchDescribeOrderCertificate(orderIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchDescribeOrderCertificateResponse {
-        try await self.batchDescribeOrderCertificate(BatchDescribeOrderCertificateRequest(orderIds: orderIds), region: region, logger: logger, on: eventLoop)
+        let input = BatchDescribeOrderCertificateRequest(orderIds: orderIds)
+        return try await self.client.execute(action: "BatchDescribeOrderCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

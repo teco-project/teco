@@ -98,7 +98,8 @@ extension Market {
     /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
     @inlinable
     public func flowProductRemind(providerUin: String, signId: String, resourceId: String, totalFlow: String, leftFlow: String, flowUnit: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlowProductRemindResponse> {
-        self.flowProductRemind(FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit), region: region, logger: logger, on: eventLoop)
+        let input = FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit)
+        return self.client.execute(action: "FlowProductRemind", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 计量商品用量提醒
@@ -106,6 +107,7 @@ extension Market {
     /// 计量商品用量提醒，用于服务商调用云服务，云服务向客户发送提醒信息
     @inlinable
     public func flowProductRemind(providerUin: String, signId: String, resourceId: String, totalFlow: String, leftFlow: String, flowUnit: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlowProductRemindResponse {
-        try await self.flowProductRemind(FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit), region: region, logger: logger, on: eventLoop)
+        let input = FlowProductRemindRequest(providerUin: providerUin, signId: signId, resourceId: resourceId, totalFlow: totalFlow, leftFlow: leftFlow, flowUnit: flowUnit)
+        return try await self.client.execute(action: "FlowProductRemind", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

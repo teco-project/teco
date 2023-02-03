@@ -85,12 +85,14 @@ extension Tcss {
     /// 查询集群列表
     @inlinable
     public func describeAssetClusterList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetClusterListResponse> {
-        self.describeAssetClusterList(DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return self.client.execute(action: "DescribeAssetClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群列表
     @inlinable
     public func describeAssetClusterList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetClusterListResponse {
-        try await self.describeAssetClusterList(DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetClusterListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return try await self.client.execute(action: "DescribeAssetClusterList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

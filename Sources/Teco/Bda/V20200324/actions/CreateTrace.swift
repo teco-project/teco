@@ -105,7 +105,8 @@ extension Bda {
     /// - 构成人体动作轨迹单张图片大小限制为2M，分辨率限制为1920*1080。
     @inlinable
     public func createTrace(personId: String, trace: Trace, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceResponse> {
-        self.createTrace(CreateTraceRequest(personId: personId, trace: trace), region: region, logger: logger, on: eventLoop)
+        let input = CreateTraceRequest(personId: personId, trace: trace)
+        return self.client.execute(action: "CreateTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增加人员动作轨迹
@@ -120,6 +121,7 @@ extension Bda {
     /// - 构成人体动作轨迹单张图片大小限制为2M，分辨率限制为1920*1080。
     @inlinable
     public func createTrace(personId: String, trace: Trace, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceResponse {
-        try await self.createTrace(CreateTraceRequest(personId: personId, trace: trace), region: region, logger: logger, on: eventLoop)
+        let input = CreateTraceRequest(personId: personId, trace: trace)
+        return try await self.client.execute(action: "CreateTrace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

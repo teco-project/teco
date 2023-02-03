@@ -68,12 +68,14 @@ extension Iotcloud {
     /// 查询固件升级任务状态分布
     @inlinable
     public func describeFirmwareTaskDistribution(productId: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskDistributionResponse> {
-        self.describeFirmwareTaskDistribution(DescribeFirmwareTaskDistributionRequest(productId: productId, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareTaskDistributionRequest(productId: productId, firmwareVersion: firmwareVersion, taskId: taskId)
+        return self.client.execute(action: "DescribeFirmwareTaskDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务状态分布
     @inlinable
     public func describeFirmwareTaskDistribution(productId: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDistributionResponse {
-        try await self.describeFirmwareTaskDistribution(DescribeFirmwareTaskDistributionRequest(productId: productId, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareTaskDistributionRequest(productId: productId, firmwareVersion: firmwareVersion, taskId: taskId)
+        return try await self.client.execute(action: "DescribeFirmwareTaskDistribution", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -80,7 +80,8 @@ extension Iotvideo {
     /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
     @inlinable @discardableResult
     public func modifyProduct(productId: String, productName: String, productDescription: String, chipManufactureId: String? = nil, chipId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProductResponse> {
-        self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription, chipManufactureId: chipManufactureId, chipId: chipId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription, chipManufactureId: chipManufactureId, chipId: chipId)
+        return self.client.execute(action: "ModifyProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑产品信息
@@ -88,6 +89,7 @@ extension Iotvideo {
     /// 本接口（ModifyProduct）用于编辑物联网智能视频产品的相关信息。
     @inlinable @discardableResult
     public func modifyProduct(productId: String, productName: String, productDescription: String, chipManufactureId: String? = nil, chipId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProductResponse {
-        try await self.modifyProduct(ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription, chipManufactureId: chipManufactureId, chipId: chipId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProductRequest(productId: productId, productName: productName, productDescription: productDescription, chipManufactureId: chipManufactureId, chipId: chipId)
+        return try await self.client.execute(action: "ModifyProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

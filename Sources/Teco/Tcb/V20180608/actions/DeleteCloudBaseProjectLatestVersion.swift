@@ -64,12 +64,14 @@ extension Tcb {
     /// 删除云项目
     @inlinable @discardableResult
     public func deleteCloudBaseProjectLatestVersion(envId: String, projectName: String, keepResource: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCloudBaseProjectLatestVersionResponse> {
-        self.deleteCloudBaseProjectLatestVersion(DeleteCloudBaseProjectLatestVersionRequest(envId: envId, projectName: projectName, keepResource: keepResource), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCloudBaseProjectLatestVersionRequest(envId: envId, projectName: projectName, keepResource: keepResource)
+        return self.client.execute(action: "DeleteCloudBaseProjectLatestVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除云项目
     @inlinable @discardableResult
     public func deleteCloudBaseProjectLatestVersion(envId: String, projectName: String, keepResource: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCloudBaseProjectLatestVersionResponse {
-        try await self.deleteCloudBaseProjectLatestVersion(DeleteCloudBaseProjectLatestVersionRequest(envId: envId, projectName: projectName, keepResource: keepResource), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCloudBaseProjectLatestVersionRequest(envId: envId, projectName: projectName, keepResource: keepResource)
+        return try await self.client.execute(action: "DeleteCloudBaseProjectLatestVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

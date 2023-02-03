@@ -149,7 +149,8 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func bankCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, retBorderCutImage: Bool? = nil, retCardNoImage: Bool? = nil, enableCopyCheck: Bool? = nil, enableReshootCheck: Bool? = nil, enableBorderCheck: Bool? = nil, enableQualityValue: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BankCardOCRResponse> {
-        self.bankCardOCR(BankCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retBorderCutImage: retBorderCutImage, retCardNoImage: retCardNoImage, enableCopyCheck: enableCopyCheck, enableReshootCheck: enableReshootCheck, enableBorderCheck: enableBorderCheck, enableQualityValue: enableQualityValue), region: region, logger: logger, on: eventLoop)
+        let input = BankCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retBorderCutImage: retBorderCutImage, retCardNoImage: retCardNoImage, enableCopyCheck: enableCopyCheck, enableReshootCheck: enableReshootCheck, enableBorderCheck: enableBorderCheck, enableQualityValue: enableQualityValue)
+        return self.client.execute(action: "BankCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 银行卡识别
@@ -159,6 +160,7 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func bankCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, retBorderCutImage: Bool? = nil, retCardNoImage: Bool? = nil, enableCopyCheck: Bool? = nil, enableReshootCheck: Bool? = nil, enableBorderCheck: Bool? = nil, enableQualityValue: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BankCardOCRResponse {
-        try await self.bankCardOCR(BankCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retBorderCutImage: retBorderCutImage, retCardNoImage: retCardNoImage, enableCopyCheck: enableCopyCheck, enableReshootCheck: enableReshootCheck, enableBorderCheck: enableBorderCheck, enableQualityValue: enableQualityValue), region: region, logger: logger, on: eventLoop)
+        let input = BankCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, retBorderCutImage: retBorderCutImage, retCardNoImage: retCardNoImage, enableCopyCheck: enableCopyCheck, enableReshootCheck: enableReshootCheck, enableBorderCheck: enableBorderCheck, enableQualityValue: enableQualityValue)
+        return try await self.client.execute(action: "BankCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

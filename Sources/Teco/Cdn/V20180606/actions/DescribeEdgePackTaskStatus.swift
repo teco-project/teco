@@ -97,7 +97,8 @@ extension Cdn {
     /// DescribeEdgePackTaskStatus 用于查询动态打包任务状态列表
     @inlinable
     public func describeEdgePackTaskStatus(startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil, filters: [EdgePackTaskFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgePackTaskStatusResponse> {
-        self.describeEdgePackTaskStatus(DescribeEdgePackTaskStatusRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgePackTaskStatusRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeEdgePackTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询动态打包任务状态列表
@@ -105,6 +106,7 @@ extension Cdn {
     /// DescribeEdgePackTaskStatus 用于查询动态打包任务状态列表
     @inlinable
     public func describeEdgePackTaskStatus(startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil, filters: [EdgePackTaskFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgePackTaskStatusResponse {
-        try await self.describeEdgePackTaskStatus(DescribeEdgePackTaskStatusRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgePackTaskStatusRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeEdgePackTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Bmvpc {
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
     public func deleteVpc(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
-        self.deleteVpc(DeleteVpcRequest(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpcRequest(vpcId: vpcId)
+        return self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除私有网络
@@ -80,6 +81,7 @@ extension Bmvpc {
     /// 删除私有网络前，请清理该私有网络下所有资源，包括子网、负载均衡、弹性 IP、对等连接、NAT 网关、专线通道、SSLVPN 等资源。
     @inlinable
     public func deleteVpc(vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        try await self.deleteVpc(DeleteVpcRequest(vpcId: vpcId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpcRequest(vpcId: vpcId)
+        return try await self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

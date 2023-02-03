@@ -94,7 +94,8 @@ extension Mmps {
     /// 查询指定小程序版本的翼扬诊断安全得分
     @inlinable
     public func describeFlySecMiniAppScanReportList(miniAppID: String, mode: Int64, status: Int64, size: Int64, miniAppVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppScanReportListResponse> {
-        self.describeFlySecMiniAppScanReportList(DescribeFlySecMiniAppScanReportListRequest(miniAppID: miniAppID, mode: mode, status: status, size: size, miniAppVersion: miniAppVersion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlySecMiniAppScanReportListRequest(miniAppID: miniAppID, mode: mode, status: status, size: size, miniAppVersion: miniAppVersion)
+        return self.client.execute(action: "DescribeFlySecMiniAppScanReportList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定小程序版本的安全得分
@@ -102,6 +103,7 @@ extension Mmps {
     /// 查询指定小程序版本的翼扬诊断安全得分
     @inlinable
     public func describeFlySecMiniAppScanReportList(miniAppID: String, mode: Int64, status: Int64, size: Int64, miniAppVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppScanReportListResponse {
-        try await self.describeFlySecMiniAppScanReportList(DescribeFlySecMiniAppScanReportListRequest(miniAppID: miniAppID, mode: mode, status: status, size: size, miniAppVersion: miniAppVersion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlySecMiniAppScanReportListRequest(miniAppID: miniAppID, mode: mode, status: status, size: size, miniAppVersion: miniAppVersion)
+        return try await self.client.execute(action: "DescribeFlySecMiniAppScanReportList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

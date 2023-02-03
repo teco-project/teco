@@ -64,7 +64,8 @@ extension Cynosdb {
     /// 本接口(DescribeInstanceDetail)用于查询实例详情。
     @inlinable
     public func describeInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceDetailResponse> {
-        self.describeInstanceDetail(DescribeInstanceDetailRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceDetailRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例详情
@@ -72,6 +73,7 @@ extension Cynosdb {
     /// 本接口(DescribeInstanceDetail)用于查询实例详情。
     @inlinable
     public func describeInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceDetailResponse {
-        try await self.describeInstanceDetail(DescribeInstanceDetailRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceDetailRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

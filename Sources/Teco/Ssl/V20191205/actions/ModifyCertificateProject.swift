@@ -75,7 +75,8 @@ extension Ssl {
     /// 批量修改证书所属项目。
     @inlinable
     public func modifyCertificateProject(certificateIdList: [String], projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCertificateProjectResponse> {
-        self.modifyCertificateProject(ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId)
+        return self.client.execute(action: "ModifyCertificateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改证书所属项目
@@ -83,6 +84,7 @@ extension Ssl {
     /// 批量修改证书所属项目。
     @inlinable
     public func modifyCertificateProject(certificateIdList: [String], projectId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCertificateProjectResponse {
-        try await self.modifyCertificateProject(ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCertificateProjectRequest(certificateIdList: certificateIdList, projectId: projectId)
+        return try await self.client.execute(action: "ModifyCertificateProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

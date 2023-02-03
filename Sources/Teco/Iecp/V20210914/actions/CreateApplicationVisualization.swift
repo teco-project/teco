@@ -109,12 +109,14 @@ extension Iecp {
     /// 创建可视化创建应用模板
     @inlinable
     public func createApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationVisualizationResponse> {
-        self.createApplicationVisualization(CreateApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, volumes: volumes, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, volumes: volumes, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers)
+        return self.client.execute(action: "CreateApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建可视化创建应用模板
     @inlinable
     public func createApplicationVisualization(basicInfo: ApplicationBasicInfo, basicConfig: ApplicationBasicConfig, volumes: [Volume]? = nil, service: Service? = nil, job: Job? = nil, cronJob: CronJob? = nil, restartPolicy: String? = nil, imagePullSecrets: [String]? = nil, horizontalPodAutoscaler: HorizontalPodAutoscaler? = nil, initContainers: [Container]? = nil, containers: [Container]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationVisualizationResponse {
-        try await self.createApplicationVisualization(CreateApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, volumes: volumes, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationVisualizationRequest(basicInfo: basicInfo, basicConfig: basicConfig, volumes: volumes, service: service, job: job, cronJob: cronJob, restartPolicy: restartPolicy, imagePullSecrets: imagePullSecrets, horizontalPodAutoscaler: horizontalPodAutoscaler, initContainers: initContainers, containers: containers)
+        return try await self.client.execute(action: "CreateApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

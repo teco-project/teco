@@ -85,7 +85,8 @@ extension Apigateway {
     /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
     @inlinable
     public func describeApiEnvironmentStrategy(serviceId: String, environmentNames: [String]? = nil, apiId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiEnvironmentStrategyResponse> {
-        self.describeApiEnvironmentStrategy(DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeApiEnvironmentStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 展示API绑定的限流策略
@@ -93,6 +94,7 @@ extension Apigateway {
     /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
     @inlinable
     public func describeApiEnvironmentStrategy(serviceId: String, environmentNames: [String]? = nil, apiId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiEnvironmentStrategyResponse {
-        try await self.describeApiEnvironmentStrategy(DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApiEnvironmentStrategyRequest(serviceId: serviceId, environmentNames: environmentNames, apiId: apiId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeApiEnvironmentStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

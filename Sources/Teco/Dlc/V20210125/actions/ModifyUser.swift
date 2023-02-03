@@ -59,12 +59,14 @@ extension Dlc {
     /// 修改用户信息
     @inlinable @discardableResult
     public func modifyUser(userId: String, userDescription: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserResponse> {
-        self.modifyUser(ModifyUserRequest(userId: userId, userDescription: userDescription), region: region, logger: logger, on: eventLoop)
+        let input = ModifyUserRequest(userId: userId, userDescription: userDescription)
+        return self.client.execute(action: "ModifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改用户信息
     @inlinable @discardableResult
     public func modifyUser(userId: String, userDescription: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserResponse {
-        try await self.modifyUser(ModifyUserRequest(userId: userId, userDescription: userDescription), region: region, logger: logger, on: eventLoop)
+        let input = ModifyUserRequest(userId: userId, userDescription: userDescription)
+        return try await self.client.execute(action: "ModifyUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

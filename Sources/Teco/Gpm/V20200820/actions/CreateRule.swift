@@ -76,13 +76,15 @@ extension Gpm {
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createRule(ruleName: String, ruleScript: String, ruleDesc: String? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.createRule(CreateRuleRequest(ruleName: ruleName, ruleScript: ruleScript, ruleDesc: ruleDesc, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(ruleName: ruleName, ruleScript: ruleScript, ruleDesc: ruleDesc, tags: tags)
+        return self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建规则
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createRule(ruleName: String, ruleScript: String, ruleDesc: String? = nil, tags: [StringKV]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.createRule(CreateRuleRequest(ruleName: ruleName, ruleScript: ruleScript, ruleDesc: ruleDesc, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(ruleName: ruleName, ruleScript: ruleScript, ruleDesc: ruleDesc, tags: tags)
+        return try await self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

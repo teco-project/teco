@@ -83,7 +83,8 @@ extension Tat {
     /// 此接口用于查询自动化助手客户端的状态。
     @inlinable
     public func describeAutomationAgentStatus(instanceIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutomationAgentStatusResponse> {
-        self.describeAutomationAgentStatus(DescribeAutomationAgentStatusRequest(instanceIds: instanceIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutomationAgentStatusRequest(instanceIds: instanceIds, filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeAutomationAgentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户端状态
@@ -91,6 +92,7 @@ extension Tat {
     /// 此接口用于查询自动化助手客户端的状态。
     @inlinable
     public func describeAutomationAgentStatus(instanceIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutomationAgentStatusResponse {
-        try await self.describeAutomationAgentStatus(DescribeAutomationAgentStatusRequest(instanceIds: instanceIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutomationAgentStatusRequest(instanceIds: instanceIds, filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeAutomationAgentStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

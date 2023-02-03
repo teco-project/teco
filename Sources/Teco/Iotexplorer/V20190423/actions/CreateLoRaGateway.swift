@@ -99,7 +99,8 @@ extension Iotexplorer {
     /// 创建新 LoRa 网关设备接口
     @inlinable
     public func createLoRaGateway(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLoRaGatewayResponse> {
-        self.createLoRaGateway(CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId), region: region, logger: logger, on: eventLoop)
+        let input = CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId)
+        return self.client.execute(action: "CreateLoRaGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建 LoRa 网关设备
@@ -107,6 +108,7 @@ extension Iotexplorer {
     /// 创建新 LoRa 网关设备接口
     @inlinable
     public func createLoRaGateway(gatewayId: String, name: String, description: String, location: LoRaGatewayLocation, position: String? = nil, positionDetails: String? = nil, isPublic: Bool? = nil, frequencyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLoRaGatewayResponse {
-        try await self.createLoRaGateway(CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId), region: region, logger: logger, on: eventLoop)
+        let input = CreateLoRaGatewayRequest(gatewayId: gatewayId, name: name, description: description, location: location, position: position, positionDetails: positionDetails, isPublic: isPublic, frequencyId: frequencyId)
+        return try await self.client.execute(action: "CreateLoRaGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

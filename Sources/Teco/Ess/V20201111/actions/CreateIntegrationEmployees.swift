@@ -63,12 +63,14 @@ extension Ess {
     /// 创建员工
     @inlinable
     public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIntegrationEmployeesResponse> {
-        self.createIntegrationEmployees(CreateIntegrationEmployeesRequest(operator: `operator`, employees: employees), region: region, logger: logger, on: eventLoop)
+        let input = CreateIntegrationEmployeesRequest(operator: `operator`, employees: employees)
+        return self.client.execute(action: "CreateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建员工
     @inlinable
     public func createIntegrationEmployees(operator: UserInfo, employees: [Staff], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIntegrationEmployeesResponse {
-        try await self.createIntegrationEmployees(CreateIntegrationEmployeesRequest(operator: `operator`, employees: employees), region: region, logger: logger, on: eventLoop)
+        let input = CreateIntegrationEmployeesRequest(operator: `operator`, employees: employees)
+        return try await self.client.execute(action: "CreateIntegrationEmployees", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

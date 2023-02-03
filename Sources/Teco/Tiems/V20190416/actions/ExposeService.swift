@@ -76,13 +76,15 @@ extension Tiems {
     @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func exposeService(serviceId: String, exposeType: String, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExposeServiceResponse> {
-        self.exposeService(ExposeServiceRequest(serviceId: serviceId, exposeType: exposeType, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = ExposeServiceRequest(serviceId: serviceId, exposeType: exposeType, vpcId: vpcId, subnetId: subnetId)
+        return self.client.execute(action: "ExposeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 暴露服务
     @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func exposeService(serviceId: String, exposeType: String, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExposeServiceResponse {
-        try await self.exposeService(ExposeServiceRequest(serviceId: serviceId, exposeType: exposeType, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = ExposeServiceRequest(serviceId: serviceId, exposeType: exposeType, vpcId: vpcId, subnetId: subnetId)
+        return try await self.client.execute(action: "ExposeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

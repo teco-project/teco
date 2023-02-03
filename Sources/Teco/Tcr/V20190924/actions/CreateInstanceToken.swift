@@ -88,7 +88,8 @@ extension Tcr {
     /// 创建实例的临时或长期访问凭证
     @inlinable
     public func createInstanceToken(registryId: String, tokenType: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceTokenResponse> {
-        self.createInstanceToken(CreateInstanceTokenRequest(registryId: registryId, tokenType: tokenType, desc: desc), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceTokenRequest(registryId: registryId, tokenType: tokenType, desc: desc)
+        return self.client.execute(action: "CreateInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例访问凭证
@@ -96,6 +97,7 @@ extension Tcr {
     /// 创建实例的临时或长期访问凭证
     @inlinable
     public func createInstanceToken(registryId: String, tokenType: String? = nil, desc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceTokenResponse {
-        try await self.createInstanceToken(CreateInstanceTokenRequest(registryId: registryId, tokenType: tokenType, desc: desc), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceTokenRequest(registryId: registryId, tokenType: tokenType, desc: desc)
+        return try await self.client.execute(action: "CreateInstanceToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

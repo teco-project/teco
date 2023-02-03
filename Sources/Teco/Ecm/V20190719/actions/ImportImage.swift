@@ -70,7 +70,8 @@ extension Ecm {
     /// 从CVM产品导入镜像到ECM
     @inlinable @discardableResult
     public func importImage(imageId: String, imageDescription: String, sourceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportImageResponse> {
-        self.importImage(ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion), region: region, logger: logger, on: eventLoop)
+        let input = ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion)
+        return self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入镜像
@@ -78,6 +79,7 @@ extension Ecm {
     /// 从CVM产品导入镜像到ECM
     @inlinable @discardableResult
     public func importImage(imageId: String, imageDescription: String, sourceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportImageResponse {
-        try await self.importImage(ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion), region: region, logger: logger, on: eventLoop)
+        let input = ImportImageRequest(imageId: imageId, imageDescription: imageDescription, sourceRegion: sourceRegion)
+        return try await self.client.execute(action: "ImportImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

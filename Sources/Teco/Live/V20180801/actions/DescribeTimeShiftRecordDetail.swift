@@ -95,7 +95,8 @@ extension Live {
     /// 前提调用 DescribeTimeShiftStreamList 获得请求必要参数。查询指定范围内的时移流录制详情，最大支持24小时范围查询。
     @inlinable
     public func describeTimeShiftRecordDetail(domain: String, appName: String, streamName: String, startTime: Int64, endTime: Int64, domainGroup: String? = nil, transCodeId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimeShiftRecordDetailResponse> {
-        self.describeTimeShiftRecordDetail(DescribeTimeShiftRecordDetailRequest(domain: domain, appName: appName, streamName: streamName, startTime: startTime, endTime: endTime, domainGroup: domainGroup, transCodeId: transCodeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimeShiftRecordDetailRequest(domain: domain, appName: appName, streamName: streamName, startTime: startTime, endTime: endTime, domainGroup: domainGroup, transCodeId: transCodeId)
+        return self.client.execute(action: "DescribeTimeShiftRecordDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询时移流录制详情
@@ -103,6 +104,7 @@ extension Live {
     /// 前提调用 DescribeTimeShiftStreamList 获得请求必要参数。查询指定范围内的时移流录制详情，最大支持24小时范围查询。
     @inlinable
     public func describeTimeShiftRecordDetail(domain: String, appName: String, streamName: String, startTime: Int64, endTime: Int64, domainGroup: String? = nil, transCodeId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeShiftRecordDetailResponse {
-        try await self.describeTimeShiftRecordDetail(DescribeTimeShiftRecordDetailRequest(domain: domain, appName: appName, streamName: streamName, startTime: startTime, endTime: endTime, domainGroup: domainGroup, transCodeId: transCodeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimeShiftRecordDetailRequest(domain: domain, appName: appName, streamName: streamName, startTime: startTime, endTime: endTime, domainGroup: domainGroup, transCodeId: transCodeId)
+        return try await self.client.execute(action: "DescribeTimeShiftRecordDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

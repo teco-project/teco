@@ -79,7 +79,8 @@ extension Waf {
     /// 本接口用于获取访问日志导出列表
     @inlinable
     public func describeAccessExports(topicId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessExportsResponse> {
-        self.describeAccessExports(DescribeAccessExportsRequest(topicId: topicId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccessExportsRequest(topicId: topicId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeAccessExports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取访问日志导出列表
@@ -87,6 +88,7 @@ extension Waf {
     /// 本接口用于获取访问日志导出列表
     @inlinable
     public func describeAccessExports(topicId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessExportsResponse {
-        try await self.describeAccessExports(DescribeAccessExportsRequest(topicId: topicId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccessExportsRequest(topicId: topicId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeAccessExports", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

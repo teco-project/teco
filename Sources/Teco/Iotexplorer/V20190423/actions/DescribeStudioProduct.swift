@@ -64,7 +64,8 @@ extension Iotexplorer {
     /// 提供查看产品详细信息的能力，包括产品的ID、数据协议、认证类型等重要参数
     @inlinable
     public func describeStudioProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStudioProductResponse> {
-        self.describeStudioProduct(DescribeStudioProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStudioProductRequest(productId: productId)
+        return self.client.execute(action: "DescribeStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品详情
@@ -72,6 +73,7 @@ extension Iotexplorer {
     /// 提供查看产品详细信息的能力，包括产品的ID、数据协议、认证类型等重要参数
     @inlinable
     public func describeStudioProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStudioProductResponse {
-        try await self.describeStudioProduct(DescribeStudioProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStudioProductRequest(productId: productId)
+        return try await self.client.execute(action: "DescribeStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

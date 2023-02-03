@@ -68,12 +68,14 @@ extension Iotcloud {
     /// 查询私有CA绑定的产品列表
     @inlinable
     public func describePrivateCABindedProducts(certName: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateCABindedProductsResponse> {
-        self.describePrivateCABindedProducts(DescribePrivateCABindedProductsRequest(certName: certName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrivateCABindedProductsRequest(certName: certName, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribePrivateCABindedProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询私有CA绑定的产品列表
     @inlinable
     public func describePrivateCABindedProducts(certName: String, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateCABindedProductsResponse {
-        try await self.describePrivateCABindedProducts(DescribePrivateCABindedProductsRequest(certName: certName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrivateCABindedProductsRequest(certName: certName, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribePrivateCABindedProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

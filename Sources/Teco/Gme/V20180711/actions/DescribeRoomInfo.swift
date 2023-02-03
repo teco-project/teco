@@ -74,12 +74,14 @@ extension Gme {
     /// 获取房间内用户信息
     @inlinable
     public func describeRoomInfo(sdkAppId: UInt64, roomIds: [UInt64]? = nil, strRoomIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoomInfoResponse> {
-        self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds)
+        return self.client.execute(action: "DescribeRoomInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取房间内用户信息
     @inlinable
     public func describeRoomInfo(sdkAppId: UInt64, roomIds: [UInt64]? = nil, strRoomIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoomInfoResponse {
-        try await self.describeRoomInfo(DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRoomInfoRequest(sdkAppId: sdkAppId, roomIds: roomIds, strRoomIds: strRoomIds)
+        return try await self.client.execute(action: "DescribeRoomInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

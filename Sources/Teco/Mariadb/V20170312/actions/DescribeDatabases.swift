@@ -68,7 +68,8 @@ extension Mariadb {
     /// 本接口（DescribeDatabases）用于查询云数据库实例的数据库列表。
     @inlinable
     public func describeDatabases(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
-        self.describeDatabases(DescribeDatabasesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDatabasesRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库列表
@@ -76,6 +77,7 @@ extension Mariadb {
     /// 本接口（DescribeDatabases）用于查询云数据库实例的数据库列表。
     @inlinable
     public func describeDatabases(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.describeDatabases(DescribeDatabasesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDatabasesRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

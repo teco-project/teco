@@ -52,7 +52,8 @@ extension Iotvideo {
     /// 获取video消费版用户信息
     @inlinable @discardableResult
     public func describeUser(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
-        self.describeUser(DescribeUserRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserRequest()
+        return self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户信息
@@ -60,6 +61,7 @@ extension Iotvideo {
     /// 获取video消费版用户信息
     @inlinable @discardableResult
     public func describeUser(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        try await self.describeUser(DescribeUserRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserRequest()
+        return try await self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

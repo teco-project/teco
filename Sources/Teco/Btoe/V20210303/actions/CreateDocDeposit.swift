@@ -107,7 +107,8 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDocDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocDepositResponse> {
-        self.createDocDeposit(CreateDocDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateDocDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription)
+        return self.client.execute(action: "CreateDocDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文档存证
@@ -116,6 +117,7 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createDocDeposit(evidenceName: String, fileName: String, evidenceHash: String, businessId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocDepositResponse {
-        try await self.createDocDeposit(CreateDocDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateDocDepositRequest(evidenceName: evidenceName, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, fileContent: fileContent, fileUrl: fileUrl, hashType: hashType, evidenceDescription: evidenceDescription)
+        return try await self.client.execute(action: "CreateDocDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

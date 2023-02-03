@@ -73,12 +73,14 @@ extension Yunjing {
     /// 获取异地登录白名单列表
     @inlinable
     public func describeLoginWhiteList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoginWhiteListResponse> {
-        self.describeLoginWhiteList(DescribeLoginWhiteListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoginWhiteListRequest(limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取异地登录白名单列表
     @inlinable
     public func describeLoginWhiteList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginWhiteListResponse {
-        try await self.describeLoginWhiteList(DescribeLoginWhiteListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoginWhiteListRequest(limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeLoginWhiteList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

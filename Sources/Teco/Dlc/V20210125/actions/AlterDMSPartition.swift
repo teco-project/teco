@@ -69,12 +69,14 @@ extension Dlc {
     /// DMS元数据更新分区
     @inlinable @discardableResult
     public func alterDMSPartition(currentDbName: String, currentTableName: String, currentValues: String, partition: DMSPartition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AlterDMSPartitionResponse> {
-        self.alterDMSPartition(AlterDMSPartitionRequest(currentDbName: currentDbName, currentTableName: currentTableName, currentValues: currentValues, partition: partition), region: region, logger: logger, on: eventLoop)
+        let input = AlterDMSPartitionRequest(currentDbName: currentDbName, currentTableName: currentTableName, currentValues: currentValues, partition: partition)
+        return self.client.execute(action: "AlterDMSPartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据更新分区
     @inlinable @discardableResult
     public func alterDMSPartition(currentDbName: String, currentTableName: String, currentValues: String, partition: DMSPartition? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AlterDMSPartitionResponse {
-        try await self.alterDMSPartition(AlterDMSPartitionRequest(currentDbName: currentDbName, currentTableName: currentTableName, currentValues: currentValues, partition: partition), region: region, logger: logger, on: eventLoop)
+        let input = AlterDMSPartitionRequest(currentDbName: currentDbName, currentTableName: currentTableName, currentValues: currentValues, partition: partition)
+        return try await self.client.execute(action: "AlterDMSPartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

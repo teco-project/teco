@@ -125,7 +125,8 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func vehicleLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VehicleLicenseOCRResponse> {
-        self.vehicleLicenseOCR(VehicleLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
+        let input = VehicleLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide)
+        return self.client.execute(action: "VehicleLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 行驶证识别
@@ -141,6 +142,7 @@ extension Ocr {
     /// 默认接口请求频率限制：10次/秒。
     @inlinable
     public func vehicleLicenseOCR(imageBase64: String? = nil, imageUrl: String? = nil, cardSide: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VehicleLicenseOCRResponse {
-        try await self.vehicleLicenseOCR(VehicleLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide), region: region, logger: logger, on: eventLoop)
+        let input = VehicleLicenseOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, cardSide: cardSide)
+        return try await self.client.execute(action: "VehicleLicenseOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

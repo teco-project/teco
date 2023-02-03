@@ -74,7 +74,8 @@ extension Tcss {
     /// 修改异常进程事件的状态信息
     @inlinable @discardableResult
     public func modifyAbnormalProcessStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAbnormalProcessStatusResponse> {
-        self.modifyAbnormalProcessStatus(ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark)
+        return self.client.execute(action: "ModifyAbnormalProcessStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改异常进程事件状态
@@ -82,6 +83,7 @@ extension Tcss {
     /// 修改异常进程事件的状态信息
     @inlinable @discardableResult
     public func modifyAbnormalProcessStatus(eventIdSet: [String], status: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAbnormalProcessStatusResponse {
-        try await self.modifyAbnormalProcessStatus(ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAbnormalProcessStatusRequest(eventIdSet: eventIdSet, status: status, remark: remark)
+        return try await self.client.execute(action: "ModifyAbnormalProcessStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

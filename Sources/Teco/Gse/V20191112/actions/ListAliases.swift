@@ -102,7 +102,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliases(name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAliasesResponse> {
-        self.listAliases(ListAliasesRequest(name: name, routingStrategyType: routingStrategyType, limit: limit, offset: offset, orderBy: orderBy, orderWay: orderWay, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ListAliasesRequest(name: name, routingStrategyType: routingStrategyType, limit: limit, offset: offset, orderBy: orderBy, orderWay: orderWay, filters: filters)
+        return self.client.execute(action: "ListAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检索帐户下的所有别名
@@ -111,6 +112,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func listAliases(name: String? = nil, routingStrategyType: String? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderBy: String? = nil, orderWay: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAliasesResponse {
-        try await self.listAliases(ListAliasesRequest(name: name, routingStrategyType: routingStrategyType, limit: limit, offset: offset, orderBy: orderBy, orderWay: orderWay, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ListAliasesRequest(name: name, routingStrategyType: routingStrategyType, limit: limit, offset: offset, orderBy: orderBy, orderWay: orderWay, filters: filters)
+        return try await self.client.execute(action: "ListAliases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

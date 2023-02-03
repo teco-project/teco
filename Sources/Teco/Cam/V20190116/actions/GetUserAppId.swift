@@ -58,12 +58,14 @@ extension Cam {
     /// 获取用户AppId
     @inlinable
     public func getUserAppId(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetUserAppIdResponse> {
-        self.getUserAppId(GetUserAppIdRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetUserAppIdRequest()
+        return self.client.execute(action: "GetUserAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户AppId
     @inlinable
     public func getUserAppId(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUserAppIdResponse {
-        try await self.getUserAppId(GetUserAppIdRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetUserAppIdRequest()
+        return try await self.client.execute(action: "GetUserAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

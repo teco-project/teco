@@ -79,12 +79,14 @@ extension Iotvideo {
     /// 请求设备直播流地址
     @inlinable
     public func describeStream(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamResponse> {
-        self.describeStream(DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken)
+        return self.client.execute(action: "DescribeStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 请求设备直播流地址
     @inlinable
     public func describeStream(tid: String? = nil, accessId: String? = nil, protocol: String? = nil, address: String? = nil, accessToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamResponse {
-        try await self.describeStream(DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamRequest(tid: tid, accessId: accessId, protocol: `protocol`, address: address, accessToken: accessToken)
+        return try await self.client.execute(action: "DescribeStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

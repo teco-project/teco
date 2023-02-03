@@ -100,7 +100,8 @@ extension Cvm {
     /// * 接口不支持批量调整混合计费方式的带宽。例如不支持同时调整`TRAFFIC_POSTPAID_BY_HOUR`和`BANDWIDTH_PACKAGE`计费方式的带宽。
     @inlinable
     public func inquiryPriceResetInstancesInternetMaxBandwidth(instanceIds: [String], internetAccessible: InternetAccessible, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceResetInstancesInternetMaxBandwidthResponse> {
-        self.inquiryPriceResetInstancesInternetMaxBandwidth(InquiryPriceResetInstancesInternetMaxBandwidthRequest(instanceIds: instanceIds, internetAccessible: internetAccessible, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceResetInstancesInternetMaxBandwidthRequest(instanceIds: instanceIds, internetAccessible: internetAccessible, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "InquiryPriceResetInstancesInternetMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整实例带宽上限询价
@@ -115,6 +116,7 @@ extension Cvm {
     /// * 接口不支持批量调整混合计费方式的带宽。例如不支持同时调整`TRAFFIC_POSTPAID_BY_HOUR`和`BANDWIDTH_PACKAGE`计费方式的带宽。
     @inlinable
     public func inquiryPriceResetInstancesInternetMaxBandwidth(instanceIds: [String], internetAccessible: InternetAccessible, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceResetInstancesInternetMaxBandwidthResponse {
-        try await self.inquiryPriceResetInstancesInternetMaxBandwidth(InquiryPriceResetInstancesInternetMaxBandwidthRequest(instanceIds: instanceIds, internetAccessible: internetAccessible, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceResetInstancesInternetMaxBandwidthRequest(instanceIds: instanceIds, internetAccessible: internetAccessible, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "InquiryPriceResetInstancesInternetMaxBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

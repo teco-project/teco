@@ -82,7 +82,8 @@ extension Trp {
     /// 批量导入二维码，只支持平台发的码
     @inlinable
     public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesResponse> {
-        self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), region: region, logger: logger, on: eventLoop)
+        let input = CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes)
+        return self.client.execute(action: "CreateTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量导入二维码
@@ -90,6 +91,7 @@ extension Trp {
     /// 批量导入二维码，只支持平台发的码
     @inlinable
     public func createTraceCodes(batchId: String, corpId: UInt64? = nil, codes: [CodeItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesResponse {
-        try await self.createTraceCodes(CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes), region: region, logger: logger, on: eventLoop)
+        let input = CreateTraceCodesRequest(batchId: batchId, corpId: corpId, codes: codes)
+        return try await self.client.execute(action: "CreateTraceCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

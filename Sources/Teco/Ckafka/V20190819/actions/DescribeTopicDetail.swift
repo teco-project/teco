@@ -84,7 +84,8 @@ extension Ckafka {
     /// 获取主题列表详情（仅控制台调用）
     @inlinable
     public func describeTopicDetail(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicDetailResponse> {
-        self.describeTopicDetail(DescribeTopicDetailRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopicDetailRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName)
+        return self.client.execute(action: "DescribeTopicDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主题列表详情
@@ -92,6 +93,7 @@ extension Ckafka {
     /// 获取主题列表详情（仅控制台调用）
     @inlinable
     public func describeTopicDetail(instanceId: String, searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, aclRuleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicDetailResponse {
-        try await self.describeTopicDetail(DescribeTopicDetailRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopicDetailRequest(instanceId: instanceId, searchWord: searchWord, offset: offset, limit: limit, aclRuleName: aclRuleName)
+        return try await self.client.execute(action: "DescribeTopicDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

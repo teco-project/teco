@@ -95,7 +95,8 @@ extension Tsf {
     /// 创建虚拟机部署组
     @inlinable
     public func createGroup(applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGroupResponse> {
-        self.createGroup(CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias)
+        return self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建部署组
@@ -103,6 +104,7 @@ extension Tsf {
     /// 创建虚拟机部署组
     @inlinable
     public func createGroup(applicationId: String, namespaceId: String, groupName: String, clusterId: String, groupDesc: String? = nil, groupResourceType: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGroupResponse {
-        try await self.createGroup(CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = CreateGroupRequest(applicationId: applicationId, namespaceId: namespaceId, groupName: groupName, clusterId: clusterId, groupDesc: groupDesc, groupResourceType: groupResourceType, alias: alias)
+        return try await self.client.execute(action: "CreateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

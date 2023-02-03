@@ -80,7 +80,8 @@ extension Cdb {
     /// 本接口(ModifyAuditRule)用于修改用户的审计规则。
     @inlinable @discardableResult
     public func modifyAuditRule(ruleId: String, ruleName: String? = nil, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleResponse> {
-        self.modifyAuditRule(ModifyAuditRuleRequest(ruleId: ruleId, ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAuditRuleRequest(ruleId: ruleId, ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll)
+        return self.client.execute(action: "ModifyAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改审计规则
@@ -88,6 +89,7 @@ extension Cdb {
     /// 本接口(ModifyAuditRule)用于修改用户的审计规则。
     @inlinable @discardableResult
     public func modifyAuditRule(ruleId: String, ruleName: String? = nil, description: String? = nil, ruleFilters: [AuditFilter]? = nil, auditAll: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleResponse {
-        try await self.modifyAuditRule(ModifyAuditRuleRequest(ruleId: ruleId, ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAuditRuleRequest(ruleId: ruleId, ruleName: ruleName, description: description, ruleFilters: ruleFilters, auditAll: auditAll)
+        return try await self.client.execute(action: "ModifyAuditRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

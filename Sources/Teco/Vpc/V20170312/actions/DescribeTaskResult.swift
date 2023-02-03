@@ -73,7 +73,8 @@ extension Vpc {
     /// 查询EIP异步任务执行结果
     @inlinable
     public func describeTaskResult(taskId: UInt64? = nil, dealName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultResponse> {
-        self.describeTaskResult(DescribeTaskResultRequest(taskId: taskId, dealName: dealName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskResultRequest(taskId: taskId, dealName: dealName)
+        return self.client.execute(action: "DescribeTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询异步任务执行结果
@@ -81,6 +82,7 @@ extension Vpc {
     /// 查询EIP异步任务执行结果
     @inlinable
     public func describeTaskResult(taskId: UInt64? = nil, dealName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultResponse {
-        try await self.describeTaskResult(DescribeTaskResultRequest(taskId: taskId, dealName: dealName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskResultRequest(taskId: taskId, dealName: dealName)
+        return try await self.client.execute(action: "DescribeTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

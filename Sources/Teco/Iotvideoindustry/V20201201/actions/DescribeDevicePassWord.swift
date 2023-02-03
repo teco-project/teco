@@ -64,7 +64,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeDevicePassWord)用于查询设备密码。
     @inlinable
     public func describeDevicePassWord(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePassWordResponse> {
-        self.describeDevicePassWord(DescribeDevicePassWordRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePassWordRequest(deviceId: deviceId)
+        return self.client.execute(action: "DescribeDevicePassWord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备密码
@@ -72,6 +73,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeDevicePassWord)用于查询设备密码。
     @inlinable
     public func describeDevicePassWord(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePassWordResponse {
-        try await self.describeDevicePassWord(DescribeDevicePassWordRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePassWordRequest(deviceId: deviceId)
+        return try await self.client.execute(action: "DescribeDevicePassWord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

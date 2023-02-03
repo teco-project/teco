@@ -76,12 +76,14 @@ extension Ccc {
     /// 按实例获取电话消耗统计
     @inlinable
     public func describeTelCallInfo(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTelCallInfoResponse> {
-        self.describeTelCallInfo(DescribeTelCallInfoRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppIdList: sdkAppIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTelCallInfoRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppIdList: sdkAppIdList)
+        return self.client.execute(action: "DescribeTelCallInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 按实例获取电话消耗统计
     @inlinable
     public func describeTelCallInfo(startTimeStamp: Int64, endTimeStamp: Int64, sdkAppIdList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTelCallInfoResponse {
-        try await self.describeTelCallInfo(DescribeTelCallInfoRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppIdList: sdkAppIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTelCallInfoRequest(startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp, sdkAppIdList: sdkAppIdList)
+        return try await self.client.execute(action: "DescribeTelCallInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

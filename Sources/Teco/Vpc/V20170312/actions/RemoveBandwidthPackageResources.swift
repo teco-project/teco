@@ -70,7 +70,8 @@ extension Vpc {
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable @discardableResult
     public func removeBandwidthPackageResources(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveBandwidthPackageResourcesResponse> {
-        self.removeBandwidthPackageResources(RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
+        let input = RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds)
+        return self.client.execute(action: "RemoveBandwidthPackageResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除带宽包资源
@@ -78,6 +79,7 @@ extension Vpc {
     /// 接口用于删除带宽包资源，包括[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)和[负载均衡](https://cloud.tencent.com/document/product/214/517)等
     @inlinable @discardableResult
     public func removeBandwidthPackageResources(bandwidthPackageId: String? = nil, resourceType: String? = nil, resourceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveBandwidthPackageResourcesResponse {
-        try await self.removeBandwidthPackageResources(RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
+        let input = RemoveBandwidthPackageResourcesRequest(bandwidthPackageId: bandwidthPackageId, resourceType: resourceType, resourceIds: resourceIds)
+        return try await self.client.execute(action: "RemoveBandwidthPackageResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

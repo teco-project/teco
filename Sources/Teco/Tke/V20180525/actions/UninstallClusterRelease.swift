@@ -80,7 +80,8 @@ extension Tke {
     /// 在应用市场中集群删除某个应用
     @inlinable
     public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallClusterReleaseResponse> {
-        self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
+        let input = UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType)
+        return self.client.execute(action: "UninstallClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群删除应用
@@ -88,6 +89,7 @@ extension Tke {
     /// 在应用市场中集群删除某个应用
     @inlinable
     public func uninstallClusterRelease(clusterId: String, name: String, namespace: String, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallClusterReleaseResponse {
-        try await self.uninstallClusterRelease(UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
+        let input = UninstallClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, clusterType: clusterType)
+        return try await self.client.execute(action: "UninstallClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

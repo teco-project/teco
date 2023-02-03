@@ -64,12 +64,14 @@ extension Tdid {
     /// 新建标签
     @inlinable @discardableResult
     public func createLabel(labelName: String, clusterId: String, groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLabelResponse> {
-        self.createLabel(CreateLabelRequest(labelName: labelName, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateLabelRequest(labelName: labelName, clusterId: clusterId, groupId: groupId)
+        return self.client.execute(action: "CreateLabel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建标签
     @inlinable @discardableResult
     public func createLabel(labelName: String, clusterId: String, groupId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLabelResponse {
-        try await self.createLabel(CreateLabelRequest(labelName: labelName, clusterId: clusterId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateLabelRequest(labelName: labelName, clusterId: clusterId, groupId: groupId)
+        return try await self.client.execute(action: "CreateLabel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

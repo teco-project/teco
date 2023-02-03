@@ -65,7 +65,8 @@ extension Tke {
     /// 同步模板到实例或者集群，针对V2版本实例
     @inlinable @discardableResult
     public func syncPrometheusTemp(templateId: String, targets: [PrometheusTemplateSyncTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncPrometheusTempResponse> {
-        self.syncPrometheusTemp(SyncPrometheusTempRequest(templateId: templateId, targets: targets), region: region, logger: logger, on: eventLoop)
+        let input = SyncPrometheusTempRequest(templateId: templateId, targets: targets)
+        return self.client.execute(action: "SyncPrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步模板
@@ -73,6 +74,7 @@ extension Tke {
     /// 同步模板到实例或者集群，针对V2版本实例
     @inlinable @discardableResult
     public func syncPrometheusTemp(templateId: String, targets: [PrometheusTemplateSyncTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncPrometheusTempResponse {
-        try await self.syncPrometheusTemp(SyncPrometheusTempRequest(templateId: templateId, targets: targets), region: region, logger: logger, on: eventLoop)
+        let input = SyncPrometheusTempRequest(templateId: templateId, targets: targets)
+        return try await self.client.execute(action: "SyncPrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

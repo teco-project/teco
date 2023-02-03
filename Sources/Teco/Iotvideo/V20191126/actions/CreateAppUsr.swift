@@ -77,7 +77,8 @@ extension Iotvideo {
     /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
     @inlinable
     public func createAppUsr(cunionId: String, mobile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAppUsrResponse> {
-        self.createAppUsr(CreateAppUsrRequest(cunionId: cunionId, mobile: mobile), region: region, logger: logger, on: eventLoop)
+        let input = CreateAppUsrRequest(cunionId: cunionId, mobile: mobile)
+        return self.client.execute(action: "CreateAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端用户注册
@@ -85,6 +86,7 @@ extension Iotvideo {
     /// 本接口（CreateAppUsr）用于接收由厂商云发送过来的注册请求,建立厂商云终端用户与IoT Video终端用户的映射关系。
     @inlinable
     public func createAppUsr(cunionId: String, mobile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAppUsrResponse {
-        try await self.createAppUsr(CreateAppUsrRequest(cunionId: cunionId, mobile: mobile), region: region, logger: logger, on: eventLoop)
+        let input = CreateAppUsrRequest(cunionId: cunionId, mobile: mobile)
+        return try await self.client.execute(action: "CreateAppUsr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

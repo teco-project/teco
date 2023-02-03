@@ -60,7 +60,8 @@ extension As {
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
     @inlinable @discardableResult
     public func deleteScalingPolicy(autoScalingPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
-        self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId)
+        return self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除告警触发策略
@@ -68,6 +69,7 @@ extension As {
     /// 本接口（DeleteScalingPolicy）用于删除告警触发策略。
     @inlinable @discardableResult
     public func deleteScalingPolicy(autoScalingPolicyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        try await self.deleteScalingPolicy(DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteScalingPolicyRequest(autoScalingPolicyId: autoScalingPolicyId)
+        return try await self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

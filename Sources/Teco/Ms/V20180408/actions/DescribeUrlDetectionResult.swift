@@ -125,7 +125,8 @@ extension Ms {
     /// 移动安全-网址检测服务
     @inlinable
     public func describeUrlDetectionResult(url: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUrlDetectionResultResponse> {
-        self.describeUrlDetectionResult(DescribeUrlDetectionResultRequest(url: url), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUrlDetectionResultRequest(url: url)
+        return self.client.execute(action: "DescribeUrlDetectionResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 移动安全-查询网址检测结果服务
@@ -133,6 +134,7 @@ extension Ms {
     /// 移动安全-网址检测服务
     @inlinable
     public func describeUrlDetectionResult(url: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUrlDetectionResultResponse {
-        try await self.describeUrlDetectionResult(DescribeUrlDetectionResultRequest(url: url), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUrlDetectionResultRequest(url: url)
+        return try await self.client.execute(action: "DescribeUrlDetectionResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

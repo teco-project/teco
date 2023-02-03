@@ -68,12 +68,14 @@ extension Tci {
     /// 删除人脸
     @inlinable
     public func deleteFace(faceIdSet: [String], personId: String, libraryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFaceResponse> {
-        self.deleteFace(DeleteFaceRequest(faceIdSet: faceIdSet, personId: personId, libraryId: libraryId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteFaceRequest(faceIdSet: faceIdSet, personId: personId, libraryId: libraryId)
+        return self.client.execute(action: "DeleteFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除人脸
     @inlinable
     public func deleteFace(faceIdSet: [String], personId: String, libraryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFaceResponse {
-        try await self.deleteFace(DeleteFaceRequest(faceIdSet: faceIdSet, personId: personId, libraryId: libraryId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteFaceRequest(faceIdSet: faceIdSet, personId: personId, libraryId: libraryId)
+        return try await self.client.execute(action: "DeleteFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

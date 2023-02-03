@@ -65,7 +65,8 @@ extension Ecm {
     /// 对某个路由表批量删除路由策略
     @inlinable @discardableResult
     public func deleteRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoutesResponse> {
-        self.deleteRoutes(DeleteRoutesRequest(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRoutesRequest(routeTableId: routeTableId, routes: routes)
+        return self.client.execute(action: "DeleteRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除路由策略
@@ -73,6 +74,7 @@ extension Ecm {
     /// 对某个路由表批量删除路由策略
     @inlinable @discardableResult
     public func deleteRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoutesResponse {
-        try await self.deleteRoutes(DeleteRoutesRequest(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRoutesRequest(routeTableId: routeTableId, routes: routes)
+        return try await self.client.execute(action: "DeleteRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

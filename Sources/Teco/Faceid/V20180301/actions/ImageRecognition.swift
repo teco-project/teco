@@ -94,7 +94,8 @@ extension Faceid {
     /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
     @inlinable
     public func imageRecognition(idCard: String, name: String, imageBase64: String, optional: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageRecognitionResponse> {
-        self.imageRecognition(ImageRecognitionRequest(idCard: idCard, name: name, imageBase64: imageBase64, optional: optional, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = ImageRecognitionRequest(idCard: idCard, name: name, imageBase64: imageBase64, optional: optional, encryption: encryption)
+        return self.client.execute(action: "ImageRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 照片人脸核身
@@ -102,6 +103,7 @@ extension Faceid {
     /// 传入照片和身份信息，判断该照片与权威库的证件照是否属于同一个人。
     @inlinable
     public func imageRecognition(idCard: String, name: String, imageBase64: String, optional: String? = nil, encryption: Encryption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageRecognitionResponse {
-        try await self.imageRecognition(ImageRecognitionRequest(idCard: idCard, name: name, imageBase64: imageBase64, optional: optional, encryption: encryption), region: region, logger: logger, on: eventLoop)
+        let input = ImageRecognitionRequest(idCard: idCard, name: name, imageBase64: imageBase64, optional: optional, encryption: encryption)
+        return try await self.client.execute(action: "ImageRecognition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

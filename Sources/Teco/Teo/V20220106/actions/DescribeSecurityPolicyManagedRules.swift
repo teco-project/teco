@@ -81,12 +81,14 @@ extension Teo {
     /// 分页查询门神规则
     @inlinable
     public func describeSecurityPolicyManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyManagedRulesResponse> {
-        self.describeSecurityPolicyManagedRules(DescribeSecurityPolicyManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityPolicyManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage)
+        return self.client.execute(action: "DescribeSecurityPolicyManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询门神规则
     @inlinable
     public func describeSecurityPolicyManagedRules(zoneId: String, entity: String, page: Int64, perPage: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesResponse {
-        try await self.describeSecurityPolicyManagedRules(DescribeSecurityPolicyManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityPolicyManagedRulesRequest(zoneId: zoneId, entity: entity, page: page, perPage: perPage)
+        return try await self.client.execute(action: "DescribeSecurityPolicyManagedRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

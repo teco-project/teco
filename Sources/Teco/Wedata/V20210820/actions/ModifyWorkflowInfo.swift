@@ -117,7 +117,8 @@ extension Wedata {
     /// 更新工作流
     @inlinable
     public func modifyWorkflowInfo(projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWorkflowInfoResponse> {
-        self.modifyWorkflowInfo(ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams)
+        return self.client.execute(action: "ModifyWorkflowInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新工作流【Beta版本】
@@ -126,6 +127,7 @@ extension Wedata {
     /// 更新工作流
     @inlinable
     public func modifyWorkflowInfo(projectId: String, workflowId: String, owner: String? = nil, ownerId: String? = nil, workflowDesc: String? = nil, workflowName: String? = nil, folderId: String? = nil, userGroupId: String? = nil, userGroupName: String? = nil, workflowParams: [ParamInfo]? = nil, generalTaskParams: [GeneralTaskParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWorkflowInfoResponse {
-        try await self.modifyWorkflowInfo(ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifyWorkflowInfoRequest(projectId: projectId, workflowId: workflowId, owner: owner, ownerId: ownerId, workflowDesc: workflowDesc, workflowName: workflowName, folderId: folderId, userGroupId: userGroupId, userGroupName: userGroupName, workflowParams: workflowParams, generalTaskParams: generalTaskParams)
+        return try await self.client.execute(action: "ModifyWorkflowInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

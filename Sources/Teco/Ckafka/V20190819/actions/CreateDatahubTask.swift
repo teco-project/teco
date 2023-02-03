@@ -103,12 +103,14 @@ extension Ckafka {
     /// 创建DIP转储任务
     @inlinable
     public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatahubTaskResponse> {
-        self.createDatahubTask(CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags)
+        return self.client.execute(action: "CreateDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建DIP转储任务
     @inlinable
     public func createDatahubTask(taskName: String, taskType: String, sourceResource: DatahubResource? = nil, targetResource: DatahubResource? = nil, transformParam: TransformParam? = nil, privateLinkParam: PrivateLinkParam? = nil, schemaId: String? = nil, transformsParam: TransformsParam? = nil, taskId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatahubTaskResponse {
-        try await self.createDatahubTask(CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateDatahubTaskRequest(taskName: taskName, taskType: taskType, sourceResource: sourceResource, targetResource: targetResource, transformParam: transformParam, privateLinkParam: privateLinkParam, schemaId: schemaId, transformsParam: transformsParam, taskId: taskId, tags: tags)
+        return try await self.client.execute(action: "CreateDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

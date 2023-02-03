@@ -69,7 +69,8 @@ extension Yunjing {
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
     @inlinable
     public func openProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenProVersionPrepaidResponse> {
-        self.openProVersionPrepaid(OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), region: region, logger: logger, on: eventLoop)
+        let input = OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines)
+        return self.client.execute(action: "OpenProVersionPrepaid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通专业版(包年包月)
@@ -77,6 +78,7 @@ extension Yunjing {
     /// 本接口 (OpenProVersionPrepaid) 用于开通专业版(包年包月)。
     @inlinable
     public func openProVersionPrepaid(chargePrepaid: ChargePrepaid, machines: [ProVersionMachine], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenProVersionPrepaidResponse {
-        try await self.openProVersionPrepaid(OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines), region: region, logger: logger, on: eventLoop)
+        let input = OpenProVersionPrepaidRequest(chargePrepaid: chargePrepaid, machines: machines)
+        return try await self.client.execute(action: "OpenProVersionPrepaid", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

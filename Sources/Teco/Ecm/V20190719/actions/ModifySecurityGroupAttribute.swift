@@ -64,12 +64,14 @@ extension Ecm {
     /// 修改安全组属性
     @inlinable @discardableResult
     public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityGroupAttributeResponse> {
-        self.modifySecurityGroupAttribute(ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription)
+        return self.client.execute(action: "ModifySecurityGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全组属性
     @inlinable @discardableResult
     public func modifySecurityGroupAttribute(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityGroupAttributeResponse {
-        try await self.modifySecurityGroupAttribute(ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityGroupAttributeRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription)
+        return try await self.client.execute(action: "ModifySecurityGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

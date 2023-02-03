@@ -126,7 +126,8 @@ extension Mariadb {
     /// - 不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组
     @inlinable
     public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, viewPrivileges: [ViewPrivileges]? = nil, functionPrivileges: [FunctionPrivilege]? = nil, procedurePrivileges: [ProcedurePrivilege]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegesResponse> {
-        self.modifyAccountPrivileges(ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, viewPrivileges: viewPrivileges, functionPrivileges: functionPrivileges, procedurePrivileges: procedurePrivileges), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, viewPrivileges: viewPrivileges, functionPrivileges: functionPrivileges, procedurePrivileges: procedurePrivileges)
+        return self.client.execute(action: "ModifyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的权限信息
@@ -139,6 +140,7 @@ extension Mariadb {
     /// - 不传该参数表示保留现有权限，如需清除，请在复杂类型Privileges字段传空数组
     @inlinable
     public func modifyAccountPrivileges(instanceId: String, accounts: [Account], globalPrivileges: [String]? = nil, databasePrivileges: [DatabasePrivilege]? = nil, tablePrivileges: [TablePrivilege]? = nil, columnPrivileges: [ColumnPrivilege]? = nil, viewPrivileges: [ViewPrivileges]? = nil, functionPrivileges: [FunctionPrivilege]? = nil, procedurePrivileges: [ProcedurePrivilege]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegesResponse {
-        try await self.modifyAccountPrivileges(ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, viewPrivileges: viewPrivileges, functionPrivileges: functionPrivileges, procedurePrivileges: procedurePrivileges), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountPrivilegesRequest(instanceId: instanceId, accounts: accounts, globalPrivileges: globalPrivileges, databasePrivileges: databasePrivileges, tablePrivileges: tablePrivileges, columnPrivileges: columnPrivileges, viewPrivileges: viewPrivileges, functionPrivileges: functionPrivileges, procedurePrivileges: procedurePrivileges)
+        return try await self.client.execute(action: "ModifyAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

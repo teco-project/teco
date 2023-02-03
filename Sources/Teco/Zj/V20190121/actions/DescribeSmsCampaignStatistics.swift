@@ -63,12 +63,14 @@ extension Zj {
     /// 获取短信超短活动统计数据
     @inlinable
     public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsCampaignStatisticsResponse> {
-        self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license)
+        return self.client.execute(action: "DescribeSmsCampaignStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取短信超短活动统计数据
     @inlinable
     public func describeSmsCampaignStatistics(campaignId: UInt64, license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsCampaignStatisticsResponse {
-        try await self.describeSmsCampaignStatistics(DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmsCampaignStatisticsRequest(campaignId: campaignId, license: license)
+        return try await self.client.execute(action: "DescribeSmsCampaignStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

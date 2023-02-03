@@ -78,7 +78,8 @@ extension Ecm {
     /// 只有状态为RUNNING的实例才可以进行此操作；接口调用成功时，实例会进入REBOOTING状态；重启实例成功时，实例会进入RUNNING状态；支持强制重启，强制重启的效果等同于关闭物理计算机的电源开关再重新启动。强制重启可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常重启时使用。
     @inlinable @discardableResult
     public func rebootInstances(instanceIdSet: [String], forceReboot: Bool? = nil, stopType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RebootInstancesResponse> {
-        self.rebootInstances(RebootInstancesRequest(instanceIdSet: instanceIdSet, forceReboot: forceReboot, stopType: stopType), region: region, logger: logger, on: eventLoop)
+        let input = RebootInstancesRequest(instanceIdSet: instanceIdSet, forceReboot: forceReboot, stopType: stopType)
+        return self.client.execute(action: "RebootInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
@@ -86,6 +87,7 @@ extension Ecm {
     /// 只有状态为RUNNING的实例才可以进行此操作；接口调用成功时，实例会进入REBOOTING状态；重启实例成功时，实例会进入RUNNING状态；支持强制重启，强制重启的效果等同于关闭物理计算机的电源开关再重新启动。强制重启可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常重启时使用。
     @inlinable @discardableResult
     public func rebootInstances(instanceIdSet: [String], forceReboot: Bool? = nil, stopType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RebootInstancesResponse {
-        try await self.rebootInstances(RebootInstancesRequest(instanceIdSet: instanceIdSet, forceReboot: forceReboot, stopType: stopType), region: region, logger: logger, on: eventLoop)
+        let input = RebootInstancesRequest(instanceIdSet: instanceIdSet, forceReboot: forceReboot, stopType: stopType)
+        return try await self.client.execute(action: "RebootInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

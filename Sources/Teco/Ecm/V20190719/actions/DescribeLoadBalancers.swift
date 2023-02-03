@@ -122,7 +122,8 @@ extension Ecm {
     /// 查询负载均衡实例列表。
     @inlinable
     public func describeLoadBalancers(ecmRegion: String? = nil, loadBalancerIds: [String]? = nil, loadBalancerName: String? = nil, loadBalancerVips: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, withBackend: Int64? = nil, vpcId: String? = nil, filters: [Filter]? = nil, securityGroup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancersResponse> {
-        self.describeLoadBalancers(DescribeLoadBalancersRequest(ecmRegion: ecmRegion, loadBalancerIds: loadBalancerIds, loadBalancerName: loadBalancerName, loadBalancerVips: loadBalancerVips, backendPrivateIps: backendPrivateIps, offset: offset, limit: limit, withBackend: withBackend, vpcId: vpcId, filters: filters, securityGroup: securityGroup), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalancersRequest(ecmRegion: ecmRegion, loadBalancerIds: loadBalancerIds, loadBalancerName: loadBalancerName, loadBalancerVips: loadBalancerVips, backendPrivateIps: backendPrivateIps, offset: offset, limit: limit, withBackend: withBackend, vpcId: vpcId, filters: filters, securityGroup: securityGroup)
+        return self.client.execute(action: "DescribeLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡实例列表
@@ -130,6 +131,7 @@ extension Ecm {
     /// 查询负载均衡实例列表。
     @inlinable
     public func describeLoadBalancers(ecmRegion: String? = nil, loadBalancerIds: [String]? = nil, loadBalancerName: String? = nil, loadBalancerVips: [String]? = nil, backendPrivateIps: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, withBackend: Int64? = nil, vpcId: String? = nil, filters: [Filter]? = nil, securityGroup: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancersResponse {
-        try await self.describeLoadBalancers(DescribeLoadBalancersRequest(ecmRegion: ecmRegion, loadBalancerIds: loadBalancerIds, loadBalancerName: loadBalancerName, loadBalancerVips: loadBalancerVips, backendPrivateIps: backendPrivateIps, offset: offset, limit: limit, withBackend: withBackend, vpcId: vpcId, filters: filters, securityGroup: securityGroup), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalancersRequest(ecmRegion: ecmRegion, loadBalancerIds: loadBalancerIds, loadBalancerName: loadBalancerName, loadBalancerVips: loadBalancerVips, backendPrivateIps: backendPrivateIps, offset: offset, limit: limit, withBackend: withBackend, vpcId: vpcId, filters: filters, securityGroup: securityGroup)
+        return try await self.client.execute(action: "DescribeLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

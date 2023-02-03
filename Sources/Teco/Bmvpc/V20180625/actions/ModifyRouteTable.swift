@@ -59,12 +59,14 @@ extension Bmvpc {
     /// 修改路由表
     @inlinable @discardableResult
     public func modifyRouteTable(routeTableId: String, routeTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRouteTableResponse> {
-        self.modifyRouteTable(ModifyRouteTableRequest(routeTableId: routeTableId, routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRouteTableRequest(routeTableId: routeTableId, routeTableName: routeTableName)
+        return self.client.execute(action: "ModifyRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改路由表
     @inlinable @discardableResult
     public func modifyRouteTable(routeTableId: String, routeTableName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRouteTableResponse {
-        try await self.modifyRouteTable(ModifyRouteTableRequest(routeTableId: routeTableId, routeTableName: routeTableName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRouteTableRequest(routeTableId: routeTableId, routeTableName: routeTableName)
+        return try await self.client.execute(action: "ModifyRouteTable", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -80,7 +80,8 @@ extension Asw {
     /// 对状态机的执行历史进行描述.
     @inlinable @discardableResult
     public func describeExecutions(stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecutionsResponse> {
-        self.describeExecutions(DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName)
+        return self.client.execute(action: "DescribeExecutions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询状态机执行列表
@@ -88,6 +89,7 @@ extension Asw {
     /// 对状态机的执行历史进行描述.
     @inlinable @discardableResult
     public func describeExecutions(stateMachineResourceName: String, pageSize: Int64, pageIndex: Int64, filterExecutionStatus: String? = nil, filterExecutionResourceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecutionsResponse {
-        try await self.describeExecutions(DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExecutionsRequest(stateMachineResourceName: stateMachineResourceName, pageSize: pageSize, pageIndex: pageIndex, filterExecutionStatus: filterExecutionStatus, filterExecutionResourceName: filterExecutionResourceName)
+        return try await self.client.execute(action: "DescribeExecutions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

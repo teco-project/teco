@@ -103,7 +103,8 @@ extension Domain {
     /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
     @inlinable
     public func transferInDomainBatch(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransferInDomainBatchResponse> {
-        self.transferInDomainBatch(TransferInDomainBatchRequest(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition), region: region, logger: logger, on: eventLoop)
+        let input = TransferInDomainBatchRequest(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition)
+        return self.client.execute(action: "TransferInDomainBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量域名转入
@@ -111,6 +112,7 @@ extension Domain {
     /// 本接口 ( TransferInDomainBatch ) 用于批量转入域名 。
     @inlinable
     public func transferInDomainBatch(domains: [String], passWords: [String], templateId: String, payMode: Int64, autoRenewFlag: Int64? = nil, lockTransfer: Bool? = nil, updateProhibition: Int64? = nil, transferProhibition: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransferInDomainBatchResponse {
-        try await self.transferInDomainBatch(TransferInDomainBatchRequest(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition), region: region, logger: logger, on: eventLoop)
+        let input = TransferInDomainBatchRequest(domains: domains, passWords: passWords, templateId: templateId, payMode: payMode, autoRenewFlag: autoRenewFlag, lockTransfer: lockTransfer, updateProhibition: updateProhibition, transferProhibition: transferProhibition)
+        return try await self.client.execute(action: "TransferInDomainBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

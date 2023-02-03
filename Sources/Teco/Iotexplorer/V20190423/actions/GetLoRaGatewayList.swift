@@ -79,7 +79,8 @@ extension Iotexplorer {
     /// 获取 LoRa 网关列表接口
     @inlinable
     public func getLoRaGatewayList(isCommunity: Bool, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetLoRaGatewayListResponse> {
-        self.getLoRaGatewayList(GetLoRaGatewayListRequest(isCommunity: isCommunity, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetLoRaGatewayListRequest(isCommunity: isCommunity, offset: offset, limit: limit)
+        return self.client.execute(action: "GetLoRaGatewayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取 LoRa 网关列表
@@ -87,6 +88,7 @@ extension Iotexplorer {
     /// 获取 LoRa 网关列表接口
     @inlinable
     public func getLoRaGatewayList(isCommunity: Bool, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetLoRaGatewayListResponse {
-        try await self.getLoRaGatewayList(GetLoRaGatewayListRequest(isCommunity: isCommunity, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetLoRaGatewayListRequest(isCommunity: isCommunity, offset: offset, limit: limit)
+        return try await self.client.execute(action: "GetLoRaGatewayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

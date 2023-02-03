@@ -99,12 +99,14 @@ extension Iotvideoindustry {
     /// 获取告警列表
     @inlinable
     public func describeWarnings(orderType: Int64, deviceId: String? = nil, warnLevelArray: [Int64]? = nil, warnModeArray: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, dateBegin: String? = nil, dateEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarningsResponse> {
-        self.describeWarnings(DescribeWarningsRequest(orderType: orderType, deviceId: deviceId, warnLevelArray: warnLevelArray, warnModeArray: warnModeArray, offset: offset, limit: limit, dateBegin: dateBegin, dateEnd: dateEnd), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWarningsRequest(orderType: orderType, deviceId: deviceId, warnLevelArray: warnLevelArray, warnModeArray: warnModeArray, offset: offset, limit: limit, dateBegin: dateBegin, dateEnd: dateEnd)
+        return self.client.execute(action: "DescribeWarnings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警列表
     @inlinable
     public func describeWarnings(orderType: Int64, deviceId: String? = nil, warnLevelArray: [Int64]? = nil, warnModeArray: [Int64]? = nil, offset: Int64? = nil, limit: Int64? = nil, dateBegin: String? = nil, dateEnd: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarningsResponse {
-        try await self.describeWarnings(DescribeWarningsRequest(orderType: orderType, deviceId: deviceId, warnLevelArray: warnLevelArray, warnModeArray: warnModeArray, offset: offset, limit: limit, dateBegin: dateBegin, dateEnd: dateEnd), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWarningsRequest(orderType: orderType, deviceId: deviceId, warnLevelArray: warnLevelArray, warnModeArray: warnModeArray, offset: offset, limit: limit, dateBegin: dateBegin, dateEnd: dateEnd)
+        return try await self.client.execute(action: "DescribeWarnings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

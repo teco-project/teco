@@ -66,12 +66,14 @@ extension Cfw {
     /// ip防护状态查询
     @inlinable
     public func describeIPStatusList(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStatusListResponse> {
-        self.describeIPStatusList(DescribeIPStatusListRequest(ipList: ipList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIPStatusListRequest(ipList: ipList)
+        return self.client.execute(action: "DescribeIPStatusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// ip防护状态查询
     @inlinable
     public func describeIPStatusList(ipList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStatusListResponse {
-        try await self.describeIPStatusList(DescribeIPStatusListRequest(ipList: ipList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIPStatusListRequest(ipList: ipList)
+        return try await self.client.execute(action: "DescribeIPStatusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

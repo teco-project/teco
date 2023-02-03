@@ -87,12 +87,14 @@ extension Tbaas {
     /// 下载用户证书
     @inlinable
     public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadUserCertResponse> {
-        self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), region: region, logger: logger, on: eventLoop)
+        let input = DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName)
+        return self.client.execute(action: "DownloadUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载用户证书
     @inlinable
     public func downloadUserCert(module: String, operation: String, certId: UInt64, certDn: String, clusterId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadUserCertResponse {
-        try await self.downloadUserCert(DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName), region: region, logger: logger, on: eventLoop)
+        let input = DownloadUserCertRequest(module: module, operation: operation, certId: certId, certDn: certDn, clusterId: clusterId, groupName: groupName)
+        return try await self.client.execute(action: "DownloadUserCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

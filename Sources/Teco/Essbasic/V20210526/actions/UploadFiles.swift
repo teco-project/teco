@@ -101,7 +101,8 @@ extension Essbasic {
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
     @inlinable
     public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFilesResponse> {
-        self.uploadFiles(UploadFilesRequest(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = UploadFilesRequest(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`)
+        return self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件上传
@@ -113,6 +114,7 @@ extension Essbasic {
     /// httpProfile.setEndpoint("file.test.ess.tencent.cn");
     @inlinable
     public func uploadFiles(agent: Agent, businessType: String, fileInfos: [UploadFile]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
-        try await self.uploadFiles(UploadFilesRequest(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = UploadFilesRequest(agent: agent, businessType: businessType, fileInfos: fileInfos, operator: `operator`)
+        return try await self.client.execute(action: "UploadFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

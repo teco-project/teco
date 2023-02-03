@@ -73,7 +73,8 @@ extension Gpm {
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchingProgress(matchTicketIds: [MTicket], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchingProgressResponse> {
-        self.describeMatchingProgress(DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds)
+        return self.client.execute(action: "DescribeMatchingProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询匹配进度
@@ -82,6 +83,7 @@ extension Gpm {
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchingProgress(matchTicketIds: [MTicket], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchingProgressResponse {
-        try await self.describeMatchingProgress(DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMatchingProgressRequest(matchTicketIds: matchTicketIds)
+        return try await self.client.execute(action: "DescribeMatchingProgress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

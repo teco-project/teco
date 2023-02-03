@@ -90,7 +90,8 @@ extension Kms {
     /// 用于查询该用户是否已开通KMS服务
     @inlinable
     public func getServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
-        self.getServiceStatus(GetServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetServiceStatusRequest()
+        return self.client.execute(action: "GetServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务状态
@@ -98,6 +99,7 @@ extension Kms {
     /// 用于查询该用户是否已开通KMS服务
     @inlinable
     public func getServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
-        try await self.getServiceStatus(GetServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetServiceStatusRequest()
+        return try await self.client.execute(action: "GetServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

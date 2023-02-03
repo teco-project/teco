@@ -89,12 +89,14 @@ extension Cls {
     /// 修改采集规则配置
     @inlinable @discardableResult
     public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyConfigResponse> {
-        self.modifyConfig(ModifyConfigRequest(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule), region: region, logger: logger, on: eventLoop)
+        let input = ModifyConfigRequest(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule)
+        return self.client.execute(action: "ModifyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改采集规则配置
     @inlinable @discardableResult
     public func modifyConfig(configId: String, name: String? = nil, path: String? = nil, logType: String? = nil, extractRule: ExtractRuleInfo? = nil, excludePaths: [ExcludePathInfo]? = nil, output: String? = nil, userDefineRule: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigResponse {
-        try await self.modifyConfig(ModifyConfigRequest(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule), region: region, logger: logger, on: eventLoop)
+        let input = ModifyConfigRequest(configId: configId, name: name, path: path, logType: logType, extractRule: extractRule, excludePaths: excludePaths, output: output, userDefineRule: userDefineRule)
+        return try await self.client.execute(action: "ModifyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

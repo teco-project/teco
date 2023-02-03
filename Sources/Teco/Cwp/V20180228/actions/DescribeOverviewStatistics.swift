@@ -80,7 +80,8 @@ extension Cwp {
     /// 获取概览统计数据。
     @inlinable
     public func describeOverviewStatistics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewStatisticsResponse> {
-        self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOverviewStatisticsRequest()
+        return self.client.execute(action: "DescribeOverviewStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取概览统计数据
@@ -88,6 +89,7 @@ extension Cwp {
     /// 获取概览统计数据。
     @inlinable
     public func describeOverviewStatistics(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewStatisticsResponse {
-        try await self.describeOverviewStatistics(DescribeOverviewStatisticsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOverviewStatisticsRequest()
+        return try await self.client.execute(action: "DescribeOverviewStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

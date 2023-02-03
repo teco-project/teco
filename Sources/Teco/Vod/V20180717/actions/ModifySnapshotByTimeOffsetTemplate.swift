@@ -118,7 +118,8 @@ extension Vod {
     /// 修改用户自定义指定时间点截图模板。
     @inlinable @discardableResult
     public func modifySnapshotByTimeOffsetTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotByTimeOffsetTemplateResponse> {
-        self.modifySnapshotByTimeOffsetTemplate(ModifySnapshotByTimeOffsetTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
+        let input = ModifySnapshotByTimeOffsetTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType)
+        return self.client.execute(action: "ModifySnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改指定时间点截图模板
@@ -126,6 +127,7 @@ extension Vod {
     /// 修改用户自定义指定时间点截图模板。
     @inlinable @discardableResult
     public func modifySnapshotByTimeOffsetTemplate(definition: UInt64, subAppId: UInt64? = nil, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotByTimeOffsetTemplateResponse {
-        try await self.modifySnapshotByTimeOffsetTemplate(ModifySnapshotByTimeOffsetTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
+        let input = ModifySnapshotByTimeOffsetTemplateRequest(definition: definition, subAppId: subAppId, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, format: format, comment: comment, fillType: fillType)
+        return try await self.client.execute(action: "ModifySnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

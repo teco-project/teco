@@ -85,7 +85,8 @@ extension Mps {
     /// 批量查询媒体输入流的配置信息。
     @inlinable
     public func describeStreamLinkFlows(pageNum: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowsResponse> {
-        self.describeStreamLinkFlows(DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize)
+        return self.client.execute(action: "DescribeStreamLinkFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量查询媒体输入流
@@ -93,6 +94,7 @@ extension Mps {
     /// 批量查询媒体输入流的配置信息。
     @inlinable
     public func describeStreamLinkFlows(pageNum: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowsResponse {
-        try await self.describeStreamLinkFlows(DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamLinkFlowsRequest(pageNum: pageNum, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeStreamLinkFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

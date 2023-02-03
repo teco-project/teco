@@ -78,7 +78,8 @@ extension Cls {
     /// 本接口用于获取日志主题列表，支持分页
     @inlinable
     public func describeTopics(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopicsResponse> {
-        self.describeTopics(DescribeTopicsRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopicsRequest(filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志主题列表
@@ -86,6 +87,7 @@ extension Cls {
     /// 本接口用于获取日志主题列表，支持分页
     @inlinable
     public func describeTopics(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopicsResponse {
-        try await self.describeTopics(DescribeTopicsRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopicsRequest(filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeTopics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -82,7 +82,8 @@ extension Yunjing {
     /// 本接口 (DescribeComponentInfo) 用于获取组件信息数据。
     @inlinable
     public func describeComponentInfo(componentId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComponentInfoResponse> {
-        self.describeComponentInfo(DescribeComponentInfoRequest(componentId: componentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeComponentInfoRequest(componentId: componentId)
+        return self.client.execute(action: "DescribeComponentInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取组件信息
@@ -90,6 +91,7 @@ extension Yunjing {
     /// 本接口 (DescribeComponentInfo) 用于获取组件信息数据。
     @inlinable
     public func describeComponentInfo(componentId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComponentInfoResponse {
-        try await self.describeComponentInfo(DescribeComponentInfoRequest(componentId: componentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeComponentInfoRequest(componentId: componentId)
+        return try await self.client.execute(action: "DescribeComponentInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

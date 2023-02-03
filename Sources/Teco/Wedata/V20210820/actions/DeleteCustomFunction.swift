@@ -74,12 +74,14 @@ extension Wedata {
     /// 删除用户自定义函数
     @inlinable
     public func deleteCustomFunction(clusterIdentifier: String, functionId: String, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomFunctionResponse> {
-        self.deleteCustomFunction(DeleteCustomFunctionRequest(clusterIdentifier: clusterIdentifier, functionId: functionId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCustomFunctionRequest(clusterIdentifier: clusterIdentifier, functionId: functionId, projectId: projectId)
+        return self.client.execute(action: "DeleteCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户自定义函数
     @inlinable
     public func deleteCustomFunction(clusterIdentifier: String, functionId: String, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomFunctionResponse {
-        try await self.deleteCustomFunction(DeleteCustomFunctionRequest(clusterIdentifier: clusterIdentifier, functionId: functionId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCustomFunctionRequest(clusterIdentifier: clusterIdentifier, functionId: functionId, projectId: projectId)
+        return try await self.client.execute(action: "DeleteCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

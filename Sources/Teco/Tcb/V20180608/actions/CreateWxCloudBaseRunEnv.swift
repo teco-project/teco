@@ -94,12 +94,14 @@ extension Tcb {
     /// 创建微信云托管
     @inlinable
     public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWxCloudBaseRunEnvResponse> {
-        self.createWxCloudBaseRunEnv(CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke), region: region, logger: logger, on: eventLoop)
+        let input = CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke)
+        return self.client.execute(action: "CreateWxCloudBaseRunEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建微信云托管
     @inlinable
     public func createWxCloudBaseRunEnv(wxAppId: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, isOpenCloudInvoke: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWxCloudBaseRunEnvResponse {
-        try await self.createWxCloudBaseRunEnv(CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke), region: region, logger: logger, on: eventLoop)
+        let input = CreateWxCloudBaseRunEnvRequest(wxAppId: wxAppId, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, isOpenCloudInvoke: isOpenCloudInvoke)
+        return try await self.client.execute(action: "CreateWxCloudBaseRunEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

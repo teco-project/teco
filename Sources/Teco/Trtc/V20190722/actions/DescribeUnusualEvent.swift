@@ -88,7 +88,8 @@ extension Trtc {
     /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
     @inlinable
     public func describeUnusualEvent(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnusualEventResponse> {
-        self.describeUnusualEvent(DescribeUnusualEventRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUnusualEventRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId)
+        return self.client.execute(action: "DescribeUnusualEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询异常体验事件
@@ -97,6 +98,7 @@ extension Trtc {
     /// 异常体验ID映射见：https://cloud.tencent.com/document/product/647/44916
     @inlinable
     public func describeUnusualEvent(sdkAppId: UInt64, startTime: UInt64, endTime: UInt64, roomId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnusualEventResponse {
-        try await self.describeUnusualEvent(DescribeUnusualEventRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUnusualEventRequest(sdkAppId: sdkAppId, startTime: startTime, endTime: endTime, roomId: roomId)
+        return try await self.client.execute(action: "DescribeUnusualEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

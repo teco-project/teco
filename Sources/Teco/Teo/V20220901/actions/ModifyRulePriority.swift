@@ -59,12 +59,14 @@ extension Teo {
     /// 修改规则引擎规则优先级
     @inlinable @discardableResult
     public func modifyRulePriority(zoneId: String, ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRulePriorityResponse> {
-        self.modifyRulePriority(ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds)
+        return self.client.execute(action: "ModifyRulePriority", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改规则引擎规则优先级
     @inlinable @discardableResult
     public func modifyRulePriority(zoneId: String, ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRulePriorityResponse {
-        try await self.modifyRulePriority(ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRulePriorityRequest(zoneId: zoneId, ruleIds: ruleIds)
+        return try await self.client.execute(action: "ModifyRulePriority", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

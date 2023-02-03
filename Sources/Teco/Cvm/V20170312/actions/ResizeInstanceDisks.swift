@@ -98,7 +98,8 @@ extension Cvm {
     /// * 如果是系统盘，目前只支持扩容，不支持缩容。
     @inlinable @discardableResult
     public func resizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, systemDisk: SystemDisk? = nil, resizeOnline: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResizeInstanceDisksResponse> {
-        self.resizeInstanceDisks(ResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop, systemDisk: systemDisk, resizeOnline: resizeOnline), region: region, logger: logger, on: eventLoop)
+        let input = ResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop, systemDisk: systemDisk, resizeOnline: resizeOnline)
+        return self.client.execute(action: "ResizeInstanceDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 扩容实例磁盘
@@ -112,6 +113,7 @@ extension Cvm {
     /// * 如果是系统盘，目前只支持扩容，不支持缩容。
     @inlinable @discardableResult
     public func resizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, systemDisk: SystemDisk? = nil, resizeOnline: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResizeInstanceDisksResponse {
-        try await self.resizeInstanceDisks(ResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop, systemDisk: systemDisk, resizeOnline: resizeOnline), region: region, logger: logger, on: eventLoop)
+        let input = ResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop, systemDisk: systemDisk, resizeOnline: resizeOnline)
+        return try await self.client.execute(action: "ResizeInstanceDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

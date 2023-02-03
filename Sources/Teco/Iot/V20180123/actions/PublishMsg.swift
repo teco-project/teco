@@ -70,7 +70,8 @@ extension Iot {
     /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
     @inlinable @discardableResult
     public func publishMsg(topic: String, message: String, qos: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishMsgResponse> {
-        self.publishMsg(PublishMsgRequest(topic: topic, message: message, qos: qos), region: region, logger: logger, on: eventLoop)
+        let input = PublishMsgRequest(topic: topic, message: message, qos: qos)
+        return self.client.execute(action: "PublishMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 向Topic发布消息
@@ -78,6 +79,7 @@ extension Iot {
     /// 提供向指定的Topic发布消息的能力，常用于向设备下发控制指令。该接口只适用于产品版本为“基础版”类型的产品，使用高级版的产品需使用“下发设备控制指令”接口
     @inlinable @discardableResult
     public func publishMsg(topic: String, message: String, qos: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishMsgResponse {
-        try await self.publishMsg(PublishMsgRequest(topic: topic, message: message, qos: qos), region: region, logger: logger, on: eventLoop)
+        let input = PublishMsgRequest(topic: topic, message: message, qos: qos)
+        return try await self.client.execute(action: "PublishMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

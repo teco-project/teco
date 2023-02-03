@@ -64,12 +64,14 @@ extension Monitor {
     /// 修改 Prometheus 实例相关属性
     @inlinable @discardableResult
     public func modifyPrometheusInstanceAttributes(instanceName: String, instanceId: String, dataRetentionTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrometheusInstanceAttributesResponse> {
-        self.modifyPrometheusInstanceAttributes(ModifyPrometheusInstanceAttributesRequest(instanceName: instanceName, instanceId: instanceId, dataRetentionTime: dataRetentionTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPrometheusInstanceAttributesRequest(instanceName: instanceName, instanceId: instanceId, dataRetentionTime: dataRetentionTime)
+        return self.client.execute(action: "ModifyPrometheusInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改 Prometheus 实例相关属性
     @inlinable @discardableResult
     public func modifyPrometheusInstanceAttributes(instanceName: String, instanceId: String, dataRetentionTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrometheusInstanceAttributesResponse {
-        try await self.modifyPrometheusInstanceAttributes(ModifyPrometheusInstanceAttributesRequest(instanceName: instanceName, instanceId: instanceId, dataRetentionTime: dataRetentionTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPrometheusInstanceAttributesRequest(instanceName: instanceName, instanceId: instanceId, dataRetentionTime: dataRetentionTime)
+        return try await self.client.execute(action: "ModifyPrometheusInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

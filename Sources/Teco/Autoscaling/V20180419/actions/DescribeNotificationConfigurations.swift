@@ -95,7 +95,8 @@ extension As {
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
     public func describeNotificationConfigurations(autoScalingNotificationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotificationConfigurationsResponse> {
-        self.describeNotificationConfigurations(DescribeNotificationConfigurationsRequest(autoScalingNotificationIds: autoScalingNotificationIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNotificationConfigurationsRequest(autoScalingNotificationIds: autoScalingNotificationIds, filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeNotificationConfigurations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通知
@@ -106,6 +107,7 @@ extension As {
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
     public func describeNotificationConfigurations(autoScalingNotificationIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotificationConfigurationsResponse {
-        try await self.describeNotificationConfigurations(DescribeNotificationConfigurationsRequest(autoScalingNotificationIds: autoScalingNotificationIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNotificationConfigurationsRequest(autoScalingNotificationIds: autoScalingNotificationIds, filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeNotificationConfigurations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

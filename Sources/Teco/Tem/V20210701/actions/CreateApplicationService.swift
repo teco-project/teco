@@ -74,12 +74,14 @@ extension Tem {
     /// 新增访问方式
     @inlinable
     public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationServiceResponse> {
-        self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service)
+        return self.client.execute(action: "CreateApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增访问方式
     @inlinable
     public func createApplicationService(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, service: ServicePortMapping? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationServiceResponse {
-        try await self.createApplicationService(CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationServiceRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, service: service)
+        return try await self.client.execute(action: "CreateApplicationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

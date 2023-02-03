@@ -98,7 +98,8 @@ extension Partners {
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
     public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentBillsResponse> {
-        self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeAgentBills", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询业务明细
@@ -106,6 +107,7 @@ extension Partners {
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
     public func describeAgentBills(settleMonth: String, clientUin: String? = nil, payMode: String? = nil, orderId: String? = nil, clientRemark: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentBillsResponse {
-        try await self.describeAgentBills(DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAgentBillsRequest(settleMonth: settleMonth, clientUin: clientUin, payMode: payMode, orderId: orderId, clientRemark: clientRemark, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeAgentBills", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

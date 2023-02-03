@@ -89,12 +89,14 @@ extension Pts {
     /// 查询指标矩阵
     @inlinable
     public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSampleMatrixQueryResponse> {
-        self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy)
+        return self.client.execute(action: "DescribeSampleMatrixQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指标矩阵
     @inlinable
     public func describeSampleMatrixQuery(jobId: String, projectId: String, scenarioId: String, metric: String, aggregation: String, filters: [Filter]? = nil, groupBy: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSampleMatrixQueryResponse {
-        try await self.describeSampleMatrixQuery(DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSampleMatrixQueryRequest(jobId: jobId, projectId: projectId, scenarioId: scenarioId, metric: metric, aggregation: aggregation, filters: filters, groupBy: groupBy)
+        return try await self.client.execute(action: "DescribeSampleMatrixQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -50,12 +50,14 @@ extension Waf {
     /// 描述WAF自动封禁模块详情
     @inlinable
     public func describeWafAutoDenyStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWafAutoDenyStatusResponse> {
-        self.describeWafAutoDenyStatus(DescribeWafAutoDenyStatusRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWafAutoDenyStatusRequest()
+        return self.client.execute(action: "DescribeWafAutoDenyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述WAF自动封禁模块详情
     @inlinable
     public func describeWafAutoDenyStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWafAutoDenyStatusResponse {
-        try await self.describeWafAutoDenyStatus(DescribeWafAutoDenyStatusRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWafAutoDenyStatusRequest()
+        return try await self.client.execute(action: "DescribeWafAutoDenyStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

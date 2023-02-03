@@ -94,7 +94,8 @@ extension Mmps {
     /// 创建小程序安全深度诊断任务
     @inlinable
     public func createFlySecMiniAppProfessionalScanTask(miniAppID: String, miniAppName: String, mode: Int64, corpName: String, mobile: String, email: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlySecMiniAppProfessionalScanTaskResponse> {
-        self.createFlySecMiniAppProfessionalScanTask(CreateFlySecMiniAppProfessionalScanTaskRequest(miniAppID: miniAppID, miniAppName: miniAppName, mode: mode, corpName: corpName, mobile: mobile, email: email, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlySecMiniAppProfessionalScanTaskRequest(miniAppID: miniAppID, miniAppName: miniAppName, mode: mode, corpName: corpName, mobile: mobile, email: email, remark: remark)
+        return self.client.execute(action: "CreateFlySecMiniAppProfessionalScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交深度诊断任务
@@ -102,6 +103,7 @@ extension Mmps {
     /// 创建小程序安全深度诊断任务
     @inlinable
     public func createFlySecMiniAppProfessionalScanTask(miniAppID: String, miniAppName: String, mode: Int64, corpName: String, mobile: String, email: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppProfessionalScanTaskResponse {
-        try await self.createFlySecMiniAppProfessionalScanTask(CreateFlySecMiniAppProfessionalScanTaskRequest(miniAppID: miniAppID, miniAppName: miniAppName, mode: mode, corpName: corpName, mobile: mobile, email: email, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlySecMiniAppProfessionalScanTaskRequest(miniAppID: miniAppID, miniAppName: miniAppName, mode: mode, corpName: corpName, mobile: mobile, email: email, remark: remark)
+        return try await self.client.execute(action: "CreateFlySecMiniAppProfessionalScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

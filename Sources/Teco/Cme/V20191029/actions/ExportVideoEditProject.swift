@@ -109,7 +109,8 @@ extension Cme {
     /// 导出视频编辑项目，支持指定输出的模板。
     @inlinable
     public func exportVideoEditProject(platform: String, projectId: String, definition: UInt64, exportDestination: String, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, exportExtensionArgs: VideoExportExtensionArgs? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVideoEditProjectResponse> {
-        self.exportVideoEditProject(ExportVideoEditProjectRequest(platform: platform, projectId: projectId, definition: definition, exportDestination: exportDestination, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, exportExtensionArgs: exportExtensionArgs, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = ExportVideoEditProjectRequest(platform: platform, projectId: projectId, definition: definition, exportDestination: exportDestination, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, exportExtensionArgs: exportExtensionArgs, operator: `operator`)
+        return self.client.execute(action: "ExportVideoEditProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出视频编辑项目
@@ -117,6 +118,7 @@ extension Cme {
     /// 导出视频编辑项目，支持指定输出的模板。
     @inlinable
     public func exportVideoEditProject(platform: String, projectId: String, definition: UInt64, exportDestination: String, coverData: String? = nil, cmeExportInfo: CMEExportInfo? = nil, vodExportInfo: VODExportInfo? = nil, exportExtensionArgs: VideoExportExtensionArgs? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVideoEditProjectResponse {
-        try await self.exportVideoEditProject(ExportVideoEditProjectRequest(platform: platform, projectId: projectId, definition: definition, exportDestination: exportDestination, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, exportExtensionArgs: exportExtensionArgs, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = ExportVideoEditProjectRequest(platform: platform, projectId: projectId, definition: definition, exportDestination: exportDestination, coverData: coverData, cmeExportInfo: cmeExportInfo, vodExportInfo: vodExportInfo, exportExtensionArgs: exportExtensionArgs, operator: `operator`)
+        return try await self.client.execute(action: "ExportVideoEditProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

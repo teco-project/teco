@@ -65,7 +65,8 @@ extension Cwp {
     /// 查询基线基础信息列表
     @inlinable
     public func describeBaselineBasicInfo(baselineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineBasicInfoResponse> {
-        self.describeBaselineBasicInfo(DescribeBaselineBasicInfoRequest(baselineName: baselineName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselineBasicInfoRequest(baselineName: baselineName)
+        return self.client.execute(action: "DescribeBaselineBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基线基础信息
@@ -73,6 +74,7 @@ extension Cwp {
     /// 查询基线基础信息列表
     @inlinable
     public func describeBaselineBasicInfo(baselineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineBasicInfoResponse {
-        try await self.describeBaselineBasicInfo(DescribeBaselineBasicInfoRequest(baselineName: baselineName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselineBasicInfoRequest(baselineName: baselineName)
+        return try await self.client.execute(action: "DescribeBaselineBasicInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -71,7 +71,8 @@ extension Vod {
     ///   2. 通过 DescribeStorageRegions 接口可以查询到所有存储地域及已经开通的地域。
     @inlinable @discardableResult
     public func createStorageRegion(storageRegion: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStorageRegionResponse> {
-        self.createStorageRegion(CreateStorageRegionRequest(storageRegion: storageRegion, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = CreateStorageRegionRequest(storageRegion: storageRegion, subAppId: subAppId)
+        return self.client.execute(action: "CreateStorageRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通某地域的存储
@@ -81,6 +82,7 @@ extension Vod {
     ///   2. 通过 DescribeStorageRegions 接口可以查询到所有存储地域及已经开通的地域。
     @inlinable @discardableResult
     public func createStorageRegion(storageRegion: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStorageRegionResponse {
-        try await self.createStorageRegion(CreateStorageRegionRequest(storageRegion: storageRegion, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = CreateStorageRegionRequest(storageRegion: storageRegion, subAppId: subAppId)
+        return try await self.client.execute(action: "CreateStorageRegion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

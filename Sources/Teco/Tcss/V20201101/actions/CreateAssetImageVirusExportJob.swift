@@ -88,12 +88,14 @@ extension Tcss {
     /// 创建本地镜像木马列表导出任务
     @inlinable
     public func createAssetImageVirusExportJob(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAssetImageVirusExportJobResponse> {
-        self.createAssetImageVirusExportJob(CreateAssetImageVirusExportJobRequest(exportField: exportField, imageID: imageID, filters: filters, limit: limit, offset: offset, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = CreateAssetImageVirusExportJobRequest(exportField: exportField, imageID: imageID, filters: filters, limit: limit, offset: offset, by: by, order: order)
+        return self.client.execute(action: "CreateAssetImageVirusExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建本地镜像木马列表导出任务
     @inlinable
     public func createAssetImageVirusExportJob(exportField: [String], imageID: String, filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAssetImageVirusExportJobResponse {
-        try await self.createAssetImageVirusExportJob(CreateAssetImageVirusExportJobRequest(exportField: exportField, imageID: imageID, filters: filters, limit: limit, offset: offset, by: by, order: order), region: region, logger: logger, on: eventLoop)
+        let input = CreateAssetImageVirusExportJobRequest(exportField: exportField, imageID: imageID, filters: filters, limit: limit, offset: offset, by: by, order: order)
+        return try await self.client.execute(action: "CreateAssetImageVirusExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

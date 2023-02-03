@@ -68,12 +68,14 @@ extension Tcss {
     /// 创建k8sapi异常事件规则
     @inlinable
     public func createK8sApiAbnormalRuleInfo(ruleInfo: K8sApiAbnormalRuleInfo, copySrcRuleID: String? = nil, eventID: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateK8sApiAbnormalRuleInfoResponse> {
-        self.createK8sApiAbnormalRuleInfo(CreateK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo, copySrcRuleID: copySrcRuleID, eventID: eventID), region: region, logger: logger, on: eventLoop)
+        let input = CreateK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo, copySrcRuleID: copySrcRuleID, eventID: eventID)
+        return self.client.execute(action: "CreateK8sApiAbnormalRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建k8sapi异常事件规则
     @inlinable
     public func createK8sApiAbnormalRuleInfo(ruleInfo: K8sApiAbnormalRuleInfo, copySrcRuleID: String? = nil, eventID: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateK8sApiAbnormalRuleInfoResponse {
-        try await self.createK8sApiAbnormalRuleInfo(CreateK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo, copySrcRuleID: copySrcRuleID, eventID: eventID), region: region, logger: logger, on: eventLoop)
+        let input = CreateK8sApiAbnormalRuleInfoRequest(ruleInfo: ruleInfo, copySrcRuleID: copySrcRuleID, eventID: eventID)
+        return try await self.client.execute(action: "CreateK8sApiAbnormalRuleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

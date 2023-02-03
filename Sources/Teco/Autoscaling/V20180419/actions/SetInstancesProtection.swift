@@ -73,7 +73,8 @@ extension As {
     /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
     @inlinable @discardableResult
     public func setInstancesProtection(autoScalingGroupId: String, instanceIds: [String], protectedFromScaleIn: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetInstancesProtectionResponse> {
-        self.setInstancesProtection(SetInstancesProtectionRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), region: region, logger: logger, on: eventLoop)
+        let input = SetInstancesProtectionRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn)
+        return self.client.execute(action: "SetInstancesProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置实例保护
@@ -82,6 +83,7 @@ extension As {
     /// 实例设置保护之后，当发生不健康替换、报警策略、期望值变更等触发缩容时，将不对此实例缩容操作。
     @inlinable @discardableResult
     public func setInstancesProtection(autoScalingGroupId: String, instanceIds: [String], protectedFromScaleIn: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetInstancesProtectionResponse {
-        try await self.setInstancesProtection(SetInstancesProtectionRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn), region: region, logger: logger, on: eventLoop)
+        let input = SetInstancesProtectionRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds, protectedFromScaleIn: protectedFromScaleIn)
+        return try await self.client.execute(action: "SetInstancesProtection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

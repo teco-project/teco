@@ -89,7 +89,8 @@ extension Sqlserver {
     /// 本接口（ModifyBackupMigration）用于修改备份导入任务。
     @inlinable
     public func modifyBackupMigration(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupMigrationResponse> {
-        self.modifyBackupMigration(ModifyBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles)
+        return self.client.execute(action: "ModifyBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改备份导入任务
@@ -97,6 +98,7 @@ extension Sqlserver {
     /// 本接口（ModifyBackupMigration）用于修改备份导入任务。
     @inlinable
     public func modifyBackupMigration(instanceId: String, backupMigrationId: String, migrationName: String? = nil, recoveryType: String? = nil, uploadType: String? = nil, backupFiles: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupMigrationResponse {
-        try await self.modifyBackupMigration(ModifyBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId, migrationName: migrationName, recoveryType: recoveryType, uploadType: uploadType, backupFiles: backupFiles)
+        return try await self.client.execute(action: "ModifyBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

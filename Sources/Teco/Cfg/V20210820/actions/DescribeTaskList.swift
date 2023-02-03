@@ -97,12 +97,14 @@ extension Cfg {
     /// 查询任务列表
     @inlinable
     public func describeTaskList(limit: Int64, offset: Int64, taskTitle: String? = nil, taskTag: [String]? = nil, taskStatus: Int64? = nil, taskStartTime: String? = nil, taskEndTime: String? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskListResponse> {
-        self.describeTaskList(DescribeTaskListRequest(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskListRequest(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags)
+        return self.client.execute(action: "DescribeTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表
     @inlinable
     public func describeTaskList(limit: Int64, offset: Int64, taskTitle: String? = nil, taskTag: [String]? = nil, taskStatus: Int64? = nil, taskStartTime: String? = nil, taskEndTime: String? = nil, tags: [TagWithDescribe]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskListResponse {
-        try await self.describeTaskList(DescribeTaskListRequest(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskListRequest(limit: limit, offset: offset, taskTitle: taskTitle, taskTag: taskTag, taskStatus: taskStatus, taskStartTime: taskStartTime, taskEndTime: taskEndTime, tags: tags)
+        return try await self.client.execute(action: "DescribeTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

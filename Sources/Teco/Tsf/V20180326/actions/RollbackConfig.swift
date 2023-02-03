@@ -63,12 +63,14 @@ extension Tsf {
     /// 回滚配置
     @inlinable
     public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackConfigResponse> {
-        self.rollbackConfig(RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
+        let input = RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc)
+        return self.client.execute(action: "RollbackConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回滚配置
     @inlinable
     public func rollbackConfig(configReleaseLogId: String, releaseDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackConfigResponse {
-        try await self.rollbackConfig(RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc), region: region, logger: logger, on: eventLoop)
+        let input = RollbackConfigRequest(configReleaseLogId: configReleaseLogId, releaseDesc: releaseDesc)
+        return try await self.client.execute(action: "RollbackConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

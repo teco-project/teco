@@ -92,12 +92,14 @@ extension Tione {
     /// 查询Notebook实例列表
     @inlinable
     public func describeNotebookInstances(offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstancesResponse> {
-        self.describeNotebookInstances(DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy)
+        return self.client.execute(action: "DescribeNotebookInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Notebook实例列表
     @inlinable
     public func describeNotebookInstances(offset: UInt64? = nil, limit: UInt64? = nil, sortOrder: String? = nil, filters: [Filter]? = nil, sortBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstancesResponse {
-        try await self.describeNotebookInstances(DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNotebookInstancesRequest(offset: offset, limit: limit, sortOrder: sortOrder, filters: filters, sortBy: sortBy)
+        return try await self.client.execute(action: "DescribeNotebookInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

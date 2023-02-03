@@ -115,7 +115,8 @@ extension Cpdp {
     /// 子商户余额查询
     @inlinable
     public func queryBalance(midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBalanceResponse> {
-        self.queryBalance(QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment)
+        return self.client.execute(action: "QueryBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-余额查询
@@ -123,6 +124,7 @@ extension Cpdp {
     /// 子商户余额查询
     @inlinable
     public func queryBalance(midasAppId: String, subAppId: String, queryFlag: String, pageOffset: String, midasSecretId: String, midasSignature: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBalanceResponse {
-        try await self.queryBalance(QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryBalanceRequest(midasAppId: midasAppId, subAppId: subAppId, queryFlag: queryFlag, pageOffset: pageOffset, midasSecretId: midasSecretId, midasSignature: midasSignature, midasEnvironment: midasEnvironment)
+        return try await self.client.execute(action: "QueryBalance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

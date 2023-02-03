@@ -109,12 +109,14 @@ extension Cpdp {
     /// 务工卡-生成授权令牌
     @inlinable
     public func createPayRollToken(openId: String, subMerchantId: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRollTokenResponse> {
-        self.createPayRollToken(CreatePayRollTokenRequest(openId: openId, subMerchantId: subMerchantId, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), region: region, logger: logger, on: eventLoop)
+        let input = CreatePayRollTokenRequest(openId: openId, subMerchantId: subMerchantId, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId)
+        return self.client.execute(action: "CreatePayRollToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 务工卡-生成授权令牌
     @inlinable
     public func createPayRollToken(openId: String, subMerchantId: String, userName: String, idNo: String, employmentType: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRollTokenResponse {
-        try await self.createPayRollToken(CreatePayRollTokenRequest(openId: openId, subMerchantId: subMerchantId, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), region: region, logger: logger, on: eventLoop)
+        let input = CreatePayRollTokenRequest(openId: openId, subMerchantId: subMerchantId, userName: userName, idNo: idNo, employmentType: employmentType, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId)
+        return try await self.client.execute(action: "CreatePayRollToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

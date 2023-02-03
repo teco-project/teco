@@ -78,7 +78,8 @@ extension Dcdb {
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
     @inlinable
     public func describeDCDBInstanceNodeInfo(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBInstanceNodeInfoResponse> {
-        self.describeDCDBInstanceNodeInfo(DescribeDCDBInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDCDBInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeDCDBInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例节点信息
@@ -86,6 +87,7 @@ extension Dcdb {
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
     @inlinable
     public func describeDCDBInstanceNodeInfo(instanceId: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBInstanceNodeInfoResponse {
-        try await self.describeDCDBInstanceNodeInfo(DescribeDCDBInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDCDBInstanceNodeInfoRequest(instanceId: instanceId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeDCDBInstanceNodeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

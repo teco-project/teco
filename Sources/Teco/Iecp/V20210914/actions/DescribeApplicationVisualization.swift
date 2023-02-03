@@ -109,12 +109,14 @@ extension Iecp {
     /// 获取应用模板可视化配置信息
     @inlinable
     public func describeApplicationVisualization(applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationVisualizationResponse> {
-        self.describeApplicationVisualization(DescribeApplicationVisualizationRequest(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationVisualizationRequest(applicationId: applicationId)
+        return self.client.execute(action: "DescribeApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用模板可视化配置信息
     @inlinable
     public func describeApplicationVisualization(applicationId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationVisualizationResponse {
-        try await self.describeApplicationVisualization(DescribeApplicationVisualizationRequest(applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationVisualizationRequest(applicationId: applicationId)
+        return try await self.client.execute(action: "DescribeApplicationVisualization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

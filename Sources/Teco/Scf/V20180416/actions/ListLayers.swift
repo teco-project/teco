@@ -83,7 +83,8 @@ extension Scf {
     /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
     @inlinable
     public func listLayers(compatibleRuntime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLayersResponse> {
-        self.listLayers(ListLayersRequest(compatibleRuntime: compatibleRuntime, offset: offset, limit: limit, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
+        let input = ListLayersRequest(compatibleRuntime: compatibleRuntime, offset: offset, limit: limit, searchKey: searchKey)
+        return self.client.execute(action: "ListLayers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 返回层列表
@@ -91,6 +92,7 @@ extension Scf {
     /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
     @inlinable
     public func listLayers(compatibleRuntime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLayersResponse {
-        try await self.listLayers(ListLayersRequest(compatibleRuntime: compatibleRuntime, offset: offset, limit: limit, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
+        let input = ListLayersRequest(compatibleRuntime: compatibleRuntime, offset: offset, limit: limit, searchKey: searchKey)
+        return try await self.client.execute(action: "ListLayers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

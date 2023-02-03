@@ -92,7 +92,8 @@ extension Tic {
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
     @inlinable
     public func describeStackEvent(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackEventResponse> {
-        self.describeStackEvent(DescribeStackEventRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStackEventRequest(eventId: eventId)
+        return self.client.execute(action: "DescribeStackEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单个事件详情
@@ -100,6 +101,7 @@ extension Tic {
     /// 本接口（DescribeStackEvent）用于获取单个事件详情，尤其是可以得到事件的详细控制台输出文本。
     @inlinable
     public func describeStackEvent(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackEventResponse {
-        try await self.describeStackEvent(DescribeStackEventRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStackEventRequest(eventId: eventId)
+        return try await self.client.execute(action: "DescribeStackEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

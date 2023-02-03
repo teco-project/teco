@@ -78,7 +78,8 @@ extension Dayu {
     /// 获取本月安全统计
     @inlinable
     public func describeSecIndex(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecIndexResponse> {
-        self.describeSecIndex(DescribeSecIndexRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecIndexRequest()
+        return self.client.execute(action: "DescribeSecIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全统计
@@ -86,6 +87,7 @@ extension Dayu {
     /// 获取本月安全统计
     @inlinable
     public func describeSecIndex(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecIndexResponse {
-        try await self.describeSecIndex(DescribeSecIndexRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecIndexRequest()
+        return try await self.client.execute(action: "DescribeSecIndex", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

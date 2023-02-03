@@ -85,7 +85,8 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
     @inlinable @discardableResult
     public func disassociateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateInstancesKeyPairsResponse> {
-        self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop)
+        return self.client.execute(action: "DisassociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑密钥对
@@ -98,6 +99,7 @@ extension Cvm {
     /// * 支持批量操作。每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
     @inlinable @discardableResult
     public func disassociateInstancesKeyPairs(instanceIds: [String], keyIds: [String], forceStop: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateInstancesKeyPairsResponse {
-        try await self.disassociateInstancesKeyPairs(DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateInstancesKeyPairsRequest(instanceIds: instanceIds, keyIds: keyIds, forceStop: forceStop)
+        return try await self.client.execute(action: "DisassociateInstancesKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

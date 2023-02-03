@@ -68,12 +68,14 @@ extension Monitor {
     /// 列出 Grafana 已安装的集成
     @inlinable
     public func describeGrafanaIntegrations(instanceId: String, integrationId: String? = nil, kind: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGrafanaIntegrationsResponse> {
-        self.describeGrafanaIntegrations(DescribeGrafanaIntegrationsRequest(instanceId: instanceId, integrationId: integrationId, kind: kind), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGrafanaIntegrationsRequest(instanceId: instanceId, integrationId: integrationId, kind: kind)
+        return self.client.execute(action: "DescribeGrafanaIntegrations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Grafana 已安装的集成
     @inlinable
     public func describeGrafanaIntegrations(instanceId: String, integrationId: String? = nil, kind: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGrafanaIntegrationsResponse {
-        try await self.describeGrafanaIntegrations(DescribeGrafanaIntegrationsRequest(instanceId: instanceId, integrationId: integrationId, kind: kind), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGrafanaIntegrationsRequest(instanceId: instanceId, integrationId: integrationId, kind: kind)
+        return try await self.client.execute(action: "DescribeGrafanaIntegrations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

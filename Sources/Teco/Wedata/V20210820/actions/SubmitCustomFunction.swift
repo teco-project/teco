@@ -79,12 +79,14 @@ extension Wedata {
     /// 提交自定义函数
     @inlinable
     public func submitCustomFunction(functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitCustomFunctionResponse> {
-        self.submitCustomFunction(SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId)
+        return self.client.execute(action: "SubmitCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交自定义函数
     @inlinable
     public func submitCustomFunction(functionId: String, clusterIdentifier: String, comment: String, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitCustomFunctionResponse {
-        try await self.submitCustomFunction(SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = SubmitCustomFunctionRequest(functionId: functionId, clusterIdentifier: clusterIdentifier, comment: comment, projectId: projectId)
+        return try await self.client.execute(action: "SubmitCustomFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

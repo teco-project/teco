@@ -65,7 +65,8 @@ extension Yunjing {
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
     @inlinable @discardableResult
     public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUsualLoginPlacesResponse> {
-        self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds)
+        return self.client.execute(action: "DeleteUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除常用登录地
@@ -73,6 +74,7 @@ extension Yunjing {
     /// 本接口（DeleteUsualLoginPlaces）用于删除常用登录地。
     @inlinable @discardableResult
     public func deleteUsualLoginPlaces(uuid: String, cityIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUsualLoginPlacesResponse {
-        try await self.deleteUsualLoginPlaces(DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteUsualLoginPlacesRequest(uuid: uuid, cityIds: cityIds)
+        return try await self.client.execute(action: "DeleteUsualLoginPlaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

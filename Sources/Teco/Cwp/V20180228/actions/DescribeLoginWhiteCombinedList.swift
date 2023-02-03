@@ -77,12 +77,14 @@ extension Cwp {
     /// 获取异地登录白名单合并后列表
     @inlinable
     public func describeLoginWhiteCombinedList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoginWhiteCombinedListResponse> {
-        self.describeLoginWhiteCombinedList(DescribeLoginWhiteCombinedListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoginWhiteCombinedListRequest(limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeLoginWhiteCombinedList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取异地登录白名单合并后列表
     @inlinable
     public func describeLoginWhiteCombinedList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoginWhiteCombinedListResponse {
-        try await self.describeLoginWhiteCombinedList(DescribeLoginWhiteCombinedListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoginWhiteCombinedListRequest(limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeLoginWhiteCombinedList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

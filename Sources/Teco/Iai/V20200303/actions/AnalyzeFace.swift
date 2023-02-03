@@ -120,7 +120,8 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func analyzeFace(mode: UInt64? = nil, image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AnalyzeFaceResponse> {
-        self.analyzeFace(AnalyzeFaceRequest(mode: mode, image: image, url: url, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
+        let input = AnalyzeFaceRequest(mode: mode, image: image, url: url, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection)
+        return self.client.execute(action: "AnalyzeFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 五官定位
@@ -131,6 +132,7 @@ extension Iai {
     /// - 公共参数中的签名方式请使用V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func analyzeFace(mode: UInt64? = nil, image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AnalyzeFaceResponse {
-        try await self.analyzeFace(AnalyzeFaceRequest(mode: mode, image: image, url: url, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
+        let input = AnalyzeFaceRequest(mode: mode, image: image, url: url, faceModelVersion: faceModelVersion, needRotateDetection: needRotateDetection)
+        return try await self.client.execute(action: "AnalyzeFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -59,12 +59,14 @@ extension Monitor {
     /// 更新 Grafana 的 DNS 配置
     @inlinable @discardableResult
     public func updateDNSConfig(instanceId: String, nameServers: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateDNSConfigResponse> {
-        self.updateDNSConfig(UpdateDNSConfigRequest(instanceId: instanceId, nameServers: nameServers), region: region, logger: logger, on: eventLoop)
+        let input = UpdateDNSConfigRequest(instanceId: instanceId, nameServers: nameServers)
+        return self.client.execute(action: "UpdateDNSConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新 Grafana 的 DNS 配置
     @inlinable @discardableResult
     public func updateDNSConfig(instanceId: String, nameServers: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateDNSConfigResponse {
-        try await self.updateDNSConfig(UpdateDNSConfigRequest(instanceId: instanceId, nameServers: nameServers), region: region, logger: logger, on: eventLoop)
+        let input = UpdateDNSConfigRequest(instanceId: instanceId, nameServers: nameServers)
+        return try await self.client.execute(action: "UpdateDNSConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -100,12 +100,14 @@ extension Cpdp {
     /// 务工卡-查询授权关系
     @inlinable
     public func getPayRollAuth(openId: String, subMerchantId: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPayRollAuthResponse> {
-        self.getPayRollAuth(GetPayRollAuthRequest(openId: openId, subMerchantId: subMerchantId, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), region: region, logger: logger, on: eventLoop)
+        let input = GetPayRollAuthRequest(openId: openId, subMerchantId: subMerchantId, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId)
+        return self.client.execute(action: "GetPayRollAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 务工卡-查询授权关系
     @inlinable
     public func getPayRollAuth(openId: String, subMerchantId: String, wechatAppId: String? = nil, wechatSubAppId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthResponse {
-        try await self.getPayRollAuth(GetPayRollAuthRequest(openId: openId, subMerchantId: subMerchantId, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId), region: region, logger: logger, on: eventLoop)
+        let input = GetPayRollAuthRequest(openId: openId, subMerchantId: subMerchantId, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId)
+        return try await self.client.execute(action: "GetPayRollAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

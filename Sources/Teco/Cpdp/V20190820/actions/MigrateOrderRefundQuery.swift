@@ -101,7 +101,8 @@ extension Cpdp {
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时。
     @inlinable
     public func migrateOrderRefundQuery(merchantId: String, payChannel: String, refundOrderId: String, tradeSerialNo: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MigrateOrderRefundQueryResponse> {
-        self.migrateOrderRefundQuery(MigrateOrderRefundQueryRequest(merchantId: merchantId, payChannel: payChannel, refundOrderId: refundOrderId, tradeSerialNo: tradeSerialNo, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = MigrateOrderRefundQueryRequest(merchantId: merchantId, payChannel: payChannel, refundOrderId: refundOrderId, tradeSerialNo: tradeSerialNo, profile: profile)
+        return self.client.execute(action: "MigrateOrderRefundQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 智慧零售-系统迁移存量订单退款查询
@@ -109,6 +110,7 @@ extension Cpdp {
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时。
     @inlinable
     public func migrateOrderRefundQuery(merchantId: String, payChannel: String, refundOrderId: String, tradeSerialNo: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateOrderRefundQueryResponse {
-        try await self.migrateOrderRefundQuery(MigrateOrderRefundQueryRequest(merchantId: merchantId, payChannel: payChannel, refundOrderId: refundOrderId, tradeSerialNo: tradeSerialNo, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = MigrateOrderRefundQueryRequest(merchantId: merchantId, payChannel: payChannel, refundOrderId: refundOrderId, tradeSerialNo: tradeSerialNo, profile: profile)
+        return try await self.client.execute(action: "MigrateOrderRefundQuery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

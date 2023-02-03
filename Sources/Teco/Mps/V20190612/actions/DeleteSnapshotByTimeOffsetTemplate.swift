@@ -60,7 +60,8 @@ extension Mps {
     /// 删除用户自定义指定时间点截图模板。
     @inlinable @discardableResult
     public func deleteSnapshotByTimeOffsetTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotByTimeOffsetTemplateResponse> {
-        self.deleteSnapshotByTimeOffsetTemplate(DeleteSnapshotByTimeOffsetTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotByTimeOffsetTemplateRequest(definition: definition)
+        return self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除指定时间点截图模板
@@ -68,6 +69,7 @@ extension Mps {
     /// 删除用户自定义指定时间点截图模板。
     @inlinable @discardableResult
     public func deleteSnapshotByTimeOffsetTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotByTimeOffsetTemplateResponse {
-        try await self.deleteSnapshotByTimeOffsetTemplate(DeleteSnapshotByTimeOffsetTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotByTimeOffsetTemplateRequest(definition: definition)
+        return try await self.client.execute(action: "DeleteSnapshotByTimeOffsetTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

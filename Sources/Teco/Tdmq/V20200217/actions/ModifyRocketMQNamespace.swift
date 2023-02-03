@@ -74,12 +74,14 @@ extension Tdmq {
     /// 更新RocketMQ命名空间
     @inlinable @discardableResult
     public func modifyRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRocketMQNamespaceResponse> {
-        self.modifyRocketMQNamespace(ModifyRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark)
+        return self.client.execute(action: "ModifyRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新RocketMQ命名空间
     @inlinable @discardableResult
     public func modifyRocketMQNamespace(clusterId: String, namespaceId: String, ttl: UInt64, retentionTime: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRocketMQNamespaceResponse {
-        try await self.modifyRocketMQNamespace(ModifyRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRocketMQNamespaceRequest(clusterId: clusterId, namespaceId: namespaceId, ttl: ttl, retentionTime: retentionTime, remark: remark)
+        return try await self.client.execute(action: "ModifyRocketMQNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

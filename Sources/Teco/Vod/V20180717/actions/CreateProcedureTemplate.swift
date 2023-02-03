@@ -96,7 +96,8 @@ extension Vod {
     /// 创建用户自定义的任务流模板，模板上限：50。
     @inlinable @discardableResult
     public func createProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProcedureTemplateResponse> {
-        self.createProcedureTemplate(CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask), region: region, logger: logger, on: eventLoop)
+        let input = CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask)
+        return self.client.execute(action: "CreateProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建任务流模板
@@ -104,6 +105,7 @@ extension Vod {
     /// 创建用户自定义的任务流模板，模板上限：50。
     @inlinable @discardableResult
     public func createProcedureTemplate(name: String, subAppId: UInt64? = nil, comment: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, reviewAudioVideoTask: ProcedureReviewAudioVideoTaskInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcedureTemplateResponse {
-        try await self.createProcedureTemplate(CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask), region: region, logger: logger, on: eventLoop)
+        let input = CreateProcedureTemplateRequest(name: name, subAppId: subAppId, comment: comment, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, reviewAudioVideoTask: reviewAudioVideoTask)
+        return try await self.client.execute(action: "CreateProcedureTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

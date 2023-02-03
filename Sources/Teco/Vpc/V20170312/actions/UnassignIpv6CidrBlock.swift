@@ -68,7 +68,8 @@ extension Vpc {
     /// 网段如果还有IP占用且未回收，则网段无法释放。
     @inlinable @discardableResult
     public func unassignIpv6CidrBlock(vpcId: String, ipv6CidrBlock: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6CidrBlockResponse> {
-        self.unassignIpv6CidrBlock(UnassignIpv6CidrBlockRequest(vpcId: vpcId, ipv6CidrBlock: ipv6CidrBlock), region: region, logger: logger, on: eventLoop)
+        let input = UnassignIpv6CidrBlockRequest(vpcId: vpcId, ipv6CidrBlock: ipv6CidrBlock)
+        return self.client.execute(action: "UnassignIpv6CidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6网段
@@ -77,6 +78,7 @@ extension Vpc {
     /// 网段如果还有IP占用且未回收，则网段无法释放。
     @inlinable @discardableResult
     public func unassignIpv6CidrBlock(vpcId: String, ipv6CidrBlock: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6CidrBlockResponse {
-        try await self.unassignIpv6CidrBlock(UnassignIpv6CidrBlockRequest(vpcId: vpcId, ipv6CidrBlock: ipv6CidrBlock), region: region, logger: logger, on: eventLoop)
+        let input = UnassignIpv6CidrBlockRequest(vpcId: vpcId, ipv6CidrBlock: ipv6CidrBlock)
+        return try await self.client.execute(action: "UnassignIpv6CidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

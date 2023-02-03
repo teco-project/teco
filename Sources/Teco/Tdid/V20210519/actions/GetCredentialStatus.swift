@@ -64,7 +64,8 @@ extension Tdid {
     /// 获取凭证链上状态信息
     @inlinable
     public func getCredentialStatus(credentialId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCredentialStatusResponse> {
-        self.getCredentialStatus(GetCredentialStatusRequest(credentialId: credentialId), region: region, logger: logger, on: eventLoop)
+        let input = GetCredentialStatusRequest(credentialId: credentialId)
+        return self.client.execute(action: "GetCredentialStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取凭证链上状态
@@ -72,6 +73,7 @@ extension Tdid {
     /// 获取凭证链上状态信息
     @inlinable
     public func getCredentialStatus(credentialId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCredentialStatusResponse {
-        try await self.getCredentialStatus(GetCredentialStatusRequest(credentialId: credentialId), region: region, logger: logger, on: eventLoop)
+        let input = GetCredentialStatusRequest(credentialId: credentialId)
+        return try await self.client.execute(action: "GetCredentialStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

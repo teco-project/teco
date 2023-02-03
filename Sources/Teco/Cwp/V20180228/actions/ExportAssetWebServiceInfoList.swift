@@ -86,12 +86,14 @@ extension Cwp {
     /// 导出资产管理Web服务列表
     @inlinable
     public func exportAssetWebServiceInfoList(quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportAssetWebServiceInfoListResponse> {
-        self.exportAssetWebServiceInfoList(ExportAssetWebServiceInfoListRequest(quuid: quuid, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = ExportAssetWebServiceInfoListRequest(quuid: quuid, filters: filters, order: order, by: by)
+        return self.client.execute(action: "ExportAssetWebServiceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出资产管理Web服务列表
     @inlinable
     public func exportAssetWebServiceInfoList(quuid: String? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportAssetWebServiceInfoListResponse {
-        try await self.exportAssetWebServiceInfoList(ExportAssetWebServiceInfoListRequest(quuid: quuid, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = ExportAssetWebServiceInfoListRequest(quuid: quuid, filters: filters, order: order, by: by)
+        return try await self.client.execute(action: "ExportAssetWebServiceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

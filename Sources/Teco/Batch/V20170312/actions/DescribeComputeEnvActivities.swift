@@ -84,7 +84,8 @@ extension Batch {
     /// 用于查询计算环境的活动信息
     @inlinable
     public func describeComputeEnvActivities(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvActivitiesResponse> {
-        self.describeComputeEnvActivities(DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeComputeEnvActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境活动信息
@@ -92,6 +93,7 @@ extension Batch {
     /// 用于查询计算环境的活动信息
     @inlinable
     public func describeComputeEnvActivities(envId: String, offset: Int64? = nil, limit: Int64? = nil, filters: Filter? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvActivitiesResponse {
-        try await self.describeComputeEnvActivities(DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeComputeEnvActivitiesRequest(envId: envId, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeComputeEnvActivities", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Ecm {
     /// 删除私有网络
     @inlinable @discardableResult
     public func deleteVpc(vpcId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpcResponse> {
-        self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion)
+        return self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除VPC
@@ -73,6 +74,7 @@ extension Ecm {
     /// 删除私有网络
     @inlinable @discardableResult
     public func deleteVpc(vpcId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpcResponse {
-        try await self.deleteVpc(DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpcRequest(vpcId: vpcId, ecmRegion: ecmRegion)
+        return try await self.client.execute(action: "DeleteVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

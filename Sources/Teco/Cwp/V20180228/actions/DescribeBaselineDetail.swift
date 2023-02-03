@@ -65,7 +65,8 @@ extension Cwp {
     /// 根据基线id查询基线详情接口
     @inlinable
     public func describeBaselineDetail(baselineId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineDetailResponse> {
-        self.describeBaselineDetail(DescribeBaselineDetailRequest(baselineId: baselineId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselineDetailRequest(baselineId: baselineId)
+        return self.client.execute(action: "DescribeBaselineDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基线详情
@@ -73,6 +74,7 @@ extension Cwp {
     /// 根据基线id查询基线详情接口
     @inlinable
     public func describeBaselineDetail(baselineId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineDetailResponse {
-        try await self.describeBaselineDetail(DescribeBaselineDetailRequest(baselineId: baselineId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselineDetailRequest(baselineId: baselineId)
+        return try await self.client.execute(action: "DescribeBaselineDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

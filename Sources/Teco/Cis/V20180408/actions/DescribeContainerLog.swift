@@ -79,7 +79,8 @@ extension Cis {
     /// 此接口（DescribeContainerLog）用于获取容器日志信息
     @inlinable
     public func describeContainerLog(instanceName: String, containerName: String? = nil, tail: UInt64? = nil, sinceTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerLogResponse> {
-        self.describeContainerLog(DescribeContainerLogRequest(instanceName: instanceName, containerName: containerName, tail: tail, sinceTime: sinceTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeContainerLogRequest(instanceName: instanceName, containerName: containerName, tail: tail, sinceTime: sinceTime)
+        return self.client.execute(action: "DescribeContainerLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取容器日志信息
@@ -87,6 +88,7 @@ extension Cis {
     /// 此接口（DescribeContainerLog）用于获取容器日志信息
     @inlinable
     public func describeContainerLog(instanceName: String, containerName: String? = nil, tail: UInt64? = nil, sinceTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerLogResponse {
-        try await self.describeContainerLog(DescribeContainerLogRequest(instanceName: instanceName, containerName: containerName, tail: tail, sinceTime: sinceTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeContainerLogRequest(instanceName: instanceName, containerName: containerName, tail: tail, sinceTime: sinceTime)
+        return try await self.client.execute(action: "DescribeContainerLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -321,7 +321,8 @@ extension Ocr {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GeneralBasicOCRResponse> {
-        self.generalBasicOCR(GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords), region: region, logger: logger, on: eventLoop)
+        let input = GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords)
+        return self.client.execute(action: "GeneralBasicOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通用印刷体识别
@@ -391,6 +392,7 @@ extension Ocr {
     /// 默认接口请求频率限制：20次/秒。
     @inlinable
     public func generalBasicOCR(imageBase64: String? = nil, imageUrl: String? = nil, scene: String? = nil, languageType: String? = nil, isPdf: Bool? = nil, pdfPageNumber: UInt64? = nil, isWords: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GeneralBasicOCRResponse {
-        try await self.generalBasicOCR(GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords), region: region, logger: logger, on: eventLoop)
+        let input = GeneralBasicOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, scene: scene, languageType: languageType, isPdf: isPdf, pdfPageNumber: pdfPageNumber, isWords: isWords)
+        return try await self.client.execute(action: "GeneralBasicOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

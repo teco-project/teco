@@ -82,7 +82,8 @@ extension Iotcloud {
     /// 更新产品动态注册的配置
     @inlinable
     public func updateProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateProductDynamicRegisterResponse> {
-        self.updateProductDynamicRegister(UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), region: region, logger: logger, on: eventLoop)
+        let input = UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit)
+        return self.client.execute(action: "UpdateProductDynamicRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新产品动态注册
@@ -90,6 +91,7 @@ extension Iotcloud {
     /// 更新产品动态注册的配置
     @inlinable
     public func updateProductDynamicRegister(productId: String, registerType: UInt64, registerLimit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateProductDynamicRegisterResponse {
-        try await self.updateProductDynamicRegister(UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit), region: region, logger: logger, on: eventLoop)
+        let input = UpdateProductDynamicRegisterRequest(productId: productId, registerType: registerType, registerLimit: registerLimit)
+        return try await self.client.execute(action: "UpdateProductDynamicRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

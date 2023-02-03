@@ -60,7 +60,8 @@ extension Chdfs {
     /// 批量删除权限规则。
     @inlinable @discardableResult
     public func deleteAccessRules(accessRuleIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessRulesResponse> {
-        self.deleteAccessRules(DeleteAccessRulesRequest(accessRuleIds: accessRuleIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAccessRulesRequest(accessRuleIds: accessRuleIds)
+        return self.client.execute(action: "DeleteAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除权限规则
@@ -68,6 +69,7 @@ extension Chdfs {
     /// 批量删除权限规则。
     @inlinable @discardableResult
     public func deleteAccessRules(accessRuleIds: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessRulesResponse {
-        try await self.deleteAccessRules(DeleteAccessRulesRequest(accessRuleIds: accessRuleIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAccessRulesRequest(accessRuleIds: accessRuleIds)
+        return try await self.client.execute(action: "DeleteAccessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

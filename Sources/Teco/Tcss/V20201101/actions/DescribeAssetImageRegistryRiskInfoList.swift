@@ -96,12 +96,14 @@ extension Tcss {
     /// 镜像仓库查询镜像高危行为列表
     @inlinable
     public func describeAssetImageRegistryRiskInfoList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, by: String? = nil, order: String? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryRiskInfoListResponse> {
-        self.describeAssetImageRegistryRiskInfoList(DescribeAssetImageRegistryRiskInfoListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, by: by, order: order, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageRegistryRiskInfoListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, by: by, order: order, id: id)
+        return self.client.execute(action: "DescribeAssetImageRegistryRiskInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库查询镜像高危行为列表
     @inlinable
     public func describeAssetImageRegistryRiskInfoList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, by: String? = nil, order: String? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryRiskInfoListResponse {
-        try await self.describeAssetImageRegistryRiskInfoList(DescribeAssetImageRegistryRiskInfoListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, by: by, order: order, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageRegistryRiskInfoListRequest(limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, by: by, order: order, id: id)
+        return try await self.client.execute(action: "DescribeAssetImageRegistryRiskInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

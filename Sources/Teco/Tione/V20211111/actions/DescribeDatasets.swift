@@ -101,12 +101,14 @@ extension Tione {
     /// 查询数据集列表
     @inlinable
     public func describeDatasets(datasetIds: [String]? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, order: String? = nil, orderField: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatasetsResponse> {
-        self.describeDatasets(DescribeDatasetsRequest(datasetIds: datasetIds, filters: filters, tagFilters: tagFilters, order: order, orderField: orderField, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDatasetsRequest(datasetIds: datasetIds, filters: filters, tagFilters: tagFilters, order: order, orderField: orderField, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeDatasets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据集列表
     @inlinable
     public func describeDatasets(datasetIds: [String]? = nil, filters: [Filter]? = nil, tagFilters: [TagFilter]? = nil, order: String? = nil, orderField: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatasetsResponse {
-        try await self.describeDatasets(DescribeDatasetsRequest(datasetIds: datasetIds, filters: filters, tagFilters: tagFilters, order: order, orderField: orderField, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDatasetsRequest(datasetIds: datasetIds, filters: filters, tagFilters: tagFilters, order: order, orderField: orderField, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeDatasets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

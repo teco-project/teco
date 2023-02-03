@@ -69,12 +69,14 @@ extension Tcss {
     /// 运行时更新文件查杀实时监控设置
     @inlinable @discardableResult
     public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVirusMonitorSettingResponse> {
-        self.modifyVirusMonitorSetting(ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath)
+        return self.client.execute(action: "ModifyVirusMonitorSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时更新文件查杀实时监控设置
     @inlinable @discardableResult
     public func modifyVirusMonitorSetting(enableScan: Bool, scanPathAll: Bool, scanPathType: UInt64, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVirusMonitorSettingResponse {
-        try await self.modifyVirusMonitorSetting(ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVirusMonitorSettingRequest(enableScan: enableScan, scanPathAll: scanPathAll, scanPathType: scanPathType, scanPath: scanPath)
+        return try await self.client.execute(action: "ModifyVirusMonitorSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

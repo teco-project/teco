@@ -83,12 +83,14 @@ extension Iot {
     /// 更新规则
     @inlinable
     public func updateRule(ruleId: String, name: String? = nil, description: String? = nil, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRuleResponse> {
-        self.updateRule(UpdateRuleRequest(ruleId: ruleId, name: name, description: description, query: query, actions: actions, dataType: dataType), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRuleRequest(ruleId: ruleId, name: name, description: description, query: query, actions: actions, dataType: dataType)
+        return self.client.execute(action: "UpdateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新规则
     @inlinable
     public func updateRule(ruleId: String, name: String? = nil, description: String? = nil, query: RuleQuery? = nil, actions: [Action]? = nil, dataType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRuleResponse {
-        try await self.updateRule(UpdateRuleRequest(ruleId: ruleId, name: name, description: description, query: query, actions: actions, dataType: dataType), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRuleRequest(ruleId: ruleId, name: name, description: description, query: query, actions: actions, dataType: dataType)
+        return try await self.client.execute(action: "UpdateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

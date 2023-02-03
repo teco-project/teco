@@ -89,12 +89,14 @@ extension Cr {
     /// 实时数据查询
     @inlinable
     public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryInstantDataResponse> {
-        self.queryInstantData(QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data), region: region, logger: logger, on: eventLoop)
+        let input = QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data)
+        return self.client.execute(action: "QueryInstantData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实时数据查询
     @inlinable
     public func queryInstantData(module: String, operation: String, productId: String? = nil, instanceId: String? = nil, queryModel: String? = nil, data: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryInstantDataResponse {
-        try await self.queryInstantData(QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data), region: region, logger: logger, on: eventLoop)
+        let input = QueryInstantDataRequest(module: module, operation: operation, productId: productId, instanceId: instanceId, queryModel: queryModel, data: data)
+        return try await self.client.execute(action: "QueryInstantData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

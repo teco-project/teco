@@ -64,7 +64,8 @@ extension Vpc {
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     @inlinable @discardableResult
     public func unlockCcns(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnlockCcnsResponse> {
-        self.unlockCcns(UnlockCcnsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = UnlockCcnsRequest()
+        return self.client.execute(action: "UnlockCcns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全解锁云联网实例
@@ -76,6 +77,7 @@ extension Vpc {
     /// 如有需要, 可以封禁任意限速实例, 可接入到内部运营系统
     @inlinable @discardableResult
     public func unlockCcns(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnlockCcnsResponse {
-        try await self.unlockCcns(UnlockCcnsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = UnlockCcnsRequest()
+        return try await self.client.execute(action: "UnlockCcns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

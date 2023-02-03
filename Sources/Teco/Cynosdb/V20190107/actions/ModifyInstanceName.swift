@@ -65,7 +65,8 @@ extension Cynosdb {
     /// 本接口(ModifyInstanceName)用于修改实例名称。
     @inlinable @discardableResult
     public func modifyInstanceName(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceNameResponse> {
-        self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName)
+        return self.client.execute(action: "ModifyInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例名称
@@ -73,6 +74,7 @@ extension Cynosdb {
     /// 本接口(ModifyInstanceName)用于修改实例名称。
     @inlinable @discardableResult
     public func modifyInstanceName(instanceId: String, instanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceNameResponse {
-        try await self.modifyInstanceName(ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceNameRequest(instanceId: instanceId, instanceName: instanceName)
+        return try await self.client.execute(action: "ModifyInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

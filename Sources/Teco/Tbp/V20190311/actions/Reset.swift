@@ -119,7 +119,8 @@ extension Tbp {
     /// 对当前机器人的会话状态进行复位
     @inlinable
     public func reset(botId: String, userId: String, botVersion: String? = nil, botEnv: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetResponse> {
-        self.reset(ResetRequest(botId: botId, userId: userId, botVersion: botVersion, botEnv: botEnv), region: region, logger: logger, on: eventLoop)
+        let input = ResetRequest(botId: botId, userId: userId, botVersion: botVersion, botEnv: botEnv)
+        return self.client.execute(action: "Reset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复位
@@ -127,6 +128,7 @@ extension Tbp {
     /// 对当前机器人的会话状态进行复位
     @inlinable
     public func reset(botId: String, userId: String, botVersion: String? = nil, botEnv: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetResponse {
-        try await self.reset(ResetRequest(botId: botId, userId: userId, botVersion: botVersion, botEnv: botEnv), region: region, logger: logger, on: eventLoop)
+        let input = ResetRequest(botId: botId, userId: userId, botVersion: botVersion, botEnv: botEnv)
+        return try await self.client.execute(action: "Reset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -76,7 +76,8 @@ extension Mmps {
     /// 查询翼扬安全基础诊断资源使用情况
     @inlinable
     public func describeBasicDiagnosisResourceUsageInfo(mode: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDiagnosisResourceUsageInfoResponse> {
-        self.describeBasicDiagnosisResourceUsageInfo(DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode)
+        return self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基础诊断资源使用情况
@@ -84,6 +85,7 @@ extension Mmps {
     /// 查询翼扬安全基础诊断资源使用情况
     @inlinable
     public func describeBasicDiagnosisResourceUsageInfo(mode: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDiagnosisResourceUsageInfoResponse {
-        try await self.describeBasicDiagnosisResourceUsageInfo(DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBasicDiagnosisResourceUsageInfoRequest(mode: mode)
+        return try await self.client.execute(action: "DescribeBasicDiagnosisResourceUsageInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

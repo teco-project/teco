@@ -56,7 +56,8 @@ extension Cvm {
     /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
     @inlinable
     public func describeInstanceFamilyConfigs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceFamilyConfigsResponse> {
-        self.describeInstanceFamilyConfigs(DescribeInstanceFamilyConfigsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceFamilyConfigsRequest()
+        return self.client.execute(action: "DescribeInstanceFamilyConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询所支持的实例机型族信息
@@ -64,6 +65,7 @@ extension Cvm {
     /// 本接口（DescribeInstanceFamilyConfigs）查询当前用户和地域所支持的机型族列表信息。
     @inlinable
     public func describeInstanceFamilyConfigs(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceFamilyConfigsResponse {
-        try await self.describeInstanceFamilyConfigs(DescribeInstanceFamilyConfigsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceFamilyConfigsRequest()
+        return try await self.client.execute(action: "DescribeInstanceFamilyConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

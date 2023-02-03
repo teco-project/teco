@@ -92,12 +92,14 @@ extension Tke {
     /// 获取告警历史
     @inlinable
     public func describePrometheusAlertHistory(instanceId: String, ruleName: String? = nil, startTime: String? = nil, endTime: String? = nil, labels: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAlertHistoryResponse> {
-        self.describePrometheusAlertHistory(DescribePrometheusAlertHistoryRequest(instanceId: instanceId, ruleName: ruleName, startTime: startTime, endTime: endTime, labels: labels, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusAlertHistoryRequest(instanceId: instanceId, ruleName: ruleName, startTime: startTime, endTime: endTime, labels: labels, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribePrometheusAlertHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取告警历史
     @inlinable
     public func describePrometheusAlertHistory(instanceId: String, ruleName: String? = nil, startTime: String? = nil, endTime: String? = nil, labels: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAlertHistoryResponse {
-        try await self.describePrometheusAlertHistory(DescribePrometheusAlertHistoryRequest(instanceId: instanceId, ruleName: ruleName, startTime: startTime, endTime: endTime, labels: labels, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusAlertHistoryRequest(instanceId: instanceId, ruleName: ruleName, startTime: startTime, endTime: endTime, labels: labels, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribePrometheusAlertHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

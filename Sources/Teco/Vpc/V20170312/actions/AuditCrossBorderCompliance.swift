@@ -76,7 +76,8 @@ extension Vpc {
     /// * `APPROVED` 状态的审批单，可以再次操作为 `DENY`；`DENY` 状态的审批单，也可以再次操作为 `APPROVED`。
     @inlinable @discardableResult
     public func auditCrossBorderCompliance(serviceProvider: String, complianceId: UInt64, auditBehavior: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AuditCrossBorderComplianceResponse> {
-        self.auditCrossBorderCompliance(AuditCrossBorderComplianceRequest(serviceProvider: serviceProvider, complianceId: complianceId, auditBehavior: auditBehavior), region: region, logger: logger, on: eventLoop)
+        let input = AuditCrossBorderComplianceRequest(serviceProvider: serviceProvider, complianceId: complianceId, auditBehavior: auditBehavior)
+        return self.client.execute(action: "AuditCrossBorderCompliance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合规化审批
@@ -86,6 +87,7 @@ extension Vpc {
     /// * `APPROVED` 状态的审批单，可以再次操作为 `DENY`；`DENY` 状态的审批单，也可以再次操作为 `APPROVED`。
     @inlinable @discardableResult
     public func auditCrossBorderCompliance(serviceProvider: String, complianceId: UInt64, auditBehavior: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AuditCrossBorderComplianceResponse {
-        try await self.auditCrossBorderCompliance(AuditCrossBorderComplianceRequest(serviceProvider: serviceProvider, complianceId: complianceId, auditBehavior: auditBehavior), region: region, logger: logger, on: eventLoop)
+        let input = AuditCrossBorderComplianceRequest(serviceProvider: serviceProvider, complianceId: complianceId, auditBehavior: auditBehavior)
+        return try await self.client.execute(action: "AuditCrossBorderCompliance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

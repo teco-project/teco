@@ -70,7 +70,8 @@ extension Vpc {
     /// * 只有状态为 UNBIND 的 EIP 才能进行释放操作。
     @inlinable
     public func releaseAddresses(addressIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseAddressesResponse> {
-        self.releaseAddresses(ReleaseAddressesRequest(addressIds: addressIds), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseAddressesRequest(addressIds: addressIds)
+        return self.client.execute(action: "ReleaseAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放弹性公网IP
@@ -80,6 +81,7 @@ extension Vpc {
     /// * 只有状态为 UNBIND 的 EIP 才能进行释放操作。
     @inlinable
     public func releaseAddresses(addressIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseAddressesResponse {
-        try await self.releaseAddresses(ReleaseAddressesRequest(addressIds: addressIds), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseAddressesRequest(addressIds: addressIds)
+        return try await self.client.execute(action: "ReleaseAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

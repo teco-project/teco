@@ -85,7 +85,8 @@ extension Tdmq {
     /// 重置指定Group的消费位点到指定时间戳
     @inlinable @discardableResult
     public func resetRocketMQConsumerOffSet(clusterId: String, namespaceId: String, groupId: String, topic: String, type: UInt64, resetTimestamp: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRocketMQConsumerOffSetResponse> {
-        self.resetRocketMQConsumerOffSet(ResetRocketMQConsumerOffSetRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, topic: topic, type: type, resetTimestamp: resetTimestamp), region: region, logger: logger, on: eventLoop)
+        let input = ResetRocketMQConsumerOffSetRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, topic: topic, type: type, resetTimestamp: resetTimestamp)
+        return self.client.execute(action: "ResetRocketMQConsumerOffSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置RocketMQ消费位点
@@ -93,6 +94,7 @@ extension Tdmq {
     /// 重置指定Group的消费位点到指定时间戳
     @inlinable @discardableResult
     public func resetRocketMQConsumerOffSet(clusterId: String, namespaceId: String, groupId: String, topic: String, type: UInt64, resetTimestamp: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRocketMQConsumerOffSetResponse {
-        try await self.resetRocketMQConsumerOffSet(ResetRocketMQConsumerOffSetRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, topic: topic, type: type, resetTimestamp: resetTimestamp), region: region, logger: logger, on: eventLoop)
+        let input = ResetRocketMQConsumerOffSetRequest(clusterId: clusterId, namespaceId: namespaceId, groupId: groupId, topic: topic, type: type, resetTimestamp: resetTimestamp)
+        return try await self.client.execute(action: "ResetRocketMQConsumerOffSet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

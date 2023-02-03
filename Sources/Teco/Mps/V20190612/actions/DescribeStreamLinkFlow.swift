@@ -64,7 +64,8 @@ extension Mps {
     /// 查询媒体输入流的配置信息。
     @inlinable
     public func describeStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowResponse> {
-        self.describeStreamLinkFlow(DescribeStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamLinkFlowRequest(flowId: flowId)
+        return self.client.execute(action: "DescribeStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体输入流
@@ -72,6 +73,7 @@ extension Mps {
     /// 查询媒体输入流的配置信息。
     @inlinable
     public func describeStreamLinkFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowResponse {
-        try await self.describeStreamLinkFlow(DescribeStreamLinkFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamLinkFlowRequest(flowId: flowId)
+        return try await self.client.execute(action: "DescribeStreamLinkFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

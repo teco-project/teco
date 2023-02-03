@@ -77,12 +77,14 @@ extension Iotexplorer {
     /// 获取设备位置列表
     @inlinable
     public func describeDevicePositionList(productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePositionListResponse> {
-        self.describeDevicePositionList(DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeDevicePositionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备位置列表
     @inlinable
     public func describeDevicePositionList(productIdList: [String], coordinateType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePositionListResponse {
-        try await self.describeDevicePositionList(DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePositionListRequest(productIdList: productIdList, coordinateType: coordinateType, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeDevicePositionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

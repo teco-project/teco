@@ -96,7 +96,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
     @inlinable
     public func describeGroupDevices(groupId: String, offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, recordable: Int64? = nil, deviceTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupDevicesResponse> {
-        self.describeGroupDevices(DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes)
+        return self.client.execute(action: "DescribeGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询分组下的设备
@@ -104,6 +105,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
     @inlinable
     public func describeGroupDevices(groupId: String, offset: Int64? = nil, limit: Int64? = nil, nickName: String? = nil, recordable: Int64? = nil, deviceTypes: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupDevicesResponse {
-        try await self.describeGroupDevices(DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupDevicesRequest(groupId: groupId, offset: offset, limit: limit, nickName: nickName, recordable: recordable, deviceTypes: deviceTypes)
+        return try await self.client.execute(action: "DescribeGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

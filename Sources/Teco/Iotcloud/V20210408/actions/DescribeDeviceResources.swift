@@ -94,7 +94,8 @@ extension Iotcloud {
     /// 本接口（DescribeDeviceResources）用于查询设备资源列表。
     @inlinable
     public func describeDeviceResources(offset: UInt64, limit: UInt64, productID: String? = nil, deviceName: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceResourcesResponse> {
-        self.describeDeviceResources(DescribeDeviceResourcesRequest(offset: offset, limit: limit, productID: productID, deviceName: deviceName, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceResourcesRequest(offset: offset, limit: limit, productID: productID, deviceName: deviceName, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeDeviceResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备资源列表
@@ -102,6 +103,7 @@ extension Iotcloud {
     /// 本接口（DescribeDeviceResources）用于查询设备资源列表。
     @inlinable
     public func describeDeviceResources(offset: UInt64, limit: UInt64, productID: String? = nil, deviceName: String? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceResourcesResponse {
-        try await self.describeDeviceResources(DescribeDeviceResourcesRequest(offset: offset, limit: limit, productID: productID, deviceName: deviceName, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceResourcesRequest(offset: offset, limit: limit, productID: productID, deviceName: deviceName, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeDeviceResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

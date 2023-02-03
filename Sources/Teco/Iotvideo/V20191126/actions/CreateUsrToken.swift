@@ -91,7 +91,8 @@ extension Iotvideo {
     /// 本接口（CreateUsrToken）用于终端用户获取IoT Video平台的accessToken，初始化SDK,连接到IoT Video接入服务器。
     @inlinable
     public func createUsrToken(accessId: String, uniqueId: String, ttlMinutes: UInt64, oldAccessToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUsrTokenResponse> {
-        self.createUsrToken(CreateUsrTokenRequest(accessId: accessId, uniqueId: uniqueId, ttlMinutes: ttlMinutes, oldAccessToken: oldAccessToken), region: region, logger: logger, on: eventLoop)
+        let input = CreateUsrTokenRequest(accessId: accessId, uniqueId: uniqueId, ttlMinutes: ttlMinutes, oldAccessToken: oldAccessToken)
+        return self.client.execute(action: "CreateUsrToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端用户接入授权
@@ -99,6 +100,7 @@ extension Iotvideo {
     /// 本接口（CreateUsrToken）用于终端用户获取IoT Video平台的accessToken，初始化SDK,连接到IoT Video接入服务器。
     @inlinable
     public func createUsrToken(accessId: String, uniqueId: String, ttlMinutes: UInt64, oldAccessToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUsrTokenResponse {
-        try await self.createUsrToken(CreateUsrTokenRequest(accessId: accessId, uniqueId: uniqueId, ttlMinutes: ttlMinutes, oldAccessToken: oldAccessToken), region: region, logger: logger, on: eventLoop)
+        let input = CreateUsrTokenRequest(accessId: accessId, uniqueId: uniqueId, ttlMinutes: ttlMinutes, oldAccessToken: oldAccessToken)
+        return try await self.client.execute(action: "CreateUsrToken", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -125,7 +125,8 @@ extension Teo {
     /// 用该站点信息
     @inlinable
     public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyZoneResponse> {
-        self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), region: region, logger: logger, on: eventLoop)
+        let input = ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers)
+        return self.client.execute(action: "ModifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改站点
@@ -133,6 +134,7 @@ extension Teo {
     /// 用该站点信息
     @inlinable
     public func modifyZone(id: String, type: String? = nil, vanityNameServers: VanityNameServers? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyZoneResponse {
-        try await self.modifyZone(ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers), region: region, logger: logger, on: eventLoop)
+        let input = ModifyZoneRequest(id: id, type: type, vanityNameServers: vanityNameServers)
+        return try await self.client.execute(action: "ModifyZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -59,12 +59,14 @@ extension Gs {
     /// 开始云端推流
     @inlinable @discardableResult
     public func startPublishStream(userId: String, publishUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartPublishStreamResponse> {
-        self.startPublishStream(StartPublishStreamRequest(userId: userId, publishUrl: publishUrl), region: region, logger: logger, on: eventLoop)
+        let input = StartPublishStreamRequest(userId: userId, publishUrl: publishUrl)
+        return self.client.execute(action: "StartPublishStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开始云端推流
     @inlinable @discardableResult
     public func startPublishStream(userId: String, publishUrl: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartPublishStreamResponse {
-        try await self.startPublishStream(StartPublishStreamRequest(userId: userId, publishUrl: publishUrl), region: region, logger: logger, on: eventLoop)
+        let input = StartPublishStreamRequest(userId: userId, publishUrl: publishUrl)
+        return try await self.client.execute(action: "StartPublishStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

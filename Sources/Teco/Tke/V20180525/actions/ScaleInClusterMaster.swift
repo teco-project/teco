@@ -59,12 +59,14 @@ extension Tke {
     /// 缩容独立集群master节点
     @inlinable @discardableResult
     public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleInClusterMasterResponse> {
-        self.scaleInClusterMaster(ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters), region: region, logger: logger, on: eventLoop)
+        let input = ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters)
+        return self.client.execute(action: "ScaleInClusterMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 缩容独立集群master节点
     @inlinable @discardableResult
     public func scaleInClusterMaster(clusterId: String, scaleInMasters: [ScaleInMaster], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleInClusterMasterResponse {
-        try await self.scaleInClusterMaster(ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters), region: region, logger: logger, on: eventLoop)
+        let input = ScaleInClusterMasterRequest(clusterId: clusterId, scaleInMasters: scaleInMasters)
+        return try await self.client.execute(action: "ScaleInClusterMaster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

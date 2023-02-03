@@ -84,7 +84,8 @@ extension Iotcloud {
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
     @inlinable
     public func describeProductResources(offset: UInt64, limit: UInt64, productID: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResourcesResponse> {
-        self.describeProductResources(DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name)
+        return self.client.execute(action: "DescribeProductResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品资源列表
@@ -92,6 +93,7 @@ extension Iotcloud {
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
     @inlinable
     public func describeProductResources(offset: UInt64, limit: UInt64, productID: String? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResourcesResponse {
-        try await self.describeProductResources(DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductResourcesRequest(offset: offset, limit: limit, productID: productID, name: name)
+        return try await self.client.execute(action: "DescribeProductResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

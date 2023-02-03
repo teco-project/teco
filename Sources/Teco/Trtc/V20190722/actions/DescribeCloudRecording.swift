@@ -84,7 +84,8 @@ extension Trtc {
     /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
     @inlinable
     public func describeCloudRecording(sdkAppId: UInt64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRecordingResponse> {
-        self.describeCloudRecording(DescribeCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return self.client.execute(action: "DescribeCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云端录制状态
@@ -93,6 +94,7 @@ extension Trtc {
     /// 录制文件上传到云点播VOD时，StorageFileList中不会返回录制文件信息，请订阅相关录制文件回调事件，获取录制文件信息。
     @inlinable
     public func describeCloudRecording(sdkAppId: UInt64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRecordingResponse {
-        try await self.describeCloudRecording(DescribeCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return try await self.client.execute(action: "DescribeCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

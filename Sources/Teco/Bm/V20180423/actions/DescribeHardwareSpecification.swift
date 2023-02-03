@@ -64,7 +64,8 @@ extension Bm {
     /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
     @inlinable
     public func describeHardwareSpecification(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHardwareSpecificationResponse> {
-        self.describeHardwareSpecification(DescribeHardwareSpecificationRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHardwareSpecificationRequest()
+        return self.client.execute(action: "DescribeHardwareSpecification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询自定义机型部件信息
@@ -72,6 +73,7 @@ extension Bm {
     /// 查询自定义机型部件信息，包括CpuId对应的型号，DiskTypeId对应的磁盘类型
     @inlinable
     public func describeHardwareSpecification(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHardwareSpecificationResponse {
-        try await self.describeHardwareSpecification(DescribeHardwareSpecificationRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHardwareSpecificationRequest()
+        return try await self.client.execute(action: "DescribeHardwareSpecification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

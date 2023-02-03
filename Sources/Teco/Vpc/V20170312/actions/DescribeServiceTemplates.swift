@@ -81,7 +81,8 @@ extension Vpc {
     /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
     @inlinable
     public func describeServiceTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceTemplatesResponse> {
-        self.describeServiceTemplates(DescribeServiceTemplatesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceTemplatesRequest(filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeServiceTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询协议端口模板
@@ -89,6 +90,7 @@ extension Vpc {
     /// 本接口（DescribeServiceTemplates）用于查询协议端口模板
     @inlinable
     public func describeServiceTemplates(filters: [Filter]? = nil, offset: String? = nil, limit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceTemplatesResponse {
-        try await self.describeServiceTemplates(DescribeServiceTemplatesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceTemplatesRequest(filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeServiceTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

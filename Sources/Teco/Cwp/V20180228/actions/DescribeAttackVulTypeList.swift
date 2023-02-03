@@ -50,12 +50,14 @@ extension Cwp {
     /// 获取网络攻击威胁类型列表
     @inlinable
     public func describeAttackVulTypeList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttackVulTypeListResponse> {
-        self.describeAttackVulTypeList(DescribeAttackVulTypeListRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAttackVulTypeListRequest()
+        return self.client.execute(action: "DescribeAttackVulTypeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取网络攻击威胁类型列表
     @inlinable
     public func describeAttackVulTypeList(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttackVulTypeListResponse {
-        try await self.describeAttackVulTypeList(DescribeAttackVulTypeListRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAttackVulTypeListRequest()
+        return try await self.client.execute(action: "DescribeAttackVulTypeList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

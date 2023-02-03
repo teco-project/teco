@@ -73,7 +73,8 @@ extension Tcaplusdb {
     /// 表格扩缩容
     @inlinable
     public func modifyTableQuotas(clusterId: String, tableQuotas: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableQuotasResponse> {
-        self.modifyTableQuotas(ModifyTableQuotasRequest(clusterId: clusterId, tableQuotas: tableQuotas), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTableQuotasRequest(clusterId: clusterId, tableQuotas: tableQuotas)
+        return self.client.execute(action: "ModifyTableQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 表扩缩容
@@ -81,6 +82,7 @@ extension Tcaplusdb {
     /// 表格扩缩容
     @inlinable
     public func modifyTableQuotas(clusterId: String, tableQuotas: [SelectedTableInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableQuotasResponse {
-        try await self.modifyTableQuotas(ModifyTableQuotasRequest(clusterId: clusterId, tableQuotas: tableQuotas), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTableQuotasRequest(clusterId: clusterId, tableQuotas: tableQuotas)
+        return try await self.client.execute(action: "ModifyTableQuotas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

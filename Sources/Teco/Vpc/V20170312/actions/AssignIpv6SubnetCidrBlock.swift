@@ -75,7 +75,8 @@ extension Vpc {
     /// * 每个子网只能分配一个IPv6网段。
     @inlinable
     public func assignIpv6SubnetCidrBlock(vpcId: String, ipv6SubnetCidrBlocks: [Ipv6SubnetCidrBlock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6SubnetCidrBlockResponse> {
-        self.assignIpv6SubnetCidrBlock(AssignIpv6SubnetCidrBlockRequest(vpcId: vpcId, ipv6SubnetCidrBlocks: ipv6SubnetCidrBlocks), region: region, logger: logger, on: eventLoop)
+        let input = AssignIpv6SubnetCidrBlockRequest(vpcId: vpcId, ipv6SubnetCidrBlocks: ipv6SubnetCidrBlocks)
+        return self.client.execute(action: "AssignIpv6SubnetCidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分配IPv6子网段
@@ -85,6 +86,7 @@ extension Vpc {
     /// * 每个子网只能分配一个IPv6网段。
     @inlinable
     public func assignIpv6SubnetCidrBlock(vpcId: String, ipv6SubnetCidrBlocks: [Ipv6SubnetCidrBlock], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6SubnetCidrBlockResponse {
-        try await self.assignIpv6SubnetCidrBlock(AssignIpv6SubnetCidrBlockRequest(vpcId: vpcId, ipv6SubnetCidrBlocks: ipv6SubnetCidrBlocks), region: region, logger: logger, on: eventLoop)
+        let input = AssignIpv6SubnetCidrBlockRequest(vpcId: vpcId, ipv6SubnetCidrBlocks: ipv6SubnetCidrBlocks)
+        return try await self.client.execute(action: "AssignIpv6SubnetCidrBlock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

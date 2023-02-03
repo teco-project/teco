@@ -94,7 +94,8 @@ extension Rum {
     /// 获取项目下的日志列表（实例创建的项目下的日志列表）
     @inlinable
     public func describeRumLogList(orderBy: String, startTime: String, limit: Int64, page: Int64, query: String, endTime: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRumLogListResponse> {
-        self.describeRumLogList(DescribeRumLogListRequest(orderBy: orderBy, startTime: startTime, limit: limit, page: page, query: query, endTime: endTime, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRumLogListRequest(orderBy: orderBy, startTime: startTime, limit: limit, page: page, query: query, endTime: endTime, id: id)
+        return self.client.execute(action: "DescribeRumLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Rum日志列表
@@ -102,6 +103,7 @@ extension Rum {
     /// 获取项目下的日志列表（实例创建的项目下的日志列表）
     @inlinable
     public func describeRumLogList(orderBy: String, startTime: String, limit: Int64, page: Int64, query: String, endTime: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRumLogListResponse {
-        try await self.describeRumLogList(DescribeRumLogListRequest(orderBy: orderBy, startTime: startTime, limit: limit, page: page, query: query, endTime: endTime, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRumLogListRequest(orderBy: orderBy, startTime: startTime, limit: limit, page: page, query: query, endTime: endTime, id: id)
+        return try await self.client.execute(action: "DescribeRumLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

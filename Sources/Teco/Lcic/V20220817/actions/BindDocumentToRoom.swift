@@ -64,12 +64,14 @@ extension Lcic {
     /// 绑定文档到房间
     @inlinable @discardableResult
     public func bindDocumentToRoom(roomId: UInt64, documentId: String, bindType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindDocumentToRoomResponse> {
-        self.bindDocumentToRoom(BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType), region: region, logger: logger, on: eventLoop)
+        let input = BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType)
+        return self.client.execute(action: "BindDocumentToRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定文档到房间
     @inlinable @discardableResult
     public func bindDocumentToRoom(roomId: UInt64, documentId: String, bindType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindDocumentToRoomResponse {
-        try await self.bindDocumentToRoom(BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType), region: region, logger: logger, on: eventLoop)
+        let input = BindDocumentToRoomRequest(roomId: roomId, documentId: documentId, bindType: bindType)
+        return try await self.client.execute(action: "BindDocumentToRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

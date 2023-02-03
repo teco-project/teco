@@ -84,7 +84,8 @@ extension Tcss {
     /// 查询某类资产的列表
     @inlinable
     public func describeComplianceAssetList(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComplianceAssetListResponse> {
-        self.describeComplianceAssetList(DescribeComplianceAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeComplianceAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeComplianceAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询某类资产的列表
@@ -92,6 +93,7 @@ extension Tcss {
     /// 查询某类资产的列表
     @inlinable
     public func describeComplianceAssetList(assetTypeSet: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [ComplianceFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComplianceAssetListResponse {
-        try await self.describeComplianceAssetList(DescribeComplianceAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeComplianceAssetListRequest(assetTypeSet: assetTypeSet, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeComplianceAssetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

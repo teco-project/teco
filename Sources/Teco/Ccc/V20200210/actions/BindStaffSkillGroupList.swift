@@ -64,12 +64,14 @@ extension Ccc {
     /// 绑定坐席所属技能组
     @inlinable @discardableResult
     public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindStaffSkillGroupListResponse> {
-        self.bindStaffSkillGroupList(BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), region: region, logger: logger, on: eventLoop)
+        let input = BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList)
+        return self.client.execute(action: "BindStaffSkillGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定坐席所属技能组
     @inlinable @discardableResult
     public func bindStaffSkillGroupList(sdkAppId: Int64, staffEmail: String, skillGroupList: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindStaffSkillGroupListResponse {
-        try await self.bindStaffSkillGroupList(BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList), region: region, logger: logger, on: eventLoop)
+        let input = BindStaffSkillGroupListRequest(sdkAppId: sdkAppId, staffEmail: staffEmail, skillGroupList: skillGroupList)
+        return try await self.client.execute(action: "BindStaffSkillGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

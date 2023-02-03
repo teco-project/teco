@@ -69,7 +69,8 @@ extension Sqlserver {
     /// 本接口（RecycleReadOnlyGroup）立即回收只读组的资源，只读组占用的vip等资源将立即释放且不可找回。
     @inlinable
     public func recycleReadOnlyGroup(instanceId: String, readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecycleReadOnlyGroupResponse> {
-        self.recycleReadOnlyGroup(RecycleReadOnlyGroupRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = RecycleReadOnlyGroupRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId)
+        return self.client.execute(action: "RecycleReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 立即回收只读组的资源
@@ -77,6 +78,7 @@ extension Sqlserver {
     /// 本接口（RecycleReadOnlyGroup）立即回收只读组的资源，只读组占用的vip等资源将立即释放且不可找回。
     @inlinable
     public func recycleReadOnlyGroup(instanceId: String, readOnlyGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecycleReadOnlyGroupResponse {
-        try await self.recycleReadOnlyGroup(RecycleReadOnlyGroupRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId), region: region, logger: logger, on: eventLoop)
+        let input = RecycleReadOnlyGroupRequest(instanceId: instanceId, readOnlyGroupId: readOnlyGroupId)
+        return try await self.client.execute(action: "RecycleReadOnlyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

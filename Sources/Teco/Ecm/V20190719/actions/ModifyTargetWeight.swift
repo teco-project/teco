@@ -75,7 +75,8 @@ extension Ecm {
     /// 修改监听器绑定的后端机器的转发权重。
     @inlinable @discardableResult
     public func modifyTargetWeight(loadBalancerId: String, listenerId: String, targets: [Target], weight: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetWeightResponse> {
-        self.modifyTargetWeight(ModifyTargetWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, weight: weight), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTargetWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, weight: weight)
+        return self.client.execute(action: "ModifyTargetWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改监听器绑定的后端机器的转发权重
@@ -83,6 +84,7 @@ extension Ecm {
     /// 修改监听器绑定的后端机器的转发权重。
     @inlinable @discardableResult
     public func modifyTargetWeight(loadBalancerId: String, listenerId: String, targets: [Target], weight: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetWeightResponse {
-        try await self.modifyTargetWeight(ModifyTargetWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, weight: weight), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTargetWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, weight: weight)
+        return try await self.client.execute(action: "ModifyTargetWeight", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

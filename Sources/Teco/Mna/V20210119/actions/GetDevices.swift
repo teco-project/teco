@@ -82,7 +82,8 @@ extension Mna {
     /// 获取设备信息列表
     @inlinable
     public func getDevices(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDevicesResponse> {
-        self.getDevices(GetDevicesRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = GetDevicesRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword)
+        return self.client.execute(action: "GetDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设备信息列表
@@ -90,6 +91,7 @@ extension Mna {
     /// 获取设备信息列表
     @inlinable
     public func getDevices(pageSize: Int64, pageNumber: Int64, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDevicesResponse {
-        try await self.getDevices(GetDevicesRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = GetDevicesRequest(pageSize: pageSize, pageNumber: pageNumber, keyword: keyword)
+        return try await self.client.execute(action: "GetDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -100,7 +100,8 @@ extension Dts {
     /// 购买迁移任务。购买成功后会返回随机生成的迁移任务id列表，也可以通过查询迁移任务任务列表接口`DescribeMigrationJobs`看到购买成功的实例Id。注意，一旦购买成功后源及目标数据库类型，源及目标实例地域不可修改。
     @inlinable
     public func createMigrationService(srcDatabaseType: String, dstDatabaseType: String, srcRegion: String, dstRegion: String, instanceClass: String, count: UInt64? = nil, jobName: String? = nil, tags: [TagItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrationServiceResponse> {
-        self.createMigrationService(CreateMigrationServiceRequest(srcDatabaseType: srcDatabaseType, dstDatabaseType: dstDatabaseType, srcRegion: srcRegion, dstRegion: dstRegion, instanceClass: instanceClass, count: count, jobName: jobName, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateMigrationServiceRequest(srcDatabaseType: srcDatabaseType, dstDatabaseType: dstDatabaseType, srcRegion: srcRegion, dstRegion: dstRegion, instanceClass: instanceClass, count: count, jobName: jobName, tags: tags)
+        return self.client.execute(action: "CreateMigrationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 购买迁移任务
@@ -108,6 +109,7 @@ extension Dts {
     /// 购买迁移任务。购买成功后会返回随机生成的迁移任务id列表，也可以通过查询迁移任务任务列表接口`DescribeMigrationJobs`看到购买成功的实例Id。注意，一旦购买成功后源及目标数据库类型，源及目标实例地域不可修改。
     @inlinable
     public func createMigrationService(srcDatabaseType: String, dstDatabaseType: String, srcRegion: String, dstRegion: String, instanceClass: String, count: UInt64? = nil, jobName: String? = nil, tags: [TagItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrationServiceResponse {
-        try await self.createMigrationService(CreateMigrationServiceRequest(srcDatabaseType: srcDatabaseType, dstDatabaseType: dstDatabaseType, srcRegion: srcRegion, dstRegion: dstRegion, instanceClass: instanceClass, count: count, jobName: jobName, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateMigrationServiceRequest(srcDatabaseType: srcDatabaseType, dstDatabaseType: dstDatabaseType, srcRegion: srcRegion, dstRegion: dstRegion, instanceClass: instanceClass, count: count, jobName: jobName, tags: tags)
+        return try await self.client.execute(action: "CreateMigrationService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

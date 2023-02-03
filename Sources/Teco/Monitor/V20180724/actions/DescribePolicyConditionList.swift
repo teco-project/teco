@@ -58,12 +58,14 @@ extension Monitor {
     /// 获取基础告警策略条件
     @inlinable
     public func describePolicyConditionList(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyConditionListResponse> {
-        self.describePolicyConditionList(DescribePolicyConditionListRequest(module: module), region: region, logger: logger, on: eventLoop)
+        let input = DescribePolicyConditionListRequest(module: module)
+        return self.client.execute(action: "DescribePolicyConditionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基础告警策略条件
     @inlinable
     public func describePolicyConditionList(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyConditionListResponse {
-        try await self.describePolicyConditionList(DescribePolicyConditionListRequest(module: module), region: region, logger: logger, on: eventLoop)
+        let input = DescribePolicyConditionListRequest(module: module)
+        return try await self.client.execute(action: "DescribePolicyConditionList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

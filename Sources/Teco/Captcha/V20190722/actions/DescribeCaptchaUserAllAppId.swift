@@ -60,12 +60,14 @@ extension Captcha {
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
     public func describeCaptchaUserAllAppId(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCaptchaUserAllAppIdResponse> {
-        self.describeCaptchaUserAllAppId(DescribeCaptchaUserAllAppIdRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCaptchaUserAllAppIdRequest()
+        return self.client.execute(action: "DescribeCaptchaUserAllAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全验证码获取用户注册所有APPId和应用名称
     @inlinable
     public func describeCaptchaUserAllAppId(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCaptchaUserAllAppIdResponse {
-        try await self.describeCaptchaUserAllAppId(DescribeCaptchaUserAllAppIdRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCaptchaUserAllAppIdRequest()
+        return try await self.client.execute(action: "DescribeCaptchaUserAllAppId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -88,7 +88,8 @@ extension Cdb {
     /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
     @inlinable
     public func describeDBImportRecords(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBImportRecordsResponse> {
-        self.describeDBImportRecords(DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeDBImportRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库导入任务记录
@@ -96,6 +97,7 @@ extension Cdb {
     /// 本接口(DescribeDBImportRecords)用于查询云数据库导入任务操作日志。
     @inlinable
     public func describeDBImportRecords(instanceId: String, startTime: String? = nil, endTime: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBImportRecordsResponse {
-        try await self.describeDBImportRecords(DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBImportRecordsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeDBImportRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

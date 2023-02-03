@@ -70,7 +70,8 @@ extension Iotvideoindustry {
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
     @inlinable @discardableResult
     public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBindRecordingPlanResponse> {
-        self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels)
+        return self.client.execute(action: "ModifyBindRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新录制计划绑定的通道
@@ -78,6 +79,7 @@ extension Iotvideoindustry {
     /// 本接口(ModifyBindRecordingPlan)用于更新录制计划绑定的通道
     @inlinable @discardableResult
     public func modifyBindRecordingPlan(type: Int64, planId: String, channels: [ChannelItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBindRecordingPlanResponse {
-        try await self.modifyBindRecordingPlan(ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBindRecordingPlanRequest(type: type, planId: planId, channels: channels)
+        return try await self.client.execute(action: "ModifyBindRecordingPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

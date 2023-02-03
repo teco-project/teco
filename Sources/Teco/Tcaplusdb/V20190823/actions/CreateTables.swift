@@ -83,7 +83,8 @@ extension Tcaplusdb {
     /// 根据选择的IDL文件列表，批量创建表格
     @inlinable
     public func createTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], resourceTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTablesResponse> {
-        self.createTables(CreateTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
+        let input = CreateTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables, resourceTags: resourceTags)
+        return self.client.execute(action: "CreateTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建表
@@ -91,6 +92,7 @@ extension Tcaplusdb {
     /// 根据选择的IDL文件列表，批量创建表格
     @inlinable
     public func createTables(clusterId: String, idlFiles: [IdlFileInfo], selectedTables: [SelectedTableInfoNew], resourceTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTablesResponse {
-        try await self.createTables(CreateTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables, resourceTags: resourceTags), region: region, logger: logger, on: eventLoop)
+        let input = CreateTablesRequest(clusterId: clusterId, idlFiles: idlFiles, selectedTables: selectedTables, resourceTags: resourceTags)
+        return try await self.client.execute(action: "CreateTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

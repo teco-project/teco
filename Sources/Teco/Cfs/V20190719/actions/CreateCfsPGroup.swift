@@ -85,7 +85,8 @@ extension Cfs {
     /// 本接口（CreateCfsPGroup）用于创建权限组
     @inlinable
     public func createCfsPGroup(name: String, descInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsPGroupResponse> {
-        self.createCfsPGroup(CreateCfsPGroupRequest(name: name, descInfo: descInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateCfsPGroupRequest(name: name, descInfo: descInfo)
+        return self.client.execute(action: "CreateCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建权限组
@@ -93,6 +94,7 @@ extension Cfs {
     /// 本接口（CreateCfsPGroup）用于创建权限组
     @inlinable
     public func createCfsPGroup(name: String, descInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsPGroupResponse {
-        try await self.createCfsPGroup(CreateCfsPGroupRequest(name: name, descInfo: descInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateCfsPGroupRequest(name: name, descInfo: descInfo)
+        return try await self.client.execute(action: "CreateCfsPGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

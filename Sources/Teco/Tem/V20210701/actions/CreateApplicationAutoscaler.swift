@@ -74,12 +74,14 @@ extension Tem {
     /// 创建弹性伸缩策略组合
     @inlinable
     public func createApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscaler: Autoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationAutoscalerResponse> {
-        self.createApplicationAutoscaler(CreateApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscaler: autoscaler), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscaler: autoscaler)
+        return self.client.execute(action: "CreateApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性伸缩策略组合
     @inlinable
     public func createApplicationAutoscaler(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, autoscaler: Autoscaler? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationAutoscalerResponse {
-        try await self.createApplicationAutoscaler(CreateApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscaler: autoscaler), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationAutoscalerRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel, autoscaler: autoscaler)
+        return try await self.client.execute(action: "CreateApplicationAutoscaler", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

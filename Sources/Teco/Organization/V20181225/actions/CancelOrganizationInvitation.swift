@@ -54,12 +54,14 @@ extension Organization {
     /// 取消企业组织邀请
     @inlinable @discardableResult
     public func cancelOrganizationInvitation(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelOrganizationInvitationResponse> {
-        self.cancelOrganizationInvitation(CancelOrganizationInvitationRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = CancelOrganizationInvitationRequest(id: id)
+        return self.client.execute(action: "CancelOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消企业组织邀请
     @inlinable @discardableResult
     public func cancelOrganizationInvitation(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelOrganizationInvitationResponse {
-        try await self.cancelOrganizationInvitation(CancelOrganizationInvitationRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = CancelOrganizationInvitationRequest(id: id)
+        return try await self.client.execute(action: "CancelOrganizationInvitation", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -87,12 +87,14 @@ extension Tcaplusdb {
     /// 查询表详情
     @inlinable
     public func describeTables(clusterId: String? = nil, tableGroupIds: [String]? = nil, selectedTables: [SelectedTableInfoNew]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTablesResponse> {
-        self.describeTables(DescribeTablesRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, selectedTables: selectedTables, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTablesRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, selectedTables: selectedTables, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询表详情
     @inlinable
     public func describeTables(clusterId: String? = nil, tableGroupIds: [String]? = nil, selectedTables: [SelectedTableInfoNew]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTablesResponse {
-        try await self.describeTables(DescribeTablesRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, selectedTables: selectedTables, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTablesRequest(clusterId: clusterId, tableGroupIds: tableGroupIds, selectedTables: selectedTables, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeTables", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

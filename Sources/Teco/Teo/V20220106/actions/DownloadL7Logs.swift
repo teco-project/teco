@@ -119,7 +119,8 @@ extension Teo {
     /// 查询七层离线日志
     @inlinable
     public func downloadL7Logs(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadL7LogsResponse> {
-        self.downloadL7Logs(DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains), region: region, logger: logger, on: eventLoop)
+        let input = DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains)
+        return self.client.execute(action: "DownloadL7Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 七层离线日志下载
@@ -127,6 +128,7 @@ extension Teo {
     /// 查询七层离线日志
     @inlinable
     public func downloadL7Logs(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zones: [String]? = nil, domains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadL7LogsResponse {
-        try await self.downloadL7Logs(DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains), region: region, logger: logger, on: eventLoop)
+        let input = DownloadL7LogsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zones: zones, domains: domains)
+        return try await self.client.execute(action: "DownloadL7Logs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,12 +64,14 @@ extension Wedata {
     /// 查询规则执行结果详情
     @inlinable
     public func describeRuleExecDetail(projectId: String? = nil, ruleExecId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleExecDetailResponse> {
-        self.describeRuleExecDetail(DescribeRuleExecDetailRequest(projectId: projectId, ruleExecId: ruleExecId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleExecDetailRequest(projectId: projectId, ruleExecId: ruleExecId)
+        return self.client.execute(action: "DescribeRuleExecDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询规则执行结果详情
     @inlinable
     public func describeRuleExecDetail(projectId: String? = nil, ruleExecId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleExecDetailResponse {
-        try await self.describeRuleExecDetail(DescribeRuleExecDetailRequest(projectId: projectId, ruleExecId: ruleExecId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleExecDetailRequest(projectId: projectId, ruleExecId: ruleExecId)
+        return try await self.client.execute(action: "DescribeRuleExecDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

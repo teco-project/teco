@@ -102,7 +102,8 @@ extension Essbasic {
     /// 注：调用此接口前，请确保您已提前调用了发送流程接口（SendFlow）指定相关签署方。
     @inlinable
     public func createSignUrl(caller: Caller, userId: String, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSignUrlResponse> {
-        self.createSignUrl(CreateSignUrlRequest(caller: caller, userId: userId, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType, signId: signId), region: region, logger: logger, on: eventLoop)
+        let input = CreateSignUrlRequest(caller: caller, userId: userId, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType, signId: signId)
+        return self.client.execute(action: "CreateSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成签署URL
@@ -112,6 +113,7 @@ extension Essbasic {
     /// 注：调用此接口前，请确保您已提前调用了发送流程接口（SendFlow）指定相关签署方。
     @inlinable
     public func createSignUrl(caller: Caller, userId: String, deadline: Int64, catalogId: String? = nil, flowId: String? = nil, signUrlType: String? = nil, signId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSignUrlResponse {
-        try await self.createSignUrl(CreateSignUrlRequest(caller: caller, userId: userId, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType, signId: signId), region: region, logger: logger, on: eventLoop)
+        let input = CreateSignUrlRequest(caller: caller, userId: userId, deadline: deadline, catalogId: catalogId, flowId: flowId, signUrlType: signUrlType, signId: signId)
+        return try await self.client.execute(action: "CreateSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

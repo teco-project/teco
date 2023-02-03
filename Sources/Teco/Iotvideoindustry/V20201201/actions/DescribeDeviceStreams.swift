@@ -77,7 +77,8 @@ extension Iotvideoindustry {
     /// 请使用DescribeChannelStreamURL接口
     @inlinable
     public func describeDeviceStreams(deviceId: String, expireTime: UInt64, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceStreamsResponse> {
-        self.describeDeviceStreams(DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId)
+        return self.client.execute(action: "DescribeDeviceStreams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备实时流地址（旧）
@@ -86,6 +87,7 @@ extension Iotvideoindustry {
     /// 请使用DescribeChannelStreamURL接口
     @inlinable
     public func describeDeviceStreams(deviceId: String, expireTime: UInt64, channelId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceStreamsResponse {
-        try await self.describeDeviceStreams(DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceStreamsRequest(deviceId: deviceId, expireTime: expireTime, channelId: channelId)
+        return try await self.client.execute(action: "DescribeDeviceStreams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

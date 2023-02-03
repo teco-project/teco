@@ -115,7 +115,8 @@ extension Dts {
     /// 配置一个同步任务
     @inlinable @discardableResult
     public func configureSyncJob(jobId: String, srcAccessType: String, dstAccessType: String, options: Options, objects: Objects, jobName: String? = nil, jobMode: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, srcInfo: Endpoint? = nil, dstInfo: Endpoint? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfigureSyncJobResponse> {
-        self.configureSyncJob(ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, dstAccessType: dstAccessType, options: options, objects: objects, jobName: jobName, jobMode: jobMode, runMode: runMode, expectRunTime: expectRunTime, srcInfo: srcInfo, dstInfo: dstInfo, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
+        let input = ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, dstAccessType: dstAccessType, options: options, objects: objects, jobName: jobName, jobMode: jobMode, runMode: runMode, expectRunTime: expectRunTime, srcInfo: srcInfo, dstInfo: dstInfo, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes)
+        return self.client.execute(action: "ConfigureSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置同步任务
@@ -123,6 +124,7 @@ extension Dts {
     /// 配置一个同步任务
     @inlinable @discardableResult
     public func configureSyncJob(jobId: String, srcAccessType: String, dstAccessType: String, options: Options, objects: Objects, jobName: String? = nil, jobMode: String? = nil, runMode: String? = nil, expectRunTime: String? = nil, srcInfo: Endpoint? = nil, dstInfo: Endpoint? = nil, autoRetryTimeRangeMinutes: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfigureSyncJobResponse {
-        try await self.configureSyncJob(ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, dstAccessType: dstAccessType, options: options, objects: objects, jobName: jobName, jobMode: jobMode, runMode: runMode, expectRunTime: expectRunTime, srcInfo: srcInfo, dstInfo: dstInfo, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes), region: region, logger: logger, on: eventLoop)
+        let input = ConfigureSyncJobRequest(jobId: jobId, srcAccessType: srcAccessType, dstAccessType: dstAccessType, options: options, objects: objects, jobName: jobName, jobMode: jobMode, runMode: runMode, expectRunTime: expectRunTime, srcInfo: srcInfo, dstInfo: dstInfo, autoRetryTimeRangeMinutes: autoRetryTimeRangeMinutes)
+        return try await self.client.execute(action: "ConfigureSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

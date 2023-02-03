@@ -104,7 +104,8 @@ extension Tia {
     /// 部署模型，用以对外提供服务。有两种部署模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
     @inlinable
     public func createModel(name: String, model: String, description: String? = nil, cluster: String? = nil, runtimeVersion: String? = nil, replicas: UInt64? = nil, expose: String? = nil, servType: String? = nil, runtimeConf: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateModelResponse> {
-        self.createModel(CreateModelRequest(name: name, model: model, description: description, cluster: cluster, runtimeVersion: runtimeVersion, replicas: replicas, expose: expose, servType: servType, runtimeConf: runtimeConf), region: region, logger: logger, on: eventLoop)
+        let input = CreateModelRequest(name: name, model: model, description: description, cluster: cluster, runtimeVersion: runtimeVersion, replicas: replicas, expose: expose, servType: servType, runtimeConf: runtimeConf)
+        return self.client.execute(action: "CreateModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Model
@@ -112,6 +113,7 @@ extension Tia {
     /// 部署模型，用以对外提供服务。有两种部署模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。
     @inlinable
     public func createModel(name: String, model: String, description: String? = nil, cluster: String? = nil, runtimeVersion: String? = nil, replicas: UInt64? = nil, expose: String? = nil, servType: String? = nil, runtimeConf: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateModelResponse {
-        try await self.createModel(CreateModelRequest(name: name, model: model, description: description, cluster: cluster, runtimeVersion: runtimeVersion, replicas: replicas, expose: expose, servType: servType, runtimeConf: runtimeConf), region: region, logger: logger, on: eventLoop)
+        let input = CreateModelRequest(name: name, model: model, description: description, cluster: cluster, runtimeVersion: runtimeVersion, replicas: replicas, expose: expose, servType: servType, runtimeConf: runtimeConf)
+        return try await self.client.execute(action: "CreateModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

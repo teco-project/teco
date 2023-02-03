@@ -114,12 +114,14 @@ extension Teo {
     /// 创建应用代理规则
     @inlinable
     public func createApplicationProxyRule(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyRuleResponse> {
-        self.createApplicationProxyRule(CreateApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort)
+        return self.client.execute(action: "CreateApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用代理规则
     @inlinable
     public func createApplicationProxyRule(zoneId: String, proxyId: String, proto: String, port: [String], originType: String, originValue: [String], forwardClientIp: String? = nil, sessionPersist: Bool? = nil, originPort: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyRuleResponse {
-        try await self.createApplicationProxyRule(CreateApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationProxyRuleRequest(zoneId: zoneId, proxyId: proxyId, proto: proto, port: port, originType: originType, originValue: originValue, forwardClientIp: forwardClientIp, sessionPersist: sessionPersist, originPort: originPort)
+        return try await self.client.execute(action: "CreateApplicationProxyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

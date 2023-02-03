@@ -84,7 +84,8 @@ extension Clb {
     /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
     @inlinable
     public func createTopic(topicName: String, partitionCount: UInt64? = nil, topicType: String? = nil, period: UInt64? = nil, storageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
-        self.createTopic(CreateTopicRequest(topicName: topicName, partitionCount: partitionCount, topicType: topicType, period: period, storageType: storageType), region: region, logger: logger, on: eventLoop)
+        let input = CreateTopicRequest(topicName: topicName, partitionCount: partitionCount, topicType: topicType, period: period, storageType: storageType)
+        return self.client.execute(action: "CreateTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建主题
@@ -92,6 +93,7 @@ extension Clb {
     /// 创建主题，默认开启全文索引和键值索引。如果不存在CLB专有日志集，则创建失败。
     @inlinable
     public func createTopic(topicName: String, partitionCount: UInt64? = nil, topicType: String? = nil, period: UInt64? = nil, storageType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.createTopic(CreateTopicRequest(topicName: topicName, partitionCount: partitionCount, topicType: topicType, period: period, storageType: storageType), region: region, logger: logger, on: eventLoop)
+        let input = CreateTopicRequest(topicName: topicName, partitionCount: partitionCount, topicType: topicType, period: period, storageType: storageType)
+        return try await self.client.execute(action: "CreateTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

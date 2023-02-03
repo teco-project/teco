@@ -69,7 +69,8 @@ extension Lighthouse {
     /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
     @inlinable
     public func importKeyPair(keyName: String, publicKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
-        self.importKeyPair(ImportKeyPairRequest(keyName: keyName, publicKey: publicKey), region: region, logger: logger, on: eventLoop)
+        let input = ImportKeyPairRequest(keyName: keyName, publicKey: publicKey)
+        return self.client.execute(action: "ImportKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥对
@@ -77,6 +78,7 @@ extension Lighthouse {
     /// 本接口（ImportKeyPair）用于导入用户指定密钥对。
     @inlinable
     public func importKeyPair(keyName: String, publicKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
-        try await self.importKeyPair(ImportKeyPairRequest(keyName: keyName, publicKey: publicKey), region: region, logger: logger, on: eventLoop)
+        let input = ImportKeyPairRequest(keyName: keyName, publicKey: publicKey)
+        return try await self.client.execute(action: "ImportKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -118,7 +118,8 @@ extension Vod {
     /// 如使用事件通知，除音视频审核任务外的事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)；音视频审核任务事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func processMediaByProcedure(fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProcessMediaByProcedureResponse> {
-        self.processMediaByProcedure(ProcessMediaByProcedureRequest(fileId: fileId, procedureName: procedureName, subAppId: subAppId, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+        let input = ProcessMediaByProcedureRequest(fileId: fileId, procedureName: procedureName, subAppId: subAppId, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo)
+        return self.client.execute(action: "ProcessMediaByProcedure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用任务流模板进行视频处理
@@ -131,6 +132,7 @@ extension Vod {
     /// 如使用事件通知，除音视频审核任务外的事件通知的类型为 [任务流状态变更](https://cloud.tencent.com/document/product/266/9636)；音视频审核任务事件通知的类型为 [音视频审核完成](https://cloud.tencent.com/document/product/266/81258)。
     @inlinable
     public func processMediaByProcedure(fileId: String, procedureName: String, subAppId: UInt64? = nil, tasksPriority: Int64? = nil, tasksNotifyMode: String? = nil, sessionContext: String? = nil, sessionId: String? = nil, extInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProcessMediaByProcedureResponse {
-        try await self.processMediaByProcedure(ProcessMediaByProcedureRequest(fileId: fileId, procedureName: procedureName, subAppId: subAppId, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo), region: region, logger: logger, on: eventLoop)
+        let input = ProcessMediaByProcedureRequest(fileId: fileId, procedureName: procedureName, subAppId: subAppId, tasksPriority: tasksPriority, tasksNotifyMode: tasksNotifyMode, sessionContext: sessionContext, sessionId: sessionId, extInfo: extInfo)
+        return try await self.client.execute(action: "ProcessMediaByProcedure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

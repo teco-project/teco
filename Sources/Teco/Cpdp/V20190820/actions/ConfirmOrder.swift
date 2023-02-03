@@ -78,12 +78,14 @@ extension Cpdp {
     /// 云鉴-消费订单确认接口
     @inlinable
     public func confirmOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ConfirmOrderResponse> {
-        self.confirmOrder(ConfirmOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
+        let input = ConfirmOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo)
+        return self.client.execute(action: "ConfirmOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-消费订单确认接口
     @inlinable
     public func confirmOrder(merchantAppId: String, orderNo: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ConfirmOrderResponse {
-        try await self.confirmOrder(ConfirmOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo), region: region, logger: logger, on: eventLoop)
+        let input = ConfirmOrderRequest(merchantAppId: merchantAppId, orderNo: orderNo)
+        return try await self.client.execute(action: "ConfirmOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

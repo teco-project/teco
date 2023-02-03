@@ -131,7 +131,8 @@ extension Apm {
     /// 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
     @inlinable
     public func describeGeneralMetricData(filters: [GeneralFilter], metrics: [String], instanceId: String, viewName: String, groupBy: [String]? = nil, startTime: Int64? = nil, endTime: Int64? = nil, period: Int64? = nil, orderBy: OrderBy? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralMetricDataResponse> {
-        self.describeGeneralMetricData(DescribeGeneralMetricDataRequest(filters: filters, metrics: metrics, instanceId: instanceId, viewName: viewName, groupBy: groupBy, startTime: startTime, endTime: endTime, period: period, orderBy: orderBy, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGeneralMetricDataRequest(filters: filters, metrics: metrics, instanceId: instanceId, viewName: viewName, groupBy: groupBy, startTime: startTime, endTime: endTime, period: period, orderBy: orderBy, pageSize: pageSize)
+        return self.client.execute(action: "DescribeGeneralMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指标数据通用接口
@@ -140,6 +141,7 @@ extension Apm {
     /// 接口调用频率限制为：20次/秒，1200次/分钟。单请求的数据点数限制为1440个。
     @inlinable
     public func describeGeneralMetricData(filters: [GeneralFilter], metrics: [String], instanceId: String, viewName: String, groupBy: [String]? = nil, startTime: Int64? = nil, endTime: Int64? = nil, period: Int64? = nil, orderBy: OrderBy? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralMetricDataResponse {
-        try await self.describeGeneralMetricData(DescribeGeneralMetricDataRequest(filters: filters, metrics: metrics, instanceId: instanceId, viewName: viewName, groupBy: groupBy, startTime: startTime, endTime: endTime, period: period, orderBy: orderBy, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGeneralMetricDataRequest(filters: filters, metrics: metrics, instanceId: instanceId, viewName: viewName, groupBy: groupBy, startTime: startTime, endTime: endTime, period: period, orderBy: orderBy, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeGeneralMetricData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

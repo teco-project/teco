@@ -97,7 +97,8 @@ extension Live {
     /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
     @inlinable
     public func describeStreamPlayInfoList(startTime: String, endTime: String, playDomain: String? = nil, streamName: String? = nil, appName: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamPlayInfoListResponse> {
-        self.describeStreamPlayInfoList(DescribeStreamPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomain: playDomain, streamName: streamName, appName: appName, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomain: playDomain, streamName: streamName, appName: appName, serviceName: serviceName)
+        return self.client.execute(action: "DescribeStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流的播放信息列表
@@ -106,6 +107,7 @@ extension Live {
     /// 注意：按AppName查询请先联系工单申请，开通后配置生效预计需要5个工作日左右，具体时间以最终回复为准。
     @inlinable
     public func describeStreamPlayInfoList(startTime: String, endTime: String, playDomain: String? = nil, streamName: String? = nil, appName: String? = nil, serviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamPlayInfoListResponse {
-        try await self.describeStreamPlayInfoList(DescribeStreamPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomain: playDomain, streamName: streamName, appName: appName, serviceName: serviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamPlayInfoListRequest(startTime: startTime, endTime: endTime, playDomain: playDomain, streamName: streamName, appName: appName, serviceName: serviceName)
+        return try await self.client.execute(action: "DescribeStreamPlayInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

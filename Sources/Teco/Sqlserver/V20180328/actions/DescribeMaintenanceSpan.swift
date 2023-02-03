@@ -72,7 +72,8 @@ extension Sqlserver {
     /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
     @inlinable
     public func describeMaintenanceSpan(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMaintenanceSpanResponse> {
-        self.describeMaintenanceSpan(DescribeMaintenanceSpanRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMaintenanceSpanRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeMaintenanceSpan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询该实例的可维护时间窗
@@ -80,6 +81,7 @@ extension Sqlserver {
     /// 本接口（DescribeMaintenanceSpan）根据实例ID查询该实例的可维护时间窗。
     @inlinable
     public func describeMaintenanceSpan(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMaintenanceSpanResponse {
-        try await self.describeMaintenanceSpan(DescribeMaintenanceSpanRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMaintenanceSpanRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeMaintenanceSpan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

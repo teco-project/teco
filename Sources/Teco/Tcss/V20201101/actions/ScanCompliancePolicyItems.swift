@@ -64,7 +64,8 @@ extension Tcss {
     /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
     @inlinable
     public func scanCompliancePolicyItems(customerPolicyItemIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanCompliancePolicyItemsResponse> {
-        self.scanCompliancePolicyItems(ScanCompliancePolicyItemsRequest(customerPolicyItemIdSet: customerPolicyItemIdSet), region: region, logger: logger, on: eventLoop)
+        let input = ScanCompliancePolicyItemsRequest(customerPolicyItemIdSet: customerPolicyItemIdSet)
+        return self.client.execute(action: "ScanCompliancePolicyItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规重新检测选定的检测项
@@ -72,6 +73,7 @@ extension Tcss {
     /// 重新检测选的检测项下的所有资产，返回创建的合规检查任务的ID。
     @inlinable
     public func scanCompliancePolicyItems(customerPolicyItemIdSet: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanCompliancePolicyItemsResponse {
-        try await self.scanCompliancePolicyItems(ScanCompliancePolicyItemsRequest(customerPolicyItemIdSet: customerPolicyItemIdSet), region: region, logger: logger, on: eventLoop)
+        let input = ScanCompliancePolicyItemsRequest(customerPolicyItemIdSet: customerPolicyItemIdSet)
+        return try await self.client.execute(action: "ScanCompliancePolicyItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

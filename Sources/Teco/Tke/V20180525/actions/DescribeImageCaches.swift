@@ -91,7 +91,8 @@ extension Tke {
     /// 查询镜像缓存信息接口
     @inlinable
     public func describeImageCaches(imageCacheIds: [String]? = nil, imageCacheNames: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageCachesResponse> {
-        self.describeImageCaches(DescribeImageCachesRequest(imageCacheIds: imageCacheIds, imageCacheNames: imageCacheNames, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageCachesRequest(imageCacheIds: imageCacheIds, imageCacheNames: imageCacheNames, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeImageCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像缓存信息
@@ -99,6 +100,7 @@ extension Tke {
     /// 查询镜像缓存信息接口
     @inlinable
     public func describeImageCaches(imageCacheIds: [String]? = nil, imageCacheNames: [String]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageCachesResponse {
-        try await self.describeImageCaches(DescribeImageCachesRequest(imageCacheIds: imageCacheIds, imageCacheNames: imageCacheNames, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageCachesRequest(imageCacheIds: imageCacheIds, imageCacheNames: imageCacheNames, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeImageCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -73,7 +73,8 @@ extension Cvm {
     /// * 支持批量操作，每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
     @inlinable
     public func inquiryPriceTerminateInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceTerminateInstancesResponse> {
-        self.inquiryPriceTerminateInstances(InquiryPriceTerminateInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceTerminateInstancesRequest(instanceIds: instanceIds)
+        return self.client.execute(action: "InquiryPriceTerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退还实例询价
@@ -84,6 +85,7 @@ extension Cvm {
     /// * 支持批量操作，每次请求批量实例的上限为100。如果批量实例存在不允许操作的实例，操作会以特定错误码返回。
     @inlinable
     public func inquiryPriceTerminateInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceTerminateInstancesResponse {
-        try await self.inquiryPriceTerminateInstances(InquiryPriceTerminateInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceTerminateInstancesRequest(instanceIds: instanceIds)
+        return try await self.client.execute(action: "InquiryPriceTerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

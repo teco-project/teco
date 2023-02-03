@@ -59,12 +59,14 @@ extension Dlc {
     /// 解绑工作组鉴权策略
     @inlinable @discardableResult
     public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachWorkGroupPolicyResponse> {
-        self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), region: region, logger: logger, on: eventLoop)
+        let input = DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet)
+        return self.client.execute(action: "DetachWorkGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑工作组鉴权策略
     @inlinable @discardableResult
     public func detachWorkGroupPolicy(workGroupId: Int64, policySet: [Policy]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachWorkGroupPolicyResponse {
-        try await self.detachWorkGroupPolicy(DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet), region: region, logger: logger, on: eventLoop)
+        let input = DetachWorkGroupPolicyRequest(workGroupId: workGroupId, policySet: policySet)
+        return try await self.client.execute(action: "DetachWorkGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

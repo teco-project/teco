@@ -84,7 +84,8 @@ extension Tcr {
     /// 用于查询应用更新触发器触发日志
     @inlinable
     public func describeApplicationTriggerLogPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationTriggerLogPersonalResponse> {
-        self.describeApplicationTriggerLogPersonal(DescribeApplicationTriggerLogPersonalRequest(repoName: repoName, offset: offset, limit: limit, order: order, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationTriggerLogPersonalRequest(repoName: repoName, offset: offset, limit: limit, order: order, orderBy: orderBy)
+        return self.client.execute(action: "DescribeApplicationTriggerLogPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应用更新触发器触发日志
@@ -92,6 +93,7 @@ extension Tcr {
     /// 用于查询应用更新触发器触发日志
     @inlinable
     public func describeApplicationTriggerLogPersonal(repoName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, order: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationTriggerLogPersonalResponse {
-        try await self.describeApplicationTriggerLogPersonal(DescribeApplicationTriggerLogPersonalRequest(repoName: repoName, offset: offset, limit: limit, order: order, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationTriggerLogPersonalRequest(repoName: repoName, offset: offset, limit: limit, order: order, orderBy: orderBy)
+        return try await self.client.execute(action: "DescribeApplicationTriggerLogPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

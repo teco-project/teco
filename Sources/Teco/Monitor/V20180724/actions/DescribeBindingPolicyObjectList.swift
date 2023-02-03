@@ -97,12 +97,14 @@ extension Monitor {
     /// 获取已绑定对象列表
     @inlinable
     public func describeBindingPolicyObjectList(module: String, groupId: Int64, policyId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, dimensions: [DescribeBindingPolicyObjectListDimension]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindingPolicyObjectListResponse> {
-        self.describeBindingPolicyObjectList(DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions)
+        return self.client.execute(action: "DescribeBindingPolicyObjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取已绑定对象列表
     @inlinable
     public func describeBindingPolicyObjectList(module: String, groupId: Int64, policyId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, dimensions: [DescribeBindingPolicyObjectListDimension]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindingPolicyObjectListResponse {
-        try await self.describeBindingPolicyObjectList(DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBindingPolicyObjectListRequest(module: module, groupId: groupId, policyId: policyId, limit: limit, offset: offset, dimensions: dimensions)
+        return try await self.client.execute(action: "DescribeBindingPolicyObjectList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

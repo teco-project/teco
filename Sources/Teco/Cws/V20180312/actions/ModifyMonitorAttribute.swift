@@ -101,7 +101,8 @@ extension Cws {
     /// 本接口 (ModifyMonitorAttribute) 用于修改监测任务的属性。
     @inlinable @discardableResult
     public func modifyMonitorAttribute(monitorId: UInt64, urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, monitorStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMonitorAttributeResponse> {
-        self.modifyMonitorAttribute(ModifyMonitorAttributeRequest(monitorId: monitorId, urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime, monitorStatus: monitorStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMonitorAttributeRequest(monitorId: monitorId, urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime, monitorStatus: monitorStatus)
+        return self.client.execute(action: "ModifyMonitorAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改监测任务的属性
@@ -109,6 +110,7 @@ extension Cws {
     /// 本接口 (ModifyMonitorAttribute) 用于修改监测任务的属性。
     @inlinable @discardableResult
     public func modifyMonitorAttribute(monitorId: UInt64, urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date, monitorStatus: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMonitorAttributeResponse {
-        try await self.modifyMonitorAttribute(ModifyMonitorAttributeRequest(monitorId: monitorId, urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime, monitorStatus: monitorStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMonitorAttributeRequest(monitorId: monitorId, urls: urls, name: name, scannerType: scannerType, crontab: crontab, rateLimit: rateLimit, firstScanStartTime: firstScanStartTime, monitorStatus: monitorStatus)
+        return try await self.client.execute(action: "ModifyMonitorAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -67,7 +67,8 @@ extension Lighthouse {
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
     @inlinable
     public func describeDiskConfigs(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskConfigsResponse> {
-        self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDiskConfigsRequest(filters: filters)
+        return self.client.execute(action: "DescribeDiskConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看云硬盘配置
@@ -75,6 +76,7 @@ extension Lighthouse {
     /// 本接口（DescribeDiskConfigs）用于查询云硬盘配置。
     @inlinable
     public func describeDiskConfigs(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskConfigsResponse {
-        try await self.describeDiskConfigs(DescribeDiskConfigsRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDiskConfigsRequest(filters: filters)
+        return try await self.client.execute(action: "DescribeDiskConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

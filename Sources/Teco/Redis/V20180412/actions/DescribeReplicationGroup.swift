@@ -83,7 +83,8 @@ extension Redis {
     /// 本接口（DescribeReplicationGroup）查询复制组。
     @inlinable
     public func describeReplicationGroup(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationGroupResponse> {
-        self.describeReplicationGroup(DescribeReplicationGroupRequest(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReplicationGroupRequest(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey)
+        return self.client.execute(action: "DescribeReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询复制组
@@ -91,6 +92,7 @@ extension Redis {
     /// 本接口（DescribeReplicationGroup）查询复制组。
     @inlinable
     public func describeReplicationGroup(limit: Int64, offset: Int64, groupId: String? = nil, searchKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationGroupResponse {
-        try await self.describeReplicationGroup(DescribeReplicationGroupRequest(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReplicationGroupRequest(limit: limit, offset: offset, groupId: groupId, searchKey: searchKey)
+        return try await self.client.execute(action: "DescribeReplicationGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

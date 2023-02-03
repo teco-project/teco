@@ -78,7 +78,8 @@ extension Ms {
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func createShieldPlanInstance(resourceId: String, planName: String, planInfo: PlanInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateShieldPlanInstanceResponse> {
-        self.createShieldPlanInstance(CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo)
+        return self.client.execute(action: "CreateShieldPlanInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增加固策略
@@ -86,6 +87,7 @@ extension Ms {
     /// 对资源进行策略新增。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func createShieldPlanInstance(resourceId: String, planName: String, planInfo: PlanInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateShieldPlanInstanceResponse {
-        try await self.createShieldPlanInstance(CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateShieldPlanInstanceRequest(resourceId: resourceId, planName: planName, planInfo: planInfo)
+        return try await self.client.execute(action: "CreateShieldPlanInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

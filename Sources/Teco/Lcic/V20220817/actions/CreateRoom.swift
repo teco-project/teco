@@ -131,12 +131,14 @@ extension Lcic {
     /// 创建房间
     @inlinable
     public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRoomResponse> {
-        self.createRoom(CreateRoomRequest(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout), region: region, logger: logger, on: eventLoop)
+        let input = CreateRoomRequest(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout)
+        return self.client.execute(action: "CreateRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建房间
     @inlinable
     public func createRoom(name: String, startTime: UInt64, endTime: UInt64, sdkAppId: UInt64, resolution: UInt64, maxMicNumber: UInt64, subType: String, teacherId: String? = nil, autoMic: UInt64? = nil, audioQuality: UInt64? = nil, disableRecord: UInt64? = nil, assistants: [String]? = nil, recordLayout: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRoomResponse {
-        try await self.createRoom(CreateRoomRequest(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout), region: region, logger: logger, on: eventLoop)
+        let input = CreateRoomRequest(name: name, startTime: startTime, endTime: endTime, sdkAppId: sdkAppId, resolution: resolution, maxMicNumber: maxMicNumber, subType: subType, teacherId: teacherId, autoMic: autoMic, audioQuality: audioQuality, disableRecord: disableRecord, assistants: assistants, recordLayout: recordLayout)
+        return try await self.client.execute(action: "CreateRoom", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

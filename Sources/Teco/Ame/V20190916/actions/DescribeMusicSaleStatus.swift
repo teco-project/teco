@@ -69,7 +69,8 @@ extension Ame {
     /// 根据音乐信息查询音乐是否在售
     @inlinable
     public func describeMusicSaleStatus(musicIds: [String], purchaseType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMusicSaleStatusResponse> {
-        self.describeMusicSaleStatus(DescribeMusicSaleStatusRequest(musicIds: musicIds, purchaseType: purchaseType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMusicSaleStatusRequest(musicIds: musicIds, purchaseType: purchaseType)
+        return self.client.execute(action: "DescribeMusicSaleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询歌曲在售状态
@@ -77,6 +78,7 @@ extension Ame {
     /// 根据音乐信息查询音乐是否在售
     @inlinable
     public func describeMusicSaleStatus(musicIds: [String], purchaseType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicSaleStatusResponse {
-        try await self.describeMusicSaleStatus(DescribeMusicSaleStatusRequest(musicIds: musicIds, purchaseType: purchaseType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMusicSaleStatusRequest(musicIds: musicIds, purchaseType: purchaseType)
+        return try await self.client.execute(action: "DescribeMusicSaleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

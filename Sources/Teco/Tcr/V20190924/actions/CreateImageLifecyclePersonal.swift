@@ -70,7 +70,8 @@ extension Tcr {
     /// 用于在个人版中创建清理策略
     @inlinable @discardableResult
     public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImageLifecyclePersonalResponse> {
-        self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), region: region, logger: logger, on: eventLoop)
+        let input = CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val)
+        return self.client.execute(action: "CreateImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建个人版镜像版本清理策略
@@ -78,6 +79,7 @@ extension Tcr {
     /// 用于在个人版中创建清理策略
     @inlinable @discardableResult
     public func createImageLifecyclePersonal(repoName: String, type: String, val: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImageLifecyclePersonalResponse {
-        try await self.createImageLifecyclePersonal(CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val), region: region, logger: logger, on: eventLoop)
+        let input = CreateImageLifecyclePersonalRequest(repoName: repoName, type: type, val: val)
+        return try await self.client.execute(action: "CreateImageLifecyclePersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -98,12 +98,14 @@ extension Cpdp {
     /// 云支付-上传机构文件接口
     @inlinable
     public func uploadOrgFile(openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOrgFileResponse> {
-        self.uploadOrgFile(UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile)
+        return self.client.execute(action: "UploadOrgFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-上传机构文件接口
     @inlinable
     public func uploadOrgFile(openId: String, openKey: String, storage: String, fileMd5: String, fileContent: String, fileExtension: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOrgFileResponse {
-        try await self.uploadOrgFile(UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = UploadOrgFileRequest(openId: openId, openKey: openKey, storage: storage, fileMd5: fileMd5, fileContent: fileContent, fileExtension: fileExtension, profile: profile)
+        return try await self.client.execute(action: "UploadOrgFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

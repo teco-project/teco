@@ -75,7 +75,8 @@ extension Apigateway {
     /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
     @inlinable
     public func describeServicesStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServicesStatusResponse> {
-        self.describeServicesStatus(DescribeServicesStatusRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServicesStatusRequest(limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeServicesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务列表状态
@@ -83,6 +84,7 @@ extension Apigateway {
     /// 本接口（DescribeServicesStatus）用于搜索查询某一个服务或多个服务的列表，并返回服务相关的域名、时间等信息。
     @inlinable
     public func describeServicesStatus(limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServicesStatusResponse {
-        try await self.describeServicesStatus(DescribeServicesStatusRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServicesStatusRequest(limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeServicesStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

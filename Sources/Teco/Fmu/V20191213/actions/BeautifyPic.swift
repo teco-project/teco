@@ -105,7 +105,8 @@ extension Fmu {
     /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
     public func beautifyPic(image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BeautifyPicResponse> {
-        self.beautifyPic(BeautifyPicRequest(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
+        let input = BeautifyPicRequest(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType)
+        return self.client.execute(action: "BeautifyPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸美颜
@@ -113,6 +114,7 @@ extension Fmu {
     /// 用户上传一张人脸图片，精准定位五官，实现美肤、亮肤、祛痘等美颜功能。
     @inlinable
     public func beautifyPic(image: String? = nil, url: String? = nil, whitening: UInt64? = nil, smoothing: UInt64? = nil, faceLifting: UInt64? = nil, eyeEnlarging: UInt64? = nil, rspImgType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BeautifyPicResponse {
-        try await self.beautifyPic(BeautifyPicRequest(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType), region: region, logger: logger, on: eventLoop)
+        let input = BeautifyPicRequest(image: image, url: url, whitening: whitening, smoothing: smoothing, faceLifting: faceLifting, eyeEnlarging: eyeEnlarging, rspImgType: rspImgType)
+        return try await self.client.execute(action: "BeautifyPic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

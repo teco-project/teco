@@ -84,7 +84,8 @@ extension Tke {
     /// 获取弹性容器集群的接入认证信息
     @inlinable
     public func describeEKSClusterCredential(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEKSClusterCredentialResponse> {
-        self.describeEKSClusterCredential(DescribeEKSClusterCredentialRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEKSClusterCredentialRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribeEKSClusterCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取弹性容器集群的认证信息
@@ -92,6 +93,7 @@ extension Tke {
     /// 获取弹性容器集群的接入认证信息
     @inlinable
     public func describeEKSClusterCredential(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEKSClusterCredentialResponse {
-        try await self.describeEKSClusterCredential(DescribeEKSClusterCredentialRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEKSClusterCredentialRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeEKSClusterCredential", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

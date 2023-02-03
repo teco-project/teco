@@ -74,12 +74,14 @@ extension Iotexplorer {
     /// 删除设备
     @inlinable
     public func deleteDevice(productId: String, deviceName: String, forceDelete: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDeviceResponse> {
-        self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName, forceDelete: forceDelete), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDeviceRequest(productId: productId, deviceName: deviceName, forceDelete: forceDelete)
+        return self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除设备
     @inlinable
     public func deleteDevice(productId: String, deviceName: String, forceDelete: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceResponse {
-        try await self.deleteDevice(DeleteDeviceRequest(productId: productId, deviceName: deviceName, forceDelete: forceDelete), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDeviceRequest(productId: productId, deviceName: deviceName, forceDelete: forceDelete)
+        return try await self.client.execute(action: "DeleteDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

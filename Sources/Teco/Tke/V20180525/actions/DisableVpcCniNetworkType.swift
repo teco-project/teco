@@ -60,7 +60,8 @@ extension Tke {
     /// 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
     @inlinable @discardableResult
     public func disableVpcCniNetworkType(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableVpcCniNetworkTypeResponse> {
-        self.disableVpcCniNetworkType(DisableVpcCniNetworkTypeRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DisableVpcCniNetworkTypeRequest(clusterId: clusterId)
+        return self.client.execute(action: "DisableVpcCniNetworkType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 关闭附加的VPC-CNI网络能力
@@ -68,6 +69,7 @@ extension Tke {
     /// 提供给附加了VPC-CNI能力的Global-Route集群关闭VPC-CNI
     @inlinable @discardableResult
     public func disableVpcCniNetworkType(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableVpcCniNetworkTypeResponse {
-        try await self.disableVpcCniNetworkType(DisableVpcCniNetworkTypeRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DisableVpcCniNetworkTypeRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DisableVpcCniNetworkType", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

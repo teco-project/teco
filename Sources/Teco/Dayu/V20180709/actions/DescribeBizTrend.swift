@@ -111,12 +111,14 @@ extension Dayu {
     /// 获取业务流量曲线
     @inlinable
     public func describeBizTrend(business: String, id: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, metricName: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBizTrendResponse> {
-        self.describeBizTrend(DescribeBizTrendRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, metricName: metricName, protoInfo: protoInfo, domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBizTrendRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, metricName: metricName, protoInfo: protoInfo, domain: domain)
+        return self.client.execute(action: "DescribeBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取业务流量曲线
     @inlinable
     public func describeBizTrend(business: String, id: String, period: UInt64, startTime: Date, endTime: Date, statistics: String, metricName: String, protoInfo: [ProtocolPort]? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBizTrendResponse {
-        try await self.describeBizTrend(DescribeBizTrendRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, metricName: metricName, protoInfo: protoInfo, domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBizTrendRequest(business: business, id: id, period: period, startTime: startTime, endTime: endTime, statistics: statistics, metricName: metricName, protoInfo: protoInfo, domain: domain)
+        return try await self.client.execute(action: "DescribeBizTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

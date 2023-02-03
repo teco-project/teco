@@ -79,7 +79,8 @@ extension Gaap {
     /// 该接口（CreateHTTPListener）用于在通道实例下创建HTTP协议类型的监听器。
     @inlinable
     public func createHTTPListener(listenerName: String, port: UInt64, proxyId: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHTTPListenerResponse> {
-        self.createHTTPListener(CreateHTTPListenerRequest(listenerName: listenerName, port: port, proxyId: proxyId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateHTTPListenerRequest(listenerName: listenerName, port: port, proxyId: proxyId, groupId: groupId)
+        return self.client.execute(action: "CreateHTTPListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建HTTP监听器
@@ -87,6 +88,7 @@ extension Gaap {
     /// 该接口（CreateHTTPListener）用于在通道实例下创建HTTP协议类型的监听器。
     @inlinable
     public func createHTTPListener(listenerName: String, port: UInt64, proxyId: String? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHTTPListenerResponse {
-        try await self.createHTTPListener(CreateHTTPListenerRequest(listenerName: listenerName, port: port, proxyId: proxyId, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateHTTPListenerRequest(listenerName: listenerName, port: port, proxyId: proxyId, groupId: groupId)
+        return try await self.client.execute(action: "CreateHTTPListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

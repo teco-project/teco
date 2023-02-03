@@ -78,12 +78,14 @@ extension Tcss {
     /// 查询平行容器安装命令
     @inlinable
     public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentDaemonSetCmdResponse> {
-        self.describeAgentDaemonSetCmd(DescribeAgentDaemonSetCmdRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAgentDaemonSetCmdRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate)
+        return self.client.execute(action: "DescribeAgentDaemonSetCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询平行容器安装命令
     @inlinable
     public func describeAgentDaemonSetCmd(isCloud: Bool, netType: String, regionCode: String? = nil, vpcId: String? = nil, expireDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentDaemonSetCmdResponse {
-        try await self.describeAgentDaemonSetCmd(DescribeAgentDaemonSetCmdRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAgentDaemonSetCmdRequest(isCloud: isCloud, netType: netType, regionCode: regionCode, vpcId: vpcId, expireDate: expireDate)
+        return try await self.client.execute(action: "DescribeAgentDaemonSetCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

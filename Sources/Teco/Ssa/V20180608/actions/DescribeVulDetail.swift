@@ -175,7 +175,8 @@ extension Ssa {
     /// 漏洞列表页，获取漏洞详情信息
     @inlinable
     public func describeVulDetail(uniqId: String, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulDetailResponse> {
-        self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulDetailRequest(uniqId: uniqId, source: source)
+        return self.client.execute(action: "DescribeVulDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 漏洞列表-漏洞详情
@@ -183,6 +184,7 @@ extension Ssa {
     /// 漏洞列表页，获取漏洞详情信息
     @inlinable
     public func describeVulDetail(uniqId: String, source: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulDetailResponse {
-        try await self.describeVulDetail(DescribeVulDetailRequest(uniqId: uniqId, source: source), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulDetailRequest(uniqId: uniqId, source: source)
+        return try await self.client.execute(action: "DescribeVulDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

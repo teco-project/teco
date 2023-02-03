@@ -56,7 +56,8 @@ extension Cdb {
     /// 本接口(DescribeCdbZoneConfig)用于查询云数据库各地域可售卖的规格配置。
     @inlinable
     public func describeCdbZoneConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCdbZoneConfigResponse> {
-        self.describeCdbZoneConfig(DescribeCdbZoneConfigRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCdbZoneConfigRequest()
+        return self.client.execute(action: "DescribeCdbZoneConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据库可用区及售卖规格
@@ -64,6 +65,7 @@ extension Cdb {
     /// 本接口(DescribeCdbZoneConfig)用于查询云数据库各地域可售卖的规格配置。
     @inlinable
     public func describeCdbZoneConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCdbZoneConfigResponse {
-        try await self.describeCdbZoneConfig(DescribeCdbZoneConfigRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCdbZoneConfigRequest()
+        return try await self.client.execute(action: "DescribeCdbZoneConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

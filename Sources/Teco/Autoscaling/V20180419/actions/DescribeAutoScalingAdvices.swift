@@ -64,7 +64,8 @@ extension As {
     /// 此接口用于查询伸缩组配置建议。
     @inlinable
     public func describeAutoScalingAdvices(autoScalingGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingAdvicesResponse> {
-        self.describeAutoScalingAdvices(DescribeAutoScalingAdvicesRequest(autoScalingGroupIds: autoScalingGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoScalingAdvicesRequest(autoScalingGroupIds: autoScalingGroupIds)
+        return self.client.execute(action: "DescribeAutoScalingAdvices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询弹性伸缩配置建议
@@ -72,6 +73,7 @@ extension As {
     /// 此接口用于查询伸缩组配置建议。
     @inlinable
     public func describeAutoScalingAdvices(autoScalingGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingAdvicesResponse {
-        try await self.describeAutoScalingAdvices(DescribeAutoScalingAdvicesRequest(autoScalingGroupIds: autoScalingGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoScalingAdvicesRequest(autoScalingGroupIds: autoScalingGroupIds)
+        return try await self.client.execute(action: "DescribeAutoScalingAdvices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

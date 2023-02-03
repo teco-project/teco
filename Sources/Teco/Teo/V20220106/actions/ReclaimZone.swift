@@ -64,7 +64,8 @@ extension Teo {
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点
     @inlinable
     public func reclaimZone(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReclaimZoneResponse> {
-        self.reclaimZone(ReclaimZoneRequest(name: name), region: region, logger: logger, on: eventLoop)
+        let input = ReclaimZoneRequest(name: name)
+        return self.client.execute(action: "ReclaimZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 找回站点
@@ -72,6 +73,7 @@ extension Teo {
     /// 站点被其他用户接入后，验证了站点所有权之后，可以找回该站点
     @inlinable
     public func reclaimZone(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReclaimZoneResponse {
-        try await self.reclaimZone(ReclaimZoneRequest(name: name), region: region, logger: logger, on: eventLoop)
+        let input = ReclaimZoneRequest(name: name)
+        return try await self.client.execute(action: "ReclaimZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

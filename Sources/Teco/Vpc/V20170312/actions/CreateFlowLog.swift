@@ -114,7 +114,8 @@ extension Vpc {
     /// 本接口（CreateFlowLog）用于创建流日志
     @inlinable
     public func createFlowLog(flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowLogResponse> {
-        self.createFlowLog(CreateFlowLogRequest(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowLogRequest(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion)
+        return self.client.execute(action: "CreateFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建流日志
@@ -122,6 +123,7 @@ extension Vpc {
     /// 本接口（CreateFlowLog）用于创建流日志
     @inlinable
     public func createFlowLog(flowLogName: String, resourceType: String, resourceId: String, trafficType: String, vpcId: String? = nil, flowLogDescription: String? = nil, cloudLogId: String? = nil, tags: [Tag]? = nil, storageType: String? = nil, flowLogStorage: FlowLogStorage? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowLogResponse {
-        try await self.createFlowLog(CreateFlowLogRequest(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowLogRequest(flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, vpcId: vpcId, flowLogDescription: flowLogDescription, cloudLogId: cloudLogId, tags: tags, storageType: storageType, flowLogStorage: flowLogStorage, cloudLogRegion: cloudLogRegion)
+        return try await self.client.execute(action: "CreateFlowLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

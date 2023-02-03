@@ -88,7 +88,8 @@ extension Tcaplusdb {
     /// 查询TcaplusDB集群列表，包含集群详细信息。
     @inlinable
     public func describeClusters(clusterIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ipv6Enable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
-        self.describeClusters(DescribeClustersRequest(clusterIds: clusterIds, filters: filters, offset: offset, limit: limit, ipv6Enable: ipv6Enable), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClustersRequest(clusterIds: clusterIds, filters: filters, offset: offset, limit: limit, ipv6Enable: ipv6Enable)
+        return self.client.execute(action: "DescribeClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群信息列表
@@ -96,6 +97,7 @@ extension Tcaplusdb {
     /// 查询TcaplusDB集群列表，包含集群详细信息。
     @inlinable
     public func describeClusters(clusterIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, ipv6Enable: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
-        try await self.describeClusters(DescribeClustersRequest(clusterIds: clusterIds, filters: filters, offset: offset, limit: limit, ipv6Enable: ipv6Enable), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClustersRequest(clusterIds: clusterIds, filters: filters, offset: offset, limit: limit, ipv6Enable: ipv6Enable)
+        return try await self.client.execute(action: "DescribeClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

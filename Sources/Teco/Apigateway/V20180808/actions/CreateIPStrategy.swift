@@ -80,7 +80,8 @@ extension Apigateway {
     /// 本接口（CreateIPStrategy）用于创建服务IP策略。
     @inlinable
     public func createIPStrategy(serviceId: String, strategyName: String, strategyType: String, strategyData: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateIPStrategyResponse> {
-        self.createIPStrategy(CreateIPStrategyRequest(serviceId: serviceId, strategyName: strategyName, strategyType: strategyType, strategyData: strategyData), region: region, logger: logger, on: eventLoop)
+        let input = CreateIPStrategyRequest(serviceId: serviceId, strategyName: strategyName, strategyType: strategyType, strategyData: strategyData)
+        return self.client.execute(action: "CreateIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建服务IP策略
@@ -88,6 +89,7 @@ extension Apigateway {
     /// 本接口（CreateIPStrategy）用于创建服务IP策略。
     @inlinable
     public func createIPStrategy(serviceId: String, strategyName: String, strategyType: String, strategyData: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateIPStrategyResponse {
-        try await self.createIPStrategy(CreateIPStrategyRequest(serviceId: serviceId, strategyName: strategyName, strategyType: strategyType, strategyData: strategyData), region: region, logger: logger, on: eventLoop)
+        let input = CreateIPStrategyRequest(serviceId: serviceId, strategyName: strategyName, strategyType: strategyType, strategyData: strategyData)
+        return try await self.client.execute(action: "CreateIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

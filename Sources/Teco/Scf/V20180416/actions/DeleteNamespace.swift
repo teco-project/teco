@@ -60,7 +60,8 @@ extension Scf {
     /// 该接口根据传入的参数删除命名空间。
     @inlinable @discardableResult
     public func deleteNamespace(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteNamespaceResponse> {
-        self.deleteNamespace(DeleteNamespaceRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DeleteNamespaceRequest(namespace: namespace)
+        return self.client.execute(action: "DeleteNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除命名空间
@@ -68,6 +69,7 @@ extension Scf {
     /// 该接口根据传入的参数删除命名空间。
     @inlinable @discardableResult
     public func deleteNamespace(namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNamespaceResponse {
-        try await self.deleteNamespace(DeleteNamespaceRequest(namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DeleteNamespaceRequest(namespace: namespace)
+        return try await self.client.execute(action: "DeleteNamespace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,7 +78,8 @@ extension Sqlserver {
     /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
     @inlinable
     public func describeInstanceParamRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceParamRecordsResponse> {
-        self.describeInstanceParamRecords(DescribeInstanceParamRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceParamRecordsRequest(instanceId: instanceId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeInstanceParamRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例参数修改历史
@@ -86,6 +87,7 @@ extension Sqlserver {
     /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
     @inlinable
     public func describeInstanceParamRecords(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceParamRecordsResponse {
-        try await self.describeInstanceParamRecords(DescribeInstanceParamRecordsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceParamRecordsRequest(instanceId: instanceId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeInstanceParamRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

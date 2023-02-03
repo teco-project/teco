@@ -87,7 +87,8 @@ extension Ecm {
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
     @inlinable
     public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssignIpv6AddressesResponse> {
-        self.assignIpv6Addresses(AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), region: region, logger: logger, on: eventLoop)
+        let input = AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP)
+        return self.client.execute(action: "AssignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分配IPv6地址
@@ -95,6 +96,7 @@ extension Ecm {
     /// 本接口（AssignIpv6Addresses）用于弹性网卡申请IPv6地址。
     @inlinable
     public func assignIpv6Addresses(ecmRegion: String, networkInterfaceId: String, ipv6Addresses: [Ipv6Address]? = nil, ipv6AddressCount: Int64? = nil, ipv6ISP: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssignIpv6AddressesResponse {
-        try await self.assignIpv6Addresses(AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP), region: region, logger: logger, on: eventLoop)
+        let input = AssignIpv6AddressesRequest(ecmRegion: ecmRegion, networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses, ipv6AddressCount: ipv6AddressCount, ipv6ISP: ipv6ISP)
+        return try await self.client.execute(action: "AssignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -56,7 +56,8 @@ extension Yunjing {
     /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
     @inlinable
     public func exportMaliciousRequests(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportMaliciousRequestsResponse> {
-        self.exportMaliciousRequests(ExportMaliciousRequestsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = ExportMaliciousRequestsRequest()
+        return self.client.execute(action: "ExportMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出下载恶意请求文件
@@ -64,6 +65,7 @@ extension Yunjing {
     /// 本接口 (ExportMaliciousRequests) 用于导出下载恶意请求文件。
     @inlinable
     public func exportMaliciousRequests(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportMaliciousRequestsResponse {
-        try await self.exportMaliciousRequests(ExportMaliciousRequestsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = ExportMaliciousRequestsRequest()
+        return try await self.client.execute(action: "ExportMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

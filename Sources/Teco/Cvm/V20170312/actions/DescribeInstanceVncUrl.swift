@@ -106,7 +106,8 @@ extension Cvm {
     /// ```
     @inlinable
     public func describeInstanceVncUrl(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceVncUrlResponse> {
-        self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceVncUrlRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeInstanceVncUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例管理终端地址
@@ -128,6 +129,7 @@ extension Cvm {
     /// ```
     @inlinable
     public func describeInstanceVncUrl(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
-        try await self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceVncUrlRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeInstanceVncUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

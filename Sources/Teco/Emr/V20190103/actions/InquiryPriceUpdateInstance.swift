@@ -118,12 +118,14 @@ extension Emr {
     /// 变配询价
     @inlinable
     public func inquiryPriceUpdateInstance(timeUnit: String, timeSpan: UInt64, updateSpec: UpdateInstanceSettings, payMode: UInt64, placement: Placement, currency: String? = nil, resourceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpdateInstanceResponse> {
-        self.inquiryPriceUpdateInstance(InquiryPriceUpdateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, updateSpec: updateSpec, payMode: payMode, placement: placement, currency: currency, resourceIdList: resourceIdList), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceUpdateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, updateSpec: updateSpec, payMode: payMode, placement: placement, currency: currency, resourceIdList: resourceIdList)
+        return self.client.execute(action: "InquiryPriceUpdateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 变配询价
     @inlinable
     public func inquiryPriceUpdateInstance(timeUnit: String, timeSpan: UInt64, updateSpec: UpdateInstanceSettings, payMode: UInt64, placement: Placement, currency: String? = nil, resourceIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpdateInstanceResponse {
-        try await self.inquiryPriceUpdateInstance(InquiryPriceUpdateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, updateSpec: updateSpec, payMode: payMode, placement: placement, currency: currency, resourceIdList: resourceIdList), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceUpdateInstanceRequest(timeUnit: timeUnit, timeSpan: timeSpan, updateSpec: updateSpec, payMode: payMode, placement: placement, currency: currency, resourceIdList: resourceIdList)
+        return try await self.client.execute(action: "InquiryPriceUpdateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

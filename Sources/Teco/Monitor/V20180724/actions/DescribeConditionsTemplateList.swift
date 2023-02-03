@@ -98,12 +98,14 @@ extension Monitor {
     /// 获取条件模板列表
     @inlinable
     public func describeConditionsTemplateList(module: String, viewName: String? = nil, groupName: String? = nil, groupID: String? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, policyCountOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConditionsTemplateListResponse> {
-        self.describeConditionsTemplateList(DescribeConditionsTemplateListRequest(module: module, viewName: viewName, groupName: groupName, groupID: groupID, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, policyCountOrder: policyCountOrder), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConditionsTemplateListRequest(module: module, viewName: viewName, groupName: groupName, groupID: groupID, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, policyCountOrder: policyCountOrder)
+        return self.client.execute(action: "DescribeConditionsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取条件模板列表
     @inlinable
     public func describeConditionsTemplateList(module: String, viewName: String? = nil, groupName: String? = nil, groupID: String? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, policyCountOrder: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConditionsTemplateListResponse {
-        try await self.describeConditionsTemplateList(DescribeConditionsTemplateListRequest(module: module, viewName: viewName, groupName: groupName, groupID: groupID, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, policyCountOrder: policyCountOrder), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConditionsTemplateListRequest(module: module, viewName: viewName, groupName: groupName, groupID: groupID, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, policyCountOrder: policyCountOrder)
+        return try await self.client.execute(action: "DescribeConditionsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -129,7 +129,8 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func createMigrateJob(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMigrateJobResponse> {
-        self.createMigrateJob(CreateMigrateJobRequest(jobName: jobName, migrateOption: migrateOption, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, srcInfo: srcInfo, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, tags: tags, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), region: region, logger: logger, on: eventLoop)
+        let input = CreateMigrateJobRequest(jobName: jobName, migrateOption: migrateOption, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, srcInfo: srcInfo, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, tags: tags, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti)
+        return self.client.execute(action: "CreateMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建数据迁移任务
@@ -139,6 +140,7 @@ extension Dts {
     /// 如果是金融区链路, 请使用域名: dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
     public func createMigrateJob(jobName: String, migrateOption: MigrateOption, srcDatabaseType: String, srcAccessType: String, srcInfo: SrcInfo, dstDatabaseType: String, dstAccessType: String, dstInfo: DstInfo, databaseInfo: String? = nil, tags: [TagItem]? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMigrateJobResponse {
-        try await self.createMigrateJob(CreateMigrateJobRequest(jobName: jobName, migrateOption: migrateOption, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, srcInfo: srcInfo, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, tags: tags, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), region: region, logger: logger, on: eventLoop)
+        let input = CreateMigrateJobRequest(jobName: jobName, migrateOption: migrateOption, srcDatabaseType: srcDatabaseType, srcAccessType: srcAccessType, srcInfo: srcInfo, dstDatabaseType: dstDatabaseType, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, tags: tags, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti)
+        return try await self.client.execute(action: "CreateMigrateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

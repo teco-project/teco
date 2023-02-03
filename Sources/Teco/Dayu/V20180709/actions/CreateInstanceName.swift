@@ -74,7 +74,8 @@ extension Dayu {
     /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
     @inlinable
     public func createInstanceName(business: String, id: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceNameResponse> {
-        self.createInstanceName(CreateInstanceNameRequest(business: business, id: id, name: name), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceNameRequest(business: business, id: id, name: name)
+        return self.client.execute(action: "CreateInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资源实例重命名
@@ -82,6 +83,7 @@ extension Dayu {
     /// 资源实例重命名，支持独享包、共享包、高防IP、高防IP专业版；
     @inlinable
     public func createInstanceName(business: String, id: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceNameResponse {
-        try await self.createInstanceName(CreateInstanceNameRequest(business: business, id: id, name: name), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceNameRequest(business: business, id: id, name: name)
+        return try await self.client.execute(action: "CreateInstanceName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

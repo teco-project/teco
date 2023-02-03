@@ -89,12 +89,14 @@ extension Pts {
     /// 查询告警通知接收组
     @inlinable
     public func describeAlertChannels(projectIds: [String], offset: UInt64? = nil, limit: UInt64? = nil, noticeIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlertChannelsResponse> {
-        self.describeAlertChannels(DescribeAlertChannelsRequest(projectIds: projectIds, offset: offset, limit: limit, noticeIds: noticeIds, orderBy: orderBy, ascend: ascend), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlertChannelsRequest(projectIds: projectIds, offset: offset, limit: limit, noticeIds: noticeIds, orderBy: orderBy, ascend: ascend)
+        return self.client.execute(action: "DescribeAlertChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询告警通知接收组
     @inlinable
     public func describeAlertChannels(projectIds: [String], offset: UInt64? = nil, limit: UInt64? = nil, noticeIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlertChannelsResponse {
-        try await self.describeAlertChannels(DescribeAlertChannelsRequest(projectIds: projectIds, offset: offset, limit: limit, noticeIds: noticeIds, orderBy: orderBy, ascend: ascend), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlertChannelsRequest(projectIds: projectIds, offset: offset, limit: limit, noticeIds: noticeIds, orderBy: orderBy, ascend: ascend)
+        return try await self.client.execute(action: "DescribeAlertChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

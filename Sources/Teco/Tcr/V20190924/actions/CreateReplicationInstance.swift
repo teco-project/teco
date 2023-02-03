@@ -73,12 +73,14 @@ extension Tcr {
     /// 创建从实例
     @inlinable
     public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateReplicationInstanceResponse> {
-        self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
+        let input = CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag)
+        return self.client.execute(action: "CreateReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建从实例
     @inlinable
     public func createReplicationInstance(registryId: String, replicationRegionId: UInt64? = nil, replicationRegionName: String? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateReplicationInstanceResponse {
-        try await self.createReplicationInstance(CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
+        let input = CreateReplicationInstanceRequest(registryId: registryId, replicationRegionId: replicationRegionId, replicationRegionName: replicationRegionName, syncTag: syncTag)
+        return try await self.client.execute(action: "CreateReplicationInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

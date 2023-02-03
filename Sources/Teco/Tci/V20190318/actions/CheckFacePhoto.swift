@@ -69,7 +69,8 @@ extension Tci {
     /// 检查人脸图片是否合法
     @inlinable
     public func checkFacePhoto(fileContent: String, fileType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckFacePhotoResponse> {
-        self.checkFacePhoto(CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType), region: region, logger: logger, on: eventLoop)
+        let input = CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType)
+        return self.client.execute(action: "CheckFacePhoto", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查人脸图片
@@ -77,6 +78,7 @@ extension Tci {
     /// 检查人脸图片是否合法
     @inlinable
     public func checkFacePhoto(fileContent: String, fileType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckFacePhotoResponse {
-        try await self.checkFacePhoto(CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType), region: region, logger: logger, on: eventLoop)
+        let input = CheckFacePhotoRequest(fileContent: fileContent, fileType: fileType)
+        return try await self.client.execute(action: "CheckFacePhoto", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

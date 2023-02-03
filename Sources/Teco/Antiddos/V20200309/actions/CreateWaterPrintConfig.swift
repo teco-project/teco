@@ -59,12 +59,14 @@ extension Antiddos {
     /// 添加DDoS防护的水印防护配置
     @inlinable @discardableResult
     public func createWaterPrintConfig(instanceId: String, waterPrintConfig: WaterPrintConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWaterPrintConfigResponse> {
-        self.createWaterPrintConfig(CreateWaterPrintConfigRequest(instanceId: instanceId, waterPrintConfig: waterPrintConfig), region: region, logger: logger, on: eventLoop)
+        let input = CreateWaterPrintConfigRequest(instanceId: instanceId, waterPrintConfig: waterPrintConfig)
+        return self.client.execute(action: "CreateWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加DDoS防护的水印防护配置
     @inlinable @discardableResult
     public func createWaterPrintConfig(instanceId: String, waterPrintConfig: WaterPrintConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWaterPrintConfigResponse {
-        try await self.createWaterPrintConfig(CreateWaterPrintConfigRequest(instanceId: instanceId, waterPrintConfig: waterPrintConfig), region: region, logger: logger, on: eventLoop)
+        let input = CreateWaterPrintConfigRequest(instanceId: instanceId, waterPrintConfig: waterPrintConfig)
+        return try await self.client.execute(action: "CreateWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

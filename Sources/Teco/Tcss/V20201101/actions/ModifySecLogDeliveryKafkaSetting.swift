@@ -94,12 +94,14 @@ extension Tcss {
     /// 更新安全日志投递kafka设置
     @inlinable @discardableResult
     public func modifySecLogDeliveryKafkaSetting(instanceID: String? = nil, instanceName: String? = nil, domain: String? = nil, user: String? = nil, password: String? = nil, logTypeList: [SecLogDeliveryKafkaSettingInfo]? = nil, accessType: Int64? = nil, kafkaVersion: String? = nil, regionID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogDeliveryKafkaSettingResponse> {
-        self.modifySecLogDeliveryKafkaSetting(ModifySecLogDeliveryKafkaSettingRequest(instanceID: instanceID, instanceName: instanceName, domain: domain, user: user, password: password, logTypeList: logTypeList, accessType: accessType, kafkaVersion: kafkaVersion, regionID: regionID), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecLogDeliveryKafkaSettingRequest(instanceID: instanceID, instanceName: instanceName, domain: domain, user: user, password: password, logTypeList: logTypeList, accessType: accessType, kafkaVersion: kafkaVersion, regionID: regionID)
+        return self.client.execute(action: "ModifySecLogDeliveryKafkaSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新安全日志投递kafka设置
     @inlinable @discardableResult
     public func modifySecLogDeliveryKafkaSetting(instanceID: String? = nil, instanceName: String? = nil, domain: String? = nil, user: String? = nil, password: String? = nil, logTypeList: [SecLogDeliveryKafkaSettingInfo]? = nil, accessType: Int64? = nil, kafkaVersion: String? = nil, regionID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogDeliveryKafkaSettingResponse {
-        try await self.modifySecLogDeliveryKafkaSetting(ModifySecLogDeliveryKafkaSettingRequest(instanceID: instanceID, instanceName: instanceName, domain: domain, user: user, password: password, logTypeList: logTypeList, accessType: accessType, kafkaVersion: kafkaVersion, regionID: regionID), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecLogDeliveryKafkaSettingRequest(instanceID: instanceID, instanceName: instanceName, domain: domain, user: user, password: password, logTypeList: logTypeList, accessType: accessType, kafkaVersion: kafkaVersion, regionID: regionID)
+        return try await self.client.execute(action: "ModifySecLogDeliveryKafkaSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

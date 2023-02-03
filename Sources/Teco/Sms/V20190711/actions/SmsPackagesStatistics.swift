@@ -81,7 +81,8 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func smsPackagesStatistics(smsSdkAppid: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SmsPackagesStatisticsResponse> {
-        self.smsPackagesStatistics(SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset)
+        return self.client.execute(action: "SmsPackagesStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 套餐包信息统计
@@ -91,6 +92,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2019-07-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func smsPackagesStatistics(smsSdkAppid: String, limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SmsPackagesStatisticsResponse {
-        try await self.smsPackagesStatistics(SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = SmsPackagesStatisticsRequest(smsSdkAppid: smsSdkAppid, limit: limit, offset: offset)
+        return try await self.client.execute(action: "SmsPackagesStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

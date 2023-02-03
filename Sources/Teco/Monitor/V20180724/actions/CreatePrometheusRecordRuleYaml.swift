@@ -59,12 +59,14 @@ extension Monitor {
     /// 以Yaml的方式创建聚合规则
     @inlinable @discardableResult
     public func createPrometheusRecordRuleYaml(instanceId: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusRecordRuleYamlResponse> {
-        self.createPrometheusRecordRuleYaml(CreatePrometheusRecordRuleYamlRequest(instanceId: instanceId, content: content), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrometheusRecordRuleYamlRequest(instanceId: instanceId, content: content)
+        return self.client.execute(action: "CreatePrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 以Yaml的方式创建聚合规则
     @inlinable @discardableResult
     public func createPrometheusRecordRuleYaml(instanceId: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusRecordRuleYamlResponse {
-        try await self.createPrometheusRecordRuleYaml(CreatePrometheusRecordRuleYamlRequest(instanceId: instanceId, content: content), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrometheusRecordRuleYamlRequest(instanceId: instanceId, content: content)
+        return try await self.client.execute(action: "CreatePrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

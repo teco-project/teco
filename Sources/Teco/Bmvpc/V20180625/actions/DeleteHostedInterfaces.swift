@@ -69,7 +69,8 @@ extension Bmvpc {
     /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
     @inlinable
     public func deleteHostedInterfaces(instanceId: String, subnetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteHostedInterfacesResponse> {
-        self.deleteHostedInterfaces(DeleteHostedInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteHostedInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds)
+        return self.client.execute(action: "DeleteHostedInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 托管机器移除子网(批量接口)
@@ -77,6 +78,7 @@ extension Bmvpc {
     /// 托管机器移除子网批量接口，传入一台托管机器和多个子网，批量移除这些子网。异步接口，接口返回TaskId。
     @inlinable
     public func deleteHostedInterfaces(instanceId: String, subnetIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHostedInterfacesResponse {
-        try await self.deleteHostedInterfaces(DeleteHostedInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteHostedInterfacesRequest(instanceId: instanceId, subnetIds: subnetIds)
+        return try await self.client.execute(action: "DeleteHostedInterfaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

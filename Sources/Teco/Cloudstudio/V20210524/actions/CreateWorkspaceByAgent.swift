@@ -64,12 +64,14 @@ extension Cloudstudio {
     /// 云服务器方式创建工作空间
     @inlinable
     public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkspaceByAgentResponse> {
-        self.createWorkspaceByAgent(CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO), region: region, logger: logger, on: eventLoop)
+        let input = CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO)
+        return self.client.execute(action: "CreateWorkspaceByAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云服务器方式创建工作空间
     @inlinable
     public func createWorkspaceByAgent(cloudStudioSessionTeam: String, agentSpaceDTO: AgentSpaceDTO, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkspaceByAgentResponse {
-        try await self.createWorkspaceByAgent(CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO), region: region, logger: logger, on: eventLoop)
+        let input = CreateWorkspaceByAgentRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, agentSpaceDTO: agentSpaceDTO)
+        return try await self.client.execute(action: "CreateWorkspaceByAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

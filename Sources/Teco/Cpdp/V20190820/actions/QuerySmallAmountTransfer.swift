@@ -107,7 +107,8 @@ extension Cpdp {
     /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
     @inlinable
     public func querySmallAmountTransfer(mrchCode: String, oldTranSeqNo: String, tranDate: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuerySmallAmountTransferResponse> {
-        self.querySmallAmountTransfer(QuerySmallAmountTransferRequest(mrchCode: mrchCode, oldTranSeqNo: oldTranSeqNo, tranDate: tranDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QuerySmallAmountTransferRequest(mrchCode: mrchCode, oldTranSeqNo: oldTranSeqNo, tranDate: tranDate, reservedMsg: reservedMsg, profile: profile)
+        return self.client.execute(action: "QuerySmallAmountTransfer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-查询小额鉴权转账结果
@@ -115,6 +116,7 @@ extension Cpdp {
     /// 查询小额鉴权转账结果。查询小额往账鉴权的转账状态。
     @inlinable
     public func querySmallAmountTransfer(mrchCode: String, oldTranSeqNo: String, tranDate: String, reservedMsg: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuerySmallAmountTransferResponse {
-        try await self.querySmallAmountTransfer(QuerySmallAmountTransferRequest(mrchCode: mrchCode, oldTranSeqNo: oldTranSeqNo, tranDate: tranDate, reservedMsg: reservedMsg, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QuerySmallAmountTransferRequest(mrchCode: mrchCode, oldTranSeqNo: oldTranSeqNo, tranDate: tranDate, reservedMsg: reservedMsg, profile: profile)
+        return try await self.client.execute(action: "QuerySmallAmountTransfer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

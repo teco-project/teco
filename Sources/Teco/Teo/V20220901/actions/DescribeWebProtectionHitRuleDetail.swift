@@ -132,7 +132,8 @@ extension Teo {
     /// 本接口（DescribeWebProtectionHitRuleDetail）用于查询CC防护命中规则详情列表。
     @inlinable
     public func describeWebProtectionHitRuleDetail(startTime: Date, endTime: Date, entityType: String, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionHitRuleDetailResponse> {
-        self.describeWebProtectionHitRuleDetail(DescribeWebProtectionHitRuleDetailRequest(startTime: startTime, endTime: endTime, entityType: entityType, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, limit: limit, offset: offset, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebProtectionHitRuleDetailRequest(startTime: startTime, endTime: endTime, entityType: entityType, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, limit: limit, offset: offset, interval: interval, area: area)
+        return self.client.execute(action: "DescribeWebProtectionHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询CC防护命中规则详情列表
@@ -140,6 +141,7 @@ extension Teo {
     /// 本接口（DescribeWebProtectionHitRuleDetail）用于查询CC防护命中规则详情列表。
     @inlinable
     public func describeWebProtectionHitRuleDetail(startTime: Date, endTime: Date, entityType: String, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, limit: Int64? = nil, offset: Int64? = nil, interval: String? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionHitRuleDetailResponse {
-        try await self.describeWebProtectionHitRuleDetail(DescribeWebProtectionHitRuleDetailRequest(startTime: startTime, endTime: endTime, entityType: entityType, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, limit: limit, offset: offset, interval: interval, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebProtectionHitRuleDetailRequest(startTime: startTime, endTime: endTime, entityType: entityType, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, limit: limit, offset: offset, interval: interval, area: area)
+        return try await self.client.execute(action: "DescribeWebProtectionHitRuleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

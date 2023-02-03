@@ -56,7 +56,8 @@ extension Tcaplusdb {
     /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
     @inlinable
     public func describeUinInWhitelist(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUinInWhitelistResponse> {
-        self.describeUinInWhitelist(DescribeUinInWhitelistRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUinInWhitelistRequest()
+        return self.client.execute(action: "DescribeUinInWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询本用户是否在白名单中
@@ -64,6 +65,7 @@ extension Tcaplusdb {
     /// 查询本用户是否在白名单中，控制是否能创建TDR类型的APP或表
     @inlinable
     public func describeUinInWhitelist(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUinInWhitelistResponse {
-        try await self.describeUinInWhitelist(DescribeUinInWhitelistRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUinInWhitelistRequest()
+        return try await self.client.execute(action: "DescribeUinInWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

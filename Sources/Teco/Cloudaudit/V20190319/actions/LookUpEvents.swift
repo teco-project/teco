@@ -100,7 +100,8 @@ extension Cloudaudit {
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
     public func lookUpEvents(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LookUpEventsResponse> {
-        self.lookUpEvents(LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode), region: region, logger: logger, on: eventLoop)
+        let input = LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode)
+        return self.client.execute(action: "LookUpEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检索日志
@@ -108,6 +109,7 @@ extension Cloudaudit {
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
     public func lookUpEvents(startTime: Int64, endTime: Int64, lookupAttributes: [LookupAttribute]? = nil, nextToken: String? = nil, maxResults: Int64? = nil, mode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LookUpEventsResponse {
-        try await self.lookUpEvents(LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode), region: region, logger: logger, on: eventLoop)
+        let input = LookUpEventsRequest(startTime: startTime, endTime: endTime, lookupAttributes: lookupAttributes, nextToken: nextToken, maxResults: maxResults, mode: mode)
+        return try await self.client.execute(action: "LookUpEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -75,7 +75,8 @@ extension Tag {
     /// 查询标签键列表。
     @inlinable
     public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTagKeysResponse> {
-        self.getTagKeys(GetTagKeysRequest(paginationToken: paginationToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
+        let input = GetTagKeysRequest(paginationToken: paginationToken, maxResults: maxResults)
+        return self.client.execute(action: "GetTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询标签键列表
@@ -83,6 +84,7 @@ extension Tag {
     /// 查询标签键列表。
     @inlinable
     public func getTagKeys(paginationToken: String? = nil, maxResults: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTagKeysResponse {
-        try await self.getTagKeys(GetTagKeysRequest(paginationToken: paginationToken, maxResults: maxResults), region: region, logger: logger, on: eventLoop)
+        let input = GetTagKeysRequest(paginationToken: paginationToken, maxResults: maxResults)
+        return try await self.client.execute(action: "GetTagKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

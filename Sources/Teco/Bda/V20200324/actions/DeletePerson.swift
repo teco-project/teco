@@ -60,7 +60,8 @@ extension Bda {
     /// 删除人员。
     @inlinable @discardableResult
     public func deletePerson(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonResponse> {
-        self.deletePerson(DeletePersonRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePersonRequest(personId: personId)
+        return self.client.execute(action: "DeletePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除人员
@@ -68,6 +69,7 @@ extension Bda {
     /// 删除人员。
     @inlinable @discardableResult
     public func deletePerson(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
-        try await self.deletePerson(DeletePersonRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePersonRequest(personId: personId)
+        return try await self.client.execute(action: "DeletePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

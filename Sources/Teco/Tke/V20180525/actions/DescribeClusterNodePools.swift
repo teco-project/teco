@@ -86,12 +86,14 @@ extension Tke {
     /// 查询节点池列表
     @inlinable
     public func describeClusterNodePools(clusterId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNodePoolsResponse> {
-        self.describeClusterNodePools(DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters)
+        return self.client.execute(action: "DescribeClusterNodePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询节点池列表
     @inlinable
     public func describeClusterNodePools(clusterId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNodePoolsResponse {
-        try await self.describeClusterNodePools(DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterNodePoolsRequest(clusterId: clusterId, filters: filters)
+        return try await self.client.execute(action: "DescribeClusterNodePools", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

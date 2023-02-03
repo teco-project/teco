@@ -109,12 +109,14 @@ extension Iotvideoindustry {
     /// 直播录像回放列表
     @inlinable
     public func describeLiveVideoList(offset: Int64, limit: Int64, liveChannelId: String, startRecordTime: Int64? = nil, endRecordTime: Int64? = nil, startExpireTime: Int64? = nil, endExpireTime: Int64? = nil, startFileSize: Int64? = nil, endFileSize: Int64? = nil, isRecording: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveVideoListResponse> {
-        self.describeLiveVideoList(DescribeLiveVideoListRequest(offset: offset, limit: limit, liveChannelId: liveChannelId, startRecordTime: startRecordTime, endRecordTime: endRecordTime, startExpireTime: startExpireTime, endExpireTime: endExpireTime, startFileSize: startFileSize, endFileSize: endFileSize, isRecording: isRecording), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveVideoListRequest(offset: offset, limit: limit, liveChannelId: liveChannelId, startRecordTime: startRecordTime, endRecordTime: endRecordTime, startExpireTime: startExpireTime, endExpireTime: endExpireTime, startFileSize: startFileSize, endFileSize: endFileSize, isRecording: isRecording)
+        return self.client.execute(action: "DescribeLiveVideoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播录像回放列表
     @inlinable
     public func describeLiveVideoList(offset: Int64, limit: Int64, liveChannelId: String, startRecordTime: Int64? = nil, endRecordTime: Int64? = nil, startExpireTime: Int64? = nil, endExpireTime: Int64? = nil, startFileSize: Int64? = nil, endFileSize: Int64? = nil, isRecording: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveVideoListResponse {
-        try await self.describeLiveVideoList(DescribeLiveVideoListRequest(offset: offset, limit: limit, liveChannelId: liveChannelId, startRecordTime: startRecordTime, endRecordTime: endRecordTime, startExpireTime: startExpireTime, endExpireTime: endExpireTime, startFileSize: startFileSize, endFileSize: endFileSize, isRecording: isRecording), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveVideoListRequest(offset: offset, limit: limit, liveChannelId: liveChannelId, startRecordTime: startRecordTime, endRecordTime: endRecordTime, startExpireTime: startExpireTime, endExpireTime: endExpireTime, startFileSize: startFileSize, endFileSize: endFileSize, isRecording: isRecording)
+        return try await self.client.execute(action: "DescribeLiveVideoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

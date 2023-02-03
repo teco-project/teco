@@ -64,7 +64,8 @@ extension Cfs {
     /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
     @inlinable
     public func describeCfsFileSystemClients(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemClientsResponse> {
-        self.describeCfsFileSystemClients(DescribeCfsFileSystemClientsRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCfsFileSystemClientsRequest(fileSystemId: fileSystemId)
+        return self.client.execute(action: "DescribeCfsFileSystemClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统客户端
@@ -72,6 +73,7 @@ extension Cfs {
     /// 查询挂载该文件系统的客户端。此功能需要客户端安装CFS监控插件。
     @inlinable
     public func describeCfsFileSystemClients(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemClientsResponse {
-        try await self.describeCfsFileSystemClients(DescribeCfsFileSystemClientsRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCfsFileSystemClientsRequest(fileSystemId: fileSystemId)
+        return try await self.client.execute(action: "DescribeCfsFileSystemClients", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

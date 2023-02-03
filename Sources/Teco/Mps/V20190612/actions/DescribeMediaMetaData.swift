@@ -64,7 +64,8 @@ extension Mps {
     /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
     @inlinable
     public func describeMediaMetaData(inputInfo: MediaInputInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaMetaDataResponse> {
-        self.describeMediaMetaData(DescribeMediaMetaDataRequest(inputInfo: inputInfo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMediaMetaDataRequest(inputInfo: inputInfo)
+        return self.client.execute(action: "DescribeMediaMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取媒体元信息
@@ -72,6 +73,7 @@ extension Mps {
     /// 获取媒体的元信息，包括视频画面宽、高、编码格式、时长、帧率等。
     @inlinable
     public func describeMediaMetaData(inputInfo: MediaInputInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaMetaDataResponse {
-        try await self.describeMediaMetaData(DescribeMediaMetaDataRequest(inputInfo: inputInfo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMediaMetaDataRequest(inputInfo: inputInfo)
+        return try await self.client.execute(action: "DescribeMediaMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

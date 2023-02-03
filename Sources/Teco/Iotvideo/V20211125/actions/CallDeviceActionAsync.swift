@@ -79,12 +79,14 @@ extension Iotvideo {
     /// 异步调用设备行为
     @inlinable
     public func callDeviceActionAsync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CallDeviceActionAsyncResponse> {
-        self.callDeviceActionAsync(CallDeviceActionAsyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
+        let input = CallDeviceActionAsyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams)
+        return self.client.execute(action: "CallDeviceActionAsync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 异步调用设备行为
     @inlinable
     public func callDeviceActionAsync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionAsyncResponse {
-        try await self.callDeviceActionAsync(CallDeviceActionAsyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
+        let input = CallDeviceActionAsyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams)
+        return try await self.client.execute(action: "CallDeviceActionAsync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

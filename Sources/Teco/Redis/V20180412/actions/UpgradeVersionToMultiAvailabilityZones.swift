@@ -64,12 +64,14 @@ extension Redis {
     /// 升级实例支持多AZ
     @inlinable
     public func upgradeVersionToMultiAvailabilityZones(instanceId: String, upgradeProxyAndRedisServer: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeVersionToMultiAvailabilityZonesResponse> {
-        self.upgradeVersionToMultiAvailabilityZones(UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer)
+        return self.client.execute(action: "UpgradeVersionToMultiAvailabilityZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例支持多AZ
     @inlinable
     public func upgradeVersionToMultiAvailabilityZones(instanceId: String, upgradeProxyAndRedisServer: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeVersionToMultiAvailabilityZonesResponse {
-        try await self.upgradeVersionToMultiAvailabilityZones(UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeVersionToMultiAvailabilityZonesRequest(instanceId: instanceId, upgradeProxyAndRedisServer: upgradeProxyAndRedisServer)
+        return try await self.client.execute(action: "UpgradeVersionToMultiAvailabilityZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -124,12 +124,14 @@ extension Cr {
     /// 更新机器人任务
     @inlinable @discardableResult
     public func updateBotTask(module: String, operation: String, botName: String? = nil, botId: String? = nil, callTimeCollection: CallTimeDict? = nil, banCall: String? = nil, startTimeBan: String? = nil, endTimeBan: String? = nil, phoneCollection: String? = nil, codeType: String? = nil, codeCollection: String? = nil, callCount: Int64? = nil, callInterval: Int64? = nil, smsSignId: String? = nil, smsTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateBotTaskResponse> {
-        self.updateBotTask(UpdateBotTaskRequest(module: module, operation: operation, botName: botName, botId: botId, callTimeCollection: callTimeCollection, banCall: banCall, startTimeBan: startTimeBan, endTimeBan: endTimeBan, phoneCollection: phoneCollection, codeType: codeType, codeCollection: codeCollection, callCount: callCount, callInterval: callInterval, smsSignId: smsSignId, smsTemplateId: smsTemplateId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateBotTaskRequest(module: module, operation: operation, botName: botName, botId: botId, callTimeCollection: callTimeCollection, banCall: banCall, startTimeBan: startTimeBan, endTimeBan: endTimeBan, phoneCollection: phoneCollection, codeType: codeType, codeCollection: codeCollection, callCount: callCount, callInterval: callInterval, smsSignId: smsSignId, smsTemplateId: smsTemplateId)
+        return self.client.execute(action: "UpdateBotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新机器人任务
     @inlinable @discardableResult
     public func updateBotTask(module: String, operation: String, botName: String? = nil, botId: String? = nil, callTimeCollection: CallTimeDict? = nil, banCall: String? = nil, startTimeBan: String? = nil, endTimeBan: String? = nil, phoneCollection: String? = nil, codeType: String? = nil, codeCollection: String? = nil, callCount: Int64? = nil, callInterval: Int64? = nil, smsSignId: String? = nil, smsTemplateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBotTaskResponse {
-        try await self.updateBotTask(UpdateBotTaskRequest(module: module, operation: operation, botName: botName, botId: botId, callTimeCollection: callTimeCollection, banCall: banCall, startTimeBan: startTimeBan, endTimeBan: endTimeBan, phoneCollection: phoneCollection, codeType: codeType, codeCollection: codeCollection, callCount: callCount, callInterval: callInterval, smsSignId: smsSignId, smsTemplateId: smsTemplateId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateBotTaskRequest(module: module, operation: operation, botName: botName, botId: botId, callTimeCollection: callTimeCollection, banCall: banCall, startTimeBan: startTimeBan, endTimeBan: endTimeBan, phoneCollection: phoneCollection, codeType: codeType, codeCollection: codeCollection, callCount: callCount, callInterval: callInterval, smsSignId: smsSignId, smsTemplateId: smsTemplateId)
+        return try await self.client.execute(action: "UpdateBotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

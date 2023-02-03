@@ -98,12 +98,14 @@ extension Bm {
     /// 查看自定义镜像列表
     @inlinable
     public func describeCustomImages(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomImagesResponse> {
-        self.describeCustomImages(DescribeCustomImagesRequest(offset: offset, limit: limit, orderField: orderField, order: order, imageId: imageId, searchKey: searchKey, imageStatus: imageStatus), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomImagesRequest(offset: offset, limit: limit, orderField: orderField, order: order, imageId: imageId, searchKey: searchKey, imageStatus: imageStatus)
+        return self.client.execute(action: "DescribeCustomImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看自定义镜像列表
     @inlinable
     public func describeCustomImages(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, imageId: String? = nil, searchKey: String? = nil, imageStatus: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomImagesResponse {
-        try await self.describeCustomImages(DescribeCustomImagesRequest(offset: offset, limit: limit, orderField: orderField, order: order, imageId: imageId, searchKey: searchKey, imageStatus: imageStatus), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomImagesRequest(offset: offset, limit: limit, orderField: orderField, order: order, imageId: imageId, searchKey: searchKey, imageStatus: imageStatus)
+        return try await self.client.execute(action: "DescribeCustomImages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

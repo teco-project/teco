@@ -88,7 +88,8 @@ extension Vod {
     /// 查询存储空间使用情况和文件数量。
     @inlinable
     public func describeStorageData(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStorageDataResponse> {
-        self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStorageDataRequest(subAppId: subAppId)
+        return self.client.execute(action: "DescribeStorageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询当前存储情况
@@ -96,6 +97,7 @@ extension Vod {
     /// 查询存储空间使用情况和文件数量。
     @inlinable
     public func describeStorageData(subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStorageDataResponse {
-        try await self.describeStorageData(DescribeStorageDataRequest(subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStorageDataRequest(subAppId: subAppId)
+        return try await self.client.execute(action: "DescribeStorageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

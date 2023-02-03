@@ -79,7 +79,8 @@ extension Cwp {
     /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
     @inlinable
     public func describeVulCountByDates(lastDays: [UInt64]? = nil, vulCategory: UInt64? = nil, ifEmergency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulCountByDatesResponse> {
-        self.describeVulCountByDates(DescribeVulCountByDatesRequest(lastDays: lastDays, vulCategory: vulCategory, ifEmergency: ifEmergency), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulCountByDatesRequest(lastDays: lastDays, vulCategory: vulCategory, ifEmergency: ifEmergency)
+        return self.client.execute(action: "DescribeVulCountByDates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取近日指定类型的漏洞数量和主机数量
@@ -87,6 +88,7 @@ extension Cwp {
     /// 漏洞管理模块，获取近日指定类型的漏洞数量和主机数量
     @inlinable
     public func describeVulCountByDates(lastDays: [UInt64]? = nil, vulCategory: UInt64? = nil, ifEmergency: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulCountByDatesResponse {
-        try await self.describeVulCountByDates(DescribeVulCountByDatesRequest(lastDays: lastDays, vulCategory: vulCategory, ifEmergency: ifEmergency), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulCountByDatesRequest(lastDays: lastDays, vulCategory: vulCategory, ifEmergency: ifEmergency)
+        return try await self.client.execute(action: "DescribeVulCountByDates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

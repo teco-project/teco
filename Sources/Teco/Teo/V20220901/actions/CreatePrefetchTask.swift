@@ -79,12 +79,14 @@ extension Teo {
     /// 创建预热任务
     @inlinable
     public func createPrefetchTask(zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrefetchTaskResponse> {
-        self.createPrefetchTask(CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers)
+        return self.client.execute(action: "CreatePrefetchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建预热任务
     @inlinable
     public func createPrefetchTask(zoneId: String, targets: [String]? = nil, encodeUrl: Bool? = nil, headers: [Header]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrefetchTaskResponse {
-        try await self.createPrefetchTask(CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrefetchTaskRequest(zoneId: zoneId, targets: targets, encodeUrl: encodeUrl, headers: headers)
+        return try await self.client.execute(action: "CreatePrefetchTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

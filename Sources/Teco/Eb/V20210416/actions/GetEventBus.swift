@@ -95,12 +95,14 @@ extension Eb {
     /// 获取事件集详情
     @inlinable
     public func getEventBus(eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetEventBusResponse> {
-        self.getEventBus(GetEventBusRequest(eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
+        let input = GetEventBusRequest(eventBusId: eventBusId)
+        return self.client.execute(action: "GetEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件集详情
     @inlinable
     public func getEventBus(eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetEventBusResponse {
-        try await self.getEventBus(GetEventBusRequest(eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
+        let input = GetEventBusRequest(eventBusId: eventBusId)
+        return try await self.client.execute(action: "GetEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

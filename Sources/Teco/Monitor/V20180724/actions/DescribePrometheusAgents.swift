@@ -83,12 +83,14 @@ extension Monitor {
     /// 列出 Prometheus CVM Agent
     @inlinable
     public func describePrometheusAgents(instanceId: String, name: String? = nil, agentIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusAgentsResponse> {
-        self.describePrometheusAgents(DescribePrometheusAgentsRequest(instanceId: instanceId, name: name, agentIds: agentIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusAgentsRequest(instanceId: instanceId, name: name, agentIds: agentIds, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribePrometheusAgents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Prometheus CVM Agent
     @inlinable
     public func describePrometheusAgents(instanceId: String, name: String? = nil, agentIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusAgentsResponse {
-        try await self.describePrometheusAgents(DescribePrometheusAgentsRequest(instanceId: instanceId, name: name, agentIds: agentIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusAgentsRequest(instanceId: instanceId, name: name, agentIds: agentIds, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribePrometheusAgents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -90,7 +90,8 @@ extension Cwp {
     /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
     @inlinable
     public func describeIgnoreRuleEffectHostList(limit: UInt64, offset: UInt64, ruleId: UInt64, filters: [Filters]? = nil, tagNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIgnoreRuleEffectHostListResponse> {
-        self.describeIgnoreRuleEffectHostList(DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames)
+        return self.client.execute(action: "DescribeIgnoreRuleEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询忽略检测项影响主机列表
@@ -98,6 +99,7 @@ extension Cwp {
     /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
     @inlinable
     public func describeIgnoreRuleEffectHostList(limit: UInt64, offset: UInt64, ruleId: UInt64, filters: [Filters]? = nil, tagNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIgnoreRuleEffectHostListResponse {
-        try await self.describeIgnoreRuleEffectHostList(DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIgnoreRuleEffectHostListRequest(limit: limit, offset: offset, ruleId: ruleId, filters: filters, tagNames: tagNames)
+        return try await self.client.execute(action: "DescribeIgnoreRuleEffectHostList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

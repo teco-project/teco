@@ -115,7 +115,8 @@ extension Es {
     /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
     @inlinable @discardableResult
     public func updateLogstashInstance(instanceId: String, nodeNum: UInt64? = nil, ymlConfig: String? = nil, bindedES: LogstashBindedES? = nil, instanceName: String? = nil, extendedFiles: [LogstashExtendedFile]? = nil, nodeType: String? = nil, diskSize: UInt64? = nil, operationDuration: OperationDurationUpdated? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashInstanceResponse> {
-        self.updateLogstashInstance(UpdateLogstashInstanceRequest(instanceId: instanceId, nodeNum: nodeNum, ymlConfig: ymlConfig, bindedES: bindedES, instanceName: instanceName, extendedFiles: extendedFiles, nodeType: nodeType, diskSize: diskSize, operationDuration: operationDuration), region: region, logger: logger, on: eventLoop)
+        let input = UpdateLogstashInstanceRequest(instanceId: instanceId, nodeNum: nodeNum, ymlConfig: ymlConfig, bindedES: bindedES, instanceName: instanceName, extendedFiles: extendedFiles, nodeType: nodeType, diskSize: diskSize, operationDuration: operationDuration)
+        return self.client.execute(action: "UpdateLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新Logstash实例
@@ -128,6 +129,7 @@ extension Es {
     /// 以上参数组合只能传递一种，多传或少传均会导致请求失败
     @inlinable @discardableResult
     public func updateLogstashInstance(instanceId: String, nodeNum: UInt64? = nil, ymlConfig: String? = nil, bindedES: LogstashBindedES? = nil, instanceName: String? = nil, extendedFiles: [LogstashExtendedFile]? = nil, nodeType: String? = nil, diskSize: UInt64? = nil, operationDuration: OperationDurationUpdated? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashInstanceResponse {
-        try await self.updateLogstashInstance(UpdateLogstashInstanceRequest(instanceId: instanceId, nodeNum: nodeNum, ymlConfig: ymlConfig, bindedES: bindedES, instanceName: instanceName, extendedFiles: extendedFiles, nodeType: nodeType, diskSize: diskSize, operationDuration: operationDuration), region: region, logger: logger, on: eventLoop)
+        let input = UpdateLogstashInstanceRequest(instanceId: instanceId, nodeNum: nodeNum, ymlConfig: ymlConfig, bindedES: bindedES, instanceName: instanceName, extendedFiles: extendedFiles, nodeType: nodeType, diskSize: diskSize, operationDuration: operationDuration)
+        return try await self.client.execute(action: "UpdateLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

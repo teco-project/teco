@@ -94,12 +94,14 @@ extension Trp {
     /// 查询批次列表
     @inlinable
     public func describeCodeBatchs(merchantId: String? = nil, productId: String? = nil, keyword: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, batchType: String? = nil, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCodeBatchsResponse> {
-        self.describeCodeBatchs(DescribeCodeBatchsRequest(merchantId: merchantId, productId: productId, keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, batchType: batchType, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCodeBatchsRequest(merchantId: merchantId, productId: productId, keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, batchType: batchType, corpId: corpId)
+        return self.client.execute(action: "DescribeCodeBatchs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询批次列表
     @inlinable
     public func describeCodeBatchs(merchantId: String? = nil, productId: String? = nil, keyword: String? = nil, pageSize: Int64? = nil, pageNumber: Int64? = nil, batchType: String? = nil, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodeBatchsResponse {
-        try await self.describeCodeBatchs(DescribeCodeBatchsRequest(merchantId: merchantId, productId: productId, keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, batchType: batchType, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCodeBatchsRequest(merchantId: merchantId, productId: productId, keyword: keyword, pageSize: pageSize, pageNumber: pageNumber, batchType: batchType, corpId: corpId)
+        return try await self.client.execute(action: "DescribeCodeBatchs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

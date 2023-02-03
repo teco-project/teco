@@ -89,12 +89,14 @@ extension Ccc {
     /// 修改客服账号
     @inlinable @discardableResult
     public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyStaffResponse> {
-        self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), region: region, logger: logger, on: eventLoop)
+        let input = ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept)
+        return self.client.execute(action: "ModifyStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改客服账号
     @inlinable @discardableResult
     public func modifyStaff(sdkAppId: UInt64, email: String, name: String? = nil, phone: String? = nil, nick: String? = nil, skillGroupIds: [Int64]? = nil, useMobileCallOut: Bool? = nil, useMobileAccept: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyStaffResponse {
-        try await self.modifyStaff(ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept), region: region, logger: logger, on: eventLoop)
+        let input = ModifyStaffRequest(sdkAppId: sdkAppId, email: email, name: name, phone: phone, nick: nick, skillGroupIds: skillGroupIds, useMobileCallOut: useMobileCallOut, useMobileAccept: useMobileAccept)
+        return try await self.client.execute(action: "ModifyStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

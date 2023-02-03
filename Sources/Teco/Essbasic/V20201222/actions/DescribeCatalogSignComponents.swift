@@ -69,7 +69,8 @@ extension Essbasic {
     /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
     @inlinable
     public func describeCatalogSignComponents(caller: Caller, catalogId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCatalogSignComponentsResponse> {
-        self.describeCatalogSignComponents(DescribeCatalogSignComponentsRequest(caller: caller, catalogId: catalogId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCatalogSignComponentsRequest(caller: caller, catalogId: catalogId)
+        return self.client.execute(action: "DescribeCatalogSignComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取目录签署区
@@ -77,6 +78,7 @@ extension Essbasic {
     /// 第三方应用可通过此接口（DescribeCatalogSignComponents）拉取目录签署区
     @inlinable
     public func describeCatalogSignComponents(caller: Caller, catalogId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCatalogSignComponentsResponse {
-        try await self.describeCatalogSignComponents(DescribeCatalogSignComponentsRequest(caller: caller, catalogId: catalogId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCatalogSignComponentsRequest(caller: caller, catalogId: catalogId)
+        return try await self.client.execute(action: "DescribeCatalogSignComponents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

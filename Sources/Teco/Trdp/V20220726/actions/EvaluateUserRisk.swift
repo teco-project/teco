@@ -92,12 +92,14 @@ extension Trdp {
     /// 用户风险质量接口
     @inlinable
     public func evaluateUserRisk(account: AccountInfo, user: UserInfo, modelId: String, deviceFingerprint: DeviceFingerprintInfo? = nil, sceneCode: String? = nil, deviceDetail: DeviceDetailInfo? = nil, marketing: MarketingInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EvaluateUserRiskResponse> {
-        self.evaluateUserRisk(EvaluateUserRiskRequest(account: account, user: user, modelId: modelId, deviceFingerprint: deviceFingerprint, sceneCode: sceneCode, deviceDetail: deviceDetail, marketing: marketing), region: region, logger: logger, on: eventLoop)
+        let input = EvaluateUserRiskRequest(account: account, user: user, modelId: modelId, deviceFingerprint: deviceFingerprint, sceneCode: sceneCode, deviceDetail: deviceDetail, marketing: marketing)
+        return self.client.execute(action: "EvaluateUserRisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户风险质量接口
     @inlinable
     public func evaluateUserRisk(account: AccountInfo, user: UserInfo, modelId: String, deviceFingerprint: DeviceFingerprintInfo? = nil, sceneCode: String? = nil, deviceDetail: DeviceDetailInfo? = nil, marketing: MarketingInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EvaluateUserRiskResponse {
-        try await self.evaluateUserRisk(EvaluateUserRiskRequest(account: account, user: user, modelId: modelId, deviceFingerprint: deviceFingerprint, sceneCode: sceneCode, deviceDetail: deviceDetail, marketing: marketing), region: region, logger: logger, on: eventLoop)
+        let input = EvaluateUserRiskRequest(account: account, user: user, modelId: modelId, deviceFingerprint: deviceFingerprint, sceneCode: sceneCode, deviceDetail: deviceDetail, marketing: marketing)
+        return try await self.client.execute(action: "EvaluateUserRisk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

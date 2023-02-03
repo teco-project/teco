@@ -78,7 +78,8 @@ extension Vpc {
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
     @inlinable
     public func describeSecurityGroupPolicies(securityGroupId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityGroupPoliciesResponse> {
-        self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters)
+        return self.client.execute(action: "DescribeSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全组规则
@@ -86,6 +87,7 @@ extension Vpc {
     /// 本接口（DescribeSecurityGroupPolicies）用于查询安全组规则。
     @inlinable
     public func describeSecurityGroupPolicies(securityGroupId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityGroupPoliciesResponse {
-        try await self.describeSecurityGroupPolicies(DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, filters: filters)
+        return try await self.client.execute(action: "DescribeSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

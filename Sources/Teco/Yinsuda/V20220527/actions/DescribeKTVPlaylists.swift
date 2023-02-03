@@ -91,7 +91,8 @@ extension Yinsuda {
     /// 获取歌单列表。
     @inlinable
     public func describeKTVPlaylists(appName: String, userId: String, types: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVPlaylistsResponse> {
-        self.describeKTVPlaylists(DescribeKTVPlaylistsRequest(appName: appName, userId: userId, types: types, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVPlaylistsRequest(appName: appName, userId: userId, types: types, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeKTVPlaylists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取推荐歌单列表
@@ -99,6 +100,7 @@ extension Yinsuda {
     /// 获取歌单列表。
     @inlinable
     public func describeKTVPlaylists(appName: String, userId: String, types: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVPlaylistsResponse {
-        try await self.describeKTVPlaylists(DescribeKTVPlaylistsRequest(appName: appName, userId: userId, types: types, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVPlaylistsRequest(appName: appName, userId: userId, types: types, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeKTVPlaylists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -75,12 +75,14 @@ extension Tci {
     /// 删除人员
     @inlinable
     public func deletePerson(libraryId: String, personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonResponse> {
-        self.deletePerson(DeletePersonRequest(libraryId: libraryId, personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePersonRequest(libraryId: libraryId, personId: personId)
+        return self.client.execute(action: "DeletePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除人员
     @inlinable
     public func deletePerson(libraryId: String, personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
-        try await self.deletePerson(DeletePersonRequest(libraryId: libraryId, personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePersonRequest(libraryId: libraryId, personId: personId)
+        return try await self.client.execute(action: "DeletePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

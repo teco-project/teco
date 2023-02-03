@@ -77,12 +77,14 @@ extension Dlc {
     /// 元数据锁检查
     @inlinable
     public func checkLockMetaData(lockId: Int64, datasourceConnectionName: String? = nil, txnId: Int64? = nil, elapsedMs: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckLockMetaDataResponse> {
-        self.checkLockMetaData(CheckLockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName, txnId: txnId, elapsedMs: elapsedMs), region: region, logger: logger, on: eventLoop)
+        let input = CheckLockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName, txnId: txnId, elapsedMs: elapsedMs)
+        return self.client.execute(action: "CheckLockMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 元数据锁检查
     @inlinable
     public func checkLockMetaData(lockId: Int64, datasourceConnectionName: String? = nil, txnId: Int64? = nil, elapsedMs: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckLockMetaDataResponse {
-        try await self.checkLockMetaData(CheckLockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName, txnId: txnId, elapsedMs: elapsedMs), region: region, logger: logger, on: eventLoop)
+        let input = CheckLockMetaDataRequest(lockId: lockId, datasourceConnectionName: datasourceConnectionName, txnId: txnId, elapsedMs: elapsedMs)
+        return try await self.client.execute(action: "CheckLockMetaData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -84,7 +84,8 @@ extension Clb {
     /// 负载均衡维度的个性化配置相关操作：创建、删除、修改、绑定、解绑
     @inlinable
     public func setCustomizedConfigForLoadBalancer(operationType: String, uconfigId: String? = nil, configContent: String? = nil, configName: String? = nil, loadBalancerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetCustomizedConfigForLoadBalancerResponse> {
-        self.setCustomizedConfigForLoadBalancer(SetCustomizedConfigForLoadBalancerRequest(operationType: operationType, uconfigId: uconfigId, configContent: configContent, configName: configName, loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
+        let input = SetCustomizedConfigForLoadBalancerRequest(operationType: operationType, uconfigId: uconfigId, configContent: configContent, configName: configName, loadBalancerIds: loadBalancerIds)
+        return self.client.execute(action: "SetCustomizedConfigForLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 负载均衡维度的个性化配置相关操作
@@ -92,6 +93,7 @@ extension Clb {
     /// 负载均衡维度的个性化配置相关操作：创建、删除、修改、绑定、解绑
     @inlinable
     public func setCustomizedConfigForLoadBalancer(operationType: String, uconfigId: String? = nil, configContent: String? = nil, configName: String? = nil, loadBalancerIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetCustomizedConfigForLoadBalancerResponse {
-        try await self.setCustomizedConfigForLoadBalancer(SetCustomizedConfigForLoadBalancerRequest(operationType: operationType, uconfigId: uconfigId, configContent: configContent, configName: configName, loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
+        let input = SetCustomizedConfigForLoadBalancerRequest(operationType: operationType, uconfigId: uconfigId, configContent: configContent, configName: configName, loadBalancerIds: loadBalancerIds)
+        return try await self.client.execute(action: "SetCustomizedConfigForLoadBalancer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

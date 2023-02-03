@@ -75,7 +75,8 @@ extension Privatedns {
     /// 修改私有域信息
     @inlinable @discardableResult
     public func modifyPrivateZone(zoneId: String, remark: String? = nil, dnsForwardStatus: String? = nil, cnameSpeedupStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPrivateZoneResponse> {
-        self.modifyPrivateZone(ModifyPrivateZoneRequest(zoneId: zoneId, remark: remark, dnsForwardStatus: dnsForwardStatus, cnameSpeedupStatus: cnameSpeedupStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPrivateZoneRequest(zoneId: zoneId, remark: remark, dnsForwardStatus: dnsForwardStatus, cnameSpeedupStatus: cnameSpeedupStatus)
+        return self.client.execute(action: "ModifyPrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改私有域
@@ -83,6 +84,7 @@ extension Privatedns {
     /// 修改私有域信息
     @inlinable @discardableResult
     public func modifyPrivateZone(zoneId: String, remark: String? = nil, dnsForwardStatus: String? = nil, cnameSpeedupStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPrivateZoneResponse {
-        try await self.modifyPrivateZone(ModifyPrivateZoneRequest(zoneId: zoneId, remark: remark, dnsForwardStatus: dnsForwardStatus, cnameSpeedupStatus: cnameSpeedupStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPrivateZoneRequest(zoneId: zoneId, remark: remark, dnsForwardStatus: dnsForwardStatus, cnameSpeedupStatus: cnameSpeedupStatus)
+        return try await self.client.execute(action: "ModifyPrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

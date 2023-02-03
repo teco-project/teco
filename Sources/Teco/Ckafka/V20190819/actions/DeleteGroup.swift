@@ -63,12 +63,14 @@ extension Ckafka {
     /// 删除消费组
     @inlinable
     public func deleteGroup(instanceId: String, group: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGroupResponse> {
-        self.deleteGroup(DeleteGroupRequest(instanceId: instanceId, group: group), region: region, logger: logger, on: eventLoop)
+        let input = DeleteGroupRequest(instanceId: instanceId, group: group)
+        return self.client.execute(action: "DeleteGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除消费组
     @inlinable
     public func deleteGroup(instanceId: String, group: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGroupResponse {
-        try await self.deleteGroup(DeleteGroupRequest(instanceId: instanceId, group: group), region: region, logger: logger, on: eventLoop)
+        let input = DeleteGroupRequest(instanceId: instanceId, group: group)
+        return try await self.client.execute(action: "DeleteGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

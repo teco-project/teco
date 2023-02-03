@@ -80,7 +80,8 @@ extension Tat {
     /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
     @inlinable
     public func previewReplacedCommandContent(parameters: String? = nil, commandId: String? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PreviewReplacedCommandContentResponse> {
-        self.previewReplacedCommandContent(PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content), region: region, logger: logger, on: eventLoop)
+        let input = PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content)
+        return self.client.execute(action: "PreviewReplacedCommandContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 命令预览
@@ -88,6 +89,7 @@ extension Tat {
     /// 此接口用于预览自定义参数替换后的命令内容。不会触发真实执行。
     @inlinable
     public func previewReplacedCommandContent(parameters: String? = nil, commandId: String? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PreviewReplacedCommandContentResponse {
-        try await self.previewReplacedCommandContent(PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content), region: region, logger: logger, on: eventLoop)
+        let input = PreviewReplacedCommandContentRequest(parameters: parameters, commandId: commandId, content: content)
+        return try await self.client.execute(action: "PreviewReplacedCommandContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

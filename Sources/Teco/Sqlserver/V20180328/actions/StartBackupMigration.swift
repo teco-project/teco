@@ -69,7 +69,8 @@ extension Sqlserver {
     /// 本接口（StartBackupMigration）用于启动备份导入任务。
     @inlinable
     public func startBackupMigration(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartBackupMigrationResponse> {
-        self.startBackupMigration(StartBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
+        let input = StartBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId)
+        return self.client.execute(action: "StartBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动备份导入任务
@@ -77,6 +78,7 @@ extension Sqlserver {
     /// 本接口（StartBackupMigration）用于启动备份导入任务。
     @inlinable
     public func startBackupMigration(instanceId: String, backupMigrationId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartBackupMigrationResponse {
-        try await self.startBackupMigration(StartBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId), region: region, logger: logger, on: eventLoop)
+        let input = StartBackupMigrationRequest(instanceId: instanceId, backupMigrationId: backupMigrationId)
+        return try await self.client.execute(action: "StartBackupMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

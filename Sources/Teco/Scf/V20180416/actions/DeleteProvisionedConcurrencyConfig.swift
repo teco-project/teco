@@ -70,7 +70,8 @@ extension Scf {
     /// 删除函数版本的预置并发配置。
     @inlinable @discardableResult
     public func deleteProvisionedConcurrencyConfig(functionName: String, qualifier: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProvisionedConcurrencyConfigResponse> {
-        self.deleteProvisionedConcurrencyConfig(DeleteProvisionedConcurrencyConfigRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DeleteProvisionedConcurrencyConfigRequest(functionName: functionName, qualifier: qualifier, namespace: namespace)
+        return self.client.execute(action: "DeleteProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除预置并发
@@ -78,6 +79,7 @@ extension Scf {
     /// 删除函数版本的预置并发配置。
     @inlinable @discardableResult
     public func deleteProvisionedConcurrencyConfig(functionName: String, qualifier: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProvisionedConcurrencyConfigResponse {
-        try await self.deleteProvisionedConcurrencyConfig(DeleteProvisionedConcurrencyConfigRequest(functionName: functionName, qualifier: qualifier, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DeleteProvisionedConcurrencyConfigRequest(functionName: functionName, qualifier: qualifier, namespace: namespace)
+        return try await self.client.execute(action: "DeleteProvisionedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

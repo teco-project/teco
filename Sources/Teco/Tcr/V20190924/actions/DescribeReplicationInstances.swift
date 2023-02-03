@@ -73,12 +73,14 @@ extension Tcr {
     /// 查询从实例列表
     @inlinable
     public func describeReplicationInstances(registryId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationInstancesResponse> {
-        self.describeReplicationInstances(DescribeReplicationInstancesRequest(registryId: registryId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReplicationInstancesRequest(registryId: registryId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeReplicationInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询从实例列表
     @inlinable
     public func describeReplicationInstances(registryId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstancesResponse {
-        try await self.describeReplicationInstances(DescribeReplicationInstancesRequest(registryId: registryId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReplicationInstancesRequest(registryId: registryId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeReplicationInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

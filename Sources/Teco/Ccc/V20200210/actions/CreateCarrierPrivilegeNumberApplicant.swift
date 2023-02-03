@@ -79,7 +79,8 @@ extension Ccc {
     /// 用于无限频率地呼叫坐席手机
     @inlinable
     public func createCarrierPrivilegeNumberApplicant(sdkAppId: UInt64, callers: [String], callees: [String], description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCarrierPrivilegeNumberApplicantResponse> {
-        self.createCarrierPrivilegeNumberApplicant(CreateCarrierPrivilegeNumberApplicantRequest(sdkAppId: sdkAppId, callers: callers, callees: callees, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateCarrierPrivilegeNumberApplicantRequest(sdkAppId: sdkAppId, callers: callers, callees: callees, description: description)
+        return self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请运营商白名单号码
@@ -87,6 +88,7 @@ extension Ccc {
     /// 用于无限频率地呼叫坐席手机
     @inlinable
     public func createCarrierPrivilegeNumberApplicant(sdkAppId: UInt64, callers: [String], callees: [String], description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCarrierPrivilegeNumberApplicantResponse {
-        try await self.createCarrierPrivilegeNumberApplicant(CreateCarrierPrivilegeNumberApplicantRequest(sdkAppId: sdkAppId, callers: callers, callees: callees, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateCarrierPrivilegeNumberApplicantRequest(sdkAppId: sdkAppId, callers: callers, callees: callees, description: description)
+        return try await self.client.execute(action: "CreateCarrierPrivilegeNumberApplicant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

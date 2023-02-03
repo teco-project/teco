@@ -94,12 +94,14 @@ extension Npp {
     /// 回拨话单获取接口
     @inlinable
     public func describeCallBackCdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCallBackCdrResponse> {
-        self.describeCallBackCdr(DescribeCallBackCdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCallBackCdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp)
+        return self.client.execute(action: "DescribeCallBackCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回拨话单获取接口
     @inlinable
     public func describeCallBackCdr(bizAppId: String, callId: String? = nil, src: String? = nil, startTimeStamp: String? = nil, endTimeStamp: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCallBackCdrResponse {
-        try await self.describeCallBackCdr(DescribeCallBackCdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCallBackCdrRequest(bizAppId: bizAppId, callId: callId, src: src, startTimeStamp: startTimeStamp, endTimeStamp: endTimeStamp)
+        return try await self.client.execute(action: "DescribeCallBackCdr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

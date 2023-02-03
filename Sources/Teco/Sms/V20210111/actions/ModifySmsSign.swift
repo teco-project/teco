@@ -140,7 +140,8 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func modifySmsSign(signId: UInt64, signName: String, signType: UInt64, documentType: UInt64, international: UInt64, signPurpose: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySmsSignResponse> {
-        self.modifySmsSign(ModifySmsSignRequest(signId: signId, signName: signName, signType: signType, documentType: documentType, international: international, signPurpose: signPurpose, proofImage: proofImage, commissionImage: commissionImage, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifySmsSignRequest(signId: signId, signName: signName, signType: signType, documentType: documentType, international: international, signPurpose: signPurpose, proofImage: proofImage, commissionImage: commissionImage, remark: remark)
+        return self.client.execute(action: "ModifySmsSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改短信签名
@@ -152,6 +153,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func modifySmsSign(signId: UInt64, signName: String, signType: UInt64, documentType: UInt64, international: UInt64, signPurpose: UInt64, proofImage: String, commissionImage: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySmsSignResponse {
-        try await self.modifySmsSign(ModifySmsSignRequest(signId: signId, signName: signName, signType: signType, documentType: documentType, international: international, signPurpose: signPurpose, proofImage: proofImage, commissionImage: commissionImage, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifySmsSignRequest(signId: signId, signName: signName, signType: signType, documentType: documentType, international: international, signPurpose: signPurpose, proofImage: proofImage, commissionImage: commissionImage, remark: remark)
+        return try await self.client.execute(action: "ModifySmsSign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

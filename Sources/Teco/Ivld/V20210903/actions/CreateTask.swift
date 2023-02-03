@@ -95,7 +95,8 @@ extension Ivld {
     /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
     @inlinable
     public func createTask(mediaId: String, mediaPreknownInfo: MediaPreknownInfo, taskName: String? = nil, uploadVideo: Bool? = nil, label: String? = nil, callbackURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskResponse> {
-        self.createTask(CreateTaskRequest(mediaId: mediaId, mediaPreknownInfo: mediaPreknownInfo, taskName: taskName, uploadVideo: uploadVideo, label: label, callbackURL: callbackURL), region: region, logger: logger, on: eventLoop)
+        let input = CreateTaskRequest(mediaId: mediaId, mediaPreknownInfo: mediaPreknownInfo, taskName: taskName, uploadVideo: uploadVideo, label: label, callbackURL: callbackURL)
+        return self.client.execute(action: "CreateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建任务
@@ -105,6 +106,7 @@ extension Ivld {
     /// 请注意，本接口为异步接口，**返回TaskId只代表任务创建成功，不代表任务执行成功**。
     @inlinable
     public func createTask(mediaId: String, mediaPreknownInfo: MediaPreknownInfo, taskName: String? = nil, uploadVideo: Bool? = nil, label: String? = nil, callbackURL: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
-        try await self.createTask(CreateTaskRequest(mediaId: mediaId, mediaPreknownInfo: mediaPreknownInfo, taskName: taskName, uploadVideo: uploadVideo, label: label, callbackURL: callbackURL), region: region, logger: logger, on: eventLoop)
+        let input = CreateTaskRequest(mediaId: mediaId, mediaPreknownInfo: mediaPreknownInfo, taskName: taskName, uploadVideo: uploadVideo, label: label, callbackURL: callbackURL)
+        return try await self.client.execute(action: "CreateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

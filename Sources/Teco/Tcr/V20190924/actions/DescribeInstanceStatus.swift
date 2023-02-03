@@ -65,7 +65,8 @@ extension Tcr {
     /// 查询实例当前状态以及过程信息
     @inlinable
     public func describeInstanceStatus(registryIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceStatusResponse> {
-        self.describeInstanceStatus(DescribeInstanceStatusRequest(registryIds: registryIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceStatusRequest(registryIds: registryIds)
+        return self.client.execute(action: "DescribeInstanceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例状态
@@ -73,6 +74,7 @@ extension Tcr {
     /// 查询实例当前状态以及过程信息
     @inlinable
     public func describeInstanceStatus(registryIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceStatusResponse {
-        try await self.describeInstanceStatus(DescribeInstanceStatusRequest(registryIds: registryIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceStatusRequest(registryIds: registryIds)
+        return try await self.client.execute(action: "DescribeInstanceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

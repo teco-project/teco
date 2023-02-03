@@ -58,12 +58,14 @@ extension Ms {
     /// 获取用户基础信息
     @inlinable
     public func describeUserBaseInfoInstance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserBaseInfoInstanceResponse> {
-        self.describeUserBaseInfoInstance(DescribeUserBaseInfoInstanceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserBaseInfoInstanceRequest()
+        return self.client.execute(action: "DescribeUserBaseInfoInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户基础信息
     @inlinable
     public func describeUserBaseInfoInstance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserBaseInfoInstanceResponse {
-        try await self.describeUserBaseInfoInstance(DescribeUserBaseInfoInstanceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserBaseInfoInstanceRequest()
+        return try await self.client.execute(action: "DescribeUserBaseInfoInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

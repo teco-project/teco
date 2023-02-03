@@ -74,12 +74,14 @@ extension Wedata {
     /// 检查规则名称是否重复
     @inlinable
     public func checkDuplicateRuleName(projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, ruleId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckDuplicateRuleNameResponse> {
-        self.checkDuplicateRuleName(CheckDuplicateRuleNameRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = CheckDuplicateRuleNameRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, ruleId: ruleId)
+        return self.client.execute(action: "CheckDuplicateRuleName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查规则名称是否重复
     @inlinable
     public func checkDuplicateRuleName(projectId: String? = nil, ruleGroupId: UInt64? = nil, name: String? = nil, ruleId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckDuplicateRuleNameResponse {
-        try await self.checkDuplicateRuleName(CheckDuplicateRuleNameRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = CheckDuplicateRuleNameRequest(projectId: projectId, ruleGroupId: ruleGroupId, name: name, ruleId: ruleId)
+        return try await self.client.execute(action: "CheckDuplicateRuleName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

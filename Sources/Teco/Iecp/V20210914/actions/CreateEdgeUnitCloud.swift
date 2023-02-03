@@ -94,12 +94,14 @@ extension Iecp {
     /// 创建边缘单元
     @inlinable
     public func createEdgeUnitCloud(name: String, k8sVersion: String, vpcId: String? = nil, description: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, openCloudMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeUnitCloudResponse> {
-        self.createEdgeUnitCloud(CreateEdgeUnitCloudRequest(name: name, k8sVersion: k8sVersion, vpcId: vpcId, description: description, podCIDR: podCIDR, serviceCIDR: serviceCIDR, openCloudMonitor: openCloudMonitor), region: region, logger: logger, on: eventLoop)
+        let input = CreateEdgeUnitCloudRequest(name: name, k8sVersion: k8sVersion, vpcId: vpcId, description: description, podCIDR: podCIDR, serviceCIDR: serviceCIDR, openCloudMonitor: openCloudMonitor)
+        return self.client.execute(action: "CreateEdgeUnitCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘单元
     @inlinable
     public func createEdgeUnitCloud(name: String, k8sVersion: String, vpcId: String? = nil, description: String? = nil, podCIDR: String? = nil, serviceCIDR: String? = nil, openCloudMonitor: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeUnitCloudResponse {
-        try await self.createEdgeUnitCloud(CreateEdgeUnitCloudRequest(name: name, k8sVersion: k8sVersion, vpcId: vpcId, description: description, podCIDR: podCIDR, serviceCIDR: serviceCIDR, openCloudMonitor: openCloudMonitor), region: region, logger: logger, on: eventLoop)
+        let input = CreateEdgeUnitCloudRequest(name: name, k8sVersion: k8sVersion, vpcId: vpcId, description: description, podCIDR: podCIDR, serviceCIDR: serviceCIDR, openCloudMonitor: openCloudMonitor)
+        return try await self.client.execute(action: "CreateEdgeUnitCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

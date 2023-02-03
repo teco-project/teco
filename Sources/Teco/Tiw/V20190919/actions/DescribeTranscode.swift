@@ -124,7 +124,8 @@ extension Tiw {
     /// 查询文档转码任务的执行进度与转码结果
     @inlinable
     public func describeTranscode(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTranscodeResponse> {
-        self.describeTranscode(DescribeTranscodeRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTranscodeRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return self.client.execute(action: "DescribeTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文档转码任务
@@ -132,6 +133,7 @@ extension Tiw {
     /// 查询文档转码任务的执行进度与转码结果
     @inlinable
     public func describeTranscode(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTranscodeResponse {
-        try await self.describeTranscode(DescribeTranscodeRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTranscodeRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return try await self.client.execute(action: "DescribeTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

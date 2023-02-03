@@ -65,7 +65,8 @@ extension Oceanus {
     /// 批量启动或者恢复作业，批量操作数量上限20
     @inlinable @discardableResult
     public func runJobs(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunJobsResponse> {
-        self.runJobs(RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId)
+        return self.client.execute(action: "RunJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行作业
@@ -73,6 +74,7 @@ extension Oceanus {
     /// 批量启动或者恢复作业，批量操作数量上限20
     @inlinable @discardableResult
     public func runJobs(runJobDescriptions: [RunJobDescription], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunJobsResponse {
-        try await self.runJobs(RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = RunJobsRequest(runJobDescriptions: runJobDescriptions, workSpaceId: workSpaceId)
+        return try await self.client.execute(action: "RunJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

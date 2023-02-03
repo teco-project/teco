@@ -54,12 +54,14 @@ extension Dc {
     /// 删除专用通道
     @inlinable @discardableResult
     public func deleteDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDirectConnectTunnelResponse> {
-        self.deleteDirectConnectTunnel(DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId)
+        return self.client.execute(action: "DeleteDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除专用通道
     @inlinable @discardableResult
     public func deleteDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDirectConnectTunnelResponse {
-        try await self.deleteDirectConnectTunnel(DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId)
+        return try await self.client.execute(action: "DeleteDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

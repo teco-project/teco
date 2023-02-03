@@ -60,7 +60,8 @@ extension Iai {
     /// 删除该人员信息，此操作会导致所有人员库均删除此人员。同时，该人员的所有人脸信息将被删除。
     @inlinable @discardableResult
     public func deletePerson(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonResponse> {
-        self.deletePerson(DeletePersonRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePersonRequest(personId: personId)
+        return self.client.execute(action: "DeletePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除人员
@@ -68,6 +69,7 @@ extension Iai {
     /// 删除该人员信息，此操作会导致所有人员库均删除此人员。同时，该人员的所有人脸信息将被删除。
     @inlinable @discardableResult
     public func deletePerson(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonResponse {
-        try await self.deletePerson(DeletePersonRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePersonRequest(personId: personId)
+        return try await self.client.execute(action: "DeletePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

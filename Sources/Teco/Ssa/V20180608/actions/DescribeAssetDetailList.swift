@@ -96,7 +96,8 @@ extension Ssa {
     /// 资产条件查询
     @inlinable
     public func describeAssetDetailList(filter: [AssetQueryFilter]? = nil, sorter: [QuerySort]? = nil, riskTags: [String]? = nil, tags: [String]? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDetailListResponse> {
-        self.describeAssetDetailList(DescribeAssetDetailListRequest(filter: filter, sorter: sorter, riskTags: riskTags, tags: tags, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetDetailListRequest(filter: filter, sorter: sorter, riskTags: riskTags, tags: tags, pageIndex: pageIndex, pageSize: pageSize)
+        return self.client.execute(action: "DescribeAssetDetailList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资产列表
@@ -104,6 +105,7 @@ extension Ssa {
     /// 资产条件查询
     @inlinable
     public func describeAssetDetailList(filter: [AssetQueryFilter]? = nil, sorter: [QuerySort]? = nil, riskTags: [String]? = nil, tags: [String]? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDetailListResponse {
-        try await self.describeAssetDetailList(DescribeAssetDetailListRequest(filter: filter, sorter: sorter, riskTags: riskTags, tags: tags, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetDetailListRequest(filter: filter, sorter: sorter, riskTags: riskTags, tags: tags, pageIndex: pageIndex, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeAssetDetailList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

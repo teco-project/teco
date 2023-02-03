@@ -70,7 +70,8 @@ extension Cdc {
     /// 修改大订单、小订单的状态
     @inlinable @discardableResult
     public func modifyOrderStatus(status: String, dedicatedClusterOrderId: String? = nil, subOrderIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOrderStatusResponse> {
-        self.modifyOrderStatus(ModifyOrderStatusRequest(status: status, dedicatedClusterOrderId: dedicatedClusterOrderId, subOrderIds: subOrderIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyOrderStatusRequest(status: status, dedicatedClusterOrderId: dedicatedClusterOrderId, subOrderIds: subOrderIds)
+        return self.client.execute(action: "ModifyOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改订单状态
@@ -78,6 +79,7 @@ extension Cdc {
     /// 修改大订单、小订单的状态
     @inlinable @discardableResult
     public func modifyOrderStatus(status: String, dedicatedClusterOrderId: String? = nil, subOrderIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOrderStatusResponse {
-        try await self.modifyOrderStatus(ModifyOrderStatusRequest(status: status, dedicatedClusterOrderId: dedicatedClusterOrderId, subOrderIds: subOrderIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyOrderStatusRequest(status: status, dedicatedClusterOrderId: dedicatedClusterOrderId, subOrderIds: subOrderIds)
+        return try await self.client.execute(action: "ModifyOrderStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

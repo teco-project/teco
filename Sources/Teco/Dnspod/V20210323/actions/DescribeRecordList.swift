@@ -123,7 +123,8 @@ extension Dnspod {
     /// 获取某个域名下的解析记录列表
     @inlinable
     public func describeRecordList(domain: String, domainId: UInt64? = nil, subdomain: String? = nil, recordType: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, groupId: UInt64? = nil, keyword: String? = nil, sortField: String? = nil, sortType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordListResponse> {
-        self.describeRecordList(DescribeRecordListRequest(domain: domain, domainId: domainId, subdomain: subdomain, recordType: recordType, recordLine: recordLine, recordLineId: recordLineId, groupId: groupId, keyword: keyword, sortField: sortField, sortType: sortType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRecordListRequest(domain: domain, domainId: domainId, subdomain: subdomain, recordType: recordType, recordLine: recordLine, recordLineId: recordLineId, groupId: groupId, keyword: keyword, sortField: sortField, sortType: sortType, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名的解析记录列表
@@ -131,6 +132,7 @@ extension Dnspod {
     /// 获取某个域名下的解析记录列表
     @inlinable
     public func describeRecordList(domain: String, domainId: UInt64? = nil, subdomain: String? = nil, recordType: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, groupId: UInt64? = nil, keyword: String? = nil, sortField: String? = nil, sortType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordListResponse {
-        try await self.describeRecordList(DescribeRecordListRequest(domain: domain, domainId: domainId, subdomain: subdomain, recordType: recordType, recordLine: recordLine, recordLineId: recordLineId, groupId: groupId, keyword: keyword, sortField: sortField, sortType: sortType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRecordListRequest(domain: domain, domainId: domainId, subdomain: subdomain, recordType: recordType, recordLine: recordLine, recordLineId: recordLineId, groupId: groupId, keyword: keyword, sortField: sortField, sortType: sortType, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeRecordList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

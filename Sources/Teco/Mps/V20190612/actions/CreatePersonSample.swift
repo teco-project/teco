@@ -94,7 +94,8 @@ extension Mps {
     /// 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
     @inlinable
     public func createPersonSample(name: String, usages: [String], description: String? = nil, faceContents: [String]? = nil, tags: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonSampleResponse> {
-        self.createPersonSample(CreatePersonSampleRequest(name: name, usages: usages, description: description, faceContents: faceContents, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreatePersonSampleRequest(name: name, usages: usages, description: description, faceContents: faceContents, tags: tags)
+        return self.client.execute(action: "CreatePersonSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建素材样本
@@ -102,6 +103,7 @@ extension Mps {
     /// 该接口用于创建素材样本，用于通过五官定位等技术，进行内容识别、内容不适宜等视频处理。
     @inlinable
     public func createPersonSample(name: String, usages: [String], description: String? = nil, faceContents: [String]? = nil, tags: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonSampleResponse {
-        try await self.createPersonSample(CreatePersonSampleRequest(name: name, usages: usages, description: description, faceContents: faceContents, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreatePersonSampleRequest(name: name, usages: usages, description: description, faceContents: faceContents, tags: tags)
+        return try await self.client.execute(action: "CreatePersonSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -59,12 +59,14 @@ extension Cls {
     /// 获取机器组绑定的采集规则配置
     @inlinable
     public func describeMachineGroupConfigs(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachineGroupConfigsResponse> {
-        self.describeMachineGroupConfigs(DescribeMachineGroupConfigsRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMachineGroupConfigsRequest(groupId: groupId)
+        return self.client.execute(action: "DescribeMachineGroupConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取机器组绑定的采集规则配置
     @inlinable
     public func describeMachineGroupConfigs(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachineGroupConfigsResponse {
-        try await self.describeMachineGroupConfigs(DescribeMachineGroupConfigsRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMachineGroupConfigsRequest(groupId: groupId)
+        return try await self.client.execute(action: "DescribeMachineGroupConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

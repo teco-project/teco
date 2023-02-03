@@ -77,12 +77,14 @@ extension Cdc {
     /// 查询站点详情
     @inlinable
     public func describeSitesDetail(siteIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSitesDetailResponse> {
-        self.describeSitesDetail(DescribeSitesDetailRequest(siteIds: siteIds, offset: offset, limit: limit, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSitesDetailRequest(siteIds: siteIds, offset: offset, limit: limit, name: name)
+        return self.client.execute(action: "DescribeSitesDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询站点详情
     @inlinable
     public func describeSitesDetail(siteIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSitesDetailResponse {
-        try await self.describeSitesDetail(DescribeSitesDetailRequest(siteIds: siteIds, offset: offset, limit: limit, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSitesDetailRequest(siteIds: siteIds, offset: offset, limit: limit, name: name)
+        return try await self.client.execute(action: "DescribeSitesDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -85,7 +85,8 @@ extension Wav {
     /// 通过接口拉取SaaS内C端外部联系人在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
     @inlinable
     public func queryCustomerEventDetailStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCustomerEventDetailStatisticsResponse> {
-        self.queryCustomerEventDetailStatistics(QueryCustomerEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = QueryCustomerEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit)
+        return self.client.execute(action: "QueryCustomerEventDetailStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询外部联系人SaaS使用明细数据接口
@@ -93,6 +94,7 @@ extension Wav {
     /// 通过接口拉取SaaS内C端外部联系人在指定时间范围内的行为事件明细。此接口提供的数据以天为维度，查询的时间范围为[start_time,end_time]，即前后均为闭区间，支持的最大查询跨度为365天。
     @inlinable
     public func queryCustomerEventDetailStatistics(beginTime: UInt64, endTime: UInt64, cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCustomerEventDetailStatisticsResponse {
-        try await self.queryCustomerEventDetailStatistics(QueryCustomerEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = QueryCustomerEventDetailStatisticsRequest(beginTime: beginTime, endTime: endTime, cursor: cursor, limit: limit)
+        return try await self.client.execute(action: "QueryCustomerEventDetailStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -125,7 +125,8 @@ extension Apm {
     /// 拉取通用指标列表
     @inlinable
     public func describeMetricRecords(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMetricRecordsResponse> {
-        self.describeMetricRecords(DescribeMetricRecordsRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMetricRecordsRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize)
+        return self.client.execute(action: "DescribeMetricRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通用指标列表接口
@@ -133,6 +134,7 @@ extension Apm {
     /// 拉取通用指标列表
     @inlinable
     public func describeMetricRecords(filters: [Filter], metrics: [QueryMetricItem], groupBy: [String], orderBy: OrderBy? = nil, instanceId: String? = nil, limit: UInt64? = nil, startTime: UInt64? = nil, offset: Int64? = nil, endTime: UInt64? = nil, businessName: String? = nil, pageIndex: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMetricRecordsResponse {
-        try await self.describeMetricRecords(DescribeMetricRecordsRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMetricRecordsRequest(filters: filters, metrics: metrics, groupBy: groupBy, orderBy: orderBy, instanceId: instanceId, limit: limit, startTime: startTime, offset: offset, endTime: endTime, businessName: businessName, pageIndex: pageIndex, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeMetricRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

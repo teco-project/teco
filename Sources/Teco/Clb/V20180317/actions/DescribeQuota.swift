@@ -56,7 +56,8 @@ extension Clb {
     /// 查询用户当前地域下的各项配额
     @inlinable
     public func describeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQuotaResponse> {
-        self.describeQuota(DescribeQuotaRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQuotaRequest()
+        return self.client.execute(action: "DescribeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询配额
@@ -64,6 +65,7 @@ extension Clb {
     /// 查询用户当前地域下的各项配额
     @inlinable
     public func describeQuota(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQuotaResponse {
-        try await self.describeQuota(DescribeQuotaRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQuotaRequest()
+        return try await self.client.execute(action: "DescribeQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

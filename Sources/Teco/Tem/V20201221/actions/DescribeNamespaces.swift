@@ -74,7 +74,8 @@ extension Tem {
     /// 获取租户环境列表
     @inlinable
     public func describeNamespaces(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNamespacesResponse> {
-        self.describeNamespaces(DescribeNamespacesRequest(limit: limit, offset: offset, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNamespacesRequest(limit: limit, offset: offset, sourceChannel: sourceChannel)
+        return self.client.execute(action: "DescribeNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取租户命名空间列表
@@ -82,6 +83,7 @@ extension Tem {
     /// 获取租户环境列表
     @inlinable
     public func describeNamespaces(limit: Int64? = nil, offset: Int64? = nil, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNamespacesResponse {
-        try await self.describeNamespaces(DescribeNamespacesRequest(limit: limit, offset: offset, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNamespacesRequest(limit: limit, offset: offset, sourceChannel: sourceChannel)
+        return try await self.client.execute(action: "DescribeNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

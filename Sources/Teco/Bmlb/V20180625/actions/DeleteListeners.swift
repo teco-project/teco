@@ -69,7 +69,8 @@ extension Bmlb {
     /// 删除黑石负载均衡监听器。
     @inlinable
     public func deleteListeners(loadBalancerId: String, listenerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteListenersResponse> {
-        self.deleteListeners(DeleteListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds)
+        return self.client.execute(action: "DeleteListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除黑石负载均衡监听器
@@ -77,6 +78,7 @@ extension Bmlb {
     /// 删除黑石负载均衡监听器。
     @inlinable
     public func deleteListeners(loadBalancerId: String, listenerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteListenersResponse {
-        try await self.deleteListeners(DeleteListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds)
+        return try await self.client.execute(action: "DeleteListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

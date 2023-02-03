@@ -59,12 +59,14 @@ extension Tiw {
     /// 恢复实时录制
     @inlinable @discardableResult
     public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeOnlineRecordResponse> {
-        self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return self.client.execute(action: "ResumeOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复实时录制
     @inlinable @discardableResult
     public func resumeOnlineRecord(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeOnlineRecordResponse {
-        try await self.resumeOnlineRecord(ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = ResumeOnlineRecordRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return try await self.client.execute(action: "ResumeOnlineRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

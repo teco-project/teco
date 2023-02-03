@@ -93,12 +93,14 @@ extension Eiam {
     /// 查询指定用户下的资源授权列表
     @inlinable
     public func describeUserResourcesAuthorization(applicationId: String, userId: String? = nil, userName: String? = nil, includeInheritedAuthorizations: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResourcesAuthorizationResponse> {
-        self.describeUserResourcesAuthorization(DescribeUserResourcesAuthorizationRequest(applicationId: applicationId, userId: userId, userName: userName, includeInheritedAuthorizations: includeInheritedAuthorizations), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserResourcesAuthorizationRequest(applicationId: applicationId, userId: userId, userName: userName, includeInheritedAuthorizations: includeInheritedAuthorizations)
+        return self.client.execute(action: "DescribeUserResourcesAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定用户下的资源授权列表
     @inlinable
     public func describeUserResourcesAuthorization(applicationId: String, userId: String? = nil, userName: String? = nil, includeInheritedAuthorizations: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResourcesAuthorizationResponse {
-        try await self.describeUserResourcesAuthorization(DescribeUserResourcesAuthorizationRequest(applicationId: applicationId, userId: userId, userName: userName, includeInheritedAuthorizations: includeInheritedAuthorizations), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserResourcesAuthorizationRequest(applicationId: applicationId, userId: userId, userName: userName, includeInheritedAuthorizations: includeInheritedAuthorizations)
+        return try await self.client.execute(action: "DescribeUserResourcesAuthorization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

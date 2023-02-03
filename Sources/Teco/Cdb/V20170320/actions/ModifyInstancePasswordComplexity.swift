@@ -69,7 +69,8 @@ extension Cdb {
     /// 本接口(ModifyInstancePasswordComplexity)用于修改云数据库实例的密码复杂度。
     @inlinable
     public func modifyInstancePasswordComplexity(instanceIds: [String], paramList: [Parameter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstancePasswordComplexityResponse> {
-        self.modifyInstancePasswordComplexity(ModifyInstancePasswordComplexityRequest(instanceIds: instanceIds, paramList: paramList), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstancePasswordComplexityRequest(instanceIds: instanceIds, paramList: paramList)
+        return self.client.execute(action: "ModifyInstancePasswordComplexity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例密码复杂度
@@ -77,6 +78,7 @@ extension Cdb {
     /// 本接口(ModifyInstancePasswordComplexity)用于修改云数据库实例的密码复杂度。
     @inlinable
     public func modifyInstancePasswordComplexity(instanceIds: [String], paramList: [Parameter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancePasswordComplexityResponse {
-        try await self.modifyInstancePasswordComplexity(ModifyInstancePasswordComplexityRequest(instanceIds: instanceIds, paramList: paramList), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstancePasswordComplexityRequest(instanceIds: instanceIds, paramList: paramList)
+        return try await self.client.execute(action: "ModifyInstancePasswordComplexity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

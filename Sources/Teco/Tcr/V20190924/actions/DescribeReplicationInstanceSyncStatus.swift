@@ -92,12 +92,14 @@ extension Tcr {
     /// 查询从实例同步状态
     @inlinable
     public func describeReplicationInstanceSyncStatus(registryId: String, replicationRegistryId: String, replicationRegionId: UInt64? = nil, showReplicationLog: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReplicationInstanceSyncStatusResponse> {
-        self.describeReplicationInstanceSyncStatus(DescribeReplicationInstanceSyncStatusRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId, showReplicationLog: showReplicationLog, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReplicationInstanceSyncStatusRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId, showReplicationLog: showReplicationLog, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeReplicationInstanceSyncStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询从实例同步状态
     @inlinable
     public func describeReplicationInstanceSyncStatus(registryId: String, replicationRegistryId: String, replicationRegionId: UInt64? = nil, showReplicationLog: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReplicationInstanceSyncStatusResponse {
-        try await self.describeReplicationInstanceSyncStatus(DescribeReplicationInstanceSyncStatusRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId, showReplicationLog: showReplicationLog, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReplicationInstanceSyncStatusRequest(registryId: registryId, replicationRegistryId: replicationRegistryId, replicationRegionId: replicationRegionId, showReplicationLog: showReplicationLog, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeReplicationInstanceSyncStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

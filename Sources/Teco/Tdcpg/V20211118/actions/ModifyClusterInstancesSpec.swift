@@ -82,7 +82,8 @@ extension Tdcpg {
     /// 修改实例规格，此接口只针对状态为running(运行中)的实例生效
     @inlinable @discardableResult
     public func modifyClusterInstancesSpec(clusterId: String, instanceIdSet: [String], cpu: UInt64, memory: UInt64, operationTiming: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterInstancesSpecResponse> {
-        self.modifyClusterInstancesSpec(ModifyClusterInstancesSpecRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, cpu: cpu, memory: memory, operationTiming: operationTiming), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterInstancesSpecRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, cpu: cpu, memory: memory, operationTiming: operationTiming)
+        return self.client.execute(action: "ModifyClusterInstancesSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例规格
@@ -90,6 +91,7 @@ extension Tdcpg {
     /// 修改实例规格，此接口只针对状态为running(运行中)的实例生效
     @inlinable @discardableResult
     public func modifyClusterInstancesSpec(clusterId: String, instanceIdSet: [String], cpu: UInt64, memory: UInt64, operationTiming: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterInstancesSpecResponse {
-        try await self.modifyClusterInstancesSpec(ModifyClusterInstancesSpecRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, cpu: cpu, memory: memory, operationTiming: operationTiming), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterInstancesSpecRequest(clusterId: clusterId, instanceIdSet: instanceIdSet, cpu: cpu, memory: memory, operationTiming: operationTiming)
+        return try await self.client.execute(action: "ModifyClusterInstancesSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

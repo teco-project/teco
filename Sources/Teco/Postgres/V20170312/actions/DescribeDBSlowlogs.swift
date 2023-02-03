@@ -112,7 +112,8 @@ extension Postgres {
     /// 本接口（DescribeDBSlowlogs）用于获取慢查询日志。已于2021.09.01日正式废弃，后续此接口将不再返回任何数据，新接口为DescribeSlowQueryList，详细请查看：https://cloud.tencent.com/document/product/409/60540
     @inlinable
     public func describeDBSlowlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSlowlogsResponse> {
-        self.describeDBSlowlogs(DescribeDBSlowlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBSlowlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeDBSlowlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取慢查询日志 （废弃）
@@ -120,6 +121,7 @@ extension Postgres {
     /// 本接口（DescribeDBSlowlogs）用于获取慢查询日志。已于2021.09.01日正式废弃，后续此接口将不再返回任何数据，新接口为DescribeSlowQueryList，详细请查看：https://cloud.tencent.com/document/product/409/60540
     @inlinable
     public func describeDBSlowlogs(dbInstanceId: String, startTime: Date, endTime: Date, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowlogsResponse {
-        try await self.describeDBSlowlogs(DescribeDBSlowlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBSlowlogsRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeDBSlowlogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

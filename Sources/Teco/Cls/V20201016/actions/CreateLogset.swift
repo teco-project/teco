@@ -69,7 +69,8 @@ extension Cls {
     /// 本接口用于创建日志集，返回新创建的日志集的 ID。
     @inlinable
     public func createLogset(logsetName: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLogsetResponse> {
-        self.createLogset(CreateLogsetRequest(logsetName: logsetName, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateLogsetRequest(logsetName: logsetName, tags: tags)
+        return self.client.execute(action: "CreateLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建日志集
@@ -77,6 +78,7 @@ extension Cls {
     /// 本接口用于创建日志集，返回新创建的日志集的 ID。
     @inlinable
     public func createLogset(logsetName: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLogsetResponse {
-        try await self.createLogset(CreateLogsetRequest(logsetName: logsetName, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateLogsetRequest(logsetName: logsetName, tags: tags)
+        return try await self.client.execute(action: "CreateLogset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

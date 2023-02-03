@@ -73,12 +73,14 @@ extension Tdmq {
     /// 更新集群信息
     @inlinable
     public func modifyCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterResponse> {
-        self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled)
+        return self.client.execute(action: "ModifyCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新集群信息
     @inlinable
     public func modifyCluster(clusterId: String, clusterName: String? = nil, remark: String? = nil, publicAccessEnabled: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterResponse {
-        try await self.modifyCluster(ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterRequest(clusterId: clusterId, clusterName: clusterName, remark: remark, publicAccessEnabled: publicAccessEnabled)
+        return try await self.client.execute(action: "ModifyCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

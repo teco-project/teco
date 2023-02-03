@@ -118,12 +118,14 @@ extension Cpdp {
     /// 灵云V2-收款用户开立
     @inlinable
     public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlexPayeeResponse> {
-        self.createFlexPayee(CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment)
+        return self.client.execute(action: "CreateFlexPayee", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户开立
     @inlinable
     public func createFlexPayee(outUserId: String, name: String, idNo: String, accountName: String, serviceProviderId: String, taxInfo: PayeeTaxInfo, idType: Int64, remark: String? = nil, phoneNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlexPayeeResponse {
-        try await self.createFlexPayee(CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlexPayeeRequest(outUserId: outUserId, name: name, idNo: idNo, accountName: accountName, serviceProviderId: serviceProviderId, taxInfo: taxInfo, idType: idType, remark: remark, phoneNo: phoneNo, environment: environment)
+        return try await self.client.execute(action: "CreateFlexPayee", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

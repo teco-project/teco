@@ -88,7 +88,8 @@ extension Cds {
     /// 用于查询数据安全审计产品实例价格
     @inlinable
     public func inquiryPriceDbauditInstance(instanceVersion: String, inquiryType: String, timeSpan: UInt64, timeUnit: String, serviceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceDbauditInstanceResponse> {
-        self.inquiryPriceDbauditInstance(InquiryPriceDbauditInstanceRequest(instanceVersion: instanceVersion, inquiryType: inquiryType, timeSpan: timeSpan, timeUnit: timeUnit, serviceRegion: serviceRegion), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceDbauditInstanceRequest(instanceVersion: instanceVersion, inquiryType: inquiryType, timeSpan: timeSpan, timeUnit: timeUnit, serviceRegion: serviceRegion)
+        return self.client.execute(action: "InquiryPriceDbauditInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据安全审计产品实例询价
@@ -96,6 +97,7 @@ extension Cds {
     /// 用于查询数据安全审计产品实例价格
     @inlinable
     public func inquiryPriceDbauditInstance(instanceVersion: String, inquiryType: String, timeSpan: UInt64, timeUnit: String, serviceRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceDbauditInstanceResponse {
-        try await self.inquiryPriceDbauditInstance(InquiryPriceDbauditInstanceRequest(instanceVersion: instanceVersion, inquiryType: inquiryType, timeSpan: timeSpan, timeUnit: timeUnit, serviceRegion: serviceRegion), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceDbauditInstanceRequest(instanceVersion: instanceVersion, inquiryType: inquiryType, timeSpan: timeSpan, timeUnit: timeUnit, serviceRegion: serviceRegion)
+        return try await self.client.execute(action: "InquiryPriceDbauditInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

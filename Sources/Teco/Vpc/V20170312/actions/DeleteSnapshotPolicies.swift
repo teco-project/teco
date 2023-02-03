@@ -60,7 +60,8 @@ extension Vpc {
     /// 本接口（DeleteSnapshotPolicies）用于删除快照策略。
     @inlinable @discardableResult
     public func deleteSnapshotPolicies(snapshotPolicyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSnapshotPoliciesResponse> {
-        self.deleteSnapshotPolicies(DeleteSnapshotPoliciesRequest(snapshotPolicyIds: snapshotPolicyIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotPoliciesRequest(snapshotPolicyIds: snapshotPolicyIds)
+        return self.client.execute(action: "DeleteSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除快照策略
@@ -68,6 +69,7 @@ extension Vpc {
     /// 本接口（DeleteSnapshotPolicies）用于删除快照策略。
     @inlinable @discardableResult
     public func deleteSnapshotPolicies(snapshotPolicyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotPoliciesResponse {
-        try await self.deleteSnapshotPolicies(DeleteSnapshotPoliciesRequest(snapshotPolicyIds: snapshotPolicyIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSnapshotPoliciesRequest(snapshotPolicyIds: snapshotPolicyIds)
+        return try await self.client.execute(action: "DeleteSnapshotPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

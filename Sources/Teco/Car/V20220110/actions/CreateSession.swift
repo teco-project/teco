@@ -75,12 +75,14 @@ extension Car {
     /// 创建会话
     @inlinable
     public func createSession(userId: String, userIp: String, clientSession: String, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSessionResponse> {
-        self.createSession(CreateSessionRequest(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode), region: region, logger: logger, on: eventLoop)
+        let input = CreateSessionRequest(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode)
+        return self.client.execute(action: "CreateSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建会话
     @inlinable
     public func createSession(userId: String, userIp: String, clientSession: String, runMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSessionResponse {
-        try await self.createSession(CreateSessionRequest(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode), region: region, logger: logger, on: eventLoop)
+        let input = CreateSessionRequest(userId: userId, userIp: userIp, clientSession: clientSession, runMode: runMode)
+        return try await self.client.execute(action: "CreateSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

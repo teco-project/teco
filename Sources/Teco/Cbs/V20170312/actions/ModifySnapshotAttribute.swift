@@ -90,7 +90,8 @@ extension Cbs {
     /// * “快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。
     @inlinable @discardableResult
     public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, isPermanent: Bool? = nil, deadline: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotAttributeResponse> {
-        self.modifySnapshotAttribute(ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName, isPermanent: isPermanent, deadline: deadline), region: region, logger: logger, on: eventLoop)
+        let input = ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName, isPermanent: isPermanent, deadline: deadline)
+        return self.client.execute(action: "ModifySnapshotAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改快照信息
@@ -101,6 +102,7 @@ extension Cbs {
     /// * “快照名称”仅为方便用户自己管理之用，腾讯云并不以此名称作为提交工单或是进行快照管理操作的依据。
     @inlinable @discardableResult
     public func modifySnapshotAttribute(snapshotId: String, snapshotName: String? = nil, isPermanent: Bool? = nil, deadline: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotAttributeResponse {
-        try await self.modifySnapshotAttribute(ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName, isPermanent: isPermanent, deadline: deadline), region: region, logger: logger, on: eventLoop)
+        let input = ModifySnapshotAttributeRequest(snapshotId: snapshotId, snapshotName: snapshotName, isPermanent: isPermanent, deadline: deadline)
+        return try await self.client.execute(action: "ModifySnapshotAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

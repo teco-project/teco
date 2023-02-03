@@ -65,7 +65,8 @@ extension Tcss {
     /// RenewImageAuthorizeState   授权镜像扫描
     @inlinable @discardableResult
     public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewImageAuthorizeStateResponse> {
-        self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), region: region, logger: logger, on: eventLoop)
+        let input = RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds)
+        return self.client.execute(action: "RenewImageAuthorizeState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 授权镜像扫描
@@ -73,6 +74,7 @@ extension Tcss {
     /// RenewImageAuthorizeState   授权镜像扫描
     @inlinable @discardableResult
     public func renewImageAuthorizeState(allImages: Bool, imageIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewImageAuthorizeStateResponse {
-        try await self.renewImageAuthorizeState(RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds), region: region, logger: logger, on: eventLoop)
+        let input = RenewImageAuthorizeStateRequest(allImages: allImages, imageIds: imageIds)
+        return try await self.client.execute(action: "RenewImageAuthorizeState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

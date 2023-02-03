@@ -79,7 +79,8 @@ extension Teo {
     /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
     @inlinable
     public func describeLogTopicTasks(zoneId: String, limit: UInt64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogTopicTasksResponse> {
-        self.describeLogTopicTasks(DescribeLogTopicTasksRequest(zoneId: zoneId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogTopicTasksRequest(zoneId: zoneId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeLogTopicTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取推送任务列表
@@ -87,6 +88,7 @@ extension Teo {
     /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
     @inlinable
     public func describeLogTopicTasks(zoneId: String, limit: UInt64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogTopicTasksResponse {
-        try await self.describeLogTopicTasks(DescribeLogTopicTasksRequest(zoneId: zoneId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogTopicTasksRequest(zoneId: zoneId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeLogTopicTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

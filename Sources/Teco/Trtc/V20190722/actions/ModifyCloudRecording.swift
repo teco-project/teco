@@ -79,7 +79,8 @@ extension Trtc {
     /// 成功开启录制后，可以使用此接口来更新录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。更新操作是全量覆盖，并不是增量更新的模式，也就是说每次更新都需要携带全量的信息。
     @inlinable
     public func modifyCloudRecording(sdkAppId: UInt64, taskId: String, mixLayoutParams: MixLayoutParams? = nil, subscribeStreamUserIds: SubscribeStreamUserIds? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCloudRecordingResponse> {
-        self.modifyCloudRecording(ModifyCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId, mixLayoutParams: mixLayoutParams, subscribeStreamUserIds: subscribeStreamUserIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId, mixLayoutParams: mixLayoutParams, subscribeStreamUserIds: subscribeStreamUserIds)
+        return self.client.execute(action: "ModifyCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新云端录制任务
@@ -87,6 +88,7 @@ extension Trtc {
     /// 成功开启录制后，可以使用此接口来更新录制任务。仅在录制任务进行时有效，录制退出后更新将会返回错误。更新操作是全量覆盖，并不是增量更新的模式，也就是说每次更新都需要携带全量的信息。
     @inlinable
     public func modifyCloudRecording(sdkAppId: UInt64, taskId: String, mixLayoutParams: MixLayoutParams? = nil, subscribeStreamUserIds: SubscribeStreamUserIds? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCloudRecordingResponse {
-        try await self.modifyCloudRecording(ModifyCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId, mixLayoutParams: mixLayoutParams, subscribeStreamUserIds: subscribeStreamUserIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCloudRecordingRequest(sdkAppId: sdkAppId, taskId: taskId, mixLayoutParams: mixLayoutParams, subscribeStreamUserIds: subscribeStreamUserIds)
+        return try await self.client.execute(action: "ModifyCloudRecording", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

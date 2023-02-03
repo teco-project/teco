@@ -54,12 +54,14 @@ extension Wedata {
     /// 获取数据库信息
     @inlinable @discardableResult
     public func describeDatabaseInfoList(connectionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabaseInfoListResponse> {
-        self.describeDatabaseInfoList(DescribeDatabaseInfoListRequest(connectionType: connectionType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDatabaseInfoListRequest(connectionType: connectionType)
+        return self.client.execute(action: "DescribeDatabaseInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据库信息
     @inlinable @discardableResult
     public func describeDatabaseInfoList(connectionType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabaseInfoListResponse {
-        try await self.describeDatabaseInfoList(DescribeDatabaseInfoListRequest(connectionType: connectionType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDatabaseInfoListRequest(connectionType: connectionType)
+        return try await self.client.execute(action: "DescribeDatabaseInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

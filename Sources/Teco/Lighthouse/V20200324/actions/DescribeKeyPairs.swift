@@ -90,7 +90,8 @@ extension Lighthouse {
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
     public func describeKeyPairs(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeyPairsResponse> {
-        self.describeKeyPairs(DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户密钥对列表
@@ -98,6 +99,7 @@ extension Lighthouse {
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
     public func describeKeyPairs(keyIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeyPairsResponse {
-        try await self.describeKeyPairs(DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKeyPairsRequest(keyIds: keyIds, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeKeyPairs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

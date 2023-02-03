@@ -68,12 +68,14 @@ extension Tem {
     /// 服务基本信息查看
     @inlinable
     public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationInfoResponse> {
-        self.describeApplicationInfo(DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId)
+        return self.client.execute(action: "DescribeApplicationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务基本信息查看
     @inlinable
     public func describeApplicationInfo(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationInfoResponse {
-        try await self.describeApplicationInfo(DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationInfoRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId)
+        return try await self.client.execute(action: "DescribeApplicationInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -66,12 +66,14 @@ extension Tione {
     /// 更新notebook生命周期脚本
     @inlinable @discardableResult
     public func updateNotebookLifecycleScript(notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateNotebookLifecycleScriptResponse> {
-        self.updateNotebookLifecycleScript(UpdateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript), region: region, logger: logger, on: eventLoop)
+        let input = UpdateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript)
+        return self.client.execute(action: "UpdateNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新notebook生命周期脚本
     @inlinable @discardableResult
     public func updateNotebookLifecycleScript(notebookLifecycleScriptsName: String, createScript: String? = nil, startScript: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateNotebookLifecycleScriptResponse {
-        try await self.updateNotebookLifecycleScript(UpdateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript), region: region, logger: logger, on: eventLoop)
+        let input = UpdateNotebookLifecycleScriptRequest(notebookLifecycleScriptsName: notebookLifecycleScriptsName, createScript: createScript, startScript: startScript)
+        return try await self.client.execute(action: "UpdateNotebookLifecycleScript", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

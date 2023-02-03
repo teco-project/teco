@@ -185,7 +185,8 @@ extension Tione {
     /// 查询Notebook实例详情
     @inlinable
     public func describeNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNotebookInstanceResponse> {
-        self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName)
+        return self.client.execute(action: "DescribeNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Notebook实例
@@ -193,6 +194,7 @@ extension Tione {
     /// 查询Notebook实例详情
     @inlinable
     public func describeNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNotebookInstanceResponse {
-        try await self.describeNotebookInstance(DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNotebookInstanceRequest(notebookInstanceName: notebookInstanceName)
+        return try await self.client.execute(action: "DescribeNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

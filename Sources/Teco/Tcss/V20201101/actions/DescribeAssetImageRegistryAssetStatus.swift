@@ -55,12 +55,14 @@ extension Tcss {
     /// 查看镜像仓库资产更新进度状态
     @inlinable
     public func describeAssetImageRegistryAssetStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryAssetStatusResponse> {
-        self.describeAssetImageRegistryAssetStatus(DescribeAssetImageRegistryAssetStatusRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageRegistryAssetStatusRequest()
+        return self.client.execute(action: "DescribeAssetImageRegistryAssetStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看镜像仓库资产更新进度状态
     @inlinable
     public func describeAssetImageRegistryAssetStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryAssetStatusResponse {
-        try await self.describeAssetImageRegistryAssetStatus(DescribeAssetImageRegistryAssetStatusRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageRegistryAssetStatusRequest()
+        return try await self.client.execute(action: "DescribeAssetImageRegistryAssetStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

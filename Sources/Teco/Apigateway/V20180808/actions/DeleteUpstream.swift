@@ -65,7 +65,8 @@ extension Apigateway {
     /// 删除后端通道，需要注意有API绑定时，不允许删除
     @inlinable
     public func deleteUpstream(upstreamId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUpstreamResponse> {
-        self.deleteUpstream(DeleteUpstreamRequest(upstreamId: upstreamId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteUpstreamRequest(upstreamId: upstreamId)
+        return self.client.execute(action: "DeleteUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除后端通道
@@ -73,6 +74,7 @@ extension Apigateway {
     /// 删除后端通道，需要注意有API绑定时，不允许删除
     @inlinable
     public func deleteUpstream(upstreamId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUpstreamResponse {
-        try await self.deleteUpstream(DeleteUpstreamRequest(upstreamId: upstreamId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteUpstreamRequest(upstreamId: upstreamId)
+        return try await self.client.execute(action: "DeleteUpstream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

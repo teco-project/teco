@@ -63,12 +63,14 @@ extension Smpn {
     /// 虚假号码识别
     @inlinable
     public func describeSmpnFnr(requestData: FNRRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnFnrResponse> {
-        self.describeSmpnFnr(DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId)
+        return self.client.execute(action: "DescribeSmpnFnr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 虚假号码识别
     @inlinable
     public func describeSmpnFnr(requestData: FNRRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnFnrResponse {
-        try await self.describeSmpnFnr(DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmpnFnrRequest(requestData: requestData, resourceId: resourceId)
+        return try await self.client.execute(action: "DescribeSmpnFnr", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

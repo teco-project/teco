@@ -64,12 +64,14 @@ extension Cynosdb {
     /// 安全组批量解绑云资源
     @inlinable @discardableResult
     public func disassociateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateSecurityGroupsResponse> {
-        self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone)
+        return self.client.execute(action: "DisassociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量解绑云资源
     @inlinable @discardableResult
     public func disassociateSecurityGroups(instanceIds: [String], securityGroupIds: [String], zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
-        try await self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateSecurityGroupsRequest(instanceIds: instanceIds, securityGroupIds: securityGroupIds, zone: zone)
+        return try await self.client.execute(action: "DisassociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Chdfs {
     /// 查看权限组列表。
     @inlinable
     public func describeAccessGroups(vpcId: String? = nil, ownerUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccessGroupsResponse> {
-        self.describeAccessGroups(DescribeAccessGroupsRequest(vpcId: vpcId, ownerUin: ownerUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccessGroupsRequest(vpcId: vpcId, ownerUin: ownerUin)
+        return self.client.execute(action: "DescribeAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看权限组列表
@@ -78,6 +79,7 @@ extension Chdfs {
     /// 查看权限组列表。
     @inlinable
     public func describeAccessGroups(vpcId: String? = nil, ownerUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccessGroupsResponse {
-        try await self.describeAccessGroups(DescribeAccessGroupsRequest(vpcId: vpcId, ownerUin: ownerUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccessGroupsRequest(vpcId: vpcId, ownerUin: ownerUin)
+        return try await self.client.execute(action: "DescribeAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

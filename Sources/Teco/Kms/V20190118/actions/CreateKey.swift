@@ -125,7 +125,8 @@ extension Kms {
     /// 创建用户管理数据密钥的主密钥CMK（Custom Master Key）。
     @inlinable
     public func createKey(alias: String, description: String? = nil, keyUsage: String? = nil, type: UInt64? = nil, tags: [Tag]? = nil, hsmClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateKeyResponse> {
-        self.createKey(CreateKeyRequest(alias: alias, description: description, keyUsage: keyUsage, type: type, tags: tags, hsmClusterId: hsmClusterId), region: region, logger: logger, on: eventLoop)
+        let input = CreateKeyRequest(alias: alias, description: description, keyUsage: keyUsage, type: type, tags: tags, hsmClusterId: hsmClusterId)
+        return self.client.execute(action: "CreateKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建主密钥
@@ -133,6 +134,7 @@ extension Kms {
     /// 创建用户管理数据密钥的主密钥CMK（Custom Master Key）。
     @inlinable
     public func createKey(alias: String, description: String? = nil, keyUsage: String? = nil, type: UInt64? = nil, tags: [Tag]? = nil, hsmClusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateKeyResponse {
-        try await self.createKey(CreateKeyRequest(alias: alias, description: description, keyUsage: keyUsage, type: type, tags: tags, hsmClusterId: hsmClusterId), region: region, logger: logger, on: eventLoop)
+        let input = CreateKeyRequest(alias: alias, description: description, keyUsage: keyUsage, type: type, tags: tags, hsmClusterId: hsmClusterId)
+        return try await self.client.execute(action: "CreateKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

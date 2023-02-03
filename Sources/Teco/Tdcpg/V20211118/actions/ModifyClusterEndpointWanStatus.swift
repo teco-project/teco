@@ -72,7 +72,8 @@ extension Tdcpg {
     /// 开启或者关闭接入点外网
     @inlinable @discardableResult
     public func modifyClusterEndpointWanStatus(clusterId: String, endpointId: String, wanStatus: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterEndpointWanStatusResponse> {
-        self.modifyClusterEndpointWanStatus(ModifyClusterEndpointWanStatusRequest(clusterId: clusterId, endpointId: endpointId, wanStatus: wanStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterEndpointWanStatusRequest(clusterId: clusterId, endpointId: endpointId, wanStatus: wanStatus)
+        return self.client.execute(action: "ModifyClusterEndpointWanStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改接入点外网状态
@@ -80,6 +81,7 @@ extension Tdcpg {
     /// 开启或者关闭接入点外网
     @inlinable @discardableResult
     public func modifyClusterEndpointWanStatus(clusterId: String, endpointId: String, wanStatus: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterEndpointWanStatusResponse {
-        try await self.modifyClusterEndpointWanStatus(ModifyClusterEndpointWanStatusRequest(clusterId: clusterId, endpointId: endpointId, wanStatus: wanStatus), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterEndpointWanStatusRequest(clusterId: clusterId, endpointId: endpointId, wanStatus: wanStatus)
+        return try await self.client.execute(action: "ModifyClusterEndpointWanStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

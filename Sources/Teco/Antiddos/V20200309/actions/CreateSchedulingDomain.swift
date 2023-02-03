@@ -66,7 +66,8 @@ extension Antiddos {
     /// 创建一个域名，可用于在封堵时调度切换IP
     @inlinable
     public func createSchedulingDomain(product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSchedulingDomainResponse> {
-        self.createSchedulingDomain(CreateSchedulingDomainRequest(product: product), region: region, logger: logger, on: eventLoop)
+        let input = CreateSchedulingDomainRequest(product: product)
+        return self.client.execute(action: "CreateSchedulingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建调度的域名
@@ -74,6 +75,7 @@ extension Antiddos {
     /// 创建一个域名，可用于在封堵时调度切换IP
     @inlinable
     public func createSchedulingDomain(product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSchedulingDomainResponse {
-        try await self.createSchedulingDomain(CreateSchedulingDomainRequest(product: product), region: region, logger: logger, on: eventLoop)
+        let input = CreateSchedulingDomainRequest(product: product)
+        return try await self.client.execute(action: "CreateSchedulingDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

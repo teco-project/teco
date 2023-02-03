@@ -70,7 +70,8 @@ extension Cdb {
     /// 本接口(DescribeAsyncRequestInfo)用于查询云数据库实例异步任务的执行结果。
     @inlinable
     public func describeAsyncRequestInfo(asyncRequestId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAsyncRequestInfoResponse> {
-        self.describeAsyncRequestInfo(DescribeAsyncRequestInfoRequest(asyncRequestId: asyncRequestId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAsyncRequestInfoRequest(asyncRequestId: asyncRequestId)
+        return self.client.execute(action: "DescribeAsyncRequestInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询异步任务的执行结果
@@ -78,6 +79,7 @@ extension Cdb {
     /// 本接口(DescribeAsyncRequestInfo)用于查询云数据库实例异步任务的执行结果。
     @inlinable
     public func describeAsyncRequestInfo(asyncRequestId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAsyncRequestInfoResponse {
-        try await self.describeAsyncRequestInfo(DescribeAsyncRequestInfoRequest(asyncRequestId: asyncRequestId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAsyncRequestInfoRequest(asyncRequestId: asyncRequestId)
+        return try await self.client.execute(action: "DescribeAsyncRequestInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

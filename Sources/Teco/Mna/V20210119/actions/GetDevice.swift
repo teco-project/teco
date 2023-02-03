@@ -64,7 +64,8 @@ extension Mna {
     /// 通过指定设备的ID查找设备详细信息
     @inlinable
     public func getDevice(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeviceResponse> {
-        self.getDevice(GetDeviceRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = GetDeviceRequest(deviceId: deviceId)
+        return self.client.execute(action: "GetDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备详细信息
@@ -72,6 +73,7 @@ extension Mna {
     /// 通过指定设备的ID查找设备详细信息
     @inlinable
     public func getDevice(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeviceResponse {
-        try await self.getDevice(GetDeviceRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = GetDeviceRequest(deviceId: deviceId)
+        return try await self.client.execute(action: "GetDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

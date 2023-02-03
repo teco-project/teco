@@ -158,7 +158,8 @@ extension Apigateway {
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
     public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogSearchResponse> {
-        self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys)
+        return self.client.execute(action: "DescribeLogSearch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 日志搜索服务
@@ -166,6 +167,7 @@ extension Apigateway {
     /// 本接口DescribeLogSearch用于搜索日志
     @inlinable
     public func describeLogSearch(startTime: Date, endTime: Date, serviceId: String, filters: [Filter]? = nil, limit: UInt64? = nil, conText: String? = nil, sort: String? = nil, query: String? = nil, logQuerys: [LogQuery]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogSearchResponse {
-        try await self.describeLogSearch(DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogSearchRequest(startTime: startTime, endTime: endTime, serviceId: serviceId, filters: filters, limit: limit, conText: conText, sort: sort, query: query, logQuerys: logQuerys)
+        return try await self.client.execute(action: "DescribeLogSearch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

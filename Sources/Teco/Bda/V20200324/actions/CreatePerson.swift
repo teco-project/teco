@@ -117,7 +117,8 @@ extension Bda {
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
     public func createPerson(groupId: String, personName: String, personId: String, trace: Trace, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePersonResponse> {
-        self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, trace: trace), region: region, logger: logger, on: eventLoop)
+        let input = CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, trace: trace)
+        return self.client.execute(action: "CreatePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建人员
@@ -132,6 +133,7 @@ extension Bda {
     /// - 构成人体动作轨迹单张图片大小不得超过2M，分辨率不得超过1920*1080。
     @inlinable
     public func createPerson(groupId: String, personName: String, personId: String, trace: Trace, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePersonResponse {
-        try await self.createPerson(CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, trace: trace), region: region, logger: logger, on: eventLoop)
+        let input = CreatePersonRequest(groupId: groupId, personName: personName, personId: personId, trace: trace)
+        return try await self.client.execute(action: "CreatePerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

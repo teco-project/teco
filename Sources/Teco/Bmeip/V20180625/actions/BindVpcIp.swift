@@ -68,12 +68,14 @@ extension Bmeip {
     /// 黑石EIP绑定VPCIP
     @inlinable
     public func bindVpcIp(eipId: String, vpcId: String, vpcIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindVpcIpResponse> {
-        self.bindVpcIp(BindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), region: region, logger: logger, on: eventLoop)
+        let input = BindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp)
+        return self.client.execute(action: "BindVpcIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP绑定VPCIP
     @inlinable
     public func bindVpcIp(eipId: String, vpcId: String, vpcIp: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindVpcIpResponse {
-        try await self.bindVpcIp(BindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp), region: region, logger: logger, on: eventLoop)
+        let input = BindVpcIpRequest(eipId: eipId, vpcId: vpcId, vpcIp: vpcIp)
+        return try await self.client.execute(action: "BindVpcIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

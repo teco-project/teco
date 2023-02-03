@@ -126,12 +126,14 @@ extension Dayu {
     /// 获取高防IP专业版资源的DDoS攻击指标数据
     @inlinable
     public func describeDDoSNetTrend(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSNetTrendResponse> {
-        self.describeDDoSNetTrend(DescribeDDoSNetTrendRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSNetTrendRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeDDoSNetTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高防IP专业版资源的DDoS攻击指标数据
     @inlinable
     public func describeDDoSNetTrend(business: String, id: String, metricName: String, period: UInt64, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSNetTrendResponse {
-        try await self.describeDDoSNetTrend(DescribeDDoSNetTrendRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSNetTrendRequest(business: business, id: id, metricName: metricName, period: period, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeDDoSNetTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

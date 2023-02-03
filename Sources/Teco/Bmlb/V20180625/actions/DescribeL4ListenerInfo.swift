@@ -74,7 +74,8 @@ extension Bmlb {
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
     @inlinable
     public func describeL4ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4ListenerInfoResponse> {
-        self.describeL4ListenerInfo(DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds)
+        return self.client.execute(action: "DescribeL4ListenerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器
@@ -82,6 +83,7 @@ extension Bmlb {
     /// 查找绑定了某主机或者指定监听器名称的黑石负载均衡四层监听器。
     @inlinable
     public func describeL4ListenerInfo(loadBalancerId: String, searchKey: String? = nil, instanceIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4ListenerInfoResponse {
-        try await self.describeL4ListenerInfo(DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL4ListenerInfoRequest(loadBalancerId: loadBalancerId, searchKey: searchKey, instanceIds: instanceIds)
+        return try await self.client.execute(action: "DescribeL4ListenerInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -84,12 +84,14 @@ extension Iotcloud {
     /// 查询固件升级任务的设备列表
     @inlinable
     public func describeFirmwareTaskDevices(productId: String, firmwareVersion: String? = nil, filters: [SearchKeyword]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskDevicesResponse> {
-        self.describeFirmwareTaskDevices(DescribeFirmwareTaskDevicesRequest(productId: productId, firmwareVersion: firmwareVersion, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareTaskDevicesRequest(productId: productId, firmwareVersion: firmwareVersion, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeFirmwareTaskDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务的设备列表
     @inlinable
     public func describeFirmwareTaskDevices(productId: String, firmwareVersion: String? = nil, filters: [SearchKeyword]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskDevicesResponse {
-        try await self.describeFirmwareTaskDevices(DescribeFirmwareTaskDevicesRequest(productId: productId, firmwareVersion: firmwareVersion, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareTaskDevicesRequest(productId: productId, firmwareVersion: firmwareVersion, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeFirmwareTaskDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

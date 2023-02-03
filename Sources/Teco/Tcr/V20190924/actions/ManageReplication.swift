@@ -79,12 +79,14 @@ extension Tcr {
     /// 管理实例同步
     @inlinable @discardableResult
     public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManageReplicationResponse> {
-        self.manageReplication(ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption), region: region, logger: logger, on: eventLoop)
+        let input = ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption)
+        return self.client.execute(action: "ManageReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 管理实例同步
     @inlinable @discardableResult
     public func manageReplication(sourceRegistryId: String, destinationRegistryId: String, rule: ReplicationRule, description: String? = nil, destinationRegionId: UInt64? = nil, peerReplicationOption: PeerReplicationOption? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManageReplicationResponse {
-        try await self.manageReplication(ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption), region: region, logger: logger, on: eventLoop)
+        let input = ManageReplicationRequest(sourceRegistryId: sourceRegistryId, destinationRegistryId: destinationRegistryId, rule: rule, description: description, destinationRegionId: destinationRegionId, peerReplicationOption: peerReplicationOption)
+        return try await self.client.execute(action: "ManageReplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

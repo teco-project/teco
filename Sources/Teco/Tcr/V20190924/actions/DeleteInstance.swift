@@ -70,7 +70,8 @@ extension Tcr {
     /// 删除镜像仓库企业版实例
     @inlinable @discardableResult
     public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteInstanceResponse> {
-        self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun)
+        return self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例
@@ -78,6 +79,7 @@ extension Tcr {
     /// 删除镜像仓库企业版实例
     @inlinable @discardableResult
     public func deleteInstance(registryId: String, deleteBucket: Bool? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteInstanceResponse {
-        try await self.deleteInstance(DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = DeleteInstanceRequest(registryId: registryId, deleteBucket: deleteBucket, dryRun: dryRun)
+        return try await self.client.execute(action: "DeleteInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

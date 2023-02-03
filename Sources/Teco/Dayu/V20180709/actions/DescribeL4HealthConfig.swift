@@ -68,12 +68,14 @@ extension Dayu {
     /// 导出四层健康检查配置
     @inlinable
     public func describeL4HealthConfig(business: String, id: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4HealthConfigResponse> {
-        self.describeL4HealthConfig(DescribeL4HealthConfigRequest(business: business, id: id, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL4HealthConfigRequest(business: business, id: id, ruleIdList: ruleIdList)
+        return self.client.execute(action: "DescribeL4HealthConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出四层健康检查配置
     @inlinable
     public func describeL4HealthConfig(business: String, id: String, ruleIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4HealthConfigResponse {
-        try await self.describeL4HealthConfig(DescribeL4HealthConfigRequest(business: business, id: id, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL4HealthConfigRequest(business: business, id: id, ruleIdList: ruleIdList)
+        return try await self.client.execute(action: "DescribeL4HealthConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

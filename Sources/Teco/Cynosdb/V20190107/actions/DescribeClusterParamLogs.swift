@@ -94,7 +94,8 @@ extension Cynosdb {
     /// 本接口（DescribeClusterParamLogs）查询参数修改日志
     @inlinable
     public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterParamLogsResponse> {
-        self.describeClusterParamLogs(DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeClusterParamLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询参数修改日志
@@ -102,6 +103,7 @@ extension Cynosdb {
     /// 本接口（DescribeClusterParamLogs）查询参数修改日志
     @inlinable
     public func describeClusterParamLogs(clusterId: String, instanceIds: [String]? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterParamLogsResponse {
-        try await self.describeClusterParamLogs(DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterParamLogsRequest(clusterId: clusterId, instanceIds: instanceIds, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeClusterParamLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

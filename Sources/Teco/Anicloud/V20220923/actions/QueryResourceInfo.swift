@@ -59,12 +59,14 @@ extension Anicloud {
     /// 查询资源信息
     @inlinable
     public func queryResourceInfo(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryResourceInfoResponse> {
-        self.queryResourceInfo(QueryResourceInfoRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = QueryResourceInfoRequest(instanceId: instanceId)
+        return self.client.execute(action: "QueryResourceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资源信息
     @inlinable
     public func queryResourceInfo(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryResourceInfoResponse {
-        try await self.queryResourceInfo(QueryResourceInfoRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = QueryResourceInfoRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "QueryResourceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

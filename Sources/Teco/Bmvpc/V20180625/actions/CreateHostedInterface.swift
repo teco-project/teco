@@ -90,7 +90,8 @@ extension Bmvpc {
     /// 3) 每次调用最多能支持传入10台托管机器。
     @inlinable
     public func createHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostedInterfaceResponse> {
-        self.createHostedInterface(CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId)
+        return self.client.execute(action: "CreateHostedInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石托管机器加入子网
@@ -102,6 +103,7 @@ extension Bmvpc {
     /// 3) 每次调用最多能支持传入10台托管机器。
     @inlinable
     public func createHostedInterface(instanceIds: [String], vpcId: String, subnetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostedInterfaceResponse {
-        try await self.createHostedInterface(CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = CreateHostedInterfaceRequest(instanceIds: instanceIds, vpcId: vpcId, subnetId: subnetId)
+        return try await self.client.execute(action: "CreateHostedInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

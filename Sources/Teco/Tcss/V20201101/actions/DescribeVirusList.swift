@@ -96,12 +96,14 @@ extension Tcss {
     /// 查询运行时文件查杀事件列表
     @inlinable
     public func describeVirusList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusListResponse> {
-        self.describeVirusList(DescribeVirusListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return self.client.execute(action: "DescribeVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询运行时文件查杀事件列表
     @inlinable
     public func describeVirusList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusListResponse {
-        try await self.describeVirusList(DescribeVirusListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return try await self.client.execute(action: "DescribeVirusList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

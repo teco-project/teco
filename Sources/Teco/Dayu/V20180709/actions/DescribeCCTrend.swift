@@ -147,7 +147,8 @@ extension Dayu {
     /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)
     @inlinable
     public func describeCCTrend(business: String, ip: String, metricName: String, period: Int64, startTime: Date, endTime: Date, id: String? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCTrendResponse> {
-        self.describeCCTrend(DescribeCCTrendRequest(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id, domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCCTrendRequest(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id, domain: domain)
+        return self.client.execute(action: "DescribeCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC攻击指标数据
@@ -155,6 +156,7 @@ extension Dayu {
     /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)
     @inlinable
     public func describeCCTrend(business: String, ip: String, metricName: String, period: Int64, startTime: Date, endTime: Date, id: String? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCTrendResponse {
-        try await self.describeCCTrend(DescribeCCTrendRequest(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id, domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCCTrendRequest(business: business, ip: ip, metricName: metricName, period: period, startTime: startTime, endTime: endTime, id: id, domain: domain)
+        return try await self.client.execute(action: "DescribeCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

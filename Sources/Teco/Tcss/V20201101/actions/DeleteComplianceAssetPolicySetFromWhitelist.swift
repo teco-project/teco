@@ -68,7 +68,8 @@ extension Tcss {
     /// 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable @discardableResult
     public func deleteComplianceAssetPolicySetFromWhitelist(assetItemId: UInt64, customerPolicyItemIdSet: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteComplianceAssetPolicySetFromWhitelistResponse> {
-        self.deleteComplianceAssetPolicySetFromWhitelist(DeleteComplianceAssetPolicySetFromWhitelistRequest(assetItemId: assetItemId, customerPolicyItemIdSet: customerPolicyItemIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteComplianceAssetPolicySetFromWhitelistRequest(assetItemId: assetItemId, customerPolicyItemIdSet: customerPolicyItemIdSet)
+        return self.client.execute(action: "DeleteComplianceAssetPolicySetFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除安全合规忽略项， 资产+检测项列表
@@ -77,6 +78,7 @@ extension Tcss {
     /// 参考的AddCompliancePolicyAssetSetToWhitelist，除输入字段外，其它应该是一致的，如果有不同可能是定义的不对
     @inlinable @discardableResult
     public func deleteComplianceAssetPolicySetFromWhitelist(assetItemId: UInt64, customerPolicyItemIdSet: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComplianceAssetPolicySetFromWhitelistResponse {
-        try await self.deleteComplianceAssetPolicySetFromWhitelist(DeleteComplianceAssetPolicySetFromWhitelistRequest(assetItemId: assetItemId, customerPolicyItemIdSet: customerPolicyItemIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteComplianceAssetPolicySetFromWhitelistRequest(assetItemId: assetItemId, customerPolicyItemIdSet: customerPolicyItemIdSet)
+        return try await self.client.execute(action: "DeleteComplianceAssetPolicySetFromWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

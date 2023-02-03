@@ -88,7 +88,8 @@ extension Cwp {
     /// 校验高危命令用户规则新增和编辑时的参数。
     @inlinable
     public func checkBashRuleParams(checkField: String, eventId: UInt64? = nil, name: String? = nil, rule: String? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBashRuleParamsResponse> {
-        self.checkBashRuleParams(CheckBashRuleParamsRequest(checkField: checkField, eventId: eventId, name: name, rule: rule, id: id), region: region, logger: logger, on: eventLoop)
+        let input = CheckBashRuleParamsRequest(checkField: checkField, eventId: eventId, name: name, rule: rule, id: id)
+        return self.client.execute(action: "CheckBashRuleParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 校验高危命新增用户规则参数
@@ -96,6 +97,7 @@ extension Cwp {
     /// 校验高危命令用户规则新增和编辑时的参数。
     @inlinable
     public func checkBashRuleParams(checkField: String, eventId: UInt64? = nil, name: String? = nil, rule: String? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBashRuleParamsResponse {
-        try await self.checkBashRuleParams(CheckBashRuleParamsRequest(checkField: checkField, eventId: eventId, name: name, rule: rule, id: id), region: region, logger: logger, on: eventLoop)
+        let input = CheckBashRuleParamsRequest(checkField: checkField, eventId: eventId, name: name, rule: rule, id: id)
+        return try await self.client.execute(action: "CheckBashRuleParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

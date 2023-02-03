@@ -93,12 +93,14 @@ extension Monitor {
     /// 更新策略组
     @inlinable
     public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPolicyGroupResponse> {
-        self.modifyPolicyGroup(ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId)
+        return self.client.execute(action: "ModifyPolicyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新策略组
     @inlinable
     public func modifyPolicyGroup(module: String, groupId: Int64, viewName: String, groupName: String, isUnionRule: Int64, conditions: [ModifyPolicyGroupCondition]? = nil, eventConditions: [ModifyPolicyGroupEventCondition]? = nil, conditionTempGroupId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPolicyGroupResponse {
-        try await self.modifyPolicyGroup(ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPolicyGroupRequest(module: module, groupId: groupId, viewName: viewName, groupName: groupName, isUnionRule: isUnionRule, conditions: conditions, eventConditions: eventConditions, conditionTempGroupId: conditionTempGroupId)
+        return try await self.client.execute(action: "ModifyPolicyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

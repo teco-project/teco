@@ -71,7 +71,8 @@ extension Cdn {
     /// 验证域名解析值
     @inlinable
     public func verifyDomainRecord(domain: String, verifyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyDomainRecordResponse> {
-        self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
+        let input = VerifyDomainRecordRequest(domain: domain, verifyType: verifyType)
+        return self.client.execute(action: "VerifyDomainRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 验证域名解析
@@ -79,6 +80,7 @@ extension Cdn {
     /// 验证域名解析值
     @inlinable
     public func verifyDomainRecord(domain: String, verifyType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyDomainRecordResponse {
-        try await self.verifyDomainRecord(VerifyDomainRecordRequest(domain: domain, verifyType: verifyType), region: region, logger: logger, on: eventLoop)
+        let input = VerifyDomainRecordRequest(domain: domain, verifyType: verifyType)
+        return try await self.client.execute(action: "VerifyDomainRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

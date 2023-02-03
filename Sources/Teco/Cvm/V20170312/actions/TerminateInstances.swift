@@ -78,7 +78,8 @@ extension Cvm {
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable @discardableResult
     public func terminateInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateInstancesResponse> {
-        self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = TerminateInstancesRequest(instanceIds: instanceIds)
+        return self.client.execute(action: "TerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退还实例
@@ -92,6 +93,7 @@ extension Cvm {
     /// * 批量操作时，所有实例的付费类型必须一致。
     @inlinable @discardableResult
     public func terminateInstances(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
-        try await self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = TerminateInstancesRequest(instanceIds: instanceIds)
+        return try await self.client.execute(action: "TerminateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

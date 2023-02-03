@@ -69,12 +69,14 @@ extension Iotexplorer {
     /// 批量解绑子设备
     @inlinable @discardableResult
     public func unbindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindDevicesResponse> {
-        self.unbindDevices(UnbindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
+        let input = UnbindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames)
+        return self.client.execute(action: "UnbindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑子设备
     @inlinable @discardableResult
     public func unbindDevices(gatewayProductId: String, gatewayDeviceName: String, productId: String, deviceNames: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindDevicesResponse {
-        try await self.unbindDevices(UnbindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames), region: region, logger: logger, on: eventLoop)
+        let input = UnbindDevicesRequest(gatewayProductId: gatewayProductId, gatewayDeviceName: gatewayDeviceName, productId: productId, deviceNames: deviceNames)
+        return try await self.client.execute(action: "UnbindDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

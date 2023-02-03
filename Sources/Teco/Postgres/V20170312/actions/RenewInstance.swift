@@ -79,7 +79,8 @@ extension Postgres {
     /// 本接口（RenewInstance）用于续费实例。
     @inlinable
     public func renewInstance(dbInstanceId: String, period: Int64, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewInstanceResponse> {
-        self.renewInstance(RenewInstanceRequest(dbInstanceId: dbInstanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
+        let input = RenewInstanceRequest(dbInstanceId: dbInstanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds)
+        return self.client.execute(action: "RenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费实例
@@ -87,6 +88,7 @@ extension Postgres {
     /// 本接口（RenewInstance）用于续费实例。
     @inlinable
     public func renewInstance(dbInstanceId: String, period: Int64, autoVoucher: Int64? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstanceResponse {
-        try await self.renewInstance(RenewInstanceRequest(dbInstanceId: dbInstanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
+        let input = RenewInstanceRequest(dbInstanceId: dbInstanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds)
+        return try await self.client.execute(action: "RenewInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

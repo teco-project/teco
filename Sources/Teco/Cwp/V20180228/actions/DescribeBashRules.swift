@@ -78,12 +78,14 @@ extension Cwp {
     /// 获取高危命令规则列表
     @inlinable
     public func describeBashRules(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBashRulesResponse> {
-        self.describeBashRules(DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取高危命令规则列表
     @inlinable
     public func describeBashRules(type: UInt64, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBashRulesResponse {
-        try await self.describeBashRules(DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBashRulesRequest(type: type, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeBashRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

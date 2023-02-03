@@ -64,7 +64,8 @@ extension Bsca {
     /// 本接口(DescribeKBComponent)用于在知识库中查询开源组件信息。本接口根据用户输入的PURL在知识库中寻找对应的开源组件，其中Name为必填字段。
     @inlinable
     public func describeKBComponent(purl: PURL, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKBComponentResponse> {
-        self.describeKBComponent(DescribeKBComponentRequest(purl: purl), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKBComponentRequest(purl: purl)
+        return self.client.execute(action: "DescribeKBComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询知识库组件信息
@@ -72,6 +73,7 @@ extension Bsca {
     /// 本接口(DescribeKBComponent)用于在知识库中查询开源组件信息。本接口根据用户输入的PURL在知识库中寻找对应的开源组件，其中Name为必填字段。
     @inlinable
     public func describeKBComponent(purl: PURL, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKBComponentResponse {
-        try await self.describeKBComponent(DescribeKBComponentRequest(purl: purl), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKBComponentRequest(purl: purl)
+        return try await self.client.execute(action: "DescribeKBComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

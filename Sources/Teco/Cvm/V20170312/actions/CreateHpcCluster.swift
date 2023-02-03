@@ -69,12 +69,14 @@ extension Cvm {
     /// 创建高性能计算集群
     @inlinable
     public func createHpcCluster(zone: String, name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHpcClusterResponse> {
-        self.createHpcCluster(CreateHpcClusterRequest(zone: zone, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateHpcClusterRequest(zone: zone, name: name, remark: remark)
+        return self.client.execute(action: "CreateHpcCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建高性能计算集群
     @inlinable
     public func createHpcCluster(zone: String, name: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHpcClusterResponse {
-        try await self.createHpcCluster(CreateHpcClusterRequest(zone: zone, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateHpcClusterRequest(zone: zone, name: name, remark: remark)
+        return try await self.client.execute(action: "CreateHpcCluster", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

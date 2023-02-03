@@ -73,12 +73,14 @@ extension Rum {
     /// 获取首页分数列表
     @inlinable
     public func describeScores(endTime: String, startTime: String, id: Int64? = nil, isDemo: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScoresResponse> {
-        self.describeScores(DescribeScoresRequest(endTime: endTime, startTime: startTime, id: id, isDemo: isDemo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScoresRequest(endTime: endTime, startTime: startTime, id: id, isDemo: isDemo)
+        return self.client.execute(action: "DescribeScores", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取首页分数列表
     @inlinable
     public func describeScores(endTime: String, startTime: String, id: Int64? = nil, isDemo: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScoresResponse {
-        try await self.describeScores(DescribeScoresRequest(endTime: endTime, startTime: startTime, id: id, isDemo: isDemo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScoresRequest(endTime: endTime, startTime: startTime, id: id, isDemo: isDemo)
+        return try await self.client.execute(action: "DescribeScores", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

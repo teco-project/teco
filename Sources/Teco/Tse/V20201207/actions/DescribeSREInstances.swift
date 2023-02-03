@@ -88,7 +88,8 @@ extension Tse {
     /// 用于查询引擎实例列表
     @inlinable
     public func describeSREInstances(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, queryType: String? = nil, querySource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSREInstancesResponse> {
-        self.describeSREInstances(DescribeSREInstancesRequest(filters: filters, limit: limit, offset: offset, queryType: queryType, querySource: querySource), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSREInstancesRequest(filters: filters, limit: limit, offset: offset, queryType: queryType, querySource: querySource)
+        return self.client.execute(action: "DescribeSREInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询引擎实例列表
@@ -96,6 +97,7 @@ extension Tse {
     /// 用于查询引擎实例列表
     @inlinable
     public func describeSREInstances(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, queryType: String? = nil, querySource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSREInstancesResponse {
-        try await self.describeSREInstances(DescribeSREInstancesRequest(filters: filters, limit: limit, offset: offset, queryType: queryType, querySource: querySource), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSREInstancesRequest(filters: filters, limit: limit, offset: offset, queryType: queryType, querySource: querySource)
+        return try await self.client.execute(action: "DescribeSREInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

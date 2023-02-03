@@ -135,7 +135,8 @@ extension Cpdp {
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
     @inlinable
     public func queryCloudRefundOrder(midasAppId: String, userId: String, refundId: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudRefundOrderResponse> {
-        self.queryCloudRefundOrder(QueryCloudRefundOrderRequest(midasAppId: midasAppId, userId: userId, refundId: refundId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryCloudRefundOrderRequest(midasAppId: midasAppId, userId: userId, refundId: refundId, midasEnvironment: midasEnvironment)
+        return self.client.execute(action: "QueryCloudRefundOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-查询退款
@@ -143,6 +144,7 @@ extension Cpdp {
     /// 提交退款申请后，通过调用该接口查询退款状态。退款可能有一定延时，用微信零钱支付的退款约20分钟内到账，银行卡支付的退款约3个工作日后到账。
     @inlinable
     public func queryCloudRefundOrder(midasAppId: String, userId: String, refundId: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudRefundOrderResponse {
-        try await self.queryCloudRefundOrder(QueryCloudRefundOrderRequest(midasAppId: midasAppId, userId: userId, refundId: refundId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryCloudRefundOrderRequest(midasAppId: midasAppId, userId: userId, refundId: refundId, midasEnvironment: midasEnvironment)
+        return try await self.client.execute(action: "QueryCloudRefundOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

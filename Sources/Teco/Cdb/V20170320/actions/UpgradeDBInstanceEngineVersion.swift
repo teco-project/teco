@@ -84,7 +84,8 @@ extension Cdb {
     /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
     public func upgradeDBInstanceEngineVersion(instanceId: String, engineVersion: String, waitSwitch: Int64? = nil, upgradeSubversion: Int64? = nil, maxDelayTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeDBInstanceEngineVersionResponse> {
-        self.upgradeDBInstanceEngineVersion(UpgradeDBInstanceEngineVersionRequest(instanceId: instanceId, engineVersion: engineVersion, waitSwitch: waitSwitch, upgradeSubversion: upgradeSubversion, maxDelayTime: maxDelayTime), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeDBInstanceEngineVersionRequest(instanceId: instanceId, engineVersion: engineVersion, waitSwitch: waitSwitch, upgradeSubversion: upgradeSubversion, maxDelayTime: maxDelayTime)
+        return self.client.execute(action: "UpgradeDBInstanceEngineVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例版本
@@ -92,6 +93,7 @@ extension Cdb {
     /// 本接口(UpgradeDBInstanceEngineVersion)用于升级云数据库实例版本，实例类型支持主实例、灾备实例和只读实例。
     @inlinable
     public func upgradeDBInstanceEngineVersion(instanceId: String, engineVersion: String, waitSwitch: Int64? = nil, upgradeSubversion: Int64? = nil, maxDelayTime: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeDBInstanceEngineVersionResponse {
-        try await self.upgradeDBInstanceEngineVersion(UpgradeDBInstanceEngineVersionRequest(instanceId: instanceId, engineVersion: engineVersion, waitSwitch: waitSwitch, upgradeSubversion: upgradeSubversion, maxDelayTime: maxDelayTime), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeDBInstanceEngineVersionRequest(instanceId: instanceId, engineVersion: engineVersion, waitSwitch: waitSwitch, upgradeSubversion: upgradeSubversion, maxDelayTime: maxDelayTime)
+        return try await self.client.execute(action: "UpgradeDBInstanceEngineVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

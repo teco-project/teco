@@ -96,12 +96,14 @@ extension Teo {
     /// 查询清除缓存历史记录
     @inlinable
     public func describePurgeTasks(zoneId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurgeTasksResponse> {
-        self.describePurgeTasks(DescribePurgeTasksRequest(zoneId: zoneId, startTime: startTime, endTime: endTime, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePurgeTasksRequest(zoneId: zoneId, startTime: startTime, endTime: endTime, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribePurgeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询清除缓存历史记录
     @inlinable
     public func describePurgeTasks(zoneId: String? = nil, startTime: Date? = nil, endTime: Date? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [AdvancedFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurgeTasksResponse {
-        try await self.describePurgeTasks(DescribePurgeTasksRequest(zoneId: zoneId, startTime: startTime, endTime: endTime, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePurgeTasksRequest(zoneId: zoneId, startTime: startTime, endTime: endTime, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribePurgeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

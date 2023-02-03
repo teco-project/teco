@@ -80,7 +80,8 @@ extension Apigateway {
     /// 本接口（CreateApiKey）用于创建一对新的 API 密钥。
     @inlinable
     public func createApiKey(secretName: String, accessKeyType: String? = nil, accessKeyId: String? = nil, accessKeySecret: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApiKeyResponse> {
-        self.createApiKey(CreateApiKeyRequest(secretName: secretName, accessKeyType: accessKeyType, accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), region: region, logger: logger, on: eventLoop)
+        let input = CreateApiKeyRequest(secretName: secretName, accessKeyType: accessKeyType, accessKeyId: accessKeyId, accessKeySecret: accessKeySecret)
+        return self.client.execute(action: "CreateApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建密钥
@@ -88,6 +89,7 @@ extension Apigateway {
     /// 本接口（CreateApiKey）用于创建一对新的 API 密钥。
     @inlinable
     public func createApiKey(secretName: String, accessKeyType: String? = nil, accessKeyId: String? = nil, accessKeySecret: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApiKeyResponse {
-        try await self.createApiKey(CreateApiKeyRequest(secretName: secretName, accessKeyType: accessKeyType, accessKeyId: accessKeyId, accessKeySecret: accessKeySecret), region: region, logger: logger, on: eventLoop)
+        let input = CreateApiKeyRequest(secretName: secretName, accessKeyType: accessKeyType, accessKeyId: accessKeyId, accessKeySecret: accessKeySecret)
+        return try await self.client.execute(action: "CreateApiKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -76,7 +76,8 @@ extension Mongodb {
     /// 本接口用来创建某个备份文件的下载任务
     @inlinable
     public func createBackupDownloadTask(instanceId: String, backupName: String, backupSets: [ReplicaSetInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupDownloadTaskResponse> {
-        self.createBackupDownloadTask(CreateBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, backupSets: backupSets), region: region, logger: logger, on: eventLoop)
+        let input = CreateBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, backupSets: backupSets)
+        return self.client.execute(action: "CreateBackupDownloadTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建备份下载任务
@@ -84,6 +85,7 @@ extension Mongodb {
     /// 本接口用来创建某个备份文件的下载任务
     @inlinable
     public func createBackupDownloadTask(instanceId: String, backupName: String, backupSets: [ReplicaSetInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupDownloadTaskResponse {
-        try await self.createBackupDownloadTask(CreateBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, backupSets: backupSets), region: region, logger: logger, on: eventLoop)
+        let input = CreateBackupDownloadTaskRequest(instanceId: instanceId, backupName: backupName, backupSets: backupSets)
+        return try await self.client.execute(action: "CreateBackupDownloadTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

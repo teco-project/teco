@@ -79,12 +79,14 @@ extension Wedata {
     /// 规则组执行结果分页查询接口
     @inlinable
     public func describeRuleGroupExecResultsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleGroupExecResultsByPageResponse> {
-        self.describeRuleGroupExecResultsByPage(DescribeRuleGroupExecResultsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleGroupExecResultsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
+        return self.client.execute(action: "DescribeRuleGroupExecResultsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 规则组执行结果分页查询接口
     @inlinable
     public func describeRuleGroupExecResultsByPage(pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, orderFields: [OrderField]? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleGroupExecResultsByPageResponse {
-        try await self.describeRuleGroupExecResultsByPage(DescribeRuleGroupExecResultsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleGroupExecResultsByPageRequest(pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, projectId: projectId)
+        return try await self.client.execute(action: "DescribeRuleGroupExecResultsByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

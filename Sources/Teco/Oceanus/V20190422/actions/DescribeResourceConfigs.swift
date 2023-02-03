@@ -92,12 +92,14 @@ extension Oceanus {
     /// 描述资源配置接口
     @inlinable
     public func describeResourceConfigs(resourceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, resourceConfigVersions: [Int64]? = nil, jobConfigVersion: Int64? = nil, jobId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceConfigsResponse> {
-        self.describeResourceConfigs(DescribeResourceConfigsRequest(resourceId: resourceId, offset: offset, limit: limit, resourceConfigVersions: resourceConfigVersions, jobConfigVersion: jobConfigVersion, jobId: jobId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceConfigsRequest(resourceId: resourceId, offset: offset, limit: limit, resourceConfigVersions: resourceConfigVersions, jobConfigVersion: jobConfigVersion, jobId: jobId, workSpaceId: workSpaceId)
+        return self.client.execute(action: "DescribeResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述资源配置接口
     @inlinable
     public func describeResourceConfigs(resourceId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, resourceConfigVersions: [Int64]? = nil, jobConfigVersion: Int64? = nil, jobId: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceConfigsResponse {
-        try await self.describeResourceConfigs(DescribeResourceConfigsRequest(resourceId: resourceId, offset: offset, limit: limit, resourceConfigVersions: resourceConfigVersions, jobConfigVersion: jobConfigVersion, jobId: jobId, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceConfigsRequest(resourceId: resourceId, offset: offset, limit: limit, resourceConfigVersions: resourceConfigVersions, jobConfigVersion: jobConfigVersion, jobId: jobId, workSpaceId: workSpaceId)
+        return try await self.client.execute(action: "DescribeResourceConfigs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

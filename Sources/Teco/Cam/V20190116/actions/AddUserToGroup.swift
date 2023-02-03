@@ -54,12 +54,14 @@ extension Cam {
     /// 用户加入到用户组
     @inlinable @discardableResult
     public func addUserToGroup(info: [GroupIdOfUidInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUserToGroupResponse> {
-        self.addUserToGroup(AddUserToGroupRequest(info: info), region: region, logger: logger, on: eventLoop)
+        let input = AddUserToGroupRequest(info: info)
+        return self.client.execute(action: "AddUserToGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户加入到用户组
     @inlinable @discardableResult
     public func addUserToGroup(info: [GroupIdOfUidInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUserToGroupResponse {
-        try await self.addUserToGroup(AddUserToGroupRequest(info: info), region: region, logger: logger, on: eventLoop)
+        let input = AddUserToGroupRequest(info: info)
+        return try await self.client.execute(action: "AddUserToGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

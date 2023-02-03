@@ -84,12 +84,14 @@ extension Tsf {
     /// 创建仓库
     @inlinable
     public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
-        self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), region: region, logger: logger, on: eventLoop)
+        let input = CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc)
+        return self.client.execute(action: "CreateRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建仓库
     @inlinable
     public func createRepository(repositoryName: String, repositoryType: String, bucketName: String, bucketRegion: String, directory: String? = nil, repositoryDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
-        try await self.createRepository(CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc), region: region, logger: logger, on: eventLoop)
+        let input = CreateRepositoryRequest(repositoryName: repositoryName, repositoryType: repositoryType, bucketName: bucketName, bucketRegion: bucketRegion, directory: directory, repositoryDesc: repositoryDesc)
+        return try await self.client.execute(action: "CreateRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

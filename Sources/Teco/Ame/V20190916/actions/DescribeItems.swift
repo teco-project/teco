@@ -97,7 +97,8 @@ extension Ame {
     /// 该服务后续会停用，不再建议使用
     @inlinable
     public func describeItems(offset: UInt64, limit: UInt64, categoryId: String? = nil, categoryCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeItemsResponse> {
-        self.describeItems(DescribeItemsRequest(offset: offset, limit: limit, categoryId: categoryId, categoryCode: categoryCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeItemsRequest(offset: offset, limit: limit, categoryId: categoryId, categoryCode: categoryCode)
+        return self.client.execute(action: "DescribeItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取分类内容下歌曲列表
@@ -105,6 +106,7 @@ extension Ame {
     /// 该服务后续会停用，不再建议使用
     @inlinable
     public func describeItems(offset: UInt64, limit: UInt64, categoryId: String? = nil, categoryCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeItemsResponse {
-        try await self.describeItems(DescribeItemsRequest(offset: offset, limit: limit, categoryId: categoryId, categoryCode: categoryCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeItemsRequest(offset: offset, limit: limit, categoryId: categoryId, categoryCode: categoryCode)
+        return try await self.client.execute(action: "DescribeItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

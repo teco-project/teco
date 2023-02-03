@@ -113,12 +113,14 @@ extension Iotvideo {
     /// 将已购买的云存服务转移到另一设备
     @inlinable
     public func deliverStorageService(srcServiceId: String, tid: String, chnNum: Int64? = nil, accessId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverStorageServiceResponse> {
-        self.deliverStorageService(DeliverStorageServiceRequest(srcServiceId: srcServiceId, tid: tid, chnNum: chnNum, accessId: accessId), region: region, logger: logger, on: eventLoop)
+        let input = DeliverStorageServiceRequest(srcServiceId: srcServiceId, tid: tid, chnNum: chnNum, accessId: accessId)
+        return self.client.execute(action: "DeliverStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将已购买的云存服务转移到另一设备
     @inlinable
     public func deliverStorageService(srcServiceId: String, tid: String, chnNum: Int64? = nil, accessId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverStorageServiceResponse {
-        try await self.deliverStorageService(DeliverStorageServiceRequest(srcServiceId: srcServiceId, tid: tid, chnNum: chnNum, accessId: accessId), region: region, logger: logger, on: eventLoop)
+        let input = DeliverStorageServiceRequest(srcServiceId: srcServiceId, tid: tid, chnNum: chnNum, accessId: accessId)
+        return try await self.client.execute(action: "DeliverStorageService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

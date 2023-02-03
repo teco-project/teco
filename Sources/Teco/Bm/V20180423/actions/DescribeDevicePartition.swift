@@ -58,12 +58,14 @@ extension Bm {
     /// 获取物理机的分区格式
     @inlinable
     public func describeDevicePartition(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePartitionResponse> {
-        self.describeDevicePartition(DescribeDevicePartitionRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePartitionRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeDevicePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取物理机的分区格式
     @inlinable
     public func describeDevicePartition(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePartitionResponse {
-        try await self.describeDevicePartition(DescribeDevicePartitionRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePartitionRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDevicePartition", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

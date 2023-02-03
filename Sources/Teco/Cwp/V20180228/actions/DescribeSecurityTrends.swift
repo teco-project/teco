@@ -114,7 +114,8 @@ extension Cwp {
     /// 本接口 (DescribeSecurityTrends) 用于获取安全事件统计数据。
     @inlinable
     public func describeSecurityTrends(beginDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityTrendsResponse> {
-        self.describeSecurityTrends(DescribeSecurityTrendsRequest(beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityTrendsRequest(beginDate: beginDate, endDate: endDate)
+        return self.client.execute(action: "DescribeSecurityTrends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全事件统计数据
@@ -122,6 +123,7 @@ extension Cwp {
     /// 本接口 (DescribeSecurityTrends) 用于获取安全事件统计数据。
     @inlinable
     public func describeSecurityTrends(beginDate: Date, endDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityTrendsResponse {
-        try await self.describeSecurityTrends(DescribeSecurityTrendsRequest(beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityTrendsRequest(beginDate: beginDate, endDate: endDate)
+        return try await self.client.execute(action: "DescribeSecurityTrends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

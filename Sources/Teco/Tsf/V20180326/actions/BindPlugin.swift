@@ -64,7 +64,8 @@ extension Tsf {
     /// 插件与网关分组/API批量绑定
     @inlinable
     public func bindPlugin(pluginInstanceList: [GatewayPluginBoundParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindPluginResponse> {
-        self.bindPlugin(BindPluginRequest(pluginInstanceList: pluginInstanceList), region: region, logger: logger, on: eventLoop)
+        let input = BindPluginRequest(pluginInstanceList: pluginInstanceList)
+        return self.client.execute(action: "BindPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量绑定插件
@@ -72,6 +73,7 @@ extension Tsf {
     /// 插件与网关分组/API批量绑定
     @inlinable
     public func bindPlugin(pluginInstanceList: [GatewayPluginBoundParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPluginResponse {
-        try await self.bindPlugin(BindPluginRequest(pluginInstanceList: pluginInstanceList), region: region, logger: logger, on: eventLoop)
+        let input = BindPluginRequest(pluginInstanceList: pluginInstanceList)
+        return try await self.client.execute(action: "BindPlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -57,13 +57,15 @@ extension Gpm {
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
-        self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMatchRequest(matchCode: matchCode)
+        return self.client.execute(action: "DeleteMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除匹配
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
-        try await self.deleteMatch(DeleteMatchRequest(matchCode: matchCode), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMatchRequest(matchCode: matchCode)
+        return try await self.client.execute(action: "DeleteMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

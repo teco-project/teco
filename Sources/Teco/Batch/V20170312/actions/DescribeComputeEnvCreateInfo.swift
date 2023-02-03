@@ -106,7 +106,8 @@ extension Batch {
     /// 查看计算环境的创建信息。
     @inlinable
     public func describeComputeEnvCreateInfo(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeComputeEnvCreateInfoResponse> {
-        self.describeComputeEnvCreateInfo(DescribeComputeEnvCreateInfoRequest(envId: envId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeComputeEnvCreateInfoRequest(envId: envId)
+        return self.client.execute(action: "DescribeComputeEnvCreateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看计算环境的创建信息
@@ -114,6 +115,7 @@ extension Batch {
     /// 查看计算环境的创建信息。
     @inlinable
     public func describeComputeEnvCreateInfo(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeComputeEnvCreateInfoResponse {
-        try await self.describeComputeEnvCreateInfo(DescribeComputeEnvCreateInfoRequest(envId: envId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeComputeEnvCreateInfoRequest(envId: envId)
+        return try await self.client.execute(action: "DescribeComputeEnvCreateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -102,7 +102,8 @@ extension Postgres {
     /// 本接口（DescribeDBBackups）用于查询实例备份列表。
     @inlinable
     public func describeDBBackups(dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBBackupsResponse> {
-        self.describeDBBackups(DescribeDBBackupsRequest(dbInstanceId: dbInstanceId, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBBackupsRequest(dbInstanceId: dbInstanceId, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeDBBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例备份列表
@@ -110,6 +111,7 @@ extension Postgres {
     /// 本接口（DescribeDBBackups）用于查询实例备份列表。
     @inlinable
     public func describeDBBackups(dbInstanceId: String, type: Int64, startTime: Date, endTime: Date, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBBackupsResponse {
-        try await self.describeDBBackups(DescribeDBBackupsRequest(dbInstanceId: dbInstanceId, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBBackupsRequest(dbInstanceId: dbInstanceId, type: type, startTime: startTime, endTime: endTime, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeDBBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

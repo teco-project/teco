@@ -68,12 +68,14 @@ extension Tdid {
     /// 新建DID根据私钥生成Tdid
     @inlinable
     public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTDidByPrivateKeyResponse> {
-        self.createTDidByPrivateKey(CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
+        let input = CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey)
+        return self.client.execute(action: "CreateTDidByPrivateKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建DID根据私钥生成Tdid
     @inlinable
     public func createTDidByPrivateKey(clusterId: String, groupId: UInt64, privateKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTDidByPrivateKeyResponse {
-        try await self.createTDidByPrivateKey(CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey), region: region, logger: logger, on: eventLoop)
+        let input = CreateTDidByPrivateKeyRequest(clusterId: clusterId, groupId: groupId, privateKey: privateKey)
+        return try await self.client.execute(action: "CreateTDidByPrivateKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

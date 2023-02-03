@@ -82,7 +82,8 @@ extension Tcss {
     /// 查询合规检测的定时任务列表
     @inlinable
     public func describeCompliancePeriodTaskList(assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompliancePeriodTaskListResponse> {
-        self.describeCompliancePeriodTaskList(DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeCompliancePeriodTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全合规查询定时任务列表
@@ -90,6 +91,7 @@ extension Tcss {
     /// 查询合规检测的定时任务列表
     @inlinable
     public func describeCompliancePeriodTaskList(assetType: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompliancePeriodTaskListResponse {
-        try await self.describeCompliancePeriodTaskList(DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCompliancePeriodTaskListRequest(assetType: assetType, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeCompliancePeriodTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

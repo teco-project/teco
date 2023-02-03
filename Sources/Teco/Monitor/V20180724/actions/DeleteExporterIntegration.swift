@@ -77,12 +77,14 @@ extension Monitor {
     /// 删除 exporter 集成
     @inlinable @discardableResult
     public func deleteExporterIntegration(instanceId: String, kind: String, name: String, kubeType: Int64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteExporterIntegrationResponse> {
-        self.deleteExporterIntegration(DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId)
+        return self.client.execute(action: "DeleteExporterIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除 exporter 集成
     @inlinable @discardableResult
     public func deleteExporterIntegration(instanceId: String, kind: String, name: String, kubeType: Int64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteExporterIntegrationResponse {
-        try await self.deleteExporterIntegration(DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteExporterIntegrationRequest(instanceId: instanceId, kind: kind, name: name, kubeType: kubeType, clusterId: clusterId)
+        return try await self.client.execute(action: "DeleteExporterIntegration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

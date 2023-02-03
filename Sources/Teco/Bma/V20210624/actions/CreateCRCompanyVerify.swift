@@ -103,7 +103,8 @@ extension Bma {
     /// 本接口用于企业认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
     @inlinable
     public func createCRCompanyVerify(companyName: String, companyID: String? = nil, companyLegalName: String? = nil, managerName: String? = nil, managerPhone: String? = nil, verificationCode: String? = nil, companyIDType: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRCompanyVerifyResponse> {
-        self.createCRCompanyVerify(CreateCRCompanyVerifyRequest(companyName: companyName, companyID: companyID, companyLegalName: companyLegalName, managerName: managerName, managerPhone: managerPhone, verificationCode: verificationCode, companyIDType: companyIDType, type: type), region: region, logger: logger, on: eventLoop)
+        let input = CreateCRCompanyVerifyRequest(companyName: companyName, companyID: companyID, companyLegalName: companyLegalName, managerName: managerName, managerPhone: managerPhone, verificationCode: verificationCode, companyIDType: companyIDType, type: type)
+        return self.client.execute(action: "CreateCRCompanyVerify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 企业认证
@@ -111,6 +112,7 @@ extension Bma {
     /// 本接口用于企业认证，新接入用户必须认证后才可以进行后续操作（个人认证和企业认证二选一），只需认证一次即可
     @inlinable
     public func createCRCompanyVerify(companyName: String, companyID: String? = nil, companyLegalName: String? = nil, managerName: String? = nil, managerPhone: String? = nil, verificationCode: String? = nil, companyIDType: String? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRCompanyVerifyResponse {
-        try await self.createCRCompanyVerify(CreateCRCompanyVerifyRequest(companyName: companyName, companyID: companyID, companyLegalName: companyLegalName, managerName: managerName, managerPhone: managerPhone, verificationCode: verificationCode, companyIDType: companyIDType, type: type), region: region, logger: logger, on: eventLoop)
+        let input = CreateCRCompanyVerifyRequest(companyName: companyName, companyID: companyID, companyLegalName: companyLegalName, managerName: managerName, managerPhone: managerPhone, verificationCode: verificationCode, companyIDType: companyIDType, type: type)
+        return try await self.client.execute(action: "CreateCRCompanyVerify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

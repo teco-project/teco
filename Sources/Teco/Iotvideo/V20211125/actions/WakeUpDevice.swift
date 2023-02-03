@@ -59,12 +59,14 @@ extension Iotvideo {
     /// 设备唤醒
     @inlinable @discardableResult
     public func wakeUpDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WakeUpDeviceResponse> {
-        self.wakeUpDevice(WakeUpDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = WakeUpDeviceRequest(productId: productId, deviceName: deviceName)
+        return self.client.execute(action: "WakeUpDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设备唤醒
     @inlinable @discardableResult
     public func wakeUpDevice(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WakeUpDeviceResponse {
-        try await self.wakeUpDevice(WakeUpDeviceRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = WakeUpDeviceRequest(productId: productId, deviceName: deviceName)
+        return try await self.client.execute(action: "WakeUpDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Es {
     /// 用于批量停止Logstash管道
     @inlinable @discardableResult
     public func stopLogstashPipelines(instanceId: String, pipelineIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopLogstashPipelinesResponse> {
-        self.stopLogstashPipelines(StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
+        let input = StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds)
+        return self.client.execute(action: "StopLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止Logstash管道
@@ -73,6 +74,7 @@ extension Es {
     /// 用于批量停止Logstash管道
     @inlinable @discardableResult
     public func stopLogstashPipelines(instanceId: String, pipelineIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopLogstashPipelinesResponse {
-        try await self.stopLogstashPipelines(StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds), region: region, logger: logger, on: eventLoop)
+        let input = StopLogstashPipelinesRequest(instanceId: instanceId, pipelineIds: pipelineIds)
+        return try await self.client.execute(action: "StopLogstashPipelines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

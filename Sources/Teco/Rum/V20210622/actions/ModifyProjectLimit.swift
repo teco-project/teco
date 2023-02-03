@@ -79,12 +79,14 @@ extension Rum {
     /// 新增修改限流
     @inlinable
     public func modifyProjectLimit(projectID: Int64, projectInterface: String? = nil, reportRate: Int64? = nil, reportType: Int64? = nil, id: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectLimitResponse> {
-        self.modifyProjectLimit(ModifyProjectLimitRequest(projectID: projectID, projectInterface: projectInterface, reportRate: reportRate, reportType: reportType, id: id), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProjectLimitRequest(projectID: projectID, projectInterface: projectInterface, reportRate: reportRate, reportType: reportType, id: id)
+        return self.client.execute(action: "ModifyProjectLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增修改限流
     @inlinable
     public func modifyProjectLimit(projectID: Int64, projectInterface: String? = nil, reportRate: Int64? = nil, reportType: Int64? = nil, id: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectLimitResponse {
-        try await self.modifyProjectLimit(ModifyProjectLimitRequest(projectID: projectID, projectInterface: projectInterface, reportRate: reportRate, reportType: reportType, id: id), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProjectLimitRequest(projectID: projectID, projectInterface: projectInterface, reportRate: reportRate, reportType: reportType, id: id)
+        return try await self.client.execute(action: "ModifyProjectLimit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

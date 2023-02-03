@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（DisassociateNatGatewayAddress）用于NAT网关解绑弹性IP。
     @inlinable @discardableResult
     public func disassociateNatGatewayAddress(natGatewayId: String, publicIpAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateNatGatewayAddressResponse> {
-        self.disassociateNatGatewayAddress(DisassociateNatGatewayAddressRequest(natGatewayId: natGatewayId, publicIpAddresses: publicIpAddresses), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateNatGatewayAddressRequest(natGatewayId: natGatewayId, publicIpAddresses: publicIpAddresses)
+        return self.client.execute(action: "DisassociateNatGatewayAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// NAT网关解绑弹性IP
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（DisassociateNatGatewayAddress）用于NAT网关解绑弹性IP。
     @inlinable @discardableResult
     public func disassociateNatGatewayAddress(natGatewayId: String, publicIpAddresses: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateNatGatewayAddressResponse {
-        try await self.disassociateNatGatewayAddress(DisassociateNatGatewayAddressRequest(natGatewayId: natGatewayId, publicIpAddresses: publicIpAddresses), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateNatGatewayAddressRequest(natGatewayId: natGatewayId, publicIpAddresses: publicIpAddresses)
+        return try await self.client.execute(action: "DisassociateNatGatewayAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

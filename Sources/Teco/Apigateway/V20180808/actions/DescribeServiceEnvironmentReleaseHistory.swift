@@ -83,7 +83,8 @@ extension Apigateway {
     /// 用户在创建好服务后需要发布到某个环境中才能进行使用，本接口用于查询一个服务某个环境的发布记录。
     @inlinable
     public func describeServiceEnvironmentReleaseHistory(serviceId: String, environmentName: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceEnvironmentReleaseHistoryResponse> {
-        self.describeServiceEnvironmentReleaseHistory(DescribeServiceEnvironmentReleaseHistoryRequest(serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceEnvironmentReleaseHistoryRequest(serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeServiceEnvironmentReleaseHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务环境的发布历史
@@ -92,6 +93,7 @@ extension Apigateway {
     /// 用户在创建好服务后需要发布到某个环境中才能进行使用，本接口用于查询一个服务某个环境的发布记录。
     @inlinable
     public func describeServiceEnvironmentReleaseHistory(serviceId: String, environmentName: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceEnvironmentReleaseHistoryResponse {
-        try await self.describeServiceEnvironmentReleaseHistory(DescribeServiceEnvironmentReleaseHistoryRequest(serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceEnvironmentReleaseHistoryRequest(serviceId: serviceId, environmentName: environmentName, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeServiceEnvironmentReleaseHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

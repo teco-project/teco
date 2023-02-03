@@ -70,7 +70,8 @@ extension Bmvpc {
     /// 注销私有网络IP为空闲
     @inlinable @discardableResult
     public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterIpsResponse> {
-        self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId)
+        return self.client.execute(action: "DeregisterIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注销私有网络IP
@@ -78,6 +79,7 @@ extension Bmvpc {
     /// 注销私有网络IP为空闲
     @inlinable @discardableResult
     public func deregisterIps(vpcId: String, ipSet: [String], subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterIpsResponse {
-        try await self.deregisterIps(DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = DeregisterIpsRequest(vpcId: vpcId, ipSet: ipSet, subnetId: subnetId)
+        return try await self.client.execute(action: "DeregisterIps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

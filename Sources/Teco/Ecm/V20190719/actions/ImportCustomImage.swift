@@ -98,7 +98,8 @@ extension Ecm {
     /// 导入自定义镜像，支持 RAW、VHD、QCOW2、VMDK 镜像格式
     @inlinable
     public func importCustomImage(imageName: String, architecture: String, osType: String, osVersion: String, imageDescription: String? = nil, initFlag: String? = nil, imageUrls: [ImageUrl]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportCustomImageResponse> {
-        self.importCustomImage(ImportCustomImageRequest(imageName: imageName, architecture: architecture, osType: osType, osVersion: osVersion, imageDescription: imageDescription, initFlag: initFlag, imageUrls: imageUrls), region: region, logger: logger, on: eventLoop)
+        let input = ImportCustomImageRequest(imageName: imageName, architecture: architecture, osType: osType, osVersion: osVersion, imageDescription: imageDescription, initFlag: initFlag, imageUrls: imageUrls)
+        return self.client.execute(action: "ImportCustomImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入自定义镜像
@@ -106,6 +107,7 @@ extension Ecm {
     /// 导入自定义镜像，支持 RAW、VHD、QCOW2、VMDK 镜像格式
     @inlinable
     public func importCustomImage(imageName: String, architecture: String, osType: String, osVersion: String, imageDescription: String? = nil, initFlag: String? = nil, imageUrls: [ImageUrl]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportCustomImageResponse {
-        try await self.importCustomImage(ImportCustomImageRequest(imageName: imageName, architecture: architecture, osType: osType, osVersion: osVersion, imageDescription: imageDescription, initFlag: initFlag, imageUrls: imageUrls), region: region, logger: logger, on: eventLoop)
+        let input = ImportCustomImageRequest(imageName: imageName, architecture: architecture, osType: osType, osVersion: osVersion, imageDescription: imageDescription, initFlag: initFlag, imageUrls: imageUrls)
+        return try await self.client.execute(action: "ImportCustomImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

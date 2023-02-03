@@ -72,7 +72,8 @@ extension Cwp {
     /// 用于设置新增主机自动开通专业防护配置。
     @inlinable @discardableResult
     public func modifyAutoOpenProVersionConfig(status: String, autoRepurchaseSwitch: UInt64? = nil, autoRepurchaseRenewSwitch: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoOpenProVersionConfigResponse> {
-        self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status, autoRepurchaseSwitch: autoRepurchaseSwitch, autoRepurchaseRenewSwitch: autoRepurchaseRenewSwitch), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAutoOpenProVersionConfigRequest(status: status, autoRepurchaseSwitch: autoRepurchaseSwitch, autoRepurchaseRenewSwitch: autoRepurchaseRenewSwitch)
+        return self.client.execute(action: "ModifyAutoOpenProVersionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置自动开通配置
@@ -80,6 +81,7 @@ extension Cwp {
     /// 用于设置新增主机自动开通专业防护配置。
     @inlinable @discardableResult
     public func modifyAutoOpenProVersionConfig(status: String, autoRepurchaseSwitch: UInt64? = nil, autoRepurchaseRenewSwitch: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoOpenProVersionConfigResponse {
-        try await self.modifyAutoOpenProVersionConfig(ModifyAutoOpenProVersionConfigRequest(status: status, autoRepurchaseSwitch: autoRepurchaseSwitch, autoRepurchaseRenewSwitch: autoRepurchaseRenewSwitch), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAutoOpenProVersionConfigRequest(status: status, autoRepurchaseSwitch: autoRepurchaseSwitch, autoRepurchaseRenewSwitch: autoRepurchaseRenewSwitch)
+        return try await self.client.execute(action: "ModifyAutoOpenProVersionConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

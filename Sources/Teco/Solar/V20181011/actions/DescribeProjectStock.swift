@@ -58,12 +58,14 @@ extension Solar {
     /// 项目库存详情
     @inlinable
     public func describeProjectStock(subProjectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectStockResponse> {
-        self.describeProjectStock(DescribeProjectStockRequest(subProjectId: subProjectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectStockRequest(subProjectId: subProjectId)
+        return self.client.execute(action: "DescribeProjectStock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 项目库存详情
     @inlinable
     public func describeProjectStock(subProjectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectStockResponse {
-        try await self.describeProjectStock(DescribeProjectStockRequest(subProjectId: subProjectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectStockRequest(subProjectId: subProjectId)
+        return try await self.client.execute(action: "DescribeProjectStock", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

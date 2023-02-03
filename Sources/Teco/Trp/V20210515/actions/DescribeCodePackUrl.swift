@@ -74,12 +74,14 @@ extension Trp {
     /// 查询码包地址
     @inlinable
     public func describeCodePackUrl(packId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCodePackUrlResponse> {
-        self.describeCodePackUrl(DescribeCodePackUrlRequest(packId: packId, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCodePackUrlRequest(packId: packId, corpId: corpId)
+        return self.client.execute(action: "DescribeCodePackUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询码包地址
     @inlinable
     public func describeCodePackUrl(packId: String, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCodePackUrlResponse {
-        try await self.describeCodePackUrl(DescribeCodePackUrlRequest(packId: packId, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCodePackUrlRequest(packId: packId, corpId: corpId)
+        return try await self.client.execute(action: "DescribeCodePackUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

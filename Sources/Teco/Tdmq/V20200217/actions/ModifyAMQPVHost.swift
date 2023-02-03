@@ -69,12 +69,14 @@ extension Tdmq {
     /// 更新Vhost
     @inlinable @discardableResult
     public func modifyAMQPVHost(clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAMQPVHostResponse> {
-        self.modifyAMQPVHost(ModifyAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark)
+        return self.client.execute(action: "ModifyAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新Vhost
     @inlinable @discardableResult
     public func modifyAMQPVHost(clusterId: String, vHostId: String, msgTtl: UInt64, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAMQPVHostResponse {
-        try await self.modifyAMQPVHost(ModifyAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAMQPVHostRequest(clusterId: clusterId, vHostId: vHostId, msgTtl: msgTtl, remark: remark)
+        return try await self.client.execute(action: "ModifyAMQPVHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

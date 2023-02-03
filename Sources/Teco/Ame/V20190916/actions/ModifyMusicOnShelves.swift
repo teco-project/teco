@@ -65,7 +65,8 @@ extension Ame {
     /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
     @inlinable @discardableResult
     public func modifyMusicOnShelves(musicDetailInfos: MusicDetailInfo, ameKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMusicOnShelvesResponse> {
-        self.modifyMusicOnShelves(ModifyMusicOnShelvesRequest(musicDetailInfos: musicDetailInfos, ameKey: ameKey), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMusicOnShelvesRequest(musicDetailInfos: musicDetailInfos, ameKey: ameKey)
+        return self.client.execute(action: "ModifyMusicOnShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 变更歌曲参数
@@ -73,6 +74,7 @@ extension Ame {
     /// 根据资源方，需要变更的参数，请求该接口进行变更，为空的参数默认为无变更
     @inlinable @discardableResult
     public func modifyMusicOnShelves(musicDetailInfos: MusicDetailInfo, ameKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMusicOnShelvesResponse {
-        try await self.modifyMusicOnShelves(ModifyMusicOnShelvesRequest(musicDetailInfos: musicDetailInfos, ameKey: ameKey), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMusicOnShelvesRequest(musicDetailInfos: musicDetailInfos, ameKey: ameKey)
+        return try await self.client.execute(action: "ModifyMusicOnShelves", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

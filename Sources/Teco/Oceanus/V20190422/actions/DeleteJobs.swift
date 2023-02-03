@@ -65,7 +65,8 @@ extension Oceanus {
     /// 批量删除作业接口，批量操作数量上限20
     @inlinable @discardableResult
     public func deleteJobs(jobIds: [String], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteJobsResponse> {
-        self.deleteJobs(DeleteJobsRequest(jobIds: jobIds, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteJobsRequest(jobIds: jobIds, workSpaceId: workSpaceId)
+        return self.client.execute(action: "DeleteJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除作业
@@ -73,6 +74,7 @@ extension Oceanus {
     /// 批量删除作业接口，批量操作数量上限20
     @inlinable @discardableResult
     public func deleteJobs(jobIds: [String], workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobsResponse {
-        try await self.deleteJobs(DeleteJobsRequest(jobIds: jobIds, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteJobsRequest(jobIds: jobIds, workSpaceId: workSpaceId)
+        return try await self.client.execute(action: "DeleteJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

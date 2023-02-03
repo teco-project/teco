@@ -62,12 +62,14 @@ extension Antiddos {
     /// 获取DDoS防护的IP网段黑白名单
     @inlinable
     public func describeDDoSBlackWhiteIpList(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDDoSBlackWhiteIpListResponse> {
-        self.describeDDoSBlackWhiteIpList(DescribeDDoSBlackWhiteIpListRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSBlackWhiteIpListRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeDDoSBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DDoS防护的IP网段黑白名单
     @inlinable
     public func describeDDoSBlackWhiteIpList(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDDoSBlackWhiteIpListResponse {
-        try await self.describeDDoSBlackWhiteIpList(DescribeDDoSBlackWhiteIpListRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDDoSBlackWhiteIpListRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDDoSBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

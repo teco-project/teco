@@ -68,12 +68,14 @@ extension Tcr {
     /// 创建触发器
     @inlinable
     public func createWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebhookTriggerResponse> {
-        self.createWebhookTrigger(CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace)
+        return self.client.execute(action: "CreateWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建触发器
     @inlinable
     public func createWebhookTrigger(registryId: String, trigger: WebhookTrigger, namespace: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebhookTriggerResponse {
-        try await self.createWebhookTrigger(CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = CreateWebhookTriggerRequest(registryId: registryId, trigger: trigger, namespace: namespace)
+        return try await self.client.execute(action: "CreateWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

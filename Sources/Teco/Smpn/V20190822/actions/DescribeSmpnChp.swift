@@ -69,7 +69,8 @@ extension Smpn {
     /// 查询号码的标记和标记次数
     @inlinable
     public func describeSmpnChp(resourceId: String, requestData: CHPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnChpResponse> {
-        self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData)
+        return self.client.execute(action: "DescribeSmpnChp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端骚扰保护
@@ -77,6 +78,7 @@ extension Smpn {
     /// 查询号码的标记和标记次数
     @inlinable
     public func describeSmpnChp(resourceId: String, requestData: CHPRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnChpResponse {
-        try await self.describeSmpnChp(DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmpnChpRequest(resourceId: resourceId, requestData: requestData)
+        return try await self.client.execute(action: "DescribeSmpnChp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

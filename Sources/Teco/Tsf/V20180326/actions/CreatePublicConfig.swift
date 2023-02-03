@@ -89,12 +89,14 @@ extension Tsf {
     /// 创建公共配置项
     @inlinable
     public func createPublicConfig(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePublicConfigResponse> {
-        self.createPublicConfig(CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
+        let input = CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList)
+        return self.client.execute(action: "CreatePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建公共配置项
     @inlinable
     public func createPublicConfig(configName: String, configVersion: String, configValue: String, configVersionDesc: String? = nil, configType: String? = nil, encodeWithBase64: Bool? = nil, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePublicConfigResponse {
-        try await self.createPublicConfig(CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
+        let input = CreatePublicConfigRequest(configName: configName, configVersion: configVersion, configValue: configValue, configVersionDesc: configVersionDesc, configType: configType, encodeWithBase64: encodeWithBase64, programIdList: programIdList)
+        return try await self.client.execute(action: "CreatePublicConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

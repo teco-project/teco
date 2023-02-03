@@ -69,12 +69,14 @@ extension Es {
     /// 更新实例Jdk配置
     @inlinable @discardableResult
     public func updateJdk(instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateJdkResponse> {
-        self.updateJdk(UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
+        let input = UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart)
+        return self.client.execute(action: "UpdateJdk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新实例Jdk配置
     @inlinable @discardableResult
     public func updateJdk(instanceId: String, jdk: String? = nil, gc: String? = nil, forceRestart: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateJdkResponse {
-        try await self.updateJdk(UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart), region: region, logger: logger, on: eventLoop)
+        let input = UpdateJdkRequest(instanceId: instanceId, jdk: jdk, gc: gc, forceRestart: forceRestart)
+        return try await self.client.execute(action: "UpdateJdk", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Sqlserver {
     /// 本接口（StopMigration）作用是中止一个迁移任务
     @inlinable
     public func stopMigration(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopMigrationResponse> {
-        self.stopMigration(StopMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
+        let input = StopMigrationRequest(migrateId: migrateId)
+        return self.client.execute(action: "StopMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 中止迁移任务
@@ -72,6 +73,7 @@ extension Sqlserver {
     /// 本接口（StopMigration）作用是中止一个迁移任务
     @inlinable
     public func stopMigration(migrateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopMigrationResponse {
-        try await self.stopMigration(StopMigrationRequest(migrateId: migrateId), region: region, logger: logger, on: eventLoop)
+        let input = StopMigrationRequest(migrateId: migrateId)
+        return try await self.client.execute(action: "StopMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

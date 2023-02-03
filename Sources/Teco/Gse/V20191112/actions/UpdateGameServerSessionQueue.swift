@@ -82,7 +82,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGameServerSessionQueueResponse> {
-        self.updateGameServerSessionQueue(UpdateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds), region: region, logger: logger, on: eventLoop)
+        let input = UpdateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds)
+        return self.client.execute(action: "UpdateGameServerSessionQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改游戏服务器会话队列
@@ -91,6 +92,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func updateGameServerSessionQueue(name: String, destinations: [GameServerSessionQueueDestination]? = nil, playerLatencyPolicies: [PlayerLatencyPolicy]? = nil, timeoutInSeconds: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGameServerSessionQueueResponse {
-        try await self.updateGameServerSessionQueue(UpdateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds), region: region, logger: logger, on: eventLoop)
+        let input = UpdateGameServerSessionQueueRequest(name: name, destinations: destinations, playerLatencyPolicies: playerLatencyPolicies, timeoutInSeconds: timeoutInSeconds)
+        return try await self.client.execute(action: "UpdateGameServerSessionQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

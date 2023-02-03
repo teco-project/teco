@@ -70,7 +70,8 @@ extension Cdb {
     /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
     @inlinable @discardableResult
     public func associateSecurityGroups(securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateSecurityGroupsResponse> {
-        self.associateSecurityGroups(AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance), region: region, logger: logger, on: eventLoop)
+        let input = AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance)
+        return self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全组批量绑定云资源
@@ -78,6 +79,7 @@ extension Cdb {
     /// 本接口(AssociateSecurityGroups)用于安全组批量绑定实例。
     @inlinable @discardableResult
     public func associateSecurityGroups(securityGroupId: String, instanceIds: [String], forReadonlyInstance: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateSecurityGroupsResponse {
-        try await self.associateSecurityGroups(AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance), region: region, logger: logger, on: eventLoop)
+        let input = AssociateSecurityGroupsRequest(securityGroupId: securityGroupId, instanceIds: instanceIds, forReadonlyInstance: forReadonlyInstance)
+        return try await self.client.execute(action: "AssociateSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

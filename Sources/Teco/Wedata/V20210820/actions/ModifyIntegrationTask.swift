@@ -68,12 +68,14 @@ extension Wedata {
     /// 更新集成任务
     @inlinable
     public func modifyIntegrationTask(taskInfo: IntegrationTaskInfo, projectId: String, rollbackFlag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyIntegrationTaskResponse> {
-        self.modifyIntegrationTask(ModifyIntegrationTaskRequest(taskInfo: taskInfo, projectId: projectId, rollbackFlag: rollbackFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyIntegrationTaskRequest(taskInfo: taskInfo, projectId: projectId, rollbackFlag: rollbackFlag)
+        return self.client.execute(action: "ModifyIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新集成任务
     @inlinable
     public func modifyIntegrationTask(taskInfo: IntegrationTaskInfo, projectId: String, rollbackFlag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyIntegrationTaskResponse {
-        try await self.modifyIntegrationTask(ModifyIntegrationTaskRequest(taskInfo: taskInfo, projectId: projectId, rollbackFlag: rollbackFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyIntegrationTaskRequest(taskInfo: taskInfo, projectId: projectId, rollbackFlag: rollbackFlag)
+        return try await self.client.execute(action: "ModifyIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

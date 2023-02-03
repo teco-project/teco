@@ -93,7 +93,8 @@ extension Cme {
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
     public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FlattenListMediaResponse> {
-        self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`)
+        return self.client.execute(action: "FlattenListMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 平铺浏览媒体
@@ -101,6 +102,7 @@ extension Cme {
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
     public func flattenListMedia(platform: String, classPath: String, owner: Entity, offset: Int64? = nil, limit: Int64? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FlattenListMediaResponse {
-        try await self.flattenListMedia(FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = FlattenListMediaRequest(platform: platform, classPath: classPath, owner: owner, offset: offset, limit: limit, operator: `operator`)
+        return try await self.client.execute(action: "FlattenListMedia", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -92,12 +92,14 @@ extension Iotexplorer {
     /// 获取围栏告警事件列表
     @inlinable
     public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFenceEventListResponse> {
-        self.describeFenceEventList(DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName)
+        return self.client.execute(action: "DescribeFenceEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取围栏告警事件列表
     @inlinable
     public func describeFenceEventList(startTime: Int64, endTime: Int64, fenceId: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, productId: String? = nil, deviceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFenceEventListResponse {
-        try await self.describeFenceEventList(DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFenceEventListRequest(startTime: startTime, endTime: endTime, fenceId: fenceId, offset: offset, limit: limit, productId: productId, deviceName: deviceName)
+        return try await self.client.execute(action: "DescribeFenceEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

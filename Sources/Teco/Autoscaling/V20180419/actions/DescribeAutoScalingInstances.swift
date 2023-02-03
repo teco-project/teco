@@ -95,7 +95,8 @@ extension As {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     @inlinable
     public func describeAutoScalingInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoScalingInstancesResponse> {
-        self.describeAutoScalingInstances(DescribeAutoScalingInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoScalingInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例
@@ -106,6 +107,7 @@ extension As {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     @inlinable
     public func describeAutoScalingInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingInstancesResponse {
-        try await self.describeAutoScalingInstances(DescribeAutoScalingInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoScalingInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

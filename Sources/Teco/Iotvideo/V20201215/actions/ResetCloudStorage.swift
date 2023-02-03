@@ -69,12 +69,14 @@ extension Iotvideo {
     /// 重置云存服务
     @inlinable @discardableResult
     public func resetCloudStorage(productId: String, deviceName: String, channelId: UInt64? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetCloudStorageResponse> {
-        self.resetCloudStorage(ResetCloudStorageRequest(productId: productId, deviceName: deviceName, channelId: channelId, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = ResetCloudStorageRequest(productId: productId, deviceName: deviceName, channelId: channelId, userId: userId)
+        return self.client.execute(action: "ResetCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置云存服务
     @inlinable @discardableResult
     public func resetCloudStorage(productId: String, deviceName: String, channelId: UInt64? = nil, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetCloudStorageResponse {
-        try await self.resetCloudStorage(ResetCloudStorageRequest(productId: productId, deviceName: deviceName, channelId: channelId, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = ResetCloudStorageRequest(productId: productId, deviceName: deviceName, channelId: channelId, userId: userId)
+        return try await self.client.execute(action: "ResetCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

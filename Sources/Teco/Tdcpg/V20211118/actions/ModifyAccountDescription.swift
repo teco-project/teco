@@ -64,12 +64,14 @@ extension Tdcpg {
     /// 修改数据库账号描述
     @inlinable @discardableResult
     public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountDescriptionResponse> {
-        self.modifyAccountDescription(ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription)
+        return self.client.execute(action: "ModifyAccountDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库账号描述
     @inlinable @discardableResult
     public func modifyAccountDescription(clusterId: String, accountName: String, accountDescription: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountDescriptionResponse {
-        try await self.modifyAccountDescription(ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountDescriptionRequest(clusterId: clusterId, accountName: accountName, accountDescription: accountDescription)
+        return try await self.client.execute(action: "ModifyAccountDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

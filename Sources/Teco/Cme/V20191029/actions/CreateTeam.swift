@@ -84,7 +84,8 @@ extension Cme {
     /// 创建一个团队。
     @inlinable
     public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTeamResponse> {
-        self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), region: region, logger: logger, on: eventLoop)
+        let input = CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId)
+        return self.client.execute(action: "CreateTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建团队
@@ -92,6 +93,7 @@ extension Cme {
     /// 创建一个团队。
     @inlinable
     public func createTeam(platform: String, name: String, ownerId: String, ownerRemark: String? = nil, teamId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTeamResponse {
-        try await self.createTeam(CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId), region: region, logger: logger, on: eventLoop)
+        let input = CreateTeamRequest(platform: platform, name: name, ownerId: ownerId, ownerRemark: ownerRemark, teamId: teamId)
+        return try await self.client.execute(action: "CreateTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

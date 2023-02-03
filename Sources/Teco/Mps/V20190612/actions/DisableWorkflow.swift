@@ -60,7 +60,8 @@ extension Mps {
     /// 禁用工作流。
     @inlinable @discardableResult
     public func disableWorkflow(workflowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableWorkflowResponse> {
-        self.disableWorkflow(DisableWorkflowRequest(workflowId: workflowId), region: region, logger: logger, on: eventLoop)
+        let input = DisableWorkflowRequest(workflowId: workflowId)
+        return self.client.execute(action: "DisableWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用工作流
@@ -68,6 +69,7 @@ extension Mps {
     /// 禁用工作流。
     @inlinable @discardableResult
     public func disableWorkflow(workflowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableWorkflowResponse {
-        try await self.disableWorkflow(DisableWorkflowRequest(workflowId: workflowId), region: region, logger: logger, on: eventLoop)
+        let input = DisableWorkflowRequest(workflowId: workflowId)
+        return try await self.client.execute(action: "DisableWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

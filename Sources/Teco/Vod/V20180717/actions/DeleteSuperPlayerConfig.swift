@@ -71,7 +71,8 @@ extension Vod {
     /// *注：系统预置播放器配置不允许删除。*
     @inlinable @discardableResult
     public func deleteSuperPlayerConfig(name: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSuperPlayerConfigResponse> {
-        self.deleteSuperPlayerConfig(DeleteSuperPlayerConfigRequest(name: name, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSuperPlayerConfigRequest(name: name, subAppId: subAppId)
+        return self.client.execute(action: "DeleteSuperPlayerConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除播放器配置
@@ -81,6 +82,7 @@ extension Vod {
     /// *注：系统预置播放器配置不允许删除。*
     @inlinable @discardableResult
     public func deleteSuperPlayerConfig(name: String, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSuperPlayerConfigResponse {
-        try await self.deleteSuperPlayerConfig(DeleteSuperPlayerConfigRequest(name: name, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSuperPlayerConfigRequest(name: name, subAppId: subAppId)
+        return try await self.client.execute(action: "DeleteSuperPlayerConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

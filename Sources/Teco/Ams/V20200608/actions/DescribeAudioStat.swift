@@ -77,7 +77,8 @@ extension Ams {
     /// 控制台识别统计
     @inlinable
     public func describeAudioStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAudioStatResponse> {
-        self.describeAudioStat(DescribeAudioStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAudioStatRequest(auditType: auditType, filters: filters)
+        return self.client.execute(action: "DescribeAudioStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 识别统计
@@ -85,6 +86,7 @@ extension Ams {
     /// 控制台识别统计
     @inlinable
     public func describeAudioStat(auditType: Int64, filters: [Filters], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAudioStatResponse {
-        try await self.describeAudioStat(DescribeAudioStatRequest(auditType: auditType, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAudioStatRequest(auditType: auditType, filters: filters)
+        return try await self.client.execute(action: "DescribeAudioStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

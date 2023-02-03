@@ -72,12 +72,14 @@ extension Iotvideoindustry {
     /// 获取直播录制计划列表
     @inlinable
     public func describeLiveRecordPlanIds(templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveRecordPlanIdsResponse> {
-        self.describeLiveRecordPlanIds(DescribeLiveRecordPlanIdsRequest(templateId: templateId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveRecordPlanIdsRequest(templateId: templateId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeLiveRecordPlanIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取直播录制计划列表
     @inlinable
     public func describeLiveRecordPlanIds(templateId: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordPlanIdsResponse {
-        try await self.describeLiveRecordPlanIds(DescribeLiveRecordPlanIdsRequest(templateId: templateId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveRecordPlanIdsRequest(templateId: templateId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeLiveRecordPlanIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

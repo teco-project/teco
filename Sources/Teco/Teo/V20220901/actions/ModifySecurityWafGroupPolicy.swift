@@ -103,12 +103,14 @@ extension Teo {
     /// 修改安全配置托管规则
     @inlinable @discardableResult
     public func modifySecurityWafGroupPolicy(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityWafGroupPolicyResponse> {
-        self.modifySecurityWafGroupPolicy(ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId)
+        return self.client.execute(action: "ModifySecurityWafGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全配置托管规则
     @inlinable @discardableResult
     public func modifySecurityWafGroupPolicy(zoneId: String? = nil, entity: String? = nil, switch: String? = nil, level: String? = nil, mode: String? = nil, wafRules: WafRule? = nil, aiRule: AiRule? = nil, wafGroups: [WafGroup]? = nil, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityWafGroupPolicyResponse {
-        try await self.modifySecurityWafGroupPolicy(ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityWafGroupPolicyRequest(zoneId: zoneId, entity: entity, switch: `switch`, level: level, mode: mode, wafRules: wafRules, aiRule: aiRule, wafGroups: wafGroups, templateId: templateId)
+        return try await self.client.execute(action: "ModifySecurityWafGroupPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

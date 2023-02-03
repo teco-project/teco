@@ -60,7 +60,8 @@ extension Postgres {
     /// 本接口（DeleteParameterTemplate）主要用于删除某个参数模板。
     @inlinable @discardableResult
     public func deleteParameterTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteParameterTemplateResponse> {
-        self.deleteParameterTemplate(DeleteParameterTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteParameterTemplateRequest(templateId: templateId)
+        return self.client.execute(action: "DeleteParameterTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除参数模板
@@ -68,6 +69,7 @@ extension Postgres {
     /// 本接口（DeleteParameterTemplate）主要用于删除某个参数模板。
     @inlinable @discardableResult
     public func deleteParameterTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteParameterTemplateResponse {
-        try await self.deleteParameterTemplate(DeleteParameterTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteParameterTemplateRequest(templateId: templateId)
+        return try await self.client.execute(action: "DeleteParameterTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

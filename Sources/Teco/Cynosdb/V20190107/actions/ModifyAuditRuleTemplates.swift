@@ -69,12 +69,14 @@ extension Cynosdb {
     /// 修改审计规则模版
     @inlinable @discardableResult
     public func modifyAuditRuleTemplates(ruleTemplateIds: [String], ruleFilters: [RuleFilters]? = nil, ruleTemplateName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAuditRuleTemplatesResponse> {
-        self.modifyAuditRuleTemplates(ModifyAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds, ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds, ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description)
+        return self.client.execute(action: "ModifyAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改审计规则模版
     @inlinable @discardableResult
     public func modifyAuditRuleTemplates(ruleTemplateIds: [String], ruleFilters: [RuleFilters]? = nil, ruleTemplateName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAuditRuleTemplatesResponse {
-        try await self.modifyAuditRuleTemplates(ModifyAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds, ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAuditRuleTemplatesRequest(ruleTemplateIds: ruleTemplateIds, ruleFilters: ruleFilters, ruleTemplateName: ruleTemplateName, description: description)
+        return try await self.client.execute(action: "ModifyAuditRuleTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

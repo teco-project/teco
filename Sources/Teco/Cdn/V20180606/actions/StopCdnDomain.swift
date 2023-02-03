@@ -64,7 +64,8 @@ extension Cdn {
     /// 注意：停止加速服务后，访问至加速节点的请求将会直接返回 404。为避免对您的业务造成影响，请在停止加速服务前将解析切走。
     @inlinable @discardableResult
     public func stopCdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopCdnDomainResponse> {
-        self.stopCdnDomain(StopCdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = StopCdnDomainRequest(domain: domain)
+        return self.client.execute(action: "StopCdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用加速域名
@@ -73,6 +74,7 @@ extension Cdn {
     /// 注意：停止加速服务后，访问至加速节点的请求将会直接返回 404。为避免对您的业务造成影响，请在停止加速服务前将解析切走。
     @inlinable @discardableResult
     public func stopCdnDomain(domain: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopCdnDomainResponse {
-        try await self.stopCdnDomain(StopCdnDomainRequest(domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = StopCdnDomainRequest(domain: domain)
+        return try await self.client.execute(action: "StopCdnDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

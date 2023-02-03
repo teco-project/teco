@@ -80,12 +80,14 @@ extension Youmall {
     /// 查询客户单次到场轨迹明细
     @inlinable
     public func describePersonTraceDetail(mallId: String, personId: String, traceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonTraceDetailResponse> {
-        self.describePersonTraceDetail(DescribePersonTraceDetailRequest(mallId: mallId, personId: personId, traceId: traceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePersonTraceDetailRequest(mallId: mallId, personId: personId, traceId: traceId)
+        return self.client.execute(action: "DescribePersonTraceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户单次到场轨迹明细
     @inlinable
     public func describePersonTraceDetail(mallId: String, personId: String, traceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonTraceDetailResponse {
-        try await self.describePersonTraceDetail(DescribePersonTraceDetailRequest(mallId: mallId, personId: personId, traceId: traceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePersonTraceDetailRequest(mallId: mallId, personId: personId, traceId: traceId)
+        return try await self.client.execute(action: "DescribePersonTraceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

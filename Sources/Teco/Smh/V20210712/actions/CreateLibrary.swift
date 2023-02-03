@@ -84,7 +84,8 @@ extension Smh {
     /// 创建 PaaS 服务媒体库
     @inlinable
     public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLibraryResponse> {
-        self.createLibrary(CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark)
+        return self.client.execute(action: "CreateLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建媒体库
@@ -92,6 +93,7 @@ extension Smh {
     /// 创建 PaaS 服务媒体库
     @inlinable
     public func createLibrary(name: String, bucketName: String, bucketRegion: String, libraryExtension: LibraryExtension, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLibraryResponse {
-        try await self.createLibrary(CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateLibraryRequest(name: name, bucketName: bucketName, bucketRegion: bucketRegion, libraryExtension: libraryExtension, remark: remark)
+        return try await self.client.execute(action: "CreateLibrary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

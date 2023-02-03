@@ -58,12 +58,14 @@ extension Rum {
     /// 获取应用上报抽样信息
     @inlinable
     public func describeProjectLimits(projectID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectLimitsResponse> {
-        self.describeProjectLimits(DescribeProjectLimitsRequest(projectID: projectID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectLimitsRequest(projectID: projectID)
+        return self.client.execute(action: "DescribeProjectLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用上报抽样信息
     @inlinable
     public func describeProjectLimits(projectID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectLimitsResponse {
-        try await self.describeProjectLimits(DescribeProjectLimitsRequest(projectID: projectID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectLimitsRequest(projectID: projectID)
+        return try await self.client.execute(action: "DescribeProjectLimits", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

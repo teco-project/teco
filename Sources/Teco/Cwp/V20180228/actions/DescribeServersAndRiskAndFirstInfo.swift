@@ -72,7 +72,8 @@ extension Cwp {
     /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
     @inlinable
     public func describeServersAndRiskAndFirstInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServersAndRiskAndFirstInfoResponse> {
-        self.describeServersAndRiskAndFirstInfo(DescribeServersAndRiskAndFirstInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServersAndRiskAndFirstInfoRequest()
+        return self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获文件查杀概览信息
@@ -80,6 +81,7 @@ extension Cwp {
     /// 获取待处理风险文件数+影响服务器数+是否试用检测+最近检测时间
     @inlinable
     public func describeServersAndRiskAndFirstInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServersAndRiskAndFirstInfoResponse {
-        try await self.describeServersAndRiskAndFirstInfo(DescribeServersAndRiskAndFirstInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServersAndRiskAndFirstInfoRequest()
+        return try await self.client.execute(action: "DescribeServersAndRiskAndFirstInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

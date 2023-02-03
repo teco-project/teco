@@ -54,12 +54,14 @@ extension Dts {
     /// 启动同步任务
     @inlinable @discardableResult
     public func startSyncJob(jobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartSyncJobResponse> {
-        self.startSyncJob(StartSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = StartSyncJobRequest(jobId: jobId)
+        return self.client.execute(action: "StartSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动同步任务
     @inlinable @discardableResult
     public func startSyncJob(jobId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartSyncJobResponse {
-        try await self.startSyncJob(StartSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = StartSyncJobRequest(jobId: jobId)
+        return try await self.client.execute(action: "StartSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

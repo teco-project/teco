@@ -71,12 +71,14 @@ extension Monitor {
     /// 拉取Prometheus聚合规则yaml列表
     @inlinable @discardableResult
     public func describePrometheusRecordRuleYaml(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusRecordRuleYamlResponse> {
-        self.describePrometheusRecordRuleYaml(DescribePrometheusRecordRuleYamlRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusRecordRuleYamlRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribePrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取Prometheus聚合规则yaml列表
     @inlinable @discardableResult
     public func describePrometheusRecordRuleYaml(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusRecordRuleYamlResponse {
-        try await self.describePrometheusRecordRuleYaml(DescribePrometheusRecordRuleYamlRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusRecordRuleYamlRequest(instanceId: instanceId, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribePrometheusRecordRuleYaml", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

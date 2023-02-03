@@ -76,7 +76,8 @@ extension Sqlserver {
     /// 您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
     @inlinable @discardableResult
     public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter], waitSwitch: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamResponse> {
-        self.modifyInstanceParam(ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, waitSwitch: waitSwitch), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, waitSwitch: waitSwitch)
+        return self.client.execute(action: "ModifyInstanceParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例参数
@@ -86,6 +87,7 @@ extension Sqlserver {
     /// 您可以通过DescribeInstanceParams接口查询修改参数时是否会重启实例，以免导致您的实例不符合预期重启。
     @inlinable @discardableResult
     public func modifyInstanceParam(instanceIds: [String], paramList: [Parameter], waitSwitch: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamResponse {
-        try await self.modifyInstanceParam(ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, waitSwitch: waitSwitch), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceParamRequest(instanceIds: instanceIds, paramList: paramList, waitSwitch: waitSwitch)
+        return try await self.client.execute(action: "ModifyInstanceParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

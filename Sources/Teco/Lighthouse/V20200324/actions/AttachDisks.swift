@@ -70,7 +70,8 @@ extension Lighthouse {
     /// 本接口（AttachDisks）用于挂载一个或多个云硬盘。
     @inlinable @discardableResult
     public func attachDisks(diskIds: [String], instanceId: String, renewFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AttachDisksResponse> {
-        self.attachDisks(AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
+        let input = AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag)
+        return self.client.execute(action: "AttachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 挂载云硬盘
@@ -78,6 +79,7 @@ extension Lighthouse {
     /// 本接口（AttachDisks）用于挂载一个或多个云硬盘。
     @inlinable @discardableResult
     public func attachDisks(diskIds: [String], instanceId: String, renewFlag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
-        try await self.attachDisks(AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
+        let input = AttachDisksRequest(diskIds: diskIds, instanceId: instanceId, renewFlag: renewFlag)
+        return try await self.client.execute(action: "AttachDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

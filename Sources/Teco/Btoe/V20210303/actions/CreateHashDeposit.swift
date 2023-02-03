@@ -92,7 +92,8 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositResponse> {
-        self.createHashDeposit(CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
+        return self.client.execute(action: "CreateHashDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 哈希上链存证
@@ -101,6 +102,7 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDeposit(evidenceName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositResponse {
-        try await self.createHashDeposit(CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateHashDepositRequest(evidenceName: evidenceName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
+        return try await self.client.execute(action: "CreateHashDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

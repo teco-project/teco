@@ -70,7 +70,8 @@ extension Iotvideoindustry {
     /// 本接口(ModifyDeviceData)用于编辑设备信息。
     @inlinable
     public func modifyDeviceData(deviceId: String, nickName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDeviceDataResponse> {
-        self.modifyDeviceData(ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName)
+        return self.client.execute(action: "ModifyDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑设备信息
@@ -78,6 +79,7 @@ extension Iotvideoindustry {
     /// 本接口(ModifyDeviceData)用于编辑设备信息。
     @inlinable
     public func modifyDeviceData(deviceId: String, nickName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDeviceDataResponse {
-        try await self.modifyDeviceData(ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDeviceDataRequest(deviceId: deviceId, nickName: nickName)
+        return try await self.client.execute(action: "ModifyDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

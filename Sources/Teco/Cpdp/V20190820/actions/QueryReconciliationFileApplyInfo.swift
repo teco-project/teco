@@ -78,12 +78,14 @@ extension Cpdp {
     /// 聚鑫-查询对账文件申请结果
     @inlinable
     public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryReconciliationFileApplyInfoResponse> {
-        self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment)
+        return self.client.execute(action: "QueryReconciliationFileApplyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询对账文件申请结果
     @inlinable
     public func queryReconciliationFileApplyInfo(applyFileId: String, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryReconciliationFileApplyInfoResponse {
-        try await self.queryReconciliationFileApplyInfo(QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryReconciliationFileApplyInfoRequest(applyFileId: applyFileId, midasEnvironment: midasEnvironment)
+        return try await self.client.execute(action: "QueryReconciliationFileApplyInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

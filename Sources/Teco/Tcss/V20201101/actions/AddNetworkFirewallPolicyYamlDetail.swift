@@ -77,12 +77,14 @@ extension Tcss {
     /// 容器网络创建Yaml网络策略添加任务
     @inlinable
     public func addNetworkFirewallPolicyYamlDetail(clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddNetworkFirewallPolicyYamlDetailResponse> {
-        self.addNetworkFirewallPolicyYamlDetail(AddNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, policyName: policyName, yaml: yaml, description: description), region: region, logger: logger, on: eventLoop)
+        let input = AddNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, policyName: policyName, yaml: yaml, description: description)
+        return self.client.execute(action: "AddNetworkFirewallPolicyYamlDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 容器网络创建Yaml网络策略添加任务
     @inlinable
     public func addNetworkFirewallPolicyYamlDetail(clusterId: String, policyName: String, yaml: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddNetworkFirewallPolicyYamlDetailResponse {
-        try await self.addNetworkFirewallPolicyYamlDetail(AddNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, policyName: policyName, yaml: yaml, description: description), region: region, logger: logger, on: eventLoop)
+        let input = AddNetworkFirewallPolicyYamlDetailRequest(clusterId: clusterId, policyName: policyName, yaml: yaml, description: description)
+        return try await self.client.execute(action: "AddNetworkFirewallPolicyYamlDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -158,12 +158,14 @@ extension Cloudhsm {
     /// 获取VSM属性
     @inlinable
     public func describeVsmAttributes(resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVsmAttributesResponse> {
-        self.describeVsmAttributes(DescribeVsmAttributesRequest(resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVsmAttributesRequest(resourceId: resourceId)
+        return self.client.execute(action: "DescribeVsmAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取VSM属性
     @inlinable
     public func describeVsmAttributes(resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVsmAttributesResponse {
-        try await self.describeVsmAttributes(DescribeVsmAttributesRequest(resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVsmAttributesRequest(resourceId: resourceId)
+        return try await self.client.execute(action: "DescribeVsmAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

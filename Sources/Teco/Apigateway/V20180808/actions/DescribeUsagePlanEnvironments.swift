@@ -83,7 +83,8 @@ extension Apigateway {
     /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
     @inlinable
     public func describeUsagePlanEnvironments(usagePlanId: String, bindType: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsagePlanEnvironmentsResponse> {
-        self.describeUsagePlanEnvironments(DescribeUsagePlanEnvironmentsRequest(usagePlanId: usagePlanId, bindType: bindType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUsagePlanEnvironmentsRequest(usagePlanId: usagePlanId, bindType: bindType, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeUsagePlanEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询使用计划绑定环境列表
@@ -92,6 +93,7 @@ extension Apigateway {
     /// 用户在绑定了某个使用计划到环境后，可使用本接口查询这个使用计划绑定的所有服务的环境。
     @inlinable
     public func describeUsagePlanEnvironments(usagePlanId: String, bindType: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsagePlanEnvironmentsResponse {
-        try await self.describeUsagePlanEnvironments(DescribeUsagePlanEnvironmentsRequest(usagePlanId: usagePlanId, bindType: bindType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUsagePlanEnvironmentsRequest(usagePlanId: usagePlanId, bindType: bindType, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeUsagePlanEnvironments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

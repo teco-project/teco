@@ -60,7 +60,8 @@ extension Mps {
     /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
     @inlinable @discardableResult
     public func deleteWorkflow(workflowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWorkflowResponse> {
-        self.deleteWorkflow(DeleteWorkflowRequest(workflowId: workflowId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWorkflowRequest(workflowId: workflowId)
+        return self.client.execute(action: "DeleteWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除工作流
@@ -68,6 +69,7 @@ extension Mps {
     /// 删除工作流。对于已启用的工作流，需要禁用后才能删除。
     @inlinable @discardableResult
     public func deleteWorkflow(workflowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWorkflowResponse {
-        try await self.deleteWorkflow(DeleteWorkflowRequest(workflowId: workflowId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWorkflowRequest(workflowId: workflowId)
+        return try await self.client.execute(action: "DeleteWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

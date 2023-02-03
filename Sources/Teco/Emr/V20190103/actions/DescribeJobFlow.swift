@@ -75,7 +75,8 @@ extension Emr {
     /// 查询流程任务
     @inlinable
     public func describeJobFlow(jobFlowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobFlowResponse> {
-        self.describeJobFlow(DescribeJobFlowRequest(jobFlowId: jobFlowId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeJobFlowRequest(jobFlowId: jobFlowId)
+        return self.client.execute(action: "DescribeJobFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流程作业状态
@@ -83,6 +84,7 @@ extension Emr {
     /// 查询流程任务
     @inlinable
     public func describeJobFlow(jobFlowId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobFlowResponse {
-        try await self.describeJobFlow(DescribeJobFlowRequest(jobFlowId: jobFlowId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeJobFlowRequest(jobFlowId: jobFlowId)
+        return try await self.client.execute(action: "DescribeJobFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

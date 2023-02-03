@@ -89,12 +89,14 @@ extension Iotvideoindustry {
     /// 创建消息转发配置
     @inlinable
     public func createMessageForward(regionId: String, regionName: String, instance: String, instanceName: String, messageType: String, topicId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMessageForwardResponse> {
-        self.createMessageForward(CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName)
+        return self.client.execute(action: "CreateMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建消息转发配置
     @inlinable
     public func createMessageForward(regionId: String, regionName: String, instance: String, instanceName: String, messageType: String, topicId: String, topicName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMessageForwardResponse {
-        try await self.createMessageForward(CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = CreateMessageForwardRequest(regionId: regionId, regionName: regionName, instance: instance, instanceName: instanceName, messageType: messageType, topicId: topicId, topicName: topicName)
+        return try await self.client.execute(action: "CreateMessageForward", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

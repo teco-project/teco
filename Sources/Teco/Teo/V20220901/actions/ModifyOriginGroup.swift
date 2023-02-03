@@ -91,12 +91,14 @@ extension Teo {
     /// 修改源站组
     @inlinable @discardableResult
     public func modifyOriginGroup(zoneId: String, originGroupId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyOriginGroupResponse> {
-        self.modifyOriginGroup(ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), region: region, logger: logger, on: eventLoop)
+        let input = ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader)
+        return self.client.execute(action: "ModifyOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改源站组
     @inlinable @discardableResult
     public func modifyOriginGroup(zoneId: String, originGroupId: String, originType: String, originGroupName: String, configurationType: String, originRecords: [OriginRecord], hostHeader: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyOriginGroupResponse {
-        try await self.modifyOriginGroup(ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader), region: region, logger: logger, on: eventLoop)
+        let input = ModifyOriginGroupRequest(zoneId: zoneId, originGroupId: originGroupId, originType: originType, originGroupName: originGroupName, configurationType: configurationType, originRecords: originRecords, hostHeader: hostHeader)
+        return try await self.client.execute(action: "ModifyOriginGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

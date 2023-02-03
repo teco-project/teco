@@ -60,7 +60,8 @@ extension Teo {
     /// 删除站点。
     @inlinable @discardableResult
     public func deleteZone(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteZoneResponse> {
-        self.deleteZone(DeleteZoneRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteZoneRequest(zoneId: zoneId)
+        return self.client.execute(action: "DeleteZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除站点
@@ -68,6 +69,7 @@ extension Teo {
     /// 删除站点。
     @inlinable @discardableResult
     public func deleteZone(zoneId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteZoneResponse {
-        try await self.deleteZone(DeleteZoneRequest(zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteZoneRequest(zoneId: zoneId)
+        return try await self.client.execute(action: "DeleteZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

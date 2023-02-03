@@ -96,7 +96,8 @@ extension Cdb {
     /// 本接口(DescribeDBFeatures)用于查询云数据库版本属性，包括是否支持数据库加密、数据库审计等功能。
     @inlinable
     public func describeDBFeatures(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBFeaturesResponse> {
-        self.describeDBFeatures(DescribeDBFeaturesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBFeaturesRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeDBFeatures", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例版本属性
@@ -104,6 +105,7 @@ extension Cdb {
     /// 本接口(DescribeDBFeatures)用于查询云数据库版本属性，包括是否支持数据库加密、数据库审计等功能。
     @inlinable
     public func describeDBFeatures(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBFeaturesResponse {
-        try await self.describeDBFeatures(DescribeDBFeaturesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBFeaturesRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDBFeatures", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

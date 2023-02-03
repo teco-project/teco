@@ -107,12 +107,14 @@ extension Ocr {
     /// 菲律宾VoteID识别
     @inlinable
     public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizePhilippinesVoteIDOCRResponse> {
-        self.recognizePhilippinesVoteIDOCR(RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl)
+        return self.client.execute(action: "RecognizePhilippinesVoteIDOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 菲律宾VoteID识别
     @inlinable
     public func recognizePhilippinesVoteIDOCR(returnHeadImage: Bool, imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizePhilippinesVoteIDOCRResponse {
-        try await self.recognizePhilippinesVoteIDOCR(RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = RecognizePhilippinesVoteIDOCRRequest(returnHeadImage: returnHeadImage, imageBase64: imageBase64, imageUrl: imageUrl)
+        return try await self.client.execute(action: "RecognizePhilippinesVoteIDOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

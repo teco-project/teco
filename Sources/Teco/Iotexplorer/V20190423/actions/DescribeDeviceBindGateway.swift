@@ -84,12 +84,14 @@ extension Iotexplorer {
     /// 查询设备绑定的网关设备
     @inlinable
     public func describeDeviceBindGateway(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceBindGatewayResponse> {
-        self.describeDeviceBindGateway(DescribeDeviceBindGatewayRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceBindGatewayRequest(productId: productId, deviceName: deviceName)
+        return self.client.execute(action: "DescribeDeviceBindGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询设备绑定的网关设备
     @inlinable
     public func describeDeviceBindGateway(productId: String, deviceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceBindGatewayResponse {
-        try await self.describeDeviceBindGateway(DescribeDeviceBindGatewayRequest(productId: productId, deviceName: deviceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceBindGatewayRequest(productId: productId, deviceName: deviceName)
+        return try await self.client.execute(action: "DescribeDeviceBindGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

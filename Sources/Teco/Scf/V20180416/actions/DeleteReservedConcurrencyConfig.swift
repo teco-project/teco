@@ -65,7 +65,8 @@ extension Scf {
     /// 删除函数的最大独占配额配置。
     @inlinable @discardableResult
     public func deleteReservedConcurrencyConfig(functionName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReservedConcurrencyConfigResponse> {
-        self.deleteReservedConcurrencyConfig(DeleteReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DeleteReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace)
+        return self.client.execute(action: "DeleteReservedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除函数最大独占配额
@@ -73,6 +74,7 @@ extension Scf {
     /// 删除函数的最大独占配额配置。
     @inlinable @discardableResult
     public func deleteReservedConcurrencyConfig(functionName: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReservedConcurrencyConfigResponse {
-        try await self.deleteReservedConcurrencyConfig(DeleteReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DeleteReservedConcurrencyConfigRequest(functionName: functionName, namespace: namespace)
+        return try await self.client.execute(action: "DeleteReservedConcurrencyConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

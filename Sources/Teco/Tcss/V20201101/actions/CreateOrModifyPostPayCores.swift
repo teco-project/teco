@@ -60,7 +60,8 @@ extension Tcss {
     /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
     @inlinable @discardableResult
     public func createOrModifyPostPayCores(coresCnt: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrModifyPostPayCoresResponse> {
-        self.createOrModifyPostPayCores(CreateOrModifyPostPayCoresRequest(coresCnt: coresCnt), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrModifyPostPayCoresRequest(coresCnt: coresCnt)
+        return self.client.execute(action: "CreateOrModifyPostPayCores", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建或者编辑弹性计费上限
@@ -68,6 +69,7 @@ extension Tcss {
     /// CreateOrModifyPostPayCores  创建或者编辑弹性计费上限
     @inlinable @discardableResult
     public func createOrModifyPostPayCores(coresCnt: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrModifyPostPayCoresResponse {
-        try await self.createOrModifyPostPayCores(CreateOrModifyPostPayCoresRequest(coresCnt: coresCnt), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrModifyPostPayCoresRequest(coresCnt: coresCnt)
+        return try await self.client.execute(action: "CreateOrModifyPostPayCores", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

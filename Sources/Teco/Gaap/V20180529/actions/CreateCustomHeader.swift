@@ -65,7 +65,8 @@ extension Gaap {
     /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
     @inlinable @discardableResult
     public func createCustomHeader(ruleId: String, headers: [HttpHeaderParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCustomHeaderResponse> {
-        self.createCustomHeader(CreateCustomHeaderRequest(ruleId: ruleId, headers: headers), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomHeaderRequest(ruleId: ruleId, headers: headers)
+        return self.client.execute(action: "CreateCustomHeader", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义header
@@ -73,6 +74,7 @@ extension Gaap {
     /// 本接口（CreateCustomHeader）用于创建HTTP/HTTPS监听器的自定义header，客户端请求通过访问该监听器时，会将监听器中配置的header信息发送到源站。
     @inlinable @discardableResult
     public func createCustomHeader(ruleId: String, headers: [HttpHeaderParam]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomHeaderResponse {
-        try await self.createCustomHeader(CreateCustomHeaderRequest(ruleId: ruleId, headers: headers), region: region, logger: logger, on: eventLoop)
+        let input = CreateCustomHeaderRequest(ruleId: ruleId, headers: headers)
+        return try await self.client.execute(action: "CreateCustomHeader", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

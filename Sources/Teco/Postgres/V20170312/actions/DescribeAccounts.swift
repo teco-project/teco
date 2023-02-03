@@ -88,7 +88,8 @@ extension Postgres {
     /// 本接口（DescribeAccounts）用于获取实例用户列表。
     @inlinable
     public func describeAccounts(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountsResponse> {
-        self.describeAccounts(DescribeAccountsRequest(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountsRequest(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
+        return self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例用户列表
@@ -96,6 +97,7 @@ extension Postgres {
     /// 本接口（DescribeAccounts）用于获取实例用户列表。
     @inlinable
     public func describeAccounts(dbInstanceId: String, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountsResponse {
-        try await self.describeAccounts(DescribeAccountsRequest(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountsRequest(dbInstanceId: dbInstanceId, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
+        return try await self.client.execute(action: "DescribeAccounts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

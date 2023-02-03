@@ -70,7 +70,8 @@ extension Ecm {
     /// 对某个路由表名称和所有路由策略（Route）进行重新设置
     @inlinable @discardableResult
     public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetRoutesResponse> {
-        self.resetRoutes(ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes)
+        return self.client.execute(action: "ResetRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置路由表名称和路由策略
@@ -78,6 +79,7 @@ extension Ecm {
     /// 对某个路由表名称和所有路由策略（Route）进行重新设置
     @inlinable @discardableResult
     public func resetRoutes(routeTableId: String, routeTableName: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetRoutesResponse {
-        try await self.resetRoutes(ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = ResetRoutesRequest(routeTableId: routeTableId, routeTableName: routeTableName, routes: routes)
+        return try await self.client.execute(action: "ResetRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

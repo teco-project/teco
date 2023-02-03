@@ -124,7 +124,8 @@ extension Teo {
     /// 本接口（DescribeTimingL7SourceData）查询七层回源分析时序数据。
     @inlinable
     public func describeTimingL7SourceData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimingL7SourceDataResponse> {
-        self.describeTimingL7SourceData(DescribeTimingL7SourceDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, interval: interval, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimingL7SourceDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, interval: interval, filters: filters, area: area)
+        return self.client.execute(action: "DescribeTimingL7SourceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询回源分析时序数据
@@ -132,6 +133,7 @@ extension Teo {
     /// 本接口（DescribeTimingL7SourceData）查询七层回源分析时序数据。
     @inlinable
     public func describeTimingL7SourceData(startTime: Date, endTime: Date, metricNames: [String], zoneIds: [String]? = nil, interval: String? = nil, filters: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimingL7SourceDataResponse {
-        try await self.describeTimingL7SourceData(DescribeTimingL7SourceDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, interval: interval, filters: filters, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimingL7SourceDataRequest(startTime: startTime, endTime: endTime, metricNames: metricNames, zoneIds: zoneIds, interval: interval, filters: filters, area: area)
+        return try await self.client.execute(action: "DescribeTimingL7SourceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

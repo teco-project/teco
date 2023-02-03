@@ -129,7 +129,8 @@ extension Mariadb {
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     @inlinable
     public func describeDBSlowLogs(instanceId: String, offset: UInt64, limit: UInt64, startTime: Date, endTime: Date? = nil, db: String? = nil, orderBy: String? = nil, orderByType: String? = nil, slave: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBSlowLogsResponse> {
-        self.describeDBSlowLogs(DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave)
+        return self.client.execute(action: "DescribeDBSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询慢查询日志列表
@@ -137,6 +138,7 @@ extension Mariadb {
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     @inlinable
     public func describeDBSlowLogs(instanceId: String, offset: UInt64, limit: UInt64, startTime: Date, endTime: Date? = nil, db: String? = nil, orderBy: String? = nil, orderByType: String? = nil, slave: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBSlowLogsResponse {
-        try await self.describeDBSlowLogs(DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBSlowLogsRequest(instanceId: instanceId, offset: offset, limit: limit, startTime: startTime, endTime: endTime, db: db, orderBy: orderBy, orderByType: orderByType, slave: slave)
+        return try await self.client.execute(action: "DescribeDBSlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

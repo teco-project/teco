@@ -75,7 +75,8 @@ extension Trp {
     /// 异步导入激活码包，如果是第三方码包，需要域名跟配置的匹配
     @inlinable
     public func createTraceCodesAsync(corpId: UInt64? = nil, batchId: String? = nil, fileKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTraceCodesAsyncResponse> {
-        self.createTraceCodesAsync(CreateTraceCodesAsyncRequest(corpId: corpId, batchId: batchId, fileKey: fileKey), region: region, logger: logger, on: eventLoop)
+        let input = CreateTraceCodesAsyncRequest(corpId: corpId, batchId: batchId, fileKey: fileKey)
+        return self.client.execute(action: "CreateTraceCodesAsync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 异步导入激活码包
@@ -83,6 +84,7 @@ extension Trp {
     /// 异步导入激活码包，如果是第三方码包，需要域名跟配置的匹配
     @inlinable
     public func createTraceCodesAsync(corpId: UInt64? = nil, batchId: String? = nil, fileKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTraceCodesAsyncResponse {
-        try await self.createTraceCodesAsync(CreateTraceCodesAsyncRequest(corpId: corpId, batchId: batchId, fileKey: fileKey), region: region, logger: logger, on: eventLoop)
+        let input = CreateTraceCodesAsyncRequest(corpId: corpId, batchId: batchId, fileKey: fileKey)
+        return try await self.client.execute(action: "CreateTraceCodesAsync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

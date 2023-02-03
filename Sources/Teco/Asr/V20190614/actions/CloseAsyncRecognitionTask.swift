@@ -60,7 +60,8 @@ extension Asr {
     /// 本接口用于关闭语音流异步识别任务。
     @inlinable @discardableResult
     public func closeAsyncRecognitionTask(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseAsyncRecognitionTaskResponse> {
-        self.closeAsyncRecognitionTask(CloseAsyncRecognitionTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = CloseAsyncRecognitionTaskRequest(taskId: taskId)
+        return self.client.execute(action: "CloseAsyncRecognitionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 语音流异步识别任务关闭
@@ -68,6 +69,7 @@ extension Asr {
     /// 本接口用于关闭语音流异步识别任务。
     @inlinable @discardableResult
     public func closeAsyncRecognitionTask(taskId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseAsyncRecognitionTaskResponse {
-        try await self.closeAsyncRecognitionTask(CloseAsyncRecognitionTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = CloseAsyncRecognitionTaskRequest(taskId: taskId)
+        return try await self.client.execute(action: "CloseAsyncRecognitionTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

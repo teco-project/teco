@@ -69,7 +69,8 @@ extension Fmu {
     /// 查询视频美颜处理进度
     @inlinable
     public func queryBeautifyVideoJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryBeautifyVideoJobResponse> {
-        self.queryBeautifyVideoJob(QueryBeautifyVideoJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = QueryBeautifyVideoJobRequest(jobId: jobId)
+        return self.client.execute(action: "QueryBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询视频美颜任务
@@ -77,6 +78,7 @@ extension Fmu {
     /// 查询视频美颜处理进度
     @inlinable
     public func queryBeautifyVideoJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryBeautifyVideoJobResponse {
-        try await self.queryBeautifyVideoJob(QueryBeautifyVideoJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = QueryBeautifyVideoJobRequest(jobId: jobId)
+        return try await self.client.execute(action: "QueryBeautifyVideoJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

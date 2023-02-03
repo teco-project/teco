@@ -74,12 +74,14 @@ extension Wedata {
     /// 删除任务告警规则
     @inlinable
     public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTaskAlarmRegularResponse> {
-        self.deleteTaskAlarmRegular(DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType)
+        return self.client.execute(action: "DeleteTaskAlarmRegular", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除任务告警规则
     @inlinable
     public func deleteTaskAlarmRegular(id: String, projectId: String, taskId: String, taskType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTaskAlarmRegularResponse {
-        try await self.deleteTaskAlarmRegular(DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTaskAlarmRegularRequest(id: id, projectId: projectId, taskId: taskId, taskType: taskType)
+        return try await self.client.execute(action: "DeleteTaskAlarmRegular", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

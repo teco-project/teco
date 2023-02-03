@@ -59,12 +59,14 @@ extension Gme {
     /// 查询语音消息转文本热句模型列表
     @inlinable
     public func getCustomizationList(bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomizationListResponse> {
-        self.getCustomizationList(GetCustomizationListRequest(bizId: bizId), region: region, logger: logger, on: eventLoop)
+        let input = GetCustomizationListRequest(bizId: bizId)
+        return self.client.execute(action: "GetCustomizationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询语音消息转文本热句模型列表
     @inlinable
     public func getCustomizationList(bizId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomizationListResponse {
-        try await self.getCustomizationList(GetCustomizationListRequest(bizId: bizId), region: region, logger: logger, on: eventLoop)
+        let input = GetCustomizationListRequest(bizId: bizId)
+        return try await self.client.execute(action: "GetCustomizationList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

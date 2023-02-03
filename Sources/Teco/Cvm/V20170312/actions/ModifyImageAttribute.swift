@@ -76,7 +76,8 @@ extension Cvm {
     /// * 已分享的镜像无法修改属性。
     @inlinable @discardableResult
     public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImageAttributeResponse> {
-        self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
+        let input = ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription)
+        return self.client.execute(action: "ModifyImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改镜像属性
@@ -86,6 +87,7 @@ extension Cvm {
     /// * 已分享的镜像无法修改属性。
     @inlinable @discardableResult
     public func modifyImageAttribute(imageId: String, imageName: String? = nil, imageDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImageAttributeResponse {
-        try await self.modifyImageAttribute(ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription), region: region, logger: logger, on: eventLoop)
+        let input = ModifyImageAttributeRequest(imageId: imageId, imageName: imageName, imageDescription: imageDescription)
+        return try await self.client.execute(action: "ModifyImageAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

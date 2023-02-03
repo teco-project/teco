@@ -92,12 +92,14 @@ extension Cpdp {
     /// 云企付-子商户银行卡绑定结果查询
     @inlinable
     public func queryOpenBankBindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankBindExternalSubMerchantBankAccountResponse> {
-        self.queryOpenBankBindExternalSubMerchantBankAccount(QueryOpenBankBindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankBindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId)
+        return self.client.execute(action: "QueryOpenBankBindExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡绑定结果查询
     @inlinable
     public func queryOpenBankBindExternalSubMerchantBankAccount(channelSubMerchantId: String, channelMerchantId: String, channelApplyId: String? = nil, environment: String? = nil, outApplyId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankBindExternalSubMerchantBankAccountResponse {
-        try await self.queryOpenBankBindExternalSubMerchantBankAccount(QueryOpenBankBindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankBindExternalSubMerchantBankAccountRequest(channelSubMerchantId: channelSubMerchantId, channelMerchantId: channelMerchantId, channelApplyId: channelApplyId, environment: environment, outApplyId: outApplyId)
+        return try await self.client.execute(action: "QueryOpenBankBindExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

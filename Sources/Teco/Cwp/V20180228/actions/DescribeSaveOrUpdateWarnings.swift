@@ -60,7 +60,8 @@ extension Cwp {
     /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
     @inlinable @discardableResult
     public func describeSaveOrUpdateWarnings(warningObjects: [WarningObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaveOrUpdateWarningsResponse> {
-        self.describeSaveOrUpdateWarnings(DescribeSaveOrUpdateWarningsRequest(warningObjects: warningObjects), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSaveOrUpdateWarningsRequest(warningObjects: warningObjects)
+        return self.client.execute(action: "DescribeSaveOrUpdateWarnings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新用户告警设置
@@ -68,6 +69,7 @@ extension Cwp {
     /// 更新或者插入用户告警设置(该接口废弃,请调用 ModifyWarningSetting )
     @inlinable @discardableResult
     public func describeSaveOrUpdateWarnings(warningObjects: [WarningObject]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaveOrUpdateWarningsResponse {
-        try await self.describeSaveOrUpdateWarnings(DescribeSaveOrUpdateWarningsRequest(warningObjects: warningObjects), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSaveOrUpdateWarningsRequest(warningObjects: warningObjects)
+        return try await self.client.execute(action: "DescribeSaveOrUpdateWarnings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,12 +64,14 @@ extension Dnspod {
     /// 设置域名备注
     @inlinable @discardableResult
     public func modifyDomainRemark(domain: String, domainId: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainRemarkResponse> {
-        self.modifyDomainRemark(ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark)
+        return self.client.execute(action: "ModifyDomainRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置域名备注
     @inlinable @discardableResult
     public func modifyDomainRemark(domain: String, domainId: UInt64? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainRemarkResponse {
-        try await self.modifyDomainRemark(ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainRemarkRequest(domain: domain, domainId: domainId, remark: remark)
+        return try await self.client.execute(action: "ModifyDomainRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

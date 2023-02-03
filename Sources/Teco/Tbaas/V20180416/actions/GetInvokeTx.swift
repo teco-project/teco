@@ -101,12 +101,14 @@ extension Tbaas {
     /// Invoke异步调用结果查询
     @inlinable
     public func getInvokeTx(module: String, operation: String, clusterId: String, channelName: String, peerName: String, peerGroup: String, txId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetInvokeTxResponse> {
-        self.getInvokeTx(GetInvokeTxRequest(module: module, operation: operation, clusterId: clusterId, channelName: channelName, peerName: peerName, peerGroup: peerGroup, txId: txId, groupName: groupName), region: region, logger: logger, on: eventLoop)
+        let input = GetInvokeTxRequest(module: module, operation: operation, clusterId: clusterId, channelName: channelName, peerName: peerName, peerGroup: peerGroup, txId: txId, groupName: groupName)
+        return self.client.execute(action: "GetInvokeTx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Invoke异步调用结果查询
     @inlinable
     public func getInvokeTx(module: String, operation: String, clusterId: String, channelName: String, peerName: String, peerGroup: String, txId: String, groupName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetInvokeTxResponse {
-        try await self.getInvokeTx(GetInvokeTxRequest(module: module, operation: operation, clusterId: clusterId, channelName: channelName, peerName: peerName, peerGroup: peerGroup, txId: txId, groupName: groupName), region: region, logger: logger, on: eventLoop)
+        let input = GetInvokeTxRequest(module: module, operation: operation, clusterId: clusterId, channelName: channelName, peerName: peerName, peerGroup: peerGroup, txId: txId, groupName: groupName)
+        return try await self.client.execute(action: "GetInvokeTx", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

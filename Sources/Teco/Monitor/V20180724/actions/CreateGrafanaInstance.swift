@@ -83,12 +83,14 @@ extension Monitor {
     /// 创建 Grafana 实例
     @inlinable
     public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateGrafanaInstanceResponse> {
-        self.createGrafanaInstance(CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
+        let input = CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification)
+        return self.client.execute(action: "CreateGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Grafana 实例
     @inlinable
     public func createGrafanaInstance(instanceName: String, vpcId: String, subnetIds: [String], grafanaInitPassword: String, enableInternet: Bool, tagSpecification: [PrometheusTag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateGrafanaInstanceResponse {
-        try await self.createGrafanaInstance(CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
+        let input = CreateGrafanaInstanceRequest(instanceName: instanceName, vpcId: vpcId, subnetIds: subnetIds, grafanaInitPassword: grafanaInitPassword, enableInternet: enableInternet, tagSpecification: tagSpecification)
+        return try await self.client.execute(action: "CreateGrafanaInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

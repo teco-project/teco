@@ -50,12 +50,14 @@ extension Bm {
     /// 维修任务配置获取
     @inlinable
     public func describeRepairTaskConstant(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepairTaskConstantResponse> {
-        self.describeRepairTaskConstant(DescribeRepairTaskConstantRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRepairTaskConstantRequest()
+        return self.client.execute(action: "DescribeRepairTaskConstant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 维修任务配置获取
     @inlinable
     public func describeRepairTaskConstant(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepairTaskConstantResponse {
-        try await self.describeRepairTaskConstant(DescribeRepairTaskConstantRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRepairTaskConstantRequest()
+        return try await self.client.execute(action: "DescribeRepairTaskConstant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

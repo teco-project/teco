@@ -65,7 +65,8 @@ extension Iotexplorer {
     /// 提供查询LoRa自定义频点详情的能力
     @inlinable
     public func describeLoRaFrequency(freqId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoRaFrequencyResponse> {
-        self.describeLoRaFrequency(DescribeLoRaFrequencyRequest(freqId: freqId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoRaFrequencyRequest(freqId: freqId)
+        return self.client.execute(action: "DescribeLoRaFrequency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取LoRa自定义频点详情
@@ -73,6 +74,7 @@ extension Iotexplorer {
     /// 提供查询LoRa自定义频点详情的能力
     @inlinable
     public func describeLoRaFrequency(freqId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoRaFrequencyResponse {
-        try await self.describeLoRaFrequency(DescribeLoRaFrequencyRequest(freqId: freqId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoRaFrequencyRequest(freqId: freqId)
+        return try await self.client.execute(action: "DescribeLoRaFrequency", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

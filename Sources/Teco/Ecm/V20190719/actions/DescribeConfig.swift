@@ -75,7 +75,8 @@ extension Ecm {
     /// 获取带宽硬盘等数据的限制
     @inlinable
     public func describeConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigResponse> {
-        self.describeConfig(DescribeConfigRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigRequest()
+        return self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取配置限制信息
@@ -83,6 +84,7 @@ extension Ecm {
     /// 获取带宽硬盘等数据的限制
     @inlinable
     public func describeConfig(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigResponse {
-        try await self.describeConfig(DescribeConfigRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigRequest()
+        return try await self.client.execute(action: "DescribeConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

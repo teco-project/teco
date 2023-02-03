@@ -120,7 +120,8 @@ extension Tke {
     /// 升级集群中已安装的应用
     @inlinable
     public func upgradeClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeClusterReleaseResponse> {
-        self.upgradeClusterRelease(UpgradeClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType)
+        return self.client.execute(action: "UpgradeClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群升级应用
@@ -128,6 +129,7 @@ extension Tke {
     /// 升级集群中已安装的应用
     @inlinable
     public func upgradeClusterRelease(clusterId: String, name: String, namespace: String, chart: String, values: ReleaseValues? = nil, chartFrom: String? = nil, chartVersion: String? = nil, chartRepoURL: String? = nil, username: String? = nil, password: String? = nil, chartNamespace: String? = nil, clusterType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeClusterReleaseResponse {
-        try await self.upgradeClusterRelease(UpgradeClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeClusterReleaseRequest(clusterId: clusterId, name: name, namespace: namespace, chart: chart, values: values, chartFrom: chartFrom, chartVersion: chartVersion, chartRepoURL: chartRepoURL, username: username, password: password, chartNamespace: chartNamespace, clusterType: clusterType)
+        return try await self.client.execute(action: "UpgradeClusterRelease", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

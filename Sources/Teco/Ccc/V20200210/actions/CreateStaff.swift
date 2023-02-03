@@ -75,7 +75,8 @@ extension Ccc {
     /// 创建客服账号。
     @inlinable
     public func createStaff(sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateStaffResponse> {
-        self.createStaff(CreateStaffRequest(sdkAppId: sdkAppId, staffs: staffs, sendPassword: sendPassword), region: region, logger: logger, on: eventLoop)
+        let input = CreateStaffRequest(sdkAppId: sdkAppId, staffs: staffs, sendPassword: sendPassword)
+        return self.client.execute(action: "CreateStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建客服账号
@@ -83,6 +84,7 @@ extension Ccc {
     /// 创建客服账号。
     @inlinable
     public func createStaff(sdkAppId: Int64, staffs: [SeatUserInfo], sendPassword: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStaffResponse {
-        try await self.createStaff(CreateStaffRequest(sdkAppId: sdkAppId, staffs: staffs, sendPassword: sendPassword), region: region, logger: logger, on: eventLoop)
+        let input = CreateStaffRequest(sdkAppId: sdkAppId, staffs: staffs, sendPassword: sendPassword)
+        return try await self.client.execute(action: "CreateStaff", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

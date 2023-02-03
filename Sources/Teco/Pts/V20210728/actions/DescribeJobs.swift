@@ -123,12 +123,14 @@ extension Pts {
     /// 查询任务列表
     @inlinable
     public func describeJobs(scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobsResponse> {
-        self.describeJobs(DescribeJobsRequest(scenarioIds: scenarioIds, projectIds: projectIds, offset: offset, limit: limit, jobIds: jobIds, orderBy: orderBy, ascend: ascend, startTime: startTime, endTime: endTime, debug: debug, status: status), region: region, logger: logger, on: eventLoop)
+        let input = DescribeJobsRequest(scenarioIds: scenarioIds, projectIds: projectIds, offset: offset, limit: limit, jobIds: jobIds, orderBy: orderBy, ascend: ascend, startTime: startTime, endTime: endTime, debug: debug, status: status)
+        return self.client.execute(action: "DescribeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务列表
     @inlinable
     public func describeJobs(scenarioIds: [String], projectIds: [String], offset: Int64? = nil, limit: Int64? = nil, jobIds: [String]? = nil, orderBy: String? = nil, ascend: Bool? = nil, startTime: Date? = nil, endTime: Date? = nil, debug: Bool? = nil, status: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
-        try await self.describeJobs(DescribeJobsRequest(scenarioIds: scenarioIds, projectIds: projectIds, offset: offset, limit: limit, jobIds: jobIds, orderBy: orderBy, ascend: ascend, startTime: startTime, endTime: endTime, debug: debug, status: status), region: region, logger: logger, on: eventLoop)
+        let input = DescribeJobsRequest(scenarioIds: scenarioIds, projectIds: projectIds, offset: offset, limit: limit, jobIds: jobIds, orderBy: orderBy, ascend: ascend, startTime: startTime, endTime: endTime, debug: debug, status: status)
+        return try await self.client.execute(action: "DescribeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -88,12 +88,14 @@ extension Cpdp {
     /// 云支付-查询合同明细接口
     @inlinable
     public func viewContract(openId: String, openKey: String, outContractId: String? = nil, contractId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ViewContractResponse> {
-        self.viewContract(ViewContractRequest(openId: openId, openKey: openKey, outContractId: outContractId, contractId: contractId, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = ViewContractRequest(openId: openId, openKey: openKey, outContractId: outContractId, contractId: contractId, profile: profile)
+        return self.client.execute(action: "ViewContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询合同明细接口
     @inlinable
     public func viewContract(openId: String, openKey: String, outContractId: String? = nil, contractId: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ViewContractResponse {
-        try await self.viewContract(ViewContractRequest(openId: openId, openKey: openKey, outContractId: outContractId, contractId: contractId, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = ViewContractRequest(openId: openId, openKey: openKey, outContractId: outContractId, contractId: contractId, profile: profile)
+        return try await self.client.execute(action: "ViewContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

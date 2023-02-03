@@ -68,12 +68,14 @@ extension Tem {
     /// 服务停止
     @inlinable
     public func stopApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopApplicationResponse> {
-        self.stopApplication(StopApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
+        let input = StopApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId)
+        return self.client.execute(action: "StopApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务停止
     @inlinable
     public func stopApplication(applicationId: String, sourceChannel: Int64? = nil, environmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopApplicationResponse {
-        try await self.stopApplication(StopApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId), region: region, logger: logger, on: eventLoop)
+        let input = StopApplicationRequest(applicationId: applicationId, sourceChannel: sourceChannel, environmentId: environmentId)
+        return try await self.client.execute(action: "StopApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Cwp {
     /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
     @inlinable
     public func describeScanTaskStatus(moduleType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanTaskStatusResponse> {
-        self.describeScanTaskStatus(DescribeScanTaskStatusRequest(moduleType: moduleType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanTaskStatusRequest(moduleType: moduleType)
+        return self.client.execute(action: "DescribeScanTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询机器扫描状态列表
@@ -72,6 +73,7 @@ extension Cwp {
     /// DescribeScanTaskStatus 查询机器扫描状态列表用于过滤筛选
     @inlinable
     public func describeScanTaskStatus(moduleType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanTaskStatusResponse {
-        try await self.describeScanTaskStatus(DescribeScanTaskStatusRequest(moduleType: moduleType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanTaskStatusRequest(moduleType: moduleType)
+        return try await self.client.execute(action: "DescribeScanTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

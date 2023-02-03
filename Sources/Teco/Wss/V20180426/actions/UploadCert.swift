@@ -89,7 +89,8 @@ extension Wss {
     /// 本接口（UploadCert）用于上传证书。
     @inlinable
     public func uploadCert(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadCertResponse> {
-        self.uploadCert(UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias)
+        return self.client.execute(action: "UploadCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传证书
@@ -97,6 +98,7 @@ extension Wss {
     /// 本接口（UploadCert）用于上传证书。
     @inlinable
     public func uploadCert(cert: String, certType: String, projectId: String, moduleType: String, key: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadCertResponse {
-        try await self.uploadCert(UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = UploadCertRequest(cert: cert, certType: certType, projectId: projectId, moduleType: moduleType, key: key, alias: alias)
+        return try await self.client.execute(action: "UploadCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

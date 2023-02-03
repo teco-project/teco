@@ -63,12 +63,14 @@ extension Iotvideo {
     /// 获取视频防盗链播放URL
     @inlinable
     public func generateSignedVideoURL(videoURL: String, expireTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GenerateSignedVideoURLResponse> {
-        self.generateSignedVideoURL(GenerateSignedVideoURLRequest(videoURL: videoURL, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
+        let input = GenerateSignedVideoURLRequest(videoURL: videoURL, expireTime: expireTime)
+        return self.client.execute(action: "GenerateSignedVideoURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取视频防盗链播放URL
     @inlinable
     public func generateSignedVideoURL(videoURL: String, expireTime: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GenerateSignedVideoURLResponse {
-        try await self.generateSignedVideoURL(GenerateSignedVideoURLRequest(videoURL: videoURL, expireTime: expireTime), region: region, logger: logger, on: eventLoop)
+        let input = GenerateSignedVideoURLRequest(videoURL: videoURL, expireTime: expireTime)
+        return try await self.client.execute(action: "GenerateSignedVideoURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

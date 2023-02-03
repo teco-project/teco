@@ -104,7 +104,8 @@ extension Ocr {
     /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
     @inlinable
     public func permitOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PermitOCRResponse> {
-        self.permitOCR(PermitOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = PermitOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
+        return self.client.execute(action: "PermitOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 港澳台通行证识别
@@ -112,6 +113,7 @@ extension Ocr {
     /// 本接口支持对卡式港澳台通行证的识别，包括签发地点、签发机关、有效期限、性别、出生日期、英文姓名、姓名、证件号等字段。
     @inlinable
     public func permitOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PermitOCRResponse {
-        try await self.permitOCR(PermitOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = PermitOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
+        return try await self.client.execute(action: "PermitOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

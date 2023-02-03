@@ -82,12 +82,14 @@ extension Cwp {
     /// 获取基线策略列表
     @inlinable
     public func describeBaselinePolicyList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselinePolicyListResponse> {
-        self.describeBaselinePolicyList(DescribeBaselinePolicyListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselinePolicyListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return self.client.execute(action: "DescribeBaselinePolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基线策略列表
     @inlinable
     public func describeBaselinePolicyList(filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselinePolicyListResponse {
-        try await self.describeBaselinePolicyList(DescribeBaselinePolicyListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselinePolicyListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return try await self.client.execute(action: "DescribeBaselinePolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

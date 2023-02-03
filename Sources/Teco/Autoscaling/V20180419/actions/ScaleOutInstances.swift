@@ -81,7 +81,8 @@ extension As {
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
     @inlinable
     public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScaleOutInstancesResponse> {
-        self.scaleOutInstances(ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), region: region, logger: logger, on: eventLoop)
+        let input = ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber)
+        return self.client.execute(action: "ScaleOutInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 指定数量扩容实例
@@ -93,6 +94,7 @@ extension As {
     /// * 扩容如果失败或者部分成功，最后期望实例数只会增加实际成功的实例数量
     @inlinable
     public func scaleOutInstances(autoScalingGroupId: String, scaleOutNumber: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScaleOutInstancesResponse {
-        try await self.scaleOutInstances(ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber), region: region, logger: logger, on: eventLoop)
+        let input = ScaleOutInstancesRequest(autoScalingGroupId: autoScalingGroupId, scaleOutNumber: scaleOutNumber)
+        return try await self.client.execute(action: "ScaleOutInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

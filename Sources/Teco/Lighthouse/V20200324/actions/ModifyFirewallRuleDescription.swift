@@ -97,7 +97,8 @@ extension Lighthouse {
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable @discardableResult
     public func modifyFirewallRuleDescription(instanceId: String, firewallRule: FirewallRule, firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFirewallRuleDescriptionResponse> {
-        self.modifyFirewallRuleDescription(ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
+        let input = ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion)
+        return self.client.execute(action: "ModifyFirewallRuleDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改防火墙规则描述
@@ -114,6 +115,7 @@ extension Lighthouse {
     /// * FirewallRuleDescription 字段长度不得超过 64。
     @inlinable @discardableResult
     public func modifyFirewallRuleDescription(instanceId: String, firewallRule: FirewallRule, firewallVersion: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFirewallRuleDescriptionResponse {
-        try await self.modifyFirewallRuleDescription(ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion), region: region, logger: logger, on: eventLoop)
+        let input = ModifyFirewallRuleDescriptionRequest(instanceId: instanceId, firewallRule: firewallRule, firewallVersion: firewallVersion)
+        return try await self.client.execute(action: "ModifyFirewallRuleDescription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

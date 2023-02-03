@@ -63,12 +63,14 @@ extension Redis {
     /// 复制组实例切主
     @inlinable
     public func changeMasterInstance(groupId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeMasterInstanceResponse> {
-        self.changeMasterInstance(ChangeMasterInstanceRequest(groupId: groupId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = ChangeMasterInstanceRequest(groupId: groupId, instanceId: instanceId)
+        return self.client.execute(action: "ChangeMasterInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 复制组实例切主
     @inlinable
     public func changeMasterInstance(groupId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeMasterInstanceResponse {
-        try await self.changeMasterInstance(ChangeMasterInstanceRequest(groupId: groupId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = ChangeMasterInstanceRequest(groupId: groupId, instanceId: instanceId)
+        return try await self.client.execute(action: "ChangeMasterInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

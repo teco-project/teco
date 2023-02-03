@@ -119,12 +119,14 @@ extension Tcb {
     /// 创建云开发项目
     @inlinable
     public func createAndDeployCloudBaseProject(name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAndDeployCloudBaseProjectResponse> {
-        self.createAndDeployCloudBaseProject(CreateAndDeployCloudBaseProjectRequest(name: name, source: source, envId: envId, type: type, parameters: parameters, envAlias: envAlias, rcJson: rcJson, addonConfig: addonConfig, tags: tags, networkConfig: networkConfig, freeQuota: freeQuota, autoDeployOnCodeChange: autoDeployOnCodeChange, repoUrl: repoUrl), region: region, logger: logger, on: eventLoop)
+        let input = CreateAndDeployCloudBaseProjectRequest(name: name, source: source, envId: envId, type: type, parameters: parameters, envAlias: envAlias, rcJson: rcJson, addonConfig: addonConfig, tags: tags, networkConfig: networkConfig, freeQuota: freeQuota, autoDeployOnCodeChange: autoDeployOnCodeChange, repoUrl: repoUrl)
+        return self.client.execute(action: "CreateAndDeployCloudBaseProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云开发项目
     @inlinable
     public func createAndDeployCloudBaseProject(name: String, source: CodeSource, envId: String? = nil, type: String? = nil, parameters: [KVPair]? = nil, envAlias: String? = nil, rcJson: String? = nil, addonConfig: String? = nil, tags: [String]? = nil, networkConfig: String? = nil, freeQuota: String? = nil, autoDeployOnCodeChange: Bool? = nil, repoUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAndDeployCloudBaseProjectResponse {
-        try await self.createAndDeployCloudBaseProject(CreateAndDeployCloudBaseProjectRequest(name: name, source: source, envId: envId, type: type, parameters: parameters, envAlias: envAlias, rcJson: rcJson, addonConfig: addonConfig, tags: tags, networkConfig: networkConfig, freeQuota: freeQuota, autoDeployOnCodeChange: autoDeployOnCodeChange, repoUrl: repoUrl), region: region, logger: logger, on: eventLoop)
+        let input = CreateAndDeployCloudBaseProjectRequest(name: name, source: source, envId: envId, type: type, parameters: parameters, envAlias: envAlias, rcJson: rcJson, addonConfig: addonConfig, tags: tags, networkConfig: networkConfig, freeQuota: freeQuota, autoDeployOnCodeChange: autoDeployOnCodeChange, repoUrl: repoUrl)
+        return try await self.client.execute(action: "CreateAndDeployCloudBaseProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

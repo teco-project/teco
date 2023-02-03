@@ -88,7 +88,8 @@ extension Iotvideoindustry {
     /// 请使用DescribeRecordDatesByChannel接口
     @inlinable
     public func getRecordDatesByDev(deviceId: String, limit: Int64, offset: Int64, channelId: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRecordDatesByDevResponse> {
-        self.getRecordDatesByDev(GetRecordDatesByDevRequest(deviceId: deviceId, limit: limit, offset: offset, channelId: channelId, type: type), region: region, logger: logger, on: eventLoop)
+        let input = GetRecordDatesByDevRequest(deviceId: deviceId, limit: limit, offset: offset, channelId: channelId, type: type)
+        return self.client.execute(action: "GetRecordDatesByDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备录像日期列表（旧）
@@ -97,6 +98,7 @@ extension Iotvideoindustry {
     /// 请使用DescribeRecordDatesByChannel接口
     @inlinable
     public func getRecordDatesByDev(deviceId: String, limit: Int64, offset: Int64, channelId: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRecordDatesByDevResponse {
-        try await self.getRecordDatesByDev(GetRecordDatesByDevRequest(deviceId: deviceId, limit: limit, offset: offset, channelId: channelId, type: type), region: region, logger: logger, on: eventLoop)
+        let input = GetRecordDatesByDevRequest(deviceId: deviceId, limit: limit, offset: offset, channelId: channelId, type: type)
+        return try await self.client.execute(action: "GetRecordDatesByDev", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

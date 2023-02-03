@@ -63,12 +63,14 @@ extension Cwp {
     /// 获取资产管理主机资源详细信息
     @inlinable
     public func describeAssetMachineDetail(quuid: String, uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetMachineDetailResponse> {
-        self.describeAssetMachineDetail(DescribeAssetMachineDetailRequest(quuid: quuid, uuid: uuid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetMachineDetailRequest(quuid: quuid, uuid: uuid)
+        return self.client.execute(action: "DescribeAssetMachineDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资产管理主机资源详细信息
     @inlinable
     public func describeAssetMachineDetail(quuid: String, uuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetMachineDetailResponse {
-        try await self.describeAssetMachineDetail(DescribeAssetMachineDetailRequest(quuid: quuid, uuid: uuid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetMachineDetailRequest(quuid: quuid, uuid: uuid)
+        return try await self.client.execute(action: "DescribeAssetMachineDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

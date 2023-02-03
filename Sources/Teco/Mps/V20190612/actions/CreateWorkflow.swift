@@ -142,7 +142,8 @@ extension Mps {
     /// 注意：创建工作流成功后是禁用状态，需要手动启用。
     @inlinable
     public func createWorkflow(workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, taskPriority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkflowResponse> {
-        self.createWorkflow(CreateWorkflowRequest(workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, taskPriority: taskPriority), region: region, logger: logger, on: eventLoop)
+        let input = CreateWorkflowRequest(workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, taskPriority: taskPriority)
+        return self.client.execute(action: "CreateWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建工作流
@@ -161,6 +162,7 @@ extension Mps {
     /// 注意：创建工作流成功后是禁用状态，需要手动启用。
     @inlinable
     public func createWorkflow(workflowName: String, trigger: WorkflowTrigger, outputStorage: TaskOutputStorage? = nil, outputDir: String? = nil, mediaProcessTask: MediaProcessTaskInput? = nil, aiContentReviewTask: AiContentReviewTaskInput? = nil, aiAnalysisTask: AiAnalysisTaskInput? = nil, aiRecognitionTask: AiRecognitionTaskInput? = nil, taskNotifyConfig: TaskNotifyConfig? = nil, taskPriority: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkflowResponse {
-        try await self.createWorkflow(CreateWorkflowRequest(workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, taskPriority: taskPriority), region: region, logger: logger, on: eventLoop)
+        let input = CreateWorkflowRequest(workflowName: workflowName, trigger: trigger, outputStorage: outputStorage, outputDir: outputDir, mediaProcessTask: mediaProcessTask, aiContentReviewTask: aiContentReviewTask, aiAnalysisTask: aiAnalysisTask, aiRecognitionTask: aiRecognitionTask, taskNotifyConfig: taskNotifyConfig, taskPriority: taskPriority)
+        return try await self.client.execute(action: "CreateWorkflow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

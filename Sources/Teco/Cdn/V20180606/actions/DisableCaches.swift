@@ -71,7 +71,8 @@ extension Cdn {
     /// DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（注：接口尚在内测中，暂未全量开放；封禁URL并非无限期永久封禁）
     @inlinable
     public func disableCaches(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableCachesResponse> {
-        self.disableCaches(DisableCachesRequest(urls: urls), region: region, logger: logger, on: eventLoop)
+        let input = DisableCachesRequest(urls: urls)
+        return self.client.execute(action: "DisableCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁用 URL
@@ -79,6 +80,7 @@ extension Cdn {
     /// DisableCaches 用于禁用 CDN 上指定 URL 的访问，禁用完成后，中国境内访问会直接返回 403。（注：接口尚在内测中，暂未全量开放；封禁URL并非无限期永久封禁）
     @inlinable
     public func disableCaches(urls: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableCachesResponse {
-        try await self.disableCaches(DisableCachesRequest(urls: urls), region: region, logger: logger, on: eventLoop)
+        let input = DisableCachesRequest(urls: urls)
+        return try await self.client.execute(action: "DisableCaches", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

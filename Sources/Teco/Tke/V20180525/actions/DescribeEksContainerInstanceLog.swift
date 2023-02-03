@@ -98,7 +98,8 @@ extension Tke {
     /// 查询容器实例中容器日志
     @inlinable
     public func describeEksContainerInstanceLog(eksCiId: String, containerName: String? = nil, tail: UInt64? = nil, startTime: String? = nil, previous: Bool? = nil, sinceSeconds: UInt64? = nil, limitBytes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEksContainerInstanceLogResponse> {
-        self.describeEksContainerInstanceLog(DescribeEksContainerInstanceLogRequest(eksCiId: eksCiId, containerName: containerName, tail: tail, startTime: startTime, previous: previous, sinceSeconds: sinceSeconds, limitBytes: limitBytes), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEksContainerInstanceLogRequest(eksCiId: eksCiId, containerName: containerName, tail: tail, startTime: startTime, previous: previous, sinceSeconds: sinceSeconds, limitBytes: limitBytes)
+        return self.client.execute(action: "DescribeEksContainerInstanceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例日志
@@ -106,6 +107,7 @@ extension Tke {
     /// 查询容器实例中容器日志
     @inlinable
     public func describeEksContainerInstanceLog(eksCiId: String, containerName: String? = nil, tail: UInt64? = nil, startTime: String? = nil, previous: Bool? = nil, sinceSeconds: UInt64? = nil, limitBytes: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEksContainerInstanceLogResponse {
-        try await self.describeEksContainerInstanceLog(DescribeEksContainerInstanceLogRequest(eksCiId: eksCiId, containerName: containerName, tail: tail, startTime: startTime, previous: previous, sinceSeconds: sinceSeconds, limitBytes: limitBytes), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEksContainerInstanceLogRequest(eksCiId: eksCiId, containerName: containerName, tail: tail, startTime: startTime, previous: previous, sinceSeconds: sinceSeconds, limitBytes: limitBytes)
+        return try await self.client.execute(action: "DescribeEksContainerInstanceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

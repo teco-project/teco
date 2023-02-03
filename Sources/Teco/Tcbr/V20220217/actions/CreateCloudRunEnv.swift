@@ -110,7 +110,8 @@ extension Tcbr {
     /// 创建云托管环境，并开通资源。
     @inlinable
     public func createCloudRunEnv(packageType: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, reqKey: String? = nil, source: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCloudRunEnvResponse> {
-        self.createCloudRunEnv(CreateCloudRunEnvRequest(packageType: packageType, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, reqKey: reqKey, source: source, channel: channel), region: region, logger: logger, on: eventLoop)
+        let input = CreateCloudRunEnvRequest(packageType: packageType, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, reqKey: reqKey, source: source, channel: channel)
+        return self.client.execute(action: "CreateCloudRunEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建环境
@@ -118,6 +119,7 @@ extension Tcbr {
     /// 创建云托管环境，并开通资源。
     @inlinable
     public func createCloudRunEnv(packageType: String, alias: String? = nil, freeQuota: String? = nil, flag: String? = nil, vpcId: String? = nil, subNetIds: [String]? = nil, reqKey: String? = nil, source: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCloudRunEnvResponse {
-        try await self.createCloudRunEnv(CreateCloudRunEnvRequest(packageType: packageType, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, reqKey: reqKey, source: source, channel: channel), region: region, logger: logger, on: eventLoop)
+        let input = CreateCloudRunEnvRequest(packageType: packageType, alias: alias, freeQuota: freeQuota, flag: flag, vpcId: vpcId, subNetIds: subNetIds, reqKey: reqKey, source: source, channel: channel)
+        return try await self.client.execute(action: "CreateCloudRunEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

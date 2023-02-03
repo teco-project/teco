@@ -60,7 +60,8 @@ extension Iecp {
     /// 从组件市场选中组件并添加到应用模板列表
     @inlinable @discardableResult
     public func applyMarketComponent(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyMarketComponentResponse> {
-        self.applyMarketComponent(ApplyMarketComponentRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = ApplyMarketComponentRequest(id: id)
+        return self.client.execute(action: "ApplyMarketComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用组件市场中的组件
@@ -68,6 +69,7 @@ extension Iecp {
     /// 从组件市场选中组件并添加到应用模板列表
     @inlinable @discardableResult
     public func applyMarketComponent(id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyMarketComponentResponse {
-        try await self.applyMarketComponent(ApplyMarketComponentRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = ApplyMarketComponentRequest(id: id)
+        return try await self.client.execute(action: "ApplyMarketComponent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

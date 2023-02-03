@@ -58,12 +58,14 @@ extension Cdc {
     /// 查询专用集群内宿主机的统计信息
     @inlinable
     public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostStatisticsResponse> {
-        self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId)
+        return self.client.execute(action: "DescribeDedicatedClusterHostStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专用集群内宿主机的统计信息
     @inlinable
     public func describeDedicatedClusterHostStatistics(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostStatisticsResponse {
-        try await self.describeDedicatedClusterHostStatistics(DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDedicatedClusterHostStatisticsRequest(dedicatedClusterId: dedicatedClusterId)
+        return try await self.client.execute(action: "DescribeDedicatedClusterHostStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

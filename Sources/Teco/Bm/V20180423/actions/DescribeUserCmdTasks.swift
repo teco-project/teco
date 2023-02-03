@@ -77,12 +77,14 @@ extension Bm {
     /// 获取自定义脚本任务列表
     @inlinable
     public func describeUserCmdTasks(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserCmdTasksResponse> {
-        self.describeUserCmdTasks(DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order)
+        return self.client.execute(action: "DescribeUserCmdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取自定义脚本任务列表
     @inlinable
     public func describeUserCmdTasks(offset: UInt64, limit: UInt64, orderField: String? = nil, order: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserCmdTasksResponse {
-        try await self.describeUserCmdTasks(DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserCmdTasksRequest(offset: offset, limit: limit, orderField: orderField, order: order)
+        return try await self.client.execute(action: "DescribeUserCmdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

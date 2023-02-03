@@ -93,12 +93,14 @@ extension Tcss {
     /// 创建主机列表导出任务
     @inlinable
     public func createHostExportJob(filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHostExportJobResponse> {
-        self.createHostExportJob(CreateHostExportJobRequest(filters: filters, limit: limit, offset: offset, by: by, order: order, exportField: exportField), region: region, logger: logger, on: eventLoop)
+        let input = CreateHostExportJobRequest(filters: filters, limit: limit, offset: offset, by: by, order: order, exportField: exportField)
+        return self.client.execute(action: "CreateHostExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建主机列表导出任务
     @inlinable
     public func createHostExportJob(filters: [AssetFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, by: String? = nil, order: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHostExportJobResponse {
-        try await self.createHostExportJob(CreateHostExportJobRequest(filters: filters, limit: limit, offset: offset, by: by, order: order, exportField: exportField), region: region, logger: logger, on: eventLoop)
+        let input = CreateHostExportJobRequest(filters: filters, limit: limit, offset: offset, by: by, order: order, exportField: exportField)
+        return try await self.client.execute(action: "CreateHostExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

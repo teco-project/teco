@@ -50,12 +50,14 @@ extension Tcss {
     /// 获取公钥
     @inlinable
     public func describePublicKey(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublicKeyResponse> {
-        self.describePublicKey(DescribePublicKeyRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePublicKeyRequest()
+        return self.client.execute(action: "DescribePublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取公钥
     @inlinable
     public func describePublicKey(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublicKeyResponse {
-        try await self.describePublicKey(DescribePublicKeyRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePublicKeyRequest()
+        return try await self.client.execute(action: "DescribePublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

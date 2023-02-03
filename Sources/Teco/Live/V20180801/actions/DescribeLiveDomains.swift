@@ -111,7 +111,8 @@ extension Live {
     /// 根据域名状态、类型等信息查询用户的域名信息。
     @inlinable
     public func describeLiveDomains(domainStatus: UInt64? = nil, domainType: UInt64? = nil, pageSize: UInt64? = nil, pageNum: UInt64? = nil, isDelayLive: UInt64? = nil, domainPrefix: String? = nil, playType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainsResponse> {
-        self.describeLiveDomains(DescribeLiveDomainsRequest(domainStatus: domainStatus, domainType: domainType, pageSize: pageSize, pageNum: pageNum, isDelayLive: isDelayLive, domainPrefix: domainPrefix, playType: playType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveDomainsRequest(domainStatus: domainStatus, domainType: domainType, pageSize: pageSize, pageNum: pageNum, isDelayLive: isDelayLive, domainPrefix: domainPrefix, playType: playType)
+        return self.client.execute(action: "DescribeLiveDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询域名列表
@@ -119,6 +120,7 @@ extension Live {
     /// 根据域名状态、类型等信息查询用户的域名信息。
     @inlinable
     public func describeLiveDomains(domainStatus: UInt64? = nil, domainType: UInt64? = nil, pageSize: UInt64? = nil, pageNum: UInt64? = nil, isDelayLive: UInt64? = nil, domainPrefix: String? = nil, playType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainsResponse {
-        try await self.describeLiveDomains(DescribeLiveDomainsRequest(domainStatus: domainStatus, domainType: domainType, pageSize: pageSize, pageNum: pageNum, isDelayLive: isDelayLive, domainPrefix: domainPrefix, playType: playType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveDomainsRequest(domainStatus: domainStatus, domainType: domainType, pageSize: pageSize, pageNum: pageNum, isDelayLive: isDelayLive, domainPrefix: domainPrefix, playType: playType)
+        return try await self.client.execute(action: "DescribeLiveDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

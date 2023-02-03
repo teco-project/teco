@@ -79,12 +79,14 @@ extension Mna {
     /// 获取Qos加速状态
     @inlinable
     public func describeQos(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQosResponse> {
-        self.describeQos(DescribeQosRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQosRequest(sessionId: sessionId)
+        return self.client.execute(action: "DescribeQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Qos加速状态
     @inlinable
     public func describeQos(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQosResponse {
-        try await self.describeQos(DescribeQosRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQosRequest(sessionId: sessionId)
+        return try await self.client.execute(action: "DescribeQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

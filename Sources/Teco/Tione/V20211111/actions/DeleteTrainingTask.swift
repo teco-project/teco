@@ -54,12 +54,14 @@ extension Tione {
     /// 删除训练任务
     @inlinable @discardableResult
     public func deleteTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTrainingTaskResponse> {
-        self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTrainingTaskRequest(id: id)
+        return self.client.execute(action: "DeleteTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除训练任务
     @inlinable @discardableResult
     public func deleteTrainingTask(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTrainingTaskResponse {
-        try await self.deleteTrainingTask(DeleteTrainingTaskRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTrainingTaskRequest(id: id)
+        return try await self.client.execute(action: "DeleteTrainingTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

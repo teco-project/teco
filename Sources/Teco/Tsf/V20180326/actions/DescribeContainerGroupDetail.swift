@@ -64,7 +64,8 @@ extension Tsf {
     /// 容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
     @inlinable
     public func describeContainerGroupDetail(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerGroupDetailResponse> {
-        self.describeContainerGroupDetail(DescribeContainerGroupDetailRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeContainerGroupDetailRequest(groupId: groupId)
+        return self.client.execute(action: "DescribeContainerGroupDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器部署组详情
@@ -72,6 +73,7 @@ extension Tsf {
     /// 容器部署组详情（已废弃，请使用  DescribeContainerGroupDeployInfo）
     @inlinable
     public func describeContainerGroupDetail(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerGroupDetailResponse {
-        try await self.describeContainerGroupDetail(DescribeContainerGroupDetailRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeContainerGroupDetailRequest(groupId: groupId)
+        return try await self.client.execute(action: "DescribeContainerGroupDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

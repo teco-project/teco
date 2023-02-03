@@ -60,7 +60,8 @@ extension Dts {
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
     @inlinable
     public func describeRegionConf(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRegionConfResponse> {
-        self.describeRegionConf(DescribeRegionConfRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRegionConfRequest()
+        return self.client.execute(action: "DescribeRegionConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可售卖订阅地域
@@ -68,6 +69,7 @@ extension Dts {
     /// 本接口（DescribeRegionConf）用于查询可售卖订阅实例的地域
     @inlinable
     public func describeRegionConf(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRegionConfResponse {
-        try await self.describeRegionConf(DescribeRegionConfRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRegionConfRequest()
+        return try await self.client.execute(action: "DescribeRegionConf", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

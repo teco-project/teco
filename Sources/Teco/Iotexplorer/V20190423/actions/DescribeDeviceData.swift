@@ -74,7 +74,8 @@ extension Iotexplorer {
     /// 根据设备产品ID、设备名称，获取设备上报的属性数据。
     @inlinable
     public func describeDeviceData(productId: String, deviceName: String, deviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceDataResponse> {
-        self.describeDeviceData(DescribeDeviceDataRequest(productId: productId, deviceName: deviceName, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceDataRequest(productId: productId, deviceName: deviceName, deviceId: deviceId)
+        return self.client.execute(action: "DescribeDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备属性数据
@@ -82,6 +83,7 @@ extension Iotexplorer {
     /// 根据设备产品ID、设备名称，获取设备上报的属性数据。
     @inlinable
     public func describeDeviceData(productId: String, deviceName: String, deviceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceDataResponse {
-        try await self.describeDeviceData(DescribeDeviceDataRequest(productId: productId, deviceName: deviceName, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceDataRequest(productId: productId, deviceName: deviceName, deviceId: deviceId)
+        return try await self.client.execute(action: "DescribeDeviceData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -60,7 +60,8 @@ extension Iotexplorer {
     /// 提供删除某个项目下产品的能力
     @inlinable @discardableResult
     public func deleteStudioProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteStudioProductResponse> {
-        self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteStudioProductRequest(productId: productId)
+        return self.client.execute(action: "DeleteStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除产品
@@ -68,6 +69,7 @@ extension Iotexplorer {
     /// 提供删除某个项目下产品的能力
     @inlinable @discardableResult
     public func deleteStudioProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteStudioProductResponse {
-        try await self.deleteStudioProduct(DeleteStudioProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteStudioProductRequest(productId: productId)
+        return try await self.client.execute(action: "DeleteStudioProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

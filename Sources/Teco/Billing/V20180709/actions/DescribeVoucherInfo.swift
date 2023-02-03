@@ -137,12 +137,14 @@ extension Billing {
     /// 获取代金券相关信息
     @inlinable
     public func describeVoucherInfo(limit: Int64, offset: Int64, status: String? = nil, voucherId: String? = nil, codeId: String? = nil, productCode: String? = nil, activityId: String? = nil, voucherName: String? = nil, timeFrom: String? = nil, timeTo: String? = nil, sortField: String? = nil, sortOrder: String? = nil, payMode: String? = nil, payScene: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVoucherInfoResponse> {
-        self.describeVoucherInfo(DescribeVoucherInfoRequest(limit: limit, offset: offset, status: status, voucherId: voucherId, codeId: codeId, productCode: productCode, activityId: activityId, voucherName: voucherName, timeFrom: timeFrom, timeTo: timeTo, sortField: sortField, sortOrder: sortOrder, payMode: payMode, payScene: payScene, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVoucherInfoRequest(limit: limit, offset: offset, status: status, voucherId: voucherId, codeId: codeId, productCode: productCode, activityId: activityId, voucherName: voucherName, timeFrom: timeFrom, timeTo: timeTo, sortField: sortField, sortOrder: sortOrder, payMode: payMode, payScene: payScene, operator: `operator`)
+        return self.client.execute(action: "DescribeVoucherInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取代金券相关信息
     @inlinable
     public func describeVoucherInfo(limit: Int64, offset: Int64, status: String? = nil, voucherId: String? = nil, codeId: String? = nil, productCode: String? = nil, activityId: String? = nil, voucherName: String? = nil, timeFrom: String? = nil, timeTo: String? = nil, sortField: String? = nil, sortOrder: String? = nil, payMode: String? = nil, payScene: String? = nil, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVoucherInfoResponse {
-        try await self.describeVoucherInfo(DescribeVoucherInfoRequest(limit: limit, offset: offset, status: status, voucherId: voucherId, codeId: codeId, productCode: productCode, activityId: activityId, voucherName: voucherName, timeFrom: timeFrom, timeTo: timeTo, sortField: sortField, sortOrder: sortOrder, payMode: payMode, payScene: payScene, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVoucherInfoRequest(limit: limit, offset: offset, status: status, voucherId: voucherId, codeId: codeId, productCode: productCode, activityId: activityId, voucherName: voucherName, timeFrom: timeFrom, timeTo: timeTo, sortField: sortField, sortOrder: sortOrder, payMode: payMode, payScene: payScene, operator: `operator`)
+        return try await self.client.execute(action: "DescribeVoucherInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

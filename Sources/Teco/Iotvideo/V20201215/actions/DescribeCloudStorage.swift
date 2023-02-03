@@ -85,12 +85,14 @@ extension Iotvideo {
     /// 获取设备云存服务详情
     @inlinable
     public func describeCloudStorage(productId: String, deviceName: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudStorageResponse> {
-        self.describeCloudStorage(DescribeCloudStorageRequest(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudStorageRequest(productId: productId, deviceName: deviceName, userId: userId)
+        return self.client.execute(action: "DescribeCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备云存服务详情
     @inlinable
     public func describeCloudStorage(productId: String, deviceName: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudStorageResponse {
-        try await self.describeCloudStorage(DescribeCloudStorageRequest(productId: productId, deviceName: deviceName, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudStorageRequest(productId: productId, deviceName: deviceName, userId: userId)
+        return try await self.client.execute(action: "DescribeCloudStorage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

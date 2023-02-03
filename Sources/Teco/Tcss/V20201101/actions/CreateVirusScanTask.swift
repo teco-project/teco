@@ -88,12 +88,14 @@ extension Tcss {
     /// 运行时文件查杀一键扫描
     @inlinable
     public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirusScanTaskResponse> {
-        self.createVirusScanTask(CreateVirusScanTaskRequest(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+        let input = CreateVirusScanTaskRequest(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath)
+        return self.client.execute(action: "CreateVirusScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时文件查杀一键扫描
     @inlinable
     public func createVirusScanTask(scanPathAll: Bool, scanRangeType: UInt64, scanRangeAll: Bool, timeout: UInt64, scanPathType: UInt64? = nil, scanIds: [String]? = nil, scanPath: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirusScanTaskResponse {
-        try await self.createVirusScanTask(CreateVirusScanTaskRequest(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath), region: region, logger: logger, on: eventLoop)
+        let input = CreateVirusScanTaskRequest(scanPathAll: scanPathAll, scanRangeType: scanRangeType, scanRangeAll: scanRangeAll, timeout: timeout, scanPathType: scanPathType, scanIds: scanIds, scanPath: scanPath)
+        return try await self.client.execute(action: "CreateVirusScanTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Cynosdb {
     /// 根据计费订单id查询资源列表
     @inlinable
     public func describeResourcesByDealName(dealName: String? = nil, dealNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesByDealNameResponse> {
-        self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourcesByDealNameRequest(dealName: dealName, dealNames: dealNames)
+        return self.client.execute(action: "DescribeResourcesByDealName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据订单id查询资源信息
@@ -77,6 +78,7 @@ extension Cynosdb {
     /// 根据计费订单id查询资源列表
     @inlinable
     public func describeResourcesByDealName(dealName: String? = nil, dealNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesByDealNameResponse {
-        try await self.describeResourcesByDealName(DescribeResourcesByDealNameRequest(dealName: dealName, dealNames: dealNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourcesByDealNameRequest(dealName: dealName, dealNames: dealNames)
+        return try await self.client.execute(action: "DescribeResourcesByDealName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

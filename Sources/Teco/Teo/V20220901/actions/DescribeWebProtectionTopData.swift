@@ -130,7 +130,8 @@ extension Teo {
     /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
     @inlinable
     public func describeWebProtectionTopData(startTime: Date, endTime: Date, metricName: String, interval: String? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebProtectionTopDataResponse> {
-        self.describeWebProtectionTopData(DescribeWebProtectionTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, interval: interval, zoneIds: zoneIds, domains: domains, limit: limit, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebProtectionTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, interval: interval, zoneIds: zoneIds, domains: domains, limit: limit, queryCondition: queryCondition, area: area)
+        return self.client.execute(action: "DescribeWebProtectionTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询CC防护Top数据
@@ -138,6 +139,7 @@ extension Teo {
     /// 本接口（DescribeWebProtectionTopData）用于查询CC防护的Top数据。
     @inlinable
     public func describeWebProtectionTopData(startTime: Date, endTime: Date, metricName: String, interval: String? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, limit: Int64? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebProtectionTopDataResponse {
-        try await self.describeWebProtectionTopData(DescribeWebProtectionTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, interval: interval, zoneIds: zoneIds, domains: domains, limit: limit, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebProtectionTopDataRequest(startTime: startTime, endTime: endTime, metricName: metricName, interval: interval, zoneIds: zoneIds, domains: domains, limit: limit, queryCondition: queryCondition, area: area)
+        return try await self.client.execute(action: "DescribeWebProtectionTopData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

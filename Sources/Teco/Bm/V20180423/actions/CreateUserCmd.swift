@@ -68,12 +68,14 @@ extension Bm {
     /// 创建自定义脚本
     @inlinable
     public func createUserCmd(alias: String, osType: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserCmdResponse> {
-        self.createUserCmd(CreateUserCmdRequest(alias: alias, osType: osType, content: content), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserCmdRequest(alias: alias, osType: osType, content: content)
+        return self.client.execute(action: "CreateUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义脚本
     @inlinable
     public func createUserCmd(alias: String, osType: String, content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserCmdResponse {
-        try await self.createUserCmd(CreateUserCmdRequest(alias: alias, osType: osType, content: content), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserCmdRequest(alias: alias, osType: osType, content: content)
+        return try await self.client.execute(action: "CreateUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

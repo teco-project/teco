@@ -72,7 +72,8 @@ extension Wedata {
     /// 设置任务告警，新建/更新告警信息（最新）
     @inlinable
     public func setTaskAlarmNew(alarmInfoList: [AlarmInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetTaskAlarmNewResponse> {
-        self.setTaskAlarmNew(SetTaskAlarmNewRequest(alarmInfoList: alarmInfoList, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = SetTaskAlarmNewRequest(alarmInfoList: alarmInfoList, projectId: projectId)
+        return self.client.execute(action: "SetTaskAlarmNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置任务告警【Beta版本】
@@ -81,6 +82,7 @@ extension Wedata {
     /// 设置任务告警，新建/更新告警信息（最新）
     @inlinable
     public func setTaskAlarmNew(alarmInfoList: [AlarmInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetTaskAlarmNewResponse {
-        try await self.setTaskAlarmNew(SetTaskAlarmNewRequest(alarmInfoList: alarmInfoList, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = SetTaskAlarmNewRequest(alarmInfoList: alarmInfoList, projectId: projectId)
+        return try await self.client.execute(action: "SetTaskAlarmNew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

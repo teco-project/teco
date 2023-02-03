@@ -63,12 +63,14 @@ extension Hasim {
     /// 查询云兔切换策略列表
     @inlinable
     public func describeTactics(tacticID: Int64? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTacticsResponse> {
-        self.describeTactics(DescribeTacticsRequest(tacticID: tacticID, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTacticsRequest(tacticID: tacticID, name: name)
+        return self.client.execute(action: "DescribeTactics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云兔切换策略列表
     @inlinable
     public func describeTactics(tacticID: Int64? = nil, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTacticsResponse {
-        try await self.describeTactics(DescribeTacticsRequest(tacticID: tacticID, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTacticsRequest(tacticID: tacticID, name: name)
+        return try await self.client.execute(action: "DescribeTactics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -68,7 +68,8 @@ extension Dcdb {
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
     @inlinable
     public func destroyDCDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyDCDBInstanceResponse> {
-        self.destroyDCDBInstance(DestroyDCDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DestroyDCDBInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "DestroyDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁已隔离的包年包月实例
@@ -76,6 +77,7 @@ extension Dcdb {
     /// 本接口(DestroyDCDBInstance)用于销毁已隔离的包年包月实例。
     @inlinable
     public func destroyDCDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyDCDBInstanceResponse {
-        try await self.destroyDCDBInstance(DestroyDCDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DestroyDCDBInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DestroyDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

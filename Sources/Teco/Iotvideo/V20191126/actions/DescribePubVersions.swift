@@ -65,7 +65,8 @@ extension Iotvideo {
     /// 本接口（DescribePubVersions）用于获取某一产品发布过的全部固件版本。
     @inlinable
     public func describePubVersions(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePubVersionsResponse> {
-        self.describePubVersions(DescribePubVersionsRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePubVersionsRequest(productId: productId)
+        return self.client.execute(action: "DescribePubVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取某一产品发布过的全部固件版本
@@ -73,6 +74,7 @@ extension Iotvideo {
     /// 本接口（DescribePubVersions）用于获取某一产品发布过的全部固件版本。
     @inlinable
     public func describePubVersions(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePubVersionsResponse {
-        try await self.describePubVersions(DescribePubVersionsRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePubVersionsRequest(productId: productId)
+        return try await self.client.execute(action: "DescribePubVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

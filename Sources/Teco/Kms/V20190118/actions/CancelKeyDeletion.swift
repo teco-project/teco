@@ -64,7 +64,8 @@ extension Kms {
     /// 取消CMK的计划删除操作
     @inlinable
     public func cancelKeyDeletion(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelKeyDeletionResponse> {
-        self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = CancelKeyDeletionRequest(keyId: keyId)
+        return self.client.execute(action: "CancelKeyDeletion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消CMK计划删除操作
@@ -72,6 +73,7 @@ extension Kms {
     /// 取消CMK的计划删除操作
     @inlinable
     public func cancelKeyDeletion(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelKeyDeletionResponse {
-        try await self.cancelKeyDeletion(CancelKeyDeletionRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = CancelKeyDeletionRequest(keyId: keyId)
+        return try await self.client.execute(action: "CancelKeyDeletion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

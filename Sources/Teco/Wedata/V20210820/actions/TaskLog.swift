@@ -94,7 +94,8 @@ extension Wedata {
     /// 查询Inlong manager日志
     @inlinable
     public func taskLog(taskId: String, startTime: UInt64, endTime: UInt64, projectId: String, limit: UInt64? = nil, orderType: String? = nil, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TaskLogResponse> {
-        self.taskLog(TaskLogRequest(taskId: taskId, startTime: startTime, endTime: endTime, projectId: projectId, limit: limit, orderType: orderType, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = TaskLogRequest(taskId: taskId, startTime: startTime, endTime: endTime, projectId: projectId, limit: limit, orderType: orderType, taskType: taskType)
+        return self.client.execute(action: "TaskLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 管控日志接口
@@ -102,6 +103,7 @@ extension Wedata {
     /// 查询Inlong manager日志
     @inlinable
     public func taskLog(taskId: String, startTime: UInt64, endTime: UInt64, projectId: String, limit: UInt64? = nil, orderType: String? = nil, taskType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TaskLogResponse {
-        try await self.taskLog(TaskLogRequest(taskId: taskId, startTime: startTime, endTime: endTime, projectId: projectId, limit: limit, orderType: orderType, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = TaskLogRequest(taskId: taskId, startTime: startTime, endTime: endTime, projectId: projectId, limit: limit, orderType: orderType, taskType: taskType)
+        return try await self.client.execute(action: "TaskLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

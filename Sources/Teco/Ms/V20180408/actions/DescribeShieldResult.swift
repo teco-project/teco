@@ -80,7 +80,8 @@ extension Ms {
     /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func describeShieldResult(itemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShieldResultResponse> {
-        self.describeShieldResult(DescribeShieldResultRequest(itemId: itemId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeShieldResultRequest(itemId: itemId)
+        return self.client.execute(action: "DescribeShieldResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询加固结果
@@ -88,6 +89,7 @@ extension Ms {
     /// 通过唯一标识获取加固的结果。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func describeShieldResult(itemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldResultResponse {
-        try await self.describeShieldResult(DescribeShieldResultRequest(itemId: itemId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeShieldResultRequest(itemId: itemId)
+        return try await self.client.execute(action: "DescribeShieldResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

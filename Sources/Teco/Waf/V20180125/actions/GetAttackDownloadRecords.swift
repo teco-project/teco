@@ -50,12 +50,14 @@ extension Waf {
     /// 查询下载攻击日志任务记录列表
     @inlinable
     public func getAttackDownloadRecords(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAttackDownloadRecordsResponse> {
-        self.getAttackDownloadRecords(GetAttackDownloadRecordsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetAttackDownloadRecordsRequest()
+        return self.client.execute(action: "GetAttackDownloadRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询下载攻击日志任务记录列表
     @inlinable
     public func getAttackDownloadRecords(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAttackDownloadRecordsResponse {
-        try await self.getAttackDownloadRecords(GetAttackDownloadRecordsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetAttackDownloadRecordsRequest()
+        return try await self.client.execute(action: "GetAttackDownloadRecords", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

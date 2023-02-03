@@ -63,12 +63,14 @@ extension Wedata {
     /// 继续集成任务
     @inlinable
     public func resumeIntegrationTask(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResumeIntegrationTaskResponse> {
-        self.resumeIntegrationTask(ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId)
+        return self.client.execute(action: "ResumeIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 继续集成任务
     @inlinable
     public func resumeIntegrationTask(taskId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResumeIntegrationTaskResponse {
-        try await self.resumeIntegrationTask(ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ResumeIntegrationTaskRequest(taskId: taskId, projectId: projectId)
+        return try await self.client.execute(action: "ResumeIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -156,12 +156,14 @@ extension Dayu {
     /// 获取资源列表
     @inlinable
     public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceListResponse> {
-        self.describeResourceList(DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain)
+        return self.client.execute(action: "DescribeResourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资源列表
     @inlinable
     public func describeResourceList(business: String, regionList: [String]? = nil, line: [UInt64]? = nil, idList: [String]? = nil, name: String? = nil, ipList: [String]? = nil, status: [UInt64]? = nil, expire: UInt64? = nil, oderBy: [OrderBy]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, cName: String? = nil, domain: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceListResponse {
-        try await self.describeResourceList(DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceListRequest(business: business, regionList: regionList, line: line, idList: idList, name: name, ipList: ipList, status: status, expire: expire, oderBy: oderBy, limit: limit, offset: offset, cName: cName, domain: domain)
+        return try await self.client.execute(action: "DescribeResourceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

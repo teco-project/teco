@@ -84,12 +84,14 @@ extension Tcr {
     /// 查询全部实例信息
     @inlinable
     public func describeInstanceAll(registryids: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, allRegion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceAllResponse> {
-        self.describeInstanceAll(DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion)
+        return self.client.execute(action: "DescribeInstanceAll", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询全部实例信息
     @inlinable
     public func describeInstanceAll(registryids: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, allRegion: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceAllResponse {
-        try await self.describeInstanceAll(DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceAllRequest(registryids: registryids, offset: offset, limit: limit, filters: filters, allRegion: allRegion)
+        return try await self.client.execute(action: "DescribeInstanceAll", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

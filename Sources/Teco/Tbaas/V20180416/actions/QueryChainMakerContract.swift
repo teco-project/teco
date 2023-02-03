@@ -79,12 +79,14 @@ extension Tbaas {
     /// 调用长安链合约查询
     @inlinable
     public func queryChainMakerContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChainMakerContractResponse> {
-        self.queryChainMakerContract(QueryChainMakerContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam), region: region, logger: logger, on: eventLoop)
+        let input = QueryChainMakerContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam)
+        return self.client.execute(action: "QueryChainMakerContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调用长安链合约查询
     @inlinable
     public func queryChainMakerContract(clusterId: String, chainId: String, contractName: String, funcName: String, funcParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerContractResponse {
-        try await self.queryChainMakerContract(QueryChainMakerContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam), region: region, logger: logger, on: eventLoop)
+        let input = QueryChainMakerContractRequest(clusterId: clusterId, chainId: chainId, contractName: contractName, funcName: funcName, funcParam: funcParam)
+        return try await self.client.execute(action: "QueryChainMakerContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

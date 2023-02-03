@@ -64,7 +64,8 @@ extension Monitor {
     /// 创建一个云原生Prometheus模板
     @inlinable
     public func createPrometheusTemp(template: PrometheusTemp, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusTempResponse> {
-        self.createPrometheusTemp(CreatePrometheusTempRequest(template: template), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrometheusTempRequest(template: template)
+        return self.client.execute(action: "CreatePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建模板
@@ -72,6 +73,7 @@ extension Monitor {
     /// 创建一个云原生Prometheus模板
     @inlinable
     public func createPrometheusTemp(template: PrometheusTemp, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusTempResponse {
-        try await self.createPrometheusTemp(CreatePrometheusTempRequest(template: template), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrometheusTempRequest(template: template)
+        return try await self.client.execute(action: "CreatePrometheusTemp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

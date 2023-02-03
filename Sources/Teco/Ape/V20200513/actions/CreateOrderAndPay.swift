@@ -74,7 +74,8 @@ extension Ape {
     /// 购买一张图片并且支付
     @inlinable
     public func createOrderAndPay(imageId: UInt64, authUserId: String, marshalId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrderAndPayResponse> {
-        self.createOrderAndPay(CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId)
+        return self.client.execute(action: "CreateOrderAndPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建订单并支付
@@ -82,6 +83,7 @@ extension Ape {
     /// 购买一张图片并且支付
     @inlinable
     public func createOrderAndPay(imageId: UInt64, authUserId: String, marshalId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrderAndPayResponse {
-        try await self.createOrderAndPay(CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrderAndPayRequest(imageId: imageId, authUserId: authUserId, marshalId: marshalId)
+        return try await self.client.execute(action: "CreateOrderAndPay", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

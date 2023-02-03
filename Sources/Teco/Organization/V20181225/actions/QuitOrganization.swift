@@ -54,12 +54,14 @@ extension Organization {
     /// 退出企业组织
     @inlinable @discardableResult
     public func quitOrganization(orgId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QuitOrganizationResponse> {
-        self.quitOrganization(QuitOrganizationRequest(orgId: orgId), region: region, logger: logger, on: eventLoop)
+        let input = QuitOrganizationRequest(orgId: orgId)
+        return self.client.execute(action: "QuitOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退出企业组织
     @inlinable @discardableResult
     public func quitOrganization(orgId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QuitOrganizationResponse {
-        try await self.quitOrganization(QuitOrganizationRequest(orgId: orgId), region: region, logger: logger, on: eventLoop)
+        let input = QuitOrganizationRequest(orgId: orgId)
+        return try await self.client.execute(action: "QuitOrganization", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -142,7 +142,8 @@ extension Live {
     /// 查询下行播放错误码信息。
     @inlinable
     public func describePlayErrorCodeSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePlayErrorCodeSumInfoListResponse> {
-        self.describePlayErrorCodeSumInfoList(DescribePlayErrorCodeSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, groupType: groupType, outLanguage: outLanguage), region: region, logger: logger, on: eventLoop)
+        let input = DescribePlayErrorCodeSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, groupType: groupType, outLanguage: outLanguage)
+        return self.client.execute(action: "DescribePlayErrorCodeSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询播放http错误码汇总数据
@@ -150,6 +151,7 @@ extension Live {
     /// 查询下行播放错误码信息。
     @inlinable
     public func describePlayErrorCodeSumInfoList(startTime: String, endTime: String, playDomains: [String]? = nil, pageNum: UInt64? = nil, pageSize: UInt64? = nil, mainlandOrOversea: String? = nil, groupType: String? = nil, outLanguage: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePlayErrorCodeSumInfoListResponse {
-        try await self.describePlayErrorCodeSumInfoList(DescribePlayErrorCodeSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, groupType: groupType, outLanguage: outLanguage), region: region, logger: logger, on: eventLoop)
+        let input = DescribePlayErrorCodeSumInfoListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, pageNum: pageNum, pageSize: pageSize, mainlandOrOversea: mainlandOrOversea, groupType: groupType, outLanguage: outLanguage)
+        return try await self.client.execute(action: "DescribePlayErrorCodeSumInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

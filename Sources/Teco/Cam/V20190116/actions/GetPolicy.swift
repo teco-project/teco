@@ -109,7 +109,8 @@ extension Cam {
     /// 本接口（GetPolicy）可用于查询查看策略详情。
     @inlinable
     public func getPolicy(policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPolicyResponse> {
-        self.getPolicy(GetPolicyRequest(policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = GetPolicyRequest(policyId: policyId)
+        return self.client.execute(action: "GetPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看策略详情
@@ -117,6 +118,7 @@ extension Cam {
     /// 本接口（GetPolicy）可用于查询查看策略详情。
     @inlinable
     public func getPolicy(policyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPolicyResponse {
-        try await self.getPolicy(GetPolicyRequest(policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = GetPolicyRequest(policyId: policyId)
+        return try await self.client.execute(action: "GetPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

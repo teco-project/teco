@@ -102,7 +102,8 @@ extension Iotexplorer {
     /// 用于新建批量生产设备
     @inlinable
     public func createBatchProduction(projectId: String, productId: String, burnMethod: Int64, generationMethod: Int64, uploadUrl: String? = nil, batchCnt: Int64? = nil, generationQRCode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBatchProductionResponse> {
-        self.createBatchProduction(CreateBatchProductionRequest(projectId: projectId, productId: productId, burnMethod: burnMethod, generationMethod: generationMethod, uploadUrl: uploadUrl, batchCnt: batchCnt, generationQRCode: generationQRCode), region: region, logger: logger, on: eventLoop)
+        let input = CreateBatchProductionRequest(projectId: projectId, productId: productId, burnMethod: burnMethod, generationMethod: generationMethod, uploadUrl: uploadUrl, batchCnt: batchCnt, generationQRCode: generationQRCode)
+        return self.client.execute(action: "CreateBatchProduction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建量产任务
@@ -110,6 +111,7 @@ extension Iotexplorer {
     /// 用于新建批量生产设备
     @inlinable
     public func createBatchProduction(projectId: String, productId: String, burnMethod: Int64, generationMethod: Int64, uploadUrl: String? = nil, batchCnt: Int64? = nil, generationQRCode: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBatchProductionResponse {
-        try await self.createBatchProduction(CreateBatchProductionRequest(projectId: projectId, productId: productId, burnMethod: burnMethod, generationMethod: generationMethod, uploadUrl: uploadUrl, batchCnt: batchCnt, generationQRCode: generationQRCode), region: region, logger: logger, on: eventLoop)
+        let input = CreateBatchProductionRequest(projectId: projectId, productId: productId, burnMethod: burnMethod, generationMethod: generationMethod, uploadUrl: uploadUrl, batchCnt: batchCnt, generationQRCode: generationQRCode)
+        return try await self.client.execute(action: "CreateBatchProduction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

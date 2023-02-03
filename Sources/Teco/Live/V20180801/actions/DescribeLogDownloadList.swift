@@ -81,7 +81,8 @@ extension Live {
     /// 批量获取日志URL。
     @inlinable
     public func describeLogDownloadList(startTime: String, endTime: String, playDomains: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogDownloadListResponse> {
-        self.describeLogDownloadList(DescribeLogDownloadListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogDownloadListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains)
+        return self.client.execute(action: "DescribeLogDownloadList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量获取日志URL
@@ -89,6 +90,7 @@ extension Live {
     /// 批量获取日志URL。
     @inlinable
     public func describeLogDownloadList(startTime: String, endTime: String, playDomains: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogDownloadListResponse {
-        try await self.describeLogDownloadList(DescribeLogDownloadListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogDownloadListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains)
+        return try await self.client.execute(action: "DescribeLogDownloadList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

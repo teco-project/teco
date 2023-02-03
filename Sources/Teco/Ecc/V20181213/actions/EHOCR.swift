@@ -117,7 +117,8 @@ extension Ecc {
     /// 图像识别批改接口
     @inlinable
     public func ehocr(image: String, inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EHOCRResponse> {
-        self.ehocr(EHOCRRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync), region: region, logger: logger, on: eventLoop)
+        let input = EHOCRRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync)
+        return self.client.execute(action: "EHOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图像识别批改
@@ -126,6 +127,7 @@ extension Ecc {
     /// 图像识别批改接口
     @inlinable
     public func ehocr(image: String, inputType: Int64, eccAppid: String? = nil, sessionId: String? = nil, serverType: Int64? = nil, title: String? = nil, grade: String? = nil, requirement: String? = nil, modelTitle: String? = nil, modelContent: String? = nil, isAsync: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EHOCRResponse {
-        try await self.ehocr(EHOCRRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync), region: region, logger: logger, on: eventLoop)
+        let input = EHOCRRequest(image: image, inputType: inputType, eccAppid: eccAppid, sessionId: sessionId, serverType: serverType, title: title, grade: grade, requirement: requirement, modelTitle: modelTitle, modelContent: modelContent, isAsync: isAsync)
+        return try await self.client.execute(action: "EHOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -68,7 +68,8 @@ extension Tcaplusdb {
     /// 当restful api为关闭状态时，可以通过此接口开启restful apu
     @inlinable
     public func enableRestProxy(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableRestProxyResponse> {
-        self.enableRestProxy(EnableRestProxyRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = EnableRestProxyRequest(clusterId: clusterId)
+        return self.client.execute(action: "EnableRestProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启restful api
@@ -76,6 +77,7 @@ extension Tcaplusdb {
     /// 当restful api为关闭状态时，可以通过此接口开启restful apu
     @inlinable
     public func enableRestProxy(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableRestProxyResponse {
-        try await self.enableRestProxy(EnableRestProxyRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = EnableRestProxyRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "EnableRestProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

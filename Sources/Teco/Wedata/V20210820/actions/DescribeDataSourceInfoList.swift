@@ -99,7 +99,8 @@ extension Wedata {
     /// 获取数据源信息-数据源分页列表
     @inlinable
     public func describeDataSourceInfoList(projectId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: Filter? = nil, orderFields: OrderField? = nil, type: String? = nil, datasourceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataSourceInfoListResponse> {
-        self.describeDataSourceInfoList(DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName)
+        return self.client.execute(action: "DescribeDataSourceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据源信息
@@ -107,6 +108,7 @@ extension Wedata {
     /// 获取数据源信息-数据源分页列表
     @inlinable
     public func describeDataSourceInfoList(projectId: String, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: Filter? = nil, orderFields: OrderField? = nil, type: String? = nil, datasourceName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataSourceInfoListResponse {
-        try await self.describeDataSourceInfoList(DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDataSourceInfoListRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters, orderFields: orderFields, type: type, datasourceName: datasourceName)
+        return try await self.client.execute(action: "DescribeDataSourceInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

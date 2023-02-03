@@ -59,12 +59,14 @@ extension Monitor {
     /// 删除已安装的插件
     @inlinable @discardableResult
     public func uninstallGrafanaPlugins(pluginIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UninstallGrafanaPluginsResponse> {
-        self.uninstallGrafanaPlugins(UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId)
+        return self.client.execute(action: "UninstallGrafanaPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除已安装的插件
     @inlinable @discardableResult
     public func uninstallGrafanaPlugins(pluginIds: [String], instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UninstallGrafanaPluginsResponse {
-        try await self.uninstallGrafanaPlugins(UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = UninstallGrafanaPluginsRequest(pluginIds: pluginIds, instanceId: instanceId)
+        return try await self.client.execute(action: "UninstallGrafanaPlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -93,12 +93,14 @@ extension Tcss {
     /// 查询应急漏洞列表
     @inlinable
     public func describeEmergencyVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEmergencyVulListResponse> {
-        self.describeEmergencyVulList(DescribeEmergencyVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEmergencyVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return self.client.execute(action: "DescribeEmergencyVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询应急漏洞列表
     @inlinable
     public func describeEmergencyVulList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [RunTimeFilters]? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEmergencyVulListResponse {
-        try await self.describeEmergencyVulList(DescribeEmergencyVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEmergencyVulListRequest(limit: limit, offset: offset, filters: filters, order: order, by: by)
+        return try await self.client.execute(action: "DescribeEmergencyVulList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

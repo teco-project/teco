@@ -153,7 +153,8 @@ extension Wedata {
     /// 修改数据源
     @inlinable
     public func modifyDataSource(name: String, category: String, type: String, id: UInt64? = nil, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, ownerProjectId: String? = nil, ownerProjectName: String? = nil, ownerProjectIdent: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDataSourceResponse> {
-        self.modifyDataSource(ModifyDataSourceRequest(name: name, category: category, type: type, id: id, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, cosBucket: cosBucket, cosRegion: cosRegion), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDataSourceRequest(name: name, category: category, type: type, id: id, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, cosBucket: cosBucket, cosRegion: cosRegion)
+        return self.client.execute(action: "ModifyDataSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据源管理-修改数据源【Beta版本】
@@ -162,6 +163,7 @@ extension Wedata {
     /// 修改数据源
     @inlinable
     public func modifyDataSource(name: String, category: String, type: String, id: UInt64? = nil, bizParams: String? = nil, params: String? = nil, description: String? = nil, display: String? = nil, databaseName: String? = nil, instance: String? = nil, status: UInt64? = nil, clusterId: String? = nil, collect: String? = nil, ownerProjectId: String? = nil, ownerProjectName: String? = nil, ownerProjectIdent: String? = nil, cosBucket: String? = nil, cosRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDataSourceResponse {
-        try await self.modifyDataSource(ModifyDataSourceRequest(name: name, category: category, type: type, id: id, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, cosBucket: cosBucket, cosRegion: cosRegion), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDataSourceRequest(name: name, category: category, type: type, id: id, bizParams: bizParams, params: params, description: description, display: display, databaseName: databaseName, instance: instance, status: status, clusterId: clusterId, collect: collect, ownerProjectId: ownerProjectId, ownerProjectName: ownerProjectName, ownerProjectIdent: ownerProjectIdent, cosBucket: cosBucket, cosRegion: cosRegion)
+        return try await self.client.execute(action: "ModifyDataSource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

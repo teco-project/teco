@@ -76,7 +76,8 @@ extension Cme {
     /// <li>要删除的团队必须没有归属的分类。</li>
     @inlinable @discardableResult
     public func deleteTeam(platform: String, teamId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTeamResponse> {
-        self.deleteTeam(DeleteTeamRequest(platform: platform, teamId: teamId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTeamRequest(platform: platform, teamId: teamId, operator: `operator`)
+        return self.client.execute(action: "DeleteTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除团队
@@ -86,6 +87,7 @@ extension Cme {
     /// <li>要删除的团队必须没有归属的分类。</li>
     @inlinable @discardableResult
     public func deleteTeam(platform: String, teamId: String, operator: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTeamResponse {
-        try await self.deleteTeam(DeleteTeamRequest(platform: platform, teamId: teamId, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTeamRequest(platform: platform, teamId: teamId, operator: `operator`)
+        return try await self.client.execute(action: "DeleteTeam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

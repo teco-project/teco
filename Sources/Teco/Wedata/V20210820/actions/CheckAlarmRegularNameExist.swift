@@ -73,12 +73,14 @@ extension Wedata {
     /// 判断告警规则重名
     @inlinable
     public func checkAlarmRegularNameExist(projectId: String, taskId: String, alarmRegularName: String, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckAlarmRegularNameExistResponse> {
-        self.checkAlarmRegularNameExist(CheckAlarmRegularNameExistRequest(projectId: projectId, taskId: taskId, alarmRegularName: alarmRegularName, id: id), region: region, logger: logger, on: eventLoop)
+        let input = CheckAlarmRegularNameExistRequest(projectId: projectId, taskId: taskId, alarmRegularName: alarmRegularName, id: id)
+        return self.client.execute(action: "CheckAlarmRegularNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 判断告警规则重名
     @inlinable
     public func checkAlarmRegularNameExist(projectId: String, taskId: String, alarmRegularName: String, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckAlarmRegularNameExistResponse {
-        try await self.checkAlarmRegularNameExist(CheckAlarmRegularNameExistRequest(projectId: projectId, taskId: taskId, alarmRegularName: alarmRegularName, id: id), region: region, logger: logger, on: eventLoop)
+        let input = CheckAlarmRegularNameExistRequest(projectId: projectId, taskId: taskId, alarmRegularName: alarmRegularName, id: id)
+        return try await self.client.execute(action: "CheckAlarmRegularNameExist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -134,7 +134,8 @@ extension Faceid {
     /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
     @inlinable
     public func livenessCompare(livenessType: String, imageBase64: String? = nil, imageUrl: String? = nil, validateData: String? = nil, optional: String? = nil, videoBase64: String? = nil, videoUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<LivenessCompareResponse> {
-        self.livenessCompare(LivenessCompareRequest(livenessType: livenessType, imageBase64: imageBase64, imageUrl: imageUrl, validateData: validateData, optional: optional, videoBase64: videoBase64, videoUrl: videoUrl), region: region, logger: logger, on: eventLoop)
+        let input = LivenessCompareRequest(livenessType: livenessType, imageBase64: imageBase64, imageUrl: imageUrl, validateData: validateData, optional: optional, videoBase64: videoBase64, videoUrl: videoUrl)
+        return self.client.execute(action: "LivenessCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 活体人脸比对
@@ -142,6 +143,7 @@ extension Faceid {
     /// 传入视频和照片，先判断视频中是否为真人，判断为真人后，再判断该视频中的人与上传照片是否属于同一个人。
     @inlinable
     public func livenessCompare(livenessType: String, imageBase64: String? = nil, imageUrl: String? = nil, validateData: String? = nil, optional: String? = nil, videoBase64: String? = nil, videoUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> LivenessCompareResponse {
-        try await self.livenessCompare(LivenessCompareRequest(livenessType: livenessType, imageBase64: imageBase64, imageUrl: imageUrl, validateData: validateData, optional: optional, videoBase64: videoBase64, videoUrl: videoUrl), region: region, logger: logger, on: eventLoop)
+        let input = LivenessCompareRequest(livenessType: livenessType, imageBase64: imageBase64, imageUrl: imageUrl, validateData: validateData, optional: optional, videoBase64: videoBase64, videoUrl: videoUrl)
+        return try await self.client.execute(action: "LivenessCompare", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

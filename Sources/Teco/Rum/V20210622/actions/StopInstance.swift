@@ -60,7 +60,8 @@ extension Rum {
     /// 停止实例
     @inlinable @discardableResult
     public func stopInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstanceResponse> {
-        self.stopInstance(StopInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = StopInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "StopInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止RUM业务系统
@@ -68,6 +69,7 @@ extension Rum {
     /// 停止实例
     @inlinable @discardableResult
     public func stopInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstanceResponse {
-        try await self.stopInstance(StopInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = StopInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "StopInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

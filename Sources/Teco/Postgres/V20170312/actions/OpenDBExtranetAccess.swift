@@ -69,7 +69,8 @@ extension Postgres {
     /// 本接口（OpenDBExtranetAccess）用于开通外网。
     @inlinable
     public func openDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OpenDBExtranetAccessResponse> {
-        self.openDBExtranetAccess(OpenDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6), region: region, logger: logger, on: eventLoop)
+        let input = OpenDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6)
+        return self.client.execute(action: "OpenDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通外网
@@ -77,6 +78,7 @@ extension Postgres {
     /// 本接口（OpenDBExtranetAccess）用于开通外网。
     @inlinable
     public func openDBExtranetAccess(dbInstanceId: String, isIpv6: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OpenDBExtranetAccessResponse {
-        try await self.openDBExtranetAccess(OpenDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6), region: region, logger: logger, on: eventLoop)
+        let input = OpenDBExtranetAccessRequest(dbInstanceId: dbInstanceId, isIpv6: isIpv6)
+        return try await self.client.execute(action: "OpenDBExtranetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

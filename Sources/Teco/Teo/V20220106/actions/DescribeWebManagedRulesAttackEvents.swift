@@ -110,12 +110,14 @@ extension Teo {
     /// 查询Web托管攻击事件
     @inlinable
     public func describeWebManagedRulesAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, isShowDetail: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesAttackEventsResponse> {
-        self.describeWebManagedRulesAttackEvents(DescribeWebManagedRulesAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, domains: domains, isShowDetail: isShowDetail), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, domains: domains, isShowDetail: isShowDetail)
+        return self.client.execute(action: "DescribeWebManagedRulesAttackEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Web托管攻击事件
     @inlinable
     public func describeWebManagedRulesAttackEvents(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, policyIds: [Int64]? = nil, zoneIds: [String]? = nil, domains: [String]? = nil, isShowDetail: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesAttackEventsResponse {
-        try await self.describeWebManagedRulesAttackEvents(DescribeWebManagedRulesAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, domains: domains, isShowDetail: isShowDetail), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesAttackEventsRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, policyIds: policyIds, zoneIds: zoneIds, domains: domains, isShowDetail: isShowDetail)
+        return try await self.client.execute(action: "DescribeWebManagedRulesAttackEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

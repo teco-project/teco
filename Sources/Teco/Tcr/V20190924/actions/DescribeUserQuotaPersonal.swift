@@ -50,12 +50,14 @@ extension Tcr {
     /// 查询个人用户配额
     @inlinable
     public func describeUserQuotaPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserQuotaPersonalResponse> {
-        self.describeUserQuotaPersonal(DescribeUserQuotaPersonalRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserQuotaPersonalRequest()
+        return self.client.execute(action: "DescribeUserQuotaPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询个人用户配额
     @inlinable
     public func describeUserQuotaPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserQuotaPersonalResponse {
-        try await self.describeUserQuotaPersonal(DescribeUserQuotaPersonalRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserQuotaPersonalRequest()
+        return try await self.client.execute(action: "DescribeUserQuotaPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

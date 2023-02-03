@@ -93,7 +93,8 @@ extension Tcr {
     /// 查询镜像仓库列表或指定镜像仓库信息
     @inlinable
     public func describeRepositories(registryId: String, namespaceName: String? = nil, repositoryName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRepositoriesResponse> {
-        self.describeRepositories(DescribeRepositoriesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, offset: offset, limit: limit, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRepositoriesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, offset: offset, limit: limit, sortBy: sortBy)
+        return self.client.execute(action: "DescribeRepositories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像仓库信息
@@ -101,6 +102,7 @@ extension Tcr {
     /// 查询镜像仓库列表或指定镜像仓库信息
     @inlinable
     public func describeRepositories(registryId: String, namespaceName: String? = nil, repositoryName: String? = nil, offset: Int64? = nil, limit: Int64? = nil, sortBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRepositoriesResponse {
-        try await self.describeRepositories(DescribeRepositoriesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, offset: offset, limit: limit, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRepositoriesRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, offset: offset, limit: limit, sortBy: sortBy)
+        return try await self.client.execute(action: "DescribeRepositories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -202,7 +202,8 @@ extension Ims {
     /// </div>
     @inlinable
     public func imageModeration(bizType: String? = nil, dataId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, interval: Int64? = nil, maxFrames: Int64? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImageModerationResponse> {
-        self.imageModeration(ImageModerationRequest(bizType: bizType, dataId: dataId, fileContent: fileContent, fileUrl: fileUrl, interval: interval, maxFrames: maxFrames, user: user, device: device), region: region, logger: logger, on: eventLoop)
+        let input = ImageModerationRequest(bizType: bizType, dataId: dataId, fileContent: fileContent, fileUrl: fileUrl, interval: interval, maxFrames: maxFrames, user: user, device: device)
+        return self.client.execute(action: "ImageModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图片内容检测
@@ -226,6 +227,7 @@ extension Ims {
     /// </div>
     @inlinable
     public func imageModeration(bizType: String? = nil, dataId: String? = nil, fileContent: String? = nil, fileUrl: String? = nil, interval: Int64? = nil, maxFrames: Int64? = nil, user: User? = nil, device: Device? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImageModerationResponse {
-        try await self.imageModeration(ImageModerationRequest(bizType: bizType, dataId: dataId, fileContent: fileContent, fileUrl: fileUrl, interval: interval, maxFrames: maxFrames, user: user, device: device), region: region, logger: logger, on: eventLoop)
+        let input = ImageModerationRequest(bizType: bizType, dataId: dataId, fileContent: fileContent, fileUrl: fileUrl, interval: interval, maxFrames: maxFrames, user: user, device: device)
+        return try await self.client.execute(action: "ImageModeration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

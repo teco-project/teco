@@ -81,7 +81,8 @@ extension Cvm {
     /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
     @inlinable @discardableResult
     public func programFpgaImage(instanceId: String, fpgaUrl: String, dbdFs: [String]? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ProgramFpgaImageResponse> {
-        self.programFpgaImage(ProgramFpgaImageRequest(instanceId: instanceId, fpgaUrl: fpgaUrl, dbdFs: dbdFs, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = ProgramFpgaImageRequest(instanceId: instanceId, fpgaUrl: fpgaUrl, dbdFs: dbdFs, dryRun: dryRun)
+        return self.client.execute(action: "ProgramFpgaImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 在线烧录FPGA镜像
@@ -91,6 +92,7 @@ extension Cvm {
     /// * 支持对单个实例的多块FPGA卡同时烧录FPGA镜像，DBDFs参数为空时，默认对指定实例的所有FPGA卡进行烧录。
     @inlinable @discardableResult
     public func programFpgaImage(instanceId: String, fpgaUrl: String, dbdFs: [String]? = nil, dryRun: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ProgramFpgaImageResponse {
-        try await self.programFpgaImage(ProgramFpgaImageRequest(instanceId: instanceId, fpgaUrl: fpgaUrl, dbdFs: dbdFs, dryRun: dryRun), region: region, logger: logger, on: eventLoop)
+        let input = ProgramFpgaImageRequest(instanceId: instanceId, fpgaUrl: fpgaUrl, dbdFs: dbdFs, dryRun: dryRun)
+        return try await self.client.execute(action: "ProgramFpgaImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -58,7 +58,8 @@ extension Vpc {
     /// 如有需要, 可以封禁任意云联网实例, 可接入到内部运营系统
     @inlinable @discardableResult
     public func describeTenantCcns(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTenantCcnsResponse> {
-        self.describeTenantCcns(DescribeTenantCcnsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTenantCcnsRequest()
+        return self.client.execute(action: "DescribeTenantCcns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询租户云联网实例
@@ -68,6 +69,7 @@ extension Vpc {
     /// 如有需要, 可以封禁任意云联网实例, 可接入到内部运营系统
     @inlinable @discardableResult
     public func describeTenantCcns(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTenantCcnsResponse {
-        try await self.describeTenantCcns(DescribeTenantCcnsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTenantCcnsRequest()
+        return try await self.client.execute(action: "DescribeTenantCcns", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

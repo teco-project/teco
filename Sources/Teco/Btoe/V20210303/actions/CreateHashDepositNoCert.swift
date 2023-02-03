@@ -99,7 +99,8 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateHashDepositNoCertResponse> {
-        self.createHashDepositNoCert(CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo)
+        return self.client.execute(action: "CreateHashDepositNoCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 哈希上链存证(无证书)
@@ -108,6 +109,7 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createHashDepositNoCert(evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceInfo: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateHashDepositNoCertResponse {
-        try await self.createHashDepositNoCert(CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo), region: region, logger: logger, on: eventLoop)
+        let input = CreateHashDepositNoCertRequest(evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceInfo: evidenceInfo)
+        return try await self.client.execute(action: "CreateHashDepositNoCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -83,12 +83,14 @@ extension Gaap {
     /// 查询域名列表
     @inlinable
     public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGlobalDomainsResponse> {
-        self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet)
+        return self.client.execute(action: "DescribeGlobalDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询域名列表
     @inlinable
     public func describeGlobalDomains(projectId: Int64, offset: UInt64, limit: UInt64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGlobalDomainsResponse {
-        try await self.describeGlobalDomains(DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGlobalDomainsRequest(projectId: projectId, offset: offset, limit: limit, filters: filters, tagSet: tagSet)
+        return try await self.client.execute(action: "DescribeGlobalDomains", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

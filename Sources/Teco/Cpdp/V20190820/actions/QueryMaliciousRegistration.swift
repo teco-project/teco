@@ -122,12 +122,14 @@ extension Cpdp {
     /// 商户恶意注册接口
     @inlinable
     public func queryMaliciousRegistration(merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMaliciousRegistrationResponse> {
-        self.queryMaliciousRegistration(QueryMaliciousRegistrationRequest(merchantId: merchantId, merchantName: merchantName, companyName: companyName, regAddress: regAddress, regTime: regTime, usci: usci, regNumber: regNumber, encryptedPhoneNumber: encryptedPhoneNumber, encryptedEmailAddress: encryptedEmailAddress, encryptedPersonId: encryptedPersonId, ip: ip, channel: channel), region: region, logger: logger, on: eventLoop)
+        let input = QueryMaliciousRegistrationRequest(merchantId: merchantId, merchantName: merchantName, companyName: companyName, regAddress: regAddress, regTime: regTime, usci: usci, regNumber: regNumber, encryptedPhoneNumber: encryptedPhoneNumber, encryptedEmailAddress: encryptedEmailAddress, encryptedPersonId: encryptedPersonId, ip: ip, channel: channel)
+        return self.client.execute(action: "QueryMaliciousRegistration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 商户恶意注册接口
     @inlinable
     public func queryMaliciousRegistration(merchantId: String, merchantName: String, companyName: String, regAddress: String, regTime: UInt64, usci: String? = nil, regNumber: String? = nil, encryptedPhoneNumber: String? = nil, encryptedEmailAddress: String? = nil, encryptedPersonId: String? = nil, ip: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMaliciousRegistrationResponse {
-        try await self.queryMaliciousRegistration(QueryMaliciousRegistrationRequest(merchantId: merchantId, merchantName: merchantName, companyName: companyName, regAddress: regAddress, regTime: regTime, usci: usci, regNumber: regNumber, encryptedPhoneNumber: encryptedPhoneNumber, encryptedEmailAddress: encryptedEmailAddress, encryptedPersonId: encryptedPersonId, ip: ip, channel: channel), region: region, logger: logger, on: eventLoop)
+        let input = QueryMaliciousRegistrationRequest(merchantId: merchantId, merchantName: merchantName, companyName: companyName, regAddress: regAddress, regTime: regTime, usci: usci, regNumber: regNumber, encryptedPhoneNumber: encryptedPhoneNumber, encryptedEmailAddress: encryptedEmailAddress, encryptedPersonId: encryptedPersonId, ip: ip, channel: channel)
+        return try await self.client.execute(action: "QueryMaliciousRegistration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

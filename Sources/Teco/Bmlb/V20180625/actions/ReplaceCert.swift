@@ -88,7 +88,8 @@ extension Bmlb {
     /// 更新黑石负载均衡证书。
     @inlinable
     public func replaceCert(oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceCertResponse> {
-        self.replaceCert(ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld), region: region, logger: logger, on: eventLoop)
+        let input = ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld)
+        return self.client.execute(action: "ReplaceCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新黑石负载均衡证书
@@ -96,6 +97,7 @@ extension Bmlb {
     /// 更新黑石负载均衡证书。
     @inlinable
     public func replaceCert(oldCertId: String, newCert: String, newAlias: String? = nil, newKey: String? = nil, deleteOld: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertResponse {
-        try await self.replaceCert(ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld), region: region, logger: logger, on: eventLoop)
+        let input = ReplaceCertRequest(oldCertId: oldCertId, newCert: newCert, newAlias: newAlias, newKey: newKey, deleteOld: deleteOld)
+        return try await self.client.execute(action: "ReplaceCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

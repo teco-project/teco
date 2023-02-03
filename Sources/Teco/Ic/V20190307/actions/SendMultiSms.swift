@@ -75,7 +75,8 @@ extension Ic {
     /// 群发短信
     @inlinable
     public func sendMultiSms(sdkappid: String, iccids: [String], content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SendMultiSmsResponse> {
-        self.sendMultiSms(SendMultiSmsRequest(sdkappid: sdkappid, iccids: iccids, content: content), region: region, logger: logger, on: eventLoop)
+        let input = SendMultiSmsRequest(sdkappid: sdkappid, iccids: iccids, content: content)
+        return self.client.execute(action: "SendMultiSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 群发短信接口
@@ -83,6 +84,7 @@ extension Ic {
     /// 群发短信
     @inlinable
     public func sendMultiSms(sdkappid: String, iccids: [String], content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendMultiSmsResponse {
-        try await self.sendMultiSms(SendMultiSmsRequest(sdkappid: sdkappid, iccids: iccids, content: content), region: region, logger: logger, on: eventLoop)
+        let input = SendMultiSmsRequest(sdkappid: sdkappid, iccids: iccids, content: content)
+        return try await self.client.execute(action: "SendMultiSms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

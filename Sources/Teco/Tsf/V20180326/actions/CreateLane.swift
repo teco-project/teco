@@ -74,12 +74,14 @@ extension Tsf {
     /// 创建泳道
     @inlinable
     public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLaneResponse> {
-        self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
+        let input = CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList)
+        return self.client.execute(action: "CreateLane", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建泳道
     @inlinable
     public func createLane(laneName: String, remark: String, laneGroupList: [LaneGroup], programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLaneResponse {
-        try await self.createLane(CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
+        let input = CreateLaneRequest(laneName: laneName, remark: remark, laneGroupList: laneGroupList, programIdList: programIdList)
+        return try await self.client.execute(action: "CreateLane", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -108,7 +108,8 @@ extension Sqlserver {
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
     @inlinable
     public func describeIncrementalMigration(backupMigrationId: String, instanceId: String, backupFileName: String? = nil, statusSet: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, incrementalMigrationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIncrementalMigrationResponse> {
-        self.describeIncrementalMigration(DescribeIncrementalMigrationRequest(backupMigrationId: backupMigrationId, instanceId: instanceId, backupFileName: backupFileName, statusSet: statusSet, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIncrementalMigrationRequest(backupMigrationId: backupMigrationId, instanceId: instanceId, backupFileName: backupFileName, statusSet: statusSet, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, incrementalMigrationId: incrementalMigrationId)
+        return self.client.execute(action: "DescribeIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询增量备份导入任务
@@ -116,6 +117,7 @@ extension Sqlserver {
     /// 本接口（DescribeIncrementalMigration）用于查询增量备份导入任务。
     @inlinable
     public func describeIncrementalMigration(backupMigrationId: String, instanceId: String, backupFileName: String? = nil, statusSet: [Int64]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, incrementalMigrationId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIncrementalMigrationResponse {
-        try await self.describeIncrementalMigration(DescribeIncrementalMigrationRequest(backupMigrationId: backupMigrationId, instanceId: instanceId, backupFileName: backupFileName, statusSet: statusSet, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, incrementalMigrationId: incrementalMigrationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIncrementalMigrationRequest(backupMigrationId: backupMigrationId, instanceId: instanceId, backupFileName: backupFileName, statusSet: statusSet, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType, incrementalMigrationId: incrementalMigrationId)
+        return try await self.client.execute(action: "DescribeIncrementalMigration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -104,7 +104,8 @@ extension Cynosdb {
     /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
     @inlinable
     public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportInstanceSlowQueriesResponse> {
-        self.exportInstanceSlowQueries(ExportInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType), region: region, logger: logger, on: eventLoop)
+        let input = ExportInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType)
+        return self.client.execute(action: "ExportInstanceSlowQueries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出实例慢日志
@@ -112,6 +113,7 @@ extension Cynosdb {
     /// 此接口（ExportInstanceSlowQueries）用于导出实例慢日志。
     @inlinable
     public func exportInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, fileType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportInstanceSlowQueriesResponse {
-        try await self.exportInstanceSlowQueries(ExportInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType), region: region, logger: logger, on: eventLoop)
+        let input = ExportInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, fileType: fileType)
+        return try await self.client.execute(action: "ExportInstanceSlowQueries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

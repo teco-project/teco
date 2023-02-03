@@ -91,7 +91,8 @@ extension Gaap {
     /// 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。
     @inlinable
     public func describeFirstLinkSession(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirstLinkSessionResponse> {
-        self.describeFirstLinkSession(DescribeFirstLinkSessionRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirstLinkSessionRequest(sessionId: sessionId)
+        return self.client.execute(action: "DescribeFirstLinkSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询接入段加速会话信息
@@ -99,6 +100,7 @@ extension Gaap {
     /// 本接口（DescribeFirstLinkSession）用于查询接入段加速会话状态，包括会话状态，生效时长，加速套餐等信息。
     @inlinable
     public func describeFirstLinkSession(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirstLinkSessionResponse {
-        try await self.describeFirstLinkSession(DescribeFirstLinkSessionRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirstLinkSessionRequest(sessionId: sessionId)
+        return try await self.client.execute(action: "DescribeFirstLinkSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

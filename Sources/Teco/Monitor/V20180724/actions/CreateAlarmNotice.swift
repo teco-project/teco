@@ -93,12 +93,14 @@ extension Monitor {
     /// 创建通知模板
     @inlinable
     public func createAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAlarmNoticeResponse> {
-        self.createAlarmNotice(CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags)
+        return self.client.execute(action: "CreateAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建通知模板
     @inlinable
     public func createAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAlarmNoticeResponse {
-        try await self.createAlarmNotice(CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, tags: tags)
+        return try await self.client.execute(action: "CreateAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

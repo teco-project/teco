@@ -117,7 +117,8 @@ extension Vod {
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyContentReviewTemplateResponse> {
-        self.modifyContentReviewTemplate(ModifyContentReviewTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, terrorismConfigure: terrorismConfigure, pornConfigure: pornConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval, reviewWallSwitch: reviewWallSwitch), region: region, logger: logger, on: eventLoop)
+        let input = ModifyContentReviewTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, terrorismConfigure: terrorismConfigure, pornConfigure: pornConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval, reviewWallSwitch: reviewWallSwitch)
+        return self.client.execute(action: "ModifyContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改音视频内容审核模板
@@ -126,6 +127,7 @@ extension Vod {
     /// 修改用户自定义音视频内容审核模板。
     @inlinable @discardableResult
     public func modifyContentReviewTemplate(definition: Int64, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, terrorismConfigure: TerrorismConfigureInfoForUpdate? = nil, pornConfigure: PornConfigureInfoForUpdate? = nil, politicalConfigure: PoliticalConfigureInfoForUpdate? = nil, prohibitedConfigure: ProhibitedConfigureInfoForUpdate? = nil, userDefineConfigure: UserDefineConfigureInfoForUpdate? = nil, screenshotInterval: Float? = nil, reviewWallSwitch: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyContentReviewTemplateResponse {
-        try await self.modifyContentReviewTemplate(ModifyContentReviewTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, terrorismConfigure: terrorismConfigure, pornConfigure: pornConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval, reviewWallSwitch: reviewWallSwitch), region: region, logger: logger, on: eventLoop)
+        let input = ModifyContentReviewTemplateRequest(definition: definition, subAppId: subAppId, name: name, comment: comment, terrorismConfigure: terrorismConfigure, pornConfigure: pornConfigure, politicalConfigure: politicalConfigure, prohibitedConfigure: prohibitedConfigure, userDefineConfigure: userDefineConfigure, screenshotInterval: screenshotInterval, reviewWallSwitch: reviewWallSwitch)
+        return try await self.client.execute(action: "ModifyContentReviewTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -87,12 +87,14 @@ extension Cpdp {
     /// 灵云-绑定账号
     @inlinable
     public func bindAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindAccountResponse> {
-        self.bindAccount(BindAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
+        let input = BindAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum)
+        return self.client.execute(action: "BindAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云-绑定账号
     @inlinable
     public func bindAccount(anchorId: String, transferType: Int64, accountNo: String, phoneNum: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindAccountResponse {
-        try await self.bindAccount(BindAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum), region: region, logger: logger, on: eventLoop)
+        let input = BindAccountRequest(anchorId: anchorId, transferType: transferType, accountNo: accountNo, phoneNum: phoneNum)
+        return try await self.client.execute(action: "BindAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

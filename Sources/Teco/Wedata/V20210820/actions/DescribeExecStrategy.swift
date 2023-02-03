@@ -64,12 +64,14 @@ extension Wedata {
     /// 查询规则组执行策略
     @inlinable
     public func describeExecStrategy(ruleGroupId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExecStrategyResponse> {
-        self.describeExecStrategy(DescribeExecStrategyRequest(ruleGroupId: ruleGroupId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExecStrategyRequest(ruleGroupId: ruleGroupId, projectId: projectId)
+        return self.client.execute(action: "DescribeExecStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询规则组执行策略
     @inlinable
     public func describeExecStrategy(ruleGroupId: UInt64? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExecStrategyResponse {
-        try await self.describeExecStrategy(DescribeExecStrategyRequest(ruleGroupId: ruleGroupId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExecStrategyRequest(ruleGroupId: ruleGroupId, projectId: projectId)
+        return try await self.client.execute(action: "DescribeExecStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

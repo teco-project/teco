@@ -63,12 +63,14 @@ extension Wedata {
     /// 删除集成节点
     @inlinable
     public func deleteIntegrationNode(id: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIntegrationNodeResponse> {
-        self.deleteIntegrationNode(DeleteIntegrationNodeRequest(id: id, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIntegrationNodeRequest(id: id, projectId: projectId)
+        return self.client.execute(action: "DeleteIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除集成节点
     @inlinable
     public func deleteIntegrationNode(id: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIntegrationNodeResponse {
-        try await self.deleteIntegrationNode(DeleteIntegrationNodeRequest(id: id, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIntegrationNodeRequest(id: id, projectId: projectId)
+        return try await self.client.execute(action: "DeleteIntegrationNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

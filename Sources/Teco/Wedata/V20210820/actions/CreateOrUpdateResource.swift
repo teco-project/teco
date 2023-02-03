@@ -95,7 +95,8 @@ extension Wedata {
     /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
     @inlinable
     public func createOrUpdateResource(projectId: String? = nil, files: [String]? = nil, filePath: String? = nil, cosBucketName: String? = nil, cosRegion: String? = nil, newFile: Bool? = nil, filesSize: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrUpdateResourceResponse> {
-        self.createOrUpdateResource(CreateOrUpdateResourceRequest(projectId: projectId, files: files, filePath: filePath, cosBucketName: cosBucketName, cosRegion: cosRegion, newFile: newFile, filesSize: filesSize), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrUpdateResourceRequest(projectId: projectId, files: files, filePath: filePath, cosBucketName: cosBucketName, cosRegion: cosRegion, newFile: newFile, filesSize: filesSize)
+        return self.client.execute(action: "CreateOrUpdateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 资源管理将cos资源绑定到wedata
@@ -103,6 +104,7 @@ extension Wedata {
     /// 资源管理需要先将资源上传到cos中，然后调用该接口，将cos资源绑定到wedata
     @inlinable
     public func createOrUpdateResource(projectId: String? = nil, files: [String]? = nil, filePath: String? = nil, cosBucketName: String? = nil, cosRegion: String? = nil, newFile: Bool? = nil, filesSize: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrUpdateResourceResponse {
-        try await self.createOrUpdateResource(CreateOrUpdateResourceRequest(projectId: projectId, files: files, filePath: filePath, cosBucketName: cosBucketName, cosRegion: cosRegion, newFile: newFile, filesSize: filesSize), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrUpdateResourceRequest(projectId: projectId, files: files, filePath: filePath, cosBucketName: cosBucketName, cosRegion: cosRegion, newFile: newFile, filesSize: filesSize)
+        return try await self.client.execute(action: "CreateOrUpdateResource", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -98,7 +98,8 @@ extension Ccc {
     /// 获取包括全媒体和文本会话两种类型的服务记录。
     @inlinable
     public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIMCdrsResponse> {
-        self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type)
+        return self.client.execute(action: "DescribeIMCdrs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询在线客服记录
@@ -106,6 +107,7 @@ extension Ccc {
     /// 获取包括全媒体和文本会话两种类型的服务记录。
     @inlinable
     public func describeIMCdrs(startTimestamp: Int64, endTimestamp: Int64, instanceId: Int64? = nil, sdkAppId: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIMCdrsResponse {
-        try await self.describeIMCdrs(DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIMCdrsRequest(startTimestamp: startTimestamp, endTimestamp: endTimestamp, instanceId: instanceId, sdkAppId: sdkAppId, limit: limit, offset: offset, type: type)
+        return try await self.client.execute(action: "DescribeIMCdrs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

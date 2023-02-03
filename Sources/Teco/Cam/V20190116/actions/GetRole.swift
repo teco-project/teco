@@ -69,7 +69,8 @@ extension Cam {
     /// 本接口（GetRole）用于获取指定角色的详细信息。
     @inlinable
     public func getRole(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRoleResponse> {
-        self.getRole(GetRoleRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
+        let input = GetRoleRequest(roleId: roleId, roleName: roleName)
+        return self.client.execute(action: "GetRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取角色详情
@@ -77,6 +78,7 @@ extension Cam {
     /// 本接口（GetRole）用于获取指定角色的详细信息。
     @inlinable
     public func getRole(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRoleResponse {
-        try await self.getRole(GetRoleRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
+        let input = GetRoleRequest(roleId: roleId, roleName: roleName)
+        return try await self.client.execute(action: "GetRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

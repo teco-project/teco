@@ -69,7 +69,8 @@ extension Bmvpc {
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
     @inlinable
     public func deleteVirtualIp(vpcId: String, ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVirtualIpResponse> {
-        self.deleteVirtualIp(DeleteVirtualIpRequest(vpcId: vpcId, ips: ips), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVirtualIpRequest(vpcId: vpcId, ips: ips)
+        return self.client.execute(action: "DeleteVirtualIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退还虚拟IP
@@ -77,6 +78,7 @@ extension Bmvpc {
     /// 退还虚拟IP。此接口只能退还虚拟IP，物理机IP不能退还。
     @inlinable
     public func deleteVirtualIp(vpcId: String, ips: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVirtualIpResponse {
-        try await self.deleteVirtualIp(DeleteVirtualIpRequest(vpcId: vpcId, ips: ips), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVirtualIpRequest(vpcId: vpcId, ips: ips)
+        return try await self.client.execute(action: "DeleteVirtualIp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

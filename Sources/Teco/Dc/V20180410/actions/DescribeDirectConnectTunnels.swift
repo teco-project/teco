@@ -87,7 +87,8 @@ extension Dc {
     /// 用于查询专用通道列表。
     @inlinable
     public func describeDirectConnectTunnels(filters: [Filter]? = nil, directConnectTunnelIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDirectConnectTunnelsResponse> {
-        self.describeDirectConnectTunnels(DescribeDirectConnectTunnelsRequest(filters: filters, directConnectTunnelIds: directConnectTunnelIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDirectConnectTunnelsRequest(filters: filters, directConnectTunnelIds: directConnectTunnelIds, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeDirectConnectTunnels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询专用通道列表
@@ -95,6 +96,7 @@ extension Dc {
     /// 用于查询专用通道列表。
     @inlinable
     public func describeDirectConnectTunnels(filters: [Filter]? = nil, directConnectTunnelIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDirectConnectTunnelsResponse {
-        try await self.describeDirectConnectTunnels(DescribeDirectConnectTunnelsRequest(filters: filters, directConnectTunnelIds: directConnectTunnelIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDirectConnectTunnelsRequest(filters: filters, directConnectTunnelIds: directConnectTunnelIds, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeDirectConnectTunnels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

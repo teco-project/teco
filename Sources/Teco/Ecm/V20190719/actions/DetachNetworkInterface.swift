@@ -64,12 +64,14 @@ extension Ecm {
     /// 弹性网卡解绑云主机
     @inlinable @discardableResult
     public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachNetworkInterfaceResponse> {
-        self.detachNetworkInterface(DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
+        let input = DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion)
+        return self.client.execute(action: "DetachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡解绑云主机
     @inlinable @discardableResult
     public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, ecmRegion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachNetworkInterfaceResponse {
-        try await self.detachNetworkInterface(DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion), region: region, logger: logger, on: eventLoop)
+        let input = DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, ecmRegion: ecmRegion)
+        return try await self.client.execute(action: "DetachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

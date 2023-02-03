@@ -79,12 +79,14 @@ extension Cvm {
     /// 修改CHC物理服务器的属性
     @inlinable @discardableResult
     public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyChcAttributeResponse> {
-        self.modifyChcAttribute(ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds)
+        return self.client.execute(action: "ModifyChcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改CHC物理服务器的属性
     @inlinable @discardableResult
     public func modifyChcAttribute(chcIds: [String], instanceName: String? = nil, deviceType: String? = nil, bmcUser: String? = nil, password: String? = nil, bmcSecurityGroupIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyChcAttributeResponse {
-        try await self.modifyChcAttribute(ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyChcAttributeRequest(chcIds: chcIds, instanceName: instanceName, deviceType: deviceType, bmcUser: bmcUser, password: password, bmcSecurityGroupIds: bmcSecurityGroupIds)
+        return try await self.client.execute(action: "ModifyChcAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -86,7 +86,8 @@ extension Gaap {
     /// 本接口（DescribeRuleRealServers）用于查询转发规则相关的源站信息， 包括该规则可绑定的源站信息和已绑定的源站信息。
     @inlinable
     public func describeRuleRealServers(ruleId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleRealServersResponse> {
-        self.describeRuleRealServers(DescribeRuleRealServersRequest(ruleId: ruleId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleRealServersRequest(ruleId: ruleId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeRuleRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询转发规则相关源站信息
@@ -94,6 +95,7 @@ extension Gaap {
     /// 本接口（DescribeRuleRealServers）用于查询转发规则相关的源站信息， 包括该规则可绑定的源站信息和已绑定的源站信息。
     @inlinable
     public func describeRuleRealServers(ruleId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleRealServersResponse {
-        try await self.describeRuleRealServers(DescribeRuleRealServersRequest(ruleId: ruleId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleRealServersRequest(ruleId: ruleId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeRuleRealServers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

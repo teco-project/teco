@@ -68,7 +68,8 @@ extension Gaap {
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
     @inlinable
     public func describeRulesByRuleIds(ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRulesByRuleIdsResponse> {
-        self.describeRulesByRuleIds(DescribeRulesByRuleIdsRequest(ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRulesByRuleIdsRequest(ruleIds: ruleIds)
+        return self.client.execute(action: "DescribeRulesByRuleIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据规则ID拉取规则信息列表
@@ -76,6 +77,7 @@ extension Gaap {
     /// 本接口（DescribeRulesByRuleIds）用于根据规则ID拉取规则信息列表。支持一个或者多个规则信息的拉取。一次最多支持10个规则信息的拉取。
     @inlinable
     public func describeRulesByRuleIds(ruleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRulesByRuleIdsResponse {
-        try await self.describeRulesByRuleIds(DescribeRulesByRuleIdsRequest(ruleIds: ruleIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRulesByRuleIdsRequest(ruleIds: ruleIds)
+        return try await self.client.execute(action: "DescribeRulesByRuleIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

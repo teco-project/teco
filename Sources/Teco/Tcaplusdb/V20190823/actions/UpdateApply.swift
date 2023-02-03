@@ -63,12 +63,14 @@ extension Tcaplusdb {
     /// 更新申请单状态
     @inlinable
     public func updateApply(applyStatus: [ApplyStatus], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApplyResponse> {
-        self.updateApply(UpdateApplyRequest(applyStatus: applyStatus), region: region, logger: logger, on: eventLoop)
+        let input = UpdateApplyRequest(applyStatus: applyStatus)
+        return self.client.execute(action: "UpdateApply", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新申请单状态
     @inlinable
     public func updateApply(applyStatus: [ApplyStatus], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApplyResponse {
-        try await self.updateApply(UpdateApplyRequest(applyStatus: applyStatus), region: region, logger: logger, on: eventLoop)
+        let input = UpdateApplyRequest(applyStatus: applyStatus)
+        return try await self.client.execute(action: "UpdateApply", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

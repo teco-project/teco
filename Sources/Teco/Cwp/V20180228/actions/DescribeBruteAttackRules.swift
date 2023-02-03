@@ -50,12 +50,14 @@ extension Cwp {
     /// 获取爆破破解规则
     @inlinable
     public func describeBruteAttackRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBruteAttackRulesResponse> {
-        self.describeBruteAttackRules(DescribeBruteAttackRulesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBruteAttackRulesRequest()
+        return self.client.execute(action: "DescribeBruteAttackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取爆破破解规则
     @inlinable
     public func describeBruteAttackRules(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBruteAttackRulesResponse {
-        try await self.describeBruteAttackRules(DescribeBruteAttackRulesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBruteAttackRulesRequest()
+        return try await self.client.execute(action: "DescribeBruteAttackRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

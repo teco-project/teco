@@ -95,7 +95,8 @@ extension Iotvideo {
     /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
     @inlinable @discardableResult
     public func uploadOtaVersion(productId: String, otaVersion: String, versionUrl: String, fileSize: UInt64? = nil, md5: String? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadOtaVersionResponse> {
-        self.uploadOtaVersion(UploadOtaVersionRequest(productId: productId, otaVersion: otaVersion, versionUrl: versionUrl, fileSize: fileSize, md5: md5, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
+        let input = UploadOtaVersionRequest(productId: productId, otaVersion: otaVersion, versionUrl: versionUrl, fileSize: fileSize, md5: md5, operator: `operator`, remark: remark, contents: contents)
+        return self.client.execute(action: "UploadOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 接收上传到控制台的固件版本信息
@@ -103,6 +104,7 @@ extension Iotvideo {
     /// 本接口（UploadOtaVersion）接收上传到控制台的固件版本信息。
     @inlinable @discardableResult
     public func uploadOtaVersion(productId: String, otaVersion: String, versionUrl: String, fileSize: UInt64? = nil, md5: String? = nil, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadOtaVersionResponse {
-        try await self.uploadOtaVersion(UploadOtaVersionRequest(productId: productId, otaVersion: otaVersion, versionUrl: versionUrl, fileSize: fileSize, md5: md5, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
+        let input = UploadOtaVersionRequest(productId: productId, otaVersion: otaVersion, versionUrl: versionUrl, fileSize: fileSize, md5: md5, operator: `operator`, remark: remark, contents: contents)
+        return try await self.client.execute(action: "UploadOtaVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

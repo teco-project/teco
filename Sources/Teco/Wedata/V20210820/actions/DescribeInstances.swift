@@ -80,7 +80,8 @@ extension Wedata {
     /// 数据质量，查询调度任务的实例列表
     @inlinable
     public func describeInstances(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        self.describeInstances(DescribeInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters)
+        return self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据质量-查询实例列表
@@ -88,6 +89,7 @@ extension Wedata {
     /// 数据质量，查询调度任务的实例列表
     @inlinable
     public func describeInstances(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.describeInstances(DescribeInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters)
+        return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

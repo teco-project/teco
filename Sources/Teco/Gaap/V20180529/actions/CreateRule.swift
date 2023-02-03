@@ -120,7 +120,8 @@ extension Gaap {
     /// 该接口（CreateRule）用于创建HTTP/HTTPS监听器转发规则。
     @inlinable
     public func createRule(listenerId: String, domain: String, path: String, realServerType: String, scheduler: String, healthCheck: UInt64, checkParams: RuleCheckParams? = nil, forwardProtocol: String? = nil, forwardHost: String? = nil, serverNameIndicationSwitch: String? = nil, serverNameIndication: String? = nil, forcedRedirect: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.createRule(CreateRuleRequest(listenerId: listenerId, domain: domain, path: path, realServerType: realServerType, scheduler: scheduler, healthCheck: healthCheck, checkParams: checkParams, forwardProtocol: forwardProtocol, forwardHost: forwardHost, serverNameIndicationSwitch: serverNameIndicationSwitch, serverNameIndication: serverNameIndication, forcedRedirect: forcedRedirect), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(listenerId: listenerId, domain: domain, path: path, realServerType: realServerType, scheduler: scheduler, healthCheck: healthCheck, checkParams: checkParams, forwardProtocol: forwardProtocol, forwardHost: forwardHost, serverNameIndicationSwitch: serverNameIndicationSwitch, serverNameIndication: serverNameIndication, forcedRedirect: forcedRedirect)
+        return self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建监听器转发规则
@@ -128,6 +129,7 @@ extension Gaap {
     /// 该接口（CreateRule）用于创建HTTP/HTTPS监听器转发规则。
     @inlinable
     public func createRule(listenerId: String, domain: String, path: String, realServerType: String, scheduler: String, healthCheck: UInt64, checkParams: RuleCheckParams? = nil, forwardProtocol: String? = nil, forwardHost: String? = nil, serverNameIndicationSwitch: String? = nil, serverNameIndication: String? = nil, forcedRedirect: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.createRule(CreateRuleRequest(listenerId: listenerId, domain: domain, path: path, realServerType: realServerType, scheduler: scheduler, healthCheck: healthCheck, checkParams: checkParams, forwardProtocol: forwardProtocol, forwardHost: forwardHost, serverNameIndicationSwitch: serverNameIndicationSwitch, serverNameIndication: serverNameIndication, forcedRedirect: forcedRedirect), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(listenerId: listenerId, domain: domain, path: path, realServerType: realServerType, scheduler: scheduler, healthCheck: healthCheck, checkParams: checkParams, forwardProtocol: forwardProtocol, forwardHost: forwardHost, serverNameIndicationSwitch: serverNameIndicationSwitch, serverNameIndication: serverNameIndication, forcedRedirect: forcedRedirect)
+        return try await self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

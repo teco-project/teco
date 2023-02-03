@@ -82,7 +82,8 @@ extension Cdb {
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     @inlinable
     public func describeTagsOfInstanceIds(instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsOfInstanceIdsResponse> {
-        self.describeTagsOfInstanceIds(DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeTagsOfInstanceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例绑定的标签
@@ -90,6 +91,7 @@ extension Cdb {
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     @inlinable
     public func describeTagsOfInstanceIds(instanceIds: [String], offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsOfInstanceIdsResponse {
-        try await self.describeTagsOfInstanceIds(DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTagsOfInstanceIdsRequest(instanceIds: instanceIds, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeTagsOfInstanceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

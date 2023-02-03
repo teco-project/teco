@@ -60,7 +60,8 @@ extension Cds {
     /// 获取镜像列表
     @inlinable
     public func describeDasbImageIds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDasbImageIdsResponse> {
-        self.describeDasbImageIds(DescribeDasbImageIdsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDasbImageIdsRequest()
+        return self.client.execute(action: "DescribeDasbImageIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数盾-DASB-获取镜像列表
@@ -68,6 +69,7 @@ extension Cds {
     /// 获取镜像列表
     @inlinable
     public func describeDasbImageIds(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDasbImageIdsResponse {
-        try await self.describeDasbImageIds(DescribeDasbImageIdsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDasbImageIdsRequest()
+        return try await self.client.execute(action: "DescribeDasbImageIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

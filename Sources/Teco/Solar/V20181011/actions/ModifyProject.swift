@@ -79,12 +79,14 @@ extension Solar {
     /// 修改项目
     @inlinable @discardableResult
     public func modifyProject(projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProjectResponse> {
-        self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId)
+        return self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改项目
     @inlinable @discardableResult
     public func modifyProject(projectId: String, projectName: String, projectBudget: String, projectOrg: String, projectIntroduction: String, projectOrgId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProjectResponse {
-        try await self.modifyProject(ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProjectRequest(projectId: projectId, projectName: projectName, projectBudget: projectBudget, projectOrg: projectOrg, projectIntroduction: projectIntroduction, projectOrgId: projectOrgId)
+        return try await self.client.execute(action: "ModifyProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

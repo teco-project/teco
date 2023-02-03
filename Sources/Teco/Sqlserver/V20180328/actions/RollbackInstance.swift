@@ -95,7 +95,8 @@ extension Sqlserver {
     /// 本接口（RollbackInstance）用于回档实例
     @inlinable
     public func rollbackInstance(instanceId: String, type: UInt64, dBs: [String], time: Date, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackInstanceResponse> {
-        self.rollbackInstance(RollbackInstanceRequest(instanceId: instanceId, type: type, dBs: dBs, time: time, targetInstanceId: targetInstanceId, renameRestore: renameRestore), region: region, logger: logger, on: eventLoop)
+        let input = RollbackInstanceRequest(instanceId: instanceId, type: type, dBs: dBs, time: time, targetInstanceId: targetInstanceId, renameRestore: renameRestore)
+        return self.client.execute(action: "RollbackInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回档实例
@@ -103,6 +104,7 @@ extension Sqlserver {
     /// 本接口（RollbackInstance）用于回档实例
     @inlinable
     public func rollbackInstance(instanceId: String, type: UInt64, dBs: [String], time: Date, targetInstanceId: String? = nil, renameRestore: [RenameRestoreDatabase]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackInstanceResponse {
-        try await self.rollbackInstance(RollbackInstanceRequest(instanceId: instanceId, type: type, dBs: dBs, time: time, targetInstanceId: targetInstanceId, renameRestore: renameRestore), region: region, logger: logger, on: eventLoop)
+        let input = RollbackInstanceRequest(instanceId: instanceId, type: type, dBs: dBs, time: time, targetInstanceId: targetInstanceId, renameRestore: renameRestore)
+        return try await self.client.execute(action: "RollbackInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

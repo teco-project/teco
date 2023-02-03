@@ -102,7 +102,8 @@ extension Yinsuda {
     /// 获取机器人列表，支持 Id、状态等过滤条件。
     @inlinable
     public func describeKTVRobots(appName: String, userId: String, robotIds: [String]? = nil, statuses: [String]? = nil, createTime: TimeRange? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVRobotsResponse> {
-        self.describeKTVRobots(DescribeKTVRobotsRequest(appName: appName, userId: userId, robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVRobotsRequest(appName: appName, userId: userId, robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeKTVRobots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取机器人信息
@@ -110,6 +111,7 @@ extension Yinsuda {
     /// 获取机器人列表，支持 Id、状态等过滤条件。
     @inlinable
     public func describeKTVRobots(appName: String, userId: String, robotIds: [String]? = nil, statuses: [String]? = nil, createTime: TimeRange? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVRobotsResponse {
-        try await self.describeKTVRobots(DescribeKTVRobotsRequest(appName: appName, userId: userId, robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVRobotsRequest(appName: appName, userId: userId, robotIds: robotIds, statuses: statuses, createTime: createTime, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeKTVRobots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,12 +63,14 @@ extension Redis {
     /// 查询实例大Key大小分布
     @inlinable
     public func describeInstanceMonitorBigKeySizeDist(instanceId: String, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceMonitorBigKeySizeDistResponse> {
-        self.describeInstanceMonitorBigKeySizeDist(DescribeInstanceMonitorBigKeySizeDistRequest(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceMonitorBigKeySizeDistRequest(instanceId: instanceId, date: date)
+        return self.client.execute(action: "DescribeInstanceMonitorBigKeySizeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例大Key大小分布
     @inlinable
     public func describeInstanceMonitorBigKeySizeDist(instanceId: String, date: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceMonitorBigKeySizeDistResponse {
-        try await self.describeInstanceMonitorBigKeySizeDist(DescribeInstanceMonitorBigKeySizeDistRequest(instanceId: instanceId, date: date), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceMonitorBigKeySizeDistRequest(instanceId: instanceId, date: date)
+        return try await self.client.execute(action: "DescribeInstanceMonitorBigKeySizeDist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

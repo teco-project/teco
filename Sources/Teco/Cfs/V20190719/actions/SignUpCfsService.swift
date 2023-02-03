@@ -56,7 +56,8 @@ extension Cfs {
     /// 本接口（SignUpCfsService）用于开通CFS服务。
     @inlinable
     public func signUpCfsService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignUpCfsServiceResponse> {
-        self.signUpCfsService(SignUpCfsServiceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = SignUpCfsServiceRequest()
+        return self.client.execute(action: "SignUpCfsService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通CFS服务
@@ -64,6 +65,7 @@ extension Cfs {
     /// 本接口（SignUpCfsService）用于开通CFS服务。
     @inlinable
     public func signUpCfsService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignUpCfsServiceResponse {
-        try await self.signUpCfsService(SignUpCfsServiceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = SignUpCfsServiceRequest()
+        return try await self.client.execute(action: "SignUpCfsService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

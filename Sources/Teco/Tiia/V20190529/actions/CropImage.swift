@@ -135,7 +135,8 @@ extension Tiia {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func cropImage(width: Int64, height: Int64, imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CropImageResponse> {
-        self.cropImage(CropImageRequest(width: width, height: height, imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
+        let input = CropImageRequest(width: width, height: height, imageUrl: imageUrl, imageBase64: imageBase64)
+        return self.client.execute(action: "CropImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图片智能裁剪
@@ -147,6 +148,7 @@ extension Tiia {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func cropImage(width: Int64, height: Int64, imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CropImageResponse {
-        try await self.cropImage(CropImageRequest(width: width, height: height, imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
+        let input = CropImageRequest(width: width, height: height, imageUrl: imageUrl, imageBase64: imageBase64)
+        return try await self.client.execute(action: "CropImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

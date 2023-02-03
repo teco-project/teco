@@ -95,7 +95,8 @@ extension Iotvideoindustry {
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     @inlinable
     public func describeChannels(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChannelsResponse> {
-        self.describeChannels(DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId)
+        return self.client.execute(action: "DescribeChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备下属通道列表
@@ -103,6 +104,7 @@ extension Iotvideoindustry {
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
     @inlinable
     public func describeChannels(deviceId: String, limit: UInt64? = nil, offset: UInt64? = nil, channelTypes: [UInt64]? = nil, planId: String? = nil, sceneId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChannelsResponse {
-        try await self.describeChannels(DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeChannelsRequest(deviceId: deviceId, limit: limit, offset: offset, channelTypes: channelTypes, planId: planId, sceneId: sceneId)
+        return try await self.client.execute(action: "DescribeChannels", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

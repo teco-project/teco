@@ -64,7 +64,8 @@ extension Bda {
     /// 获取人体库汇总信息。
     @inlinable
     public func getSummaryInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetSummaryInfoResponse> {
-        self.getSummaryInfo(GetSummaryInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetSummaryInfoRequest()
+        return self.client.execute(action: "GetSummaryInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人体库汇总信息
@@ -72,6 +73,7 @@ extension Bda {
     /// 获取人体库汇总信息。
     @inlinable
     public func getSummaryInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetSummaryInfoResponse {
-        try await self.getSummaryInfo(GetSummaryInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetSummaryInfoRequest()
+        return try await self.client.execute(action: "GetSummaryInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

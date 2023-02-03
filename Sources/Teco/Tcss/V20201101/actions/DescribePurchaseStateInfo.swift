@@ -107,7 +107,8 @@ extension Tcss {
     /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
     @inlinable
     public func describePurchaseStateInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePurchaseStateInfoResponse> {
-        self.describePurchaseStateInfo(DescribePurchaseStateInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePurchaseStateInfoRequest()
+        return self.client.execute(action: "DescribePurchaseStateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器安全服务已购买信息
@@ -115,6 +116,7 @@ extension Tcss {
     /// DescribePurchaseStateInfo 查询容器安全服务已购买信息
     @inlinable
     public func describePurchaseStateInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePurchaseStateInfoResponse {
-        try await self.describePurchaseStateInfo(DescribePurchaseStateInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePurchaseStateInfoRequest()
+        return try await self.client.execute(action: "DescribePurchaseStateInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

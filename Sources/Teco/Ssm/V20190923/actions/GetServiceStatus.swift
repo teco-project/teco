@@ -65,7 +65,8 @@ extension Ssm {
     /// 该接口用户获取用户SecretsManager服务开通状态。
     @inlinable
     public func getServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetServiceStatusResponse> {
-        self.getServiceStatus(GetServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetServiceStatusRequest()
+        return self.client.execute(action: "GetServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户服务开通状态
@@ -73,6 +74,7 @@ extension Ssm {
     /// 该接口用户获取用户SecretsManager服务开通状态。
     @inlinable
     public func getServiceStatus(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetServiceStatusResponse {
-        try await self.getServiceStatus(GetServiceStatusRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetServiceStatusRequest()
+        return try await self.client.execute(action: "GetServiceStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

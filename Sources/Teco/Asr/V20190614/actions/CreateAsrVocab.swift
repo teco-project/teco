@@ -95,7 +95,8 @@ extension Asr {
     /// <br>•   热词权重取值范围为[1,10]之间的整数，权重越大代表该词被识别出来的概率越大。
     @inlinable
     public func createAsrVocab(name: String, description: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAsrVocabResponse> {
-        self.createAsrVocab(CreateAsrVocabRequest(name: name, description: description, wordWeights: wordWeights, wordWeightStr: wordWeightStr), region: region, logger: logger, on: eventLoop)
+        let input = CreateAsrVocabRequest(name: name, description: description, wordWeights: wordWeights, wordWeightStr: wordWeightStr)
+        return self.client.execute(action: "CreateAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建热词表
@@ -108,6 +109,7 @@ extension Asr {
     /// <br>•   热词权重取值范围为[1,10]之间的整数，权重越大代表该词被识别出来的概率越大。
     @inlinable
     public func createAsrVocab(name: String, description: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAsrVocabResponse {
-        try await self.createAsrVocab(CreateAsrVocabRequest(name: name, description: description, wordWeights: wordWeights, wordWeightStr: wordWeightStr), region: region, logger: logger, on: eventLoop)
+        let input = CreateAsrVocabRequest(name: name, description: description, wordWeights: wordWeights, wordWeightStr: wordWeightStr)
+        return try await self.client.execute(action: "CreateAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -56,7 +56,8 @@ extension Dcdb {
     /// 查询可创建的分布式数据库可售卖的分片规格配置。
     @inlinable
     public func describeShardSpec(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShardSpecResponse> {
-        self.describeShardSpec(DescribeShardSpecRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeShardSpecRequest()
+        return self.client.execute(action: "DescribeShardSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询分布式数据库可售卖分片规格
@@ -64,6 +65,7 @@ extension Dcdb {
     /// 查询可创建的分布式数据库可售卖的分片规格配置。
     @inlinable
     public func describeShardSpec(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShardSpecResponse {
-        try await self.describeShardSpec(DescribeShardSpecRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeShardSpecRequest()
+        return try await self.client.execute(action: "DescribeShardSpec", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

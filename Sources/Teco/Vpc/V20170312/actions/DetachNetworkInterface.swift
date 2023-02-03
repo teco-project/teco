@@ -68,7 +68,8 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachNetworkInterfaceResponse> {
-        self.detachNetworkInterface(DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId)
+        return self.client.execute(action: "DetachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 弹性网卡解绑云服务器
@@ -77,6 +78,7 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func detachNetworkInterface(networkInterfaceId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachNetworkInterfaceResponse {
-        try await self.detachNetworkInterface(DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DetachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId)
+        return try await self.client.execute(action: "DetachNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

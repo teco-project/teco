@@ -59,12 +59,14 @@ extension Monitor {
     /// 列出 Prometheus 服务可用区
     @inlinable
     public func describePrometheusZones(regionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusZonesResponse> {
-        self.describePrometheusZones(DescribePrometheusZonesRequest(regionId: regionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusZonesRequest(regionId: regionId)
+        return self.client.execute(action: "DescribePrometheusZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出 Prometheus 服务可用区
     @inlinable
     public func describePrometheusZones(regionId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusZonesResponse {
-        try await self.describePrometheusZones(DescribePrometheusZonesRequest(regionId: regionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusZonesRequest(regionId: regionId)
+        return try await self.client.execute(action: "DescribePrometheusZones", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

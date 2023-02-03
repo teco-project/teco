@@ -165,7 +165,8 @@ extension Tts {
     /// <p></p>
     @inlinable
     public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTtsTaskResponse> {
-        self.createTtsTask(CreateTtsTaskRequest(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit), region: region, logger: logger, on: eventLoop)
+        let input = CreateTtsTaskRequest(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit)
+        return self.client.execute(action: "CreateTtsTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 长文本语音合成请求
@@ -190,6 +191,7 @@ extension Tts {
     /// <p></p>
     @inlinable
     public func createTtsTask(text: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: Int64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, callbackUrl: String? = nil, voiceoverDialogueSplit: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTtsTaskResponse {
-        try await self.createTtsTask(CreateTtsTaskRequest(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit), region: region, logger: logger, on: eventLoop)
+        let input = CreateTtsTaskRequest(text: text, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec, callbackUrl: callbackUrl, voiceoverDialogueSplit: voiceoverDialogueSplit)
+        return try await self.client.execute(action: "CreateTtsTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

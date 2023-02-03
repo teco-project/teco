@@ -71,12 +71,14 @@ extension Rum {
     /// 获取首页错误信息
     @inlinable
     public func describeError(date: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeErrorResponse> {
-        self.describeError(DescribeErrorRequest(date: date, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeErrorRequest(date: date, id: id)
+        return self.client.execute(action: "DescribeError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取首页错误信息
     @inlinable
     public func describeError(date: String, id: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeErrorResponse {
-        try await self.describeError(DescribeErrorRequest(date: date, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeErrorRequest(date: date, id: id)
+        return try await self.client.execute(action: "DescribeError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

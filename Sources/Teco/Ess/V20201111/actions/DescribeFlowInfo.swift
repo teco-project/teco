@@ -72,7 +72,8 @@ extension Ess {
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
     public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowInfoResponse> {
-        self.describeFlowInfo(DescribeFlowInfoRequest(flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowInfoRequest(flowIds: flowIds, operator: `operator`)
+        return self.client.execute(action: "DescribeFlowInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询合同详情
@@ -81,6 +82,7 @@ extension Ess {
     /// 适用场景：可用于主动查询某个合同详情信息。
     @inlinable
     public func describeFlowInfo(flowIds: [String], operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowInfoResponse {
-        try await self.describeFlowInfo(DescribeFlowInfoRequest(flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowInfoRequest(flowIds: flowIds, operator: `operator`)
+        return try await self.client.execute(action: "DescribeFlowInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

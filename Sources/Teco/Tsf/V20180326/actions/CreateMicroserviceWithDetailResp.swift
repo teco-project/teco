@@ -68,12 +68,14 @@ extension Tsf {
     /// 新增微服务返回id
     @inlinable
     public func createMicroserviceWithDetailResp(namespaceId: String, microserviceName: String, microserviceDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMicroserviceWithDetailRespResponse> {
-        self.createMicroserviceWithDetailResp(CreateMicroserviceWithDetailRespRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc), region: region, logger: logger, on: eventLoop)
+        let input = CreateMicroserviceWithDetailRespRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc)
+        return self.client.execute(action: "CreateMicroserviceWithDetailResp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增微服务返回id
     @inlinable
     public func createMicroserviceWithDetailResp(namespaceId: String, microserviceName: String, microserviceDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMicroserviceWithDetailRespResponse {
-        try await self.createMicroserviceWithDetailResp(CreateMicroserviceWithDetailRespRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc), region: region, logger: logger, on: eventLoop)
+        let input = CreateMicroserviceWithDetailRespRequest(namespaceId: namespaceId, microserviceName: microserviceName, microserviceDesc: microserviceDesc)
+        return try await self.client.execute(action: "CreateMicroserviceWithDetailResp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -83,7 +83,8 @@ extension Dayu {
     /// 读取或修改DDoS的AI防护状态
     @inlinable
     public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSAIStatusResponse> {
-        self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI)
+        return self.client.execute(action: "ModifyDDoSAIStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS的AI防护状态
@@ -91,6 +92,7 @@ extension Dayu {
     /// 读取或修改DDoS的AI防护状态
     @inlinable
     public func modifyDDoSAIStatus(business: String, id: String, method: String, dDoSAI: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSAIStatusResponse {
-        try await self.modifyDDoSAIStatus(ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDDoSAIStatusRequest(business: business, id: id, method: method, dDoSAI: dDoSAI)
+        return try await self.client.execute(action: "ModifyDDoSAIStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

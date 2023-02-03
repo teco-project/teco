@@ -59,12 +59,14 @@ extension Gaap {
     /// 删除安全策略规则
     @inlinable @discardableResult
     public func deleteSecurityRules(policyId: String, ruleIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteSecurityRulesResponse> {
-        self.deleteSecurityRules(DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList)
+        return self.client.execute(action: "DeleteSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除安全策略规则
     @inlinable @discardableResult
     public func deleteSecurityRules(policyId: String, ruleIdList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityRulesResponse {
-        try await self.deleteSecurityRules(DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList), region: region, logger: logger, on: eventLoop)
+        let input = DeleteSecurityRulesRequest(policyId: policyId, ruleIdList: ruleIdList)
+        return try await self.client.execute(action: "DeleteSecurityRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Bmlb {
     /// 查询负载均衡实例异步任务的执行情况。
     @inlinable
     public func describeLoadBalancerTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerTaskResultResponse> {
-        self.describeLoadBalancerTaskResult(DescribeLoadBalancerTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalancerTaskResultRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeLoadBalancerTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡实例异步任务的执行情况
@@ -72,6 +73,7 @@ extension Bmlb {
     /// 查询负载均衡实例异步任务的执行情况。
     @inlinable
     public func describeLoadBalancerTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerTaskResultResponse {
-        try await self.describeLoadBalancerTaskResult(DescribeLoadBalancerTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalancerTaskResultRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeLoadBalancerTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

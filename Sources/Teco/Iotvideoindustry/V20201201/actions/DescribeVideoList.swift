@@ -152,7 +152,8 @@ extension Iotvideoindustry {
     /// 根据时间获取云端录制文件列表
     @inlinable
     public func describeVideoList(offset: Int64, limit: Int64, startTime: Int64? = nil, endTime: Int64? = nil, deviceId: String? = nil, startRecordTime: Int64? = nil, endRecordTime: Int64? = nil, startExpireTime: Int64? = nil, endExpireTime: Int64? = nil, startFileSize: Int64? = nil, endFileSize: Int64? = nil, isRecording: Int64? = nil, channelId: String? = nil, planId: String? = nil, sceneId: Int64? = nil, warnId: Int64? = nil, recordType: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoListResponse> {
-        self.describeVideoList(DescribeVideoListRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime, deviceId: deviceId, startRecordTime: startRecordTime, endRecordTime: endRecordTime, startExpireTime: startExpireTime, endExpireTime: endExpireTime, startFileSize: startFileSize, endFileSize: endFileSize, isRecording: isRecording, channelId: channelId, planId: planId, sceneId: sceneId, warnId: warnId, recordType: recordType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVideoListRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime, deviceId: deviceId, startRecordTime: startRecordTime, endRecordTime: endRecordTime, startExpireTime: startExpireTime, endExpireTime: endExpireTime, startFileSize: startFileSize, endFileSize: endFileSize, isRecording: isRecording, channelId: channelId, planId: planId, sceneId: sceneId, warnId: warnId, recordType: recordType)
+        return self.client.execute(action: "DescribeVideoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取云端录制文件列表
@@ -160,6 +161,7 @@ extension Iotvideoindustry {
     /// 根据时间获取云端录制文件列表
     @inlinable
     public func describeVideoList(offset: Int64, limit: Int64, startTime: Int64? = nil, endTime: Int64? = nil, deviceId: String? = nil, startRecordTime: Int64? = nil, endRecordTime: Int64? = nil, startExpireTime: Int64? = nil, endExpireTime: Int64? = nil, startFileSize: Int64? = nil, endFileSize: Int64? = nil, isRecording: Int64? = nil, channelId: String? = nil, planId: String? = nil, sceneId: Int64? = nil, warnId: Int64? = nil, recordType: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoListResponse {
-        try await self.describeVideoList(DescribeVideoListRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime, deviceId: deviceId, startRecordTime: startRecordTime, endRecordTime: endRecordTime, startExpireTime: startExpireTime, endExpireTime: endExpireTime, startFileSize: startFileSize, endFileSize: endFileSize, isRecording: isRecording, channelId: channelId, planId: planId, sceneId: sceneId, warnId: warnId, recordType: recordType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVideoListRequest(offset: offset, limit: limit, startTime: startTime, endTime: endTime, deviceId: deviceId, startRecordTime: startRecordTime, endRecordTime: endRecordTime, startExpireTime: startExpireTime, endExpireTime: endExpireTime, startFileSize: startFileSize, endFileSize: endFileSize, isRecording: isRecording, channelId: channelId, planId: planId, sceneId: sceneId, warnId: warnId, recordType: recordType)
+        return try await self.client.execute(action: "DescribeVideoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Tiw {
     /// 设置实时录制回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40258
     @inlinable @discardableResult
     public func setOnlineRecordCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetOnlineRecordCallbackResponse> {
-        self.setOnlineRecordCallback(SetOnlineRecordCallbackRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
+        let input = SetOnlineRecordCallbackRequest(sdkAppId: sdkAppId, callback: callback)
+        return self.client.execute(action: "SetOnlineRecordCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置实时录制回调地址
@@ -73,6 +74,7 @@ extension Tiw {
     /// 设置实时录制回调地址，回调数据格式请参考文档：https://cloud.tencent.com/document/product/1137/40258
     @inlinable @discardableResult
     public func setOnlineRecordCallback(sdkAppId: Int64, callback: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetOnlineRecordCallbackResponse {
-        try await self.setOnlineRecordCallback(SetOnlineRecordCallbackRequest(sdkAppId: sdkAppId, callback: callback), region: region, logger: logger, on: eventLoop)
+        let input = SetOnlineRecordCallbackRequest(sdkAppId: sdkAppId, callback: callback)
+        return try await self.client.execute(action: "SetOnlineRecordCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

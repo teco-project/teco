@@ -64,7 +64,8 @@ extension Gaap {
     /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
     @inlinable
     public func createProxyGroupDomain(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProxyGroupDomainResponse> {
-        self.createProxyGroupDomain(CreateProxyGroupDomainRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateProxyGroupDomainRequest(groupId: groupId)
+        return self.client.execute(action: "CreateProxyGroupDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通通道组域名（废弃）
@@ -72,6 +73,7 @@ extension Gaap {
     /// 本接口（CreateProxyGroupDomain）用于创建通道组域名，并开启域名解析。
     @inlinable
     public func createProxyGroupDomain(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProxyGroupDomainResponse {
-        try await self.createProxyGroupDomain(CreateProxyGroupDomainRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateProxyGroupDomainRequest(groupId: groupId)
+        return try await self.client.execute(action: "CreateProxyGroupDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

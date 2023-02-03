@@ -73,12 +73,14 @@ extension Dlc {
     /// 创建工作组
     @inlinable
     public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWorkGroupResponse> {
-        self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds)
+        return self.client.execute(action: "CreateWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建工作组
     @inlinable
     public func createWorkGroup(workGroupName: String, workGroupDescription: String? = nil, policySet: [Policy]? = nil, userIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWorkGroupResponse {
-        try await self.createWorkGroup(CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateWorkGroupRequest(workGroupName: workGroupName, workGroupDescription: workGroupDescription, policySet: policySet, userIds: userIds)
+        return try await self.client.execute(action: "CreateWorkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

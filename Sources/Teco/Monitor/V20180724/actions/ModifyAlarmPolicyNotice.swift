@@ -75,7 +75,8 @@ extension Monitor {
     /// 云监控告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmPolicyNotice(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmPolicyNoticeResponse> {
-        self.modifyAlarmPolicyNotice(ModifyAlarmPolicyNoticeRequest(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAlarmPolicyNoticeRequest(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds)
+        return self.client.execute(action: "ModifyAlarmPolicyNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警策略绑定的告警通知模板
@@ -83,6 +84,7 @@ extension Monitor {
     /// 云监控告警修改告警策略绑定的告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmPolicyNotice(module: String, policyId: String? = nil, noticeIds: [String]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmPolicyNoticeResponse {
-        try await self.modifyAlarmPolicyNotice(ModifyAlarmPolicyNoticeRequest(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAlarmPolicyNoticeRequest(module: module, policyId: policyId, noticeIds: noticeIds, policyIds: policyIds)
+        return try await self.client.execute(action: "ModifyAlarmPolicyNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

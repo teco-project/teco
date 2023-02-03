@@ -99,7 +99,8 @@ extension Cls {
     /// 本接口用于创建日志主题。
     @inlinable
     public func createTopic(logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTopicResponse> {
-        self.createTopic(CreateTopicRequest(logsetId: logsetId, topicName: topicName, partitionCount: partitionCount, tags: tags, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, storageType: storageType, period: period), region: region, logger: logger, on: eventLoop)
+        let input = CreateTopicRequest(logsetId: logsetId, topicName: topicName, partitionCount: partitionCount, tags: tags, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, storageType: storageType, period: period)
+        return self.client.execute(action: "CreateTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建日志主题
@@ -107,6 +108,7 @@ extension Cls {
     /// 本接口用于创建日志主题。
     @inlinable
     public func createTopic(logsetId: String, topicName: String, partitionCount: Int64? = nil, tags: [Tag]? = nil, autoSplit: Bool? = nil, maxSplitPartitions: Int64? = nil, storageType: String? = nil, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTopicResponse {
-        try await self.createTopic(CreateTopicRequest(logsetId: logsetId, topicName: topicName, partitionCount: partitionCount, tags: tags, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, storageType: storageType, period: period), region: region, logger: logger, on: eventLoop)
+        let input = CreateTopicRequest(logsetId: logsetId, topicName: topicName, partitionCount: partitionCount, tags: tags, autoSplit: autoSplit, maxSplitPartitions: maxSplitPartitions, storageType: storageType, period: period)
+        return try await self.client.execute(action: "CreateTopic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

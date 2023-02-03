@@ -125,12 +125,14 @@ extension Teo {
     /// 查询waf攻击日志
     @inlinable
     public func describeWebManagedRulesLog(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebManagedRulesLogResponse> {
-        self.describeWebManagedRulesLog(DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, area: area)
+        return self.client.execute(action: "DescribeWebManagedRulesLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询waf攻击日志
     @inlinable
     public func describeWebManagedRulesLog(startTime: Date, endTime: Date, pageSize: Int64, pageNo: Int64, zoneIds: [String]? = nil, domains: [String]? = nil, queryCondition: [QueryCondition]? = nil, area: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebManagedRulesLogResponse {
-        try await self.describeWebManagedRulesLog(DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, area: area), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebManagedRulesLogRequest(startTime: startTime, endTime: endTime, pageSize: pageSize, pageNo: pageNo, zoneIds: zoneIds, domains: domains, queryCondition: queryCondition, area: area)
+        return try await self.client.execute(action: "DescribeWebManagedRulesLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

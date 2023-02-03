@@ -83,7 +83,8 @@ extension Redis {
     /// 本接口（DescribeBackupUrl）用于查询备份 Rdb 文件的下载地址。
     @inlinable
     public func describeBackupUrl(instanceId: String, backupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupUrlResponse> {
-        self.describeBackupUrl(DescribeBackupUrlRequest(instanceId: instanceId, backupId: backupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBackupUrlRequest(instanceId: instanceId, backupId: backupId)
+        return self.client.execute(action: "DescribeBackupUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询备份Rdb下载地址
@@ -91,6 +92,7 @@ extension Redis {
     /// 本接口（DescribeBackupUrl）用于查询备份 Rdb 文件的下载地址。
     @inlinable
     public func describeBackupUrl(instanceId: String, backupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupUrlResponse {
-        try await self.describeBackupUrl(DescribeBackupUrlRequest(instanceId: instanceId, backupId: backupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBackupUrlRequest(instanceId: instanceId, backupId: backupId)
+        return try await self.client.execute(action: "DescribeBackupUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

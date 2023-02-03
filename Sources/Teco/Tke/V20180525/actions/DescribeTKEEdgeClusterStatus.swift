@@ -68,7 +68,8 @@ extension Tke {
     /// 获取边缘计算集群的当前状态以及过程信息
     @inlinable
     public func describeTKEEdgeClusterStatus(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTKEEdgeClusterStatusResponse> {
-        self.describeTKEEdgeClusterStatus(DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribeTKEEdgeClusterStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘计算集群状态
@@ -76,6 +77,7 @@ extension Tke {
     /// 获取边缘计算集群的当前状态以及过程信息
     @inlinable
     public func describeTKEEdgeClusterStatus(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTKEEdgeClusterStatusResponse {
-        try await self.describeTKEEdgeClusterStatus(DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTKEEdgeClusterStatusRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeTKEEdgeClusterStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

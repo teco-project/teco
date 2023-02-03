@@ -54,12 +54,14 @@ extension Cloudaudit {
     /// 删除云审计跟踪集
     @inlinable @discardableResult
     public func deleteAuditTrack(trackId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditTrackResponse> {
-        self.deleteAuditTrack(DeleteAuditTrackRequest(trackId: trackId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAuditTrackRequest(trackId: trackId)
+        return self.client.execute(action: "DeleteAuditTrack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除云审计跟踪集
     @inlinable @discardableResult
     public func deleteAuditTrack(trackId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditTrackResponse {
-        try await self.deleteAuditTrack(DeleteAuditTrackRequest(trackId: trackId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAuditTrackRequest(trackId: trackId)
+        return try await self.client.execute(action: "DeleteAuditTrack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

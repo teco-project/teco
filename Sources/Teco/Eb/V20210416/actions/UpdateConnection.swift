@@ -74,12 +74,14 @@ extension Eb {
     /// 更新事件连接器
     @inlinable @discardableResult
     public func updateConnection(connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateConnectionResponse> {
-        self.updateConnection(UpdateConnectionRequest(connectionId: connectionId, eventBusId: eventBusId, enable: enable, description: description, connectionName: connectionName), region: region, logger: logger, on: eventLoop)
+        let input = UpdateConnectionRequest(connectionId: connectionId, eventBusId: eventBusId, enable: enable, description: description, connectionName: connectionName)
+        return self.client.execute(action: "UpdateConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新事件连接器
     @inlinable @discardableResult
     public func updateConnection(connectionId: String, eventBusId: String, enable: Bool? = nil, description: String? = nil, connectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateConnectionResponse {
-        try await self.updateConnection(UpdateConnectionRequest(connectionId: connectionId, eventBusId: eventBusId, enable: enable, description: description, connectionName: connectionName), region: region, logger: logger, on: eventLoop)
+        let input = UpdateConnectionRequest(connectionId: connectionId, eventBusId: eventBusId, enable: enable, description: description, connectionName: connectionName)
+        return try await self.client.execute(action: "UpdateConnection", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

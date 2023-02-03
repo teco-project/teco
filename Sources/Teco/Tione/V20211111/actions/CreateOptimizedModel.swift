@@ -69,12 +69,14 @@ extension Tione {
     /// 保存优化模型
     @inlinable
     public func createOptimizedModel(modelAccTaskId: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOptimizedModelResponse> {
-        self.createOptimizedModel(CreateOptimizedModelRequest(modelAccTaskId: modelAccTaskId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateOptimizedModelRequest(modelAccTaskId: modelAccTaskId, tags: tags)
+        return self.client.execute(action: "CreateOptimizedModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 保存优化模型
     @inlinable
     public func createOptimizedModel(modelAccTaskId: String, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOptimizedModelResponse {
-        try await self.createOptimizedModel(CreateOptimizedModelRequest(modelAccTaskId: modelAccTaskId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateOptimizedModelRequest(modelAccTaskId: modelAccTaskId, tags: tags)
+        return try await self.client.execute(action: "CreateOptimizedModel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

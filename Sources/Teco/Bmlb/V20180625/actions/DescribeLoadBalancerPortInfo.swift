@@ -64,7 +64,8 @@ extension Bmlb {
     /// 获取黑石负载均衡端口相关信息。
     @inlinable
     public func describeLoadBalancerPortInfo(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalancerPortInfoResponse> {
-        self.describeLoadBalancerPortInfo(DescribeLoadBalancerPortInfoRequest(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalancerPortInfoRequest(loadBalancerId: loadBalancerId)
+        return self.client.execute(action: "DescribeLoadBalancerPortInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取黑石负载均衡端口相关信息
@@ -72,6 +73,7 @@ extension Bmlb {
     /// 获取黑石负载均衡端口相关信息。
     @inlinable
     public func describeLoadBalancerPortInfo(loadBalancerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalancerPortInfoResponse {
-        try await self.describeLoadBalancerPortInfo(DescribeLoadBalancerPortInfoRequest(loadBalancerId: loadBalancerId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalancerPortInfoRequest(loadBalancerId: loadBalancerId)
+        return try await self.client.execute(action: "DescribeLoadBalancerPortInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

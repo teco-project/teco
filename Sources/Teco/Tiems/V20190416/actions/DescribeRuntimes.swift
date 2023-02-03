@@ -58,13 +58,15 @@ extension Tiems {
     @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRuntimes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuntimesResponse> {
-        self.describeRuntimes(DescribeRuntimesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuntimesRequest()
+        return self.client.execute(action: "DescribeRuntimes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述服务运行环境
     @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func describeRuntimes(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuntimesResponse {
-        try await self.describeRuntimes(DescribeRuntimesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuntimesRequest()
+        return try await self.client.execute(action: "DescribeRuntimes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -108,12 +108,14 @@ extension Wedata {
     /// 获取实例列表
     @inlinable
     public func describeInstanceList(projectId: String, pageIndex: Int64, pageSize: Int64, cycleList: [String], ownerList: [String], instanceType: String, sort: String, sortCol: String, taskTypeList: [Int64], stateList: [Int64], keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceListResponse> {
-        self.describeInstanceList(DescribeInstanceListRequest(projectId: projectId, pageIndex: pageIndex, pageSize: pageSize, cycleList: cycleList, ownerList: ownerList, instanceType: instanceType, sort: sort, sortCol: sortCol, taskTypeList: taskTypeList, stateList: stateList, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceListRequest(projectId: projectId, pageIndex: pageIndex, pageSize: pageSize, cycleList: cycleList, ownerList: ownerList, instanceType: instanceType, sort: sort, sortCol: sortCol, taskTypeList: taskTypeList, stateList: stateList, keyword: keyword)
+        return self.client.execute(action: "DescribeInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例列表
     @inlinable
     public func describeInstanceList(projectId: String, pageIndex: Int64, pageSize: Int64, cycleList: [String], ownerList: [String], instanceType: String, sort: String, sortCol: String, taskTypeList: [Int64], stateList: [Int64], keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceListResponse {
-        try await self.describeInstanceList(DescribeInstanceListRequest(projectId: projectId, pageIndex: pageIndex, pageSize: pageSize, cycleList: cycleList, ownerList: ownerList, instanceType: instanceType, sort: sort, sortCol: sortCol, taskTypeList: taskTypeList, stateList: stateList, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceListRequest(projectId: projectId, pageIndex: pageIndex, pageSize: pageSize, cycleList: cycleList, ownerList: ownerList, instanceType: instanceType, sort: sort, sortCol: sortCol, taskTypeList: taskTypeList, stateList: stateList, keyword: keyword)
+        return try await self.client.execute(action: "DescribeInstanceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

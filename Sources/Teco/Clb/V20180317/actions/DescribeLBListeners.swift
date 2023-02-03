@@ -64,7 +64,8 @@ extension Clb {
     /// 查询后端云主机或弹性网卡绑定的负载均衡，支持弹性网卡和cvm查询。
     @inlinable
     public func describeLBListeners(backends: [LbRsItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLBListenersResponse> {
-        self.describeLBListeners(DescribeLBListenersRequest(backends: backends), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLBListenersRequest(backends: backends)
+        return self.client.execute(action: "DescribeLBListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询后端云主机或弹性网卡绑定的负载均衡
@@ -72,6 +73,7 @@ extension Clb {
     /// 查询后端云主机或弹性网卡绑定的负载均衡，支持弹性网卡和cvm查询。
     @inlinable
     public func describeLBListeners(backends: [LbRsItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLBListenersResponse {
-        try await self.describeLBListeners(DescribeLBListenersRequest(backends: backends), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLBListenersRequest(backends: backends)
+        return try await self.client.execute(action: "DescribeLBListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

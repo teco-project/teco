@@ -82,7 +82,8 @@ extension Wedata {
     /// 批量继续执行集成实时任务
     @inlinable
     public func batchResumeIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchResumeIntegrationTasksResponse> {
-        self.batchResumeIntegrationTasks(BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId)
+        return self.client.execute(action: "BatchResumeIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量继续执行集成任务
@@ -90,6 +91,7 @@ extension Wedata {
     /// 批量继续执行集成实时任务
     @inlinable
     public func batchResumeIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchResumeIntegrationTasksResponse {
-        try await self.batchResumeIntegrationTasks(BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchResumeIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId)
+        return try await self.client.execute(action: "BatchResumeIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

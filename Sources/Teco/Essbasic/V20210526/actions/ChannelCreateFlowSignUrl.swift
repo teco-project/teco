@@ -84,7 +84,8 @@ extension Essbasic {
     /// 渠道版创建签署链接，需要联系运营人员开白后才可使用
     @inlinable
     public func channelCreateFlowSignUrl(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignUrlResponse> {
-        self.channelCreateFlowSignUrl(ChannelCreateFlowSignUrlRequest(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCreateFlowSignUrlRequest(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization)
+        return self.client.execute(action: "ChannelCreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 渠道版创建签署链接
@@ -92,6 +93,7 @@ extension Essbasic {
     /// 渠道版创建签署链接，需要联系运营人员开白后才可使用
     @inlinable
     public func channelCreateFlowSignUrl(agent: Agent, flowId: String, flowApproverInfos: [FlowApproverInfo], operator: UserInfo? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignUrlResponse {
-        try await self.channelCreateFlowSignUrl(ChannelCreateFlowSignUrlRequest(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCreateFlowSignUrlRequest(agent: agent, flowId: flowId, flowApproverInfos: flowApproverInfos, operator: `operator`, organization: organization)
+        return try await self.client.execute(action: "ChannelCreateFlowSignUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

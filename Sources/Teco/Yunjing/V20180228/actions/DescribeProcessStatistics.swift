@@ -79,7 +79,8 @@ extension Yunjing {
     /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
     @inlinable
     public func describeProcessStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProcessStatisticsResponse> {
-        self.describeProcessStatistics(DescribeProcessStatisticsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProcessStatisticsRequest(limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeProcessStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取进程统计列表
@@ -87,6 +88,7 @@ extension Yunjing {
     /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
     @inlinable
     public func describeProcessStatistics(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProcessStatisticsResponse {
-        try await self.describeProcessStatistics(DescribeProcessStatisticsRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProcessStatisticsRequest(limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeProcessStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

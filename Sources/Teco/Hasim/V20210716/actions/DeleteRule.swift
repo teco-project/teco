@@ -54,12 +54,14 @@ extension Hasim {
     /// 删除自动化规则
     @inlinable @discardableResult
     public func deleteRule(ruleID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRuleResponse> {
-        self.deleteRule(DeleteRuleRequest(ruleID: ruleID), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRuleRequest(ruleID: ruleID)
+        return self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自动化规则
     @inlinable @discardableResult
     public func deleteRule(ruleID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRuleResponse {
-        try await self.deleteRule(DeleteRuleRequest(ruleID: ruleID), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRuleRequest(ruleID: ruleID)
+        return try await self.client.execute(action: "DeleteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

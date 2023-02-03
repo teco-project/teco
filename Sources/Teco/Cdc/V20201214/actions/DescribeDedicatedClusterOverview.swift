@@ -62,12 +62,14 @@ extension Cdc {
     /// 专用集群概览信息
     @inlinable
     public func describeDedicatedClusterOverview(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterOverviewResponse> {
-        self.describeDedicatedClusterOverview(DescribeDedicatedClusterOverviewRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDedicatedClusterOverviewRequest(dedicatedClusterId: dedicatedClusterId)
+        return self.client.execute(action: "DescribeDedicatedClusterOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 专用集群概览信息
     @inlinable
     public func describeDedicatedClusterOverview(dedicatedClusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterOverviewResponse {
-        try await self.describeDedicatedClusterOverview(DescribeDedicatedClusterOverviewRequest(dedicatedClusterId: dedicatedClusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDedicatedClusterOverviewRequest(dedicatedClusterId: dedicatedClusterId)
+        return try await self.client.execute(action: "DescribeDedicatedClusterOverview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

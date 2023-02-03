@@ -68,7 +68,8 @@ extension Batch {
     /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
     @inlinable @discardableResult
     public func terminateComputeNode(envId: String, computeNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateComputeNodeResponse> {
-        self.terminateComputeNode(TerminateComputeNodeRequest(envId: envId, computeNodeId: computeNodeId), region: region, logger: logger, on: eventLoop)
+        let input = TerminateComputeNodeRequest(envId: envId, computeNodeId: computeNodeId)
+        return self.client.execute(action: "TerminateComputeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁计算节点
@@ -77,6 +78,7 @@ extension Batch {
     /// 对于状态为CREATED、CREATION_FAILED、RUNNING和ABNORMAL的节点，允许销毁处理。
     @inlinable @discardableResult
     public func terminateComputeNode(envId: String, computeNodeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateComputeNodeResponse {
-        try await self.terminateComputeNode(TerminateComputeNodeRequest(envId: envId, computeNodeId: computeNodeId), region: region, logger: logger, on: eventLoop)
+        let input = TerminateComputeNodeRequest(envId: envId, computeNodeId: computeNodeId)
+        return try await self.client.execute(action: "TerminateComputeNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

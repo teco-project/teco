@@ -98,7 +98,8 @@ extension Iecp {
     /// 查询边缘集群NodeGroup
     @inlinable
     public func describeEdgeUnitNodeGroup(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitNodeGroupResponse> {
-        self.describeEdgeUnitNodeGroup(DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order)
+        return self.client.execute(action: "DescribeEdgeUnitNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元NodeGroup列表
@@ -106,6 +107,7 @@ extension Iecp {
     /// 查询边缘集群NodeGroup
     @inlinable
     public func describeEdgeUnitNodeGroup(edgeUnitId: UInt64, namespace: String? = nil, offset: Int64? = nil, limit: Int64? = nil, nameFilter: String? = nil, nameMatched: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitNodeGroupResponse {
-        try await self.describeEdgeUnitNodeGroup(DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitNodeGroupRequest(edgeUnitId: edgeUnitId, namespace: namespace, offset: offset, limit: limit, nameFilter: nameFilter, nameMatched: nameMatched, order: order)
+        return try await self.client.execute(action: "DescribeEdgeUnitNodeGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

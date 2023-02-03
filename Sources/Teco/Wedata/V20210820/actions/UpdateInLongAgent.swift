@@ -69,12 +69,14 @@ extension Wedata {
     /// 更新采集器
     @inlinable @discardableResult
     public func updateInLongAgent(agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateInLongAgentResponse> {
-        self.updateInLongAgent(UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId)
+        return self.client.execute(action: "UpdateInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新采集器
     @inlinable @discardableResult
     public func updateInLongAgent(agentId: String, projectId: String, agentName: String? = nil, executorGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateInLongAgentResponse {
-        try await self.updateInLongAgent(UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateInLongAgentRequest(agentId: agentId, projectId: projectId, agentName: agentName, executorGroupId: executorGroupId)
+        return try await self.client.execute(action: "UpdateInLongAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

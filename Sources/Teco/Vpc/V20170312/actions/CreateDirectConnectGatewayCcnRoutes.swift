@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
     @inlinable @discardableResult
     public func createDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDirectConnectGatewayCcnRoutesResponse> {
-        self.createDirectConnectGatewayCcnRoutes(CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes)
+        return self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建专线网关云联网路由
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（CreateDirectConnectGatewayCcnRoutes）用于创建专线网关的云联网路由（IDC网段）
     @inlinable @discardableResult
     public func createDirectConnectGatewayCcnRoutes(directConnectGatewayId: String, routes: [DirectConnectGatewayCcnRoute], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDirectConnectGatewayCcnRoutesResponse {
-        try await self.createDirectConnectGatewayCcnRoutes(CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = CreateDirectConnectGatewayCcnRoutesRequest(directConnectGatewayId: directConnectGatewayId, routes: routes)
+        return try await self.client.execute(action: "CreateDirectConnectGatewayCcnRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

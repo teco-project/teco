@@ -97,7 +97,8 @@ extension Mps {
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
     public func parseLiveStreamProcessNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ParseLiveStreamProcessNotificationResponse> {
-        self.parseLiveStreamProcessNotification(ParseLiveStreamProcessNotificationRequest(content: content), region: region, logger: logger, on: eventLoop)
+        let input = ParseLiveStreamProcessNotificationRequest(content: content)
+        return self.client.execute(action: "ParseLiveStreamProcessNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解析直播流处理结果
@@ -106,6 +107,7 @@ extension Mps {
     /// 该接口不用于发起网络调用，而是用来帮助生成各个语言平台的 SDK，您可以参考 SDK 的中解析函数的实现事件通知的解析。
     @inlinable
     public func parseLiveStreamProcessNotification(content: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ParseLiveStreamProcessNotificationResponse {
-        try await self.parseLiveStreamProcessNotification(ParseLiveStreamProcessNotificationRequest(content: content), region: region, logger: logger, on: eventLoop)
+        let input = ParseLiveStreamProcessNotificationRequest(content: content)
+        return try await self.client.execute(action: "ParseLiveStreamProcessNotification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

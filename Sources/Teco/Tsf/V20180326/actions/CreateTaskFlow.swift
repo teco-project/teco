@@ -79,12 +79,14 @@ extension Tsf {
     /// 创建工作流
     @inlinable
     public func createTaskFlow(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskFlowResponse> {
-        self.createTaskFlow(CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
+        let input = CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList)
+        return self.client.execute(action: "CreateTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建工作流
     @inlinable
     public func createTaskFlow(flowName: String, triggerRule: TaskRule, flowEdges: [TaskFlowEdge], timeOut: UInt64, programIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskFlowResponse {
-        try await self.createTaskFlow(CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList), region: region, logger: logger, on: eventLoop)
+        let input = CreateTaskFlowRequest(flowName: flowName, triggerRule: triggerRule, flowEdges: flowEdges, timeOut: timeOut, programIdList: programIdList)
+        return try await self.client.execute(action: "CreateTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

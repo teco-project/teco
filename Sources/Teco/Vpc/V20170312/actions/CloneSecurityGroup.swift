@@ -85,7 +85,8 @@ extension Vpc {
     /// 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。仅克隆安全组及其规则信息，不会克隆安全组标签信息。
     @inlinable
     public func cloneSecurityGroup(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, projectId: String? = nil, remoteRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneSecurityGroupResponse> {
-        self.cloneSecurityGroup(CloneSecurityGroupRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription, projectId: projectId, remoteRegion: remoteRegion), region: region, logger: logger, on: eventLoop)
+        let input = CloneSecurityGroupRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription, projectId: projectId, remoteRegion: remoteRegion)
+        return self.client.execute(action: "CloneSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 克隆安全组
@@ -93,6 +94,7 @@ extension Vpc {
     /// 本接口（CloneSecurityGroup）用于根据存量的安全组，克隆创建出同样规则配置的安全组。仅克隆安全组及其规则信息，不会克隆安全组标签信息。
     @inlinable
     public func cloneSecurityGroup(securityGroupId: String, groupName: String? = nil, groupDescription: String? = nil, projectId: String? = nil, remoteRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneSecurityGroupResponse {
-        try await self.cloneSecurityGroup(CloneSecurityGroupRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription, projectId: projectId, remoteRegion: remoteRegion), region: region, logger: logger, on: eventLoop)
+        let input = CloneSecurityGroupRequest(securityGroupId: securityGroupId, groupName: groupName, groupDescription: groupDescription, projectId: projectId, remoteRegion: remoteRegion)
+        return try await self.client.execute(action: "CloneSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

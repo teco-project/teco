@@ -65,7 +65,8 @@ extension Dcdb {
     /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
     @inlinable @discardableResult
     public func modifyDBInstancesProject(instanceIds: [String], projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBInstancesProjectResponse> {
-        self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId)
+        return self.client.execute(action: "ModifyDBInstancesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例所属项目
@@ -73,6 +74,7 @@ extension Dcdb {
     /// 本接口（ModifyDBInstancesProject）用于修改云数据库实例所属项目。
     @inlinable @discardableResult
     public func modifyDBInstancesProject(instanceIds: [String], projectId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBInstancesProjectResponse {
-        try await self.modifyDBInstancesProject(ModifyDBInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId)
+        return try await self.client.execute(action: "ModifyDBInstancesProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -84,7 +84,8 @@ extension Mmps {
     /// 获取翼扬诊断任务报告链接地址
     @inlinable
     public func describeFlySecMiniAppReportUrl(taskID: String, miniAppID: String, mode: Int64, reportType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlySecMiniAppReportUrlResponse> {
-        self.describeFlySecMiniAppReportUrl(DescribeFlySecMiniAppReportUrlRequest(taskID: taskID, miniAppID: miniAppID, mode: mode, reportType: reportType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlySecMiniAppReportUrlRequest(taskID: taskID, miniAppID: miniAppID, mode: mode, reportType: reportType)
+        return self.client.execute(action: "DescribeFlySecMiniAppReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取诊断任务报告链接
@@ -92,6 +93,7 @@ extension Mmps {
     /// 获取翼扬诊断任务报告链接地址
     @inlinable
     public func describeFlySecMiniAppReportUrl(taskID: String, miniAppID: String, mode: Int64, reportType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlySecMiniAppReportUrlResponse {
-        try await self.describeFlySecMiniAppReportUrl(DescribeFlySecMiniAppReportUrlRequest(taskID: taskID, miniAppID: miniAppID, mode: mode, reportType: reportType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlySecMiniAppReportUrlRequest(taskID: taskID, miniAppID: miniAppID, mode: mode, reportType: reportType)
+        return try await self.client.execute(action: "DescribeFlySecMiniAppReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -89,12 +89,14 @@ extension Tem {
     /// 编辑环境
     @inlinable
     public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyEnvironmentResponse> {
-        self.modifyEnvironment(ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType)
+        return self.client.execute(action: "ModifyEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑环境
     @inlinable
     public func modifyEnvironment(environmentId: String, environmentName: String? = nil, description: String? = nil, vpc: String? = nil, subnetIds: [String]? = nil, sourceChannel: Int64? = nil, envType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyEnvironmentResponse {
-        try await self.modifyEnvironment(ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyEnvironmentRequest(environmentId: environmentId, environmentName: environmentName, description: description, vpc: vpc, subnetIds: subnetIds, sourceChannel: sourceChannel, envType: envType)
+        return try await self.client.execute(action: "ModifyEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

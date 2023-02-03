@@ -56,7 +56,8 @@ extension Cfw {
     /// DescribeNatFwInstance 获取租户所有NAT实例
     @inlinable
     public func describeNatFwInstance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatFwInstanceResponse> {
-        self.describeNatFwInstance(DescribeNatFwInstanceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNatFwInstanceRequest()
+        return self.client.execute(action: "DescribeNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取租户所有NAT实例
@@ -64,6 +65,7 @@ extension Cfw {
     /// DescribeNatFwInstance 获取租户所有NAT实例
     @inlinable
     public func describeNatFwInstance(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatFwInstanceResponse {
-        try await self.describeNatFwInstance(DescribeNatFwInstanceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNatFwInstanceRequest()
+        return try await self.client.execute(action: "DescribeNatFwInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

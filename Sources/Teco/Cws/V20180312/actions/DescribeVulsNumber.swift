@@ -88,7 +88,8 @@ extension Cws {
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
     @inlinable
     public func describeVulsNumber(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVulsNumberResponse> {
-        self.describeVulsNumber(DescribeVulsNumberRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulsNumberRequest()
+        return self.client.execute(action: "DescribeVulsNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看当前漏洞总计数量
@@ -96,6 +97,7 @@ extension Cws {
     /// 本接口 (DescribeVulsNumber) 用于查询用户网站的漏洞总计数量。
     @inlinable
     public func describeVulsNumber(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVulsNumberResponse {
-        try await self.describeVulsNumber(DescribeVulsNumberRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVulsNumberRequest()
+        return try await self.client.execute(action: "DescribeVulsNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

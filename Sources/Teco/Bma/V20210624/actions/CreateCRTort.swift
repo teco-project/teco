@@ -97,12 +97,14 @@ extension Bma {
     /// 举报侵权链接
     @inlinable
     public func createCRTort(workId: Int64, tortURL: String, tortPlat: String? = nil, tortTitle: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCRTortResponse> {
-        self.createCRTort(CreateCRTortRequest(workId: workId, tortURL: tortURL, tortPlat: tortPlat, tortTitle: tortTitle), region: region, logger: logger, on: eventLoop)
+        let input = CreateCRTortRequest(workId: workId, tortURL: tortURL, tortPlat: tortPlat, tortTitle: tortTitle)
+        return self.client.execute(action: "CreateCRTort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 举报侵权链接
     @inlinable
     public func createCRTort(workId: Int64, tortURL: String, tortPlat: String? = nil, tortTitle: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCRTortResponse {
-        try await self.createCRTort(CreateCRTortRequest(workId: workId, tortURL: tortURL, tortPlat: tortPlat, tortTitle: tortTitle), region: region, logger: logger, on: eventLoop)
+        let input = CreateCRTortRequest(workId: workId, tortURL: tortURL, tortPlat: tortPlat, tortTitle: tortTitle)
+        return try await self.client.execute(action: "CreateCRTort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

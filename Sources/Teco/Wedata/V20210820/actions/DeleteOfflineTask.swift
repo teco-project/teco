@@ -73,12 +73,14 @@ extension Wedata {
     /// 删除任务
     @inlinable
     public func deleteOfflineTask(operatorName: String, projectId: String, taskId: String, virtualFlag: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteOfflineTaskResponse> {
-        self.deleteOfflineTask(DeleteOfflineTaskRequest(operatorName: operatorName, projectId: projectId, taskId: taskId, virtualFlag: virtualFlag), region: region, logger: logger, on: eventLoop)
+        let input = DeleteOfflineTaskRequest(operatorName: operatorName, projectId: projectId, taskId: taskId, virtualFlag: virtualFlag)
+        return self.client.execute(action: "DeleteOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除任务
     @inlinable
     public func deleteOfflineTask(operatorName: String, projectId: String, taskId: String, virtualFlag: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOfflineTaskResponse {
-        try await self.deleteOfflineTask(DeleteOfflineTaskRequest(operatorName: operatorName, projectId: projectId, taskId: taskId, virtualFlag: virtualFlag), region: region, logger: logger, on: eventLoop)
+        let input = DeleteOfflineTaskRequest(operatorName: operatorName, projectId: projectId, taskId: taskId, virtualFlag: virtualFlag)
+        return try await self.client.execute(action: "DeleteOfflineTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Tdid {
     /// 认证权威机构
     @inlinable @discardableResult
     public func recognizeAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeAuthorityIssuerResponse> {
-        self.recognizeAuthorityIssuer(RecognizeAuthorityIssuerRequest(did: did), region: region, logger: logger, on: eventLoop)
+        let input = RecognizeAuthorityIssuerRequest(did: did)
+        return self.client.execute(action: "RecognizeAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 认证权威机构
     @inlinable @discardableResult
     public func recognizeAuthorityIssuer(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeAuthorityIssuerResponse {
-        try await self.recognizeAuthorityIssuer(RecognizeAuthorityIssuerRequest(did: did), region: region, logger: logger, on: eventLoop)
+        let input = RecognizeAuthorityIssuerRequest(did: did)
+        return try await self.client.execute(action: "RecognizeAuthorityIssuer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

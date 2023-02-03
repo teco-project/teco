@@ -64,12 +64,14 @@ extension Tke {
     /// 创建边缘集群日志采集配置
     @inlinable @discardableResult
     public func createEdgeLogConfig(clusterId: String, logConfig: String, logsetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeLogConfigResponse> {
-        self.createEdgeLogConfig(CreateEdgeLogConfigRequest(clusterId: clusterId, logConfig: logConfig, logsetId: logsetId), region: region, logger: logger, on: eventLoop)
+        let input = CreateEdgeLogConfigRequest(clusterId: clusterId, logConfig: logConfig, logsetId: logsetId)
+        return self.client.execute(action: "CreateEdgeLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘集群日志采集配置
     @inlinable @discardableResult
     public func createEdgeLogConfig(clusterId: String, logConfig: String, logsetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeLogConfigResponse {
-        try await self.createEdgeLogConfig(CreateEdgeLogConfigRequest(clusterId: clusterId, logConfig: logConfig, logsetId: logsetId), region: region, logger: logger, on: eventLoop)
+        let input = CreateEdgeLogConfigRequest(clusterId: clusterId, logConfig: logConfig, logsetId: logsetId)
+        return try await self.client.execute(action: "CreateEdgeLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

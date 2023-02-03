@@ -58,12 +58,14 @@ extension Ssa {
     /// 云配置检查项总览页检查项列表
     @inlinable
     public func describeConfigList(filter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigListResponse> {
-        self.describeConfigList(DescribeConfigListRequest(filter: filter), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigListRequest(filter: filter)
+        return self.client.execute(action: "DescribeConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云配置检查项总览页检查项列表
     @inlinable
     public func describeConfigList(filter: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigListResponse {
-        try await self.describeConfigList(DescribeConfigListRequest(filter: filter), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigListRequest(filter: filter)
+        return try await self.client.execute(action: "DescribeConfigList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

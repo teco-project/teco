@@ -88,12 +88,14 @@ extension Ckafka {
     /// 创建按量计费实例
     @inlinable
     public func createInstancePost(instanceName: String, bandWidth: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, zoneId: Int64? = nil, clusterId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstancePostResponse> {
-        self.createInstancePost(CreateInstancePostRequest(instanceName: instanceName, bandWidth: bandWidth, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, zoneId: zoneId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstancePostRequest(instanceName: instanceName, bandWidth: bandWidth, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, zoneId: zoneId, clusterId: clusterId)
+        return self.client.execute(action: "CreateInstancePost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建按量计费实例
     @inlinable
     public func createInstancePost(instanceName: String, bandWidth: Int64, vpcId: String? = nil, subnetId: String? = nil, msgRetentionTime: Int64? = nil, zoneId: Int64? = nil, clusterId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstancePostResponse {
-        try await self.createInstancePost(CreateInstancePostRequest(instanceName: instanceName, bandWidth: bandWidth, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, zoneId: zoneId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstancePostRequest(instanceName: instanceName, bandWidth: bandWidth, vpcId: vpcId, subnetId: subnetId, msgRetentionTime: msgRetentionTime, zoneId: zoneId, clusterId: clusterId)
+        return try await self.client.execute(action: "CreateInstancePost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -87,7 +87,8 @@ extension Bda {
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
     @inlinable
     public func describeSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSegmentationTaskResponse> {
-        self.describeSegmentationTask(DescribeSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSegmentationTaskRequest(taskID: taskID)
+        return self.client.execute(action: "DescribeSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看视频人像分割处理任务信息
@@ -95,6 +96,7 @@ extension Bda {
     /// 可以查看单条任务的处理情况，包括处理状态，处理结果。
     @inlinable
     public func describeSegmentationTask(taskID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSegmentationTaskResponse {
-        try await self.describeSegmentationTask(DescribeSegmentationTaskRequest(taskID: taskID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSegmentationTaskRequest(taskID: taskID)
+        return try await self.client.execute(action: "DescribeSegmentationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

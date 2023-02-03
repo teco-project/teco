@@ -59,12 +59,14 @@ extension Monitor {
     /// 删除告警策略
     @inlinable @discardableResult
     public func deleteAlarmPolicy(module: String, policyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAlarmPolicyResponse> {
-        self.deleteAlarmPolicy(DeleteAlarmPolicyRequest(module: module, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAlarmPolicyRequest(module: module, policyIds: policyIds)
+        return self.client.execute(action: "DeleteAlarmPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除告警策略
     @inlinable @discardableResult
     public func deleteAlarmPolicy(module: String, policyIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAlarmPolicyResponse {
-        try await self.deleteAlarmPolicy(DeleteAlarmPolicyRequest(module: module, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAlarmPolicyRequest(module: module, policyIds: policyIds)
+        return try await self.client.execute(action: "DeleteAlarmPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

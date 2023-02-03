@@ -76,12 +76,14 @@ extension Wedata {
     /// 批量运行集成任务
     @inlinable
     public func batchStartIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchStartIntegrationTasksResponse> {
-        self.batchStartIntegrationTasks(BatchStartIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchStartIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId)
+        return self.client.execute(action: "BatchStartIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量运行集成任务
     @inlinable
     public func batchStartIntegrationTasks(taskIds: [String], taskType: Int64, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchStartIntegrationTasksResponse {
-        try await self.batchStartIntegrationTasks(BatchStartIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchStartIntegrationTasksRequest(taskIds: taskIds, taskType: taskType, projectId: projectId)
+        return try await self.client.execute(action: "BatchStartIntegrationTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

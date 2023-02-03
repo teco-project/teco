@@ -74,7 +74,8 @@ extension Mariadb {
     /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
     public func modifyBackupTime(instanceId: String, startBackupTime: String, endBackupTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupTimeResponse> {
-        self.modifyBackupTime(ModifyBackupTimeRequest(instanceId: instanceId, startBackupTime: startBackupTime, endBackupTime: endBackupTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBackupTimeRequest(instanceId: instanceId, startBackupTime: startBackupTime, endBackupTime: endBackupTime)
+        return self.client.execute(action: "ModifyBackupTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改备份时间
@@ -82,6 +83,7 @@ extension Mariadb {
     /// 本接口（ModifyBackupTime）用于设置云数据库实例的备份时间。后台系统将根据此配置定期进行实例备份。
     @inlinable
     public func modifyBackupTime(instanceId: String, startBackupTime: String, endBackupTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupTimeResponse {
-        try await self.modifyBackupTime(ModifyBackupTimeRequest(instanceId: instanceId, startBackupTime: startBackupTime, endBackupTime: endBackupTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBackupTimeRequest(instanceId: instanceId, startBackupTime: startBackupTime, endBackupTime: endBackupTime)
+        return try await self.client.execute(action: "ModifyBackupTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

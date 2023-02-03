@@ -103,7 +103,8 @@ extension Cvm {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     @inlinable
     public func describeChcHosts(chcIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChcHostsResponse> {
-        self.describeChcHosts(DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeChcHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询CHC物理服务器
@@ -114,6 +115,7 @@ extension Cvm {
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     @inlinable
     public func describeChcHosts(chcIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChcHostsResponse {
-        try await self.describeChcHosts(DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeChcHostsRequest(chcIds: chcIds, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeChcHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

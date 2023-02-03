@@ -84,12 +84,14 @@ extension Iecp {
     /// 获取ConfigMap列表
     @inlinable
     public func describeConfigMaps(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConfigMapsResponse> {
-        self.describeConfigMaps(DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort)
+        return self.client.execute(action: "DescribeConfigMaps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取ConfigMap列表
     @inlinable
     public func describeConfigMaps(edgeUnitID: UInt64, offset: UInt64, limit: UInt64, configMapNamespace: String? = nil, namePattern: String? = nil, sort: FieldSort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConfigMapsResponse {
-        try await self.describeConfigMaps(DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConfigMapsRequest(edgeUnitID: edgeUnitID, offset: offset, limit: limit, configMapNamespace: configMapNamespace, namePattern: namePattern, sort: sort)
+        return try await self.client.execute(action: "DescribeConfigMaps", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

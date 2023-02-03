@@ -88,12 +88,14 @@ extension Tke {
     /// 创建边缘容器CVM机器
     @inlinable
     public func createEdgeCVMInstances(clusterID: String, runInstancePara: String, cvmRegion: String, cvmCount: Int64, external: String? = nil, userScript: String? = nil, enableEni: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEdgeCVMInstancesResponse> {
-        self.createEdgeCVMInstances(CreateEdgeCVMInstancesRequest(clusterID: clusterID, runInstancePara: runInstancePara, cvmRegion: cvmRegion, cvmCount: cvmCount, external: external, userScript: userScript, enableEni: enableEni), region: region, logger: logger, on: eventLoop)
+        let input = CreateEdgeCVMInstancesRequest(clusterID: clusterID, runInstancePara: runInstancePara, cvmRegion: cvmRegion, cvmCount: cvmCount, external: external, userScript: userScript, enableEni: enableEni)
+        return self.client.execute(action: "CreateEdgeCVMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建边缘容器CVM机器
     @inlinable
     public func createEdgeCVMInstances(clusterID: String, runInstancePara: String, cvmRegion: String, cvmCount: Int64, external: String? = nil, userScript: String? = nil, enableEni: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEdgeCVMInstancesResponse {
-        try await self.createEdgeCVMInstances(CreateEdgeCVMInstancesRequest(clusterID: clusterID, runInstancePara: runInstancePara, cvmRegion: cvmRegion, cvmCount: cvmCount, external: external, userScript: userScript, enableEni: enableEni), region: region, logger: logger, on: eventLoop)
+        let input = CreateEdgeCVMInstancesRequest(clusterID: clusterID, runInstancePara: runInstancePara, cvmRegion: cvmRegion, cvmCount: cvmCount, external: external, userScript: userScript, enableEni: enableEni)
+        return try await self.client.execute(action: "CreateEdgeCVMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

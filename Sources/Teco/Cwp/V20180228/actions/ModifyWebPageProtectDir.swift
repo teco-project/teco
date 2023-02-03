@@ -75,7 +75,8 @@ extension Cwp {
     /// 创建/修改网站防护目录
     @inlinable @discardableResult
     public func modifyWebPageProtectDir(protectDirAddr: String, protectDirName: String, protectFileType: String, hostConfig: [ProtectHostConfig], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyWebPageProtectDirResponse> {
-        self.modifyWebPageProtectDir(ModifyWebPageProtectDirRequest(protectDirAddr: protectDirAddr, protectDirName: protectDirName, protectFileType: protectFileType, hostConfig: hostConfig), region: region, logger: logger, on: eventLoop)
+        let input = ModifyWebPageProtectDirRequest(protectDirAddr: protectDirAddr, protectDirName: protectDirName, protectFileType: protectFileType, hostConfig: hostConfig)
+        return self.client.execute(action: "ModifyWebPageProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建网站防护目录
@@ -83,6 +84,7 @@ extension Cwp {
     /// 创建/修改网站防护目录
     @inlinable @discardableResult
     public func modifyWebPageProtectDir(protectDirAddr: String, protectDirName: String, protectFileType: String, hostConfig: [ProtectHostConfig], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyWebPageProtectDirResponse {
-        try await self.modifyWebPageProtectDir(ModifyWebPageProtectDirRequest(protectDirAddr: protectDirAddr, protectDirName: protectDirName, protectFileType: protectFileType, hostConfig: hostConfig), region: region, logger: logger, on: eventLoop)
+        let input = ModifyWebPageProtectDirRequest(protectDirAddr: protectDirAddr, protectDirName: protectDirName, protectFileType: protectFileType, hostConfig: hostConfig)
+        return try await self.client.execute(action: "ModifyWebPageProtectDir", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

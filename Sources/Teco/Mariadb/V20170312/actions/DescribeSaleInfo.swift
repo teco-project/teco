@@ -56,7 +56,8 @@ extension Mariadb {
     /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
     @inlinable
     public func describeSaleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSaleInfoResponse> {
-        self.describeSaleInfo(DescribeSaleInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSaleInfoRequest()
+        return self.client.execute(action: "DescribeSaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库可售卖地域和可用区信息
@@ -64,6 +65,7 @@ extension Mariadb {
     /// 本接口(DescribeSaleInfo)用于查询云数据库可售卖的地域和可用区信息。
     @inlinable
     public func describeSaleInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSaleInfoResponse {
-        try await self.describeSaleInfo(DescribeSaleInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSaleInfoRequest()
+        return try await self.client.execute(action: "DescribeSaleInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

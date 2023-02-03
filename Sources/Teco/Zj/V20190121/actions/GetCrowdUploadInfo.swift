@@ -69,7 +69,8 @@ extension Zj {
     /// 获取短信人群包cos上传需要的信息
     @inlinable
     public func getCrowdUploadInfo(license: String, fileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCrowdUploadInfoResponse> {
-        self.getCrowdUploadInfo(GetCrowdUploadInfoRequest(license: license, fileName: fileName), region: region, logger: logger, on: eventLoop)
+        let input = GetCrowdUploadInfoRequest(license: license, fileName: fileName)
+        return self.client.execute(action: "GetCrowdUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取短信人群包cos上传信息
@@ -77,6 +78,7 @@ extension Zj {
     /// 获取短信人群包cos上传需要的信息
     @inlinable
     public func getCrowdUploadInfo(license: String, fileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCrowdUploadInfoResponse {
-        try await self.getCrowdUploadInfo(GetCrowdUploadInfoRequest(license: license, fileName: fileName), region: region, logger: logger, on: eventLoop)
+        let input = GetCrowdUploadInfoRequest(license: license, fileName: fileName)
+        return try await self.client.execute(action: "GetCrowdUploadInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

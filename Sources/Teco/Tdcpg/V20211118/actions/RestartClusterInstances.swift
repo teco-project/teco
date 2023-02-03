@@ -65,7 +65,8 @@ extension Tdcpg {
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
     @inlinable @discardableResult
     public func restartClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartClusterInstancesResponse> {
-        self.restartClusterInstances(RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
+        let input = RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet)
+        return self.client.execute(action: "RestartClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启实例
@@ -73,6 +74,7 @@ extension Tdcpg {
     /// 重启实例，此接口只针对状态为running(运行中)的实例生效。
     @inlinable @discardableResult
     public func restartClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartClusterInstancesResponse {
-        try await self.restartClusterInstances(RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
+        let input = RestartClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet)
+        return try await self.client.execute(action: "RestartClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -75,7 +75,8 @@ extension Clb {
     /// - 传统型负载均衡实例不支持升级为性能容量型实例。
     @inlinable @discardableResult
     public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLoadBalancerSlaResponse> {
-        self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla)
+        return self.client.execute(action: "ModifyLoadBalancerSla", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级为性能容量型实例
@@ -88,6 +89,7 @@ extension Clb {
     /// - 传统型负载均衡实例不支持升级为性能容量型实例。
     @inlinable @discardableResult
     public func modifyLoadBalancerSla(loadBalancerSla: [SlaUpdateParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLoadBalancerSlaResponse {
-        try await self.modifyLoadBalancerSla(ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLoadBalancerSlaRequest(loadBalancerSla: loadBalancerSla)
+        return try await self.client.execute(action: "ModifyLoadBalancerSla", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

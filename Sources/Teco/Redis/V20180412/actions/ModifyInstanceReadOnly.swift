@@ -63,12 +63,14 @@ extension Redis {
     /// 设置实例输入模式
     @inlinable
     public func modifyInstanceReadOnly(instanceId: String, inputMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceReadOnlyResponse> {
-        self.modifyInstanceReadOnly(ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode)
+        return self.client.execute(action: "ModifyInstanceReadOnly", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置实例输入模式
     @inlinable
     public func modifyInstanceReadOnly(instanceId: String, inputMode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceReadOnlyResponse {
-        try await self.modifyInstanceReadOnly(ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceReadOnlyRequest(instanceId: instanceId, inputMode: inputMode)
+        return try await self.client.execute(action: "ModifyInstanceReadOnly", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

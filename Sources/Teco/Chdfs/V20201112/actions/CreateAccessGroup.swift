@@ -79,7 +79,8 @@ extension Chdfs {
     /// 创建权限组。
     @inlinable
     public func createAccessGroup(accessGroupName: String, vpcType: UInt64, vpcId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessGroupResponse> {
-        self.createAccessGroup(CreateAccessGroupRequest(accessGroupName: accessGroupName, vpcType: vpcType, vpcId: vpcId, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateAccessGroupRequest(accessGroupName: accessGroupName, vpcType: vpcType, vpcId: vpcId, description: description)
+        return self.client.execute(action: "CreateAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建权限组
@@ -87,6 +88,7 @@ extension Chdfs {
     /// 创建权限组。
     @inlinable
     public func createAccessGroup(accessGroupName: String, vpcType: UInt64, vpcId: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessGroupResponse {
-        try await self.createAccessGroup(CreateAccessGroupRequest(accessGroupName: accessGroupName, vpcType: vpcType, vpcId: vpcId, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateAccessGroupRequest(accessGroupName: accessGroupName, vpcType: vpcType, vpcId: vpcId, description: description)
+        return try await self.client.execute(action: "CreateAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

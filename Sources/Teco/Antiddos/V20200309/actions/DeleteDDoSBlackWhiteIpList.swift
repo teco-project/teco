@@ -64,12 +64,14 @@ extension Antiddos {
     /// 删除DDoS防护的IP网段黑白名单
     @inlinable @discardableResult
     public func deleteDDoSBlackWhiteIpList(instanceId: String, ipList: [IpSegment], type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSBlackWhiteIpListResponse> {
-        self.deleteDDoSBlackWhiteIpList(DeleteDDoSBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDDoSBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type)
+        return self.client.execute(action: "DeleteDDoSBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS防护的IP网段黑白名单
     @inlinable @discardableResult
     public func deleteDDoSBlackWhiteIpList(instanceId: String, ipList: [IpSegment], type: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSBlackWhiteIpListResponse {
-        try await self.deleteDDoSBlackWhiteIpList(DeleteDDoSBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDDoSBlackWhiteIpListRequest(instanceId: instanceId, ipList: ipList, type: type)
+        return try await self.client.execute(action: "DeleteDDoSBlackWhiteIpList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

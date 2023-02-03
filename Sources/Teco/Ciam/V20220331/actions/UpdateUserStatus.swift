@@ -68,12 +68,14 @@ extension Ciam {
     /// 更新用户状态
     @inlinable @discardableResult
     public func updateUserStatus(userStoreId: String, userId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateUserStatusResponse> {
-        self.updateUserStatus(UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status)
+        return self.client.execute(action: "UpdateUserStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新用户状态
     @inlinable @discardableResult
     public func updateUserStatus(userStoreId: String, userId: String, status: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateUserStatusResponse {
-        try await self.updateUserStatus(UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status), region: region, logger: logger, on: eventLoop)
+        let input = UpdateUserStatusRequest(userStoreId: userStoreId, userId: userId, status: status)
+        return try await self.client.execute(action: "UpdateUserStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

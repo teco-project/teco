@@ -82,12 +82,14 @@ extension Bm {
     /// 运行自定义脚本
     @inlinable
     public func runUserCmd(cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RunUserCmdResponse> {
-        self.runUserCmd(RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam), region: region, logger: logger, on: eventLoop)
+        let input = RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam)
+        return self.client.execute(action: "RunUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行自定义脚本
     @inlinable
     public func runUserCmd(cmdId: String, userName: String, password: String, instanceIds: [String], cmdParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunUserCmdResponse {
-        try await self.runUserCmd(RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam), region: region, logger: logger, on: eventLoop)
+        let input = RunUserCmdRequest(cmdId: cmdId, userName: userName, password: password, instanceIds: instanceIds, cmdParam: cmdParam)
+        return try await self.client.execute(action: "RunUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

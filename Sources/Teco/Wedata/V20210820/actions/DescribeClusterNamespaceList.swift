@@ -63,12 +63,14 @@ extension Wedata {
     /// 获取集群命名空间列表
     @inlinable
     public func describeClusterNamespaceList(clusterId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterNamespaceListResponse> {
-        self.describeClusterNamespaceList(DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId)
+        return self.client.execute(action: "DescribeClusterNamespaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群命名空间列表
     @inlinable
     public func describeClusterNamespaceList(clusterId: String, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterNamespaceListResponse {
-        try await self.describeClusterNamespaceList(DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterNamespaceListRequest(clusterId: clusterId, projectId: projectId)
+        return try await self.client.execute(action: "DescribeClusterNamespaceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

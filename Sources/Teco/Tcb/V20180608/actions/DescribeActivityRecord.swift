@@ -83,12 +83,14 @@ extension Tcb {
     /// 查询活动记录信息
     @inlinable
     public func describeActivityRecord(channelToken: String, channel: String, activityIdList: [Int64]? = nil, status: Int64? = nil, statuses: [Int64]? = nil, isDeletedList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeActivityRecordResponse> {
-        self.describeActivityRecord(DescribeActivityRecordRequest(channelToken: channelToken, channel: channel, activityIdList: activityIdList, status: status, statuses: statuses, isDeletedList: isDeletedList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeActivityRecordRequest(channelToken: channelToken, channel: channel, activityIdList: activityIdList, status: status, statuses: statuses, isDeletedList: isDeletedList)
+        return self.client.execute(action: "DescribeActivityRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询活动记录信息
     @inlinable
     public func describeActivityRecord(channelToken: String, channel: String, activityIdList: [Int64]? = nil, status: Int64? = nil, statuses: [Int64]? = nil, isDeletedList: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeActivityRecordResponse {
-        try await self.describeActivityRecord(DescribeActivityRecordRequest(channelToken: channelToken, channel: channel, activityIdList: activityIdList, status: status, statuses: statuses, isDeletedList: isDeletedList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeActivityRecordRequest(channelToken: channelToken, channel: channel, activityIdList: activityIdList, status: status, statuses: statuses, isDeletedList: isDeletedList)
+        return try await self.client.execute(action: "DescribeActivityRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

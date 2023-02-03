@@ -79,12 +79,14 @@ extension Tsf {
     /// 修改应用
     @inlinable
     public func modifyApplication(applicationId: String, applicationName: String? = nil, applicationDesc: String? = nil, applicationRemarkName: String? = nil, serviceConfigList: [ServiceConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApplicationResponse> {
-        self.modifyApplication(ModifyApplicationRequest(applicationId: applicationId, applicationName: applicationName, applicationDesc: applicationDesc, applicationRemarkName: applicationRemarkName, serviceConfigList: serviceConfigList), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationRequest(applicationId: applicationId, applicationName: applicationName, applicationDesc: applicationDesc, applicationRemarkName: applicationRemarkName, serviceConfigList: serviceConfigList)
+        return self.client.execute(action: "ModifyApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
     @inlinable
     public func modifyApplication(applicationId: String, applicationName: String? = nil, applicationDesc: String? = nil, applicationRemarkName: String? = nil, serviceConfigList: [ServiceConfig]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApplicationResponse {
-        try await self.modifyApplication(ModifyApplicationRequest(applicationId: applicationId, applicationName: applicationName, applicationDesc: applicationDesc, applicationRemarkName: applicationRemarkName, serviceConfigList: serviceConfigList), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApplicationRequest(applicationId: applicationId, applicationName: applicationName, applicationDesc: applicationDesc, applicationRemarkName: applicationRemarkName, serviceConfigList: serviceConfigList)
+        return try await self.client.execute(action: "ModifyApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

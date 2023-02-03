@@ -59,12 +59,14 @@ extension Irp {
     /// 上报行为
     @inlinable @discardableResult
     public func reportAction(bid: String, docBehaviorList: [DocBehavior], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportActionResponse> {
-        self.reportAction(ReportActionRequest(bid: bid, docBehaviorList: docBehaviorList), region: region, logger: logger, on: eventLoop)
+        let input = ReportActionRequest(bid: bid, docBehaviorList: docBehaviorList)
+        return self.client.execute(action: "ReportAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报行为
     @inlinable @discardableResult
     public func reportAction(bid: String, docBehaviorList: [DocBehavior], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportActionResponse {
-        try await self.reportAction(ReportActionRequest(bid: bid, docBehaviorList: docBehaviorList), region: region, logger: logger, on: eventLoop)
+        let input = ReportActionRequest(bid: bid, docBehaviorList: docBehaviorList)
+        return try await self.client.execute(action: "ReportAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

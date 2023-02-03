@@ -79,7 +79,8 @@ extension Apigateway {
     /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
     @inlinable
     public func describeApisStatus(serviceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApisStatusResponse> {
-        self.describeApisStatus(DescribeApisStatusRequest(serviceId: serviceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApisStatusRequest(serviceId: serviceId, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 API 接口列表
@@ -87,6 +88,7 @@ extension Apigateway {
     /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
     @inlinable
     public func describeApisStatus(serviceId: String, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApisStatusResponse {
-        try await self.describeApisStatus(DescribeApisStatusRequest(serviceId: serviceId, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApisStatusRequest(serviceId: serviceId, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeApisStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

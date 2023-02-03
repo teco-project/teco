@@ -58,12 +58,14 @@ extension Ba {
     /// 创建渠道备案小程序二维码
     @inlinable
     public func createWeappQRUrl(sessionKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWeappQRUrlResponse> {
-        self.createWeappQRUrl(CreateWeappQRUrlRequest(sessionKey: sessionKey), region: region, logger: logger, on: eventLoop)
+        let input = CreateWeappQRUrlRequest(sessionKey: sessionKey)
+        return self.client.execute(action: "CreateWeappQRUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建渠道备案小程序二维码
     @inlinable
     public func createWeappQRUrl(sessionKey: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWeappQRUrlResponse {
-        try await self.createWeappQRUrl(CreateWeappQRUrlRequest(sessionKey: sessionKey), region: region, logger: logger, on: eventLoop)
+        let input = CreateWeappQRUrlRequest(sessionKey: sessionKey)
+        return try await self.client.execute(action: "CreateWeappQRUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

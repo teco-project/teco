@@ -60,7 +60,8 @@ extension Dts {
     /// 恢复处于已暂停状态的数据同步任务。
     @inlinable @discardableResult
     public func continueSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ContinueSyncJobResponse> {
-        self.continueSyncJob(ContinueSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = ContinueSyncJobRequest(jobId: jobId)
+        return self.client.execute(action: "ContinueSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复被暂停的同步任务
@@ -68,6 +69,7 @@ extension Dts {
     /// 恢复处于已暂停状态的数据同步任务。
     @inlinable @discardableResult
     public func continueSyncJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContinueSyncJobResponse {
-        try await self.continueSyncJob(ContinueSyncJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = ContinueSyncJobRequest(jobId: jobId)
+        return try await self.client.execute(action: "ContinueSyncJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

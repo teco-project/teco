@@ -78,12 +78,14 @@ extension Cpdp {
     /// 云支付-查询已添加分账接收方接口
     @inlinable
     public func distributeQueryReceiver(openId: String, openKey: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DistributeQueryReceiverResponse> {
-        self.distributeQueryReceiver(DistributeQueryReceiverRequest(openId: openId, openKey: openKey, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = DistributeQueryReceiverRequest(openId: openId, openKey: openKey, profile: profile)
+        return self.client.execute(action: "DistributeQueryReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询已添加分账接收方接口
     @inlinable
     public func distributeQueryReceiver(openId: String, openKey: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DistributeQueryReceiverResponse {
-        try await self.distributeQueryReceiver(DistributeQueryReceiverRequest(openId: openId, openKey: openKey, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = DistributeQueryReceiverRequest(openId: openId, openKey: openKey, profile: profile)
+        return try await self.client.execute(action: "DistributeQueryReceiver", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -119,12 +119,14 @@ extension Wedata {
     /// 获取采集器列表
     @inlinable
     public func describeInLongAgentList(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, agentTypes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInLongAgentListResponse> {
-        self.describeInLongAgentList(DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like, agentTypes: agentTypes), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like, agentTypes: agentTypes)
+        return self.client.execute(action: "DescribeInLongAgentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取采集器列表
     @inlinable
     public func describeInLongAgentList(projectId: String, agentId: String? = nil, agentName: String? = nil, agentType: UInt64? = nil, status: String? = nil, vpcId: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil, like: UInt64? = nil, agentTypes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInLongAgentListResponse {
-        try await self.describeInLongAgentList(DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like, agentTypes: agentTypes), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInLongAgentListRequest(projectId: projectId, agentId: agentId, agentName: agentName, agentType: agentType, status: status, vpcId: vpcId, pageIndex: pageIndex, pageSize: pageSize, like: like, agentTypes: agentTypes)
+        return try await self.client.execute(action: "DescribeInLongAgentList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

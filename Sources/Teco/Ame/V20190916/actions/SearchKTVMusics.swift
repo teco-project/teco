@@ -93,7 +93,8 @@ extension Ame {
     /// 根据搜索条件，返回匹配的歌曲列表。
     @inlinable
     public func searchKTVMusics(keyWord: String, offset: Int64, limit: Int64, sort: SortBy? = nil, tagIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchKTVMusicsResponse> {
-        self.searchKTVMusics(SearchKTVMusicsRequest(keyWord: keyWord, offset: offset, limit: limit, sort: sort, tagIds: tagIds), region: region, logger: logger, on: eventLoop)
+        let input = SearchKTVMusicsRequest(keyWord: keyWord, offset: offset, limit: limit, sort: sort, tagIds: tagIds)
+        return self.client.execute(action: "SearchKTVMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索直播互动曲库歌曲
@@ -101,6 +102,7 @@ extension Ame {
     /// 根据搜索条件，返回匹配的歌曲列表。
     @inlinable
     public func searchKTVMusics(keyWord: String, offset: Int64, limit: Int64, sort: SortBy? = nil, tagIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchKTVMusicsResponse {
-        try await self.searchKTVMusics(SearchKTVMusicsRequest(keyWord: keyWord, offset: offset, limit: limit, sort: sort, tagIds: tagIds), region: region, logger: logger, on: eventLoop)
+        let input = SearchKTVMusicsRequest(keyWord: keyWord, offset: offset, limit: limit, sort: sort, tagIds: tagIds)
+        return try await self.client.execute(action: "SearchKTVMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

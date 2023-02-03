@@ -84,7 +84,8 @@ extension Cynosdb {
     /// 为集群创建手动备份
     @inlinable
     public func createBackup(clusterId: String, backupType: String? = nil, backupDatabases: [String]? = nil, backupTables: [DatabaseTables]? = nil, backupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackupResponse> {
-        self.createBackup(CreateBackupRequest(clusterId: clusterId, backupType: backupType, backupDatabases: backupDatabases, backupTables: backupTables, backupName: backupName), region: region, logger: logger, on: eventLoop)
+        let input = CreateBackupRequest(clusterId: clusterId, backupType: backupType, backupDatabases: backupDatabases, backupTables: backupTables, backupName: backupName)
+        return self.client.execute(action: "CreateBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建手动备份
@@ -92,6 +93,7 @@ extension Cynosdb {
     /// 为集群创建手动备份
     @inlinable
     public func createBackup(clusterId: String, backupType: String? = nil, backupDatabases: [String]? = nil, backupTables: [DatabaseTables]? = nil, backupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackupResponse {
-        try await self.createBackup(CreateBackupRequest(clusterId: clusterId, backupType: backupType, backupDatabases: backupDatabases, backupTables: backupTables, backupName: backupName), region: region, logger: logger, on: eventLoop)
+        let input = CreateBackupRequest(clusterId: clusterId, backupType: backupType, backupDatabases: backupDatabases, backupTables: backupTables, backupName: backupName)
+        return try await self.client.execute(action: "CreateBackup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

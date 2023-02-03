@@ -60,7 +60,8 @@ extension Tke {
     /// 删除托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
     @inlinable @discardableResult
     public func deleteClusterEndpointVip(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterEndpointVipResponse> {
-        self.deleteClusterEndpointVip(DeleteClusterEndpointVipRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterEndpointVipRequest(clusterId: clusterId)
+        return self.client.execute(action: "DeleteClusterEndpointVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除托管集群外网访问端口
@@ -68,6 +69,7 @@ extension Tke {
     /// 删除托管集群外网访问端口（老的方式，仅支持托管集群外网端口）
     @inlinable @discardableResult
     public func deleteClusterEndpointVip(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterEndpointVipResponse {
-        try await self.deleteClusterEndpointVip(DeleteClusterEndpointVipRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterEndpointVipRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DeleteClusterEndpointVip", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

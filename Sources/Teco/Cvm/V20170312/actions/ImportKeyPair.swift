@@ -93,7 +93,8 @@ extension Cvm {
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
     @inlinable
     public func importKeyPair(keyName: String, projectId: Int64, publicKey: String, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyPairResponse> {
-        self.importKeyPair(ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
+        let input = ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification)
+        return self.client.execute(action: "ImportKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥对
@@ -105,6 +106,7 @@ extension Cvm {
     /// * 如果用户只有私钥，可以通过 `SSL` 工具将私钥转换成公钥后再导入。
     @inlinable
     public func importKeyPair(keyName: String, projectId: Int64, publicKey: String, tagSpecification: [TagSpecification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyPairResponse {
-        try await self.importKeyPair(ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification), region: region, logger: logger, on: eventLoop)
+        let input = ImportKeyPairRequest(keyName: keyName, projectId: projectId, publicKey: publicKey, tagSpecification: tagSpecification)
+        return try await self.client.execute(action: "ImportKeyPair", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

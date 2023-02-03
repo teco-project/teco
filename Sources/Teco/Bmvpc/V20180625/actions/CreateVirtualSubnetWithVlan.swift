@@ -69,7 +69,8 @@ extension Bmvpc {
     /// 创建黑石虚拟子网， 虚拟子网用于在黑石上创建虚拟网络，与黑石子网要做好规划。虚拟子网会分配2000-2999的VlanId。
     @inlinable
     public func createVirtualSubnetWithVlan(vpcId: String, subnetSet: [SubnetCreateInputInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVirtualSubnetWithVlanResponse> {
-        self.createVirtualSubnetWithVlan(CreateVirtualSubnetWithVlanRequest(vpcId: vpcId, subnetSet: subnetSet), region: region, logger: logger, on: eventLoop)
+        let input = CreateVirtualSubnetWithVlanRequest(vpcId: vpcId, subnetSet: subnetSet)
+        return self.client.execute(action: "CreateVirtualSubnetWithVlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石虚拟子网
@@ -77,6 +78,7 @@ extension Bmvpc {
     /// 创建黑石虚拟子网， 虚拟子网用于在黑石上创建虚拟网络，与黑石子网要做好规划。虚拟子网会分配2000-2999的VlanId。
     @inlinable
     public func createVirtualSubnetWithVlan(vpcId: String, subnetSet: [SubnetCreateInputInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVirtualSubnetWithVlanResponse {
-        try await self.createVirtualSubnetWithVlan(CreateVirtualSubnetWithVlanRequest(vpcId: vpcId, subnetSet: subnetSet), region: region, logger: logger, on: eventLoop)
+        let input = CreateVirtualSubnetWithVlanRequest(vpcId: vpcId, subnetSet: subnetSet)
+        return try await self.client.execute(action: "CreateVirtualSubnetWithVlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

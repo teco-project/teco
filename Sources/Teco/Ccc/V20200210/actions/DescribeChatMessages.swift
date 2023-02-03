@@ -105,7 +105,8 @@ extension Ccc {
     /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
     @inlinable
     public func describeChatMessages(instanceId: Int64? = nil, sdkAppId: Int64? = nil, cdrId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: Int64? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeChatMessagesResponse> {
-        self.describeChatMessages(DescribeChatMessagesRequest(instanceId: instanceId, sdkAppId: sdkAppId, cdrId: cdrId, limit: limit, offset: offset, order: order, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeChatMessagesRequest(instanceId: instanceId, sdkAppId: sdkAppId, cdrId: cdrId, limit: limit, offset: offset, order: order, sessionId: sessionId)
+        return self.client.execute(action: "DescribeChatMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务的聊天记录
@@ -115,6 +116,7 @@ extension Ccc {
     /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
     @inlinable
     public func describeChatMessages(instanceId: Int64? = nil, sdkAppId: Int64? = nil, cdrId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, order: Int64? = nil, sessionId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeChatMessagesResponse {
-        try await self.describeChatMessages(DescribeChatMessagesRequest(instanceId: instanceId, sdkAppId: sdkAppId, cdrId: cdrId, limit: limit, offset: offset, order: order, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeChatMessagesRequest(instanceId: instanceId, sdkAppId: sdkAppId, cdrId: cdrId, limit: limit, offset: offset, order: order, sessionId: sessionId)
+        return try await self.client.execute(action: "DescribeChatMessages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

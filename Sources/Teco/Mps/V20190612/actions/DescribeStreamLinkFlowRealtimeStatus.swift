@@ -78,7 +78,8 @@ extension Mps {
     /// 实时查询流的当前状态
     @inlinable
     public func describeStreamLinkFlowRealtimeStatus(flowId: String, inputIds: [String]? = nil, outputIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkFlowRealtimeStatusResponse> {
-        self.describeStreamLinkFlowRealtimeStatus(DescribeStreamLinkFlowRealtimeStatusRequest(flowId: flowId, inputIds: inputIds, outputIds: outputIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamLinkFlowRealtimeStatusRequest(flowId: flowId, inputIds: inputIds, outputIds: outputIds)
+        return self.client.execute(action: "DescribeStreamLinkFlowRealtimeStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流实时状态接口
@@ -86,6 +87,7 @@ extension Mps {
     /// 实时查询流的当前状态
     @inlinable
     public func describeStreamLinkFlowRealtimeStatus(flowId: String, inputIds: [String]? = nil, outputIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkFlowRealtimeStatusResponse {
-        try await self.describeStreamLinkFlowRealtimeStatus(DescribeStreamLinkFlowRealtimeStatusRequest(flowId: flowId, inputIds: inputIds, outputIds: outputIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamLinkFlowRealtimeStatusRequest(flowId: flowId, inputIds: inputIds, outputIds: outputIds)
+        return try await self.client.execute(action: "DescribeStreamLinkFlowRealtimeStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

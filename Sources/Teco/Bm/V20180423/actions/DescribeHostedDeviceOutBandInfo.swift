@@ -63,12 +63,14 @@ extension Bm {
     /// 查询托管设备带外信息
     @inlinable
     public func describeHostedDeviceOutBandInfo(instanceIds: [String], zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeHostedDeviceOutBandInfoResponse> {
-        self.describeHostedDeviceOutBandInfo(DescribeHostedDeviceOutBandInfoRequest(instanceIds: instanceIds, zone: zone), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHostedDeviceOutBandInfoRequest(instanceIds: instanceIds, zone: zone)
+        return self.client.execute(action: "DescribeHostedDeviceOutBandInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询托管设备带外信息
     @inlinable
     public func describeHostedDeviceOutBandInfo(instanceIds: [String], zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeHostedDeviceOutBandInfoResponse {
-        try await self.describeHostedDeviceOutBandInfo(DescribeHostedDeviceOutBandInfoRequest(instanceIds: instanceIds, zone: zone), region: region, logger: logger, on: eventLoop)
+        let input = DescribeHostedDeviceOutBandInfoRequest(instanceIds: instanceIds, zone: zone)
+        return try await self.client.execute(action: "DescribeHostedDeviceOutBandInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

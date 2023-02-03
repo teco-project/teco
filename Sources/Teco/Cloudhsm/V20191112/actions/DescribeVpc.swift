@@ -79,7 +79,8 @@ extension Cloudhsm {
     /// 查询用户的私有网络列表
     @inlinable
     public func describeVpc(offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVpcResponse> {
-        self.describeVpc(DescribeVpcRequest(offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpcRequest(offset: offset, limit: limit, searchWord: searchWord)
+        return self.client.execute(action: "DescribeVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询私有网络列表
@@ -87,6 +88,7 @@ extension Cloudhsm {
     /// 查询用户的私有网络列表
     @inlinable
     public func describeVpc(offset: Int64, limit: Int64, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVpcResponse {
-        try await self.describeVpc(DescribeVpcRequest(offset: offset, limit: limit, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVpcRequest(offset: offset, limit: limit, searchWord: searchWord)
+        return try await self.client.execute(action: "DescribeVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

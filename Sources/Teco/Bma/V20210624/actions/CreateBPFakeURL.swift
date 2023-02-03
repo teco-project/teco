@@ -69,12 +69,14 @@ extension Bma {
     /// 添加仿冒链接（举报）
     @inlinable @discardableResult
     public func createBPFakeURL(protectURLId: Int64? = nil, fakeURL: String? = nil, snapshotNames: [String]? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBPFakeURLResponse> {
-        self.createBPFakeURL(CreateBPFakeURLRequest(protectURLId: protectURLId, fakeURL: fakeURL, snapshotNames: snapshotNames, note: note), region: region, logger: logger, on: eventLoop)
+        let input = CreateBPFakeURLRequest(protectURLId: protectURLId, fakeURL: fakeURL, snapshotNames: snapshotNames, note: note)
+        return self.client.execute(action: "CreateBPFakeURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加仿冒链接（举报）
     @inlinable @discardableResult
     public func createBPFakeURL(protectURLId: Int64? = nil, fakeURL: String? = nil, snapshotNames: [String]? = nil, note: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBPFakeURLResponse {
-        try await self.createBPFakeURL(CreateBPFakeURLRequest(protectURLId: protectURLId, fakeURL: fakeURL, snapshotNames: snapshotNames, note: note), region: region, logger: logger, on: eventLoop)
+        let input = CreateBPFakeURLRequest(protectURLId: protectURLId, fakeURL: fakeURL, snapshotNames: snapshotNames, note: note)
+        return try await self.client.execute(action: "CreateBPFakeURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

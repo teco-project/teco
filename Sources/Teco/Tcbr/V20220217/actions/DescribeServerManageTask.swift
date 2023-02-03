@@ -77,12 +77,14 @@ extension Tcbr {
     /// 查询服务管理任务信息
     @inlinable
     public func describeServerManageTask(envId: String, serverName: String, taskId: Int64, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServerManageTaskResponse> {
-        self.describeServerManageTask(DescribeServerManageTaskRequest(envId: envId, serverName: serverName, taskId: taskId, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServerManageTaskRequest(envId: envId, serverName: serverName, taskId: taskId, operatorRemark: operatorRemark)
+        return self.client.execute(action: "DescribeServerManageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务管理任务信息
     @inlinable
     public func describeServerManageTask(envId: String, serverName: String, taskId: Int64, operatorRemark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServerManageTaskResponse {
-        try await self.describeServerManageTask(DescribeServerManageTaskRequest(envId: envId, serverName: serverName, taskId: taskId, operatorRemark: operatorRemark), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServerManageTaskRequest(envId: envId, serverName: serverName, taskId: taskId, operatorRemark: operatorRemark)
+        return try await self.client.execute(action: "DescribeServerManageTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

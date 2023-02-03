@@ -63,12 +63,14 @@ extension Cynosdb {
     /// 暂停serverless集群
     @inlinable
     public func pauseServerless(clusterId: String, forcePause: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PauseServerlessResponse> {
-        self.pauseServerless(PauseServerlessRequest(clusterId: clusterId, forcePause: forcePause), region: region, logger: logger, on: eventLoop)
+        let input = PauseServerlessRequest(clusterId: clusterId, forcePause: forcePause)
+        return self.client.execute(action: "PauseServerless", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 暂停serverless集群
     @inlinable
     public func pauseServerless(clusterId: String, forcePause: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PauseServerlessResponse {
-        try await self.pauseServerless(PauseServerlessRequest(clusterId: clusterId, forcePause: forcePause), region: region, logger: logger, on: eventLoop)
+        let input = PauseServerlessRequest(clusterId: clusterId, forcePause: forcePause)
+        return try await self.client.execute(action: "PauseServerless", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

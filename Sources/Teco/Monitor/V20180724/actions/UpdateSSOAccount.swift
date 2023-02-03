@@ -75,7 +75,8 @@ extension Monitor {
     /// 更新已授权账号的备注、权限信息，会直接覆盖原有的信息，不传则不会更新。
     @inlinable @discardableResult
     public func updateSSOAccount(instanceId: String, userId: String, role: [GrafanaAccountRole]? = nil, notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateSSOAccountResponse> {
-        self.updateSSOAccount(UpdateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes), region: region, logger: logger, on: eventLoop)
+        let input = UpdateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes)
+        return self.client.execute(action: "UpdateSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新账号信息
@@ -83,6 +84,7 @@ extension Monitor {
     /// 更新已授权账号的备注、权限信息，会直接覆盖原有的信息，不传则不会更新。
     @inlinable @discardableResult
     public func updateSSOAccount(instanceId: String, userId: String, role: [GrafanaAccountRole]? = nil, notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateSSOAccountResponse {
-        try await self.updateSSOAccount(UpdateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes), region: region, logger: logger, on: eventLoop)
+        let input = UpdateSSOAccountRequest(instanceId: instanceId, userId: userId, role: role, notes: notes)
+        return try await self.client.execute(action: "UpdateSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

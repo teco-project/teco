@@ -77,12 +77,14 @@ extension Tcr {
     /// 查询触发器
     @inlinable
     public func describeWebhookTrigger(registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWebhookTriggerResponse> {
-        self.describeWebhookTrigger(DescribeWebhookTriggerRequest(registryId: registryId, limit: limit, offset: offset, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebhookTriggerRequest(registryId: registryId, limit: limit, offset: offset, namespace: namespace)
+        return self.client.execute(action: "DescribeWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询触发器
     @inlinable
     public func describeWebhookTrigger(registryId: String, limit: Int64? = nil, offset: Int64? = nil, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWebhookTriggerResponse {
-        try await self.describeWebhookTrigger(DescribeWebhookTriggerRequest(registryId: registryId, limit: limit, offset: offset, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWebhookTriggerRequest(registryId: registryId, limit: limit, offset: offset, namespace: namespace)
+        return try await self.client.execute(action: "DescribeWebhookTrigger", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

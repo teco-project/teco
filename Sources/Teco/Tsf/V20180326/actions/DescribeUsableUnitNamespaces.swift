@@ -69,12 +69,14 @@ extension Tsf {
     /// 查询可用于被导入的命名空间列表
     @inlinable
     public func describeUsableUnitNamespaces(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsableUnitNamespacesResponse> {
-        self.describeUsableUnitNamespaces(DescribeUsableUnitNamespacesRequest(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUsableUnitNamespacesRequest(searchWord: searchWord, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeUsableUnitNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询可用于被导入的命名空间列表
     @inlinable
     public func describeUsableUnitNamespaces(searchWord: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsableUnitNamespacesResponse {
-        try await self.describeUsableUnitNamespaces(DescribeUsableUnitNamespacesRequest(searchWord: searchWord, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUsableUnitNamespacesRequest(searchWord: searchWord, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeUsableUnitNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

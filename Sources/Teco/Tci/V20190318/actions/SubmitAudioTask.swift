@@ -93,12 +93,14 @@ extension Tci {
     /// 音频任务提交接口
     @inlinable
     public func submitAudioTask(lang: Int64, url: String, voiceEncodeType: Int64, voiceFileType: Int64, functions: Function? = nil, fileType: String? = nil, muteThreshold: Int64? = nil, vocabLibNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitAudioTaskResponse> {
-        self.submitAudioTask(SubmitAudioTaskRequest(lang: lang, url: url, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, functions: functions, fileType: fileType, muteThreshold: muteThreshold, vocabLibNameList: vocabLibNameList), region: region, logger: logger, on: eventLoop)
+        let input = SubmitAudioTaskRequest(lang: lang, url: url, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, functions: functions, fileType: fileType, muteThreshold: muteThreshold, vocabLibNameList: vocabLibNameList)
+        return self.client.execute(action: "SubmitAudioTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 音频任务提交接口
     @inlinable
     public func submitAudioTask(lang: Int64, url: String, voiceEncodeType: Int64, voiceFileType: Int64, functions: Function? = nil, fileType: String? = nil, muteThreshold: Int64? = nil, vocabLibNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitAudioTaskResponse {
-        try await self.submitAudioTask(SubmitAudioTaskRequest(lang: lang, url: url, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, functions: functions, fileType: fileType, muteThreshold: muteThreshold, vocabLibNameList: vocabLibNameList), region: region, logger: logger, on: eventLoop)
+        let input = SubmitAudioTaskRequest(lang: lang, url: url, voiceEncodeType: voiceEncodeType, voiceFileType: voiceFileType, functions: functions, fileType: fileType, muteThreshold: muteThreshold, vocabLibNameList: vocabLibNameList)
+        return try await self.client.execute(action: "SubmitAudioTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

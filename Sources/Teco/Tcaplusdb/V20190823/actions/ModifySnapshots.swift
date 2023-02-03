@@ -73,7 +73,8 @@ extension Tcaplusdb {
     /// 修改表格快照的过期时间
     @inlinable
     public func modifySnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySnapshotsResponse> {
-        self.modifySnapshots(ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
+        let input = ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables)
+        return self.client.execute(action: "ModifySnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改表格快照
@@ -81,6 +82,7 @@ extension Tcaplusdb {
     /// 修改表格快照的过期时间
     @inlinable
     public func modifySnapshots(clusterId: String, selectedTables: [SnapshotInfoNew], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySnapshotsResponse {
-        try await self.modifySnapshots(ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
+        let input = ModifySnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables)
+        return try await self.client.execute(action: "ModifySnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

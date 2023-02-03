@@ -74,7 +74,8 @@ extension Domain {
     /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
     @inlinable
     public func describeDomainNameList(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainNameListResponse> {
-        self.describeDomainNameList(DescribeDomainNameListRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainNameListRequest(offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeDomainNameList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 我的域名列表
@@ -82,6 +83,7 @@ extension Domain {
     /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
     @inlinable
     public func describeDomainNameList(offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainNameListResponse {
-        try await self.describeDomainNameList(DescribeDomainNameListRequest(offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainNameListRequest(offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeDomainNameList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

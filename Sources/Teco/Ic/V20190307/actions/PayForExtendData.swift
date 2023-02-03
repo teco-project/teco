@@ -68,12 +68,14 @@ extension Ic {
     /// 购买套外流量包
     @inlinable
     public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PayForExtendDataResponse> {
-        self.payForExtendData(PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid), region: region, logger: logger, on: eventLoop)
+        let input = PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid)
+        return self.client.execute(action: "PayForExtendData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 购买套外流量包
     @inlinable
     public func payForExtendData(iccid: String, extentData: UInt64, sdkappid: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PayForExtendDataResponse {
-        try await self.payForExtendData(PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid), region: region, logger: logger, on: eventLoop)
+        let input = PayForExtendDataRequest(iccid: iccid, extentData: extentData, sdkappid: sdkappid)
+        return try await self.client.execute(action: "PayForExtendData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

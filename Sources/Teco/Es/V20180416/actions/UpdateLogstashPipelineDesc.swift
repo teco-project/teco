@@ -70,7 +70,8 @@ extension Es {
     /// 用于更新管道描述信息
     @inlinable @discardableResult
     public func updateLogstashPipelineDesc(instanceId: String, pipelineId: String, pipelineDesc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateLogstashPipelineDescResponse> {
-        self.updateLogstashPipelineDesc(UpdateLogstashPipelineDescRequest(instanceId: instanceId, pipelineId: pipelineId, pipelineDesc: pipelineDesc), region: region, logger: logger, on: eventLoop)
+        let input = UpdateLogstashPipelineDescRequest(instanceId: instanceId, pipelineId: pipelineId, pipelineDesc: pipelineDesc)
+        return self.client.execute(action: "UpdateLogstashPipelineDesc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新管道描述
@@ -78,6 +79,7 @@ extension Es {
     /// 用于更新管道描述信息
     @inlinable @discardableResult
     public func updateLogstashPipelineDesc(instanceId: String, pipelineId: String, pipelineDesc: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateLogstashPipelineDescResponse {
-        try await self.updateLogstashPipelineDesc(UpdateLogstashPipelineDescRequest(instanceId: instanceId, pipelineId: pipelineId, pipelineDesc: pipelineDesc), region: region, logger: logger, on: eventLoop)
+        let input = UpdateLogstashPipelineDescRequest(instanceId: instanceId, pipelineId: pipelineId, pipelineDesc: pipelineDesc)
+        return try await self.client.execute(action: "UpdateLogstashPipelineDesc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

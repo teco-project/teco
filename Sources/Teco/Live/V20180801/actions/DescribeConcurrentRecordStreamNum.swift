@@ -87,7 +87,8 @@ extension Live {
     /// 查询并发录制路数，对慢直播和普通直播适用。
     @inlinable
     public func describeConcurrentRecordStreamNum(liveType: String, startTime: String, endTime: String, mainlandOrOversea: String? = nil, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConcurrentRecordStreamNumResponse> {
-        self.describeConcurrentRecordStreamNum(DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains)
+        return self.client.execute(action: "DescribeConcurrentRecordStreamNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询并发录制路数
@@ -95,6 +96,7 @@ extension Live {
     /// 查询并发录制路数，对慢直播和普通直播适用。
     @inlinable
     public func describeConcurrentRecordStreamNum(liveType: String, startTime: String, endTime: String, mainlandOrOversea: String? = nil, pushDomains: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConcurrentRecordStreamNumResponse {
-        try await self.describeConcurrentRecordStreamNum(DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConcurrentRecordStreamNumRequest(liveType: liveType, startTime: startTime, endTime: endTime, mainlandOrOversea: mainlandOrOversea, pushDomains: pushDomains)
+        return try await self.client.execute(action: "DescribeConcurrentRecordStreamNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

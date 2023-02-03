@@ -84,7 +84,8 @@ extension Monitor {
     /// 创建 Prometheus 的预聚合规则
     @inlinable
     public func createRecordingRule(name: String, group: String, instanceId: String, ruleState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRecordingRuleResponse> {
-        self.createRecordingRule(CreateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
+        let input = CreateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleState: ruleState)
+        return self.client.execute(action: "CreateRecordingRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建预聚合规则
@@ -92,6 +93,7 @@ extension Monitor {
     /// 创建 Prometheus 的预聚合规则
     @inlinable
     public func createRecordingRule(name: String, group: String, instanceId: String, ruleState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRecordingRuleResponse {
-        try await self.createRecordingRule(CreateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
+        let input = CreateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleState: ruleState)
+        return try await self.client.execute(action: "CreateRecordingRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Es {
     /// 用于重启Logstash实例
     @inlinable @discardableResult
     public func restartLogstashInstance(instanceId: String, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartLogstashInstanceResponse> {
-        self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
+        let input = RestartLogstashInstanceRequest(instanceId: instanceId, type: type)
+        return self.client.execute(action: "RestartLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启Logstash实例
@@ -73,6 +74,7 @@ extension Es {
     /// 用于重启Logstash实例
     @inlinable @discardableResult
     public func restartLogstashInstance(instanceId: String, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartLogstashInstanceResponse {
-        try await self.restartLogstashInstance(RestartLogstashInstanceRequest(instanceId: instanceId, type: type), region: region, logger: logger, on: eventLoop)
+        let input = RestartLogstashInstanceRequest(instanceId: instanceId, type: type)
+        return try await self.client.execute(action: "RestartLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

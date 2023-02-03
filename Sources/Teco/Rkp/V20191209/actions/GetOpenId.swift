@@ -90,7 +90,8 @@ extension Rkp {
     /// 根据DevicceToken查询OpenID。
     @inlinable
     public func getOpenId(deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetOpenIdResponse> {
-        self.getOpenId(GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option), region: region, logger: logger, on: eventLoop)
+        let input = GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option)
+        return self.client.execute(action: "GetOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// RPopenID查询
@@ -98,6 +99,7 @@ extension Rkp {
     /// 根据DevicceToken查询OpenID。
     @inlinable
     public func getOpenId(deviceToken: String, businessId: Int64, businessUserId: String? = nil, platform: Int64? = nil, option: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetOpenIdResponse {
-        try await self.getOpenId(GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option), region: region, logger: logger, on: eventLoop)
+        let input = GetOpenIdRequest(deviceToken: deviceToken, businessId: businessId, businessUserId: businessUserId, platform: platform, option: option)
+        return try await self.client.execute(action: "GetOpenId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

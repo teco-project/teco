@@ -110,7 +110,8 @@ extension Vm {
     /// 默认接口请求频率限制：**20次/秒**。
     @inlinable
     public func describeTasks(limit: Int64? = nil, filter: TaskFilter? = nil, pageToken: String? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        self.describeTasks(DescribeTasksRequest(limit: limit, filter: filter, pageToken: pageToken, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksRequest(limit: limit, filter: filter, pageToken: pageToken, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看审核任务列表
@@ -120,6 +121,7 @@ extension Vm {
     /// 默认接口请求频率限制：**20次/秒**。
     @inlinable
     public func describeTasks(limit: Int64? = nil, filter: TaskFilter? = nil, pageToken: String? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.describeTasks(DescribeTasksRequest(limit: limit, filter: filter, pageToken: pageToken, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksRequest(limit: limit, filter: filter, pageToken: pageToken, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

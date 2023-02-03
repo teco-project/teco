@@ -87,12 +87,14 @@ extension Tbaas {
     /// 获取通道列表
     @inlinable
     public func getChannelListForUser(module: String, operation: String, clusterId: String, groupName: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetChannelListForUserResponse> {
-        self.getChannelListForUser(GetChannelListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = GetChannelListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, limit: limit, offset: offset)
+        return self.client.execute(action: "GetChannelListForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取通道列表
     @inlinable
     public func getChannelListForUser(module: String, operation: String, clusterId: String, groupName: String, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChannelListForUserResponse {
-        try await self.getChannelListForUser(GetChannelListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = GetChannelListForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, limit: limit, offset: offset)
+        return try await self.client.execute(action: "GetChannelListForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

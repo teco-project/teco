@@ -65,7 +65,8 @@ extension Cam {
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
     @inlinable @discardableResult
     public func deletePolicyVersion(policyId: UInt64, versionId: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePolicyVersionResponse> {
-        self.deletePolicyVersion(DeletePolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePolicyVersionRequest(policyId: policyId, versionId: versionId)
+        return self.client.execute(action: "DeletePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除策略的策略版本
@@ -73,6 +74,7 @@ extension Cam {
     /// 本接口（DeletePolicyVersion）可用于删除一个策略的策略版本。
     @inlinable @discardableResult
     public func deletePolicyVersion(policyId: UInt64, versionId: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePolicyVersionResponse {
-        try await self.deletePolicyVersion(DeletePolicyVersionRequest(policyId: policyId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePolicyVersionRequest(policyId: policyId, versionId: versionId)
+        return try await self.client.execute(action: "DeletePolicyVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

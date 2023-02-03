@@ -92,12 +92,14 @@ extension Antiddos {
     /// 获取CC频率限制策略列表
     @inlinable
     public func describeCCReqLimitPolicyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCReqLimitPolicyListResponse> {
-        self.describeCCReqLimitPolicyList(DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
+        return self.client.execute(action: "DescribeCCReqLimitPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC频率限制策略列表
     @inlinable
     public func describeCCReqLimitPolicyList(business: String, offset: UInt64, limit: UInt64, instanceId: String? = nil, ip: String? = nil, domain: String? = nil, protocol: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCReqLimitPolicyListResponse {
-        try await self.describeCCReqLimitPolicyList(DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCCReqLimitPolicyListRequest(business: business, offset: offset, limit: limit, instanceId: instanceId, ip: ip, domain: domain, protocol: `protocol`)
+        return try await self.client.execute(action: "DescribeCCReqLimitPolicyList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

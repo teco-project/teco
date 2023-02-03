@@ -74,12 +74,14 @@ extension Tsf {
     /// 创建单元化规则
     @inlinable
     public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUnitRuleResponse> {
-        self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), region: region, logger: logger, on: eventLoop)
+        let input = CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList)
+        return self.client.execute(action: "CreateUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建单元化规则
     @inlinable
     public func createUnitRule(gatewayInstanceId: String, name: String, description: String? = nil, unitRuleItemList: [UnitRuleItem]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUnitRuleResponse {
-        try await self.createUnitRule(CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList), region: region, logger: logger, on: eventLoop)
+        let input = CreateUnitRuleRequest(gatewayInstanceId: gatewayInstanceId, name: name, description: description, unitRuleItemList: unitRuleItemList)
+        return try await self.client.execute(action: "CreateUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

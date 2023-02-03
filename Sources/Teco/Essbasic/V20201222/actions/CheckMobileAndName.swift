@@ -90,7 +90,8 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证手机号二要素
     @inlinable
     public func checkMobileAndName(caller: Caller, mobile: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckMobileAndNameResponse> {
-        self.checkMobileAndName(CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name), region: region, logger: logger, on: eventLoop)
+        let input = CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name)
+        return self.client.execute(action: "CheckMobileAndName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手机号二要素核验
@@ -98,6 +99,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证手机号二要素
     @inlinable
     public func checkMobileAndName(caller: Caller, mobile: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckMobileAndNameResponse {
-        try await self.checkMobileAndName(CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name), region: region, logger: logger, on: eventLoop)
+        let input = CheckMobileAndNameRequest(caller: caller, mobile: mobile, name: name)
+        return try await self.client.execute(action: "CheckMobileAndName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

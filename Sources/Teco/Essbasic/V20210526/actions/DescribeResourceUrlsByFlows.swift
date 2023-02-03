@@ -83,7 +83,8 @@ extension Essbasic {
     /// 此接口直接返回下载的资源的url，与接口GetDownloadFlowUrl跳转到控制台的下载方式不同。
     @inlinable
     public func describeResourceUrlsByFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceUrlsByFlowsResponse> {
-        self.describeResourceUrlsByFlows(DescribeResourceUrlsByFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceUrlsByFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`)
+        return self.client.execute(action: "DescribeResourceUrlsByFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据签署流程信息批量获取资源下载链接
@@ -92,6 +93,7 @@ extension Essbasic {
     /// 此接口直接返回下载的资源的url，与接口GetDownloadFlowUrl跳转到控制台的下载方式不同。
     @inlinable
     public func describeResourceUrlsByFlows(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceUrlsByFlowsResponse {
-        try await self.describeResourceUrlsByFlows(DescribeResourceUrlsByFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceUrlsByFlowsRequest(agent: agent, flowIds: flowIds, operator: `operator`)
+        return try await self.client.execute(action: "DescribeResourceUrlsByFlows", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

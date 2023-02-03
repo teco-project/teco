@@ -74,7 +74,8 @@ extension Gme {
     /// 更新自定义送检用户号
     @inlinable
     public func updateScanUsers(bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateScanUsersResponse> {
-        self.updateScanUsers(UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex), region: region, logger: logger, on: eventLoop)
+        let input = UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex)
+        return self.client.execute(action: "UpdateScanUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新送检用户号
@@ -82,6 +83,7 @@ extension Gme {
     /// 更新自定义送检用户号
     @inlinable
     public func updateScanUsers(bizId: UInt64, userIdString: String? = nil, userIdRegex: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateScanUsersResponse {
-        try await self.updateScanUsers(UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex), region: region, logger: logger, on: eventLoop)
+        let input = UpdateScanUsersRequest(bizId: bizId, userIdString: userIdString, userIdRegex: userIdRegex)
+        return try await self.client.execute(action: "UpdateScanUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

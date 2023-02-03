@@ -98,7 +98,8 @@ extension Cpdp {
     /// 商户解除绑定的提现银行卡
     @inlinable @discardableResult
     public func unBindAcct(midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnBindAcctResponse> {
-        self.unBindAcct(UnBindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = UnBindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment)
+        return self.client.execute(action: "UnBindAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-解绑银行卡
@@ -106,6 +107,7 @@ extension Cpdp {
     /// 商户解除绑定的提现银行卡
     @inlinable @discardableResult
     public func unBindAcct(midasAppId: String, subAppId: String, settleAcctNo: String, midasSecretId: String, midasSignature: String, encryptType: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnBindAcctResponse {
-        try await self.unBindAcct(UnBindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = UnBindAcctRequest(midasAppId: midasAppId, subAppId: subAppId, settleAcctNo: settleAcctNo, midasSecretId: midasSecretId, midasSignature: midasSignature, encryptType: encryptType, midasEnvironment: midasEnvironment)
+        return try await self.client.execute(action: "UnBindAcct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

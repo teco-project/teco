@@ -121,7 +121,8 @@ extension Aai {
     /// 内测期间免费使用。
     @inlinable
     public func textToVoice(text: String, sessionId: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: UInt64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TextToVoiceResponse> {
-        self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec), region: region, logger: logger, on: eventLoop)
+        let input = TextToVoiceRequest(text: text, sessionId: sessionId, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec)
+        return self.client.execute(action: "TextToVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 语音合成
@@ -131,6 +132,7 @@ extension Aai {
     /// 内测期间免费使用。
     @inlinable
     public func textToVoice(text: String, sessionId: String, modelType: Int64, volume: Float? = nil, speed: Float? = nil, projectId: Int64? = nil, voiceType: Int64? = nil, primaryLanguage: UInt64? = nil, sampleRate: UInt64? = nil, codec: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextToVoiceResponse {
-        try await self.textToVoice(TextToVoiceRequest(text: text, sessionId: sessionId, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec), region: region, logger: logger, on: eventLoop)
+        let input = TextToVoiceRequest(text: text, sessionId: sessionId, modelType: modelType, volume: volume, speed: speed, projectId: projectId, voiceType: voiceType, primaryLanguage: primaryLanguage, sampleRate: sampleRate, codec: codec)
+        return try await self.client.execute(action: "TextToVoice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

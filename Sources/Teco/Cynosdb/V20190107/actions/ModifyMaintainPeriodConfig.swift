@@ -69,12 +69,14 @@ extension Cynosdb {
     /// 修改维护时间配置
     @inlinable @discardableResult
     public func modifyMaintainPeriodConfig(instanceId: String, maintainStartTime: Int64, maintainDuration: Int64, maintainWeekDays: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMaintainPeriodConfigResponse> {
-        self.modifyMaintainPeriodConfig(ModifyMaintainPeriodConfigRequest(instanceId: instanceId, maintainStartTime: maintainStartTime, maintainDuration: maintainDuration, maintainWeekDays: maintainWeekDays), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMaintainPeriodConfigRequest(instanceId: instanceId, maintainStartTime: maintainStartTime, maintainDuration: maintainDuration, maintainWeekDays: maintainWeekDays)
+        return self.client.execute(action: "ModifyMaintainPeriodConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改维护时间配置
     @inlinable @discardableResult
     public func modifyMaintainPeriodConfig(instanceId: String, maintainStartTime: Int64, maintainDuration: Int64, maintainWeekDays: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMaintainPeriodConfigResponse {
-        try await self.modifyMaintainPeriodConfig(ModifyMaintainPeriodConfigRequest(instanceId: instanceId, maintainStartTime: maintainStartTime, maintainDuration: maintainDuration, maintainWeekDays: maintainWeekDays), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMaintainPeriodConfigRequest(instanceId: instanceId, maintainStartTime: maintainStartTime, maintainDuration: maintainDuration, maintainWeekDays: maintainWeekDays)
+        return try await self.client.execute(action: "ModifyMaintainPeriodConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

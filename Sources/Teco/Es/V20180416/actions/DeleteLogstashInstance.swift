@@ -60,7 +60,8 @@ extension Es {
     /// 用于删除Logstash实例
     @inlinable @discardableResult
     public func deleteLogstashInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLogstashInstanceResponse> {
-        self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLogstashInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "DeleteLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除Logstash实例
@@ -68,6 +69,7 @@ extension Es {
     /// 用于删除Logstash实例
     @inlinable @discardableResult
     public func deleteLogstashInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLogstashInstanceResponse {
-        try await self.deleteLogstashInstance(DeleteLogstashInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLogstashInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DeleteLogstashInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -59,12 +59,14 @@ extension Tsf {
     /// 获取部署组其他属性
     @inlinable
     public func describeGroupAttribute(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGroupAttributeResponse> {
-        self.describeGroupAttribute(DescribeGroupAttributeRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupAttributeRequest(groupId: groupId)
+        return self.client.execute(action: "DescribeGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取部署组其他属性
     @inlinable
     public func describeGroupAttribute(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGroupAttributeResponse {
-        try await self.describeGroupAttribute(DescribeGroupAttributeRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGroupAttributeRequest(groupId: groupId)
+        return try await self.client.execute(action: "DescribeGroupAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

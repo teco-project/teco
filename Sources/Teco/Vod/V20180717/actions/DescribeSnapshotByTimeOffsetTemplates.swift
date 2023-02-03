@@ -90,7 +90,8 @@ extension Vod {
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
     public func describeSnapshotByTimeOffsetTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotByTimeOffsetTemplatesResponse> {
-        self.describeSnapshotByTimeOffsetTemplates(DescribeSnapshotByTimeOffsetTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotByTimeOffsetTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type)
+        return self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定时间点截图模板列表
@@ -98,6 +99,7 @@ extension Vod {
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
     public func describeSnapshotByTimeOffsetTemplates(subAppId: UInt64? = nil, definitions: [UInt64]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotByTimeOffsetTemplatesResponse {
-        try await self.describeSnapshotByTimeOffsetTemplates(DescribeSnapshotByTimeOffsetTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotByTimeOffsetTemplatesRequest(subAppId: subAppId, definitions: definitions, offset: offset, limit: limit, type: type)
+        return try await self.client.execute(action: "DescribeSnapshotByTimeOffsetTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

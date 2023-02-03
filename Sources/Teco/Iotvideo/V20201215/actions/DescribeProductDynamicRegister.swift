@@ -66,12 +66,14 @@ extension Iotvideo {
     /// 获取产品动态注册详情
     @inlinable
     public func describeProductDynamicRegister(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductDynamicRegisterResponse> {
-        self.describeProductDynamicRegister(DescribeProductDynamicRegisterRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductDynamicRegisterRequest(productId: productId)
+        return self.client.execute(action: "DescribeProductDynamicRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品动态注册详情
     @inlinable
     public func describeProductDynamicRegister(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductDynamicRegisterResponse {
-        try await self.describeProductDynamicRegister(DescribeProductDynamicRegisterRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductDynamicRegisterRequest(productId: productId)
+        return try await self.client.execute(action: "DescribeProductDynamicRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

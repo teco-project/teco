@@ -50,12 +50,14 @@ extension Cam {
     /// 拉取子用户
     @inlinable
     public func listUsers(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListUsersResponse> {
-        self.listUsers(ListUsersRequest(), region: region, logger: logger, on: eventLoop)
+        let input = ListUsersRequest()
+        return self.client.execute(action: "ListUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取子用户
     @inlinable
     public func listUsers(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListUsersResponse {
-        try await self.listUsers(ListUsersRequest(), region: region, logger: logger, on: eventLoop)
+        let input = ListUsersRequest()
+        return try await self.client.execute(action: "ListUsers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

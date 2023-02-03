@@ -85,12 +85,14 @@ extension Redis {
     /// 设置自动备份配置
     @inlinable
     public func modifyAutoBackupConfig(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAutoBackupConfigResponse> {
-        self.modifyAutoBackupConfig(ModifyAutoBackupConfigRequest(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAutoBackupConfigRequest(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType)
+        return self.client.execute(action: "ModifyAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置自动备份配置
     @inlinable
     public func modifyAutoBackupConfig(instanceId: String, weekDays: [String], timePeriod: String, autoBackupType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAutoBackupConfigResponse {
-        try await self.modifyAutoBackupConfig(ModifyAutoBackupConfigRequest(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAutoBackupConfigRequest(instanceId: instanceId, weekDays: weekDays, timePeriod: timePeriod, autoBackupType: autoBackupType)
+        return try await self.client.execute(action: "ModifyAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

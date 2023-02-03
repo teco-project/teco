@@ -68,7 +68,8 @@ extension Mariadb {
     /// 本接口(DescribeDBParameters)用于获取数据库的当前参数设置。
     @inlinable
     public func describeDBParameters(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBParametersResponse> {
-        self.describeDBParameters(DescribeDBParametersRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBParametersRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeDBParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看数据库参数
@@ -76,6 +77,7 @@ extension Mariadb {
     /// 本接口(DescribeDBParameters)用于获取数据库的当前参数设置。
     @inlinable
     public func describeDBParameters(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBParametersResponse {
-        try await self.describeDBParameters(DescribeDBParametersRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBParametersRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDBParameters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

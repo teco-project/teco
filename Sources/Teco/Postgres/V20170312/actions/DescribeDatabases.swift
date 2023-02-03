@@ -64,7 +64,8 @@ extension Postgres {
     /// 接口（DescribeDatabases）用来拉取数据库列表
     @inlinable
     public func describeDatabases(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDatabasesResponse> {
-        self.describeDatabases(DescribeDatabasesRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDatabasesRequest(dbInstanceId: dbInstanceId)
+        return self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取数据库列表
@@ -72,6 +73,7 @@ extension Postgres {
     /// 接口（DescribeDatabases）用来拉取数据库列表
     @inlinable
     public func describeDatabases(dbInstanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDatabasesResponse {
-        try await self.describeDatabases(DescribeDatabasesRequest(dbInstanceId: dbInstanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDatabasesRequest(dbInstanceId: dbInstanceId)
+        return try await self.client.execute(action: "DescribeDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -89,7 +89,8 @@ extension Bmlb {
     /// 修改黑石负载均衡四层监听器后端探测端口。
     @inlinable
     public func modifyL4BackendProbePort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, probePort: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL4BackendProbePortResponse> {
-        self.modifyL4BackendProbePort(ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType)
+        return self.client.execute(action: "ModifyL4BackendProbePort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡四层监听器后端探测端口
@@ -97,6 +98,7 @@ extension Bmlb {
     /// 修改黑石负载均衡四层监听器后端探测端口。
     @inlinable
     public func modifyL4BackendProbePort(loadBalancerId: String, listenerId: String, instanceId: String, port: Int64, probePort: Int64, bindType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL4BackendProbePortResponse {
-        try await self.modifyL4BackendProbePort(ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyL4BackendProbePortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, instanceId: instanceId, port: port, probePort: probePort, bindType: bindType)
+        return try await self.client.execute(action: "ModifyL4BackendProbePort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

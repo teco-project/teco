@@ -68,12 +68,14 @@ extension Dlc {
     /// 查询具体的spark应用
     @inlinable
     public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSparkAppJobResponse> {
-        self.describeSparkAppJob(DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName)
+        return self.client.execute(action: "DescribeSparkAppJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询具体的spark应用
     @inlinable
     public func describeSparkAppJob(jobId: String? = nil, jobName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSparkAppJobResponse {
-        try await self.describeSparkAppJob(DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSparkAppJobRequest(jobId: jobId, jobName: jobName)
+        return try await self.client.execute(action: "DescribeSparkAppJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

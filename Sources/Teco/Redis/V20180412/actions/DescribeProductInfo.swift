@@ -56,7 +56,8 @@ extension Redis {
     /// 本接口（DescribeProductInfo）用于查询全地域 Redis 的售卖规格。
     @inlinable
     public func describeProductInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductInfoResponse> {
-        self.describeProductInfo(DescribeProductInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductInfoRequest()
+        return self.client.execute(action: "DescribeProductInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询产品售卖规格
@@ -64,6 +65,7 @@ extension Redis {
     /// 本接口（DescribeProductInfo）用于查询全地域 Redis 的售卖规格。
     @inlinable
     public func describeProductInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductInfoResponse {
-        try await self.describeProductInfo(DescribeProductInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductInfoRequest()
+        return try await self.client.execute(action: "DescribeProductInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -76,7 +76,8 @@ extension Cdn {
     /// DescribeMapInfo 用于查询省份对应的 ID，运营商对应的 ID 信息。
     @inlinable
     public func describeMapInfo(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMapInfoResponse> {
-        self.describeMapInfo(DescribeMapInfoRequest(name: name), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMapInfoRequest(name: name)
+        return self.client.execute(action: "DescribeMapInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 省份运营商映射查询
@@ -84,6 +85,7 @@ extension Cdn {
     /// DescribeMapInfo 用于查询省份对应的 ID，运营商对应的 ID 信息。
     @inlinable
     public func describeMapInfo(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMapInfoResponse {
-        try await self.describeMapInfo(DescribeMapInfoRequest(name: name), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMapInfoRequest(name: name)
+        return try await self.client.execute(action: "DescribeMapInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

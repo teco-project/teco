@@ -68,12 +68,14 @@ extension Dayu {
     /// 修改DDoS高级策略名称
     @inlinable
     public func modifyDDoSPolicyName(business: String, policyId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDDoSPolicyNameResponse> {
-        self.modifyDDoSPolicyName(ModifyDDoSPolicyNameRequest(business: business, policyId: policyId, name: name), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDDoSPolicyNameRequest(business: business, policyId: policyId, name: name)
+        return self.client.execute(action: "ModifyDDoSPolicyName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DDoS高级策略名称
     @inlinable
     public func modifyDDoSPolicyName(business: String, policyId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDDoSPolicyNameResponse {
-        try await self.modifyDDoSPolicyName(ModifyDDoSPolicyNameRequest(business: business, policyId: policyId, name: name), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDDoSPolicyNameRequest(business: business, policyId: policyId, name: name)
+        return try await self.client.execute(action: "ModifyDDoSPolicyName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

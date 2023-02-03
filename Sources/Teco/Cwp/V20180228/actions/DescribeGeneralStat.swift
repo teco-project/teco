@@ -123,12 +123,14 @@ extension Cwp {
     /// 获取主机相关统计
     @inlinable
     public func describeGeneralStat(machineType: String? = nil, machineRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGeneralStatResponse> {
-        self.describeGeneralStat(DescribeGeneralStatRequest(machineType: machineType, machineRegion: machineRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGeneralStatRequest(machineType: machineType, machineRegion: machineRegion)
+        return self.client.execute(action: "DescribeGeneralStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取主机相关统计
     @inlinable
     public func describeGeneralStat(machineType: String? = nil, machineRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralStatResponse {
-        try await self.describeGeneralStat(DescribeGeneralStatRequest(machineType: machineType, machineRegion: machineRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGeneralStatRequest(machineType: machineType, machineRegion: machineRegion)
+        return try await self.client.execute(action: "DescribeGeneralStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

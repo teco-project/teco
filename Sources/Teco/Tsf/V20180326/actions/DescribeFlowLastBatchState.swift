@@ -64,7 +64,8 @@ extension Tsf {
     /// 查询工作流最新一个批次的状态信息
     @inlinable
     public func describeFlowLastBatchState(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLastBatchStateResponse> {
-        self.describeFlowLastBatchState(DescribeFlowLastBatchStateRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowLastBatchStateRequest(flowId: flowId)
+        return self.client.execute(action: "DescribeFlowLastBatchState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询工作流最近一个批次的执行状态
@@ -72,6 +73,7 @@ extension Tsf {
     /// 查询工作流最新一个批次的状态信息
     @inlinable
     public func describeFlowLastBatchState(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLastBatchStateResponse {
-        try await self.describeFlowLastBatchState(DescribeFlowLastBatchStateRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowLastBatchStateRequest(flowId: flowId)
+        return try await self.client.execute(action: "DescribeFlowLastBatchState", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

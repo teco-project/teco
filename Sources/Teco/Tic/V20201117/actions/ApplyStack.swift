@@ -78,7 +78,8 @@ extension Tic {
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
     public func applyStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyStackResponse> {
-        self.applyStack(ApplyStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = ApplyStackRequest(stackId: stackId, versionId: versionId)
+        return self.client.execute(action: "ApplyStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行Apply事件
@@ -89,6 +90,7 @@ extension Tic {
     /// - 当版本处于APPLY_COMPLETED状态时，本操作无法执行
     @inlinable
     public func applyStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyStackResponse {
-        try await self.applyStack(ApplyStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = ApplyStackRequest(stackId: stackId, versionId: versionId)
+        return try await self.client.execute(action: "ApplyStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

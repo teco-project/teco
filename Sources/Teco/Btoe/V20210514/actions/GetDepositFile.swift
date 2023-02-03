@@ -71,7 +71,8 @@ extension Btoe {
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
     @inlinable
     public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
-        self.getDepositFile(GetDepositFileRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
+        let input = GetDepositFileRequest(evidenceId: evidenceId)
+        return self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 存证文件查询
@@ -80,6 +81,7 @@ extension Btoe {
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
     @inlinable
     public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
-        try await self.getDepositFile(GetDepositFileRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
+        let input = GetDepositFileRequest(evidenceId: evidenceId)
+        return try await self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

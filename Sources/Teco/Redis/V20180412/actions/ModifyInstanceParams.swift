@@ -73,7 +73,8 @@ extension Redis {
     /// 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
     @inlinable
     public func modifyInstanceParams(instanceId: String, instanceParams: [InstanceParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceParamsResponse> {
-        self.modifyInstanceParams(ModifyInstanceParamsRequest(instanceId: instanceId, instanceParams: instanceParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceParamsRequest(instanceId: instanceId, instanceParams: instanceParams)
+        return self.client.execute(action: "ModifyInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例参数
@@ -81,6 +82,7 @@ extension Redis {
     /// 本接口(ModifyInstanceParams)用于修改Redis实例的参数配置。
     @inlinable
     public func modifyInstanceParams(instanceId: String, instanceParams: [InstanceParam], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceParamsResponse {
-        try await self.modifyInstanceParams(ModifyInstanceParamsRequest(instanceId: instanceId, instanceParams: instanceParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceParamsRequest(instanceId: instanceId, instanceParams: instanceParams)
+        return try await self.client.execute(action: "ModifyInstanceParams", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

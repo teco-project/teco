@@ -90,7 +90,8 @@ extension Dbbrain {
     /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
     @inlinable
     public func describeMailProfile(profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMailProfileResponse> {
-        self.describeMailProfile(DescribeMailProfileRequest(profileType: profileType, product: product, offset: offset, limit: limit, profileName: profileName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMailProfileRequest(profileType: profileType, product: product, offset: offset, limit: limit, profileName: profileName)
+        return self.client.execute(action: "DescribeMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取邮件配置
@@ -98,6 +99,7 @@ extension Dbbrain {
     /// 获取发送邮件的配置， 包括数据库巡检的邮件配置以及定期生成健康报告的邮件发送配置。
     @inlinable
     public func describeMailProfile(profileType: String, product: String, offset: Int64, limit: Int64, profileName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMailProfileResponse {
-        try await self.describeMailProfile(DescribeMailProfileRequest(profileType: profileType, product: product, offset: offset, limit: limit, profileName: profileName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMailProfileRequest(profileType: profileType, product: product, offset: offset, limit: limit, profileName: profileName)
+        return try await self.client.execute(action: "DescribeMailProfile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

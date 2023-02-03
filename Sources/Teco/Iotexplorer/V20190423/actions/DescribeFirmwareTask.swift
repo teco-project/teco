@@ -104,12 +104,14 @@ extension Iotexplorer {
     /// 查询固件升级任务列表
     @inlinable
     public func describeFirmwareTask(productID: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTaskResponse> {
-        self.describeFirmwareTask(DescribeFirmwareTaskRequest(productID: productID, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareTaskRequest(productID: productID, firmwareVersion: firmwareVersion, taskId: taskId)
+        return self.client.execute(action: "DescribeFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务列表
     @inlinable
     public func describeFirmwareTask(productID: String, firmwareVersion: String, taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTaskResponse {
-        try await self.describeFirmwareTask(DescribeFirmwareTaskRequest(productID: productID, firmwareVersion: firmwareVersion, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareTaskRequest(productID: productID, firmwareVersion: firmwareVersion, taskId: taskId)
+        return try await self.client.execute(action: "DescribeFirmwareTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

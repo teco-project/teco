@@ -65,7 +65,8 @@ extension Live {
     /// 删除已添加的直播域名
     @inlinable @discardableResult
     public func deleteLiveDomain(domainName: String, domainType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveDomainResponse> {
-        self.deleteLiveDomain(DeleteLiveDomainRequest(domainName: domainName, domainType: domainType), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLiveDomainRequest(domainName: domainName, domainType: domainType)
+        return self.client.execute(action: "DeleteLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除域名
@@ -73,6 +74,7 @@ extension Live {
     /// 删除已添加的直播域名
     @inlinable @discardableResult
     public func deleteLiveDomain(domainName: String, domainType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveDomainResponse {
-        try await self.deleteLiveDomain(DeleteLiveDomainRequest(domainName: domainName, domainType: domainType), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLiveDomainRequest(domainName: domainName, domainType: domainType)
+        return try await self.client.execute(action: "DeleteLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

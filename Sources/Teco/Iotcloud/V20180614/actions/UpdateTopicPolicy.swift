@@ -80,7 +80,8 @@ extension Iotcloud {
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable @discardableResult
     public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateTopicPolicyResponse> {
-        self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), region: region, logger: logger, on: eventLoop)
+        let input = UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe)
+        return self.client.execute(action: "UpdateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新Topic
@@ -88,6 +89,7 @@ extension Iotcloud {
     /// 本接口（UpdateTopicPolicy）用于更新Topic信息
     @inlinable @discardableResult
     public func updateTopicPolicy(productID: String, topicName: String, newTopicName: String, privilege: UInt64, brokerSubscribe: BrokerSubscribe? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateTopicPolicyResponse {
-        try await self.updateTopicPolicy(UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe), region: region, logger: logger, on: eventLoop)
+        let input = UpdateTopicPolicyRequest(productID: productID, topicName: topicName, newTopicName: newTopicName, privilege: privilege, brokerSubscribe: brokerSubscribe)
+        return try await self.client.execute(action: "UpdateTopicPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

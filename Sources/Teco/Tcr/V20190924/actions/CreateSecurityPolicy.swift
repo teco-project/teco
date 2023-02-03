@@ -68,12 +68,14 @@ extension Tcr {
     /// 创建实例公网访问白名单策略
     @inlinable
     public func createSecurityPolicy(registryId: String, cidrBlock: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityPolicyResponse> {
-        self.createSecurityPolicy(CreateSecurityPolicyRequest(registryId: registryId, cidrBlock: cidrBlock, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateSecurityPolicyRequest(registryId: registryId, cidrBlock: cidrBlock, description: description)
+        return self.client.execute(action: "CreateSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例公网访问白名单策略
     @inlinable
     public func createSecurityPolicy(registryId: String, cidrBlock: String, description: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityPolicyResponse {
-        try await self.createSecurityPolicy(CreateSecurityPolicyRequest(registryId: registryId, cidrBlock: cidrBlock, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateSecurityPolicyRequest(registryId: registryId, cidrBlock: cidrBlock, description: description)
+        return try await self.client.execute(action: "CreateSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -82,12 +82,14 @@ extension Solar {
     /// 项目列表展示
     @inlinable
     public func describeProjects(pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectsResponse> {
-        self.describeProjects(DescribeProjectsRequest(pageNo: pageNo, pageSize: pageSize, searchWord: searchWord, filters: filters, projectStatus: projectStatus), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectsRequest(pageNo: pageNo, pageSize: pageSize, searchWord: searchWord, filters: filters, projectStatus: projectStatus)
+        return self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 项目列表展示
     @inlinable
     public func describeProjects(pageNo: UInt64, pageSize: UInt64, searchWord: String? = nil, filters: Filters? = nil, projectStatus: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectsResponse {
-        try await self.describeProjects(DescribeProjectsRequest(pageNo: pageNo, pageSize: pageSize, searchWord: searchWord, filters: filters, projectStatus: projectStatus), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectsRequest(pageNo: pageNo, pageSize: pageSize, searchWord: searchWord, filters: filters, projectStatus: projectStatus)
+        return try await self.client.execute(action: "DescribeProjects", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

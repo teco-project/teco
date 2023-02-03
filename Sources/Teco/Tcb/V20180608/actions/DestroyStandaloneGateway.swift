@@ -74,7 +74,8 @@ extension Tcb {
     /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
     @inlinable
     public func destroyStandaloneGateway(envId: String, gatewayName: String, isForce: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStandaloneGatewayResponse> {
-        self.destroyStandaloneGateway(DestroyStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, isForce: isForce), region: region, logger: logger, on: eventLoop)
+        let input = DestroyStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, isForce: isForce)
+        return self.client.execute(action: "DestroyStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁小租户网关
@@ -82,6 +83,7 @@ extension Tcb {
     /// 本接口（DestroyStandaloneGateway）用于销毁小租户网关。
     @inlinable
     public func destroyStandaloneGateway(envId: String, gatewayName: String, isForce: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStandaloneGatewayResponse {
-        try await self.destroyStandaloneGateway(DestroyStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, isForce: isForce), region: region, logger: logger, on: eventLoop)
+        let input = DestroyStandaloneGatewayRequest(envId: envId, gatewayName: gatewayName, isForce: isForce)
+        return try await self.client.execute(action: "DestroyStandaloneGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

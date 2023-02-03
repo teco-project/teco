@@ -113,12 +113,14 @@ extension Tcb {
     /// 开通后付费资源
     @inlinable
     public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePostpayPackageResponse> {
-        self.createPostpayPackage(CreatePostpayPackageRequest(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag), region: region, logger: logger, on: eventLoop)
+        let input = CreatePostpayPackageRequest(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag)
+        return self.client.execute(action: "CreatePostpayPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开通后付费资源
     @inlinable
     public func createPostpayPackage(envId: String? = nil, wxAppId: String? = nil, source: String? = nil, freeQuota: String? = nil, envSource: String? = nil, alias: String? = nil, channel: String? = nil, extensionId: String? = nil, flag: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePostpayPackageResponse {
-        try await self.createPostpayPackage(CreatePostpayPackageRequest(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag), region: region, logger: logger, on: eventLoop)
+        let input = CreatePostpayPackageRequest(envId: envId, wxAppId: wxAppId, source: source, freeQuota: freeQuota, envSource: envSource, alias: alias, channel: channel, extensionId: extensionId, flag: flag)
+        return try await self.client.execute(action: "CreatePostpayPackage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

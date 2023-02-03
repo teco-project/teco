@@ -64,12 +64,14 @@ extension Tke {
     /// 删除节点池
     @inlinable @discardableResult
     public func deleteClusterNodePool(clusterId: String, nodePoolIds: [String], keepInstance: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterNodePoolResponse> {
-        self.deleteClusterNodePool(DeleteClusterNodePoolRequest(clusterId: clusterId, nodePoolIds: nodePoolIds, keepInstance: keepInstance), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterNodePoolRequest(clusterId: clusterId, nodePoolIds: nodePoolIds, keepInstance: keepInstance)
+        return self.client.execute(action: "DeleteClusterNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除节点池
     @inlinable @discardableResult
     public func deleteClusterNodePool(clusterId: String, nodePoolIds: [String], keepInstance: Bool, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterNodePoolResponse {
-        try await self.deleteClusterNodePool(DeleteClusterNodePoolRequest(clusterId: clusterId, nodePoolIds: nodePoolIds, keepInstance: keepInstance), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterNodePoolRequest(clusterId: clusterId, nodePoolIds: nodePoolIds, keepInstance: keepInstance)
+        return try await self.client.execute(action: "DeleteClusterNodePool", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

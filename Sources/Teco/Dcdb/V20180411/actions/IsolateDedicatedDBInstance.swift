@@ -60,7 +60,8 @@ extension Dcdb {
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable @discardableResult
     public func isolateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateDedicatedDBInstanceResponse> {
-        self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = IsolateDedicatedDBInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "IsolateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离独享云数据库实例
@@ -68,6 +69,7 @@ extension Dcdb {
     /// 本接口（IsolateDedicatedDBInstance）用于隔离独享云数据库实例。
     @inlinable @discardableResult
     public func isolateDedicatedDBInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateDedicatedDBInstanceResponse {
-        try await self.isolateDedicatedDBInstance(IsolateDedicatedDBInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = IsolateDedicatedDBInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "IsolateDedicatedDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -70,7 +70,8 @@ extension Cvm {
     /// 修改高性能计算集群属性。
     @inlinable @discardableResult
     public func modifyHpcClusterAttribute(hpcClusterId: String, name: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHpcClusterAttributeResponse> {
-        self.modifyHpcClusterAttribute(ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark)
+        return self.client.execute(action: "ModifyHpcClusterAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改高性能计算集群属性
@@ -78,6 +79,7 @@ extension Cvm {
     /// 修改高性能计算集群属性。
     @inlinable @discardableResult
     public func modifyHpcClusterAttribute(hpcClusterId: String, name: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHpcClusterAttributeResponse {
-        try await self.modifyHpcClusterAttribute(ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyHpcClusterAttributeRequest(hpcClusterId: hpcClusterId, name: name, remark: remark)
+        return try await self.client.execute(action: "ModifyHpcClusterAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

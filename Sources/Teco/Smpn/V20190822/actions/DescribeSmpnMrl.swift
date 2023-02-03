@@ -69,7 +69,8 @@ extension Smpn {
     /// 查询号码恶意标记等级
     @inlinable
     public func describeSmpnMrl(requestData: MRLRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmpnMrlResponse> {
-        self.describeSmpnMrl(DescribeSmpnMrlRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmpnMrlRequest(requestData: requestData, resourceId: resourceId)
+        return self.client.execute(action: "DescribeSmpnMrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恶意标记等级
@@ -77,6 +78,7 @@ extension Smpn {
     /// 查询号码恶意标记等级
     @inlinable
     public func describeSmpnMrl(requestData: MRLRequest, resourceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmpnMrlResponse {
-        try await self.describeSmpnMrl(DescribeSmpnMrlRequest(requestData: requestData, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmpnMrlRequest(requestData: requestData, resourceId: resourceId)
+        return try await self.client.execute(action: "DescribeSmpnMrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

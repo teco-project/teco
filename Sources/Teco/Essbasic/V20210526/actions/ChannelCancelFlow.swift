@@ -90,7 +90,8 @@ extension Essbasic {
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable @discardableResult
     public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, operator: UserInfo? = nil, cancelMessageFormat: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCancelFlowResponse> {
-        self.channelCancelFlow(ChannelCancelFlowRequest(flowId: flowId, agent: agent, cancelMessage: cancelMessage, operator: `operator`, cancelMessageFormat: cancelMessageFormat), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCancelFlowRequest(flowId: flowId, agent: agent, cancelMessage: cancelMessage, operator: `operator`, cancelMessageFormat: cancelMessageFormat)
+        return self.client.execute(action: "ChannelCancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 渠道版撤销签署流程
@@ -100,6 +101,7 @@ extension Essbasic {
     /// 能撤回合同的只能是合同的发起人或者发起企业的超管、法人
     @inlinable @discardableResult
     public func channelCancelFlow(flowId: String, agent: Agent? = nil, cancelMessage: String? = nil, operator: UserInfo? = nil, cancelMessageFormat: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCancelFlowResponse {
-        try await self.channelCancelFlow(ChannelCancelFlowRequest(flowId: flowId, agent: agent, cancelMessage: cancelMessage, operator: `operator`, cancelMessageFormat: cancelMessageFormat), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCancelFlowRequest(flowId: flowId, agent: agent, cancelMessage: cancelMessage, operator: `operator`, cancelMessageFormat: cancelMessageFormat)
+        return try await self.client.execute(action: "ChannelCancelFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

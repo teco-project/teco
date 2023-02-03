@@ -70,12 +70,14 @@ extension Emr {
     /// 查询YARN资源调度数据信息
     @inlinable
     public func describeResourceSchedule(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceScheduleResponse> {
-        self.describeResourceSchedule(DescribeResourceScheduleRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceScheduleRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeResourceSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询YARN资源调度数据信息
     @inlinable
     public func describeResourceSchedule(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceScheduleResponse {
-        try await self.describeResourceSchedule(DescribeResourceScheduleRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceScheduleRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeResourceSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

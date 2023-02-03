@@ -70,7 +70,8 @@ extension Tdmq {
     /// 删除环境角色授权。
     @inlinable @discardableResult
     public func deleteEnvironmentRoles(environmentId: String, roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEnvironmentRolesResponse> {
-        self.deleteEnvironmentRoles(DeleteEnvironmentRolesRequest(environmentId: environmentId, roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEnvironmentRolesRequest(environmentId: environmentId, roleNames: roleNames, clusterId: clusterId)
+        return self.client.execute(action: "DeleteEnvironmentRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除环境角色授权
@@ -78,6 +79,7 @@ extension Tdmq {
     /// 删除环境角色授权。
     @inlinable @discardableResult
     public func deleteEnvironmentRoles(environmentId: String, roleNames: [String], clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEnvironmentRolesResponse {
-        try await self.deleteEnvironmentRoles(DeleteEnvironmentRolesRequest(environmentId: environmentId, roleNames: roleNames, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEnvironmentRolesRequest(environmentId: environmentId, roleNames: roleNames, clusterId: clusterId)
+        return try await self.client.execute(action: "DeleteEnvironmentRoles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

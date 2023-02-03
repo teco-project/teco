@@ -91,7 +91,8 @@ extension Trtc {
     /// 查询用户某次通话内的进退房，视频开关等详细事件。可查询14天内数据。（同接口DescribeDetailEvent）
     @inlinable
     public func describeUserEvent(commId: String, startTime: UInt64, endTime: UInt64, userId: String, roomId: String, sdkAppId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserEventResponse> {
-        self.describeUserEvent(DescribeUserEventRequest(commId: commId, startTime: startTime, endTime: endTime, userId: userId, roomId: roomId, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserEventRequest(commId: commId, startTime: startTime, endTime: endTime, userId: userId, roomId: roomId, sdkAppId: sdkAppId)
+        return self.client.execute(action: "DescribeUserEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询详细事件
@@ -99,6 +100,7 @@ extension Trtc {
     /// 查询用户某次通话内的进退房，视频开关等详细事件。可查询14天内数据。（同接口DescribeDetailEvent）
     @inlinable
     public func describeUserEvent(commId: String, startTime: UInt64, endTime: UInt64, userId: String, roomId: String, sdkAppId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserEventResponse {
-        try await self.describeUserEvent(DescribeUserEventRequest(commId: commId, startTime: startTime, endTime: endTime, userId: userId, roomId: roomId, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserEventRequest(commId: commId, startTime: startTime, endTime: endTime, userId: userId, roomId: roomId, sdkAppId: sdkAppId)
+        return try await self.client.execute(action: "DescribeUserEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

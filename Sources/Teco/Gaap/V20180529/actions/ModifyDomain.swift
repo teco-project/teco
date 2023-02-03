@@ -94,7 +94,8 @@ extension Gaap {
     /// 本接口（ModifyDomain）用于监听器下的域名。当通道版本为3.0时，支持对该域名所对应的证书修改。
     @inlinable @discardableResult
     public func modifyDomain(listenerId: String, oldDomain: String, newDomain: String, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainResponse> {
-        self.modifyDomain(ModifyDomainRequest(listenerId: listenerId, oldDomain: oldDomain, newDomain: newDomain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainRequest(listenerId: listenerId, oldDomain: oldDomain, newDomain: newDomain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds)
+        return self.client.execute(action: "ModifyDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新监听器转发规则域名
@@ -102,6 +103,7 @@ extension Gaap {
     /// 本接口（ModifyDomain）用于监听器下的域名。当通道版本为3.0时，支持对该域名所对应的证书修改。
     @inlinable @discardableResult
     public func modifyDomain(listenerId: String, oldDomain: String, newDomain: String, certificateId: String? = nil, clientCertificateId: String? = nil, polyClientCertificateIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainResponse {
-        try await self.modifyDomain(ModifyDomainRequest(listenerId: listenerId, oldDomain: oldDomain, newDomain: newDomain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainRequest(listenerId: listenerId, oldDomain: oldDomain, newDomain: newDomain, certificateId: certificateId, clientCertificateId: clientCertificateId, polyClientCertificateIds: polyClientCertificateIds)
+        return try await self.client.execute(action: "ModifyDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

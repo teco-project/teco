@@ -59,12 +59,14 @@ extension Ccc {
     /// 挂断电话
     @inlinable @discardableResult
     public func hangUpCall(sdkAppId: UInt64, sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<HangUpCallResponse> {
-        self.hangUpCall(HangUpCallRequest(sdkAppId: sdkAppId, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = HangUpCallRequest(sdkAppId: sdkAppId, sessionId: sessionId)
+        return self.client.execute(action: "HangUpCall", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 挂断电话
     @inlinable @discardableResult
     public func hangUpCall(sdkAppId: UInt64, sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HangUpCallResponse {
-        try await self.hangUpCall(HangUpCallRequest(sdkAppId: sdkAppId, sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = HangUpCallRequest(sdkAppId: sdkAppId, sessionId: sessionId)
+        return try await self.client.execute(action: "HangUpCall", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -77,7 +77,8 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
     public func createRule(loadBalancerId: String, listenerId: String, rules: [RuleInput], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.createRule(CreateRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, rules: rules), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, rules: rules)
+        return self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡七层监听器转发规则
@@ -86,6 +87,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable
     public func createRule(loadBalancerId: String, listenerId: String, rules: [RuleInput], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.createRule(CreateRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, rules: rules), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, rules: rules)
+        return try await self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

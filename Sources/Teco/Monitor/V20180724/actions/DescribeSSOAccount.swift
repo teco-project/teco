@@ -70,7 +70,8 @@ extension Monitor {
     /// 列出当前grafana实例的所有授权账号
     @inlinable
     public func describeSSOAccount(instanceId: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSSOAccountResponse> {
-        self.describeSSOAccount(DescribeSSOAccountRequest(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSSOAccountRequest(instanceId: instanceId, userId: userId)
+        return self.client.execute(action: "DescribeSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出授权账号
@@ -78,6 +79,7 @@ extension Monitor {
     /// 列出当前grafana实例的所有授权账号
     @inlinable
     public func describeSSOAccount(instanceId: String, userId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSSOAccountResponse {
-        try await self.describeSSOAccount(DescribeSSOAccountRequest(instanceId: instanceId, userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSSOAccountRequest(instanceId: instanceId, userId: userId)
+        return try await self.client.execute(action: "DescribeSSOAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

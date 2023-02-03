@@ -58,12 +58,14 @@ extension Tcss {
     /// 查询导出任务下载URL
     @inlinable
     public func describeExportJobDownloadURL(jobID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobDownloadURLResponse> {
-        self.describeExportJobDownloadURL(DescribeExportJobDownloadURLRequest(jobID: jobID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExportJobDownloadURLRequest(jobID: jobID)
+        return self.client.execute(action: "DescribeExportJobDownloadURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询导出任务下载URL
     @inlinable
     public func describeExportJobDownloadURL(jobID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobDownloadURLResponse {
-        try await self.describeExportJobDownloadURL(DescribeExportJobDownloadURLRequest(jobID: jobID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExportJobDownloadURLRequest(jobID: jobID)
+        return try await self.client.execute(action: "DescribeExportJobDownloadURL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

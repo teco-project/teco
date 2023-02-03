@@ -63,12 +63,14 @@ extension Monitor {
     /// 查询单个通知模板的详情
     @inlinable
     public func describeAlarmNotice(module: String, noticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticeResponse> {
-        self.describeAlarmNotice(DescribeAlarmNoticeRequest(module: module, noticeId: noticeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmNoticeRequest(module: module, noticeId: noticeId)
+        return self.client.execute(action: "DescribeAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单个通知模板的详情
     @inlinable
     public func describeAlarmNotice(module: String, noticeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticeResponse {
-        try await self.describeAlarmNotice(DescribeAlarmNoticeRequest(module: module, noticeId: noticeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmNoticeRequest(module: module, noticeId: noticeId)
+        return try await self.client.execute(action: "DescribeAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

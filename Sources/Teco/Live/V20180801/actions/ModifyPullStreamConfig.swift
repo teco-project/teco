@@ -120,7 +120,8 @@ extension Live {
     /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。
     @inlinable @discardableResult
     public func modifyPullStreamConfig(configId: String, fromUrl: String? = nil, toUrl: String? = nil, areaId: Int64? = nil, ispId: Int64? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPullStreamConfigResponse> {
-        self.modifyPullStreamConfig(ModifyPullStreamConfigRequest(configId: configId, fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPullStreamConfigRequest(configId: configId, fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "ModifyPullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新拉流配置(该接口已下线,请使用新接口 ModifyLivePullStreamTask)
@@ -128,6 +129,7 @@ extension Live {
     /// 更新拉流配置。该接口为已下线接口，请使用新接口 ModifyLivePullStreamTask。
     @inlinable @discardableResult
     public func modifyPullStreamConfig(configId: String, fromUrl: String? = nil, toUrl: String? = nil, areaId: Int64? = nil, ispId: Int64? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPullStreamConfigResponse {
-        try await self.modifyPullStreamConfig(ModifyPullStreamConfigRequest(configId: configId, fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPullStreamConfigRequest(configId: configId, fromUrl: fromUrl, toUrl: toUrl, areaId: areaId, ispId: ispId, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "ModifyPullStreamConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

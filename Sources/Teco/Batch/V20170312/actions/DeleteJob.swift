@@ -66,7 +66,8 @@ extension Batch {
     /// 待删除的作业必须处于完结状态，且其内部包含的所有任务实例也必须处于完结状态，否则会禁止操作。完结状态，是指处于 SUCCEED 或 FAILED 状态。
     @inlinable @discardableResult
     public func deleteJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteJobResponse> {
-        self.deleteJob(DeleteJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteJobRequest(jobId: jobId)
+        return self.client.execute(action: "DeleteJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除作业
@@ -76,6 +77,7 @@ extension Batch {
     /// 待删除的作业必须处于完结状态，且其内部包含的所有任务实例也必须处于完结状态，否则会禁止操作。完结状态，是指处于 SUCCEED 或 FAILED 状态。
     @inlinable @discardableResult
     public func deleteJob(jobId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
-        try await self.deleteJob(DeleteJobRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteJobRequest(jobId: jobId)
+        return try await self.client.execute(action: "DeleteJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

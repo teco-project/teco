@@ -69,7 +69,8 @@ extension Rum {
     /// 创建离线日志监听，对应用户的离线日志将上报
     @inlinable
     public func createOfflineLogConfig(projectKey: String, uniqueID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOfflineLogConfigResponse> {
-        self.createOfflineLogConfig(CreateOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), region: region, logger: logger, on: eventLoop)
+        let input = CreateOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID)
+        return self.client.execute(action: "CreateOfflineLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建离线日志监听
@@ -77,6 +78,7 @@ extension Rum {
     /// 创建离线日志监听，对应用户的离线日志将上报
     @inlinable
     public func createOfflineLogConfig(projectKey: String, uniqueID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOfflineLogConfigResponse {
-        try await self.createOfflineLogConfig(CreateOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID), region: region, logger: logger, on: eventLoop)
+        let input = CreateOfflineLogConfigRequest(projectKey: projectKey, uniqueID: uniqueID)
+        return try await self.client.execute(action: "CreateOfflineLogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

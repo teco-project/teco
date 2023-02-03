@@ -70,7 +70,8 @@ extension Vpc {
     /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
     @inlinable @discardableResult
     public func modifyAddressAttribute(addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressAttributeResponse> {
-        self.modifyAddressAttribute(ModifyAddressAttributeRequest(addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAddressAttributeRequest(addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection)
+        return self.client.execute(action: "ModifyAddressAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改弹性公网IP属性
@@ -78,6 +79,7 @@ extension Vpc {
     /// 本接口 (ModifyAddressAttribute) 用于修改[弹性公网IP](https://cloud.tencent.com/document/product/213/1941)（简称 EIP）的名称。
     @inlinable @discardableResult
     public func modifyAddressAttribute(addressId: String, addressName: String? = nil, eipDirectConnection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressAttributeResponse {
-        try await self.modifyAddressAttribute(ModifyAddressAttributeRequest(addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAddressAttributeRequest(addressId: addressId, addressName: addressName, eipDirectConnection: eipDirectConnection)
+        return try await self.client.execute(action: "ModifyAddressAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

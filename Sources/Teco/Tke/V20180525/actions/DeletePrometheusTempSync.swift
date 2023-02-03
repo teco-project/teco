@@ -65,7 +65,8 @@ extension Tke {
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
     @inlinable @discardableResult
     public func deletePrometheusTempSync(templateId: String, targets: [PrometheusTemplateSyncTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrometheusTempSyncResponse> {
-        self.deletePrometheusTempSync(DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets), region: region, logger: logger, on: eventLoop)
+        let input = DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets)
+        return self.client.execute(action: "DeletePrometheusTempSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解除模板同步
@@ -73,6 +74,7 @@ extension Tke {
     /// 解除模板同步，这将会删除目标中该模板所生产的配置，针对V2版本实例
     @inlinable @discardableResult
     public func deletePrometheusTempSync(templateId: String, targets: [PrometheusTemplateSyncTarget], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusTempSyncResponse {
-        try await self.deletePrometheusTempSync(DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets), region: region, logger: logger, on: eventLoop)
+        let input = DeletePrometheusTempSyncRequest(templateId: templateId, targets: targets)
+        return try await self.client.execute(action: "DeletePrometheusTempSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

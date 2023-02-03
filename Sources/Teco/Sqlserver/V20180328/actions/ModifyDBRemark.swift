@@ -65,7 +65,8 @@ extension Sqlserver {
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
     @inlinable @discardableResult
     public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDBRemarkResponse> {
-        self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks)
+        return self.client.execute(action: "ModifyDBRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库备注
@@ -73,6 +74,7 @@ extension Sqlserver {
     /// 本接口（ModifyDBRemark）用于修改数据库备注。
     @inlinable @discardableResult
     public func modifyDBRemark(instanceId: String, dbRemarks: [DBRemark], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDBRemarkResponse {
-        try await self.modifyDBRemark(ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDBRemarkRequest(instanceId: instanceId, dbRemarks: dbRemarks)
+        return try await self.client.execute(action: "ModifyDBRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

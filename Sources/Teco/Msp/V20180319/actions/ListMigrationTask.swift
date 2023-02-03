@@ -72,12 +72,14 @@ extension Msp {
     /// 获取迁移任务列表
     @inlinable
     public func listMigrationTask(offset: UInt64? = nil, limit: UInt64? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListMigrationTaskResponse> {
-        self.listMigrationTask(ListMigrationTaskRequest(offset: offset, limit: limit, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ListMigrationTaskRequest(offset: offset, limit: limit, projectId: projectId)
+        return self.client.execute(action: "ListMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取迁移任务列表
     @inlinable
     public func listMigrationTask(offset: UInt64? = nil, limit: UInt64? = nil, projectId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListMigrationTaskResponse {
-        try await self.listMigrationTask(ListMigrationTaskRequest(offset: offset, limit: limit, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = ListMigrationTaskRequest(offset: offset, limit: limit, projectId: projectId)
+        return try await self.client.execute(action: "ListMigrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

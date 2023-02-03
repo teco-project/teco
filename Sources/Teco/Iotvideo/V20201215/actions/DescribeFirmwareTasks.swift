@@ -90,7 +90,8 @@ extension Iotvideo {
     /// 本接口用于查询固件升级任务列表
     @inlinable
     public func describeFirmwareTasks(productID: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFirmwareTasksResponse> {
-        self.describeFirmwareTasks(DescribeFirmwareTasksRequest(productID: productID, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareTasksRequest(productID: productID, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeFirmwareTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询固件升级任务列表
@@ -98,6 +99,7 @@ extension Iotvideo {
     /// 本接口用于查询固件升级任务列表
     @inlinable
     public func describeFirmwareTasks(productID: String, firmwareVersion: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFirmwareTasksResponse {
-        try await self.describeFirmwareTasks(DescribeFirmwareTasksRequest(productID: productID, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFirmwareTasksRequest(productID: productID, firmwareVersion: firmwareVersion, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeFirmwareTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

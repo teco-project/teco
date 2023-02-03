@@ -68,12 +68,14 @@ extension Tcb {
     /// 修改数据库权限
     @inlinable @discardableResult
     public func modifyDatabaseACL(envId: String, collectionName: String, aclTag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseACLResponse> {
-        self.modifyDatabaseACL(ModifyDatabaseACLRequest(envId: envId, collectionName: collectionName, aclTag: aclTag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDatabaseACLRequest(envId: envId, collectionName: collectionName, aclTag: aclTag)
+        return self.client.execute(action: "ModifyDatabaseACL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改数据库权限
     @inlinable @discardableResult
     public func modifyDatabaseACL(envId: String, collectionName: String, aclTag: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseACLResponse {
-        try await self.modifyDatabaseACL(ModifyDatabaseACLRequest(envId: envId, collectionName: collectionName, aclTag: aclTag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDatabaseACLRequest(envId: envId, collectionName: collectionName, aclTag: aclTag)
+        return try await self.client.execute(action: "ModifyDatabaseACL", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

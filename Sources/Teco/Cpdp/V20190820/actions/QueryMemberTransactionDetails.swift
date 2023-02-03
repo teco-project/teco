@@ -117,12 +117,14 @@ extension Cpdp {
     /// 聚鑫-查询会员间交易信息列表
     @inlinable
     public func queryMemberTransactionDetails(queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryMemberTransactionDetailsResponse> {
-        self.queryMemberTransactionDetails(QueryMemberTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryMemberTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment)
+        return self.client.execute(action: "QueryMemberTransactionDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫-查询会员间交易信息列表
     @inlinable
     public func queryMemberTransactionDetails(queryDateType: String, queryTranType: String, bankAccountNumber: String, subAccountNumber: String, pageOffSet: String, queryStartDate: String? = nil, queryEndDate: String? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryMemberTransactionDetailsResponse {
-        try await self.queryMemberTransactionDetails(QueryMemberTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = QueryMemberTransactionDetailsRequest(queryDateType: queryDateType, queryTranType: queryTranType, bankAccountNumber: bankAccountNumber, subAccountNumber: subAccountNumber, pageOffSet: pageOffSet, queryStartDate: queryStartDate, queryEndDate: queryEndDate, midasEnvironment: midasEnvironment)
+        return try await self.client.execute(action: "QueryMemberTransactionDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

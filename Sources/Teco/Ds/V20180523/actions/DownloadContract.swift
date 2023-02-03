@@ -74,7 +74,8 @@ extension Ds {
     /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
     @inlinable
     public func downloadContract(module: String, operation: String, contractResId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadContractResponse> {
-        self.downloadContract(DownloadContractRequest(module: module, operation: operation, contractResId: contractResId), region: region, logger: logger, on: eventLoop)
+        let input = DownloadContractRequest(module: module, operation: operation, contractResId: contractResId)
+        return self.client.execute(action: "DownloadContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载合同
@@ -82,6 +83,7 @@ extension Ds {
     /// 下载合同接口。调用该接口可以下载签署中和签署完成的合同。接口返回任务号，可调用DescribeTaskStatus接口查看任务执行结果。
     @inlinable
     public func downloadContract(module: String, operation: String, contractResId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadContractResponse {
-        try await self.downloadContract(DownloadContractRequest(module: module, operation: operation, contractResId: contractResId), region: region, logger: logger, on: eventLoop)
+        let input = DownloadContractRequest(module: module, operation: operation, contractResId: contractResId)
+        return try await self.client.execute(action: "DownloadContract", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

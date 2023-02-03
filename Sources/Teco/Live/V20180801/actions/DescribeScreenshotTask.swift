@@ -102,7 +102,8 @@ extension Live {
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
     @inlinable
     public func describeScreenshotTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScreenshotTaskResponse> {
-        self.describeScreenshotTask(DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken)
+        return self.client.execute(action: "DescribeScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询截图任务列表
@@ -113,6 +114,7 @@ extension Live {
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
     @inlinable
     public func describeScreenshotTask(startTime: UInt64, endTime: UInt64, streamName: String? = nil, domainName: String? = nil, appName: String? = nil, scrollToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScreenshotTaskResponse {
-        try await self.describeScreenshotTask(DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScreenshotTaskRequest(startTime: startTime, endTime: endTime, streamName: streamName, domainName: domainName, appName: appName, scrollToken: scrollToken)
+        return try await self.client.execute(action: "DescribeScreenshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

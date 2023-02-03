@@ -60,7 +60,8 @@ extension Bm {
     /// 服务器绑定CAM角色
     @inlinable @discardableResult
     public func detachCamRole(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachCamRoleResponse> {
-        self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DetachCamRoleRequest(instanceId: instanceId)
+        return self.client.execute(action: "DetachCamRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务器解绑CAM角色
@@ -68,6 +69,7 @@ extension Bm {
     /// 服务器绑定CAM角色
     @inlinable @discardableResult
     public func detachCamRole(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachCamRoleResponse {
-        try await self.detachCamRole(DetachCamRoleRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DetachCamRoleRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DetachCamRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

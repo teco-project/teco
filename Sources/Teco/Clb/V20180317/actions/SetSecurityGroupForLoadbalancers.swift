@@ -71,7 +71,8 @@ extension Clb {
     /// 绑定或解绑一个安全组到多个公网负载均衡实例。注意：内网负载均衡不支持绑定安全组。
     @inlinable @discardableResult
     public func setSecurityGroupForLoadbalancers(securityGroup: String, operationType: String, loadBalancerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetSecurityGroupForLoadbalancersResponse> {
-        self.setSecurityGroupForLoadbalancers(SetSecurityGroupForLoadbalancersRequest(securityGroup: securityGroup, operationType: operationType, loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
+        let input = SetSecurityGroupForLoadbalancersRequest(securityGroup: securityGroup, operationType: operationType, loadBalancerIds: loadBalancerIds)
+        return self.client.execute(action: "SetSecurityGroupForLoadbalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定或解绑一个安全组到多个负载均衡实例
@@ -79,6 +80,7 @@ extension Clb {
     /// 绑定或解绑一个安全组到多个公网负载均衡实例。注意：内网负载均衡不支持绑定安全组。
     @inlinable @discardableResult
     public func setSecurityGroupForLoadbalancers(securityGroup: String, operationType: String, loadBalancerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetSecurityGroupForLoadbalancersResponse {
-        try await self.setSecurityGroupForLoadbalancers(SetSecurityGroupForLoadbalancersRequest(securityGroup: securityGroup, operationType: operationType, loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
+        let input = SetSecurityGroupForLoadbalancersRequest(securityGroup: securityGroup, operationType: operationType, loadBalancerIds: loadBalancerIds)
+        return try await self.client.execute(action: "SetSecurityGroupForLoadbalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,7 +78,8 @@ extension Cfs {
     /// 本接口（DescribeCfsFileSystems）用于查询文件系统
     @inlinable
     public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCfsFileSystemsResponse> {
-        self.describeCfsFileSystems(DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId)
+        return self.client.execute(action: "DescribeCfsFileSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件系统
@@ -86,6 +87,7 @@ extension Cfs {
     /// 本接口（DescribeCfsFileSystems）用于查询文件系统
     @inlinable
     public func describeCfsFileSystems(fileSystemId: String? = nil, vpcId: String? = nil, subnetId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCfsFileSystemsResponse {
-        try await self.describeCfsFileSystems(DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCfsFileSystemsRequest(fileSystemId: fileSystemId, vpcId: vpcId, subnetId: subnetId)
+        return try await self.client.execute(action: "DescribeCfsFileSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

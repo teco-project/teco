@@ -69,12 +69,14 @@ extension Iecp {
     /// 校验Secret的Yaml语法
     @inlinable
     public func describeSecretYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretYamlErrorResponse> {
-        self.describeSecretYamlError(DescribeSecretYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecretYamlErrorRequest(yaml: yaml)
+        return self.client.execute(action: "DescribeSecretYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 校验Secret的Yaml语法
     @inlinable
     public func describeSecretYamlError(yaml: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretYamlErrorResponse {
-        try await self.describeSecretYamlError(DescribeSecretYamlErrorRequest(yaml: yaml), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecretYamlErrorRequest(yaml: yaml)
+        return try await self.client.execute(action: "DescribeSecretYamlError", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

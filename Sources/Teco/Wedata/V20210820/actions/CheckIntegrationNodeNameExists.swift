@@ -73,12 +73,14 @@ extension Wedata {
     /// 判断集成节点名称是否存在
     @inlinable
     public func checkIntegrationNodeNameExists(taskId: String, name: String, projectId: String, id: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIntegrationNodeNameExistsResponse> {
-        self.checkIntegrationNodeNameExists(CheckIntegrationNodeNameExistsRequest(taskId: taskId, name: name, projectId: projectId, id: id), region: region, logger: logger, on: eventLoop)
+        let input = CheckIntegrationNodeNameExistsRequest(taskId: taskId, name: name, projectId: projectId, id: id)
+        return self.client.execute(action: "CheckIntegrationNodeNameExists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 判断集成节点名称是否存在
     @inlinable
     public func checkIntegrationNodeNameExists(taskId: String, name: String, projectId: String, id: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationNodeNameExistsResponse {
-        try await self.checkIntegrationNodeNameExists(CheckIntegrationNodeNameExistsRequest(taskId: taskId, name: name, projectId: projectId, id: id), region: region, logger: logger, on: eventLoop)
+        let input = CheckIntegrationNodeNameExistsRequest(taskId: taskId, name: name, projectId: projectId, id: id)
+        return try await self.client.execute(action: "CheckIntegrationNodeNameExists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

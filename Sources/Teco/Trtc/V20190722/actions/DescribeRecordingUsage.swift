@@ -99,7 +99,8 @@ extension Trtc {
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
     public func describeRecordingUsage(startTime: String, endTime: String, mixType: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRecordingUsageResponse> {
-        self.describeRecordingUsage(DescribeRecordingUsageRequest(startTime: startTime, endTime: endTime, mixType: mixType, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRecordingUsageRequest(startTime: startTime, endTime: endTime, mixType: mixType, sdkAppId: sdkAppId)
+        return self.client.execute(action: "DescribeRecordingUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC录制用量
@@ -112,6 +113,7 @@ extension Trtc {
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
     public func describeRecordingUsage(startTime: String, endTime: String, mixType: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRecordingUsageResponse {
-        try await self.describeRecordingUsage(DescribeRecordingUsageRequest(startTime: startTime, endTime: endTime, mixType: mixType, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRecordingUsageRequest(startTime: startTime, endTime: endTime, mixType: mixType, sdkAppId: sdkAppId)
+        return try await self.client.execute(action: "DescribeRecordingUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

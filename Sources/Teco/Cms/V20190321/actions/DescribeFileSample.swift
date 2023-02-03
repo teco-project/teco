@@ -94,7 +94,8 @@ extension Cms {
     /// 查询图片样本库，支持批量查询。
     @inlinable
     public func describeFileSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileSampleResponse> {
-        self.describeFileSample(DescribeFileSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField)
+        return self.client.execute(action: "DescribeFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询图片样本库
@@ -104,6 +105,7 @@ extension Cms {
     /// 查询图片样本库，支持批量查询。
     @inlinable
     public func describeFileSample(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, orderDirection: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSampleResponse {
-        try await self.describeFileSample(DescribeFileSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileSampleRequest(filters: filters, limit: limit, offset: offset, orderDirection: orderDirection, orderField: orderField)
+        return try await self.client.execute(action: "DescribeFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

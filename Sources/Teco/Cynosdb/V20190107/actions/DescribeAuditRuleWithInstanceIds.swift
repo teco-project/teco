@@ -63,12 +63,14 @@ extension Cynosdb {
     /// 获取实例的审计规则
     @inlinable
     public func describeAuditRuleWithInstanceIds(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAuditRuleWithInstanceIdsResponse> {
-        self.describeAuditRuleWithInstanceIds(DescribeAuditRuleWithInstanceIdsRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAuditRuleWithInstanceIdsRequest(instanceIds: instanceIds)
+        return self.client.execute(action: "DescribeAuditRuleWithInstanceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例的审计规则
     @inlinable
     public func describeAuditRuleWithInstanceIds(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAuditRuleWithInstanceIdsResponse {
-        try await self.describeAuditRuleWithInstanceIds(DescribeAuditRuleWithInstanceIdsRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAuditRuleWithInstanceIdsRequest(instanceIds: instanceIds)
+        return try await self.client.execute(action: "DescribeAuditRuleWithInstanceIds", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

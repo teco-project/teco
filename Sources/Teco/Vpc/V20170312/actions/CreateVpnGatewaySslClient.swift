@@ -67,12 +67,14 @@ extension Vpc {
     /// 创建SSL-VPN-CLIENT
     @inlinable
     public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslClientResponse> {
-        self.createVpnGatewaySslClient(CreateVpnGatewaySslClientRequest(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName), region: region, logger: logger, on: eventLoop)
+        let input = CreateVpnGatewaySslClientRequest(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName)
+        return self.client.execute(action: "CreateVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建SSL-VPN-CLIENT
     @inlinable
     public func createVpnGatewaySslClient(sslVpnServerId: String, sslVpnClientName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslClientResponse {
-        try await self.createVpnGatewaySslClient(CreateVpnGatewaySslClientRequest(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName), region: region, logger: logger, on: eventLoop)
+        let input = CreateVpnGatewaySslClientRequest(sslVpnServerId: sslVpnServerId, sslVpnClientName: sslVpnClientName)
+        return try await self.client.execute(action: "CreateVpnGatewaySslClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

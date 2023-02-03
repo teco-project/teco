@@ -56,7 +56,8 @@ extension Cfw {
     /// DescribeGuideScanInfo新手引导扫描接口信息
     @inlinable
     public func describeGuideScanInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeGuideScanInfoResponse> {
-        self.describeGuideScanInfo(DescribeGuideScanInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGuideScanInfoRequest()
+        return self.client.execute(action: "DescribeGuideScanInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新手引导扫描接口信息
@@ -64,6 +65,7 @@ extension Cfw {
     /// DescribeGuideScanInfo新手引导扫描接口信息
     @inlinable
     public func describeGuideScanInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGuideScanInfoResponse {
-        try await self.describeGuideScanInfo(DescribeGuideScanInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeGuideScanInfoRequest()
+        return try await self.client.execute(action: "DescribeGuideScanInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

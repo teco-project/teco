@@ -99,7 +99,8 @@ extension Tcb {
     /// 搜索CLS日志，TCB角色秘钥访问
     @inlinable
     public func searchClsLog(envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SearchClsLogResponse> {
-        self.searchClsLog(SearchClsLogRequest(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene), region: region, logger: logger, on: eventLoop)
+        let input = SearchClsLogRequest(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene)
+        return self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 搜索CLS日志
@@ -107,6 +108,7 @@ extension Tcb {
     /// 搜索CLS日志，TCB角色秘钥访问
     @inlinable
     public func searchClsLog(envId: String, startTime: String, endTime: String, queryString: String, limit: UInt64, context: String? = nil, sort: String? = nil, useLucene: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClsLogResponse {
-        try await self.searchClsLog(SearchClsLogRequest(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene), region: region, logger: logger, on: eventLoop)
+        let input = SearchClsLogRequest(envId: envId, startTime: startTime, endTime: endTime, queryString: queryString, limit: limit, context: context, sort: sort, useLucene: useLucene)
+        return try await self.client.execute(action: "SearchClsLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

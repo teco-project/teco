@@ -63,12 +63,14 @@ extension Monitor {
     /// 创建 Prometheus CVM Agent
     @inlinable
     public func createPrometheusAgent(instanceId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrometheusAgentResponse> {
-        self.createPrometheusAgent(CreatePrometheusAgentRequest(instanceId: instanceId, name: name), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrometheusAgentRequest(instanceId: instanceId, name: name)
+        return self.client.execute(action: "CreatePrometheusAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建 Prometheus CVM Agent
     @inlinable
     public func createPrometheusAgent(instanceId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrometheusAgentResponse {
-        try await self.createPrometheusAgent(CreatePrometheusAgentRequest(instanceId: instanceId, name: name), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrometheusAgentRequest(instanceId: instanceId, name: name)
+        return try await self.client.execute(action: "CreatePrometheusAgent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

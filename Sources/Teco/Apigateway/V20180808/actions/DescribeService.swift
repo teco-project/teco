@@ -185,7 +185,8 @@ extension Apigateway {
     /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
     @inlinable
     public func describeService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceResponse> {
-        self.describeService(DescribeServiceRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceRequest(serviceId: serviceId)
+        return self.client.execute(action: "DescribeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务详情
@@ -193,6 +194,7 @@ extension Apigateway {
     /// 本接口（DescribeService）用于查询一个服务的详细信息、包括服务的描述、域名、协议、创建时间、发布情况等信息。
     @inlinable
     public func describeService(serviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceResponse {
-        try await self.describeService(DescribeServiceRequest(serviceId: serviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceRequest(serviceId: serviceId)
+        return try await self.client.execute(action: "DescribeService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

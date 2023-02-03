@@ -64,7 +64,8 @@ extension Lighthouse {
     /// 本接口用于查询实例默认登录密钥属性。
     @inlinable
     public func describeInstanceLoginKeyPairAttribute(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLoginKeyPairAttributeResponse> {
-        self.describeInstanceLoginKeyPairAttribute(DescribeInstanceLoginKeyPairAttributeRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLoginKeyPairAttributeRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例默认登录密钥属性
@@ -72,6 +73,7 @@ extension Lighthouse {
     /// 本接口用于查询实例默认登录密钥属性。
     @inlinable
     public func describeInstanceLoginKeyPairAttribute(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLoginKeyPairAttributeResponse {
-        try await self.describeInstanceLoginKeyPairAttribute(DescribeInstanceLoginKeyPairAttributeRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLoginKeyPairAttributeRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeInstanceLoginKeyPairAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

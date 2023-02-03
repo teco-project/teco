@@ -60,7 +60,8 @@ extension Tdmq {
     /// 获取用户绑定的专享集群列表
     @inlinable
     public func describeBindClusters(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindClustersResponse> {
-        self.describeBindClusters(DescribeBindClustersRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBindClustersRequest()
+        return self.client.execute(action: "DescribeBindClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取专享集群列表
@@ -68,6 +69,7 @@ extension Tdmq {
     /// 获取用户绑定的专享集群列表
     @inlinable
     public func describeBindClusters(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindClustersResponse {
-        try await self.describeBindClusters(DescribeBindClustersRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBindClustersRequest()
+        return try await self.client.execute(action: "DescribeBindClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

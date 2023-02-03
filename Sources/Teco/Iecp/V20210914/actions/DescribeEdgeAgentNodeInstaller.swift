@@ -64,12 +64,14 @@ extension Iecp {
     /// 获取节点安装信息
     @inlinable
     public func describeEdgeAgentNodeInstaller(edgeUnitId: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeAgentNodeInstallerResponse> {
-        self.describeEdgeAgentNodeInstaller(DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId)
+        return self.client.execute(action: "DescribeEdgeAgentNodeInstaller", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取节点安装信息
     @inlinable
     public func describeEdgeAgentNodeInstaller(edgeUnitId: UInt64, nodeId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeAgentNodeInstallerResponse {
-        try await self.describeEdgeAgentNodeInstaller(DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeAgentNodeInstallerRequest(edgeUnitId: edgeUnitId, nodeId: nodeId)
+        return try await self.client.execute(action: "DescribeEdgeAgentNodeInstaller", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

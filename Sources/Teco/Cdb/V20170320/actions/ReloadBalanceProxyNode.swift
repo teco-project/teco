@@ -65,7 +65,8 @@ extension Cdb {
     /// 重新负载均衡数据库代理
     @inlinable @discardableResult
     public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReloadBalanceProxyNodeResponse> {
-        self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), region: region, logger: logger, on: eventLoop)
+        let input = ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId)
+        return self.client.execute(action: "ReloadBalanceProxyNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 负载均衡数据库代理
@@ -73,6 +74,7 @@ extension Cdb {
     /// 重新负载均衡数据库代理
     @inlinable @discardableResult
     public func reloadBalanceProxyNode(proxyGroupId: String, proxyAddressId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReloadBalanceProxyNodeResponse {
-        try await self.reloadBalanceProxyNode(ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId), region: region, logger: logger, on: eventLoop)
+        let input = ReloadBalanceProxyNodeRequest(proxyGroupId: proxyGroupId, proxyAddressId: proxyAddressId)
+        return try await self.client.execute(action: "ReloadBalanceProxyNode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

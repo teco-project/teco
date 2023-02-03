@@ -70,7 +70,8 @@ extension Apigateway {
     /// 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。
     @inlinable
     public func describeIPStrategysStatus(serviceId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategysStatusResponse> {
-        self.describeIPStrategysStatus(DescribeIPStrategysStatusRequest(serviceId: serviceId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIPStrategysStatusRequest(serviceId: serviceId, filters: filters)
+        return self.client.execute(action: "DescribeIPStrategysStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务IP策略列表
@@ -78,6 +79,7 @@ extension Apigateway {
     /// 本接口（DescribeIPStrategysStatus）用于查询服务IP策略列表。
     @inlinable
     public func describeIPStrategysStatus(serviceId: String, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategysStatusResponse {
-        try await self.describeIPStrategysStatus(DescribeIPStrategysStatusRequest(serviceId: serviceId, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIPStrategysStatusRequest(serviceId: serviceId, filters: filters)
+        return try await self.client.execute(action: "DescribeIPStrategysStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

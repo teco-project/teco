@@ -70,7 +70,8 @@ extension Ssl {
     /// 本接口（RevokeCertificate）用于吊销证书。
     @inlinable
     public func revokeCertificate(certificateId: String, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevokeCertificateResponse> {
-        self.revokeCertificate(RevokeCertificateRequest(certificateId: certificateId, reason: reason), region: region, logger: logger, on: eventLoop)
+        let input = RevokeCertificateRequest(certificateId: certificateId, reason: reason)
+        return self.client.execute(action: "RevokeCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 吊销证书
@@ -78,6 +79,7 @@ extension Ssl {
     /// 本接口（RevokeCertificate）用于吊销证书。
     @inlinable
     public func revokeCertificate(certificateId: String, reason: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevokeCertificateResponse {
-        try await self.revokeCertificate(RevokeCertificateRequest(certificateId: certificateId, reason: reason), region: region, logger: logger, on: eventLoop)
+        let input = RevokeCertificateRequest(certificateId: certificateId, reason: reason)
+        return try await self.client.execute(action: "RevokeCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

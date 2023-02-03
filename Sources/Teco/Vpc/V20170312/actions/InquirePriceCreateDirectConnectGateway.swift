@@ -62,7 +62,8 @@ extension Vpc {
     /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
     @inlinable
     public func inquirePriceCreateDirectConnectGateway(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateDirectConnectGatewayResponse> {
-        self.inquirePriceCreateDirectConnectGateway(InquirePriceCreateDirectConnectGatewayRequest(), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceCreateDirectConnectGatewayRequest()
+        return self.client.execute(action: "InquirePriceCreateDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建专线网关询价
@@ -70,6 +71,7 @@ extension Vpc {
     /// 本接口（DescribePriceCreateDirectConnectGateway）用于创建专线网关询价。
     @inlinable
     public func inquirePriceCreateDirectConnectGateway(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateDirectConnectGatewayResponse {
-        try await self.inquirePriceCreateDirectConnectGateway(InquirePriceCreateDirectConnectGatewayRequest(), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceCreateDirectConnectGatewayRequest()
+        return try await self.client.execute(action: "InquirePriceCreateDirectConnectGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

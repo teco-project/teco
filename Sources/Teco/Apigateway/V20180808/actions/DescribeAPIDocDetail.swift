@@ -58,12 +58,14 @@ extension Apigateway {
     /// 查询 API 文档详情
     @inlinable
     public func describeAPIDocDetail(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAPIDocDetailResponse> {
-        self.describeAPIDocDetail(DescribeAPIDocDetailRequest(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAPIDocDetailRequest(apiDocId: apiDocId)
+        return self.client.execute(action: "DescribeAPIDocDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询 API 文档详情
     @inlinable
     public func describeAPIDocDetail(apiDocId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAPIDocDetailResponse {
-        try await self.describeAPIDocDetail(DescribeAPIDocDetailRequest(apiDocId: apiDocId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAPIDocDetailRequest(apiDocId: apiDocId)
+        return try await self.client.execute(action: "DescribeAPIDocDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

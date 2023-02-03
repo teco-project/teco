@@ -97,7 +97,8 @@ extension Tdmq {
     /// 用于在用户账户下创建消息队列 Tdmq 命名空间
     @inlinable
     public func createEnvironment(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEnvironmentResponse> {
-        self.createEnvironment(CreateEnvironmentRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
+        let input = CreateEnvironmentRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy)
+        return self.client.execute(action: "CreateEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建命名空间
@@ -105,6 +106,7 @@ extension Tdmq {
     /// 用于在用户账户下创建消息队列 Tdmq 命名空间
     @inlinable
     public func createEnvironment(environmentId: String, msgTTL: UInt64, remark: String? = nil, clusterId: String? = nil, retentionPolicy: RetentionPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEnvironmentResponse {
-        try await self.createEnvironment(CreateEnvironmentRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy), region: region, logger: logger, on: eventLoop)
+        let input = CreateEnvironmentRequest(environmentId: environmentId, msgTTL: msgTTL, remark: remark, clusterId: clusterId, retentionPolicy: retentionPolicy)
+        return try await self.client.execute(action: "CreateEnvironment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

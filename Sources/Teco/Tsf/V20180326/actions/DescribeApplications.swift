@@ -99,12 +99,14 @@ extension Tsf {
     /// 获取应用列表
     @inlinable
     public func describeApplications(searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, applicationType: String? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, applicationIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
-        self.describeApplications(DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList)
+        return self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用列表
     @inlinable
     public func describeApplications(searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, applicationType: String? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, applicationIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
-        try await self.describeApplications(DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationsRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, applicationType: applicationType, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, applicationIdList: applicationIdList)
+        return try await self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

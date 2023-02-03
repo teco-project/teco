@@ -80,7 +80,8 @@ extension Dlc {
     /// 本接口（CreateTask）用于创建sql查询任务。（推荐使用CreateTasks接口）
     @inlinable
     public func createTask(task: Task, databaseName: String? = nil, datasourceConnectionName: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTaskResponse> {
-        self.createTask(CreateTaskRequest(task: task, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
+        let input = CreateTaskRequest(task: task, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName)
+        return self.client.execute(action: "CreateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 任务创建
@@ -88,6 +89,7 @@ extension Dlc {
     /// 本接口（CreateTask）用于创建sql查询任务。（推荐使用CreateTasks接口）
     @inlinable
     public func createTask(task: Task, databaseName: String? = nil, datasourceConnectionName: String? = nil, dataEngineName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTaskResponse {
-        try await self.createTask(CreateTaskRequest(task: task, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName), region: region, logger: logger, on: eventLoop)
+        let input = CreateTaskRequest(task: task, databaseName: databaseName, datasourceConnectionName: datasourceConnectionName, dataEngineName: dataEngineName)
+        return try await self.client.execute(action: "CreateTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

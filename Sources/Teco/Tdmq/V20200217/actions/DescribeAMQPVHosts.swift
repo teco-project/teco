@@ -88,7 +88,8 @@ extension Tdmq {
     /// 获取Amqp Vhost 列表
     @inlinable
     public func describeAMQPVHosts(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAMQPVHostsResponse> {
-        self.describeAMQPVHosts(DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList)
+        return self.client.execute(action: "DescribeAMQPVHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Amqp Vhost列表
@@ -96,6 +97,7 @@ extension Tdmq {
     /// 获取Amqp Vhost 列表
     @inlinable
     public func describeAMQPVHosts(clusterId: String, offset: UInt64, limit: UInt64, nameKeyword: String? = nil, vHostIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAMQPVHostsResponse {
-        try await self.describeAMQPVHosts(DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAMQPVHostsRequest(clusterId: clusterId, offset: offset, limit: limit, nameKeyword: nameKeyword, vHostIdList: vHostIdList)
+        return try await self.client.execute(action: "DescribeAMQPVHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

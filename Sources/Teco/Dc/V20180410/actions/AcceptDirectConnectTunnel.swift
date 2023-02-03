@@ -54,12 +54,14 @@ extension Dc {
     /// 接受专用通道申请
     @inlinable @discardableResult
     public func acceptDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AcceptDirectConnectTunnelResponse> {
-        self.acceptDirectConnectTunnel(AcceptDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
+        let input = AcceptDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId)
+        return self.client.execute(action: "AcceptDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 接受专用通道申请
     @inlinable @discardableResult
     public func acceptDirectConnectTunnel(directConnectTunnelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AcceptDirectConnectTunnelResponse {
-        try await self.acceptDirectConnectTunnel(AcceptDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId), region: region, logger: logger, on: eventLoop)
+        let input = AcceptDirectConnectTunnelRequest(directConnectTunnelId: directConnectTunnelId)
+        return try await self.client.execute(action: "AcceptDirectConnectTunnel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

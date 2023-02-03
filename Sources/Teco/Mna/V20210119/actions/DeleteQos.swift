@@ -68,7 +68,8 @@ extension Mna {
     /// 移动网络停止Qos加速过程
     @inlinable
     public func deleteQos(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteQosResponse> {
-        self.deleteQos(DeleteQosRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteQosRequest(sessionId: sessionId)
+        return self.client.execute(action: "DeleteQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止Qos加速过程
@@ -76,6 +77,7 @@ extension Mna {
     /// 移动网络停止Qos加速过程
     @inlinable
     public func deleteQos(sessionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteQosResponse {
-        try await self.deleteQos(DeleteQosRequest(sessionId: sessionId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteQosRequest(sessionId: sessionId)
+        return try await self.client.execute(action: "DeleteQos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

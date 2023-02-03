@@ -90,7 +90,8 @@ extension Iotvideoindustry {
     /// 本接口(CreateDevice) 用于创建设备。
     @inlinable
     public func createDevice(nickName: String, passWord: String, deviceType: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDeviceResponse> {
-        self.createDevice(CreateDeviceRequest(nickName: nickName, passWord: passWord, deviceType: deviceType, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateDeviceRequest(nickName: nickName, passWord: passWord, deviceType: deviceType, groupId: groupId)
+        return self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建设备
@@ -98,6 +99,7 @@ extension Iotvideoindustry {
     /// 本接口(CreateDevice) 用于创建设备。
     @inlinable
     public func createDevice(nickName: String, passWord: String, deviceType: Int64? = nil, groupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDeviceResponse {
-        try await self.createDevice(CreateDeviceRequest(nickName: nickName, passWord: passWord, deviceType: deviceType, groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = CreateDeviceRequest(nickName: nickName, passWord: passWord, deviceType: deviceType, groupId: groupId)
+        return try await self.client.execute(action: "CreateDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

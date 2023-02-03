@@ -79,7 +79,8 @@ extension Vpc {
     /// 该接口用于查询CDC的本地网关。
     @inlinable
     public func describeLocalGateway(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLocalGatewayResponse> {
-        self.describeLocalGateway(DescribeLocalGatewayRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLocalGatewayRequest(filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询本地网关
@@ -87,6 +88,7 @@ extension Vpc {
     /// 该接口用于查询CDC的本地网关。
     @inlinable
     public func describeLocalGateway(filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalGatewayResponse {
-        try await self.describeLocalGateway(DescribeLocalGatewayRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLocalGatewayRequest(filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeLocalGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,12 +63,14 @@ extension Ckafka {
     /// 删除用户
     @inlinable
     public func deleteUser(instanceId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUserResponse> {
-        self.deleteUser(DeleteUserRequest(instanceId: instanceId, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DeleteUserRequest(instanceId: instanceId, name: name)
+        return self.client.execute(action: "DeleteUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除用户
     @inlinable
     public func deleteUser(instanceId: String, name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUserResponse {
-        try await self.deleteUser(DeleteUserRequest(instanceId: instanceId, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DeleteUserRequest(instanceId: instanceId, name: name)
+        return try await self.client.execute(action: "DeleteUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -88,7 +88,8 @@ extension Cr {
     /// 根据上传文件接口的输出参数DataResId，获取相关上传结果。
     @inlinable
     public func describeTaskStatus(module: String, operation: String, taskId: String, instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskStatusResponse> {
-        self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId, instId: instId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId, instId: instId)
+        return self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取任务状态
@@ -96,6 +97,7 @@ extension Cr {
     /// 根据上传文件接口的输出参数DataResId，获取相关上传结果。
     @inlinable
     public func describeTaskStatus(module: String, operation: String, taskId: String, instId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskStatusResponse {
-        try await self.describeTaskStatus(DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId, instId: instId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskStatusRequest(module: module, operation: operation, taskId: taskId, instId: instId)
+        return try await self.client.execute(action: "DescribeTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

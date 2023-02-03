@@ -60,7 +60,8 @@ extension Cbs {
     /// 批量删除指定的云硬盘备份点。
     @inlinable @discardableResult
     public func deleteDiskBackups(diskBackupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDiskBackupsResponse> {
-        self.deleteDiskBackups(DeleteDiskBackupsRequest(diskBackupIds: diskBackupIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDiskBackupsRequest(diskBackupIds: diskBackupIds)
+        return self.client.execute(action: "DeleteDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除云硬盘备份点
@@ -68,6 +69,7 @@ extension Cbs {
     /// 批量删除指定的云硬盘备份点。
     @inlinable @discardableResult
     public func deleteDiskBackups(diskBackupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDiskBackupsResponse {
-        try await self.deleteDiskBackups(DeleteDiskBackupsRequest(diskBackupIds: diskBackupIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDiskBackupsRequest(diskBackupIds: diskBackupIds)
+        return try await self.client.execute(action: "DeleteDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

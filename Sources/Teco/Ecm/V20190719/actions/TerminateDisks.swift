@@ -72,7 +72,8 @@ extension Ecm {
     /// * 支持批量操作，每次请求批量云硬盘的上限为50。如果批量云盘存在不允许操作的，请求会以特定错误码返回。
     @inlinable @discardableResult
     public func terminateDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDisksResponse> {
-        self.terminateDisks(TerminateDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
+        let input = TerminateDisksRequest(diskIds: diskIds)
+        return self.client.execute(action: "TerminateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 退还云硬盘
@@ -84,6 +85,7 @@ extension Ecm {
     /// * 支持批量操作，每次请求批量云硬盘的上限为50。如果批量云盘存在不允许操作的，请求会以特定错误码返回。
     @inlinable @discardableResult
     public func terminateDisks(diskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDisksResponse {
-        try await self.terminateDisks(TerminateDisksRequest(diskIds: diskIds), region: region, logger: logger, on: eventLoop)
+        let input = TerminateDisksRequest(diskIds: diskIds)
+        return try await self.client.execute(action: "TerminateDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -93,7 +93,8 @@ extension Vpc {
     /// 本接口（DescribeSnapshotFiles）用于查询快照文件。
     @inlinable
     public func describeSnapshotFiles(businessType: String, instanceId: String, startDate: String, endDate: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotFilesResponse> {
-        self.describeSnapshotFiles(DescribeSnapshotFilesRequest(businessType: businessType, instanceId: instanceId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotFilesRequest(businessType: businessType, instanceId: instanceId, startDate: startDate, endDate: endDate, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeSnapshotFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询快照文件
@@ -101,6 +102,7 @@ extension Vpc {
     /// 本接口（DescribeSnapshotFiles）用于查询快照文件。
     @inlinable
     public func describeSnapshotFiles(businessType: String, instanceId: String, startDate: String, endDate: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotFilesResponse {
-        try await self.describeSnapshotFiles(DescribeSnapshotFilesRequest(businessType: businessType, instanceId: instanceId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotFilesRequest(businessType: businessType, instanceId: instanceId, startDate: startDate, endDate: endDate, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeSnapshotFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -77,7 +77,8 @@ extension Iottid {
     /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
     public func deliverTidNotify(orderId: String, tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeliverTidNotifyResponse> {
-        self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), region: region, logger: logger, on: eventLoop)
+        let input = DeliverTidNotifyRequest(orderId: orderId, tid: tid)
+        return self.client.execute(action: "DeliverTidNotify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全芯片TID空发回执
@@ -85,6 +86,7 @@ extension Iottid {
     /// 安全芯片为载体的TID空发回执，绑定TID与订单号。
     @inlinable
     public func deliverTidNotify(orderId: String, tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeliverTidNotifyResponse {
-        try await self.deliverTidNotify(DeliverTidNotifyRequest(orderId: orderId, tid: tid), region: region, logger: logger, on: eventLoop)
+        let input = DeliverTidNotifyRequest(orderId: orderId, tid: tid)
+        return try await self.client.execute(action: "DeliverTidNotify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

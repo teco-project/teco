@@ -87,12 +87,14 @@ extension Cam {
     /// 列出用户关联的策略（包括随组关联）
     @inlinable
     public func listAttachedUserAllPolicies(targetUin: UInt64, rp: UInt64, page: UInt64, attachType: UInt64, strategyType: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAttachedUserAllPoliciesResponse> {
-        self.listAttachedUserAllPolicies(ListAttachedUserAllPoliciesRequest(targetUin: targetUin, rp: rp, page: page, attachType: attachType, strategyType: strategyType, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = ListAttachedUserAllPoliciesRequest(targetUin: targetUin, rp: rp, page: page, attachType: attachType, strategyType: strategyType, keyword: keyword)
+        return self.client.execute(action: "ListAttachedUserAllPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出用户关联的策略（包括随组关联）
     @inlinable
     public func listAttachedUserAllPolicies(targetUin: UInt64, rp: UInt64, page: UInt64, attachType: UInt64, strategyType: UInt64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAttachedUserAllPoliciesResponse {
-        try await self.listAttachedUserAllPolicies(ListAttachedUserAllPoliciesRequest(targetUin: targetUin, rp: rp, page: page, attachType: attachType, strategyType: strategyType, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = ListAttachedUserAllPoliciesRequest(targetUin: targetUin, rp: rp, page: page, attachType: attachType, strategyType: strategyType, keyword: keyword)
+        return try await self.client.execute(action: "ListAttachedUserAllPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

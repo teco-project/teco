@@ -90,7 +90,8 @@ extension Cwp {
     /// 专家服务-旗舰重保列表
     @inlinable
     public func describeProtectNetList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProtectNetListResponse> {
-        self.describeProtectNetList(DescribeProtectNetListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProtectNetListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return self.client.execute(action: "DescribeProtectNetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 旗舰重保列表
@@ -98,6 +99,7 @@ extension Cwp {
     /// 专家服务-旗舰重保列表
     @inlinable
     public func describeProtectNetList(filters: [Filters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProtectNetListResponse {
-        try await self.describeProtectNetList(DescribeProtectNetListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProtectNetListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return try await self.client.execute(action: "DescribeProtectNetList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

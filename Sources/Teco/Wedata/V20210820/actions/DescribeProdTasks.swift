@@ -80,7 +80,8 @@ extension Wedata {
     /// 数据质量获取生产调度任务列表
     @inlinable
     public func describeProdTasks(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProdTasksResponse> {
-        self.describeProdTasks(DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters)
+        return self.client.execute(action: "DescribeProdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取生产调度任务列表
@@ -88,6 +89,7 @@ extension Wedata {
     /// 数据质量获取生产调度任务列表
     @inlinable
     public func describeProdTasks(projectId: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProdTasksResponse {
-        try await self.describeProdTasks(DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProdTasksRequest(projectId: projectId, pageSize: pageSize, pageNumber: pageNumber, filters: filters)
+        return try await self.client.execute(action: "DescribeProdTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

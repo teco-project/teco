@@ -78,7 +78,8 @@ extension Tsf {
     /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
     @inlinable @discardableResult
     public func deletePkgs(applicationId: String, pkgIds: [String], repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePkgsResponse> {
-        self.deletePkgs(DeletePkgsRequest(applicationId: applicationId, pkgIds: pkgIds, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePkgsRequest(applicationId: applicationId, pkgIds: pkgIds, repositoryType: repositoryType, repositoryId: repositoryId)
+        return self.client.execute(action: "DeletePkgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量删除包
@@ -87,6 +88,7 @@ extension Tsf {
     /// 一次最多支持删除1000个包，数量超过1000，返回UpperDeleteLimit错误。
     @inlinable @discardableResult
     public func deletePkgs(applicationId: String, pkgIds: [String], repositoryType: String? = nil, repositoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePkgsResponse {
-        try await self.deletePkgs(DeletePkgsRequest(applicationId: applicationId, pkgIds: pkgIds, repositoryType: repositoryType, repositoryId: repositoryId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePkgsRequest(applicationId: applicationId, pkgIds: pkgIds, repositoryType: repositoryType, repositoryId: repositoryId)
+        return try await self.client.execute(action: "DeletePkgs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -105,7 +105,8 @@ extension Lighthouse {
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
     @inlinable
     public func describeBlueprints(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBlueprintsResponse> {
-        self.describeBlueprints(DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询镜像信息
@@ -113,6 +114,7 @@ extension Lighthouse {
     /// 本接口（DescribeBlueprints）用于查询镜像信息。
     @inlinable
     public func describeBlueprints(blueprintIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBlueprintsResponse {
-        try await self.describeBlueprints(DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBlueprintsRequest(blueprintIds: blueprintIds, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeBlueprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

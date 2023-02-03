@@ -94,7 +94,8 @@ extension Zj {
     /// 创建短信推送活动
     @inlinable
     public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCampaignResponse> {
-        self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), region: region, logger: logger, on: eventLoop)
+        let input = CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType)
+        return self.client.execute(action: "CreateCampaign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建短信活动
@@ -102,6 +103,7 @@ extension Zj {
     /// 创建短信推送活动
     @inlinable
     public func createCampaign(license: String, sendTime: Int64, name: String, strategies: [PaasStrategy]? = nil, templateId: Int64? = nil, crowdID: Int64? = nil, smsType: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCampaignResponse {
-        try await self.createCampaign(CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType), region: region, logger: logger, on: eventLoop)
+        let input = CreateCampaignRequest(license: license, sendTime: sendTime, name: name, strategies: strategies, templateId: templateId, crowdID: crowdID, smsType: smsType)
+        return try await self.client.execute(action: "CreateCampaign", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

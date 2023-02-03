@@ -67,12 +67,14 @@ extension Tdid {
     /// 披露策略Policy注册
     @inlinable
     public func registerClaimPolicy(cptIndex: UInt64, policy: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterClaimPolicyResponse> {
-        self.registerClaimPolicy(RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy), region: region, logger: logger, on: eventLoop)
+        let input = RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy)
+        return self.client.execute(action: "RegisterClaimPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 披露策略Policy注册
     @inlinable
     public func registerClaimPolicy(cptIndex: UInt64, policy: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterClaimPolicyResponse {
-        try await self.registerClaimPolicy(RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy), region: region, logger: logger, on: eventLoop)
+        let input = RegisterClaimPolicyRequest(cptIndex: cptIndex, policy: policy)
+        return try await self.client.execute(action: "RegisterClaimPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

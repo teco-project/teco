@@ -60,7 +60,8 @@ extension Cwp {
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
     @inlinable @discardableResult
     public func deleteMaliciousRequests(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMaliciousRequestsResponse> {
-        self.deleteMaliciousRequests(DeleteMaliciousRequestsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMaliciousRequestsRequest(ids: ids)
+        return self.client.execute(action: "DeleteMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除恶意请求记录
@@ -68,6 +69,7 @@ extension Cwp {
     /// 本接口 (DeleteMaliciousRequests) 用于删除恶意请求记录。
     @inlinable @discardableResult
     public func deleteMaliciousRequests(ids: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMaliciousRequestsResponse {
-        try await self.deleteMaliciousRequests(DeleteMaliciousRequestsRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMaliciousRequestsRequest(ids: ids)
+        return try await self.client.execute(action: "DeleteMaliciousRequests", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

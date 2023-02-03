@@ -106,7 +106,8 @@ extension Ecm {
     /// 创建负载均衡监听器。
     @inlinable
     public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sessionType: String? = nil, endPorts: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateListenerResponse> {
-        self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sessionType: sessionType, endPorts: endPorts), region: region, logger: logger, on: eventLoop)
+        let input = CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sessionType: sessionType, endPorts: endPorts)
+        return self.client.execute(action: "CreateListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建负载均衡监听器
@@ -114,6 +115,7 @@ extension Ecm {
     /// 创建负载均衡监听器。
     @inlinable
     public func createListener(loadBalancerId: String, ports: [Int64], protocol: String, listenerNames: [String]? = nil, healthCheck: HealthCheck? = nil, sessionExpireTime: Int64? = nil, scheduler: String? = nil, sessionType: String? = nil, endPorts: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateListenerResponse {
-        try await self.createListener(CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sessionType: sessionType, endPorts: endPorts), region: region, logger: logger, on: eventLoop)
+        let input = CreateListenerRequest(loadBalancerId: loadBalancerId, ports: ports, protocol: `protocol`, listenerNames: listenerNames, healthCheck: healthCheck, sessionExpireTime: sessionExpireTime, scheduler: scheduler, sessionType: sessionType, endPorts: endPorts)
+        return try await self.client.execute(action: "CreateListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

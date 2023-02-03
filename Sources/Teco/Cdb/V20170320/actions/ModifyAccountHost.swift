@@ -79,7 +79,8 @@ extension Cdb {
     /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
     @inlinable
     public func modifyAccountHost(instanceId: String, user: String, host: String, newHost: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountHostResponse> {
-        self.modifyAccountHost(ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost)
+        return self.client.execute(action: "ModifyAccountHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云数据库实例账号的主机
@@ -87,6 +88,7 @@ extension Cdb {
     /// 本接口(ModifyAccountHost)用于修改云数据库账户的主机。
     @inlinable
     public func modifyAccountHost(instanceId: String, user: String, host: String, newHost: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountHostResponse {
-        try await self.modifyAccountHost(ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountHostRequest(instanceId: instanceId, user: user, host: host, newHost: newHost)
+        return try await self.client.execute(action: "ModifyAccountHost", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

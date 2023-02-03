@@ -72,7 +72,8 @@ extension Tdid {
     /// 获取DID区块链网络详情
     @inlinable
     public func getDidClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDidClusterDetailResponse> {
-        self.getDidClusterDetail(GetDidClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetDidClusterDetailRequest(clusterId: clusterId)
+        return self.client.execute(action: "GetDidClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取DID网络详情
@@ -80,6 +81,7 @@ extension Tdid {
     /// 获取DID区块链网络详情
     @inlinable
     public func getDidClusterDetail(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDidClusterDetailResponse {
-        try await self.getDidClusterDetail(GetDidClusterDetailRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = GetDidClusterDetailRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "GetDidClusterDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -97,7 +97,8 @@ extension Tdmq {
     /// 获取指定命名空间的属性
     @inlinable
     public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEnvironmentAttributesResponse> {
-        self.describeEnvironmentAttributes(DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId)
+        return self.client.execute(action: "DescribeEnvironmentAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取命名空间属性
@@ -105,6 +106,7 @@ extension Tdmq {
     /// 获取指定命名空间的属性
     @inlinable
     public func describeEnvironmentAttributes(environmentId: String, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEnvironmentAttributesResponse {
-        try await self.describeEnvironmentAttributes(DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEnvironmentAttributesRequest(environmentId: environmentId, clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeEnvironmentAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

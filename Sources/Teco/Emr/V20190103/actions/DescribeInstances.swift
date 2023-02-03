@@ -108,12 +108,14 @@ extension Emr {
     /// 查询集群实例信息
     @inlinable
     public func describeInstances(displayStrategy: String, instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, projectId: Int64? = nil, orderField: String? = nil, asc: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        self.describeInstances(DescribeInstancesRequest(displayStrategy: displayStrategy, instanceIds: instanceIds, offset: offset, limit: limit, projectId: projectId, orderField: orderField, asc: asc), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesRequest(displayStrategy: displayStrategy, instanceIds: instanceIds, offset: offset, limit: limit, projectId: projectId, orderField: orderField, asc: asc)
+        return self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询集群实例信息
     @inlinable
     public func describeInstances(displayStrategy: String, instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, projectId: Int64? = nil, orderField: String? = nil, asc: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.describeInstances(DescribeInstancesRequest(displayStrategy: displayStrategy, instanceIds: instanceIds, offset: offset, limit: limit, projectId: projectId, orderField: orderField, asc: asc), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesRequest(displayStrategy: displayStrategy, instanceIds: instanceIds, offset: offset, limit: limit, projectId: projectId, orderField: orderField, asc: asc)
+        return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

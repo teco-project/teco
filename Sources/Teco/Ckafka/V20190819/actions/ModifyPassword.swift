@@ -73,12 +73,14 @@ extension Ckafka {
     /// 修改密码
     @inlinable
     public func modifyPassword(instanceId: String, name: String, password: String, passwordNew: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPasswordResponse> {
-        self.modifyPassword(ModifyPasswordRequest(instanceId: instanceId, name: name, password: password, passwordNew: passwordNew), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPasswordRequest(instanceId: instanceId, name: name, password: password, passwordNew: passwordNew)
+        return self.client.execute(action: "ModifyPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改密码
     @inlinable
     public func modifyPassword(instanceId: String, name: String, password: String, passwordNew: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPasswordResponse {
-        try await self.modifyPassword(ModifyPasswordRequest(instanceId: instanceId, name: name, password: password, passwordNew: passwordNew), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPasswordRequest(instanceId: instanceId, name: name, password: password, passwordNew: passwordNew)
+        return try await self.client.execute(action: "ModifyPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

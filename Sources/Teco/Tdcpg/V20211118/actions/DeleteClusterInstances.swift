@@ -65,7 +65,8 @@ extension Tdcpg {
     /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
     @inlinable @discardableResult
     public func deleteClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClusterInstancesResponse> {
-        self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet)
+        return self.client.execute(action: "DeleteClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例
@@ -73,6 +74,7 @@ extension Tdcpg {
     /// 删除实例。只有当实例状态处于isolated(已隔离)时才生效。
     @inlinable @discardableResult
     public func deleteClusterInstances(clusterId: String, instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClusterInstancesResponse {
-        try await self.deleteClusterInstances(DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClusterInstancesRequest(clusterId: clusterId, instanceIdSet: instanceIdSet)
+        return try await self.client.execute(action: "DeleteClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

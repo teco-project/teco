@@ -82,7 +82,8 @@ extension Batch {
     /// 对于状态为“FAILED_INTERRUPTED”的任务实例，终止操作实际成功之后，相关资源和配额才会释放。
     @inlinable @discardableResult
     public func terminateTaskInstance(jobId: String, taskName: String, taskInstanceIndex: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTaskInstanceResponse> {
-        self.terminateTaskInstance(TerminateTaskInstanceRequest(jobId: jobId, taskName: taskName, taskInstanceIndex: taskInstanceIndex), region: region, logger: logger, on: eventLoop)
+        let input = TerminateTaskInstanceRequest(jobId: jobId, taskName: taskName, taskInstanceIndex: taskInstanceIndex)
+        return self.client.execute(action: "TerminateTaskInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终止任务实例
@@ -94,6 +95,7 @@ extension Batch {
     /// 对于状态为“FAILED_INTERRUPTED”的任务实例，终止操作实际成功之后，相关资源和配额才会释放。
     @inlinable @discardableResult
     public func terminateTaskInstance(jobId: String, taskName: String, taskInstanceIndex: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTaskInstanceResponse {
-        try await self.terminateTaskInstance(TerminateTaskInstanceRequest(jobId: jobId, taskName: taskName, taskInstanceIndex: taskInstanceIndex), region: region, logger: logger, on: eventLoop)
+        let input = TerminateTaskInstanceRequest(jobId: jobId, taskName: taskName, taskInstanceIndex: taskInstanceIndex)
+        return try await self.client.execute(action: "TerminateTaskInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

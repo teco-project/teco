@@ -77,12 +77,14 @@ extension Tcaplusdb {
     /// 修改表格标签
     @inlinable
     public func modifyTableTags(clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTableTagsResponse> {
-        self.modifyTableTags(ModifyTableTagsRequest(clusterId: clusterId, selectedTables: selectedTables, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTableTagsRequest(clusterId: clusterId, selectedTables: selectedTables, replaceTags: replaceTags, deleteTags: deleteTags)
+        return self.client.execute(action: "ModifyTableTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改表格标签
     @inlinable
     public func modifyTableTags(clusterId: String, selectedTables: [SelectedTableInfoNew], replaceTags: [TagInfoUnit]? = nil, deleteTags: [TagInfoUnit]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTableTagsResponse {
-        try await self.modifyTableTags(ModifyTableTagsRequest(clusterId: clusterId, selectedTables: selectedTables, replaceTags: replaceTags, deleteTags: deleteTags), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTableTagsRequest(clusterId: clusterId, selectedTables: selectedTables, replaceTags: replaceTags, deleteTags: deleteTags)
+        return try await self.client.execute(action: "ModifyTableTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -68,7 +68,8 @@ extension Yunjing {
     /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
     @inlinable @discardableResult
     public func modifyProVersionRenewFlag(renewFlag: String, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyProVersionRenewFlagResponse> {
-        self.modifyProVersionRenewFlag(ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid)
+        return self.client.execute(action: "ModifyProVersionRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改专业版续费标识
@@ -76,6 +77,7 @@ extension Yunjing {
     /// 本接口 (ModifyProVersionRenewFlag) 用于修改专业版包年包月续费标识。
     @inlinable @discardableResult
     public func modifyProVersionRenewFlag(renewFlag: String, quuid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyProVersionRenewFlagResponse {
-        try await self.modifyProVersionRenewFlag(ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid), region: region, logger: logger, on: eventLoop)
+        let input = ModifyProVersionRenewFlagRequest(renewFlag: renewFlag, quuid: quuid)
+        return try await self.client.execute(action: "ModifyProVersionRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

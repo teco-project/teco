@@ -65,7 +65,8 @@ extension Chdfs {
     /// 给挂载点解绑多个权限组。
     @inlinable @discardableResult
     public func disassociateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateAccessGroupsResponse> {
-        self.disassociateAccessGroups(DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds)
+        return self.client.execute(action: "DisassociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑权限组列表
@@ -73,6 +74,7 @@ extension Chdfs {
     /// 给挂载点解绑多个权限组。
     @inlinable @discardableResult
     public func disassociateAccessGroups(mountPointId: String, accessGroupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateAccessGroupsResponse {
-        try await self.disassociateAccessGroups(DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateAccessGroupsRequest(mountPointId: mountPointId, accessGroupIds: accessGroupIds)
+        return try await self.client.execute(action: "DisassociateAccessGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

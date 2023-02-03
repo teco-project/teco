@@ -60,7 +60,8 @@ extension Batch {
     /// 用于删除计算环境
     @inlinable @discardableResult
     public func deleteComputeEnv(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteComputeEnvResponse> {
-        self.deleteComputeEnv(DeleteComputeEnvRequest(envId: envId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteComputeEnvRequest(envId: envId)
+        return self.client.execute(action: "DeleteComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除计算环境
@@ -68,6 +69,7 @@ extension Batch {
     /// 用于删除计算环境
     @inlinable @discardableResult
     public func deleteComputeEnv(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComputeEnvResponse {
-        try await self.deleteComputeEnv(DeleteComputeEnvRequest(envId: envId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteComputeEnvRequest(envId: envId)
+        return try await self.client.execute(action: "DeleteComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

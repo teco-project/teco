@@ -68,7 +68,8 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func unassignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnassignIpv6AddressesResponse> {
-        self.unassignIpv6Addresses(UnassignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
+        let input = UnassignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses)
+        return self.client.execute(action: "UnassignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 释放IPv6地址
@@ -77,6 +78,7 @@ extension Vpc {
     /// 本接口是异步完成，如需查询异步任务执行结果，请使用本接口返回的`RequestId`轮询`DescribeVpcTaskResult`接口。
     @inlinable @discardableResult
     public func unassignIpv6Addresses(networkInterfaceId: String, ipv6Addresses: [Ipv6Address], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignIpv6AddressesResponse {
-        try await self.unassignIpv6Addresses(UnassignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses), region: region, logger: logger, on: eventLoop)
+        let input = UnassignIpv6AddressesRequest(networkInterfaceId: networkInterfaceId, ipv6Addresses: ipv6Addresses)
+        return try await self.client.execute(action: "UnassignIpv6Addresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -76,7 +76,8 @@ extension Ess {
     /// 查询出证报告，返回报告 URL。
     @inlinable
     public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowEvidenceReportResponse> {
-        self.describeFlowEvidenceReport(DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId)
+        return self.client.execute(action: "DescribeFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询出证报告
@@ -84,6 +85,7 @@ extension Ess {
     /// 查询出证报告，返回报告 URL。
     @inlinable
     public func describeFlowEvidenceReport(operator: UserInfo, reportId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowEvidenceReportResponse {
-        try await self.describeFlowEvidenceReport(DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowEvidenceReportRequest(operator: `operator`, reportId: reportId)
+        return try await self.client.execute(action: "DescribeFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

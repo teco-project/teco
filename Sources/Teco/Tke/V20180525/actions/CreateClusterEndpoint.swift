@@ -79,12 +79,14 @@ extension Tke {
     /// 创建集群访问端口
     @inlinable @discardableResult
     public func createClusterEndpoint(clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateClusterEndpointResponse> {
-        self.createClusterEndpoint(CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters), region: region, logger: logger, on: eventLoop)
+        let input = CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters)
+        return self.client.execute(action: "CreateClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建集群访问端口
     @inlinable @discardableResult
     public func createClusterEndpoint(clusterId: String, subnetId: String? = nil, isExtranet: Bool? = nil, domain: String? = nil, securityGroup: String? = nil, extensiveParameters: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateClusterEndpointResponse {
-        try await self.createClusterEndpoint(CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters), region: region, logger: logger, on: eventLoop)
+        let input = CreateClusterEndpointRequest(clusterId: clusterId, subnetId: subnetId, isExtranet: isExtranet, domain: domain, securityGroup: securityGroup, extensiveParameters: extensiveParameters)
+        return try await self.client.execute(action: "CreateClusterEndpoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

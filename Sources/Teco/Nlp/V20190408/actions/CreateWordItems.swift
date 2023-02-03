@@ -65,7 +65,8 @@ extension Nlp {
     /// 向指定的词库中添加词条。
     @inlinable @discardableResult
     public func createWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWordItemsResponse> {
-        self.createWordItems(CreateWordItemsRequest(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
+        let input = CreateWordItemsRequest(dictId: dictId, wordItems: wordItems)
+        return self.client.execute(action: "CreateWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增自定义词库词条
@@ -73,6 +74,7 @@ extension Nlp {
     /// 向指定的词库中添加词条。
     @inlinable @discardableResult
     public func createWordItems(dictId: String, wordItems: [WordItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWordItemsResponse {
-        try await self.createWordItems(CreateWordItemsRequest(dictId: dictId, wordItems: wordItems), region: region, logger: logger, on: eventLoop)
+        let input = CreateWordItemsRequest(dictId: dictId, wordItems: wordItems)
+        return try await self.client.execute(action: "CreateWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -126,7 +126,8 @@ extension Vod {
     /// 修改播放器配置。
     @inlinable @discardableResult
     public func modifySuperPlayerConfig(name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfoForUpdate? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySuperPlayerConfigResponse> {
-        self.modifySuperPlayerConfig(ModifySuperPlayerConfigRequest(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment), region: region, logger: logger, on: eventLoop)
+        let input = ModifySuperPlayerConfigRequest(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment)
+        return self.client.execute(action: "ModifySuperPlayerConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改播放器配置
@@ -135,6 +136,7 @@ extension Vod {
     /// 修改播放器配置。
     @inlinable @discardableResult
     public func modifySuperPlayerConfig(name: String, subAppId: UInt64? = nil, audioVideoType: String? = nil, drmSwitch: String? = nil, adaptiveDynamicStreamingDefinition: UInt64? = nil, drmStreamingsInfo: DrmStreamingsInfoForUpdate? = nil, transcodeDefinition: UInt64? = nil, imageSpriteDefinition: UInt64? = nil, resolutionNames: [ResolutionNameInfo]? = nil, domain: String? = nil, scheme: String? = nil, comment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySuperPlayerConfigResponse {
-        try await self.modifySuperPlayerConfig(ModifySuperPlayerConfigRequest(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment), region: region, logger: logger, on: eventLoop)
+        let input = ModifySuperPlayerConfigRequest(name: name, subAppId: subAppId, audioVideoType: audioVideoType, drmSwitch: drmSwitch, adaptiveDynamicStreamingDefinition: adaptiveDynamicStreamingDefinition, drmStreamingsInfo: drmStreamingsInfo, transcodeDefinition: transcodeDefinition, imageSpriteDefinition: imageSpriteDefinition, resolutionNames: resolutionNames, domain: domain, scheme: scheme, comment: comment)
+        return try await self.client.execute(action: "ModifySuperPlayerConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

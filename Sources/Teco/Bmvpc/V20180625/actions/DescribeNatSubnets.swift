@@ -69,7 +69,8 @@ extension Bmvpc {
     /// 可获取NAT网关绑定的子网信息
     @inlinable
     public func describeNatSubnets(natId: String, vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeNatSubnetsResponse> {
-        self.describeNatSubnets(DescribeNatSubnetsRequest(natId: natId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNatSubnetsRequest(natId: natId, vpcId: vpcId)
+        return self.client.execute(action: "DescribeNatSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取NAT关联的子网信息
@@ -77,6 +78,7 @@ extension Bmvpc {
     /// 可获取NAT网关绑定的子网信息
     @inlinable
     public func describeNatSubnets(natId: String, vpcId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeNatSubnetsResponse {
-        try await self.describeNatSubnets(DescribeNatSubnetsRequest(natId: natId, vpcId: vpcId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeNatSubnetsRequest(natId: natId, vpcId: vpcId)
+        return try await self.client.execute(action: "DescribeNatSubnets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

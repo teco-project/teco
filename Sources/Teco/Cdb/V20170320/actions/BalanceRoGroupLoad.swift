@@ -60,7 +60,8 @@ extension Cdb {
     /// 本接口(BalanceRoGroupLoad)用于重新均衡 RO 组内实例的负载。注意，RO 组内 RO 实例会有一次数据库连接瞬断，请确保应用程序能重连数据库，谨慎操作。
     @inlinable @discardableResult
     public func balanceRoGroupLoad(roGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BalanceRoGroupLoadResponse> {
-        self.balanceRoGroupLoad(BalanceRoGroupLoadRequest(roGroupId: roGroupId), region: region, logger: logger, on: eventLoop)
+        let input = BalanceRoGroupLoadRequest(roGroupId: roGroupId)
+        return self.client.execute(action: "BalanceRoGroupLoad", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 均衡RO组内实例的负载
@@ -68,6 +69,7 @@ extension Cdb {
     /// 本接口(BalanceRoGroupLoad)用于重新均衡 RO 组内实例的负载。注意，RO 组内 RO 实例会有一次数据库连接瞬断，请确保应用程序能重连数据库，谨慎操作。
     @inlinable @discardableResult
     public func balanceRoGroupLoad(roGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BalanceRoGroupLoadResponse {
-        try await self.balanceRoGroupLoad(BalanceRoGroupLoadRequest(roGroupId: roGroupId), region: region, logger: logger, on: eventLoop)
+        let input = BalanceRoGroupLoadRequest(roGroupId: roGroupId)
+        return try await self.client.execute(action: "BalanceRoGroupLoad", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

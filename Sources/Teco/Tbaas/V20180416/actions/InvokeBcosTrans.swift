@@ -94,7 +94,8 @@ extension Tbaas {
     /// 执行Bcos交易，支持动态部署的合约
     @inlinable
     public func invokeBcosTrans(clusterId: String, groupId: Int64, contractAddress: String, abiInfo: String, funcName: String, signUserId: String, funcParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeBcosTransResponse> {
-        self.invokeBcosTrans(InvokeBcosTransRequest(clusterId: clusterId, groupId: groupId, contractAddress: contractAddress, abiInfo: abiInfo, funcName: funcName, signUserId: signUserId, funcParam: funcParam), region: region, logger: logger, on: eventLoop)
+        let input = InvokeBcosTransRequest(clusterId: clusterId, groupId: groupId, contractAddress: contractAddress, abiInfo: abiInfo, funcName: funcName, signUserId: signUserId, funcParam: funcParam)
+        return self.client.execute(action: "InvokeBcosTrans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行Bcos交易
@@ -102,6 +103,7 @@ extension Tbaas {
     /// 执行Bcos交易，支持动态部署的合约
     @inlinable
     public func invokeBcosTrans(clusterId: String, groupId: Int64, contractAddress: String, abiInfo: String, funcName: String, signUserId: String, funcParam: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeBcosTransResponse {
-        try await self.invokeBcosTrans(InvokeBcosTransRequest(clusterId: clusterId, groupId: groupId, contractAddress: contractAddress, abiInfo: abiInfo, funcName: funcName, signUserId: signUserId, funcParam: funcParam), region: region, logger: logger, on: eventLoop)
+        let input = InvokeBcosTransRequest(clusterId: clusterId, groupId: groupId, contractAddress: contractAddress, abiInfo: abiInfo, funcName: funcName, signUserId: signUserId, funcParam: funcParam)
+        return try await self.client.execute(action: "InvokeBcosTrans", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

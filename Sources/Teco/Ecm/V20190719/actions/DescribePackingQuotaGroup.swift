@@ -64,7 +64,8 @@ extension Ecm {
     /// 使用本接口获取某种机型在某些区域的装箱配额（当使用虚拟机型时，返回的是一组相互关联的装箱配额）。
     @inlinable
     public func describePackingQuotaGroup(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePackingQuotaGroupResponse> {
-        self.describePackingQuotaGroup(DescribePackingQuotaGroupRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePackingQuotaGroupRequest(filters: filters)
+        return self.client.execute(action: "DescribePackingQuotaGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取装箱配额组
@@ -72,6 +73,7 @@ extension Ecm {
     /// 使用本接口获取某种机型在某些区域的装箱配额（当使用虚拟机型时，返回的是一组相互关联的装箱配额）。
     @inlinable
     public func describePackingQuotaGroup(filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePackingQuotaGroupResponse {
-        try await self.describePackingQuotaGroup(DescribePackingQuotaGroupRequest(filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePackingQuotaGroupRequest(filters: filters)
+        return try await self.client.execute(action: "DescribePackingQuotaGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

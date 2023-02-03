@@ -69,12 +69,14 @@ extension Bm {
     /// 修改自定义脚本
     @inlinable @discardableResult
     public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyUserCmdResponse> {
-        self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), region: region, logger: logger, on: eventLoop)
+        let input = ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content)
+        return self.client.execute(action: "ModifyUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改自定义脚本
     @inlinable @discardableResult
     public func modifyUserCmd(cmdId: String, alias: String? = nil, osType: String? = nil, content: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserCmdResponse {
-        try await self.modifyUserCmd(ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content), region: region, logger: logger, on: eventLoop)
+        let input = ModifyUserCmdRequest(cmdId: cmdId, alias: alias, osType: osType, content: content)
+        return try await self.client.execute(action: "ModifyUserCmd", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

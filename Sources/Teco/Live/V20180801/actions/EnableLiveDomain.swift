@@ -60,7 +60,8 @@ extension Live {
     /// 启用状态为停用的直播域名。
     @inlinable @discardableResult
     public func enableLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableLiveDomainResponse> {
-        self.enableLiveDomain(EnableLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
+        let input = EnableLiveDomainRequest(domainName: domainName)
+        return self.client.execute(action: "EnableLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用域名
@@ -68,6 +69,7 @@ extension Live {
     /// 启用状态为停用的直播域名。
     @inlinable @discardableResult
     public func enableLiveDomain(domainName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableLiveDomainResponse {
-        try await self.enableLiveDomain(EnableLiveDomainRequest(domainName: domainName), region: region, logger: logger, on: eventLoop)
+        let input = EnableLiveDomainRequest(domainName: domainName)
+        return try await self.client.execute(action: "EnableLiveDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

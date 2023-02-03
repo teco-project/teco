@@ -62,12 +62,14 @@ extension Tdid {
     /// 查看公钥
     @inlinable
     public func getPublicKey(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPublicKeyResponse> {
-        self.getPublicKey(GetPublicKeyRequest(did: did), region: region, logger: logger, on: eventLoop)
+        let input = GetPublicKeyRequest(did: did)
+        return self.client.execute(action: "GetPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看公钥
     @inlinable
     public func getPublicKey(did: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPublicKeyResponse {
-        try await self.getPublicKey(GetPublicKeyRequest(did: did), region: region, logger: logger, on: eventLoop)
+        let input = GetPublicKeyRequest(did: did)
+        return try await self.client.execute(action: "GetPublicKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

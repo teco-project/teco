@@ -69,7 +69,8 @@ extension Eb {
     /// 用于创建事件集
     @inlinable
     public func createEventBus(eventBusName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateEventBusResponse> {
-        self.createEventBus(CreateEventBusRequest(eventBusName: eventBusName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateEventBusRequest(eventBusName: eventBusName, description: description)
+        return self.client.execute(action: "CreateEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建事件集
@@ -77,6 +78,7 @@ extension Eb {
     /// 用于创建事件集
     @inlinable
     public func createEventBus(eventBusName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateEventBusResponse {
-        try await self.createEventBus(CreateEventBusRequest(eventBusName: eventBusName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateEventBusRequest(eventBusName: eventBusName, description: description)
+        return try await self.client.execute(action: "CreateEventBus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

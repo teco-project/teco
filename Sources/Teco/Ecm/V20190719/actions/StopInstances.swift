@@ -80,7 +80,8 @@ extension Ecm {
     /// 支持强制关闭，强制关机的效果等同于关闭物理计算机的电源开关，强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
     @inlinable @discardableResult
     public func stopInstances(instanceIdSet: [String], forceStop: Bool? = nil, stopType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopInstancesResponse> {
-        self.stopInstances(StopInstancesRequest(instanceIdSet: instanceIdSet, forceStop: forceStop, stopType: stopType), region: region, logger: logger, on: eventLoop)
+        let input = StopInstancesRequest(instanceIdSet: instanceIdSet, forceStop: forceStop, stopType: stopType)
+        return self.client.execute(action: "StopInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例关机
@@ -90,6 +91,7 @@ extension Ecm {
     /// 支持强制关闭，强制关机的效果等同于关闭物理计算机的电源开关，强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
     @inlinable @discardableResult
     public func stopInstances(instanceIdSet: [String], forceStop: Bool? = nil, stopType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
-        try await self.stopInstances(StopInstancesRequest(instanceIdSet: instanceIdSet, forceStop: forceStop, stopType: stopType), region: region, logger: logger, on: eventLoop)
+        let input = StopInstancesRequest(instanceIdSet: instanceIdSet, forceStop: forceStop, stopType: stopType)
+        return try await self.client.execute(action: "StopInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

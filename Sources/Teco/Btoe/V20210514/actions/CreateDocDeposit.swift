@@ -99,7 +99,8 @@ extension Btoe {
     /// 用户通过本接口向BTOE写入待存证的文档原文件或下载URL，BTOE对文档原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。文档类型支持格式：doc、docx、xls、xlsx、ppt、pptx、 pdf、html、txt、md、csv；原文件上传大小不超过5 MB，下载URL文件大小不超过10 MB。
     @inlinable
     public func createDocDeposit(evidenceName: String, fileContent: String, fileName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocDepositResponse> {
-        self.createDocDeposit(CreateDocDepositRequest(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateDocDepositRequest(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
+        return self.client.execute(action: "CreateDocDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文档存证
@@ -107,6 +108,7 @@ extension Btoe {
     /// 用户通过本接口向BTOE写入待存证的文档原文件或下载URL，BTOE对文档原文件存储后，将其Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。文档类型支持格式：doc、docx、xls、xlsx、ppt、pptx、 pdf、html、txt、md、csv；原文件上传大小不超过5 MB，下载URL文件大小不超过10 MB。
     @inlinable
     public func createDocDeposit(evidenceName: String, fileContent: String, fileName: String, evidenceHash: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocDepositResponse {
-        try await self.createDocDeposit(CreateDocDepositRequest(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription), region: region, logger: logger, on: eventLoop)
+        let input = CreateDocDepositRequest(evidenceName: evidenceName, fileContent: fileContent, fileName: fileName, evidenceHash: evidenceHash, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
+        return try await self.client.execute(action: "CreateDocDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

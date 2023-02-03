@@ -64,12 +64,14 @@ extension Monitor {
     /// 修改告警接收人
     @inlinable @discardableResult
     public func modifyAlarmReceivers(groupId: Int64, module: String, receiverInfos: [ReceiverInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmReceiversResponse> {
-        self.modifyAlarmReceivers(ModifyAlarmReceiversRequest(groupId: groupId, module: module, receiverInfos: receiverInfos), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAlarmReceiversRequest(groupId: groupId, module: module, receiverInfos: receiverInfos)
+        return self.client.execute(action: "ModifyAlarmReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警接收人
     @inlinable @discardableResult
     public func modifyAlarmReceivers(groupId: Int64, module: String, receiverInfos: [ReceiverInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmReceiversResponse {
-        try await self.modifyAlarmReceivers(ModifyAlarmReceiversRequest(groupId: groupId, module: module, receiverInfos: receiverInfos), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAlarmReceiversRequest(groupId: groupId, module: module, receiverInfos: receiverInfos)
+        return try await self.client.execute(action: "ModifyAlarmReceivers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

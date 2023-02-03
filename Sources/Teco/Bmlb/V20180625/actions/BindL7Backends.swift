@@ -89,7 +89,8 @@ extension Bmlb {
     /// 绑定黑石物理服务器或半托管服务器到七层转发路径。
     @inlinable
     public func bindL7Backends(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, backendSet: [BindL7Backend], bindType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindL7BackendsResponse> {
-        self.bindL7Backends(BindL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, backendSet: backendSet, bindType: bindType), region: region, logger: logger, on: eventLoop)
+        let input = BindL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, backendSet: backendSet, bindType: bindType)
+        return self.client.execute(action: "BindL7Backends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定黑石物理服务器或半托管服务器到七层转发路径
@@ -97,6 +98,7 @@ extension Bmlb {
     /// 绑定黑石物理服务器或半托管服务器到七层转发路径。
     @inlinable
     public func bindL7Backends(loadBalancerId: String, listenerId: String, domainId: String, locationId: String, backendSet: [BindL7Backend], bindType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindL7BackendsResponse {
-        try await self.bindL7Backends(BindL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, backendSet: backendSet, bindType: bindType), region: region, logger: logger, on: eventLoop)
+        let input = BindL7BackendsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, domainId: domainId, locationId: locationId, backendSet: backendSet, bindType: bindType)
+        return try await self.client.execute(action: "BindL7Backends", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

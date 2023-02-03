@@ -83,12 +83,14 @@ extension Dlc {
     /// DMS元数据删除分区
     @inlinable
     public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DropDMSPartitionsResponse> {
-        self.dropDMSPartitions(DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData), region: region, logger: logger, on: eventLoop)
+        let input = DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData)
+        return self.client.execute(action: "DropDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// DMS元数据删除分区
     @inlinable
     public func dropDMSPartitions(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, name: String? = nil, values: [String]? = nil, deleteData: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DropDMSPartitionsResponse {
-        try await self.dropDMSPartitions(DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData), region: region, logger: logger, on: eventLoop)
+        let input = DropDMSPartitionsRequest(databaseName: databaseName, schemaName: schemaName, tableName: tableName, name: name, values: values, deleteData: deleteData)
+        return try await self.client.execute(action: "DropDMSPartitions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Hasim {
     /// 删除标签
     @inlinable @discardableResult
     public func deleteTag(tagID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteTagResponse> {
-        self.deleteTag(DeleteTagRequest(tagID: tagID), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTagRequest(tagID: tagID)
+        return self.client.execute(action: "DeleteTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除标签
     @inlinable @discardableResult
     public func deleteTag(tagID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteTagResponse {
-        try await self.deleteTag(DeleteTagRequest(tagID: tagID), region: region, logger: logger, on: eventLoop)
+        let input = DeleteTagRequest(tagID: tagID)
+        return try await self.client.execute(action: "DeleteTag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

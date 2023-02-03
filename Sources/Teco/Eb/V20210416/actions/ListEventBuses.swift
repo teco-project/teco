@@ -82,12 +82,14 @@ extension Eb {
     /// 获取事件集列表
     @inlinable
     public func listEventBuses(orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEventBusesResponse> {
-        self.listEventBuses(ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset)
+        return self.client.execute(action: "ListEventBuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取事件集列表
     @inlinable
     public func listEventBuses(orderBy: String? = nil, limit: Int64? = nil, order: String? = nil, filters: [Filter]? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEventBusesResponse {
-        try await self.listEventBuses(ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = ListEventBusesRequest(orderBy: orderBy, limit: limit, order: order, filters: filters, offset: offset)
+        return try await self.client.execute(action: "ListEventBuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

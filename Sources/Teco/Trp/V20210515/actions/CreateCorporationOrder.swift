@@ -105,7 +105,8 @@ extension Trp {
     /// 以订单方式新建企业信息/配额信息
     @inlinable
     public func createCorporationOrder(corpName: String, owner: String, codeQuota: UInt64, expireTime: String, amount: Int64, corpId: UInt64? = nil, contactPerson: String? = nil, contactNumber: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCorporationOrderResponse> {
-        self.createCorporationOrder(CreateCorporationOrderRequest(corpName: corpName, owner: owner, codeQuota: codeQuota, expireTime: expireTime, amount: amount, corpId: corpId, contactPerson: contactPerson, contactNumber: contactNumber, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateCorporationOrderRequest(corpName: corpName, owner: owner, codeQuota: codeQuota, expireTime: expireTime, amount: amount, corpId: corpId, contactPerson: contactPerson, contactNumber: contactNumber, remark: remark)
+        return self.client.execute(action: "CreateCorporationOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 以订单方式新建企业
@@ -113,6 +114,7 @@ extension Trp {
     /// 以订单方式新建企业信息/配额信息
     @inlinable
     public func createCorporationOrder(corpName: String, owner: String, codeQuota: UInt64, expireTime: String, amount: Int64, corpId: UInt64? = nil, contactPerson: String? = nil, contactNumber: String? = nil, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCorporationOrderResponse {
-        try await self.createCorporationOrder(CreateCorporationOrderRequest(corpName: corpName, owner: owner, codeQuota: codeQuota, expireTime: expireTime, amount: amount, corpId: corpId, contactPerson: contactPerson, contactNumber: contactNumber, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateCorporationOrderRequest(corpName: corpName, owner: owner, codeQuota: codeQuota, expireTime: expireTime, amount: amount, corpId: corpId, contactPerson: contactPerson, contactNumber: contactNumber, remark: remark)
+        return try await self.client.execute(action: "CreateCorporationOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

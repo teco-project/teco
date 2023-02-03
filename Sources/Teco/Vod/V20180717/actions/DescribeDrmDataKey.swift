@@ -75,7 +75,8 @@ extension Vod {
     /// 如果您是新接入点播加密的用户，不要使用该 API，请参考 [视频加密综述](https://cloud.tencent.com/document/product/266/45552) 使用推荐的加密方式。
     @inlinable
     public func describeDrmDataKey(edkList: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDrmDataKeyResponse> {
-        self.describeDrmDataKey(DescribeDrmDataKeyRequest(edkList: edkList, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDrmDataKeyRequest(edkList: edkList, subAppId: subAppId)
+        return self.client.execute(action: "DescribeDrmDataKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取视频解密密钥
@@ -85,6 +86,7 @@ extension Vod {
     /// 如果您是新接入点播加密的用户，不要使用该 API，请参考 [视频加密综述](https://cloud.tencent.com/document/product/266/45552) 使用推荐的加密方式。
     @inlinable
     public func describeDrmDataKey(edkList: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDrmDataKeyResponse {
-        try await self.describeDrmDataKey(DescribeDrmDataKeyRequest(edkList: edkList, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDrmDataKeyRequest(edkList: edkList, subAppId: subAppId)
+        return try await self.client.execute(action: "DescribeDrmDataKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

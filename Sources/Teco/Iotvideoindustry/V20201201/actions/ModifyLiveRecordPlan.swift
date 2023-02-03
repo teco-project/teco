@@ -64,12 +64,14 @@ extension Iotvideoindustry {
     /// 编辑直播录制计划
     @inlinable @discardableResult
     public func modifyLiveRecordPlan(planId: String, planName: String, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLiveRecordPlanResponse> {
-        self.modifyLiveRecordPlan(ModifyLiveRecordPlanRequest(planId: planId, planName: planName, templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLiveRecordPlanRequest(planId: planId, planName: planName, templateId: templateId)
+        return self.client.execute(action: "ModifyLiveRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑直播录制计划
     @inlinable @discardableResult
     public func modifyLiveRecordPlan(planId: String, planName: String, templateId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLiveRecordPlanResponse {
-        try await self.modifyLiveRecordPlan(ModifyLiveRecordPlanRequest(planId: planId, planName: planName, templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLiveRecordPlanRequest(planId: planId, planName: planName, templateId: templateId)
+        return try await self.client.execute(action: "ModifyLiveRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

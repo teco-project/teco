@@ -101,7 +101,8 @@ extension Cls {
     /// 获取投递规则信息列表
     @inlinable
     public func describeShippers(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShippersResponse> {
-        self.describeShippers(DescribeShippersRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeShippersRequest(filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeShippers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取投递规则
@@ -109,6 +110,7 @@ extension Cls {
     /// 获取投递规则信息列表
     @inlinable
     public func describeShippers(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShippersResponse {
-        try await self.describeShippers(DescribeShippersRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeShippersRequest(filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeShippers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

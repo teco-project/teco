@@ -130,7 +130,8 @@ extension Cpdp {
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
     @inlinable
     public func queryCloudChannelData(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryCloudChannelDataResponse> {
-        self.queryCloudChannelData(QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel), region: region, logger: logger, on: eventLoop)
+        let input = QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel)
+        return self.client.execute(action: "QueryCloudChannelData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 聚鑫V2-查询第三方渠道数据
@@ -138,6 +139,7 @@ extension Cpdp {
     /// 发起支付等渠道操作后，可以调用该接口查询渠道的数据。
     @inlinable
     public func queryCloudChannelData(midasAppId: String, outOrderNo: String, externalChannelDataType: String, midasEnvironment: String? = nil, subAppId: String? = nil, channelOrderId: String? = nil, channel: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryCloudChannelDataResponse {
-        try await self.queryCloudChannelData(QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel), region: region, logger: logger, on: eventLoop)
+        let input = QueryCloudChannelDataRequest(midasAppId: midasAppId, outOrderNo: outOrderNo, externalChannelDataType: externalChannelDataType, midasEnvironment: midasEnvironment, subAppId: subAppId, channelOrderId: channelOrderId, channel: channel)
+        return try await self.client.execute(action: "QueryCloudChannelData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

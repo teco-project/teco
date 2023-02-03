@@ -88,12 +88,14 @@ extension Privatedns {
     /// 添加私有域解析记录
     @inlinable
     public func createPrivateZoneRecord(zoneId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePrivateZoneRecordResponse> {
-        self.createPrivateZoneRecord(CreatePrivateZoneRecordRequest(zoneId: zoneId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrivateZoneRecordRequest(zoneId: zoneId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl)
+        return self.client.execute(action: "CreatePrivateZoneRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加私有域解析记录
     @inlinable
     public func createPrivateZoneRecord(zoneId: String, recordType: String, subDomain: String, recordValue: String, weight: Int64? = nil, mx: Int64? = nil, ttl: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePrivateZoneRecordResponse {
-        try await self.createPrivateZoneRecord(CreatePrivateZoneRecordRequest(zoneId: zoneId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl), region: region, logger: logger, on: eventLoop)
+        let input = CreatePrivateZoneRecordRequest(zoneId: zoneId, recordType: recordType, subDomain: subDomain, recordValue: recordValue, weight: weight, mx: mx, ttl: ttl)
+        return try await self.client.execute(action: "CreatePrivateZoneRecord", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -82,7 +82,8 @@ extension Apigateway {
     /// API 网关的服务创建后，需要发布到某个环境方生效后，使用者才能进行调用，此接口用于发布服务到环境，如 release 环境。
     @inlinable
     public func releaseService(serviceId: String, environmentName: String, releaseDesc: String, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseServiceResponse> {
-        self.releaseService(ReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, releaseDesc: releaseDesc, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, releaseDesc: releaseDesc, apiIds: apiIds)
+        return self.client.execute(action: "ReleaseService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布服务
@@ -91,6 +92,7 @@ extension Apigateway {
     /// API 网关的服务创建后，需要发布到某个环境方生效后，使用者才能进行调用，此接口用于发布服务到环境，如 release 环境。
     @inlinable
     public func releaseService(serviceId: String, environmentName: String, releaseDesc: String, apiIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseServiceResponse {
-        try await self.releaseService(ReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, releaseDesc: releaseDesc, apiIds: apiIds), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, releaseDesc: releaseDesc, apiIds: apiIds)
+        return try await self.client.execute(action: "ReleaseService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

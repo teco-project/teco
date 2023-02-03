@@ -145,7 +145,8 @@ extension Trtc {
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable @discardableResult
     public func startMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMCUMixTranscodeResponse> {
-        self.startMCUMixTranscode(StartMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), region: region, logger: logger, on: eventLoop)
+        let input = StartMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams)
+        return self.client.execute(action: "StartMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启动云端混流
@@ -173,6 +174,7 @@ extension Trtc {
     /// 3、客户端混流和服务端混流不能混用。
     @inlinable @discardableResult
     public func startMCUMixTranscode(sdkAppId: UInt64, roomId: UInt64, outputParams: OutputParams, encodeParams: EncodeParams, layoutParams: LayoutParams, publishCdnParams: PublishCdnParams? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMCUMixTranscodeResponse {
-        try await self.startMCUMixTranscode(StartMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams), region: region, logger: logger, on: eventLoop)
+        let input = StartMCUMixTranscodeRequest(sdkAppId: sdkAppId, roomId: roomId, outputParams: outputParams, encodeParams: encodeParams, layoutParams: layoutParams, publishCdnParams: publishCdnParams)
+        return try await self.client.execute(action: "StartMCUMixTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

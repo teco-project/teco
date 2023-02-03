@@ -59,12 +59,14 @@ extension Iotvideo {
     /// 获取数据转发列表
     @inlinable
     public func describeDataForwardList(productIds: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataForwardListResponse> {
-        self.describeDataForwardList(DescribeDataForwardListRequest(productIds: productIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDataForwardListRequest(productIds: productIds)
+        return self.client.execute(action: "DescribeDataForwardList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取数据转发列表
     @inlinable
     public func describeDataForwardList(productIds: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataForwardListResponse {
-        try await self.describeDataForwardList(DescribeDataForwardListRequest(productIds: productIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDataForwardListRequest(productIds: productIds)
+        return try await self.client.execute(action: "DescribeDataForwardList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -97,7 +97,8 @@ extension Tke {
     /// 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
     @inlinable
     public func describeClusterEndpoints(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterEndpointsResponse> {
-        self.describeClusterEndpoints(DescribeClusterEndpointsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterEndpointsRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribeClusterEndpoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群访问地址
@@ -105,6 +106,7 @@ extension Tke {
     /// 获取集群的访问地址，包括内网地址，外网地址，外网域名，外网访问安全策略
     @inlinable
     public func describeClusterEndpoints(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterEndpointsResponse {
-        try await self.describeClusterEndpoints(DescribeClusterEndpointsRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterEndpointsRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeClusterEndpoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

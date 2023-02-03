@@ -68,7 +68,8 @@ extension Monitor {
     /// 云监控支持多种类型的监控，此接口列出支持的所有类型
     @inlinable
     public func describeMonitorTypes(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonitorTypesResponse> {
-        self.describeMonitorTypes(DescribeMonitorTypesRequest(module: module), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMonitorTypesRequest(module: module)
+        return self.client.execute(action: "DescribeMonitorTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询监控类型
@@ -76,6 +77,7 @@ extension Monitor {
     /// 云监控支持多种类型的监控，此接口列出支持的所有类型
     @inlinable
     public func describeMonitorTypes(module: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonitorTypesResponse {
-        try await self.describeMonitorTypes(DescribeMonitorTypesRequest(module: module), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMonitorTypesRequest(module: module)
+        return try await self.client.execute(action: "DescribeMonitorTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -74,7 +74,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(fleetId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
-        self.deleteScalingPolicy(DeleteScalingPolicyRequest(fleetId: fleetId, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DeleteScalingPolicyRequest(fleetId: fleetId, name: name)
+        return self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除扩缩容配置
@@ -85,6 +86,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(fleetId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
-        try await self.deleteScalingPolicy(DeleteScalingPolicyRequest(fleetId: fleetId, name: name), region: region, logger: logger, on: eventLoop)
+        let input = DeleteScalingPolicyRequest(fleetId: fleetId, name: name)
+        return try await self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

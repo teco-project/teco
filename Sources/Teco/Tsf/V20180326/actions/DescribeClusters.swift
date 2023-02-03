@@ -89,12 +89,14 @@ extension Tsf {
     /// 获取集群列表
     @inlinable
     public func describeClusters(searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterType: String? = nil, clusterIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClustersResponse> {
-        self.describeClusters(DescribeClustersRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterType: clusterType, clusterIdList: clusterIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClustersRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterType: clusterType, clusterIdList: clusterIdList)
+        return self.client.execute(action: "DescribeClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取集群列表
     @inlinable
     public func describeClusters(searchWord: String? = nil, orderBy: String? = nil, orderType: Int64? = nil, offset: Int64? = nil, limit: Int64? = nil, clusterType: String? = nil, clusterIdList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClustersResponse {
-        try await self.describeClusters(DescribeClustersRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterType: clusterType, clusterIdList: clusterIdList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClustersRequest(searchWord: searchWord, orderBy: orderBy, orderType: orderType, offset: offset, limit: limit, clusterType: clusterType, clusterIdList: clusterIdList)
+        return try await self.client.execute(action: "DescribeClusters", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

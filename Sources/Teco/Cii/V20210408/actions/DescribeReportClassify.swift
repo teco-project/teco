@@ -71,7 +71,8 @@ extension Cii {
     /// 辅助用户对批量报告自动分类
     @inlinable
     public func describeReportClassify(serviceType: String, fileList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReportClassifyResponse> {
-        self.describeReportClassify(DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList)
+        return self.client.execute(action: "DescribeReportClassify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 报告自动分类
@@ -79,6 +80,7 @@ extension Cii {
     /// 辅助用户对批量报告自动分类
     @inlinable
     public func describeReportClassify(serviceType: String, fileList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReportClassifyResponse {
-        try await self.describeReportClassify(DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReportClassifyRequest(serviceType: serviceType, fileList: fileList)
+        return try await self.client.execute(action: "DescribeReportClassify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

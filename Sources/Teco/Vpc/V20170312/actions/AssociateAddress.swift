@@ -105,7 +105,8 @@ extension Vpc {
     /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
     @inlinable
     public func associateAddress(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssociateAddressResponse> {
-        self.associateAddress(AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
+        let input = AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection)
+        return self.client.execute(action: "AssociateAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定弹性公网IP
@@ -120,6 +121,7 @@ extension Vpc {
     /// * 只有状态为 UNBIND 的 EIP 才能够被绑定。
     @inlinable
     public func associateAddress(addressId: String, instanceId: String? = nil, networkInterfaceId: String? = nil, privateIpAddress: String? = nil, eipDirectConnection: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateAddressResponse {
-        try await self.associateAddress(AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection), region: region, logger: logger, on: eventLoop)
+        let input = AssociateAddressRequest(addressId: addressId, instanceId: instanceId, networkInterfaceId: networkInterfaceId, privateIpAddress: privateIpAddress, eipDirectConnection: eipDirectConnection)
+        return try await self.client.execute(action: "AssociateAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

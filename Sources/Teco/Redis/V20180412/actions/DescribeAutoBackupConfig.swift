@@ -80,7 +80,8 @@ extension Redis {
     /// 获取备份配置
     @inlinable
     public func describeAutoBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAutoBackupConfigResponse> {
-        self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoBackupConfigRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取自动备份配置
@@ -88,6 +89,7 @@ extension Redis {
     /// 获取备份配置
     @inlinable
     public func describeAutoBackupConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoBackupConfigResponse {
-        try await self.describeAutoBackupConfig(DescribeAutoBackupConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAutoBackupConfigRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeAutoBackupConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

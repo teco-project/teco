@@ -102,12 +102,14 @@ extension Dasb {
     /// 查询访问权限列表
     @inlinable
     public func describeAcls(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAclsResponse> {
-        self.describeAcls(DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId)
+        return self.client.execute(action: "DescribeAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询访问权限列表
     @inlinable
     public func describeAcls(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, exact: Bool? = nil, authorizedUserIdSet: [UInt64]? = nil, authorizedDeviceIdSet: [UInt64]? = nil, status: UInt64? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAclsResponse {
-        try await self.describeAcls(DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAclsRequest(idSet: idSet, name: name, offset: offset, limit: limit, exact: exact, authorizedUserIdSet: authorizedUserIdSet, authorizedDeviceIdSet: authorizedDeviceIdSet, status: status, departmentId: departmentId)
+        return try await self.client.execute(action: "DescribeAcls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

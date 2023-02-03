@@ -74,12 +74,14 @@ extension Iotvideo {
     /// 编辑版本描述信息
     @inlinable @discardableResult
     public func modifyVerContent(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVerContentResponse> {
-        self.modifyVerContent(ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents)
+        return self.client.execute(action: "ModifyVerContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑版本描述信息
     @inlinable @discardableResult
     public func modifyVerContent(productId: String, otaVersion: String, operator: String? = nil, remark: String? = nil, contents: Contents? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVerContentResponse {
-        try await self.modifyVerContent(ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVerContentRequest(productId: productId, otaVersion: otaVersion, operator: `operator`, remark: remark, contents: contents)
+        return try await self.client.execute(action: "ModifyVerContent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

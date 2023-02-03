@@ -97,12 +97,14 @@ extension Dasb {
     /// 查询资产组成员列表
     @inlinable
     public func describeDeviceGroupMembers(id: UInt64, bound: Bool, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, kind: UInt64? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceGroupMembersResponse> {
-        self.describeDeviceGroupMembers(DescribeDeviceGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, kind: kind, departmentId: departmentId, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, kind: kind, departmentId: departmentId, tagFilters: tagFilters)
+        return self.client.execute(action: "DescribeDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资产组成员列表
     @inlinable
     public func describeDeviceGroupMembers(id: UInt64, bound: Bool, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, kind: UInt64? = nil, departmentId: String? = nil, tagFilters: [TagFilter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupMembersResponse {
-        try await self.describeDeviceGroupMembers(DescribeDeviceGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, kind: kind, departmentId: departmentId, tagFilters: tagFilters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceGroupMembersRequest(id: id, bound: bound, name: name, offset: offset, limit: limit, kind: kind, departmentId: departmentId, tagFilters: tagFilters)
+        return try await self.client.execute(action: "DescribeDeviceGroupMembers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

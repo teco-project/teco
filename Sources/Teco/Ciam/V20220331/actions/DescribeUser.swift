@@ -95,7 +95,8 @@ extension Ciam {
     /// 多条件查询用户信息
     @inlinable
     public func describeUser(userStoreId: String, pageable: Pageable, filters: [QueryUserFilter]? = nil, original: Bool? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUserResponse> {
-        self.describeUser(DescribeUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original, sort: sort), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original, sort: sort)
+        return self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户信息
@@ -103,6 +104,7 @@ extension Ciam {
     /// 多条件查询用户信息
     @inlinable
     public func describeUser(userStoreId: String, pageable: Pageable, filters: [QueryUserFilter]? = nil, original: Bool? = nil, sort: Sort? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUserResponse {
-        try await self.describeUser(DescribeUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original, sort: sort), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUserRequest(userStoreId: userStoreId, pageable: pageable, filters: filters, original: original, sort: sort)
+        return try await self.client.execute(action: "DescribeUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

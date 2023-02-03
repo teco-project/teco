@@ -65,7 +65,8 @@ extension Eb {
     /// （已废弃）用于Event事件投递
     @inlinable @discardableResult
     public func publishEvent(eventList: [Event], eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishEventResponse> {
-        self.publishEvent(PublishEventRequest(eventList: eventList, eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
+        let input = PublishEventRequest(eventList: eventList, eventBusId: eventBusId)
+        return self.client.execute(action: "PublishEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Event事件投递
@@ -73,6 +74,7 @@ extension Eb {
     /// （已废弃）用于Event事件投递
     @inlinable @discardableResult
     public func publishEvent(eventList: [Event], eventBusId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishEventResponse {
-        try await self.publishEvent(PublishEventRequest(eventList: eventList, eventBusId: eventBusId), region: region, logger: logger, on: eventLoop)
+        let input = PublishEventRequest(eventList: eventList, eventBusId: eventBusId)
+        return try await self.client.execute(action: "PublishEvent", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

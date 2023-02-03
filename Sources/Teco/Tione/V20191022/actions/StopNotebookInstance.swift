@@ -54,12 +54,14 @@ extension Tione {
     /// 停止Notebook实例
     @inlinable @discardableResult
     public func stopNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StopNotebookInstanceResponse> {
-        self.stopNotebookInstance(StopNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
+        let input = StopNotebookInstanceRequest(notebookInstanceName: notebookInstanceName)
+        return self.client.execute(action: "StopNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停止Notebook实例
     @inlinable @discardableResult
     public func stopNotebookInstance(notebookInstanceName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopNotebookInstanceResponse {
-        try await self.stopNotebookInstance(StopNotebookInstanceRequest(notebookInstanceName: notebookInstanceName), region: region, logger: logger, on: eventLoop)
+        let input = StopNotebookInstanceRequest(notebookInstanceName: notebookInstanceName)
+        return try await self.client.execute(action: "StopNotebookInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

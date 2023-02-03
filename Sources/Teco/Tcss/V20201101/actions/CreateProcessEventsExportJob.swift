@@ -83,12 +83,14 @@ extension Tcss {
     /// 创建异常进程事件导出异步任务
     @inlinable
     public func createProcessEventsExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProcessEventsExportJobResponse> {
-        self.createProcessEventsExportJob(CreateProcessEventsExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
+        let input = CreateProcessEventsExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField)
+        return self.client.execute(action: "CreateProcessEventsExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建异常进程事件导出异步任务
     @inlinable
     public func createProcessEventsExportJob(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, order: String? = nil, by: String? = nil, exportField: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProcessEventsExportJobResponse {
-        try await self.createProcessEventsExportJob(CreateProcessEventsExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField), region: region, logger: logger, on: eventLoop)
+        let input = CreateProcessEventsExportJobRequest(limit: limit, offset: offset, filters: filters, order: order, by: by, exportField: exportField)
+        return try await self.client.execute(action: "CreateProcessEventsExportJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

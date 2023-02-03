@@ -86,12 +86,14 @@ extension Tcss {
     /// 查询导出任务管理列表
     @inlinable
     public func describeExportJobManageList(filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExportJobManageListResponse> {
-        self.describeExportJobManageList(DescribeExportJobManageListRequest(filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExportJobManageListRequest(filters: filters, offset: offset, limit: limit, order: order, by: by)
+        return self.client.execute(action: "DescribeExportJobManageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询导出任务管理列表
     @inlinable
     public func describeExportJobManageList(filters: [RunTimeFilters]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExportJobManageListResponse {
-        try await self.describeExportJobManageList(DescribeExportJobManageListRequest(filters: filters, offset: offset, limit: limit, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExportJobManageListRequest(filters: filters, offset: offset, limit: limit, order: order, by: by)
+        return try await self.client.execute(action: "DescribeExportJobManageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

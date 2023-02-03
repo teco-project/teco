@@ -91,7 +91,8 @@ extension Batch {
     /// 用于查询若干个作业的概览信息
     @inlinable
     public func describeJobs(jobIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeJobsResponse> {
-        self.describeJobs(DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看作业列表
@@ -99,6 +100,7 @@ extension Batch {
     /// 用于查询若干个作业的概览信息
     @inlinable
     public func describeJobs(jobIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeJobsResponse {
-        try await self.describeJobs(DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeJobsRequest(jobIds: jobIds, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

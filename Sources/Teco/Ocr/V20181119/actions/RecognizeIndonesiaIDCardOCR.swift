@@ -143,12 +143,14 @@ extension Ocr {
     /// 印尼身份证识别
     @inlinable
     public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeIndonesiaIDCardOCRResponse> {
-        self.recognizeIndonesiaIDCardOCR(RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), region: region, logger: logger, on: eventLoop)
+        let input = RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene)
+        return self.client.execute(action: "RecognizeIndonesiaIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 印尼身份证识别
     @inlinable
     public func recognizeIndonesiaIDCardOCR(imageBase64: String? = nil, imageUrl: String? = nil, returnHeadImage: Bool? = nil, scene: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeIndonesiaIDCardOCRResponse {
-        try await self.recognizeIndonesiaIDCardOCR(RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene), region: region, logger: logger, on: eventLoop)
+        let input = RecognizeIndonesiaIDCardOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, returnHeadImage: returnHeadImage, scene: scene)
+        return try await self.client.execute(action: "RecognizeIndonesiaIDCardOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

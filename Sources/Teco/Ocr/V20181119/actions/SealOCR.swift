@@ -98,7 +98,8 @@ extension Ocr {
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SealOCRResponse> {
-        self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
+        return self.client.execute(action: "SealOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 印章识别
@@ -108,6 +109,7 @@ extension Ocr {
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func sealOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SealOCRResponse {
-        try await self.sealOCR(SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = SealOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
+        return try await self.client.execute(action: "SealOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

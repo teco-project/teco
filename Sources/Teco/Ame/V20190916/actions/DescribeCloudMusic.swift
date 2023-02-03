@@ -96,7 +96,8 @@ extension Ame {
     /// 获取云音乐播放信息接口
     @inlinable
     public func describeCloudMusic(musicId: String, musicType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudMusicResponse> {
-        self.describeCloudMusic(DescribeCloudMusicRequest(musicId: musicId, musicType: musicType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudMusicRequest(musicId: musicId, musicType: musicType)
+        return self.client.execute(action: "DescribeCloudMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取云音乐播放信息
@@ -104,6 +105,7 @@ extension Ame {
     /// 获取云音乐播放信息接口
     @inlinable
     public func describeCloudMusic(musicId: String, musicType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudMusicResponse {
-        try await self.describeCloudMusic(DescribeCloudMusicRequest(musicId: musicId, musicType: musicType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudMusicRequest(musicId: musicId, musicType: musicType)
+        return try await self.client.execute(action: "DescribeCloudMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -108,12 +108,14 @@ extension Dayu {
     /// 添加CC防护的访问频率控制规则
     @inlinable
     public func createCCFrequencyRules(business: String, id: String, ruleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCFrequencyRulesResponse> {
-        self.createCCFrequencyRules(CreateCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), region: region, logger: logger, on: eventLoop)
+        let input = CreateCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie)
+        return self.client.execute(action: "CreateCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加CC防护的访问频率控制规则
     @inlinable
     public func createCCFrequencyRules(business: String, id: String, ruleId: String, mode: String, period: UInt64, reqNumber: UInt64, act: String, exeDuration: UInt64, uri: String? = nil, userAgent: String? = nil, cookie: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCFrequencyRulesResponse {
-        try await self.createCCFrequencyRules(CreateCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie), region: region, logger: logger, on: eventLoop)
+        let input = CreateCCFrequencyRulesRequest(business: business, id: id, ruleId: ruleId, mode: mode, period: period, reqNumber: reqNumber, act: act, exeDuration: exeDuration, uri: uri, userAgent: userAgent, cookie: cookie)
+        return try await self.client.execute(action: "CreateCCFrequencyRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

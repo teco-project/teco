@@ -72,7 +72,8 @@ extension Cms {
     /// 删除图片样本库，支持批量删除，一次提交不超过20个。
     @inlinable
     public func deleteFileSample(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSampleResponse> {
-        self.deleteFileSample(DeleteFileSampleRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteFileSampleRequest(ids: ids)
+        return self.client.execute(action: "DeleteFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除图片样本库
@@ -82,6 +83,7 @@ extension Cms {
     /// 删除图片样本库，支持批量删除，一次提交不超过20个。
     @inlinable
     public func deleteFileSample(ids: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSampleResponse {
-        try await self.deleteFileSample(DeleteFileSampleRequest(ids: ids), region: region, logger: logger, on: eventLoop)
+        let input = DeleteFileSampleRequest(ids: ids)
+        return try await self.client.execute(action: "DeleteFileSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,7 +78,8 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func manualRewrite(loadBalancerId: String, sourceListenerId: String, targetListenerId: String, rewriteInfos: [RewriteLocationMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ManualRewriteResponse> {
-        self.manualRewrite(ManualRewriteRequest(loadBalancerId: loadBalancerId, sourceListenerId: sourceListenerId, targetListenerId: targetListenerId, rewriteInfos: rewriteInfos), region: region, logger: logger, on: eventLoop)
+        let input = ManualRewriteRequest(loadBalancerId: loadBalancerId, sourceListenerId: sourceListenerId, targetListenerId: targetListenerId, rewriteInfos: rewriteInfos)
+        return self.client.execute(action: "ManualRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 手动添加负载均衡转发规则的重定向关系
@@ -87,6 +88,7 @@ extension Clb {
     /// 本接口为异步接口，本接口返回成功后需以返回的RequestID为入参，调用DescribeTaskStatus接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func manualRewrite(loadBalancerId: String, sourceListenerId: String, targetListenerId: String, rewriteInfos: [RewriteLocationMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ManualRewriteResponse {
-        try await self.manualRewrite(ManualRewriteRequest(loadBalancerId: loadBalancerId, sourceListenerId: sourceListenerId, targetListenerId: targetListenerId, rewriteInfos: rewriteInfos), region: region, logger: logger, on: eventLoop)
+        let input = ManualRewriteRequest(loadBalancerId: loadBalancerId, sourceListenerId: sourceListenerId, targetListenerId: targetListenerId, rewriteInfos: rewriteInfos)
+        return try await self.client.execute(action: "ManualRewrite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

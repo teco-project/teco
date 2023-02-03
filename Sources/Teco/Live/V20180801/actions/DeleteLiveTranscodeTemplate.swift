@@ -62,7 +62,8 @@ extension Live {
     /// 删除转码模板。
     @inlinable @discardableResult
     public func deleteLiveTranscodeTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveTranscodeTemplateResponse> {
-        self.deleteLiveTranscodeTemplate(DeleteLiveTranscodeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLiveTranscodeTemplateRequest(templateId: templateId)
+        return self.client.execute(action: "DeleteLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除转码模板
@@ -70,6 +71,7 @@ extension Live {
     /// 删除转码模板。
     @inlinable @discardableResult
     public func deleteLiveTranscodeTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveTranscodeTemplateResponse {
-        try await self.deleteLiveTranscodeTemplate(DeleteLiveTranscodeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLiveTranscodeTemplateRequest(templateId: templateId)
+        return try await self.client.execute(action: "DeleteLiveTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

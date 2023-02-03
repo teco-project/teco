@@ -106,7 +106,8 @@ extension Tci {
     /// 接口获取生成结果。
     @inlinable
     public func submitDoubleVideoHighlights(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitDoubleVideoHighlightsResponse> {
-        self.submitDoubleVideoHighlights(SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent), region: region, logger: logger, on: eventLoop)
+        let input = SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent)
+        return self.client.execute(action: "SubmitDoubleVideoHighlights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起双路视频生成精彩集锦接口
@@ -115,6 +116,7 @@ extension Tci {
     /// 接口获取生成结果。
     @inlinable
     public func submitDoubleVideoHighlights(fileContent: String, libIds: [String], functions: DoubleVideoFunction? = nil, personInfoList: [PersonInfo]? = nil, frameInterval: Int64? = nil, personIds: [String]? = nil, simThreshold: Float? = nil, teacherFileContent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitDoubleVideoHighlightsResponse {
-        try await self.submitDoubleVideoHighlights(SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent), region: region, logger: logger, on: eventLoop)
+        let input = SubmitDoubleVideoHighlightsRequest(fileContent: fileContent, libIds: libIds, functions: functions, personInfoList: personInfoList, frameInterval: frameInterval, personIds: personIds, simThreshold: simThreshold, teacherFileContent: teacherFileContent)
+        return try await self.client.execute(action: "SubmitDoubleVideoHighlights", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

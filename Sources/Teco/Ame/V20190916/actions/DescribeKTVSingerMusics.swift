@@ -78,7 +78,8 @@ extension Ame {
     /// 根据歌手id，返回该歌手下歌曲列表。
     @inlinable
     public func describeKTVSingerMusics(singerId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKTVSingerMusicsResponse> {
-        self.describeKTVSingerMusics(DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeKTVSingerMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取歌手下歌曲列表
@@ -86,6 +87,7 @@ extension Ame {
     /// 根据歌手id，返回该歌手下歌曲列表。
     @inlinable
     public func describeKTVSingerMusics(singerId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVSingerMusicsResponse {
-        try await self.describeKTVSingerMusics(DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKTVSingerMusicsRequest(singerId: singerId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeKTVSingerMusics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

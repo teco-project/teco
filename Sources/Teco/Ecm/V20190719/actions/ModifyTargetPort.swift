@@ -75,7 +75,8 @@ extension Ecm {
     /// 修改监听器绑定的后端机器的端口。
     @inlinable @discardableResult
     public func modifyTargetPort(loadBalancerId: String, listenerId: String, targets: [Target], newPort: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTargetPortResponse> {
-        self.modifyTargetPort(ModifyTargetPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, newPort: newPort), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTargetPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, newPort: newPort)
+        return self.client.execute(action: "ModifyTargetPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改监听器绑定的后端机器的端口
@@ -83,6 +84,7 @@ extension Ecm {
     /// 修改监听器绑定的后端机器的端口。
     @inlinable @discardableResult
     public func modifyTargetPort(loadBalancerId: String, listenerId: String, targets: [Target], newPort: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetPortResponse {
-        try await self.modifyTargetPort(ModifyTargetPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, newPort: newPort), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTargetPortRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, targets: targets, newPort: newPort)
+        return try await self.client.execute(action: "ModifyTargetPort", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

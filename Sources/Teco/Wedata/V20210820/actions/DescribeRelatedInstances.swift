@@ -83,12 +83,14 @@ extension Wedata {
     /// 查询任务实例的关联实例列表
     @inlinable
     public func describeRelatedInstances(projectId: String, curRunDate: String, taskId: Int64, depth: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRelatedInstancesResponse> {
-        self.describeRelatedInstances(DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize)
+        return self.client.execute(action: "DescribeRelatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务实例的关联实例列表
     @inlinable
     public func describeRelatedInstances(projectId: String, curRunDate: String, taskId: Int64, depth: Int64, pageNumber: Int64? = nil, pageSize: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRelatedInstancesResponse {
-        try await self.describeRelatedInstances(DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRelatedInstancesRequest(projectId: projectId, curRunDate: curRunDate, taskId: taskId, depth: depth, pageNumber: pageNumber, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeRelatedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

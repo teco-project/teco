@@ -117,7 +117,8 @@ extension Ess {
     /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
     @inlinable
     public func describeFlowTemplates(operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowTemplatesResponse> {
-        self.describeFlowTemplates(DescribeFlowTemplatesRequest(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowTemplatesRequest(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType)
+        return self.client.execute(action: "DescribeFlowTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询模板
@@ -125,6 +126,7 @@ extension Ess {
     /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
     @inlinable
     public func describeFlowTemplates(operator: UserInfo, organization: OrganizationInfo? = nil, agent: Agent? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, applicationId: String? = nil, isChannel: Bool? = nil, generateSource: UInt64? = nil, contentType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowTemplatesResponse {
-        try await self.describeFlowTemplates(DescribeFlowTemplatesRequest(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowTemplatesRequest(operator: `operator`, organization: organization, agent: agent, offset: offset, limit: limit, filters: filters, applicationId: applicationId, isChannel: isChannel, generateSource: generateSource, contentType: contentType)
+        return try await self.client.execute(action: "DescribeFlowTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

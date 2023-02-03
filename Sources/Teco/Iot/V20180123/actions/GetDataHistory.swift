@@ -111,7 +111,8 @@ extension Iot {
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
     @inlinable
     public func getDataHistory(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDataHistoryResponse> {
-        self.getDataHistory(GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId), region: region, logger: logger, on: eventLoop)
+        let input = GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId)
+        return self.client.execute(action: "GetDataHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取设备历史数据
@@ -119,6 +120,7 @@ extension Iot {
     /// 批量获取设备某一段时间范围的设备上报数据。该接口适用于使用高级版类型的产品
     @inlinable
     public func getDataHistory(productId: String, deviceNames: [String], startTime: Date, endTime: Date, size: UInt64? = nil, order: String? = nil, scrollId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDataHistoryResponse {
-        try await self.getDataHistory(GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId), region: region, logger: logger, on: eventLoop)
+        let input = GetDataHistoryRequest(productId: productId, deviceNames: deviceNames, startTime: startTime, endTime: endTime, size: size, order: order, scrollId: scrollId)
+        return try await self.client.execute(action: "GetDataHistory", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

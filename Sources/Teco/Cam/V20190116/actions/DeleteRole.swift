@@ -65,7 +65,8 @@ extension Cam {
     /// 本接口（DeleteRole）用于删除指定角色。
     @inlinable @discardableResult
     public func deleteRole(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteRoleResponse> {
-        self.deleteRole(DeleteRoleRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRoleRequest(roleId: roleId, roleName: roleName)
+        return self.client.execute(action: "DeleteRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除角色
@@ -73,6 +74,7 @@ extension Cam {
     /// 本接口（DeleteRole）用于删除指定角色。
     @inlinable @discardableResult
     public func deleteRole(roleId: String? = nil, roleName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRoleResponse {
-        try await self.deleteRole(DeleteRoleRequest(roleId: roleId, roleName: roleName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteRoleRequest(roleId: roleId, roleName: roleName)
+        return try await self.client.execute(action: "DeleteRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

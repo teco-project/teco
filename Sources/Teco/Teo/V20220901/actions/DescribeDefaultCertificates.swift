@@ -73,12 +73,14 @@ extension Teo {
     /// 查询默认证书列表
     @inlinable
     public func describeDefaultCertificates(filters: [Filter], offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDefaultCertificatesResponse> {
-        self.describeDefaultCertificates(DescribeDefaultCertificatesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDefaultCertificatesRequest(filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeDefaultCertificates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询默认证书列表
     @inlinable
     public func describeDefaultCertificates(filters: [Filter], offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDefaultCertificatesResponse {
-        try await self.describeDefaultCertificates(DescribeDefaultCertificatesRequest(filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDefaultCertificatesRequest(filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeDefaultCertificates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

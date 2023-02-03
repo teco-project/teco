@@ -90,7 +90,8 @@ extension Apigateway {
     /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
     @inlinable
     public func describeIPStrategy(serviceId: String, strategyId: String, environmentName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIPStrategyResponse> {
-        self.describeIPStrategy(DescribeIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询IP策略详情
@@ -98,6 +99,7 @@ extension Apigateway {
     /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
     @inlinable
     public func describeIPStrategy(serviceId: String, strategyId: String, environmentName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIPStrategyResponse {
-        try await self.describeIPStrategy(DescribeIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIPStrategyRequest(serviceId: serviceId, strategyId: strategyId, environmentName: environmentName, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeIPStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

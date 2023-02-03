@@ -62,12 +62,14 @@ extension Cwp {
     /// 导出本次漏洞检测Excel
     @inlinable
     public func exportVulDetectionExcel(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ExportVulDetectionExcelResponse> {
-        self.exportVulDetectionExcel(ExportVulDetectionExcelRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = ExportVulDetectionExcelRequest(taskId: taskId)
+        return self.client.execute(action: "ExportVulDetectionExcel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导出本次漏洞检测Excel
     @inlinable
     public func exportVulDetectionExcel(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ExportVulDetectionExcelResponse {
-        try await self.exportVulDetectionExcel(ExportVulDetectionExcelRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = ExportVulDetectionExcelRequest(taskId: taskId)
+        return try await self.client.execute(action: "ExportVulDetectionExcel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

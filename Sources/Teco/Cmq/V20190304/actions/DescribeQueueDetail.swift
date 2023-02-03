@@ -82,12 +82,14 @@ extension Cmq {
     /// 枚举队列
     @inlinable
     public func describeQueueDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeQueueDetailResponse> {
-        self.describeQueueDetail(DescribeQueueDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, queueName: queueName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQueueDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, queueName: queueName)
+        return self.client.execute(action: "DescribeQueueDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 枚举队列
     @inlinable
     public func describeQueueDetail(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, tagKey: String? = nil, queueName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeQueueDetailResponse {
-        try await self.describeQueueDetail(DescribeQueueDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, queueName: queueName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeQueueDetailRequest(offset: offset, limit: limit, filters: filters, tagKey: tagKey, queueName: queueName)
+        return try await self.client.execute(action: "DescribeQueueDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

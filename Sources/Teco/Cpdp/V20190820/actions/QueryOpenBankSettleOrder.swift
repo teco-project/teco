@@ -87,12 +87,14 @@ extension Cpdp {
     /// 云企付-结算单查询结果
     @inlinable
     public func queryOpenBankSettleOrder(channelMerchantId: String, channelSubMerchantId: String? = nil, outSettleId: String? = nil, channelSettleId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSettleOrderResponse> {
-        self.queryOpenBankSettleOrder(QueryOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, outSettleId: outSettleId, channelSettleId: channelSettleId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, outSettleId: outSettleId, channelSettleId: channelSettleId, environment: environment)
+        return self.client.execute(action: "QueryOpenBankSettleOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-结算单查询结果
     @inlinable
     public func queryOpenBankSettleOrder(channelMerchantId: String, channelSubMerchantId: String? = nil, outSettleId: String? = nil, channelSettleId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSettleOrderResponse {
-        try await self.queryOpenBankSettleOrder(QueryOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, outSettleId: outSettleId, channelSettleId: channelSettleId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankSettleOrderRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, outSettleId: outSettleId, channelSettleId: channelSettleId, environment: environment)
+        return try await self.client.execute(action: "QueryOpenBankSettleOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

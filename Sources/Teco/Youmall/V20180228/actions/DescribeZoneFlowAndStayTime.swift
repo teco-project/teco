@@ -81,12 +81,14 @@ extension Youmall {
     /// 获取区域人流和停留时间
     @inlinable
     public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeZoneFlowAndStayTimeResponse> {
-        self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate)
+        return self.client.execute(action: "DescribeZoneFlowAndStayTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取区域人流和停留时间
     @inlinable
     public func describeZoneFlowAndStayTime(companyId: String, shopId: Int64, startDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeZoneFlowAndStayTimeResponse {
-        try await self.describeZoneFlowAndStayTime(DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeZoneFlowAndStayTimeRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate)
+        return try await self.client.execute(action: "DescribeZoneFlowAndStayTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

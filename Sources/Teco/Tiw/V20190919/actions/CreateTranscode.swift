@@ -129,7 +129,8 @@ extension Tiw {
     /// 创建一个文档转码任务
     @inlinable
     public func createTranscode(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, autoHandleUnsupportedElement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTranscodeResponse> {
-        self.createTranscode(CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution, autoHandleUnsupportedElement: autoHandleUnsupportedElement), region: region, logger: logger, on: eventLoop)
+        let input = CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution, autoHandleUnsupportedElement: autoHandleUnsupportedElement)
+        return self.client.execute(action: "CreateTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文档转码任务
@@ -137,6 +138,7 @@ extension Tiw {
     /// 创建一个文档转码任务
     @inlinable
     public func createTranscode(sdkAppId: Int64, url: String, isStaticPPT: Bool? = nil, minResolution: String? = nil, thumbnailResolution: String? = nil, compressFileType: String? = nil, extraData: String? = nil, priority: String? = nil, minScaleResolution: String? = nil, autoHandleUnsupportedElement: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeResponse {
-        try await self.createTranscode(CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution, autoHandleUnsupportedElement: autoHandleUnsupportedElement), region: region, logger: logger, on: eventLoop)
+        let input = CreateTranscodeRequest(sdkAppId: sdkAppId, url: url, isStaticPPT: isStaticPPT, minResolution: minResolution, thumbnailResolution: thumbnailResolution, compressFileType: compressFileType, extraData: extraData, priority: priority, minScaleResolution: minScaleResolution, autoHandleUnsupportedElement: autoHandleUnsupportedElement)
+        return try await self.client.execute(action: "CreateTranscode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

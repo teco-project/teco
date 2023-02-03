@@ -107,7 +107,8 @@ extension Vpc {
     /// </ul></li></ul>
     @inlinable @discardableResult
     public func createSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSecurityGroupPoliciesResponse> {
-        self.createSecurityGroupPolicies(CreateSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
+        let input = CreateSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet)
+        return self.client.execute(action: "CreateSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全组添加规则
@@ -129,6 +130,7 @@ extension Vpc {
     /// </ul></li></ul>
     @inlinable @discardableResult
     public func createSecurityGroupPolicies(securityGroupId: String, securityGroupPolicySet: SecurityGroupPolicySet, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSecurityGroupPoliciesResponse {
-        try await self.createSecurityGroupPolicies(CreateSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
+        let input = CreateSecurityGroupPoliciesRequest(securityGroupId: securityGroupId, securityGroupPolicySet: securityGroupPolicySet)
+        return try await self.client.execute(action: "CreateSecurityGroupPolicies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

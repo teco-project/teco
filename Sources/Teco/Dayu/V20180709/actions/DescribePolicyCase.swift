@@ -63,12 +63,14 @@ extension Dayu {
     /// 获取策略场景
     @inlinable
     public func describePolicyCase(business: String, sceneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePolicyCaseResponse> {
-        self.describePolicyCase(DescribePolicyCaseRequest(business: business, sceneId: sceneId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePolicyCaseRequest(business: business, sceneId: sceneId)
+        return self.client.execute(action: "DescribePolicyCase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取策略场景
     @inlinable
     public func describePolicyCase(business: String, sceneId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePolicyCaseResponse {
-        try await self.describePolicyCase(DescribePolicyCaseRequest(business: business, sceneId: sceneId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePolicyCaseRequest(business: business, sceneId: sceneId)
+        return try await self.client.execute(action: "DescribePolicyCase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

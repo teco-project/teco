@@ -65,7 +65,8 @@ extension Clb {
     /// DeregisterTargetsFromClassicalLB 接口用于解绑负载均衡后端服务。本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deregisterTargetsFromClassicalLB(loadBalancerId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterTargetsFromClassicalLBResponse> {
-        self.deregisterTargetsFromClassicalLB(DeregisterTargetsFromClassicalLBRequest(loadBalancerId: loadBalancerId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = DeregisterTargetsFromClassicalLBRequest(loadBalancerId: loadBalancerId, instanceIds: instanceIds)
+        return self.client.execute(action: "DeregisterTargetsFromClassicalLB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑传统型负载均衡的后端服务器
@@ -73,6 +74,7 @@ extension Clb {
     /// DeregisterTargetsFromClassicalLB 接口用于解绑负载均衡后端服务。本接口为异步接口，接口返回成功后，需以返回的 RequestId 为入参，调用 DescribeTaskStatus 接口查询本次任务是否成功。
     @inlinable @discardableResult
     public func deregisterTargetsFromClassicalLB(loadBalancerId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterTargetsFromClassicalLBResponse {
-        try await self.deregisterTargetsFromClassicalLB(DeregisterTargetsFromClassicalLBRequest(loadBalancerId: loadBalancerId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = DeregisterTargetsFromClassicalLBRequest(loadBalancerId: loadBalancerId, instanceIds: instanceIds)
+        return try await self.client.execute(action: "DeregisterTargetsFromClassicalLB", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

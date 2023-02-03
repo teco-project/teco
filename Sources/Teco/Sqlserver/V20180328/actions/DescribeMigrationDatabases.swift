@@ -79,7 +79,8 @@ extension Sqlserver {
     /// 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
     @inlinable
     public func describeMigrationDatabases(instanceId: String, userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationDatabasesResponse> {
-        self.describeMigrationDatabases(DescribeMigrationDatabasesRequest(instanceId: instanceId, userName: userName, password: password), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMigrationDatabasesRequest(instanceId: instanceId, userName: userName, password: password)
+        return self.client.execute(action: "DescribeMigrationDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询迁移数据库列表
@@ -87,6 +88,7 @@ extension Sqlserver {
     /// 本接口（DescribeMigrationDatabases）的作用是查询待迁移数据库列表
     @inlinable
     public func describeMigrationDatabases(instanceId: String, userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationDatabasesResponse {
-        try await self.describeMigrationDatabases(DescribeMigrationDatabasesRequest(instanceId: instanceId, userName: userName, password: password), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMigrationDatabasesRequest(instanceId: instanceId, userName: userName, password: password)
+        return try await self.client.execute(action: "DescribeMigrationDatabases", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

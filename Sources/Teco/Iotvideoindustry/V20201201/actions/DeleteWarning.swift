@@ -59,12 +59,14 @@ extension Iotvideoindustry {
     /// 设备告警-删除告警
     @inlinable @discardableResult
     public func deleteWarning(id: Int64? = nil, index: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWarningResponse> {
-        self.deleteWarning(DeleteWarningRequest(id: id, index: index), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWarningRequest(id: id, index: index)
+        return self.client.execute(action: "DeleteWarning", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设备告警-删除告警
     @inlinable @discardableResult
     public func deleteWarning(id: Int64? = nil, index: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWarningResponse {
-        try await self.deleteWarning(DeleteWarningRequest(id: id, index: index), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWarningRequest(id: id, index: index)
+        return try await self.client.execute(action: "DeleteWarning", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -124,7 +124,8 @@ extension Billing {
     /// 查询订单
     @inlinable
     public func describeDealsByCond(startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDealsByCondResponse> {
-        self.describeDealsByCond(DescribeDealsByCondRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, status: status, orderId: orderId, bigDealId: bigDealId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDealsByCondRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, status: status, orderId: orderId, bigDealId: bigDealId, resourceId: resourceId)
+        return self.client.execute(action: "DescribeDealsByCond", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询订单数据
@@ -132,6 +133,7 @@ extension Billing {
     /// 查询订单
     @inlinable
     public func describeDealsByCond(startTime: Date, endTime: Date, limit: Int64, offset: Int64? = nil, status: Int64? = nil, orderId: String? = nil, bigDealId: String? = nil, resourceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDealsByCondResponse {
-        try await self.describeDealsByCond(DescribeDealsByCondRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, status: status, orderId: orderId, bigDealId: bigDealId, resourceId: resourceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDealsByCondRequest(startTime: startTime, endTime: endTime, limit: limit, offset: offset, status: status, orderId: orderId, bigDealId: bigDealId, resourceId: resourceId)
+        return try await self.client.execute(action: "DescribeDealsByCond", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

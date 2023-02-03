@@ -68,7 +68,8 @@ extension Iotvideoindustry {
     /// 注意： 在线状态的设备不允许删除
     @inlinable @discardableResult
     public func deleteChannel(deviceId: String, channelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteChannelResponse> {
-        self.deleteChannel(DeleteChannelRequest(deviceId: deviceId, channelId: channelId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteChannelRequest(deviceId: deviceId, channelId: channelId)
+        return self.client.execute(action: "DeleteChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除指定设备下通道
@@ -77,6 +78,7 @@ extension Iotvideoindustry {
     /// 注意： 在线状态的设备不允许删除
     @inlinable @discardableResult
     public func deleteChannel(deviceId: String, channelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteChannelResponse {
-        try await self.deleteChannel(DeleteChannelRequest(deviceId: deviceId, channelId: channelId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteChannelRequest(deviceId: deviceId, channelId: channelId)
+        return try await self.client.execute(action: "DeleteChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -75,7 +75,8 @@ extension Apigateway {
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
     @inlinable
     public func modifyApiApp(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyApiAppResponse> {
-        self.modifyApiApp(ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc)
+        return self.client.execute(action: "ModifyApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改应用
@@ -83,6 +84,7 @@ extension Apigateway {
     /// 本接口（ModifyApiApp）用于修改已经创建的应用。
     @inlinable
     public func modifyApiApp(apiAppId: String, apiAppName: String? = nil, apiAppDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyApiAppResponse {
-        try await self.modifyApiApp(ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc), region: region, logger: logger, on: eventLoop)
+        let input = ModifyApiAppRequest(apiAppId: apiAppId, apiAppName: apiAppName, apiAppDesc: apiAppDesc)
+        return try await self.client.execute(action: "ModifyApiApp", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

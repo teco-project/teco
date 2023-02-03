@@ -63,12 +63,14 @@ extension Redis {
     /// 查询项目安全组信息
     @inlinable
     public func describeProjectSecurityGroup(projectId: Int64? = nil, securityGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProjectSecurityGroupResponse> {
-        self.describeProjectSecurityGroup(DescribeProjectSecurityGroupRequest(projectId: projectId, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectSecurityGroupRequest(projectId: projectId, securityGroupId: securityGroupId)
+        return self.client.execute(action: "DescribeProjectSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询项目安全组信息
     @inlinable
     public func describeProjectSecurityGroup(projectId: Int64? = nil, securityGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProjectSecurityGroupResponse {
-        try await self.describeProjectSecurityGroup(DescribeProjectSecurityGroupRequest(projectId: projectId, securityGroupId: securityGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProjectSecurityGroupRequest(projectId: projectId, securityGroupId: securityGroupId)
+        return try await self.client.execute(action: "DescribeProjectSecurityGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

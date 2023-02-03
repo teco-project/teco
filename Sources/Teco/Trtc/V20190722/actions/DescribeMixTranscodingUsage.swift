@@ -94,7 +94,8 @@ extension Trtc {
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
     public func describeMixTranscodingUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMixTranscodingUsageResponse> {
-        self.describeMixTranscodingUsage(DescribeMixTranscodingUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMixTranscodingUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId)
+        return self.client.execute(action: "DescribeMixTranscodingUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询TRTC混流转码用量
@@ -107,6 +108,7 @@ extension Trtc {
     /// - 默认接口请求频率限制：5次/秒。
     @inlinable
     public func describeMixTranscodingUsage(startTime: String, endTime: String, sdkAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMixTranscodingUsageResponse {
-        try await self.describeMixTranscodingUsage(DescribeMixTranscodingUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMixTranscodingUsageRequest(startTime: startTime, endTime: endTime, sdkAppId: sdkAppId)
+        return try await self.client.execute(action: "DescribeMixTranscodingUsage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

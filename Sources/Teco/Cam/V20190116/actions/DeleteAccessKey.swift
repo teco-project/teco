@@ -68,7 +68,8 @@ extension Cam {
     /// 此接口属于高风险操作，删除密钥后不可恢复，腾讯云将永久拒绝此密钥的所有请求，请谨慎使用。
     @inlinable @discardableResult
     public func deleteAccessKey(accessKeyId: String, targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccessKeyResponse> {
-        self.deleteAccessKey(DeleteAccessKeyRequest(accessKeyId: accessKeyId, targetUin: targetUin), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAccessKeyRequest(accessKeyId: accessKeyId, targetUin: targetUin)
+        return self.client.execute(action: "DeleteAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除访问密钥
@@ -77,6 +78,7 @@ extension Cam {
     /// 此接口属于高风险操作，删除密钥后不可恢复，腾讯云将永久拒绝此密钥的所有请求，请谨慎使用。
     @inlinable @discardableResult
     public func deleteAccessKey(accessKeyId: String, targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccessKeyResponse {
-        try await self.deleteAccessKey(DeleteAccessKeyRequest(accessKeyId: accessKeyId, targetUin: targetUin), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAccessKeyRequest(accessKeyId: accessKeyId, targetUin: targetUin)
+        return try await self.client.execute(action: "DeleteAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

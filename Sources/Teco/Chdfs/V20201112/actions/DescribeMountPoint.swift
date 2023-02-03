@@ -64,7 +64,8 @@ extension Chdfs {
     /// 查看挂载点详细信息。
     @inlinable
     public func describeMountPoint(mountPointId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountPointResponse> {
-        self.describeMountPoint(DescribeMountPointRequest(mountPointId: mountPointId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMountPointRequest(mountPointId: mountPointId)
+        return self.client.execute(action: "DescribeMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看挂载点详细信息
@@ -72,6 +73,7 @@ extension Chdfs {
     /// 查看挂载点详细信息。
     @inlinable
     public func describeMountPoint(mountPointId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointResponse {
-        try await self.describeMountPoint(DescribeMountPointRequest(mountPointId: mountPointId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMountPointRequest(mountPointId: mountPointId)
+        return try await self.client.execute(action: "DescribeMountPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

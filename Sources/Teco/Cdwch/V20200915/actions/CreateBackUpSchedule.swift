@@ -69,12 +69,14 @@ extension Cdwch {
     /// 创建或者修改备份策略
     @inlinable @discardableResult
     public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBackUpScheduleResponse> {
-        self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), region: region, logger: logger, on: eventLoop)
+        let input = CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables)
+        return self.client.execute(action: "CreateBackUpSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建或者修改备份策略
     @inlinable @discardableResult
     public func createBackUpSchedule(scheduleId: Int64? = nil, weekDays: String? = nil, executeHour: Int64? = nil, backUpTables: [BackupTableContent]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBackUpScheduleResponse {
-        try await self.createBackUpSchedule(CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables), region: region, logger: logger, on: eventLoop)
+        let input = CreateBackUpScheduleRequest(scheduleId: scheduleId, weekDays: weekDays, executeHour: executeHour, backUpTables: backUpTables)
+        return try await self.client.execute(action: "CreateBackUpSchedule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

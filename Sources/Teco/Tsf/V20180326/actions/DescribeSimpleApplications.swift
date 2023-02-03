@@ -94,12 +94,14 @@ extension Tsf {
     /// 查询简单应用列表
     @inlinable
     public func describeSimpleApplications(applicationIdList: [String]? = nil, applicationType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleApplicationsResponse> {
-        self.describeSimpleApplications(DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck)
+        return self.client.execute(action: "DescribeSimpleApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询简单应用列表
     @inlinable
     public func describeSimpleApplications(applicationIdList: [String]? = nil, applicationType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, microserviceType: String? = nil, applicationResourceTypeList: [String]? = nil, searchWord: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleApplicationsResponse {
-        try await self.describeSimpleApplications(DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSimpleApplicationsRequest(applicationIdList: applicationIdList, applicationType: applicationType, limit: limit, offset: offset, microserviceType: microserviceType, applicationResourceTypeList: applicationResourceTypeList, searchWord: searchWord, disableProgramAuthCheck: disableProgramAuthCheck)
+        return try await self.client.execute(action: "DescribeSimpleApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

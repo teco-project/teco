@@ -89,12 +89,14 @@ extension Cwp {
     /// 定期扫描漏洞设置
     @inlinable @discardableResult
     public func scanVulSetting(timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ScanVulSettingResponse> {
-        self.scanVulSetting(ScanVulSettingRequest(timerInterval: timerInterval, vulCategories: vulCategories, vulLevels: vulLevels, timerTime: timerTime, vulEmergency: vulEmergency, startTime: startTime, endTime: endTime, enableScan: enableScan), region: region, logger: logger, on: eventLoop)
+        let input = ScanVulSettingRequest(timerInterval: timerInterval, vulCategories: vulCategories, vulLevels: vulLevels, timerTime: timerTime, vulEmergency: vulEmergency, startTime: startTime, endTime: endTime, enableScan: enableScan)
+        return self.client.execute(action: "ScanVulSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 定期扫描漏洞设置
     @inlinable @discardableResult
     public func scanVulSetting(timerInterval: UInt64, vulCategories: [UInt64]? = nil, vulLevels: [UInt64]? = nil, timerTime: String? = nil, vulEmergency: UInt64? = nil, startTime: String? = nil, endTime: String? = nil, enableScan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ScanVulSettingResponse {
-        try await self.scanVulSetting(ScanVulSettingRequest(timerInterval: timerInterval, vulCategories: vulCategories, vulLevels: vulLevels, timerTime: timerTime, vulEmergency: vulEmergency, startTime: startTime, endTime: endTime, enableScan: enableScan), region: region, logger: logger, on: eventLoop)
+        let input = ScanVulSettingRequest(timerInterval: timerInterval, vulCategories: vulCategories, vulLevels: vulLevels, timerTime: timerTime, vulEmergency: vulEmergency, startTime: startTime, endTime: endTime, enableScan: enableScan)
+        return try await self.client.execute(action: "ScanVulSetting", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

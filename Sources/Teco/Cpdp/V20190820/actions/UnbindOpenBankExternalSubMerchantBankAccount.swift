@@ -112,12 +112,14 @@ extension Cpdp {
     /// 云企付-子商户银行卡解绑
     @inlinable
     public func unbindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindOpenBankExternalSubMerchantBankAccountResponse> {
-        self.unbindOpenBankExternalSubMerchantBankAccount(UnbindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = UnbindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment)
+        return self.client.execute(action: "UnbindOpenBankExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户银行卡解绑
     @inlinable
     public func unbindOpenBankExternalSubMerchantBankAccount(channelMerchantId: String, channelSubMerchantId: String, channelName: String, paymentMethod: String, bindSerialNo: String, outApplyId: String, notifyUrl: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindOpenBankExternalSubMerchantBankAccountResponse {
-        try await self.unbindOpenBankExternalSubMerchantBankAccount(UnbindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = UnbindOpenBankExternalSubMerchantBankAccountRequest(channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, paymentMethod: paymentMethod, bindSerialNo: bindSerialNo, outApplyId: outApplyId, notifyUrl: notifyUrl, environment: environment)
+        return try await self.client.execute(action: "UnbindOpenBankExternalSubMerchantBankAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

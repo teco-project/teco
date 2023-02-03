@@ -114,12 +114,14 @@ extension Tcss {
     /// 更新单个镜像仓库详细信息
     @inlinable
     public func updateAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAssetImageRegistryRegistryDetailResponse> {
-        self.updateAssetImageRegistryRegistryDetail(UpdateAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), region: region, logger: logger, on: eventLoop)
+        let input = UpdateAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure)
+        return self.client.execute(action: "UpdateAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新单个镜像仓库详细信息
     @inlinable
     public func updateAssetImageRegistryRegistryDetail(name: String, username: String, password: String, url: String, registryType: String, netType: String, registryVersion: String? = nil, registryRegion: String? = nil, speedLimit: Int64? = nil, insecure: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAssetImageRegistryRegistryDetailResponse {
-        try await self.updateAssetImageRegistryRegistryDetail(UpdateAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure), region: region, logger: logger, on: eventLoop)
+        let input = UpdateAssetImageRegistryRegistryDetailRequest(name: name, username: username, password: password, url: url, registryType: registryType, netType: netType, registryVersion: registryVersion, registryRegion: registryRegion, speedLimit: speedLimit, insecure: insecure)
+        return try await self.client.execute(action: "UpdateAssetImageRegistryRegistryDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

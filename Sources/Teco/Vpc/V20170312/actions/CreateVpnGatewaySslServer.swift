@@ -123,7 +123,8 @@ extension Vpc {
     /// 创建 Server端
     @inlinable
     public func createVpnGatewaySslServer(vpnGatewayId: String, sslVpnServerName: String, localAddress: [String], remoteAddress: String, sslVpnProtocol: String? = nil, sslVpnPort: Int64? = nil, integrityAlgorithm: String? = nil, encryptAlgorithm: String? = nil, compress: Bool? = nil, ssoEnabled: Bool? = nil, accessPolicyEnabled: Bool? = nil, samlData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpnGatewaySslServerResponse> {
-        self.createVpnGatewaySslServer(CreateVpnGatewaySslServerRequest(vpnGatewayId: vpnGatewayId, sslVpnServerName: sslVpnServerName, localAddress: localAddress, remoteAddress: remoteAddress, sslVpnProtocol: sslVpnProtocol, sslVpnPort: sslVpnPort, integrityAlgorithm: integrityAlgorithm, encryptAlgorithm: encryptAlgorithm, compress: compress, ssoEnabled: ssoEnabled, accessPolicyEnabled: accessPolicyEnabled, samlData: samlData), region: region, logger: logger, on: eventLoop)
+        let input = CreateVpnGatewaySslServerRequest(vpnGatewayId: vpnGatewayId, sslVpnServerName: sslVpnServerName, localAddress: localAddress, remoteAddress: remoteAddress, sslVpnProtocol: sslVpnProtocol, sslVpnPort: sslVpnPort, integrityAlgorithm: integrityAlgorithm, encryptAlgorithm: encryptAlgorithm, compress: compress, ssoEnabled: ssoEnabled, accessPolicyEnabled: accessPolicyEnabled, samlData: samlData)
+        return self.client.execute(action: "CreateVpnGatewaySslServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建SSL-VPN Server端
@@ -131,6 +132,7 @@ extension Vpc {
     /// 创建 Server端
     @inlinable
     public func createVpnGatewaySslServer(vpnGatewayId: String, sslVpnServerName: String, localAddress: [String], remoteAddress: String, sslVpnProtocol: String? = nil, sslVpnPort: Int64? = nil, integrityAlgorithm: String? = nil, encryptAlgorithm: String? = nil, compress: Bool? = nil, ssoEnabled: Bool? = nil, accessPolicyEnabled: Bool? = nil, samlData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpnGatewaySslServerResponse {
-        try await self.createVpnGatewaySslServer(CreateVpnGatewaySslServerRequest(vpnGatewayId: vpnGatewayId, sslVpnServerName: sslVpnServerName, localAddress: localAddress, remoteAddress: remoteAddress, sslVpnProtocol: sslVpnProtocol, sslVpnPort: sslVpnPort, integrityAlgorithm: integrityAlgorithm, encryptAlgorithm: encryptAlgorithm, compress: compress, ssoEnabled: ssoEnabled, accessPolicyEnabled: accessPolicyEnabled, samlData: samlData), region: region, logger: logger, on: eventLoop)
+        let input = CreateVpnGatewaySslServerRequest(vpnGatewayId: vpnGatewayId, sslVpnServerName: sslVpnServerName, localAddress: localAddress, remoteAddress: remoteAddress, sslVpnProtocol: sslVpnProtocol, sslVpnPort: sslVpnPort, integrityAlgorithm: integrityAlgorithm, encryptAlgorithm: encryptAlgorithm, compress: compress, ssoEnabled: ssoEnabled, accessPolicyEnabled: accessPolicyEnabled, samlData: samlData)
+        return try await self.client.execute(action: "CreateVpnGatewaySslServer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

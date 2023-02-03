@@ -98,12 +98,14 @@ extension Ecm {
     /// 创建弹性网卡
     @inlinable
     public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, ecmRegion: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNetworkInterfaceResponse> {
-        self.createNetworkInterface(CreateNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, ecmRegion: ecmRegion, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, ecmRegion: ecmRegion, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags)
+        return self.client.execute(action: "CreateNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建弹性网卡
     @inlinable
     public func createNetworkInterface(vpcId: String, networkInterfaceName: String, subnetId: String, ecmRegion: String, networkInterfaceDescription: String? = nil, secondaryPrivateIpAddressCount: UInt64? = nil, securityGroupIds: [String]? = nil, privateIpAddresses: [PrivateIpAddressSpecification]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNetworkInterfaceResponse {
-        try await self.createNetworkInterface(CreateNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, ecmRegion: ecmRegion, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateNetworkInterfaceRequest(vpcId: vpcId, networkInterfaceName: networkInterfaceName, subnetId: subnetId, ecmRegion: ecmRegion, networkInterfaceDescription: networkInterfaceDescription, secondaryPrivateIpAddressCount: secondaryPrivateIpAddressCount, securityGroupIds: securityGroupIds, privateIpAddresses: privateIpAddresses, tags: tags)
+        return try await self.client.execute(action: "CreateNetworkInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -104,7 +104,8 @@ extension Drm {
     /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
     @inlinable
     public func describeKeys(drmType: String, tracks: [String], contentType: String, rsaPublicKey: String? = nil, contentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeKeysResponse> {
-        self.describeKeys(DescribeKeysRequest(drmType: drmType, tracks: tracks, contentType: contentType, rsaPublicKey: rsaPublicKey, contentId: contentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKeysRequest(drmType: drmType, tracks: tracks, contentType: contentType, rsaPublicKey: rsaPublicKey, contentId: contentId)
+        return self.client.execute(action: "DescribeKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询加密密钥列表
@@ -113,6 +114,7 @@ extension Drm {
     /// 如果加密使用的ContentID没有关联的密钥信息，后台会自动生成新的密钥返回
     @inlinable
     public func describeKeys(drmType: String, tracks: [String], contentType: String, rsaPublicKey: String? = nil, contentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKeysResponse {
-        try await self.describeKeys(DescribeKeysRequest(drmType: drmType, tracks: tracks, contentType: contentType, rsaPublicKey: rsaPublicKey, contentId: contentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeKeysRequest(drmType: drmType, tracks: tracks, contentType: contentType, rsaPublicKey: rsaPublicKey, contentId: contentId)
+        return try await self.client.execute(action: "DescribeKeys", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

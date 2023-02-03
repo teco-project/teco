@@ -88,7 +88,8 @@ extension Tcss {
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
     public func describeImageSimpleList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageSimpleListResponse> {
-        self.describeImageSimpleList(DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return self.client.execute(action: "DescribeImageSimpleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询全部镜像列表
@@ -96,6 +97,7 @@ extension Tcss {
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
     public func describeImageSimpleList(filters: [RunTimeFilters]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, order: String? = nil, by: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageSimpleListResponse {
-        try await self.describeImageSimpleList(DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageSimpleListRequest(filters: filters, limit: limit, offset: offset, order: order, by: by)
+        return try await self.client.execute(action: "DescribeImageSimpleList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

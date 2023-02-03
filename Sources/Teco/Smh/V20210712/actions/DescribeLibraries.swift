@@ -78,7 +78,8 @@ extension Smh {
     /// 查询 PaaS 服务媒体库列表
     @inlinable
     public func describeLibraries(libraryIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLibrariesResponse> {
-        self.describeLibraries(DescribeLibrariesRequest(libraryIds: libraryIds, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLibrariesRequest(libraryIds: libraryIds, pageNumber: pageNumber, pageSize: pageSize)
+        return self.client.execute(action: "DescribeLibraries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体库
@@ -86,6 +87,7 @@ extension Smh {
     /// 查询 PaaS 服务媒体库列表
     @inlinable
     public func describeLibraries(libraryIds: [String]? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLibrariesResponse {
-        try await self.describeLibraries(DescribeLibrariesRequest(libraryIds: libraryIds, pageNumber: pageNumber, pageSize: pageSize), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLibrariesRequest(libraryIds: libraryIds, pageNumber: pageNumber, pageSize: pageSize)
+        return try await self.client.execute(action: "DescribeLibraries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

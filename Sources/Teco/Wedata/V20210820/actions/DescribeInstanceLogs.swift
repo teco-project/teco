@@ -78,7 +78,8 @@ extension Wedata {
     /// 获取实例日志列表
     @inlinable
     public func describeInstanceLogs(projectId: String, taskId: String, curRunDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogsResponse> {
-        self.describeInstanceLogs(DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate)
+        return self.client.execute(action: "DescribeInstanceLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例日志列表【Beta版本】
@@ -87,6 +88,7 @@ extension Wedata {
     /// 获取实例日志列表
     @inlinable
     public func describeInstanceLogs(projectId: String, taskId: String, curRunDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogsResponse {
-        try await self.describeInstanceLogs(DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLogsRequest(projectId: projectId, taskId: taskId, curRunDate: curRunDate)
+        return try await self.client.execute(action: "DescribeInstanceLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

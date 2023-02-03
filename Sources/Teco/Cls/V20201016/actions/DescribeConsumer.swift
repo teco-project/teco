@@ -82,7 +82,8 @@ extension Cls {
     /// 本接口用于获取投递配置
     @inlinable
     public func describeConsumer(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeConsumerResponse> {
-        self.describeConsumer(DescribeConsumerRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConsumerRequest(topicId: topicId)
+        return self.client.execute(action: "DescribeConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取投递配置
@@ -90,6 +91,7 @@ extension Cls {
     /// 本接口用于获取投递配置
     @inlinable
     public func describeConsumer(topicId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeConsumerResponse {
-        try await self.describeConsumer(DescribeConsumerRequest(topicId: topicId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeConsumerRequest(topicId: topicId)
+        return try await self.client.execute(action: "DescribeConsumer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

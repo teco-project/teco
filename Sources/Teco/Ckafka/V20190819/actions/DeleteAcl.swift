@@ -88,12 +88,14 @@ extension Ckafka {
     /// 删除ACL
     @inlinable
     public func deleteAcl(instanceId: String, resourceType: Int64, resourceName: String, operation: Int64, permissionType: Int64, host: String? = nil, principal: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAclResponse> {
-        self.deleteAcl(DeleteAclRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, operation: operation, permissionType: permissionType, host: host, principal: principal), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAclRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, operation: operation, permissionType: permissionType, host: host, principal: principal)
+        return self.client.execute(action: "DeleteAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除ACL
     @inlinable
     public func deleteAcl(instanceId: String, resourceType: Int64, resourceName: String, operation: Int64, permissionType: Int64, host: String? = nil, principal: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAclResponse {
-        try await self.deleteAcl(DeleteAclRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, operation: operation, permissionType: permissionType, host: host, principal: principal), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAclRequest(instanceId: instanceId, resourceType: resourceType, resourceName: resourceName, operation: operation, permissionType: permissionType, host: host, principal: principal)
+        return try await self.client.execute(action: "DeleteAcl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -71,12 +71,14 @@ extension Wedata {
     /// 批量终止集成任务实例
     @inlinable
     public func batchKillIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchKillIntegrationTaskInstancesResponse> {
-        self.batchKillIntegrationTaskInstances(BatchKillIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchKillIntegrationTaskInstancesRequest(instances: instances, projectId: projectId)
+        return self.client.execute(action: "BatchKillIntegrationTaskInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量终止集成任务实例
     @inlinable
     public func batchKillIntegrationTaskInstances(instances: [SchedulerTaskInstanceInfo], projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchKillIntegrationTaskInstancesResponse {
-        try await self.batchKillIntegrationTaskInstances(BatchKillIntegrationTaskInstancesRequest(instances: instances, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchKillIntegrationTaskInstancesRequest(instances: instances, projectId: projectId)
+        return try await self.client.execute(action: "BatchKillIntegrationTaskInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

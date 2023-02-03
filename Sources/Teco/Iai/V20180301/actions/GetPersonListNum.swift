@@ -68,7 +68,8 @@ extension Iai {
     /// 获取指定人员库中人员数量。
     @inlinable
     public func getPersonListNum(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPersonListNumResponse> {
-        self.getPersonListNum(GetPersonListNumRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = GetPersonListNumRequest(groupId: groupId)
+        return self.client.execute(action: "GetPersonListNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取人员列表长度
@@ -76,6 +77,7 @@ extension Iai {
     /// 获取指定人员库中人员数量。
     @inlinable
     public func getPersonListNum(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPersonListNumResponse {
-        try await self.getPersonListNum(GetPersonListNumRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = GetPersonListNumRequest(groupId: groupId)
+        return try await self.client.execute(action: "GetPersonListNum", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

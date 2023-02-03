@@ -93,7 +93,8 @@ extension Vpc {
     /// 您也可以通过 Force 参数，强制返回默认VPC
     @inlinable
     public func createDefaultVpc(zone: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDefaultVpcResponse> {
-        self.createDefaultVpc(CreateDefaultVpcRequest(zone: zone, force: force), region: region, logger: logger, on: eventLoop)
+        let input = CreateDefaultVpcRequest(zone: zone, force: force)
+        return self.client.execute(action: "CreateDefaultVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建默认VPC和默认子网
@@ -109,6 +110,7 @@ extension Vpc {
     /// 您也可以通过 Force 参数，强制返回默认VPC
     @inlinable
     public func createDefaultVpc(zone: String? = nil, force: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDefaultVpcResponse {
-        try await self.createDefaultVpc(CreateDefaultVpcRequest(zone: zone, force: force), region: region, logger: logger, on: eventLoop)
+        let input = CreateDefaultVpcRequest(zone: zone, force: force)
+        return try await self.client.execute(action: "CreateDefaultVpc", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

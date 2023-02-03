@@ -65,7 +65,8 @@ extension Vpc {
     /// 终端节点解绑安全组。
     @inlinable @discardableResult
     public func disassociateVpcEndPointSecurityGroups(securityGroupIds: [String], endPointId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisassociateVpcEndPointSecurityGroupsResponse> {
-        self.disassociateVpcEndPointSecurityGroups(DisassociateVpcEndPointSecurityGroupsRequest(securityGroupIds: securityGroupIds, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateVpcEndPointSecurityGroupsRequest(securityGroupIds: securityGroupIds, endPointId: endPointId)
+        return self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 终端节点解绑安全组
@@ -73,6 +74,7 @@ extension Vpc {
     /// 终端节点解绑安全组。
     @inlinable @discardableResult
     public func disassociateVpcEndPointSecurityGroups(securityGroupIds: [String], endPointId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateVpcEndPointSecurityGroupsResponse {
-        try await self.disassociateVpcEndPointSecurityGroups(DisassociateVpcEndPointSecurityGroupsRequest(securityGroupIds: securityGroupIds, endPointId: endPointId), region: region, logger: logger, on: eventLoop)
+        let input = DisassociateVpcEndPointSecurityGroupsRequest(securityGroupIds: securityGroupIds, endPointId: endPointId)
+        return try await self.client.execute(action: "DisassociateVpcEndPointSecurityGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

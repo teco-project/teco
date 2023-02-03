@@ -100,12 +100,14 @@ extension Cpdp {
     /// 云企付-查询对账单下载地址
     @inlinable
     public func queryOpenBankDownLoadUrl(channelMerchantId: String, billDate: String, billType: String? = nil, environment: String? = nil, channelName: String? = nil, paymentMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankDownLoadUrlResponse> {
-        self.queryOpenBankDownLoadUrl(QueryOpenBankDownLoadUrlRequest(channelMerchantId: channelMerchantId, billDate: billDate, billType: billType, environment: environment, channelName: channelName, paymentMethod: paymentMethod), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankDownLoadUrlRequest(channelMerchantId: channelMerchantId, billDate: billDate, billType: billType, environment: environment, channelName: channelName, paymentMethod: paymentMethod)
+        return self.client.execute(action: "QueryOpenBankDownLoadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-查询对账单下载地址
     @inlinable
     public func queryOpenBankDownLoadUrl(channelMerchantId: String, billDate: String, billType: String? = nil, environment: String? = nil, channelName: String? = nil, paymentMethod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankDownLoadUrlResponse {
-        try await self.queryOpenBankDownLoadUrl(QueryOpenBankDownLoadUrlRequest(channelMerchantId: channelMerchantId, billDate: billDate, billType: billType, environment: environment, channelName: channelName, paymentMethod: paymentMethod), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankDownLoadUrlRequest(channelMerchantId: channelMerchantId, billDate: billDate, billType: billType, environment: environment, channelName: channelName, paymentMethod: paymentMethod)
+        return try await self.client.execute(action: "QueryOpenBankDownLoadUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Tsf {
     /// 对执行失败的任务批次执行续跑
     @inlinable
     public func continueRunFailedTaskBatch(batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ContinueRunFailedTaskBatchResponse> {
-        self.continueRunFailedTaskBatch(ContinueRunFailedTaskBatchRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
+        let input = ContinueRunFailedTaskBatchRequest(batchId: batchId)
+        return self.client.execute(action: "ContinueRunFailedTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续跑任务批次
@@ -72,6 +73,7 @@ extension Tsf {
     /// 对执行失败的任务批次执行续跑
     @inlinable
     public func continueRunFailedTaskBatch(batchId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ContinueRunFailedTaskBatchResponse {
-        try await self.continueRunFailedTaskBatch(ContinueRunFailedTaskBatchRequest(batchId: batchId), region: region, logger: logger, on: eventLoop)
+        let input = ContinueRunFailedTaskBatchRequest(batchId: batchId)
+        return try await self.client.execute(action: "ContinueRunFailedTaskBatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

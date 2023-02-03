@@ -65,7 +65,8 @@ extension Lighthouse {
     /// 本接口 (ModifyDiskBackupsAttribute) 用于修改云硬盘备份点属性。
     @inlinable @discardableResult
     public func modifyDiskBackupsAttribute(diskBackupIds: [String], diskBackupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskBackupsAttributeResponse> {
-        self.modifyDiskBackupsAttribute(ModifyDiskBackupsAttributeRequest(diskBackupIds: diskBackupIds, diskBackupName: diskBackupName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDiskBackupsAttributeRequest(diskBackupIds: diskBackupIds, diskBackupName: diskBackupName)
+        return self.client.execute(action: "ModifyDiskBackupsAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改云硬盘备份点属性
@@ -73,6 +74,7 @@ extension Lighthouse {
     /// 本接口 (ModifyDiskBackupsAttribute) 用于修改云硬盘备份点属性。
     @inlinable @discardableResult
     public func modifyDiskBackupsAttribute(diskBackupIds: [String], diskBackupName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskBackupsAttributeResponse {
-        try await self.modifyDiskBackupsAttribute(ModifyDiskBackupsAttributeRequest(diskBackupIds: diskBackupIds, diskBackupName: diskBackupName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDiskBackupsAttributeRequest(diskBackupIds: diskBackupIds, diskBackupName: diskBackupName)
+        return try await self.client.execute(action: "ModifyDiskBackupsAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

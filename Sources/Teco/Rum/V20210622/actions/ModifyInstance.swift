@@ -64,12 +64,14 @@ extension Rum {
     /// 修改 RUM 业务系统
     @inlinable @discardableResult
     public func modifyInstance(instanceId: String, instanceName: String? = nil, instanceDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceResponse> {
-        self.modifyInstance(ModifyInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDesc: instanceDesc), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDesc: instanceDesc)
+        return self.client.execute(action: "ModifyInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改 RUM 业务系统
     @inlinable @discardableResult
     public func modifyInstance(instanceId: String, instanceName: String? = nil, instanceDesc: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceResponse {
-        try await self.modifyInstance(ModifyInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDesc: instanceDesc), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceRequest(instanceId: instanceId, instanceName: instanceName, instanceDesc: instanceDesc)
+        return try await self.client.execute(action: "ModifyInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

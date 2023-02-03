@@ -64,12 +64,14 @@ extension Antiddos {
     /// 开启或关闭DDoS防护的水印防护配置
     @inlinable @discardableResult
     public func switchWaterPrintConfig(instanceId: String, openStatus: Int64, cloudSdkProxy: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchWaterPrintConfigResponse> {
-        self.switchWaterPrintConfig(SwitchWaterPrintConfigRequest(instanceId: instanceId, openStatus: openStatus, cloudSdkProxy: cloudSdkProxy), region: region, logger: logger, on: eventLoop)
+        let input = SwitchWaterPrintConfigRequest(instanceId: instanceId, openStatus: openStatus, cloudSdkProxy: cloudSdkProxy)
+        return self.client.execute(action: "SwitchWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启或关闭DDoS防护的水印防护配置
     @inlinable @discardableResult
     public func switchWaterPrintConfig(instanceId: String, openStatus: Int64, cloudSdkProxy: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchWaterPrintConfigResponse {
-        try await self.switchWaterPrintConfig(SwitchWaterPrintConfigRequest(instanceId: instanceId, openStatus: openStatus, cloudSdkProxy: cloudSdkProxy), region: region, logger: logger, on: eventLoop)
+        let input = SwitchWaterPrintConfigRequest(instanceId: instanceId, openStatus: openStatus, cloudSdkProxy: cloudSdkProxy)
+        return try await self.client.execute(action: "SwitchWaterPrintConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

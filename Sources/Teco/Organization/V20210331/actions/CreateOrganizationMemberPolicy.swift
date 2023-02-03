@@ -74,12 +74,14 @@ extension Organization {
     /// 创建组织成员访问授权策略
     @inlinable
     public func createOrganizationMemberPolicy(memberUin: Int64, policyName: String, identityId: Int64, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOrganizationMemberPolicyResponse> {
-        self.createOrganizationMemberPolicy(CreateOrganizationMemberPolicyRequest(memberUin: memberUin, policyName: policyName, identityId: identityId, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrganizationMemberPolicyRequest(memberUin: memberUin, policyName: policyName, identityId: identityId, description: description)
+        return self.client.execute(action: "CreateOrganizationMemberPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建组织成员访问授权策略
     @inlinable
     public func createOrganizationMemberPolicy(memberUin: Int64, policyName: String, identityId: Int64, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOrganizationMemberPolicyResponse {
-        try await self.createOrganizationMemberPolicy(CreateOrganizationMemberPolicyRequest(memberUin: memberUin, policyName: policyName, identityId: identityId, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateOrganizationMemberPolicyRequest(memberUin: memberUin, policyName: policyName, identityId: identityId, description: description)
+        return try await self.client.execute(action: "CreateOrganizationMemberPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

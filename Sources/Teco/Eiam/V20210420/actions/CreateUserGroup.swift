@@ -64,12 +64,14 @@ extension Eiam {
     /// 新建用户组
     @inlinable
     public func createUserGroup(displayName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserGroupResponse> {
-        self.createUserGroup(CreateUserGroupRequest(displayName: displayName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserGroupRequest(displayName: displayName, description: description)
+        return self.client.execute(action: "CreateUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建用户组
     @inlinable
     public func createUserGroup(displayName: String, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserGroupResponse {
-        try await self.createUserGroup(CreateUserGroupRequest(displayName: displayName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserGroupRequest(displayName: displayName, description: description)
+        return try await self.client.execute(action: "CreateUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

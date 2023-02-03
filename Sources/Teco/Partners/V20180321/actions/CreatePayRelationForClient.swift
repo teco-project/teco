@@ -54,12 +54,14 @@ extension Partners {
     /// 合作伙伴为客户创建强代付关系
     @inlinable @discardableResult
     public func createPayRelationForClient(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreatePayRelationForClientResponse> {
-        self.createPayRelationForClient(CreatePayRelationForClientRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
+        let input = CreatePayRelationForClientRequest(clientUin: clientUin)
+        return self.client.execute(action: "CreatePayRelationForClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合作伙伴为客户创建强代付关系
     @inlinable @discardableResult
     public func createPayRelationForClient(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreatePayRelationForClientResponse {
-        try await self.createPayRelationForClient(CreatePayRelationForClientRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
+        let input = CreatePayRelationForClientRequest(clientUin: clientUin)
+        return try await self.client.execute(action: "CreatePayRelationForClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

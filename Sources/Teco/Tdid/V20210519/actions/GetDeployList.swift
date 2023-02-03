@@ -77,12 +77,14 @@ extension Tdid {
     /// 合约部署列表
     @inlinable
     public func getDeployList(clusterId: String, groupId: UInt64, displayStart: UInt64, displayLength: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDeployListResponse> {
-        self.getDeployList(GetDeployListRequest(clusterId: clusterId, groupId: groupId, displayStart: displayStart, displayLength: displayLength), region: region, logger: logger, on: eventLoop)
+        let input = GetDeployListRequest(clusterId: clusterId, groupId: groupId, displayStart: displayStart, displayLength: displayLength)
+        return self.client.execute(action: "GetDeployList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合约部署列表
     @inlinable
     public func getDeployList(clusterId: String, groupId: UInt64, displayStart: UInt64, displayLength: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDeployListResponse {
-        try await self.getDeployList(GetDeployListRequest(clusterId: clusterId, groupId: groupId, displayStart: displayStart, displayLength: displayLength), region: region, logger: logger, on: eventLoop)
+        let input = GetDeployListRequest(clusterId: clusterId, groupId: groupId, displayStart: displayStart, displayLength: displayLength)
+        return try await self.client.execute(action: "GetDeployList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

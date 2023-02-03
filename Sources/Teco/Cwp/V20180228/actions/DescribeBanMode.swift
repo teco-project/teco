@@ -54,12 +54,14 @@ extension Cwp {
     /// 获取爆破阻断模式
     @inlinable
     public func describeBanMode(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBanModeResponse> {
-        self.describeBanMode(DescribeBanModeRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBanModeRequest()
+        return self.client.execute(action: "DescribeBanMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取爆破阻断模式
     @inlinable
     public func describeBanMode(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBanModeResponse {
-        try await self.describeBanMode(DescribeBanModeRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBanModeRequest()
+        return try await self.client.execute(action: "DescribeBanMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

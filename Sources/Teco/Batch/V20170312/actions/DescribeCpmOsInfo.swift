@@ -64,7 +64,8 @@ extension Batch {
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
     @inlinable
     public func describeCpmOsInfo(deviceClassCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCpmOsInfoResponse> {
-        self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode)
+        return self.client.execute(action: "DescribeCpmOsInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询批量计算黑石操作系统信息
@@ -72,6 +73,7 @@ extension Batch {
     /// 创建黑石计算环境时，查询批量计算环境支持的黑石操作系统信息
     @inlinable
     public func describeCpmOsInfo(deviceClassCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCpmOsInfoResponse {
-        try await self.describeCpmOsInfo(DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCpmOsInfoRequest(deviceClassCode: deviceClassCode)
+        return try await self.client.execute(action: "DescribeCpmOsInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

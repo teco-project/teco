@@ -68,12 +68,14 @@ extension Eis {
     /// 获取运行时详情
     @inlinable
     public func getRuntimeMC(runtimeId: Int64, zone: String, runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetRuntimeMCResponse> {
-        self.getRuntimeMC(GetRuntimeMCRequest(runtimeId: runtimeId, zone: zone, runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
+        let input = GetRuntimeMCRequest(runtimeId: runtimeId, zone: zone, runtimeClass: runtimeClass)
+        return self.client.execute(action: "GetRuntimeMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取运行时详情
     @inlinable
     public func getRuntimeMC(runtimeId: Int64, zone: String, runtimeClass: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetRuntimeMCResponse {
-        try await self.getRuntimeMC(GetRuntimeMCRequest(runtimeId: runtimeId, zone: zone, runtimeClass: runtimeClass), region: region, logger: logger, on: eventLoop)
+        let input = GetRuntimeMCRequest(runtimeId: runtimeId, zone: zone, runtimeClass: runtimeClass)
+        return try await self.client.execute(action: "GetRuntimeMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

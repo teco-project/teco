@@ -106,7 +106,8 @@ extension Scf {
     /// 该接口根据传入的查询参数返回相关函数信息。
     @inlinable
     public func listFunctions(order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListFunctionsResponse> {
-        self.listFunctions(ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters)
+        return self.client.execute(action: "ListFunctions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取函数列表
@@ -114,6 +115,7 @@ extension Scf {
     /// 该接口根据传入的查询参数返回相关函数信息。
     @inlinable
     public func listFunctions(order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, searchKey: String? = nil, namespace: String? = nil, description: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListFunctionsResponse {
-        try await self.listFunctions(ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = ListFunctionsRequest(order: order, orderby: orderby, offset: offset, limit: limit, searchKey: searchKey, namespace: namespace, description: description, filters: filters)
+        return try await self.client.execute(action: "ListFunctions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

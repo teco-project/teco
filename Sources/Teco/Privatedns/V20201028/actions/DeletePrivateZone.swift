@@ -65,7 +65,8 @@ extension Privatedns {
     /// 删除私有域并停止解析
     @inlinable @discardableResult
     public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePrivateZoneResponse> {
-        self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet)
+        return self.client.execute(action: "DeletePrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除私有域
@@ -73,6 +74,7 @@ extension Privatedns {
     /// 删除私有域并停止解析
     @inlinable @discardableResult
     public func deletePrivateZone(zoneId: String? = nil, zoneIdSet: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrivateZoneResponse {
-        try await self.deletePrivateZone(DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeletePrivateZoneRequest(zoneId: zoneId, zoneIdSet: zoneIdSet)
+        return try await self.client.execute(action: "DeletePrivateZone", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

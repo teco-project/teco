@@ -66,13 +66,15 @@ extension Mgobe {
     @available(*, deprecated, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func removeRoomPlayer(gameId: String, removePlayerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveRoomPlayerResponse> {
-        self.removeRoomPlayer(RemoveRoomPlayerRequest(gameId: gameId, removePlayerId: removePlayerId), region: region, logger: logger, on: eventLoop)
+        let input = RemoveRoomPlayerRequest(gameId: gameId, removePlayerId: removePlayerId)
+        return self.client.execute(action: "RemoveRoomPlayer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 踢出房间玩家
     @available(*, deprecated, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func removeRoomPlayer(gameId: String, removePlayerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveRoomPlayerResponse {
-        try await self.removeRoomPlayer(RemoveRoomPlayerRequest(gameId: gameId, removePlayerId: removePlayerId), region: region, logger: logger, on: eventLoop)
+        let input = RemoveRoomPlayerRequest(gameId: gameId, removePlayerId: removePlayerId)
+        return try await self.client.execute(action: "RemoveRoomPlayer", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

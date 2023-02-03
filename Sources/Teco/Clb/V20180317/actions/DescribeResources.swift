@@ -80,7 +80,8 @@ extension Clb {
     /// 查询用户在当前地域支持可用区列表和资源列表。
     @inlinable
     public func describeResources(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourcesResponse> {
-        self.describeResources(DescribeResourcesRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourcesRequest(limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户在当前地域支持可用区列表和资源列表
@@ -88,6 +89,7 @@ extension Clb {
     /// 查询用户在当前地域支持可用区列表和资源列表。
     @inlinable
     public func describeResources(limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourcesResponse {
-        try await self.describeResources(DescribeResourcesRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourcesRequest(limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeResources", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

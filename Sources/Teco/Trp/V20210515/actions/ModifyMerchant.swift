@@ -84,12 +84,14 @@ extension Trp {
     /// 编辑商户
     @inlinable
     public func modifyMerchant(name: String, merchantId: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyMerchantResponse> {
-        self.modifyMerchant(ModifyMerchantRequest(name: name, merchantId: merchantId, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMerchantRequest(name: name, merchantId: merchantId, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl)
+        return self.client.execute(action: "ModifyMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑商户
     @inlinable
     public func modifyMerchant(name: String, merchantId: String, remark: String? = nil, corpId: UInt64? = nil, codeType: Int64? = nil, codeUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMerchantResponse {
-        try await self.modifyMerchant(ModifyMerchantRequest(name: name, merchantId: merchantId, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl), region: region, logger: logger, on: eventLoop)
+        let input = ModifyMerchantRequest(name: name, merchantId: merchantId, remark: remark, corpId: corpId, codeType: codeType, codeUrl: codeUrl)
+        return try await self.client.execute(action: "ModifyMerchant", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

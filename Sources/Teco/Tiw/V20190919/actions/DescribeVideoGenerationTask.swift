@@ -100,7 +100,8 @@ extension Tiw {
     /// 查询录制视频生成任务状态与结果
     @inlinable
     public func describeVideoGenerationTask(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVideoGenerationTaskResponse> {
-        self.describeVideoGenerationTask(DescribeVideoGenerationTaskRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVideoGenerationTaskRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return self.client.execute(action: "DescribeVideoGenerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询录制视频生成任务
@@ -108,6 +109,7 @@ extension Tiw {
     /// 查询录制视频生成任务状态与结果
     @inlinable
     public func describeVideoGenerationTask(sdkAppId: Int64, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVideoGenerationTaskResponse {
-        try await self.describeVideoGenerationTask(DescribeVideoGenerationTaskRequest(sdkAppId: sdkAppId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVideoGenerationTaskRequest(sdkAppId: sdkAppId, taskId: taskId)
+        return try await self.client.execute(action: "DescribeVideoGenerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

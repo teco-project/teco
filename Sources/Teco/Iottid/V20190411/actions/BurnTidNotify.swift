@@ -63,12 +63,14 @@ extension Iottid {
     /// 安全芯片TID烧录回执
     @inlinable
     public func burnTidNotify(orderId: String, tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BurnTidNotifyResponse> {
-        self.burnTidNotify(BurnTidNotifyRequest(orderId: orderId, tid: tid), region: region, logger: logger, on: eventLoop)
+        let input = BurnTidNotifyRequest(orderId: orderId, tid: tid)
+        return self.client.execute(action: "BurnTidNotify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全芯片TID烧录回执
     @inlinable
     public func burnTidNotify(orderId: String, tid: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BurnTidNotifyResponse {
-        try await self.burnTidNotify(BurnTidNotifyRequest(orderId: orderId, tid: tid), region: region, logger: logger, on: eventLoop)
+        let input = BurnTidNotifyRequest(orderId: orderId, tid: tid)
+        return try await self.client.execute(action: "BurnTidNotify", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -66,12 +66,14 @@ extension Ccc {
     /// 获取用户购买信息列表
     @inlinable
     public func describeCCCBuyInfoList(sdkAppIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCCBuyInfoListResponse> {
-        self.describeCCCBuyInfoList(DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds)
+        return self.client.execute(action: "DescribeCCCBuyInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户购买信息列表
     @inlinable
     public func describeCCCBuyInfoList(sdkAppIds: [Int64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCCBuyInfoListResponse {
-        try await self.describeCCCBuyInfoList(DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCCCBuyInfoListRequest(sdkAppIds: sdkAppIds)
+        return try await self.client.execute(action: "DescribeCCCBuyInfoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -90,7 +90,8 @@ extension Gaap {
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
     @inlinable
     public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFirstLinkSessionResponse> {
-        self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), region: region, logger: logger, on: eventLoop)
+        let input = CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity)
+        return self.client.execute(action: "CreateFirstLinkSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建接入段加速会话
@@ -98,6 +99,7 @@ extension Gaap {
     /// 本接口（CreateFirstLinkSession）用于创建接入段加速会话，创建有可能成功，也可能失败，需要通过返回码来进行判断。
     @inlinable
     public func createFirstLinkSession(templateId: String, srcAddressInfo: SrcAddressInfo, destAddressInfo: DestAddressInfo, deviceInfo: DeviceInfo? = nil, capacity: Capacity? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFirstLinkSessionResponse {
-        try await self.createFirstLinkSession(CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity), region: region, logger: logger, on: eventLoop)
+        let input = CreateFirstLinkSessionRequest(templateId: templateId, srcAddressInfo: srcAddressInfo, destAddressInfo: destAddressInfo, deviceInfo: deviceInfo, capacity: capacity)
+        return try await self.client.execute(action: "CreateFirstLinkSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

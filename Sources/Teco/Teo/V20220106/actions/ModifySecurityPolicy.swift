@@ -64,12 +64,14 @@ extension Teo {
     /// 修改Web&Bot安全配置
     @inlinable @discardableResult
     public func modifySecurityPolicy(zoneId: String, entity: String, config: SecurityConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecurityPolicyResponse> {
-        self.modifySecurityPolicy(ModifySecurityPolicyRequest(zoneId: zoneId, entity: entity, config: config), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityPolicyRequest(zoneId: zoneId, entity: entity, config: config)
+        return self.client.execute(action: "ModifySecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改Web&Bot安全配置
     @inlinable @discardableResult
     public func modifySecurityPolicy(zoneId: String, entity: String, config: SecurityConfig, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecurityPolicyResponse {
-        try await self.modifySecurityPolicy(ModifySecurityPolicyRequest(zoneId: zoneId, entity: entity, config: config), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecurityPolicyRequest(zoneId: zoneId, entity: entity, config: config)
+        return try await self.client.execute(action: "ModifySecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

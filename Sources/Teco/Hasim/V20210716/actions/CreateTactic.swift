@@ -139,12 +139,14 @@ extension Hasim {
     /// 创建云兔切换策略
     @inlinable @discardableResult
     public func createTactic(name: String, isAuto: Int64, pingInterval: Int64, isWeak: Int64, weakThreshold: Int64, isDelay: Int64, delayThreshold: Int64, isFake: Int64, fakeIP: String, fakeInterval: Int64, isNet: Int64, network: Int64, isMove: Int64, isPriorityTele: Int64, priorityTele: Int64, isBottomTele: Int64, bottomTele: Int64, isBestSignal: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTacticResponse> {
-        self.createTactic(CreateTacticRequest(name: name, isAuto: isAuto, pingInterval: pingInterval, isWeak: isWeak, weakThreshold: weakThreshold, isDelay: isDelay, delayThreshold: delayThreshold, isFake: isFake, fakeIP: fakeIP, fakeInterval: fakeInterval, isNet: isNet, network: network, isMove: isMove, isPriorityTele: isPriorityTele, priorityTele: priorityTele, isBottomTele: isBottomTele, bottomTele: bottomTele, isBestSignal: isBestSignal), region: region, logger: logger, on: eventLoop)
+        let input = CreateTacticRequest(name: name, isAuto: isAuto, pingInterval: pingInterval, isWeak: isWeak, weakThreshold: weakThreshold, isDelay: isDelay, delayThreshold: delayThreshold, isFake: isFake, fakeIP: fakeIP, fakeInterval: fakeInterval, isNet: isNet, network: network, isMove: isMove, isPriorityTele: isPriorityTele, priorityTele: priorityTele, isBottomTele: isBottomTele, bottomTele: bottomTele, isBestSignal: isBestSignal)
+        return self.client.execute(action: "CreateTactic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建云兔切换策略
     @inlinable @discardableResult
     public func createTactic(name: String, isAuto: Int64, pingInterval: Int64, isWeak: Int64, weakThreshold: Int64, isDelay: Int64, delayThreshold: Int64, isFake: Int64, fakeIP: String, fakeInterval: Int64, isNet: Int64, network: Int64, isMove: Int64, isPriorityTele: Int64, priorityTele: Int64, isBottomTele: Int64, bottomTele: Int64, isBestSignal: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTacticResponse {
-        try await self.createTactic(CreateTacticRequest(name: name, isAuto: isAuto, pingInterval: pingInterval, isWeak: isWeak, weakThreshold: weakThreshold, isDelay: isDelay, delayThreshold: delayThreshold, isFake: isFake, fakeIP: fakeIP, fakeInterval: fakeInterval, isNet: isNet, network: network, isMove: isMove, isPriorityTele: isPriorityTele, priorityTele: priorityTele, isBottomTele: isBottomTele, bottomTele: bottomTele, isBestSignal: isBestSignal), region: region, logger: logger, on: eventLoop)
+        let input = CreateTacticRequest(name: name, isAuto: isAuto, pingInterval: pingInterval, isWeak: isWeak, weakThreshold: weakThreshold, isDelay: isDelay, delayThreshold: delayThreshold, isFake: isFake, fakeIP: fakeIP, fakeInterval: fakeInterval, isNet: isNet, network: network, isMove: isMove, isPriorityTele: isPriorityTele, priorityTele: priorityTele, isBottomTele: isBottomTele, bottomTele: bottomTele, isBestSignal: isBestSignal)
+        return try await self.client.execute(action: "CreateTactic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

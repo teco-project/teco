@@ -64,7 +64,8 @@ extension Cdb {
     /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
     @inlinable
     public func describeRoGroups(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRoGroupsResponse> {
-        self.describeRoGroups(DescribeRoGroupsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRoGroupsRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeRoGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例的所有RO组的信息
@@ -72,6 +73,7 @@ extension Cdb {
     /// 本接口(DescribeRoGroups)用于查询云数据库实例的所有的RO组的信息。
     @inlinable
     public func describeRoGroups(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRoGroupsResponse {
-        try await self.describeRoGroups(DescribeRoGroupsRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRoGroupsRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeRoGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

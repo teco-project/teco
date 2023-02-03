@@ -68,7 +68,8 @@ extension Tcss {
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
     @inlinable
     public func describeTaskResultSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResultSummaryResponse> {
-        self.describeTaskResultSummary(DescribeTaskResultSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskResultSummaryRequest()
+        return self.client.execute(action: "DescribeTaskResultSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询检查结果总览
@@ -76,6 +77,7 @@ extension Tcss {
     /// 查询检查结果总览，返回受影响的节点数量，返回7天的数据，总共7个
     @inlinable
     public func describeTaskResultSummary(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResultSummaryResponse {
-        try await self.describeTaskResultSummary(DescribeTaskResultSummaryRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskResultSummaryRequest()
+        return try await self.client.execute(action: "DescribeTaskResultSummary", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

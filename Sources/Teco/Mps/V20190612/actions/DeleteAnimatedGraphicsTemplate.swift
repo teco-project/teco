@@ -60,7 +60,8 @@ extension Mps {
     /// 删除用户自定义转动图模板。
     @inlinable @discardableResult
     public func deleteAnimatedGraphicsTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAnimatedGraphicsTemplateResponse> {
-        self.deleteAnimatedGraphicsTemplate(DeleteAnimatedGraphicsTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAnimatedGraphicsTemplateRequest(definition: definition)
+        return self.client.execute(action: "DeleteAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除转动图模板
@@ -68,6 +69,7 @@ extension Mps {
     /// 删除用户自定义转动图模板。
     @inlinable @discardableResult
     public func deleteAnimatedGraphicsTemplate(definition: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAnimatedGraphicsTemplateResponse {
-        try await self.deleteAnimatedGraphicsTemplate(DeleteAnimatedGraphicsTemplateRequest(definition: definition), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAnimatedGraphicsTemplateRequest(definition: definition)
+        return try await self.client.execute(action: "DeleteAnimatedGraphicsTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

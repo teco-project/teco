@@ -59,12 +59,14 @@ extension Tci {
     /// 删除词汇
     @inlinable @discardableResult
     public func deleteVocab(vocabLibName: String, vocabList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVocabResponse> {
-        self.deleteVocab(DeleteVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList)
+        return self.client.execute(action: "DeleteVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除词汇
     @inlinable @discardableResult
     public func deleteVocab(vocabLibName: String, vocabList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVocabResponse {
-        try await self.deleteVocab(DeleteVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVocabRequest(vocabLibName: vocabLibName, vocabList: vocabList)
+        return try await self.client.execute(action: "DeleteVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

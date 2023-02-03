@@ -84,7 +84,8 @@ extension Nlp {
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
     public func describeWordItems(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWordItemsResponse> {
-        self.describeWordItems(DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text)
+        return self.client.execute(action: "DescribeWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定词库的词条信息
@@ -92,6 +93,7 @@ extension Nlp {
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
     public func describeWordItems(dictId: String, offset: UInt64? = nil, limit: UInt64? = nil, text: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWordItemsResponse {
-        try await self.describeWordItems(DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWordItemsRequest(dictId: dictId, offset: offset, limit: limit, text: text)
+        return try await self.client.execute(action: "DescribeWordItems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

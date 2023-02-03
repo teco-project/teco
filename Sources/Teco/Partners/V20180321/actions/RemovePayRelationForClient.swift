@@ -54,12 +54,14 @@ extension Partners {
     /// 合作伙伴为客户消除强代付关系
     @inlinable @discardableResult
     public func removePayRelationForClient(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemovePayRelationForClientResponse> {
-        self.removePayRelationForClient(RemovePayRelationForClientRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
+        let input = RemovePayRelationForClientRequest(clientUin: clientUin)
+        return self.client.execute(action: "RemovePayRelationForClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 合作伙伴为客户消除强代付关系
     @inlinable @discardableResult
     public func removePayRelationForClient(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemovePayRelationForClientResponse {
-        try await self.removePayRelationForClient(RemovePayRelationForClientRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
+        let input = RemovePayRelationForClientRequest(clientUin: clientUin)
+        return try await self.client.execute(action: "RemovePayRelationForClient", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

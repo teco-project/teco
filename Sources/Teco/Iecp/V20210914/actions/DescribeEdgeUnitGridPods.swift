@@ -79,12 +79,14 @@ extension Iecp {
     /// 查询边缘单元Grid的Pod列表
     @inlinable
     public func describeEdgeUnitGridPods(edgeUnitId: UInt64, gridName: String, workloadKind: String, nodeUnit: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitGridPodsResponse> {
-        self.describeEdgeUnitGridPods(DescribeEdgeUnitGridPodsRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, nodeUnit: nodeUnit, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitGridPodsRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, nodeUnit: nodeUnit, namespace: namespace)
+        return self.client.execute(action: "DescribeEdgeUnitGridPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘单元Grid的Pod列表
     @inlinable
     public func describeEdgeUnitGridPods(edgeUnitId: UInt64, gridName: String, workloadKind: String, nodeUnit: String, namespace: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitGridPodsResponse {
-        try await self.describeEdgeUnitGridPods(DescribeEdgeUnitGridPodsRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, nodeUnit: nodeUnit, namespace: namespace), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitGridPodsRequest(edgeUnitId: edgeUnitId, gridName: gridName, workloadKind: workloadKind, nodeUnit: nodeUnit, namespace: namespace)
+        return try await self.client.execute(action: "DescribeEdgeUnitGridPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

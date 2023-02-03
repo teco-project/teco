@@ -167,7 +167,8 @@ extension Ivld {
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
     @inlinable @discardableResult
     public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCallbackResponse> {
-        self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL)
+        return self.client.execute(action: "ModifyCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑回调地址
@@ -209,6 +210,7 @@ extension Ivld {
     /// | FailedReason | 是 | String | 若任务失败，该字段为失败原因 |
     @inlinable @discardableResult
     public func modifyCallback(taskFinishNotifyURL: String, mediaFinishNotifyURL: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCallbackResponse {
-        try await self.modifyCallback(ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCallbackRequest(taskFinishNotifyURL: taskFinishNotifyURL, mediaFinishNotifyURL: mediaFinishNotifyURL)
+        return try await self.client.execute(action: "ModifyCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

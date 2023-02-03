@@ -59,12 +59,14 @@ extension Iecp {
     /// 自动获取Draco设备的安装包
     @inlinable
     public func describeDracoEdgeNodeInstaller(sn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDracoEdgeNodeInstallerResponse> {
-        self.describeDracoEdgeNodeInstaller(DescribeDracoEdgeNodeInstallerRequest(sn: sn), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDracoEdgeNodeInstallerRequest(sn: sn)
+        return self.client.execute(action: "DescribeDracoEdgeNodeInstaller", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 自动获取Draco设备的安装包
     @inlinable
     public func describeDracoEdgeNodeInstaller(sn: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDracoEdgeNodeInstallerResponse {
-        try await self.describeDracoEdgeNodeInstaller(DescribeDracoEdgeNodeInstallerRequest(sn: sn), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDracoEdgeNodeInstallerRequest(sn: sn)
+        return try await self.client.execute(action: "DescribeDracoEdgeNodeInstaller", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

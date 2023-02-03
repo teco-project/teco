@@ -64,7 +64,8 @@ extension Chdfs {
     /// 通过文件系统ID查看生命周期规则列表。
     @inlinable
     public func describeLifeCycleRules(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLifeCycleRulesResponse> {
-        self.describeLifeCycleRules(DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId)
+        return self.client.execute(action: "DescribeLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看生命周期规则列表
@@ -72,6 +73,7 @@ extension Chdfs {
     /// 通过文件系统ID查看生命周期规则列表。
     @inlinable
     public func describeLifeCycleRules(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLifeCycleRulesResponse {
-        try await self.describeLifeCycleRules(DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLifeCycleRulesRequest(fileSystemId: fileSystemId)
+        return try await self.client.execute(action: "DescribeLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

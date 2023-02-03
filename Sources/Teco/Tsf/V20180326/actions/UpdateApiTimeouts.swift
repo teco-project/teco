@@ -74,7 +74,8 @@ extension Tsf {
     /// 批量更新API超时
     @inlinable
     public func updateApiTimeouts(apiIds: [String], usableStatus: String, timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiTimeoutsResponse> {
-        self.updateApiTimeouts(UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout), region: region, logger: logger, on: eventLoop)
+        let input = UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout)
+        return self.client.execute(action: "UpdateApiTimeouts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新API超时
@@ -82,6 +83,7 @@ extension Tsf {
     /// 批量更新API超时
     @inlinable
     public func updateApiTimeouts(apiIds: [String], usableStatus: String, timeout: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiTimeoutsResponse {
-        try await self.updateApiTimeouts(UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout), region: region, logger: logger, on: eventLoop)
+        let input = UpdateApiTimeoutsRequest(apiIds: apiIds, usableStatus: usableStatus, timeout: timeout)
+        return try await self.client.execute(action: "UpdateApiTimeouts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

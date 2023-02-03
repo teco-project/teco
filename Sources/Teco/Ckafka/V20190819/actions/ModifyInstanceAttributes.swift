@@ -98,12 +98,14 @@ extension Ckafka {
     /// 设置实例属性
     @inlinable
     public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyInstanceAttributesResponse> {
-        self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte)
+        return self.client.execute(action: "ModifyInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置实例属性
     @inlinable
     public func modifyInstanceAttributes(instanceId: String, msgRetentionTime: Int64? = nil, instanceName: String? = nil, config: ModifyInstanceAttributesConfig? = nil, dynamicRetentionConfig: DynamicRetentionTime? = nil, rebalanceTime: Int64? = nil, publicNetwork: Int64? = nil, dynamicDiskConfig: DynamicDiskConfig? = nil, maxMessageByte: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstanceAttributesResponse {
-        try await self.modifyInstanceAttributes(ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte), region: region, logger: logger, on: eventLoop)
+        let input = ModifyInstanceAttributesRequest(instanceId: instanceId, msgRetentionTime: msgRetentionTime, instanceName: instanceName, config: config, dynamicRetentionConfig: dynamicRetentionConfig, rebalanceTime: rebalanceTime, publicNetwork: publicNetwork, dynamicDiskConfig: dynamicDiskConfig, maxMessageByte: maxMessageByte)
+        return try await self.client.execute(action: "ModifyInstanceAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

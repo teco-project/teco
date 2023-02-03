@@ -100,7 +100,8 @@ extension Monitor {
     /// 云监控告警编辑告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmNoticeResponse> {
-        self.modifyAlarmNotice(ModifyAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, policyIds: policyIds)
+        return self.client.execute(action: "ModifyAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改通知模板
@@ -108,6 +109,7 @@ extension Monitor {
     /// 云监控告警编辑告警通知模板
     @inlinable @discardableResult
     public func modifyAlarmNotice(module: String, name: String, noticeType: String, noticeLanguage: String, noticeId: String, userNotices: [UserNotice]? = nil, urlNotices: [URLNotice]? = nil, clsNotices: [CLSNotice]? = nil, policyIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
-        try await self.modifyAlarmNotice(ModifyAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAlarmNoticeRequest(module: module, name: name, noticeType: noticeType, noticeLanguage: noticeLanguage, noticeId: noticeId, userNotices: userNotices, urlNotices: urlNotices, clsNotices: clsNotices, policyIds: policyIds)
+        return try await self.client.execute(action: "ModifyAlarmNotice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

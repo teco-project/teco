@@ -58,12 +58,14 @@ extension Ivld {
     /// 删除自定义人物
     @inlinable
     public func deleteCustomPerson(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCustomPersonResponse> {
-        self.deleteCustomPerson(DeleteCustomPersonRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCustomPersonRequest(personId: personId)
+        return self.client.execute(action: "DeleteCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义人物
     @inlinable
     public func deleteCustomPerson(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomPersonResponse {
-        try await self.deleteCustomPerson(DeleteCustomPersonRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCustomPersonRequest(personId: personId)
+        return try await self.client.execute(action: "DeleteCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

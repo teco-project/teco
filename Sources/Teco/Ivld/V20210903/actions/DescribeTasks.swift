@@ -90,7 +90,8 @@ extension Ivld {
     /// 请注意，本接口最多支持同时描述**50**个任务信息
     @inlinable
     public func describeTasks(pageNumber: Int64? = nil, pageSize: Int64? = nil, taskFilter: TaskFilter? = nil, sortBy: SortBy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        self.describeTasks(DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy)
+        return self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量描述任务
@@ -100,6 +101,7 @@ extension Ivld {
     /// 请注意，本接口最多支持同时描述**50**个任务信息
     @inlinable
     public func describeTasks(pageNumber: Int64? = nil, pageSize: Int64? = nil, taskFilter: TaskFilter? = nil, sortBy: SortBy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.describeTasks(DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksRequest(pageNumber: pageNumber, pageSize: pageSize, taskFilter: taskFilter, sortBy: sortBy)
+        return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

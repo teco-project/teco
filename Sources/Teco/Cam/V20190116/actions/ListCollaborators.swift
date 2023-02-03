@@ -67,12 +67,14 @@ extension Cam {
     /// 获取协作者列表
     @inlinable
     public func listCollaborators(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListCollaboratorsResponse> {
-        self.listCollaborators(ListCollaboratorsRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = ListCollaboratorsRequest(limit: limit, offset: offset)
+        return self.client.execute(action: "ListCollaborators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取协作者列表
     @inlinable
     public func listCollaborators(limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListCollaboratorsResponse {
-        try await self.listCollaborators(ListCollaboratorsRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = ListCollaboratorsRequest(limit: limit, offset: offset)
+        return try await self.client.execute(action: "ListCollaborators", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

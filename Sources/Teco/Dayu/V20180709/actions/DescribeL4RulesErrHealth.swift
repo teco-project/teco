@@ -77,12 +77,14 @@ extension Dayu {
     /// 获取L4转发规则健康检查异常结果
     @inlinable
     public func describeL4RulesErrHealth(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeL4RulesErrHealthResponse> {
-        self.describeL4RulesErrHealth(DescribeL4RulesErrHealthRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL4RulesErrHealthRequest(business: business, id: id)
+        return self.client.execute(action: "DescribeL4RulesErrHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取L4转发规则健康检查异常结果
     @inlinable
     public func describeL4RulesErrHealth(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeL4RulesErrHealthResponse {
-        try await self.describeL4RulesErrHealth(DescribeL4RulesErrHealthRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeL4RulesErrHealthRequest(business: business, id: id)
+        return try await self.client.execute(action: "DescribeL4RulesErrHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

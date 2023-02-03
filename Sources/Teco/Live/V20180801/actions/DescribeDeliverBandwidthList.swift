@@ -69,7 +69,8 @@ extension Live {
     /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
     @inlinable
     public func describeDeliverBandwidthList(startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeliverBandwidthListResponse> {
-        self.describeDeliverBandwidthList(DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeDeliverBandwidthList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询直播转推计费带宽
@@ -77,6 +78,7 @@ extension Live {
     /// 查询直播转推计费带宽，查询时间范围最大支持3个月内的数据，时间跨度最长31天。
     @inlinable
     public func describeDeliverBandwidthList(startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeliverBandwidthListResponse {
-        try await self.describeDeliverBandwidthList(DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeliverBandwidthListRequest(startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeDeliverBandwidthList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

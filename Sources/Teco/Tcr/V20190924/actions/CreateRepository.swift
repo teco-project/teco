@@ -80,7 +80,8 @@ extension Tcr {
     /// 用于企业版创建镜像仓库
     @inlinable @discardableResult
     public func createRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRepositoryResponse> {
-        self.createRepository(CreateRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description)
+        return self.client.execute(action: "CreateRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像仓库
@@ -88,6 +89,7 @@ extension Tcr {
     /// 用于企业版创建镜像仓库
     @inlinable @discardableResult
     public func createRepository(registryId: String, namespaceName: String, repositoryName: String, briefDescription: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRepositoryResponse {
-        try await self.createRepository(CreateRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateRepositoryRequest(registryId: registryId, namespaceName: namespaceName, repositoryName: repositoryName, briefDescription: briefDescription, description: description)
+        return try await self.client.execute(action: "CreateRepository", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

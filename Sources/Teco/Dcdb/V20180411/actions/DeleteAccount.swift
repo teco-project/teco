@@ -70,7 +70,8 @@ extension Dcdb {
     /// 本接口（DeleteAccount）用于删除云数据库账号。用户名+host唯一确定一个账号。
     @inlinable @discardableResult
     public func deleteAccount(instanceId: String, userName: String, host: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAccountResponse> {
-        self.deleteAccount(DeleteAccountRequest(instanceId: instanceId, userName: userName, host: host), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAccountRequest(instanceId: instanceId, userName: userName, host: host)
+        return self.client.execute(action: "DeleteAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除账号
@@ -78,6 +79,7 @@ extension Dcdb {
     /// 本接口（DeleteAccount）用于删除云数据库账号。用户名+host唯一确定一个账号。
     @inlinable @discardableResult
     public func deleteAccount(instanceId: String, userName: String, host: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAccountResponse {
-        try await self.deleteAccount(DeleteAccountRequest(instanceId: instanceId, userName: userName, host: host), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAccountRequest(instanceId: instanceId, userName: userName, host: host)
+        return try await self.client.execute(action: "DeleteAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

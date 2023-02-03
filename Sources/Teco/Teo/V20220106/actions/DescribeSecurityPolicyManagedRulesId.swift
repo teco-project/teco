@@ -66,12 +66,14 @@ extension Teo {
     /// 规则id查询门神规则详情
     @inlinable
     public func describeSecurityPolicyManagedRulesId(ruleId: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecurityPolicyManagedRulesIdResponse> {
-        self.describeSecurityPolicyManagedRulesId(DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId)
+        return self.client.execute(action: "DescribeSecurityPolicyManagedRulesId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 规则id查询门神规则详情
     @inlinable
     public func describeSecurityPolicyManagedRulesId(ruleId: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecurityPolicyManagedRulesIdResponse {
-        try await self.describeSecurityPolicyManagedRulesId(DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecurityPolicyManagedRulesIdRequest(ruleId: ruleId)
+        return try await self.client.execute(action: "DescribeSecurityPolicyManagedRulesId", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -95,7 +95,8 @@ extension Tiw {
     /// 创建白板板书生成任务, 在任务结束后，如果提供了回调地址，将通过回调地址通知板书生成结果
     @inlinable
     public func createSnapshotTask(whiteboard: SnapshotWhiteboard, sdkAppId: UInt64, roomId: UInt64, callbackURL: String? = nil, cos: SnapshotCOS? = nil, snapshotMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotTaskResponse> {
-        self.createSnapshotTask(CreateSnapshotTaskRequest(whiteboard: whiteboard, sdkAppId: sdkAppId, roomId: roomId, callbackURL: callbackURL, cos: cos, snapshotMode: snapshotMode), region: region, logger: logger, on: eventLoop)
+        let input = CreateSnapshotTaskRequest(whiteboard: whiteboard, sdkAppId: sdkAppId, roomId: roomId, callbackURL: callbackURL, cos: cos, snapshotMode: snapshotMode)
+        return self.client.execute(action: "CreateSnapshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建白板板书生成任务
@@ -103,6 +104,7 @@ extension Tiw {
     /// 创建白板板书生成任务, 在任务结束后，如果提供了回调地址，将通过回调地址通知板书生成结果
     @inlinable
     public func createSnapshotTask(whiteboard: SnapshotWhiteboard, sdkAppId: UInt64, roomId: UInt64, callbackURL: String? = nil, cos: SnapshotCOS? = nil, snapshotMode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotTaskResponse {
-        try await self.createSnapshotTask(CreateSnapshotTaskRequest(whiteboard: whiteboard, sdkAppId: sdkAppId, roomId: roomId, callbackURL: callbackURL, cos: cos, snapshotMode: snapshotMode), region: region, logger: logger, on: eventLoop)
+        let input = CreateSnapshotTaskRequest(whiteboard: whiteboard, sdkAppId: sdkAppId, roomId: roomId, callbackURL: callbackURL, cos: cos, snapshotMode: snapshotMode)
+        return try await self.client.execute(action: "CreateSnapshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

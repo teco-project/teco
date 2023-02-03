@@ -73,7 +73,8 @@ extension Cwp {
     /// 专家服务-安全管家月巡检报告下载
     @inlinable
     public func describeMonthInspectionReport(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMonthInspectionReportResponse> {
-        self.describeMonthInspectionReport(DescribeMonthInspectionReportRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMonthInspectionReportRequest(limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeMonthInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 安全管家月巡检报告下载
@@ -81,6 +82,7 @@ extension Cwp {
     /// 专家服务-安全管家月巡检报告下载
     @inlinable
     public func describeMonthInspectionReport(limit: UInt64, offset: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMonthInspectionReportResponse {
-        try await self.describeMonthInspectionReport(DescribeMonthInspectionReportRequest(limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMonthInspectionReportRequest(limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeMonthInspectionReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

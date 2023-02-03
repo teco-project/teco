@@ -78,7 +78,8 @@ extension Dbbrain {
     /// 创建健康报告的浏览地址。
     @inlinable
     public func createDBDiagReportUrl(instanceId: String, asyncRequestId: Int64, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDBDiagReportUrlResponse> {
-        self.createDBDiagReportUrl(CreateDBDiagReportUrlRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, product: product), region: region, logger: logger, on: eventLoop)
+        let input = CreateDBDiagReportUrlRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, product: product)
+        return self.client.execute(action: "CreateDBDiagReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建健康报告浏览地址
@@ -86,6 +87,7 @@ extension Dbbrain {
     /// 创建健康报告的浏览地址。
     @inlinable
     public func createDBDiagReportUrl(instanceId: String, asyncRequestId: Int64, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDBDiagReportUrlResponse {
-        try await self.createDBDiagReportUrl(CreateDBDiagReportUrlRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, product: product), region: region, logger: logger, on: eventLoop)
+        let input = CreateDBDiagReportUrlRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, product: product)
+        return try await self.client.execute(action: "CreateDBDiagReportUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

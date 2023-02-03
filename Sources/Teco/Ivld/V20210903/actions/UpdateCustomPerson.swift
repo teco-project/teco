@@ -79,7 +79,8 @@ extension Ivld {
     /// 更新自定义人物信息，包括姓名，简要信息，分类信息等
     @inlinable
     public func updateCustomPerson(personId: String, name: String? = nil, basicInfo: String? = nil, categoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCustomPersonResponse> {
-        self.updateCustomPerson(UpdateCustomPersonRequest(personId: personId, name: name, basicInfo: basicInfo, categoryId: categoryId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateCustomPersonRequest(personId: personId, name: name, basicInfo: basicInfo, categoryId: categoryId)
+        return self.client.execute(action: "UpdateCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新自定义人物信息
@@ -87,6 +88,7 @@ extension Ivld {
     /// 更新自定义人物信息，包括姓名，简要信息，分类信息等
     @inlinable
     public func updateCustomPerson(personId: String, name: String? = nil, basicInfo: String? = nil, categoryId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCustomPersonResponse {
-        try await self.updateCustomPerson(UpdateCustomPersonRequest(personId: personId, name: name, basicInfo: basicInfo, categoryId: categoryId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateCustomPersonRequest(personId: personId, name: name, basicInfo: basicInfo, categoryId: categoryId)
+        return try await self.client.execute(action: "UpdateCustomPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

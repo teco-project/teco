@@ -78,12 +78,14 @@ extension Cpdp {
     /// 云支付-查询合同支付方式列表接口
     @inlinable
     public func queryContractPayWayList(openId: String, openKey: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryContractPayWayListResponse> {
-        self.queryContractPayWayList(QueryContractPayWayListRequest(openId: openId, openKey: openKey, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryContractPayWayListRequest(openId: openId, openKey: openKey, profile: profile)
+        return self.client.execute(action: "QueryContractPayWayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云支付-查询合同支付方式列表接口
     @inlinable
     public func queryContractPayWayList(openId: String, openKey: String, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryContractPayWayListResponse {
-        try await self.queryContractPayWayList(QueryContractPayWayListRequest(openId: openId, openKey: openKey, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = QueryContractPayWayListRequest(openId: openId, openKey: openKey, profile: profile)
+        return try await self.client.execute(action: "QueryContractPayWayList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

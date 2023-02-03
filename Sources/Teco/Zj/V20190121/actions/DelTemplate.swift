@@ -63,12 +63,14 @@ extension Zj {
     /// 删除短信模板
     @inlinable
     public func delTemplate(license: String, templateID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DelTemplateResponse> {
-        self.delTemplate(DelTemplateRequest(license: license, templateID: templateID), region: region, logger: logger, on: eventLoop)
+        let input = DelTemplateRequest(license: license, templateID: templateID)
+        return self.client.execute(action: "DelTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除短信模板
     @inlinable
     public func delTemplate(license: String, templateID: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DelTemplateResponse {
-        try await self.delTemplate(DelTemplateRequest(license: license, templateID: templateID), region: region, logger: logger, on: eventLoop)
+        let input = DelTemplateRequest(license: license, templateID: templateID)
+        return try await self.client.execute(action: "DelTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

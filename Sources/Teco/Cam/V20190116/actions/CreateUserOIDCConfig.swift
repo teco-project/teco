@@ -101,7 +101,8 @@ extension Cam {
     /// 创建用户OIDC配置。只能创建一个用户OIDC身份提供商，并且创建用户OIDC配置之后会自动关闭用户SAML SSO身份提供商。
     @inlinable @discardableResult
     public func createUserOIDCConfig(identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserOIDCConfigResponse> {
-        self.createUserOIDCConfig(CreateUserOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, authorizationEndpoint: authorizationEndpoint, responseType: responseType, responseMode: responseMode, mappingFiled: mappingFiled, scope: scope, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, authorizationEndpoint: authorizationEndpoint, responseType: responseType, responseMode: responseMode, mappingFiled: mappingFiled, scope: scope, description: description)
+        return self.client.execute(action: "CreateUserOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建用户OIDC配置
@@ -109,6 +110,7 @@ extension Cam {
     /// 创建用户OIDC配置。只能创建一个用户OIDC身份提供商，并且创建用户OIDC配置之后会自动关闭用户SAML SSO身份提供商。
     @inlinable @discardableResult
     public func createUserOIDCConfig(identityUrl: String, identityKey: String, clientId: String, authorizationEndpoint: String, responseType: String, responseMode: String, mappingFiled: String, scope: [String]? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserOIDCConfigResponse {
-        try await self.createUserOIDCConfig(CreateUserOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, authorizationEndpoint: authorizationEndpoint, responseType: responseType, responseMode: responseMode, mappingFiled: mappingFiled, scope: scope, description: description), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserOIDCConfigRequest(identityUrl: identityUrl, identityKey: identityKey, clientId: clientId, authorizationEndpoint: authorizationEndpoint, responseType: responseType, responseMode: responseMode, mappingFiled: mappingFiled, scope: scope, description: description)
+        return try await self.client.execute(action: "CreateUserOIDCConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

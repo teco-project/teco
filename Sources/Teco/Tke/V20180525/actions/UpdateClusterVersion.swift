@@ -80,7 +80,8 @@ extension Tke {
     /// 升级集群 Master 组件到指定版本
     @inlinable @discardableResult
     public func updateClusterVersion(clusterId: String, dstVersion: String, extraArgs: ClusterExtraArgs? = nil, maxNotReadyPercent: Float? = nil, skipPreCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateClusterVersionResponse> {
-        self.updateClusterVersion(UpdateClusterVersionRequest(clusterId: clusterId, dstVersion: dstVersion, extraArgs: extraArgs, maxNotReadyPercent: maxNotReadyPercent, skipPreCheck: skipPreCheck), region: region, logger: logger, on: eventLoop)
+        let input = UpdateClusterVersionRequest(clusterId: clusterId, dstVersion: dstVersion, extraArgs: extraArgs, maxNotReadyPercent: maxNotReadyPercent, skipPreCheck: skipPreCheck)
+        return self.client.execute(action: "UpdateClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级集群
@@ -88,6 +89,7 @@ extension Tke {
     /// 升级集群 Master 组件到指定版本
     @inlinable @discardableResult
     public func updateClusterVersion(clusterId: String, dstVersion: String, extraArgs: ClusterExtraArgs? = nil, maxNotReadyPercent: Float? = nil, skipPreCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateClusterVersionResponse {
-        try await self.updateClusterVersion(UpdateClusterVersionRequest(clusterId: clusterId, dstVersion: dstVersion, extraArgs: extraArgs, maxNotReadyPercent: maxNotReadyPercent, skipPreCheck: skipPreCheck), region: region, logger: logger, on: eventLoop)
+        let input = UpdateClusterVersionRequest(clusterId: clusterId, dstVersion: dstVersion, extraArgs: extraArgs, maxNotReadyPercent: maxNotReadyPercent, skipPreCheck: skipPreCheck)
+        return try await self.client.execute(action: "UpdateClusterVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

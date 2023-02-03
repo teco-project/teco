@@ -65,7 +65,8 @@ extension Afc {
     /// 天御信鸽取数平台接口
     @inlinable
     public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransportGeneralInterfaceResponse> {
-        self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), region: region, logger: logger, on: eventLoop)
+        let input = TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData)
+        return self.client.execute(action: "TransportGeneralInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 信鸽取数平台接口
@@ -73,6 +74,7 @@ extension Afc {
     /// 天御信鸽取数平台接口
     @inlinable
     public func transportGeneralInterface(businessSecurityData: TransportGeneralInterfaceInput? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransportGeneralInterfaceResponse {
-        try await self.transportGeneralInterface(TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData), region: region, logger: logger, on: eventLoop)
+        let input = TransportGeneralInterfaceRequest(businessSecurityData: businessSecurityData)
+        return try await self.client.execute(action: "TransportGeneralInterface", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

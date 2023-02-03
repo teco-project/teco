@@ -78,7 +78,8 @@ extension Kms {
     /// 只有Enabled 和 PendingImport状态的CMK可以导入密钥材料。
     @inlinable @discardableResult
     public func importKeyMaterial(encryptedKeyMaterial: String, importToken: String, keyId: String, validTo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ImportKeyMaterialResponse> {
-        self.importKeyMaterial(ImportKeyMaterialRequest(encryptedKeyMaterial: encryptedKeyMaterial, importToken: importToken, keyId: keyId, validTo: validTo), region: region, logger: logger, on: eventLoop)
+        let input = ImportKeyMaterialRequest(encryptedKeyMaterial: encryptedKeyMaterial, importToken: importToken, keyId: keyId, validTo: validTo)
+        return self.client.execute(action: "ImportKeyMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 导入密钥材料
@@ -87,6 +88,7 @@ extension Kms {
     /// 只有Enabled 和 PendingImport状态的CMK可以导入密钥材料。
     @inlinable @discardableResult
     public func importKeyMaterial(encryptedKeyMaterial: String, importToken: String, keyId: String, validTo: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ImportKeyMaterialResponse {
-        try await self.importKeyMaterial(ImportKeyMaterialRequest(encryptedKeyMaterial: encryptedKeyMaterial, importToken: importToken, keyId: keyId, validTo: validTo), region: region, logger: logger, on: eventLoop)
+        let input = ImportKeyMaterialRequest(encryptedKeyMaterial: encryptedKeyMaterial, importToken: importToken, keyId: keyId, validTo: validTo)
+        return try await self.client.execute(action: "ImportKeyMaterial", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

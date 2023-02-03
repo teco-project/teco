@@ -74,7 +74,8 @@ extension Lighthouse {
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
     public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBlueprintResponse> {
-        self.createBlueprint(CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId)
+        return self.client.execute(action: "CreateBlueprint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建镜像
@@ -82,6 +83,7 @@ extension Lighthouse {
     /// 本接口 (CreateBlueprint) 用于创建镜像。
     @inlinable
     public func createBlueprint(blueprintName: String, description: String? = nil, instanceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBlueprintResponse {
-        try await self.createBlueprint(CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateBlueprintRequest(blueprintName: blueprintName, description: description, instanceId: instanceId)
+        return try await self.client.execute(action: "CreateBlueprint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

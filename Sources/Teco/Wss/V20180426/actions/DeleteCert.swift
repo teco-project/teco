@@ -65,7 +65,8 @@ extension Wss {
     /// 本接口（DeleteCert）用于删除证书。
     @inlinable @discardableResult
     public func deleteCert(id: String, moduleType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCertResponse> {
-        self.deleteCert(DeleteCertRequest(id: id, moduleType: moduleType), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCertRequest(id: id, moduleType: moduleType)
+        return self.client.execute(action: "DeleteCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除证书
@@ -73,6 +74,7 @@ extension Wss {
     /// 本接口（DeleteCert）用于删除证书。
     @inlinable @discardableResult
     public func deleteCert(id: String, moduleType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCertResponse {
-        try await self.deleteCert(DeleteCertRequest(id: id, moduleType: moduleType), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCertRequest(id: id, moduleType: moduleType)
+        return try await self.client.execute(action: "DeleteCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

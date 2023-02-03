@@ -97,7 +97,8 @@ extension Vpc {
     /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
     @inlinable
     public func describeCcnAttachedInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, ccnId: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCcnAttachedInstancesResponse> {
-        self.describeCcnAttachedInstances(DescribeCcnAttachedInstancesRequest(offset: offset, limit: limit, filters: filters, ccnId: ccnId, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCcnAttachedInstancesRequest(offset: offset, limit: limit, filters: filters, ccnId: ccnId, orderField: orderField, orderDirection: orderDirection)
+        return self.client.execute(action: "DescribeCcnAttachedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云联网关联实例列表
@@ -105,6 +106,7 @@ extension Vpc {
     /// 本接口（DescribeCcnAttachedInstances）用于查询云联网实例下已关联的网络实例。
     @inlinable
     public func describeCcnAttachedInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, ccnId: String? = nil, orderField: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCcnAttachedInstancesResponse {
-        try await self.describeCcnAttachedInstances(DescribeCcnAttachedInstancesRequest(offset: offset, limit: limit, filters: filters, ccnId: ccnId, orderField: orderField, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCcnAttachedInstancesRequest(offset: offset, limit: limit, filters: filters, ccnId: ccnId, orderField: orderField, orderDirection: orderDirection)
+        return try await self.client.execute(action: "DescribeCcnAttachedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

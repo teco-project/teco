@@ -76,7 +76,8 @@ extension Bizlive {
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
     @inlinable @discardableResult
     public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ForbidLiveStreamResponse> {
-        self.forbidLiveStream(ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime), region: region, logger: logger, on: eventLoop)
+        let input = ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime)
+        return self.client.execute(action: "ForbidLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 禁播直播流
@@ -84,6 +85,7 @@ extension Bizlive {
     /// 禁止某条流的推送，可以预设某个时刻将流恢复。
     @inlinable @discardableResult
     public func forbidLiveStream(appName: String, domainName: String, streamName: String, resumeTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ForbidLiveStreamResponse {
-        try await self.forbidLiveStream(ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime), region: region, logger: logger, on: eventLoop)
+        let input = ForbidLiveStreamRequest(appName: appName, domainName: domainName, streamName: streamName, resumeTime: resumeTime)
+        return try await self.client.execute(action: "ForbidLiveStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -66,12 +66,14 @@ extension Cam {
     /// 查询安全设置
     @inlinable
     public func describeSafeAuthFlagColl(subUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSafeAuthFlagCollResponse> {
-        self.describeSafeAuthFlagColl(DescribeSafeAuthFlagCollRequest(subUin: subUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSafeAuthFlagCollRequest(subUin: subUin)
+        return self.client.execute(action: "DescribeSafeAuthFlagColl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全设置
     @inlinable
     public func describeSafeAuthFlagColl(subUin: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSafeAuthFlagCollResponse {
-        try await self.describeSafeAuthFlagColl(DescribeSafeAuthFlagCollRequest(subUin: subUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSafeAuthFlagCollRequest(subUin: subUin)
+        return try await self.client.execute(action: "DescribeSafeAuthFlagColl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

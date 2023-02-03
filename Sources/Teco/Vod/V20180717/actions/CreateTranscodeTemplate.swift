@@ -118,7 +118,8 @@ extension Vod {
     /// 创建用户自定义转码模板，数量上限：100。
     @inlinable
     public func createTranscodeTemplate(container: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfo? = nil, audioTemplate: AudioTemplateInfo? = nil, tehdConfig: TEHDConfig? = nil, segmentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTranscodeTemplateResponse> {
-        self.createTranscodeTemplate(CreateTranscodeTemplateRequest(container: container, subAppId: subAppId, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, segmentType: segmentType), region: region, logger: logger, on: eventLoop)
+        let input = CreateTranscodeTemplateRequest(container: container, subAppId: subAppId, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, segmentType: segmentType)
+        return self.client.execute(action: "CreateTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建转码模板
@@ -126,6 +127,7 @@ extension Vod {
     /// 创建用户自定义转码模板，数量上限：100。
     @inlinable
     public func createTranscodeTemplate(container: String, subAppId: UInt64? = nil, name: String? = nil, comment: String? = nil, removeVideo: Int64? = nil, removeAudio: Int64? = nil, videoTemplate: VideoTemplateInfo? = nil, audioTemplate: AudioTemplateInfo? = nil, tehdConfig: TEHDConfig? = nil, segmentType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTranscodeTemplateResponse {
-        try await self.createTranscodeTemplate(CreateTranscodeTemplateRequest(container: container, subAppId: subAppId, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, segmentType: segmentType), region: region, logger: logger, on: eventLoop)
+        let input = CreateTranscodeTemplateRequest(container: container, subAppId: subAppId, name: name, comment: comment, removeVideo: removeVideo, removeAudio: removeAudio, videoTemplate: videoTemplate, audioTemplate: audioTemplate, tehdConfig: tehdConfig, segmentType: segmentType)
+        return try await self.client.execute(action: "CreateTranscodeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

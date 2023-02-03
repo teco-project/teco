@@ -115,7 +115,8 @@ extension Cwp {
     /// 根据基线策略id查询策略详情
     @inlinable
     public func describeBaselineStrategyDetail(strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineStrategyDetailResponse> {
-        self.describeBaselineStrategyDetail(DescribeBaselineStrategyDetailRequest(strategyId: strategyId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselineStrategyDetailRequest(strategyId: strategyId)
+        return self.client.execute(action: "DescribeBaselineStrategyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询基线策略详情
@@ -123,6 +124,7 @@ extension Cwp {
     /// 根据基线策略id查询策略详情
     @inlinable
     public func describeBaselineStrategyDetail(strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineStrategyDetailResponse {
-        try await self.describeBaselineStrategyDetail(DescribeBaselineStrategyDetailRequest(strategyId: strategyId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselineStrategyDetailRequest(strategyId: strategyId)
+        return try await self.client.execute(action: "DescribeBaselineStrategyDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

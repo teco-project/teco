@@ -130,7 +130,8 @@ extension Cpdp {
     /// 对于存量的签约关系导入或者部分场景下米大师无法收到签约通知的场景，需要由调用方主动将签约状态同步至米大师
     @inlinable
     public func syncContractData(midasAppId: String, userId: String, channel: String, outContractCode: String, contractStatus: String, contractSyncInfo: ContractSyncInfo, midasSignature: String, midasSecretId: String, subAppId: String? = nil, userType: String? = nil, sceneInfo: SceneInfo? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SyncContractDataResponse> {
-        self.syncContractData(SyncContractDataRequest(midasAppId: midasAppId, userId: userId, channel: channel, outContractCode: outContractCode, contractStatus: contractStatus, contractSyncInfo: contractSyncInfo, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, userType: userType, sceneInfo: sceneInfo, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = SyncContractDataRequest(midasAppId: midasAppId, userId: userId, channel: channel, outContractCode: outContractCode, contractStatus: contractStatus, contractSyncInfo: contractSyncInfo, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, userType: userType, sceneInfo: sceneInfo, midasEnvironment: midasEnvironment)
+        return self.client.execute(action: "SyncContractData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 签约状态同步接口
@@ -138,6 +139,7 @@ extension Cpdp {
     /// 对于存量的签约关系导入或者部分场景下米大师无法收到签约通知的场景，需要由调用方主动将签约状态同步至米大师
     @inlinable
     public func syncContractData(midasAppId: String, userId: String, channel: String, outContractCode: String, contractStatus: String, contractSyncInfo: ContractSyncInfo, midasSignature: String, midasSecretId: String, subAppId: String? = nil, userType: String? = nil, sceneInfo: SceneInfo? = nil, midasEnvironment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SyncContractDataResponse {
-        try await self.syncContractData(SyncContractDataRequest(midasAppId: midasAppId, userId: userId, channel: channel, outContractCode: outContractCode, contractStatus: contractStatus, contractSyncInfo: contractSyncInfo, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, userType: userType, sceneInfo: sceneInfo, midasEnvironment: midasEnvironment), region: region, logger: logger, on: eventLoop)
+        let input = SyncContractDataRequest(midasAppId: midasAppId, userId: userId, channel: channel, outContractCode: outContractCode, contractStatus: contractStatus, contractSyncInfo: contractSyncInfo, midasSignature: midasSignature, midasSecretId: midasSecretId, subAppId: subAppId, userType: userType, sceneInfo: sceneInfo, midasEnvironment: midasEnvironment)
+        return try await self.client.execute(action: "SyncContractData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

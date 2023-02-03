@@ -70,7 +70,8 @@ extension Postgres {
     /// 本接口（ModifyAccountRemark）用于修改帐号备注。
     @inlinable @discardableResult
     public func modifyAccountRemark(dbInstanceId: String, userName: String, remark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountRemarkResponse> {
-        self.modifyAccountRemark(ModifyAccountRemarkRequest(dbInstanceId: dbInstanceId, userName: userName, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountRemarkRequest(dbInstanceId: dbInstanceId, userName: userName, remark: remark)
+        return self.client.execute(action: "ModifyAccountRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改帐号备注
@@ -78,6 +79,7 @@ extension Postgres {
     /// 本接口（ModifyAccountRemark）用于修改帐号备注。
     @inlinable @discardableResult
     public func modifyAccountRemark(dbInstanceId: String, userName: String, remark: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountRemarkResponse {
-        try await self.modifyAccountRemark(ModifyAccountRemarkRequest(dbInstanceId: dbInstanceId, userName: userName, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountRemarkRequest(dbInstanceId: dbInstanceId, userName: userName, remark: remark)
+        return try await self.client.execute(action: "ModifyAccountRemark", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

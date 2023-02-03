@@ -70,7 +70,8 @@ extension Postgres {
     /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
     @inlinable @discardableResult
     public func resetAccountPassword(dbInstanceId: String, userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
-        self.resetAccountPassword(ResetAccountPasswordRequest(dbInstanceId: dbInstanceId, userName: userName, password: password), region: region, logger: logger, on: eventLoop)
+        let input = ResetAccountPasswordRequest(dbInstanceId: dbInstanceId, userName: userName, password: password)
+        return self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置账户密码
@@ -78,6 +79,7 @@ extension Postgres {
     /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
     @inlinable @discardableResult
     public func resetAccountPassword(dbInstanceId: String, userName: String, password: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
-        try await self.resetAccountPassword(ResetAccountPasswordRequest(dbInstanceId: dbInstanceId, userName: userName, password: password), region: region, logger: logger, on: eventLoop)
+        let input = ResetAccountPasswordRequest(dbInstanceId: dbInstanceId, userName: userName, password: password)
+        return try await self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

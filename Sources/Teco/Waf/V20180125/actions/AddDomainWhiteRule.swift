@@ -78,12 +78,14 @@ extension Waf {
     /// 增加域名规则白名单
     @inlinable
     public func addDomainWhiteRule(domain: String, rules: [UInt64], url: String, function: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddDomainWhiteRuleResponse> {
-        self.addDomainWhiteRule(AddDomainWhiteRuleRequest(domain: domain, rules: rules, url: url, function: function, status: status), region: region, logger: logger, on: eventLoop)
+        let input = AddDomainWhiteRuleRequest(domain: domain, rules: rules, url: url, function: function, status: status)
+        return self.client.execute(action: "AddDomainWhiteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 增加域名规则白名单
     @inlinable
     public func addDomainWhiteRule(domain: String, rules: [UInt64], url: String, function: String, status: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddDomainWhiteRuleResponse {
-        try await self.addDomainWhiteRule(AddDomainWhiteRuleRequest(domain: domain, rules: rules, url: url, function: function, status: status), region: region, logger: logger, on: eventLoop)
+        let input = AddDomainWhiteRuleRequest(domain: domain, rules: rules, url: url, function: function, status: status)
+        return try await self.client.execute(action: "AddDomainWhiteRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

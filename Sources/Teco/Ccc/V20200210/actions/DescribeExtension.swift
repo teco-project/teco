@@ -79,12 +79,14 @@ extension Ccc {
     /// 获取话机信息
     @inlinable
     public func describeExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExtensionResponse> {
-        self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId)
+        return self.client.execute(action: "DescribeExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取话机信息
     @inlinable
     public func describeExtension(sdkAppId: UInt64, extensionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExtensionResponse {
-        try await self.describeExtension(DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExtensionRequest(sdkAppId: sdkAppId, extensionId: extensionId)
+        return try await self.client.execute(action: "DescribeExtension", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

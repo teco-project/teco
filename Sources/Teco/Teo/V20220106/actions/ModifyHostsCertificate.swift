@@ -70,7 +70,8 @@ extension Teo {
     /// 用于修改域名证书
     @inlinable @discardableResult
     public func modifyHostsCertificate(zoneId: String, hosts: [String], certInfo: [ServerCertInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyHostsCertificateResponse> {
-        self.modifyHostsCertificate(ModifyHostsCertificateRequest(zoneId: zoneId, hosts: hosts, certInfo: certInfo), region: region, logger: logger, on: eventLoop)
+        let input = ModifyHostsCertificateRequest(zoneId: zoneId, hosts: hosts, certInfo: certInfo)
+        return self.client.execute(action: "ModifyHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名证书
@@ -78,6 +79,7 @@ extension Teo {
     /// 用于修改域名证书
     @inlinable @discardableResult
     public func modifyHostsCertificate(zoneId: String, hosts: [String], certInfo: [ServerCertInfo]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyHostsCertificateResponse {
-        try await self.modifyHostsCertificate(ModifyHostsCertificateRequest(zoneId: zoneId, hosts: hosts, certInfo: certInfo), region: region, logger: logger, on: eventLoop)
+        let input = ModifyHostsCertificateRequest(zoneId: zoneId, hosts: hosts, certInfo: certInfo)
+        return try await self.client.execute(action: "ModifyHostsCertificate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

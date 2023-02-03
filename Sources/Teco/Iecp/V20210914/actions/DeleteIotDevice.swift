@@ -54,12 +54,14 @@ extension Iecp {
     /// 删除设备
     @inlinable @discardableResult
     public func deleteIotDevice(deviceId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIotDeviceResponse> {
-        self.deleteIotDevice(DeleteIotDeviceRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIotDeviceRequest(deviceId: deviceId)
+        return self.client.execute(action: "DeleteIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除设备
     @inlinable @discardableResult
     public func deleteIotDevice(deviceId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIotDeviceResponse {
-        try await self.deleteIotDevice(DeleteIotDeviceRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIotDeviceRequest(deviceId: deviceId)
+        return try await self.client.execute(action: "DeleteIotDevice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

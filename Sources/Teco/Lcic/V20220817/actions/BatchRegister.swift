@@ -65,7 +65,8 @@ extension Lcic {
     /// 如果批量注册的用户已存在，则会被覆盖。一次最多注册1000个用户。默认请求频率限制：10次/秒
     @inlinable
     public func batchRegister(users: [BatchUserRequest], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchRegisterResponse> {
-        self.batchRegister(BatchRegisterRequest(users: users), region: region, logger: logger, on: eventLoop)
+        let input = BatchRegisterRequest(users: users)
+        return self.client.execute(action: "BatchRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 用户批量注册
@@ -73,6 +74,7 @@ extension Lcic {
     /// 如果批量注册的用户已存在，则会被覆盖。一次最多注册1000个用户。默认请求频率限制：10次/秒
     @inlinable
     public func batchRegister(users: [BatchUserRequest], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchRegisterResponse {
-        try await self.batchRegister(BatchRegisterRequest(users: users), region: region, logger: logger, on: eventLoop)
+        let input = BatchRegisterRequest(users: users)
+        return try await self.client.execute(action: "BatchRegister", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -91,7 +91,8 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证姓名和身份证信息
     @inlinable
     public func checkIdCardVerification(caller: Caller, name: String, idCardNumber: String, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIdCardVerificationResponse> {
-        self.checkIdCardVerification(CheckIdCardVerificationRequest(caller: caller, name: name, idCardNumber: idCardNumber, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
+        let input = CheckIdCardVerificationRequest(caller: caller, name: name, idCardNumber: idCardNumber, idCardType: idCardType)
+        return self.client.execute(action: "CheckIdCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 身份证核验
@@ -99,6 +100,7 @@ extension Essbasic {
     /// 该接口为第三方平台向电子签平台验证姓名和身份证信息
     @inlinable
     public func checkIdCardVerification(caller: Caller, name: String, idCardNumber: String, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIdCardVerificationResponse {
-        try await self.checkIdCardVerification(CheckIdCardVerificationRequest(caller: caller, name: name, idCardNumber: idCardNumber, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
+        let input = CheckIdCardVerificationRequest(caller: caller, name: name, idCardNumber: idCardNumber, idCardType: idCardType)
+        return try await self.client.execute(action: "CheckIdCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

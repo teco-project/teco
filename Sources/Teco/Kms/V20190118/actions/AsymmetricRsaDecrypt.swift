@@ -78,7 +78,8 @@ extension Kms {
     /// 使用指定的RSA非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。
     @inlinable
     public func asymmetricRsaDecrypt(keyId: String, ciphertext: String, algorithm: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AsymmetricRsaDecryptResponse> {
-        self.asymmetricRsaDecrypt(AsymmetricRsaDecryptRequest(keyId: keyId, ciphertext: ciphertext, algorithm: algorithm), region: region, logger: logger, on: eventLoop)
+        let input = AsymmetricRsaDecryptRequest(keyId: keyId, ciphertext: ciphertext, algorithm: algorithm)
+        return self.client.execute(action: "AsymmetricRsaDecrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 非对称密钥RSA解密
@@ -86,6 +87,7 @@ extension Kms {
     /// 使用指定的RSA非对称密钥的私钥进行数据解密，密文必须是使用对应公钥加密的。处于Enabled 状态的非对称密钥才能进行解密操作。
     @inlinable
     public func asymmetricRsaDecrypt(keyId: String, ciphertext: String, algorithm: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AsymmetricRsaDecryptResponse {
-        try await self.asymmetricRsaDecrypt(AsymmetricRsaDecryptRequest(keyId: keyId, ciphertext: ciphertext, algorithm: algorithm), region: region, logger: logger, on: eventLoop)
+        let input = AsymmetricRsaDecryptRequest(keyId: keyId, ciphertext: ciphertext, algorithm: algorithm)
+        return try await self.client.execute(action: "AsymmetricRsaDecrypt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

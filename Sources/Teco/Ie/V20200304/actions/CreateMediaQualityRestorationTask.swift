@@ -84,7 +84,8 @@ extension Ie {
     /// 创建画质重生任务，对视频进行转码、去噪、去划痕、去毛刺、超分、细节增强和色彩增强。
     @inlinable
     public func createMediaQualityRestorationTask(downInfo: DownInfo, transInfo: [SubTaskTranscodeInfo], saveInfo: SaveInfo, callbackInfo: CallbackInfo? = nil, topSpeedCodecChannel: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateMediaQualityRestorationTaskResponse> {
-        self.createMediaQualityRestorationTask(CreateMediaQualityRestorationTaskRequest(downInfo: downInfo, transInfo: transInfo, saveInfo: saveInfo, callbackInfo: callbackInfo, topSpeedCodecChannel: topSpeedCodecChannel), region: region, logger: logger, on: eventLoop)
+        let input = CreateMediaQualityRestorationTaskRequest(downInfo: downInfo, transInfo: transInfo, saveInfo: saveInfo, callbackInfo: callbackInfo, topSpeedCodecChannel: topSpeedCodecChannel)
+        return self.client.execute(action: "CreateMediaQualityRestorationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建画质重生任务
@@ -92,6 +93,7 @@ extension Ie {
     /// 创建画质重生任务，对视频进行转码、去噪、去划痕、去毛刺、超分、细节增强和色彩增强。
     @inlinable
     public func createMediaQualityRestorationTask(downInfo: DownInfo, transInfo: [SubTaskTranscodeInfo], saveInfo: SaveInfo, callbackInfo: CallbackInfo? = nil, topSpeedCodecChannel: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMediaQualityRestorationTaskResponse {
-        try await self.createMediaQualityRestorationTask(CreateMediaQualityRestorationTaskRequest(downInfo: downInfo, transInfo: transInfo, saveInfo: saveInfo, callbackInfo: callbackInfo, topSpeedCodecChannel: topSpeedCodecChannel), region: region, logger: logger, on: eventLoop)
+        let input = CreateMediaQualityRestorationTaskRequest(downInfo: downInfo, transInfo: transInfo, saveInfo: saveInfo, callbackInfo: callbackInfo, topSpeedCodecChannel: topSpeedCodecChannel)
+        return try await self.client.execute(action: "CreateMediaQualityRestorationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

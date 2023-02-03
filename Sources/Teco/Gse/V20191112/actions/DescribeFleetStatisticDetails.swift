@@ -107,7 +107,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticDetails(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetStatisticDetailsResponse> {
-        self.describeFleetStatisticDetails(DescribeFleetStatisticDetailsRequest(fleetId: fleetId, beginTime: beginTime, endTime: endTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFleetStatisticDetailsRequest(fleetId: fleetId, beginTime: beginTime, endTime: endTime, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeFleetStatisticDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务部署统计详情
@@ -116,6 +117,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetStatisticDetails(fleetId: String? = nil, beginTime: Date? = nil, endTime: Date? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetStatisticDetailsResponse {
-        try await self.describeFleetStatisticDetails(DescribeFleetStatisticDetailsRequest(fleetId: fleetId, beginTime: beginTime, endTime: endTime, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFleetStatisticDetailsRequest(fleetId: fleetId, beginTime: beginTime, endTime: endTime, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeFleetStatisticDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

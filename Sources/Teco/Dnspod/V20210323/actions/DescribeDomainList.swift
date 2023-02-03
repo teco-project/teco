@@ -82,12 +82,14 @@ extension Dnspod {
     /// 获取域名列表
     @inlinable
     public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainListResponse> {
-        self.describeDomainList(DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword)
+        return self.client.execute(action: "DescribeDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名列表
     @inlinable
     public func describeDomainList(type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, groupId: Int64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainListResponse {
-        try await self.describeDomainList(DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainListRequest(type: type, offset: offset, limit: limit, groupId: groupId, keyword: keyword)
+        return try await self.client.execute(action: "DescribeDomainList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

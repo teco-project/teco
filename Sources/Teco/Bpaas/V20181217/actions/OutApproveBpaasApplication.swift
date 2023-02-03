@@ -64,12 +64,14 @@ extension Bpaas {
     /// 外部审批申请单
     @inlinable @discardableResult
     public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OutApproveBpaasApplicationResponse> {
-        self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), region: region, logger: logger, on: eventLoop)
+        let input = OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg)
+        return self.client.execute(action: "OutApproveBpaasApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 外部审批申请单
     @inlinable @discardableResult
     public func outApproveBpaasApplication(status: UInt64, approveId: UInt64, msg: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OutApproveBpaasApplicationResponse {
-        try await self.outApproveBpaasApplication(OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg), region: region, logger: logger, on: eventLoop)
+        let input = OutApproveBpaasApplicationRequest(status: status, approveId: approveId, msg: msg)
+        return try await self.client.execute(action: "OutApproveBpaasApplication", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -119,12 +119,14 @@ extension Monitor {
     /// 获取平台事件列表
     @inlinable
     public func describeAccidentEventList(module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, occurTimeOrder: String? = nil, accidentType: [Int64]? = nil, accidentEvent: [Int64]? = nil, accidentStatus: [Int64]? = nil, accidentRegion: [String]? = nil, affectResource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccidentEventListResponse> {
-        self.describeAccidentEventList(DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource)
+        return self.client.execute(action: "DescribeAccidentEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取平台事件列表
     @inlinable
     public func describeAccidentEventList(module: String, startTime: Int64? = nil, endTime: Int64? = nil, limit: Int64? = nil, offset: Int64? = nil, updateTimeOrder: String? = nil, occurTimeOrder: String? = nil, accidentType: [Int64]? = nil, accidentEvent: [Int64]? = nil, accidentStatus: [Int64]? = nil, accidentRegion: [String]? = nil, affectResource: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccidentEventListResponse {
-        try await self.describeAccidentEventList(DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccidentEventListRequest(module: module, startTime: startTime, endTime: endTime, limit: limit, offset: offset, updateTimeOrder: updateTimeOrder, occurTimeOrder: occurTimeOrder, accidentType: accidentType, accidentEvent: accidentEvent, accidentStatus: accidentStatus, accidentRegion: accidentRegion, affectResource: affectResource)
+        return try await self.client.execute(action: "DescribeAccidentEventList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

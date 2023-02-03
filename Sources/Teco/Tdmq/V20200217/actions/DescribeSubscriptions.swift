@@ -98,7 +98,8 @@ extension Tdmq {
     /// 查询指定环境和主题下的订阅者列表
     @inlinable
     public func describeSubscriptions(environmentId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscriptionsResponse> {
-        self.describeSubscriptions(DescribeSubscriptionsRequest(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSubscriptionsRequest(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters, clusterId: clusterId)
+        return self.client.execute(action: "DescribeSubscriptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取消费订阅列表
@@ -106,6 +107,7 @@ extension Tdmq {
     /// 查询指定环境和主题下的订阅者列表
     @inlinable
     public func describeSubscriptions(environmentId: String, topicName: String, offset: UInt64? = nil, limit: UInt64? = nil, subscriptionName: String? = nil, filters: [FilterSubscription]? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionsResponse {
-        try await self.describeSubscriptions(DescribeSubscriptionsRequest(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSubscriptionsRequest(environmentId: environmentId, topicName: topicName, offset: offset, limit: limit, subscriptionName: subscriptionName, filters: filters, clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeSubscriptions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

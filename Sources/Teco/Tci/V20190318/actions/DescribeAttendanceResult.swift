@@ -74,12 +74,14 @@ extension Tci {
     /// 人脸考勤查询结果
     @inlinable
     public func describeAttendanceResult(jobId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAttendanceResultResponse> {
-        self.describeAttendanceResult(DescribeAttendanceResultRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAttendanceResultRequest(jobId: jobId)
+        return self.client.execute(action: "DescribeAttendanceResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸考勤查询结果
     @inlinable
     public func describeAttendanceResult(jobId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAttendanceResultResponse {
-        try await self.describeAttendanceResult(DescribeAttendanceResultRequest(jobId: jobId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAttendanceResultRequest(jobId: jobId)
+        return try await self.client.execute(action: "DescribeAttendanceResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

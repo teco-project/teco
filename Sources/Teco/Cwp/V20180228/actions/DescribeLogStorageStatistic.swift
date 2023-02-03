@@ -54,12 +54,14 @@ extension Cwp {
     /// 获取日志检索容量使用统计
     @inlinable
     public func describeLogStorageStatistic(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogStorageStatisticResponse> {
-        self.describeLogStorageStatistic(DescribeLogStorageStatisticRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogStorageStatisticRequest()
+        return self.client.execute(action: "DescribeLogStorageStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志检索容量使用统计
     @inlinable
     public func describeLogStorageStatistic(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogStorageStatisticResponse {
-        try await self.describeLogStorageStatistic(DescribeLogStorageStatisticRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogStorageStatisticRequest()
+        return try await self.client.execute(action: "DescribeLogStorageStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

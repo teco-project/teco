@@ -84,7 +84,8 @@ extension Iai {
     /// 注：某些接口无法进行跨人员库版本操作，例如SearchFaces，SearchPersons和CopyPerson等。当业务有多个Group操作的场景时，如同时搜索Group1和Group2，如果升级了Group1，此时Group1和Group2版本不同，造成了跨版本操作，将导致Search接口无法正常执行，返回不允许执行跨版本操作错误，升级前需考虑业务是否有多库操作的场景，否则会影响线上接口表现。
     @inlinable
     public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeGroupFaceModelVersionResponse> {
-        self.upgradeGroupFaceModelVersion(UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion)
+        return self.client.execute(action: "UpgradeGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人员库升级
@@ -97,6 +98,7 @@ extension Iai {
     /// 注：某些接口无法进行跨人员库版本操作，例如SearchFaces，SearchPersons和CopyPerson等。当业务有多个Group操作的场景时，如同时搜索Group1和Group2，如果升级了Group1，此时Group1和Group2版本不同，造成了跨版本操作，将导致Search接口无法正常执行，返回不允许执行跨版本操作错误，升级前需考虑业务是否有多库操作的场景，否则会影响线上接口表现。
     @inlinable
     public func upgradeGroupFaceModelVersion(groupId: String, faceModelVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeGroupFaceModelVersionResponse {
-        try await self.upgradeGroupFaceModelVersion(UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeGroupFaceModelVersionRequest(groupId: groupId, faceModelVersion: faceModelVersion)
+        return try await self.client.execute(action: "UpgradeGroupFaceModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

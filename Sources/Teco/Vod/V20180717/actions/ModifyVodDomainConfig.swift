@@ -78,7 +78,8 @@ extension Vod {
     /// 1、域名部署状态为 Online 状态时才允许修改域名的配置。
     @inlinable @discardableResult
     public func modifyVodDomainConfig(domain: String, subAppId: UInt64? = nil, refererAuthPolicy: RefererAuthPolicy? = nil, urlSignatureAuthPolicy: UrlSignatureAuthPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyVodDomainConfigResponse> {
-        self.modifyVodDomainConfig(ModifyVodDomainConfigRequest(domain: domain, subAppId: subAppId, refererAuthPolicy: refererAuthPolicy, urlSignatureAuthPolicy: urlSignatureAuthPolicy), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVodDomainConfigRequest(domain: domain, subAppId: subAppId, refererAuthPolicy: refererAuthPolicy, urlSignatureAuthPolicy: urlSignatureAuthPolicy)
+        return self.client.execute(action: "ModifyVodDomainConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名配置
@@ -87,6 +88,7 @@ extension Vod {
     /// 1、域名部署状态为 Online 状态时才允许修改域名的配置。
     @inlinable @discardableResult
     public func modifyVodDomainConfig(domain: String, subAppId: UInt64? = nil, refererAuthPolicy: RefererAuthPolicy? = nil, urlSignatureAuthPolicy: UrlSignatureAuthPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyVodDomainConfigResponse {
-        try await self.modifyVodDomainConfig(ModifyVodDomainConfigRequest(domain: domain, subAppId: subAppId, refererAuthPolicy: refererAuthPolicy, urlSignatureAuthPolicy: urlSignatureAuthPolicy), region: region, logger: logger, on: eventLoop)
+        let input = ModifyVodDomainConfigRequest(domain: domain, subAppId: subAppId, refererAuthPolicy: refererAuthPolicy, urlSignatureAuthPolicy: urlSignatureAuthPolicy)
+        return try await self.client.execute(action: "ModifyVodDomainConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

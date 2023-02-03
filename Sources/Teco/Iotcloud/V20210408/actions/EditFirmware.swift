@@ -69,12 +69,14 @@ extension Iotcloud {
     /// 编辑固件信息
     @inlinable @discardableResult
     public func editFirmware(productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EditFirmwareResponse> {
-        self.editFirmware(EditFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), region: region, logger: logger, on: eventLoop)
+        let input = EditFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription)
+        return self.client.execute(action: "EditFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑固件信息
     @inlinable @discardableResult
     public func editFirmware(productId: String, firmwareVersion: String, firmwareName: String, firmwareDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EditFirmwareResponse {
-        try await self.editFirmware(EditFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription), region: region, logger: logger, on: eventLoop)
+        let input = EditFirmwareRequest(productId: productId, firmwareVersion: firmwareVersion, firmwareName: firmwareName, firmwareDescription: firmwareDescription)
+        return try await self.client.execute(action: "EditFirmware", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

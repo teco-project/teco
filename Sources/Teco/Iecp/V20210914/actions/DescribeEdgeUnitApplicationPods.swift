@@ -64,12 +64,14 @@ extension Iecp {
     /// 获取应用下Pod状态
     @inlinable
     public func describeEdgeUnitApplicationPods(edgeUnitId: UInt64, applicationId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeUnitApplicationPodsResponse> {
-        self.describeEdgeUnitApplicationPods(DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId)
+        return self.client.execute(action: "DescribeEdgeUnitApplicationPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用下Pod状态
     @inlinable
     public func describeEdgeUnitApplicationPods(edgeUnitId: UInt64, applicationId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeUnitApplicationPodsResponse {
-        try await self.describeEdgeUnitApplicationPods(DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeUnitApplicationPodsRequest(edgeUnitId: edgeUnitId, applicationId: applicationId)
+        return try await self.client.execute(action: "DescribeEdgeUnitApplicationPods", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

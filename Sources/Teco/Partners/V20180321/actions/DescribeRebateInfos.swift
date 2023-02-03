@@ -78,7 +78,8 @@ extension Partners {
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable
     public func describeRebateInfos(rebateMonth: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRebateInfosResponse> {
-        self.describeRebateInfos(DescribeRebateInfosRequest(rebateMonth: rebateMonth, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRebateInfosRequest(rebateMonth: rebateMonth, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeRebateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询代理商返佣信息（禁止接入）
@@ -86,6 +87,7 @@ extension Partners {
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable
     public func describeRebateInfos(rebateMonth: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRebateInfosResponse {
-        try await self.describeRebateInfos(DescribeRebateInfosRequest(rebateMonth: rebateMonth, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRebateInfosRequest(rebateMonth: rebateMonth, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeRebateInfos", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

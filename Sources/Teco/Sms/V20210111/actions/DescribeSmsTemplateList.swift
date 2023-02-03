@@ -90,7 +90,8 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func describeSmsTemplateList(international: UInt64, templateIdSet: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSmsTemplateListResponse> {
-        self.describeSmsTemplateList(DescribeSmsTemplateListRequest(international: international, templateIdSet: templateIdSet, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmsTemplateListRequest(international: international, templateIdSet: templateIdSet, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 短信模板状态查询
@@ -100,6 +101,7 @@ extension Sms {
     /// >- 您可以在 [API 3.0 Explorer](https://console.cloud.tencent.com/api/explorer?Product=sms&Version=2021-01-11&Action=SendSms) 中直接运行该接口，可以先免去签名计算步骤。运行成功后，API Explorer可以**自动生成**SDK代码示例。
     @inlinable
     public func describeSmsTemplateList(international: UInt64, templateIdSet: [UInt64]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSmsTemplateListResponse {
-        try await self.describeSmsTemplateList(DescribeSmsTemplateListRequest(international: international, templateIdSet: templateIdSet, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSmsTemplateListRequest(international: international, templateIdSet: templateIdSet, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeSmsTemplateList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

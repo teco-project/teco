@@ -59,12 +59,14 @@ extension Tke {
     /// 删除ECM实例
     @inlinable @discardableResult
     public func deleteECMInstances(clusterID: String, ecmIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteECMInstancesResponse> {
-        self.deleteECMInstances(DeleteECMInstancesRequest(clusterID: clusterID, ecmIdSet: ecmIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteECMInstancesRequest(clusterID: clusterID, ecmIdSet: ecmIdSet)
+        return self.client.execute(action: "DeleteECMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除ECM实例
     @inlinable @discardableResult
     public func deleteECMInstances(clusterID: String, ecmIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteECMInstancesResponse {
-        try await self.deleteECMInstances(DeleteECMInstancesRequest(clusterID: clusterID, ecmIdSet: ecmIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteECMInstancesRequest(clusterID: clusterID, ecmIdSet: ecmIdSet)
+        return try await self.client.execute(action: "DeleteECMInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

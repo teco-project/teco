@@ -66,7 +66,8 @@ extension Cls {
     /// 用于添加机器组信息
     @inlinable @discardableResult
     public func addMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddMachineGroupInfoResponse> {
-        self.addMachineGroupInfo(AddMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
+        let input = AddMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType)
+        return self.client.execute(action: "AddMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加机器组信息
@@ -74,6 +75,7 @@ extension Cls {
     /// 用于添加机器组信息
     @inlinable @discardableResult
     public func addMachineGroupInfo(groupId: String, machineGroupType: MachineGroupTypeInfo, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddMachineGroupInfoResponse {
-        try await self.addMachineGroupInfo(AddMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType), region: region, logger: logger, on: eventLoop)
+        let input = AddMachineGroupInfoRequest(groupId: groupId, machineGroupType: machineGroupType)
+        return try await self.client.execute(action: "AddMachineGroupInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

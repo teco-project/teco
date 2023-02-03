@@ -75,7 +75,8 @@ extension Tdcpg {
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
     @inlinable @discardableResult
     public func transformClusterPayMode(clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TransformClusterPayModeResponse> {
-        self.transformClusterPayMode(TransformClusterPayModeRequest(clusterId: clusterId, currentPayMode: currentPayMode, targetPayMode: targetPayMode, period: period), region: region, logger: logger, on: eventLoop)
+        let input = TransformClusterPayModeRequest(clusterId: clusterId, currentPayMode: currentPayMode, targetPayMode: targetPayMode, period: period)
+        return self.client.execute(action: "TransformClusterPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 转换集群付费模式
@@ -83,6 +84,7 @@ extension Tdcpg {
     /// 转换集群付费模式，目前只支持从 后付费 转换成 与预付费。
     @inlinable @discardableResult
     public func transformClusterPayMode(clusterId: String, currentPayMode: String, targetPayMode: String, period: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TransformClusterPayModeResponse {
-        try await self.transformClusterPayMode(TransformClusterPayModeRequest(clusterId: clusterId, currentPayMode: currentPayMode, targetPayMode: targetPayMode, period: period), region: region, logger: logger, on: eventLoop)
+        let input = TransformClusterPayModeRequest(clusterId: clusterId, currentPayMode: currentPayMode, targetPayMode: targetPayMode, period: period)
+        return try await self.client.execute(action: "TransformClusterPayMode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

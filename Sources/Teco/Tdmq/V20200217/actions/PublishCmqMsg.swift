@@ -72,12 +72,14 @@ extension Tdmq {
     /// 发送cmq主题消息
     @inlinable
     public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PublishCmqMsgResponse> {
-        self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), region: region, logger: logger, on: eventLoop)
+        let input = PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag)
+        return self.client.execute(action: "PublishCmqMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发送cmq主题消息
     @inlinable
     public func publishCmqMsg(topicName: String, msgContent: String, msgTag: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PublishCmqMsgResponse {
-        try await self.publishCmqMsg(PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag), region: region, logger: logger, on: eventLoop)
+        let input = PublishCmqMsgRequest(topicName: topicName, msgContent: msgContent, msgTag: msgTag)
+        return try await self.client.execute(action: "PublishCmqMsg", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

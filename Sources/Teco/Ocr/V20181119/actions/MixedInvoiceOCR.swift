@@ -119,7 +119,8 @@ extension Ocr {
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MixedInvoiceOCRResponse> {
-        self.mixedInvoiceOCR(MixedInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
+        let input = MixedInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
+        return self.client.execute(action: "MixedInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 混贴票据识别
@@ -129,6 +130,7 @@ extension Ocr {
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func mixedInvoiceOCR(imageBase64: String? = nil, imageUrl: String? = nil, types: [Int64]? = nil, returnOther: String? = nil, isPdf: Bool? = nil, pdfPageNumber: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MixedInvoiceOCRResponse {
-        try await self.mixedInvoiceOCR(MixedInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber), region: region, logger: logger, on: eventLoop)
+        let input = MixedInvoiceOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl, types: types, returnOther: returnOther, isPdf: isPdf, pdfPageNumber: pdfPageNumber)
+        return try await self.client.execute(action: "MixedInvoiceOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -89,7 +89,8 @@ extension Scf {
     /// SCF同步调用函数接口
     @inlinable
     public func invokeFunction(functionName: String, qualifier: String? = nil, event: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InvokeFunctionResponse> {
-        self.invokeFunction(InvokeFunctionRequest(functionName: functionName, qualifier: qualifier, event: event, logType: logType, namespace: namespace, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
+        let input = InvokeFunctionRequest(functionName: functionName, qualifier: qualifier, event: event, logType: logType, namespace: namespace, routingKey: routingKey)
+        return self.client.execute(action: "InvokeFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步Invoke调用接口
@@ -97,6 +98,7 @@ extension Scf {
     /// SCF同步调用函数接口
     @inlinable
     public func invokeFunction(functionName: String, qualifier: String? = nil, event: String? = nil, logType: String? = nil, namespace: String? = nil, routingKey: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeFunctionResponse {
-        try await self.invokeFunction(InvokeFunctionRequest(functionName: functionName, qualifier: qualifier, event: event, logType: logType, namespace: namespace, routingKey: routingKey), region: region, logger: logger, on: eventLoop)
+        let input = InvokeFunctionRequest(functionName: functionName, qualifier: qualifier, event: event, logType: logType, namespace: namespace, routingKey: routingKey)
+        return try await self.client.execute(action: "InvokeFunction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

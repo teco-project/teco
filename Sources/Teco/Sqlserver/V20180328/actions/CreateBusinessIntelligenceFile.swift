@@ -79,7 +79,8 @@ extension Sqlserver {
     /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
     @inlinable
     public func createBusinessIntelligenceFile(instanceId: String, fileURL: String, fileType: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBusinessIntelligenceFileResponse> {
-        self.createBusinessIntelligenceFile(CreateBusinessIntelligenceFileRequest(instanceId: instanceId, fileURL: fileURL, fileType: fileType, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateBusinessIntelligenceFileRequest(instanceId: instanceId, fileURL: fileURL, fileType: fileType, remark: remark)
+        return self.client.execute(action: "CreateBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建商业智能服务文件
@@ -87,6 +88,7 @@ extension Sqlserver {
     /// 本接口（CreateBusinessIntelligenceFile）用于添加商业智能服务文件。
     @inlinable
     public func createBusinessIntelligenceFile(instanceId: String, fileURL: String, fileType: String, remark: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBusinessIntelligenceFileResponse {
-        try await self.createBusinessIntelligenceFile(CreateBusinessIntelligenceFileRequest(instanceId: instanceId, fileURL: fileURL, fileType: fileType, remark: remark), region: region, logger: logger, on: eventLoop)
+        let input = CreateBusinessIntelligenceFileRequest(instanceId: instanceId, fileURL: fileURL, fileType: fileType, remark: remark)
+        return try await self.client.execute(action: "CreateBusinessIntelligenceFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

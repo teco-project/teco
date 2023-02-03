@@ -94,7 +94,8 @@ extension Iotvideoindustry {
     /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
     @inlinable
     public func updateRecordPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRecordPlanResponse> {
-        self.updateRecordPlan(UpdateRecordPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, isModifyDevices: isModifyDevices), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRecordPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, isModifyDevices: isModifyDevices)
+        return self.client.execute(action: "UpdateRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新录制计划（旧）
@@ -103,6 +104,7 @@ extension Iotvideoindustry {
     /// 请使用 ModifyRecordingPlan接口和ModifyBindRecordingPlan接口
     @inlinable
     public func updateRecordPlan(planId: String, name: String? = nil, timeTemplateId: String? = nil, eventId: Int64? = nil, devices: [DeviceItem]? = nil, isModifyDevices: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordPlanResponse {
-        try await self.updateRecordPlan(UpdateRecordPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, isModifyDevices: isModifyDevices), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRecordPlanRequest(planId: planId, name: name, timeTemplateId: timeTemplateId, eventId: eventId, devices: devices, isModifyDevices: isModifyDevices)
+        return try await self.client.execute(action: "UpdateRecordPlan", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

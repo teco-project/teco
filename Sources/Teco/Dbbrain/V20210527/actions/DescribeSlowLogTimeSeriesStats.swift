@@ -96,7 +96,8 @@ extension Dbbrain {
     /// 获取慢日志统计柱状图。
     @inlinable
     public func describeSlowLogTimeSeriesStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowLogTimeSeriesStatsResponse> {
-        self.describeSlowLogTimeSeriesStats(DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product)
+        return self.client.execute(action: "DescribeSlowLogTimeSeriesStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取慢日志统计柱状图
@@ -104,6 +105,7 @@ extension Dbbrain {
     /// 获取慢日志统计柱状图。
     @inlinable
     public func describeSlowLogTimeSeriesStats(instanceId: String, startTime: Date, endTime: Date, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowLogTimeSeriesStatsResponse {
-        try await self.describeSlowLogTimeSeriesStats(DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowLogTimeSeriesStatsRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, product: product)
+        return try await self.client.execute(action: "DescribeSlowLogTimeSeriesStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

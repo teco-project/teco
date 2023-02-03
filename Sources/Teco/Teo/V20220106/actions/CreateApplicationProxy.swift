@@ -124,12 +124,14 @@ extension Teo {
     /// 创建应用代理
     @inlinable
     public func createApplicationProxy(zoneId: String, zoneName: String, proxyName: String, platType: String, securityType: Int64, accelerateType: Int64, sessionPersist: Bool, forwardClientIp: String, rule: [ApplicationProxyRule]? = nil, proxyType: String? = nil, sessionPersistTime: UInt64? = nil, ipv6: Ipv6Access? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateApplicationProxyResponse> {
-        self.createApplicationProxy(CreateApplicationProxyRequest(zoneId: zoneId, zoneName: zoneName, proxyName: proxyName, platType: platType, securityType: securityType, accelerateType: accelerateType, sessionPersist: sessionPersist, forwardClientIp: forwardClientIp, rule: rule, proxyType: proxyType, sessionPersistTime: sessionPersistTime, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationProxyRequest(zoneId: zoneId, zoneName: zoneName, proxyName: proxyName, platType: platType, securityType: securityType, accelerateType: accelerateType, sessionPersist: sessionPersist, forwardClientIp: forwardClientIp, rule: rule, proxyType: proxyType, sessionPersistTime: sessionPersistTime, ipv6: ipv6)
+        return self.client.execute(action: "CreateApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建应用代理
     @inlinable
     public func createApplicationProxy(zoneId: String, zoneName: String, proxyName: String, platType: String, securityType: Int64, accelerateType: Int64, sessionPersist: Bool, forwardClientIp: String, rule: [ApplicationProxyRule]? = nil, proxyType: String? = nil, sessionPersistTime: UInt64? = nil, ipv6: Ipv6Access? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateApplicationProxyResponse {
-        try await self.createApplicationProxy(CreateApplicationProxyRequest(zoneId: zoneId, zoneName: zoneName, proxyName: proxyName, platType: platType, securityType: securityType, accelerateType: accelerateType, sessionPersist: sessionPersist, forwardClientIp: forwardClientIp, rule: rule, proxyType: proxyType, sessionPersistTime: sessionPersistTime, ipv6: ipv6), region: region, logger: logger, on: eventLoop)
+        let input = CreateApplicationProxyRequest(zoneId: zoneId, zoneName: zoneName, proxyName: proxyName, platType: platType, securityType: securityType, accelerateType: accelerateType, sessionPersist: sessionPersist, forwardClientIp: forwardClientIp, rule: rule, proxyType: proxyType, sessionPersistTime: sessionPersistTime, ipv6: ipv6)
+        return try await self.client.execute(action: "CreateApplicationProxy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -50,12 +50,14 @@ extension Tcb {
     /// 检查是否开通Tcb服务
     @inlinable
     public func checkTcbService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckTcbServiceResponse> {
-        self.checkTcbService(CheckTcbServiceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = CheckTcbServiceRequest()
+        return self.client.execute(action: "CheckTcbService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检查是否开通Tcb服务
     @inlinable
     public func checkTcbService(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckTcbServiceResponse {
-        try await self.checkTcbService(CheckTcbServiceRequest(), region: region, logger: logger, on: eventLoop)
+        let input = CheckTcbServiceRequest()
+        return try await self.client.execute(action: "CheckTcbService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

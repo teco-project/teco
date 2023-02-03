@@ -68,7 +68,8 @@ extension Vpc {
     /// 2. 支持批量删除同一个转换实例下的多个转换规则
     @inlinable @discardableResult
     public func removeIp6Rules(ip6TranslatorId: String, ip6RuleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RemoveIp6RulesResponse> {
-        self.removeIp6Rules(RemoveIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleIds: ip6RuleIds), region: region, logger: logger, on: eventLoop)
+        let input = RemoveIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleIds: ip6RuleIds)
+        return self.client.execute(action: "RemoveIp6Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除IPV6转换规则
@@ -77,6 +78,7 @@ extension Vpc {
     /// 2. 支持批量删除同一个转换实例下的多个转换规则
     @inlinable @discardableResult
     public func removeIp6Rules(ip6TranslatorId: String, ip6RuleIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RemoveIp6RulesResponse {
-        try await self.removeIp6Rules(RemoveIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleIds: ip6RuleIds), region: region, logger: logger, on: eventLoop)
+        let input = RemoveIp6RulesRequest(ip6TranslatorId: ip6TranslatorId, ip6RuleIds: ip6RuleIds)
+        return try await self.client.execute(action: "RemoveIp6Rules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

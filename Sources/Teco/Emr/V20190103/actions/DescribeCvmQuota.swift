@@ -80,7 +80,8 @@ extension Emr {
     /// 获取账户的CVM配额
     @inlinable
     public func describeCvmQuota(clusterId: String, zoneId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCvmQuotaResponse> {
-        self.describeCvmQuota(DescribeCvmQuotaRequest(clusterId: clusterId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCvmQuotaRequest(clusterId: clusterId, zoneId: zoneId)
+        return self.client.execute(action: "DescribeCvmQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账户的CVM配额
@@ -88,6 +89,7 @@ extension Emr {
     /// 获取账户的CVM配额
     @inlinable
     public func describeCvmQuota(clusterId: String, zoneId: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCvmQuotaResponse {
-        try await self.describeCvmQuota(DescribeCvmQuotaRequest(clusterId: clusterId, zoneId: zoneId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCvmQuotaRequest(clusterId: clusterId, zoneId: zoneId)
+        return try await self.client.execute(action: "DescribeCvmQuota", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

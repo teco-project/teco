@@ -74,12 +74,14 @@ extension Redis {
     /// 查询实例扩容价格
     @inlinable
     public func inquiryPriceUpgradeInstance(instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquiryPriceUpgradeInstanceResponse> {
-        self.inquiryPriceUpgradeInstance(InquiryPriceUpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceUpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum)
+        return self.client.execute(action: "InquiryPriceUpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例扩容价格
     @inlinable
     public func inquiryPriceUpgradeInstance(instanceId: String, memSize: UInt64, redisShardNum: UInt64? = nil, redisReplicasNum: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquiryPriceUpgradeInstanceResponse {
-        try await self.inquiryPriceUpgradeInstance(InquiryPriceUpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum), region: region, logger: logger, on: eventLoop)
+        let input = InquiryPriceUpgradeInstanceRequest(instanceId: instanceId, memSize: memSize, redisShardNum: redisShardNum, redisReplicasNum: redisReplicasNum)
+        return try await self.client.execute(action: "InquiryPriceUpgradeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

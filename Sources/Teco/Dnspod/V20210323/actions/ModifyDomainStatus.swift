@@ -64,12 +64,14 @@ extension Dnspod {
     /// 修改域名状态
     @inlinable @discardableResult
     public func modifyDomainStatus(domain: String, status: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDomainStatusResponse> {
-        self.modifyDomainStatus(ModifyDomainStatusRequest(domain: domain, status: status, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainStatusRequest(domain: domain, status: status, domainId: domainId)
+        return self.client.execute(action: "ModifyDomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改域名状态
     @inlinable @discardableResult
     public func modifyDomainStatus(domain: String, status: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDomainStatusResponse {
-        try await self.modifyDomainStatus(ModifyDomainStatusRequest(domain: domain, status: status, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDomainStatusRequest(domain: domain, status: status, domainId: domainId)
+        return try await self.client.execute(action: "ModifyDomainStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

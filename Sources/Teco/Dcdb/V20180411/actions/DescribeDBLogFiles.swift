@@ -98,7 +98,8 @@ extension Dcdb {
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
     public func describeDBLogFiles(instanceId: String, shardId: String, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBLogFilesResponse> {
-        self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, shardId: shardId, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBLogFilesRequest(instanceId: instanceId, shardId: shardId, type: type)
+        return self.client.execute(action: "DescribeDBLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志列表
@@ -106,6 +107,7 @@ extension Dcdb {
     /// 本接口(DescribeDBLogFiles)用于获取数据库的各种日志列表，包括冷备、binlog、errlog和slowlog。
     @inlinable
     public func describeDBLogFiles(instanceId: String, shardId: String, type: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBLogFilesResponse {
-        try await self.describeDBLogFiles(DescribeDBLogFilesRequest(instanceId: instanceId, shardId: shardId, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBLogFilesRequest(instanceId: instanceId, shardId: shardId, type: type)
+        return try await self.client.execute(action: "DescribeDBLogFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

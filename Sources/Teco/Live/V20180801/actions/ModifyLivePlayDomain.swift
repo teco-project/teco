@@ -65,7 +65,8 @@ extension Live {
     /// 修改播放域名信息。
     @inlinable @discardableResult
     public func modifyLivePlayDomain(domainName: String, playType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLivePlayDomainResponse> {
-        self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLivePlayDomainRequest(domainName: domainName, playType: playType)
+        return self.client.execute(action: "ModifyLivePlayDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改播放域名信息
@@ -73,6 +74,7 @@ extension Live {
     /// 修改播放域名信息。
     @inlinable @discardableResult
     public func modifyLivePlayDomain(domainName: String, playType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLivePlayDomainResponse {
-        try await self.modifyLivePlayDomain(ModifyLivePlayDomainRequest(domainName: domainName, playType: playType), region: region, logger: logger, on: eventLoop)
+        let input = ModifyLivePlayDomainRequest(domainName: domainName, playType: playType)
+        return try await self.client.execute(action: "ModifyLivePlayDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -130,7 +130,8 @@ extension Gaap {
     /// 本接口（DescribeProxies）用于查询通道实例列表。
     @inlinable
     public func describeProxies(instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, tagSet: [TagPair]? = nil, independent: Int64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxiesResponse> {
-        self.describeProxies(DescribeProxiesRequest(instanceIds: instanceIds, offset: offset, limit: limit, filters: filters, proxyIds: proxyIds, tagSet: tagSet, independent: independent, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxiesRequest(instanceIds: instanceIds, offset: offset, limit: limit, filters: filters, proxyIds: proxyIds, tagSet: tagSet, independent: independent, order: order, orderField: orderField)
+        return self.client.execute(action: "DescribeProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通道实例列表
@@ -138,6 +139,7 @@ extension Gaap {
     /// 本接口（DescribeProxies）用于查询通道实例列表。
     @inlinable
     public func describeProxies(instanceIds: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, proxyIds: [String]? = nil, tagSet: [TagPair]? = nil, independent: Int64? = nil, order: String? = nil, orderField: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxiesResponse {
-        try await self.describeProxies(DescribeProxiesRequest(instanceIds: instanceIds, offset: offset, limit: limit, filters: filters, proxyIds: proxyIds, tagSet: tagSet, independent: independent, order: order, orderField: orderField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxiesRequest(instanceIds: instanceIds, offset: offset, limit: limit, filters: filters, proxyIds: proxyIds, tagSet: tagSet, independent: independent, order: order, orderField: orderField)
+        return try await self.client.execute(action: "DescribeProxies", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

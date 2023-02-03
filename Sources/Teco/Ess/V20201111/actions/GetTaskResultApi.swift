@@ -97,12 +97,14 @@ extension Ess {
     /// 查询转换任务状态
     @inlinable
     public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskResultApiResponse> {
-        self.getTaskResultApi(GetTaskResultApiRequest(taskId: taskId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
+        let input = GetTaskResultApiRequest(taskId: taskId, operator: `operator`, agent: agent, organization: organization)
+        return self.client.execute(action: "GetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询转换任务状态
     @inlinable
     public func getTaskResultApi(taskId: String, operator: UserInfo? = nil, agent: Agent? = nil, organization: OrganizationInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskResultApiResponse {
-        try await self.getTaskResultApi(GetTaskResultApiRequest(taskId: taskId, operator: `operator`, agent: agent, organization: organization), region: region, logger: logger, on: eventLoop)
+        let input = GetTaskResultApiRequest(taskId: taskId, operator: `operator`, agent: agent, organization: organization)
+        return try await self.client.execute(action: "GetTaskResultApi", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

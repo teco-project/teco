@@ -76,12 +76,14 @@ extension Cpdp {
     /// 财税-查询金融数据文件下载链接
     @inlinable
     public func queryFinancialDataUrl(endTime: String, startTime: String, dataType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFinancialDataUrlResponse> {
-        self.queryFinancialDataUrl(QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType), region: region, logger: logger, on: eventLoop)
+        let input = QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType)
+        return self.client.execute(action: "QueryFinancialDataUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 财税-查询金融数据文件下载链接
     @inlinable
     public func queryFinancialDataUrl(endTime: String, startTime: String, dataType: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFinancialDataUrlResponse {
-        try await self.queryFinancialDataUrl(QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType), region: region, logger: logger, on: eventLoop)
+        let input = QueryFinancialDataUrlRequest(endTime: endTime, startTime: startTime, dataType: dataType)
+        return try await self.client.execute(action: "QueryFinancialDataUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

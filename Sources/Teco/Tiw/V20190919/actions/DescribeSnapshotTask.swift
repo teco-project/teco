@@ -92,7 +92,8 @@ extension Tiw {
     /// 获取指定白板板书生成任务信息
     @inlinable
     public func describeSnapshotTask(taskID: String, sdkAppId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotTaskResponse> {
-        self.describeSnapshotTask(DescribeSnapshotTaskRequest(taskID: taskID, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotTaskRequest(taskID: taskID, sdkAppId: sdkAppId)
+        return self.client.execute(action: "DescribeSnapshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取白板板书生成任务信息
@@ -100,6 +101,7 @@ extension Tiw {
     /// 获取指定白板板书生成任务信息
     @inlinable
     public func describeSnapshotTask(taskID: String, sdkAppId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotTaskResponse {
-        try await self.describeSnapshotTask(DescribeSnapshotTaskRequest(taskID: taskID, sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotTaskRequest(taskID: taskID, sdkAppId: sdkAppId)
+        return try await self.client.execute(action: "DescribeSnapshotTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

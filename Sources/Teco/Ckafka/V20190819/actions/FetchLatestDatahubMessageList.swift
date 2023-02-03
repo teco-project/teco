@@ -79,7 +79,8 @@ extension Ckafka {
     /// 查询最新消息列表
     @inlinable
     public func fetchLatestDatahubMessageList(name: String, partition: Int64, offset: Int64? = nil, messageCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FetchLatestDatahubMessageListResponse> {
-        self.fetchLatestDatahubMessageList(FetchLatestDatahubMessageListRequest(name: name, partition: partition, offset: offset, messageCount: messageCount), region: region, logger: logger, on: eventLoop)
+        let input = FetchLatestDatahubMessageListRequest(name: name, partition: partition, offset: offset, messageCount: messageCount)
+        return self.client.execute(action: "FetchLatestDatahubMessageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Datahub Topic最新消息列表
@@ -87,6 +88,7 @@ extension Ckafka {
     /// 查询最新消息列表
     @inlinable
     public func fetchLatestDatahubMessageList(name: String, partition: Int64, offset: Int64? = nil, messageCount: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FetchLatestDatahubMessageListResponse {
-        try await self.fetchLatestDatahubMessageList(FetchLatestDatahubMessageListRequest(name: name, partition: partition, offset: offset, messageCount: messageCount), region: region, logger: logger, on: eventLoop)
+        let input = FetchLatestDatahubMessageListRequest(name: name, partition: partition, offset: offset, messageCount: messageCount)
+        return try await self.client.execute(action: "FetchLatestDatahubMessageList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

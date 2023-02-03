@@ -56,12 +56,14 @@ extension Tcss {
     /// 查询安全日志KafkaUIN
     @inlinable
     public func describeSecLogKafkaUIN(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecLogKafkaUINResponse> {
-        self.describeSecLogKafkaUIN(DescribeSecLogKafkaUINRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecLogKafkaUINRequest()
+        return self.client.execute(action: "DescribeSecLogKafkaUIN", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询安全日志KafkaUIN
     @inlinable
     public func describeSecLogKafkaUIN(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecLogKafkaUINResponse {
-        try await self.describeSecLogKafkaUIN(DescribeSecLogKafkaUINRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecLogKafkaUINRequest()
+        return try await self.client.execute(action: "DescribeSecLogKafkaUIN", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

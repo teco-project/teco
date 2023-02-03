@@ -54,12 +54,14 @@ extension Iotvideoindustry {
     /// 直播录像删除
     @inlinable @discardableResult
     public func deleteLiveVideoList(intIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLiveVideoListResponse> {
-        self.deleteLiveVideoList(DeleteLiveVideoListRequest(intIDs: intIDs), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLiveVideoListRequest(intIDs: intIDs)
+        return self.client.execute(action: "DeleteLiveVideoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播录像删除
     @inlinable @discardableResult
     public func deleteLiveVideoList(intIDs: [UInt64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLiveVideoListResponse {
-        try await self.deleteLiveVideoList(DeleteLiveVideoListRequest(intIDs: intIDs), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLiveVideoListRequest(intIDs: intIDs)
+        return try await self.client.execute(action: "DeleteLiveVideoList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

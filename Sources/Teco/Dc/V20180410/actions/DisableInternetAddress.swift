@@ -60,7 +60,8 @@ extension Dc {
     /// 停用用户申请的公网互联网地址
     @inlinable @discardableResult
     public func disableInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableInternetAddressResponse> {
-        self.disableInternetAddress(DisableInternetAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DisableInternetAddressRequest(instanceId: instanceId)
+        return self.client.execute(action: "DisableInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用公网互联网地址
@@ -68,6 +69,7 @@ extension Dc {
     /// 停用用户申请的公网互联网地址
     @inlinable @discardableResult
     public func disableInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableInternetAddressResponse {
-        try await self.disableInternetAddress(DisableInternetAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DisableInternetAddressRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DisableInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

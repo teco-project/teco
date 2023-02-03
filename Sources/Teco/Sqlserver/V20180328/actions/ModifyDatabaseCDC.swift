@@ -74,7 +74,8 @@ extension Sqlserver {
     /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
     @inlinable
     public func modifyDatabaseCDC(dbNames: [String], modifyType: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatabaseCDCResponse> {
-        self.modifyDatabaseCDC(ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId)
+        return self.client.execute(action: "ModifyDatabaseCDC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启&关闭数据库CDC
@@ -82,6 +83,7 @@ extension Sqlserver {
     /// 本接口(ModifyDatabaseCDC)用于开启、关闭数据库数据变更捕获(CDC)
     @inlinable
     public func modifyDatabaseCDC(dbNames: [String], modifyType: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatabaseCDCResponse {
-        try await self.modifyDatabaseCDC(ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDatabaseCDCRequest(dbNames: dbNames, modifyType: modifyType, instanceId: instanceId)
+        return try await self.client.execute(action: "ModifyDatabaseCDC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

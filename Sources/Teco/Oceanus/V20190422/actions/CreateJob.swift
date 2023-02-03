@@ -104,7 +104,8 @@ extension Oceanus {
     /// 新建作业接口，一个 AppId 最多允许创建1000个作业
     @inlinable
     public func createJob(name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
-        self.createJob(CreateJobRequest(name: name, jobType: jobType, clusterType: clusterType, clusterId: clusterId, cuMem: cuMem, remark: remark, folderId: folderId, flinkVersion: flinkVersion, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateJobRequest(name: name, jobType: jobType, clusterType: clusterType, clusterId: clusterId, cuMem: cuMem, remark: remark, folderId: folderId, flinkVersion: flinkVersion, workSpaceId: workSpaceId)
+        return self.client.execute(action: "CreateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建作业
@@ -112,6 +113,7 @@ extension Oceanus {
     /// 新建作业接口，一个 AppId 最多允许创建1000个作业
     @inlinable
     public func createJob(name: String, jobType: Int64, clusterType: Int64, clusterId: String? = nil, cuMem: UInt64? = nil, remark: String? = nil, folderId: String? = nil, flinkVersion: String? = nil, workSpaceId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        try await self.createJob(CreateJobRequest(name: name, jobType: jobType, clusterType: clusterType, clusterId: clusterId, cuMem: cuMem, remark: remark, folderId: folderId, flinkVersion: flinkVersion, workSpaceId: workSpaceId), region: region, logger: logger, on: eventLoop)
+        let input = CreateJobRequest(name: name, jobType: jobType, clusterType: clusterType, clusterId: clusterId, cuMem: cuMem, remark: remark, folderId: folderId, flinkVersion: flinkVersion, workSpaceId: workSpaceId)
+        return try await self.client.execute(action: "CreateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

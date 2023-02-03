@@ -56,7 +56,8 @@ extension Tcr {
     /// 用于获取个人版全局镜像版本自动清理策略
     @inlinable
     public func describeImageLifecycleGlobalPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageLifecycleGlobalPersonalResponse> {
-        self.describeImageLifecycleGlobalPersonal(DescribeImageLifecycleGlobalPersonalRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageLifecycleGlobalPersonalRequest()
+        return self.client.execute(action: "DescribeImageLifecycleGlobalPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取个人版全局镜像版本自动清理策略
@@ -64,6 +65,7 @@ extension Tcr {
     /// 用于获取个人版全局镜像版本自动清理策略
     @inlinable
     public func describeImageLifecycleGlobalPersonal(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageLifecycleGlobalPersonalResponse {
-        try await self.describeImageLifecycleGlobalPersonal(DescribeImageLifecycleGlobalPersonalRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageLifecycleGlobalPersonalRequest()
+        return try await self.client.execute(action: "DescribeImageLifecycleGlobalPersonal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

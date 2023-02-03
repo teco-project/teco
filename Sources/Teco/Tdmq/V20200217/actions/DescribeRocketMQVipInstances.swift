@@ -78,7 +78,8 @@ extension Tdmq {
     /// 查询用户已购的RocketMQ专享实例列表
     @inlinable
     public func describeRocketMQVipInstances(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRocketMQVipInstancesResponse> {
-        self.describeRocketMQVipInstances(DescribeRocketMQVipInstancesRequest(filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRocketMQVipInstancesRequest(filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeRocketMQVipInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询RocketMQ专享实例列表
@@ -86,6 +87,7 @@ extension Tdmq {
     /// 查询用户已购的RocketMQ专享实例列表
     @inlinable
     public func describeRocketMQVipInstances(filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRocketMQVipInstancesResponse {
-        try await self.describeRocketMQVipInstances(DescribeRocketMQVipInstancesRequest(filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRocketMQVipInstancesRequest(filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeRocketMQVipInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

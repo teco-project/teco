@@ -94,12 +94,14 @@ extension Trp {
     /// 新建商品
     @inlinable
     public func createProduct(name: String, merchantId: String, remark: String? = nil, merchantName: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateProductResponse> {
-        self.createProduct(CreateProductRequest(name: name, merchantId: merchantId, remark: remark, merchantName: merchantName, specification: specification, logo: logo, corpId: corpId, ext: ext), region: region, logger: logger, on: eventLoop)
+        let input = CreateProductRequest(name: name, merchantId: merchantId, remark: remark, merchantName: merchantName, specification: specification, logo: logo, corpId: corpId, ext: ext)
+        return self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新建商品
     @inlinable
     public func createProduct(name: String, merchantId: String, remark: String? = nil, merchantName: String? = nil, specification: String? = nil, logo: [String]? = nil, corpId: UInt64? = nil, ext: Ext? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateProductResponse {
-        try await self.createProduct(CreateProductRequest(name: name, merchantId: merchantId, remark: remark, merchantName: merchantName, specification: specification, logo: logo, corpId: corpId, ext: ext), region: region, logger: logger, on: eventLoop)
+        let input = CreateProductRequest(name: name, merchantId: merchantId, remark: remark, merchantName: merchantName, specification: specification, logo: logo, corpId: corpId, ext: ext)
+        return try await self.client.execute(action: "CreateProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

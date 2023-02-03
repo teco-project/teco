@@ -73,7 +73,8 @@ extension Vpc {
     /// 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
     @inlinable
     public func replaceRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReplaceRoutesResponse> {
-        self.replaceRoutes(ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes)
+        return self.client.execute(action: "ReplaceRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 替换路由策略
@@ -81,6 +82,7 @@ extension Vpc {
     /// 本接口（ReplaceRoutes）根据路由策略ID（RouteId）修改指定的路由策略（Route），支持批量修改。
     @inlinable
     public func replaceRoutes(routeTableId: String, routes: [Route], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceRoutesResponse {
-        try await self.replaceRoutes(ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes), region: region, logger: logger, on: eventLoop)
+        let input = ReplaceRoutesRequest(routeTableId: routeTableId, routes: routes)
+        return try await self.client.execute(action: "ReplaceRoutes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

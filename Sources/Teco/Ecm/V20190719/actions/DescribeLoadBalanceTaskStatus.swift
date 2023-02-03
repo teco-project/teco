@@ -59,12 +59,14 @@ extension Ecm {
     /// 查询负载均衡相关的任务状态
     @inlinable
     public func describeLoadBalanceTaskStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLoadBalanceTaskStatusResponse> {
-        self.describeLoadBalanceTaskStatus(DescribeLoadBalanceTaskStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalanceTaskStatusRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeLoadBalanceTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡相关的任务状态
     @inlinable
     public func describeLoadBalanceTaskStatus(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLoadBalanceTaskStatusResponse {
-        try await self.describeLoadBalanceTaskStatus(DescribeLoadBalanceTaskStatusRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLoadBalanceTaskStatusRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeLoadBalanceTaskStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

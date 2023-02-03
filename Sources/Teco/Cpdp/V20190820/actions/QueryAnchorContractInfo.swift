@@ -63,12 +63,14 @@ extension Cpdp {
     /// 直播平台-查询主播签约信息
     @inlinable
     public func queryAnchorContractInfo(beginTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryAnchorContractInfoResponse> {
-        self.queryAnchorContractInfo(QueryAnchorContractInfoRequest(beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = QueryAnchorContractInfoRequest(beginTime: beginTime, endTime: endTime)
+        return self.client.execute(action: "QueryAnchorContractInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播平台-查询主播签约信息
     @inlinable
     public func queryAnchorContractInfo(beginTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryAnchorContractInfoResponse {
-        try await self.queryAnchorContractInfo(QueryAnchorContractInfoRequest(beginTime: beginTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = QueryAnchorContractInfoRequest(beginTime: beginTime, endTime: endTime)
+        return try await self.client.execute(action: "QueryAnchorContractInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

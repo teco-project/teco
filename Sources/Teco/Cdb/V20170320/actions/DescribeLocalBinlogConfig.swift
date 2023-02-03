@@ -68,7 +68,8 @@ extension Cdb {
     /// 该接口用于查询实例本地binlog保留策略。
     @inlinable
     public func describeLocalBinlogConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLocalBinlogConfigResponse> {
-        self.describeLocalBinlogConfig(DescribeLocalBinlogConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLocalBinlogConfigRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeLocalBinlogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询本地binlog保留策略
@@ -76,6 +77,7 @@ extension Cdb {
     /// 该接口用于查询实例本地binlog保留策略。
     @inlinable
     public func describeLocalBinlogConfig(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLocalBinlogConfigResponse {
-        try await self.describeLocalBinlogConfig(DescribeLocalBinlogConfigRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLocalBinlogConfigRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeLocalBinlogConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

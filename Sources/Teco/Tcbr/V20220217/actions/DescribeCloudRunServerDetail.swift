@@ -74,12 +74,14 @@ extension Tcbr {
     /// 查询云托管服务详情
     @inlinable
     public func describeCloudRunServerDetail(envId: String, serverName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudRunServerDetailResponse> {
-        self.describeCloudRunServerDetail(DescribeCloudRunServerDetailRequest(envId: envId, serverName: serverName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudRunServerDetailRequest(envId: envId, serverName: serverName)
+        return self.client.execute(action: "DescribeCloudRunServerDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云托管服务详情
     @inlinable
     public func describeCloudRunServerDetail(envId: String, serverName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudRunServerDetailResponse {
-        try await self.describeCloudRunServerDetail(DescribeCloudRunServerDetailRequest(envId: envId, serverName: serverName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudRunServerDetailRequest(envId: envId, serverName: serverName)
+        return try await self.client.execute(action: "DescribeCloudRunServerDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

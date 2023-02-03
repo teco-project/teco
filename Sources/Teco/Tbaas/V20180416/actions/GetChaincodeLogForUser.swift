@@ -102,12 +102,14 @@ extension Tbaas {
     /// 获取合约容器日志
     @inlinable
     public func getChaincodeLogForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, peerName: String, beginTime: String, rowNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetChaincodeLogForUserResponse> {
-        self.getChaincodeLogForUser(GetChaincodeLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, beginTime: beginTime, rowNum: rowNum), region: region, logger: logger, on: eventLoop)
+        let input = GetChaincodeLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, beginTime: beginTime, rowNum: rowNum)
+        return self.client.execute(action: "GetChaincodeLogForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取合约容器日志
     @inlinable
     public func getChaincodeLogForUser(module: String, operation: String, clusterId: String, groupName: String, chaincodeName: String, chaincodeVersion: String, peerName: String, beginTime: String, rowNum: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetChaincodeLogForUserResponse {
-        try await self.getChaincodeLogForUser(GetChaincodeLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, beginTime: beginTime, rowNum: rowNum), region: region, logger: logger, on: eventLoop)
+        let input = GetChaincodeLogForUserRequest(module: module, operation: operation, clusterId: clusterId, groupName: groupName, chaincodeName: chaincodeName, chaincodeVersion: chaincodeVersion, peerName: peerName, beginTime: beginTime, rowNum: rowNum)
+        return try await self.client.execute(action: "GetChaincodeLogForUser", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

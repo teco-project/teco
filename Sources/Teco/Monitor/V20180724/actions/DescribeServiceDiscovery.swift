@@ -82,7 +82,8 @@ extension Monitor {
     /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
     @inlinable
     public func describeServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeServiceDiscoveryResponse> {
-        self.describeServiceDiscovery(DescribeServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType)
+        return self.client.execute(action: "DescribeServiceDiscovery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列出服务发现列表
@@ -92,6 +93,7 @@ extension Monitor {
     /// <a href="https://cloud.tencent.com/document/product/248/48859" target="_blank">Agent 安装</a>。</p>
     @inlinable
     public func describeServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeServiceDiscoveryResponse {
-        try await self.describeServiceDiscovery(DescribeServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType)
+        return try await self.client.execute(action: "DescribeServiceDiscovery", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -73,12 +73,14 @@ extension Tsf {
     /// 查询服务API列表
     @inlinable
     public func describeMsApiList(microserviceId: String, searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMsApiListResponse> {
-        self.describeMsApiList(DescribeMsApiListRequest(microserviceId: microserviceId, searchWord: searchWord, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMsApiListRequest(microserviceId: microserviceId, searchWord: searchWord, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeMsApiList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务API列表
     @inlinable
     public func describeMsApiList(microserviceId: String, searchWord: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMsApiListResponse {
-        try await self.describeMsApiList(DescribeMsApiListRequest(microserviceId: microserviceId, searchWord: searchWord, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMsApiListRequest(microserviceId: microserviceId, searchWord: searchWord, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeMsApiList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

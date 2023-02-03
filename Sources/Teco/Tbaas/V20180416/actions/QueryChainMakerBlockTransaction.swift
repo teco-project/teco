@@ -82,12 +82,14 @@ extension Tbaas {
     /// 查询长安链指定高度区块的交易
     @inlinable
     public func queryChainMakerBlockTransaction(clusterId: String, chainId: String, blockHeight: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChainMakerBlockTransactionResponse> {
-        self.queryChainMakerBlockTransaction(QueryChainMakerBlockTransactionRequest(clusterId: clusterId, chainId: chainId, blockHeight: blockHeight), region: region, logger: logger, on: eventLoop)
+        let input = QueryChainMakerBlockTransactionRequest(clusterId: clusterId, chainId: chainId, blockHeight: blockHeight)
+        return self.client.execute(action: "QueryChainMakerBlockTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询长安链指定高度区块的交易
     @inlinable
     public func queryChainMakerBlockTransaction(clusterId: String, chainId: String, blockHeight: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerBlockTransactionResponse {
-        try await self.queryChainMakerBlockTransaction(QueryChainMakerBlockTransactionRequest(clusterId: clusterId, chainId: chainId, blockHeight: blockHeight), region: region, logger: logger, on: eventLoop)
+        let input = QueryChainMakerBlockTransactionRequest(clusterId: clusterId, chainId: chainId, blockHeight: blockHeight)
+        return try await self.client.execute(action: "QueryChainMakerBlockTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

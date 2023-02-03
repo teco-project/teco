@@ -127,7 +127,8 @@ extension Cpdp {
     /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
     @inlinable
     public func revResigterBillSupportWithdraw(mrchCode: String, tranNetMemberCode: String, oldOrderNo: String, cancelAmt: String, tranFee: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RevResigterBillSupportWithdrawResponse> {
-        self.revResigterBillSupportWithdraw(RevResigterBillSupportWithdrawRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, oldOrderNo: oldOrderNo, cancelAmt: cancelAmt, tranFee: tranFee, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = RevResigterBillSupportWithdrawRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, oldOrderNo: oldOrderNo, cancelAmt: cancelAmt, tranFee: tranFee, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile)
+        return self.client.execute(action: "RevResigterBillSupportWithdraw", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云鉴-登记挂账撤销
@@ -135,6 +136,7 @@ extension Cpdp {
     /// 登记挂账撤销。此接口可以实现把RegisterBillSupportWithdraw接口完成的登记挂账进行撤销，即调减普通会员子账户的可提现和可用余额，调增挂账子账户的可用余额。
     @inlinable
     public func revResigterBillSupportWithdraw(mrchCode: String, tranNetMemberCode: String, oldOrderNo: String, cancelAmt: String, tranFee: String, remark: String? = nil, reservedMsgOne: String? = nil, reservedMsgTwo: String? = nil, reservedMsgThree: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevResigterBillSupportWithdrawResponse {
-        try await self.revResigterBillSupportWithdraw(RevResigterBillSupportWithdrawRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, oldOrderNo: oldOrderNo, cancelAmt: cancelAmt, tranFee: tranFee, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = RevResigterBillSupportWithdrawRequest(mrchCode: mrchCode, tranNetMemberCode: tranNetMemberCode, oldOrderNo: oldOrderNo, cancelAmt: cancelAmt, tranFee: tranFee, remark: remark, reservedMsgOne: reservedMsgOne, reservedMsgTwo: reservedMsgTwo, reservedMsgThree: reservedMsgThree, profile: profile)
+        return try await self.client.execute(action: "RevResigterBillSupportWithdraw", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

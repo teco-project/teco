@@ -83,7 +83,8 @@ extension Cfw {
     /// DescribeUnHandleEventTabList 告警中心伪攻击链事件未处置接口
     @inlinable
     public func describeUnHandleEventTabList(startTime: String, endTime: String, assetID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnHandleEventTabListResponse> {
-        self.describeUnHandleEventTabList(DescribeUnHandleEventTabListRequest(startTime: startTime, endTime: endTime, assetID: assetID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUnHandleEventTabListRequest(startTime: startTime, endTime: endTime, assetID: assetID)
+        return self.client.execute(action: "DescribeUnHandleEventTabList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警中心伪攻击链事件未处置接口
@@ -91,6 +92,7 @@ extension Cfw {
     /// DescribeUnHandleEventTabList 告警中心伪攻击链事件未处置接口
     @inlinable
     public func describeUnHandleEventTabList(startTime: String, endTime: String, assetID: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnHandleEventTabListResponse {
-        try await self.describeUnHandleEventTabList(DescribeUnHandleEventTabListRequest(startTime: startTime, endTime: endTime, assetID: assetID), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUnHandleEventTabListRequest(startTime: startTime, endTime: endTime, assetID: assetID)
+        return try await self.client.execute(action: "DescribeUnHandleEventTabList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

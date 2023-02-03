@@ -63,12 +63,14 @@ extension Bmeip {
     /// 解绑黑石EIP
     @inlinable
     public func unbindRs(eipId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRsResponse> {
-        self.unbindRs(UnbindRsRequest(eipId: eipId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = UnbindRsRequest(eipId: eipId, instanceId: instanceId)
+        return self.client.execute(action: "UnbindRs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 解绑黑石EIP
     @inlinable
     public func unbindRs(eipId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsResponse {
-        try await self.unbindRs(UnbindRsRequest(eipId: eipId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = UnbindRsRequest(eipId: eipId, instanceId: instanceId)
+        return try await self.client.execute(action: "UnbindRs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -58,12 +58,14 @@ extension Tione {
     /// 查询模型版本
     @inlinable
     public func describeTrainingModelVersion(trainingModelVersionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTrainingModelVersionResponse> {
-        self.describeTrainingModelVersion(DescribeTrainingModelVersionRequest(trainingModelVersionId: trainingModelVersionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTrainingModelVersionRequest(trainingModelVersionId: trainingModelVersionId)
+        return self.client.execute(action: "DescribeTrainingModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询模型版本
     @inlinable
     public func describeTrainingModelVersion(trainingModelVersionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTrainingModelVersionResponse {
-        try await self.describeTrainingModelVersion(DescribeTrainingModelVersionRequest(trainingModelVersionId: trainingModelVersionId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTrainingModelVersionRequest(trainingModelVersionId: trainingModelVersionId)
+        return try await self.client.execute(action: "DescribeTrainingModelVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

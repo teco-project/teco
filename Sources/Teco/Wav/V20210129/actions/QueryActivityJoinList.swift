@@ -80,7 +80,8 @@ extension Wav {
     /// 根据游标拉取活动参与列表信息
     @inlinable
     public func queryActivityJoinList(activityId: Int64, cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryActivityJoinListResponse> {
-        self.queryActivityJoinList(QueryActivityJoinListRequest(activityId: activityId, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = QueryActivityJoinListRequest(activityId: activityId, cursor: cursor, limit: limit)
+        return self.client.execute(action: "QueryActivityJoinList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询活动参与明细列表接口
@@ -88,6 +89,7 @@ extension Wav {
     /// 根据游标拉取活动参与列表信息
     @inlinable
     public func queryActivityJoinList(activityId: Int64, cursor: String? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryActivityJoinListResponse {
-        try await self.queryActivityJoinList(QueryActivityJoinListRequest(activityId: activityId, cursor: cursor, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = QueryActivityJoinListRequest(activityId: activityId, cursor: cursor, limit: limit)
+        return try await self.client.execute(action: "QueryActivityJoinList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

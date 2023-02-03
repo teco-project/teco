@@ -117,12 +117,14 @@ extension Iotvideo {
     /// 获取产品转发规则
     @inlinable
     public func describeForwardRule(productID: String, skey: String, queueType: UInt64, consecretid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeForwardRuleResponse> {
-        self.describeForwardRule(DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid)
+        return self.client.execute(action: "DescribeForwardRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品转发规则
     @inlinable
     public func describeForwardRule(productID: String, skey: String, queueType: UInt64, consecretid: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeForwardRuleResponse {
-        try await self.describeForwardRule(DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid), region: region, logger: logger, on: eventLoop)
+        let input = DescribeForwardRuleRequest(productID: productID, skey: skey, queueType: queueType, consecretid: consecretid)
+        return try await self.client.execute(action: "DescribeForwardRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -128,7 +128,8 @@ extension Essbasic {
     /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
     @inlinable
     public func createUserAndSeal(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, sourceIp: String, mobile: String? = nil, email: String? = nil, sealName: String? = nil, useOpenId: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserAndSealResponse> {
-        self.createUserAndSeal(CreateUserAndSealRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, sourceIp: sourceIp, mobile: mobile, email: email, sealName: sealName, useOpenId: useOpenId), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserAndSealRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, sourceIp: sourceIp, mobile: mobile, email: email, sealName: sealName, useOpenId: useOpenId)
+        return self.client.execute(action: "CreateUserAndSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 注册实名个人用户并生成签名
@@ -140,6 +141,7 @@ extension Essbasic {
     /// 2. 此接口为白名单接口，如您需要使用此能力，请提前与客户经理沟通或邮件至e-contract@tencent.com与我们联系。
     @inlinable
     public func createUserAndSeal(caller: Caller, openId: String, name: String, idCardType: String, idCardNumber: String, sourceIp: String, mobile: String? = nil, email: String? = nil, sealName: String? = nil, useOpenId: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserAndSealResponse {
-        try await self.createUserAndSeal(CreateUserAndSealRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, sourceIp: sourceIp, mobile: mobile, email: email, sealName: sealName, useOpenId: useOpenId), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserAndSealRequest(caller: caller, openId: openId, name: name, idCardType: idCardType, idCardNumber: idCardNumber, sourceIp: sourceIp, mobile: mobile, email: email, sealName: sealName, useOpenId: useOpenId)
+        return try await self.client.execute(action: "CreateUserAndSeal", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

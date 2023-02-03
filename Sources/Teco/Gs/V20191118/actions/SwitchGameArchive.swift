@@ -69,12 +69,14 @@ extension Gs {
     /// 切换游戏存档
     @inlinable @discardableResult
     public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchGameArchiveResponse> {
-        self.switchGameArchive(SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext), region: region, logger: logger, on: eventLoop)
+        let input = SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext)
+        return self.client.execute(action: "SwitchGameArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 切换游戏存档
     @inlinable @discardableResult
     public func switchGameArchive(userId: String, gameId: String, gameArchiveUrl: String? = nil, gameContext: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchGameArchiveResponse {
-        try await self.switchGameArchive(SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext), region: region, logger: logger, on: eventLoop)
+        let input = SwitchGameArchiveRequest(userId: userId, gameId: gameId, gameArchiveUrl: gameArchiveUrl, gameContext: gameContext)
+        return try await self.client.execute(action: "SwitchGameArchive", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

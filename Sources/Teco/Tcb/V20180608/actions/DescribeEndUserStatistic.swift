@@ -69,7 +69,8 @@ extension Tcb {
     /// 获取终端用户总量与平台分布情况
     @inlinable
     public func describeEndUserStatistic(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEndUserStatisticResponse> {
-        self.describeEndUserStatistic(DescribeEndUserStatisticRequest(envId: envId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEndUserStatisticRequest(envId: envId)
+        return self.client.execute(action: "DescribeEndUserStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取终端用户分布
@@ -77,6 +78,7 @@ extension Tcb {
     /// 获取终端用户总量与平台分布情况
     @inlinable
     public func describeEndUserStatistic(envId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEndUserStatisticResponse {
-        try await self.describeEndUserStatistic(DescribeEndUserStatisticRequest(envId: envId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEndUserStatisticRequest(envId: envId)
+        return try await self.client.execute(action: "DescribeEndUserStatistic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

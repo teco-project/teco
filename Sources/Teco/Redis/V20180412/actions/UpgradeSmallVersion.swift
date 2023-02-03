@@ -79,7 +79,8 @@ extension Redis {
     /// 实例小版本升级
     @inlinable
     public func upgradeSmallVersion(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeSmallVersionResponse> {
-        self.upgradeSmallVersion(UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow)
+        return self.client.execute(action: "UpgradeSmallVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例小版本升级接口
@@ -87,6 +88,7 @@ extension Redis {
     /// 实例小版本升级
     @inlinable
     public func upgradeSmallVersion(instanceId: String, currentRedisVersion: String, upgradeRedisVersion: String, instanceTypeUpgradeNow: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeSmallVersionResponse {
-        try await self.upgradeSmallVersion(UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeSmallVersionRequest(instanceId: instanceId, currentRedisVersion: currentRedisVersion, upgradeRedisVersion: upgradeRedisVersion, instanceTypeUpgradeNow: instanceTypeUpgradeNow)
+        return try await self.client.execute(action: "UpgradeSmallVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

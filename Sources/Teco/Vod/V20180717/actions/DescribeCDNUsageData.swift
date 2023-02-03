@@ -112,7 +112,8 @@ extension Vod {
     ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
     @inlinable
     public func describeCDNUsageData(startTime: String, endTime: String, dataType: String, subAppId: UInt64? = nil, dataInterval: UInt64? = nil, domainNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCDNUsageDataResponse> {
-        self.describeCDNUsageData(DescribeCDNUsageDataRequest(startTime: startTime, endTime: endTime, dataType: dataType, subAppId: subAppId, dataInterval: dataInterval, domainNames: domainNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCDNUsageDataRequest(startTime: startTime, endTime: endTime, dataType: dataType, subAppId: subAppId, dataInterval: dataInterval, domainNames: domainNames)
+        return self.client.execute(action: "DescribeCDNUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询点播 CDN 用量数据
@@ -124,6 +125,7 @@ extension Vod {
     ///    4.  流量为查询时间粒度内的总流量，带宽为查询时间粒度内的峰值带宽。
     @inlinable
     public func describeCDNUsageData(startTime: String, endTime: String, dataType: String, subAppId: UInt64? = nil, dataInterval: UInt64? = nil, domainNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCDNUsageDataResponse {
-        try await self.describeCDNUsageData(DescribeCDNUsageDataRequest(startTime: startTime, endTime: endTime, dataType: dataType, subAppId: subAppId, dataInterval: dataInterval, domainNames: domainNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCDNUsageDataRequest(startTime: startTime, endTime: endTime, dataType: dataType, subAppId: subAppId, dataInterval: dataInterval, domainNames: domainNames)
+        return try await self.client.execute(action: "DescribeCDNUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

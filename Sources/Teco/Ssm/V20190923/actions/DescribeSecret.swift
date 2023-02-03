@@ -133,7 +133,8 @@ extension Ssm {
     /// 获取凭据的详细属性信息。
     @inlinable
     public func describeSecret(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSecretResponse> {
-        self.describeSecret(DescribeSecretRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecretRequest(secretName: secretName)
+        return self.client.execute(action: "DescribeSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取凭据详细信息
@@ -141,6 +142,7 @@ extension Ssm {
     /// 获取凭据的详细属性信息。
     @inlinable
     public func describeSecret(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSecretResponse {
-        try await self.describeSecret(DescribeSecretRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSecretRequest(secretName: secretName)
+        return try await self.client.execute(action: "DescribeSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

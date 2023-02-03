@@ -81,7 +81,8 @@ extension Cis {
     /// 此接口（DescribeContainerInstances）查询容器实例列表
     @inlinable
     public func describeContainerInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeContainerInstancesResponse> {
-        self.describeContainerInstances(DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询容器实例列表
@@ -89,6 +90,7 @@ extension Cis {
     /// 此接口（DescribeContainerInstances）查询容器实例列表
     @inlinable
     public func describeContainerInstances(offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeContainerInstancesResponse {
-        try await self.describeContainerInstances(DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeContainerInstancesRequest(offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeContainerInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

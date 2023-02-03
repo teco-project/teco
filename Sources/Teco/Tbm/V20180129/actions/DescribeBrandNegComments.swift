@@ -97,7 +97,8 @@ extension Tbm {
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
     @inlinable
     public func describeBrandNegComments(brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBrandNegCommentsResponse> {
-        self.describeBrandNegComments(DescribeBrandNegCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBrandNegCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeBrandNegComments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取品牌用户差评列表
@@ -105,6 +106,7 @@ extension Tbm {
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
     @inlinable
     public func describeBrandNegComments(brandId: String, startDate: Date, endDate: Date, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBrandNegCommentsResponse {
-        try await self.describeBrandNegComments(DescribeBrandNegCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBrandNegCommentsRequest(brandId: brandId, startDate: startDate, endDate: endDate, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeBrandNegComments", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

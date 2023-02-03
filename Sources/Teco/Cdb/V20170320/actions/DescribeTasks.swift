@@ -123,7 +123,8 @@ extension Cdb {
     /// 本接口(DescribeTasks)用于查询云数据库实例任务列表。
     @inlinable
     public func describeTasks(instanceId: String? = nil, asyncRequestId: String? = nil, taskTypes: [Int64]? = nil, taskStatus: [Int64]? = nil, startTimeBegin: String? = nil, startTimeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTasksResponse> {
-        self.describeTasks(DescribeTasksRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, taskTypes: taskTypes, taskStatus: taskStatus, startTimeBegin: startTimeBegin, startTimeEnd: startTimeEnd, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, taskTypes: taskTypes, taskStatus: taskStatus, startTimeBegin: startTimeBegin, startTimeEnd: startTimeEnd, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库实例任务列表
@@ -131,6 +132,7 @@ extension Cdb {
     /// 本接口(DescribeTasks)用于查询云数据库实例任务列表。
     @inlinable
     public func describeTasks(instanceId: String? = nil, asyncRequestId: String? = nil, taskTypes: [Int64]? = nil, taskStatus: [Int64]? = nil, startTimeBegin: String? = nil, startTimeEnd: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTasksResponse {
-        try await self.describeTasks(DescribeTasksRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, taskTypes: taskTypes, taskStatus: taskStatus, startTimeBegin: startTimeBegin, startTimeEnd: startTimeEnd, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTasksRequest(instanceId: instanceId, asyncRequestId: asyncRequestId, taskTypes: taskTypes, taskStatus: taskStatus, startTimeBegin: startTimeBegin, startTimeEnd: startTimeEnd, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

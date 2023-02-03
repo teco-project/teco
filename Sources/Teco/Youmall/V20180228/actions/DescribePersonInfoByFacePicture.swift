@@ -104,7 +104,8 @@ extension Youmall {
     /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
     @inlinable
     public func describePersonInfoByFacePicture(companyId: String, shopId: Int64, picture: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePersonInfoByFacePictureResponse> {
-        self.describePersonInfoByFacePicture(DescribePersonInfoByFacePictureRequest(companyId: companyId, shopId: shopId, picture: picture), region: region, logger: logger, on: eventLoop)
+        let input = DescribePersonInfoByFacePictureRequest(companyId: companyId, shopId: shopId, picture: picture)
+        return self.client.execute(action: "DescribePersonInfoByFacePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图片检索身份接口
@@ -112,6 +113,7 @@ extension Youmall {
     /// 通过上传人脸图片检索系统face id、顾客身份信息及底图
     @inlinable
     public func describePersonInfoByFacePicture(companyId: String, shopId: Int64, picture: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePersonInfoByFacePictureResponse {
-        try await self.describePersonInfoByFacePicture(DescribePersonInfoByFacePictureRequest(companyId: companyId, shopId: shopId, picture: picture), region: region, logger: logger, on: eventLoop)
+        let input = DescribePersonInfoByFacePictureRequest(companyId: companyId, shopId: shopId, picture: picture)
+        return try await self.client.execute(action: "DescribePersonInfoByFacePicture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

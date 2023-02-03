@@ -69,7 +69,8 @@ extension Vpc {
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
     @inlinable
     public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAddressTemplateGroupResponse> {
-        self.createAddressTemplateGroup(CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds)
+        return self.client.execute(action: "CreateAddressTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建IP地址模板集合
@@ -77,6 +78,7 @@ extension Vpc {
     /// 本接口（CreateAddressTemplateGroup）用于创建IP地址模板集合
     @inlinable
     public func createAddressTemplateGroup(addressTemplateGroupName: String, addressTemplateIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAddressTemplateGroupResponse {
-        try await self.createAddressTemplateGroup(CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds), region: region, logger: logger, on: eventLoop)
+        let input = CreateAddressTemplateGroupRequest(addressTemplateGroupName: addressTemplateGroupName, addressTemplateIds: addressTemplateIds)
+        return try await self.client.execute(action: "CreateAddressTemplateGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -79,12 +79,14 @@ extension Es {
     /// 获取索引元数据
     @inlinable
     public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIndexMetaResponse> {
-        self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password)
+        return self.client.execute(action: "DescribeIndexMeta", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取索引元数据
     @inlinable
     public func describeIndexMeta(instanceId: String, indexType: String, indexName: String, username: String? = nil, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIndexMetaResponse {
-        try await self.describeIndexMeta(DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIndexMetaRequest(instanceId: instanceId, indexType: indexType, indexName: indexName, username: username, password: password)
+        return try await self.client.execute(action: "DescribeIndexMeta", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

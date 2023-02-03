@@ -119,12 +119,14 @@ extension Hasim {
     /// 编辑自动化规则
     @inlinable @discardableResult
     public func modifyRule(name: String, type: Int64, isActive: Bool, notice: Int64, ruleID: Int64, email: String? = nil, url: String? = nil, dataThreshold: Int64? = nil, district: Int64? = nil, distance: Int64? = nil, signalStrength: Int64? = nil, tagIDs: [Int64]? = nil, salePlan: String? = nil, uinAccount: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRuleResponse> {
-        self.modifyRule(ModifyRuleRequest(name: name, type: type, isActive: isActive, notice: notice, ruleID: ruleID, email: email, url: url, dataThreshold: dataThreshold, district: district, distance: distance, signalStrength: signalStrength, tagIDs: tagIDs, salePlan: salePlan, uinAccount: uinAccount), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRuleRequest(name: name, type: type, isActive: isActive, notice: notice, ruleID: ruleID, email: email, url: url, dataThreshold: dataThreshold, district: district, distance: distance, signalStrength: signalStrength, tagIDs: tagIDs, salePlan: salePlan, uinAccount: uinAccount)
+        return self.client.execute(action: "ModifyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑自动化规则
     @inlinable @discardableResult
     public func modifyRule(name: String, type: Int64, isActive: Bool, notice: Int64, ruleID: Int64, email: String? = nil, url: String? = nil, dataThreshold: Int64? = nil, district: Int64? = nil, distance: Int64? = nil, signalStrength: Int64? = nil, tagIDs: [Int64]? = nil, salePlan: String? = nil, uinAccount: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRuleResponse {
-        try await self.modifyRule(ModifyRuleRequest(name: name, type: type, isActive: isActive, notice: notice, ruleID: ruleID, email: email, url: url, dataThreshold: dataThreshold, district: district, distance: distance, signalStrength: signalStrength, tagIDs: tagIDs, salePlan: salePlan, uinAccount: uinAccount), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRuleRequest(name: name, type: type, isActive: isActive, notice: notice, ruleID: ruleID, email: email, url: url, dataThreshold: dataThreshold, district: district, distance: distance, signalStrength: signalStrength, tagIDs: tagIDs, salePlan: salePlan, uinAccount: uinAccount)
+        return try await self.client.execute(action: "ModifyRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

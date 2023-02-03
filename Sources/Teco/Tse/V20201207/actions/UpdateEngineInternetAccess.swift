@@ -64,12 +64,14 @@ extension Tse {
     /// 修改引擎公网访问配置
     @inlinable @discardableResult
     public func updateEngineInternetAccess(instanceId: String, engineType: String, enableClientInternetAccess: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateEngineInternetAccessResponse> {
-        self.updateEngineInternetAccess(UpdateEngineInternetAccessRequest(instanceId: instanceId, engineType: engineType, enableClientInternetAccess: enableClientInternetAccess), region: region, logger: logger, on: eventLoop)
+        let input = UpdateEngineInternetAccessRequest(instanceId: instanceId, engineType: engineType, enableClientInternetAccess: enableClientInternetAccess)
+        return self.client.execute(action: "UpdateEngineInternetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改引擎公网访问配置
     @inlinable @discardableResult
     public func updateEngineInternetAccess(instanceId: String, engineType: String, enableClientInternetAccess: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateEngineInternetAccessResponse {
-        try await self.updateEngineInternetAccess(UpdateEngineInternetAccessRequest(instanceId: instanceId, engineType: engineType, enableClientInternetAccess: enableClientInternetAccess), region: region, logger: logger, on: eventLoop)
+        let input = UpdateEngineInternetAccessRequest(instanceId: instanceId, engineType: engineType, enableClientInternetAccess: enableClientInternetAccess)
+        return try await self.client.execute(action: "UpdateEngineInternetAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

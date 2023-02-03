@@ -79,7 +79,8 @@ extension Lighthouse {
     /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
     @inlinable
     public func inquirePriceCreateInstances(bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceCreateInstancesResponse> {
-        self.inquirePriceCreateInstances(InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId)
+        return self.client.execute(action: "InquirePriceCreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例询价
@@ -87,6 +88,7 @@ extension Lighthouse {
     /// 本接口（InquiryPriceCreateInstances）用于创建实例询价。
     @inlinable
     public func inquirePriceCreateInstances(bundleId: String, instanceCount: Int64? = nil, instanceChargePrepaid: InstanceChargePrepaid? = nil, blueprintId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceCreateInstancesResponse {
-        try await self.inquirePriceCreateInstances(InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceCreateInstancesRequest(bundleId: bundleId, instanceCount: instanceCount, instanceChargePrepaid: instanceChargePrepaid, blueprintId: blueprintId)
+        return try await self.client.execute(action: "InquirePriceCreateInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -103,7 +103,8 @@ extension Postgres {
     /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
     @inlinable
     public func describeSlowQueryAnalysis(dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSlowQueryAnalysisResponse> {
-        self.describeSlowQueryAnalysis(DescribeSlowQueryAnalysisRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowQueryAnalysisRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeSlowQueryAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取慢查询统计分析列表
@@ -111,6 +112,7 @@ extension Postgres {
     /// 此接口（DescribeSlowQueryAnalysis）用于统计指定时间范围内的所有慢查询，根据SQL语句抽象参数后，进行聚合分析，并返回同类SQL列表。
     @inlinable
     public func describeSlowQueryAnalysis(dbInstanceId: String, startTime: String, endTime: String, databaseName: String? = nil, orderBy: String? = nil, orderByType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSlowQueryAnalysisResponse {
-        try await self.describeSlowQueryAnalysis(DescribeSlowQueryAnalysisRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSlowQueryAnalysisRequest(dbInstanceId: dbInstanceId, startTime: startTime, endTime: endTime, databaseName: databaseName, orderBy: orderBy, orderByType: orderByType, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeSlowQueryAnalysis", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

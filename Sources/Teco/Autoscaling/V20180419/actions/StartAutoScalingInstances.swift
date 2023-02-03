@@ -75,7 +75,8 @@ extension As {
     /// * 本接口支持批量操作，每次请求开机实例的上限为100
     @inlinable
     public func startAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartAutoScalingInstancesResponse> {
-        self.startAutoScalingInstances(StartAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = StartAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds)
+        return self.client.execute(action: "StartAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 开启伸缩组内 CVM 实例
@@ -85,6 +86,7 @@ extension As {
     /// * 本接口支持批量操作，每次请求开机实例的上限为100
     @inlinable
     public func startAutoScalingInstances(autoScalingGroupId: String, instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartAutoScalingInstancesResponse {
-        try await self.startAutoScalingInstances(StartAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = StartAutoScalingInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds)
+        return try await self.client.execute(action: "StartAutoScalingInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

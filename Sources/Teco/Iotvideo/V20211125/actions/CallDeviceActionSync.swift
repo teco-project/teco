@@ -84,12 +84,14 @@ extension Iotvideo {
     /// 同步调用设备行为
     @inlinable
     public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CallDeviceActionSyncResponse> {
-        self.callDeviceActionSync(CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
+        let input = CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams)
+        return self.client.execute(action: "CallDeviceActionSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步调用设备行为
     @inlinable
     public func callDeviceActionSync(productId: String, deviceName: String, actionId: String, inputParams: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CallDeviceActionSyncResponse {
-        try await self.callDeviceActionSync(CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams), region: region, logger: logger, on: eventLoop)
+        let input = CallDeviceActionSyncRequest(productId: productId, deviceName: deviceName, actionId: actionId, inputParams: inputParams)
+        return try await self.client.execute(action: "CallDeviceActionSync", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

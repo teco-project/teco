@@ -60,7 +60,8 @@ extension Vpc {
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
     @inlinable @discardableResult
     public func deleteServiceTemplate(serviceTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteServiceTemplateResponse> {
-        self.deleteServiceTemplate(DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId)
+        return self.client.execute(action: "DeleteServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除协议端口模板
@@ -68,6 +69,7 @@ extension Vpc {
     /// 本接口（DeleteServiceTemplate）用于删除协议端口模板
     @inlinable @discardableResult
     public func deleteServiceTemplate(serviceTemplateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteServiceTemplateResponse {
-        try await self.deleteServiceTemplate(DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteServiceTemplateRequest(serviceTemplateId: serviceTemplateId)
+        return try await self.client.execute(action: "DeleteServiceTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

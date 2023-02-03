@@ -73,12 +73,14 @@ extension Wedata {
     /// 获取实例运行日志
     @inlinable
     public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceLogResponse> {
-        self.describeInstanceLog(DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName)
+        return self.client.execute(action: "DescribeInstanceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例运行日志
     @inlinable
     public func describeInstanceLog(taskId: String, curRunDate: String, brokerIp: String, originFileName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceLogResponse {
-        try await self.describeInstanceLog(DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceLogRequest(taskId: taskId, curRunDate: curRunDate, brokerIp: brokerIp, originFileName: originFileName)
+        return try await self.client.execute(action: "DescribeInstanceLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

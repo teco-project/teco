@@ -77,12 +77,14 @@ extension Tke {
     /// 查询边缘计算集群的节点信息
     @inlinable
     public func describeEdgeClusterInstances(clusterID: String, limit: Int64, offset: Int64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEdgeClusterInstancesResponse> {
-        self.describeEdgeClusterInstances(DescribeEdgeClusterInstancesRequest(clusterID: clusterID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeClusterInstancesRequest(clusterID: clusterID, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeEdgeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询边缘计算集群的节点信息
     @inlinable
     public func describeEdgeClusterInstances(clusterID: String, limit: Int64, offset: Int64, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEdgeClusterInstancesResponse {
-        try await self.describeEdgeClusterInstances(DescribeEdgeClusterInstancesRequest(clusterID: clusterID, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEdgeClusterInstancesRequest(clusterID: clusterID, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeEdgeClusterInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

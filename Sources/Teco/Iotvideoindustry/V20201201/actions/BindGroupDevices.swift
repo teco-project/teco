@@ -65,7 +65,8 @@ extension Iotvideoindustry {
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
     @inlinable @discardableResult
     public func bindGroupDevices(groupId: String, deviceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BindGroupDevicesResponse> {
-        self.bindGroupDevices(BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList), region: region, logger: logger, on: eventLoop)
+        let input = BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList)
+        return self.client.execute(action: "BindGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 绑定设备到分组
@@ -73,6 +74,7 @@ extension Iotvideoindustry {
     /// 本接口(BindGroupDevices) 用于绑定设备到分组。
     @inlinable @discardableResult
     public func bindGroupDevices(groupId: String, deviceList: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindGroupDevicesResponse {
-        try await self.bindGroupDevices(BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList), region: region, logger: logger, on: eventLoop)
+        let input = BindGroupDevicesRequest(groupId: groupId, deviceList: deviceList)
+        return try await self.client.execute(action: "BindGroupDevices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

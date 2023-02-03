@@ -99,7 +99,8 @@ extension Essbasic {
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
     @inlinable
     public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowDetailInfoResponse> {
-        self.describeFlowDetailInfo(DescribeFlowDetailInfoRequest(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowDetailInfoRequest(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId)
+        return self.client.execute(action: "DescribeFlowDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询合同(签署流程)的详细信息
@@ -107,6 +108,7 @@ extension Essbasic {
     /// 此接口（DescribeFlowDetailInfo）用于查询合同(签署流程)的详细信息。
     @inlinable
     public func describeFlowDetailInfo(agent: Agent, flowIds: [String]? = nil, operator: UserInfo? = nil, flowGroupId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowDetailInfoResponse {
-        try await self.describeFlowDetailInfo(DescribeFlowDetailInfoRequest(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowDetailInfoRequest(agent: agent, flowIds: flowIds, operator: `operator`, flowGroupId: flowGroupId)
+        return try await self.client.execute(action: "DescribeFlowDetailInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

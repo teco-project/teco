@@ -58,12 +58,14 @@ extension Cam {
     /// 获取自定义多因子Token关联信息
     @inlinable
     public func getCustomMFATokenInfo(mfaToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetCustomMFATokenInfoResponse> {
-        self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), region: region, logger: logger, on: eventLoop)
+        let input = GetCustomMFATokenInfoRequest(mfaToken: mfaToken)
+        return self.client.execute(action: "GetCustomMFATokenInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取自定义多因子Token关联信息
     @inlinable
     public func getCustomMFATokenInfo(mfaToken: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetCustomMFATokenInfoResponse {
-        try await self.getCustomMFATokenInfo(GetCustomMFATokenInfoRequest(mfaToken: mfaToken), region: region, logger: logger, on: eventLoop)
+        let input = GetCustomMFATokenInfoRequest(mfaToken: mfaToken)
+        return try await self.client.execute(action: "GetCustomMFATokenInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

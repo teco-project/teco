@@ -54,12 +54,14 @@ extension Antiddos {
     /// 获取转发监听器列表
     @inlinable
     public func describeListListener(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListListenerResponse> {
-        self.describeListListener(DescribeListListenerRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeListListenerRequest()
+        return self.client.execute(action: "DescribeListListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取转发监听器列表
     @inlinable
     public func describeListListener(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListListenerResponse {
-        try await self.describeListListener(DescribeListListenerRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeListListenerRequest()
+        return try await self.client.execute(action: "DescribeListListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

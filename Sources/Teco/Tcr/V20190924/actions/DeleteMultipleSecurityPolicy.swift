@@ -69,7 +69,8 @@ extension Tcr {
     /// 用于删除实例多个公网访问白名单策略
     @inlinable
     public func deleteMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMultipleSecurityPolicyResponse> {
-        self.deleteMultipleSecurityPolicy(DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet)
+        return self.client.execute(action: "DeleteMultipleSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除实例公网访问多白名单策略
@@ -77,6 +78,7 @@ extension Tcr {
     /// 用于删除实例多个公网访问白名单策略
     @inlinable
     public func deleteMultipleSecurityPolicy(registryId: String, securityGroupPolicySet: [SecurityPolicy], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMultipleSecurityPolicyResponse {
-        try await self.deleteMultipleSecurityPolicy(DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteMultipleSecurityPolicyRequest(registryId: registryId, securityGroupPolicySet: securityGroupPolicySet)
+        return try await self.client.execute(action: "DeleteMultipleSecurityPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

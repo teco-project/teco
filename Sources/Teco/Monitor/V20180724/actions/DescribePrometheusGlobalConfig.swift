@@ -78,12 +78,14 @@ extension Monitor {
     /// 获得实例级别抓取配置
     @inlinable
     public func describePrometheusGlobalConfig(instanceId: String, disableStatistics: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusGlobalConfigResponse> {
-        self.describePrometheusGlobalConfig(DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics)
+        return self.client.execute(action: "DescribePrometheusGlobalConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获得实例级别抓取配置
     @inlinable
     public func describePrometheusGlobalConfig(instanceId: String, disableStatistics: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusGlobalConfigResponse {
-        try await self.describePrometheusGlobalConfig(DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusGlobalConfigRequest(instanceId: instanceId, disableStatistics: disableStatistics)
+        return try await self.client.execute(action: "DescribePrometheusGlobalConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

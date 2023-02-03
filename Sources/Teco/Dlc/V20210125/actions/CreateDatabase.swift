@@ -69,7 +69,8 @@ extension Dlc {
     /// 本接口（CreateDatabase）用于生成建库SQL语句。
     @inlinable
     public func createDatabase(databaseInfo: DatabaseInfo, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDatabaseResponse> {
-        self.createDatabase(CreateDatabaseRequest(databaseInfo: databaseInfo, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
+        let input = CreateDatabaseRequest(databaseInfo: databaseInfo, datasourceConnectionName: datasourceConnectionName)
+        return self.client.execute(action: "CreateDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 生成建库SQL语句
@@ -77,6 +78,7 @@ extension Dlc {
     /// 本接口（CreateDatabase）用于生成建库SQL语句。
     @inlinable
     public func createDatabase(databaseInfo: DatabaseInfo, datasourceConnectionName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDatabaseResponse {
-        try await self.createDatabase(CreateDatabaseRequest(databaseInfo: databaseInfo, datasourceConnectionName: datasourceConnectionName), region: region, logger: logger, on: eventLoop)
+        let input = CreateDatabaseRequest(databaseInfo: databaseInfo, datasourceConnectionName: datasourceConnectionName)
+        return try await self.client.execute(action: "CreateDatabase", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

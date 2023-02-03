@@ -74,7 +74,8 @@ extension Bmlb {
     /// 修改黑石负载均衡七层转发路径。
     @inlinable
     public func modifyL7Locations(loadBalancerId: String, listenerId: String, ruleSet: [ModifyL7LocationRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyL7LocationsResponse> {
-        self.modifyL7Locations(ModifyL7LocationsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
+        let input = ModifyL7LocationsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet)
+        return self.client.execute(action: "ModifyL7Locations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改黑石负载均衡七层转发路径
@@ -82,6 +83,7 @@ extension Bmlb {
     /// 修改黑石负载均衡七层转发路径。
     @inlinable
     public func modifyL7Locations(loadBalancerId: String, listenerId: String, ruleSet: [ModifyL7LocationRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyL7LocationsResponse {
-        try await self.modifyL7Locations(ModifyL7LocationsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet), region: region, logger: logger, on: eventLoop)
+        let input = ModifyL7LocationsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, ruleSet: ruleSet)
+        return try await self.client.execute(action: "ModifyL7Locations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

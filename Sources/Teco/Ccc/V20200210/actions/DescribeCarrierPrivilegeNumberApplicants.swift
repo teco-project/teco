@@ -83,7 +83,8 @@ extension Ccc {
     /// 查询单状态
     @inlinable
     public func describeCarrierPrivilegeNumberApplicants(sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCarrierPrivilegeNumberApplicantsResponse> {
-        self.describeCarrierPrivilegeNumberApplicants(DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters)
+        return self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询运营商白名单号码申请
@@ -91,6 +92,7 @@ extension Ccc {
     /// 查询单状态
     @inlinable
     public func describeCarrierPrivilegeNumberApplicants(sdkAppId: UInt64, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCarrierPrivilegeNumberApplicantsResponse {
-        try await self.describeCarrierPrivilegeNumberApplicants(DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCarrierPrivilegeNumberApplicantsRequest(sdkAppId: sdkAppId, pageNumber: pageNumber, pageSize: pageSize, filters: filters)
+        return try await self.client.execute(action: "DescribeCarrierPrivilegeNumberApplicants", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

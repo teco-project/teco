@@ -79,12 +79,14 @@ extension Cfw {
     /// 配置防火墙Dnat规则
     @inlinable @discardableResult
     public func setNatFwDnatRule(mode: UInt64, operationType: String, cfwInstance: String? = nil, addOrDelDnatRules: [CfwNatDnatRule]? = nil, originDnat: CfwNatDnatRule? = nil, newDnat: CfwNatDnatRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetNatFwDnatRuleResponse> {
-        self.setNatFwDnatRule(SetNatFwDnatRuleRequest(mode: mode, operationType: operationType, cfwInstance: cfwInstance, addOrDelDnatRules: addOrDelDnatRules, originDnat: originDnat, newDnat: newDnat), region: region, logger: logger, on: eventLoop)
+        let input = SetNatFwDnatRuleRequest(mode: mode, operationType: operationType, cfwInstance: cfwInstance, addOrDelDnatRules: addOrDelDnatRules, originDnat: originDnat, newDnat: newDnat)
+        return self.client.execute(action: "SetNatFwDnatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 配置防火墙Dnat规则
     @inlinable @discardableResult
     public func setNatFwDnatRule(mode: UInt64, operationType: String, cfwInstance: String? = nil, addOrDelDnatRules: [CfwNatDnatRule]? = nil, originDnat: CfwNatDnatRule? = nil, newDnat: CfwNatDnatRule? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetNatFwDnatRuleResponse {
-        try await self.setNatFwDnatRule(SetNatFwDnatRuleRequest(mode: mode, operationType: operationType, cfwInstance: cfwInstance, addOrDelDnatRules: addOrDelDnatRules, originDnat: originDnat, newDnat: newDnat), region: region, logger: logger, on: eventLoop)
+        let input = SetNatFwDnatRuleRequest(mode: mode, operationType: operationType, cfwInstance: cfwInstance, addOrDelDnatRules: addOrDelDnatRules, originDnat: originDnat, newDnat: newDnat)
+        return try await self.client.execute(action: "SetNatFwDnatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

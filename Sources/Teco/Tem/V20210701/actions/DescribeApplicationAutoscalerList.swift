@@ -69,12 +69,14 @@ extension Tem {
     /// 获取应用弹性策略组合
     @inlinable
     public func describeApplicationAutoscalerList(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationAutoscalerListResponse> {
-        self.describeApplicationAutoscalerList(DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel)
+        return self.client.execute(action: "DescribeApplicationAutoscalerList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用弹性策略组合
     @inlinable
     public func describeApplicationAutoscalerList(applicationId: String, environmentId: String, sourceChannel: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationAutoscalerListResponse {
-        try await self.describeApplicationAutoscalerList(DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationAutoscalerListRequest(applicationId: applicationId, environmentId: environmentId, sourceChannel: sourceChannel)
+        return try await self.client.execute(action: "DescribeApplicationAutoscalerList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

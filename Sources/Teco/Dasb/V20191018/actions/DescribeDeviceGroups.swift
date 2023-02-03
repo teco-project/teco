@@ -82,12 +82,14 @@ extension Dasb {
     /// 查询资产组列表
     @inlinable
     public func describeDeviceGroups(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDeviceGroupsResponse> {
-        self.describeDeviceGroups(DescribeDeviceGroupsRequest(idSet: idSet, name: name, offset: offset, limit: limit, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceGroupsRequest(idSet: idSet, name: name, offset: offset, limit: limit, departmentId: departmentId)
+        return self.client.execute(action: "DescribeDeviceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资产组列表
     @inlinable
     public func describeDeviceGroups(idSet: [UInt64]? = nil, name: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, departmentId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDeviceGroupsResponse {
-        try await self.describeDeviceGroups(DescribeDeviceGroupsRequest(idSet: idSet, name: name, offset: offset, limit: limit, departmentId: departmentId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDeviceGroupsRequest(idSet: idSet, name: name, offset: offset, limit: limit, departmentId: departmentId)
+        return try await self.client.execute(action: "DescribeDeviceGroups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Scf {
     /// 获取账户信息
     @inlinable
     public func getAccount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAccountResponse> {
-        self.getAccount(GetAccountRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetAccountRequest()
+        return self.client.execute(action: "GetAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取账户信息
     @inlinable
     public func getAccount(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAccountResponse {
-        try await self.getAccount(GetAccountRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetAccountRequest()
+        return try await self.client.execute(action: "GetAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

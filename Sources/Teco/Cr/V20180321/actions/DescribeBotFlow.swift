@@ -74,12 +74,14 @@ extension Cr {
     /// 查询机器人对话流
     @inlinable
     public func describeBotFlow(module: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBotFlowResponse> {
-        self.describeBotFlow(DescribeBotFlowRequest(module: module, operation: operation), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBotFlowRequest(module: module, operation: operation)
+        return self.client.execute(action: "DescribeBotFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询机器人对话流
     @inlinable
     public func describeBotFlow(module: String, operation: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBotFlowResponse {
-        try await self.describeBotFlow(DescribeBotFlowRequest(module: module, operation: operation), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBotFlowRequest(module: module, operation: operation)
+        return try await self.client.execute(action: "DescribeBotFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

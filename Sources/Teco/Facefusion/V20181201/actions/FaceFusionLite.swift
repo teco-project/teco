@@ -94,7 +94,8 @@ extension Facefusion {
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
     @inlinable
     public func faceFusionLite(projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<FaceFusionLiteResponse> {
-        self.faceFusionLite(FaceFusionLiteRequest(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine), region: region, logger: logger, on: eventLoop)
+        let input = FaceFusionLiteRequest(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine)
+        return self.client.execute(action: "FaceFusionLite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸融合活动专用版
@@ -102,6 +103,7 @@ extension Facefusion {
     /// 人脸融合活动专用版，不推荐使用。人脸融合接口建议使用[人脸融合](https://cloud.tencent.com/document/product/670/31061)或[选脸融合](https://cloud.tencent.com/document/product/670/37736)接口
     @inlinable
     public func faceFusionLite(projectId: String, modelId: String, mergeInfos: [MergeInfo], rspImgType: String? = nil, celebrityIdentify: Int64? = nil, engine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> FaceFusionLiteResponse {
-        try await self.faceFusionLite(FaceFusionLiteRequest(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine), region: region, logger: logger, on: eventLoop)
+        let input = FaceFusionLiteRequest(projectId: projectId, modelId: modelId, mergeInfos: mergeInfos, rspImgType: rspImgType, celebrityIdentify: celebrityIdentify, engine: engine)
+        return try await self.client.execute(action: "FaceFusionLite", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

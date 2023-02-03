@@ -79,12 +79,14 @@ extension Tsf {
     /// 查询单值指标维度
     @inlinable
     public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationMetricDataPointResponse> {
-        self.describeInvocationMetricDataPoint(DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind)
+        return self.client.execute(action: "DescribeInvocationMetricDataPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单值指标维度
     @inlinable
     public func describeInvocationMetricDataPoint(startTime: String, endTime: String, metricDimensionValues: [MetricDimensionValue], metrics: [Metric], kind: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationMetricDataPointResponse {
-        try await self.describeInvocationMetricDataPoint(DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInvocationMetricDataPointRequest(startTime: startTime, endTime: endTime, metricDimensionValues: metricDimensionValues, metrics: metrics, kind: kind)
+        return try await self.client.execute(action: "DescribeInvocationMetricDataPoint", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

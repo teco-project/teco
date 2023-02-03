@@ -71,7 +71,8 @@ extension Ivld {
     /// 请注意，**此接口仅返回任务执行状态信息，不返回任务执行结果**
     @inlinable
     public func describeTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResponse> {
-        self.describeTask(DescribeTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述任务
@@ -81,6 +82,7 @@ extension Ivld {
     /// 请注意，**此接口仅返回任务执行状态信息，不返回任务执行结果**
     @inlinable
     public func describeTask(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.describeTask(DescribeTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

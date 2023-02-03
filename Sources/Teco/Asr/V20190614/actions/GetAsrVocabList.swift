@@ -78,7 +78,8 @@ extension Asr {
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
     public func getAsrVocabList(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetAsrVocabListResponse> {
-        self.getAsrVocabList(GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit)
+        return self.client.execute(action: "GetAsrVocabList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 列举热词表
@@ -86,6 +87,7 @@ extension Asr {
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
     public func getAsrVocabList(tagInfos: [String]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetAsrVocabListResponse {
-        try await self.getAsrVocabList(GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = GetAsrVocabListRequest(tagInfos: tagInfos, offset: offset, limit: limit)
+        return try await self.client.execute(action: "GetAsrVocabList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

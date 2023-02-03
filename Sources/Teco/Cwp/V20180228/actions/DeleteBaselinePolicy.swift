@@ -54,12 +54,14 @@ extension Cwp {
     /// 删除基线策略配置
     @inlinable @discardableResult
     public func deleteBaselinePolicy(policyIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteBaselinePolicyResponse> {
-        self.deleteBaselinePolicy(DeleteBaselinePolicyRequest(policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteBaselinePolicyRequest(policyIds: policyIds)
+        return self.client.execute(action: "DeleteBaselinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除基线策略配置
     @inlinable @discardableResult
     public func deleteBaselinePolicy(policyIds: [Int64], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteBaselinePolicyResponse {
-        try await self.deleteBaselinePolicy(DeleteBaselinePolicyRequest(policyIds: policyIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteBaselinePolicyRequest(policyIds: policyIds)
+        return try await self.client.execute(action: "DeleteBaselinePolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

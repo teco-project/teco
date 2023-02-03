@@ -78,7 +78,8 @@ extension Tav {
     /// tav文件上传扫描结果查询
     @inlinable
     public func getScanResult(key: String, md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetScanResultResponse> {
-        self.getScanResult(GetScanResultRequest(key: key, md5: md5), region: region, logger: logger, on: eventLoop)
+        let input = GetScanResultRequest(key: key, md5: md5)
+        return self.client.execute(action: "GetScanResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 文件上传扫描结果查询
@@ -86,6 +87,7 @@ extension Tav {
     /// tav文件上传扫描结果查询
     @inlinable
     public func getScanResult(key: String, md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetScanResultResponse {
-        try await self.getScanResult(GetScanResultRequest(key: key, md5: md5), region: region, logger: logger, on: eventLoop)
+        let input = GetScanResultRequest(key: key, md5: md5)
+        return try await self.client.execute(action: "GetScanResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Lighthouse {
     /// 本接口（DescribeDiskBackupsDeniedActions）用于查询一个或多个云硬盘备份点的操作限制列表信息。
     @inlinable
     public func describeDiskBackupsDeniedActions(diskBackupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDiskBackupsDeniedActionsResponse> {
-        self.describeDiskBackupsDeniedActions(DescribeDiskBackupsDeniedActionsRequest(diskBackupIds: diskBackupIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDiskBackupsDeniedActionsRequest(diskBackupIds: diskBackupIds)
+        return self.client.execute(action: "DescribeDiskBackupsDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看云硬盘备份点操作限制列表
@@ -72,6 +73,7 @@ extension Lighthouse {
     /// 本接口（DescribeDiskBackupsDeniedActions）用于查询一个或多个云硬盘备份点的操作限制列表信息。
     @inlinable
     public func describeDiskBackupsDeniedActions(diskBackupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDiskBackupsDeniedActionsResponse {
-        try await self.describeDiskBackupsDeniedActions(DescribeDiskBackupsDeniedActionsRequest(diskBackupIds: diskBackupIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDiskBackupsDeniedActionsRequest(diskBackupIds: diskBackupIds)
+        return try await self.client.execute(action: "DescribeDiskBackupsDeniedActions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -96,12 +96,14 @@ extension Dayu {
     /// 添加或删除CC的URL白名单
     @inlinable
     public func modifyCCUrlAllow(business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCCUrlAllowResponse> {
-        self.modifyCCUrlAllow(ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId)
+        return self.client.execute(action: "ModifyCCUrlAllow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 添加或删除CC的URL白名单
     @inlinable
     public func modifyCCUrlAllow(business: String, id: String, method: String, type: String, urlList: [String], protocol: String? = nil, domain: String? = nil, ruleId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCCUrlAllowResponse {
-        try await self.modifyCCUrlAllow(ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCCUrlAllowRequest(business: business, id: id, method: method, type: type, urlList: urlList, protocol: `protocol`, domain: domain, ruleId: ruleId)
+        return try await self.client.execute(action: "ModifyCCUrlAllow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

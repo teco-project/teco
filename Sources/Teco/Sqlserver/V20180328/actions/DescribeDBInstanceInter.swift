@@ -93,7 +93,8 @@ extension Sqlserver {
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
     @inlinable
     public func describeDBInstanceInter(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBInstanceInterResponse> {
-        self.describeDBInstanceInter(DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset)
+        return self.client.execute(action: "DescribeDBInstanceInter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询互通实例的信息
@@ -101,6 +102,7 @@ extension Sqlserver {
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
     @inlinable
     public func describeDBInstanceInter(limit: Int64, instanceId: String? = nil, status: Int64? = nil, versionSet: [String]? = nil, zone: String? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBInstanceInterResponse {
-        try await self.describeDBInstanceInter(DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBInstanceInterRequest(limit: limit, instanceId: instanceId, status: status, versionSet: versionSet, zone: zone, offset: offset)
+        return try await self.client.execute(action: "DescribeDBInstanceInter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

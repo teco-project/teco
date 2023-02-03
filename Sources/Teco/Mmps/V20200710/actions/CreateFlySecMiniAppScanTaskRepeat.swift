@@ -93,7 +93,8 @@ extension Mmps {
     /// 重新提交基础诊断任务
     @inlinable
     public func createFlySecMiniAppScanTaskRepeat(miniAppID: String, mode: Int64, orgTaskID: String, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, scanVersion: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlySecMiniAppScanTaskRepeatResponse> {
-        self.createFlySecMiniAppScanTaskRepeat(CreateFlySecMiniAppScanTaskRepeatRequest(miniAppID: miniAppID, mode: mode, orgTaskID: orgTaskID, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, scanVersion: scanVersion), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlySecMiniAppScanTaskRepeatRequest(miniAppID: miniAppID, mode: mode, orgTaskID: orgTaskID, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, scanVersion: scanVersion)
+        return self.client.execute(action: "CreateFlySecMiniAppScanTaskRepeat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重新提交诊断任务
@@ -101,6 +102,7 @@ extension Mmps {
     /// 重新提交基础诊断任务
     @inlinable
     public func createFlySecMiniAppScanTaskRepeat(miniAppID: String, mode: Int64, orgTaskID: String, miniAppTestAccount: String? = nil, miniAppTestPwd: String? = nil, scanVersion: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlySecMiniAppScanTaskRepeatResponse {
-        try await self.createFlySecMiniAppScanTaskRepeat(CreateFlySecMiniAppScanTaskRepeatRequest(miniAppID: miniAppID, mode: mode, orgTaskID: orgTaskID, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, scanVersion: scanVersion), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlySecMiniAppScanTaskRepeatRequest(miniAppID: miniAppID, mode: mode, orgTaskID: orgTaskID, miniAppTestAccount: miniAppTestAccount, miniAppTestPwd: miniAppTestPwd, scanVersion: scanVersion)
+        return try await self.client.execute(action: "CreateFlySecMiniAppScanTaskRepeat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

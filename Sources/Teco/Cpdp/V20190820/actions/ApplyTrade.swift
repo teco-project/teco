@@ -136,7 +136,8 @@ extension Cpdp {
     /// 跨境-提交贸易材料。通过提交贸易材料接口可为对接方累计贸易额度，在额度范围内可发起汇兑汇出交易。
     @inlinable
     public func applyTrade(tradeFileId: String, tradeOrderId: String, payerId: String, payeeName: String, payeeCountryCode: String, tradeType: String, tradeTime: String, tradeCurrency: String, tradeAmount: Float, tradeName: String, tradeCount: Int64, goodsCarrier: String? = nil, serviceDetail: String? = nil, serviceTime: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyTradeResponse> {
-        self.applyTrade(ApplyTradeRequest(tradeFileId: tradeFileId, tradeOrderId: tradeOrderId, payerId: payerId, payeeName: payeeName, payeeCountryCode: payeeCountryCode, tradeType: tradeType, tradeTime: tradeTime, tradeCurrency: tradeCurrency, tradeAmount: tradeAmount, tradeName: tradeName, tradeCount: tradeCount, goodsCarrier: goodsCarrier, serviceDetail: serviceDetail, serviceTime: serviceTime, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = ApplyTradeRequest(tradeFileId: tradeFileId, tradeOrderId: tradeOrderId, payerId: payerId, payeeName: payeeName, payeeCountryCode: payeeCountryCode, tradeType: tradeType, tradeTime: tradeTime, tradeCurrency: tradeCurrency, tradeAmount: tradeAmount, tradeName: tradeName, tradeCount: tradeCount, goodsCarrier: goodsCarrier, serviceDetail: serviceDetail, serviceTime: serviceTime, profile: profile)
+        return self.client.execute(action: "ApplyTrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 跨境-提交贸易材料
@@ -144,6 +145,7 @@ extension Cpdp {
     /// 跨境-提交贸易材料。通过提交贸易材料接口可为对接方累计贸易额度，在额度范围内可发起汇兑汇出交易。
     @inlinable
     public func applyTrade(tradeFileId: String, tradeOrderId: String, payerId: String, payeeName: String, payeeCountryCode: String, tradeType: String, tradeTime: String, tradeCurrency: String, tradeAmount: Float, tradeName: String, tradeCount: Int64, goodsCarrier: String? = nil, serviceDetail: String? = nil, serviceTime: String? = nil, profile: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyTradeResponse {
-        try await self.applyTrade(ApplyTradeRequest(tradeFileId: tradeFileId, tradeOrderId: tradeOrderId, payerId: payerId, payeeName: payeeName, payeeCountryCode: payeeCountryCode, tradeType: tradeType, tradeTime: tradeTime, tradeCurrency: tradeCurrency, tradeAmount: tradeAmount, tradeName: tradeName, tradeCount: tradeCount, goodsCarrier: goodsCarrier, serviceDetail: serviceDetail, serviceTime: serviceTime, profile: profile), region: region, logger: logger, on: eventLoop)
+        let input = ApplyTradeRequest(tradeFileId: tradeFileId, tradeOrderId: tradeOrderId, payerId: payerId, payeeName: payeeName, payeeCountryCode: payeeCountryCode, tradeType: tradeType, tradeTime: tradeTime, tradeCurrency: tradeCurrency, tradeAmount: tradeAmount, tradeName: tradeName, tradeCount: tradeCount, goodsCarrier: goodsCarrier, serviceDetail: serviceDetail, serviceTime: serviceTime, profile: profile)
+        return try await self.client.execute(action: "ApplyTrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

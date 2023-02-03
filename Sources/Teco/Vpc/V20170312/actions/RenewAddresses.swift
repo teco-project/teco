@@ -65,7 +65,8 @@ extension Vpc {
     /// 该接口用于续费包月带宽计费模式的弹性公网IP
     @inlinable @discardableResult
     public func renewAddresses(addressIds: [String], addressChargePrepaid: AddressChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewAddressesResponse> {
-        self.renewAddresses(RenewAddressesRequest(addressIds: addressIds, addressChargePrepaid: addressChargePrepaid), region: region, logger: logger, on: eventLoop)
+        let input = RenewAddressesRequest(addressIds: addressIds, addressChargePrepaid: addressChargePrepaid)
+        return self.client.execute(action: "RenewAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费包月带宽弹性公网IP
@@ -73,6 +74,7 @@ extension Vpc {
     /// 该接口用于续费包月带宽计费模式的弹性公网IP
     @inlinable @discardableResult
     public func renewAddresses(addressIds: [String], addressChargePrepaid: AddressChargePrepaid, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewAddressesResponse {
-        try await self.renewAddresses(RenewAddressesRequest(addressIds: addressIds, addressChargePrepaid: addressChargePrepaid), region: region, logger: logger, on: eventLoop)
+        let input = RenewAddressesRequest(addressIds: addressIds, addressChargePrepaid: addressChargePrepaid)
+        return try await self.client.execute(action: "RenewAddresses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

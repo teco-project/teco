@@ -60,7 +60,8 @@ extension Mps {
     /// 该接口用于根据素材 ID，删除素材样本。
     @inlinable @discardableResult
     public func deletePersonSample(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeletePersonSampleResponse> {
-        self.deletePersonSample(DeletePersonSampleRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePersonSampleRequest(personId: personId)
+        return self.client.execute(action: "DeletePersonSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除素材样本
@@ -68,6 +69,7 @@ extension Mps {
     /// 该接口用于根据素材 ID，删除素材样本。
     @inlinable @discardableResult
     public func deletePersonSample(personId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePersonSampleResponse {
-        try await self.deletePersonSample(DeletePersonSampleRequest(personId: personId), region: region, logger: logger, on: eventLoop)
+        let input = DeletePersonSampleRequest(personId: personId)
+        return try await self.client.execute(action: "DeletePersonSample", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

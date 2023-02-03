@@ -73,7 +73,8 @@ extension Chdfs {
     @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyAccessGroup(accessGroupId: String, accessGroupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccessGroupResponse> {
-        self.modifyAccessGroup(ModifyAccessGroupRequest(accessGroupId: accessGroupId, accessGroupName: accessGroupName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccessGroupRequest(accessGroupId: accessGroupId, accessGroupName: accessGroupName, description: description)
+        return self.client.execute(action: "ModifyAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改权限组属性
@@ -82,6 +83,7 @@ extension Chdfs {
     @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyAccessGroup(accessGroupId: String, accessGroupName: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccessGroupResponse {
-        try await self.modifyAccessGroup(ModifyAccessGroupRequest(accessGroupId: accessGroupId, accessGroupName: accessGroupName, description: description), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccessGroupRequest(accessGroupId: accessGroupId, accessGroupName: accessGroupName, description: description)
+        return try await self.client.execute(action: "ModifyAccessGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -60,7 +60,8 @@ extension Ivld {
     /// 描述自定义人物库信息，当前库大小(库中有多少人脸)，以及库中的存储桶
     @inlinable
     public func describeCustomGroup(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomGroupResponse> {
-        self.describeCustomGroup(DescribeCustomGroupRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomGroupRequest()
+        return self.client.execute(action: "DescribeCustomGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述自定义人物库
@@ -68,6 +69,7 @@ extension Ivld {
     /// 描述自定义人物库信息，当前库大小(库中有多少人脸)，以及库中的存储桶
     @inlinable
     public func describeCustomGroup(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomGroupResponse {
-        try await self.describeCustomGroup(DescribeCustomGroupRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomGroupRequest()
+        return try await self.client.execute(action: "DescribeCustomGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

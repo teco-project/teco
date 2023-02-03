@@ -79,12 +79,14 @@ extension Wedata {
     /// 提交规则组运行任务接口
     @inlinable
     public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CommitRuleGroupTaskResponse> {
-        self.commitRuleGroupTask(CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId)
+        return self.client.execute(action: "CommitRuleGroupTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交规则组运行任务接口
     @inlinable
     public func commitRuleGroupTask(ruleGroupId: UInt64? = nil, triggerType: UInt64? = nil, execRuleConfig: [RuleConfig]? = nil, execConfig: RuleExecConfig? = nil, projectId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CommitRuleGroupTaskResponse {
-        try await self.commitRuleGroupTask(CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = CommitRuleGroupTaskRequest(ruleGroupId: ruleGroupId, triggerType: triggerType, execRuleConfig: execRuleConfig, execConfig: execConfig, projectId: projectId)
+        return try await self.client.execute(action: "CommitRuleGroupTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

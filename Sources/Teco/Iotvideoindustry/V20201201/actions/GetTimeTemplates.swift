@@ -61,7 +61,8 @@ extension Iotvideoindustry {
     /// 本接口(GetTimeTemplates)用于获取时间模板列表。
     @inlinable
     public func getTimeTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTimeTemplatesResponse> {
-        self.getTimeTemplates(GetTimeTemplatesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetTimeTemplatesRequest()
+        return self.client.execute(action: "GetTimeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取时间模板列表
@@ -69,6 +70,7 @@ extension Iotvideoindustry {
     /// 本接口(GetTimeTemplates)用于获取时间模板列表。
     @inlinable
     public func getTimeTemplates(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTimeTemplatesResponse {
-        try await self.getTimeTemplates(GetTimeTemplatesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = GetTimeTemplatesRequest()
+        return try await self.client.execute(action: "GetTimeTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

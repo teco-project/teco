@@ -69,7 +69,8 @@ extension Nlp {
     /// 词相似度接口能够基于词向量技术来计算两个输入词语的余弦相似度，相似度数值越大的两个词语在语义上越相似。
     @inlinable
     public func wordSimilarity(srcWord: String, targetWord: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<WordSimilarityResponse> {
-        self.wordSimilarity(WordSimilarityRequest(srcWord: srcWord, targetWord: targetWord), region: region, logger: logger, on: eventLoop)
+        let input = WordSimilarityRequest(srcWord: srcWord, targetWord: targetWord)
+        return self.client.execute(action: "WordSimilarity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 词相似度
@@ -77,6 +78,7 @@ extension Nlp {
     /// 词相似度接口能够基于词向量技术来计算两个输入词语的余弦相似度，相似度数值越大的两个词语在语义上越相似。
     @inlinable
     public func wordSimilarity(srcWord: String, targetWord: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> WordSimilarityResponse {
-        try await self.wordSimilarity(WordSimilarityRequest(srcWord: srcWord, targetWord: targetWord), region: region, logger: logger, on: eventLoop)
+        let input = WordSimilarityRequest(srcWord: srcWord, targetWord: targetWord)
+        return try await self.client.execute(action: "WordSimilarity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

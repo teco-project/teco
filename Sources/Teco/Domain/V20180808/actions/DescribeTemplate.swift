@@ -64,7 +64,8 @@ extension Domain {
     /// 本接口 (DescribeTemplate) 用于获取模板信息。
     @inlinable
     public func describeTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTemplateResponse> {
-        self.describeTemplate(DescribeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTemplateRequest(templateId: templateId)
+        return self.client.execute(action: "DescribeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取模板信息
@@ -72,6 +73,7 @@ extension Domain {
     /// 本接口 (DescribeTemplate) 用于获取模板信息。
     @inlinable
     public func describeTemplate(templateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTemplateResponse {
-        try await self.describeTemplate(DescribeTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTemplateRequest(templateId: templateId)
+        return try await self.client.execute(action: "DescribeTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

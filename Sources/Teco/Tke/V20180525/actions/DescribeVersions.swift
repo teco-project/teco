@@ -62,7 +62,8 @@ extension Tke {
     /// 获取集群版本信息
     @inlinable
     public func describeVersions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVersionsResponse> {
-        self.describeVersions(DescribeVersionsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVersionsRequest()
+        return self.client.execute(action: "DescribeVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 集群版本信息
@@ -70,6 +71,7 @@ extension Tke {
     /// 获取集群版本信息
     @inlinable
     public func describeVersions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVersionsResponse {
-        try await self.describeVersions(DescribeVersionsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVersionsRequest()
+        return try await self.client.execute(action: "DescribeVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

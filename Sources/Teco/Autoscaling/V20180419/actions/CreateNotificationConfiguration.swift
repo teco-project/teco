@@ -183,7 +183,8 @@ extension As {
     /// ```
     @inlinable
     public func createNotificationConfiguration(autoScalingGroupId: String, notificationTypes: [String], notificationUserGroupIds: [String]? = nil, targetType: String? = nil, queueName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateNotificationConfigurationResponse> {
-        self.createNotificationConfiguration(CreateNotificationConfigurationRequest(autoScalingGroupId: autoScalingGroupId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, targetType: targetType, queueName: queueName, topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = CreateNotificationConfigurationRequest(autoScalingGroupId: autoScalingGroupId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, targetType: targetType, queueName: queueName, topicName: topicName)
+        return self.client.execute(action: "CreateNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建通知
@@ -218,6 +219,7 @@ extension As {
     /// ```
     @inlinable
     public func createNotificationConfiguration(autoScalingGroupId: String, notificationTypes: [String], notificationUserGroupIds: [String]? = nil, targetType: String? = nil, queueName: String? = nil, topicName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNotificationConfigurationResponse {
-        try await self.createNotificationConfiguration(CreateNotificationConfigurationRequest(autoScalingGroupId: autoScalingGroupId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, targetType: targetType, queueName: queueName, topicName: topicName), region: region, logger: logger, on: eventLoop)
+        let input = CreateNotificationConfigurationRequest(autoScalingGroupId: autoScalingGroupId, notificationTypes: notificationTypes, notificationUserGroupIds: notificationUserGroupIds, targetType: targetType, queueName: queueName, topicName: topicName)
+        return try await self.client.execute(action: "CreateNotificationConfiguration", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

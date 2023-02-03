@@ -67,12 +67,14 @@ extension Essbasic {
     /// 查询流程文件
     @inlinable
     public func describeFlowFiles(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowFilesResponse> {
-        self.describeFlowFiles(DescribeFlowFilesRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowFilesRequest(caller: caller, flowId: flowId)
+        return self.client.execute(action: "DescribeFlowFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流程文件
     @inlinable
     public func describeFlowFiles(caller: Caller, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowFilesResponse {
-        try await self.describeFlowFiles(DescribeFlowFilesRequest(caller: caller, flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowFilesRequest(caller: caller, flowId: flowId)
+        return try await self.client.execute(action: "DescribeFlowFiles", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

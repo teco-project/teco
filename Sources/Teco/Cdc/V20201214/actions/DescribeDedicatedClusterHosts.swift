@@ -73,12 +73,14 @@ extension Cdc {
     /// 专用集群宿主机信息
     @inlinable
     public func describeDedicatedClusterHosts(dedicatedClusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDedicatedClusterHostsResponse> {
-        self.describeDedicatedClusterHosts(DescribeDedicatedClusterHostsRequest(dedicatedClusterId: dedicatedClusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDedicatedClusterHostsRequest(dedicatedClusterId: dedicatedClusterId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeDedicatedClusterHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 专用集群宿主机信息
     @inlinable
     public func describeDedicatedClusterHosts(dedicatedClusterId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDedicatedClusterHostsResponse {
-        try await self.describeDedicatedClusterHosts(DescribeDedicatedClusterHostsRequest(dedicatedClusterId: dedicatedClusterId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDedicatedClusterHostsRequest(dedicatedClusterId: dedicatedClusterId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeDedicatedClusterHosts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

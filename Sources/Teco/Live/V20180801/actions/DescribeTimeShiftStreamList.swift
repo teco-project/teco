@@ -100,7 +100,8 @@ extension Live {
     /// 查询某个时间范围内所有时移流列表。最大支持查询24小时内的数据。
     @inlinable
     public func describeTimeShiftStreamList(startTime: Int64, endTime: Int64, streamName: String? = nil, domain: String? = nil, domainGroup: String? = nil, pageSize: Int64? = nil, pageNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTimeShiftStreamListResponse> {
-        self.describeTimeShiftStreamList(DescribeTimeShiftStreamListRequest(startTime: startTime, endTime: endTime, streamName: streamName, domain: domain, domainGroup: domainGroup, pageSize: pageSize, pageNum: pageNum), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimeShiftStreamListRequest(startTime: startTime, endTime: endTime, streamName: streamName, domain: domain, domainGroup: domainGroup, pageSize: pageSize, pageNum: pageNum)
+        return self.client.execute(action: "DescribeTimeShiftStreamList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询时移流列表
@@ -108,6 +109,7 @@ extension Live {
     /// 查询某个时间范围内所有时移流列表。最大支持查询24小时内的数据。
     @inlinable
     public func describeTimeShiftStreamList(startTime: Int64, endTime: Int64, streamName: String? = nil, domain: String? = nil, domainGroup: String? = nil, pageSize: Int64? = nil, pageNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTimeShiftStreamListResponse {
-        try await self.describeTimeShiftStreamList(DescribeTimeShiftStreamListRequest(startTime: startTime, endTime: endTime, streamName: streamName, domain: domain, domainGroup: domainGroup, pageSize: pageSize, pageNum: pageNum), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTimeShiftStreamListRequest(startTime: startTime, endTime: endTime, streamName: streamName, domain: domain, domainGroup: domainGroup, pageSize: pageSize, pageNum: pageNum)
+        return try await self.client.execute(action: "DescribeTimeShiftStreamList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

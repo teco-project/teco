@@ -118,7 +118,8 @@ extension Clb {
     /// - CLB 绑定 SCF 仅支持绑定“Event 函数”类型的云函数。
     @inlinable @discardableResult
     public func deregisterFunctionTargets(loadBalancerId: String, listenerId: String, functionTargets: [FunctionTarget], locationId: String? = nil, domain: String? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeregisterFunctionTargetsResponse> {
-        self.deregisterFunctionTargets(DeregisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url), region: region, logger: logger, on: eventLoop)
+        let input = DeregisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url)
+        return self.client.execute(action: "DeregisterFunctionTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将云函数从转发规则上解绑
@@ -137,6 +138,7 @@ extension Clb {
     /// - CLB 绑定 SCF 仅支持绑定“Event 函数”类型的云函数。
     @inlinable @discardableResult
     public func deregisterFunctionTargets(loadBalancerId: String, listenerId: String, functionTargets: [FunctionTarget], locationId: String? = nil, domain: String? = nil, url: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeregisterFunctionTargetsResponse {
-        try await self.deregisterFunctionTargets(DeregisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url), region: region, logger: logger, on: eventLoop)
+        let input = DeregisterFunctionTargetsRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, functionTargets: functionTargets, locationId: locationId, domain: domain, url: url)
+        return try await self.client.execute(action: "DeregisterFunctionTargets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

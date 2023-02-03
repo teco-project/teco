@@ -70,7 +70,8 @@ extension Cwp {
     /// 接口返回TopN的风险服务器
     @inlinable
     public func describeBaselineHostTop(top: UInt64, strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBaselineHostTopResponse> {
-        self.describeBaselineHostTop(DescribeBaselineHostTopRequest(top: top, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselineHostTopRequest(top: top, strategyId: strategyId)
+        return self.client.execute(action: "DescribeBaselineHostTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 服务器风险top接口
@@ -78,6 +79,7 @@ extension Cwp {
     /// 接口返回TopN的风险服务器
     @inlinable
     public func describeBaselineHostTop(top: UInt64, strategyId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBaselineHostTopResponse {
-        try await self.describeBaselineHostTop(DescribeBaselineHostTopRequest(top: top, strategyId: strategyId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBaselineHostTopRequest(top: top, strategyId: strategyId)
+        return try await self.client.execute(action: "DescribeBaselineHostTop", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,12 +69,14 @@ extension Iotvideoindustry {
     /// 编辑预置位信息
     @inlinable @discardableResult
     public func modifyPreset(channelId: String, presetId: Int64, presetName: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyPresetResponse> {
-        self.modifyPreset(ModifyPresetRequest(channelId: channelId, presetId: presetId, presetName: presetName, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPresetRequest(channelId: channelId, presetId: presetId, presetName: presetName, deviceId: deviceId)
+        return self.client.execute(action: "ModifyPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 编辑预置位信息
     @inlinable @discardableResult
     public func modifyPreset(channelId: String, presetId: Int64, presetName: String, deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyPresetResponse {
-        try await self.modifyPreset(ModifyPresetRequest(channelId: channelId, presetId: presetId, presetName: presetName, deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyPresetRequest(channelId: channelId, presetId: presetId, presetName: presetName, deviceId: deviceId)
+        return try await self.client.execute(action: "ModifyPreset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

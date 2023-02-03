@@ -88,12 +88,14 @@ extension Tke {
     /// 获取实例详细信息
     @inlinable
     public func describePrometheusInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrometheusInstanceResponse> {
-        self.describePrometheusInstance(DescribePrometheusInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribePrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例详细信息
     @inlinable
     public func describePrometheusInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrometheusInstanceResponse {
-        try await self.describePrometheusInstance(DescribePrometheusInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrometheusInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribePrometheusInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -109,12 +109,14 @@ extension Tsf {
     /// 查询简单命名空间列表
     @inlinable
     public func describeSimpleNamespaces(namespaceIdList: [String]? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, namespaceId: String? = nil, namespaceResourceTypeList: [String]? = nil, searchWord: String? = nil, namespaceTypeList: [String]? = nil, namespaceName: String? = nil, isDefault: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSimpleNamespacesResponse> {
-        self.describeSimpleNamespaces(DescribeSimpleNamespacesRequest(namespaceIdList: namespaceIdList, clusterId: clusterId, limit: limit, offset: offset, namespaceId: namespaceId, namespaceResourceTypeList: namespaceResourceTypeList, searchWord: searchWord, namespaceTypeList: namespaceTypeList, namespaceName: namespaceName, isDefault: isDefault, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSimpleNamespacesRequest(namespaceIdList: namespaceIdList, clusterId: clusterId, limit: limit, offset: offset, namespaceId: namespaceId, namespaceResourceTypeList: namespaceResourceTypeList, searchWord: searchWord, namespaceTypeList: namespaceTypeList, namespaceName: namespaceName, isDefault: isDefault, disableProgramAuthCheck: disableProgramAuthCheck)
+        return self.client.execute(action: "DescribeSimpleNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询简单命名空间列表
     @inlinable
     public func describeSimpleNamespaces(namespaceIdList: [String]? = nil, clusterId: String? = nil, limit: Int64? = nil, offset: Int64? = nil, namespaceId: String? = nil, namespaceResourceTypeList: [String]? = nil, searchWord: String? = nil, namespaceTypeList: [String]? = nil, namespaceName: String? = nil, isDefault: String? = nil, disableProgramAuthCheck: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSimpleNamespacesResponse {
-        try await self.describeSimpleNamespaces(DescribeSimpleNamespacesRequest(namespaceIdList: namespaceIdList, clusterId: clusterId, limit: limit, offset: offset, namespaceId: namespaceId, namespaceResourceTypeList: namespaceResourceTypeList, searchWord: searchWord, namespaceTypeList: namespaceTypeList, namespaceName: namespaceName, isDefault: isDefault, disableProgramAuthCheck: disableProgramAuthCheck), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSimpleNamespacesRequest(namespaceIdList: namespaceIdList, clusterId: clusterId, limit: limit, offset: offset, namespaceId: namespaceId, namespaceResourceTypeList: namespaceResourceTypeList, searchWord: searchWord, namespaceTypeList: namespaceTypeList, namespaceName: namespaceName, isDefault: isDefault, disableProgramAuthCheck: disableProgramAuthCheck)
+        return try await self.client.execute(action: "DescribeSimpleNamespaces", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

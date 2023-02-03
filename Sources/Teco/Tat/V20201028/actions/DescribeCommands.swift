@@ -92,7 +92,8 @@ extension Tat {
     /// 此接口用于查询命令详情。
     @inlinable
     public func describeCommands(commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCommandsResponse> {
-        self.describeCommands(DescribeCommandsRequest(commandIds: commandIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCommandsRequest(commandIds: commandIds, filters: filters, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribeCommands", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询命令详情
@@ -100,6 +101,7 @@ extension Tat {
     /// 此接口用于查询命令详情。
     @inlinable
     public func describeCommands(commandIds: [String]? = nil, filters: [Filter]? = nil, limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCommandsResponse {
-        try await self.describeCommands(DescribeCommandsRequest(commandIds: commandIds, filters: filters, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCommandsRequest(commandIds: commandIds, filters: filters, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribeCommands", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

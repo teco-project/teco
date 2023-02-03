@@ -95,7 +95,8 @@ extension Tms {
     /// 举报恶意账号
     @inlinable
     public func accountTipoffAccess(reportedAccount: String, reportedAccountType: Int64, evilType: Int64, senderAccount: String? = nil, senderAccountType: Int64? = nil, senderIP: String? = nil, evilContent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AccountTipoffAccessResponse> {
-        self.accountTipoffAccess(AccountTipoffAccessRequest(reportedAccount: reportedAccount, reportedAccountType: reportedAccountType, evilType: evilType, senderAccount: senderAccount, senderAccountType: senderAccountType, senderIP: senderIP, evilContent: evilContent), region: region, logger: logger, on: eventLoop)
+        let input = AccountTipoffAccessRequest(reportedAccount: reportedAccount, reportedAccountType: reportedAccountType, evilType: evilType, senderAccount: senderAccount, senderAccountType: senderAccountType, senderIP: senderIP, evilContent: evilContent)
+        return self.client.execute(action: "AccountTipoffAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 账号举报接口
@@ -103,6 +104,7 @@ extension Tms {
     /// 举报恶意账号
     @inlinable
     public func accountTipoffAccess(reportedAccount: String, reportedAccountType: Int64, evilType: Int64, senderAccount: String? = nil, senderAccountType: Int64? = nil, senderIP: String? = nil, evilContent: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AccountTipoffAccessResponse {
-        try await self.accountTipoffAccess(AccountTipoffAccessRequest(reportedAccount: reportedAccount, reportedAccountType: reportedAccountType, evilType: evilType, senderAccount: senderAccount, senderAccountType: senderAccountType, senderIP: senderIP, evilContent: evilContent), region: region, logger: logger, on: eventLoop)
+        let input = AccountTipoffAccessRequest(reportedAccount: reportedAccount, reportedAccountType: reportedAccountType, evilType: evilType, senderAccount: senderAccount, senderAccountType: senderAccountType, senderIP: senderIP, evilContent: evilContent)
+        return try await self.client.execute(action: "AccountTipoffAccess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

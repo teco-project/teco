@@ -59,12 +59,14 @@ extension Tsf {
     /// 删除单元化规则
     @inlinable
     public func deleteUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteUnitRuleResponse> {
-        self.deleteUnitRule(DeleteUnitRuleRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteUnitRuleRequest(id: id)
+        return self.client.execute(action: "DeleteUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除单元化规则
     @inlinable
     public func deleteUnitRule(id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteUnitRuleResponse {
-        try await self.deleteUnitRule(DeleteUnitRuleRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteUnitRuleRequest(id: id)
+        return try await self.client.execute(action: "DeleteUnitRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

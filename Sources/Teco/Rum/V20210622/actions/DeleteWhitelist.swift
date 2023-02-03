@@ -63,12 +63,14 @@ extension Rum {
     /// 删除白名单
     @inlinable
     public func deleteWhitelist(instanceID: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhitelistResponse> {
-        self.deleteWhitelist(DeleteWhitelistRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWhitelistRequest(instanceID: instanceID, id: id)
+        return self.client.execute(action: "DeleteWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除白名单
     @inlinable
     public func deleteWhitelist(instanceID: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhitelistResponse {
-        try await self.deleteWhitelist(DeleteWhitelistRequest(instanceID: instanceID, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWhitelistRequest(instanceID: instanceID, id: id)
+        return try await self.client.execute(action: "DeleteWhitelist", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

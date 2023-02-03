@@ -74,7 +74,8 @@ extension As {
     /// 本接口（DetachLoadBalancers）用于从伸缩组移出负载均衡器，本接口不会销毁负载均衡器。
     @inlinable
     public func detachLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancerIdentifications: [ForwardLoadBalancerIdentification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetachLoadBalancersResponse> {
-        self.detachLoadBalancers(DetachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancerIdentifications: forwardLoadBalancerIdentifications), region: region, logger: logger, on: eventLoop)
+        let input = DetachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancerIdentifications: forwardLoadBalancerIdentifications)
+        return self.client.execute(action: "DetachLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 移出负载均衡器
@@ -82,6 +83,7 @@ extension As {
     /// 本接口（DetachLoadBalancers）用于从伸缩组移出负载均衡器，本接口不会销毁负载均衡器。
     @inlinable
     public func detachLoadBalancers(autoScalingGroupId: String, loadBalancerIds: [String]? = nil, forwardLoadBalancerIdentifications: [ForwardLoadBalancerIdentification]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachLoadBalancersResponse {
-        try await self.detachLoadBalancers(DetachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancerIdentifications: forwardLoadBalancerIdentifications), region: region, logger: logger, on: eventLoop)
+        let input = DetachLoadBalancersRequest(autoScalingGroupId: autoScalingGroupId, loadBalancerIds: loadBalancerIds, forwardLoadBalancerIdentifications: forwardLoadBalancerIdentifications)
+        return try await self.client.execute(action: "DetachLoadBalancers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

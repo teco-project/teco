@@ -60,7 +60,8 @@ extension Tcss {
     /// 查询运行时高危系统调用系统名称列表
     @inlinable
     public func describeRiskSyscallNames(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRiskSyscallNamesResponse> {
-        self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRiskSyscallNamesRequest()
+        return self.client.execute(action: "DescribeRiskSyscallNames", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时高危系统调用系统名称列表
@@ -68,6 +69,7 @@ extension Tcss {
     /// 查询运行时高危系统调用系统名称列表
     @inlinable
     public func describeRiskSyscallNames(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskSyscallNamesResponse {
-        try await self.describeRiskSyscallNames(DescribeRiskSyscallNamesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRiskSyscallNamesRequest()
+        return try await self.client.execute(action: "DescribeRiskSyscallNames", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

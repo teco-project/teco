@@ -62,12 +62,14 @@ extension Tiw {
     /// 查询实时录制回调地址
     @inlinable
     public func describeOnlineRecordCallback(sdkAppId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOnlineRecordCallbackResponse> {
-        self.describeOnlineRecordCallback(DescribeOnlineRecordCallbackRequest(sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOnlineRecordCallbackRequest(sdkAppId: sdkAppId)
+        return self.client.execute(action: "DescribeOnlineRecordCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实时录制回调地址
     @inlinable
     public func describeOnlineRecordCallback(sdkAppId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOnlineRecordCallbackResponse {
-        try await self.describeOnlineRecordCallback(DescribeOnlineRecordCallbackRequest(sdkAppId: sdkAppId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOnlineRecordCallbackRequest(sdkAppId: sdkAppId)
+        return try await self.client.execute(action: "DescribeOnlineRecordCallback", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

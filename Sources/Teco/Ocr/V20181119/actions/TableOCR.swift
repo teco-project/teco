@@ -86,7 +86,8 @@ extension Ocr {
     /// 本接口支持图片内表格文档的检测和识别，返回每个单元格的文字内容，支持将识别结果保存为 Excel 格式。
     @inlinable
     public func tableOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TableOCRResponse> {
-        self.tableOCR(TableOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = TableOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
+        return self.client.execute(action: "TableOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 表格识别（V1)
@@ -96,6 +97,7 @@ extension Ocr {
     /// 本接口支持图片内表格文档的检测和识别，返回每个单元格的文字内容，支持将识别结果保存为 Excel 格式。
     @inlinable
     public func tableOCR(imageBase64: String? = nil, imageUrl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TableOCRResponse {
-        try await self.tableOCR(TableOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl), region: region, logger: logger, on: eventLoop)
+        let input = TableOCRRequest(imageBase64: imageBase64, imageUrl: imageUrl)
+        return try await self.client.execute(action: "TableOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

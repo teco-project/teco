@@ -70,7 +70,8 @@ extension Vpc {
     /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
     @inlinable @discardableResult
     public func modifyNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, sourceNatRule: DestinationIpPortTranslationNatRule, destinationNatRule: DestinationIpPortTranslationNatRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse> {
-        self.modifyNatGatewayDestinationIpPortTranslationNatRule(ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceNatRule: sourceNatRule, destinationNatRule: destinationNatRule), region: region, logger: logger, on: eventLoop)
+        let input = ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceNatRule: sourceNatRule, destinationNatRule: destinationNatRule)
+        return self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改NAT网关端口转发规则
@@ -78,6 +79,7 @@ extension Vpc {
     /// 本接口（ModifyNatGatewayDestinationIpPortTranslationNatRule）用于修改NAT网关端口转发规则。
     @inlinable @discardableResult
     public func modifyNatGatewayDestinationIpPortTranslationNatRule(natGatewayId: String, sourceNatRule: DestinationIpPortTranslationNatRule, destinationNatRule: DestinationIpPortTranslationNatRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyNatGatewayDestinationIpPortTranslationNatRuleResponse {
-        try await self.modifyNatGatewayDestinationIpPortTranslationNatRule(ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceNatRule: sourceNatRule, destinationNatRule: destinationNatRule), region: region, logger: logger, on: eventLoop)
+        let input = ModifyNatGatewayDestinationIpPortTranslationNatRuleRequest(natGatewayId: natGatewayId, sourceNatRule: sourceNatRule, destinationNatRule: destinationNatRule)
+        return try await self.client.execute(action: "ModifyNatGatewayDestinationIpPortTranslationNatRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

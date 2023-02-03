@@ -56,7 +56,8 @@ extension Ivld {
     /// 批量描述自定义人物分类信息
     @inlinable
     public func describeCustomCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCustomCategoriesResponse> {
-        self.describeCustomCategories(DescribeCustomCategoriesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomCategoriesRequest()
+        return self.client.execute(action: "DescribeCustomCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量描述自定义人物分类
@@ -64,6 +65,7 @@ extension Ivld {
     /// 批量描述自定义人物分类信息
     @inlinable
     public func describeCustomCategories(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCustomCategoriesResponse {
-        try await self.describeCustomCategories(DescribeCustomCategoriesRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCustomCategoriesRequest()
+        return try await self.client.execute(action: "DescribeCustomCategories", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -130,7 +130,8 @@ extension Ocr {
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func mlidPassportOCR(imageBase64: String, retImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<MLIDPassportOCRResponse> {
-        self.mlidPassportOCR(MLIDPassportOCRRequest(imageBase64: imageBase64, retImage: retImage), region: region, logger: logger, on: eventLoop)
+        let input = MLIDPassportOCRRequest(imageBase64: imageBase64, retImage: retImage)
+        return self.client.execute(action: "MLIDPassportOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 护照识别（港澳台地区及境外护照）
@@ -140,6 +141,7 @@ extension Ocr {
     /// 默认接口请求频率限制：5次/秒。
     @inlinable
     public func mlidPassportOCR(imageBase64: String, retImage: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MLIDPassportOCRResponse {
-        try await self.mlidPassportOCR(MLIDPassportOCRRequest(imageBase64: imageBase64, retImage: retImage), region: region, logger: logger, on: eventLoop)
+        let input = MLIDPassportOCRRequest(imageBase64: imageBase64, retImage: retImage)
+        return try await self.client.execute(action: "MLIDPassportOCR", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

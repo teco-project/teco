@@ -110,7 +110,8 @@ extension Youmall {
     /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
     @inlinable
     public func describeShopTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeShopTrafficInfoResponse> {
-        self.describeShopTrafficInfo(DescribeShopTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeShopTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeShopTrafficInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取每日客流人数
@@ -118,6 +119,7 @@ extension Youmall {
     /// 按天提供查询日期范围内门店的单日累计客流人数，支持的时间范围：过去365天，含当天。
     @inlinable
     public func describeShopTrafficInfo(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShopTrafficInfoResponse {
-        try await self.describeShopTrafficInfo(DescribeShopTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeShopTrafficInfoRequest(companyId: companyId, shopId: shopId, startDate: startDate, endDate: endDate, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeShopTrafficInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

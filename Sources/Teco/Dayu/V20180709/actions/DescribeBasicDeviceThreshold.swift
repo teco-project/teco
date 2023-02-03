@@ -88,12 +88,14 @@ extension Dayu {
     /// 获取基础防护黑洞阈值
     @inlinable
     public func describeBasicDeviceThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicCheckFlag: UInt64, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBasicDeviceThresholdResponse> {
-        self.describeBasicDeviceThreshold(DescribeBasicDeviceThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicCheckFlag: basicCheckFlag, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBasicDeviceThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicCheckFlag: basicCheckFlag, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode)
+        return self.client.execute(action: "DescribeBasicDeviceThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取基础防护黑洞阈值
     @inlinable
     public func describeBasicDeviceThreshold(basicIp: String, basicRegion: String, basicBizType: String, basicDeviceType: String, basicCheckFlag: UInt64, basicIpInstance: String? = nil, basicIspCode: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBasicDeviceThresholdResponse {
-        try await self.describeBasicDeviceThreshold(DescribeBasicDeviceThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicCheckFlag: basicCheckFlag, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBasicDeviceThresholdRequest(basicIp: basicIp, basicRegion: basicRegion, basicBizType: basicBizType, basicDeviceType: basicDeviceType, basicCheckFlag: basicCheckFlag, basicIpInstance: basicIpInstance, basicIspCode: basicIspCode)
+        return try await self.client.execute(action: "DescribeBasicDeviceThreshold", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

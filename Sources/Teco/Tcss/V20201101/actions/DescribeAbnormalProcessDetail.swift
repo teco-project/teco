@@ -81,7 +81,8 @@ extension Tcss {
     /// 查询运行时异常进程事件详细信息
     @inlinable
     public func describeAbnormalProcessDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAbnormalProcessDetailResponse> {
-        self.describeAbnormalProcessDetail(DescribeAbnormalProcessDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAbnormalProcessDetailRequest(eventId: eventId)
+        return self.client.execute(action: "DescribeAbnormalProcessDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 运行时异常进程事件详细信息
@@ -89,6 +90,7 @@ extension Tcss {
     /// 查询运行时异常进程事件详细信息
     @inlinable
     public func describeAbnormalProcessDetail(eventId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAbnormalProcessDetailResponse {
-        try await self.describeAbnormalProcessDetail(DescribeAbnormalProcessDetailRequest(eventId: eventId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAbnormalProcessDetailRequest(eventId: eventId)
+        return try await self.client.execute(action: "DescribeAbnormalProcessDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

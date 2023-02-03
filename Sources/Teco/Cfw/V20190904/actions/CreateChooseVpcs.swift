@@ -59,12 +59,14 @@ extension Cfw {
     /// 创建、选择vpc
     @inlinable @discardableResult
     public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChooseVpcsResponse> {
-        self.createChooseVpcs(CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList), region: region, logger: logger, on: eventLoop)
+        let input = CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList)
+        return self.client.execute(action: "CreateChooseVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建、选择vpc
     @inlinable @discardableResult
     public func createChooseVpcs(vpcList: [String], allZoneList: [VpcZoneData], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChooseVpcsResponse {
-        try await self.createChooseVpcs(CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList), region: region, logger: logger, on: eventLoop)
+        let input = CreateChooseVpcsRequest(vpcList: vpcList, allZoneList: allZoneList)
+        return try await self.client.execute(action: "CreateChooseVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

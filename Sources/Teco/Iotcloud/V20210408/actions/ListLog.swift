@@ -97,7 +97,8 @@ extension Iotcloud {
     /// 本接口（ListLog）用于查看日志信息
     @inlinable
     public func listLog(minTime: UInt64, maxTime: UInt64, keywords: String? = nil, context: String? = nil, maxNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListLogResponse> {
-        self.listLog(ListLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
+        let input = ListLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum)
+        return self.client.execute(action: "ListLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询日志
@@ -105,6 +106,7 @@ extension Iotcloud {
     /// 本接口（ListLog）用于查看日志信息
     @inlinable
     public func listLog(minTime: UInt64, maxTime: UInt64, keywords: String? = nil, context: String? = nil, maxNum: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListLogResponse {
-        try await self.listLog(ListLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum), region: region, logger: logger, on: eventLoop)
+        let input = ListLogRequest(minTime: minTime, maxTime: maxTime, keywords: keywords, context: context, maxNum: maxNum)
+        return try await self.client.execute(action: "ListLog", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

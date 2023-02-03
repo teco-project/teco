@@ -95,7 +95,8 @@ extension Tiia {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func enhanceImage(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnhanceImageResponse> {
-        self.enhanceImage(EnhanceImageRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
+        let input = EnhanceImageRequest(imageUrl: imageUrl, imageBase64: imageBase64)
+        return self.client.execute(action: "EnhanceImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 图像清晰度增强
@@ -109,6 +110,7 @@ extension Tiia {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func enhanceImage(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnhanceImageResponse {
-        try await self.enhanceImage(EnhanceImageRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
+        let input = EnhanceImageRequest(imageUrl: imageUrl, imageBase64: imageBase64)
+        return try await self.client.execute(action: "EnhanceImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

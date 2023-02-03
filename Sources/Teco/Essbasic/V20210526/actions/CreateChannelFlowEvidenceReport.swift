@@ -89,7 +89,8 @@ extension Essbasic {
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
     public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateChannelFlowEvidenceReportResponse> {
-        self.createChannelFlowEvidenceReport(CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`)
+        return self.client.execute(action: "CreateChannelFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建并返回出证报告
@@ -98,6 +99,7 @@ extension Essbasic {
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeChannelFlowEvidenceReport进行查询。
     @inlinable
     public func createChannelFlowEvidenceReport(flowId: String, agent: Agent, operator: UserInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateChannelFlowEvidenceReportResponse {
-        try await self.createChannelFlowEvidenceReport(CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`), region: region, logger: logger, on: eventLoop)
+        let input = CreateChannelFlowEvidenceReportRequest(flowId: flowId, agent: agent, operator: `operator`)
+        return try await self.client.execute(action: "CreateChannelFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

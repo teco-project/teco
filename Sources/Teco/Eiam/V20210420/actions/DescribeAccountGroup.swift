@@ -84,12 +84,14 @@ extension Eiam {
     /// 查询账号组列表
     @inlinable
     public func describeAccountGroup(applicationId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountGroupResponse> {
-        self.describeAccountGroup(DescribeAccountGroupRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountGroupRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账号组列表
     @inlinable
     public func describeAccountGroup(applicationId: String, searchCondition: AccountGroupSearchCriteria? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountGroupResponse {
-        try await self.describeAccountGroup(DescribeAccountGroupRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountGroupRequest(applicationId: applicationId, searchCondition: searchCondition, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeAccountGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -85,7 +85,8 @@ extension Ecm {
     /// 查询负载均衡的监听器列表。
     @inlinable
     public func describeListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeListenersResponse> {
-        self.describeListeners(DescribeListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), region: region, logger: logger, on: eventLoop)
+        let input = DescribeListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port)
+        return self.client.execute(action: "DescribeListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询负载均衡的监听器列表
@@ -93,6 +94,7 @@ extension Ecm {
     /// 查询负载均衡的监听器列表。
     @inlinable
     public func describeListeners(loadBalancerId: String, listenerIds: [String]? = nil, protocol: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeListenersResponse {
-        try await self.describeListeners(DescribeListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port), region: region, logger: logger, on: eventLoop)
+        let input = DescribeListenersRequest(loadBalancerId: loadBalancerId, listenerIds: listenerIds, protocol: `protocol`, port: port)
+        return try await self.client.execute(action: "DescribeListeners", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

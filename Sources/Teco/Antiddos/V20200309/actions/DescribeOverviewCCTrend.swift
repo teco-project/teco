@@ -107,7 +107,8 @@ extension Antiddos {
     /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
     public func describeOverviewCCTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeOverviewCCTrendResponse> {
-        self.describeOverviewCCTrend(DescribeOverviewCCTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOverviewCCTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id)
+        return self.client.execute(action: "DescribeOverviewCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取防护概览趋势图
@@ -115,6 +116,7 @@ extension Antiddos {
     /// 获取防护概览总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
     public func describeOverviewCCTrend(business: String, period: Int64, startTime: Date, endTime: Date, metricName: String, ipList: [String]? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeOverviewCCTrendResponse {
-        try await self.describeOverviewCCTrend(DescribeOverviewCCTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeOverviewCCTrendRequest(business: business, period: period, startTime: startTime, endTime: endTime, metricName: metricName, ipList: ipList, id: id)
+        return try await self.client.execute(action: "DescribeOverviewCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

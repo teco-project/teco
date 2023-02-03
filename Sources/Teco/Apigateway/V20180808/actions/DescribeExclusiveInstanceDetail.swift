@@ -64,7 +64,8 @@ extension Apigateway {
     /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。
     @inlinable
     public func describeExclusiveInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeExclusiveInstanceDetailResponse> {
-        self.describeExclusiveInstanceDetail(DescribeExclusiveInstanceDetailRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExclusiveInstanceDetailRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeExclusiveInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询独享实例详情
@@ -72,6 +73,7 @@ extension Apigateway {
     /// 本接口（DescribeExclusiveInstanceDetail）用于查询独享实例详情信息。
     @inlinable
     public func describeExclusiveInstanceDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeExclusiveInstanceDetailResponse {
-        try await self.describeExclusiveInstanceDetail(DescribeExclusiveInstanceDetailRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeExclusiveInstanceDetailRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeExclusiveInstanceDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

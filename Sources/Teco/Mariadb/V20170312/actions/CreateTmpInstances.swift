@@ -69,7 +69,8 @@ extension Mariadb {
     /// 本接口（CreateTmpInstances）用于创建临时实例。
     @inlinable
     public func createTmpInstances(instanceIds: [String], rollbackTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTmpInstancesResponse> {
-        self.createTmpInstances(CreateTmpInstancesRequest(instanceIds: instanceIds, rollbackTime: rollbackTime), region: region, logger: logger, on: eventLoop)
+        let input = CreateTmpInstancesRequest(instanceIds: instanceIds, rollbackTime: rollbackTime)
+        return self.client.execute(action: "CreateTmpInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建临时实例
@@ -77,6 +78,7 @@ extension Mariadb {
     /// 本接口（CreateTmpInstances）用于创建临时实例。
     @inlinable
     public func createTmpInstances(instanceIds: [String], rollbackTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTmpInstancesResponse {
-        try await self.createTmpInstances(CreateTmpInstancesRequest(instanceIds: instanceIds, rollbackTime: rollbackTime), region: region, logger: logger, on: eventLoop)
+        let input = CreateTmpInstancesRequest(instanceIds: instanceIds, rollbackTime: rollbackTime)
+        return try await self.client.execute(action: "CreateTmpInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

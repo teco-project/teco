@@ -56,7 +56,8 @@ extension Eis {
     /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
     @inlinable
     public func listDeployableRuntimesMC(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListDeployableRuntimesMCResponse> {
-        self.listDeployableRuntimesMC(ListDeployableRuntimesMCRequest(), region: region, logger: logger, on: eventLoop)
+        let input = ListDeployableRuntimesMCRequest()
+        return self.client.execute(action: "ListDeployableRuntimesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取可部署运行时列表
@@ -64,6 +65,7 @@ extension Eis {
     /// 返回用户可用的运行时列表，发布应用时返回的运行时环境，仅shared和private运行时，无sandbox运行时，并且只有running/scaling状态的
     @inlinable
     public func listDeployableRuntimesMC(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListDeployableRuntimesMCResponse {
-        try await self.listDeployableRuntimesMC(ListDeployableRuntimesMCRequest(), region: region, logger: logger, on: eventLoop)
+        let input = ListDeployableRuntimesMCRequest()
+        return try await self.client.execute(action: "ListDeployableRuntimesMC", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

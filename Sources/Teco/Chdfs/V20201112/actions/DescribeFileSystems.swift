@@ -56,7 +56,8 @@ extension Chdfs {
     /// 查看文件系统列表。
     @inlinable
     public func describeFileSystems(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileSystemsResponse> {
-        self.describeFileSystems(DescribeFileSystemsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileSystemsRequest()
+        return self.client.execute(action: "DescribeFileSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查看文件系统列表
@@ -64,6 +65,7 @@ extension Chdfs {
     /// 查看文件系统列表。
     @inlinable
     public func describeFileSystems(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileSystemsResponse {
-        try await self.describeFileSystems(DescribeFileSystemsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileSystemsRequest()
+        return try await self.client.execute(action: "DescribeFileSystems", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

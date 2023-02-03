@@ -64,12 +64,14 @@ extension Cloudhsm {
     /// 获取安全组详情
     @inlinable
     public func describeUsgRule(sgIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUsgRuleResponse> {
-        self.describeUsgRule(DescribeUsgRuleRequest(sgIds: sgIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUsgRuleRequest(sgIds: sgIds)
+        return self.client.execute(action: "DescribeUsgRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取安全组详情
     @inlinable
     public func describeUsgRule(sgIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUsgRuleResponse {
-        try await self.describeUsgRule(DescribeUsgRuleRequest(sgIds: sgIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUsgRuleRequest(sgIds: sgIds)
+        return try await self.client.execute(action: "DescribeUsgRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Lighthouse {
     /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
     @inlinable
     public func createInstanceSnapshot(instanceId: String, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceSnapshotResponse> {
-        self.createInstanceSnapshot(CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName)
+        return self.client.execute(action: "CreateInstanceSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例快照
@@ -77,6 +78,7 @@ extension Lighthouse {
     /// 本接口（CreateInstanceSnapshot）用于创建指定实例的系统盘快照。
     @inlinable
     public func createInstanceSnapshot(instanceId: String, snapshotName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceSnapshotResponse {
-        try await self.createInstanceSnapshot(CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceSnapshotRequest(instanceId: instanceId, snapshotName: snapshotName)
+        return try await self.client.execute(action: "CreateInstanceSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

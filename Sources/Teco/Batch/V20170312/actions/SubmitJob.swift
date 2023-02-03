@@ -74,7 +74,8 @@ extension Batch {
     /// 用于提交一个作业
     @inlinable
     public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SubmitJobResponse> {
-        self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
+        let input = SubmitJobRequest(placement: placement, job: job, clientToken: clientToken)
+        return self.client.execute(action: "SubmitJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交作业
@@ -82,6 +83,7 @@ extension Batch {
     /// 用于提交一个作业
     @inlinable
     public func submitJob(placement: Placement, job: Job, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SubmitJobResponse {
-        try await self.submitJob(SubmitJobRequest(placement: placement, job: job, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
+        let input = SubmitJobRequest(placement: placement, job: job, clientToken: clientToken)
+        return try await self.client.execute(action: "SubmitJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

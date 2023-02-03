@@ -68,12 +68,14 @@ extension Dnspod {
     /// 回滚快照
     @inlinable
     public func rollbackSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RollbackSnapshotResponse> {
-        self.rollbackSnapshot(RollbackSnapshotRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = RollbackSnapshotRequest(domain: domain, snapshotId: snapshotId, domainId: domainId)
+        return self.client.execute(action: "RollbackSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 回滚快照
     @inlinable
     public func rollbackSnapshot(domain: String, snapshotId: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RollbackSnapshotResponse {
-        try await self.rollbackSnapshot(RollbackSnapshotRequest(domain: domain, snapshotId: snapshotId, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = RollbackSnapshotRequest(domain: domain, snapshotId: snapshotId, domainId: domainId)
+        return try await self.client.execute(action: "RollbackSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

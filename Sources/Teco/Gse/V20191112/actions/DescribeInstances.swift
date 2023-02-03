@@ -93,7 +93,8 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstances(fleetId: String? = nil, instanceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        self.describeInstances(DescribeInstancesRequest(fleetId: fleetId, instanceId: instanceId, offset: offset, limit: limit, ipAddress: ipAddress), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesRequest(fleetId: fleetId, instanceId: instanceId, offset: offset, limit: limit, ipAddress: ipAddress)
+        return self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务器实例列表
@@ -102,6 +103,7 @@ extension Gse {
     @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeInstances(fleetId: String? = nil, instanceId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, ipAddress: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.describeInstances(DescribeInstancesRequest(fleetId: fleetId, instanceId: instanceId, offset: offset, limit: limit, ipAddress: ipAddress), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesRequest(fleetId: fleetId, instanceId: instanceId, offset: offset, limit: limit, ipAddress: ipAddress)
+        return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

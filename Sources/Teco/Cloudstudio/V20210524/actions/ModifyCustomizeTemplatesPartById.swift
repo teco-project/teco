@@ -68,12 +68,14 @@ extension Cloudstudio {
     /// 全量修改自定义模板，忽略空
     @inlinable
     public func modifyCustomizeTemplatesPartById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplatePatchedParams: UserDefinedTemplatePatchedParams, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomizeTemplatesPartByIdResponse> {
-        self.modifyCustomizeTemplatesPartById(ModifyCustomizeTemplatesPartByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplatePatchedParams: userDefinedTemplatePatchedParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCustomizeTemplatesPartByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplatePatchedParams: userDefinedTemplatePatchedParams)
+        return self.client.execute(action: "ModifyCustomizeTemplatesPartById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 全量修改自定义模板，忽略空
     @inlinable
     public func modifyCustomizeTemplatesPartById(cloudStudioSessionTeam: String, id: Int64, userDefinedTemplatePatchedParams: UserDefinedTemplatePatchedParams, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomizeTemplatesPartByIdResponse {
-        try await self.modifyCustomizeTemplatesPartById(ModifyCustomizeTemplatesPartByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplatePatchedParams: userDefinedTemplatePatchedParams), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCustomizeTemplatesPartByIdRequest(cloudStudioSessionTeam: cloudStudioSessionTeam, id: id, userDefinedTemplatePatchedParams: userDefinedTemplatePatchedParams)
+        return try await self.client.execute(action: "ModifyCustomizeTemplatesPartById", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

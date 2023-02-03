@@ -69,7 +69,8 @@ extension Sqlserver {
     /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
     @inlinable
     public func resetAccountPassword(instanceId: String, accounts: [AccountPassword], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResetAccountPasswordResponse> {
-        self.resetAccountPassword(ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
+        let input = ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts)
+        return self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重置账户密码
@@ -77,6 +78,7 @@ extension Sqlserver {
     /// 本接口（ResetAccountPassword）用于重置实例的账户密码。
     @inlinable
     public func resetAccountPassword(instanceId: String, accounts: [AccountPassword], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetAccountPasswordResponse {
-        try await self.resetAccountPassword(ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
+        let input = ResetAccountPasswordRequest(instanceId: instanceId, accounts: accounts)
+        return try await self.client.execute(action: "ResetAccountPassword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

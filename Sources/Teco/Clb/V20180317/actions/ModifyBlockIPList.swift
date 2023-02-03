@@ -98,7 +98,8 @@ extension Clb {
     /// （接口灰度中，如需使用请提工单）
     @inlinable
     public func modifyBlockIPList(loadBalancerIds: [String], type: String, clientIPField: String, blockIPList: [String]? = nil, expireTime: UInt64? = nil, addStrategy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBlockIPListResponse> {
-        self.modifyBlockIPList(ModifyBlockIPListRequest(loadBalancerIds: loadBalancerIds, type: type, clientIPField: clientIPField, blockIPList: blockIPList, expireTime: expireTime, addStrategy: addStrategy), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBlockIPListRequest(loadBalancerIds: loadBalancerIds, type: type, clientIPField: clientIPField, blockIPList: blockIPList, expireTime: expireTime, addStrategy: addStrategy)
+        return self.client.execute(action: "ModifyBlockIPList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡的IP封禁黑名单列表
@@ -107,6 +108,7 @@ extension Clb {
     /// （接口灰度中，如需使用请提工单）
     @inlinable
     public func modifyBlockIPList(loadBalancerIds: [String], type: String, clientIPField: String, blockIPList: [String]? = nil, expireTime: UInt64? = nil, addStrategy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBlockIPListResponse {
-        try await self.modifyBlockIPList(ModifyBlockIPListRequest(loadBalancerIds: loadBalancerIds, type: type, clientIPField: clientIPField, blockIPList: blockIPList, expireTime: expireTime, addStrategy: addStrategy), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBlockIPListRequest(loadBalancerIds: loadBalancerIds, type: type, clientIPField: clientIPField, blockIPList: blockIPList, expireTime: expireTime, addStrategy: addStrategy)
+        return try await self.client.execute(action: "ModifyBlockIPList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -110,7 +110,8 @@ extension Dlc {
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
     public func describeViews(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeViewsResponse> {
-        self.describeViews(DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeViews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询视图列表
@@ -118,6 +119,7 @@ extension Dlc {
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
     public func describeViews(databaseName: String, limit: Int64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, datasourceConnectionName: String? = nil, sort: String? = nil, asc: Bool? = nil, startTime: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeViewsResponse {
-        try await self.describeViews(DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeViewsRequest(databaseName: databaseName, limit: limit, offset: offset, filters: filters, datasourceConnectionName: datasourceConnectionName, sort: sort, asc: asc, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeViews", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

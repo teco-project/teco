@@ -60,7 +60,8 @@ extension Nlp {
     /// 删除自定义词库，会附带相应删除词库包含的所有词条。
     @inlinable @discardableResult
     public func deleteDict(dictId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDictResponse> {
-        self.deleteDict(DeleteDictRequest(dictId: dictId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDictRequest(dictId: dictId)
+        return self.client.execute(action: "DeleteDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除自定义词库
@@ -68,6 +69,7 @@ extension Nlp {
     /// 删除自定义词库，会附带相应删除词库包含的所有词条。
     @inlinable @discardableResult
     public func deleteDict(dictId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDictResponse {
-        try await self.deleteDict(DeleteDictRequest(dictId: dictId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDictRequest(dictId: dictId)
+        return try await self.client.execute(action: "DeleteDict", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

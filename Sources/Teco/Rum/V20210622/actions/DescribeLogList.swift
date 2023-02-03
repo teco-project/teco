@@ -99,7 +99,8 @@ extension Rum {
     /// (已下线，请用DescribeRumLogList)
     @inlinable
     public func describeLogList(sort: String, actionType: String, id: Int64, startTime: String? = nil, limit: Int64? = nil, context: String? = nil, query: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLogListResponse> {
-        self.describeLogList(DescribeLogListRequest(sort: sort, actionType: actionType, id: id, startTime: startTime, limit: limit, context: context, query: query, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogListRequest(sort: sort, actionType: actionType, id: id, startTime: startTime, limit: limit, context: context, query: query, endTime: endTime)
+        return self.client.execute(action: "DescribeLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取日志列表(已下线，请用DescribeRumLogList)
@@ -107,6 +108,7 @@ extension Rum {
     /// (已下线，请用DescribeRumLogList)
     @inlinable
     public func describeLogList(sort: String, actionType: String, id: Int64, startTime: String? = nil, limit: Int64? = nil, context: String? = nil, query: String? = nil, endTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLogListResponse {
-        try await self.describeLogList(DescribeLogListRequest(sort: sort, actionType: actionType, id: id, startTime: startTime, limit: limit, context: context, query: query, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLogListRequest(sort: sort, actionType: actionType, id: id, startTime: startTime, limit: limit, context: context, query: query, endTime: endTime)
+        return try await self.client.execute(action: "DescribeLogList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

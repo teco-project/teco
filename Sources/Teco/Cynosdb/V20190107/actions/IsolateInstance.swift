@@ -79,7 +79,8 @@ extension Cynosdb {
     /// 本接口(IsolateInstance)用于隔离实例。
     @inlinable
     public func isolateInstance(clusterId: String, instanceIdList: [String], dbType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateInstanceResponse> {
-        self.isolateInstance(IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType), region: region, logger: logger, on: eventLoop)
+        let input = IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType)
+        return self.client.execute(action: "IsolateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离实例
@@ -87,6 +88,7 @@ extension Cynosdb {
     /// 本接口(IsolateInstance)用于隔离实例。
     @inlinable
     public func isolateInstance(clusterId: String, instanceIdList: [String], dbType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateInstanceResponse {
-        try await self.isolateInstance(IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType), region: region, logger: logger, on: eventLoop)
+        let input = IsolateInstanceRequest(clusterId: clusterId, instanceIdList: instanceIdList, dbType: dbType)
+        return try await self.client.execute(action: "IsolateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

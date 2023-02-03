@@ -105,7 +105,8 @@ extension Tic {
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
     @inlinable
     public func describeStackVersions(versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStackVersionsResponse> {
-        self.describeStackVersions(DescribeStackVersionsRequest(versionIds: versionIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStackVersionsRequest(versionIds: versionIds, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeStackVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询版本列表
@@ -117,6 +118,7 @@ extension Tic {
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
     @inlinable
     public func describeStackVersions(versionIds: [String]? = nil, offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStackVersionsResponse {
-        try await self.describeStackVersions(DescribeStackVersionsRequest(versionIds: versionIds, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStackVersionsRequest(versionIds: versionIds, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeStackVersions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

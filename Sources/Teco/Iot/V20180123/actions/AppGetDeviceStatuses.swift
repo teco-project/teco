@@ -69,7 +69,8 @@ extension Iot {
     /// 获取绑定设备的上下线状态
     @inlinable
     public func appGetDeviceStatuses(accessToken: String, deviceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AppGetDeviceStatusesResponse> {
-        self.appGetDeviceStatuses(AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds), region: region, logger: logger, on: eventLoop)
+        let input = AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds)
+        return self.client.execute(action: "AppGetDeviceStatuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取绑定设备状态
@@ -77,6 +78,7 @@ extension Iot {
     /// 获取绑定设备的上下线状态
     @inlinable
     public func appGetDeviceStatuses(accessToken: String, deviceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AppGetDeviceStatusesResponse {
-        try await self.appGetDeviceStatuses(AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds), region: region, logger: logger, on: eventLoop)
+        let input = AppGetDeviceStatusesRequest(accessToken: accessToken, deviceIds: deviceIds)
+        return try await self.client.execute(action: "AppGetDeviceStatuses", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

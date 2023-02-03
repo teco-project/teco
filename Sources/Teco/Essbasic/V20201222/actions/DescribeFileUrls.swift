@@ -102,7 +102,8 @@ extension Essbasic {
     /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
     @inlinable
     public func describeFileUrls(caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFileUrlsResponse> {
-        self.describeFileUrls(DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType)
+        return self.client.execute(action: "DescribeFileUrls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询文件下载链接
@@ -110,6 +111,7 @@ extension Essbasic {
     /// 此接口（DescribeFileUrls）用于获取签署文件下载的URL。
     @inlinable
     public func describeFileUrls(caller: Caller, businessIds: [String], businessType: String, fileName: String? = nil, resourceOffset: Int64? = nil, resourceLimit: Int64? = nil, fileType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFileUrlsResponse {
-        try await self.describeFileUrls(DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFileUrlsRequest(caller: caller, businessIds: businessIds, businessType: businessType, fileName: fileName, resourceOffset: resourceOffset, resourceLimit: resourceLimit, fileType: fileType)
+        return try await self.client.execute(action: "DescribeFileUrls", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

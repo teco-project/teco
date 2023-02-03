@@ -99,7 +99,8 @@ extension Tdmq {
     /// 创建一个主题的订阅关系
     @inlinable
     public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSubscriptionResponse> {
-        self.createSubscription(CreateSubscriptionRequest(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), region: region, logger: logger, on: eventLoop)
+        let input = CreateSubscriptionRequest(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern)
+        return self.client.execute(action: "CreateSubscription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建订阅关系
@@ -107,6 +108,7 @@ extension Tdmq {
     /// 创建一个主题的订阅关系
     @inlinable
     public func createSubscription(environmentId: String, topicName: String, subscriptionName: String, isIdempotent: Bool, remark: String? = nil, clusterId: String? = nil, autoCreatePolicyTopic: Bool? = nil, postFixPattern: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSubscriptionResponse {
-        try await self.createSubscription(CreateSubscriptionRequest(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern), region: region, logger: logger, on: eventLoop)
+        let input = CreateSubscriptionRequest(environmentId: environmentId, topicName: topicName, subscriptionName: subscriptionName, isIdempotent: isIdempotent, remark: remark, clusterId: clusterId, autoCreatePolicyTopic: autoCreatePolicyTopic, postFixPattern: postFixPattern)
+        return try await self.client.execute(action: "CreateSubscription", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

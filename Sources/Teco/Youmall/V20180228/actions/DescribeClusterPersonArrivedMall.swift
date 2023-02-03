@@ -100,7 +100,8 @@ extension Youmall {
     /// 输出开始时间到结束时间段内的进出场数据。按天聚合的情况下，每天多次进出场算一次，以最初进场时间为进场时间，最后离场时间为离场时间。停留时间为多次进出场的停留时间之和。
     @inlinable
     public func describeClusterPersonArrivedMall(mallId: String, personId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterPersonArrivedMallResponse> {
-        self.describeClusterPersonArrivedMall(DescribeClusterPersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterPersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeClusterPersonArrivedMall", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户到场信息（按天聚合）
@@ -108,6 +109,7 @@ extension Youmall {
     /// 输出开始时间到结束时间段内的进出场数据。按天聚合的情况下，每天多次进出场算一次，以最初进场时间为进场时间，最后离场时间为离场时间。停留时间为多次进出场的停留时间之和。
     @inlinable
     public func describeClusterPersonArrivedMall(mallId: String, personId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterPersonArrivedMallResponse {
-        try await self.describeClusterPersonArrivedMall(DescribeClusterPersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterPersonArrivedMallRequest(mallId: mallId, personId: personId, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeClusterPersonArrivedMall", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

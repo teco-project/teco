@@ -83,7 +83,8 @@ extension Vpc {
     /// 本接口 (CreateTrafficPackages) 用于创建共享流量包。
     @inlinable
     public func createTrafficPackages(trafficAmount: UInt64, trafficPackageCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateTrafficPackagesResponse> {
-        self.createTrafficPackages(CreateTrafficPackagesRequest(trafficAmount: trafficAmount, trafficPackageCount: trafficPackageCount), region: region, logger: logger, on: eventLoop)
+        let input = CreateTrafficPackagesRequest(trafficAmount: trafficAmount, trafficPackageCount: trafficPackageCount)
+        return self.client.execute(action: "CreateTrafficPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建共享流量包
@@ -91,6 +92,7 @@ extension Vpc {
     /// 本接口 (CreateTrafficPackages) 用于创建共享流量包。
     @inlinable
     public func createTrafficPackages(trafficAmount: UInt64, trafficPackageCount: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateTrafficPackagesResponse {
-        try await self.createTrafficPackages(CreateTrafficPackagesRequest(trafficAmount: trafficAmount, trafficPackageCount: trafficPackageCount), region: region, logger: logger, on: eventLoop)
+        let input = CreateTrafficPackagesRequest(trafficAmount: trafficAmount, trafficPackageCount: trafficPackageCount)
+        return try await self.client.execute(action: "CreateTrafficPackages", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

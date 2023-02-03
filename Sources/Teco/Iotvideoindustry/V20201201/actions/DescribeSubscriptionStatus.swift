@@ -58,12 +58,14 @@ extension Iotvideoindustry {
     /// 查询主设备订阅状态
     @inlinable
     public func describeSubscriptionStatus(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubscriptionStatusResponse> {
-        self.describeSubscriptionStatus(DescribeSubscriptionStatusRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSubscriptionStatusRequest(deviceId: deviceId)
+        return self.client.execute(action: "DescribeSubscriptionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询主设备订阅状态
     @inlinable
     public func describeSubscriptionStatus(deviceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubscriptionStatusResponse {
-        try await self.describeSubscriptionStatus(DescribeSubscriptionStatusRequest(deviceId: deviceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSubscriptionStatusRequest(deviceId: deviceId)
+        return try await self.client.execute(action: "DescribeSubscriptionStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

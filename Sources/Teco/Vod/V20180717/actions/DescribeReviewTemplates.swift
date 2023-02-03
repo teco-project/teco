@@ -93,7 +93,8 @@ extension Vod {
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     @inlinable
     public func describeReviewTemplates(subAppId: Int64? = nil, definitions: [Int64]? = nil, type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeReviewTemplatesResponse> {
-        self.describeReviewTemplates(DescribeReviewTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReviewTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeReviewTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取审核模板列表
@@ -102,6 +103,7 @@ extension Vod {
     /// >模板仅适用于 [音视频审核(ReviewAudioVideo)](https://cloud.tencent.com/document/api/266/80283) 和 [图片审核(ReviewImage)](https://cloud.tencent.com/document/api/266/73217) 接口。
     @inlinable
     public func describeReviewTemplates(subAppId: Int64? = nil, definitions: [Int64]? = nil, type: String? = nil, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeReviewTemplatesResponse {
-        try await self.describeReviewTemplates(DescribeReviewTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeReviewTemplatesRequest(subAppId: subAppId, definitions: definitions, type: type, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeReviewTemplates", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

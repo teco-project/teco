@@ -104,7 +104,8 @@ extension Iotvideoindustry {
     /// 请使用DescribeVideoListByChannel接口
     @inlinable
     public func getVideoListByCon(deviceId: String, offset: Int64, limit: Int64, channelId: String? = nil, latestDay: Int64? = nil, date: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetVideoListByConResponse> {
-        self.getVideoListByCon(GetVideoListByConRequest(deviceId: deviceId, offset: offset, limit: limit, channelId: channelId, latestDay: latestDay, date: date, type: type), region: region, logger: logger, on: eventLoop)
+        let input = GetVideoListByConRequest(deviceId: deviceId, offset: offset, limit: limit, channelId: channelId, latestDay: latestDay, date: date, type: type)
+        return self.client.execute(action: "GetVideoListByCon", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取通道录制文件列表（旧）
@@ -113,6 +114,7 @@ extension Iotvideoindustry {
     /// 请使用DescribeVideoListByChannel接口
     @inlinable
     public func getVideoListByCon(deviceId: String, offset: Int64, limit: Int64, channelId: String? = nil, latestDay: Int64? = nil, date: String? = nil, type: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetVideoListByConResponse {
-        try await self.getVideoListByCon(GetVideoListByConRequest(deviceId: deviceId, offset: offset, limit: limit, channelId: channelId, latestDay: latestDay, date: date, type: type), region: region, logger: logger, on: eventLoop)
+        let input = GetVideoListByConRequest(deviceId: deviceId, offset: offset, limit: limit, channelId: channelId, latestDay: latestDay, date: date, type: type)
+        return try await self.client.execute(action: "GetVideoListByCon", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

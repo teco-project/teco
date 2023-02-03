@@ -65,7 +65,8 @@ extension Wav {
     /// 该接口获取license对应的详细信息
     @inlinable
     public func queryLicenseInfo(license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryLicenseInfoResponse> {
-        self.queryLicenseInfo(QueryLicenseInfoRequest(license: license), region: region, logger: logger, on: eventLoop)
+        let input = QueryLicenseInfoRequest(license: license)
+        return self.client.execute(action: "QueryLicenseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询license信息接口
@@ -73,6 +74,7 @@ extension Wav {
     /// 该接口获取license对应的详细信息
     @inlinable
     public func queryLicenseInfo(license: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryLicenseInfoResponse {
-        try await self.queryLicenseInfo(QueryLicenseInfoRequest(license: license), region: region, logger: logger, on: eventLoop)
+        let input = QueryLicenseInfoRequest(license: license)
+        return try await self.client.execute(action: "QueryLicenseInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

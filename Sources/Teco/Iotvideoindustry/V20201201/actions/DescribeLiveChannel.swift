@@ -89,12 +89,14 @@ extension Iotvideoindustry {
     /// 直播详情接口
     @inlinable
     public func describeLiveChannel(liveChannelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveChannelResponse> {
-        self.describeLiveChannel(DescribeLiveChannelRequest(liveChannelId: liveChannelId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveChannelRequest(liveChannelId: liveChannelId)
+        return self.client.execute(action: "DescribeLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播详情接口
     @inlinable
     public func describeLiveChannel(liveChannelId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveChannelResponse {
-        try await self.describeLiveChannel(DescribeLiveChannelRequest(liveChannelId: liveChannelId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveChannelRequest(liveChannelId: liveChannelId)
+        return try await self.client.execute(action: "DescribeLiveChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

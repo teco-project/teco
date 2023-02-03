@@ -64,12 +64,14 @@ extension Tcss {
     /// 修改安全日志清理设置信息
     @inlinable @discardableResult
     public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySecLogCleanSettingInfoResponse> {
-        self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit)
+        return self.client.execute(action: "ModifySecLogCleanSettingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改安全日志清理设置信息
     @inlinable @discardableResult
     public func modifySecLogCleanSettingInfo(reservesLimit: UInt64, reservesDeadline: UInt64, dayLimit: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySecLogCleanSettingInfoResponse {
-        try await self.modifySecLogCleanSettingInfo(ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit), region: region, logger: logger, on: eventLoop)
+        let input = ModifySecLogCleanSettingInfoRequest(reservesLimit: reservesLimit, reservesDeadline: reservesDeadline, dayLimit: dayLimit)
+        return try await self.client.execute(action: "ModifySecLogCleanSettingInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

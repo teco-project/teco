@@ -107,12 +107,14 @@ extension Cpdp {
     /// 灵云V2-修改收款用户资金账号信息
     @inlinable
     public func modifyFlexFundingAccount(payeeId: String, fundingAccountBindSerialNo: String, fundingAccountType: String, phoneNo: String, fundingAccountName: String, fundingAccountNo: String, environment: String? = nil, bankBranchName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyFlexFundingAccountResponse> {
-        self.modifyFlexFundingAccount(ModifyFlexFundingAccountRequest(payeeId: payeeId, fundingAccountBindSerialNo: fundingAccountBindSerialNo, fundingAccountType: fundingAccountType, phoneNo: phoneNo, fundingAccountName: fundingAccountName, fundingAccountNo: fundingAccountNo, environment: environment, bankBranchName: bankBranchName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyFlexFundingAccountRequest(payeeId: payeeId, fundingAccountBindSerialNo: fundingAccountBindSerialNo, fundingAccountType: fundingAccountType, phoneNo: phoneNo, fundingAccountName: fundingAccountName, fundingAccountNo: fundingAccountNo, environment: environment, bankBranchName: bankBranchName)
+        return self.client.execute(action: "ModifyFlexFundingAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-修改收款用户资金账号信息
     @inlinable
     public func modifyFlexFundingAccount(payeeId: String, fundingAccountBindSerialNo: String, fundingAccountType: String, phoneNo: String, fundingAccountName: String, fundingAccountNo: String, environment: String? = nil, bankBranchName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyFlexFundingAccountResponse {
-        try await self.modifyFlexFundingAccount(ModifyFlexFundingAccountRequest(payeeId: payeeId, fundingAccountBindSerialNo: fundingAccountBindSerialNo, fundingAccountType: fundingAccountType, phoneNo: phoneNo, fundingAccountName: fundingAccountName, fundingAccountNo: fundingAccountNo, environment: environment, bankBranchName: bankBranchName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyFlexFundingAccountRequest(payeeId: payeeId, fundingAccountBindSerialNo: fundingAccountBindSerialNo, fundingAccountType: fundingAccountType, phoneNo: phoneNo, fundingAccountName: fundingAccountName, fundingAccountNo: fundingAccountNo, environment: environment, bankBranchName: bankBranchName)
+        return try await self.client.execute(action: "ModifyFlexFundingAccount", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -71,7 +71,8 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositCertResponse> {
-        self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
+        let input = GetDepositCertRequest(evidenceId: evidenceId)
+        return self.client.execute(action: "GetDepositCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// BTOE存证电子凭证查询
@@ -80,6 +81,7 @@ extension Btoe {
     @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositCert(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositCertResponse {
-        try await self.getDepositCert(GetDepositCertRequest(evidenceId: evidenceId), region: region, logger: logger, on: eventLoop)
+        let input = GetDepositCertRequest(evidenceId: evidenceId)
+        return try await self.client.execute(action: "GetDepositCert", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

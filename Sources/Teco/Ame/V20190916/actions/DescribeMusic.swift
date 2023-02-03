@@ -82,7 +82,8 @@ extension Ame {
     /// 获取曲库包歌曲播放信息接口
     @inlinable
     public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMusicResponse> {
-        self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl)
+        return self.client.execute(action: "DescribeMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取曲库包歌曲播放信息
@@ -90,6 +91,7 @@ extension Ame {
     /// 获取曲库包歌曲播放信息接口
     @inlinable
     public func describeMusic(itemId: String, identityId: String, subItemType: String? = nil, ssl: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMusicResponse {
-        try await self.describeMusic(DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMusicRequest(itemId: itemId, identityId: identityId, subItemType: subItemType, ssl: ssl)
+        return try await self.client.execute(action: "DescribeMusic", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

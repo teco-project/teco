@@ -84,12 +84,14 @@ extension Iotcloud {
     /// 查询资源推送任务列表
     @inlinable
     public func describeResourceTasks(productID: String, name: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeResourceTasksResponse> {
-        self.describeResourceTasks(DescribeResourceTasksRequest(productID: productID, name: name, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceTasksRequest(productID: productID, name: name, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeResourceTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询资源推送任务列表
     @inlinable
     public func describeResourceTasks(productID: String, name: String, offset: UInt64, limit: UInt64, filters: [SearchKeyword]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeResourceTasksResponse {
-        try await self.describeResourceTasks(DescribeResourceTasksRequest(productID: productID, name: name, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeResourceTasksRequest(productID: productID, name: name, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeResourceTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

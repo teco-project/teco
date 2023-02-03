@@ -72,12 +72,14 @@ extension Cfs {
     /// 查询快照操作日志
     @inlinable
     public func describeSnapshotOperationLogs(snapshotId: String, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotOperationLogsResponse> {
-        self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(snapshotId: snapshotId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotOperationLogsRequest(snapshotId: snapshotId, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeSnapshotOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询快照操作日志
     @inlinable
     public func describeSnapshotOperationLogs(snapshotId: String, startTime: String, endTime: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotOperationLogsResponse {
-        try await self.describeSnapshotOperationLogs(DescribeSnapshotOperationLogsRequest(snapshotId: snapshotId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotOperationLogsRequest(snapshotId: snapshotId, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeSnapshotOperationLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

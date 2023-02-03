@@ -60,7 +60,8 @@ extension Sqlserver {
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
     @inlinable @discardableResult
     public func terminateDBInstance(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateDBInstanceResponse> {
-        self.terminateDBInstance(TerminateDBInstanceRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
+        let input = TerminateDBInstanceRequest(instanceIdSet: instanceIdSet)
+        return self.client.execute(action: "TerminateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 主动隔离实例
@@ -68,6 +69,7 @@ extension Sqlserver {
     /// 本接口(TerminateDBInstance)用于主动隔离实例，使得实例进入回收站。
     @inlinable @discardableResult
     public func terminateDBInstance(instanceIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateDBInstanceResponse {
-        try await self.terminateDBInstance(TerminateDBInstanceRequest(instanceIdSet: instanceIdSet), region: region, logger: logger, on: eventLoop)
+        let input = TerminateDBInstanceRequest(instanceIdSet: instanceIdSet)
+        return try await self.client.execute(action: "TerminateDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

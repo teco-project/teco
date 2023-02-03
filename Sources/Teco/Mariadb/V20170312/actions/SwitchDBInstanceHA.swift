@@ -69,7 +69,8 @@ extension Mariadb {
     /// 本接口（SwitchDBInstanceHA）用于发起实例主备切换。
     @inlinable
     public func switchDBInstanceHA(instanceId: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SwitchDBInstanceHAResponse> {
-        self.switchDBInstanceHA(SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone), region: region, logger: logger, on: eventLoop)
+        let input = SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone)
+        return self.client.execute(action: "SwitchDBInstanceHA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 实例主备切换
@@ -77,6 +78,7 @@ extension Mariadb {
     /// 本接口（SwitchDBInstanceHA）用于发起实例主备切换。
     @inlinable
     public func switchDBInstanceHA(instanceId: String, zone: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchDBInstanceHAResponse {
-        try await self.switchDBInstanceHA(SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone), region: region, logger: logger, on: eventLoop)
+        let input = SwitchDBInstanceHARequest(instanceId: instanceId, zone: zone)
+        return try await self.client.execute(action: "SwitchDBInstanceHA", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

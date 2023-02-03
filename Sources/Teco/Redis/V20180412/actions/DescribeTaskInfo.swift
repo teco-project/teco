@@ -80,7 +80,8 @@ extension Redis {
     /// 用于查询任务结果
     @inlinable
     public func describeTaskInfo(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskInfoResponse> {
-        self.describeTaskInfo(DescribeTaskInfoRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskInfoRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Redis查询任务结果
@@ -88,6 +89,7 @@ extension Redis {
     /// 用于查询任务结果
     @inlinable
     public func describeTaskInfo(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskInfoResponse {
-        try await self.describeTaskInfo(DescribeTaskInfoRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskInfoRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeTaskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

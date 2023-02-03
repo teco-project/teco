@@ -65,7 +65,8 @@ extension Ecm {
     /// 修改模块的默认镜像
     @inlinable @discardableResult
     public func modifyModuleImage(defaultImageId: String, moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyModuleImageResponse> {
-        self.modifyModuleImage(ModifyModuleImageRequest(defaultImageId: defaultImageId, moduleId: moduleId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyModuleImageRequest(defaultImageId: defaultImageId, moduleId: moduleId)
+        return self.client.execute(action: "ModifyModuleImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改模块默认镜像
@@ -73,6 +74,7 @@ extension Ecm {
     /// 修改模块的默认镜像
     @inlinable @discardableResult
     public func modifyModuleImage(defaultImageId: String, moduleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyModuleImageResponse {
-        try await self.modifyModuleImage(ModifyModuleImageRequest(defaultImageId: defaultImageId, moduleId: moduleId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyModuleImageRequest(defaultImageId: defaultImageId, moduleId: moduleId)
+        return try await self.client.execute(action: "ModifyModuleImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

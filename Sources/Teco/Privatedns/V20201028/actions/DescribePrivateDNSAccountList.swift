@@ -72,12 +72,14 @@ extension Privatedns {
     /// 获取私有域解析账号列表
     @inlinable
     public func describePrivateDNSAccountList(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePrivateDNSAccountListResponse> {
-        self.describePrivateDNSAccountList(DescribePrivateDNSAccountListRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrivateDNSAccountListRequest(offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribePrivateDNSAccountList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取私有域解析账号列表
     @inlinable
     public func describePrivateDNSAccountList(offset: Int64? = nil, limit: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePrivateDNSAccountListResponse {
-        try await self.describePrivateDNSAccountList(DescribePrivateDNSAccountListRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePrivateDNSAccountListRequest(offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribePrivateDNSAccountList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

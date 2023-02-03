@@ -60,7 +60,8 @@ extension Dc {
     /// 启用已停用的互联网公网地址
     @inlinable @discardableResult
     public func enableInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableInternetAddressResponse> {
-        self.enableInternetAddress(EnableInternetAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = EnableInternetAddressRequest(instanceId: instanceId)
+        return self.client.execute(action: "EnableInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用互联网公网地址
@@ -68,6 +69,7 @@ extension Dc {
     /// 启用已停用的互联网公网地址
     @inlinable @discardableResult
     public func enableInternetAddress(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableInternetAddressResponse {
-        try await self.enableInternetAddress(EnableInternetAddressRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = EnableInternetAddressRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "EnableInternetAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

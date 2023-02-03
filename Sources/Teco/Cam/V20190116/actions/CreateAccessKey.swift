@@ -65,7 +65,8 @@ extension Cam {
     /// 为CAM用户创建访问密钥
     @inlinable
     public func createAccessKey(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateAccessKeyResponse> {
-        self.createAccessKey(CreateAccessKeyRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
+        let input = CreateAccessKeyRequest(targetUin: targetUin)
+        return self.client.execute(action: "CreateAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建访问密钥
@@ -73,6 +74,7 @@ extension Cam {
     /// 为CAM用户创建访问密钥
     @inlinable
     public func createAccessKey(targetUin: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateAccessKeyResponse {
-        try await self.createAccessKey(CreateAccessKeyRequest(targetUin: targetUin), region: region, logger: logger, on: eventLoop)
+        let input = CreateAccessKeyRequest(targetUin: targetUin)
+        return try await self.client.execute(action: "CreateAccessKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

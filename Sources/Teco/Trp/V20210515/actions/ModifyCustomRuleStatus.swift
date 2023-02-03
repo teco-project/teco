@@ -69,12 +69,14 @@ extension Trp {
     /// 更新自定义码规则状态
     @inlinable
     public func modifyCustomRuleStatus(customId: String, status: Int64, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyCustomRuleStatusResponse> {
-        self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(customId: customId, status: status, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCustomRuleStatusRequest(customId: customId, status: status, corpId: corpId)
+        return self.client.execute(action: "ModifyCustomRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新自定义码规则状态
     @inlinable
     public func modifyCustomRuleStatus(customId: String, status: Int64, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyCustomRuleStatusResponse {
-        try await self.modifyCustomRuleStatus(ModifyCustomRuleStatusRequest(customId: customId, status: status, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyCustomRuleStatusRequest(customId: customId, status: status, corpId: corpId)
+        return try await self.client.execute(action: "ModifyCustomRuleStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

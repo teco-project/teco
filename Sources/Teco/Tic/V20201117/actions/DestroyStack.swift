@@ -69,7 +69,8 @@ extension Tic {
     /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
     @inlinable
     public func destroyStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroyStackResponse> {
-        self.destroyStack(DestroyStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = DestroyStackRequest(stackId: stackId, versionId: versionId)
+        return self.client.execute(action: "DestroyStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 执行Destroy事件
@@ -77,6 +78,7 @@ extension Tic {
     /// 本接口（DestroyStack）用于删除资源栈下的某个版本所创建的资源。
     @inlinable
     public func destroyStack(stackId: String, versionId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroyStackResponse {
-        try await self.destroyStack(DestroyStackRequest(stackId: stackId, versionId: versionId), region: region, logger: logger, on: eventLoop)
+        let input = DestroyStackRequest(stackId: stackId, versionId: versionId)
+        return try await self.client.execute(action: "DestroyStack", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

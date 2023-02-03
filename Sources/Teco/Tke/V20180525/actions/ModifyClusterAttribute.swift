@@ -114,12 +114,14 @@ extension Tke {
     /// 修改集群属性
     @inlinable
     public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterAttributeResponse> {
-        self.modifyClusterAttribute(ModifyClusterAttributeRequest(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterAttributeRequest(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable)
+        return self.client.execute(action: "ModifyClusterAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群属性
     @inlinable
     public func modifyClusterAttribute(clusterId: String, projectId: Int64? = nil, clusterName: String? = nil, clusterDesc: String? = nil, clusterLevel: String? = nil, autoUpgradeClusterLevel: AutoUpgradeClusterLevel? = nil, qgpuShareEnable: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterAttributeResponse {
-        try await self.modifyClusterAttribute(ModifyClusterAttributeRequest(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterAttributeRequest(clusterId: clusterId, projectId: projectId, clusterName: clusterName, clusterDesc: clusterDesc, clusterLevel: clusterLevel, autoUpgradeClusterLevel: autoUpgradeClusterLevel, qgpuShareEnable: qgpuShareEnable)
+        return try await self.client.execute(action: "ModifyClusterAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

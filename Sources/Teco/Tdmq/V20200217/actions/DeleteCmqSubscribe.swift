@@ -59,12 +59,14 @@ extension Tdmq {
     /// 删除cmq订阅
     @inlinable @discardableResult
     public func deleteCmqSubscribe(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteCmqSubscribeResponse> {
-        self.deleteCmqSubscribe(DeleteCmqSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCmqSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName)
+        return self.client.execute(action: "DeleteCmqSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除cmq订阅
     @inlinable @discardableResult
     public func deleteCmqSubscribe(topicName: String, subscriptionName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCmqSubscribeResponse {
-        try await self.deleteCmqSubscribe(DeleteCmqSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName), region: region, logger: logger, on: eventLoop)
+        let input = DeleteCmqSubscribeRequest(topicName: topicName, subscriptionName: subscriptionName)
+        return try await self.client.execute(action: "DeleteCmqSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

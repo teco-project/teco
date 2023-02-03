@@ -89,7 +89,8 @@ extension Vpc {
     /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
     @inlinable
     public func createVpcEndPointService(vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVpcEndPointServiceResponse> {
-        self.createVpcEndPointService(CreateVpcEndPointServiceRequest(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
+        let input = CreateVpcEndPointServiceRequest(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService, serviceType: serviceType)
+        return self.client.execute(action: "CreateVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建终端节点服务
@@ -97,6 +98,7 @@ extension Vpc {
     /// 本接口(CreateVpcEndPointService)用于创建终端节点服务。
     @inlinable
     public func createVpcEndPointService(vpcId: String, endPointServiceName: String, autoAcceptFlag: Bool, serviceInstanceId: String, isPassService: Bool? = nil, serviceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVpcEndPointServiceResponse {
-        try await self.createVpcEndPointService(CreateVpcEndPointServiceRequest(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService, serviceType: serviceType), region: region, logger: logger, on: eventLoop)
+        let input = CreateVpcEndPointServiceRequest(vpcId: vpcId, endPointServiceName: endPointServiceName, autoAcceptFlag: autoAcceptFlag, serviceInstanceId: serviceInstanceId, isPassService: isPassService, serviceType: serviceType)
+        return try await self.client.execute(action: "CreateVpcEndPointService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -68,12 +68,14 @@ extension Waf {
     /// 查询单个saas域名详情
     @inlinable
     public func describeDomainDetailsSaas(domain: String, domainId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainDetailsSaasResponse> {
-        self.describeDomainDetailsSaas(DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId)
+        return self.client.execute(action: "DescribeDomainDetailsSaas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单个saas域名详情
     @inlinable
     public func describeDomainDetailsSaas(domain: String, domainId: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainDetailsSaasResponse {
-        try await self.describeDomainDetailsSaas(DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainDetailsSaasRequest(domain: domain, domainId: domainId, instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDomainDetailsSaas", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

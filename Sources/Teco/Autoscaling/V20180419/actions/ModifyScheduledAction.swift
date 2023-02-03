@@ -104,7 +104,8 @@ extension As {
     /// 本接口（ModifyScheduledAction）用于修改定时任务。
     @inlinable @discardableResult
     public func modifyScheduledAction(scheduledActionId: String, scheduledActionName: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredCapacity: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, recurrence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyScheduledActionResponse> {
-        self.modifyScheduledAction(ModifyScheduledActionRequest(scheduledActionId: scheduledActionId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), region: region, logger: logger, on: eventLoop)
+        let input = ModifyScheduledActionRequest(scheduledActionId: scheduledActionId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence)
+        return self.client.execute(action: "ModifyScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改定时任务
@@ -112,6 +113,7 @@ extension As {
     /// 本接口（ModifyScheduledAction）用于修改定时任务。
     @inlinable @discardableResult
     public func modifyScheduledAction(scheduledActionId: String, scheduledActionName: String? = nil, maxSize: UInt64? = nil, minSize: UInt64? = nil, desiredCapacity: UInt64? = nil, startTime: Date? = nil, endTime: Date? = nil, recurrence: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyScheduledActionResponse {
-        try await self.modifyScheduledAction(ModifyScheduledActionRequest(scheduledActionId: scheduledActionId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence), region: region, logger: logger, on: eventLoop)
+        let input = ModifyScheduledActionRequest(scheduledActionId: scheduledActionId, scheduledActionName: scheduledActionName, maxSize: maxSize, minSize: minSize, desiredCapacity: desiredCapacity, startTime: startTime, endTime: endTime, recurrence: recurrence)
+        return try await self.client.execute(action: "ModifyScheduledAction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

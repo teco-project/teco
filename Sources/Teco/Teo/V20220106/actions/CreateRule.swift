@@ -81,7 +81,8 @@ extension Teo {
     /// 规则引擎创建规则。
     @inlinable
     public func createRule(zoneId: String, ruleName: String, status: String, rules: [RuleItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRuleResponse> {
-        self.createRule(CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules)
+        return self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建规则引擎规则
@@ -89,6 +90,7 @@ extension Teo {
     /// 规则引擎创建规则。
     @inlinable
     public func createRule(zoneId: String, ruleName: String, status: String, rules: [RuleItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRuleResponse {
-        try await self.createRule(CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules), region: region, logger: logger, on: eventLoop)
+        let input = CreateRuleRequest(zoneId: zoneId, ruleName: ruleName, status: status, rules: rules)
+        return try await self.client.execute(action: "CreateRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

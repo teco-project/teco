@@ -77,12 +77,14 @@ extension Wedata {
     /// 判断集成任务名称是否存在
     @inlinable
     public func checkIntegrationTaskNameExists(taskName: String, projectId: String, taskId: String? = nil, syncType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckIntegrationTaskNameExistsResponse> {
-        self.checkIntegrationTaskNameExists(CheckIntegrationTaskNameExistsRequest(taskName: taskName, projectId: projectId, taskId: taskId, syncType: syncType), region: region, logger: logger, on: eventLoop)
+        let input = CheckIntegrationTaskNameExistsRequest(taskName: taskName, projectId: projectId, taskId: taskId, syncType: syncType)
+        return self.client.execute(action: "CheckIntegrationTaskNameExists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 判断集成任务名称是否存在
     @inlinable
     public func checkIntegrationTaskNameExists(taskName: String, projectId: String, taskId: String? = nil, syncType: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckIntegrationTaskNameExistsResponse {
-        try await self.checkIntegrationTaskNameExists(CheckIntegrationTaskNameExistsRequest(taskName: taskName, projectId: projectId, taskId: taskId, syncType: syncType), region: region, logger: logger, on: eventLoop)
+        let input = CheckIntegrationTaskNameExistsRequest(taskName: taskName, projectId: projectId, taskId: taskId, syncType: syncType)
+        return try await self.client.execute(action: "CheckIntegrationTaskNameExists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

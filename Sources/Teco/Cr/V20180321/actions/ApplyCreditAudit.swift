@@ -100,7 +100,8 @@ extension Cr {
     /// 提交信审外呼申请，返回当次请求日期。
     @inlinable
     public func applyCreditAudit(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ApplyCreditAuditResponse> {
-        self.applyCreditAudit(ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data), region: region, logger: logger, on: eventLoop)
+        let input = ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data)
+        return self.client.execute(action: "ApplyCreditAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交信审申请
@@ -108,6 +109,7 @@ extension Cr {
     /// 提交信审外呼申请，返回当次请求日期。
     @inlinable
     public func applyCreditAudit(module: String, operation: String, instId: String, productId: String, caseId: String, callbackUrl: String, data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ApplyCreditAuditResponse {
-        try await self.applyCreditAudit(ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data), region: region, logger: logger, on: eventLoop)
+        let input = ApplyCreditAuditRequest(module: module, operation: operation, instId: instId, productId: productId, caseId: caseId, callbackUrl: callbackUrl, data: data)
+        return try await self.client.execute(action: "ApplyCreditAudit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

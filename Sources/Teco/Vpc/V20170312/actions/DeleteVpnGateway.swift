@@ -60,7 +60,8 @@ extension Vpc {
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
     @inlinable @discardableResult
     public func deleteVpnGateway(vpnGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteVpnGatewayResponse> {
-        self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId)
+        return self.client.execute(action: "DeleteVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除VPN网关
@@ -68,6 +69,7 @@ extension Vpc {
     /// 本接口（DeleteVpnGateway）用于删除VPN网关。目前只支持删除运行中的按量计费的IPSEC网关实例。
     @inlinable @discardableResult
     public func deleteVpnGateway(vpnGatewayId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewayResponse {
-        try await self.deleteVpnGateway(DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteVpnGatewayRequest(vpnGatewayId: vpnGatewayId)
+        return try await self.client.execute(action: "DeleteVpnGateway", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

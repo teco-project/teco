@@ -58,12 +58,14 @@ extension Tsf {
     /// 启用工作流
     @inlinable
     public func enableTaskFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EnableTaskFlowResponse> {
-        self.enableTaskFlow(EnableTaskFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = EnableTaskFlowRequest(flowId: flowId)
+        return self.client.execute(action: "EnableTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 启用工作流
     @inlinable
     public func enableTaskFlow(flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableTaskFlowResponse {
-        try await self.enableTaskFlow(EnableTaskFlowRequest(flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = EnableTaskFlowRequest(flowId: flowId)
+        return try await self.client.execute(action: "EnableTaskFlow", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

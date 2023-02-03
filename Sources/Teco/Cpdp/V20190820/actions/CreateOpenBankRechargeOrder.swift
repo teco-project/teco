@@ -132,12 +132,14 @@ extension Cpdp {
     /// 云企付-创建充值订单
     @inlinable
     public func createOpenBankRechargeOrder(channelMerchantId: String, outOrderId: String, totalAmount: Int64, currency: String, expireTime: String, channelName: String, paymentMethod: String, payeeInfo: OpenBankRechargePayeeInfo, channelSubMerchantId: String, notifyUrl: String? = nil, remark: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateOpenBankRechargeOrderResponse> {
-        self.createOpenBankRechargeOrder(CreateOpenBankRechargeOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, expireTime: expireTime, channelName: channelName, paymentMethod: paymentMethod, payeeInfo: payeeInfo, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = CreateOpenBankRechargeOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, expireTime: expireTime, channelName: channelName, paymentMethod: paymentMethod, payeeInfo: payeeInfo, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, remark: remark, environment: environment)
+        return self.client.execute(action: "CreateOpenBankRechargeOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-创建充值订单
     @inlinable
     public func createOpenBankRechargeOrder(channelMerchantId: String, outOrderId: String, totalAmount: Int64, currency: String, expireTime: String, channelName: String, paymentMethod: String, payeeInfo: OpenBankRechargePayeeInfo, channelSubMerchantId: String, notifyUrl: String? = nil, remark: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateOpenBankRechargeOrderResponse {
-        try await self.createOpenBankRechargeOrder(CreateOpenBankRechargeOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, expireTime: expireTime, channelName: channelName, paymentMethod: paymentMethod, payeeInfo: payeeInfo, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, remark: remark, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = CreateOpenBankRechargeOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, totalAmount: totalAmount, currency: currency, expireTime: expireTime, channelName: channelName, paymentMethod: paymentMethod, payeeInfo: payeeInfo, channelSubMerchantId: channelSubMerchantId, notifyUrl: notifyUrl, remark: remark, environment: environment)
+        return try await self.client.execute(action: "CreateOpenBankRechargeOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

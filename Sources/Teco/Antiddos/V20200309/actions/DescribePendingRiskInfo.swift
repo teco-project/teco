@@ -72,7 +72,8 @@ extension Antiddos {
     /// 查询账号维度待处理风险信息，包括是否为付费用户，查询攻击中、封堵中、过期资源数量等
     @inlinable
     public func describePendingRiskInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePendingRiskInfoResponse> {
-        self.describePendingRiskInfo(DescribePendingRiskInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePendingRiskInfoRequest()
+        return self.client.execute(action: "DescribePendingRiskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询账号维度待处理风险信息
@@ -80,6 +81,7 @@ extension Antiddos {
     /// 查询账号维度待处理风险信息，包括是否为付费用户，查询攻击中、封堵中、过期资源数量等
     @inlinable
     public func describePendingRiskInfo(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePendingRiskInfoResponse {
-        try await self.describePendingRiskInfo(DescribePendingRiskInfoRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribePendingRiskInfoRequest()
+        return try await self.client.execute(action: "DescribePendingRiskInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

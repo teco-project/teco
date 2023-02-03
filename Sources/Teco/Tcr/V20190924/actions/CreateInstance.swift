@@ -83,12 +83,14 @@ extension Tcr {
     /// 创建实例
     @inlinable
     public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceResponse> {
-        self.createInstance(CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag)
+        return self.client.execute(action: "CreateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例
     @inlinable
     public func createInstance(registryName: String, registryType: String, tagSpecification: TagSpecification? = nil, registryChargeType: Int64? = nil, registryChargePrepaid: RegistryChargePrepaid? = nil, syncTag: Bool? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceResponse {
-        try await self.createInstance(CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceRequest(registryName: registryName, registryType: registryType, tagSpecification: tagSpecification, registryChargeType: registryChargeType, registryChargePrepaid: registryChargePrepaid, syncTag: syncTag)
+        return try await self.client.execute(action: "CreateInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

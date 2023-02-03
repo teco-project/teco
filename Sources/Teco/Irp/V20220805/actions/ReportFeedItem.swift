@@ -65,7 +65,8 @@ extension Irp {
     /// 上报被用于推荐的信息流内容信息
     @inlinable @discardableResult
     public func reportFeedItem(instanceId: String, feedItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReportFeedItemResponse> {
-        self.reportFeedItem(ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList), region: region, logger: logger, on: eventLoop)
+        let input = ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList)
+        return self.client.execute(action: "ReportFeedItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上报信息流内容信息
@@ -73,6 +74,7 @@ extension Irp {
     /// 上报被用于推荐的信息流内容信息
     @inlinable @discardableResult
     public func reportFeedItem(instanceId: String, feedItemList: [DocItem], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReportFeedItemResponse {
-        try await self.reportFeedItem(ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList), region: region, logger: logger, on: eventLoop)
+        let input = ReportFeedItemRequest(instanceId: instanceId, feedItemList: feedItemList)
+        return try await self.client.execute(action: "ReportFeedItem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

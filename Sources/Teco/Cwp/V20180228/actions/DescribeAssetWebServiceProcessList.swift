@@ -83,12 +83,14 @@ extension Cwp {
     /// 获取Web服务关联进程列表
     @inlinable
     public func describeAssetWebServiceProcessList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebServiceProcessListResponse> {
-        self.describeAssetWebServiceProcessList(DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeAssetWebServiceProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取Web服务关联进程列表
     @inlinable
     public func describeAssetWebServiceProcessList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebServiceProcessListResponse {
-        try await self.describeAssetWebServiceProcessList(DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetWebServiceProcessListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeAssetWebServiceProcessList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

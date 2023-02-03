@@ -68,12 +68,14 @@ extension Cat {
     /// 删除拨测任务
     @inlinable
     public func deleteProbeTask(taskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProbeTaskResponse> {
-        self.deleteProbeTask(DeleteProbeTaskRequest(taskIds: taskIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteProbeTaskRequest(taskIds: taskIds)
+        return self.client.execute(action: "DeleteProbeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除拨测任务
     @inlinable
     public func deleteProbeTask(taskIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProbeTaskResponse {
-        try await self.deleteProbeTask(DeleteProbeTaskRequest(taskIds: taskIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteProbeTaskRequest(taskIds: taskIds)
+        return try await self.client.execute(action: "DeleteProbeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

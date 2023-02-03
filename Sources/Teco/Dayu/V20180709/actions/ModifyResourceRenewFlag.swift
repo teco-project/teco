@@ -68,12 +68,14 @@ extension Dayu {
     /// 修改资源自动续费标记
     @inlinable
     public func modifyResourceRenewFlag(business: String, id: String, renewFlag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyResourceRenewFlagResponse> {
-        self.modifyResourceRenewFlag(ModifyResourceRenewFlagRequest(business: business, id: id, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyResourceRenewFlagRequest(business: business, id: id, renewFlag: renewFlag)
+        return self.client.execute(action: "ModifyResourceRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改资源自动续费标记
     @inlinable
     public func modifyResourceRenewFlag(business: String, id: String, renewFlag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyResourceRenewFlagResponse {
-        try await self.modifyResourceRenewFlag(ModifyResourceRenewFlagRequest(business: business, id: id, renewFlag: renewFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyResourceRenewFlagRequest(business: business, id: id, renewFlag: renewFlag)
+        return try await self.client.execute(action: "ModifyResourceRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

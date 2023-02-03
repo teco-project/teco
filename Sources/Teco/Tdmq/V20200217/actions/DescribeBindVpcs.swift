@@ -72,12 +72,14 @@ extension Tdmq {
     /// 获取租户VPC绑定关系
     @inlinable
     public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBindVpcsResponse> {
-        self.describeBindVpcs(DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId)
+        return self.client.execute(action: "DescribeBindVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取租户VPC绑定关系
     @inlinable
     public func describeBindVpcs(offset: UInt64? = nil, limit: UInt64? = nil, clusterId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBindVpcsResponse {
-        try await self.describeBindVpcs(DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBindVpcsRequest(offset: offset, limit: limit, clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeBindVpcs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Tke {
     /// 用于查询Kubernetes的各个原生控制器是否开启
     @inlinable
     public func describeClusterControllers(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClusterControllersResponse> {
-        self.describeClusterControllers(DescribeClusterControllersRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterControllersRequest(clusterId: clusterId)
+        return self.client.execute(action: "DescribeClusterControllers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询Kubernetes控制器状态
@@ -72,6 +73,7 @@ extension Tke {
     /// 用于查询Kubernetes的各个原生控制器是否开启
     @inlinable
     public func describeClusterControllers(clusterId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClusterControllersResponse {
-        try await self.describeClusterControllers(DescribeClusterControllersRequest(clusterId: clusterId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClusterControllersRequest(clusterId: clusterId)
+        return try await self.client.execute(action: "DescribeClusterControllers", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

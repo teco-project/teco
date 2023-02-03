@@ -65,7 +65,8 @@ extension Eiam {
     /// 通过用户组ID获得被授权访问的应用列表。
     @inlinable
     public func listAuthorizedApplicationsToUserGroup(userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAuthorizedApplicationsToUserGroupResponse> {
-        self.listAuthorizedApplicationsToUserGroup(ListAuthorizedApplicationsToUserGroupRequest(userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
+        let input = ListAuthorizedApplicationsToUserGroupRequest(userGroupId: userGroupId)
+        return self.client.execute(action: "ListAuthorizedApplicationsToUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取用户组被授权访问的应用列表
@@ -73,6 +74,7 @@ extension Eiam {
     /// 通过用户组ID获得被授权访问的应用列表。
     @inlinable
     public func listAuthorizedApplicationsToUserGroup(userGroupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAuthorizedApplicationsToUserGroupResponse {
-        try await self.listAuthorizedApplicationsToUserGroup(ListAuthorizedApplicationsToUserGroupRequest(userGroupId: userGroupId), region: region, logger: logger, on: eventLoop)
+        let input = ListAuthorizedApplicationsToUserGroupRequest(userGroupId: userGroupId)
+        return try await self.client.execute(action: "ListAuthorizedApplicationsToUserGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

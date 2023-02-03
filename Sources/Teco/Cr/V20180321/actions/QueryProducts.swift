@@ -68,12 +68,14 @@ extension Cr {
     /// 查询产品列表
     @inlinable
     public func queryProducts(module: String, operation: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryProductsResponse> {
-        self.queryProducts(QueryProductsRequest(module: module, operation: operation, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = QueryProductsRequest(module: module, operation: operation, instanceId: instanceId)
+        return self.client.execute(action: "QueryProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询产品列表
     @inlinable
     public func queryProducts(module: String, operation: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryProductsResponse {
-        try await self.queryProducts(QueryProductsRequest(module: module, operation: operation, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = QueryProductsRequest(module: module, operation: operation, instanceId: instanceId)
+        return try await self.client.execute(action: "QueryProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -74,7 +74,8 @@ extension Wedata {
     /// 数据质量概览页面表排行接口
     @inlinable
     public func describeTopTableStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTopTableStatResponse> {
-        self.describeTopTableStat(DescribeTopTableStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopTableStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate)
+        return self.client.execute(action: "DescribeTopTableStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据质量表排行接口
@@ -82,6 +83,7 @@ extension Wedata {
     /// 数据质量概览页面表排行接口
     @inlinable
     public func describeTopTableStat(projectId: String, beginDate: String, endDate: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTopTableStatResponse {
-        try await self.describeTopTableStat(DescribeTopTableStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTopTableStatRequest(projectId: projectId, beginDate: beginDate, endDate: endDate)
+        return try await self.client.execute(action: "DescribeTopTableStat", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

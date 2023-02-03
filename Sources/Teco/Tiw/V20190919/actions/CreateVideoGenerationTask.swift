@@ -102,7 +102,8 @@ extension Tiw {
     /// 创建视频生成任务
     @inlinable
     public func createVideoGenerationTask(onlineRecordTaskId: String, sdkAppId: Int64, whiteboard: Whiteboard? = nil, concat: Concat? = nil, mixStream: MixStream? = nil, recordControl: RecordControl? = nil, extraData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateVideoGenerationTaskResponse> {
-        self.createVideoGenerationTask(CreateVideoGenerationTaskRequest(onlineRecordTaskId: onlineRecordTaskId, sdkAppId: sdkAppId, whiteboard: whiteboard, concat: concat, mixStream: mixStream, recordControl: recordControl, extraData: extraData), region: region, logger: logger, on: eventLoop)
+        let input = CreateVideoGenerationTaskRequest(onlineRecordTaskId: onlineRecordTaskId, sdkAppId: sdkAppId, whiteboard: whiteboard, concat: concat, mixStream: mixStream, recordControl: recordControl, extraData: extraData)
+        return self.client.execute(action: "CreateVideoGenerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建录制视频生成任务
@@ -110,6 +111,7 @@ extension Tiw {
     /// 创建视频生成任务
     @inlinable
     public func createVideoGenerationTask(onlineRecordTaskId: String, sdkAppId: Int64, whiteboard: Whiteboard? = nil, concat: Concat? = nil, mixStream: MixStream? = nil, recordControl: RecordControl? = nil, extraData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVideoGenerationTaskResponse {
-        try await self.createVideoGenerationTask(CreateVideoGenerationTaskRequest(onlineRecordTaskId: onlineRecordTaskId, sdkAppId: sdkAppId, whiteboard: whiteboard, concat: concat, mixStream: mixStream, recordControl: recordControl, extraData: extraData), region: region, logger: logger, on: eventLoop)
+        let input = CreateVideoGenerationTaskRequest(onlineRecordTaskId: onlineRecordTaskId, sdkAppId: sdkAppId, whiteboard: whiteboard, concat: concat, mixStream: mixStream, recordControl: recordControl, extraData: extraData)
+        return try await self.client.execute(action: "CreateVideoGenerationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

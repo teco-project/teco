@@ -65,7 +65,8 @@ extension Ie {
     /// 用于获取编辑处理任务的结果。
     @inlinable
     public func describeMediaProcessTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMediaProcessTaskResultResponse> {
-        self.describeMediaProcessTaskResult(DescribeMediaProcessTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMediaProcessTaskResultRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeMediaProcessTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取编辑处理任务结果
@@ -73,6 +74,7 @@ extension Ie {
     /// 用于获取编辑处理任务的结果。
     @inlinable
     public func describeMediaProcessTaskResult(taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediaProcessTaskResultResponse {
-        try await self.describeMediaProcessTaskResult(DescribeMediaProcessTaskResultRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMediaProcessTaskResultRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeMediaProcessTaskResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

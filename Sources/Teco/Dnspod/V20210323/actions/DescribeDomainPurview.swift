@@ -63,12 +63,14 @@ extension Dnspod {
     /// 获取域名权限
     @inlinable
     public func describeDomainPurview(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDomainPurviewResponse> {
-        self.describeDomainPurview(DescribeDomainPurviewRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainPurviewRequest(domain: domain, domainId: domainId)
+        return self.client.execute(action: "DescribeDomainPurview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取域名权限
     @inlinable
     public func describeDomainPurview(domain: String, domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDomainPurviewResponse {
-        try await self.describeDomainPurview(DescribeDomainPurviewRequest(domain: domain, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDomainPurviewRequest(domain: domain, domainId: domainId)
+        return try await self.client.execute(action: "DescribeDomainPurview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

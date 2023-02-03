@@ -65,7 +65,8 @@ extension Iotvideo {
     /// 本接口（DescribeMessageQueue）用于查询物联网智能视频产品转发消息配置。
     @inlinable
     public func describeMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMessageQueueResponse> {
-        self.describeMessageQueue(DescribeMessageQueueRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMessageQueueRequest(productId: productId)
+        return self.client.execute(action: "DescribeMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品转发消息配置
@@ -73,6 +74,7 @@ extension Iotvideo {
     /// 本接口（DescribeMessageQueue）用于查询物联网智能视频产品转发消息配置。
     @inlinable
     public func describeMessageQueue(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMessageQueueResponse {
-        try await self.describeMessageQueue(DescribeMessageQueueRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMessageQueueRequest(productId: productId)
+        return try await self.client.execute(action: "DescribeMessageQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

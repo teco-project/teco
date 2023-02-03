@@ -94,7 +94,8 @@ extension Dcdb {
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     @inlinable
     public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSqlLogsResponse> {
-        self.describeSqlLogs(DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeSqlLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取SQL日志
@@ -102,6 +103,7 @@ extension Dcdb {
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     @inlinable
     public func describeSqlLogs(instanceId: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSqlLogsResponse {
-        try await self.describeSqlLogs(DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSqlLogsRequest(instanceId: instanceId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeSqlLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

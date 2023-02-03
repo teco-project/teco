@@ -76,7 +76,8 @@ extension Partners {
     /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
     @inlinable
     public func describeAgentClientGrade(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAgentClientGradeResponse> {
-        self.describeAgentClientGrade(DescribeAgentClientGradeRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAgentClientGradeRequest(clientUin: clientUin)
+        return self.client.execute(action: "DescribeAgentClientGrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户级别
@@ -84,6 +85,7 @@ extension Partners {
     /// 传入代客uin，查客户级别，客户审核状态，客户实名认证状态
     @inlinable
     public func describeAgentClientGrade(clientUin: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAgentClientGradeResponse {
-        try await self.describeAgentClientGrade(DescribeAgentClientGradeRequest(clientUin: clientUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAgentClientGradeRequest(clientUin: clientUin)
+        return try await self.client.execute(action: "DescribeAgentClientGrade", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

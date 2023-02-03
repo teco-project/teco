@@ -107,7 +107,8 @@ extension Tcr {
     /// 用于在TCR中下载helm chart
     @inlinable
     public func downloadHelmChart(registryId: String, namespaceName: String, chartName: String, chartVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DownloadHelmChartResponse> {
-        self.downloadHelmChart(DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), region: region, logger: logger, on: eventLoop)
+        let input = DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion)
+        return self.client.execute(action: "DownloadHelmChart", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 下载Helm Chart
@@ -115,6 +116,7 @@ extension Tcr {
     /// 用于在TCR中下载helm chart
     @inlinable
     public func downloadHelmChart(registryId: String, namespaceName: String, chartName: String, chartVersion: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DownloadHelmChartResponse {
-        try await self.downloadHelmChart(DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion), region: region, logger: logger, on: eventLoop)
+        let input = DownloadHelmChartRequest(registryId: registryId, namespaceName: namespaceName, chartName: chartName, chartVersion: chartVersion)
+        return try await self.client.execute(action: "DownloadHelmChart", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

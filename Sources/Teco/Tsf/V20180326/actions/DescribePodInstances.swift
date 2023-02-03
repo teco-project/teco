@@ -73,12 +73,14 @@ extension Tsf {
     /// 获取部署组实例列表
     @inlinable
     public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePodInstancesResponse> {
-        self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), region: region, logger: logger, on: eventLoop)
+        let input = DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList)
+        return self.client.execute(action: "DescribePodInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取部署组实例列表
     @inlinable
     public func describePodInstances(groupId: String, offset: Int64? = nil, limit: Int64? = nil, podNameList: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePodInstancesResponse {
-        try await self.describePodInstances(DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList), region: region, logger: logger, on: eventLoop)
+        let input = DescribePodInstancesRequest(groupId: groupId, offset: offset, limit: limit, podNameList: podNameList)
+        return try await self.client.execute(action: "DescribePodInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

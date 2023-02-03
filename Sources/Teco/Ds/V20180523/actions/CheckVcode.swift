@@ -86,7 +86,8 @@ extension Ds {
     /// 用户在企业电子合同平台输入收到的验证码后，由企业电子合同平台调用该接口向腾讯云提交确认受托签署合同验证码命令。验证码验证正确时，本次合同签署的授权成功。
     @inlinable @discardableResult
     public func checkVcode(module: String, operation: String, accountResId: String, contractResId: String, verifyCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckVcodeResponse> {
-        self.checkVcode(CheckVcodeRequest(module: module, operation: operation, accountResId: accountResId, contractResId: contractResId, verifyCode: verifyCode), region: region, logger: logger, on: eventLoop)
+        let input = CheckVcodeRequest(module: module, operation: operation, accountResId: accountResId, contractResId: contractResId, verifyCode: verifyCode)
+        return self.client.execute(action: "CheckVcode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检测验证码
@@ -96,6 +97,7 @@ extension Ds {
     /// 用户在企业电子合同平台输入收到的验证码后，由企业电子合同平台调用该接口向腾讯云提交确认受托签署合同验证码命令。验证码验证正确时，本次合同签署的授权成功。
     @inlinable @discardableResult
     public func checkVcode(module: String, operation: String, accountResId: String, contractResId: String, verifyCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckVcodeResponse {
-        try await self.checkVcode(CheckVcodeRequest(module: module, operation: operation, accountResId: accountResId, contractResId: contractResId, verifyCode: verifyCode), region: region, logger: logger, on: eventLoop)
+        let input = CheckVcodeRequest(module: module, operation: operation, accountResId: accountResId, contractResId: contractResId, verifyCode: verifyCode)
+        return try await self.client.execute(action: "CheckVcode", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -78,12 +78,14 @@ extension Iecp {
     /// 获取应用模板列表
     @inlinable
     public func describeApplications(namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApplicationsResponse> {
-        self.describeApplications(DescribeApplicationsRequest(namePattern: namePattern, offset: offset, limit: limit, sort: sort), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationsRequest(namePattern: namePattern, offset: offset, limit: limit, sort: sort)
+        return self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取应用模板列表
     @inlinable
     public func describeApplications(namePattern: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, sort: [FieldSort]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApplicationsResponse {
-        try await self.describeApplications(DescribeApplicationsRequest(namePattern: namePattern, offset: offset, limit: limit, sort: sort), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApplicationsRequest(namePattern: namePattern, offset: offset, limit: limit, sort: sort)
+        return try await self.client.execute(action: "DescribeApplications", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

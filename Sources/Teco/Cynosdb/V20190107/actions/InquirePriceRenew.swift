@@ -90,7 +90,8 @@ extension Cynosdb {
     /// 查询续费集群价格
     @inlinable
     public func inquirePriceRenew(clusterId: String, timeSpan: Int64, timeUnit: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InquirePriceRenewResponse> {
-        self.inquirePriceRenew(InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit)
+        return self.client.execute(action: "InquirePriceRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费集群询价
@@ -98,6 +99,7 @@ extension Cynosdb {
     /// 查询续费集群价格
     @inlinable
     public func inquirePriceRenew(clusterId: String, timeSpan: Int64, timeUnit: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InquirePriceRenewResponse {
-        try await self.inquirePriceRenew(InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit), region: region, logger: logger, on: eventLoop)
+        let input = InquirePriceRenewRequest(clusterId: clusterId, timeSpan: timeSpan, timeUnit: timeUnit)
+        return try await self.client.execute(action: "InquirePriceRenew", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -108,7 +108,8 @@ extension Asw {
     /// 该接口用于生成状态机服务
     @inlinable
     public func createFlowService(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowServiceResponse> {
-        self.createFlowService(CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input)
+        return self.client.execute(action: "CreateFlowService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建状态机
@@ -116,6 +117,7 @@ extension Asw {
     /// 该接口用于生成状态机服务
     @inlinable
     public func createFlowService(definition: String, flowServiceName: String, isNewRole: Bool, type: String, flowServiceChineseName: String? = nil, roleResource: String? = nil, description: String? = nil, enableCLS: Bool? = nil, input: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowServiceResponse {
-        try await self.createFlowService(CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowServiceRequest(definition: definition, flowServiceName: flowServiceName, isNewRole: isNewRole, type: type, flowServiceChineseName: flowServiceChineseName, roleResource: roleResource, description: description, enableCLS: enableCLS, input: input)
+        return try await self.client.execute(action: "CreateFlowService", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

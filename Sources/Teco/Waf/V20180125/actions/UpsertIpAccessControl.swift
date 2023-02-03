@@ -79,12 +79,14 @@ extension Waf {
     /// Waf IP黑白名单Upsert接口
     @inlinable
     public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpsertIpAccessControlResponse> {
-        self.upsertIpAccessControl(UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
+        let input = UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType)
+        return self.client.execute(action: "UpsertIpAccessControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// Waf IP黑白名单Upsert接口
     @inlinable
     public func upsertIpAccessControl(domain: String, items: [String], edition: String? = nil, sourceType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpsertIpAccessControlResponse {
-        try await self.upsertIpAccessControl(UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType), region: region, logger: logger, on: eventLoop)
+        let input = UpsertIpAccessControlRequest(domain: domain, items: items, edition: edition, sourceType: sourceType)
+        return try await self.client.execute(action: "UpsertIpAccessControl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

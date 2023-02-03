@@ -58,12 +58,14 @@ extension Cfw {
     /// 同步资产-互联网&VPC（新）
     @inlinable
     public func modifyRunSyncAsset(type: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRunSyncAssetResponse> {
-        self.modifyRunSyncAsset(ModifyRunSyncAssetRequest(type: type), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRunSyncAssetRequest(type: type)
+        return self.client.execute(action: "ModifyRunSyncAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 同步资产-互联网&VPC（新）
     @inlinable
     public func modifyRunSyncAsset(type: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRunSyncAssetResponse {
-        try await self.modifyRunSyncAsset(ModifyRunSyncAssetRequest(type: type), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRunSyncAssetRequest(type: type)
+        return try await self.client.execute(action: "ModifyRunSyncAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

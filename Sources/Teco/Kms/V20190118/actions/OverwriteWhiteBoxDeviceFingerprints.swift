@@ -59,12 +59,14 @@ extension Kms {
     /// 覆盖指定密钥的设备指纹信息
     @inlinable @discardableResult
     public func overwriteWhiteBoxDeviceFingerprints(keyId: String, deviceFingerprints: [DeviceFingerprint]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<OverwriteWhiteBoxDeviceFingerprintsResponse> {
-        self.overwriteWhiteBoxDeviceFingerprints(OverwriteWhiteBoxDeviceFingerprintsRequest(keyId: keyId, deviceFingerprints: deviceFingerprints), region: region, logger: logger, on: eventLoop)
+        let input = OverwriteWhiteBoxDeviceFingerprintsRequest(keyId: keyId, deviceFingerprints: deviceFingerprints)
+        return self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 覆盖指定密钥的设备指纹信息
     @inlinable @discardableResult
     public func overwriteWhiteBoxDeviceFingerprints(keyId: String, deviceFingerprints: [DeviceFingerprint]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OverwriteWhiteBoxDeviceFingerprintsResponse {
-        try await self.overwriteWhiteBoxDeviceFingerprints(OverwriteWhiteBoxDeviceFingerprintsRequest(keyId: keyId, deviceFingerprints: deviceFingerprints), region: region, logger: logger, on: eventLoop)
+        let input = OverwriteWhiteBoxDeviceFingerprintsRequest(keyId: keyId, deviceFingerprints: deviceFingerprints)
+        return try await self.client.execute(action: "OverwriteWhiteBoxDeviceFingerprints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

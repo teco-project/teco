@@ -59,12 +59,14 @@ extension Tsf {
     /// 删除泳道规则
     @inlinable
     public func deleteLaneRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteLaneRuleResponse> {
-        self.deleteLaneRule(DeleteLaneRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLaneRuleRequest(ruleId: ruleId)
+        return self.client.execute(action: "DeleteLaneRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除泳道规则
     @inlinable
     public func deleteLaneRule(ruleId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLaneRuleResponse {
-        try await self.deleteLaneRule(DeleteLaneRuleRequest(ruleId: ruleId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteLaneRuleRequest(ruleId: ruleId)
+        return try await self.client.execute(action: "DeleteLaneRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

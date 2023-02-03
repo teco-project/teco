@@ -135,7 +135,8 @@ extension Vpc {
     /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
     @inlinable
     public func describeFlowLogs(vpcId: String? = nil, flowLogId: String? = nil, flowLogName: String? = nil, resourceType: String? = nil, resourceId: String? = nil, trafficType: String? = nil, cloudLogId: String? = nil, cloudLogState: String? = nil, orderField: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: Filter? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFlowLogsResponse> {
-        self.describeFlowLogs(DescribeFlowLogsRequest(vpcId: vpcId, flowLogId: flowLogId, flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, cloudLogId: cloudLogId, cloudLogState: cloudLogState, orderField: orderField, orderDirection: orderDirection, offset: offset, limit: limit, filters: filters, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowLogsRequest(vpcId: vpcId, flowLogId: flowLogId, flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, cloudLogId: cloudLogId, cloudLogState: cloudLogState, orderField: orderField, orderDirection: orderDirection, offset: offset, limit: limit, filters: filters, cloudLogRegion: cloudLogRegion)
+        return self.client.execute(action: "DescribeFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询流日志集合
@@ -143,6 +144,7 @@ extension Vpc {
     /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
     @inlinable
     public func describeFlowLogs(vpcId: String? = nil, flowLogId: String? = nil, flowLogName: String? = nil, resourceType: String? = nil, resourceId: String? = nil, trafficType: String? = nil, cloudLogId: String? = nil, cloudLogState: String? = nil, orderField: String? = nil, orderDirection: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, filters: Filter? = nil, cloudLogRegion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFlowLogsResponse {
-        try await self.describeFlowLogs(DescribeFlowLogsRequest(vpcId: vpcId, flowLogId: flowLogId, flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, cloudLogId: cloudLogId, cloudLogState: cloudLogState, orderField: orderField, orderDirection: orderDirection, offset: offset, limit: limit, filters: filters, cloudLogRegion: cloudLogRegion), region: region, logger: logger, on: eventLoop)
+        let input = DescribeFlowLogsRequest(vpcId: vpcId, flowLogId: flowLogId, flowLogName: flowLogName, resourceType: resourceType, resourceId: resourceId, trafficType: trafficType, cloudLogId: cloudLogId, cloudLogState: cloudLogState, orderField: orderField, orderDirection: orderDirection, offset: offset, limit: limit, filters: filters, cloudLogRegion: cloudLogRegion)
+        return try await self.client.execute(action: "DescribeFlowLogs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

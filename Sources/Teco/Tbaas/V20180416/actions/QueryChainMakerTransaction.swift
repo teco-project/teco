@@ -69,12 +69,14 @@ extension Tbaas {
     /// 通过交易ID查询长安链交易
     @inlinable
     public func queryChainMakerTransaction(clusterId: String, chainId: String, txID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryChainMakerTransactionResponse> {
-        self.queryChainMakerTransaction(QueryChainMakerTransactionRequest(clusterId: clusterId, chainId: chainId, txID: txID), region: region, logger: logger, on: eventLoop)
+        let input = QueryChainMakerTransactionRequest(clusterId: clusterId, chainId: chainId, txID: txID)
+        return self.client.execute(action: "QueryChainMakerTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通过交易ID查询长安链交易
     @inlinable
     public func queryChainMakerTransaction(clusterId: String, chainId: String, txID: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryChainMakerTransactionResponse {
-        try await self.queryChainMakerTransaction(QueryChainMakerTransactionRequest(clusterId: clusterId, chainId: chainId, txID: txID), region: region, logger: logger, on: eventLoop)
+        let input = QueryChainMakerTransactionRequest(clusterId: clusterId, chainId: chainId, txID: txID)
+        return try await self.client.execute(action: "QueryChainMakerTransaction", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

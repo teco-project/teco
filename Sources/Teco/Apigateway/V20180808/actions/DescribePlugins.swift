@@ -89,7 +89,8 @@ extension Apigateway {
     /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
     @inlinable
     public func describePlugins(pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginsResponse> {
-        self.describePlugins(DescribePluginsRequest(pluginIds: pluginIds, pluginName: pluginName, pluginType: pluginType, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePluginsRequest(pluginIds: pluginIds, pluginName: pluginName, pluginType: pluginType, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribePlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询插件列表和详情
@@ -97,6 +98,7 @@ extension Apigateway {
     /// 展示插件列表和详情，支持分页，支持按照插件类型查询，支持按照插件ID批量查询，支持按照插件名称查询。
     @inlinable
     public func describePlugins(pluginIds: [String]? = nil, pluginName: String? = nil, pluginType: String? = nil, limit: Int64? = nil, offset: Int64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginsResponse {
-        try await self.describePlugins(DescribePluginsRequest(pluginIds: pluginIds, pluginName: pluginName, pluginType: pluginType, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribePluginsRequest(pluginIds: pluginIds, pluginName: pluginName, pluginType: pluginType, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribePlugins", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

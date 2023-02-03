@@ -79,12 +79,14 @@ extension Wedata {
     /// 批量创建任务告警规则
     @inlinable
     public func batchCreateIntegrationTaskAlarms(taskIds: [String], taskAlarmInfo: TaskAlarmInfo, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<BatchCreateIntegrationTaskAlarmsResponse> {
-        self.batchCreateIntegrationTaskAlarms(BatchCreateIntegrationTaskAlarmsRequest(taskIds: taskIds, taskAlarmInfo: taskAlarmInfo, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchCreateIntegrationTaskAlarmsRequest(taskIds: taskIds, taskAlarmInfo: taskAlarmInfo, projectId: projectId)
+        return self.client.execute(action: "BatchCreateIntegrationTaskAlarms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量创建任务告警规则
     @inlinable
     public func batchCreateIntegrationTaskAlarms(taskIds: [String], taskAlarmInfo: TaskAlarmInfo, projectId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BatchCreateIntegrationTaskAlarmsResponse {
-        try await self.batchCreateIntegrationTaskAlarms(BatchCreateIntegrationTaskAlarmsRequest(taskIds: taskIds, taskAlarmInfo: taskAlarmInfo, projectId: projectId), region: region, logger: logger, on: eventLoop)
+        let input = BatchCreateIntegrationTaskAlarmsRequest(taskIds: taskIds, taskAlarmInfo: taskAlarmInfo, projectId: projectId)
+        return try await self.client.execute(action: "BatchCreateIntegrationTaskAlarms", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

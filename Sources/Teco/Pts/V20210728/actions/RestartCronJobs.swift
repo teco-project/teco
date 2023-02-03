@@ -65,7 +65,8 @@ extension Pts {
     /// 重启状态为已中止的定时任务
     @inlinable @discardableResult
     public func restartCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestartCronJobsResponse> {
-        self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
+        let input = RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds)
+        return self.client.execute(action: "RestartCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重启定时任务
@@ -73,6 +74,7 @@ extension Pts {
     /// 重启状态为已中止的定时任务
     @inlinable @discardableResult
     public func restartCronJobs(projectId: String, cronJobIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestartCronJobsResponse {
-        try await self.restartCronJobs(RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds), region: region, logger: logger, on: eventLoop)
+        let input = RestartCronJobsRequest(projectId: projectId, cronJobIds: cronJobIds)
+        return try await self.client.execute(action: "RestartCronJobs", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

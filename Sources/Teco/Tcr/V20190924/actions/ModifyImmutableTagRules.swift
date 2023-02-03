@@ -69,12 +69,14 @@ extension Tcr {
     /// 更新镜像不可变规则
     @inlinable @discardableResult
     public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyImmutableTagRulesResponse> {
-        self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), region: region, logger: logger, on: eventLoop)
+        let input = ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule)
+        return self.client.execute(action: "ModifyImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新镜像不可变规则
     @inlinable @discardableResult
     public func modifyImmutableTagRules(registryId: String, namespaceName: String, ruleId: Int64, rule: ImmutableTagRule, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyImmutableTagRulesResponse {
-        try await self.modifyImmutableTagRules(ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule), region: region, logger: logger, on: eventLoop)
+        let input = ModifyImmutableTagRulesRequest(registryId: registryId, namespaceName: namespaceName, ruleId: ruleId, rule: rule)
+        return try await self.client.execute(action: "ModifyImmutableTagRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

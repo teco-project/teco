@@ -81,12 +81,14 @@ extension Cpdp {
     /// 灵云V2-收款用户信息查询
     @inlinable
     public func queryFlexPayeeInfo(payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryFlexPayeeInfoResponse> {
-        self.queryFlexPayeeInfo(QueryFlexPayeeInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryFlexPayeeInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment)
+        return self.client.execute(action: "QueryFlexPayeeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 灵云V2-收款用户信息查询
     @inlinable
     public func queryFlexPayeeInfo(payeeId: String? = nil, outUserId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryFlexPayeeInfoResponse {
-        try await self.queryFlexPayeeInfo(QueryFlexPayeeInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryFlexPayeeInfoRequest(payeeId: payeeId, outUserId: outUserId, environment: environment)
+        return try await self.client.execute(action: "QueryFlexPayeeInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

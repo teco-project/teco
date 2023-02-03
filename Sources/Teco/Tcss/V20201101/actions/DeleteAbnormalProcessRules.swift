@@ -60,7 +60,8 @@ extension Tcss {
     /// 删除运行异常进程策略
     @inlinable @discardableResult
     public func deleteAbnormalProcessRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAbnormalProcessRulesResponse> {
-        self.deleteAbnormalProcessRules(DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet)
+        return self.client.execute(action: "DeleteAbnormalProcessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时异常进程策略
@@ -68,6 +69,7 @@ extension Tcss {
     /// 删除运行异常进程策略
     @inlinable @discardableResult
     public func deleteAbnormalProcessRules(ruleIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAbnormalProcessRulesResponse {
-        try await self.deleteAbnormalProcessRules(DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAbnormalProcessRulesRequest(ruleIdSet: ruleIdSet)
+        return try await self.client.execute(action: "DeleteAbnormalProcessRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

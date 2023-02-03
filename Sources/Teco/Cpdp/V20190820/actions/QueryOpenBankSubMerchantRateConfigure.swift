@@ -107,12 +107,14 @@ extension Cpdp {
     /// 云企付-子商户费率配置结果查询
     @inlinable
     public func queryOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, channelProductFeeNo: String? = nil, outProductFeeNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<QueryOpenBankSubMerchantRateConfigureResponse> {
-        self.queryOpenBankSubMerchantRateConfigure(QueryOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, channelProductFeeNo: channelProductFeeNo, outProductFeeNo: outProductFeeNo, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, channelProductFeeNo: channelProductFeeNo, outProductFeeNo: outProductFeeNo, environment: environment)
+        return self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-子商户费率配置结果查询
     @inlinable
     public func queryOpenBankSubMerchantRateConfigure(channelRegistrationNo: String, channelMerchantId: String, channelSubMerchantId: String, channelName: String, channelProductFeeNo: String? = nil, outProductFeeNo: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> QueryOpenBankSubMerchantRateConfigureResponse {
-        try await self.queryOpenBankSubMerchantRateConfigure(QueryOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, channelProductFeeNo: channelProductFeeNo, outProductFeeNo: outProductFeeNo, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = QueryOpenBankSubMerchantRateConfigureRequest(channelRegistrationNo: channelRegistrationNo, channelMerchantId: channelMerchantId, channelSubMerchantId: channelSubMerchantId, channelName: channelName, channelProductFeeNo: channelProductFeeNo, outProductFeeNo: outProductFeeNo, environment: environment)
+        return try await self.client.execute(action: "QueryOpenBankSubMerchantRateConfigure", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

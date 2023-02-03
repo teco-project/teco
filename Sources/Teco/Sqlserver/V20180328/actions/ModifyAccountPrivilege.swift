@@ -69,7 +69,8 @@ extension Sqlserver {
     /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
     @inlinable
     public func modifyAccountPrivilege(instanceId: String, accounts: [AccountPrivilegeModifyInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAccountPrivilegeResponse> {
-        self.modifyAccountPrivilege(ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts)
+        return self.client.execute(action: "ModifyAccountPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改实例账户权限
@@ -77,6 +78,7 @@ extension Sqlserver {
     /// 本接口（ModifyAccountPrivilege）用于修改实例账户权限。
     @inlinable
     public func modifyAccountPrivilege(instanceId: String, accounts: [AccountPrivilegeModifyInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAccountPrivilegeResponse {
-        try await self.modifyAccountPrivilege(ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAccountPrivilegeRequest(instanceId: instanceId, accounts: accounts)
+        return try await self.client.execute(action: "ModifyAccountPrivilege", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

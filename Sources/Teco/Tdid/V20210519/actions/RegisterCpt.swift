@@ -77,12 +77,14 @@ extension Tdid {
     /// 凭证模版新建
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RegisterCptResponse> {
-        self.registerCpt(RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), region: region, logger: logger, on: eventLoop)
+        let input = RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId)
+        return self.client.execute(action: "RegisterCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 凭证模版新建
     @inlinable
     public func registerCpt(groupId: UInt64, clusterId: String, cptJson: String, cptId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterCptResponse {
-        try await self.registerCpt(RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId), region: region, logger: logger, on: eventLoop)
+        let input = RegisterCptRequest(groupId: groupId, clusterId: clusterId, cptJson: cptJson, cptId: cptId)
+        return try await self.client.execute(action: "RegisterCpt", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

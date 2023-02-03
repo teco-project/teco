@@ -108,7 +108,8 @@ extension Sqlserver {
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
     public func describePublishSubscribe(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePublishSubscribeResponse> {
-        self.describePublishSubscribe(DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询订阅发布
@@ -116,6 +117,7 @@ extension Sqlserver {
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
     public func describePublishSubscribe(instanceId: String, pubOrSubInstanceId: String? = nil, pubOrSubInstanceIp: String? = nil, publishSubscribeId: UInt64? = nil, publishSubscribeName: String? = nil, publishDBName: String? = nil, subscribeDBName: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePublishSubscribeResponse {
-        try await self.describePublishSubscribe(DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribePublishSubscribeRequest(instanceId: instanceId, pubOrSubInstanceId: pubOrSubInstanceId, pubOrSubInstanceIp: pubOrSubInstanceIp, publishSubscribeId: publishSubscribeId, publishSubscribeName: publishSubscribeName, publishDBName: publishDBName, subscribeDBName: subscribeDBName, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribePublishSubscribe", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

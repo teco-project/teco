@@ -71,7 +71,8 @@ extension Cbs {
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
     @inlinable @discardableResult
     public func modifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDiskExtraPerformanceResponse> {
-        self.modifyDiskExtraPerformance(ModifyDiskExtraPerformanceRequest(diskId: diskId, throughputPerformance: throughputPerformance), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDiskExtraPerformanceRequest(diskId: diskId, throughputPerformance: throughputPerformance)
+        return self.client.execute(action: "ModifyDiskExtraPerformance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整云硬盘额外性能
@@ -81,6 +82,7 @@ extension Cbs {
     /// * 目前仅支持极速型SSD云硬盘（CLOUD_TSSD）和高性能SSD云硬盘(CLOUD_HSSD)。
     @inlinable @discardableResult
     public func modifyDiskExtraPerformance(diskId: String, throughputPerformance: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDiskExtraPerformanceResponse {
-        try await self.modifyDiskExtraPerformance(ModifyDiskExtraPerformanceRequest(diskId: diskId, throughputPerformance: throughputPerformance), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDiskExtraPerformanceRequest(diskId: diskId, throughputPerformance: throughputPerformance)
+        return try await self.client.execute(action: "ModifyDiskExtraPerformance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

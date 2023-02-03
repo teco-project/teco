@@ -97,7 +97,8 @@ extension Kms {
     /// 创建白盒密钥。 密钥个数的上限为 50。
     @inlinable
     public func createWhiteBoxKey(alias: String, algorithm: String, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWhiteBoxKeyResponse> {
-        self.createWhiteBoxKey(CreateWhiteBoxKeyRequest(alias: alias, algorithm: algorithm, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateWhiteBoxKeyRequest(alias: alias, algorithm: algorithm, description: description, tags: tags)
+        return self.client.execute(action: "CreateWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建白盒密钥
@@ -105,6 +106,7 @@ extension Kms {
     /// 创建白盒密钥。 密钥个数的上限为 50。
     @inlinable
     public func createWhiteBoxKey(alias: String, algorithm: String, description: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWhiteBoxKeyResponse {
-        try await self.createWhiteBoxKey(CreateWhiteBoxKeyRequest(alias: alias, algorithm: algorithm, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateWhiteBoxKeyRequest(alias: alias, algorithm: algorithm, description: description, tags: tags)
+        return try await self.client.execute(action: "CreateWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

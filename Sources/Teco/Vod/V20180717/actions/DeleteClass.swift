@@ -68,7 +68,8 @@ extension Vod {
     /// * 否则，请先执行[删除媒体](/document/product/266/31764)及子分类，再删除该分类；
     @inlinable @discardableResult
     public func deleteClass(classId: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteClassResponse> {
-        self.deleteClass(DeleteClassRequest(classId: classId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClassRequest(classId: classId, subAppId: subAppId)
+        return self.client.execute(action: "DeleteClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除分类
@@ -77,6 +78,7 @@ extension Vod {
     /// * 否则，请先执行[删除媒体](/document/product/266/31764)及子分类，再删除该分类；
     @inlinable @discardableResult
     public func deleteClass(classId: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteClassResponse {
-        try await self.deleteClass(DeleteClassRequest(classId: classId, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteClassRequest(classId: classId, subAppId: subAppId)
+        return try await self.client.execute(action: "DeleteClass", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

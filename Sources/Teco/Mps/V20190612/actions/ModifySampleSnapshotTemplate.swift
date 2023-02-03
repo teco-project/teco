@@ -127,7 +127,8 @@ extension Mps {
     /// 修改用户自定义采样截图模板。
     @inlinable @discardableResult
     public func modifySampleSnapshotTemplate(definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySampleSnapshotTemplateResponse> {
-        self.modifySampleSnapshotTemplate(ModifySampleSnapshotTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
+        let input = ModifySampleSnapshotTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, format: format, comment: comment, fillType: fillType)
+        return self.client.execute(action: "ModifySampleSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改采样截图模板
@@ -135,6 +136,7 @@ extension Mps {
     /// 修改用户自定义采样截图模板。
     @inlinable @discardableResult
     public func modifySampleSnapshotTemplate(definition: UInt64, name: String? = nil, width: UInt64? = nil, height: UInt64? = nil, resolutionAdaptive: String? = nil, sampleType: String? = nil, sampleInterval: UInt64? = nil, format: String? = nil, comment: String? = nil, fillType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySampleSnapshotTemplateResponse {
-        try await self.modifySampleSnapshotTemplate(ModifySampleSnapshotTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, format: format, comment: comment, fillType: fillType), region: region, logger: logger, on: eventLoop)
+        let input = ModifySampleSnapshotTemplateRequest(definition: definition, name: name, width: width, height: height, resolutionAdaptive: resolutionAdaptive, sampleType: sampleType, sampleInterval: sampleInterval, format: format, comment: comment, fillType: fillType)
+        return try await self.client.execute(action: "ModifySampleSnapshotTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -94,12 +94,14 @@ extension Iotvideo {
     /// 更新AI推理结果推送配置
     @inlinable
     public func updateAIModelChannel(modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAIModelChannelResponse> {
-        self.updateAIModelChannel(UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), region: region, logger: logger, on: eventLoop)
+        let input = UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic)
+        return self.client.execute(action: "UpdateAIModelChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新AI推理结果推送配置
     @inlinable
     public func updateAIModelChannel(modelId: String, productId: String, type: String, forwardAddress: String? = nil, forwardKey: String? = nil, cKafkaRegion: String? = nil, cKafkaInstance: String? = nil, cKafkaTopic: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAIModelChannelResponse {
-        try await self.updateAIModelChannel(UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic), region: region, logger: logger, on: eventLoop)
+        let input = UpdateAIModelChannelRequest(modelId: modelId, productId: productId, type: type, forwardAddress: forwardAddress, forwardKey: forwardKey, cKafkaRegion: cKafkaRegion, cKafkaInstance: cKafkaInstance, cKafkaTopic: cKafkaTopic)
+        return try await self.client.execute(action: "UpdateAIModelChannel", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

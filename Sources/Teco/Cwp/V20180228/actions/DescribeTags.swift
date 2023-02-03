@@ -79,12 +79,14 @@ extension Cwp {
     /// 获取所有主机标签
     @inlinable
     public func describeTags(machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagsResponse> {
-        self.describeTags(DescribeTagsRequest(machineType: machineType, machineRegion: machineRegion, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTagsRequest(machineType: machineType, machineRegion: machineRegion, filters: filters)
+        return self.client.execute(action: "DescribeTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取所有主机标签
     @inlinable
     public func describeTags(machineType: String? = nil, machineRegion: String? = nil, filters: [Filters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagsResponse {
-        try await self.describeTags(DescribeTagsRequest(machineType: machineType, machineRegion: machineRegion, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTagsRequest(machineType: machineType, machineRegion: machineRegion, filters: filters)
+        return try await self.client.execute(action: "DescribeTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

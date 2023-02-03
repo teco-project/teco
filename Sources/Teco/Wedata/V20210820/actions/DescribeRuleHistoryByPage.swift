@@ -80,7 +80,8 @@ extension Wedata {
     /// 过滤条件【必要字段】{ruleId}
     @inlinable
     public func describeRuleHistoryByPage(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeRuleHistoryByPageResponse> {
-        self.describeRuleHistoryByPage(DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters)
+        return self.client.execute(action: "DescribeRuleHistoryByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询规则操作记录接口
@@ -88,6 +89,7 @@ extension Wedata {
     /// 过滤条件【必要字段】{ruleId}
     @inlinable
     public func describeRuleHistoryByPage(projectId: String? = nil, pageNumber: UInt64? = nil, pageSize: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRuleHistoryByPageResponse {
-        try await self.describeRuleHistoryByPage(DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeRuleHistoryByPageRequest(projectId: projectId, pageNumber: pageNumber, pageSize: pageSize, filters: filters)
+        return try await self.client.execute(action: "DescribeRuleHistoryByPage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

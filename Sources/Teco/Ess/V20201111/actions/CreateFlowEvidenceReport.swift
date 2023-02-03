@@ -84,7 +84,8 @@ extension Ess {
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeFlowEvidenceReport进行查询。
     @inlinable
     public func createFlowEvidenceReport(operator: UserInfo, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFlowEvidenceReportResponse> {
-        self.createFlowEvidenceReport(CreateFlowEvidenceReportRequest(operator: `operator`, flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowEvidenceReportRequest(operator: `operator`, flowId: flowId)
+        return self.client.execute(action: "CreateFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建并返回出证报告
@@ -93,6 +94,7 @@ extension Ess {
     /// 出证需要一定时间，建议调用创建出证24小时之后再通过DescribeFlowEvidenceReport进行查询。
     @inlinable
     public func createFlowEvidenceReport(operator: UserInfo, flowId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowEvidenceReportResponse {
-        try await self.createFlowEvidenceReport(CreateFlowEvidenceReportRequest(operator: `operator`, flowId: flowId), region: region, logger: logger, on: eventLoop)
+        let input = CreateFlowEvidenceReportRequest(operator: `operator`, flowId: flowId)
+        return try await self.client.execute(action: "CreateFlowEvidenceReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

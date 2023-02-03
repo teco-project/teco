@@ -79,7 +79,8 @@ extension Tcss {
     /// 容器安全查询db服务列表
     @inlinable
     public func describeAssetDBServiceList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetDBServiceListResponse> {
-        self.describeAssetDBServiceList(DescribeAssetDBServiceListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetDBServiceListRequest(limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeAssetDBServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询db服务列表
@@ -87,6 +88,7 @@ extension Tcss {
     /// 容器安全查询db服务列表
     @inlinable
     public func describeAssetDBServiceList(limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetDBServiceListResponse {
-        try await self.describeAssetDBServiceList(DescribeAssetDBServiceListRequest(limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetDBServiceListRequest(limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeAssetDBServiceList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

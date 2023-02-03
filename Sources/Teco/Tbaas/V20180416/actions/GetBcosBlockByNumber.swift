@@ -74,7 +74,8 @@ extension Tbaas {
     /// 使用块高查询Bcos区块信息
     @inlinable
     public func getBcosBlockByNumber(clusterId: String, groupId: Int64, blockNumber: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetBcosBlockByNumberResponse> {
-        self.getBcosBlockByNumber(GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber), region: region, logger: logger, on: eventLoop)
+        let input = GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber)
+        return self.client.execute(action: "GetBcosBlockByNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 使用块高查询区块信息
@@ -82,6 +83,7 @@ extension Tbaas {
     /// 使用块高查询Bcos区块信息
     @inlinable
     public func getBcosBlockByNumber(clusterId: String, groupId: Int64, blockNumber: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetBcosBlockByNumberResponse {
-        try await self.getBcosBlockByNumber(GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber), region: region, logger: logger, on: eventLoop)
+        let input = GetBcosBlockByNumberRequest(clusterId: clusterId, groupId: groupId, blockNumber: blockNumber)
+        return try await self.client.execute(action: "GetBcosBlockByNumber", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

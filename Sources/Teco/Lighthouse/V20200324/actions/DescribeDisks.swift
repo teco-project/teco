@@ -120,7 +120,8 @@ extension Lighthouse {
     /// 本接口（DescribeDisks）用于查询云硬盘信息。
     @inlinable
     public func describeDisks(diskIds: [String]? = nil, filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderField: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDisksResponse> {
-        self.describeDisks(DescribeDisksRequest(diskIds: diskIds, filters: filters, limit: limit, offset: offset, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDisksRequest(diskIds: diskIds, filters: filters, limit: limit, offset: offset, orderField: orderField, order: order)
+        return self.client.execute(action: "DescribeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云硬盘
@@ -128,6 +129,7 @@ extension Lighthouse {
     /// 本接口（DescribeDisks）用于查询云硬盘信息。
     @inlinable
     public func describeDisks(diskIds: [String]? = nil, filters: [Filter]? = nil, limit: Int64? = nil, offset: Int64? = nil, orderField: String? = nil, order: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDisksResponse {
-        try await self.describeDisks(DescribeDisksRequest(diskIds: diskIds, filters: filters, limit: limit, offset: offset, orderField: orderField, order: order), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDisksRequest(diskIds: diskIds, filters: filters, limit: limit, offset: offset, orderField: orderField, order: order)
+        return try await self.client.execute(action: "DescribeDisks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

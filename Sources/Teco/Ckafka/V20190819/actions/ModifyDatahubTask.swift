@@ -64,12 +64,14 @@ extension Ckafka {
     /// 修改Datahub任务
     @inlinable
     public func modifyDatahubTask(taskId: String, taskName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDatahubTaskResponse> {
-        self.modifyDatahubTask(ModifyDatahubTaskRequest(taskId: taskId, taskName: taskName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDatahubTaskRequest(taskId: taskId, taskName: taskName)
+        return self.client.execute(action: "ModifyDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改Datahub任务
     @inlinable
     public func modifyDatahubTask(taskId: String, taskName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDatahubTaskResponse {
-        try await self.modifyDatahubTask(ModifyDatahubTaskRequest(taskId: taskId, taskName: taskName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDatahubTaskRequest(taskId: taskId, taskName: taskName)
+        return try await self.client.execute(action: "ModifyDatahubTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

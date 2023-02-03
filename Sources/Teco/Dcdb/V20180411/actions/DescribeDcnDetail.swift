@@ -58,12 +58,14 @@ extension Dcdb {
     /// 获取实例灾备详情
     @inlinable
     public func describeDcnDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDcnDetailResponse> {
-        self.describeDcnDetail(DescribeDcnDetailRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDcnDetailRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeDcnDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取实例灾备详情
     @inlinable
     public func describeDcnDetail(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDcnDetailResponse {
-        try await self.describeDcnDetail(DescribeDcnDetailRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDcnDetailRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDcnDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

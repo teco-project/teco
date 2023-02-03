@@ -65,7 +65,8 @@ extension Vod {
     /// 删除用户自定义音视频内容识别模板。
     @inlinable @discardableResult
     public func deleteAIRecognitionTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAIRecognitionTemplateResponse> {
-        self.deleteAIRecognitionTemplate(DeleteAIRecognitionTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAIRecognitionTemplateRequest(definition: definition, subAppId: subAppId)
+        return self.client.execute(action: "DeleteAIRecognitionTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除音视频内容识别模板
@@ -73,6 +74,7 @@ extension Vod {
     /// 删除用户自定义音视频内容识别模板。
     @inlinable @discardableResult
     public func deleteAIRecognitionTemplate(definition: Int64, subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAIRecognitionTemplateResponse {
-        try await self.deleteAIRecognitionTemplate(DeleteAIRecognitionTemplateRequest(definition: definition, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAIRecognitionTemplateRequest(definition: definition, subAppId: subAppId)
+        return try await self.client.execute(action: "DeleteAIRecognitionTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -82,12 +82,14 @@ extension Tsf {
     /// 查询网关API监控明细数据
     @inlinable
     public func describeApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeApiUseDetailResponse> {
-        self.describeApiUseDetail(DescribeApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime)
+        return self.client.execute(action: "DescribeApiUseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询网关API监控明细数据
     @inlinable
     public func describeApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeApiUseDetailResponse {
-        try await self.describeApiUseDetail(DescribeApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime), region: region, logger: logger, on: eventLoop)
+        let input = DescribeApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime)
+        return try await self.client.execute(action: "DescribeApiUseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

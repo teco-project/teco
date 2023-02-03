@@ -94,7 +94,8 @@ extension Yunjing {
     /// 本接口 (DescribeMachines) 用于获取区域主机列表。
     @inlinable
     public func describeMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMachinesResponse> {
-        self.describeMachines(DescribeMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters)
+        return self.client.execute(action: "DescribeMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取区域主机列表
@@ -102,6 +103,7 @@ extension Yunjing {
     /// 本接口 (DescribeMachines) 用于获取区域主机列表。
     @inlinable
     public func describeMachines(machineType: String, machineRegion: String, limit: UInt64? = nil, offset: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMachinesResponse {
-        try await self.describeMachines(DescribeMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMachinesRequest(machineType: machineType, machineRegion: machineRegion, limit: limit, offset: offset, filters: filters)
+        return try await self.client.execute(action: "DescribeMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

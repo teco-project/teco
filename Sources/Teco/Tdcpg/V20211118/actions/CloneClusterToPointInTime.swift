@@ -150,7 +150,8 @@ extension Tdcpg {
     /// 使用指定时间点的备份克隆一个新的集群
     @inlinable
     public func cloneClusterToPointInTime(zone: String, dbVersion: String, cpu: UInt64, memory: UInt64, vpcId: String, subnetId: String, payMode: String, sourceClusterId: String, sourceDataPoint: String, clusterName: String? = nil, projectId: UInt64? = nil, port: UInt64? = nil, instanceCount: UInt64? = nil, period: UInt64? = nil, autoRenewFlag: UInt64? = nil, storagePayMode: String? = nil, storage: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloneClusterToPointInTimeResponse> {
-        self.cloneClusterToPointInTime(CloneClusterToPointInTimeRequest(zone: zone, dbVersion: dbVersion, cpu: cpu, memory: memory, vpcId: vpcId, subnetId: subnetId, payMode: payMode, sourceClusterId: sourceClusterId, sourceDataPoint: sourceDataPoint, clusterName: clusterName, projectId: projectId, port: port, instanceCount: instanceCount, period: period, autoRenewFlag: autoRenewFlag, storagePayMode: storagePayMode, storage: storage), region: region, logger: logger, on: eventLoop)
+        let input = CloneClusterToPointInTimeRequest(zone: zone, dbVersion: dbVersion, cpu: cpu, memory: memory, vpcId: vpcId, subnetId: subnetId, payMode: payMode, sourceClusterId: sourceClusterId, sourceDataPoint: sourceDataPoint, clusterName: clusterName, projectId: projectId, port: port, instanceCount: instanceCount, period: period, autoRenewFlag: autoRenewFlag, storagePayMode: storagePayMode, storage: storage)
+        return self.client.execute(action: "CloneClusterToPointInTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 克隆集群
@@ -158,6 +159,7 @@ extension Tdcpg {
     /// 使用指定时间点的备份克隆一个新的集群
     @inlinable
     public func cloneClusterToPointInTime(zone: String, dbVersion: String, cpu: UInt64, memory: UInt64, vpcId: String, subnetId: String, payMode: String, sourceClusterId: String, sourceDataPoint: String, clusterName: String? = nil, projectId: UInt64? = nil, port: UInt64? = nil, instanceCount: UInt64? = nil, period: UInt64? = nil, autoRenewFlag: UInt64? = nil, storagePayMode: String? = nil, storage: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloneClusterToPointInTimeResponse {
-        try await self.cloneClusterToPointInTime(CloneClusterToPointInTimeRequest(zone: zone, dbVersion: dbVersion, cpu: cpu, memory: memory, vpcId: vpcId, subnetId: subnetId, payMode: payMode, sourceClusterId: sourceClusterId, sourceDataPoint: sourceDataPoint, clusterName: clusterName, projectId: projectId, port: port, instanceCount: instanceCount, period: period, autoRenewFlag: autoRenewFlag, storagePayMode: storagePayMode, storage: storage), region: region, logger: logger, on: eventLoop)
+        let input = CloneClusterToPointInTimeRequest(zone: zone, dbVersion: dbVersion, cpu: cpu, memory: memory, vpcId: vpcId, subnetId: subnetId, payMode: payMode, sourceClusterId: sourceClusterId, sourceDataPoint: sourceDataPoint, clusterName: clusterName, projectId: projectId, port: port, instanceCount: instanceCount, period: period, autoRenewFlag: autoRenewFlag, storagePayMode: storagePayMode, storage: storage)
+        return try await self.client.execute(action: "CloneClusterToPointInTime", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -81,7 +81,8 @@ extension Gpm {
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
-        self.startMatching(StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId), region: region, logger: logger, on: eventLoop)
+        let input = StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId)
+        return self.client.execute(action: "StartMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发起匹配
@@ -90,6 +91,7 @@ extension Gpm {
     @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
-        try await self.startMatching(StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId), region: region, logger: logger, on: eventLoop)
+        let input = StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId)
+        return try await self.client.execute(action: "StartMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

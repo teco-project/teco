@@ -60,12 +60,14 @@ extension Tsf {
     /// 删除容器部署组
     @inlinable
     public func deleteContainerGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteContainerGroupResponse> {
-        self.deleteContainerGroup(DeleteContainerGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteContainerGroupRequest(groupId: groupId)
+        return self.client.execute(action: "DeleteContainerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除容器部署组
     @inlinable
     public func deleteContainerGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContainerGroupResponse {
-        try await self.deleteContainerGroup(DeleteContainerGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteContainerGroupRequest(groupId: groupId)
+        return try await self.client.execute(action: "DeleteContainerGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

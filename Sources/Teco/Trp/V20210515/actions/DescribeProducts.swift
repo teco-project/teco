@@ -84,12 +84,14 @@ extension Trp {
     /// 查询商品列表
     @inlinable
     public func describeProducts(name: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductsResponse> {
-        self.describeProducts(DescribeProductsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, merchantId: merchantId, corpId: corpId)
+        return self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询商品列表
     @inlinable
     public func describeProducts(name: String? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, merchantId: String? = nil, corpId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductsResponse {
-        try await self.describeProducts(DescribeProductsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, merchantId: merchantId, corpId: corpId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductsRequest(name: name, pageSize: pageSize, pageNumber: pageNumber, merchantId: merchantId, corpId: corpId)
+        return try await self.client.execute(action: "DescribeProducts", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

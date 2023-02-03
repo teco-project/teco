@@ -96,7 +96,8 @@ extension Gaap {
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
     public func describeProxyGroupStatistics(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupStatisticsResponse> {
-        self.describeProxyGroupStatistics(DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity)
+        return self.client.execute(action: "DescribeProxyGroupStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通道组统计数据
@@ -104,6 +105,7 @@ extension Gaap {
     /// 该接口用于查询监听器统计数据，包括出入带宽，出入包量，并发数据。支持300, 3600和86400的细粒度，取值为细粒度范围内最大值。
     @inlinable
     public func describeProxyGroupStatistics(groupId: String, startTime: Date, endTime: Date, metricNames: [String], granularity: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupStatisticsResponse {
-        try await self.describeProxyGroupStatistics(DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyGroupStatisticsRequest(groupId: groupId, startTime: startTime, endTime: endTime, metricNames: metricNames, granularity: granularity)
+        return try await self.client.execute(action: "DescribeProxyGroupStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

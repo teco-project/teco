@@ -129,7 +129,8 @@ extension Tia {
     /// 创建训练任务
     @inlinable
     public func createJob(name: String, cluster: String, runtimeVersion: String, packageDir: [String]? = nil, command: [String]? = nil, args: [String]? = nil, scaleTier: String? = nil, masterType: String? = nil, workerType: String? = nil, parameterServerType: String? = nil, workerCount: UInt64? = nil, parameterServerCount: UInt64? = nil, debug: Bool? = nil, runtimeConf: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateJobResponse> {
-        self.createJob(CreateJobRequest(name: name, cluster: cluster, runtimeVersion: runtimeVersion, packageDir: packageDir, command: command, args: args, scaleTier: scaleTier, masterType: masterType, workerType: workerType, parameterServerType: parameterServerType, workerCount: workerCount, parameterServerCount: parameterServerCount, debug: debug, runtimeConf: runtimeConf), region: region, logger: logger, on: eventLoop)
+        let input = CreateJobRequest(name: name, cluster: cluster, runtimeVersion: runtimeVersion, packageDir: packageDir, command: command, args: args, scaleTier: scaleTier, masterType: masterType, workerType: workerType, parameterServerType: parameterServerType, workerCount: workerCount, parameterServerCount: parameterServerCount, debug: debug, runtimeConf: runtimeConf)
+        return self.client.execute(action: "CreateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建Job
@@ -137,6 +138,7 @@ extension Tia {
     /// 创建训练任务
     @inlinable
     public func createJob(name: String, cluster: String, runtimeVersion: String, packageDir: [String]? = nil, command: [String]? = nil, args: [String]? = nil, scaleTier: String? = nil, masterType: String? = nil, workerType: String? = nil, parameterServerType: String? = nil, workerCount: UInt64? = nil, parameterServerCount: UInt64? = nil, debug: Bool? = nil, runtimeConf: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateJobResponse {
-        try await self.createJob(CreateJobRequest(name: name, cluster: cluster, runtimeVersion: runtimeVersion, packageDir: packageDir, command: command, args: args, scaleTier: scaleTier, masterType: masterType, workerType: workerType, parameterServerType: parameterServerType, workerCount: workerCount, parameterServerCount: parameterServerCount, debug: debug, runtimeConf: runtimeConf), region: region, logger: logger, on: eventLoop)
+        let input = CreateJobRequest(name: name, cluster: cluster, runtimeVersion: runtimeVersion, packageDir: packageDir, command: command, args: args, scaleTier: scaleTier, masterType: masterType, workerType: workerType, parameterServerType: parameterServerType, workerCount: workerCount, parameterServerCount: parameterServerCount, debug: debug, runtimeConf: runtimeConf)
+        return try await self.client.execute(action: "CreateJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

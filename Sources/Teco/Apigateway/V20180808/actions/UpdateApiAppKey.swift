@@ -75,7 +75,8 @@ extension Apigateway {
     /// 本接口（UpdateApiAppKey）用于更新应用密钥。
     @inlinable
     public func updateApiAppKey(apiAppId: String, apiAppKey: String, apiAppSecret: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateApiAppKeyResponse> {
-        self.updateApiAppKey(UpdateApiAppKeyRequest(apiAppId: apiAppId, apiAppKey: apiAppKey, apiAppSecret: apiAppSecret), region: region, logger: logger, on: eventLoop)
+        let input = UpdateApiAppKeyRequest(apiAppId: apiAppId, apiAppKey: apiAppKey, apiAppSecret: apiAppSecret)
+        return self.client.execute(action: "UpdateApiAppKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新应用密钥
@@ -83,6 +84,7 @@ extension Apigateway {
     /// 本接口（UpdateApiAppKey）用于更新应用密钥。
     @inlinable
     public func updateApiAppKey(apiAppId: String, apiAppKey: String, apiAppSecret: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateApiAppKeyResponse {
-        try await self.updateApiAppKey(UpdateApiAppKeyRequest(apiAppId: apiAppId, apiAppKey: apiAppKey, apiAppSecret: apiAppSecret), region: region, logger: logger, on: eventLoop)
+        let input = UpdateApiAppKeyRequest(apiAppId: apiAppId, apiAppKey: apiAppKey, apiAppSecret: apiAppSecret)
+        return try await self.client.execute(action: "UpdateApiAppKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

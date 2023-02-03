@@ -83,12 +83,14 @@ extension Iotvideo {
     /// 设置转发权限
     @inlinable
     public func setForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SetForwardAuthResponse> {
-        self.setForwardAuth(SetForwardAuthRequest(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
+        let input = SetForwardAuthRequest(skey: skey, queueType: queueType)
+        return self.client.execute(action: "SetForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置转发权限
     @inlinable
     public func setForwardAuth(skey: String, queueType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SetForwardAuthResponse {
-        try await self.setForwardAuth(SetForwardAuthRequest(skey: skey, queueType: queueType), region: region, logger: logger, on: eventLoop)
+        let input = SetForwardAuthRequest(skey: skey, queueType: queueType)
+        return try await self.client.execute(action: "SetForwardAuth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

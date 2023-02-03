@@ -63,12 +63,14 @@ extension Dayu {
     /// 删除DDoS高级策略
     @inlinable
     public func deleteDDoSPolicy(business: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDDoSPolicyResponse> {
-        self.deleteDDoSPolicy(DeleteDDoSPolicyRequest(business: business, policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDDoSPolicyRequest(business: business, policyId: policyId)
+        return self.client.execute(action: "DeleteDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除DDoS高级策略
     @inlinable
     public func deleteDDoSPolicy(business: String, policyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDDoSPolicyResponse {
-        try await self.deleteDDoSPolicy(DeleteDDoSPolicyRequest(business: business, policyId: policyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDDoSPolicyRequest(business: business, policyId: policyId)
+        return try await self.client.execute(action: "DeleteDDoSPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

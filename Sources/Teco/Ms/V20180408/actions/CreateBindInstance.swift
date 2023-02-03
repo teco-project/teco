@@ -79,7 +79,8 @@ extension Ms {
     /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func createBindInstance(resourceId: String, appIconUrl: String, appName: String, appPkgName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateBindInstanceResponse> {
-        self.createBindInstance(CreateBindInstanceRequest(resourceId: resourceId, appIconUrl: appIconUrl, appName: appName, appPkgName: appPkgName), region: region, logger: logger, on: eventLoop)
+        let input = CreateBindInstanceRequest(resourceId: resourceId, appIconUrl: appIconUrl, appName: appName, appPkgName: appPkgName)
+        return self.client.execute(action: "CreateBindInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 将应用绑定到资源
@@ -87,6 +88,7 @@ extension Ms {
     /// 将应用和资源进行绑定。（注意：根据国家互联网用户实名制相关要求，使用该产品前，需先完成实名认证。）
     @inlinable
     public func createBindInstance(resourceId: String, appIconUrl: String, appName: String, appPkgName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateBindInstanceResponse {
-        try await self.createBindInstance(CreateBindInstanceRequest(resourceId: resourceId, appIconUrl: appIconUrl, appName: appName, appPkgName: appPkgName), region: region, logger: logger, on: eventLoop)
+        let input = CreateBindInstanceRequest(resourceId: resourceId, appIconUrl: appIconUrl, appName: appName, appPkgName: appPkgName)
+        return try await self.client.execute(action: "CreateBindInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -71,7 +71,8 @@ extension Yunjing {
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
     @inlinable @discardableResult
     public func modifyAlarmAttribute(attribute: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAlarmAttributeResponse> {
-        self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAlarmAttributeRequest(attribute: attribute, value: value)
+        return self.client.execute(action: "ModifyAlarmAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改告警设置
@@ -79,6 +80,7 @@ extension Yunjing {
     /// 本接口（ModifyAlarmAttribute）用于修改告警设置。
     @inlinable @discardableResult
     public func modifyAlarmAttribute(attribute: String, value: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmAttributeResponse {
-        try await self.modifyAlarmAttribute(ModifyAlarmAttributeRequest(attribute: attribute, value: value), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAlarmAttributeRequest(attribute: attribute, value: value)
+        return try await self.client.execute(action: "ModifyAlarmAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

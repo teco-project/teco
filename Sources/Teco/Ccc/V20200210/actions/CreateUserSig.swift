@@ -73,12 +73,14 @@ extension Ccc {
     /// 创建用户数据签名
     @inlinable
     public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateUserSigResponse> {
-        self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData)
+        return self.client.execute(action: "CreateUserSig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建用户数据签名
     @inlinable
     public func createUserSig(sdkAppId: Int64, uid: String, expiredTime: Int64, clientData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateUserSigResponse {
-        try await self.createUserSig(CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData), region: region, logger: logger, on: eventLoop)
+        let input = CreateUserSigRequest(sdkAppId: sdkAppId, uid: uid, expiredTime: expiredTime, clientData: clientData)
+        return try await self.client.execute(action: "CreateUserSig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

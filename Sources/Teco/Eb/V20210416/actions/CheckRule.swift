@@ -46,12 +46,14 @@ extension Eb {
     /// 检验规则
     @inlinable @discardableResult
     public func checkRule(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckRuleResponse> {
-        self.checkRule(CheckRuleRequest(), region: region, logger: logger, on: eventLoop)
+        let input = CheckRuleRequest()
+        return self.client.execute(action: "CheckRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 检验规则
     @inlinable @discardableResult
     public func checkRule(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckRuleResponse {
-        try await self.checkRule(CheckRuleRequest(), region: region, logger: logger, on: eventLoop)
+        let input = CheckRuleRequest()
+        return try await self.client.execute(action: "CheckRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

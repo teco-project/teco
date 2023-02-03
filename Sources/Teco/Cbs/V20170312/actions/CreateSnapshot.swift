@@ -102,7 +102,8 @@ extension Cbs {
     /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
     @inlinable
     public func createSnapshot(diskId: String, snapshotName: String? = nil, deadline: Date? = nil, diskBackupId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotResponse> {
-        self.createSnapshot(CreateSnapshotRequest(diskId: diskId, snapshotName: snapshotName, deadline: deadline, diskBackupId: diskBackupId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateSnapshotRequest(diskId: diskId, snapshotName: snapshotName, deadline: deadline, diskBackupId: diskBackupId, tags: tags)
+        return self.client.execute(action: "CreateSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建快照
@@ -114,6 +115,7 @@ extension Cbs {
     /// * 当前支持将备份点转化为普通快照，转化之后可能会收取快照使用费用，备份点不保留，其占用的备份点配额也将被释放。
     @inlinable
     public func createSnapshot(diskId: String, snapshotName: String? = nil, deadline: Date? = nil, diskBackupId: String? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotResponse {
-        try await self.createSnapshot(CreateSnapshotRequest(diskId: diskId, snapshotName: snapshotName, deadline: deadline, diskBackupId: diskBackupId, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateSnapshotRequest(diskId: diskId, snapshotName: snapshotName, deadline: deadline, diskBackupId: diskBackupId, tags: tags)
+        return try await self.client.execute(action: "CreateSnapshot", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

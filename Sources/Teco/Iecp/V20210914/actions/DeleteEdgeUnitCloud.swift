@@ -54,12 +54,14 @@ extension Iecp {
     /// 删除边缘单元
     @inlinable @discardableResult
     public func deleteEdgeUnitCloud(edgeUnitId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteEdgeUnitCloudResponse> {
-        self.deleteEdgeUnitCloud(DeleteEdgeUnitCloudRequest(edgeUnitId: edgeUnitId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEdgeUnitCloudRequest(edgeUnitId: edgeUnitId)
+        return self.client.execute(action: "DeleteEdgeUnitCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除边缘单元
     @inlinable @discardableResult
     public func deleteEdgeUnitCloud(edgeUnitId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEdgeUnitCloudResponse {
-        try await self.deleteEdgeUnitCloud(DeleteEdgeUnitCloudRequest(edgeUnitId: edgeUnitId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteEdgeUnitCloudRequest(edgeUnitId: edgeUnitId)
+        return try await self.client.execute(action: "DeleteEdgeUnitCloud", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

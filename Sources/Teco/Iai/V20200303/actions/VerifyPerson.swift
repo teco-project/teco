@@ -132,7 +132,8 @@ extension Iai {
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
     public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<VerifyPersonResponse> {
-        self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
+        let input = VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection)
+        return self.client.execute(action: "VerifyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人员验证
@@ -148,6 +149,7 @@ extension Iai {
     /// - 仅支持算法模型版本（FaceModelVersion）为3.0的人员库。
     @inlinable
     public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
-        try await self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), region: region, logger: logger, on: eventLoop)
+        let input = VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection)
+        return try await self.client.execute(action: "VerifyPerson", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

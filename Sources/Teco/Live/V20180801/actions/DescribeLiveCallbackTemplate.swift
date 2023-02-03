@@ -66,7 +66,8 @@ extension Live {
     /// 获取单个回调模板。
     @inlinable
     public func describeLiveCallbackTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveCallbackTemplateResponse> {
-        self.describeLiveCallbackTemplate(DescribeLiveCallbackTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveCallbackTemplateRequest(templateId: templateId)
+        return self.client.execute(action: "DescribeLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单个回调模板
@@ -74,6 +75,7 @@ extension Live {
     /// 获取单个回调模板。
     @inlinable
     public func describeLiveCallbackTemplate(templateId: Int64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveCallbackTemplateResponse {
-        try await self.describeLiveCallbackTemplate(DescribeLiveCallbackTemplateRequest(templateId: templateId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveCallbackTemplateRequest(templateId: templateId)
+        return try await self.client.execute(action: "DescribeLiveCallbackTemplate", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

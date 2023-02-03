@@ -54,12 +54,14 @@ extension Tcss {
     /// 删除运行时反弹shell白名单
     @inlinable @discardableResult
     public func deleteReverseShellWhiteLists(whiteListIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteReverseShellWhiteListsResponse> {
-        self.deleteReverseShellWhiteLists(DeleteReverseShellWhiteListsRequest(whiteListIdSet: whiteListIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteReverseShellWhiteListsRequest(whiteListIdSet: whiteListIdSet)
+        return self.client.execute(action: "DeleteReverseShellWhiteLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除运行时反弹shell白名单
     @inlinable @discardableResult
     public func deleteReverseShellWhiteLists(whiteListIdSet: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReverseShellWhiteListsResponse {
-        try await self.deleteReverseShellWhiteLists(DeleteReverseShellWhiteListsRequest(whiteListIdSet: whiteListIdSet), region: region, logger: logger, on: eventLoop)
+        let input = DeleteReverseShellWhiteListsRequest(whiteListIdSet: whiteListIdSet)
+        return try await self.client.execute(action: "DeleteReverseShellWhiteLists", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -108,12 +108,14 @@ extension Cpdp {
     /// 务工卡-查询核身记录
     @inlinable
     public func getPayRollAuthList(openId: String, subMerchantId: String, authDate: String, offset: Int64, limit: Int64, wechatAppId: String? = nil, wechatSubAppId: String? = nil, authStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetPayRollAuthListResponse> {
-        self.getPayRollAuthList(GetPayRollAuthListRequest(openId: openId, subMerchantId: subMerchantId, authDate: authDate, offset: offset, limit: limit, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId, authStatus: authStatus), region: region, logger: logger, on: eventLoop)
+        let input = GetPayRollAuthListRequest(openId: openId, subMerchantId: subMerchantId, authDate: authDate, offset: offset, limit: limit, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId, authStatus: authStatus)
+        return self.client.execute(action: "GetPayRollAuthList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 务工卡-查询核身记录
     @inlinable
     public func getPayRollAuthList(openId: String, subMerchantId: String, authDate: String, offset: Int64, limit: Int64, wechatAppId: String? = nil, wechatSubAppId: String? = nil, authStatus: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetPayRollAuthListResponse {
-        try await self.getPayRollAuthList(GetPayRollAuthListRequest(openId: openId, subMerchantId: subMerchantId, authDate: authDate, offset: offset, limit: limit, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId, authStatus: authStatus), region: region, logger: logger, on: eventLoop)
+        let input = GetPayRollAuthListRequest(openId: openId, subMerchantId: subMerchantId, authDate: authDate, offset: offset, limit: limit, wechatAppId: wechatAppId, wechatSubAppId: wechatSubAppId, authStatus: authStatus)
+        return try await self.client.execute(action: "GetPayRollAuthList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

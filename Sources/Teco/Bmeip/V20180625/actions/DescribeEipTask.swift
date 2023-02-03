@@ -58,12 +58,14 @@ extension Bmeip {
     /// 黑石EIP查询任务状态
     @inlinable
     public func describeEipTask(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeEipTaskResponse> {
-        self.describeEipTask(DescribeEipTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEipTaskRequest(taskId: taskId)
+        return self.client.execute(action: "DescribeEipTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 黑石EIP查询任务状态
     @inlinable
     public func describeEipTask(taskId: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeEipTaskResponse {
-        try await self.describeEipTask(DescribeEipTaskRequest(taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeEipTaskRequest(taskId: taskId)
+        return try await self.client.execute(action: "DescribeEipTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

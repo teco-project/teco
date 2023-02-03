@@ -73,12 +73,14 @@ extension Billing {
     /// 获取按项目汇总费用分布
     @inlinable
     public func describeBillSummaryByProject(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillSummaryByProjectResponse> {
-        self.describeBillSummaryByProject(DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin)
+        return self.client.execute(action: "DescribeBillSummaryByProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取按项目汇总费用分布
     @inlinable
     public func describeBillSummaryByProject(beginTime: String, endTime: String, payerUin: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillSummaryByProjectResponse {
-        try await self.describeBillSummaryByProject(DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillSummaryByProjectRequest(beginTime: beginTime, endTime: endTime, payerUin: payerUin)
+        return try await self.client.execute(action: "DescribeBillSummaryByProject", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

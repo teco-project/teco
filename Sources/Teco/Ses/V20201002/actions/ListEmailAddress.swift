@@ -51,12 +51,14 @@ extension Ses {
     /// 获取发信地址列表
     @inlinable
     public func listEmailAddress(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListEmailAddressResponse> {
-        self.listEmailAddress(ListEmailAddressRequest(), region: region, logger: logger, on: eventLoop)
+        let input = ListEmailAddressRequest()
+        return self.client.execute(action: "ListEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取发信地址列表
     @inlinable
     public func listEmailAddress(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListEmailAddressResponse {
-        try await self.listEmailAddress(ListEmailAddressRequest(), region: region, logger: logger, on: eventLoop)
+        let input = ListEmailAddressRequest()
+        return try await self.client.execute(action: "ListEmailAddress", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

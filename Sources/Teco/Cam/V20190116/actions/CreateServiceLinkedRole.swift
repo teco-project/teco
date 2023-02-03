@@ -73,12 +73,14 @@ extension Cam {
     /// 创建服务相关角色
     @inlinable
     public func createServiceLinkedRole(qcsServiceName: [String], customSuffix: String? = nil, description: String? = nil, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateServiceLinkedRoleResponse> {
-        self.createServiceLinkedRole(CreateServiceLinkedRoleRequest(qcsServiceName: qcsServiceName, customSuffix: customSuffix, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateServiceLinkedRoleRequest(qcsServiceName: qcsServiceName, customSuffix: customSuffix, description: description, tags: tags)
+        return self.client.execute(action: "CreateServiceLinkedRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建服务相关角色
     @inlinable
     public func createServiceLinkedRole(qcsServiceName: [String], customSuffix: String? = nil, description: String? = nil, tags: [RoleTags]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateServiceLinkedRoleResponse {
-        try await self.createServiceLinkedRole(CreateServiceLinkedRoleRequest(qcsServiceName: qcsServiceName, customSuffix: customSuffix, description: description, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = CreateServiceLinkedRoleRequest(qcsServiceName: qcsServiceName, customSuffix: customSuffix, description: description, tags: tags)
+        return try await self.client.execute(action: "CreateServiceLinkedRole", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

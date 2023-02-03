@@ -79,12 +79,14 @@ extension Antiddos {
     /// 新增CC精准防护策略
     @inlinable @discardableResult
     public func createCCPrecisionPolicy(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCCPrecisionPolicyResponse> {
-        self.createCCPrecisionPolicy(CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList), region: region, logger: logger, on: eventLoop)
+        let input = CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList)
+        return self.client.execute(action: "CreateCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增CC精准防护策略
     @inlinable @discardableResult
     public func createCCPrecisionPolicy(instanceId: String, ip: String, protocol: String, domain: String, policyAction: String, policyList: [CCPrecisionPlyRecord], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCCPrecisionPolicyResponse {
-        try await self.createCCPrecisionPolicy(CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList), region: region, logger: logger, on: eventLoop)
+        let input = CreateCCPrecisionPolicyRequest(instanceId: instanceId, ip: ip, protocol: `protocol`, domain: domain, policyAction: policyAction, policyList: policyList)
+        return try await self.client.execute(action: "CreateCCPrecisionPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

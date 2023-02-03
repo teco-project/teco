@@ -69,12 +69,14 @@ extension Wedata {
     /// 数据集成大屏同步条数统计趋势
     @inlinable
     public func describeIntegrationStatisticsRecordsTrend(taskType: Int64, projectId: String, queryDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeIntegrationStatisticsRecordsTrendResponse> {
-        self.describeIntegrationStatisticsRecordsTrend(DescribeIntegrationStatisticsRecordsTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIntegrationStatisticsRecordsTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate)
+        return self.client.execute(action: "DescribeIntegrationStatisticsRecordsTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 数据集成大屏同步条数统计趋势
     @inlinable
     public func describeIntegrationStatisticsRecordsTrend(taskType: Int64, projectId: String, queryDate: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeIntegrationStatisticsRecordsTrendResponse {
-        try await self.describeIntegrationStatisticsRecordsTrend(DescribeIntegrationStatisticsRecordsTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate), region: region, logger: logger, on: eventLoop)
+        let input = DescribeIntegrationStatisticsRecordsTrendRequest(taskType: taskType, projectId: projectId, queryDate: queryDate)
+        return try await self.client.execute(action: "DescribeIntegrationStatisticsRecordsTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -94,7 +94,8 @@ extension Dbbrain {
     /// 获取当前实例下的单个proxy的会话统计详情信息， 返回数据为单个 proxy 的会话统计信息。【注意】该接口仅限部分环境调用。
     @inlinable
     public func describeProxyProcessStatistics(instanceId: String, instanceProxyId: String, limit: Int64, product: String, offset: Int64? = nil, sortBy: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyProcessStatisticsResponse> {
-        self.describeProxyProcessStatistics(DescribeProxyProcessStatisticsRequest(instanceId: instanceId, instanceProxyId: instanceProxyId, limit: limit, product: product, offset: offset, sortBy: sortBy, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyProcessStatisticsRequest(instanceId: instanceId, instanceProxyId: instanceProxyId, limit: limit, product: product, offset: offset, sortBy: sortBy, orderDirection: orderDirection)
+        return self.client.execute(action: "DescribeProxyProcessStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取单个proxy实时会话统计详情
@@ -102,6 +103,7 @@ extension Dbbrain {
     /// 获取当前实例下的单个proxy的会话统计详情信息， 返回数据为单个 proxy 的会话统计信息。【注意】该接口仅限部分环境调用。
     @inlinable
     public func describeProxyProcessStatistics(instanceId: String, instanceProxyId: String, limit: Int64, product: String, offset: Int64? = nil, sortBy: String? = nil, orderDirection: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyProcessStatisticsResponse {
-        try await self.describeProxyProcessStatistics(DescribeProxyProcessStatisticsRequest(instanceId: instanceId, instanceProxyId: instanceProxyId, limit: limit, product: product, offset: offset, sortBy: sortBy, orderDirection: orderDirection), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyProcessStatisticsRequest(instanceId: instanceId, instanceProxyId: instanceProxyId, limit: limit, product: product, offset: offset, sortBy: sortBy, orderDirection: orderDirection)
+        return try await self.client.execute(action: "DescribeProxyProcessStatistics", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

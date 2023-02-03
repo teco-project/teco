@@ -65,7 +65,8 @@ extension Tdcpg {
     /// 修改集群自动续费，只对预付费集群生效。
     @inlinable @discardableResult
     public func modifyClustersAutoRenewFlag(clusterIdSet: [String], autoRenewFlag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClustersAutoRenewFlagResponse> {
-        self.modifyClustersAutoRenewFlag(ModifyClustersAutoRenewFlagRequest(clusterIdSet: clusterIdSet, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClustersAutoRenewFlagRequest(clusterIdSet: clusterIdSet, autoRenewFlag: autoRenewFlag)
+        return self.client.execute(action: "ModifyClustersAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群自动续费
@@ -73,6 +74,7 @@ extension Tdcpg {
     /// 修改集群自动续费，只对预付费集群生效。
     @inlinable @discardableResult
     public func modifyClustersAutoRenewFlag(clusterIdSet: [String], autoRenewFlag: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClustersAutoRenewFlagResponse {
-        try await self.modifyClustersAutoRenewFlag(ModifyClustersAutoRenewFlagRequest(clusterIdSet: clusterIdSet, autoRenewFlag: autoRenewFlag), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClustersAutoRenewFlagRequest(clusterIdSet: clusterIdSet, autoRenewFlag: autoRenewFlag)
+        return try await self.client.execute(action: "ModifyClustersAutoRenewFlag", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

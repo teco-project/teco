@@ -89,7 +89,8 @@ extension Apcas {
     /// 查询当前账号AppID下的画像洞察任务列表
     @inlinable
     public func getTaskList(pageNumber: UInt64, pageSize: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, taskName: String? = nil, taskStatus: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetTaskListResponse> {
-        self.getTaskList(GetTaskListRequest(pageNumber: pageNumber, pageSize: pageSize, startTime: startTime, endTime: endTime, taskName: taskName, taskStatus: taskStatus), region: region, logger: logger, on: eventLoop)
+        let input = GetTaskListRequest(pageNumber: pageNumber, pageSize: pageSize, startTime: startTime, endTime: endTime, taskName: taskName, taskStatus: taskStatus)
+        return self.client.execute(action: "GetTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询画像洞察任务列表
@@ -97,6 +98,7 @@ extension Apcas {
     /// 查询当前账号AppID下的画像洞察任务列表
     @inlinable
     public func getTaskList(pageNumber: UInt64, pageSize: UInt64, startTime: UInt64? = nil, endTime: UInt64? = nil, taskName: String? = nil, taskStatus: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetTaskListResponse {
-        try await self.getTaskList(GetTaskListRequest(pageNumber: pageNumber, pageSize: pageSize, startTime: startTime, endTime: endTime, taskName: taskName, taskStatus: taskStatus), region: region, logger: logger, on: eventLoop)
+        let input = GetTaskListRequest(pageNumber: pageNumber, pageSize: pageSize, startTime: startTime, endTime: endTime, taskName: taskName, taskStatus: taskStatus)
+        return try await self.client.execute(action: "GetTaskList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

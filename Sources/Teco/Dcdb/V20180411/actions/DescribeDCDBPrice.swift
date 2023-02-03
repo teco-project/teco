@@ -117,7 +117,8 @@ extension Dcdb {
     /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
     @inlinable
     public func describeDCDBPrice(zone: String, count: Int64, period: Int64, shardNodeCount: Int64, shardMemory: Int64, shardStorage: Int64, shardCount: Int64, paymode: String? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDCDBPriceResponse> {
-        self.describeDCDBPrice(DescribeDCDBPriceRequest(zone: zone, count: count, period: period, shardNodeCount: shardNodeCount, shardMemory: shardMemory, shardStorage: shardStorage, shardCount: shardCount, paymode: paymode, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDCDBPriceRequest(zone: zone, count: count, period: period, shardNodeCount: shardNodeCount, shardMemory: shardMemory, shardStorage: shardStorage, shardCount: shardCount, paymode: paymode, amountUnit: amountUnit)
+        return self.client.execute(action: "DescribeDCDBPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新购分布式数据库实例询价
@@ -125,6 +126,7 @@ extension Dcdb {
     /// 本接口（DescribeDCDBPrice）用于在购买实例前，查询实例的价格。
     @inlinable
     public func describeDCDBPrice(zone: String, count: Int64, period: Int64, shardNodeCount: Int64, shardMemory: Int64, shardStorage: Int64, shardCount: Int64, paymode: String? = nil, amountUnit: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDCDBPriceResponse {
-        try await self.describeDCDBPrice(DescribeDCDBPriceRequest(zone: zone, count: count, period: period, shardNodeCount: shardNodeCount, shardMemory: shardMemory, shardStorage: shardStorage, shardCount: shardCount, paymode: paymode, amountUnit: amountUnit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDCDBPriceRequest(zone: zone, count: count, period: period, shardNodeCount: shardNodeCount, shardMemory: shardMemory, shardStorage: shardStorage, shardCount: shardCount, paymode: paymode, amountUnit: amountUnit)
+        return try await self.client.execute(action: "DescribeDCDBPrice", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

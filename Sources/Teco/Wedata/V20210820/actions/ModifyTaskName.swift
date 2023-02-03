@@ -73,12 +73,14 @@ extension Wedata {
     /// 重命名任务（任务编辑）
     @inlinable
     public func modifyTaskName(taskName: String, taskId: String, projectId: String, notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyTaskNameResponse> {
-        self.modifyTaskName(ModifyTaskNameRequest(taskName: taskName, taskId: taskId, projectId: projectId, notes: notes), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTaskNameRequest(taskName: taskName, taskId: taskId, projectId: projectId, notes: notes)
+        return self.client.execute(action: "ModifyTaskName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重命名任务（任务编辑）
     @inlinable
     public func modifyTaskName(taskName: String, taskId: String, projectId: String, notes: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTaskNameResponse {
-        try await self.modifyTaskName(ModifyTaskNameRequest(taskName: taskName, taskId: taskId, projectId: projectId, notes: notes), region: region, logger: logger, on: eventLoop)
+        let input = ModifyTaskNameRequest(taskName: taskName, taskId: taskId, projectId: projectId, notes: notes)
+        return try await self.client.execute(action: "ModifyTaskName", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -79,7 +79,8 @@ extension Dlc {
     /// 该接口（CreateImportTask）用于创建导入任务
     @inlinable
     public func createImportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateImportTaskResponse> {
-        self.createImportTask(CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), region: region, logger: logger, on: eventLoop)
+        let input = CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType)
+        return self.client.execute(action: "CreateImportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建导入任务
@@ -87,6 +88,7 @@ extension Dlc {
     /// 该接口（CreateImportTask）用于创建导入任务
     @inlinable
     public func createImportTask(inputType: String, inputConf: [KVPair], outputConf: [KVPair], outputType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateImportTaskResponse {
-        try await self.createImportTask(CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType), region: region, logger: logger, on: eventLoop)
+        let input = CreateImportTaskRequest(inputType: inputType, inputConf: inputConf, outputConf: outputConf, outputType: outputType)
+        return try await self.client.execute(action: "CreateImportTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

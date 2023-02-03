@@ -62,12 +62,14 @@ extension Mariadb {
     /// 隔离后付费实例
     @inlinable
     public func isolateHourDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<IsolateHourDBInstanceResponse> {
-        self.isolateHourDBInstance(IsolateHourDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = IsolateHourDBInstanceRequest(instanceIds: instanceIds)
+        return self.client.execute(action: "IsolateHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 隔离后付费实例
     @inlinable
     public func isolateHourDBInstance(instanceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IsolateHourDBInstanceResponse {
-        try await self.isolateHourDBInstance(IsolateHourDBInstanceRequest(instanceIds: instanceIds), region: region, logger: logger, on: eventLoop)
+        let input = IsolateHourDBInstanceRequest(instanceIds: instanceIds)
+        return try await self.client.execute(action: "IsolateHourDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

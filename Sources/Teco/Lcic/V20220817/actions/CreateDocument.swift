@@ -105,7 +105,8 @@ extension Lcic {
     /// 创建房间内可以使用的文档。
     @inlinable
     public func createDocument(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateDocumentResponse> {
-        self.createDocument(CreateDocumentRequest(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize), region: region, logger: logger, on: eventLoop)
+        let input = CreateDocumentRequest(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize)
+        return self.client.execute(action: "CreateDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文档
@@ -113,6 +114,7 @@ extension Lcic {
     /// 创建房间内可以使用的文档。
     @inlinable
     public func createDocument(sdkAppId: UInt64, documentUrl: String, documentName: String, owner: String, transcodeType: UInt64? = nil, permission: UInt64? = nil, documentType: String? = nil, documentSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDocumentResponse {
-        try await self.createDocument(CreateDocumentRequest(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize), region: region, logger: logger, on: eventLoop)
+        let input = CreateDocumentRequest(sdkAppId: sdkAppId, documentUrl: documentUrl, documentName: documentName, owner: owner, transcodeType: transcodeType, permission: permission, documentType: documentType, documentSize: documentSize)
+        return try await self.client.execute(action: "CreateDocument", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

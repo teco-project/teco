@@ -89,7 +89,8 @@ extension Monitor {
     /// 更新 Prometheus 的预聚合规则
     @inlinable
     public func updateRecordingRule(name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateRecordingRuleResponse> {
-        self.updateRecordingRule(UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState)
+        return self.client.execute(action: "UpdateRecordingRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新预聚合规则
@@ -97,6 +98,7 @@ extension Monitor {
     /// 更新 Prometheus 的预聚合规则
     @inlinable
     public func updateRecordingRule(name: String, group: String, instanceId: String, ruleId: String, ruleState: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateRecordingRuleResponse {
-        try await self.updateRecordingRule(UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState), region: region, logger: logger, on: eventLoop)
+        let input = UpdateRecordingRuleRequest(name: name, group: group, instanceId: instanceId, ruleId: ruleId, ruleState: ruleState)
+        return try await self.client.execute(action: "UpdateRecordingRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

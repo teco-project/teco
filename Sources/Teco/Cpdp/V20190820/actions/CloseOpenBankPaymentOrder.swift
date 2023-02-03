@@ -82,12 +82,14 @@ extension Cpdp {
     /// 云企付-关闭订单
     @inlinable
     public func closeOpenBankPaymentOrder(channelMerchantId: String, outOrderId: String? = nil, channelOrderId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CloseOpenBankPaymentOrderResponse> {
-        self.closeOpenBankPaymentOrder(CloseOpenBankPaymentOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, channelOrderId: channelOrderId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = CloseOpenBankPaymentOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, channelOrderId: channelOrderId, environment: environment)
+        return self.client.execute(action: "CloseOpenBankPaymentOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 云企付-关闭订单
     @inlinable
     public func closeOpenBankPaymentOrder(channelMerchantId: String, outOrderId: String? = nil, channelOrderId: String? = nil, environment: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CloseOpenBankPaymentOrderResponse {
-        try await self.closeOpenBankPaymentOrder(CloseOpenBankPaymentOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, channelOrderId: channelOrderId, environment: environment), region: region, logger: logger, on: eventLoop)
+        let input = CloseOpenBankPaymentOrderRequest(channelMerchantId: channelMerchantId, outOrderId: outOrderId, channelOrderId: channelOrderId, environment: environment)
+        return try await self.client.execute(action: "CloseOpenBankPaymentOrder", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

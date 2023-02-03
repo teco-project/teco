@@ -91,7 +91,8 @@ extension Live {
     /// 查询绑定证书的域名列表。
     @inlinable
     public func describeLiveDomainCertBindings(domainSearch: String? = nil, offset: Int64? = nil, length: Int64? = nil, domainName: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLiveDomainCertBindingsResponse> {
-        self.describeLiveDomainCertBindings(DescribeLiveDomainCertBindingsRequest(domainSearch: domainSearch, offset: offset, length: length, domainName: domainName, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveDomainCertBindingsRequest(domainSearch: domainSearch, offset: offset, length: length, domainName: domainName, orderBy: orderBy)
+        return self.client.execute(action: "DescribeLiveDomainCertBindings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询绑定证书的域名列表
@@ -99,6 +100,7 @@ extension Live {
     /// 查询绑定证书的域名列表。
     @inlinable
     public func describeLiveDomainCertBindings(domainSearch: String? = nil, offset: Int64? = nil, length: Int64? = nil, domainName: String? = nil, orderBy: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertBindingsResponse {
-        try await self.describeLiveDomainCertBindings(DescribeLiveDomainCertBindingsRequest(domainSearch: domainSearch, offset: offset, length: length, domainName: domainName, orderBy: orderBy), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLiveDomainCertBindingsRequest(domainSearch: domainSearch, offset: offset, length: length, domainName: domainName, orderBy: orderBy)
+        return try await self.client.execute(action: "DescribeLiveDomainCertBindings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

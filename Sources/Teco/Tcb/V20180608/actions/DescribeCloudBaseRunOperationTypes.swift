@@ -75,7 +75,8 @@ extension Tcb {
     /// 查询服务、版本和操作类型
     @inlinable
     public func describeCloudBaseRunOperationTypes(envId: String, serverName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCloudBaseRunOperationTypesResponse> {
-        self.describeCloudBaseRunOperationTypes(DescribeCloudBaseRunOperationTypesRequest(envId: envId, serverName: serverName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudBaseRunOperationTypesRequest(envId: envId, serverName: serverName)
+        return self.client.execute(action: "DescribeCloudBaseRunOperationTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询操作类型接口
@@ -83,6 +84,7 @@ extension Tcb {
     /// 查询服务、版本和操作类型
     @inlinable
     public func describeCloudBaseRunOperationTypes(envId: String, serverName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCloudBaseRunOperationTypesResponse {
-        try await self.describeCloudBaseRunOperationTypes(DescribeCloudBaseRunOperationTypesRequest(envId: envId, serverName: serverName), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCloudBaseRunOperationTypesRequest(envId: envId, serverName: serverName)
+        return try await self.client.execute(action: "DescribeCloudBaseRunOperationTypes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

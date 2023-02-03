@@ -68,12 +68,14 @@ extension Batch {
     /// 创建黑石计算环境
     @inlinable
     public func createCpmComputeEnv(computeEnv: NamedCpmComputeEnv, placement: Placement? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCpmComputeEnvResponse> {
-        self.createCpmComputeEnv(CreateCpmComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
+        let input = CreateCpmComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken)
+        return self.client.execute(action: "CreateCpmComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建黑石计算环境
     @inlinable
     public func createCpmComputeEnv(computeEnv: NamedCpmComputeEnv, placement: Placement? = nil, clientToken: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCpmComputeEnvResponse {
-        try await self.createCpmComputeEnv(CreateCpmComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken), region: region, logger: logger, on: eventLoop)
+        let input = CreateCpmComputeEnvRequest(computeEnv: computeEnv, placement: placement, clientToken: clientToken)
+        return try await self.client.execute(action: "CreateCpmComputeEnv", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

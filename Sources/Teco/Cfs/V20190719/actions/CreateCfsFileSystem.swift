@@ -157,7 +157,8 @@ extension Cfs {
     /// 用于添加新文件系统
     @inlinable
     public func createCfsFileSystem(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCfsFileSystemResponse> {
-        self.createCfsFileSystem(CreateCfsFileSystemRequest(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity), region: region, logger: logger, on: eventLoop)
+        let input = CreateCfsFileSystemRequest(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity)
+        return self.client.execute(action: "CreateCfsFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建文件系统
@@ -165,6 +166,7 @@ extension Cfs {
     /// 用于添加新文件系统
     @inlinable
     public func createCfsFileSystem(zone: String, netInterface: String, pGroupId: String, protocol: String? = nil, storageType: String? = nil, vpcId: String? = nil, subnetId: String? = nil, mountIP: String? = nil, fsName: String? = nil, resourceTags: [TagInfo]? = nil, clientToken: String? = nil, ccnId: String? = nil, cidrBlock: String? = nil, capacity: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCfsFileSystemResponse {
-        try await self.createCfsFileSystem(CreateCfsFileSystemRequest(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity), region: region, logger: logger, on: eventLoop)
+        let input = CreateCfsFileSystemRequest(zone: zone, netInterface: netInterface, pGroupId: pGroupId, protocol: `protocol`, storageType: storageType, vpcId: vpcId, subnetId: subnetId, mountIP: mountIP, fsName: fsName, resourceTags: resourceTags, clientToken: clientToken, ccnId: ccnId, cidrBlock: cidrBlock, capacity: capacity)
+        return try await self.client.execute(action: "CreateCfsFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

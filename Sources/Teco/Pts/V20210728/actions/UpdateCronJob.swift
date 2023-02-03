@@ -110,12 +110,14 @@ extension Pts {
     /// 更新定时任务
     @inlinable @discardableResult
     public func updateCronJob(projectId: String, cronJobId: String, note: String, cronExpression: String, frequencyType: Int64, name: String, scenarioId: String, scenarioName: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateCronJobResponse> {
-        self.updateCronJob(UpdateCronJobRequest(projectId: projectId, cronJobId: cronJobId, note: note, cronExpression: cronExpression, frequencyType: frequencyType, name: name, scenarioId: scenarioId, scenarioName: scenarioName, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateCronJobRequest(projectId: projectId, cronJobId: cronJobId, note: note, cronExpression: cronExpression, frequencyType: frequencyType, name: name, scenarioId: scenarioId, scenarioName: scenarioName, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId)
+        return self.client.execute(action: "UpdateCronJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新定时任务
     @inlinable @discardableResult
     public func updateCronJob(projectId: String, cronJobId: String, note: String, cronExpression: String, frequencyType: Int64, name: String, scenarioId: String, scenarioName: String, jobOwner: String, endTime: Date? = nil, noticeId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateCronJobResponse {
-        try await self.updateCronJob(UpdateCronJobRequest(projectId: projectId, cronJobId: cronJobId, note: note, cronExpression: cronExpression, frequencyType: frequencyType, name: name, scenarioId: scenarioId, scenarioName: scenarioName, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId), region: region, logger: logger, on: eventLoop)
+        let input = UpdateCronJobRequest(projectId: projectId, cronJobId: cronJobId, note: note, cronExpression: cronExpression, frequencyType: frequencyType, name: name, scenarioId: scenarioId, scenarioName: scenarioName, jobOwner: jobOwner, endTime: endTime, noticeId: noticeId)
+        return try await self.client.execute(action: "UpdateCronJob", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Cdb {
     /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
     @inlinable @discardableResult
     public func deleteAuditLogFile(fileName: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAuditLogFileResponse> {
-        self.deleteAuditLogFile(DeleteAuditLogFileRequest(fileName: fileName, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAuditLogFileRequest(fileName: fileName, instanceId: instanceId)
+        return self.client.execute(action: "DeleteAuditLogFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除审计日志文件
@@ -73,6 +74,7 @@ extension Cdb {
     /// 本接口(DeleteAuditLogFile)用于删除云数据库实例的审计日志文件。
     @inlinable @discardableResult
     public func deleteAuditLogFile(fileName: String, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAuditLogFileResponse {
-        try await self.deleteAuditLogFile(DeleteAuditLogFileRequest(fileName: fileName, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteAuditLogFileRequest(fileName: fileName, instanceId: instanceId)
+        return try await self.client.execute(action: "DeleteAuditLogFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

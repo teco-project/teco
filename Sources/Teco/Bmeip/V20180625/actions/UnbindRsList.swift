@@ -64,7 +64,8 @@ extension Bmeip {
     /// 批量解绑物理机弹性公网IP接口
     @inlinable
     public func unbindRsList(eipRsList: [EipRsMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UnbindRsListResponse> {
-        self.unbindRsList(UnbindRsListRequest(eipRsList: eipRsList), region: region, logger: logger, on: eventLoop)
+        let input = UnbindRsListRequest(eipRsList: eipRsList)
+        return self.client.execute(action: "UnbindRsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 批量解绑物理机弹性公网IP
@@ -72,6 +73,7 @@ extension Bmeip {
     /// 批量解绑物理机弹性公网IP接口
     @inlinable
     public func unbindRsList(eipRsList: [EipRsMap], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnbindRsListResponse {
-        try await self.unbindRsList(UnbindRsListRequest(eipRsList: eipRsList), region: region, logger: logger, on: eventLoop)
+        let input = UnbindRsListRequest(eipRsList: eipRsList)
+        return try await self.client.execute(action: "UnbindRsList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

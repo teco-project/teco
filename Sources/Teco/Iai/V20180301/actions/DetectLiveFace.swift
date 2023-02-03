@@ -161,7 +161,8 @@ extension Iai {
     /// |人脸静态活体检测|0.0019元/次|0.0017元/次|0.0013元/次|
     @inlinable
     public func detectLiveFace(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLiveFaceResponse> {
-        self.detectLiveFace(DetectLiveFaceRequest(image: image, url: url, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
+        let input = DetectLiveFaceRequest(image: image, url: url, faceModelVersion: faceModelVersion)
+        return self.client.execute(action: "DetectLiveFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 人脸静态活体检测
@@ -190,6 +191,7 @@ extension Iai {
     /// |人脸静态活体检测|0.0019元/次|0.0017元/次|0.0013元/次|
     @inlinable
     public func detectLiveFace(image: String? = nil, url: String? = nil, faceModelVersion: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLiveFaceResponse {
-        try await self.detectLiveFace(DetectLiveFaceRequest(image: image, url: url, faceModelVersion: faceModelVersion), region: region, logger: logger, on: eventLoop)
+        let input = DetectLiveFaceRequest(image: image, url: url, faceModelVersion: faceModelVersion)
+        return try await self.client.execute(action: "DetectLiveFace", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

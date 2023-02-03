@@ -64,12 +64,14 @@ extension Bmvpc {
     /// 修改子网属性
     @inlinable @discardableResult
     public func modifySubnetAttribute(vpcId: String, subnetId: String, subnetName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySubnetAttributeResponse> {
-        self.modifySubnetAttribute(ModifySubnetAttributeRequest(vpcId: vpcId, subnetId: subnetId, subnetName: subnetName), region: region, logger: logger, on: eventLoop)
+        let input = ModifySubnetAttributeRequest(vpcId: vpcId, subnetId: subnetId, subnetName: subnetName)
+        return self.client.execute(action: "ModifySubnetAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改子网属性
     @inlinable @discardableResult
     public func modifySubnetAttribute(vpcId: String, subnetId: String, subnetName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySubnetAttributeResponse {
-        try await self.modifySubnetAttribute(ModifySubnetAttributeRequest(vpcId: vpcId, subnetId: subnetId, subnetName: subnetName), region: region, logger: logger, on: eventLoop)
+        let input = ModifySubnetAttributeRequest(vpcId: vpcId, subnetId: subnetId, subnetName: subnetName)
+        return try await self.client.execute(action: "ModifySubnetAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

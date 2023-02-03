@@ -74,7 +74,8 @@ extension Vod {
     /// 4. 默认预热配额为每天10000个 URL。
     @inlinable @discardableResult
     public func pushUrlCache(urls: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PushUrlCacheResponse> {
-        self.pushUrlCache(PushUrlCacheRequest(urls: urls, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = PushUrlCacheRequest(urls: urls, subAppId: subAppId)
+        return self.client.execute(action: "PushUrlCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 预热URL
@@ -85,6 +86,7 @@ extension Vod {
     /// 4. 默认预热配额为每天10000个 URL。
     @inlinable @discardableResult
     public func pushUrlCache(urls: [String], subAppId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PushUrlCacheResponse {
-        try await self.pushUrlCache(PushUrlCacheRequest(urls: urls, subAppId: subAppId), region: region, logger: logger, on: eventLoop)
+        let input = PushUrlCacheRequest(urls: urls, subAppId: subAppId)
+        return try await self.client.execute(action: "PushUrlCache", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -63,7 +63,8 @@ extension Lighthouse {
     /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 DescribeDiskBackups接口查询，见输出参数中 DiskBackupState 字段解释。
     @inlinable @discardableResult
     public func deleteDiskBackups(diskBackupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteDiskBackupsResponse> {
-        self.deleteDiskBackups(DeleteDiskBackupsRequest(diskBackupIds: diskBackupIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDiskBackupsRequest(diskBackupIds: diskBackupIds)
+        return self.client.execute(action: "DeleteDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除云硬盘备份点
@@ -72,6 +73,7 @@ extension Lighthouse {
     /// 云硬盘备份点必须处于 NORMAL 状态，云硬盘备份点状态可以通过 DescribeDiskBackups接口查询，见输出参数中 DiskBackupState 字段解释。
     @inlinable @discardableResult
     public func deleteDiskBackups(diskBackupIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDiskBackupsResponse {
-        try await self.deleteDiskBackups(DeleteDiskBackupsRequest(diskBackupIds: diskBackupIds), region: region, logger: logger, on: eventLoop)
+        let input = DeleteDiskBackupsRequest(diskBackupIds: diskBackupIds)
+        return try await self.client.execute(action: "DeleteDiskBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

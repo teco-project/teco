@@ -65,7 +65,8 @@ extension Ump {
     /// 场内抓拍上报接口
     @inlinable
     public func createCapture(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateCaptureResponse> {
-        self.createCapture(CreateCaptureRequest(data: data), region: region, logger: logger, on: eventLoop)
+        let input = CreateCaptureRequest(data: data)
+        return self.client.execute(action: "CreateCapture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 抓拍上报接口
@@ -73,6 +74,7 @@ extension Ump {
     /// 场内抓拍上报接口
     @inlinable
     public func createCapture(data: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCaptureResponse {
-        try await self.createCapture(CreateCaptureRequest(data: data), region: region, logger: logger, on: eventLoop)
+        let input = CreateCaptureRequest(data: data)
+        return try await self.client.execute(action: "CreateCapture", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -93,7 +93,8 @@ extension Sqlserver {
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
     public func describeMigrations(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMigrationsResponse> {
-        self.describeMigrations(DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
+        return self.client.execute(action: "DescribeMigrations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询迁移任务列表
@@ -101,6 +102,7 @@ extension Sqlserver {
     /// 本接口（DescribeMigrations）根据输入的限定条件，查询符合条件的迁移任务列表
     @inlinable
     public func describeMigrations(statusSet: [Int64]? = nil, migrateName: String? = nil, limit: Int64? = nil, offset: Int64? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMigrationsResponse {
-        try await self.describeMigrations(DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeMigrationsRequest(statusSet: statusSet, migrateName: migrateName, limit: limit, offset: offset, orderBy: orderBy, orderByType: orderByType)
+        return try await self.client.execute(action: "DescribeMigrations", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

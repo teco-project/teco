@@ -94,7 +94,8 @@ extension Dbbrain {
     /// 创建实例SQL限流任务。
     @inlinable
     public func createSqlFilter(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSqlFilterResponse> {
-        self.createSqlFilter(CreateSqlFilterRequest(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product), region: region, logger: logger, on: eventLoop)
+        let input = CreateSqlFilterRequest(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product)
+        return self.client.execute(action: "CreateSqlFilter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建实例SQL限流任务
@@ -102,6 +103,7 @@ extension Dbbrain {
     /// 创建实例SQL限流任务。
     @inlinable
     public func createSqlFilter(instanceId: String, sessionToken: String, sqlType: String, filterKey: String, maxConcurrency: Int64, duration: Int64, product: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSqlFilterResponse {
-        try await self.createSqlFilter(CreateSqlFilterRequest(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product), region: region, logger: logger, on: eventLoop)
+        let input = CreateSqlFilterRequest(instanceId: instanceId, sessionToken: sessionToken, sqlType: sqlType, filterKey: filterKey, maxConcurrency: maxConcurrency, duration: duration, product: product)
+        return try await self.client.execute(action: "CreateSqlFilter", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

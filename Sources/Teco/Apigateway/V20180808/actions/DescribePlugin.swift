@@ -74,7 +74,8 @@ extension Apigateway {
     /// 展示插件详情，支持按照插件ID进行。
     @inlinable
     public func describePlugin(pluginId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribePluginResponse> {
-        self.describePlugin(DescribePluginRequest(pluginId: pluginId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribePluginRequest(pluginId: pluginId, limit: limit, offset: offset)
+        return self.client.execute(action: "DescribePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询插件详情
@@ -82,6 +83,7 @@ extension Apigateway {
     /// 展示插件详情，支持按照插件ID进行。
     @inlinable
     public func describePlugin(pluginId: String, limit: Int64? = nil, offset: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribePluginResponse {
-        try await self.describePlugin(DescribePluginRequest(pluginId: pluginId, limit: limit, offset: offset), region: region, logger: logger, on: eventLoop)
+        let input = DescribePluginRequest(pluginId: pluginId, limit: limit, offset: offset)
+        return try await self.client.execute(action: "DescribePlugin", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

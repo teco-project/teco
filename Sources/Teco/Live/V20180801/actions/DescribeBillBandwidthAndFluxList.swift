@@ -131,7 +131,8 @@ extension Live {
     /// 直播播放带宽和流量数据查询。
     @inlinable
     public func describeBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, serviceName: String? = nil, regionNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBillBandwidthAndFluxListResponse> {
-        self.describeBillBandwidthAndFluxList(DescribeBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, serviceName: serviceName, regionNames: regionNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, serviceName: serviceName, regionNames: regionNames)
+        return self.client.execute(action: "DescribeBillBandwidthAndFluxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 直播播放带宽和流量数据查询
@@ -139,6 +140,7 @@ extension Live {
     /// 直播播放带宽和流量数据查询。
     @inlinable
     public func describeBillBandwidthAndFluxList(startTime: String, endTime: String, playDomains: [String]? = nil, mainlandOrOversea: String? = nil, granularity: UInt64? = nil, serviceName: String? = nil, regionNames: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBillBandwidthAndFluxListResponse {
-        try await self.describeBillBandwidthAndFluxList(DescribeBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, serviceName: serviceName, regionNames: regionNames), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBillBandwidthAndFluxListRequest(startTime: startTime, endTime: endTime, playDomains: playDomains, mainlandOrOversea: mainlandOrOversea, granularity: granularity, serviceName: serviceName, regionNames: regionNames)
+        return try await self.client.execute(action: "DescribeBillBandwidthAndFluxList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

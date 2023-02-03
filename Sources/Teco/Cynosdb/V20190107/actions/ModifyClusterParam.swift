@@ -68,12 +68,14 @@ extension Cynosdb {
     /// 修改集群参数
     @inlinable
     public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyClusterParamResponse> {
-        self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod)
+        return self.client.execute(action: "ModifyClusterParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改集群参数
     @inlinable
     public func modifyClusterParam(clusterId: String, paramList: [ParamItem], isInMaintainPeriod: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyClusterParamResponse {
-        try await self.modifyClusterParam(ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod), region: region, logger: logger, on: eventLoop)
+        let input = ModifyClusterParamRequest(clusterId: clusterId, paramList: paramList, isInMaintainPeriod: isInMaintainPeriod)
+        return try await self.client.execute(action: "ModifyClusterParam", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

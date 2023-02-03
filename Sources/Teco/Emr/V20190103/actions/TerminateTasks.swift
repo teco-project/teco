@@ -59,12 +59,14 @@ extension Emr {
     /// 缩容Task节点
     @inlinable @discardableResult
     public func terminateTasks(instanceId: String, resourceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<TerminateTasksResponse> {
-        self.terminateTasks(TerminateTasksRequest(instanceId: instanceId, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
+        let input = TerminateTasksRequest(instanceId: instanceId, resourceIds: resourceIds)
+        return self.client.execute(action: "TerminateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 缩容Task节点
     @inlinable @discardableResult
     public func terminateTasks(instanceId: String, resourceIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateTasksResponse {
-        try await self.terminateTasks(TerminateTasksRequest(instanceId: instanceId, resourceIds: resourceIds), region: region, logger: logger, on: eventLoop)
+        let input = TerminateTasksRequest(instanceId: instanceId, resourceIds: resourceIds)
+        return try await self.client.execute(action: "TerminateTasks", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

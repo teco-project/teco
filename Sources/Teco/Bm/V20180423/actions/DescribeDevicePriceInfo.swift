@@ -74,7 +74,8 @@ extension Bm {
     /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
     @inlinable
     public func describeDevicePriceInfo(instanceIds: [String], timeUnit: String? = nil, timeSpan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDevicePriceInfoResponse> {
-        self.describeDevicePriceInfo(DescribeDevicePriceInfoRequest(instanceIds: instanceIds, timeUnit: timeUnit, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePriceInfoRequest(instanceIds: instanceIds, timeUnit: timeUnit, timeSpan: timeSpan)
+        return self.client.execute(action: "DescribeDevicePriceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询服务器价格信息
@@ -82,6 +83,7 @@ extension Bm {
     /// 查询服务器价格信息，支持设备的批量查找，支持标准机型和弹性机型的混合查找
     @inlinable
     public func describeDevicePriceInfo(instanceIds: [String], timeUnit: String? = nil, timeSpan: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDevicePriceInfoResponse {
-        try await self.describeDevicePriceInfo(DescribeDevicePriceInfoRequest(instanceIds: instanceIds, timeUnit: timeUnit, timeSpan: timeSpan), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDevicePriceInfoRequest(instanceIds: instanceIds, timeUnit: timeUnit, timeSpan: timeSpan)
+        return try await self.client.execute(action: "DescribeDevicePriceInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

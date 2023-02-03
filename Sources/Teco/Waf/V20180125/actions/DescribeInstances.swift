@@ -72,12 +72,14 @@ extension Waf {
     /// 查询用户所有实例的详细信息
     @inlinable
     public func describeInstances(offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstancesResponse> {
-        self.describeInstances(DescribeInstancesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesRequest(offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询用户所有实例的详细信息
     @inlinable
     public func describeInstances(offset: UInt64, limit: UInt64, filters: [FiltersItemNew]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesResponse {
-        try await self.describeInstances(DescribeInstancesRequest(offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstancesRequest(offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

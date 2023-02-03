@@ -82,7 +82,8 @@ extension Tsf {
     /// 更新部署组信息
     @inlinable
     public func modifyGroup(groupId: String, groupName: String? = nil, groupDesc: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyGroupResponse> {
-        self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, groupDesc: groupDesc, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = ModifyGroupRequest(groupId: groupId, groupName: groupName, groupDesc: groupDesc, alias: alias)
+        return self.client.execute(action: "ModifyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新分组信息
@@ -90,6 +91,7 @@ extension Tsf {
     /// 更新部署组信息
     @inlinable
     public func modifyGroup(groupId: String, groupName: String? = nil, groupDesc: String? = nil, alias: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
-        try await self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, groupDesc: groupDesc, alias: alias), region: region, logger: logger, on: eventLoop)
+        let input = ModifyGroupRequest(groupId: groupId, groupName: groupName, groupDesc: groupDesc, alias: alias)
+        return try await self.client.execute(action: "ModifyGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

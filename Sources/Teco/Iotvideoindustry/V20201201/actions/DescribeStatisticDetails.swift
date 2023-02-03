@@ -82,7 +82,8 @@ extension Iotvideoindustry {
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
     @inlinable
     public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStatisticDetailsResponse> {
-        self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField)
+        return self.client.execute(action: "DescribeStatisticDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询指定统计项详情
@@ -90,6 +91,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeStatisticDetails)用于查询指定统计项详情，返回结果按天为单位聚合，支持的最大时间查询范围为31天。
     @inlinable
     public func describeStatisticDetails(startDate: String, endDate: String, statisticField: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStatisticDetailsResponse {
-        try await self.describeStatisticDetails(DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStatisticDetailsRequest(startDate: startDate, endDate: endDate, statisticField: statisticField)
+        return try await self.client.execute(action: "DescribeStatisticDetails", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -64,7 +64,8 @@ extension Ssm {
     /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
     @inlinable
     public func disableSecret(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DisableSecretResponse> {
-        self.disableSecret(DisableSecretRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
+        let input = DisableSecretRequest(secretName: secretName)
+        return self.client.execute(action: "DisableSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 停用凭据
@@ -72,6 +73,7 @@ extension Ssm {
     /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
     @inlinable
     public func disableSecret(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableSecretResponse {
-        try await self.disableSecret(DisableSecretRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
+        let input = DisableSecretRequest(secretName: secretName)
+        return try await self.client.execute(action: "DisableSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

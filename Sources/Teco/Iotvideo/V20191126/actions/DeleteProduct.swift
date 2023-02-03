@@ -60,7 +60,8 @@ extension Iotvideo {
     /// 本接口（DeleteProduct）用于删除一个物联网智能视频产品。
     @inlinable @discardableResult
     public func deleteProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteProductResponse> {
-        self.deleteProduct(DeleteProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteProductRequest(productId: productId)
+        return self.client.execute(action: "DeleteProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除产品
@@ -68,6 +69,7 @@ extension Iotvideo {
     /// 本接口（DeleteProduct）用于删除一个物联网智能视频产品。
     @inlinable @discardableResult
     public func deleteProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteProductResponse {
-        try await self.deleteProduct(DeleteProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteProductRequest(productId: productId)
+        return try await self.client.execute(action: "DeleteProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

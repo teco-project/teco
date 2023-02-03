@@ -58,12 +58,14 @@ extension Tsf {
     /// 发布Api分组
     @inlinable
     public func releaseApiGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ReleaseApiGroupResponse> {
-        self.releaseApiGroup(ReleaseApiGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseApiGroupRequest(groupId: groupId)
+        return self.client.execute(action: "ReleaseApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发布Api分组
     @inlinable
     public func releaseApiGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseApiGroupResponse {
-        try await self.releaseApiGroup(ReleaseApiGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = ReleaseApiGroupRequest(groupId: groupId)
+        return try await self.client.execute(action: "ReleaseApiGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

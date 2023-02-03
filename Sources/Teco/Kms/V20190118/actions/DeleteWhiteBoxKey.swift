@@ -60,7 +60,8 @@ extension Kms {
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
     @inlinable @discardableResult
     public func deleteWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteWhiteBoxKeyResponse> {
-        self.deleteWhiteBoxKey(DeleteWhiteBoxKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWhiteBoxKeyRequest(keyId: keyId)
+        return self.client.execute(action: "DeleteWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除白盒密钥
@@ -68,6 +69,7 @@ extension Kms {
     /// 删除白盒密钥, 注意：必须先禁用后，才可以删除。
     @inlinable @discardableResult
     public func deleteWhiteBoxKey(keyId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteWhiteBoxKeyResponse {
-        try await self.deleteWhiteBoxKey(DeleteWhiteBoxKeyRequest(keyId: keyId), region: region, logger: logger, on: eventLoop)
+        let input = DeleteWhiteBoxKeyRequest(keyId: keyId)
+        return try await self.client.execute(action: "DeleteWhiteBoxKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

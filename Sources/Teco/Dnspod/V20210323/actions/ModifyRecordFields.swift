@@ -73,12 +73,14 @@ extension Dnspod {
     /// 修改记录可选字段
     @inlinable
     public func modifyRecordFields(domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyRecordFieldsResponse> {
-        self.modifyRecordFields(ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId)
+        return self.client.execute(action: "ModifyRecordFields", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改记录可选字段
     @inlinable
     public func modifyRecordFields(domain: String, recordId: UInt64, fieldList: [KeyValue], domainId: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRecordFieldsResponse {
-        try await self.modifyRecordFields(ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId), region: region, logger: logger, on: eventLoop)
+        let input = ModifyRecordFieldsRequest(domain: domain, recordId: recordId, fieldList: fieldList, domainId: domainId)
+        return try await self.client.execute(action: "ModifyRecordFields", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

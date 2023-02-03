@@ -98,12 +98,14 @@ extension Tcss {
     /// 查询木马自动隔离样本详情
     @inlinable
     public func describeVirusAutoIsolateSampleDetail(md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeVirusAutoIsolateSampleDetailResponse> {
-        self.describeVirusAutoIsolateSampleDetail(DescribeVirusAutoIsolateSampleDetailRequest(md5: md5), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusAutoIsolateSampleDetailRequest(md5: md5)
+        return self.client.execute(action: "DescribeVirusAutoIsolateSampleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询木马自动隔离样本详情
     @inlinable
     public func describeVirusAutoIsolateSampleDetail(md5: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeVirusAutoIsolateSampleDetailResponse {
-        try await self.describeVirusAutoIsolateSampleDetail(DescribeVirusAutoIsolateSampleDetailRequest(md5: md5), region: region, logger: logger, on: eventLoop)
+        let input = DescribeVirusAutoIsolateSampleDetailRequest(md5: md5)
+        return try await self.client.execute(action: "DescribeVirusAutoIsolateSampleDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

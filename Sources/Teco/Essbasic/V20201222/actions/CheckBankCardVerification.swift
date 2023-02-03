@@ -123,7 +123,8 @@ extension Essbasic {
     /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
     @inlinable
     public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CheckBankCardVerificationResponse> {
-        self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
+        let input = CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType)
+        return self.client.execute(action: "CheckBankCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 银行卡二三四要素检测
@@ -134,6 +135,7 @@ extension Essbasic {
     /// 银行卡四要素(同CheckBankCard4EVerification): bank_card + name + id_card_number + mobile
     @inlinable
     public func checkBankCardVerification(caller: Caller, bankCard: String, name: String, idCardNumber: String? = nil, mobile: String? = nil, idCardType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CheckBankCardVerificationResponse {
-        try await self.checkBankCardVerification(CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType), region: region, logger: logger, on: eventLoop)
+        let input = CheckBankCardVerificationRequest(caller: caller, bankCard: bankCard, name: name, idCardNumber: idCardNumber, mobile: mobile, idCardType: idCardType)
+        return try await self.client.execute(action: "CheckBankCardVerification", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

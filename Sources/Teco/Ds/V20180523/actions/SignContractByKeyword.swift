@@ -105,7 +105,8 @@ extension Ds {
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口对PDF合同文档按照关键字和坐标进行签署。
     @inlinable @discardableResult
     public func signContractByKeyword(module: String, operation: String, contractResId: String, accountResId: String, signKeyword: SignKeyword, authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<SignContractByKeywordResponse> {
-        self.signContractByKeyword(SignContractByKeywordRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signKeyword: signKeyword, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData), region: region, logger: logger, on: eventLoop)
+        let input = SignContractByKeywordRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signKeyword: signKeyword, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData)
+        return self.client.execute(action: "SignContractByKeyword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 按关键字签署合同
@@ -113,6 +114,7 @@ extension Ds {
     /// 此接口适用于：客户平台在创建好合同后，由合同签署方对创建的合同内容进行确认，无误后再进行签署。客户平台使用该接口对PDF合同文档按照关键字和坐标进行签署。
     @inlinable @discardableResult
     public func signContractByKeyword(module: String, operation: String, contractResId: String, accountResId: String, signKeyword: SignKeyword, authorizationTime: String? = nil, position: String? = nil, sealResId: String? = nil, certType: Int64? = nil, imageData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SignContractByKeywordResponse {
-        try await self.signContractByKeyword(SignContractByKeywordRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signKeyword: signKeyword, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData), region: region, logger: logger, on: eventLoop)
+        let input = SignContractByKeywordRequest(module: module, operation: operation, contractResId: contractResId, accountResId: accountResId, signKeyword: signKeyword, authorizationTime: authorizationTime, position: position, sealResId: sealResId, certType: certType, imageData: imageData)
+        return try await self.client.execute(action: "SignContractByKeyword", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -117,12 +117,14 @@ extension Scf {
     /// 拉取函数异步事件列表
     @inlinable
     public func listAsyncEvents(functionName: String, namespace: String? = nil, qualifier: String? = nil, invokeType: [String]? = nil, status: [String]? = nil, startTimeInterval: TimeInterval? = nil, endTimeInterval: TimeInterval? = nil, order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, invokeRequestId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ListAsyncEventsResponse> {
-        self.listAsyncEvents(ListAsyncEventsRequest(functionName: functionName, namespace: namespace, qualifier: qualifier, invokeType: invokeType, status: status, startTimeInterval: startTimeInterval, endTimeInterval: endTimeInterval, order: order, orderby: orderby, offset: offset, limit: limit, invokeRequestId: invokeRequestId), region: region, logger: logger, on: eventLoop)
+        let input = ListAsyncEventsRequest(functionName: functionName, namespace: namespace, qualifier: qualifier, invokeType: invokeType, status: status, startTimeInterval: startTimeInterval, endTimeInterval: endTimeInterval, order: order, orderby: orderby, offset: offset, limit: limit, invokeRequestId: invokeRequestId)
+        return self.client.execute(action: "ListAsyncEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取函数异步事件列表
     @inlinable
     public func listAsyncEvents(functionName: String, namespace: String? = nil, qualifier: String? = nil, invokeType: [String]? = nil, status: [String]? = nil, startTimeInterval: TimeInterval? = nil, endTimeInterval: TimeInterval? = nil, order: String? = nil, orderby: String? = nil, offset: Int64? = nil, limit: Int64? = nil, invokeRequestId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListAsyncEventsResponse {
-        try await self.listAsyncEvents(ListAsyncEventsRequest(functionName: functionName, namespace: namespace, qualifier: qualifier, invokeType: invokeType, status: status, startTimeInterval: startTimeInterval, endTimeInterval: endTimeInterval, order: order, orderby: orderby, offset: offset, limit: limit, invokeRequestId: invokeRequestId), region: region, logger: logger, on: eventLoop)
+        let input = ListAsyncEventsRequest(functionName: functionName, namespace: namespace, qualifier: qualifier, invokeType: invokeType, status: status, startTimeInterval: startTimeInterval, endTimeInterval: endTimeInterval, order: order, orderby: orderby, offset: offset, limit: limit, invokeRequestId: invokeRequestId)
+        return try await self.client.execute(action: "ListAsyncEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

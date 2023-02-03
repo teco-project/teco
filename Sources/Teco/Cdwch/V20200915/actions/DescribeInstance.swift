@@ -64,7 +64,8 @@ extension Cdwch {
     /// 根据实例ID查询某个实例的具体信息
     @inlinable
     public func describeInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceResponse> {
-        self.describeInstance(DescribeInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 描述实例信息
@@ -72,6 +73,7 @@ extension Cdwch {
     /// 根据实例ID查询某个实例的具体信息
     @inlinable
     public func describeInstance(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceResponse {
-        try await self.describeInstance(DescribeInstanceRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

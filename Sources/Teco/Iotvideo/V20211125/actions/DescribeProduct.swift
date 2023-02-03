@@ -58,12 +58,14 @@ extension Iotvideo {
     /// 获取产品详情
     @inlinable
     public func describeProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProductResponse> {
-        self.describeProduct(DescribeProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductRequest(productId: productId)
+        return self.client.execute(action: "DescribeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取产品详情
     @inlinable
     public func describeProduct(productId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProductResponse {
-        try await self.describeProduct(DescribeProductRequest(productId: productId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProductRequest(productId: productId)
+        return try await self.client.execute(action: "DescribeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

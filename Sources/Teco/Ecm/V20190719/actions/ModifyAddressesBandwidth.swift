@@ -68,12 +68,14 @@ extension Ecm {
     /// 调整弹性公网IP带宽
     @inlinable
     public func modifyAddressesBandwidth(ecmRegion: String, addressIds: [String], internetMaxBandwidthOut: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAddressesBandwidthResponse> {
-        self.modifyAddressesBandwidth(ModifyAddressesBandwidthRequest(ecmRegion: ecmRegion, addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAddressesBandwidthRequest(ecmRegion: ecmRegion, addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut)
+        return self.client.execute(action: "ModifyAddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 调整弹性公网IP带宽
     @inlinable
     public func modifyAddressesBandwidth(ecmRegion: String, addressIds: [String], internetMaxBandwidthOut: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAddressesBandwidthResponse {
-        try await self.modifyAddressesBandwidth(ModifyAddressesBandwidthRequest(ecmRegion: ecmRegion, addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAddressesBandwidthRequest(ecmRegion: ecmRegion, addressIds: addressIds, internetMaxBandwidthOut: internetMaxBandwidthOut)
+        return try await self.client.execute(action: "ModifyAddressesBandwidth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -86,12 +86,14 @@ extension Tcss {
     /// 镜像仓库漏洞列表导出
     @inlinable
     public func describeAssetImageRegistryVulListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetImageRegistryVulListExportResponse> {
-        self.describeAssetImageRegistryVulListExport(DescribeAssetImageRegistryVulListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageRegistryVulListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id)
+        return self.client.execute(action: "DescribeAssetImageRegistryVulListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库漏洞列表导出
     @inlinable
     public func describeAssetImageRegistryVulListExport(exportField: [String], limit: UInt64? = nil, offset: UInt64? = nil, filters: [AssetFilters]? = nil, imageInfo: ImageInfo? = nil, id: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetImageRegistryVulListExportResponse {
-        try await self.describeAssetImageRegistryVulListExport(DescribeAssetImageRegistryVulListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetImageRegistryVulListExportRequest(exportField: exportField, limit: limit, offset: offset, filters: filters, imageInfo: imageInfo, id: id)
+        return try await self.client.execute(action: "DescribeAssetImageRegistryVulListExport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

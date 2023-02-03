@@ -93,7 +93,8 @@ extension Essbasic {
     /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable @discardableResult
     public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChannelCreateFlowSignReviewResponse> {
-        self.channelCreateFlowSignReview(ChannelCreateFlowSignReviewRequest(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCreateFlowSignReviewRequest(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId)
+        return self.client.execute(action: "ChannelCreateFlowSignReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 提交企业签署流程审批结果
@@ -104,6 +105,7 @@ extension Essbasic {
     /// 若签署流程状态正常，且本企业存在签署方未签署，同一签署流程可以多次提交签署审批结果，签署时的最后一个“审批结果”有效。
     @inlinable @discardableResult
     public func channelCreateFlowSignReview(agent: Agent, flowId: String, reviewType: String, reviewMessage: String? = nil, recipientId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChannelCreateFlowSignReviewResponse {
-        try await self.channelCreateFlowSignReview(ChannelCreateFlowSignReviewRequest(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId), region: region, logger: logger, on: eventLoop)
+        let input = ChannelCreateFlowSignReviewRequest(agent: agent, flowId: flowId, reviewType: reviewType, reviewMessage: reviewMessage, recipientId: recipientId)
+        return try await self.client.execute(action: "ChannelCreateFlowSignReview", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

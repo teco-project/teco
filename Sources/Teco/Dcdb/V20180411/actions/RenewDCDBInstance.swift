@@ -80,7 +80,8 @@ extension Dcdb {
     /// 本接口（RenewDCDBInstance）用于续费分布式数据库实例。
     @inlinable
     public func renewDCDBInstance(instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RenewDCDBInstanceResponse> {
-        self.renewDCDBInstance(RenewDCDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
+        let input = RenewDCDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds)
+        return self.client.execute(action: "RenewDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 续费分布式数据库实例
@@ -88,6 +89,7 @@ extension Dcdb {
     /// 本接口（RenewDCDBInstance）用于续费分布式数据库实例。
     @inlinable
     public func renewDCDBInstance(instanceId: String, period: Int64, autoVoucher: Bool? = nil, voucherIds: [String]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewDCDBInstanceResponse {
-        try await self.renewDCDBInstance(RenewDCDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds), region: region, logger: logger, on: eventLoop)
+        let input = RenewDCDBInstanceRequest(instanceId: instanceId, period: period, autoVoucher: autoVoucher, voucherIds: voucherIds)
+        return try await self.client.execute(action: "RenewDCDBInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

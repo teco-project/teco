@@ -86,7 +86,8 @@ extension Cdb {
     /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
     @inlinable
     public func describeAccountPrivileges(instanceId: String, user: String, host: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAccountPrivilegesResponse> {
-        self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, user: user, host: host), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountPrivilegesRequest(instanceId: instanceId, user: user, host: host)
+        return self.client.execute(action: "DescribeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询云数据库账户的权限信息
@@ -94,6 +95,7 @@ extension Cdb {
     /// 本接口(DescribeAccountPrivileges)用于查询云数据库账户支持的权限信息。
     @inlinable
     public func describeAccountPrivileges(instanceId: String, user: String, host: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAccountPrivilegesResponse {
-        try await self.describeAccountPrivileges(DescribeAccountPrivilegesRequest(instanceId: instanceId, user: user, host: host), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAccountPrivilegesRequest(instanceId: instanceId, user: user, host: host)
+        return try await self.client.execute(action: "DescribeAccountPrivileges", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

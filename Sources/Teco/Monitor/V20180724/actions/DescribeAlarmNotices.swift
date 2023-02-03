@@ -112,12 +112,14 @@ extension Monitor {
     /// 查询通知模板列表
     @inlinable
     public func describeAlarmNotices(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAlarmNoticesResponse> {
-        self.describeAlarmNotices(DescribeAlarmNoticesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmNoticesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags)
+        return self.client.execute(action: "DescribeAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询通知模板列表
     @inlinable
     public func describeAlarmNotices(module: String, pageNumber: Int64, pageSize: Int64, order: String, ownerUid: Int64? = nil, name: String? = nil, receiverType: String? = nil, userIds: [Int64]? = nil, groupIds: [Int64]? = nil, noticeIds: [String]? = nil, tags: [Tag]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAlarmNoticesResponse {
-        try await self.describeAlarmNotices(DescribeAlarmNoticesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAlarmNoticesRequest(module: module, pageNumber: pageNumber, pageSize: pageSize, order: order, ownerUid: ownerUid, name: name, receiverType: receiverType, userIds: userIds, groupIds: groupIds, noticeIds: noticeIds, tags: tags)
+        return try await self.client.execute(action: "DescribeAlarmNotices", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

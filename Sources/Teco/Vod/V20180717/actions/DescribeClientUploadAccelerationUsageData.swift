@@ -91,7 +91,8 @@ extension Vod {
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
     public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeClientUploadAccelerationUsageDataResponse> {
-        self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type)
+        return self.client.execute(action: "DescribeClientUploadAccelerationUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询客户端上传加速统计数据
@@ -102,6 +103,7 @@ extension Vod {
     ///    3. 查询时间跨度超过1天的，返回以天为粒度的数据，否则，返回以5分钟为粒度的数据。
     @inlinable
     public func describeClientUploadAccelerationUsageData(startTime: String, endTime: String, subAppId: UInt64? = nil, type: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeClientUploadAccelerationUsageDataResponse {
-        try await self.describeClientUploadAccelerationUsageData(DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type), region: region, logger: logger, on: eventLoop)
+        let input = DescribeClientUploadAccelerationUsageDataRequest(startTime: startTime, endTime: endTime, subAppId: subAppId, type: type)
+        return try await self.client.execute(action: "DescribeClientUploadAccelerationUsageData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

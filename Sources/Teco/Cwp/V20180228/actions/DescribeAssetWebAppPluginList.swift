@@ -83,12 +83,14 @@ extension Cwp {
     /// 获取资产管理Web应用插件列表
     @inlinable
     public func describeAssetWebAppPluginList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetWebAppPluginListResponse> {
-        self.describeAssetWebAppPluginList(DescribeAssetWebAppPluginListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetWebAppPluginListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeAssetWebAppPluginList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取资产管理Web应用插件列表
     @inlinable
     public func describeAssetWebAppPluginList(quuid: String, uuid: String, id: String, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetWebAppPluginListResponse {
-        try await self.describeAssetWebAppPluginList(DescribeAssetWebAppPluginListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeAssetWebAppPluginListRequest(quuid: quuid, uuid: uuid, id: id, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeAssetWebAppPluginList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -113,7 +113,8 @@ extension Cynosdb {
     /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
     @inlinable
     public func describeInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInstanceSlowQueriesResponse> {
-        self.describeInstanceSlowQueries(DescribeInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, orderBy: orderBy, orderByType: orderByType)
+        return self.client.execute(action: "DescribeInstanceSlowQueries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例慢查询日志
@@ -121,6 +122,7 @@ extension Cynosdb {
     /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
     @inlinable
     public func describeInstanceSlowQueries(instanceId: String, startTime: String? = nil, endTime: String? = nil, limit: Int64? = nil, offset: Int64? = nil, username: String? = nil, host: String? = nil, database: String? = nil, orderBy: String? = nil, orderByType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceSlowQueriesResponse {
-        try await self.describeInstanceSlowQueries(DescribeInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, orderBy: orderBy, orderByType: orderByType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeInstanceSlowQueriesRequest(instanceId: instanceId, startTime: startTime, endTime: endTime, limit: limit, offset: offset, username: username, host: host, database: database, orderBy: orderBy, orderByType: orderByType)
+        return try await self.client.execute(action: "DescribeInstanceSlowQueries", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

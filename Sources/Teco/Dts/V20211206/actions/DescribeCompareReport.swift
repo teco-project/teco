@@ -109,12 +109,14 @@ extension Dts {
     /// 查询一致性校验任务详情
     @inlinable
     public func describeCompareReport(jobId: String, compareTaskId: String, differenceLimit: UInt64? = nil, differenceOffset: UInt64? = nil, differenceDB: String? = nil, differenceTable: String? = nil, skippedLimit: UInt64? = nil, skippedOffset: UInt64? = nil, skippedDB: String? = nil, skippedTable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCompareReportResponse> {
-        self.describeCompareReport(DescribeCompareReportRequest(jobId: jobId, compareTaskId: compareTaskId, differenceLimit: differenceLimit, differenceOffset: differenceOffset, differenceDB: differenceDB, differenceTable: differenceTable, skippedLimit: skippedLimit, skippedOffset: skippedOffset, skippedDB: skippedDB, skippedTable: skippedTable), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCompareReportRequest(jobId: jobId, compareTaskId: compareTaskId, differenceLimit: differenceLimit, differenceOffset: differenceOffset, differenceDB: differenceDB, differenceTable: differenceTable, skippedLimit: skippedLimit, skippedOffset: skippedOffset, skippedDB: skippedDB, skippedTable: skippedTable)
+        return self.client.execute(action: "DescribeCompareReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询一致性校验任务详情
     @inlinable
     public func describeCompareReport(jobId: String, compareTaskId: String, differenceLimit: UInt64? = nil, differenceOffset: UInt64? = nil, differenceDB: String? = nil, differenceTable: String? = nil, skippedLimit: UInt64? = nil, skippedOffset: UInt64? = nil, skippedDB: String? = nil, skippedTable: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCompareReportResponse {
-        try await self.describeCompareReport(DescribeCompareReportRequest(jobId: jobId, compareTaskId: compareTaskId, differenceLimit: differenceLimit, differenceOffset: differenceOffset, differenceDB: differenceDB, differenceTable: differenceTable, skippedLimit: skippedLimit, skippedOffset: skippedOffset, skippedDB: skippedDB, skippedTable: skippedTable), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCompareReportRequest(jobId: jobId, compareTaskId: compareTaskId, differenceLimit: differenceLimit, differenceOffset: differenceOffset, differenceDB: differenceDB, differenceTable: differenceTable, skippedLimit: skippedLimit, skippedOffset: skippedOffset, skippedDB: skippedDB, skippedTable: skippedTable)
+        return try await self.client.execute(action: "DescribeCompareReport", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

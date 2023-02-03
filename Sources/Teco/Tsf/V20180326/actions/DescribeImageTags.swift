@@ -88,12 +88,14 @@ extension Tsf {
     /// 镜像版本列表
     @inlinable
     public func describeImageTags(applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeImageTagsResponse> {
-        self.describeImageTags(DescribeImageTagsRequest(applicationId: applicationId, offset: offset, limit: limit, queryImageIdFlag: queryImageIdFlag, searchWord: searchWord, repoType: repoType, tcrRepoInfo: tcrRepoInfo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageTagsRequest(applicationId: applicationId, offset: offset, limit: limit, queryImageIdFlag: queryImageIdFlag, searchWord: searchWord, repoType: repoType, tcrRepoInfo: tcrRepoInfo)
+        return self.client.execute(action: "DescribeImageTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像版本列表
     @inlinable
     public func describeImageTags(applicationId: String, offset: Int64? = nil, limit: Int64? = nil, queryImageIdFlag: Int64? = nil, searchWord: String? = nil, repoType: String? = nil, tcrRepoInfo: TcrRepoInfo? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeImageTagsResponse {
-        try await self.describeImageTags(DescribeImageTagsRequest(applicationId: applicationId, offset: offset, limit: limit, queryImageIdFlag: queryImageIdFlag, searchWord: searchWord, repoType: repoType, tcrRepoInfo: tcrRepoInfo), region: region, logger: logger, on: eventLoop)
+        let input = DescribeImageTagsRequest(applicationId: applicationId, offset: offset, limit: limit, queryImageIdFlag: queryImageIdFlag, searchWord: searchWord, repoType: repoType, tcrRepoInfo: tcrRepoInfo)
+        return try await self.client.execute(action: "DescribeImageTags", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

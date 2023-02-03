@@ -72,7 +72,8 @@ extension Mariadb {
     /// 本接口(DescribeDBEncryptAttributes)用于查询实例数据加密状态。
     @inlinable
     public func describeDBEncryptAttributes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDBEncryptAttributesResponse> {
-        self.describeDBEncryptAttributes(DescribeDBEncryptAttributesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBEncryptAttributesRequest(instanceId: instanceId)
+        return self.client.execute(action: "DescribeDBEncryptAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询实例数据加密状态
@@ -80,6 +81,7 @@ extension Mariadb {
     /// 本接口(DescribeDBEncryptAttributes)用于查询实例数据加密状态。
     @inlinable
     public func describeDBEncryptAttributes(instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDBEncryptAttributesResponse {
-        try await self.describeDBEncryptAttributes(DescribeDBEncryptAttributesRequest(instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = DescribeDBEncryptAttributesRequest(instanceId: instanceId)
+        return try await self.client.execute(action: "DescribeDBEncryptAttributes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -54,12 +54,14 @@ extension Tcss {
     /// 取消漏洞扫描忽略漏洞
     @inlinable @discardableResult
     public func deleteIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteIgnoreVulResponse> {
-        self.deleteIgnoreVul(DeleteIgnoreVulRequest(list: list), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIgnoreVulRequest(list: list)
+        return self.client.execute(action: "DeleteIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 取消漏洞扫描忽略漏洞
     @inlinable @discardableResult
     public func deleteIgnoreVul(list: [ModifyIgnoreVul], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteIgnoreVulResponse {
-        try await self.deleteIgnoreVul(DeleteIgnoreVulRequest(list: list), region: region, logger: logger, on: eventLoop)
+        let input = DeleteIgnoreVulRequest(list: list)
+        return try await self.client.execute(action: "DeleteIgnoreVul", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

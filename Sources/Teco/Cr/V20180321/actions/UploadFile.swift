@@ -90,7 +90,8 @@ extension Cr {
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
     public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UploadFileResponse> {
-        self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), region: region, logger: logger, on: eventLoop)
+        let input = UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate)
+        return self.client.execute(action: "UploadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 上传数据文件
@@ -98,6 +99,7 @@ extension Cr {
     /// 客户通过调用该接口上传需催收文档，格式需为excel格式。接口返回任务ID。
     @inlinable
     public func uploadFile(module: String = "Data", operation: String = "UploadFile", fileUrl: String, fileName: String, fileDate: Date, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFileResponse {
-        try await self.uploadFile(UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate), region: region, logger: logger, on: eventLoop)
+        let input = UploadFileRequest(module: module, operation: operation, fileUrl: fileUrl, fileName: fileName, fileDate: fileDate)
+        return try await self.client.execute(action: "UploadFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

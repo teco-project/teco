@@ -79,7 +79,8 @@ extension Trp {
     /// 查询某个批次被扫码的统计列表，没有被扫过的不会返回
     @inlinable
     public func describeScanStats(batchId: String, corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeScanStatsResponse> {
-        self.describeScanStats(DescribeScanStatsRequest(batchId: batchId, corpId: corpId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanStatsRequest(batchId: batchId, corpId: corpId, pageSize: pageSize, pageNumber: pageNumber)
+        return self.client.execute(action: "DescribeScanStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询扫码统计列表
@@ -87,6 +88,7 @@ extension Trp {
     /// 查询某个批次被扫码的统计列表，没有被扫过的不会返回
     @inlinable
     public func describeScanStats(batchId: String, corpId: UInt64? = nil, pageSize: UInt64? = nil, pageNumber: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeScanStatsResponse {
-        try await self.describeScanStats(DescribeScanStatsRequest(batchId: batchId, corpId: corpId, pageSize: pageSize, pageNumber: pageNumber), region: region, logger: logger, on: eventLoop)
+        let input = DescribeScanStatsRequest(batchId: batchId, corpId: corpId, pageSize: pageSize, pageNumber: pageNumber)
+        return try await self.client.execute(action: "DescribeScanStats", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

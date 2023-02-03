@@ -86,7 +86,8 @@ extension Ecm {
     /// 修改负载均衡监听器属性。
     @inlinable @discardableResult
     public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyListenerResponse> {
-        self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, scheduler: scheduler), region: region, logger: logger, on: eventLoop)
+        let input = ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, scheduler: scheduler)
+        return self.client.execute(action: "ModifyListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改负载均衡监听器属性
@@ -94,6 +95,7 @@ extension Ecm {
     /// 修改负载均衡监听器属性。
     @inlinable @discardableResult
     public func modifyListener(loadBalancerId: String, listenerId: String, listenerName: String? = nil, sessionExpireTime: Int64? = nil, healthCheck: HealthCheck? = nil, scheduler: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyListenerResponse {
-        try await self.modifyListener(ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, scheduler: scheduler), region: region, logger: logger, on: eventLoop)
+        let input = ModifyListenerRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, listenerName: listenerName, sessionExpireTime: sessionExpireTime, healthCheck: healthCheck, scheduler: scheduler)
+        return try await self.client.execute(action: "ModifyListener", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

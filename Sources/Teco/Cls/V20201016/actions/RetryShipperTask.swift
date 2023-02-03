@@ -59,12 +59,14 @@ extension Cls {
     /// 重试失败的投递任务
     @inlinable @discardableResult
     public func retryShipperTask(shipperId: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RetryShipperTaskResponse> {
-        self.retryShipperTask(RetryShipperTaskRequest(shipperId: shipperId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = RetryShipperTaskRequest(shipperId: shipperId, taskId: taskId)
+        return self.client.execute(action: "RetryShipperTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 重试失败的投递任务
     @inlinable @discardableResult
     public func retryShipperTask(shipperId: String, taskId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RetryShipperTaskResponse {
-        try await self.retryShipperTask(RetryShipperTaskRequest(shipperId: shipperId, taskId: taskId), region: region, logger: logger, on: eventLoop)
+        let input = RetryShipperTaskRequest(shipperId: shipperId, taskId: taskId)
+        return try await self.client.execute(action: "RetryShipperTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

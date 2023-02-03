@@ -84,7 +84,8 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func updateImage(groupId: String, entityId: String, picName: String? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateImageResponse> {
-        self.updateImage(UpdateImageRequest(groupId: groupId, entityId: entityId, picName: picName, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = UpdateImageRequest(groupId: groupId, entityId: entityId, picName: picName, tags: tags)
+        return self.client.execute(action: "UpdateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新图片
@@ -95,6 +96,7 @@ extension Tiia {
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable @discardableResult
     public func updateImage(groupId: String, entityId: String, picName: String? = nil, tags: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateImageResponse {
-        try await self.updateImage(UpdateImageRequest(groupId: groupId, entityId: entityId, picName: picName, tags: tags), region: region, logger: logger, on: eventLoop)
+        let input = UpdateImageRequest(groupId: groupId, entityId: entityId, picName: picName, tags: tags)
+        return try await self.client.execute(action: "UpdateImage", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

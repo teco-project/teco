@@ -112,7 +112,8 @@ extension Trtc {
     /// 注：请参见启动转推任务的接口说明和使用说明。
     @inlinable
     public func updatePublishCdnStream(sdkAppId: UInt64, taskId: String, sequenceNumber: UInt64, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdatePublishCdnStreamResponse> {
-        self.updatePublishCdnStream(UpdatePublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId, sequenceNumber: sequenceNumber, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams), region: region, logger: logger, on: eventLoop)
+        let input = UpdatePublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId, sequenceNumber: sequenceNumber, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams)
+        return self.client.execute(action: "UpdatePublishCdnStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新转推任务
@@ -121,6 +122,7 @@ extension Trtc {
     /// 注：请参见启动转推任务的接口说明和使用说明。
     @inlinable
     public func updatePublishCdnStream(sdkAppId: UInt64, taskId: String, sequenceNumber: UInt64, withTranscoding: UInt64, audioParams: McuAudioParams? = nil, videoParams: McuVideoParams? = nil, singleSubscribeParams: SingleSubscribeParams? = nil, publishCdnParams: [McuPublishCdnParam]? = nil, seiParams: McuSeiParams? = nil, feedBackRoomParams: [McuFeedBackRoomParams]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdatePublishCdnStreamResponse {
-        try await self.updatePublishCdnStream(UpdatePublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId, sequenceNumber: sequenceNumber, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams), region: region, logger: logger, on: eventLoop)
+        let input = UpdatePublishCdnStreamRequest(sdkAppId: sdkAppId, taskId: taskId, sequenceNumber: sequenceNumber, withTranscoding: withTranscoding, audioParams: audioParams, videoParams: videoParams, singleSubscribeParams: singleSubscribeParams, publishCdnParams: publishCdnParams, seiParams: seiParams, feedBackRoomParams: feedBackRoomParams)
+        return try await self.client.execute(action: "UpdatePublishCdnStream", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

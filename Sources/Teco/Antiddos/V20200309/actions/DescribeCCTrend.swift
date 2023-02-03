@@ -147,7 +147,8 @@ extension Antiddos {
     /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
     public func describeCCTrend(business: String, ip: String, period: Int64, startTime: Date, endTime: Date, metricName: String, domain: String? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeCCTrendResponse> {
-        self.describeCCTrend(DescribeCCTrendRequest(business: business, ip: ip, period: period, startTime: startTime, endTime: endTime, metricName: metricName, domain: domain, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCCTrendRequest(business: business, ip: ip, period: period, startTime: startTime, endTime: endTime, metricName: metricName, domain: domain, id: id)
+        return self.client.execute(action: "DescribeCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取CC攻击指标曲线
@@ -155,6 +156,7 @@ extension Antiddos {
     /// 获取CC攻击指标数据，包括总请求峰值(QPS)和攻击请求(QPS)以及总请求次数和攻击请求次数
     @inlinable
     public func describeCCTrend(business: String, ip: String, period: Int64, startTime: Date, endTime: Date, metricName: String, domain: String? = nil, id: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeCCTrendResponse {
-        try await self.describeCCTrend(DescribeCCTrendRequest(business: business, ip: ip, period: period, startTime: startTime, endTime: endTime, metricName: metricName, domain: domain, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeCCTrendRequest(business: business, ip: ip, period: period, startTime: startTime, endTime: endTime, metricName: metricName, domain: domain, id: id)
+        return try await self.client.execute(action: "DescribeCCTrend", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

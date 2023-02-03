@@ -78,7 +78,8 @@ extension Emr {
     /// 新增用户列表（用户管理）。
     @inlinable
     public func addUsersForUserManager(instanceId: String, userManagerUserList: [UserInfoForUserManager], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AddUsersForUserManagerResponse> {
-        self.addUsersForUserManager(AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList), region: region, logger: logger, on: eventLoop)
+        let input = AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList)
+        return self.client.execute(action: "AddUsersForUserManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 新增用户列表
@@ -87,6 +88,7 @@ extension Emr {
     /// 新增用户列表（用户管理）。
     @inlinable
     public func addUsersForUserManager(instanceId: String, userManagerUserList: [UserInfoForUserManager], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddUsersForUserManagerResponse {
-        try await self.addUsersForUserManager(AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList), region: region, logger: logger, on: eventLoop)
+        let input = AddUsersForUserManagerRequest(instanceId: instanceId, userManagerUserList: userManagerUserList)
+        return try await self.client.execute(action: "AddUsersForUserManager", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

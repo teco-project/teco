@@ -78,7 +78,8 @@ extension Cdb {
     /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
     @inlinable
     public func describeBackups(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeBackupsResponse> {
-        self.describeBackups(DescribeBackupsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBackupsRequest(instanceId: instanceId, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询数据备份文件列表
@@ -86,6 +87,7 @@ extension Cdb {
     /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
     @inlinable
     public func describeBackups(instanceId: String, offset: Int64? = nil, limit: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeBackupsResponse {
-        try await self.describeBackups(DescribeBackupsRequest(instanceId: instanceId, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeBackupsRequest(instanceId: instanceId, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeBackups", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

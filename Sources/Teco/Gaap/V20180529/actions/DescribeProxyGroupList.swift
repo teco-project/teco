@@ -96,7 +96,8 @@ extension Gaap {
     /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
     @inlinable
     public func describeProxyGroupList(offset: Int64, limit: Int64, projectId: Int64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeProxyGroupListResponse> {
-        self.describeProxyGroupList(DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet)
+        return self.client.execute(action: "DescribeProxyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 拉取通道组列表
@@ -104,6 +105,7 @@ extension Gaap {
     /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
     @inlinable
     public func describeProxyGroupList(offset: Int64, limit: Int64, projectId: Int64, filters: [Filter]? = nil, tagSet: [TagPair]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeProxyGroupListResponse {
-        try await self.describeProxyGroupList(DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet), region: region, logger: logger, on: eventLoop)
+        let input = DescribeProxyGroupListRequest(offset: offset, limit: limit, projectId: projectId, filters: filters, tagSet: tagSet)
+        return try await self.client.execute(action: "DescribeProxyGroupList", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

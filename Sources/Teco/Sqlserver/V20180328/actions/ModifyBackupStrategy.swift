@@ -123,7 +123,8 @@ extension Sqlserver {
     /// 本接口（ModifyBackupStrategy）用于修改备份策略
     @inlinable
     public func modifyBackupStrategy(instanceId: String, backupType: String? = nil, backupTime: UInt64? = nil, backupDay: UInt64? = nil, backupModel: String? = nil, backupCycle: [UInt64]? = nil, backupSaveDays: UInt64? = nil, regularBackupEnable: String? = nil, regularBackupSaveDays: UInt64? = nil, regularBackupStrategy: String? = nil, regularBackupCounts: UInt64? = nil, regularBackupStartTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyBackupStrategyResponse> {
-        self.modifyBackupStrategy(ModifyBackupStrategyRequest(instanceId: instanceId, backupType: backupType, backupTime: backupTime, backupDay: backupDay, backupModel: backupModel, backupCycle: backupCycle, backupSaveDays: backupSaveDays, regularBackupEnable: regularBackupEnable, regularBackupSaveDays: regularBackupSaveDays, regularBackupStrategy: regularBackupStrategy, regularBackupCounts: regularBackupCounts, regularBackupStartTime: regularBackupStartTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBackupStrategyRequest(instanceId: instanceId, backupType: backupType, backupTime: backupTime, backupDay: backupDay, backupModel: backupModel, backupCycle: backupCycle, backupSaveDays: backupSaveDays, regularBackupEnable: regularBackupEnable, regularBackupSaveDays: regularBackupSaveDays, regularBackupStrategy: regularBackupStrategy, regularBackupCounts: regularBackupCounts, regularBackupStartTime: regularBackupStartTime)
+        return self.client.execute(action: "ModifyBackupStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 设置备份策略
@@ -131,6 +132,7 @@ extension Sqlserver {
     /// 本接口（ModifyBackupStrategy）用于修改备份策略
     @inlinable
     public func modifyBackupStrategy(instanceId: String, backupType: String? = nil, backupTime: UInt64? = nil, backupDay: UInt64? = nil, backupModel: String? = nil, backupCycle: [UInt64]? = nil, backupSaveDays: UInt64? = nil, regularBackupEnable: String? = nil, regularBackupSaveDays: UInt64? = nil, regularBackupStrategy: String? = nil, regularBackupCounts: UInt64? = nil, regularBackupStartTime: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyBackupStrategyResponse {
-        try await self.modifyBackupStrategy(ModifyBackupStrategyRequest(instanceId: instanceId, backupType: backupType, backupTime: backupTime, backupDay: backupDay, backupModel: backupModel, backupCycle: backupCycle, backupSaveDays: backupSaveDays, regularBackupEnable: regularBackupEnable, regularBackupSaveDays: regularBackupSaveDays, regularBackupStrategy: regularBackupStrategy, regularBackupCounts: regularBackupCounts, regularBackupStartTime: regularBackupStartTime), region: region, logger: logger, on: eventLoop)
+        let input = ModifyBackupStrategyRequest(instanceId: instanceId, backupType: backupType, backupTime: backupTime, backupDay: backupDay, backupModel: backupModel, backupCycle: backupCycle, backupSaveDays: backupSaveDays, regularBackupEnable: regularBackupEnable, regularBackupSaveDays: regularBackupSaveDays, regularBackupStrategy: regularBackupStrategy, regularBackupCounts: regularBackupCounts, regularBackupStartTime: regularBackupStartTime)
+        return try await self.client.execute(action: "ModifyBackupStrategy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

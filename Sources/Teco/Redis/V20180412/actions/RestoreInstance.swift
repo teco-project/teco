@@ -68,12 +68,14 @@ extension Redis {
     /// 恢复 CRS 实例
     @inlinable
     public func restoreInstance(instanceId: String, backupId: String, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RestoreInstanceResponse> {
-        self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, password: password), region: region, logger: logger, on: eventLoop)
+        let input = RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, password: password)
+        return self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 恢复 CRS 实例
     @inlinable
     public func restoreInstance(instanceId: String, backupId: String, password: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RestoreInstanceResponse {
-        try await self.restoreInstance(RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, password: password), region: region, logger: logger, on: eventLoop)
+        let input = RestoreInstanceRequest(instanceId: instanceId, backupId: backupId, password: password)
+        return try await self.client.execute(action: "RestoreInstance", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

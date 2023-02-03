@@ -72,7 +72,8 @@ extension Ame {
     /// 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。
     @inlinable
     public func describeLyric(itemId: String, subItemType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeLyricResponse> {
-        self.describeLyric(DescribeLyricRequest(itemId: itemId, subItemType: subItemType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLyricRequest(itemId: itemId, subItemType: subItemType)
+        return self.client.execute(action: "DescribeLyric", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取歌词信息
@@ -80,6 +81,7 @@ extension Ame {
     /// 根据接口的模式及歌曲ID来取得歌词信息或者波形图信息。
     @inlinable
     public func describeLyric(itemId: String, subItemType: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLyricResponse {
-        try await self.describeLyric(DescribeLyricRequest(itemId: itemId, subItemType: subItemType), region: region, logger: logger, on: eventLoop)
+        let input = DescribeLyricRequest(itemId: itemId, subItemType: subItemType)
+        return try await self.client.execute(action: "DescribeLyric", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

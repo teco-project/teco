@@ -74,7 +74,8 @@ extension Redis {
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
     @inlinable
     public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpgradeInstanceVersionResponse> {
-        self.upgradeInstanceVersion(UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId)
+        return self.client.execute(action: "UpgradeInstanceVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 升级实例版本或者结构
@@ -82,6 +83,7 @@ extension Redis {
     /// 将原本实例升级到高版本实例，或者将主从版实例升级到集群版实例
     @inlinable
     public func upgradeInstanceVersion(targetInstanceType: String, switchOption: Int64, instanceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpgradeInstanceVersionResponse {
-        try await self.upgradeInstanceVersion(UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId), region: region, logger: logger, on: eventLoop)
+        let input = UpgradeInstanceVersionRequest(targetInstanceType: targetInstanceType, switchOption: switchOption, instanceId: instanceId)
+        return try await self.client.execute(action: "UpgradeInstanceVersion", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

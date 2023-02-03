@@ -51,12 +51,14 @@ extension Iotvideoindustry {
     /// 告警等级列表
     @inlinable
     public func describeWarnMod(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeWarnModResponse> {
-        self.describeWarnMod(DescribeWarnModRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWarnModRequest()
+        return self.client.execute(action: "DescribeWarnMod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警等级列表
     @inlinable
     public func describeWarnMod(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeWarnModResponse {
-        try await self.describeWarnMod(DescribeWarnModRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeWarnModRequest()
+        return try await self.client.execute(action: "DescribeWarnMod", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

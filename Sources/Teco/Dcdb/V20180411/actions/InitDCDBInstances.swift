@@ -73,7 +73,8 @@ extension Dcdb {
     /// 本接口(InitDCDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
     public func initDCDBInstances(instanceIds: [String], params: [DBParamValue], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitDCDBInstancesResponse> {
-        self.initDCDBInstances(InitDCDBInstancesRequest(instanceIds: instanceIds, params: params), region: region, logger: logger, on: eventLoop)
+        let input = InitDCDBInstancesRequest(instanceIds: instanceIds, params: params)
+        return self.client.execute(action: "InitDCDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 初始化实例
@@ -81,6 +82,7 @@ extension Dcdb {
     /// 本接口(InitDCDBInstances)用于初始化云数据库实例，包括设置默认字符集、表名大小写敏感等。
     @inlinable
     public func initDCDBInstances(instanceIds: [String], params: [DBParamValue], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitDCDBInstancesResponse {
-        try await self.initDCDBInstances(InitDCDBInstancesRequest(instanceIds: instanceIds, params: params), region: region, logger: logger, on: eventLoop)
+        let input = InitDCDBInstancesRequest(instanceIds: instanceIds, params: params)
+        return try await self.client.execute(action: "InitDCDBInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

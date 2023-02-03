@@ -56,7 +56,8 @@ extension Mps {
     /// 查询媒体传输所有地区。
     @inlinable
     public func describeStreamLinkRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeStreamLinkRegionsResponse> {
-        self.describeStreamLinkRegions(DescribeStreamLinkRegionsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamLinkRegionsRequest()
+        return self.client.execute(action: "DescribeStreamLinkRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询媒体传输地区
@@ -64,6 +65,7 @@ extension Mps {
     /// 查询媒体传输所有地区。
     @inlinable
     public func describeStreamLinkRegions(region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeStreamLinkRegionsResponse {
-        try await self.describeStreamLinkRegions(DescribeStreamLinkRegionsRequest(), region: region, logger: logger, on: eventLoop)
+        let input = DescribeStreamLinkRegionsRequest()
+        return try await self.client.execute(action: "DescribeStreamLinkRegions", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

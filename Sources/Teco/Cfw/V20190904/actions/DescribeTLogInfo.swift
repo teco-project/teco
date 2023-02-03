@@ -79,7 +79,8 @@ extension Cfw {
     /// DescribeTLogInfo告警中心概况
     @inlinable
     public func describeTLogInfo(startTime: String, endTime: String, queryType: String, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTLogInfoResponse> {
-        self.describeTLogInfo(DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue)
+        return self.client.execute(action: "DescribeTLogInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 告警中心概况
@@ -87,6 +88,7 @@ extension Cfw {
     /// DescribeTLogInfo告警中心概况
     @inlinable
     public func describeTLogInfo(startTime: String, endTime: String, queryType: String, searchValue: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTLogInfoResponse {
-        try await self.describeTLogInfo(DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTLogInfoRequest(startTime: startTime, endTime: endTime, queryType: queryType, searchValue: searchValue)
+        return try await self.client.execute(action: "DescribeTLogInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

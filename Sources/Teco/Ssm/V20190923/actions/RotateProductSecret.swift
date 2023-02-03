@@ -67,7 +67,8 @@ extension Ssm {
     /// 该接口仅适用于处于Enabled状态的云产品凭据或处于Enable状态的云API密钥对凭据，对于其他状态的云产品凭据或云API密钥对凭据或用户自定义凭据不适用。
     @inlinable
     public func rotateProductSecret(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RotateProductSecretResponse> {
-        self.rotateProductSecret(RotateProductSecretRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
+        let input = RotateProductSecretRequest(secretName: secretName)
+        return self.client.execute(action: "RotateProductSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 轮转云产品凭据
@@ -76,6 +77,7 @@ extension Ssm {
     /// 该接口仅适用于处于Enabled状态的云产品凭据或处于Enable状态的云API密钥对凭据，对于其他状态的云产品凭据或云API密钥对凭据或用户自定义凭据不适用。
     @inlinable
     public func rotateProductSecret(secretName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RotateProductSecretResponse {
-        try await self.rotateProductSecret(RotateProductSecretRequest(secretName: secretName), region: region, logger: logger, on: eventLoop)
+        let input = RotateProductSecretRequest(secretName: secretName)
+        return try await self.client.execute(action: "RotateProductSecret", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -65,7 +65,8 @@ extension Clb {
     /// DescribeTargetHealth 接口用来获取负载均衡后端服务的健康检查结果，不支持传统型负载均衡。
     @inlinable
     public func describeTargetHealth(loadBalancerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTargetHealthResponse> {
-        self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds)
+        return self.client.execute(action: "DescribeTargetHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取负载均衡后端服务的健康检查状态
@@ -73,6 +74,7 @@ extension Clb {
     /// DescribeTargetHealth 接口用来获取负载均衡后端服务的健康检查结果，不支持传统型负载均衡。
     @inlinable
     public func describeTargetHealth(loadBalancerIds: [String], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTargetHealthResponse {
-        try await self.describeTargetHealth(DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTargetHealthRequest(loadBalancerIds: loadBalancerIds)
+        return try await self.client.execute(action: "DescribeTargetHealth", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

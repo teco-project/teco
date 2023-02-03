@@ -113,7 +113,8 @@ extension Batch {
     /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
     @inlinable
     public func describeTask(jobId: String, taskName: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTaskResponse> {
-        self.describeTask(DescribeTaskRequest(jobId: jobId, taskName: taskName, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskRequest(jobId: jobId, taskName: taskName, offset: offset, limit: limit, filters: filters)
+        return self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询任务详情
@@ -121,6 +122,7 @@ extension Batch {
     /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
     @inlinable
     public func describeTask(jobId: String, taskName: String, offset: UInt64? = nil, limit: UInt64? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskResponse {
-        try await self.describeTask(DescribeTaskRequest(jobId: jobId, taskName: taskName, offset: offset, limit: limit, filters: filters), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTaskRequest(jobId: jobId, taskName: taskName, offset: offset, limit: limit, filters: filters)
+        return try await self.client.execute(action: "DescribeTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

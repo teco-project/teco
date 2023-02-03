@@ -64,12 +64,14 @@ extension Tcss {
     /// 镜像仓库停止镜像一键扫描任务
     @inlinable @discardableResult
     public func modifyAssetImageRegistryScanStopOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyAssetImageRegistryScanStopOneKeyResponse> {
-        self.modifyAssetImageRegistryScanStopOneKey(ModifyAssetImageRegistryScanStopOneKeyRequest(all: all, images: images, id: id), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssetImageRegistryScanStopOneKeyRequest(all: all, images: images, id: id)
+        return self.client.execute(action: "ModifyAssetImageRegistryScanStopOneKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 镜像仓库停止镜像一键扫描任务
     @inlinable @discardableResult
     public func modifyAssetImageRegistryScanStopOneKey(all: Bool? = nil, images: [ImageInfo]? = nil, id: [UInt64]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAssetImageRegistryScanStopOneKeyResponse {
-        try await self.modifyAssetImageRegistryScanStopOneKey(ModifyAssetImageRegistryScanStopOneKeyRequest(all: all, images: images, id: id), region: region, logger: logger, on: eventLoop)
+        let input = ModifyAssetImageRegistryScanStopOneKeyRequest(all: all, images: images, id: id)
+        return try await self.client.execute(action: "ModifyAssetImageRegistryScanStopOneKey", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -69,7 +69,8 @@ extension Dayu {
     /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
     @inlinable
     public func describeSourceIpSegment(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSourceIpSegmentResponse> {
-        self.describeSourceIpSegment(DescribeSourceIpSegmentRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSourceIpSegmentRequest(business: business, id: id)
+        return self.client.execute(action: "DescribeSourceIpSegment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取回源IP段
@@ -77,6 +78,7 @@ extension Dayu {
     /// 获取回源IP段，支持的产品：高防IP，高防IP专业版；
     @inlinable
     public func describeSourceIpSegment(business: String, id: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSourceIpSegmentResponse {
-        try await self.describeSourceIpSegment(DescribeSourceIpSegmentRequest(business: business, id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSourceIpSegmentRequest(business: business, id: id)
+        return try await self.client.execute(action: "DescribeSourceIpSegment", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

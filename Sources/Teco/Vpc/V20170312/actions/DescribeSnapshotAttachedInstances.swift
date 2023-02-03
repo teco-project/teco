@@ -86,7 +86,8 @@ extension Vpc {
     /// 本接口（DescribeSnapshotAttachedInstances）用于查询快照策略关联实例列表。
     @inlinable
     public func describeSnapshotAttachedInstances(snapshotPolicyId: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSnapshotAttachedInstancesResponse> {
-        self.describeSnapshotAttachedInstances(DescribeSnapshotAttachedInstancesRequest(snapshotPolicyId: snapshotPolicyId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotAttachedInstancesRequest(snapshotPolicyId: snapshotPolicyId, filters: filters, offset: offset, limit: limit)
+        return self.client.execute(action: "DescribeSnapshotAttachedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询快照策略关联实例列表
@@ -94,6 +95,7 @@ extension Vpc {
     /// 本接口（DescribeSnapshotAttachedInstances）用于查询快照策略关联实例列表。
     @inlinable
     public func describeSnapshotAttachedInstances(snapshotPolicyId: String, filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSnapshotAttachedInstancesResponse {
-        try await self.describeSnapshotAttachedInstances(DescribeSnapshotAttachedInstancesRequest(snapshotPolicyId: snapshotPolicyId, filters: filters, offset: offset, limit: limit), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSnapshotAttachedInstancesRequest(snapshotPolicyId: snapshotPolicyId, filters: filters, offset: offset, limit: limit)
+        return try await self.client.execute(action: "DescribeSnapshotAttachedInstances", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

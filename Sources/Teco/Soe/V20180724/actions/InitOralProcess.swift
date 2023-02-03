@@ -153,7 +153,8 @@ extension Soe {
     /// 初始化发音评估过程，每一轮评估前进行调用。语音输入模式分为流式模式和非流式模式，流式模式支持数据分片传输，可以加快评估响应速度。评估模式分为词模式和句子模式，词模式会标注每个音节的详细信息；句子模式会有完整度和流利度的评估。
     @inlinable
     public func initOralProcess(sessionId: String, refText: String, workMode: Int64, evalMode: Int64, scoreCoeff: Float, soeAppId: String? = nil, isLongLifeSession: Int64? = nil, storageMode: Int64? = nil, sentenceInfoEnabled: Int64? = nil, serverType: Int64? = nil, isAsync: Int64? = nil, textMode: Int64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<InitOralProcessResponse> {
-        self.initOralProcess(InitOralProcessRequest(sessionId: sessionId, refText: refText, workMode: workMode, evalMode: evalMode, scoreCoeff: scoreCoeff, soeAppId: soeAppId, isLongLifeSession: isLongLifeSession, storageMode: storageMode, sentenceInfoEnabled: sentenceInfoEnabled, serverType: serverType, isAsync: isAsync, textMode: textMode, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = InitOralProcessRequest(sessionId: sessionId, refText: refText, workMode: workMode, evalMode: evalMode, scoreCoeff: scoreCoeff, soeAppId: soeAppId, isLongLifeSession: isLongLifeSession, storageMode: storageMode, sentenceInfoEnabled: sentenceInfoEnabled, serverType: serverType, isAsync: isAsync, textMode: textMode, keyword: keyword)
+        return self.client.execute(action: "InitOralProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 发音评估初始化
@@ -161,6 +162,7 @@ extension Soe {
     /// 初始化发音评估过程，每一轮评估前进行调用。语音输入模式分为流式模式和非流式模式，流式模式支持数据分片传输，可以加快评估响应速度。评估模式分为词模式和句子模式，词模式会标注每个音节的详细信息；句子模式会有完整度和流利度的评估。
     @inlinable
     public func initOralProcess(sessionId: String, refText: String, workMode: Int64, evalMode: Int64, scoreCoeff: Float, soeAppId: String? = nil, isLongLifeSession: Int64? = nil, storageMode: Int64? = nil, sentenceInfoEnabled: Int64? = nil, serverType: Int64? = nil, isAsync: Int64? = nil, textMode: Int64? = nil, keyword: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InitOralProcessResponse {
-        try await self.initOralProcess(InitOralProcessRequest(sessionId: sessionId, refText: refText, workMode: workMode, evalMode: evalMode, scoreCoeff: scoreCoeff, soeAppId: soeAppId, isLongLifeSession: isLongLifeSession, storageMode: storageMode, sentenceInfoEnabled: sentenceInfoEnabled, serverType: serverType, isAsync: isAsync, textMode: textMode, keyword: keyword), region: region, logger: logger, on: eventLoop)
+        let input = InitOralProcessRequest(sessionId: sessionId, refText: refText, workMode: workMode, evalMode: evalMode, scoreCoeff: scoreCoeff, soeAppId: soeAppId, isLongLifeSession: isLongLifeSession, storageMode: storageMode, sentenceInfoEnabled: sentenceInfoEnabled, serverType: serverType, isAsync: isAsync, textMode: textMode, keyword: keyword)
+        return try await self.client.execute(action: "InitOralProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

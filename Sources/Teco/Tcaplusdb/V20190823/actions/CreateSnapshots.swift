@@ -73,7 +73,8 @@ extension Tcaplusdb {
     /// 构造表格过去时间点的快照
     @inlinable
     public func createSnapshots(clusterId: String, selectedTables: [SnapshotInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateSnapshotsResponse> {
-        self.createSnapshots(CreateSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
+        let input = CreateSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables)
+        return self.client.execute(action: "CreateSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建表格快照
@@ -81,6 +82,7 @@ extension Tcaplusdb {
     /// 构造表格过去时间点的快照
     @inlinable
     public func createSnapshots(clusterId: String, selectedTables: [SnapshotInfo], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateSnapshotsResponse {
-        try await self.createSnapshots(CreateSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables), region: region, logger: logger, on: eventLoop)
+        let input = CreateSnapshotsRequest(clusterId: clusterId, selectedTables: selectedTables)
+        return try await self.client.execute(action: "CreateSnapshots", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

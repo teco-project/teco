@@ -94,7 +94,8 @@ extension Tiia {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectLabelPro(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DetectLabelProResponse> {
-        self.detectLabelPro(DetectLabelProRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
+        let input = DetectLabelProRequest(imageUrl: imageUrl, imageBase64: imageBase64)
+        return self.client.execute(action: "DetectLabelPro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 通用图像标签
@@ -106,6 +107,7 @@ extension Tiia {
     /// - 公共参数中的签名方式必须指定为V3版本，即配置SignatureMethod参数为TC3-HMAC-SHA256。
     @inlinable
     public func detectLabelPro(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectLabelProResponse {
-        try await self.detectLabelPro(DetectLabelProRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
+        let input = DetectLabelProRequest(imageUrl: imageUrl, imageBase64: imageBase64)
+        return try await self.client.execute(action: "DetectLabelPro", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -58,12 +58,14 @@ extension Cwp {
     /// 获取指定标签关联的服务器信息
     @inlinable
     public func describeTagMachines(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeTagMachinesResponse> {
-        self.describeTagMachines(DescribeTagMachinesRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTagMachinesRequest(id: id)
+        return self.client.execute(action: "DescribeTagMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 获取指定标签关联的服务器信息
     @inlinable
     public func describeTagMachines(id: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTagMachinesResponse {
-        try await self.describeTagMachines(DescribeTagMachinesRequest(id: id), region: region, logger: logger, on: eventLoop)
+        let input = DescribeTagMachinesRequest(id: id)
+        return try await self.client.execute(action: "DescribeTagMachines", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

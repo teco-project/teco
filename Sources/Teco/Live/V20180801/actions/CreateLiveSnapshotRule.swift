@@ -82,7 +82,8 @@ extension Live {
     /// 注意：单个域名仅支持关联一个截图模板。
     @inlinable @discardableResult
     public func createLiveSnapshotRule(domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateLiveSnapshotRuleResponse> {
-        self.createLiveSnapshotRule(CreateLiveSnapshotRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
+        let input = CreateLiveSnapshotRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName)
+        return self.client.execute(action: "CreateLiveSnapshotRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建截图规则
@@ -92,6 +93,7 @@ extension Live {
     /// 注意：单个域名仅支持关联一个截图模板。
     @inlinable @discardableResult
     public func createLiveSnapshotRule(domainName: String, templateId: Int64, appName: String? = nil, streamName: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLiveSnapshotRuleResponse {
-        try await self.createLiveSnapshotRule(CreateLiveSnapshotRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName), region: region, logger: logger, on: eventLoop)
+        let input = CreateLiveSnapshotRuleRequest(domainName: domainName, templateId: templateId, appName: appName, streamName: streamName)
+        return try await self.client.execute(action: "CreateLiveSnapshotRule", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

@@ -59,12 +59,14 @@ extension Monitor {
     /// 更新 Grafana 配置
     @inlinable @discardableResult
     public func updateGrafanaConfig(instanceId: String, config: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateGrafanaConfigResponse> {
-        self.updateGrafanaConfig(UpdateGrafanaConfigRequest(instanceId: instanceId, config: config), region: region, logger: logger, on: eventLoop)
+        let input = UpdateGrafanaConfigRequest(instanceId: instanceId, config: config)
+        return self.client.execute(action: "UpdateGrafanaConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新 Grafana 配置
     @inlinable @discardableResult
     public func updateGrafanaConfig(instanceId: String, config: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateGrafanaConfigResponse {
-        try await self.updateGrafanaConfig(UpdateGrafanaConfigRequest(instanceId: instanceId, config: config), region: region, logger: logger, on: eventLoop)
+        let input = UpdateGrafanaConfigRequest(instanceId: instanceId, config: config)
+        return try await self.client.execute(action: "UpdateGrafanaConfig", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

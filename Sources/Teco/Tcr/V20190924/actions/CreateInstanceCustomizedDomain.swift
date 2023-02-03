@@ -64,12 +64,14 @@ extension Tcr {
     /// 创建自定义域名
     @inlinable @discardableResult
     public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateInstanceCustomizedDomainResponse> {
-        self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId)
+        return self.client.execute(action: "CreateInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 创建自定义域名
     @inlinable @discardableResult
     public func createInstanceCustomizedDomain(registryId: String, domainName: String, certificateId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateInstanceCustomizedDomainResponse {
-        try await self.createInstanceCustomizedDomain(CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId), region: region, logger: logger, on: eventLoop)
+        let input = CreateInstanceCustomizedDomainRequest(registryId: registryId, domainName: domainName, certificateId: certificateId)
+        return try await self.client.execute(action: "CreateInstanceCustomizedDomain", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

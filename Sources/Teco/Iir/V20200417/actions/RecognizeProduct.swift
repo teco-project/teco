@@ -91,7 +91,8 @@ extension Iir {
     /// 注意：本文档为公测版本，仅适用于功能体验和测试，正式业务接入请等待正式版。正式版的输入、输出可能会与公测版存在少量差异。
     @inlinable
     public func recognizeProduct(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RecognizeProductResponse> {
-        self.recognizeProduct(RecognizeProductRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
+        let input = RecognizeProductRequest(imageUrl: imageUrl, imageBase64: imageBase64)
+        return self.client.execute(action: "RecognizeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 商品识别
@@ -103,6 +104,7 @@ extension Iir {
     /// 注意：本文档为公测版本，仅适用于功能体验和测试，正式业务接入请等待正式版。正式版的输入、输出可能会与公测版存在少量差异。
     @inlinable
     public func recognizeProduct(imageUrl: String? = nil, imageBase64: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RecognizeProductResponse {
-        try await self.recognizeProduct(RecognizeProductRequest(imageUrl: imageUrl, imageBase64: imageBase64), region: region, logger: logger, on: eventLoop)
+        let input = RecognizeProductRequest(imageUrl: imageUrl, imageBase64: imageBase64)
+        return try await self.client.execute(action: "RecognizeProduct", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

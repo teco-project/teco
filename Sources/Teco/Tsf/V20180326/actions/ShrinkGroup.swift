@@ -65,7 +65,8 @@ extension Tsf {
     /// 下线部署组所有机器实例
     @inlinable
     public func shrinkGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ShrinkGroupResponse> {
-        self.shrinkGroup(ShrinkGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = ShrinkGroupRequest(groupId: groupId)
+        return self.client.execute(action: "ShrinkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 缩容虚拟机部署组
@@ -73,6 +74,7 @@ extension Tsf {
     /// 下线部署组所有机器实例
     @inlinable
     public func shrinkGroup(groupId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ShrinkGroupResponse {
-        try await self.shrinkGroup(ShrinkGroupRequest(groupId: groupId), region: region, logger: logger, on: eventLoop)
+        let input = ShrinkGroupRequest(groupId: groupId)
+        return try await self.client.execute(action: "ShrinkGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

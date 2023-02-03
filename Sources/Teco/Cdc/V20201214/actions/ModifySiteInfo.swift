@@ -94,12 +94,14 @@ extension Cdc {
     /// 修改机房信息
     @inlinable @discardableResult
     public func modifySiteInfo(siteId: String, name: String? = nil, description: String? = nil, note: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, postalCode: String? = nil, addressLine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifySiteInfoResponse> {
-        self.modifySiteInfo(ModifySiteInfoRequest(siteId: siteId, name: name, description: description, note: note, country: country, province: province, city: city, postalCode: postalCode, addressLine: addressLine), region: region, logger: logger, on: eventLoop)
+        let input = ModifySiteInfoRequest(siteId: siteId, name: name, description: description, note: note, country: country, province: province, city: city, postalCode: postalCode, addressLine: addressLine)
+        return self.client.execute(action: "ModifySiteInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改机房信息
     @inlinable @discardableResult
     public func modifySiteInfo(siteId: String, name: String? = nil, description: String? = nil, note: String? = nil, country: String? = nil, province: String? = nil, city: String? = nil, postalCode: String? = nil, addressLine: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifySiteInfoResponse {
-        try await self.modifySiteInfo(ModifySiteInfoRequest(siteId: siteId, name: name, description: description, note: note, country: country, province: province, city: city, postalCode: postalCode, addressLine: addressLine), region: region, logger: logger, on: eventLoop)
+        let input = ModifySiteInfoRequest(siteId: siteId, name: name, description: description, note: note, country: country, province: province, city: city, postalCode: postalCode, addressLine: addressLine)
+        return try await self.client.execute(action: "ModifySiteInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

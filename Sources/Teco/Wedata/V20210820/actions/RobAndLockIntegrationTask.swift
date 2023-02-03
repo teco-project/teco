@@ -68,12 +68,14 @@ extension Wedata {
     /// 抢占锁定集成任务
     @inlinable
     public func robAndLockIntegrationTask(taskId: String, projectId: String, taskType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<RobAndLockIntegrationTaskResponse> {
-        self.robAndLockIntegrationTask(RobAndLockIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = RobAndLockIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType)
+        return self.client.execute(action: "RobAndLockIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 抢占锁定集成任务
     @inlinable
     public func robAndLockIntegrationTask(taskId: String, projectId: String, taskType: UInt64, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RobAndLockIntegrationTaskResponse {
-        try await self.robAndLockIntegrationTask(RobAndLockIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType), region: region, logger: logger, on: eventLoop)
+        let input = RobAndLockIntegrationTaskRequest(taskId: taskId, projectId: projectId, taskType: taskType)
+        return try await self.client.execute(action: "RobAndLockIntegrationTask", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

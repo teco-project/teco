@@ -113,7 +113,8 @@ extension Tsf {
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
     @inlinable
     public func describeUnitApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, gatewayInstanceId: String, groupId: String, offset: Int64, limit: Int64, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeUnitApiUseDetailResponse> {
-        self.describeUnitApiUseDetail(DescribeUnitApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime, gatewayInstanceId: gatewayInstanceId, groupId: groupId, offset: offset, limit: limit, period: period), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUnitApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime, gatewayInstanceId: gatewayInstanceId, groupId: groupId, offset: offset, limit: limit, period: period)
+        return self.client.execute(action: "DescribeUnitApiUseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询单元化网关API监控明细数据
@@ -121,6 +122,7 @@ extension Tsf {
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
     @inlinable
     public func describeUnitApiUseDetail(gatewayDeployGroupId: String, apiId: String, startTime: Date, endTime: Date, gatewayInstanceId: String, groupId: String, offset: Int64, limit: Int64, period: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeUnitApiUseDetailResponse {
-        try await self.describeUnitApiUseDetail(DescribeUnitApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime, gatewayInstanceId: gatewayInstanceId, groupId: groupId, offset: offset, limit: limit, period: period), region: region, logger: logger, on: eventLoop)
+        let input = DescribeUnitApiUseDetailRequest(gatewayDeployGroupId: gatewayDeployGroupId, apiId: apiId, startTime: startTime, endTime: endTime, gatewayInstanceId: gatewayInstanceId, groupId: groupId, offset: offset, limit: limit, period: period)
+        return try await self.client.execute(action: "DescribeUnitApiUseDetail", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

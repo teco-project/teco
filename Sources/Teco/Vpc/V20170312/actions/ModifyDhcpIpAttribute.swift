@@ -65,7 +65,8 @@ extension Vpc {
     /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
     @inlinable @discardableResult
     public func modifyDhcpIpAttribute(dhcpIpId: String, dhcpIpName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyDhcpIpAttributeResponse> {
-        self.modifyDhcpIpAttribute(ModifyDhcpIpAttributeRequest(dhcpIpId: dhcpIpId, dhcpIpName: dhcpIpName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDhcpIpAttributeRequest(dhcpIpId: dhcpIpId, dhcpIpName: dhcpIpName)
+        return self.client.execute(action: "ModifyDhcpIpAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改DhcpIp属性
@@ -73,6 +74,7 @@ extension Vpc {
     /// 本接口（ModifyDhcpIpAttribute）用于修改DhcpIp属性
     @inlinable @discardableResult
     public func modifyDhcpIpAttribute(dhcpIpId: String, dhcpIpName: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyDhcpIpAttributeResponse {
-        try await self.modifyDhcpIpAttribute(ModifyDhcpIpAttributeRequest(dhcpIpId: dhcpIpId, dhcpIpName: dhcpIpName), region: region, logger: logger, on: eventLoop)
+        let input = ModifyDhcpIpAttributeRequest(dhcpIpId: dhcpIpId, dhcpIpName: dhcpIpName)
+        return try await self.client.execute(action: "ModifyDhcpIpAttribute", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

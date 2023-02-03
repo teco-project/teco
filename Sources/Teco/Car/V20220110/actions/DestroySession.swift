@@ -54,12 +54,14 @@ extension Car {
     /// 销毁会话
     @inlinable @discardableResult
     public func destroySession(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DestroySessionResponse> {
-        self.destroySession(DestroySessionRequest(userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DestroySessionRequest(userId: userId)
+        return self.client.execute(action: "DestroySession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 销毁会话
     @inlinable @discardableResult
     public func destroySession(userId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DestroySessionResponse {
-        try await self.destroySession(DestroySessionRequest(userId: userId), region: region, logger: logger, on: eventLoop)
+        let input = DestroySessionRequest(userId: userId)
+        return try await self.client.execute(action: "DestroySession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

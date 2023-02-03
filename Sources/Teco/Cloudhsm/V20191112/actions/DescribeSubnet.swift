@@ -78,12 +78,14 @@ extension Cloudhsm {
     /// 查询子网列表
     @inlinable
     public func describeSubnet(limit: Int64, offset: Int64, vpcId: String, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeSubnetResponse> {
-        self.describeSubnet(DescribeSubnetRequest(limit: limit, offset: offset, vpcId: vpcId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSubnetRequest(limit: limit, offset: offset, vpcId: vpcId, searchWord: searchWord)
+        return self.client.execute(action: "DescribeSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 查询子网列表
     @inlinable
     public func describeSubnet(limit: Int64, offset: Int64, vpcId: String, searchWord: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubnetResponse {
-        try await self.describeSubnet(DescribeSubnetRequest(limit: limit, offset: offset, vpcId: vpcId, searchWord: searchWord), region: region, logger: logger, on: eventLoop)
+        let input = DescribeSubnetRequest(limit: limit, offset: offset, vpcId: vpcId, searchWord: searchWord)
+        return try await self.client.execute(action: "DescribeSubnet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }

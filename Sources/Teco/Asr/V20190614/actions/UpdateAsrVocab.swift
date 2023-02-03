@@ -85,7 +85,8 @@ extension Asr {
     /// 用户通过本接口进行对应的词表信息更新。
     @inlinable
     public func updateAsrVocab(vocabId: String, name: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<UpdateAsrVocabResponse> {
-        self.updateAsrVocab(UpdateAsrVocabRequest(vocabId: vocabId, name: name, wordWeights: wordWeights, wordWeightStr: wordWeightStr, description: description), region: region, logger: logger, on: eventLoop)
+        let input = UpdateAsrVocabRequest(vocabId: vocabId, name: name, wordWeights: wordWeights, wordWeightStr: wordWeightStr, description: description)
+        return self.client.execute(action: "UpdateAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 更新热词表
@@ -93,6 +94,7 @@ extension Asr {
     /// 用户通过本接口进行对应的词表信息更新。
     @inlinable
     public func updateAsrVocab(vocabId: String, name: String? = nil, wordWeights: [HotWord]? = nil, wordWeightStr: String? = nil, description: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateAsrVocabResponse {
-        try await self.updateAsrVocab(UpdateAsrVocabRequest(vocabId: vocabId, name: name, wordWeights: wordWeights, wordWeightStr: wordWeightStr, description: description), region: region, logger: logger, on: eventLoop)
+        let input = UpdateAsrVocabRequest(vocabId: vocabId, name: name, wordWeights: wordWeights, wordWeightStr: wordWeightStr, description: description)
+        return try await self.client.execute(action: "UpdateAsrVocab", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 }
