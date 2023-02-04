@@ -42,7 +42,7 @@ extension Chdfs {
     /// 删除文件系统
     ///
     /// 删除文件系统，不允许删除非空文件系统。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func deleteFileSystem(_ input: DeleteFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSystemResponse> {
         self.client.execute(action: "DeleteFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -51,7 +51,7 @@ extension Chdfs {
     /// 删除文件系统
     ///
     /// 删除文件系统，不允许删除非空文件系统。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func deleteFileSystem(_ input: DeleteFileSystemRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSystemResponse {
         try await self.client.execute(action: "DeleteFileSystem", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -60,7 +60,7 @@ extension Chdfs {
     /// 删除文件系统
     ///
     /// 删除文件系统，不允许删除非空文件系统。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func deleteFileSystem(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFileSystemResponse> {
         let input = DeleteFileSystemRequest(fileSystemId: fileSystemId)
@@ -70,7 +70,7 @@ extension Chdfs {
     /// 删除文件系统
     ///
     /// 删除文件系统，不允许删除非空文件系统。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func deleteFileSystem(fileSystemId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFileSystemResponse {
         let input = DeleteFileSystemRequest(fileSystemId: fileSystemId)

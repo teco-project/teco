@@ -46,7 +46,7 @@ extension Gse {
     /// 获取生成包信息
     ///
     /// 本接口（DescribeAsset）获取生成包信息。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAsset(_ input: DescribeAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetResponse> {
         self.client.execute(action: "DescribeAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -55,7 +55,7 @@ extension Gse {
     /// 获取生成包信息
     ///
     /// 本接口（DescribeAsset）获取生成包信息。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAsset(_ input: DescribeAssetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetResponse {
         try await self.client.execute(action: "DescribeAsset", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -64,7 +64,7 @@ extension Gse {
     /// 获取生成包信息
     ///
     /// 本接口（DescribeAsset）获取生成包信息。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAsset(assetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetResponse> {
         let input = DescribeAssetRequest(assetId: assetId)
@@ -74,7 +74,7 @@ extension Gse {
     /// 获取生成包信息
     ///
     /// 本接口（DescribeAsset）获取生成包信息。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAsset(assetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetResponse {
         let input = DescribeAssetRequest(assetId: assetId)

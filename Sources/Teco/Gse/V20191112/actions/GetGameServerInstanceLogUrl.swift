@@ -75,7 +75,7 @@ extension Gse {
     /// 获取游戏服务器实例的日志URL
     ///
     /// 本接口用于获取游戏服务器实例的日志URL。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerInstanceLogUrl(_ input: GetGameServerInstanceLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerInstanceLogUrlResponse> {
         self.client.execute(action: "GetGameServerInstanceLogUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -84,7 +84,7 @@ extension Gse {
     /// 获取游戏服务器实例的日志URL
     ///
     /// 本接口用于获取游戏服务器实例的日志URL。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerInstanceLogUrl(_ input: GetGameServerInstanceLogUrlRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerInstanceLogUrlResponse {
         try await self.client.execute(action: "GetGameServerInstanceLogUrl", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -93,7 +93,7 @@ extension Gse {
     /// 获取游戏服务器实例的日志URL
     ///
     /// 本接口用于获取游戏服务器实例的日志URL。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerInstanceLogUrl(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetGameServerInstanceLogUrlResponse> {
         let input = GetGameServerInstanceLogUrlRequest(fleetId: fleetId, instanceId: instanceId, serverIp: serverIp, offset: offset, size: size)
@@ -103,7 +103,7 @@ extension Gse {
     /// 获取游戏服务器实例的日志URL
     ///
     /// 本接口用于获取游戏服务器实例的日志URL。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func getGameServerInstanceLogUrl(fleetId: String, instanceId: String? = nil, serverIp: String? = nil, offset: UInt64? = nil, size: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetGameServerInstanceLogUrlResponse {
         let input = GetGameServerInstanceLogUrlRequest(fleetId: fleetId, instanceId: instanceId, serverIp: serverIp, offset: offset, size: size)

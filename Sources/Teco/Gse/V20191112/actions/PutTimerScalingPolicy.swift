@@ -44,7 +44,7 @@ extension Gse {
     /// 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
     ///
     /// 填写字段timer_id，表示更新；不填字段timer_id表示新增。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func putTimerScalingPolicy(_ input: PutTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTimerScalingPolicyResponse> {
         self.client.execute(action: "PutTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -55,7 +55,7 @@ extension Gse {
     /// 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
     ///
     /// 填写字段timer_id，表示更新；不填字段timer_id表示新增。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func putTimerScalingPolicy(_ input: PutTimerScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTimerScalingPolicyResponse {
         try await self.client.execute(action: "PutTimerScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -66,7 +66,7 @@ extension Gse {
     /// 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
     ///
     /// 填写字段timer_id，表示更新；不填字段timer_id表示新增。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func putTimerScalingPolicy(timerScalingPolicy: TimerScalingPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<PutTimerScalingPolicyResponse> {
         let input = PutTimerScalingPolicyRequest(timerScalingPolicy: timerScalingPolicy)
@@ -78,7 +78,7 @@ extension Gse {
     /// 本接口（PutTimerScalingPolicy）用于给fleet创建或更新定时器。
     ///
     /// 填写字段timer_id，表示更新；不填字段timer_id表示新增。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func putTimerScalingPolicy(timerScalingPolicy: TimerScalingPolicy? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PutTimerScalingPolicyResponse {
         let input = PutTimerScalingPolicyRequest(timerScalingPolicy: timerScalingPolicy)

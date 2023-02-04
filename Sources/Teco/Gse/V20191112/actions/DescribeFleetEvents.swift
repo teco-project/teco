@@ -84,7 +84,7 @@ extension Gse {
     /// 查询服务器舰队的事件列表
     ///
     /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetEvents(_ input: DescribeFleetEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetEventsResponse> {
         self.client.execute(action: "DescribeFleetEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -93,7 +93,7 @@ extension Gse {
     /// 查询服务器舰队的事件列表
     ///
     /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetEvents(_ input: DescribeFleetEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetEventsResponse {
         try await self.client.execute(action: "DescribeFleetEvents", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -102,7 +102,7 @@ extension Gse {
     /// 查询服务器舰队的事件列表
     ///
     /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetEvents(fleetId: String, limit: UInt64? = nil, offset: UInt64? = nil, eventCode: String? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetEventsResponse> {
         let input = DescribeFleetEventsRequest(fleetId: fleetId, limit: limit, offset: offset, eventCode: eventCode, startTime: startTime, endTime: endTime)
@@ -112,7 +112,7 @@ extension Gse {
     /// 查询服务器舰队的事件列表
     ///
     /// 本接口（DescribeFleetEvents）用于查询服务器舰队相关的事件列表。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetEvents(fleetId: String, limit: UInt64? = nil, offset: UInt64? = nil, eventCode: String? = nil, startTime: Date? = nil, endTime: Date? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetEventsResponse {
         let input = DescribeFleetEventsRequest(fleetId: fleetId, limit: limit, offset: offset, eventCode: eventCode, startTime: startTime, endTime: endTime)

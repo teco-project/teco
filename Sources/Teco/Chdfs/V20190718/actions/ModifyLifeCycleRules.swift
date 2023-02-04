@@ -42,7 +42,7 @@ extension Chdfs {
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
         self.client.execute(action: "ModifyLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -51,7 +51,7 @@ extension Chdfs {
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyLifeCycleRules(_ input: ModifyLifeCycleRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
         try await self.client.execute(action: "ModifyLifeCycleRules", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -60,7 +60,7 @@ extension Chdfs {
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ModifyLifeCycleRulesResponse> {
         let input = ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules)
@@ -70,7 +70,7 @@ extension Chdfs {
     /// 批量修改生命周期规则属性
     ///
     /// 批量修改生命周期规则属性，需要指定生命周期规则ID，支持修改生命周期规则名称、路径、转换列表和状态。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable @discardableResult
     public func modifyLifeCycleRules(lifeCycleRules: [LifeCycleRule], region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyLifeCycleRulesResponse {
         let input = ModifyLifeCycleRulesRequest(lifeCycleRules: lifeCycleRules)

@@ -58,7 +58,7 @@ extension Btoe {
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositInfo(_ input: GetDepositInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
         self.client.execute(action: "GetDepositInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -67,7 +67,7 @@ extension Btoe {
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositInfo(_ input: GetDepositInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
         try await self.client.execute(action: "GetDepositInfo", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -76,7 +76,7 @@ extension Btoe {
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositInfo(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositInfoResponse> {
         let input = GetDepositInfoRequest(evidenceId: evidenceId)
@@ -86,7 +86,7 @@ extension Btoe {
     /// 存证基本信息查询
     ///
     /// 用户通过存证编码向BTOE查询存证基本信息。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositInfo(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositInfoResponse {
         let input = GetDepositInfoRequest(evidenceId: evidenceId)

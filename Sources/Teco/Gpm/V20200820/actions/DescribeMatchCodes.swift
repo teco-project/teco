@@ -60,21 +60,21 @@ extension Gpm {
     }
 
     /// 分页查询匹配Code
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchCodesResponse> {
         self.client.execute(action: "DescribeMatchCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 分页查询匹配Code
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(_ input: DescribeMatchCodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {
         try await self.client.execute(action: "DescribeMatchCodes", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 分页查询匹配Code
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(offset: Int64, limit: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMatchCodesResponse> {
         let input = DescribeMatchCodesRequest(offset: offset, limit: limit, matchCode: matchCode)
@@ -82,7 +82,7 @@ extension Gpm {
     }
 
     /// 分页查询匹配Code
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeMatchCodes(offset: Int64, limit: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMatchCodesResponse {
         let input = DescribeMatchCodesRequest(offset: offset, limit: limit, matchCode: matchCode)

@@ -40,21 +40,21 @@ extension Gpm {
     }
 
     /// 删除匹配
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteMatch(_ input: DeleteMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
         self.client.execute(action: "DeleteMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 删除匹配
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteMatch(_ input: DeleteMatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
         try await self.client.execute(action: "DeleteMatch", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 删除匹配
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteMatchResponse> {
         let input = DeleteMatchRequest(matchCode: matchCode)
@@ -62,7 +62,7 @@ extension Gpm {
     }
 
     /// 删除匹配
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteMatch(matchCode: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMatchResponse {
         let input = DeleteMatchRequest(matchCode: matchCode)

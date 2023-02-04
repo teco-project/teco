@@ -70,7 +70,7 @@ extension Gse {
     /// 拉取生成包列表
     ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssets(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
         self.client.execute(action: "DescribeAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -79,7 +79,7 @@ extension Gse {
     /// 拉取生成包列表
     ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssets(_ input: DescribeAssetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
         try await self.client.execute(action: "DescribeAssets", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -88,7 +88,7 @@ extension Gse {
     /// 拉取生成包列表
     ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeAssetsResponse> {
         let input = DescribeAssetsRequest(assetRegion: assetRegion, offset: offset, limit: limit, filter: filter, filters: filters)
@@ -98,7 +98,7 @@ extension Gse {
     /// 拉取生成包列表
     ///
     /// 本接口（DescribeAssets）用于获取生成包列表。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeAssets(assetRegion: String, offset: Int64, limit: Int64, filter: String? = nil, filters: [Filter]? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAssetsResponse {
         let input = DescribeAssetsRequest(assetRegion: assetRegion, offset: offset, limit: limit, filter: filter, filters: filters)

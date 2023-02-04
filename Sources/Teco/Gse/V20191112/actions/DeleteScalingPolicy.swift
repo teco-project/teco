@@ -49,7 +49,7 @@ extension Gse {
     /// 本接口（DeleteScalingPolicy）用于删除服务器舰队的扩缩容策略。
     /// 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
     /// 传递策略名称时，单独删除策略名称对应的策略。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
         self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -60,7 +60,7 @@ extension Gse {
     /// 本接口（DeleteScalingPolicy）用于删除服务器舰队的扩缩容策略。
     /// 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
     /// 传递策略名称时，单独删除策略名称对应的策略。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(_ input: DeleteScalingPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
         try await self.client.execute(action: "DeleteScalingPolicy", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,7 +71,7 @@ extension Gse {
     /// 本接口（DeleteScalingPolicy）用于删除服务器舰队的扩缩容策略。
     /// 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
     /// 传递策略名称时，单独删除策略名称对应的策略。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(fleetId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteScalingPolicyResponse> {
         let input = DeleteScalingPolicyRequest(fleetId: fleetId, name: name)
@@ -83,7 +83,7 @@ extension Gse {
     /// 本接口（DeleteScalingPolicy）用于删除服务器舰队的扩缩容策略。
     /// 通过服务器舰队ID和策略名称删除服务器舰队的扩缩容策略，只传递服务器舰队ID时，会将这个服务器舰队下的所有策略都删除。
     /// 传递策略名称时，单独删除策略名称对应的策略。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteScalingPolicy(fleetId: String, name: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteScalingPolicyResponse {
         let input = DeleteScalingPolicyRequest(fleetId: fleetId, name: name)

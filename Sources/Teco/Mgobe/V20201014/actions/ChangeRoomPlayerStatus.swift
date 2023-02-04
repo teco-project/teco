@@ -54,21 +54,21 @@ extension Mgobe {
     }
 
     /// 修改玩家自定义状态
-    @available(*, deprecated, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerStatusResponse> {
         self.client.execute(action: "ChangeRoomPlayerStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 修改玩家自定义状态
-    @available(*, deprecated, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func changeRoomPlayerStatus(_ input: ChangeRoomPlayerStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
         try await self.client.execute(action: "ChangeRoomPlayerStatus", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 修改玩家自定义状态
-    @available(*, deprecated, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func changeRoomPlayerStatus(gameId: String, customStatus: UInt64, playerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ChangeRoomPlayerStatusResponse> {
         let input = ChangeRoomPlayerStatusRequest(gameId: gameId, customStatus: customStatus, playerId: playerId)
@@ -76,7 +76,7 @@ extension Mgobe {
     }
 
     /// 修改玩家自定义状态
-    @available(*, deprecated, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func changeRoomPlayerStatus(gameId: String, customStatus: UInt64, playerId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ChangeRoomPlayerStatusResponse {
         let input = ChangeRoomPlayerStatusRequest(gameId: gameId, customStatus: customStatus, playerId: playerId)

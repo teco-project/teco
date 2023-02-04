@@ -62,7 +62,7 @@ extension Gse {
     /// 查询游戏服务器舰队容量配置
     ///
     /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetCapacity(_ input: DescribeFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetCapacityResponse> {
         self.client.execute(action: "DescribeFleetCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -71,7 +71,7 @@ extension Gse {
     /// 查询游戏服务器舰队容量配置
     ///
     /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetCapacity(_ input: DescribeFleetCapacityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetCapacityResponse {
         try await self.client.execute(action: "DescribeFleetCapacity", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -80,7 +80,7 @@ extension Gse {
     /// 查询游戏服务器舰队容量配置
     ///
     /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetCapacity(fleetIds: [String], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetCapacityResponse> {
         let input = DescribeFleetCapacityRequest(fleetIds: fleetIds, limit: limit, offset: offset)
@@ -90,7 +90,7 @@ extension Gse {
     /// 查询游戏服务器舰队容量配置
     ///
     /// 本接口（DescribeFleetCapacity）用于查询服务部署容量配置。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetCapacity(fleetIds: [String], limit: UInt64? = nil, offset: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetCapacityResponse {
         let input = DescribeFleetCapacityRequest(fleetIds: fleetIds, limit: limit, offset: offset)

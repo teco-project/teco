@@ -52,7 +52,7 @@ extension Tcex {
     /// 查询服务调用结果
     ///
     /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
-    @available(*, unavailable, message: "产品控制台已经下线")
+    @available(*, deprecated, message: "产品控制台已经下线")
     @inlinable
     public func describeInvocationResult(_ input: DescribeInvocationResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationResultResponse> {
         self.client.execute(action: "DescribeInvocationResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -61,7 +61,7 @@ extension Tcex {
     /// 查询服务调用结果
     ///
     /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
-    @available(*, unavailable, message: "产品控制台已经下线")
+    @available(*, deprecated, message: "产品控制台已经下线")
     @inlinable
     public func describeInvocationResult(_ input: DescribeInvocationResultRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
         try await self.client.execute(action: "DescribeInvocationResult", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -70,7 +70,7 @@ extension Tcex {
     /// 查询服务调用结果
     ///
     /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
-    @available(*, unavailable, message: "产品控制台已经下线")
+    @available(*, deprecated, message: "产品控制台已经下线")
     @inlinable
     public func describeInvocationResult(invokeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeInvocationResultResponse> {
         let input = DescribeInvocationResultRequest(invokeId: invokeId)
@@ -80,7 +80,7 @@ extension Tcex {
     /// 查询服务调用结果
     ///
     /// 获取服务调用结果。和InvokeService接口配置合适，其InvokeId参数为InvokeService接口返回的RequestId。
-    @available(*, unavailable, message: "产品控制台已经下线")
+    @available(*, deprecated, message: "产品控制台已经下线")
     @inlinable
     public func describeInvocationResult(invokeId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInvocationResultResponse {
         let input = DescribeInvocationResultRequest(invokeId: invokeId)

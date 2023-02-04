@@ -52,7 +52,7 @@ extension Gse {
     /// 终止游戏服务器会话和对应的进程
     ///
     /// 本接口（EndGameServerSessionAndProcess）用于终止游戏服务器会话和对应的进程，适用于时限保护和不保护。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func endGameServerSessionAndProcess(_ input: EndGameServerSessionAndProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EndGameServerSessionAndProcessResponse> {
         self.client.execute(action: "EndGameServerSessionAndProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -61,7 +61,7 @@ extension Gse {
     /// 终止游戏服务器会话和对应的进程
     ///
     /// 本接口（EndGameServerSessionAndProcess）用于终止游戏服务器会话和对应的进程，适用于时限保护和不保护。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func endGameServerSessionAndProcess(_ input: EndGameServerSessionAndProcessRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EndGameServerSessionAndProcessResponse {
         try await self.client.execute(action: "EndGameServerSessionAndProcess", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -70,7 +70,7 @@ extension Gse {
     /// 终止游戏服务器会话和对应的进程
     ///
     /// 本接口（EndGameServerSessionAndProcess）用于终止游戏服务器会话和对应的进程，适用于时限保护和不保护。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func endGameServerSessionAndProcess(gameServerSessionId: String? = nil, ipAddress: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<EndGameServerSessionAndProcessResponse> {
         let input = EndGameServerSessionAndProcessRequest(gameServerSessionId: gameServerSessionId, ipAddress: ipAddress, port: port)
@@ -80,7 +80,7 @@ extension Gse {
     /// 终止游戏服务器会话和对应的进程
     ///
     /// 本接口（EndGameServerSessionAndProcess）用于终止游戏服务器会话和对应的进程，适用于时限保护和不保护。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func endGameServerSessionAndProcess(gameServerSessionId: String? = nil, ipAddress: String? = nil, port: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EndGameServerSessionAndProcessResponse {
         let input = EndGameServerSessionAndProcessRequest(gameServerSessionId: gameServerSessionId, ipAddress: ipAddress, port: port)

@@ -65,21 +65,21 @@ extension Gpm {
     }
 
     /// 统计数据
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeData(_ input: DescribeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
         self.client.execute(action: "DescribeData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
 
     /// 统计数据
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeData(_ input: DescribeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
         try await self.client.execute(action: "DescribeData", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 统计数据
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeData(startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeDataResponse> {
         let input = DescribeDataRequest(startTime: startTime, endTime: endTime, timeType: timeType, matchCode: matchCode)
@@ -87,7 +87,7 @@ extension Gpm {
     }
 
     /// 统计数据
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeData(startTime: Int64, endTime: Int64, timeType: Int64, matchCode: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeDataResponse {
         let input = DescribeDataRequest(startTime: startTime, endTime: endTime, timeType: timeType, matchCode: matchCode)

@@ -51,7 +51,7 @@ extension Btoe {
     ///
     /// 用户通过存证编码向BTOE获取存证文件的下载URL。
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(_ input: GetDepositFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
         self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -61,7 +61,7 @@ extension Btoe {
     ///
     /// 用户通过存证编码向BTOE获取存证文件的下载URL。
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(_ input: GetDepositFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
         try await self.client.execute(action: "GetDepositFile", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -71,7 +71,7 @@ extension Btoe {
     ///
     /// 用户通过存证编码向BTOE获取存证文件的下载URL。
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<GetDepositFileResponse> {
         let input = GetDepositFileRequest(evidenceId: evidenceId)
@@ -82,7 +82,7 @@ extension Btoe {
     ///
     /// 用户通过存证编码向BTOE获取存证文件的下载URL。
     /// -注：Hash类存证、业务数据明文存证不产生存证文件。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func getDepositFile(evidenceId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
         let input = GetDepositFileRequest(evidenceId: evidenceId)

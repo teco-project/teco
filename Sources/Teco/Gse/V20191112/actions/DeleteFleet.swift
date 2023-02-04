@@ -42,7 +42,7 @@ extension Gse {
     /// 删除服务器舰队
     ///
     /// 本接口（DeleteFleet）用于删除服务器舰队。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteFleet(_ input: DeleteFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFleetResponse> {
         self.client.execute(action: "DeleteFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -51,7 +51,7 @@ extension Gse {
     /// 删除服务器舰队
     ///
     /// 本接口（DeleteFleet）用于删除服务器舰队。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteFleet(_ input: DeleteFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFleetResponse {
         try await self.client.execute(action: "DeleteFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -60,7 +60,7 @@ extension Gse {
     /// 删除服务器舰队
     ///
     /// 本接口（DeleteFleet）用于删除服务器舰队。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteFleet(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteFleetResponse> {
         let input = DeleteFleetRequest(fleetId: fleetId)
@@ -70,7 +70,7 @@ extension Gse {
     /// 删除服务器舰队
     ///
     /// 本接口（DeleteFleet）用于删除服务器舰队。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteFleet(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteFleetResponse {
         let input = DeleteFleetRequest(fleetId: fleetId)

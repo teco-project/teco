@@ -71,7 +71,7 @@ extension Btoe {
     /// 网页快照存证
     ///
     /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
         self.client.execute(action: "CreateWebpageDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -80,7 +80,7 @@ extension Btoe {
     /// 网页快照存证
     ///
     /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(_ input: CreateWebpageDepositRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
         try await self.client.execute(action: "CreateWebpageDeposit", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -89,7 +89,7 @@ extension Btoe {
     /// 网页快照存证
     ///
     /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateWebpageDepositResponse> {
         let input = CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)
@@ -99,7 +99,7 @@ extension Btoe {
     /// 网页快照存证
     ///
     /// 用户通过本接口向BTOE提交待存证网页的URL，BTOE对URL进行网页快照，并将快照图片存储，将网页快照Hash值存证上链，并生成含有电子签章的区块链存证电子凭证。URL格式必须以http、https开头。
-    @available(*, deprecated, message: "功能迭代，已上线更高版本的接口2021-05-14")
+    @available(*, unavailable, message: "功能迭代，已上线更高版本的接口2021-05-14")
     @inlinable
     public func createWebpageDeposit(evidenceName: String, evidenceUrl: String, businessId: String? = nil, hashType: UInt64? = nil, evidenceDescription: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateWebpageDepositResponse {
         let input = CreateWebpageDepositRequest(evidenceName: evidenceName, evidenceUrl: evidenceUrl, businessId: businessId, hashType: hashType, evidenceDescription: evidenceDescription)

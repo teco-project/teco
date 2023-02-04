@@ -42,7 +42,7 @@ extension Gse {
     /// 删除别名
     ///
     /// 本接口（DeleteAlias）用于删除别名。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAlias(_ input: DeleteAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
         self.client.execute(action: "DeleteAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -51,7 +51,7 @@ extension Gse {
     /// 删除别名
     ///
     /// 本接口（DeleteAlias）用于删除别名。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAlias(_ input: DeleteAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
         try await self.client.execute(action: "DeleteAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -60,7 +60,7 @@ extension Gse {
     /// 删除别名
     ///
     /// 本接口（DeleteAlias）用于删除别名。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteAliasResponse> {
         let input = DeleteAliasRequest(aliasId: aliasId)
@@ -70,7 +70,7 @@ extension Gse {
     /// 删除别名
     ///
     /// 本接口（DeleteAlias）用于删除别名。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAliasResponse {
         let input = DeleteAliasRequest(aliasId: aliasId)

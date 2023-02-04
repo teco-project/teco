@@ -127,7 +127,7 @@ extension Gse {
     /// 创建服务器舰队
     ///
     /// 本接口（CreateFleet）用于创建服务器舰队。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createFleet(_ input: CreateFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFleetResponse> {
         self.client.execute(action: "CreateFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -136,7 +136,7 @@ extension Gse {
     /// 创建服务器舰队
     ///
     /// 本接口（CreateFleet）用于创建服务器舰队。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createFleet(_ input: CreateFleetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFleetResponse {
         try await self.client.execute(action: "CreateFleet", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -145,7 +145,7 @@ extension Gse {
     /// 创建服务器舰队
     ///
     /// 本接口（CreateFleet）用于创建服务器舰队。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createFleet(assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, peerVpcId: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, subNetId: String? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateFleetResponse> {
         let input = CreateFleetRequest(assetId: assetId, description: description, inboundPermissions: inboundPermissions, instanceType: instanceType, fleetType: fleetType, name: name, newGameServerSessionProtectionPolicy: newGameServerSessionProtectionPolicy, peerVpcId: peerVpcId, resourceCreationLimitPolicy: resourceCreationLimitPolicy, runtimeConfiguration: runtimeConfiguration, subNetId: subNetId, gameServerSessionProtectionTimeLimit: gameServerSessionProtectionTimeLimit, tags: tags, systemDiskInfo: systemDiskInfo, dataDiskInfo: dataDiskInfo, ccnInfos: ccnInfos, internetMaxBandwidthOut: internetMaxBandwidthOut)
@@ -155,7 +155,7 @@ extension Gse {
     /// 创建服务器舰队
     ///
     /// 本接口（CreateFleet）用于创建服务器舰队。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func createFleet(assetId: String? = nil, description: String? = nil, inboundPermissions: [InboundPermission]? = nil, instanceType: String? = nil, fleetType: String? = nil, name: String? = nil, newGameServerSessionProtectionPolicy: String? = nil, peerVpcId: String? = nil, resourceCreationLimitPolicy: ResourceCreationLimitPolicy? = nil, runtimeConfiguration: RuntimeConfiguration? = nil, subNetId: String? = nil, gameServerSessionProtectionTimeLimit: Int64? = nil, tags: [Tag]? = nil, systemDiskInfo: DiskInfo? = nil, dataDiskInfo: [DiskInfo]? = nil, ccnInfos: [CcnInfo]? = nil, internetMaxBandwidthOut: Int64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFleetResponse {
         let input = CreateFleetRequest(assetId: assetId, description: description, inboundPermissions: inboundPermissions, instanceType: instanceType, fleetType: fleetType, name: name, newGameServerSessionProtectionPolicy: newGameServerSessionProtectionPolicy, peerVpcId: peerVpcId, resourceCreationLimitPolicy: resourceCreationLimitPolicy, runtimeConfiguration: runtimeConfiguration, subNetId: subNetId, gameServerSessionProtectionTimeLimit: gameServerSessionProtectionTimeLimit, tags: tags, systemDiskInfo: systemDiskInfo, dataDiskInfo: dataDiskInfo, ccnInfos: ccnInfos, internetMaxBandwidthOut: internetMaxBandwidthOut)

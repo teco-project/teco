@@ -63,7 +63,7 @@ extension Chdfs {
     /// 查看挂载点列表
     ///
     /// 通过文件系统ID或者权限组ID查看挂载点列表。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeMountPoints(_ input: DescribeMountPointsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountPointsResponse> {
         self.client.execute(action: "DescribeMountPoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -72,7 +72,7 @@ extension Chdfs {
     /// 查看挂载点列表
     ///
     /// 通过文件系统ID或者权限组ID查看挂载点列表。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeMountPoints(_ input: DescribeMountPointsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointsResponse {
         try await self.client.execute(action: "DescribeMountPoints", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -81,7 +81,7 @@ extension Chdfs {
     /// 查看挂载点列表
     ///
     /// 通过文件系统ID或者权限组ID查看挂载点列表。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeMountPoints(fileSystemId: String? = nil, accessGroupId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeMountPointsResponse> {
         let input = DescribeMountPointsRequest(fileSystemId: fileSystemId, accessGroupId: accessGroupId, offset: offset, limit: limit)
@@ -91,7 +91,7 @@ extension Chdfs {
     /// 查看挂载点列表
     ///
     /// 通过文件系统ID或者权限组ID查看挂载点列表。
-    @available(*, unavailable, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
+    @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeMountPoints(fileSystemId: String? = nil, accessGroupId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountPointsResponse {
         let input = DescribeMountPointsRequest(fileSystemId: fileSystemId, accessGroupId: accessGroupId, offset: offset, limit: limit)

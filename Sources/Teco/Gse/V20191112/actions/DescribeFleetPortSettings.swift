@@ -47,7 +47,7 @@ extension Gse {
     /// 服务器舰队安全组信息查询
     ///
     /// 本接口（DescribeFleetPortSettings）用于获取服务器舰队安全组信息。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetPortSettings(_ input: DescribeFleetPortSettingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetPortSettingsResponse> {
         self.client.execute(action: "DescribeFleetPortSettings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -56,7 +56,7 @@ extension Gse {
     /// 服务器舰队安全组信息查询
     ///
     /// 本接口（DescribeFleetPortSettings）用于获取服务器舰队安全组信息。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetPortSettings(_ input: DescribeFleetPortSettingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetPortSettingsResponse {
         try await self.client.execute(action: "DescribeFleetPortSettings", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,7 +65,7 @@ extension Gse {
     /// 服务器舰队安全组信息查询
     ///
     /// 本接口（DescribeFleetPortSettings）用于获取服务器舰队安全组信息。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetPortSettings(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DescribeFleetPortSettingsResponse> {
         let input = DescribeFleetPortSettingsRequest(fleetId: fleetId)
@@ -75,7 +75,7 @@ extension Gse {
     /// 服务器舰队安全组信息查询
     ///
     /// 本接口（DescribeFleetPortSettings）用于获取服务器舰队安全组信息。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func describeFleetPortSettings(fleetId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeFleetPortSettingsResponse {
         let input = DescribeFleetPortSettingsRequest(fleetId: fleetId)

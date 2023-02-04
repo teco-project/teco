@@ -76,7 +76,7 @@ extension Tiems {
     /// 创建资源组的伸缩组
     ///
     /// 创建资源组的伸缩组。当前一个资源组仅允许创建一个伸缩组。
-    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRsgAsGroup(_ input: CreateRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRsgAsGroupResponse> {
         self.client.execute(action: "CreateRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -85,7 +85,7 @@ extension Tiems {
     /// 创建资源组的伸缩组
     ///
     /// 创建资源组的伸缩组。当前一个资源组仅允许创建一个伸缩组。
-    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRsgAsGroup(_ input: CreateRsgAsGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRsgAsGroupResponse {
         try await self.client.execute(action: "CreateRsgAsGroup", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -94,7 +94,7 @@ extension Tiems {
     /// 创建资源组的伸缩组
     ///
     /// 创建资源组的伸缩组。当前一个资源组仅允许创建一个伸缩组。
-    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRsgAsGroup(rsgId: String, maxSize: UInt64, minSize: UInt64, instanceType: String, cluster: String? = nil, name: String? = nil, desiredSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CreateRsgAsGroupResponse> {
         let input = CreateRsgAsGroupRequest(rsgId: rsgId, maxSize: maxSize, minSize: minSize, instanceType: instanceType, cluster: cluster, name: name, desiredSize: desiredSize)
@@ -104,7 +104,7 @@ extension Tiems {
     /// 创建资源组的伸缩组
     ///
     /// 创建资源组的伸缩组。当前一个资源组仅允许创建一个伸缩组。
-    @available(*, deprecated, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
+    @available(*, unavailable, message: "因业务策略调整，腾讯云TI平台TI-EMS已经于2022年6月30日下线并停止提供服务。若您有新增的业务需求，可前往TI-ONE(https://cloud.tencent.com/document/product/851)使用。")
     @inlinable
     public func createRsgAsGroup(rsgId: String, maxSize: UInt64, minSize: UInt64, instanceType: String, cluster: String? = nil, name: String? = nil, desiredSize: UInt64? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateRsgAsGroupResponse {
         let input = CreateRsgAsGroupRequest(rsgId: rsgId, maxSize: maxSize, minSize: minSize, instanceType: instanceType, cluster: cluster, name: name, desiredSize: desiredSize)

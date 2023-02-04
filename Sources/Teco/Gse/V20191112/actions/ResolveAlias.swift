@@ -47,7 +47,7 @@ extension Gse {
     /// 获取别名当前指向的fleetId
     ///
     /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func resolveAlias(_ input: ResolveAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveAliasResponse> {
         self.client.execute(action: "ResolveAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -56,7 +56,7 @@ extension Gse {
     /// 获取别名当前指向的fleetId
     ///
     /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func resolveAlias(_ input: ResolveAliasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
         try await self.client.execute(action: "ResolveAlias", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -65,7 +65,7 @@ extension Gse {
     /// 获取别名当前指向的fleetId
     ///
     /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func resolveAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<ResolveAliasResponse> {
         let input = ResolveAliasRequest(aliasId: aliasId)
@@ -75,7 +75,7 @@ extension Gse {
     /// 获取别名当前指向的fleetId
     ///
     /// 本接口（ResolveAlias）用于获取别名当前指向的fleetId。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func resolveAlias(aliasId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResolveAliasResponse {
         let input = ResolveAliasRequest(aliasId: aliasId)

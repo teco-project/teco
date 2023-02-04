@@ -42,7 +42,7 @@ extension Gse {
     /// 删除游戏服务器会话队列
     ///
     /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteGameServerSessionQueue(_ input: DeleteGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGameServerSessionQueueResponse> {
         self.client.execute(action: "DeleteGameServerSessionQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -51,7 +51,7 @@ extension Gse {
     /// 删除游戏服务器会话队列
     ///
     /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteGameServerSessionQueue(_ input: DeleteGameServerSessionQueueRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGameServerSessionQueueResponse {
         try await self.client.execute(action: "DeleteGameServerSessionQueue", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -60,7 +60,7 @@ extension Gse {
     /// 删除游戏服务器会话队列
     ///
     /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteGameServerSessionQueue(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<DeleteGameServerSessionQueueResponse> {
         let input = DeleteGameServerSessionQueueRequest(name: name)
@@ -70,7 +70,7 @@ extension Gse {
     /// 删除游戏服务器会话队列
     ///
     /// 本接口（DeleteGameServerSessionQueue）用于删除游戏服务器会话队列。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable @discardableResult
     public func deleteGameServerSessionQueue(name: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteGameServerSessionQueueResponse {
         let input = DeleteGameServerSessionQueueRequest(name: name)

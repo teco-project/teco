@@ -51,7 +51,7 @@ extension Gpm {
     /// 取消匹配
     ///
     /// 取消匹配。
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func cancelMatching(_ input: CancelMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMatchingResponse> {
         self.client.execute(action: "CancelMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -60,7 +60,7 @@ extension Gpm {
     /// 取消匹配
     ///
     /// 取消匹配。
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func cancelMatching(_ input: CancelMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
         try await self.client.execute(action: "CancelMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -69,7 +69,7 @@ extension Gpm {
     /// 取消匹配
     ///
     /// 取消匹配。
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func cancelMatching(matchCode: String, matchTicketId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<CancelMatchingResponse> {
         let input = CancelMatchingRequest(matchCode: matchCode, matchTicketId: matchTicketId)
@@ -79,7 +79,7 @@ extension Gpm {
     /// 取消匹配
     ///
     /// 取消匹配。
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func cancelMatching(matchCode: String, matchTicketId: String, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CancelMatchingResponse {
         let input = CancelMatchingRequest(matchCode: matchCode, matchTicketId: matchTicketId)

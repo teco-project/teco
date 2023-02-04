@@ -60,7 +60,7 @@ extension Gpm {
     /// 发起匹配
     ///
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatching(_ input: StartMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
         self.client.execute(action: "StartMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -69,7 +69,7 @@ extension Gpm {
     /// 发起匹配
     ///
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatching(_ input: StartMatchingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
         try await self.client.execute(action: "StartMatching", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -78,7 +78,7 @@ extension Gpm {
     /// 发起匹配
     ///
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<StartMatchingResponse> {
         let input = StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId)
@@ -88,7 +88,7 @@ extension Gpm {
     /// 发起匹配
     ///
     /// 支持传入一个玩家或多个玩家发起匹配，在同一个请求内的玩家将被分到同一个对局。
-    @available(*, deprecated, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏玩家匹配GPM已于6.1正式下架，感谢您的支持")
     @inlinable
     public func startMatching(matchCode: String, players: [Player], matchTicketId: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartMatchingResponse {
         let input = StartMatchingRequest(matchCode: matchCode, players: players, matchTicketId: matchTicketId)

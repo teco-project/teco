@@ -57,7 +57,7 @@ extension Gse {
     /// 加入游戏服务器会话
     ///
     /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func joinGameServerSession(_ input: JoinGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionResponse> {
         self.client.execute(action: "JoinGameServerSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
@@ -66,7 +66,7 @@ extension Gse {
     /// 加入游戏服务器会话
     ///
     /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func joinGameServerSession(_ input: JoinGameServerSessionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
         try await self.client.execute(action: "JoinGameServerSession", region: region, serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
@@ -75,7 +75,7 @@ extension Gse {
     /// 加入游戏服务器会话
     ///
     /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<JoinGameServerSessionResponse> {
         let input = JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData)
@@ -85,7 +85,7 @@ extension Gse {
     /// 加入游戏服务器会话
     ///
     /// 本接口（JoinGameServerSession）用于加入游戏服务器会话。
-    @available(*, deprecated, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
+    @available(*, unavailable, message: "此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持")
     @inlinable
     public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
         let input = JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData)
