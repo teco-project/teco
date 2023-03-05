@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Partners {
     /// DescribeUnbindClientList请求参数结构体
-    public struct DescribeUnbindClientListRequest: TCRequestModel {
+    public struct DescribeUnbindClientListRequest: TCPaginatedRequest {
         /// 解绑状态：0:所有,1:审核中,2已解绑
         public let status: UInt64
 
@@ -66,10 +67,18 @@ extension Partners {
             case applyTimeEnd = "ApplyTimeEnd"
             case orderDirection = "OrderDirection"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeUnbindClientListResponse) -> DescribeUnbindClientListRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeUnbindClientListRequest(status: self.status, offset: self.offset + .init(response.getItems().count), limit: self.limit, unbindUin: self.unbindUin, applyTimeStart: self.applyTimeStart, applyTimeEnd: self.applyTimeEnd, orderDirection: self.orderDirection)
+        }
     }
 
     /// DescribeUnbindClientList返回参数结构体
-    public struct DescribeUnbindClientListResponse: TCResponseModel {
+    public struct DescribeUnbindClientListResponse: TCPaginatedResponse {
         /// 符合条件的解绑客户数量
         public let totalCount: UInt64
 
@@ -83,6 +92,16 @@ extension Partners {
             case totalCount = "TotalCount"
             case unbindClientList = "UnbindClientList"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [UnbindClientElem] {
+            self.unbindClientList
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

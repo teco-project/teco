@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Billing {
     /// DescribeCostDetail请求参数结构体
-    public struct DescribeCostDetailRequest: TCRequestModel {
+    public struct DescribeCostDetailRequest: TCPaginatedRequest {
         /// 数量，最大值为100
         public let limit: Int64
 
@@ -77,10 +78,18 @@ extension Billing {
             case payMode = "PayMode"
             case resourceId = "ResourceId"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeCostDetailResponse) -> DescribeCostDetailRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeCostDetailRequest(limit: self.limit, offset: self.offset + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime, needRecordNum: self.needRecordNum, month: self.month, productCode: self.productCode, payMode: self.payMode, resourceId: self.resourceId)
+        }
     }
 
     /// DescribeCostDetail返回参数结构体
-    public struct DescribeCostDetailResponse: TCResponseModel {
+    public struct DescribeCostDetailResponse: TCPaginatedResponse {
         /// 消耗明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let detailSet: [CostDetail]?
@@ -96,6 +105,16 @@ extension Billing {
             case detailSet = "DetailSet"
             case total = "Total"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [CostDetail] {
+            self.detailSet ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.total
         }
     }
 

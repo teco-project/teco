@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Gse {
     /// DescribeFleetStatisticDetails请求参数结构体
-    public struct DescribeFleetStatisticDetailsRequest: TCRequestModel {
+    public struct DescribeFleetStatisticDetailsRequest: TCPaginatedRequest {
         /// 服务器舰队ID
         public let fleetId: String?
 
@@ -56,10 +57,18 @@ extension Gse {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeFleetStatisticDetailsResponse) -> DescribeFleetStatisticDetailsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeFleetStatisticDetailsRequest(fleetId: self.fleetId, beginTime: self.beginTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DescribeFleetStatisticDetails返回参数结构体
-    public struct DescribeFleetStatisticDetailsResponse: TCResponseModel {
+    public struct DescribeFleetStatisticDetailsResponse: TCPaginatedResponse {
         /// 服务部署统计详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let detailList: [FleetStatisticDetail]?
@@ -80,6 +89,16 @@ extension Gse {
             case totalCount = "TotalCount"
             case timeType = "TimeType"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [FleetStatisticDetail] {
+            self.detailList ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

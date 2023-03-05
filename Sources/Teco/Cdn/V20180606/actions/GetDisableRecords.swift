@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Cdn {
     /// GetDisableRecords请求参数结构体
-    public struct GetDisableRecordsRequest: TCRequestModel {
+    public struct GetDisableRecordsRequest: TCPaginatedRequest {
         /// 指定 URL 查询
         public let url: String?
 
@@ -68,10 +69,18 @@ extension Cdn {
             case limit = "Limit"
             case taskId = "TaskId"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: GetDisableRecordsResponse) -> GetDisableRecordsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return GetDisableRecordsRequest(url: self.url, startTime: self.startTime, endTime: self.endTime, status: self.status, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, taskId: self.taskId)
+        }
     }
 
     /// GetDisableRecords返回参数结构体
-    public struct GetDisableRecordsResponse: TCResponseModel {
+    public struct GetDisableRecordsResponse: TCPaginatedResponse {
         /// 封禁历史记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urlRecordList: [UrlRecord]?
@@ -87,6 +96,16 @@ extension Cdn {
             case urlRecordList = "UrlRecordList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [UrlRecord] {
+            self.urlRecordList ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

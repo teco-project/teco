@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Cr {
     /// QueryBlackListData请求参数结构体
-    public struct QueryBlackListDataRequest: TCRequestModel {
+    public struct QueryBlackListDataRequest: TCPaginatedRequest {
         /// 模块:AiApi
         public let module: String
 
@@ -66,10 +67,18 @@ extension Cr {
             case endBizDate = "EndBizDate"
             case blackValue = "BlackValue"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: QueryBlackListDataResponse) -> QueryBlackListDataRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return QueryBlackListDataRequest(module: self.module, operation: self.operation, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, startBizDate: self.startBizDate, endBizDate: self.endBizDate, blackValue: self.blackValue)
+        }
     }
 
     /// QueryBlackListData返回参数结构体
-    public struct QueryBlackListDataResponse: TCResponseModel {
+    public struct QueryBlackListDataResponse: TCPaginatedResponse {
         /// 总数。
         public let totalCount: Int64
 
@@ -84,6 +93,16 @@ extension Cr {
             case totalCount = "TotalCount"
             case data = "Data"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [BlackListData] {
+            self.data ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Yunjing {
     /// DescribeWeeklyReportVuls请求参数结构体
-    public struct DescribeWeeklyReportVulsRequest: TCRequestModel {
+    public struct DescribeWeeklyReportVulsRequest: TCPaginatedRequest {
         /// 专业版周报开始时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -43,10 +44,18 @@ extension Yunjing {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeWeeklyReportVulsResponse) -> DescribeWeeklyReportVulsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeWeeklyReportVulsRequest(beginDate: self.beginDate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DescribeWeeklyReportVuls返回参数结构体
-    public struct DescribeWeeklyReportVulsResponse: TCResponseModel {
+    public struct DescribeWeeklyReportVulsResponse: TCPaginatedResponse {
         /// 专业周报漏洞数据数组。
         public let weeklyReportVuls: [WeeklyReportVul]
 
@@ -60,6 +69,16 @@ extension Yunjing {
             case weeklyReportVuls = "WeeklyReportVuls"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [WeeklyReportVul] {
+            self.weeklyReportVuls
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

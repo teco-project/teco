@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Bm {
     /// DescribeDevices请求参数结构体
-    public struct DescribeDevicesRequest: TCRequestModel {
+    public struct DescribeDevicesRequest: TCPaginatedRequest {
         /// 偏移量
         public let offset: UInt64
 
@@ -126,10 +127,18 @@ extension Bm {
             case order = "Order"
             case maintainStatus = "MaintainStatus"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDevicesResponse) -> DescribeDevicesRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDevicesRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, deviceClassCode: self.deviceClassCode, instanceIds: self.instanceIds, wanIps: self.wanIps, lanIps: self.lanIps, alias: self.alias, vagueIp: self.vagueIp, deadlineStartTime: self.deadlineStartTime, deadlineEndTime: self.deadlineEndTime, autoRenewFlag: self.autoRenewFlag, vpcId: self.vpcId, subnetId: self.subnetId, tags: self.tags, deviceType: self.deviceType, isLuckyDevice: self.isLuckyDevice, orderField: self.orderField, order: self.order, maintainStatus: self.maintainStatus)
+        }
     }
 
     /// DescribeDevices返回参数结构体
-    public struct DescribeDevicesResponse: TCResponseModel {
+    public struct DescribeDevicesResponse: TCPaginatedResponse {
         /// 返回数量
         public let totalCount: UInt64
 
@@ -143,6 +152,16 @@ extension Bm {
             case totalCount = "TotalCount"
             case deviceInfoSet = "DeviceInfoSet"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [DeviceInfo] {
+            self.deviceInfoSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

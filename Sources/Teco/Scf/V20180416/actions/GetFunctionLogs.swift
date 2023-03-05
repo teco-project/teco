@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Scf {
     /// GetFunctionLogs请求参数结构体
-    public struct GetFunctionLogsRequest: TCRequestModel {
+    public struct GetFunctionLogsRequest: TCPaginatedRequest {
         /// 函数的名称。
         /// - 为保证[获取函数运行日志](https://cloud.tencent.com/document/product/583/18583)接口`GetFunctionLogs`兼容性，输入参数`FunctionName`仍为非必填项，但建议填写该参数，否则可能导致日志获取失败。
         /// - 函数关联日志服务后，建议使用[日志服务](https://cloud.tencent.com/document/product/614/16875)相关接口以获得最佳日志检索体验。
@@ -93,10 +94,18 @@ extension Scf {
             case endTime = "EndTime"
             case searchContext = "SearchContext"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: GetFunctionLogsResponse) -> GetFunctionLogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return GetFunctionLogsRequest(functionName: self.functionName, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, order: self.order, orderBy: self.orderBy, filter: self.filter, namespace: self.namespace, qualifier: self.qualifier, functionRequestId: self.functionRequestId, startTime: self.startTime, endTime: self.endTime, searchContext: self.searchContext)
+        }
     }
 
     /// GetFunctionLogs返回参数结构体
-    public struct GetFunctionLogsResponse: TCResponseModel {
+    public struct GetFunctionLogsResponse: TCPaginatedResponse {
         /// 函数日志的总数
         public let totalCount: Int64
 
@@ -114,6 +123,16 @@ extension Scf {
             case data = "Data"
             case searchContext = "SearchContext"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [FunctionLog] {
+            self.data
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

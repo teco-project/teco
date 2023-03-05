@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Tbm {
     /// DescribeBrandNegComments请求参数结构体
-    public struct DescribeBrandNegCommentsRequest: TCRequestModel {
+    public struct DescribeBrandNegCommentsRequest: TCPaginatedRequest {
         /// 品牌ID
         public let brandId: String
 
@@ -56,10 +57,18 @@ extension Tbm {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeBrandNegCommentsResponse) -> DescribeBrandNegCommentsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeBrandNegCommentsRequest(brandId: self.brandId, startDate: self.startDate, endDate: self.endDate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DescribeBrandNegComments返回参数结构体
-    public struct DescribeBrandNegCommentsResponse: TCResponseModel {
+    public struct DescribeBrandNegCommentsResponse: TCPaginatedResponse {
         /// 评论列表
         public let brandCommentSet: [CommentInfo]
 
@@ -73,6 +82,16 @@ extension Tbm {
             case brandCommentSet = "BrandCommentSet"
             case totalComments = "TotalComments"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [CommentInfo] {
+            self.brandCommentSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalComments
         }
     }
 

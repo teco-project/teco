@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Cdn {
     /// DescribePushTasks请求参数结构体
-    public struct DescribePushTasksRequest: TCRequestModel {
+    public struct DescribePushTasksRequest: TCPaginatedRequest {
         /// 开始时间，如2018-08-08 00:00:00。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -79,10 +80,18 @@ extension Cdn {
             case area = "Area"
             case status = "Status"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribePushTasksResponse) -> DescribePushTasksRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribePushTasksRequest(startTime: self.startTime, endTime: self.endTime, taskId: self.taskId, keyword: self.keyword, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, area: self.area, status: self.status)
+        }
     }
 
     /// DescribePushTasks返回参数结构体
-    public struct DescribePushTasksResponse: TCResponseModel {
+    public struct DescribePushTasksResponse: TCPaginatedResponse {
         /// 预热历史记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pushLogs: [PushTask]?
@@ -98,6 +107,16 @@ extension Cdn {
             case pushLogs = "PushLogs"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [PushTask] {
+            self.pushLogs ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

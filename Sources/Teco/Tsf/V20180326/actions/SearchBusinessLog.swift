@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Tsf {
     /// SearchBusinessLog请求参数结构体
-    public struct SearchBusinessLogRequest: TCRequestModel {
+    public struct SearchBusinessLogRequest: TCPaginatedRequest {
         /// 日志配置项ID
         public let configId: String
 
@@ -96,10 +97,18 @@ extension Tsf {
             case batchType = "BatchType"
             case scrollId = "ScrollId"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: SearchBusinessLogResponse) -> SearchBusinessLogRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return SearchBusinessLogRequest(configId: self.configId, instanceIds: self.instanceIds, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderBy: self.orderBy, orderType: self.orderType, searchWords: self.searchWords, groupIds: self.groupIds, searchWordType: self.searchWordType, batchType: self.batchType, scrollId: self.scrollId)
+        }
     }
 
     /// SearchBusinessLog返回参数结构体
-    public struct SearchBusinessLogResponse: TCResponseModel {
+    public struct SearchBusinessLogResponse: TCPaginatedResponse {
         /// 业务日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageBusinessLogV2?
@@ -110,6 +119,16 @@ extension Tsf {
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [BusinessLogV2] {
+            self.result.content ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.result.totalCount
         }
     }
 

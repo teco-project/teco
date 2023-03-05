@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Faceid {
     /// GetWeChatBillDetails请求参数结构体
-    public struct GetWeChatBillDetailsRequest: TCRequestModel {
+    public struct GetWeChatBillDetailsRequest: TCPaginatedRequest {
         /// 拉取的日期（YYYY-MM-DD）。最大可追溯到365天前。当天6点后才能拉取前一天的数据。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -43,10 +44,18 @@ extension Faceid {
             case cursor = "Cursor"
             case ruleId = "RuleId"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: GetWeChatBillDetailsResponse) -> GetWeChatBillDetailsRequest? {
+            guard response.hasNextPage else {
+                return nil
+            }
+            return GetWeChatBillDetailsRequest(date: self.date, cursor: response.nextCursor, ruleId: self.ruleId)
+        }
     }
 
     /// GetWeChatBillDetails返回参数结构体
-    public struct GetWeChatBillDetailsResponse: TCResponseModel {
+    public struct GetWeChatBillDetailsResponse: TCPaginatedResponse {
         /// 是否还有下一页。该字段为true时，需要将NextCursor的值作为入参Cursor继续调用本接口。
         public let hasNextPage: Bool
 
@@ -64,6 +73,11 @@ extension Faceid {
             case nextCursor = "NextCursor"
             case weChatBillDetails = "WeChatBillDetails"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [WeChatBillDetail] {
+            self.weChatBillDetails
         }
     }
 

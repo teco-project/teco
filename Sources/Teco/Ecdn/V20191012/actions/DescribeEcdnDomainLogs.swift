@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Ecdn {
     /// DescribeEcdnDomainLogs请求参数结构体
-    public struct DescribeEcdnDomainLogsRequest: TCRequestModel {
+    public struct DescribeEcdnDomainLogsRequest: TCPaginatedRequest {
         /// 待查询域名。
         public let domain: String
 
@@ -56,10 +57,18 @@ extension Ecdn {
             case offset = "Offset"
             case limit = "Limit"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeEcdnDomainLogsResponse) -> DescribeEcdnDomainLogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeEcdnDomainLogsRequest(domain: self.domain, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+        }
     }
 
     /// DescribeEcdnDomainLogs返回参数结构体
-    public struct DescribeEcdnDomainLogsResponse: TCResponseModel {
+    public struct DescribeEcdnDomainLogsResponse: TCPaginatedResponse {
         /// 日志链接列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainLogs: [DomainLogs]?
@@ -74,6 +83,16 @@ extension Ecdn {
             case domainLogs = "DomainLogs"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [DomainLogs] {
+            self.domainLogs ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

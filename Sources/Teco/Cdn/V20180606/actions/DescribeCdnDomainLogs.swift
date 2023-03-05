@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Cdn {
     /// DescribeCdnDomainLogs请求参数结构体
-    public struct DescribeCdnDomainLogsRequest: TCRequestModel {
+    public struct DescribeCdnDomainLogsRequest: TCPaginatedRequest {
         /// 指定域名查询
         public let domain: String
 
@@ -71,10 +72,18 @@ extension Cdn {
             case area = "Area"
             case logType = "LogType"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeCdnDomainLogsResponse) -> DescribeCdnDomainLogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeCdnDomainLogsRequest(domain: self.domain, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, area: self.area, logType: self.logType)
+        }
     }
 
     /// DescribeCdnDomainLogs返回参数结构体
-    public struct DescribeCdnDomainLogsResponse: TCResponseModel {
+    public struct DescribeCdnDomainLogsResponse: TCPaginatedResponse {
         /// 日志包下载链接。
         /// 下载内容是gz后缀的压缩包，解压后是无扩展名的文本文件。
         public let domainLogs: [DomainLog]
@@ -89,6 +98,16 @@ extension Cdn {
             case domainLogs = "DomainLogs"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [DomainLog] {
+            self.domainLogs
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

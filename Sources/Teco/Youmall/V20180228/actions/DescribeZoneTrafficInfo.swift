@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Youmall {
     /// DescribeZoneTrafficInfo请求参数结构体
-    public struct DescribeZoneTrafficInfoRequest: TCRequestModel {
+    public struct DescribeZoneTrafficInfoRequest: TCPaginatedRequest {
         /// 公司ID
         public let companyId: String
 
@@ -61,10 +62,18 @@ extension Youmall {
             case offset = "Offset"
             case limit = "Limit"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeZoneTrafficInfoResponse) -> DescribeZoneTrafficInfoRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeZoneTrafficInfoRequest(companyId: self.companyId, shopId: self.shopId, startDate: self.startDate, endDate: self.endDate, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+        }
     }
 
     /// DescribeZoneTrafficInfo返回参数结构体
-    public struct DescribeZoneTrafficInfoResponse: TCResponseModel {
+    public struct DescribeZoneTrafficInfoResponse: TCPaginatedResponse {
         /// 公司ID
         public let companyId: String
 
@@ -86,6 +95,16 @@ extension Youmall {
             case totalCount = "TotalCount"
             case zoneTrafficInfoSet = "ZoneTrafficInfoSet"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [ZoneTrafficInfo] {
+            self.zoneTrafficInfoSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

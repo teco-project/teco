@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Teo {
     /// DescribePurgeTasks请求参数结构体
-    public struct DescribePurgeTasksRequest: TCRequestModel {
+    public struct DescribePurgeTasksRequest: TCPaginatedRequest {
         /// 任务ID
         public let jobId: String?
 
@@ -82,10 +83,18 @@ extension Teo {
             case domains = "Domains"
             case target = "Target"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribePurgeTasksResponse) -> DescribePurgeTasksRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribePurgeTasksRequest(jobId: self.jobId, type: self.type, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, statuses: self.statuses, zoneId: self.zoneId, domains: self.domains, target: self.target)
+        }
     }
 
     /// DescribePurgeTasks返回参数结构体
-    public struct DescribePurgeTasksResponse: TCResponseModel {
+    public struct DescribePurgeTasksResponse: TCPaginatedResponse {
         /// 该查询条件总共条目数
         public let totalCount: UInt64
 
@@ -99,6 +108,16 @@ extension Teo {
             case totalCount = "TotalCount"
             case tasks = "Tasks"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [Task] {
+            self.tasks
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

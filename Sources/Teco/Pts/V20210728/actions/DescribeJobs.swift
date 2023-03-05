@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Pts {
     /// DescribeJobs请求参数结构体
-    public struct DescribeJobsRequest: TCRequestModel {
+    public struct DescribeJobsRequest: TCPaginatedRequest {
         /// 场景ID数组
         public let scenarioIds: [String]
 
@@ -86,10 +87,18 @@ extension Pts {
             case debug = "Debug"
             case status = "Status"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeJobsResponse) -> DescribeJobsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeJobsRequest(scenarioIds: self.scenarioIds, projectIds: self.projectIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, jobIds: self.jobIds, orderBy: self.orderBy, ascend: self.ascend, startTime: self.startTime, endTime: self.endTime, debug: self.debug, status: self.status)
+        }
     }
 
     /// DescribeJobs返回参数结构体
-    public struct DescribeJobsResponse: TCResponseModel {
+    public struct DescribeJobsResponse: TCPaginatedResponse {
         /// 任务列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobSet: [Job]?
@@ -105,6 +114,16 @@ extension Pts {
             case jobSet = "JobSet"
             case total = "Total"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [Job] {
+            self.jobSet ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.total
         }
     }
 

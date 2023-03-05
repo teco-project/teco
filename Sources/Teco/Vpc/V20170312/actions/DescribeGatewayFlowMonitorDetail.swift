@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Vpc {
     /// DescribeGatewayFlowMonitorDetail请求参数结构体
-    public struct DescribeGatewayFlowMonitorDetailRequest: TCRequestModel {
+    public struct DescribeGatewayFlowMonitorDetailRequest: TCPaginatedRequest {
         /// 时间点。表示要查询这分钟内的明细。如：`2019-02-28 18:15:20`，将查询 `18:15` 这一分钟内的明细。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -73,10 +74,18 @@ extension Vpc {
             case orderField = "OrderField"
             case orderDirection = "OrderDirection"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeGatewayFlowMonitorDetailResponse) -> DescribeGatewayFlowMonitorDetailRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeGatewayFlowMonitorDetailRequest(timePoint: self.timePoint, vpnId: self.vpnId, directConnectGatewayId: self.directConnectGatewayId, peeringConnectionId: self.peeringConnectionId, natId: self.natId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, orderField: self.orderField, orderDirection: self.orderDirection)
+        }
     }
 
     /// DescribeGatewayFlowMonitorDetail返回参数结构体
-    public struct DescribeGatewayFlowMonitorDetailResponse: TCResponseModel {
+    public struct DescribeGatewayFlowMonitorDetailResponse: TCPaginatedResponse {
         /// 符合条件的对象数。
         public let totalCount: UInt64
 
@@ -90,6 +99,16 @@ extension Vpc {
             case totalCount = "TotalCount"
             case gatewayFlowMonitorDetailSet = "GatewayFlowMonitorDetailSet"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [GatewayFlowMonitorDetail] {
+            self.gatewayFlowMonitorDetailSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

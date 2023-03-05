@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Mongodb {
     /// DescribeSlowLog请求参数结构体
-    public struct DescribeSlowLogRequest: TCRequestModel {
+    public struct DescribeSlowLogRequest: TCPaginatedRequest {
         /// 实例ID，格式如：cmgo-p8vnipr5。与云数据库控制台页面中显示的实例ID相同
         public let instanceId: String
 
@@ -61,10 +62,18 @@ extension Mongodb {
             case offset = "Offset"
             case limit = "Limit"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeSlowLogResponse) -> DescribeSlowLogRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeSlowLogRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, slowMS: self.slowMS, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+        }
     }
 
     /// DescribeSlowLog返回参数结构体
-    public struct DescribeSlowLogResponse: TCResponseModel {
+    public struct DescribeSlowLogResponse: TCPaginatedResponse {
         /// 符合查询条件的慢查询日志总数。
         public let totalCount: UInt64
 
@@ -78,6 +87,16 @@ extension Mongodb {
             case totalCount = "TotalCount"
             case slowLogList = "SlowLogList"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [string] {
+            self.slowLogList
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

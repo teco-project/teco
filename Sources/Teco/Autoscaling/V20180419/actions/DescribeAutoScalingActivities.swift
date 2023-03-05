@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension As {
     /// DescribeAutoScalingActivities请求参数结构体
-    public struct DescribeAutoScalingActivitiesRequest: TCRequestModel {
+    public struct DescribeAutoScalingActivitiesRequest: TCPaginatedRequest {
         /// 按照一个或者多个伸缩活动ID查询。伸缩活动ID形如：`asa-5l2ejpfo`。每次请求的上限为100。参数不支持同时指定`ActivityIds`和`Filters`。
         public let activityIds: [String]?
 
@@ -66,10 +67,18 @@ extension As {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeAutoScalingActivitiesResponse) -> DescribeAutoScalingActivitiesRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeAutoScalingActivitiesRequest(activityIds: self.activityIds, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), startTime: self.startTime, endTime: self.endTime)
+        }
     }
 
     /// DescribeAutoScalingActivities返回参数结构体
-    public struct DescribeAutoScalingActivitiesResponse: TCResponseModel {
+    public struct DescribeAutoScalingActivitiesResponse: TCPaginatedResponse {
         /// 符合条件的伸缩活动数量。
         public let totalCount: UInt64
 
@@ -83,6 +92,16 @@ extension As {
             case totalCount = "TotalCount"
             case activitySet = "ActivitySet"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [Activity] {
+            self.activitySet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

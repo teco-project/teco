@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Yunjing {
     /// DescribeWeeklyReportBruteAttacks请求参数结构体
-    public struct DescribeWeeklyReportBruteAttacksRequest: TCRequestModel {
+    public struct DescribeWeeklyReportBruteAttacksRequest: TCPaginatedRequest {
         /// 专业周报开始时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -43,10 +44,18 @@ extension Yunjing {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeWeeklyReportBruteAttacksResponse) -> DescribeWeeklyReportBruteAttacksRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeWeeklyReportBruteAttacksRequest(beginDate: self.beginDate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DescribeWeeklyReportBruteAttacks返回参数结构体
-    public struct DescribeWeeklyReportBruteAttacksResponse: TCResponseModel {
+    public struct DescribeWeeklyReportBruteAttacksResponse: TCPaginatedResponse {
         /// 专业周报密码破解数组。
         public let weeklyReportBruteAttacks: [WeeklyReportBruteAttack]
 
@@ -60,6 +69,16 @@ extension Yunjing {
             case weeklyReportBruteAttacks = "WeeklyReportBruteAttacks"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [WeeklyReportBruteAttack] {
+            self.weeklyReportBruteAttacks
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

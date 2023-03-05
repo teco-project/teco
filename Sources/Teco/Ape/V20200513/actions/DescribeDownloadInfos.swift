@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Ape {
     /// DescribeDownloadInfos请求参数结构体
-    public struct DescribeDownloadInfosRequest: TCRequestModel {
+    public struct DescribeDownloadInfosRequest: TCPaginatedRequest {
         /// 默认10
         public let limit: Int64?
 
@@ -56,10 +57,18 @@ extension Ape {
             case endTime = "EndTime"
             case imageIds = "ImageIds"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDownloadInfosResponse) -> DescribeDownloadInfosRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDownloadInfosRequest(limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), beginTime: self.beginTime, endTime: self.endTime, imageIds: self.imageIds)
+        }
     }
 
     /// DescribeDownloadInfos返回参数结构体
-    public struct DescribeDownloadInfosResponse: TCResponseModel {
+    public struct DescribeDownloadInfosResponse: TCPaginatedResponse {
         /// 核销下载记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let downloadInfos: [DownloadInfo]?
@@ -74,6 +83,16 @@ extension Ape {
             case downloadInfos = "DownloadInfos"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [DownloadInfo] {
+            self.downloadInfos ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

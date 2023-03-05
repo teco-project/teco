@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Partners {
     /// DescribeAgentDealsCache请求参数结构体
-    public struct DescribeAgentDealsCacheRequest: TCRequestModel {
+    public struct DescribeAgentDealsCacheRequest: TCPaginatedRequest {
         /// 偏移量
         public let offset: UInt64
 
@@ -76,10 +77,18 @@ extension Partners {
             case dealNames = "DealNames"
             case payerMode = "PayerMode"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeAgentDealsCacheResponse) -> DescribeAgentDealsCacheRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeAgentDealsCacheRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, creatTimeRangeStart: self.creatTimeRangeStart, creatTimeRangeEnd: self.creatTimeRangeEnd, order: self.order, status: self.status, ownerUins: self.ownerUins, dealNames: self.dealNames, payerMode: self.payerMode)
+        }
     }
 
     /// DescribeAgentDealsCache返回参数结构体
-    public struct DescribeAgentDealsCacheResponse: TCResponseModel {
+    public struct DescribeAgentDealsCacheResponse: TCPaginatedResponse {
         /// 订单数组
         public let agentDealSet: [AgentDealElem]
 
@@ -93,6 +102,16 @@ extension Partners {
             case agentDealSet = "AgentDealSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [AgentDealElem] {
+            self.agentDealSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

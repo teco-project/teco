@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Essbasic {
     /// DescribeUsage请求参数结构体
-    public struct DescribeUsageRequest: TCRequestModel {
+    public struct DescribeUsageRequest: TCPaginatedRequest {
         /// 应用信息，此接口Agent.AppId必填
         public let agent: Agent
 
@@ -69,10 +70,18 @@ extension Essbasic {
             case offset = "Offset"
             case `operator` = "Operator"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeUsageResponse) -> DescribeUsageRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeUsageRequest(agent: self.agent, startDate: self.startDate, endDate: self.endDate, needAggregate: self.needAggregate, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), operator: self.operator)
+        }
     }
 
     /// DescribeUsage返回参数结构体
-    public struct DescribeUsageResponse: TCResponseModel {
+    public struct DescribeUsageResponse: TCPaginatedResponse {
         /// 用量明细条数
         public let total: UInt64
 
@@ -87,6 +96,16 @@ extension Essbasic {
             case total = "Total"
             case details = "Details"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [UsageDetail] {
+            self.details ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.total
         }
     }
 

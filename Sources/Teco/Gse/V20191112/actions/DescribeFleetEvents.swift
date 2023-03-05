@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Gse {
     /// DescribeFleetEvents请求参数结构体
-    public struct DescribeFleetEventsRequest: TCRequestModel {
+    public struct DescribeFleetEventsRequest: TCPaginatedRequest {
         /// 服务器舰队 Id
         public let fleetId: String
 
@@ -61,10 +62,18 @@ extension Gse {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeFleetEventsResponse) -> DescribeFleetEventsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeFleetEventsRequest(fleetId: self.fleetId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), eventCode: self.eventCode, startTime: self.startTime, endTime: self.endTime)
+        }
     }
 
     /// DescribeFleetEvents返回参数结构体
-    public struct DescribeFleetEventsResponse: TCResponseModel {
+    public struct DescribeFleetEventsResponse: TCPaginatedResponse {
         /// 返回的事件列表
         public let events: [Event]
 
@@ -78,6 +87,16 @@ extension Gse {
             case events = "Events"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [Event] {
+            self.events
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

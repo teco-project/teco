@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Dbbrain {
     /// DescribeDBDiagReportTasks请求参数结构体
-    public struct DescribeDBDiagReportTasksRequest: TCRequestModel {
+    public struct DescribeDBDiagReportTasksRequest: TCPaginatedRequest {
         /// 第一个任务的开始时间，用于范围查询，时间格式如：2019-09-10 12:13:14。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -76,10 +77,18 @@ extension Dbbrain {
             case limit = "Limit"
             case product = "Product"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDBDiagReportTasksResponse) -> DescribeDBDiagReportTasksRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDBDiagReportTasksRequest(startTime: self.startTime, endTime: self.endTime, instanceIds: self.instanceIds, sources: self.sources, healthLevels: self.healthLevels, taskStatuses: self.taskStatuses, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, product: self.product)
+        }
     }
 
     /// DescribeDBDiagReportTasks返回参数结构体
-    public struct DescribeDBDiagReportTasksResponse: TCResponseModel {
+    public struct DescribeDBDiagReportTasksResponse: TCPaginatedResponse {
         /// 任务总数目。
         public let totalCount: Int64
 
@@ -93,6 +102,16 @@ extension Dbbrain {
             case totalCount = "TotalCount"
             case tasks = "Tasks"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [HealthReportTask] {
+            self.tasks
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

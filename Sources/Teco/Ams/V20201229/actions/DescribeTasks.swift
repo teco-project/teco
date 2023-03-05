@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Ams {
     /// DescribeTasks请求参数结构体
-    public struct DescribeTasksRequest: TCRequestModel {
+    public struct DescribeTasksRequest: TCPaginatedRequest {
         /// 该参数表示任务列表每页展示的任务条数，**默认值为10**（每页展示10条任务）。
         public let limit: Int64?
 
@@ -56,10 +57,18 @@ extension Ams {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeTasksResponse) -> DescribeTasksRequest? {
+            guard response.pageToken != nil else {
+                return nil
+            }
+            return DescribeTasksRequest(limit: self.limit, filter: self.filter, pageToken: response.pageToken, startTime: self.startTime, endTime: self.endTime)
+        }
     }
 
     /// DescribeTasks返回参数结构体
-    public struct DescribeTasksResponse: TCResponseModel {
+    public struct DescribeTasksResponse: TCPaginatedResponse {
         /// 该字段用于返回当前查询的任务总量，格式为int字符串。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: String?
@@ -80,6 +89,11 @@ extension Ams {
             case data = "Data"
             case pageToken = "PageToken"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [TaskData] {
+            self.data ?? []
         }
     }
 

@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Dbbrain {
     /// DescribeSlowLogTopSqls请求参数结构体
-    public struct DescribeSlowLogTopSqlsRequest: TCRequestModel {
+    public struct DescribeSlowLogTopSqlsRequest: TCPaginatedRequest {
         /// 实例 ID 。
         public let instanceId: String
 
@@ -76,10 +77,18 @@ extension Dbbrain {
             case schemaList = "SchemaList"
             case product = "Product"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeSlowLogTopSqlsResponse) -> DescribeSlowLogTopSqlsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeSlowLogTopSqlsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, sortBy: self.sortBy, orderBy: self.orderBy, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), schemaList: self.schemaList, product: self.product)
+        }
     }
 
     /// DescribeSlowLogTopSqls返回参数结构体
-    public struct DescribeSlowLogTopSqlsResponse: TCResponseModel {
+    public struct DescribeSlowLogTopSqlsResponse: TCPaginatedResponse {
         /// 符合条件的记录总数。
         public let totalCount: Int64
 
@@ -93,6 +102,16 @@ extension Dbbrain {
             case totalCount = "TotalCount"
             case rows = "Rows"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [SlowLogTopSqlItem] {
+            self.rows
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Wedata {
     /// DescribeTaskReportDetailList请求参数结构体
-    public struct DescribeTaskReportDetailListRequest: TCRequestModel {
+    public struct DescribeTaskReportDetailListRequest: TCPaginatedRequest {
         /// WeData项目id
         public let projectId: String
 
@@ -76,10 +77,18 @@ extension Wedata {
             case pageIndex = "PageIndex"
             case pageSize = "PageSize"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeTaskReportDetailListResponse) -> DescribeTaskReportDetailListRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeTaskReportDetailListRequest(projectId: self.projectId, taskId: self.taskId, beginDate: self.beginDate, endDate: self.endDate, stateList: self.stateList, sortItem: self.sortItem, sortType: self.sortType, pageIndex: (self.pageIndex ?? 0) + 1, pageSize: self.pageSize)
+        }
     }
 
     /// DescribeTaskReportDetailList返回参数结构体
-    public struct DescribeTaskReportDetailListResponse: TCResponseModel {
+    public struct DescribeTaskReportDetailListResponse: TCPaginatedResponse {
         /// 页码，从1开始
         public let pageIndex: UInt64
 
@@ -105,6 +114,16 @@ extension Wedata {
             case totalPage = "TotalPage"
             case items = "Items"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [TaskReportDetail] {
+            self.items
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

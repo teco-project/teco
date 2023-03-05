@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Teo {
     /// DescribeWebProtectionClientIpList请求参数结构体
-    public struct DescribeWebProtectionClientIpListRequest: TCRequestModel {
+    public struct DescribeWebProtectionClientIpListRequest: TCPaginatedRequest {
         /// 开始时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -83,10 +84,18 @@ extension Teo {
             case offset = "Offset"
             case area = "Area"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeWebProtectionClientIpListResponse) -> DescribeWebProtectionClientIpListRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeWebProtectionClientIpListRequest(startTime: self.startTime, endTime: self.endTime, zoneIds: self.zoneIds, domains: self.domains, interval: self.interval, queryCondition: self.queryCondition, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), area: self.area)
+        }
     }
 
     /// DescribeWebProtectionClientIpList返回参数结构体
-    public struct DescribeWebProtectionClientIpListResponse: TCResponseModel {
+    public struct DescribeWebProtectionClientIpListResponse: TCPaginatedResponse {
         /// CC防护客户端（攻击源）ip信息列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [SecClientIp]?
@@ -101,6 +110,16 @@ extension Teo {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [SecClientIp] {
+            self.data ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

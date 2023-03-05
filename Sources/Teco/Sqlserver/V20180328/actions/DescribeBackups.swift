@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Sqlserver {
     /// DescribeBackups请求参数结构体
-    public struct DescribeBackupsRequest: TCRequestModel {
+    public struct DescribeBackupsRequest: TCPaginatedRequest {
         /// 开始时间(yyyy-MM-dd HH:mm:ss)
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -96,10 +97,18 @@ extension Sqlserver {
             case type = "Type"
             case backupFormat = "BackupFormat"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeBackupsResponse) -> DescribeBackupsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeBackupsRequest(startTime: self.startTime, endTime: self.endTime, instanceId: self.instanceId, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), backupName: self.backupName, strategy: self.strategy, backupWay: self.backupWay, backupId: self.backupId, databaseName: self.databaseName, group: self.group, type: self.type, backupFormat: self.backupFormat)
+        }
     }
 
     /// DescribeBackups返回参数结构体
-    public struct DescribeBackupsResponse: TCResponseModel {
+    public struct DescribeBackupsResponse: TCPaginatedResponse {
         /// 备份总数量
         public let totalCount: Int64
 
@@ -113,6 +122,16 @@ extension Sqlserver {
             case totalCount = "TotalCount"
             case backups = "Backups"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [Backup] {
+            self.backups
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

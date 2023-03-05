@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Ssl {
     /// DescribeCertificateOperateLogs请求参数结构体
-    public struct DescribeCertificateOperateLogsRequest: TCRequestModel {
+    public struct DescribeCertificateOperateLogsRequest: TCPaginatedRequest {
         /// 偏移量，默认为0。
         public let offset: UInt64?
 
@@ -51,10 +52,18 @@ extension Ssl {
             case startTime = "StartTime"
             case endTime = "EndTime"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeCertificateOperateLogsResponse) -> DescribeCertificateOperateLogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeCertificateOperateLogsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, endTime: self.endTime)
+        }
     }
 
     /// DescribeCertificateOperateLogs返回参数结构体
-    public struct DescribeCertificateOperateLogsResponse: TCResponseModel {
+    public struct DescribeCertificateOperateLogsResponse: TCPaginatedResponse {
         /// 当前查询条件日志总数。
         public let allTotal: UInt64
 
@@ -73,6 +82,16 @@ extension Ssl {
             case totalCount = "TotalCount"
             case operateLogs = "OperateLogs"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [OperationLog] {
+            self.operateLogs ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

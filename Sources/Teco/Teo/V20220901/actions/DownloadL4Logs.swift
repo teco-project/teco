@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Teo {
     /// DownloadL4Logs请求参数结构体
-    public struct DownloadL4LogsRequest: TCRequestModel {
+    public struct DownloadL4LogsRequest: TCPaginatedRequest {
         /// 开始时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -61,10 +62,18 @@ extension Teo {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DownloadL4LogsResponse) -> DownloadL4LogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DownloadL4LogsRequest(startTime: self.startTime, endTime: self.endTime, zoneIds: self.zoneIds, proxyIds: self.proxyIds, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DownloadL4Logs返回参数结构体
-    public struct DownloadL4LogsResponse: TCResponseModel {
+    public struct DownloadL4LogsResponse: TCPaginatedResponse {
         /// 四层离线日志数据列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [L4OfflineLog]?
@@ -79,6 +88,16 @@ extension Teo {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [L4OfflineLog] {
+            self.data ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

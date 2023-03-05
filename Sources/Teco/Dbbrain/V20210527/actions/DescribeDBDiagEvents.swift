@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Dbbrain {
     /// DescribeDBDiagEvents请求参数结构体
-    public struct DescribeDBDiagEventsRequest: TCRequestModel {
+    public struct DescribeDBDiagEventsRequest: TCPaginatedRequest {
         /// 开始时间，如“2021-05-27 00:00:00”，支持的最早查询时间为当前时间的前30天。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -61,10 +62,18 @@ extension Dbbrain {
             case offset = "Offset"
             case limit = "Limit"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDBDiagEventsResponse) -> DescribeDBDiagEventsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDBDiagEventsRequest(startTime: self.startTime, endTime: self.endTime, severities: self.severities, instanceIds: self.instanceIds, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+        }
     }
 
     /// DescribeDBDiagEvents返回参数结构体
-    public struct DescribeDBDiagEventsResponse: TCResponseModel {
+    public struct DescribeDBDiagEventsResponse: TCPaginatedResponse {
         /// 诊断事件的总数目。
         public let totalCount: Int64
 
@@ -78,6 +87,16 @@ extension Dbbrain {
             case totalCount = "TotalCount"
             case items = "Items"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [DiagHistoryEventItem] {
+            self.items
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

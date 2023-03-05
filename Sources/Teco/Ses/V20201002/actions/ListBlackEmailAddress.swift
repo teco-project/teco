@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Ses {
     /// ListBlackEmailAddress请求参数结构体
-    public struct ListBlackEmailAddressRequest: TCRequestModel {
+    public struct ListBlackEmailAddressRequest: TCPaginatedRequest {
         /// 开始日期，格式为YYYY-MM-DD
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -61,10 +62,18 @@ extension Ses {
             case emailAddress = "EmailAddress"
             case taskID = "TaskID"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: ListBlackEmailAddressResponse) -> ListBlackEmailAddressRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return ListBlackEmailAddressRequest(startDate: self.startDate, endDate: self.endDate, limit: self.limit, offset: self.offset + .init(response.getItems().count), emailAddress: self.emailAddress, taskID: self.taskID)
+        }
     }
 
     /// ListBlackEmailAddress返回参数结构体
-    public struct ListBlackEmailAddressResponse: TCResponseModel {
+    public struct ListBlackEmailAddressResponse: TCPaginatedResponse {
         /// 黑名单列表
         public let blackList: [BlackEmailAddress]
 
@@ -78,6 +87,16 @@ extension Ses {
             case blackList = "BlackList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getItems() -> [BlackEmailAddress] {
+            self.blackList
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 
