@@ -70,12 +70,12 @@ extension Cpdp {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [MerchantManagementList] {
-            self.result.list
+            self.result?.list ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.result.total
+            self.result?.total
         }
     }
 

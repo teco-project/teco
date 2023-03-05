@@ -75,12 +75,12 @@ extension Wedata {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [Rule] {
-            self.data.items ?? []
+            self.data?.items ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> UInt64? {
-            self.data.totalCount
+            self.data?.totalCount
         }
     }
 

@@ -65,12 +65,12 @@ extension Apigateway {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [Service] {
-            self.result.serviceSet ?? []
+            self.result?.serviceSet ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.result.totalCount
+            self.result?.totalCount
         }
     }
 

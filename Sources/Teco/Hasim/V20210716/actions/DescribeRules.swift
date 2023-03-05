@@ -85,12 +85,12 @@ extension Hasim {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [Rule] {
-            self.data.list ?? []
+            self.data?.list ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.data.total
+            self.data?.total
         }
     }
 

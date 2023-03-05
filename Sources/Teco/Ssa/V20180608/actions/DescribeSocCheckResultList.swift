@@ -76,12 +76,12 @@ extension Ssa {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [SocCheckResult] {
-            self.data.list
+            self.data?.list ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.data.total
+            self.data?.total
         }
     }
 

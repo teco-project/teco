@@ -75,12 +75,12 @@ extension Wedata {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [Folder] {
-            self.data.items
+            self.data?.items ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.data.totalCount
+            self.data?.totalCount
         }
     }
 

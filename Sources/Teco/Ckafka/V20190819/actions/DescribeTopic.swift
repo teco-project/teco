@@ -75,12 +75,12 @@ extension Ckafka {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [Topic] {
-            self.result.topicList ?? []
+            self.result?.topicList ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.result.totalCount
+            self.result?.totalCount
         }
     }
 

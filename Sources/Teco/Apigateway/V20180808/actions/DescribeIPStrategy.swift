@@ -80,12 +80,12 @@ extension Apigateway {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [DesApisStatus] {
-            self.result.bindApis ?? []
+            self.result?.bindApis ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.result.bindApiTotalCount
+            self.result?.bindApiTotalCount
         }
     }
 

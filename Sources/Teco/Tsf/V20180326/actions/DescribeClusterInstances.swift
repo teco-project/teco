@@ -80,12 +80,12 @@ extension Tsf {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [Instance] {
-            self.result.content ?? []
+            self.result?.content ?? []
         }
 
         /// Extract the total count from the paginated response.
         public func getTotalCount() -> Int64? {
-            self.result.totalCount
+            self.result?.totalCount
         }
     }
 

@@ -45,7 +45,7 @@ extension Dlc {
             guard !response.getItems().isEmpty else {
                 return nil
             }
-            return DescribeTaskResultRequest(taskId: self.taskId, nextToken: response.taskInfo.nextToken, maxResults: self.maxResults)
+            return DescribeTaskResultRequest(taskId: self.taskId, nextToken: response.taskInfo?.nextToken, maxResults: self.maxResults)
         }
     }
 
@@ -65,7 +65,7 @@ extension Dlc {
 
         /// Extract the total count from the paginated response.
         public func getItems() -> [Column] {
-            self.taskInfo.resultSchema ?? []
+            self.taskInfo?.resultSchema ?? []
         }
     }
 
