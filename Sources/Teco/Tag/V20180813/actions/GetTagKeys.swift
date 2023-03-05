@@ -64,7 +64,7 @@ extension Tag {
         }
 
         /// Extract the total count from the paginated response.
-        public func getItems() -> [string] {
+        public func getItems() -> [String] {
             self.tagKeys
         }
     }

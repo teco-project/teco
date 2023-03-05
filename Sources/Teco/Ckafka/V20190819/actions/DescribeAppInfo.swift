@@ -58,7 +58,7 @@ extension Ckafka {
         }
 
         /// Extract the total count from the paginated response.
-        public func getItems() -> [int64] {
+        public func getItems() -> [Int64] {
             self.result.appIdList ?? []
         }
 
