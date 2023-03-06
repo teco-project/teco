@@ -87,7 +87,7 @@ extension Tem {
             case requestId = "RequestId"
         }
 
-        /// Extract the total count from the paginated response.
+        /// Extract the returned item list from the paginated response.
         public func getItems() -> [TemService] {
             self.result.records
         }

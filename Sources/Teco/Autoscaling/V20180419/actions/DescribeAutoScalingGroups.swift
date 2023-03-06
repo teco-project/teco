@@ -79,7 +79,7 @@ extension As {
             case requestId = "RequestId"
         }
 
-        /// Extract the total count from the paginated response.
+        /// Extract the returned item list from the paginated response.
         public func getItems() -> [AutoScalingGroup] {
             self.autoScalingGroupSet
         }
