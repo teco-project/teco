@@ -151,7 +151,7 @@ extension Iecp {
     ///
     /// 查询边缘集群NodeGroup
     @inlinable
-    public func describeEdgeUnitNodeGroupPaginator(_ input: DescribeEdgeUnitNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitNodeGroupRequest, DescribeEdgeUnitNodeGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitNodeGroupRequest, DescribeEdgeUnitNodeGroupResponse>.ResponseSequence) {
+    public func describeEdgeUnitNodeGroupPaginator(_ input: DescribeEdgeUnitNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeUnitNodeGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitNodeGroup, logger: logger, on: eventLoop)
     }
 }

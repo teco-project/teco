@@ -122,7 +122,7 @@ extension Privatedns {
 
     /// 获取私有域记录列表
     @inlinable
-    public func describePrivateZoneRecordListPaginator(_ input: DescribePrivateZoneRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrivateZoneRecordListRequest, DescribePrivateZoneRecordListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrivateZoneRecordListRequest, DescribePrivateZoneRecordListResponse>.ResponseSequence) {
+    public func describePrivateZoneRecordListPaginator(_ input: DescribePrivateZoneRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivateZoneRecordListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateZoneRecordList, logger: logger, on: eventLoop)
     }
 }

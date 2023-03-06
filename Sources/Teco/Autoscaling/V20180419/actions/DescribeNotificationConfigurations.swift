@@ -160,7 +160,7 @@ extension As {
     /// 可以根据通知ID、伸缩组ID等信息来查询通知的详细信息。过滤信息详细请见过滤器`Filter`。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的通知。
     @inlinable
-    public func describeNotificationConfigurationsPaginator(_ input: DescribeNotificationConfigurationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNotificationConfigurationsRequest, DescribeNotificationConfigurationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNotificationConfigurationsRequest, DescribeNotificationConfigurationsResponse>.ResponseSequence) {
+    public func describeNotificationConfigurationsPaginator(_ input: DescribeNotificationConfigurationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNotificationConfigurationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotificationConfigurations, logger: logger, on: eventLoop)
     }
 }

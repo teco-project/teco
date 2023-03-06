@@ -122,7 +122,7 @@ extension Antiddos {
 
     /// 获取CC清洗阈值列表
     @inlinable
-    public func describeCCThresholdListPaginator(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCThresholdListRequest, DescribeCCThresholdListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCThresholdListRequest, DescribeCCThresholdListResponse>.ResponseSequence) {
+    public func describeCCThresholdListPaginator(_ input: DescribeCCThresholdListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCThresholdListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCThresholdList, logger: logger, on: eventLoop)
     }
 }

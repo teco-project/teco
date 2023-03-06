@@ -151,7 +151,7 @@ extension Tcss {
     ///
     /// 容器安全搜索查询主机列表
     @inlinable
-    public func describeAssetHostListPaginator(_ input: DescribeAssetHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetHostListRequest, DescribeAssetHostListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetHostListRequest, DescribeAssetHostListResponse>.ResponseSequence) {
+    public func describeAssetHostListPaginator(_ input: DescribeAssetHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetHostList, logger: logger, on: eventLoop)
     }
 }

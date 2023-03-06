@@ -143,7 +143,7 @@ extension Cdn {
     ///
     /// 查询在SCDN IP安全策略
     @inlinable
-    public func describeScdnIpStrategyPaginator(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScdnIpStrategyRequest, DescribeScdnIpStrategyResponse>.ResponseSequence) {
+    public func describeScdnIpStrategyPaginator(_ input: DescribeScdnIpStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScdnIpStrategyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScdnIpStrategy, logger: logger, on: eventLoop)
     }
 }

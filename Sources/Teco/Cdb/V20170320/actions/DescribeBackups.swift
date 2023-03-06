@@ -131,7 +131,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeBackups)用于查询云数据库实例的备份数据。
     @inlinable
-    public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResponseSequence) {
+    public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
     }
 }

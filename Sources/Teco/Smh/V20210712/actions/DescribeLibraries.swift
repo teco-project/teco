@@ -131,7 +131,7 @@ extension Smh {
     ///
     /// 查询 PaaS 服务媒体库列表
     @inlinable
-    public func describeLibrariesPaginator(_ input: DescribeLibrariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLibrariesRequest, DescribeLibrariesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLibrariesRequest, DescribeLibrariesResponse>.ResponseSequence) {
+    public func describeLibrariesPaginator(_ input: DescribeLibrariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLibrariesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLibraries, logger: logger, on: eventLoop)
     }
 }

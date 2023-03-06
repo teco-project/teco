@@ -135,7 +135,7 @@ extension Teo {
 
     /// 获取应用代理列表
     @inlinable
-    public func describeApplicationProxyPaginator(_ input: DescribeApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationProxyRequest, DescribeApplicationProxyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationProxyRequest, DescribeApplicationProxyResponse>.ResponseSequence) {
+    public func describeApplicationProxyPaginator(_ input: DescribeApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationProxyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationProxy, logger: logger, on: eventLoop)
     }
 }

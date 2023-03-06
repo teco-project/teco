@@ -160,7 +160,7 @@ extension Mongodb {
     ///
     /// 本接口（DescribeSlowLogs）用于获取云数据库慢日志信息。接口只支持查询最近7天内慢日志。
     @inlinable
-    public func describeSlowLogsPaginator(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSlowLogsRequest, DescribeSlowLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSlowLogsRequest, DescribeSlowLogsResponse>.ResponseSequence) {
+    public func describeSlowLogsPaginator(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogs, logger: logger, on: eventLoop)
     }
 }

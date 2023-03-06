@@ -163,7 +163,7 @@ extension Cls {
     ///
     /// 本接口用于获取告警策略列表。
     @inlinable
-    public func describeAlarmsPaginator(_ input: DescribeAlarmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmsRequest, DescribeAlarmsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmsRequest, DescribeAlarmsResponse>.ResponseSequence) {
+    public func describeAlarmsPaginator(_ input: DescribeAlarmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarms, logger: logger, on: eventLoop)
     }
 }

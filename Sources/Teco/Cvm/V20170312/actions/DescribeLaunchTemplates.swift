@@ -139,7 +139,7 @@ extension Cvm {
     ///
     /// 本接口（DescribeLaunchTemplates）用于查询一个或者多个实例启动模板。
     @inlinable
-    public func describeLaunchTemplatesPaginator(_ input: DescribeLaunchTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLaunchTemplatesRequest, DescribeLaunchTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLaunchTemplatesRequest, DescribeLaunchTemplatesResponse>.ResponseSequence) {
+    public func describeLaunchTemplatesPaginator(_ input: DescribeLaunchTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLaunchTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLaunchTemplates, logger: logger, on: eventLoop)
     }
 }

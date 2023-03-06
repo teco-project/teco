@@ -168,7 +168,7 @@ extension Live {
     ///
     /// 用于查询回调事件。
     @inlinable
-    public func describeCallbackRecordsListPaginator(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCallbackRecordsListRequest, DescribeCallbackRecordsListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCallbackRecordsListRequest, DescribeCallbackRecordsListResponse>.ResponseSequence) {
+    public func describeCallbackRecordsListPaginator(_ input: DescribeCallbackRecordsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCallbackRecordsListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCallbackRecordsList, logger: logger, on: eventLoop)
     }
 }

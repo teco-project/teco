@@ -129,7 +129,7 @@ extension Tcr {
 
     /// 查询全部实例信息
     @inlinable
-    public func describeInstanceAllPaginator(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceAllRequest, DescribeInstanceAllResponse>.ResponseSequence) {
+    public func describeInstanceAllPaginator(_ input: DescribeInstanceAllRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceAllRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceAll, logger: logger, on: eventLoop)
     }
 }

@@ -122,7 +122,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的IP黑白名单列表
     @inlinable
-    public func describeListBlackWhiteIpListPaginator(_ input: DescribeListBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListBlackWhiteIpListRequest, DescribeListBlackWhiteIpListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListBlackWhiteIpListRequest, DescribeListBlackWhiteIpListResponse>.ResponseSequence) {
+    public func describeListBlackWhiteIpListPaginator(_ input: DescribeListBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListBlackWhiteIpListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListBlackWhiteIpList, logger: logger, on: eventLoop)
     }
 }

@@ -143,7 +143,7 @@ extension Dts {
     ///
     /// 查询一致性校验任务列表，调用该接口后可通过接口`DescribeCompareTasks` 查询一致性校验任务列表来获得启动后的状态。
     @inlinable
-    public func describeCompareTasksPaginator(_ input: DescribeCompareTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCompareTasksRequest, DescribeCompareTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCompareTasksRequest, DescribeCompareTasksResponse>.ResponseSequence) {
+    public func describeCompareTasksPaginator(_ input: DescribeCompareTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCompareTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompareTasks, logger: logger, on: eventLoop)
     }
 }

@@ -162,7 +162,7 @@ extension Es {
     ///
     /// 查询用户该地域下符合条件的ES集群的日志
     @inlinable
-    public func describeInstanceLogsPaginator(_ input: DescribeInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceLogsRequest, DescribeInstanceLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceLogsRequest, DescribeInstanceLogsResponse>.ResponseSequence) {
+    public func describeInstanceLogsPaginator(_ input: DescribeInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceLogs, logger: logger, on: eventLoop)
     }
 }

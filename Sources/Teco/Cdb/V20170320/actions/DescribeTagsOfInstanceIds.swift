@@ -130,7 +130,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeTagsOfInstanceIds)用于获取云数据库实例的标签信息。
     @inlinable
-    public func describeTagsOfInstanceIdsPaginator(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagsOfInstanceIdsRequest, DescribeTagsOfInstanceIdsResponse>.ResponseSequence) {
+    public func describeTagsOfInstanceIdsPaginator(_ input: DescribeTagsOfInstanceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagsOfInstanceIdsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagsOfInstanceIds, logger: logger, on: eventLoop)
     }
 }

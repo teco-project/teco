@@ -131,7 +131,7 @@ extension Lighthouse {
     ///
     /// 本接口(DescribeAllScenes)用于查询全地域使用场景列表。
     @inlinable
-    public func describeAllScenesPaginator(_ input: DescribeAllScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAllScenesRequest, DescribeAllScenesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAllScenesRequest, DescribeAllScenesResponse>.ResponseSequence) {
+    public func describeAllScenesPaginator(_ input: DescribeAllScenesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAllScenesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAllScenes, logger: logger, on: eventLoop)
     }
 }

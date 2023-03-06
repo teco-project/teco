@@ -140,7 +140,7 @@ extension Tcss {
 
     /// 查询漏洞影响的镜像列表
     @inlinable
-    public func describeVulImageListPaginator(_ input: DescribeVulImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulImageListRequest, DescribeVulImageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulImageListRequest, DescribeVulImageListResponse>.ResponseSequence) {
+    public func describeVulImageListPaginator(_ input: DescribeVulImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulImageList, logger: logger, on: eventLoop)
     }
 }

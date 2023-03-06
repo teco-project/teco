@@ -148,7 +148,7 @@ extension Iotexplorer {
     ///
     /// 用于查询某个产品下的设备列表
     @inlinable
-    public func getDeviceListPaginator(_ input: GetDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetDeviceListRequest, GetDeviceListResponse>.ResultSequence, responses: TCClient.Paginator<GetDeviceListRequest, GetDeviceListResponse>.ResponseSequence) {
+    public func getDeviceListPaginator(_ input: GetDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDeviceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDeviceList, logger: logger, on: eventLoop)
     }
 }

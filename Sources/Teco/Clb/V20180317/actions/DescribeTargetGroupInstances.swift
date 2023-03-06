@@ -135,7 +135,7 @@ extension Clb {
     ///
     /// 获取目标组绑定的服务器信息
     @inlinable
-    public func describeTargetGroupInstancesPaginator(_ input: DescribeTargetGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTargetGroupInstancesRequest, DescribeTargetGroupInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTargetGroupInstancesRequest, DescribeTargetGroupInstancesResponse>.ResponseSequence) {
+    public func describeTargetGroupInstancesPaginator(_ input: DescribeTargetGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTargetGroupInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTargetGroupInstances, logger: logger, on: eventLoop)
     }
 }

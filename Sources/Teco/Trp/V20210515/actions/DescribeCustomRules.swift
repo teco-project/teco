@@ -134,7 +134,7 @@ extension Trp {
 
     /// 查自定义码规则列表
     @inlinable
-    public func describeCustomRulesPaginator(_ input: DescribeCustomRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCustomRulesRequest, DescribeCustomRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCustomRulesRequest, DescribeCustomRulesResponse>.ResponseSequence) {
+    public func describeCustomRulesPaginator(_ input: DescribeCustomRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomRules, logger: logger, on: eventLoop)
     }
 }

@@ -113,7 +113,7 @@ extension Tem {
 
     /// 查询配置列表
     @inlinable
-    public func describeConfigDataListPaginator(_ input: DescribeConfigDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConfigDataListRequest, DescribeConfigDataListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConfigDataListRequest, DescribeConfigDataListResponse>.ResponseSequence) {
+    public func describeConfigDataListPaginator(_ input: DescribeConfigDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigDataListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigDataList, logger: logger, on: eventLoop)
     }
 }

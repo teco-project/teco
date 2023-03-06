@@ -122,7 +122,7 @@ extension Wedata {
 
     /// 获取离线任务实例列表(新)
     @inlinable
-    public func getOfflineDIInstanceListPaginator(_ input: GetOfflineDIInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResultSequence, responses: TCClient.Paginator<GetOfflineDIInstanceListRequest, GetOfflineDIInstanceListResponse>.ResponseSequence) {
+    public func getOfflineDIInstanceListPaginator(_ input: GetOfflineDIInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetOfflineDIInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getOfflineDIInstanceList, logger: logger, on: eventLoop)
     }
 }

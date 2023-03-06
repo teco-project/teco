@@ -149,7 +149,7 @@ extension Tcss {
     ///
     /// 镜像仓库镜像仓库列表
     @inlinable
-    public func describeAssetImageRegistryListPaginator(_ input: DescribeAssetImageRegistryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageRegistryListRequest, DescribeAssetImageRegistryListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageRegistryListRequest, DescribeAssetImageRegistryListResponse>.ResponseSequence) {
+    public func describeAssetImageRegistryListPaginator(_ input: DescribeAssetImageRegistryListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageRegistryListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageRegistryList, logger: logger, on: eventLoop)
     }
 }

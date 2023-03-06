@@ -132,7 +132,7 @@ extension Iotexplorer {
     ///
     /// 获取 LoRa 网关列表接口
     @inlinable
-    public func getLoRaGatewayListPaginator(_ input: GetLoRaGatewayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetLoRaGatewayListRequest, GetLoRaGatewayListResponse>.ResultSequence, responses: TCClient.Paginator<GetLoRaGatewayListRequest, GetLoRaGatewayListResponse>.ResponseSequence) {
+    public func getLoRaGatewayListPaginator(_ input: GetLoRaGatewayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetLoRaGatewayListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLoRaGatewayList, logger: logger, on: eventLoop)
     }
 }

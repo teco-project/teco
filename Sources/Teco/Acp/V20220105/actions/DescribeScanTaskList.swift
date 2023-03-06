@@ -166,7 +166,7 @@ extension Acp {
     ///
     /// 获取App隐私合规诊断任务列表
     @inlinable
-    public func describeScanTaskListPaginator(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScanTaskListRequest, DescribeScanTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScanTaskListRequest, DescribeScanTaskListResponse>.ResponseSequence) {
+    public func describeScanTaskListPaginator(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanTaskList, logger: logger, on: eventLoop)
     }
 }

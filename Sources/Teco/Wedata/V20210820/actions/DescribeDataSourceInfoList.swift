@@ -152,7 +152,7 @@ extension Wedata {
     ///
     /// 获取数据源信息-数据源分页列表
     @inlinable
-    public func describeDataSourceInfoListPaginator(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDataSourceInfoListRequest, DescribeDataSourceInfoListResponse>.ResponseSequence) {
+    public func describeDataSourceInfoListPaginator(_ input: DescribeDataSourceInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDataSourceInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDataSourceInfoList, logger: logger, on: eventLoop)
     }
 }

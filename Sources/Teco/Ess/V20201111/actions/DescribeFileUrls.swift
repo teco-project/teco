@@ -183,7 +183,7 @@ extension Ess {
     /// 查询文件下载URL
     /// 适用场景：通过传参合同流程编号，下载对应的合同PDF文件流到本地。
     @inlinable
-    public func describeFileUrlsPaginator(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFileUrlsRequest, DescribeFileUrlsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFileUrlsRequest, DescribeFileUrlsResponse>.ResponseSequence) {
+    public func describeFileUrlsPaginator(_ input: DescribeFileUrlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFileUrlsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFileUrls, logger: logger, on: eventLoop)
     }
 }

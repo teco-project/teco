@@ -149,7 +149,7 @@ extension Ssl {
     ///
     /// 获取用户账号下有关证书的操作日志。
     @inlinable
-    public func describeCertificateOperateLogsPaginator(_ input: DescribeCertificateOperateLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCertificateOperateLogsRequest, DescribeCertificateOperateLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCertificateOperateLogsRequest, DescribeCertificateOperateLogsResponse>.ResponseSequence) {
+    public func describeCertificateOperateLogsPaginator(_ input: DescribeCertificateOperateLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertificateOperateLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertificateOperateLogs, logger: logger, on: eventLoop)
     }
 }

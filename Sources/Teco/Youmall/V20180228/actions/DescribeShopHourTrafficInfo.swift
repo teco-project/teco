@@ -162,7 +162,7 @@ extension Youmall {
     ///
     /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
     @inlinable
-    public func describeShopHourTrafficInfoPaginator(_ input: DescribeShopHourTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeShopHourTrafficInfoRequest, DescribeShopHourTrafficInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeShopHourTrafficInfoRequest, DescribeShopHourTrafficInfoResponse>.ResponseSequence) {
+    public func describeShopHourTrafficInfoPaginator(_ input: DescribeShopHourTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeShopHourTrafficInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShopHourTrafficInfo, logger: logger, on: eventLoop)
     }
 }

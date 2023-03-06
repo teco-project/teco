@@ -180,7 +180,7 @@ extension Vpc {
     /// * 只支持单个网关实例查询。即入参 `VpnId`、 `DirectConnectGatewayId`、 `PeeringConnectionId`、 `NatId` 最多只支持传一个，且必须传一个。
     /// * 如果网关有流量，但调用本接口没有返回数据，请在控制台对应网关详情页确认是否开启网关流量监控。
     @inlinable
-    public func describeGatewayFlowMonitorDetailPaginator(_ input: DescribeGatewayFlowMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewayFlowMonitorDetailRequest, DescribeGatewayFlowMonitorDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewayFlowMonitorDetailRequest, DescribeGatewayFlowMonitorDetailResponse>.ResponseSequence) {
+    public func describeGatewayFlowMonitorDetailPaginator(_ input: DescribeGatewayFlowMonitorDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewayFlowMonitorDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayFlowMonitorDetail, logger: logger, on: eventLoop)
     }
 }

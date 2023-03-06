@@ -117,7 +117,7 @@ extension Tdid {
 
     /// 权威机构列表
     @inlinable
-    public func getAuthoritiesListPaginator(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetAuthoritiesListRequest, GetAuthoritiesListResponse>.ResultSequence, responses: TCClient.Paginator<GetAuthoritiesListRequest, GetAuthoritiesListResponse>.ResponseSequence) {
+    public func getAuthoritiesListPaginator(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetAuthoritiesListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getAuthoritiesList, logger: logger, on: eventLoop)
     }
 }

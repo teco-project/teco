@@ -132,7 +132,7 @@ extension Cdc {
 
     /// 查询专用集群订单列表
     @inlinable
-    public func describeDedicatedClusterOrdersPaginator(_ input: DescribeDedicatedClusterOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDedicatedClusterOrdersRequest, DescribeDedicatedClusterOrdersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDedicatedClusterOrdersRequest, DescribeDedicatedClusterOrdersResponse>.ResponseSequence) {
+    public func describeDedicatedClusterOrdersPaginator(_ input: DescribeDedicatedClusterOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClusterOrdersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusterOrders, logger: logger, on: eventLoop)
     }
 }

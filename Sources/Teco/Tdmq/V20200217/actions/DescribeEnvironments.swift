@@ -144,7 +144,7 @@ extension Tdmq {
     ///
     /// 获取租户下命名空间列表
     @inlinable
-    public func describeEnvironmentsPaginator(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEnvironmentsRequest, DescribeEnvironmentsResponse>.ResponseSequence) {
+    public func describeEnvironmentsPaginator(_ input: DescribeEnvironmentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEnvironmentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEnvironments, logger: logger, on: eventLoop)
     }
 }

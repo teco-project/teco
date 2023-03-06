@@ -137,7 +137,7 @@ extension Tcss {
     ///
     /// 容器安全搜索查询进程列表
     @inlinable
-    public func describeAssetProcessListPaginator(_ input: DescribeAssetProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetProcessListRequest, DescribeAssetProcessListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetProcessListRequest, DescribeAssetProcessListResponse>.ResponseSequence) {
+    public func describeAssetProcessListPaginator(_ input: DescribeAssetProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetProcessListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetProcessList, logger: logger, on: eventLoop)
     }
 }

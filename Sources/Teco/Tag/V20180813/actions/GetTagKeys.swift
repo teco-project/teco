@@ -123,7 +123,7 @@ extension Tag {
     ///
     /// 查询标签键列表。
     @inlinable
-    public func getTagKeysPaginator(_ input: GetTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetTagKeysRequest, GetTagKeysResponse>.ResultSequence, responses: TCClient.Paginator<GetTagKeysRequest, GetTagKeysResponse>.ResponseSequence) {
+    public func getTagKeysPaginator(_ input: GetTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTagKeysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTagKeys, logger: logger, on: eventLoop)
     }
 }

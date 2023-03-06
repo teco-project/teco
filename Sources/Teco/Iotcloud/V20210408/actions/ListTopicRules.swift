@@ -126,7 +126,7 @@ extension Iotcloud {
     ///
     /// 本接口（ListTopicRules）用于分页获取规则列表
     @inlinable
-    public func listTopicRulesPaginator(_ input: ListTopicRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListTopicRulesRequest, ListTopicRulesResponse>.ResultSequence, responses: TCClient.Paginator<ListTopicRulesRequest, ListTopicRulesResponse>.ResponseSequence) {
+    public func listTopicRulesPaginator(_ input: ListTopicRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListTopicRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listTopicRules, logger: logger, on: eventLoop)
     }
 }

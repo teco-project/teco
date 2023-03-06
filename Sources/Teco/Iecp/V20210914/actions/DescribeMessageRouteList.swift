@@ -132,7 +132,7 @@ extension Iecp {
 
     /// 获取消息路由列表
     @inlinable
-    public func describeMessageRouteListPaginator(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMessageRouteListRequest, DescribeMessageRouteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMessageRouteListRequest, DescribeMessageRouteListResponse>.ResponseSequence) {
+    public func describeMessageRouteListPaginator(_ input: DescribeMessageRouteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMessageRouteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMessageRouteList, logger: logger, on: eventLoop)
     }
 }

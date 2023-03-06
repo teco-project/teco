@@ -122,7 +122,7 @@ extension Dnspod {
 
     /// 获取域名列表
     @inlinable
-    public func describeDomainListPaginator(_ input: DescribeDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDomainListRequest, DescribeDomainListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDomainListRequest, DescribeDomainListResponse>.ResponseSequence) {
+    public func describeDomainListPaginator(_ input: DescribeDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomainList, logger: logger, on: eventLoop)
     }
 }

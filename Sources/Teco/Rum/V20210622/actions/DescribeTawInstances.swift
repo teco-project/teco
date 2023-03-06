@@ -161,7 +161,7 @@ extension Rum {
     ///
     /// 查询实例信息
     @inlinable
-    public func describeTawInstancesPaginator(_ input: DescribeTawInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTawInstancesRequest, DescribeTawInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTawInstancesRequest, DescribeTawInstancesResponse>.ResponseSequence) {
+    public func describeTawInstancesPaginator(_ input: DescribeTawInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTawInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTawInstances, logger: logger, on: eventLoop)
     }
 }

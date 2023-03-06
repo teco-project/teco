@@ -141,7 +141,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
     @inlinable
-    public func describeDBsPaginator(_ input: DescribeDBsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBsRequest, DescribeDBsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBsRequest, DescribeDBsResponse>.ResponseSequence) {
+    public func describeDBsPaginator(_ input: DescribeDBsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBs, logger: logger, on: eventLoop)
     }
 }

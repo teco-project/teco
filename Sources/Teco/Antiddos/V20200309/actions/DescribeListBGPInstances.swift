@@ -187,7 +187,7 @@ extension Antiddos {
 
     /// 获取高防包资产实例列表
     @inlinable
-    public func describeListBGPInstancesPaginator(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListBGPInstancesRequest, DescribeListBGPInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListBGPInstancesRequest, DescribeListBGPInstancesResponse>.ResponseSequence) {
+    public func describeListBGPInstancesPaginator(_ input: DescribeListBGPInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListBGPInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListBGPInstances, logger: logger, on: eventLoop)
     }
 }

@@ -122,7 +122,7 @@ extension Iotvideo {
 
     /// 用户AI模型申请记录
     @inlinable
-    public func describeAIModelApplicationsPaginator(_ input: DescribeAIModelApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAIModelApplicationsRequest, DescribeAIModelApplicationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAIModelApplicationsRequest, DescribeAIModelApplicationsResponse>.ResponseSequence) {
+    public func describeAIModelApplicationsPaginator(_ input: DescribeAIModelApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAIModelApplicationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAIModelApplications, logger: logger, on: eventLoop)
     }
 }

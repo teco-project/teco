@@ -141,7 +141,7 @@ extension Dbbrain {
     ///
     /// 查询实例SQL限流任务列表。
     @inlinable
-    public func describeSqlFiltersPaginator(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSqlFiltersRequest, DescribeSqlFiltersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSqlFiltersRequest, DescribeSqlFiltersResponse>.ResponseSequence) {
+    public func describeSqlFiltersPaginator(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSqlFiltersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSqlFilters, logger: logger, on: eventLoop)
     }
 }

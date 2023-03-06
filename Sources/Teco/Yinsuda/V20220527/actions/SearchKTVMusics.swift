@@ -143,7 +143,7 @@ extension Yinsuda {
     ///
     /// 根据关键词搜索歌曲，返回相关歌曲列表。
     @inlinable
-    public func searchKTVMusicsPaginator(_ input: SearchKTVMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchKTVMusicsRequest, SearchKTVMusicsResponse>.ResultSequence, responses: TCClient.Paginator<SearchKTVMusicsRequest, SearchKTVMusicsResponse>.ResponseSequence) {
+    public func searchKTVMusicsPaginator(_ input: SearchKTVMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchKTVMusicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchKTVMusics, logger: logger, on: eventLoop)
     }
 }

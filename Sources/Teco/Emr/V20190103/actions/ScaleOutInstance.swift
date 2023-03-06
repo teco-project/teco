@@ -268,7 +268,7 @@ extension Emr {
     ///
     /// 扩容节点
     @inlinable
-    public func scaleOutInstancePaginator(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResultSequence, responses: TCClient.Paginator<ScaleOutInstanceRequest, ScaleOutInstanceResponse>.ResponseSequence) {
+    public func scaleOutInstancePaginator(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ScaleOutInstanceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)
     }
 }

@@ -154,7 +154,7 @@ extension Tione {
     ///
     /// 批量预测任务列表信息
     @inlinable
-    public func describeBatchTasksPaginator(_ input: DescribeBatchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBatchTasksRequest, DescribeBatchTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBatchTasksRequest, DescribeBatchTasksResponse>.ResponseSequence) {
+    public func describeBatchTasksPaginator(_ input: DescribeBatchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBatchTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchTasks, logger: logger, on: eventLoop)
     }
 }

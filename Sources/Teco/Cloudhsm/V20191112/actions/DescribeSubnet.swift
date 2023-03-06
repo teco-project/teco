@@ -123,7 +123,7 @@ extension Cloudhsm {
 
     /// 查询子网列表
     @inlinable
-    public func describeSubnetPaginator(_ input: DescribeSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubnetRequest, DescribeSubnetResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubnetRequest, DescribeSubnetResponse>.ResponseSequence) {
+    public func describeSubnetPaginator(_ input: DescribeSubnetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubnetRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnet, logger: logger, on: eventLoop)
     }
 }

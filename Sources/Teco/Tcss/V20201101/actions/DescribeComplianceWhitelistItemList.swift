@@ -146,7 +146,7 @@ extension Tcss {
     ///
     /// 查询白名单列表
     @inlinable
-    public func describeComplianceWhitelistItemListPaginator(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceWhitelistItemListRequest, DescribeComplianceWhitelistItemListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceWhitelistItemListRequest, DescribeComplianceWhitelistItemListResponse>.ResponseSequence) {
+    public func describeComplianceWhitelistItemListPaginator(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceWhitelistItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceWhitelistItemList, logger: logger, on: eventLoop)
     }
 }

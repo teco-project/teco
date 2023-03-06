@@ -135,7 +135,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeFirewallRules）用于查询实例的防火墙规则。
     @inlinable
-    public func describeFirewallRulesPaginator(_ input: DescribeFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFirewallRulesRequest, DescribeFirewallRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFirewallRulesRequest, DescribeFirewallRulesResponse>.ResponseSequence) {
+    public func describeFirewallRulesPaginator(_ input: DescribeFirewallRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFirewallRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFirewallRules, logger: logger, on: eventLoop)
     }
 }

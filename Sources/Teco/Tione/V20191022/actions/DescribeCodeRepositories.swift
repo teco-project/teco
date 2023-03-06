@@ -127,7 +127,7 @@ extension Tione {
 
     /// 查询存储库列表
     @inlinable
-    public func describeCodeRepositoriesPaginator(_ input: DescribeCodeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCodeRepositoriesRequest, DescribeCodeRepositoriesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCodeRepositoriesRequest, DescribeCodeRepositoriesResponse>.ResponseSequence) {
+    public func describeCodeRepositoriesPaginator(_ input: DescribeCodeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCodeRepositoriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCodeRepositories, logger: logger, on: eventLoop)
     }
 }

@@ -146,7 +146,7 @@ extension Cwp {
 
     /// 查询Jar包列表
     @inlinable
-    public func describeAssetJarListPaginator(_ input: DescribeAssetJarListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetJarListRequest, DescribeAssetJarListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetJarListRequest, DescribeAssetJarListResponse>.ResponseSequence) {
+    public func describeAssetJarListPaginator(_ input: DescribeAssetJarListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetJarListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetJarList, logger: logger, on: eventLoop)
     }
 }

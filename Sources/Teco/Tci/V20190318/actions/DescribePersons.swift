@@ -117,7 +117,7 @@ extension Tci {
 
     /// 拉取人员列表
     @inlinable
-    public func describePersonsPaginator(_ input: DescribePersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePersonsRequest, DescribePersonsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePersonsRequest, DescribePersonsResponse>.ResponseSequence) {
+    public func describePersonsPaginator(_ input: DescribePersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersons, logger: logger, on: eventLoop)
     }
 }

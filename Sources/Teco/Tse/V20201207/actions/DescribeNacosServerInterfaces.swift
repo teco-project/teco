@@ -117,7 +117,7 @@ extension Tse {
 
     /// 查询nacos服务接口列表
     @inlinable
-    public func describeNacosServerInterfacesPaginator(_ input: DescribeNacosServerInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNacosServerInterfacesRequest, DescribeNacosServerInterfacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNacosServerInterfacesRequest, DescribeNacosServerInterfacesResponse>.ResponseSequence) {
+    public func describeNacosServerInterfacesPaginator(_ input: DescribeNacosServerInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNacosServerInterfacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNacosServerInterfaces, logger: logger, on: eventLoop)
     }
 }

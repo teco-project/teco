@@ -146,7 +146,7 @@ extension Cwp {
 
     /// 获取资产管理系统安装包列表
     @inlinable
-    public func describeAssetSystemPackageListPaginator(_ input: DescribeAssetSystemPackageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetSystemPackageListRequest, DescribeAssetSystemPackageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetSystemPackageListRequest, DescribeAssetSystemPackageListResponse>.ResponseSequence) {
+    public func describeAssetSystemPackageListPaginator(_ input: DescribeAssetSystemPackageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetSystemPackageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetSystemPackageList, logger: logger, on: eventLoop)
     }
 }

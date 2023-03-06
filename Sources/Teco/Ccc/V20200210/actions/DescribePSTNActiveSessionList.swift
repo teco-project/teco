@@ -131,7 +131,7 @@ extension Ccc {
     ///
     /// 获取当前正在通话的会话列表
     @inlinable
-    public func describePSTNActiveSessionListPaginator(_ input: DescribePSTNActiveSessionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePSTNActiveSessionListRequest, DescribePSTNActiveSessionListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePSTNActiveSessionListRequest, DescribePSTNActiveSessionListResponse>.ResponseSequence) {
+    public func describePSTNActiveSessionListPaginator(_ input: DescribePSTNActiveSessionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePSTNActiveSessionListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePSTNActiveSessionList, logger: logger, on: eventLoop)
     }
 }

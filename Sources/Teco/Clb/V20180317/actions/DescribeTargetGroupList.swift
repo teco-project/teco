@@ -122,7 +122,7 @@ extension Clb {
 
     /// 获取目标组列表
     @inlinable
-    public func describeTargetGroupListPaginator(_ input: DescribeTargetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTargetGroupListRequest, DescribeTargetGroupListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTargetGroupListRequest, DescribeTargetGroupListResponse>.ResponseSequence) {
+    public func describeTargetGroupListPaginator(_ input: DescribeTargetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTargetGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTargetGroupList, logger: logger, on: eventLoop)
     }
 }

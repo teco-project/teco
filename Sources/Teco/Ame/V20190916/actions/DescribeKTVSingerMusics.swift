@@ -131,7 +131,7 @@ extension Ame {
     ///
     /// 根据歌手id，返回该歌手下歌曲列表。
     @inlinable
-    public func describeKTVSingerMusicsPaginator(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVSingerMusicsRequest, DescribeKTVSingerMusicsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVSingerMusicsRequest, DescribeKTVSingerMusicsResponse>.ResponseSequence) {
+    public func describeKTVSingerMusicsPaginator(_ input: DescribeKTVSingerMusicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVSingerMusicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVSingerMusics, logger: logger, on: eventLoop)
     }
 }

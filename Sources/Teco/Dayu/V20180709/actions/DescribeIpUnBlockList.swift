@@ -148,7 +148,7 @@ extension Dayu {
 
     /// 获取IP解封记录
     @inlinable
-    public func describeIpUnBlockListPaginator(_ input: DescribeIpUnBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIpUnBlockListRequest, DescribeIpUnBlockListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIpUnBlockListRequest, DescribeIpUnBlockListResponse>.ResponseSequence) {
+    public func describeIpUnBlockListPaginator(_ input: DescribeIpUnBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIpUnBlockListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIpUnBlockList, logger: logger, on: eventLoop)
     }
 }

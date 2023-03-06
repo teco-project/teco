@@ -164,7 +164,7 @@ extension Partners {
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentPayDealsV2】可以查询代理商代付的所有订单
     @inlinable
-    public func describeAgentPayDealsPaginator(_ input: DescribeAgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentPayDealsRequest, DescribeAgentPayDealsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentPayDealsRequest, DescribeAgentPayDealsResponse>.ResponseSequence) {
+    public func describeAgentPayDealsPaginator(_ input: DescribeAgentPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentPayDealsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentPayDeals, logger: logger, on: eventLoop)
     }
 }

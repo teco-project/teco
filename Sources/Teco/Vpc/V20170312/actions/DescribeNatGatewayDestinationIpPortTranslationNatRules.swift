@@ -144,7 +144,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeNatGatewayDestinationIpPortTranslationNatRules）用于查询NAT网关端口转发规则对象数组。
     @inlinable
-    public func describeNatGatewayDestinationIpPortTranslationNatRulesPaginator(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, DescribeNatGatewayDestinationIpPortTranslationNatRulesResponse>.ResponseSequence) {
+    public func describeNatGatewayDestinationIpPortTranslationNatRulesPaginator(_ input: DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatGatewayDestinationIpPortTranslationNatRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGatewayDestinationIpPortTranslationNatRules, logger: logger, on: eventLoop)
     }
 }

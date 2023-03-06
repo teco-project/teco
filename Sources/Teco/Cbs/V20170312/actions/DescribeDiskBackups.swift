@@ -169,7 +169,7 @@ extension Cbs {
     /// 根据备份点ID、创建备份点的云硬盘ID、创建备份点的云硬盘类型等对结果进行过滤，不同条件之间为与(AND)的关系，过滤信息详细请见过滤器Filter。
     /// 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的备份点列表。
     @inlinable
-    public func describeDiskBackupsPaginator(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDiskBackupsRequest, DescribeDiskBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDiskBackupsRequest, DescribeDiskBackupsResponse>.ResponseSequence) {
+    public func describeDiskBackupsPaginator(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDiskBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDiskBackups, logger: logger, on: eventLoop)
     }
 }

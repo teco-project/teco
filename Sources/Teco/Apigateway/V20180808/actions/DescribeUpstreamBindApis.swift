@@ -118,7 +118,7 @@ extension Apigateway {
 
     /// 查询后端通道所绑定的API列表
     @inlinable
-    public func describeUpstreamBindApisPaginator(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUpstreamBindApisRequest, DescribeUpstreamBindApisResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUpstreamBindApisRequest, DescribeUpstreamBindApisResponse>.ResponseSequence) {
+    public func describeUpstreamBindApisPaginator(_ input: DescribeUpstreamBindApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUpstreamBindApisRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUpstreamBindApis, logger: logger, on: eventLoop)
     }
 }

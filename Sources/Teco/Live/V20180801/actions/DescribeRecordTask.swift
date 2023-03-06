@@ -162,7 +162,7 @@ extension Live {
     /// 1. 仅用于查询由 CreateRecordTask 接口创建的录制任务。
     /// 2. 不能查询被 DeleteRecordTask 接口删除以及已过期（平台侧保留3个月）的录制任务。
     @inlinable
-    public func describeRecordTaskPaginator(_ input: DescribeRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRecordTaskRequest, DescribeRecordTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRecordTaskRequest, DescribeRecordTaskResponse>.ResponseSequence) {
+    public func describeRecordTaskPaginator(_ input: DescribeRecordTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordTask, logger: logger, on: eventLoop)
     }
 }

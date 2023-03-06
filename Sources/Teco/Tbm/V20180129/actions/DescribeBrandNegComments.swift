@@ -149,7 +149,7 @@ extension Tbm {
     ///
     /// 通过分析用户在评价品牌时用词的正负面情绪评分，返回品牌热门差评观点列表。
     @inlinable
-    public func describeBrandNegCommentsPaginator(_ input: DescribeBrandNegCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBrandNegCommentsRequest, DescribeBrandNegCommentsResponse>.ResponseSequence) {
+    public func describeBrandNegCommentsPaginator(_ input: DescribeBrandNegCommentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBrandNegCommentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBrandNegComments, logger: logger, on: eventLoop)
     }
 }

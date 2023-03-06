@@ -127,7 +127,7 @@ extension Tcss {
 
     /// 查询自动授权规则授权范围主机信息
     @inlinable
-    public func describeAutoAuthorizedRuleHostPaginator(_ input: DescribeAutoAuthorizedRuleHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoAuthorizedRuleHostRequest, DescribeAutoAuthorizedRuleHostResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoAuthorizedRuleHostRequest, DescribeAutoAuthorizedRuleHostResponse>.ResponseSequence) {
+    public func describeAutoAuthorizedRuleHostPaginator(_ input: DescribeAutoAuthorizedRuleHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoAuthorizedRuleHostRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoAuthorizedRuleHost, logger: logger, on: eventLoop)
     }
 }

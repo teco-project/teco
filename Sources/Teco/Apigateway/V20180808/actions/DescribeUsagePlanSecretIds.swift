@@ -135,7 +135,7 @@ extension Apigateway {
     /// 本接口（DescribeUsagePlanSecretIds）用于查询使用计划绑定的密钥列表。
     /// 在 API 网关中，一个使用计划可绑定多个密钥对，可使用本接口查询使用计划绑定的密钥列表。
     @inlinable
-    public func describeUsagePlanSecretIdsPaginator(_ input: DescribeUsagePlanSecretIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsagePlanSecretIdsRequest, DescribeUsagePlanSecretIdsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsagePlanSecretIdsRequest, DescribeUsagePlanSecretIdsResponse>.ResponseSequence) {
+    public func describeUsagePlanSecretIdsPaginator(_ input: DescribeUsagePlanSecretIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsagePlanSecretIdsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlanSecretIds, logger: logger, on: eventLoop)
     }
 }

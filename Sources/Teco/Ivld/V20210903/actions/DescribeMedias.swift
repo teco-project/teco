@@ -165,7 +165,7 @@ extension Ivld {
     ///
     /// 如果媒资文件未完成导入，本接口将仅输出媒资文件的状态信息；导入完成后，本接口还将输出媒资文件的其他元信息。
     @inlinable
-    public func describeMediasPaginator(_ input: DescribeMediasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMediasRequest, DescribeMediasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMediasRequest, DescribeMediasResponse>.ResponseSequence) {
+    public func describeMediasPaginator(_ input: DescribeMediasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMediasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMedias, logger: logger, on: eventLoop)
     }
 }

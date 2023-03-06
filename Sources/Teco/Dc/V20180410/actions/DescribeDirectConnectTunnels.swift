@@ -140,7 +140,7 @@ extension Dc {
     ///
     /// 用于查询专用通道列表。
     @inlinable
-    public func describeDirectConnectTunnelsPaginator(_ input: DescribeDirectConnectTunnelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDirectConnectTunnelsRequest, DescribeDirectConnectTunnelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDirectConnectTunnelsRequest, DescribeDirectConnectTunnelsResponse>.ResponseSequence) {
+    public func describeDirectConnectTunnelsPaginator(_ input: DescribeDirectConnectTunnelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDirectConnectTunnelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDirectConnectTunnels, logger: logger, on: eventLoop)
     }
 }

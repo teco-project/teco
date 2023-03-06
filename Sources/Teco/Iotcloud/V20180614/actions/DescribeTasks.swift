@@ -126,7 +126,7 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeTasks）用于查询已创建的任务列表，任务保留一个月
     @inlinable
-    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResponseSequence) {
+    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
     }
 }

@@ -119,7 +119,7 @@ extension Iotexplorer {
 
     /// 获取围栏列表
     @inlinable
-    public func describePositionFenceListPaginator(_ input: DescribePositionFenceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePositionFenceListRequest, DescribePositionFenceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePositionFenceListRequest, DescribePositionFenceListResponse>.ResponseSequence) {
+    public func describePositionFenceListPaginator(_ input: DescribePositionFenceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePositionFenceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePositionFenceList, logger: logger, on: eventLoop)
     }
 }

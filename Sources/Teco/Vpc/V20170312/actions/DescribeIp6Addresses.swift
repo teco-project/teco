@@ -138,7 +138,7 @@ extension Vpc {
     ///
     /// 该接口用于查询IPV6地址信息
     @inlinable
-    public func describeIp6AddressesPaginator(_ input: DescribeIp6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIp6AddressesRequest, DescribeIp6AddressesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIp6AddressesRequest, DescribeIp6AddressesResponse>.ResponseSequence) {
+    public func describeIp6AddressesPaginator(_ input: DescribeIp6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIp6AddressesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIp6Addresses, logger: logger, on: eventLoop)
     }
 }

@@ -128,7 +128,7 @@ extension Wav {
     ///
     /// 企业可通过此接口获取线索列表。
     @inlinable
-    public func queryClueInfoListPaginator(_ input: QueryClueInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryClueInfoListRequest, QueryClueInfoListResponse>.ResultSequence, responses: TCClient.Paginator<QueryClueInfoListRequest, QueryClueInfoListResponse>.ResponseSequence) {
+    public func queryClueInfoListPaginator(_ input: QueryClueInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryClueInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryClueInfoList, logger: logger, on: eventLoop)
     }
 }

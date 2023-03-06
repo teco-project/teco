@@ -146,7 +146,7 @@ extension Cfw {
 
     /// 查询安全组规则列表
     @inlinable
-    public func describeSecurityGroupListPaginator(_ input: DescribeSecurityGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecurityGroupListRequest, DescribeSecurityGroupListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecurityGroupListRequest, DescribeSecurityGroupListResponse>.ResponseSequence) {
+    public func describeSecurityGroupListPaginator(_ input: DescribeSecurityGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityGroupList, logger: logger, on: eventLoop)
     }
 }

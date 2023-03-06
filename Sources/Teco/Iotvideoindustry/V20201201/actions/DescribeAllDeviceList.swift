@@ -150,7 +150,7 @@ extension Iotvideoindustry {
     /// 本接口(DescribeAllDeviceList) 用于获取设备列表。
     /// 请使用DescribeDevicesList接口
     @inlinable
-    public func describeAllDeviceListPaginator(_ input: DescribeAllDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAllDeviceListRequest, DescribeAllDeviceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAllDeviceListRequest, DescribeAllDeviceListResponse>.ResponseSequence) {
+    public func describeAllDeviceListPaginator(_ input: DescribeAllDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAllDeviceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAllDeviceList, logger: logger, on: eventLoop)
     }
 }

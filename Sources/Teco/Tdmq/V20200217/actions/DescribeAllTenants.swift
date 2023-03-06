@@ -142,7 +142,7 @@ extension Tdmq {
 
     /// 获取某个租户的虚拟集群列表
     @inlinable
-    public func describeAllTenantsPaginator(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAllTenantsRequest, DescribeAllTenantsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAllTenantsRequest, DescribeAllTenantsResponse>.ResponseSequence) {
+    public func describeAllTenantsPaginator(_ input: DescribeAllTenantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAllTenantsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAllTenants, logger: logger, on: eventLoop)
     }
 }

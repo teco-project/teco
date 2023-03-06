@@ -128,7 +128,7 @@ extension Wav {
     ///
     /// 通过接口按类型拉取租户当前的素材列表及关键信息
     @inlinable
-    public func queryMaterialListPaginator(_ input: QueryMaterialListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryMaterialListRequest, QueryMaterialListResponse>.ResultSequence, responses: TCClient.Paginator<QueryMaterialListRequest, QueryMaterialListResponse>.ResponseSequence) {
+    public func queryMaterialListPaginator(_ input: QueryMaterialListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryMaterialListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMaterialList, logger: logger, on: eventLoop)
     }
 }

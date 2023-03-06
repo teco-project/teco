@@ -137,7 +137,7 @@ extension Cynosdb {
     ///
     /// 查询审计规则模版信息
     @inlinable
-    public func describeAuditRuleTemplatesPaginator(_ input: DescribeAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditRuleTemplatesRequest, DescribeAuditRuleTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditRuleTemplatesRequest, DescribeAuditRuleTemplatesResponse>.ResponseSequence) {
+    public func describeAuditRuleTemplatesPaginator(_ input: DescribeAuditRuleTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditRuleTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditRuleTemplates, logger: logger, on: eventLoop)
     }
 }

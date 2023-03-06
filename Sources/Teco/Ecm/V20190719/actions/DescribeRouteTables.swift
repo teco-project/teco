@@ -132,7 +132,7 @@ extension Ecm {
 
     /// 查询路由表对象列表
     @inlinable
-    public func describeRouteTablesPaginator(_ input: DescribeRouteTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRouteTablesRequest, DescribeRouteTablesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRouteTablesRequest, DescribeRouteTablesResponse>.ResponseSequence) {
+    public func describeRouteTablesPaginator(_ input: DescribeRouteTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRouteTablesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRouteTables, logger: logger, on: eventLoop)
     }
 }

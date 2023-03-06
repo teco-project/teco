@@ -132,7 +132,7 @@ extension Iecp {
 
     /// 获取设备列表信息
     @inlinable
-    public func describeIotDevicesPaginator(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIotDevicesRequest, DescribeIotDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIotDevicesRequest, DescribeIotDevicesResponse>.ResponseSequence) {
+    public func describeIotDevicesPaginator(_ input: DescribeIotDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIotDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIotDevices, logger: logger, on: eventLoop)
     }
 }

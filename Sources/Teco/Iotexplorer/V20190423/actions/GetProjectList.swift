@@ -153,7 +153,7 @@ extension Iotexplorer {
     ///
     /// 提供查询用户所创建的项目列表查询功能。
     @inlinable
-    public func getProjectListPaginator(_ input: GetProjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetProjectListRequest, GetProjectListResponse>.ResultSequence, responses: TCClient.Paginator<GetProjectListRequest, GetProjectListResponse>.ResponseSequence) {
+    public func getProjectListPaginator(_ input: GetProjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetProjectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getProjectList, logger: logger, on: eventLoop)
     }
 }

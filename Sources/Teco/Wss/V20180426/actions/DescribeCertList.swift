@@ -156,7 +156,7 @@ extension Wss {
     ///
     /// 本接口(DescribeCertList)用于获取证书列表。
     @inlinable
-    public func describeCertListPaginator(_ input: DescribeCertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCertListRequest, DescribeCertListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCertListRequest, DescribeCertListResponse>.ResponseSequence) {
+    public func describeCertListPaginator(_ input: DescribeCertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertList, logger: logger, on: eventLoop)
     }
 }

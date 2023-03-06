@@ -165,7 +165,7 @@ extension Tsf {
     ///
     /// 查询网关API监控明细数据（仅单元化网关），非单元化网关使用DescribeApiUseDetail
     @inlinable
-    public func describeUnitApiUseDetailPaginator(_ input: DescribeUnitApiUseDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUnitApiUseDetailRequest, DescribeUnitApiUseDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUnitApiUseDetailRequest, DescribeUnitApiUseDetailResponse>.ResponseSequence) {
+    public func describeUnitApiUseDetailPaginator(_ input: DescribeUnitApiUseDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUnitApiUseDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnitApiUseDetail, logger: logger, on: eventLoop)
     }
 }

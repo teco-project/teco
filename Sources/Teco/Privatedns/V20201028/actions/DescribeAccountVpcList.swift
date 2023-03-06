@@ -122,7 +122,7 @@ extension Privatedns {
 
     /// 获取私有域解析账号的VPC列表
     @inlinable
-    public func describeAccountVpcListPaginator(_ input: DescribeAccountVpcListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccountVpcListRequest, DescribeAccountVpcListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccountVpcListRequest, DescribeAccountVpcListResponse>.ResponseSequence) {
+    public func describeAccountVpcListPaginator(_ input: DescribeAccountVpcListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountVpcListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccountVpcList, logger: logger, on: eventLoop)
     }
 }

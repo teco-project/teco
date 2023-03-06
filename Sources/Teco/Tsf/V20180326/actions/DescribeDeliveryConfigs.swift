@@ -114,7 +114,7 @@ extension Tsf {
 
     /// 获取多个投递项配置
     @inlinable
-    public func describeDeliveryConfigsPaginator(_ input: DescribeDeliveryConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeliveryConfigsRequest, DescribeDeliveryConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeliveryConfigsRequest, DescribeDeliveryConfigsResponse>.ResponseSequence) {
+    public func describeDeliveryConfigsPaginator(_ input: DescribeDeliveryConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeliveryConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeliveryConfigs, logger: logger, on: eventLoop)
     }
 }

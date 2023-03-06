@@ -125,7 +125,7 @@ extension Tci {
 
     /// 拉取任务详情
     @inlinable
-    public func describeImageTaskPaginator(_ input: DescribeImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageTaskRequest, DescribeImageTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageTaskRequest, DescribeImageTaskResponse>.ResponseSequence) {
+    public func describeImageTaskPaginator(_ input: DescribeImageTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageTask, logger: logger, on: eventLoop)
     }
 }

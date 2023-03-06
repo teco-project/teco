@@ -146,7 +146,7 @@ extension Cfs {
     ///
     /// 查询文件系统快照定期策略列表信息
     @inlinable
-    public func describeAutoSnapshotPoliciesPaginator(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoSnapshotPoliciesRequest, DescribeAutoSnapshotPoliciesResponse>.ResponseSequence) {
+    public func describeAutoSnapshotPoliciesPaginator(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoSnapshotPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)
     }
 }

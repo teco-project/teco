@@ -159,7 +159,7 @@ extension Iotvideo {
     /// 本接口（DescribeLogs）用于查询设备日志列表。
     /// 设备日志最长保留时长为15天,超期自动清除。
     @inlinable
-    public func describeLogsPaginator(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLogsRequest, DescribeLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLogsRequest, DescribeLogsResponse>.ResponseSequence) {
+    public func describeLogsPaginator(_ input: DescribeLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogs, logger: logger, on: eventLoop)
     }
 }

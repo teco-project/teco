@@ -167,7 +167,7 @@ extension Kms {
     ///
     /// 根据指定Offset和Limit获取主密钥列表详情。
     @inlinable
-    public func listKeyDetailPaginator(_ input: ListKeyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListKeyDetailRequest, ListKeyDetailResponse>.ResultSequence, responses: TCClient.Paginator<ListKeyDetailRequest, ListKeyDetailResponse>.ResponseSequence) {
+    public func listKeyDetailPaginator(_ input: ListKeyDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeyDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeyDetail, logger: logger, on: eventLoop)
     }
 }

@@ -141,7 +141,7 @@ extension Cwp {
 
     /// 查询资产管理计划任务列表
     @inlinable
-    public func describeAssetPlanTaskListPaginator(_ input: DescribeAssetPlanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetPlanTaskListRequest, DescribeAssetPlanTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetPlanTaskListRequest, DescribeAssetPlanTaskListResponse>.ResponseSequence) {
+    public func describeAssetPlanTaskListPaginator(_ input: DescribeAssetPlanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetPlanTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetPlanTaskList, logger: logger, on: eventLoop)
     }
 }

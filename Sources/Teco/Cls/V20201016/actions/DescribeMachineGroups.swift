@@ -162,7 +162,7 @@ extension Cls {
     ///
     /// 获取机器组信息列表
     @inlinable
-    public func describeMachineGroupsPaginator(_ input: DescribeMachineGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMachineGroupsRequest, DescribeMachineGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMachineGroupsRequest, DescribeMachineGroupsResponse>.ResponseSequence) {
+    public func describeMachineGroupsPaginator(_ input: DescribeMachineGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMachineGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMachineGroups, logger: logger, on: eventLoop)
     }
 }

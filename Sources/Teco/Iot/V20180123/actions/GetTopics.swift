@@ -117,7 +117,7 @@ extension Iot {
 
     /// 获取Topic列表
     @inlinable
-    public func getTopicsPaginator(_ input: GetTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetTopicsRequest, GetTopicsResponse>.ResultSequence, responses: TCClient.Paginator<GetTopicsRequest, GetTopicsResponse>.ResponseSequence) {
+    public func getTopicsPaginator(_ input: GetTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTopicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTopics, logger: logger, on: eventLoop)
     }
 }

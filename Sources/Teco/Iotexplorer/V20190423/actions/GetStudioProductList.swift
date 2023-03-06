@@ -136,7 +136,7 @@ extension Iotexplorer {
     ///
     /// 提供查询某个项目下所有产品信息的能力。
     @inlinable
-    public func getStudioProductListPaginator(_ input: GetStudioProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetStudioProductListRequest, GetStudioProductListResponse>.ResultSequence, responses: TCClient.Paginator<GetStudioProductListRequest, GetStudioProductListResponse>.ResponseSequence) {
+    public func getStudioProductListPaginator(_ input: GetStudioProductListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetStudioProductListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getStudioProductList, logger: logger, on: eventLoop)
     }
 }

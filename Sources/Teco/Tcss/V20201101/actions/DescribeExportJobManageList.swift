@@ -131,7 +131,7 @@ extension Tcss {
 
     /// 查询导出任务管理列表
     @inlinable
-    public func describeExportJobManageListPaginator(_ input: DescribeExportJobManageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExportJobManageListRequest, DescribeExportJobManageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExportJobManageListRequest, DescribeExportJobManageListResponse>.ResponseSequence) {
+    public func describeExportJobManageListPaginator(_ input: DescribeExportJobManageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExportJobManageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExportJobManageList, logger: logger, on: eventLoop)
     }
 }

@@ -145,7 +145,7 @@ extension Iotvideoindustry {
     /// 获取IPC设备下属通道
     /// 请使用DescribeChannels接口
     @inlinable
-    public func describeIPCChannelsPaginator(_ input: DescribeIPCChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIPCChannelsRequest, DescribeIPCChannelsResponse>.ResponseSequence) {
+    public func describeIPCChannelsPaginator(_ input: DescribeIPCChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIPCChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIPCChannels, logger: logger, on: eventLoop)
     }
 }

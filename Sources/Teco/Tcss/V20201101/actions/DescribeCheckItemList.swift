@@ -131,7 +131,7 @@ extension Tcss {
     ///
     /// 查询所有检查项接口，返回总数和检查项列表
     @inlinable
-    public func describeCheckItemListPaginator(_ input: DescribeCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCheckItemListRequest, DescribeCheckItemListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCheckItemListRequest, DescribeCheckItemListResponse>.ResponseSequence) {
+    public func describeCheckItemListPaginator(_ input: DescribeCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCheckItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCheckItemList, logger: logger, on: eventLoop)
     }
 }

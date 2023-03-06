@@ -122,7 +122,7 @@ extension Cdc {
 
     /// 查询站点列表
     @inlinable
-    public func describeSitesPaginator(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResponseSequence) {
+    public func describeSitesPaginator(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSitesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)
     }
 }

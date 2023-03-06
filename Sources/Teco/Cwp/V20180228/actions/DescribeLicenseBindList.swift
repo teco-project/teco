@@ -146,7 +146,7 @@ extension Cwp {
     ///
     /// 该接口可以获取设置中心-授权管理,某个授权下已绑定的授权机器列表
     @inlinable
-    public func describeLicenseBindListPaginator(_ input: DescribeLicenseBindListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLicenseBindListRequest, DescribeLicenseBindListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLicenseBindListRequest, DescribeLicenseBindListResponse>.ResponseSequence) {
+    public func describeLicenseBindListPaginator(_ input: DescribeLicenseBindListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLicenseBindListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLicenseBindList, logger: logger, on: eventLoop)
     }
 }

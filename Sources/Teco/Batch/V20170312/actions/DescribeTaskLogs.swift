@@ -141,7 +141,7 @@ extension Batch {
     ///
     /// 用于获取任务多个实例标准输出和标准错误日志。
     @inlinable
-    public func describeTaskLogsPaginator(_ input: DescribeTaskLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskLogsRequest, DescribeTaskLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskLogsRequest, DescribeTaskLogsResponse>.ResponseSequence) {
+    public func describeTaskLogsPaginator(_ input: DescribeTaskLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskLogs, logger: logger, on: eventLoop)
     }
 }

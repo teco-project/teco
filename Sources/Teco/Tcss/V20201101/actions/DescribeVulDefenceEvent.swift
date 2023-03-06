@@ -141,7 +141,7 @@ extension Tcss {
 
     /// 查询漏洞防御事件列表
     @inlinable
-    public func describeVulDefenceEventPaginator(_ input: DescribeVulDefenceEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulDefenceEventRequest, DescribeVulDefenceEventResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulDefenceEventRequest, DescribeVulDefenceEventResponse>.ResponseSequence) {
+    public func describeVulDefenceEventPaginator(_ input: DescribeVulDefenceEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulDefenceEventRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulDefenceEvent, logger: logger, on: eventLoop)
     }
 }

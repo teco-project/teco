@@ -112,7 +112,7 @@ extension Cwp {
 
     /// 获取快速检索列表
     @inlinable
-    public func describeSearchTemplatesPaginator(_ input: DescribeSearchTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSearchTemplatesRequest, DescribeSearchTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSearchTemplatesRequest, DescribeSearchTemplatesResponse>.ResponseSequence) {
+    public func describeSearchTemplatesPaginator(_ input: DescribeSearchTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSearchTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSearchTemplates, logger: logger, on: eventLoop)
     }
 }

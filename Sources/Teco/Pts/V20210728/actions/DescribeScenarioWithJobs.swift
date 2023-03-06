@@ -182,7 +182,7 @@ extension Pts {
     ///
     /// 查询场景配置并附带已经执行的任务内容
     @inlinable
-    public func describeScenarioWithJobsPaginator(_ input: DescribeScenarioWithJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScenarioWithJobsRequest, DescribeScenarioWithJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScenarioWithJobsRequest, DescribeScenarioWithJobsResponse>.ResponseSequence) {
+    public func describeScenarioWithJobsPaginator(_ input: DescribeScenarioWithJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScenarioWithJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScenarioWithJobs, logger: logger, on: eventLoop)
     }
 }

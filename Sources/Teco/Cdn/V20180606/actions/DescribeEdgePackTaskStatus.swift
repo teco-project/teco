@@ -149,7 +149,7 @@ extension Cdn {
     ///
     /// DescribeEdgePackTaskStatus 用于查询动态打包任务状态列表
     @inlinable
-    public func describeEdgePackTaskStatusPaginator(_ input: DescribeEdgePackTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgePackTaskStatusRequest, DescribeEdgePackTaskStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgePackTaskStatusRequest, DescribeEdgePackTaskStatusResponse>.ResponseSequence) {
+    public func describeEdgePackTaskStatusPaginator(_ input: DescribeEdgePackTaskStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgePackTaskStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgePackTaskStatus, logger: logger, on: eventLoop)
     }
 }

@@ -147,7 +147,7 @@ extension Tcss {
     ///
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
     @inlinable
-    public func describeRiskListPaginator(_ input: DescribeRiskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRiskListRequest, DescribeRiskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRiskListRequest, DescribeRiskListResponse>.ResponseSequence) {
+    public func describeRiskListPaginator(_ input: DescribeRiskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRiskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskList, logger: logger, on: eventLoop)
     }
 }

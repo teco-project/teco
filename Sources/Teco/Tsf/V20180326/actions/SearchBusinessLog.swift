@@ -172,7 +172,7 @@ extension Tsf {
 
     /// 业务日志搜索
     @inlinable
-    public func searchBusinessLogPaginator(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchBusinessLogRequest, SearchBusinessLogResponse>.ResultSequence, responses: TCClient.Paginator<SearchBusinessLogRequest, SearchBusinessLogResponse>.ResponseSequence) {
+    public func searchBusinessLogPaginator(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchBusinessLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchBusinessLog, logger: logger, on: eventLoop)
     }
 }

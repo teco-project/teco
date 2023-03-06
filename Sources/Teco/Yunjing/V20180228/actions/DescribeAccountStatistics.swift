@@ -132,7 +132,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeAccountStatistics) 用于获取帐号统计列表数据。
     @inlinable
-    public func describeAccountStatisticsPaginator(_ input: DescribeAccountStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccountStatisticsRequest, DescribeAccountStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccountStatisticsRequest, DescribeAccountStatisticsResponse>.ResponseSequence) {
+    public func describeAccountStatisticsPaginator(_ input: DescribeAccountStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccountStatistics, logger: logger, on: eventLoop)
     }
 }

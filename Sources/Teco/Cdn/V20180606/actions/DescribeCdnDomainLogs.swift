@@ -165,7 +165,7 @@ extension Cdn {
     ///
     /// DescribeCdnDomainLogs 用于查询访问日志下载地址，仅支持 30 天以内的境内、境外访问日志下载链接查询。
     @inlinable
-    public func describeCdnDomainLogsPaginator(_ input: DescribeCdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCdnDomainLogsRequest, DescribeCdnDomainLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCdnDomainLogsRequest, DescribeCdnDomainLogsResponse>.ResponseSequence) {
+    public func describeCdnDomainLogsPaginator(_ input: DescribeCdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCdnDomainLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCdnDomainLogs, logger: logger, on: eventLoop)
     }
 }

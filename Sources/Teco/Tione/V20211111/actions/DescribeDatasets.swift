@@ -146,7 +146,7 @@ extension Tione {
 
     /// 查询数据集列表
     @inlinable
-    public func describeDatasetsPaginator(_ input: DescribeDatasetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDatasetsRequest, DescribeDatasetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDatasetsRequest, DescribeDatasetsResponse>.ResponseSequence) {
+    public func describeDatasetsPaginator(_ input: DescribeDatasetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDatasetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatasets, logger: logger, on: eventLoop)
     }
 }

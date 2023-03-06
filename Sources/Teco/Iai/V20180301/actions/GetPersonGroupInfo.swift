@@ -137,7 +137,7 @@ extension Iai {
     ///
     /// 获取指定人员的信息，包括加入的人员库、描述内容等。
     @inlinable
-    public func getPersonGroupInfoPaginator(_ input: GetPersonGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetPersonGroupInfoRequest, GetPersonGroupInfoResponse>.ResultSequence, responses: TCClient.Paginator<GetPersonGroupInfoRequest, GetPersonGroupInfoResponse>.ResponseSequence) {
+    public func getPersonGroupInfoPaginator(_ input: GetPersonGroupInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetPersonGroupInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPersonGroupInfo, logger: logger, on: eventLoop)
     }
 }

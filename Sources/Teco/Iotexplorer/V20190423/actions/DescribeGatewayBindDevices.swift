@@ -131,7 +131,7 @@ extension Iotexplorer {
 
     /// 获取网关绑定的子设备列表
     @inlinable
-    public func describeGatewayBindDevicesPaginator(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewayBindDevicesRequest, DescribeGatewayBindDevicesResponse>.ResponseSequence) {
+    public func describeGatewayBindDevicesPaginator(_ input: DescribeGatewayBindDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewayBindDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayBindDevices, logger: logger, on: eventLoop)
     }
 }

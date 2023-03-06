@@ -130,7 +130,7 @@ extension Mna {
     ///
     /// 获取设备信息列表
     @inlinable
-    public func getDevicesPaginator(_ input: GetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResultSequence, responses: TCClient.Paginator<GetDevicesRequest, GetDevicesResponse>.ResponseSequence) {
+    public func getDevicesPaginator(_ input: GetDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDevices, logger: logger, on: eventLoop)
     }
 }

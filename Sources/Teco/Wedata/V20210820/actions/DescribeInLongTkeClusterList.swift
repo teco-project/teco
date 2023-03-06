@@ -157,7 +157,7 @@ extension Wedata {
 
     /// 获取TKE集群列表
     @inlinable
-    public func describeInLongTkeClusterListPaginator(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInLongTkeClusterListRequest, DescribeInLongTkeClusterListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInLongTkeClusterListRequest, DescribeInLongTkeClusterListResponse>.ResponseSequence) {
+    public func describeInLongTkeClusterListPaginator(_ input: DescribeInLongTkeClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInLongTkeClusterListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInLongTkeClusterList, logger: logger, on: eventLoop)
     }
 }

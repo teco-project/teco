@@ -146,7 +146,7 @@ extension Iotexplorer {
     ///
     /// 提供根据产品名称查找产品的能力
     @inlinable
-    public func searchStudioProductPaginator(_ input: SearchStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchStudioProductRequest, SearchStudioProductResponse>.ResultSequence, responses: TCClient.Paginator<SearchStudioProductRequest, SearchStudioProductResponse>.ResponseSequence) {
+    public func searchStudioProductPaginator(_ input: SearchStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchStudioProductRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchStudioProduct, logger: logger, on: eventLoop)
     }
 }

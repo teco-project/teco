@@ -120,7 +120,7 @@ extension Tke {
 
     /// 获取实例列表
     @inlinable
-    public func describePrometheusOverviewsPaginator(_ input: DescribePrometheusOverviewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusOverviewsRequest, DescribePrometheusOverviewsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusOverviewsRequest, DescribePrometheusOverviewsResponse>.ResponseSequence) {
+    public func describePrometheusOverviewsPaginator(_ input: DescribePrometheusOverviewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusOverviewsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusOverviews, logger: logger, on: eventLoop)
     }
 }

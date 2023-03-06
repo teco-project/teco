@@ -124,7 +124,7 @@ extension Tsf {
 
     /// 查询公共配置发布信息
     @inlinable
-    public func describePublicConfigReleasesPaginator(_ input: DescribePublicConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublicConfigReleasesRequest, DescribePublicConfigReleasesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublicConfigReleasesRequest, DescribePublicConfigReleasesResponse>.ResponseSequence) {
+    public func describePublicConfigReleasesPaginator(_ input: DescribePublicConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublicConfigReleasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublicConfigReleases, logger: logger, on: eventLoop)
     }
 }

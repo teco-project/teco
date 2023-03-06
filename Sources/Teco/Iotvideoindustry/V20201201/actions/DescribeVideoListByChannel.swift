@@ -149,7 +149,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeVideoListByChannel)用于查询指定通道的录制文件列表
     @inlinable
-    public func describeVideoListByChannelPaginator(_ input: DescribeVideoListByChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVideoListByChannelRequest, DescribeVideoListByChannelResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVideoListByChannelRequest, DescribeVideoListByChannelResponse>.ResponseSequence) {
+    public func describeVideoListByChannelPaginator(_ input: DescribeVideoListByChannelRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVideoListByChannelRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVideoListByChannel, logger: logger, on: eventLoop)
     }
 }

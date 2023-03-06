@@ -176,7 +176,7 @@ extension Dnspod {
     ///
     /// 获取某个域名下的解析记录列表
     @inlinable
-    public func describeRecordListPaginator(_ input: DescribeRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRecordListRequest, DescribeRecordListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRecordListRequest, DescribeRecordListResponse>.ResponseSequence) {
+    public func describeRecordListPaginator(_ input: DescribeRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordList, logger: logger, on: eventLoop)
     }
 }

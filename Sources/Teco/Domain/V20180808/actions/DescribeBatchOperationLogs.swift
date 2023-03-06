@@ -127,7 +127,7 @@ extension Domain {
     ///
     /// 本接口 ( DescribeBatchOperationLogs ) 用于获取批量操作日志 。
     @inlinable
-    public func describeBatchOperationLogsPaginator(_ input: DescribeBatchOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBatchOperationLogsRequest, DescribeBatchOperationLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBatchOperationLogsRequest, DescribeBatchOperationLogsResponse>.ResponseSequence) {
+    public func describeBatchOperationLogsPaginator(_ input: DescribeBatchOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBatchOperationLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchOperationLogs, logger: logger, on: eventLoop)
     }
 }

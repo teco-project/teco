@@ -144,7 +144,7 @@ extension Live {
     ///
     /// 查询绑定证书的域名列表。
     @inlinable
-    public func describeLiveDomainCertBindingsPaginator(_ input: DescribeLiveDomainCertBindingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveDomainCertBindingsRequest, DescribeLiveDomainCertBindingsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveDomainCertBindingsRequest, DescribeLiveDomainCertBindingsResponse>.ResponseSequence) {
+    public func describeLiveDomainCertBindingsPaginator(_ input: DescribeLiveDomainCertBindingsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveDomainCertBindingsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveDomainCertBindings, logger: logger, on: eventLoop)
     }
 }

@@ -143,7 +143,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeIPStrategyApisStatus）用于查询IP策略可以绑定的API列表。即服务下所有API和该策略已绑定API的差集。
     @inlinable
-    public func describeIPStrategyApisStatusPaginator(_ input: DescribeIPStrategyApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIPStrategyApisStatusRequest, DescribeIPStrategyApisStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIPStrategyApisStatusRequest, DescribeIPStrategyApisStatusResponse>.ResponseSequence) {
+    public func describeIPStrategyApisStatusPaginator(_ input: DescribeIPStrategyApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIPStrategyApisStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIPStrategyApisStatus, logger: logger, on: eventLoop)
     }
 }

@@ -154,7 +154,7 @@ extension Vod {
     ///
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
     @inlinable
-    public func describeWordSamplesPaginator(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWordSamplesRequest, DescribeWordSamplesResponse>.ResponseSequence) {
+    public func describeWordSamplesPaginator(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWordSamplesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)
     }
 }

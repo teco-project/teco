@@ -130,7 +130,7 @@ extension Tdmq {
 
     /// 获取角色列表
     @inlinable
-    public func describeRolesPaginator(_ input: DescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRolesRequest, DescribeRolesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRolesRequest, DescribeRolesResponse>.ResponseSequence) {
+    public func describeRolesPaginator(_ input: DescribeRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRolesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRoles, logger: logger, on: eventLoop)
     }
 }

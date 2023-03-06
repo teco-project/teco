@@ -182,7 +182,7 @@ extension Bmlb {
 
     /// 获取黑石负载均衡实例列表
     @inlinable
-    public func describeLoadBalancersPaginator(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLoadBalancersRequest, DescribeLoadBalancersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLoadBalancersRequest, DescribeLoadBalancersResponse>.ResponseSequence) {
+    public func describeLoadBalancersPaginator(_ input: DescribeLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoadBalancersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancers, logger: logger, on: eventLoop)
     }
 }

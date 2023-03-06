@@ -112,7 +112,7 @@ extension Iai {
 
     /// 获取人员库升级任务列表
     @inlinable
-    public func getUpgradeGroupFaceModelVersionJobListPaginator(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetUpgradeGroupFaceModelVersionJobListRequest, GetUpgradeGroupFaceModelVersionJobListResponse>.ResultSequence, responses: TCClient.Paginator<GetUpgradeGroupFaceModelVersionJobListRequest, GetUpgradeGroupFaceModelVersionJobListResponse>.ResponseSequence) {
+    public func getUpgradeGroupFaceModelVersionJobListPaginator(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetUpgradeGroupFaceModelVersionJobListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getUpgradeGroupFaceModelVersionJobList, logger: logger, on: eventLoop)
     }
 }

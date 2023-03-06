@@ -231,7 +231,7 @@ extension Tiia {
     /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
-    public func searchImagePaginator(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResultSequence, responses: TCClient.Paginator<SearchImageRequest, SearchImageResponse>.ResponseSequence) {
+    public func searchImagePaginator(_ input: SearchImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchImageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchImage, logger: logger, on: eventLoop)
     }
 }

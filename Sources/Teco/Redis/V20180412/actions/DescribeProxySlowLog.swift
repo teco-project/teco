@@ -146,7 +146,7 @@ extension Redis {
     ///
     /// 本接口（DescribeProxySlowLog）用于查询代理慢查询。
     @inlinable
-    public func describeProxySlowLogPaginator(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProxySlowLogRequest, DescribeProxySlowLogResponse>.ResponseSequence) {
+    public func describeProxySlowLogPaginator(_ input: DescribeProxySlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProxySlowLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProxySlowLog, logger: logger, on: eventLoop)
     }
 }

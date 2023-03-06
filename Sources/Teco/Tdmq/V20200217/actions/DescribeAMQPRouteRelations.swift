@@ -137,7 +137,7 @@ extension Tdmq {
 
     /// 获取Amqp路由关系列表
     @inlinable
-    public func describeAMQPRouteRelationsPaginator(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAMQPRouteRelationsRequest, DescribeAMQPRouteRelationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAMQPRouteRelationsRequest, DescribeAMQPRouteRelationsResponse>.ResponseSequence) {
+    public func describeAMQPRouteRelationsPaginator(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPRouteRelationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)
     }
 }

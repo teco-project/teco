@@ -128,7 +128,7 @@ extension Gaap {
 
     /// 查询域名列表
     @inlinable
-    public func describeGlobalDomainsPaginator(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGlobalDomainsRequest, DescribeGlobalDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGlobalDomainsRequest, DescribeGlobalDomainsResponse>.ResponseSequence) {
+    public func describeGlobalDomainsPaginator(_ input: DescribeGlobalDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGlobalDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGlobalDomains, logger: logger, on: eventLoop)
     }
 }

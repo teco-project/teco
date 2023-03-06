@@ -136,7 +136,7 @@ extension Bmvpc {
     ///
     /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
     @inlinable
-    public func describeSubnetByDevicePaginator(_ input: DescribeSubnetByDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubnetByDeviceRequest, DescribeSubnetByDeviceResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubnetByDeviceRequest, DescribeSubnetByDeviceResponse>.ResponseSequence) {
+    public func describeSubnetByDevicePaginator(_ input: DescribeSubnetByDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubnetByDeviceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnetByDevice, logger: logger, on: eventLoop)
     }
 }

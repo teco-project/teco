@@ -140,7 +140,7 @@ extension Iotvideoindustry {
     /// 本接口(GetRecordDatesByDev)用于查询设备含有录像文件的日期列表。
     /// 请使用DescribeRecordDatesByChannel接口
     @inlinable
-    public func getRecordDatesByDevPaginator(_ input: GetRecordDatesByDevRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetRecordDatesByDevRequest, GetRecordDatesByDevResponse>.ResultSequence, responses: TCClient.Paginator<GetRecordDatesByDevRequest, GetRecordDatesByDevResponse>.ResponseSequence) {
+    public func getRecordDatesByDevPaginator(_ input: GetRecordDatesByDevRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetRecordDatesByDevRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getRecordDatesByDev, logger: logger, on: eventLoop)
     }
 }

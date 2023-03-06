@@ -145,7 +145,7 @@ extension Tcss {
     ///
     /// 容器安全搜索查询镜像列表
     @inlinable
-    public func describeAssetImageListPaginator(_ input: DescribeAssetImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageListRequest, DescribeAssetImageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageListRequest, DescribeAssetImageListResponse>.ResponseSequence) {
+    public func describeAssetImageListPaginator(_ input: DescribeAssetImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageList, logger: logger, on: eventLoop)
     }
 }

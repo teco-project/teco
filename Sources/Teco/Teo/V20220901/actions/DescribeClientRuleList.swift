@@ -161,7 +161,7 @@ extension Teo {
     ///
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
     @inlinable
-    public func describeClientRuleListPaginator(_ input: DescribeClientRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClientRuleListRequest, DescribeClientRuleListResponse>.ResponseSequence) {
+    public func describeClientRuleListPaginator(_ input: DescribeClientRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClientRuleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientRuleList, logger: logger, on: eventLoop)
     }
 }

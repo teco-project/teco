@@ -146,7 +146,7 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
     @inlinable
-    public func describeBackupFilesPaginator(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupFilesRequest, DescribeBackupFilesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupFilesRequest, DescribeBackupFilesResponse>.ResponseSequence) {
+    public func describeBackupFilesPaginator(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupFilesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupFiles, logger: logger, on: eventLoop)
     }
 }

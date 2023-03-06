@@ -122,7 +122,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的特征过滤规则列表
     @inlinable
-    public func describeListPacketFilterConfigPaginator(_ input: DescribeListPacketFilterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListPacketFilterConfigRequest, DescribeListPacketFilterConfigResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListPacketFilterConfigRequest, DescribeListPacketFilterConfigResponse>.ResponseSequence) {
+    public func describeListPacketFilterConfigPaginator(_ input: DescribeListPacketFilterConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListPacketFilterConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListPacketFilterConfig, logger: logger, on: eventLoop)
     }
 }

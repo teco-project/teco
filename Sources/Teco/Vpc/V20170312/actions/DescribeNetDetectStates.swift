@@ -139,7 +139,7 @@ extension Vpc {
     ///
     /// 本接口(DescribeNetDetectStates)用于查询网络探测验证结果列表。
     @inlinable
-    public func describeNetDetectStatesPaginator(_ input: DescribeNetDetectStatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetDetectStatesRequest, DescribeNetDetectStatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetDetectStatesRequest, DescribeNetDetectStatesResponse>.ResponseSequence) {
+    public func describeNetDetectStatesPaginator(_ input: DescribeNetDetectStatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetDetectStatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetDetectStates, logger: logger, on: eventLoop)
     }
 }

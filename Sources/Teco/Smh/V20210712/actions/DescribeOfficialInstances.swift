@@ -156,7 +156,7 @@ extension Smh {
     ///
     /// 查询官方云盘实例
     @inlinable
-    public func describeOfficialInstancesPaginator(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOfficialInstancesRequest, DescribeOfficialInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOfficialInstancesRequest, DescribeOfficialInstancesResponse>.ResponseSequence) {
+    public func describeOfficialInstancesPaginator(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOfficialInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOfficialInstances, logger: logger, on: eventLoop)
     }
 }

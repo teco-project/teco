@@ -141,7 +141,7 @@ extension Tcss {
     ///
     /// 查询运行访问控制策略列表信息
     @inlinable
-    public func describeAccessControlRulesPaginator(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccessControlRulesRequest, DescribeAccessControlRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccessControlRulesRequest, DescribeAccessControlRulesResponse>.ResponseSequence) {
+    public func describeAccessControlRulesPaginator(_ input: DescribeAccessControlRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccessControlRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessControlRules, logger: logger, on: eventLoop)
     }
 }

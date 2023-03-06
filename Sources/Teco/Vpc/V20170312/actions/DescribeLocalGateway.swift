@@ -132,7 +132,7 @@ extension Vpc {
     ///
     /// 该接口用于查询CDC的本地网关。
     @inlinable
-    public func describeLocalGatewayPaginator(_ input: DescribeLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLocalGatewayRequest, DescribeLocalGatewayResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLocalGatewayRequest, DescribeLocalGatewayResponse>.ResponseSequence) {
+    public func describeLocalGatewayPaginator(_ input: DescribeLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLocalGatewayRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLocalGateway, logger: logger, on: eventLoop)
     }
 }

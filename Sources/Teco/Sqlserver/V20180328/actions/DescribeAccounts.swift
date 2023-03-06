@@ -150,7 +150,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeAccounts）用于拉取实例账户列表。
     @inlinable
-    public func describeAccountsPaginator(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccountsRequest, DescribeAccountsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccountsRequest, DescribeAccountsResponse>.ResponseSequence) {
+    public func describeAccountsPaginator(_ input: DescribeAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccounts, logger: logger, on: eventLoop)
     }
 }

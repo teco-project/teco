@@ -129,7 +129,7 @@ extension Iotcloud {
 
     /// 查询固件升级任务的设备列表
     @inlinable
-    public func describeFirmwareTaskDevicesPaginator(_ input: DescribeFirmwareTaskDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFirmwareTaskDevicesRequest, DescribeFirmwareTaskDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFirmwareTaskDevicesRequest, DescribeFirmwareTaskDevicesResponse>.ResponseSequence) {
+    public func describeFirmwareTaskDevicesPaginator(_ input: DescribeFirmwareTaskDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFirmwareTaskDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFirmwareTaskDevices, logger: logger, on: eventLoop)
     }
 }

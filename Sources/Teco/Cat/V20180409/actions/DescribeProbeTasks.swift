@@ -204,7 +204,7 @@ extension Cat {
     ///
     /// 查询拨测任务列表
     @inlinable
-    public func describeProbeTasksPaginator(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProbeTasksRequest, DescribeProbeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProbeTasksRequest, DescribeProbeTasksResponse>.ResponseSequence) {
+    public func describeProbeTasksPaginator(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProbeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProbeTasks, logger: logger, on: eventLoop)
     }
 }

@@ -143,7 +143,7 @@ extension Eiam {
     ///
     /// 应用授权关系列表（含搜索条件匹配）。
     @inlinable
-    public func listApplicationAuthorizationsPaginator(_ input: ListApplicationAuthorizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListApplicationAuthorizationsRequest, ListApplicationAuthorizationsResponse>.ResultSequence, responses: TCClient.Paginator<ListApplicationAuthorizationsRequest, ListApplicationAuthorizationsResponse>.ResponseSequence) {
+    public func listApplicationAuthorizationsPaginator(_ input: ListApplicationAuthorizationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListApplicationAuthorizationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listApplicationAuthorizations, logger: logger, on: eventLoop)
     }
 }

@@ -157,7 +157,7 @@ extension Cwp {
     ///
     /// 获取资产指纹页面的资源监控列表
     @inlinable
-    public func describeAssetMachineListPaginator(_ input: DescribeAssetMachineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetMachineListRequest, DescribeAssetMachineListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetMachineListRequest, DescribeAssetMachineListResponse>.ResponseSequence) {
+    public func describeAssetMachineListPaginator(_ input: DescribeAssetMachineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetMachineListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetMachineList, logger: logger, on: eventLoop)
     }
 }

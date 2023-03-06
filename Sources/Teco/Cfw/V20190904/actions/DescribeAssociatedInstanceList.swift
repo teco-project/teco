@@ -144,7 +144,7 @@ extension Cfw {
 
     /// 获取安全组关联实例列表
     @inlinable
-    public func describeAssociatedInstanceListPaginator(_ input: DescribeAssociatedInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssociatedInstanceListRequest, DescribeAssociatedInstanceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssociatedInstanceListRequest, DescribeAssociatedInstanceListResponse>.ResponseSequence) {
+    public func describeAssociatedInstanceListPaginator(_ input: DescribeAssociatedInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssociatedInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssociatedInstanceList, logger: logger, on: eventLoop)
     }
 }

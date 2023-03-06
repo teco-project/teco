@@ -142,7 +142,7 @@ extension Ssa {
     ///
     /// 拉取告警列表
     @inlinable
-    public func describeSocAlertListPaginator(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSocAlertListRequest, DescribeSocAlertListResponse>.ResponseSequence) {
+    public func describeSocAlertListPaginator(_ input: DescribeSocAlertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSocAlertListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSocAlertList, logger: logger, on: eventLoop)
     }
 }

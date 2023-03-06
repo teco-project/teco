@@ -146,7 +146,7 @@ extension Cr {
 
     /// 查看黑名单数据列表
     @inlinable
-    public func queryBlackListDataPaginator(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryBlackListDataRequest, QueryBlackListDataResponse>.ResultSequence, responses: TCClient.Paginator<QueryBlackListDataRequest, QueryBlackListDataResponse>.ResponseSequence) {
+    public func queryBlackListDataPaginator(_ input: QueryBlackListDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryBlackListDataRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryBlackListData, logger: logger, on: eventLoop)
     }
 }

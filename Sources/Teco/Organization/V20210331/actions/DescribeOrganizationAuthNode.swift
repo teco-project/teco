@@ -114,7 +114,7 @@ extension Organization {
 
     /// 获取可创建组织成员的认证主体关系列表
     @inlinable
-    public func describeOrganizationAuthNodePaginator(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrganizationAuthNodeRequest, DescribeOrganizationAuthNodeResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrganizationAuthNodeRequest, DescribeOrganizationAuthNodeResponse>.ResponseSequence) {
+    public func describeOrganizationAuthNodePaginator(_ input: DescribeOrganizationAuthNodeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationAuthNodeRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationAuthNode, logger: logger, on: eventLoop)
     }
 }

@@ -181,7 +181,7 @@ extension Redis {
     ///
     /// 查询Redis实例列表信息。该接口已废弃。
     @inlinable
-    public func describeCommonDBInstancesPaginator(_ input: DescribeCommonDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCommonDBInstancesRequest, DescribeCommonDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCommonDBInstancesRequest, DescribeCommonDBInstancesResponse>.ResponseSequence) {
+    public func describeCommonDBInstancesPaginator(_ input: DescribeCommonDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCommonDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCommonDBInstances, logger: logger, on: eventLoop)
     }
 }

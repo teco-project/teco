@@ -129,7 +129,7 @@ extension Trp {
 
     /// 查询商户列表
     @inlinable
-    public func describeMerchantsPaginator(_ input: DescribeMerchantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMerchantsRequest, DescribeMerchantsResponse>.ResponseSequence) {
+    public func describeMerchantsPaginator(_ input: DescribeMerchantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMerchantsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMerchants, logger: logger, on: eventLoop)
     }
 }

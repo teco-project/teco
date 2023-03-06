@@ -166,7 +166,7 @@ extension Dlc {
     ///
     /// 该接口（DescribleTasks）用于查询任务列表
     @inlinable
-    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTasksRequest, DescribeTasksResponse>.ResponseSequence) {
+    public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)
     }
 }

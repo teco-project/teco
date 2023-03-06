@@ -157,7 +157,7 @@ extension Tcss {
     ///
     /// 容器安全查询镜像病毒列表
     @inlinable
-    public func describeAssetImageVirusListPaginator(_ input: DescribeAssetImageVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageVirusListRequest, DescribeAssetImageVirusListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageVirusListRequest, DescribeAssetImageVirusListResponse>.ResponseSequence) {
+    public func describeAssetImageVirusListPaginator(_ input: DescribeAssetImageVirusListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageVirusListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageVirusList, logger: logger, on: eventLoop)
     }
 }

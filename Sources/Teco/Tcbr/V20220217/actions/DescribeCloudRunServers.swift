@@ -133,7 +133,7 @@ extension Tcbr {
     ///
     /// 查询云托管服务列表接口
     @inlinable
-    public func describeCloudRunServersPaginator(_ input: DescribeCloudRunServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloudRunServersRequest, DescribeCloudRunServersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloudRunServersRequest, DescribeCloudRunServersResponse>.ResponseSequence) {
+    public func describeCloudRunServersPaginator(_ input: DescribeCloudRunServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudRunServersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudRunServers, logger: logger, on: eventLoop)
     }
 }

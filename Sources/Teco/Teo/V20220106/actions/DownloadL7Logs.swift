@@ -166,7 +166,7 @@ extension Teo {
     ///
     /// 查询七层离线日志
     @inlinable
-    public func downloadL7LogsPaginator(_ input: DownloadL7LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DownloadL7LogsRequest, DownloadL7LogsResponse>.ResultSequence, responses: TCClient.Paginator<DownloadL7LogsRequest, DownloadL7LogsResponse>.ResponseSequence) {
+    public func downloadL7LogsPaginator(_ input: DownloadL7LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DownloadL7LogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.downloadL7Logs, logger: logger, on: eventLoop)
     }
 }

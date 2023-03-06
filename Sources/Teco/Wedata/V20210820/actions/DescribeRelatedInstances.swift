@@ -128,7 +128,7 @@ extension Wedata {
 
     /// 查询任务实例的关联实例列表
     @inlinable
-    public func describeRelatedInstancesPaginator(_ input: DescribeRelatedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRelatedInstancesRequest, DescribeRelatedInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRelatedInstancesRequest, DescribeRelatedInstancesResponse>.ResponseSequence) {
+    public func describeRelatedInstancesPaginator(_ input: DescribeRelatedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRelatedInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRelatedInstances, logger: logger, on: eventLoop)
     }
 }

@@ -144,7 +144,7 @@ extension Batch {
     ///
     /// 用于查看计算环境列表
     @inlinable
-    public func describeComputeEnvsPaginator(_ input: DescribeComputeEnvsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComputeEnvsRequest, DescribeComputeEnvsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComputeEnvsRequest, DescribeComputeEnvsResponse>.ResponseSequence) {
+    public func describeComputeEnvsPaginator(_ input: DescribeComputeEnvsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComputeEnvsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComputeEnvs, logger: logger, on: eventLoop)
     }
 }

@@ -131,7 +131,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeVpnGatewayCcnRoutes）用于查询VPN网关云联网路由
     @inlinable
-    public func describeVpnGatewayCcnRoutesPaginator(_ input: DescribeVpnGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpnGatewayCcnRoutesRequest, DescribeVpnGatewayCcnRoutesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpnGatewayCcnRoutesRequest, DescribeVpnGatewayCcnRoutesResponse>.ResponseSequence) {
+    public func describeVpnGatewayCcnRoutesPaginator(_ input: DescribeVpnGatewayCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewayCcnRoutesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewayCcnRoutes, logger: logger, on: eventLoop)
     }
 }

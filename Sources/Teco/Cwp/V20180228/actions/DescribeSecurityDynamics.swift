@@ -126,7 +126,7 @@ extension Cwp {
     ///
     /// 本接口 (DescribeSecurityDynamics) 用于获取安全事件动态消息数据。
     @inlinable
-    public func describeSecurityDynamicsPaginator(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecurityDynamicsRequest, DescribeSecurityDynamicsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecurityDynamicsRequest, DescribeSecurityDynamicsResponse>.ResponseSequence) {
+    public func describeSecurityDynamicsPaginator(_ input: DescribeSecurityDynamicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityDynamicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityDynamics, logger: logger, on: eventLoop)
     }
 }

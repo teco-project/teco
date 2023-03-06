@@ -139,7 +139,7 @@ extension Ecm {
 
     /// 获取模块列表
     @inlinable
-    public func describeModulePaginator(_ input: DescribeModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModuleRequest, DescribeModuleResponse>.ResponseSequence) {
+    public func describeModulePaginator(_ input: DescribeModuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModuleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModule, logger: logger, on: eventLoop)
     }
 }

@@ -128,7 +128,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiAppsStatus）查询应用列表。
     @inlinable
-    public func describeApiAppsStatusPaginator(_ input: DescribeApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApiAppsStatusRequest, DescribeApiAppsStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApiAppsStatusRequest, DescribeApiAppsStatusResponse>.ResponseSequence) {
+    public func describeApiAppsStatusPaginator(_ input: DescribeApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiAppsStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiAppsStatus, logger: logger, on: eventLoop)
     }
 }

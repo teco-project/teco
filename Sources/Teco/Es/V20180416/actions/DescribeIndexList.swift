@@ -154,7 +154,7 @@ extension Es {
 
     /// 获取索引列表
     @inlinable
-    public func describeIndexListPaginator(_ input: DescribeIndexListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIndexListRequest, DescribeIndexListResponse>.ResponseSequence) {
+    public func describeIndexListPaginator(_ input: DescribeIndexListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIndexListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)
     }
 }

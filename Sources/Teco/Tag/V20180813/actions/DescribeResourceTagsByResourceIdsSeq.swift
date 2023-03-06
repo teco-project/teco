@@ -140,7 +140,7 @@ extension Tag {
 
     /// 按顺序查看资源关联的标签
     @inlinable
-    public func describeResourceTagsByResourceIdsSeqPaginator(_ input: DescribeResourceTagsByResourceIdsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceTagsByResourceIdsSeqRequest, DescribeResourceTagsByResourceIdsSeqResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceTagsByResourceIdsSeqRequest, DescribeResourceTagsByResourceIdsSeqResponse>.ResponseSequence) {
+    public func describeResourceTagsByResourceIdsSeqPaginator(_ input: DescribeResourceTagsByResourceIdsSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTagsByResourceIdsSeqRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTagsByResourceIdsSeq, logger: logger, on: eventLoop)
     }
 }

@@ -132,7 +132,7 @@ extension Teo {
     ///
     /// 本接口（DescribeLogTopicTasks）用于获取日志推送任务列表。
     @inlinable
-    public func describeLogTopicTasksPaginator(_ input: DescribeLogTopicTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLogTopicTasksRequest, DescribeLogTopicTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLogTopicTasksRequest, DescribeLogTopicTasksResponse>.ResponseSequence) {
+    public func describeLogTopicTasksPaginator(_ input: DescribeLogTopicTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogTopicTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogTopicTasks, logger: logger, on: eventLoop)
     }
 }

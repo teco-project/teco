@@ -128,7 +128,7 @@ extension Wav {
     ///
     /// 根据游标拉取活动参与列表信息
     @inlinable
-    public func queryActivityJoinListPaginator(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryActivityJoinListRequest, QueryActivityJoinListResponse>.ResultSequence, responses: TCClient.Paginator<QueryActivityJoinListRequest, QueryActivityJoinListResponse>.ResponseSequence) {
+    public func queryActivityJoinListPaginator(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryActivityJoinListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryActivityJoinList, logger: logger, on: eventLoop)
     }
 }

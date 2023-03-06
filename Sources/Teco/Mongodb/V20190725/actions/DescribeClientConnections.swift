@@ -131,7 +131,7 @@ extension Mongodb {
     ///
     /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。
     @inlinable
-    public func describeClientConnectionsPaginator(_ input: DescribeClientConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClientConnectionsRequest, DescribeClientConnectionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClientConnectionsRequest, DescribeClientConnectionsResponse>.ResponseSequence) {
+    public func describeClientConnectionsPaginator(_ input: DescribeClientConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClientConnectionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientConnections, logger: logger, on: eventLoop)
     }
 }

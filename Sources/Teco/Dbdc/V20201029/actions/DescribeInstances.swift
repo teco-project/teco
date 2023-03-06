@@ -166,7 +166,7 @@ extension Dbdc {
     ///
     /// 根据不同地域不同用户，获取集群列表信息
     @inlinable
-    public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstancesRequest, DescribeInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstancesRequest, DescribeInstancesResponse>.ResponseSequence) {
+    public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)
     }
 }

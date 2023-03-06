@@ -169,7 +169,7 @@ extension Monitor {
 
     /// 获取基础告警列表
     @inlinable
-    public func describeBasicAlarmListPaginator(_ input: DescribeBasicAlarmListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBasicAlarmListRequest, DescribeBasicAlarmListResponse>.ResponseSequence) {
+    public func describeBasicAlarmListPaginator(_ input: DescribeBasicAlarmListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBasicAlarmListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBasicAlarmList, logger: logger, on: eventLoop)
     }
 }

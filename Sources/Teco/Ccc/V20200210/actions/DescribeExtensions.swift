@@ -132,7 +132,7 @@ extension Ccc {
 
     /// 查询话机列表信息
     @inlinable
-    public func describeExtensionsPaginator(_ input: DescribeExtensionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExtensionsRequest, DescribeExtensionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExtensionsRequest, DescribeExtensionsResponse>.ResponseSequence) {
+    public func describeExtensionsPaginator(_ input: DescribeExtensionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExtensionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExtensions, logger: logger, on: eventLoop)
     }
 }

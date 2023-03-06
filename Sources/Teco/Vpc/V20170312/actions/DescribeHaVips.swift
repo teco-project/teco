@@ -142,7 +142,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeHaVips）用于查询高可用虚拟IP（HAVIP）列表。
     @inlinable
-    public func describeHaVipsPaginator(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHaVipsRequest, DescribeHaVipsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHaVipsRequest, DescribeHaVipsResponse>.ResponseSequence) {
+    public func describeHaVipsPaginator(_ input: DescribeHaVipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHaVipsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHaVips, logger: logger, on: eventLoop)
     }
 }

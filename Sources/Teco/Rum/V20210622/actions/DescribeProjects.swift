@@ -136,7 +136,7 @@ extension Rum {
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
     @inlinable
-    public func describeProjectsPaginator(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProjectsRequest, DescribeProjectsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProjectsRequest, DescribeProjectsResponse>.ResponseSequence) {
+    public func describeProjectsPaginator(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)
     }
 }

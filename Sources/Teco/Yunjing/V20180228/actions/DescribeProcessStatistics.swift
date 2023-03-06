@@ -132,7 +132,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
     @inlinable
-    public func describeProcessStatisticsPaginator(_ input: DescribeProcessStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProcessStatisticsRequest, DescribeProcessStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProcessStatisticsRequest, DescribeProcessStatisticsResponse>.ResponseSequence) {
+    public func describeProcessStatisticsPaginator(_ input: DescribeProcessStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProcessStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcessStatistics, logger: logger, on: eventLoop)
     }
 }

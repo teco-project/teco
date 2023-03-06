@@ -132,7 +132,7 @@ extension Ccc {
 
     /// 获取技能组信息列表
     @inlinable
-    public func describeSkillGroupInfoListPaginator(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSkillGroupInfoListRequest, DescribeSkillGroupInfoListResponse>.ResponseSequence) {
+    public func describeSkillGroupInfoListPaginator(_ input: DescribeSkillGroupInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSkillGroupInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSkillGroupInfoList, logger: logger, on: eventLoop)
     }
 }

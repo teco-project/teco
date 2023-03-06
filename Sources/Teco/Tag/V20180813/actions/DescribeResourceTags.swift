@@ -151,7 +151,7 @@ extension Tag {
 
     /// 查询资源关联标签
     @inlinable
-    public func describeResourceTagsPaginator(_ input: DescribeResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceTagsRequest, DescribeResourceTagsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceTagsRequest, DescribeResourceTagsResponse>.ResponseSequence) {
+    public func describeResourceTagsPaginator(_ input: DescribeResourceTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTagsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTags, logger: logger, on: eventLoop)
     }
 }

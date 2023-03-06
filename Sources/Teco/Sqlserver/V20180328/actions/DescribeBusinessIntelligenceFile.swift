@@ -156,7 +156,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribeBusinessIntelligenceFile）用于查询商业智能服务需要的文件。
     @inlinable
-    public func describeBusinessIntelligenceFilePaginator(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBusinessIntelligenceFileRequest, DescribeBusinessIntelligenceFileResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBusinessIntelligenceFileRequest, DescribeBusinessIntelligenceFileResponse>.ResponseSequence) {
+    public func describeBusinessIntelligenceFilePaginator(_ input: DescribeBusinessIntelligenceFileRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBusinessIntelligenceFileRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBusinessIntelligenceFile, logger: logger, on: eventLoop)
     }
 }

@@ -142,7 +142,7 @@ extension Tcss {
     ///
     /// 安全概览和集群安全页进入调用该接口，查询用户集群相关信息。
     @inlinable
-    public func describeUserClusterPaginator(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserClusterRequest, DescribeUserClusterResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserClusterRequest, DescribeUserClusterResponse>.ResponseSequence) {
+    public func describeUserClusterPaginator(_ input: DescribeUserClusterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserClusterRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserCluster, logger: logger, on: eventLoop)
     }
 }

@@ -128,7 +128,7 @@ extension Iotexplorer {
 
     /// 获取位置空间中围栏告警事件列表
     @inlinable
-    public func describeSpaceFenceEventListPaginator(_ input: DescribeSpaceFenceEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSpaceFenceEventListRequest, DescribeSpaceFenceEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSpaceFenceEventListRequest, DescribeSpaceFenceEventListResponse>.ResponseSequence) {
+    public func describeSpaceFenceEventListPaginator(_ input: DescribeSpaceFenceEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSpaceFenceEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSpaceFenceEventList, logger: logger, on: eventLoop)
     }
 }

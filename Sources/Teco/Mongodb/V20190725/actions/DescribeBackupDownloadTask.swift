@@ -147,7 +147,7 @@ extension Mongodb {
 
     /// 查询备份下载任务信息
     @inlinable
-    public func describeBackupDownloadTaskPaginator(_ input: DescribeBackupDownloadTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupDownloadTaskRequest, DescribeBackupDownloadTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupDownloadTaskRequest, DescribeBackupDownloadTaskResponse>.ResponseSequence) {
+    public func describeBackupDownloadTaskPaginator(_ input: DescribeBackupDownloadTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupDownloadTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupDownloadTask, logger: logger, on: eventLoop)
     }
 }

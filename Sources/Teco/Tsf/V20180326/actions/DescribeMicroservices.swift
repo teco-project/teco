@@ -144,7 +144,7 @@ extension Tsf {
 
     /// 获取微服务列表
     @inlinable
-    public func describeMicroservicesPaginator(_ input: DescribeMicroservicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMicroservicesRequest, DescribeMicroservicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMicroservicesRequest, DescribeMicroservicesResponse>.ResponseSequence) {
+    public func describeMicroservicesPaginator(_ input: DescribeMicroservicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMicroservicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMicroservices, logger: logger, on: eventLoop)
     }
 }

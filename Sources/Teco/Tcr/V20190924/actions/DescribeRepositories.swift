@@ -146,7 +146,7 @@ extension Tcr {
     ///
     /// 查询镜像仓库列表或指定镜像仓库信息
     @inlinable
-    public func describeRepositoriesPaginator(_ input: DescribeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRepositoriesRequest, DescribeRepositoriesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRepositoriesRequest, DescribeRepositoriesResponse>.ResponseSequence) {
+    public func describeRepositoriesPaginator(_ input: DescribeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRepositoriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRepositories, logger: logger, on: eventLoop)
     }
 }

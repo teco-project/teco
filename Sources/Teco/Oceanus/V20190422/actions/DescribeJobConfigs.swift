@@ -151,7 +151,7 @@ extension Oceanus {
     ///
     /// 查询作业配置列表，一次最多查询100个
     @inlinable
-    public func describeJobConfigsPaginator(_ input: DescribeJobConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeJobConfigsRequest, DescribeJobConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeJobConfigsRequest, DescribeJobConfigsResponse>.ResponseSequence) {
+    public func describeJobConfigsPaginator(_ input: DescribeJobConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeJobConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJobConfigs, logger: logger, on: eventLoop)
     }
 }

@@ -152,7 +152,7 @@ extension Clb {
     ///
     /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
     @inlinable
-    public func describeLoadBalancersDetailPaginator(_ input: DescribeLoadBalancersDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLoadBalancersDetailRequest, DescribeLoadBalancersDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLoadBalancersDetailRequest, DescribeLoadBalancersDetailResponse>.ResponseSequence) {
+    public func describeLoadBalancersDetailPaginator(_ input: DescribeLoadBalancersDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoadBalancersDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancersDetail, logger: logger, on: eventLoop)
     }
 }

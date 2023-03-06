@@ -129,7 +129,7 @@ extension Iotcloud {
 
     /// 查询资源推送任务列表
     @inlinable
-    public func describeResourceTasksPaginator(_ input: DescribeResourceTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceTasksRequest, DescribeResourceTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceTasksRequest, DescribeResourceTasksResponse>.ResponseSequence) {
+    public func describeResourceTasksPaginator(_ input: DescribeResourceTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTasks, logger: logger, on: eventLoop)
     }
 }

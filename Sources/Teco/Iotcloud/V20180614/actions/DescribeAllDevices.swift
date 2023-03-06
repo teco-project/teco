@@ -112,7 +112,7 @@ extension Iotcloud {
 
     /// 查询所有设备列表
     @inlinable
-    public func describeAllDevicesPaginator(_ input: DescribeAllDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAllDevicesRequest, DescribeAllDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAllDevicesRequest, DescribeAllDevicesResponse>.ResponseSequence) {
+    public func describeAllDevicesPaginator(_ input: DescribeAllDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAllDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAllDevices, logger: logger, on: eventLoop)
     }
 }

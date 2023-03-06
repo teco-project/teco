@@ -127,7 +127,7 @@ extension Tke {
 
     /// 查询集群变配记录
     @inlinable
-    public func describeClusterLevelChangeRecordsPaginator(_ input: DescribeClusterLevelChangeRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterLevelChangeRecordsRequest, DescribeClusterLevelChangeRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterLevelChangeRecordsRequest, DescribeClusterLevelChangeRecordsResponse>.ResponseSequence) {
+    public func describeClusterLevelChangeRecordsPaginator(_ input: DescribeClusterLevelChangeRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterLevelChangeRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterLevelChangeRecords, logger: logger, on: eventLoop)
     }
 }

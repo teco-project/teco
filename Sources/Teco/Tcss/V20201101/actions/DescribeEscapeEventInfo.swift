@@ -141,7 +141,7 @@ extension Tcss {
     ///
     /// DescribeEscapeEventInfo 查询容器逃逸事件列表
     @inlinable
-    public func describeEscapeEventInfoPaginator(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEscapeEventInfoRequest, DescribeEscapeEventInfoResponse>.ResponseSequence) {
+    public func describeEscapeEventInfoPaginator(_ input: DescribeEscapeEventInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEscapeEventInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEscapeEventInfo, logger: logger, on: eventLoop)
     }
 }

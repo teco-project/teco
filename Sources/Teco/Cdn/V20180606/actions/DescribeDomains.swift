@@ -132,7 +132,7 @@ extension Cdn {
     ///
     /// DescribeDomains 用于查询内容分发网络加速域名（含境内、境外）基本配置信息，包括项目ID、服务状态，业务类型、创建时间、更新时间等信息。
     @inlinable
-    public func describeDomainsPaginator(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDomainsRequest, DescribeDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDomainsRequest, DescribeDomainsResponse>.ResponseSequence) {
+    public func describeDomainsPaginator(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)
     }
 }

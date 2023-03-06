@@ -146,7 +146,7 @@ extension Tbaas {
     ///
     /// Bcos分页查询当前群组的交易信息列表
     @inlinable
-    public func getBcosTransListPaginator(_ input: GetBcosTransListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetBcosTransListRequest, GetBcosTransListResponse>.ResultSequence, responses: TCClient.Paginator<GetBcosTransListRequest, GetBcosTransListResponse>.ResponseSequence) {
+    public func getBcosTransListPaginator(_ input: GetBcosTransListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBcosTransListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBcosTransList, logger: logger, on: eventLoop)
     }
 }

@@ -155,7 +155,7 @@ extension Cfs {
     ///
     /// 查询文件系统快照列表
     @inlinable
-    public func describeCfsSnapshotsPaginator(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCfsSnapshotsRequest, DescribeCfsSnapshotsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCfsSnapshotsRequest, DescribeCfsSnapshotsResponse>.ResponseSequence) {
+    public func describeCfsSnapshotsPaginator(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCfsSnapshotsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCfsSnapshots, logger: logger, on: eventLoop)
     }
 }

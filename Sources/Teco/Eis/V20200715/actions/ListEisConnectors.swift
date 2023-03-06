@@ -131,7 +131,7 @@ extension Eis {
     ///
     /// 连接器列表
     @inlinable
-    public func listEisConnectorsPaginator(_ input: ListEisConnectorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListEisConnectorsRequest, ListEisConnectorsResponse>.ResultSequence, responses: TCClient.Paginator<ListEisConnectorsRequest, ListEisConnectorsResponse>.ResponseSequence) {
+    public func listEisConnectorsPaginator(_ input: ListEisConnectorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListEisConnectorsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listEisConnectors, logger: logger, on: eventLoop)
     }
 }

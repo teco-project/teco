@@ -201,7 +201,7 @@ extension Dayu {
 
     /// 获取资源列表
     @inlinable
-    public func describeResourceListPaginator(_ input: DescribeResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceListRequest, DescribeResourceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceListRequest, DescribeResourceListResponse>.ResponseSequence) {
+    public func describeResourceListPaginator(_ input: DescribeResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceList, logger: logger, on: eventLoop)
     }
 }

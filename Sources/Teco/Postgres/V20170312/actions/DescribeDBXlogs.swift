@@ -149,7 +149,7 @@ extension Postgres {
     ///
     /// 本接口（DescribeDBXlogs）用于获取实例Xlog列表。
     @inlinable
-    public func describeDBXlogsPaginator(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBXlogsRequest, DescribeDBXlogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBXlogsRequest, DescribeDBXlogsResponse>.ResponseSequence) {
+    public func describeDBXlogsPaginator(_ input: DescribeDBXlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBXlogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBXlogs, logger: logger, on: eventLoop)
     }
 }

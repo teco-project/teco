@@ -188,7 +188,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeFlowLogs）用于查询获取流日志集合
     @inlinable
-    public func describeFlowLogsPaginator(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFlowLogsRequest, DescribeFlowLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFlowLogsRequest, DescribeFlowLogsResponse>.ResponseSequence) {
+    public func describeFlowLogsPaginator(_ input: DescribeFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFlowLogs, logger: logger, on: eventLoop)
     }
 }

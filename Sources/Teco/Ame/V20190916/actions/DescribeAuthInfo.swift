@@ -131,7 +131,7 @@ extension Ame {
     ///
     /// 获取授权项目信息列表
     @inlinable
-    public func describeAuthInfoPaginator(_ input: DescribeAuthInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuthInfoRequest, DescribeAuthInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuthInfoRequest, DescribeAuthInfoResponse>.ResponseSequence) {
+    public func describeAuthInfoPaginator(_ input: DescribeAuthInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuthInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuthInfo, logger: logger, on: eventLoop)
     }
 }

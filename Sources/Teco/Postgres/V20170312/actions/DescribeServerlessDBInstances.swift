@@ -142,7 +142,7 @@ extension Postgres {
     ///
     /// 用于查询一个或多个serverlessDB实例的详细信息
     @inlinable
-    public func describeServerlessDBInstancesPaginator(_ input: DescribeServerlessDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServerlessDBInstancesRequest, DescribeServerlessDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServerlessDBInstancesRequest, DescribeServerlessDBInstancesResponse>.ResponseSequence) {
+    public func describeServerlessDBInstancesPaginator(_ input: DescribeServerlessDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServerlessDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServerlessDBInstances, logger: logger, on: eventLoop)
     }
 }

@@ -128,7 +128,7 @@ extension Monitor {
 
     /// 列出 Prometheus CVM Agent
     @inlinable
-    public func describePrometheusAgentsPaginator(_ input: DescribePrometheusAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusAgentsRequest, DescribePrometheusAgentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusAgentsRequest, DescribePrometheusAgentsResponse>.ResponseSequence) {
+    public func describePrometheusAgentsPaginator(_ input: DescribePrometheusAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAgentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAgents, logger: logger, on: eventLoop)
     }
 }

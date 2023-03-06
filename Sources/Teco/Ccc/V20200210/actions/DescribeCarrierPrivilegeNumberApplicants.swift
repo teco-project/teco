@@ -136,7 +136,7 @@ extension Ccc {
     ///
     /// 查询单状态
     @inlinable
-    public func describeCarrierPrivilegeNumberApplicantsPaginator(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCarrierPrivilegeNumberApplicantsRequest, DescribeCarrierPrivilegeNumberApplicantsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCarrierPrivilegeNumberApplicantsRequest, DescribeCarrierPrivilegeNumberApplicantsResponse>.ResponseSequence) {
+    public func describeCarrierPrivilegeNumberApplicantsPaginator(_ input: DescribeCarrierPrivilegeNumberApplicantsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCarrierPrivilegeNumberApplicantsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCarrierPrivilegeNumberApplicants, logger: logger, on: eventLoop)
     }
 }

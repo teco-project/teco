@@ -137,7 +137,7 @@ extension Teo {
     ///
     /// 查询别称域名信息列表。
     @inlinable
-    public func describeAliasDomainsPaginator(_ input: DescribeAliasDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAliasDomainsRequest, DescribeAliasDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAliasDomainsRequest, DescribeAliasDomainsResponse>.ResponseSequence) {
+    public func describeAliasDomainsPaginator(_ input: DescribeAliasDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAliasDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAliasDomains, logger: logger, on: eventLoop)
     }
 }

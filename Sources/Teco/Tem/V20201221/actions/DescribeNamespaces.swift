@@ -127,7 +127,7 @@ extension Tem {
     ///
     /// 获取租户环境列表
     @inlinable
-    public func describeNamespacesPaginator(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNamespacesRequest, DescribeNamespacesResponse>.ResponseSequence) {
+    public func describeNamespacesPaginator(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)
     }
 }

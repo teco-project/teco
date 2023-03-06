@@ -144,7 +144,7 @@ extension Tag {
     ///
     /// 用于查询已建立的标签列表中的标签值。
     @inlinable
-    public func describeTagValuesSeqPaginator(_ input: DescribeTagValuesSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagValuesSeqRequest, DescribeTagValuesSeqResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagValuesSeqRequest, DescribeTagValuesSeqResponse>.ResponseSequence) {
+    public func describeTagValuesSeqPaginator(_ input: DescribeTagValuesSeqRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagValuesSeqRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagValuesSeq, logger: logger, on: eventLoop)
     }
 }

@@ -163,7 +163,7 @@ extension Lowcode {
 
     /// 获取数据源详情列表
     @inlinable
-    public func describeDataSourceListPaginator(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDataSourceListRequest, DescribeDataSourceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDataSourceListRequest, DescribeDataSourceListResponse>.ResponseSequence) {
+    public func describeDataSourceListPaginator(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDataSourceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDataSourceList, logger: logger, on: eventLoop)
     }
 }

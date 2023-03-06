@@ -118,7 +118,7 @@ extension Tse {
 
     /// 查询Zookeeper类型注册引擎实例副本信息
     @inlinable
-    public func describeZookeeperReplicasPaginator(_ input: DescribeZookeeperReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeZookeeperReplicasRequest, DescribeZookeeperReplicasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeZookeeperReplicasRequest, DescribeZookeeperReplicasResponse>.ResponseSequence) {
+    public func describeZookeeperReplicasPaginator(_ input: DescribeZookeeperReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeZookeeperReplicasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZookeeperReplicas, logger: logger, on: eventLoop)
     }
 }

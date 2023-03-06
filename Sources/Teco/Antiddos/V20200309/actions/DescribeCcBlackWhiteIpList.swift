@@ -147,7 +147,7 @@ extension Antiddos {
 
     /// 获取CC四层黑白名单列表
     @inlinable
-    public func describeCcBlackWhiteIpListPaginator(_ input: DescribeCcBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCcBlackWhiteIpListRequest, DescribeCcBlackWhiteIpListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCcBlackWhiteIpListRequest, DescribeCcBlackWhiteIpListResponse>.ResponseSequence) {
+    public func describeCcBlackWhiteIpListPaginator(_ input: DescribeCcBlackWhiteIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcBlackWhiteIpListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcBlackWhiteIpList, logger: logger, on: eventLoop)
     }
 }

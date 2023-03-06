@@ -133,7 +133,7 @@ extension Tdmq {
 
     /// 枚举cmq全量主题
     @inlinable
-    public func describeCmqTopicsPaginator(_ input: DescribeCmqTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCmqTopicsRequest, DescribeCmqTopicsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCmqTopicsRequest, DescribeCmqTopicsResponse>.ResponseSequence) {
+    public func describeCmqTopicsPaginator(_ input: DescribeCmqTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCmqTopicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCmqTopics, logger: logger, on: eventLoop)
     }
 }

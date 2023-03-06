@@ -123,7 +123,7 @@ extension Teo {
 
     /// 获取源站组信息列表
     @inlinable
-    public func describeOriginGroupPaginator(_ input: DescribeOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOriginGroupRequest, DescribeOriginGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOriginGroupRequest, DescribeOriginGroupResponse>.ResponseSequence) {
+    public func describeOriginGroupPaginator(_ input: DescribeOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOriginGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOriginGroup, logger: logger, on: eventLoop)
     }
 }

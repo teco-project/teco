@@ -149,7 +149,7 @@ extension Cls {
     ///
     /// 该接口用于获取通知渠道组列表
     @inlinable
-    public func describeAlarmNoticesPaginator(_ input: DescribeAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmNoticesRequest, DescribeAlarmNoticesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmNoticesRequest, DescribeAlarmNoticesResponse>.ResponseSequence) {
+    public func describeAlarmNoticesPaginator(_ input: DescribeAlarmNoticesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmNoticesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmNotices, logger: logger, on: eventLoop)
     }
 }

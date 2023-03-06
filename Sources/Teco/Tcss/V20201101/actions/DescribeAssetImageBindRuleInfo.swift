@@ -144,7 +144,7 @@ extension Tcss {
     ///
     /// 镜像绑定规则列表信息，包含运行时访问控制和异常进程公用
     @inlinable
-    public func describeAssetImageBindRuleInfoPaginator(_ input: DescribeAssetImageBindRuleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetImageBindRuleInfoRequest, DescribeAssetImageBindRuleInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetImageBindRuleInfoRequest, DescribeAssetImageBindRuleInfoResponse>.ResponseSequence) {
+    public func describeAssetImageBindRuleInfoPaginator(_ input: DescribeAssetImageBindRuleInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageBindRuleInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageBindRuleInfo, logger: logger, on: eventLoop)
     }
 }

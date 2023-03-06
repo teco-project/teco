@@ -132,7 +132,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeComponentStatistics) 用于获取组件统计列表数据。
     @inlinable
-    public func describeComponentStatisticsPaginator(_ input: DescribeComponentStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComponentStatisticsRequest, DescribeComponentStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComponentStatisticsRequest, DescribeComponentStatisticsResponse>.ResponseSequence) {
+    public func describeComponentStatisticsPaginator(_ input: DescribeComponentStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComponentStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComponentStatistics, logger: logger, on: eventLoop)
     }
 }

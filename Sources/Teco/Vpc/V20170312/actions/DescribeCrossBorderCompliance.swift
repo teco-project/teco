@@ -213,7 +213,7 @@ extension Vpc {
     /// 本接口（DescribeCrossBorderCompliance）用于查询用户创建的合规化资质审批单。
     /// 服务商可以查询服务名下的任意 `APPID` 创建的审批单；非服务商，只能查询自己审批单。
     @inlinable
-    public func describeCrossBorderCompliancePaginator(_ input: DescribeCrossBorderComplianceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCrossBorderComplianceRequest, DescribeCrossBorderComplianceResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCrossBorderComplianceRequest, DescribeCrossBorderComplianceResponse>.ResponseSequence) {
+    public func describeCrossBorderCompliancePaginator(_ input: DescribeCrossBorderComplianceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCrossBorderComplianceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCrossBorderCompliance, logger: logger, on: eventLoop)
     }
 }

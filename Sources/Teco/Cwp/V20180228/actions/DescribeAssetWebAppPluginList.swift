@@ -128,7 +128,7 @@ extension Cwp {
 
     /// 获取资产管理Web应用插件列表
     @inlinable
-    public func describeAssetWebAppPluginListPaginator(_ input: DescribeAssetWebAppPluginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetWebAppPluginListRequest, DescribeAssetWebAppPluginListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetWebAppPluginListRequest, DescribeAssetWebAppPluginListResponse>.ResponseSequence) {
+    public func describeAssetWebAppPluginListPaginator(_ input: DescribeAssetWebAppPluginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebAppPluginListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebAppPluginList, logger: logger, on: eventLoop)
     }
 }

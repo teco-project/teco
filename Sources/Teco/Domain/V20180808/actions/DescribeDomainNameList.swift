@@ -127,7 +127,7 @@ extension Domain {
     ///
     /// 本接口 (  DescribeDomainNameList ) 我的域名列表。
     @inlinable
-    public func describeDomainNameListPaginator(_ input: DescribeDomainNameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDomainNameListRequest, DescribeDomainNameListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDomainNameListRequest, DescribeDomainNameListResponse>.ResponseSequence) {
+    public func describeDomainNameListPaginator(_ input: DescribeDomainNameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainNameListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomainNameList, logger: logger, on: eventLoop)
     }
 }

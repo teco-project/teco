@@ -143,7 +143,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
     @inlinable
-    public func describeIPStrategyPaginator(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIPStrategyRequest, DescribeIPStrategyResponse>.ResponseSequence) {
+    public func describeIPStrategyPaginator(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIPStrategyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)
     }
 }

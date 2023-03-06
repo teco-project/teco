@@ -136,7 +136,7 @@ extension Tcss {
 
     /// 查询漏洞扫描任务的本地镜像列表
     @inlinable
-    public func describeVulScanLocalImageListPaginator(_ input: DescribeVulScanLocalImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulScanLocalImageListRequest, DescribeVulScanLocalImageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulScanLocalImageListRequest, DescribeVulScanLocalImageListResponse>.ResponseSequence) {
+    public func describeVulScanLocalImageListPaginator(_ input: DescribeVulScanLocalImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulScanLocalImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulScanLocalImageList, logger: logger, on: eventLoop)
     }
 }

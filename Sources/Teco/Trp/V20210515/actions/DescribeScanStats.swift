@@ -127,7 +127,7 @@ extension Trp {
     ///
     /// 查询某个批次被扫码的统计列表，没有被扫过的不会返回
     @inlinable
-    public func describeScanStatsPaginator(_ input: DescribeScanStatsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScanStatsRequest, DescribeScanStatsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScanStatsRequest, DescribeScanStatsResponse>.ResponseSequence) {
+    public func describeScanStatsPaginator(_ input: DescribeScanStatsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanStatsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanStats, logger: logger, on: eventLoop)
     }
 }

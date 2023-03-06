@@ -151,7 +151,7 @@ extension Teo {
     ///
     /// 查询 DNS 记录列表，支持搜索、分页、排序、过滤。
     @inlinable
-    public func describeDnsRecordsPaginator(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDnsRecordsRequest, DescribeDnsRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDnsRecordsRequest, DescribeDnsRecordsResponse>.ResponseSequence) {
+    public func describeDnsRecordsPaginator(_ input: DescribeDnsRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDnsRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDnsRecords, logger: logger, on: eventLoop)
     }
 }

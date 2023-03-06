@@ -141,7 +141,7 @@ extension Tse {
     ///
     /// 用于查询引擎实例列表
     @inlinable
-    public func describeSREInstancesPaginator(_ input: DescribeSREInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSREInstancesRequest, DescribeSREInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSREInstancesRequest, DescribeSREInstancesResponse>.ResponseSequence) {
+    public func describeSREInstancesPaginator(_ input: DescribeSREInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSREInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSREInstances, logger: logger, on: eventLoop)
     }
 }

@@ -129,7 +129,7 @@ extension Tcss {
 
     /// 查询扫描忽略的漏洞列表
     @inlinable
-    public func describeScanIgnoreVulListPaginator(_ input: DescribeScanIgnoreVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScanIgnoreVulListRequest, DescribeScanIgnoreVulListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScanIgnoreVulListRequest, DescribeScanIgnoreVulListResponse>.ResponseSequence) {
+    public func describeScanIgnoreVulListPaginator(_ input: DescribeScanIgnoreVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanIgnoreVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanIgnoreVulList, logger: logger, on: eventLoop)
     }
 }

@@ -166,7 +166,7 @@ extension Ccc {
     ///
     /// 文本聊天记录只保存了 1 年内的，1 年之前会自动清理。
     @inlinable
-    public func describeChatMessagesPaginator(_ input: DescribeChatMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeChatMessagesRequest, DescribeChatMessagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeChatMessagesRequest, DescribeChatMessagesResponse>.ResponseSequence) {
+    public func describeChatMessagesPaginator(_ input: DescribeChatMessagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeChatMessagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeChatMessages, logger: logger, on: eventLoop)
     }
 }

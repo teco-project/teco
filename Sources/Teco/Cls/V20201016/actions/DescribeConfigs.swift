@@ -140,7 +140,7 @@ extension Cls {
 
     /// 获取采集规则配置
     @inlinable
-    public func describeConfigsPaginator(_ input: DescribeConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConfigsRequest, DescribeConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConfigsRequest, DescribeConfigsResponse>.ResponseSequence) {
+    public func describeConfigsPaginator(_ input: DescribeConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigs, logger: logger, on: eventLoop)
     }
 }

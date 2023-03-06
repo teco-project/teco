@@ -130,7 +130,7 @@ extension Tcss {
 
     /// 查询支持防御的漏洞列表
     @inlinable
-    public func describeSupportDefenceVulPaginator(_ input: DescribeSupportDefenceVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSupportDefenceVulRequest, DescribeSupportDefenceVulResponse>.ResponseSequence) {
+    public func describeSupportDefenceVulPaginator(_ input: DescribeSupportDefenceVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSupportDefenceVulRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSupportDefenceVul, logger: logger, on: eventLoop)
     }
 }

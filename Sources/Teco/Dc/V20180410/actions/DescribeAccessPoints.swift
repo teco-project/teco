@@ -119,7 +119,7 @@ extension Dc {
 
     /// 查询物理专线接入点
     @inlinable
-    public func describeAccessPointsPaginator(_ input: DescribeAccessPointsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccessPointsRequest, DescribeAccessPointsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccessPointsRequest, DescribeAccessPointsResponse>.ResponseSequence) {
+    public func describeAccessPointsPaginator(_ input: DescribeAccessPointsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccessPointsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccessPoints, logger: logger, on: eventLoop)
     }
 }

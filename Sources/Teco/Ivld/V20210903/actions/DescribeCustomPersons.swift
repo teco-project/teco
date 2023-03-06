@@ -122,7 +122,7 @@ extension Ivld {
 
     /// 批量描述自定义人物
     @inlinable
-    public func describeCustomPersonsPaginator(_ input: DescribeCustomPersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCustomPersonsRequest, DescribeCustomPersonsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCustomPersonsRequest, DescribeCustomPersonsResponse>.ResponseSequence) {
+    public func describeCustomPersonsPaginator(_ input: DescribeCustomPersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomPersonsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomPersons, logger: logger, on: eventLoop)
     }
 }

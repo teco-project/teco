@@ -126,7 +126,7 @@ extension Youmall {
     ///
     /// 根据客户身份标识获取客户下所有的门店信息列表
     @inlinable
-    public func describeShopInfoPaginator(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeShopInfoRequest, DescribeShopInfoResponse>.ResponseSequence) {
+    public func describeShopInfoPaginator(_ input: DescribeShopInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeShopInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShopInfo, logger: logger, on: eventLoop)
     }
 }

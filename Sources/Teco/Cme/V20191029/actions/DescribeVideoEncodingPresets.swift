@@ -136,7 +136,7 @@ extension Cme {
     ///
     /// 查询视频编码配置信息。
     @inlinable
-    public func describeVideoEncodingPresetsPaginator(_ input: DescribeVideoEncodingPresetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVideoEncodingPresetsRequest, DescribeVideoEncodingPresetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVideoEncodingPresetsRequest, DescribeVideoEncodingPresetsResponse>.ResponseSequence) {
+    public func describeVideoEncodingPresetsPaginator(_ input: DescribeVideoEncodingPresetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVideoEncodingPresetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVideoEncodingPresets, logger: logger, on: eventLoop)
     }
 }

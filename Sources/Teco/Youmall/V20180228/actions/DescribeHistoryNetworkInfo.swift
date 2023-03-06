@@ -147,7 +147,7 @@ extension Youmall {
     ///
     /// 返回当前门店历史网络状态数据
     @inlinable
-    public func describeHistoryNetworkInfoPaginator(_ input: DescribeHistoryNetworkInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHistoryNetworkInfoRequest, DescribeHistoryNetworkInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHistoryNetworkInfoRequest, DescribeHistoryNetworkInfoResponse>.ResponseSequence) {
+    public func describeHistoryNetworkInfoPaginator(_ input: DescribeHistoryNetworkInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHistoryNetworkInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHistoryNetworkInfo, logger: logger, on: eventLoop)
     }
 }

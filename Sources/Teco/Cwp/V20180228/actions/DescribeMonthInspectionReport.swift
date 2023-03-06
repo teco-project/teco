@@ -126,7 +126,7 @@ extension Cwp {
     ///
     /// 专家服务-安全管家月巡检报告下载
     @inlinable
-    public func describeMonthInspectionReportPaginator(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMonthInspectionReportRequest, DescribeMonthInspectionReportResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMonthInspectionReportRequest, DescribeMonthInspectionReportResponse>.ResponseSequence) {
+    public func describeMonthInspectionReportPaginator(_ input: DescribeMonthInspectionReportRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMonthInspectionReportRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMonthInspectionReport, logger: logger, on: eventLoop)
     }
 }

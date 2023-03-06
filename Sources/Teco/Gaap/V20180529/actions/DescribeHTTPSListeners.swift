@@ -165,7 +165,7 @@ extension Gaap {
     ///
     /// 本接口（DescribeHTTPSListeners）用来查询HTTPS监听器信息。
     @inlinable
-    public func describeHTTPSListenersPaginator(_ input: DescribeHTTPSListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHTTPSListenersRequest, DescribeHTTPSListenersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHTTPSListenersRequest, DescribeHTTPSListenersResponse>.ResponseSequence) {
+    public func describeHTTPSListenersPaginator(_ input: DescribeHTTPSListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHTTPSListenersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHTTPSListeners, logger: logger, on: eventLoop)
     }
 }

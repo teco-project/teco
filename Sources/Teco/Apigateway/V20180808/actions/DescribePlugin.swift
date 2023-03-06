@@ -127,7 +127,7 @@ extension Apigateway {
     ///
     /// 展示插件详情，支持按照插件ID进行。
     @inlinable
-    public func describePluginPaginator(_ input: DescribePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePluginRequest, DescribePluginResponse>.ResultSequence, responses: TCClient.Paginator<DescribePluginRequest, DescribePluginResponse>.ResponseSequence) {
+    public func describePluginPaginator(_ input: DescribePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePluginRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePlugin, logger: logger, on: eventLoop)
     }
 }

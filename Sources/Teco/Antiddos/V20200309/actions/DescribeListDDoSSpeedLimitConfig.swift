@@ -122,7 +122,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的访问限速配置列表
     @inlinable
-    public func describeListDDoSSpeedLimitConfigPaginator(_ input: DescribeListDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListDDoSSpeedLimitConfigRequest, DescribeListDDoSSpeedLimitConfigResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListDDoSSpeedLimitConfigRequest, DescribeListDDoSSpeedLimitConfigResponse>.ResponseSequence) {
+    public func describeListDDoSSpeedLimitConfigPaginator(_ input: DescribeListDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListDDoSSpeedLimitConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListDDoSSpeedLimitConfig, logger: logger, on: eventLoop)
     }
 }

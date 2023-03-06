@@ -127,7 +127,7 @@ extension Rum {
 
     /// 查询片区信息
     @inlinable
-    public func describeTawAreasPaginator(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTawAreasRequest, DescribeTawAreasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTawAreasRequest, DescribeTawAreasResponse>.ResponseSequence) {
+    public func describeTawAreasPaginator(_ input: DescribeTawAreasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTawAreasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTawAreas, logger: logger, on: eventLoop)
     }
 }

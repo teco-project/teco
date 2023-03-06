@@ -169,7 +169,7 @@ extension Dbbrain {
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
     @inlinable
-    public func describeSlowLogTopSqlsPaginator(_ input: DescribeSlowLogTopSqlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSlowLogTopSqlsRequest, DescribeSlowLogTopSqlsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSlowLogTopSqlsRequest, DescribeSlowLogTopSqlsResponse>.ResponseSequence) {
+    public func describeSlowLogTopSqlsPaginator(_ input: DescribeSlowLogTopSqlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogTopSqlsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogTopSqls, logger: logger, on: eventLoop)
     }
 }

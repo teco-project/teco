@@ -143,7 +143,7 @@ extension Vod {
     ///
     /// 根据任务流模板名字，获取任务流模板详情列表。
     @inlinable
-    public func describeProcedureTemplatesPaginator(_ input: DescribeProcedureTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProcedureTemplatesRequest, DescribeProcedureTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProcedureTemplatesRequest, DescribeProcedureTemplatesResponse>.ResponseSequence) {
+    public func describeProcedureTemplatesPaginator(_ input: DescribeProcedureTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProcedureTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcedureTemplates, logger: logger, on: eventLoop)
     }
 }

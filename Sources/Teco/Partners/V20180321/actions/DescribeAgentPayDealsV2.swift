@@ -169,7 +169,7 @@ extension Partners {
     ///
     /// 可以查询代理商代付的预付费订单
     @inlinable
-    public func describeAgentPayDealsV2Paginator(_ input: DescribeAgentPayDealsV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentPayDealsV2Request, DescribeAgentPayDealsV2Response>.ResultSequence, responses: TCClient.Paginator<DescribeAgentPayDealsV2Request, DescribeAgentPayDealsV2Response>.ResponseSequence) {
+    public func describeAgentPayDealsV2Paginator(_ input: DescribeAgentPayDealsV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentPayDealsV2Request> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentPayDealsV2, logger: logger, on: eventLoop)
     }
 }

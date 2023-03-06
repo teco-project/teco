@@ -158,7 +158,7 @@ extension Dts {
     /// 查询数据迁移任务.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
     @inlinable
-    public func describeMigrateJobsPaginator(_ input: DescribeMigrateJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMigrateJobsRequest, DescribeMigrateJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMigrateJobsRequest, DescribeMigrateJobsResponse>.ResponseSequence) {
+    public func describeMigrateJobsPaginator(_ input: DescribeMigrateJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMigrateJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrateJobs, logger: logger, on: eventLoop)
     }
 }

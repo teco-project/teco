@@ -137,7 +137,7 @@ extension Tcss {
 
     /// 查询k8s api异常事件列表
     @inlinable
-    public func describeK8sApiAbnormalEventListPaginator(_ input: DescribeK8sApiAbnormalEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeK8sApiAbnormalEventListRequest, DescribeK8sApiAbnormalEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeK8sApiAbnormalEventListRequest, DescribeK8sApiAbnormalEventListResponse>.ResponseSequence) {
+    public func describeK8sApiAbnormalEventListPaginator(_ input: DescribeK8sApiAbnormalEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeK8sApiAbnormalEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeK8sApiAbnormalEventList, logger: logger, on: eventLoop)
     }
 }

@@ -147,7 +147,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
     @inlinable
-    public func describeCcnRoutesPaginator(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCcnRoutesRequest, DescribeCcnRoutesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCcnRoutesRequest, DescribeCcnRoutesResponse>.ResponseSequence) {
+    public func describeCcnRoutesPaginator(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcnRoutesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcnRoutes, logger: logger, on: eventLoop)
     }
 }

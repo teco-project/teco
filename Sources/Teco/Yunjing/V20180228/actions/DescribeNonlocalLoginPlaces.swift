@@ -138,7 +138,7 @@ extension Yunjing {
     ///
     /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
     @inlinable
-    public func describeNonlocalLoginPlacesPaginator(_ input: DescribeNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNonlocalLoginPlacesRequest, DescribeNonlocalLoginPlacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNonlocalLoginPlacesRequest, DescribeNonlocalLoginPlacesResponse>.ResponseSequence) {
+    public func describeNonlocalLoginPlacesPaginator(_ input: DescribeNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNonlocalLoginPlacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNonlocalLoginPlaces, logger: logger, on: eventLoop)
     }
 }

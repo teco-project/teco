@@ -149,7 +149,7 @@ extension Cdn {
     ///
     /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
     @inlinable
-    public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResponseSequence) {
+    public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrafficPackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
     }
 }

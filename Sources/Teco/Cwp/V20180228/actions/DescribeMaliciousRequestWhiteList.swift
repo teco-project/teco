@@ -121,7 +121,7 @@ extension Cwp {
 
     /// 查询恶意请求白名单列表
     @inlinable
-    public func describeMaliciousRequestWhiteListPaginator(_ input: DescribeMaliciousRequestWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMaliciousRequestWhiteListRequest, DescribeMaliciousRequestWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMaliciousRequestWhiteListRequest, DescribeMaliciousRequestWhiteListResponse>.ResponseSequence) {
+    public func describeMaliciousRequestWhiteListPaginator(_ input: DescribeMaliciousRequestWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMaliciousRequestWhiteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMaliciousRequestWhiteList, logger: logger, on: eventLoop)
     }
 }

@@ -117,7 +117,7 @@ extension Tcss {
 
     /// 查询漏洞扫描忽略的仓库镜像列表
     @inlinable
-    public func describeVulIgnoreRegistryImageListPaginator(_ input: DescribeVulIgnoreRegistryImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulIgnoreRegistryImageListRequest, DescribeVulIgnoreRegistryImageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulIgnoreRegistryImageListRequest, DescribeVulIgnoreRegistryImageListResponse>.ResponseSequence) {
+    public func describeVulIgnoreRegistryImageListPaginator(_ input: DescribeVulIgnoreRegistryImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulIgnoreRegistryImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulIgnoreRegistryImageList, logger: logger, on: eventLoop)
     }
 }

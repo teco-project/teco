@@ -137,7 +137,7 @@ extension Cwp {
 
     /// 获取基线项检测结果列表
     @inlinable
-    public func describeBaselineItemListPaginator(_ input: DescribeBaselineItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineItemListRequest, DescribeBaselineItemListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineItemListRequest, DescribeBaselineItemListResponse>.ResponseSequence) {
+    public func describeBaselineItemListPaginator(_ input: DescribeBaselineItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineItemList, logger: logger, on: eventLoop)
     }
 }

@@ -129,7 +129,7 @@ extension Cwp {
 
     /// 漏洞影响主机列表
     @inlinable
-    public func describeVulEffectHostListPaginator(_ input: DescribeVulEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulEffectHostListRequest, DescribeVulEffectHostListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulEffectHostListRequest, DescribeVulEffectHostListResponse>.ResponseSequence) {
+    public func describeVulEffectHostListPaginator(_ input: DescribeVulEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulEffectHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulEffectHostList, logger: logger, on: eventLoop)
     }
 }

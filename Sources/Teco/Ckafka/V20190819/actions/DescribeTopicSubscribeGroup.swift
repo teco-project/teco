@@ -118,7 +118,7 @@ extension Ckafka {
 
     /// 查询订阅某主题消息分组信息
     @inlinable
-    public func describeTopicSubscribeGroupPaginator(_ input: DescribeTopicSubscribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTopicSubscribeGroupRequest, DescribeTopicSubscribeGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTopicSubscribeGroupRequest, DescribeTopicSubscribeGroupResponse>.ResponseSequence) {
+    public func describeTopicSubscribeGroupPaginator(_ input: DescribeTopicSubscribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicSubscribeGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicSubscribeGroup, logger: logger, on: eventLoop)
     }
 }

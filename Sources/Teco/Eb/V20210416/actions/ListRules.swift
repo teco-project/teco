@@ -127,7 +127,7 @@ extension Eb {
 
     /// 获取事件规则列表
     @inlinable
-    public func listRulesPaginator(_ input: ListRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListRulesRequest, ListRulesResponse>.ResultSequence, responses: TCClient.Paginator<ListRulesRequest, ListRulesResponse>.ResponseSequence) {
+    public func listRulesPaginator(_ input: ListRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listRules, logger: logger, on: eventLoop)
     }
 }

@@ -154,7 +154,7 @@ extension Ses {
     ///
     /// 腾讯云发送的邮件一旦被收件方判断为硬退(Hard Bounce)，腾讯云会拉黑该地址，并不允许所有用户向该地址发送邮件。成为邮箱黑名单。如果业务方确认是误判，可以从黑名单中删除。
     @inlinable
-    public func listBlackEmailAddressPaginator(_ input: ListBlackEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListBlackEmailAddressRequest, ListBlackEmailAddressResponse>.ResultSequence, responses: TCClient.Paginator<ListBlackEmailAddressRequest, ListBlackEmailAddressResponse>.ResponseSequence) {
+    public func listBlackEmailAddressPaginator(_ input: ListBlackEmailAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListBlackEmailAddressRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listBlackEmailAddress, logger: logger, on: eventLoop)
     }
 }

@@ -136,7 +136,7 @@ extension Tem {
 
     /// 获取应用实例列表
     @inlinable
-    public func describeApplicationPodsPaginator(_ input: DescribeApplicationPodsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationPodsRequest, DescribeApplicationPodsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationPodsRequest, DescribeApplicationPodsResponse>.ResponseSequence) {
+    public func describeApplicationPodsPaginator(_ input: DescribeApplicationPodsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationPodsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationPods, logger: logger, on: eventLoop)
     }
 }

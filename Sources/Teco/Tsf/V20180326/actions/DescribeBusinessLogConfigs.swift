@@ -124,7 +124,7 @@ extension Tsf {
 
     /// 查询日志配置项列表
     @inlinable
-    public func describeBusinessLogConfigsPaginator(_ input: DescribeBusinessLogConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBusinessLogConfigsRequest, DescribeBusinessLogConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBusinessLogConfigsRequest, DescribeBusinessLogConfigsResponse>.ResponseSequence) {
+    public func describeBusinessLogConfigsPaginator(_ input: DescribeBusinessLogConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBusinessLogConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBusinessLogConfigs, logger: logger, on: eventLoop)
     }
 }

@@ -147,7 +147,7 @@ extension Gaap {
     ///
     /// 本接口（DescribeRealServers）用于查询源站信息，可以根据项目名查询所有的源站信息，此外支持指定IP或者域名的源站模糊查询。
     @inlinable
-    public func describeRealServersPaginator(_ input: DescribeRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRealServersRequest, DescribeRealServersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRealServersRequest, DescribeRealServersResponse>.ResponseSequence) {
+    public func describeRealServersPaginator(_ input: DescribeRealServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRealServersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRealServers, logger: logger, on: eventLoop)
     }
 }

@@ -142,7 +142,7 @@ extension Monitor {
 
     /// 获取已绑定对象列表
     @inlinable
-    public func describeBindingPolicyObjectListPaginator(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBindingPolicyObjectListRequest, DescribeBindingPolicyObjectListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBindingPolicyObjectListRequest, DescribeBindingPolicyObjectListResponse>.ResponseSequence) {
+    public func describeBindingPolicyObjectListPaginator(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindingPolicyObjectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindingPolicyObjectList, logger: logger, on: eventLoop)
     }
 }

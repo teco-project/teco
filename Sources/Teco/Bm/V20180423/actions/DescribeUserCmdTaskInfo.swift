@@ -132,7 +132,7 @@ extension Bm {
 
     /// 获取自定义脚本任务详细信息
     @inlinable
-    public func describeUserCmdTaskInfoPaginator(_ input: DescribeUserCmdTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserCmdTaskInfoRequest, DescribeUserCmdTaskInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserCmdTaskInfoRequest, DescribeUserCmdTaskInfoResponse>.ResponseSequence) {
+    public func describeUserCmdTaskInfoPaginator(_ input: DescribeUserCmdTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserCmdTaskInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserCmdTaskInfo, logger: logger, on: eventLoop)
     }
 }

@@ -143,7 +143,7 @@ extension Vod {
     ///
     /// 获取图片处理模板列表，支持根据条件，分页查询。
     @inlinable
-    public func describeImageProcessingTemplatesPaginator(_ input: DescribeImageProcessingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageProcessingTemplatesRequest, DescribeImageProcessingTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageProcessingTemplatesRequest, DescribeImageProcessingTemplatesResponse>.ResponseSequence) {
+    public func describeImageProcessingTemplatesPaginator(_ input: DescribeImageProcessingTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageProcessingTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageProcessingTemplates, logger: logger, on: eventLoop)
     }
 }

@@ -112,7 +112,7 @@ extension Iotexplorer {
 
     /// 获取规则列表
     @inlinable
-    public func getTopicRuleListPaginator(_ input: GetTopicRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetTopicRuleListRequest, GetTopicRuleListResponse>.ResultSequence, responses: TCClient.Paginator<GetTopicRuleListRequest, GetTopicRuleListResponse>.ResponseSequence) {
+    public func getTopicRuleListPaginator(_ input: GetTopicRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTopicRuleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTopicRuleList, logger: logger, on: eventLoop)
     }
 }

@@ -141,7 +141,7 @@ extension Tdcpg {
 
     /// 查询实例
     @inlinable
-    public func describeClusterInstancesPaginator(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterInstancesRequest, DescribeClusterInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterInstancesRequest, DescribeClusterInstancesResponse>.ResponseSequence) {
+    public func describeClusterInstancesPaginator(_ input: DescribeClusterInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterInstances, logger: logger, on: eventLoop)
     }
 }

@@ -138,7 +138,7 @@ extension Dtf {
 
     /// 查询主事务列表
     @inlinable
-    public func describeTransactionsPaginator(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTransactionsRequest, DescribeTransactionsResponse>.ResponseSequence) {
+    public func describeTransactionsPaginator(_ input: DescribeTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTransactionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTransactions, logger: logger, on: eventLoop)
     }
 }

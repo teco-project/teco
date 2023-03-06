@@ -137,7 +137,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeAuditRules)用于查询用户在当前地域的审计规则。
     @inlinable
-    public func describeAuditRulesPaginator(_ input: DescribeAuditRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditRulesRequest, DescribeAuditRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditRulesRequest, DescribeAuditRulesResponse>.ResponseSequence) {
+    public func describeAuditRulesPaginator(_ input: DescribeAuditRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditRules, logger: logger, on: eventLoop)
     }
 }

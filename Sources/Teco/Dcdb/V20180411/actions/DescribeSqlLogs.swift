@@ -147,7 +147,7 @@ extension Dcdb {
     ///
     /// 本接口（DescribeSqlLogs）用于获取实例SQL日志。
     @inlinable
-    public func describeSqlLogsPaginator(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSqlLogsRequest, DescribeSqlLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSqlLogsRequest, DescribeSqlLogsResponse>.ResponseSequence) {
+    public func describeSqlLogsPaginator(_ input: DescribeSqlLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSqlLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSqlLogs, logger: logger, on: eventLoop)
     }
 }

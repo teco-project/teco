@@ -167,7 +167,7 @@ extension Wedata {
 
     /// 离线任务周期统计明细
     @inlinable
-    public func describeTaskReportDetailListPaginator(_ input: DescribeTaskReportDetailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskReportDetailListRequest, DescribeTaskReportDetailListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskReportDetailListRequest, DescribeTaskReportDetailListResponse>.ResponseSequence) {
+    public func describeTaskReportDetailListPaginator(_ input: DescribeTaskReportDetailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskReportDetailListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskReportDetailList, logger: logger, on: eventLoop)
     }
 }

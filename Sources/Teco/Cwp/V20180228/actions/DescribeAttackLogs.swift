@@ -149,7 +149,7 @@ extension Cwp {
     ///
     /// 按分页形式展示网络攻击日志列表
     @inlinable
-    public func describeAttackLogsPaginator(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAttackLogsRequest, DescribeAttackLogsResponse>.ResponseSequence) {
+    public func describeAttackLogsPaginator(_ input: DescribeAttackLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAttackLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAttackLogs, logger: logger, on: eventLoop)
     }
 }

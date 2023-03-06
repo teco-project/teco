@@ -178,7 +178,7 @@ extension Teo {
     ///
     /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
     @inlinable
-    public func describeWebManagedRulesLogPaginator(_ input: DescribeWebManagedRulesLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebManagedRulesLogRequest, DescribeWebManagedRulesLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebManagedRulesLogRequest, DescribeWebManagedRulesLogResponse>.ResponseSequence) {
+    public func describeWebManagedRulesLogPaginator(_ input: DescribeWebManagedRulesLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebManagedRulesLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebManagedRulesLog, logger: logger, on: eventLoop)
     }
 }

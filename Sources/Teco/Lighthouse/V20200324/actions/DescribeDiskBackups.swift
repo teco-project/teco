@@ -151,7 +151,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeDiskBackups）用于查询云硬盘备份点的详细信息。
     @inlinable
-    public func describeDiskBackupsPaginator(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDiskBackupsRequest, DescribeDiskBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDiskBackupsRequest, DescribeDiskBackupsResponse>.ResponseSequence) {
+    public func describeDiskBackupsPaginator(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDiskBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDiskBackups, logger: logger, on: eventLoop)
     }
 }

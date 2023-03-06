@@ -139,7 +139,7 @@ extension Iecp {
 
     /// 获取Secrets列表
     @inlinable
-    public func describeSecretsPaginator(_ input: DescribeSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecretsRequest, DescribeSecretsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecretsRequest, DescribeSecretsResponse>.ResponseSequence) {
+    public func describeSecretsPaginator(_ input: DescribeSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecretsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecrets, logger: logger, on: eventLoop)
     }
 }

@@ -139,7 +139,7 @@ extension Tag {
     ///
     /// 查询绑定了标签的资源列表。
     @inlinable
-    public func getResourcesPaginator(_ input: GetResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetResourcesRequest, GetResourcesResponse>.ResultSequence, responses: TCClient.Paginator<GetResourcesRequest, GetResourcesResponse>.ResponseSequence) {
+    public func getResourcesPaginator(_ input: GetResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getResources, logger: logger, on: eventLoop)
     }
 }

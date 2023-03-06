@@ -142,7 +142,7 @@ extension Iotvideo {
     ///
     /// 本接口（DescribeOtaVersions）用于查询固件版本信息列表。
     @inlinable
-    public func describeOtaVersionsPaginator(_ input: DescribeOtaVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOtaVersionsRequest, DescribeOtaVersionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOtaVersionsRequest, DescribeOtaVersionsResponse>.ResponseSequence) {
+    public func describeOtaVersionsPaginator(_ input: DescribeOtaVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOtaVersionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOtaVersions, logger: logger, on: eventLoop)
     }
 }

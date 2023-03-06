@@ -133,7 +133,7 @@ extension Wav {
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
     @inlinable
-    public func queryExternalContactDetailPaginator(_ input: QueryExternalContactDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryExternalContactDetailRequest, QueryExternalContactDetailResponse>.ResultSequence, responses: TCClient.Paginator<QueryExternalContactDetailRequest, QueryExternalContactDetailResponse>.ResponseSequence) {
+    public func queryExternalContactDetailPaginator(_ input: QueryExternalContactDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryExternalContactDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryExternalContactDetail, logger: logger, on: eventLoop)
     }
 }

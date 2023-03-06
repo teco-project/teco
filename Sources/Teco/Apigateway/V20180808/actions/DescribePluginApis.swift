@@ -127,7 +127,7 @@ extension Apigateway {
     ///
     /// 查询指定插件下绑定的API信息
     @inlinable
-    public func describePluginApisPaginator(_ input: DescribePluginApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePluginApisRequest, DescribePluginApisResponse>.ResultSequence, responses: TCClient.Paginator<DescribePluginApisRequest, DescribePluginApisResponse>.ResponseSequence) {
+    public func describePluginApisPaginator(_ input: DescribePluginApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePluginApisRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePluginApis, logger: logger, on: eventLoop)
     }
 }

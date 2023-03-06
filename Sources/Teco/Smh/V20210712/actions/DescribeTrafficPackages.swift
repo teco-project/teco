@@ -146,7 +146,7 @@ extension Smh {
     ///
     /// 查询流量资源包
     @inlinable
-    public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrafficPackagesRequest, DescribeTrafficPackagesResponse>.ResponseSequence) {
+    public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrafficPackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)
     }
 }

@@ -143,7 +143,7 @@ extension Wedata {
 
     /// 告警事件列表
     @inlinable
-    public func describeAlarmEventsPaginator(_ input: DescribeAlarmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmEventsRequest, DescribeAlarmEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmEventsRequest, DescribeAlarmEventsResponse>.ResponseSequence) {
+    public func describeAlarmEventsPaginator(_ input: DescribeAlarmEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmEvents, logger: logger, on: eventLoop)
     }
 }

@@ -140,7 +140,7 @@ extension As {
     ///
     /// 本接口（DescribeScalingPolicies）用于查询告警触发策略。
     @inlinable
-    public func describeScalingPoliciesPaginator(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScalingPoliciesRequest, DescribeScalingPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScalingPoliciesRequest, DescribeScalingPoliciesResponse>.ResponseSequence) {
+    public func describeScalingPoliciesPaginator(_ input: DescribeScalingPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScalingPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScalingPolicies, logger: logger, on: eventLoop)
     }
 }

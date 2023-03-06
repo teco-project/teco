@@ -139,7 +139,7 @@ extension Tsf {
 
     /// 查询简单应用列表
     @inlinable
-    public func describeSimpleApplicationsPaginator(_ input: DescribeSimpleApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSimpleApplicationsRequest, DescribeSimpleApplicationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSimpleApplicationsRequest, DescribeSimpleApplicationsResponse>.ResponseSequence) {
+    public func describeSimpleApplicationsPaginator(_ input: DescribeSimpleApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSimpleApplicationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSimpleApplications, logger: logger, on: eventLoop)
     }
 }

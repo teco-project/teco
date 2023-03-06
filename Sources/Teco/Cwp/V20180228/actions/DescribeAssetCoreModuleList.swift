@@ -141,7 +141,7 @@ extension Cwp {
 
     /// 查询资产管理内核模块列表
     @inlinable
-    public func describeAssetCoreModuleListPaginator(_ input: DescribeAssetCoreModuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetCoreModuleListRequest, DescribeAssetCoreModuleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetCoreModuleListRequest, DescribeAssetCoreModuleListResponse>.ResponseSequence) {
+    public func describeAssetCoreModuleListPaginator(_ input: DescribeAssetCoreModuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetCoreModuleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetCoreModuleList, logger: logger, on: eventLoop)
     }
 }

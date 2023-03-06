@@ -154,7 +154,7 @@ extension Postgres {
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表。
     @inlinable
-    public func describeDBBackupsPaginator(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBBackupsRequest, DescribeDBBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBBackupsRequest, DescribeDBBackupsResponse>.ResponseSequence) {
+    public func describeDBBackupsPaginator(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBBackups, logger: logger, on: eventLoop)
     }
 }

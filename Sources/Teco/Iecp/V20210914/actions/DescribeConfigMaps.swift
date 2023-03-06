@@ -124,7 +124,7 @@ extension Iecp {
 
     /// 获取ConfigMap列表
     @inlinable
-    public func describeConfigMapsPaginator(_ input: DescribeConfigMapsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConfigMapsRequest, DescribeConfigMapsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConfigMapsRequest, DescribeConfigMapsResponse>.ResponseSequence) {
+    public func describeConfigMapsPaginator(_ input: DescribeConfigMapsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigMapsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigMaps, logger: logger, on: eventLoop)
     }
 }

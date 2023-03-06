@@ -142,7 +142,7 @@ extension Tke {
 
     /// 查询容器实例
     @inlinable
-    public func describeEKSContainerInstancesPaginator(_ input: DescribeEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEKSContainerInstancesRequest, DescribeEKSContainerInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEKSContainerInstancesRequest, DescribeEKSContainerInstancesResponse>.ResponseSequence) {
+    public func describeEKSContainerInstancesPaginator(_ input: DescribeEKSContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEKSContainerInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEKSContainerInstances, logger: logger, on: eventLoop)
     }
 }

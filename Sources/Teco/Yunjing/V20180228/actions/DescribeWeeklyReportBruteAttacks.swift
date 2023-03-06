@@ -136,7 +136,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeWeeklyReportBruteAttacks) 用于获取专业周报密码破解数据。
     @inlinable
-    public func describeWeeklyReportBruteAttacksPaginator(_ input: DescribeWeeklyReportBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWeeklyReportBruteAttacksRequest, DescribeWeeklyReportBruteAttacksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWeeklyReportBruteAttacksRequest, DescribeWeeklyReportBruteAttacksResponse>.ResponseSequence) {
+    public func describeWeeklyReportBruteAttacksPaginator(_ input: DescribeWeeklyReportBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWeeklyReportBruteAttacksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReportBruteAttacks, logger: logger, on: eventLoop)
     }
 }

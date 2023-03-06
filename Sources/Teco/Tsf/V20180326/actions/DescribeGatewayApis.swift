@@ -123,7 +123,7 @@ extension Tsf {
 
     /// 查询API分组下的Api列表信息
     @inlinable
-    public func describeGatewayApisPaginator(_ input: DescribeGatewayApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewayApisRequest, DescribeGatewayApisResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewayApisRequest, DescribeGatewayApisResponse>.ResponseSequence) {
+    public func describeGatewayApisPaginator(_ input: DescribeGatewayApisRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewayApisRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayApis, logger: logger, on: eventLoop)
     }
 }

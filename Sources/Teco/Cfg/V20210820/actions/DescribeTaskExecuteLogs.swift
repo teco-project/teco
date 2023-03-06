@@ -122,7 +122,7 @@ extension Cfg {
     ///
     /// 获取演练过程中的所有日志
     @inlinable
-    public func describeTaskExecuteLogsPaginator(_ input: DescribeTaskExecuteLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskExecuteLogsRequest, DescribeTaskExecuteLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskExecuteLogsRequest, DescribeTaskExecuteLogsResponse>.ResponseSequence) {
+    public func describeTaskExecuteLogsPaginator(_ input: DescribeTaskExecuteLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskExecuteLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskExecuteLogs, logger: logger, on: eventLoop)
     }
 }

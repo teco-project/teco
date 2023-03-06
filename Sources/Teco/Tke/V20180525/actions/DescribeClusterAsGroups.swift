@@ -122,7 +122,7 @@ extension Tke {
 
     /// 集群关联的伸缩组列表
     @inlinable
-    public func describeClusterAsGroupsPaginator(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterAsGroupsRequest, DescribeClusterAsGroupsResponse>.ResponseSequence) {
+    public func describeClusterAsGroupsPaginator(_ input: DescribeClusterAsGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterAsGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterAsGroups, logger: logger, on: eventLoop)
     }
 }

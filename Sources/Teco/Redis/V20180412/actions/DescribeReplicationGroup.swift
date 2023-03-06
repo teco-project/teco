@@ -136,7 +136,7 @@ extension Redis {
     ///
     /// 本接口（DescribeReplicationGroup）查询复制组。
     @inlinable
-    public func describeReplicationGroupPaginator(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReplicationGroupRequest, DescribeReplicationGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReplicationGroupRequest, DescribeReplicationGroupResponse>.ResponseSequence) {
+    public func describeReplicationGroupPaginator(_ input: DescribeReplicationGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReplicationGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReplicationGroup, logger: logger, on: eventLoop)
     }
 }

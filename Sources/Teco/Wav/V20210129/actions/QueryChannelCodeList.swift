@@ -123,7 +123,7 @@ extension Wav {
     ///
     /// 根据游标拉取渠道活码列表信息
     @inlinable
-    public func queryChannelCodeListPaginator(_ input: QueryChannelCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryChannelCodeListRequest, QueryChannelCodeListResponse>.ResultSequence, responses: TCClient.Paginator<QueryChannelCodeListRequest, QueryChannelCodeListResponse>.ResponseSequence) {
+    public func queryChannelCodeListPaginator(_ input: QueryChannelCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryChannelCodeListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryChannelCodeList, logger: logger, on: eventLoop)
     }
 }

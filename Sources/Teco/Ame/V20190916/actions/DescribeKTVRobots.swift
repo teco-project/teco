@@ -145,7 +145,7 @@ extension Ame {
     ///
     /// 获取机器人列表，支持 Id、状态等过滤条件。
     @inlinable
-    public func describeKTVRobotsPaginator(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVRobotsRequest, DescribeKTVRobotsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVRobotsRequest, DescribeKTVRobotsResponse>.ResponseSequence) {
+    public func describeKTVRobotsPaginator(_ input: DescribeKTVRobotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVRobotsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVRobots, logger: logger, on: eventLoop)
     }
 }

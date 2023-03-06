@@ -137,7 +137,7 @@ extension Vod {
     ///
     /// 该接口用于查询点播域名信息列表。
     @inlinable
-    public func describeVodDomainsPaginator(_ input: DescribeVodDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVodDomainsRequest, DescribeVodDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVodDomainsRequest, DescribeVodDomainsResponse>.ResponseSequence) {
+    public func describeVodDomainsPaginator(_ input: DescribeVodDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVodDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVodDomains, logger: logger, on: eventLoop)
     }
 }

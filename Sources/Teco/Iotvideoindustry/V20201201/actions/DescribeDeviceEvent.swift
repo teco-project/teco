@@ -134,7 +134,7 @@ extension Iotvideoindustry {
 
     /// 获取设备事件
     @inlinable
-    public func describeDeviceEventPaginator(_ input: DescribeDeviceEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeviceEventRequest, DescribeDeviceEventResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeviceEventRequest, DescribeDeviceEventResponse>.ResponseSequence) {
+    public func describeDeviceEventPaginator(_ input: DescribeDeviceEventRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceEventRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceEvent, logger: logger, on: eventLoop)
     }
 }

@@ -128,7 +128,7 @@ extension Hasim {
 
     /// 查询订单列表
     @inlinable
-    public func describeOrdersPaginator(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrdersRequest, DescribeOrdersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrdersRequest, DescribeOrdersResponse>.ResponseSequence) {
+    public func describeOrdersPaginator(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrdersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrders, logger: logger, on: eventLoop)
     }
 }

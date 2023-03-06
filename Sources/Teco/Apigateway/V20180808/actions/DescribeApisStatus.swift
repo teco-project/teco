@@ -132,7 +132,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
     @inlinable
-    public func describeApisStatusPaginator(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApisStatusRequest, DescribeApisStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApisStatusRequest, DescribeApisStatusResponse>.ResponseSequence) {
+    public func describeApisStatusPaginator(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApisStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)
     }
 }

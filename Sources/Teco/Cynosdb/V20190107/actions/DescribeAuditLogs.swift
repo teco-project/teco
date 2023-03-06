@@ -160,7 +160,7 @@ extension Cynosdb {
     ///
     /// 本接口(DescribeAuditLogs)用于查询数据库审计日志。
     @inlinable
-    public func describeAuditLogsPaginator(_ input: DescribeAuditLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuditLogsRequest, DescribeAuditLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuditLogsRequest, DescribeAuditLogsResponse>.ResponseSequence) {
+    public func describeAuditLogsPaginator(_ input: DescribeAuditLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditLogs, logger: logger, on: eventLoop)
     }
 }

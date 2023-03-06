@@ -132,7 +132,7 @@ extension Cloudhsm {
     ///
     /// 查询用户的私有网络列表
     @inlinable
-    public func describeVpcPaginator(_ input: DescribeVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcRequest, DescribeVpcResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcRequest, DescribeVpcResponse>.ResponseSequence) {
+    public func describeVpcPaginator(_ input: DescribeVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpc, logger: logger, on: eventLoop)
     }
 }

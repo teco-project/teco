@@ -124,7 +124,7 @@ extension Cfs {
 
     /// 查询文件系统配额
     @inlinable
-    public func describeUserQuotaPaginator(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserQuotaRequest, DescribeUserQuotaResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserQuotaRequest, DescribeUserQuotaResponse>.ResponseSequence) {
+    public func describeUserQuotaPaginator(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserQuotaRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserQuota, logger: logger, on: eventLoop)
     }
 }

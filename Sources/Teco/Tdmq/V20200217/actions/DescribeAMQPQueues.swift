@@ -142,7 +142,7 @@ extension Tdmq {
 
     /// 获取Amqp队列列表
     @inlinable
-    public func describeAMQPQueuesPaginator(_ input: DescribeAMQPQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAMQPQueuesRequest, DescribeAMQPQueuesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAMQPQueuesRequest, DescribeAMQPQueuesResponse>.ResponseSequence) {
+    public func describeAMQPQueuesPaginator(_ input: DescribeAMQPQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPQueuesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPQueues, logger: logger, on: eventLoop)
     }
 }

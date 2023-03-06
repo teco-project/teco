@@ -150,7 +150,7 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeRoutePolicies）用于查询路由表条目。
     @inlinable
-    public func describeRoutePoliciesPaginator(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRoutePoliciesRequest, DescribeRoutePoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRoutePoliciesRequest, DescribeRoutePoliciesResponse>.ResponseSequence) {
+    public func describeRoutePoliciesPaginator(_ input: DescribeRoutePoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRoutePoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRoutePolicies, logger: logger, on: eventLoop)
     }
 }

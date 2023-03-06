@@ -131,7 +131,7 @@ extension Ape {
     ///
     /// 分页查询授权人列表
     @inlinable
-    public func describeAuthUsersPaginator(_ input: DescribeAuthUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAuthUsersRequest, DescribeAuthUsersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAuthUsersRequest, DescribeAuthUsersResponse>.ResponseSequence) {
+    public func describeAuthUsersPaginator(_ input: DescribeAuthUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuthUsersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuthUsers, logger: logger, on: eventLoop)
     }
 }

@@ -140,7 +140,7 @@ extension Vpc {
     ///
     /// 查询终端节点列表。
     @inlinable
-    public func describeVpcEndPointPaginator(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcEndPointRequest, DescribeVpcEndPointResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcEndPointRequest, DescribeVpcEndPointResponse>.ResponseSequence) {
+    public func describeVpcEndPointPaginator(_ input: DescribeVpcEndPointRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcEndPointRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcEndPoint, logger: logger, on: eventLoop)
     }
 }

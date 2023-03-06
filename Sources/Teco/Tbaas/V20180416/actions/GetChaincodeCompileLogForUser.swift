@@ -147,7 +147,7 @@ extension Tbaas {
 
     /// 获取合约编译日志
     @inlinable
-    public func getChaincodeCompileLogForUserPaginator(_ input: GetChaincodeCompileLogForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResultSequence, responses: TCClient.Paginator<GetChaincodeCompileLogForUserRequest, GetChaincodeCompileLogForUserResponse>.ResponseSequence) {
+    public func getChaincodeCompileLogForUserPaginator(_ input: GetChaincodeCompileLogForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetChaincodeCompileLogForUserRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getChaincodeCompileLogForUser, logger: logger, on: eventLoop)
     }
 }

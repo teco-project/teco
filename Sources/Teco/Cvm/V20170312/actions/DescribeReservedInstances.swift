@@ -153,7 +153,7 @@ extension Cvm {
     ///
     /// 本接口(DescribeReservedInstances)可提供列出用户已购买的预留实例
     @inlinable
-    public func describeReservedInstancesPaginator(_ input: DescribeReservedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReservedInstancesRequest, DescribeReservedInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReservedInstancesRequest, DescribeReservedInstancesResponse>.ResponseSequence) {
+    public func describeReservedInstancesPaginator(_ input: DescribeReservedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReservedInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReservedInstances, logger: logger, on: eventLoop)
     }
 }

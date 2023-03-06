@@ -138,7 +138,7 @@ extension Iecp {
 
     /// 查询边缘单元EdgeUnit模板列表
     @inlinable
-    public func describeEdgeUnitNodeUnitTemplatesPaginator(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitNodeUnitTemplatesRequest, DescribeEdgeUnitNodeUnitTemplatesResponse>.ResponseSequence) {
+    public func describeEdgeUnitNodeUnitTemplatesPaginator(_ input: DescribeEdgeUnitNodeUnitTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeUnitNodeUnitTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitNodeUnitTemplates, logger: logger, on: eventLoop)
     }
 }

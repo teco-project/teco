@@ -167,7 +167,7 @@ extension Mongodb {
     ///
     /// 本接口(DescribeCurrentOp)用于查询MongoDB云数据库实例的当前正在执行的操作。
     @inlinable
-    public func describeCurrentOpPaginator(_ input: DescribeCurrentOpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCurrentOpRequest, DescribeCurrentOpResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCurrentOpRequest, DescribeCurrentOpResponse>.ResponseSequence) {
+    public func describeCurrentOpPaginator(_ input: DescribeCurrentOpRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCurrentOpRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCurrentOp, logger: logger, on: eventLoop)
     }
 }

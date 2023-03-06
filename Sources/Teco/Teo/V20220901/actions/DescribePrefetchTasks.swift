@@ -136,7 +136,7 @@ extension Teo {
 
     /// 查询预热任务状态
     @inlinable
-    public func describePrefetchTasksPaginator(_ input: DescribePrefetchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrefetchTasksRequest, DescribePrefetchTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrefetchTasksRequest, DescribePrefetchTasksResponse>.ResponseSequence) {
+    public func describePrefetchTasksPaginator(_ input: DescribePrefetchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrefetchTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrefetchTasks, logger: logger, on: eventLoop)
     }
 }

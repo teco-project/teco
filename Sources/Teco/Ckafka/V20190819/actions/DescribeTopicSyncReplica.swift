@@ -137,7 +137,7 @@ extension Ckafka {
     ///
     /// 获取Topic 副本详情信息
     @inlinable
-    public func describeTopicSyncReplicaPaginator(_ input: DescribeTopicSyncReplicaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTopicSyncReplicaRequest, DescribeTopicSyncReplicaResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTopicSyncReplicaRequest, DescribeTopicSyncReplicaResponse>.ResponseSequence) {
+    public func describeTopicSyncReplicaPaginator(_ input: DescribeTopicSyncReplicaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicSyncReplicaRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicSyncReplica, logger: logger, on: eventLoop)
     }
 }

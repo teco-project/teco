@@ -118,7 +118,7 @@ extension Ckafka {
 
     /// 根据位点查询消息列表
     @inlinable
-    public func fetchMessageListByOffsetPaginator(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<FetchMessageListByOffsetRequest, FetchMessageListByOffsetResponse>.ResultSequence, responses: TCClient.Paginator<FetchMessageListByOffsetRequest, FetchMessageListByOffsetResponse>.ResponseSequence) {
+    public func fetchMessageListByOffsetPaginator(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<FetchMessageListByOffsetRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.fetchMessageListByOffset, logger: logger, on: eventLoop)
     }
 }

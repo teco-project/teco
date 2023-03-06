@@ -150,7 +150,7 @@ extension Teo {
     ///
     /// 用户查询用户站点信息列表，支持分页。
     @inlinable
-    public func describeZonesPaginator(_ input: DescribeZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeZonesRequest, DescribeZonesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeZonesRequest, DescribeZonesResponse>.ResponseSequence) {
+    public func describeZonesPaginator(_ input: DescribeZonesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeZonesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZones, logger: logger, on: eventLoop)
     }
 }

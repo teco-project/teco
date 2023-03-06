@@ -137,7 +137,7 @@ extension Cwp {
     ///
     /// 本接口 (DescribeHistoryAccounts) 用于获取帐号变更历史列表数据。
     @inlinable
-    public func describeHistoryAccountsPaginator(_ input: DescribeHistoryAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHistoryAccountsRequest, DescribeHistoryAccountsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHistoryAccountsRequest, DescribeHistoryAccountsResponse>.ResponseSequence) {
+    public func describeHistoryAccountsPaginator(_ input: DescribeHistoryAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHistoryAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHistoryAccounts, logger: logger, on: eventLoop)
     }
 }

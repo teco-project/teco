@@ -140,7 +140,7 @@ extension Dayu {
 
     /// 获取操作日志
     @inlinable
-    public func describeActionLogPaginator(_ input: DescribeActionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeActionLogRequest, DescribeActionLogResponse>.ResponseSequence) {
+    public func describeActionLogPaginator(_ input: DescribeActionLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeActionLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeActionLog, logger: logger, on: eventLoop)
     }
 }

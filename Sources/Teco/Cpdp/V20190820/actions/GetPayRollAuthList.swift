@@ -153,7 +153,7 @@ extension Cpdp {
 
     /// 务工卡-查询核身记录
     @inlinable
-    public func getPayRollAuthListPaginator(_ input: GetPayRollAuthListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetPayRollAuthListRequest, GetPayRollAuthListResponse>.ResultSequence, responses: TCClient.Paginator<GetPayRollAuthListRequest, GetPayRollAuthListResponse>.ResponseSequence) {
+    public func getPayRollAuthListPaginator(_ input: GetPayRollAuthListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetPayRollAuthListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPayRollAuthList, logger: logger, on: eventLoop)
     }
 }

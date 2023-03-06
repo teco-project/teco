@@ -133,7 +133,7 @@ extension Tcss {
 
     /// 查询集群网络策略列表
     @inlinable
-    public func describeNetworkFirewallPolicyListPaginator(_ input: DescribeNetworkFirewallPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkFirewallPolicyListRequest, DescribeNetworkFirewallPolicyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkFirewallPolicyListRequest, DescribeNetworkFirewallPolicyListResponse>.ResponseSequence) {
+    public func describeNetworkFirewallPolicyListPaginator(_ input: DescribeNetworkFirewallPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallPolicyListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallPolicyList, logger: logger, on: eventLoop)
     }
 }

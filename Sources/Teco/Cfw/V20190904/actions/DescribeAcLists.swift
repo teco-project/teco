@@ -161,7 +161,7 @@ extension Cfw {
 
     /// 访问控制列表
     @inlinable
-    public func describeAcListsPaginator(_ input: DescribeAcListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAcListsRequest, DescribeAcListsResponse>.ResponseSequence) {
+    public func describeAcListsPaginator(_ input: DescribeAcListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAcListsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAcLists, logger: logger, on: eventLoop)
     }
 }

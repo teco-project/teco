@@ -128,7 +128,7 @@ extension Oceanus {
 
     /// 描述资源接口
     @inlinable
-    public func describeResourcesPaginator(_ input: DescribeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourcesRequest, DescribeResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourcesRequest, DescribeResourcesResponse>.ResponseSequence) {
+    public func describeResourcesPaginator(_ input: DescribeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResources, logger: logger, on: eventLoop)
     }
 }

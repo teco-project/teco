@@ -151,7 +151,7 @@ extension Cwp {
 
     /// 获取资产管理Web框架列表
     @inlinable
-    public func describeAssetWebFrameListPaginator(_ input: DescribeAssetWebFrameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetWebFrameListRequest, DescribeAssetWebFrameListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetWebFrameListRequest, DescribeAssetWebFrameListResponse>.ResponseSequence) {
+    public func describeAssetWebFrameListPaginator(_ input: DescribeAssetWebFrameListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebFrameListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebFrameList, logger: logger, on: eventLoop)
     }
 }

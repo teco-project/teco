@@ -148,7 +148,7 @@ extension Tke {
     ///
     /// 在应用市场中查询正在安装中的应用列表
     @inlinable
-    public func describeClusterPendingReleasesPaginator(_ input: DescribeClusterPendingReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterPendingReleasesRequest, DescribeClusterPendingReleasesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterPendingReleasesRequest, DescribeClusterPendingReleasesResponse>.ResponseSequence) {
+    public func describeClusterPendingReleasesPaginator(_ input: DescribeClusterPendingReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterPendingReleasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterPendingReleases, logger: logger, on: eventLoop)
     }
 }

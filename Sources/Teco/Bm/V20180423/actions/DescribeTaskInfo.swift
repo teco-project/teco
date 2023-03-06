@@ -235,7 +235,7 @@ extension Bm {
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
     @inlinable
-    public func describeTaskInfoPaginator(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskInfoRequest, DescribeTaskInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskInfoRequest, DescribeTaskInfoResponse>.ResponseSequence) {
+    public func describeTaskInfoPaginator(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskInfo, logger: logger, on: eventLoop)
     }
 }

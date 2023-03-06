@@ -132,7 +132,7 @@ extension Ccc {
 
     /// 获取坐席信息列表
     @inlinable
-    public func describeStaffInfoListPaginator(_ input: DescribeStaffInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStaffInfoListRequest, DescribeStaffInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStaffInfoListRequest, DescribeStaffInfoListResponse>.ResponseSequence) {
+    public func describeStaffInfoListPaginator(_ input: DescribeStaffInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStaffInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStaffInfoList, logger: logger, on: eventLoop)
     }
 }

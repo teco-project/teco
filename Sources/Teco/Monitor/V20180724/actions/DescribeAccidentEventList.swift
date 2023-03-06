@@ -164,7 +164,7 @@ extension Monitor {
 
     /// 获取平台事件列表
     @inlinable
-    public func describeAccidentEventListPaginator(_ input: DescribeAccidentEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccidentEventListRequest, DescribeAccidentEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccidentEventListRequest, DescribeAccidentEventListResponse>.ResponseSequence) {
+    public func describeAccidentEventListPaginator(_ input: DescribeAccidentEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccidentEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccidentEventList, logger: logger, on: eventLoop)
     }
 }

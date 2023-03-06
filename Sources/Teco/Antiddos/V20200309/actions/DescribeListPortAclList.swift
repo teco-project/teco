@@ -122,7 +122,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的端口acl策略列表
     @inlinable
-    public func describeListPortAclListPaginator(_ input: DescribeListPortAclListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListPortAclListRequest, DescribeListPortAclListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListPortAclListRequest, DescribeListPortAclListResponse>.ResponseSequence) {
+    public func describeListPortAclListPaginator(_ input: DescribeListPortAclListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListPortAclListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListPortAclList, logger: logger, on: eventLoop)
     }
 }

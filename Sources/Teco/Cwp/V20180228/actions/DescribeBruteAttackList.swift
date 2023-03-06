@@ -140,7 +140,7 @@ extension Cwp {
 
     /// 获取密码破解列表
     @inlinable
-    public func describeBruteAttackListPaginator(_ input: DescribeBruteAttackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBruteAttackListRequest, DescribeBruteAttackListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBruteAttackListRequest, DescribeBruteAttackListResponse>.ResponseSequence) {
+    public func describeBruteAttackListPaginator(_ input: DescribeBruteAttackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBruteAttackListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBruteAttackList, logger: logger, on: eventLoop)
     }
 }

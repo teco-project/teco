@@ -132,7 +132,7 @@ extension Tcss {
     ///
     /// 容器安全查询db服务列表
     @inlinable
-    public func describeAssetDBServiceListPaginator(_ input: DescribeAssetDBServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetDBServiceListRequest, DescribeAssetDBServiceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetDBServiceListRequest, DescribeAssetDBServiceListResponse>.ResponseSequence) {
+    public func describeAssetDBServiceListPaginator(_ input: DescribeAssetDBServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetDBServiceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetDBServiceList, logger: logger, on: eventLoop)
     }
 }

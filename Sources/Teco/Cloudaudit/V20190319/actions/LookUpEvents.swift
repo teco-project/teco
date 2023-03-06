@@ -148,7 +148,7 @@ extension Cloudaudit {
     ///
     /// 用于对操作日志进行检索，便于用户进行查询相关的操作信息。
     @inlinable
-    public func lookUpEventsPaginator(_ input: LookUpEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<LookUpEventsRequest, LookUpEventsResponse>.ResultSequence, responses: TCClient.Paginator<LookUpEventsRequest, LookUpEventsResponse>.ResponseSequence) {
+    public func lookUpEventsPaginator(_ input: LookUpEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<LookUpEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.lookUpEvents, logger: logger, on: eventLoop)
     }
 }

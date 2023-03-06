@@ -152,7 +152,7 @@ extension Cwp {
 
     /// 查询资产管理数据库列表
     @inlinable
-    public func describeAssetDatabaseListPaginator(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetDatabaseListRequest, DescribeAssetDatabaseListResponse>.ResponseSequence) {
+    public func describeAssetDatabaseListPaginator(_ input: DescribeAssetDatabaseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetDatabaseListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetDatabaseList, logger: logger, on: eventLoop)
     }
 }

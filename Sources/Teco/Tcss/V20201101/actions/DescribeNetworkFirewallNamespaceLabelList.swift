@@ -133,7 +133,7 @@ extension Tcss {
 
     /// 查询集群网络空间标签列表
     @inlinable
-    public func describeNetworkFirewallNamespaceLabelListPaginator(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkFirewallNamespaceLabelListRequest, DescribeNetworkFirewallNamespaceLabelListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkFirewallNamespaceLabelListRequest, DescribeNetworkFirewallNamespaceLabelListResponse>.ResponseSequence) {
+    public func describeNetworkFirewallNamespaceLabelListPaginator(_ input: DescribeNetworkFirewallNamespaceLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallNamespaceLabelListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallNamespaceLabelList, logger: logger, on: eventLoop)
     }
 }

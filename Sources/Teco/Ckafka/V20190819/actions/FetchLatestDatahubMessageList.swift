@@ -127,7 +127,7 @@ extension Ckafka {
     ///
     /// 查询最新消息列表
     @inlinable
-    public func fetchLatestDatahubMessageListPaginator(_ input: FetchLatestDatahubMessageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<FetchLatestDatahubMessageListRequest, FetchLatestDatahubMessageListResponse>.ResultSequence, responses: TCClient.Paginator<FetchLatestDatahubMessageListRequest, FetchLatestDatahubMessageListResponse>.ResponseSequence) {
+    public func fetchLatestDatahubMessageListPaginator(_ input: FetchLatestDatahubMessageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<FetchLatestDatahubMessageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.fetchLatestDatahubMessageList, logger: logger, on: eventLoop)
     }
 }

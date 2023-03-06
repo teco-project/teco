@@ -131,7 +131,7 @@ extension Cdb {
     ///
     /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
     @inlinable
-    public func describeCloneListPaginator(_ input: DescribeCloneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloneListRequest, DescribeCloneListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloneListRequest, DescribeCloneListResponse>.ResponseSequence) {
+    public func describeCloneListPaginator(_ input: DescribeCloneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloneListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloneList, logger: logger, on: eventLoop)
     }
 }

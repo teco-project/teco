@@ -114,7 +114,7 @@ extension Wedata {
 
     /// 分页查询规则执行结果列表
     @inlinable
-    public func describeRuleExecResultsByPagePaginator(_ input: DescribeRuleExecResultsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRuleExecResultsByPageRequest, DescribeRuleExecResultsByPageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRuleExecResultsByPageRequest, DescribeRuleExecResultsByPageResponse>.ResponseSequence) {
+    public func describeRuleExecResultsByPagePaginator(_ input: DescribeRuleExecResultsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleExecResultsByPageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleExecResultsByPage, logger: logger, on: eventLoop)
     }
 }

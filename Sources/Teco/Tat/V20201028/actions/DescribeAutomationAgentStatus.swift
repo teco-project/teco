@@ -136,7 +136,7 @@ extension Tat {
     ///
     /// 此接口用于查询自动化助手客户端的状态。
     @inlinable
-    public func describeAutomationAgentStatusPaginator(_ input: DescribeAutomationAgentStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutomationAgentStatusRequest, DescribeAutomationAgentStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutomationAgentStatusRequest, DescribeAutomationAgentStatusResponse>.ResponseSequence) {
+    public func describeAutomationAgentStatusPaginator(_ input: DescribeAutomationAgentStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutomationAgentStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutomationAgentStatus, logger: logger, on: eventLoop)
     }
 }

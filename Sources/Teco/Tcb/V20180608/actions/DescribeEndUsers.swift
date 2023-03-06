@@ -122,7 +122,7 @@ extension Tcb {
 
     /// 获取终端用户列表
     @inlinable
-    public func describeEndUsersPaginator(_ input: DescribeEndUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEndUsersRequest, DescribeEndUsersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEndUsersRequest, DescribeEndUsersResponse>.ResponseSequence) {
+    public func describeEndUsersPaginator(_ input: DescribeEndUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEndUsersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEndUsers, logger: logger, on: eventLoop)
     }
 }

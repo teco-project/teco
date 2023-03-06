@@ -144,7 +144,7 @@ extension Ic {
 
     /// 查询短信列表
     @inlinable
-    public func describeSmsPaginator(_ input: DescribeSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSmsRequest, DescribeSmsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSmsRequest, DescribeSmsResponse>.ResponseSequence) {
+    public func describeSmsPaginator(_ input: DescribeSmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSmsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSms, logger: logger, on: eventLoop)
     }
 }

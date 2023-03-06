@@ -117,7 +117,7 @@ extension Iotvideo {
 
     /// 获取批次列表
     @inlinable
-    public func describeBatchsPaginator(_ input: DescribeBatchsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBatchsRequest, DescribeBatchsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBatchsRequest, DescribeBatchsResponse>.ResponseSequence) {
+    public func describeBatchsPaginator(_ input: DescribeBatchsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBatchsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchs, logger: logger, on: eventLoop)
     }
 }

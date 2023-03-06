@@ -118,7 +118,7 @@ extension Tsf {
 
     /// 查询某个API分组已绑定的网关部署组信息列表
     @inlinable
-    public func describeGroupBindedGatewaysPaginator(_ input: DescribeGroupBindedGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupBindedGatewaysRequest, DescribeGroupBindedGatewaysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupBindedGatewaysRequest, DescribeGroupBindedGatewaysResponse>.ResponseSequence) {
+    public func describeGroupBindedGatewaysPaginator(_ input: DescribeGroupBindedGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupBindedGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupBindedGateways, logger: logger, on: eventLoop)
     }
 }

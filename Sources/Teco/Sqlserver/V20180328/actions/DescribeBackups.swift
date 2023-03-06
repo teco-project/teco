@@ -189,7 +189,7 @@ extension Sqlserver {
     ///
     /// 本接口(DescribeBackups)用于查询备份列表。
     @inlinable
-    public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBackupsRequest, DescribeBackupsResponse>.ResponseSequence) {
+    public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)
     }
 }

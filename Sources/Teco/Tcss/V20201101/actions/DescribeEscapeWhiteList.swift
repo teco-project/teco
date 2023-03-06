@@ -130,7 +130,7 @@ extension Tcss {
 
     /// 查询逃逸白名单
     @inlinable
-    public func describeEscapeWhiteListPaginator(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEscapeWhiteListRequest, DescribeEscapeWhiteListResponse>.ResponseSequence) {
+    public func describeEscapeWhiteListPaginator(_ input: DescribeEscapeWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEscapeWhiteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEscapeWhiteList, logger: logger, on: eventLoop)
     }
 }

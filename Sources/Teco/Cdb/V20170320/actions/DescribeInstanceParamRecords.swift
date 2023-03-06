@@ -131,7 +131,7 @@ extension Cdb {
     ///
     /// 该接口（DescribeInstanceParamRecords）用于查询实例参数修改历史。
     @inlinable
-    public func describeInstanceParamRecordsPaginator(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceParamRecordsRequest, DescribeInstanceParamRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceParamRecordsRequest, DescribeInstanceParamRecordsResponse>.ResponseSequence) {
+    public func describeInstanceParamRecordsPaginator(_ input: DescribeInstanceParamRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceParamRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceParamRecords, logger: logger, on: eventLoop)
     }
 }

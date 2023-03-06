@@ -138,7 +138,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiEnvironmentStrategy）用于展示API绑定的限流策略。
     @inlinable
-    public func describeApiEnvironmentStrategyPaginator(_ input: DescribeApiEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApiEnvironmentStrategyRequest, DescribeApiEnvironmentStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApiEnvironmentStrategyRequest, DescribeApiEnvironmentStrategyResponse>.ResponseSequence) {
+    public func describeApiEnvironmentStrategyPaginator(_ input: DescribeApiEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiEnvironmentStrategyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiEnvironmentStrategy, logger: logger, on: eventLoop)
     }
 }

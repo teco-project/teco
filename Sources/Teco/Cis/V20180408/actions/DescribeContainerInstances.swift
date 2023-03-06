@@ -134,7 +134,7 @@ extension Cis {
     ///
     /// 此接口（DescribeContainerInstances）查询容器实例列表
     @inlinable
-    public func describeContainerInstancesPaginator(_ input: DescribeContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeContainerInstancesRequest, DescribeContainerInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeContainerInstancesRequest, DescribeContainerInstancesResponse>.ResponseSequence) {
+    public func describeContainerInstancesPaginator(_ input: DescribeContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeContainerInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContainerInstances, logger: logger, on: eventLoop)
     }
 }

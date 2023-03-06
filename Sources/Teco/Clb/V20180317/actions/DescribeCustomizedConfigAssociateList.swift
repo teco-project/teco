@@ -136,7 +136,7 @@ extension Clb {
     ///
     /// 拉取配置绑定的 server 或 location，如果 domain 存在，结果将根据 domain 过滤。或拉取配置绑定的 loadbalancer。
     @inlinable
-    public func describeCustomizedConfigAssociateListPaginator(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCustomizedConfigAssociateListRequest, DescribeCustomizedConfigAssociateListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCustomizedConfigAssociateListRequest, DescribeCustomizedConfigAssociateListResponse>.ResponseSequence) {
+    public func describeCustomizedConfigAssociateListPaginator(_ input: DescribeCustomizedConfigAssociateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomizedConfigAssociateListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomizedConfigAssociateList, logger: logger, on: eventLoop)
     }
 }

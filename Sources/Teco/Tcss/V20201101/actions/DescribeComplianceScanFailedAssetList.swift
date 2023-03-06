@@ -141,7 +141,7 @@ extension Tcss {
     ///
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
     @inlinable
-    public func describeComplianceScanFailedAssetListPaginator(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceScanFailedAssetListRequest, DescribeComplianceScanFailedAssetListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceScanFailedAssetListRequest, DescribeComplianceScanFailedAssetListResponse>.ResponseSequence) {
+    public func describeComplianceScanFailedAssetListPaginator(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceScanFailedAssetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceScanFailedAssetList, logger: logger, on: eventLoop)
     }
 }

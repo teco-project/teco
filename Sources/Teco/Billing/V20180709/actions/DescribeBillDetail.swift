@@ -196,7 +196,7 @@ extension Billing {
 
     /// 查询账单明细数据
     @inlinable
-    public func describeBillDetailPaginator(_ input: DescribeBillDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBillDetailRequest, DescribeBillDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBillDetailRequest, DescribeBillDetailResponse>.ResponseSequence) {
+    public func describeBillDetailPaginator(_ input: DescribeBillDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBillDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBillDetail, logger: logger, on: eventLoop)
     }
 }

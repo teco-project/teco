@@ -132,7 +132,7 @@ extension Tcr {
     ///
     /// 用于获取个人版镜像仓库tag列表
     @inlinable
-    public func describeImagePersonalPaginator(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImagePersonalRequest, DescribeImagePersonalResponse>.ResponseSequence) {
+    public func describeImagePersonalPaginator(_ input: DescribeImagePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImagePersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImagePersonal, logger: logger, on: eventLoop)
     }
 }

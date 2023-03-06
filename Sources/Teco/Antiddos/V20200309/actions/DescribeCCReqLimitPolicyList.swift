@@ -137,7 +137,7 @@ extension Antiddos {
 
     /// 获取CC频率限制策略列表
     @inlinable
-    public func describeCCReqLimitPolicyListPaginator(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCReqLimitPolicyListRequest, DescribeCCReqLimitPolicyListResponse>.ResponseSequence) {
+    public func describeCCReqLimitPolicyListPaginator(_ input: DescribeCCReqLimitPolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCReqLimitPolicyListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCReqLimitPolicyList, logger: logger, on: eventLoop)
     }
 }

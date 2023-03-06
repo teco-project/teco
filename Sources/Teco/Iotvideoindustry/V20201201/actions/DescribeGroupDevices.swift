@@ -149,7 +149,7 @@ extension Iotvideoindustry {
     ///
     /// 本接口(DescribeGroupDevices)用于查询分组下的设备列表。
     @inlinable
-    public func describeGroupDevicesPaginator(_ input: DescribeGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupDevicesRequest, DescribeGroupDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupDevicesRequest, DescribeGroupDevicesResponse>.ResponseSequence) {
+    public func describeGroupDevicesPaginator(_ input: DescribeGroupDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupDevices, logger: logger, on: eventLoop)
     }
 }

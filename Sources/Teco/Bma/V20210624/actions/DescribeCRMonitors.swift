@@ -135,7 +135,7 @@ extension Bma {
     ///
     /// 版权保护-查询监测列表接口
     @inlinable
-    public func describeCRMonitorsPaginator(_ input: DescribeCRMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCRMonitorsRequest, DescribeCRMonitorsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCRMonitorsRequest, DescribeCRMonitorsResponse>.ResponseSequence) {
+    public func describeCRMonitorsPaginator(_ input: DescribeCRMonitorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCRMonitorsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCRMonitors, logger: logger, on: eventLoop)
     }
 }

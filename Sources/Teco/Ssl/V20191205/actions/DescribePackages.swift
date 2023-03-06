@@ -141,7 +141,7 @@ extension Ssl {
 
     /// 获得权益包列表
     @inlinable
-    public func describePackagesPaginator(_ input: DescribePackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePackagesRequest, DescribePackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePackagesRequest, DescribePackagesResponse>.ResponseSequence) {
+    public func describePackagesPaginator(_ input: DescribePackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePackages, logger: logger, on: eventLoop)
     }
 }

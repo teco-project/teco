@@ -153,7 +153,7 @@ extension Tsf {
     ///
     /// 翻页查询任务列表
     @inlinable
-    public func describeTaskRecordsPaginator(_ input: DescribeTaskRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskRecordsRequest, DescribeTaskRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskRecordsRequest, DescribeTaskRecordsResponse>.ResponseSequence) {
+    public func describeTaskRecordsPaginator(_ input: DescribeTaskRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskRecords, logger: logger, on: eventLoop)
     }
 }

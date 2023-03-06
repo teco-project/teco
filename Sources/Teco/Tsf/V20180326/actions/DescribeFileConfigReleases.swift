@@ -139,7 +139,7 @@ extension Tsf {
 
     /// 查询文件配置项发布信息
     @inlinable
-    public func describeFileConfigReleasesPaginator(_ input: DescribeFileConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFileConfigReleasesRequest, DescribeFileConfigReleasesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFileConfigReleasesRequest, DescribeFileConfigReleasesResponse>.ResponseSequence) {
+    public func describeFileConfigReleasesPaginator(_ input: DescribeFileConfigReleasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFileConfigReleasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFileConfigReleases, logger: logger, on: eventLoop)
     }
 }

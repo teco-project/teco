@@ -135,7 +135,7 @@ extension Apigateway {
     /// 本接口（DescribeServiceUsagePlan）用于查询服务使用计划详情。
     /// 服务若需要鉴权限流生效，则需要绑定使用计划到此服务中，本接口用于查询绑定到一个服务的所有使用计划。
     @inlinable
-    public func describeServiceUsagePlanPaginator(_ input: DescribeServiceUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceUsagePlanRequest, DescribeServiceUsagePlanResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceUsagePlanRequest, DescribeServiceUsagePlanResponse>.ResponseSequence) {
+    public func describeServiceUsagePlanPaginator(_ input: DescribeServiceUsagePlanRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceUsagePlanRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceUsagePlan, logger: logger, on: eventLoop)
     }
 }

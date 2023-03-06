@@ -133,7 +133,7 @@ extension Monitor {
 
     /// 列出 Prometheus 抓取任务
     @inlinable
-    public func describePrometheusScrapeJobsPaginator(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusScrapeJobsRequest, DescribePrometheusScrapeJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusScrapeJobsRequest, DescribePrometheusScrapeJobsResponse>.ResponseSequence) {
+    public func describePrometheusScrapeJobsPaginator(_ input: DescribePrometheusScrapeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusScrapeJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusScrapeJobs, logger: logger, on: eventLoop)
     }
 }

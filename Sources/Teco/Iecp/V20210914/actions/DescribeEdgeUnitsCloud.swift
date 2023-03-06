@@ -124,7 +124,7 @@ extension Iecp {
 
     /// 查询边缘单元列表
     @inlinable
-    public func describeEdgeUnitsCloudPaginator(_ input: DescribeEdgeUnitsCloudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitsCloudRequest, DescribeEdgeUnitsCloudResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitsCloudRequest, DescribeEdgeUnitsCloudResponse>.ResponseSequence) {
+    public func describeEdgeUnitsCloudPaginator(_ input: DescribeEdgeUnitsCloudRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeUnitsCloudRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitsCloud, logger: logger, on: eventLoop)
     }
 }

@@ -139,7 +139,7 @@ extension Ecm {
 
     /// 查询弹性网卡列表
     @inlinable
-    public func describeNetworkInterfacesPaginator(_ input: DescribeNetworkInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkInterfacesRequest, DescribeNetworkInterfacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkInterfacesRequest, DescribeNetworkInterfacesResponse>.ResponseSequence) {
+    public func describeNetworkInterfacesPaginator(_ input: DescribeNetworkInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkInterfacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkInterfaces, logger: logger, on: eventLoop)
     }
 }

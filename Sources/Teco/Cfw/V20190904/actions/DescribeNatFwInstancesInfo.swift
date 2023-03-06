@@ -133,7 +133,7 @@ extension Cfw {
     ///
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
     @inlinable
-    public func describeNatFwInstancesInfoPaginator(_ input: DescribeNatFwInstancesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatFwInstancesInfoRequest, DescribeNatFwInstancesInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatFwInstancesInfoRequest, DescribeNatFwInstancesInfoResponse>.ResponseSequence) {
+    public func describeNatFwInstancesInfoPaginator(_ input: DescribeNatFwInstancesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatFwInstancesInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatFwInstancesInfo, logger: logger, on: eventLoop)
     }
 }

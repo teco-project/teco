@@ -121,7 +121,7 @@ extension Cwp {
 
     /// 获取异地登录白名单列表
     @inlinable
-    public func describeLoginWhiteListPaginator(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLoginWhiteListRequest, DescribeLoginWhiteListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLoginWhiteListRequest, DescribeLoginWhiteListResponse>.ResponseSequence) {
+    public func describeLoginWhiteListPaginator(_ input: DescribeLoginWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoginWhiteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoginWhiteList, logger: logger, on: eventLoop)
     }
 }

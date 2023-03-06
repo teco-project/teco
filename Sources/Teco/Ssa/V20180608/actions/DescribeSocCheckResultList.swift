@@ -125,7 +125,7 @@ extension Ssa {
 
     /// 云安全配置检查项结果列表
     @inlinable
-    public func describeSocCheckResultListPaginator(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSocCheckResultListRequest, DescribeSocCheckResultListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSocCheckResultListRequest, DescribeSocCheckResultListResponse>.ResponseSequence) {
+    public func describeSocCheckResultListPaginator(_ input: DescribeSocCheckResultListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSocCheckResultListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSocCheckResultList, logger: logger, on: eventLoop)
     }
 }

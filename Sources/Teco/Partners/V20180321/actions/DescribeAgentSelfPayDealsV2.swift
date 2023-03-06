@@ -169,7 +169,7 @@ extension Partners {
     ///
     /// 查询代理商名下指定代客的自付订单（预付费）
     @inlinable
-    public func describeAgentSelfPayDealsV2Paginator(_ input: DescribeAgentSelfPayDealsV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentSelfPayDealsV2Request, DescribeAgentSelfPayDealsV2Response>.ResultSequence, responses: TCClient.Paginator<DescribeAgentSelfPayDealsV2Request, DescribeAgentSelfPayDealsV2Response>.ResponseSequence) {
+    public func describeAgentSelfPayDealsV2Paginator(_ input: DescribeAgentSelfPayDealsV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentSelfPayDealsV2Request> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentSelfPayDealsV2, logger: logger, on: eventLoop)
     }
 }

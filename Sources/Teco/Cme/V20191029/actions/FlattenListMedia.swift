@@ -146,7 +146,7 @@ extension Cme {
     ///
     /// 平铺分类路径下及其子分类下的所有媒体基础信息，返回当前分类及子分类中的所有媒体的基础信息。
     @inlinable
-    public func flattenListMediaPaginator(_ input: FlattenListMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<FlattenListMediaRequest, FlattenListMediaResponse>.ResultSequence, responses: TCClient.Paginator<FlattenListMediaRequest, FlattenListMediaResponse>.ResponseSequence) {
+    public func flattenListMediaPaginator(_ input: FlattenListMediaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<FlattenListMediaRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.flattenListMedia, logger: logger, on: eventLoop)
     }
 }

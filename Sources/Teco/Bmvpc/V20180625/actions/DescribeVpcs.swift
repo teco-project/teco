@@ -139,7 +139,7 @@ extension Bmvpc {
     /// 本接口（DescribeVpcs）用于查询私有网络列表。
     /// 本接口不传参数时，返回默认排序下的前20条VPC信息。
     @inlinable
-    public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResponseSequence) {
+    public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
     }
 }

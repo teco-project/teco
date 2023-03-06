@@ -129,7 +129,7 @@ extension Tsf {
 
     /// 查询简单集群列表
     @inlinable
-    public func describeSimpleClustersPaginator(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSimpleClustersRequest, DescribeSimpleClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSimpleClustersRequest, DescribeSimpleClustersResponse>.ResponseSequence) {
+    public func describeSimpleClustersPaginator(_ input: DescribeSimpleClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSimpleClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSimpleClusters, logger: logger, on: eventLoop)
     }
 }

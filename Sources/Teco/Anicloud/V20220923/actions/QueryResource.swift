@@ -119,7 +119,7 @@ extension Anicloud {
 
     /// 查询购买资源
     @inlinable
-    public func queryResourcePaginator(_ input: QueryResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResultSequence, responses: TCClient.Paginator<QueryResourceRequest, QueryResourceResponse>.ResponseSequence) {
+    public func queryResourcePaginator(_ input: QueryResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryResourceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryResource, logger: logger, on: eventLoop)
     }
 }

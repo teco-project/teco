@@ -154,7 +154,7 @@ extension Cls {
     ///
     /// 获取投递规则信息列表
     @inlinable
-    public func describeShippersPaginator(_ input: DescribeShippersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeShippersRequest, DescribeShippersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeShippersRequest, DescribeShippersResponse>.ResponseSequence) {
+    public func describeShippersPaginator(_ input: DescribeShippersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeShippersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShippers, logger: logger, on: eventLoop)
     }
 }

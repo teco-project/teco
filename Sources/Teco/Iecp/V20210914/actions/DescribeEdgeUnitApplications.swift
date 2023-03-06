@@ -133,7 +133,7 @@ extension Iecp {
 
     /// 获取单元下应用列表
     @inlinable
-    public func describeEdgeUnitApplicationsPaginator(_ input: DescribeEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeUnitApplicationsRequest, DescribeEdgeUnitApplicationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeUnitApplicationsRequest, DescribeEdgeUnitApplicationsResponse>.ResponseSequence) {
+    public func describeEdgeUnitApplicationsPaginator(_ input: DescribeEdgeUnitApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeUnitApplicationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitApplications, logger: logger, on: eventLoop)
     }
 }

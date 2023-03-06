@@ -136,7 +136,7 @@ extension Tke {
     ///
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
     @inlinable
-    public func describePrometheusRecordRulesPaginator(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusRecordRulesRequest, DescribePrometheusRecordRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusRecordRulesRequest, DescribePrometheusRecordRulesResponse>.ResponseSequence) {
+    public func describePrometheusRecordRulesPaginator(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusRecordRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusRecordRules, logger: logger, on: eventLoop)
     }
 }

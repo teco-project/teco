@@ -128,7 +128,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeServiceEnvironmentStrategy）用于展示服务限流策略。
     @inlinable
-    public func describeServiceEnvironmentStrategyPaginator(_ input: DescribeServiceEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceEnvironmentStrategyRequest, DescribeServiceEnvironmentStrategyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceEnvironmentStrategyRequest, DescribeServiceEnvironmentStrategyResponse>.ResponseSequence) {
+    public func describeServiceEnvironmentStrategyPaginator(_ input: DescribeServiceEnvironmentStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceEnvironmentStrategyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceEnvironmentStrategy, logger: logger, on: eventLoop)
     }
 }

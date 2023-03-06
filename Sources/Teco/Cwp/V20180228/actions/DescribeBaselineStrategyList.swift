@@ -133,7 +133,7 @@ extension Cwp {
     ///
     /// 查询一个用户下的基线策略信息
     @inlinable
-    public func describeBaselineStrategyListPaginator(_ input: DescribeBaselineStrategyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineStrategyListRequest, DescribeBaselineStrategyListResponse>.ResponseSequence) {
+    public func describeBaselineStrategyListPaginator(_ input: DescribeBaselineStrategyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineStrategyListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineStrategyList, logger: logger, on: eventLoop)
     }
 }

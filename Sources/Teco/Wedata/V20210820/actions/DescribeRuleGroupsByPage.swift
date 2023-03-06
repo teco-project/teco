@@ -159,7 +159,7 @@ extension Wedata {
     /// 【必要字段】
     /// {数据来源DatasourceId}
     @inlinable
-    public func describeRuleGroupsByPagePaginator(_ input: DescribeRuleGroupsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRuleGroupsByPageRequest, DescribeRuleGroupsByPageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRuleGroupsByPageRequest, DescribeRuleGroupsByPageResponse>.ResponseSequence) {
+    public func describeRuleGroupsByPagePaginator(_ input: DescribeRuleGroupsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleGroupsByPageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleGroupsByPage, logger: logger, on: eventLoop)
     }
 }

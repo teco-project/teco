@@ -117,7 +117,7 @@ extension Monitor {
 
     /// 获取TMP实例关联集群列表
     @inlinable
-    public func describePrometheusClusterAgentsPaginator(_ input: DescribePrometheusClusterAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusClusterAgentsRequest, DescribePrometheusClusterAgentsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusClusterAgentsRequest, DescribePrometheusClusterAgentsResponse>.ResponseSequence) {
+    public func describePrometheusClusterAgentsPaginator(_ input: DescribePrometheusClusterAgentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusClusterAgentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusClusterAgents, logger: logger, on: eventLoop)
     }
 }

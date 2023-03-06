@@ -134,7 +134,7 @@ extension Pts {
 
     /// 查询文件列表
     @inlinable
-    public func describeFilesPaginator(_ input: DescribeFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFilesRequest, DescribeFilesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFilesRequest, DescribeFilesResponse>.ResponseSequence) {
+    public func describeFilesPaginator(_ input: DescribeFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFilesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFiles, logger: logger, on: eventLoop)
     }
 }

@@ -114,7 +114,7 @@ extension Organization {
 
     /// 获取组织节点列表
     @inlinable
-    public func describeOrganizationNodesPaginator(_ input: DescribeOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrganizationNodesRequest, DescribeOrganizationNodesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrganizationNodesRequest, DescribeOrganizationNodesResponse>.ResponseSequence) {
+    public func describeOrganizationNodesPaginator(_ input: DescribeOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationNodesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationNodes, logger: logger, on: eventLoop)
     }
 }

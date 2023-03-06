@@ -123,7 +123,7 @@ extension Zj {
 
     /// 获取彩信实例列表
     @inlinable
-    public func describeMmsInstanceListPaginator(_ input: DescribeMmsInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMmsInstanceListRequest, DescribeMmsInstanceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMmsInstanceListRequest, DescribeMmsInstanceListResponse>.ResponseSequence) {
+    public func describeMmsInstanceListPaginator(_ input: DescribeMmsInstanceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMmsInstanceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMmsInstanceList, logger: logger, on: eventLoop)
     }
 }

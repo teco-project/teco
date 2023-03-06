@@ -155,7 +155,7 @@ extension Cr {
 
     /// 查询录音列表
     @inlinable
-    public func queryRecordListPaginator(_ input: QueryRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryRecordListRequest, QueryRecordListResponse>.ResultSequence, responses: TCClient.Paginator<QueryRecordListRequest, QueryRecordListResponse>.ResponseSequence) {
+    public func queryRecordListPaginator(_ input: QueryRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryRecordListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryRecordList, logger: logger, on: eventLoop)
     }
 }

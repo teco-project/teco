@@ -127,7 +127,7 @@ extension Tcaplusdb {
 
     /// 查询表格组列表
     @inlinable
-    public func describeTableGroupsPaginator(_ input: DescribeTableGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTableGroupsRequest, DescribeTableGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTableGroupsRequest, DescribeTableGroupsResponse>.ResponseSequence) {
+    public func describeTableGroupsPaginator(_ input: DescribeTableGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTableGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTableGroups, logger: logger, on: eventLoop)
     }
 }

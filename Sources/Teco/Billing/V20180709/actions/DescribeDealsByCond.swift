@@ -176,7 +176,7 @@ extension Billing {
     ///
     /// 查询订单
     @inlinable
-    public func describeDealsByCondPaginator(_ input: DescribeDealsByCondRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDealsByCondRequest, DescribeDealsByCondResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDealsByCondRequest, DescribeDealsByCondResponse>.ResponseSequence) {
+    public func describeDealsByCondPaginator(_ input: DescribeDealsByCondRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDealsByCondRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDealsByCond, logger: logger, on: eventLoop)
     }
 }

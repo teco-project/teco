@@ -123,7 +123,7 @@ extension Tke {
 
     /// 查询弹性集群列表
     @inlinable
-    public func describeEKSClustersPaginator(_ input: DescribeEKSClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEKSClustersRequest, DescribeEKSClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEKSClustersRequest, DescribeEKSClustersResponse>.ResponseSequence) {
+    public func describeEKSClustersPaginator(_ input: DescribeEKSClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEKSClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEKSClusters, logger: logger, on: eventLoop)
     }
 }

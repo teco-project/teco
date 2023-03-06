@@ -119,7 +119,7 @@ extension Wedata {
 
     /// 查询规则模版操作记录
     @inlinable
-    public func describeTemplateHistoryPaginator(_ input: DescribeTemplateHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTemplateHistoryRequest, DescribeTemplateHistoryResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTemplateHistoryRequest, DescribeTemplateHistoryResponse>.ResponseSequence) {
+    public func describeTemplateHistoryPaginator(_ input: DescribeTemplateHistoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTemplateHistoryRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplateHistory, logger: logger, on: eventLoop)
     }
 }

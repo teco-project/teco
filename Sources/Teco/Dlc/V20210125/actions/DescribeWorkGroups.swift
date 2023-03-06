@@ -132,7 +132,7 @@ extension Dlc {
 
     /// 获取工作组列表
     @inlinable
-    public func describeWorkGroupsPaginator(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWorkGroupsRequest, DescribeWorkGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWorkGroupsRequest, DescribeWorkGroupsResponse>.ResponseSequence) {
+    public func describeWorkGroupsPaginator(_ input: DescribeWorkGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkGroups, logger: logger, on: eventLoop)
     }
 }

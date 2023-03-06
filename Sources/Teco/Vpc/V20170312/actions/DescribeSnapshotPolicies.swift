@@ -138,7 +138,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeSnapshotPolicies）用于查询快照策略。
     @inlinable
-    public func describeSnapshotPoliciesPaginator(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotPoliciesRequest, DescribeSnapshotPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotPoliciesRequest, DescribeSnapshotPoliciesResponse>.ResponseSequence) {
+    public func describeSnapshotPoliciesPaginator(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotPolicies, logger: logger, on: eventLoop)
     }
 }

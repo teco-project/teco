@@ -136,7 +136,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeWeeklyReportVuls) 用于专业版周报漏洞数据。
     @inlinable
-    public func describeWeeklyReportVulsPaginator(_ input: DescribeWeeklyReportVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWeeklyReportVulsRequest, DescribeWeeklyReportVulsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWeeklyReportVulsRequest, DescribeWeeklyReportVulsResponse>.ResponseSequence) {
+    public func describeWeeklyReportVulsPaginator(_ input: DescribeWeeklyReportVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWeeklyReportVulsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReportVuls, logger: logger, on: eventLoop)
     }
 }

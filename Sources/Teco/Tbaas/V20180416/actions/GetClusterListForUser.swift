@@ -136,7 +136,7 @@ extension Tbaas {
     ///
     /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
     @inlinable
-    public func getClusterListForUserPaginator(_ input: GetClusterListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetClusterListForUserRequest, GetClusterListForUserResponse>.ResultSequence, responses: TCClient.Paginator<GetClusterListForUserRequest, GetClusterListForUserResponse>.ResponseSequence) {
+    public func getClusterListForUserPaginator(_ input: GetClusterListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetClusterListForUserRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getClusterListForUser, logger: logger, on: eventLoop)
     }
 }

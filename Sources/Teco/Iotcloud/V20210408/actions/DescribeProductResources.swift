@@ -137,7 +137,7 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeProductResources）用于查询产品资源列表。
     @inlinable
-    public func describeProductResourcesPaginator(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProductResourcesRequest, DescribeProductResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProductResourcesRequest, DescribeProductResourcesResponse>.ResponseSequence) {
+    public func describeProductResourcesPaginator(_ input: DescribeProductResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductResources, logger: logger, on: eventLoop)
     }
 }

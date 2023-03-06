@@ -118,7 +118,7 @@ extension Tse {
 
     /// 查询Nacos类型引擎实例副本信息
     @inlinable
-    public func describeNacosReplicasPaginator(_ input: DescribeNacosReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNacosReplicasRequest, DescribeNacosReplicasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNacosReplicasRequest, DescribeNacosReplicasResponse>.ResponseSequence) {
+    public func describeNacosReplicasPaginator(_ input: DescribeNacosReplicasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNacosReplicasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNacosReplicas, logger: logger, on: eventLoop)
     }
 }

@@ -139,7 +139,7 @@ extension Tcss {
 
     /// 查询安全日志接入对象列表
     @inlinable
-    public func describeSecLogJoinObjectListPaginator(_ input: DescribeSecLogJoinObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecLogJoinObjectListRequest, DescribeSecLogJoinObjectListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecLogJoinObjectListRequest, DescribeSecLogJoinObjectListResponse>.ResponseSequence) {
+    public func describeSecLogJoinObjectListPaginator(_ input: DescribeSecLogJoinObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecLogJoinObjectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecLogJoinObjectList, logger: logger, on: eventLoop)
     }
 }

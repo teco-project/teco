@@ -157,7 +157,7 @@ extension Cme {
     ///
     /// 关于平台概念，请参见文档 [平台](https://cloud.tencent.com/document/product/1156/43767)。
     @inlinable
-    public func describePlatformsPaginator(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePlatformsRequest, DescribePlatformsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePlatformsRequest, DescribePlatformsResponse>.ResponseSequence) {
+    public func describePlatformsPaginator(_ input: DescribePlatformsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePlatformsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePlatforms, logger: logger, on: eventLoop)
     }
 }

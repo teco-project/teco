@@ -136,7 +136,7 @@ extension Dbdc {
     ///
     /// 本接口用于查询主机列表
     @inlinable
-    public func describeHostListPaginator(_ input: DescribeHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHostListRequest, DescribeHostListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHostListRequest, DescribeHostListResponse>.ResponseSequence) {
+    public func describeHostListPaginator(_ input: DescribeHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostList, logger: logger, on: eventLoop)
     }
 }

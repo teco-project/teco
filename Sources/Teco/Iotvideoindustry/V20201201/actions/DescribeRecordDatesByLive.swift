@@ -109,7 +109,7 @@ extension Iotvideoindustry {
 
     /// 直播录像存储日期列表
     @inlinable
-    public func describeRecordDatesByLivePaginator(_ input: DescribeRecordDatesByLiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRecordDatesByLiveRequest, DescribeRecordDatesByLiveResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRecordDatesByLiveRequest, DescribeRecordDatesByLiveResponse>.ResponseSequence) {
+    public func describeRecordDatesByLivePaginator(_ input: DescribeRecordDatesByLiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordDatesByLiveRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordDatesByLive, logger: logger, on: eventLoop)
     }
 }

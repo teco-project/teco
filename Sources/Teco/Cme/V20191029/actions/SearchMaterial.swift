@@ -180,7 +180,7 @@ extension Cme {
     ///
     /// 根据检索条件搜索媒体，返回媒体的基本信息。
     @inlinable
-    public func searchMaterialPaginator(_ input: SearchMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchMaterialRequest, SearchMaterialResponse>.ResultSequence, responses: TCClient.Paginator<SearchMaterialRequest, SearchMaterialResponse>.ResponseSequence) {
+    public func searchMaterialPaginator(_ input: SearchMaterialRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchMaterialRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchMaterial, logger: logger, on: eventLoop)
     }
 }

@@ -139,7 +139,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeGatewayFlowQos）用于查询网关来访IP流控带宽。
     @inlinable
-    public func describeGatewayFlowQosPaginator(_ input: DescribeGatewayFlowQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGatewayFlowQosRequest, DescribeGatewayFlowQosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGatewayFlowQosRequest, DescribeGatewayFlowQosResponse>.ResponseSequence) {
+    public func describeGatewayFlowQosPaginator(_ input: DescribeGatewayFlowQosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGatewayFlowQosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGatewayFlowQos, logger: logger, on: eventLoop)
     }
 }

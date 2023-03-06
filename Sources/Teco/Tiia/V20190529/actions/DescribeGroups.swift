@@ -144,7 +144,7 @@ extension Tiia {
     /// >
     /// - 可前往 [图像搜索](https://cloud.tencent.com/document/product/1589) 产品文档中查看更多产品信息。
     @inlinable
-    public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResponseSequence) {
+    public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
     }
 }

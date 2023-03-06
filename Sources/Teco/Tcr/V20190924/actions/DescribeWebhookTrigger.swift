@@ -122,7 +122,7 @@ extension Tcr {
 
     /// 查询触发器
     @inlinable
-    public func describeWebhookTriggerPaginator(_ input: DescribeWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebhookTriggerRequest, DescribeWebhookTriggerResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebhookTriggerRequest, DescribeWebhookTriggerResponse>.ResponseSequence) {
+    public func describeWebhookTriggerPaginator(_ input: DescribeWebhookTriggerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebhookTriggerRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebhookTrigger, logger: logger, on: eventLoop)
     }
 }

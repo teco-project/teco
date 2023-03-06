@@ -143,7 +143,7 @@ extension Iotvideo {
     ///
     /// 本接口用于查询固件升级任务列表
     @inlinable
-    public func describeFirmwareTasksPaginator(_ input: DescribeFirmwareTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFirmwareTasksRequest, DescribeFirmwareTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFirmwareTasksRequest, DescribeFirmwareTasksResponse>.ResponseSequence) {
+    public func describeFirmwareTasksPaginator(_ input: DescribeFirmwareTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFirmwareTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFirmwareTasks, logger: logger, on: eventLoop)
     }
 }

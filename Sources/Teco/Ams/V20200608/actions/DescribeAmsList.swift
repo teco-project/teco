@@ -140,7 +140,7 @@ extension Ams {
     ///
     /// 音频审核明细列表
     @inlinable
-    public func describeAmsListPaginator(_ input: DescribeAmsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAmsListRequest, DescribeAmsListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAmsListRequest, DescribeAmsListResponse>.ResponseSequence) {
+    public func describeAmsListPaginator(_ input: DescribeAmsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAmsListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAmsList, logger: logger, on: eventLoop)
     }
 }

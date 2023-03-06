@@ -124,7 +124,7 @@ extension Organization {
 
     /// 获取组织成员被绑定授权关系的子账号列表
     @inlinable
-    public func describeOrganizationMemberAuthAccountsPaginator(_ input: DescribeOrganizationMemberAuthAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrganizationMemberAuthAccountsRequest, DescribeOrganizationMemberAuthAccountsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrganizationMemberAuthAccountsRequest, DescribeOrganizationMemberAuthAccountsResponse>.ResponseSequence) {
+    public func describeOrganizationMemberAuthAccountsPaginator(_ input: DescribeOrganizationMemberAuthAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationMemberAuthAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationMemberAuthAccounts, logger: logger, on: eventLoop)
     }
 }

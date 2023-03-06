@@ -131,7 +131,7 @@ extension Youmall {
     ///
     /// 查询指定某一卖场的用户信息
     @inlinable
-    public func describePersonPaginator(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePersonRequest, DescribePersonResponse>.ResultSequence, responses: TCClient.Paginator<DescribePersonRequest, DescribePersonResponse>.ResponseSequence) {
+    public func describePersonPaginator(_ input: DescribePersonRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePerson, logger: logger, on: eventLoop)
     }
 }

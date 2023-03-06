@@ -162,7 +162,7 @@ extension Scf {
 
     /// 拉取函数异步事件列表
     @inlinable
-    public func listAsyncEventsPaginator(_ input: ListAsyncEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListAsyncEventsRequest, ListAsyncEventsResponse>.ResultSequence, responses: TCClient.Paginator<ListAsyncEventsRequest, ListAsyncEventsResponse>.ResponseSequence) {
+    public func listAsyncEventsPaginator(_ input: ListAsyncEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListAsyncEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listAsyncEvents, logger: logger, on: eventLoop)
     }
 }

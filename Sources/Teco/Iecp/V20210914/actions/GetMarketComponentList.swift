@@ -122,7 +122,7 @@ extension Iecp {
 
     /// 获取组件市场组件列表
     @inlinable
-    public func getMarketComponentListPaginator(_ input: GetMarketComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetMarketComponentListRequest, GetMarketComponentListResponse>.ResultSequence, responses: TCClient.Paginator<GetMarketComponentListRequest, GetMarketComponentListResponse>.ResponseSequence) {
+    public func getMarketComponentListPaginator(_ input: GetMarketComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetMarketComponentListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getMarketComponentList, logger: logger, on: eventLoop)
     }
 }

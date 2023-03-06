@@ -159,7 +159,7 @@ extension Scf {
     ///
     /// 该接口根据传入的查询参数返回相关函数信息。
     @inlinable
-    public func listFunctionsPaginator(_ input: ListFunctionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListFunctionsRequest, ListFunctionsResponse>.ResultSequence, responses: TCClient.Paginator<ListFunctionsRequest, ListFunctionsResponse>.ResponseSequence) {
+    public func listFunctionsPaginator(_ input: ListFunctionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListFunctionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listFunctions, logger: logger, on: eventLoop)
     }
 }

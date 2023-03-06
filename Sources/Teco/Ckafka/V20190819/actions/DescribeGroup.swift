@@ -118,7 +118,7 @@ extension Ckafka {
 
     /// 枚举消费分组(精简版)
     @inlinable
-    public func describeGroupPaginator(_ input: DescribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupRequest, DescribeGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupRequest, DescribeGroupResponse>.ResponseSequence) {
+    public func describeGroupPaginator(_ input: DescribeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroup, logger: logger, on: eventLoop)
     }
 }

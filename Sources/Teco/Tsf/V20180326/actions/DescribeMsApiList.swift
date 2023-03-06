@@ -118,7 +118,7 @@ extension Tsf {
 
     /// 查询服务API列表
     @inlinable
-    public func describeMsApiListPaginator(_ input: DescribeMsApiListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMsApiListRequest, DescribeMsApiListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMsApiListRequest, DescribeMsApiListResponse>.ResponseSequence) {
+    public func describeMsApiListPaginator(_ input: DescribeMsApiListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMsApiListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMsApiList, logger: logger, on: eventLoop)
     }
 }

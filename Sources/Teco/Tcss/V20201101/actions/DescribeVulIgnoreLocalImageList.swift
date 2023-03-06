@@ -127,7 +127,7 @@ extension Tcss {
 
     /// 查询漏洞扫描忽略的本地镜像列表
     @inlinable
-    public func describeVulIgnoreLocalImageListPaginator(_ input: DescribeVulIgnoreLocalImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulIgnoreLocalImageListRequest, DescribeVulIgnoreLocalImageListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulIgnoreLocalImageListRequest, DescribeVulIgnoreLocalImageListResponse>.ResponseSequence) {
+    public func describeVulIgnoreLocalImageListPaginator(_ input: DescribeVulIgnoreLocalImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulIgnoreLocalImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulIgnoreLocalImageList, logger: logger, on: eventLoop)
     }
 }

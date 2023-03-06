@@ -141,7 +141,7 @@ extension Tcss {
 
     /// 查询web应用漏洞列表
     @inlinable
-    public func describeWebVulListPaginator(_ input: DescribeWebVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebVulListRequest, DescribeWebVulListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebVulListRequest, DescribeWebVulListResponse>.ResponseSequence) {
+    public func describeWebVulListPaginator(_ input: DescribeWebVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebVulList, logger: logger, on: eventLoop)
     }
 }

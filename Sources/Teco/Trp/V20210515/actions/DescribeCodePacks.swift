@@ -129,7 +129,7 @@ extension Trp {
 
     /// 查询码包列表
     @inlinable
-    public func describeCodePacksPaginator(_ input: DescribeCodePacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCodePacksRequest, DescribeCodePacksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCodePacksRequest, DescribeCodePacksResponse>.ResponseSequence) {
+    public func describeCodePacksPaginator(_ input: DescribeCodePacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCodePacksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCodePacks, logger: logger, on: eventLoop)
     }
 }

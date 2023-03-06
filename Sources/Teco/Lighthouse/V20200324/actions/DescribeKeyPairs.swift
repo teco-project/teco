@@ -143,7 +143,7 @@ extension Lighthouse {
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
     @inlinable
-    public func describeKeyPairsPaginator(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKeyPairsRequest, DescribeKeyPairsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKeyPairsRequest, DescribeKeyPairsResponse>.ResponseSequence) {
+    public func describeKeyPairsPaginator(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKeyPairsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKeyPairs, logger: logger, on: eventLoop)
     }
 }

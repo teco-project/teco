@@ -142,7 +142,7 @@ extension Tione {
 
     /// 模型列表
     @inlinable
-    public func describeTrainingModelsPaginator(_ input: DescribeTrainingModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrainingModelsRequest, DescribeTrainingModelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrainingModelsRequest, DescribeTrainingModelsResponse>.ResponseSequence) {
+    public func describeTrainingModelsPaginator(_ input: DescribeTrainingModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrainingModelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrainingModels, logger: logger, on: eventLoop)
     }
 }

@@ -117,7 +117,7 @@ extension Ccc {
 
     /// 批量查询自动任务外呼
     @inlinable
-    public func describeAutoCalloutTasksPaginator(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoCalloutTasksRequest, DescribeAutoCalloutTasksResponse>.ResponseSequence) {
+    public func describeAutoCalloutTasksPaginator(_ input: DescribeAutoCalloutTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoCalloutTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoCalloutTasks, logger: logger, on: eventLoop)
     }
 }

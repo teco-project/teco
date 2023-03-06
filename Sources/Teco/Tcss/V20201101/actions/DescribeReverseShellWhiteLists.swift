@@ -141,7 +141,7 @@ extension Tcss {
     ///
     /// 查询运行时运行时反弹shell白名单列表信息
     @inlinable
-    public func describeReverseShellWhiteListsPaginator(_ input: DescribeReverseShellWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReverseShellWhiteListsRequest, DescribeReverseShellWhiteListsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReverseShellWhiteListsRequest, DescribeReverseShellWhiteListsResponse>.ResponseSequence) {
+    public func describeReverseShellWhiteListsPaginator(_ input: DescribeReverseShellWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReverseShellWhiteListsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReverseShellWhiteLists, logger: logger, on: eventLoop)
     }
 }

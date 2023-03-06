@@ -187,7 +187,7 @@ extension Live {
     ///
     /// 查询用户套餐包总量、使用量、剩余量、包状态、购买时间和过期时间等。
     @inlinable
-    public func describeLivePackageInfoPaginator(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLivePackageInfoRequest, DescribeLivePackageInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLivePackageInfoRequest, DescribeLivePackageInfoResponse>.ResponseSequence) {
+    public func describeLivePackageInfoPaginator(_ input: DescribeLivePackageInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLivePackageInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLivePackageInfo, logger: logger, on: eventLoop)
     }
 }

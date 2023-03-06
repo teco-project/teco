@@ -135,7 +135,7 @@ extension Ecm {
 
     /// 查询弹性公网IP列表
     @inlinable
-    public func describeAddressesPaginator(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAddressesRequest, DescribeAddressesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAddressesRequest, DescribeAddressesResponse>.ResponseSequence) {
+    public func describeAddressesPaginator(_ input: DescribeAddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAddressesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAddresses, logger: logger, on: eventLoop)
     }
 }

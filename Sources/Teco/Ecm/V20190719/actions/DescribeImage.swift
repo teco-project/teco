@@ -125,7 +125,7 @@ extension Ecm {
 
     /// 展示镜像列表
     @inlinable
-    public func describeImagePaginator(_ input: DescribeImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageRequest, DescribeImageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageRequest, DescribeImageResponse>.ResponseSequence) {
+    public func describeImagePaginator(_ input: DescribeImageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImage, logger: logger, on: eventLoop)
     }
 }

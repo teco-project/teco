@@ -123,7 +123,7 @@ extension Monitor {
 
     /// 列出 Grafana 所有告警通道
     @inlinable
-    public func describeGrafanaChannelsPaginator(_ input: DescribeGrafanaChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGrafanaChannelsRequest, DescribeGrafanaChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGrafanaChannelsRequest, DescribeGrafanaChannelsResponse>.ResponseSequence) {
+    public func describeGrafanaChannelsPaginator(_ input: DescribeGrafanaChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGrafanaChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGrafanaChannels, logger: logger, on: eventLoop)
     }
 }

@@ -134,7 +134,7 @@ extension Pts {
 
     /// 查询告警通知接收组
     @inlinable
-    public func describeAlertChannelsPaginator(_ input: DescribeAlertChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlertChannelsRequest, DescribeAlertChannelsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlertChannelsRequest, DescribeAlertChannelsResponse>.ResponseSequence) {
+    public func describeAlertChannelsPaginator(_ input: DescribeAlertChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertChannels, logger: logger, on: eventLoop)
     }
 }

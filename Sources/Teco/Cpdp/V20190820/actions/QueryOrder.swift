@@ -181,7 +181,7 @@ extension Cpdp {
     ///
     /// 根据订单号，或者用户Id，查询支付订单状态
     @inlinable
-    public func queryOrderPaginator(_ input: QueryOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResultSequence, responses: TCClient.Paginator<QueryOrderRequest, QueryOrderResponse>.ResponseSequence) {
+    public func queryOrderPaginator(_ input: QueryOrderRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryOrderRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryOrder, logger: logger, on: eventLoop)
     }
 }

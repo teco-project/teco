@@ -145,7 +145,7 @@ extension Dayu {
 
     /// 获取DDoS攻击源列表
     @inlinable
-    public func describeDDoSAttackSourcePaginator(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDDoSAttackSourceRequest, DescribeDDoSAttackSourceResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDDoSAttackSourceRequest, DescribeDDoSAttackSourceResponse>.ResponseSequence) {
+    public func describeDDoSAttackSourcePaginator(_ input: DescribeDDoSAttackSourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDDoSAttackSourceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDDoSAttackSource, logger: logger, on: eventLoop)
     }
 }

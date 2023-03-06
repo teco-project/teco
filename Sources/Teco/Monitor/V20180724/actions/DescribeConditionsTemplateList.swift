@@ -143,7 +143,7 @@ extension Monitor {
 
     /// 获取条件模板列表
     @inlinable
-    public func describeConditionsTemplateListPaginator(_ input: DescribeConditionsTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConditionsTemplateListRequest, DescribeConditionsTemplateListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConditionsTemplateListRequest, DescribeConditionsTemplateListResponse>.ResponseSequence) {
+    public func describeConditionsTemplateListPaginator(_ input: DescribeConditionsTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConditionsTemplateListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConditionsTemplateList, logger: logger, on: eventLoop)
     }
 }

@@ -167,7 +167,7 @@ extension Partners {
 
     /// 查询已审核客户列表
     @inlinable
-    public func describeAgentAuditedClientsPaginator(_ input: DescribeAgentAuditedClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentAuditedClientsRequest, DescribeAgentAuditedClientsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentAuditedClientsRequest, DescribeAgentAuditedClientsResponse>.ResponseSequence) {
+    public func describeAgentAuditedClientsPaginator(_ input: DescribeAgentAuditedClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentAuditedClientsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentAuditedClients, logger: logger, on: eventLoop)
     }
 }

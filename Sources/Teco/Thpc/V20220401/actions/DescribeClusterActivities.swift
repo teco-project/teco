@@ -131,7 +131,7 @@ extension Thpc {
     ///
     /// 本接口（DescribeClusterActivities）用于查询集群活动历史记录列表。
     @inlinable
-    public func describeClusterActivitiesPaginator(_ input: DescribeClusterActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterActivitiesRequest, DescribeClusterActivitiesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterActivitiesRequest, DescribeClusterActivitiesResponse>.ResponseSequence) {
+    public func describeClusterActivitiesPaginator(_ input: DescribeClusterActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterActivitiesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterActivities, logger: logger, on: eventLoop)
     }
 }

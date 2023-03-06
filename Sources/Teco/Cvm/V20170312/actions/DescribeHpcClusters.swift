@@ -127,7 +127,7 @@ extension Cvm {
 
     /// 查询高性能集群信息
     @inlinable
-    public func describeHpcClustersPaginator(_ input: DescribeHpcClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeHpcClustersRequest, DescribeHpcClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeHpcClustersRequest, DescribeHpcClustersResponse>.ResponseSequence) {
+    public func describeHpcClustersPaginator(_ input: DescribeHpcClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHpcClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHpcClusters, logger: logger, on: eventLoop)
     }
 }

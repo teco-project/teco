@@ -146,7 +146,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeSnapshotFiles）用于查询快照文件。
     @inlinable
-    public func describeSnapshotFilesPaginator(_ input: DescribeSnapshotFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotFilesRequest, DescribeSnapshotFilesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotFilesRequest, DescribeSnapshotFilesResponse>.ResponseSequence) {
+    public func describeSnapshotFilesPaginator(_ input: DescribeSnapshotFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotFilesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotFiles, logger: logger, on: eventLoop)
     }
 }

@@ -175,7 +175,7 @@ extension Tiw {
     /// 1. 单次查询统计区间最多不能超过31天。
     /// 2. 由于统计延迟等原因，暂时不支持查询当天数据，建议在次日上午7点以后再来查询前一天的用量，例如在10月27日上午7点后，再来查询到10月26日整天的用量
     @inlinable
-    public func describeTIWRoomDailyUsagePaginator(_ input: DescribeTIWRoomDailyUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTIWRoomDailyUsageRequest, DescribeTIWRoomDailyUsageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTIWRoomDailyUsageRequest, DescribeTIWRoomDailyUsageResponse>.ResponseSequence) {
+    public func describeTIWRoomDailyUsagePaginator(_ input: DescribeTIWRoomDailyUsageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTIWRoomDailyUsageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTIWRoomDailyUsage, logger: logger, on: eventLoop)
     }
 }

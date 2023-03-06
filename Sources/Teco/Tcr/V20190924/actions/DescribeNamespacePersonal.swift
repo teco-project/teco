@@ -113,7 +113,7 @@ extension Tcr {
 
     /// 查询个人版命名空间信息
     @inlinable
-    public func describeNamespacePersonalPaginator(_ input: DescribeNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNamespacePersonalRequest, DescribeNamespacePersonalResponse>.ResponseSequence) {
+    public func describeNamespacePersonalPaginator(_ input: DescribeNamespacePersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNamespacePersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespacePersonal, logger: logger, on: eventLoop)
     }
 }

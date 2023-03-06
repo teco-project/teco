@@ -143,7 +143,7 @@ extension Yinsuda {
     ///
     /// 通过标签过滤歌曲列表。
     @inlinable
-    public func describeKTVMusicsByTagPaginator(_ input: DescribeKTVMusicsByTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVMusicsByTagRequest, DescribeKTVMusicsByTagResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVMusicsByTagRequest, DescribeKTVMusicsByTagResponse>.ResponseSequence) {
+    public func describeKTVMusicsByTagPaginator(_ input: DescribeKTVMusicsByTagRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVMusicsByTagRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVMusicsByTag, logger: logger, on: eventLoop)
     }
 }

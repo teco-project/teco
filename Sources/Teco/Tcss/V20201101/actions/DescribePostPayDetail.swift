@@ -118,7 +118,7 @@ extension Tcss {
     ///
     /// DescribePostPayDetail  查询后付费详情
     @inlinable
-    public func describePostPayDetailPaginator(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePostPayDetailRequest, DescribePostPayDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribePostPayDetailRequest, DescribePostPayDetailResponse>.ResponseSequence) {
+    public func describePostPayDetailPaginator(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePostPayDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePostPayDetail, logger: logger, on: eventLoop)
     }
 }

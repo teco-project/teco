@@ -178,7 +178,7 @@ extension Live {
     ///
     /// 查询某时间段top n的域名或流id信息（暂支持top 1000）。
     @inlinable
-    public func describeVisitTopSumInfoListPaginator(_ input: DescribeVisitTopSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVisitTopSumInfoListRequest, DescribeVisitTopSumInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVisitTopSumInfoListRequest, DescribeVisitTopSumInfoListResponse>.ResponseSequence) {
+    public func describeVisitTopSumInfoListPaginator(_ input: DescribeVisitTopSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVisitTopSumInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVisitTopSumInfoList, logger: logger, on: eventLoop)
     }
 }

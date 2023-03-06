@@ -128,7 +128,7 @@ extension Ckafka {
 
     /// 获取消费分组offset
     @inlinable
-    public func describeGroupOffsetsPaginator(_ input: DescribeGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupOffsetsRequest, DescribeGroupOffsetsResponse>.ResponseSequence) {
+    public func describeGroupOffsetsPaginator(_ input: DescribeGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupOffsetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupOffsets, logger: logger, on: eventLoop)
     }
 }

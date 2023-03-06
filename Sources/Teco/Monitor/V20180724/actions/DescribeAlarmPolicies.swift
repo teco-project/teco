@@ -245,7 +245,7 @@ extension Monitor {
     ///
     /// 查询告警策略列表
     @inlinable
-    public func describeAlarmPoliciesPaginator(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmPoliciesRequest, DescribeAlarmPoliciesResponse>.ResponseSequence) {
+    public func describeAlarmPoliciesPaginator(_ input: DescribeAlarmPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmPolicies, logger: logger, on: eventLoop)
     }
 }

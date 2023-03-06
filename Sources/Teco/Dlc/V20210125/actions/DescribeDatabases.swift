@@ -146,7 +146,7 @@ extension Dlc {
     ///
     /// 本接口（DescribeDatabases）用于查询数据库列表。
     @inlinable
-    public func describeDatabasesPaginator(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDatabasesRequest, DescribeDatabasesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDatabasesRequest, DescribeDatabasesResponse>.ResponseSequence) {
+    public func describeDatabasesPaginator(_ input: DescribeDatabasesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDatabasesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatabases, logger: logger, on: eventLoop)
     }
 }

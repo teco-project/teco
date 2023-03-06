@@ -153,7 +153,7 @@ extension Essbasic {
     ///
     /// 查询企业员工列表
     @inlinable
-    public func channelDescribeEmployeesPaginator(_ input: ChannelDescribeEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ChannelDescribeEmployeesRequest, ChannelDescribeEmployeesResponse>.ResultSequence, responses: TCClient.Paginator<ChannelDescribeEmployeesRequest, ChannelDescribeEmployeesResponse>.ResponseSequence) {
+    public func channelDescribeEmployeesPaginator(_ input: ChannelDescribeEmployeesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ChannelDescribeEmployeesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.channelDescribeEmployees, logger: logger, on: eventLoop)
     }
 }

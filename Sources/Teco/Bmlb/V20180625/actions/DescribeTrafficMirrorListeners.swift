@@ -166,7 +166,7 @@ extension Bmlb {
     ///
     /// 获取流量镜像的监听器列表信息。
     @inlinable
-    public func describeTrafficMirrorListenersPaginator(_ input: DescribeTrafficMirrorListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTrafficMirrorListenersRequest, DescribeTrafficMirrorListenersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTrafficMirrorListenersRequest, DescribeTrafficMirrorListenersResponse>.ResponseSequence) {
+    public func describeTrafficMirrorListenersPaginator(_ input: DescribeTrafficMirrorListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrafficMirrorListenersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficMirrorListeners, logger: logger, on: eventLoop)
     }
 }

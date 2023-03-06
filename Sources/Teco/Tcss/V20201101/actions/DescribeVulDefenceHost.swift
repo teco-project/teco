@@ -129,7 +129,7 @@ extension Tcss {
 
     /// 查询漏洞防御的主机列表
     @inlinable
-    public func describeVulDefenceHostPaginator(_ input: DescribeVulDefenceHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulDefenceHostRequest, DescribeVulDefenceHostResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulDefenceHostRequest, DescribeVulDefenceHostResponse>.ResponseSequence) {
+    public func describeVulDefenceHostPaginator(_ input: DescribeVulDefenceHostRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulDefenceHostRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulDefenceHost, logger: logger, on: eventLoop)
     }
 }

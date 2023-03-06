@@ -135,7 +135,7 @@ extension Monitor {
     ///
     /// 拉取模板列表，默认模板将总是在最前面
     @inlinable
-    public func describePrometheusTempPaginator(_ input: DescribePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusTempRequest, DescribePrometheusTempResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusTempRequest, DescribePrometheusTempResponse>.ResponseSequence) {
+    public func describePrometheusTempPaginator(_ input: DescribePrometheusTempRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusTempRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusTemp, logger: logger, on: eventLoop)
     }
 }

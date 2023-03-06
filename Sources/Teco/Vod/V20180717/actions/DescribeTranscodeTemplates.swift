@@ -158,7 +158,7 @@ extension Vod {
     ///
     /// 根据转码模板唯一标识，获取转码模板详情列表。返回结果包含符合条件的所有用户自定义模板及[系统预置转码模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.BD.AC.E7.A0.81.E6.A8.A1.E6.9D.BF)。
     @inlinable
-    public func describeTranscodeTemplatesPaginator(_ input: DescribeTranscodeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTranscodeTemplatesRequest, DescribeTranscodeTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTranscodeTemplatesRequest, DescribeTranscodeTemplatesResponse>.ResponseSequence) {
+    public func describeTranscodeTemplatesPaginator(_ input: DescribeTranscodeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTranscodeTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTranscodeTemplates, logger: logger, on: eventLoop)
     }
 }

@@ -144,7 +144,7 @@ extension Tsf {
 
     /// 查询API 分组信息列表
     @inlinable
-    public func describeApiGroupsPaginator(_ input: DescribeApiGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApiGroupsRequest, DescribeApiGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApiGroupsRequest, DescribeApiGroupsResponse>.ResponseSequence) {
+    public func describeApiGroupsPaginator(_ input: DescribeApiGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiGroups, logger: logger, on: eventLoop)
     }
 }

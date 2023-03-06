@@ -147,7 +147,7 @@ extension Cwp {
     ///
     /// 入侵检测，获取恶意请求列表
     @inlinable
-    public func describeRiskDnsListPaginator(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRiskDnsListRequest, DescribeRiskDnsListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRiskDnsListRequest, DescribeRiskDnsListResponse>.ResponseSequence) {
+    public func describeRiskDnsListPaginator(_ input: DescribeRiskDnsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRiskDnsListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskDnsList, logger: logger, on: eventLoop)
     }
 }

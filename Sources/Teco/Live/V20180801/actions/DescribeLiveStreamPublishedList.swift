@@ -179,7 +179,7 @@ extension Live {
     /// 返回已经推过流的流列表。<br>
     /// 注意：分页最多支持查询1万条记录，可通过调整查询时间范围来获取更多数据。
     @inlinable
-    public func describeLiveStreamPublishedListPaginator(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveStreamPublishedListRequest, DescribeLiveStreamPublishedListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveStreamPublishedListRequest, DescribeLiveStreamPublishedListResponse>.ResponseSequence) {
+    public func describeLiveStreamPublishedListPaginator(_ input: DescribeLiveStreamPublishedListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveStreamPublishedListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamPublishedList, logger: logger, on: eventLoop)
     }
 }

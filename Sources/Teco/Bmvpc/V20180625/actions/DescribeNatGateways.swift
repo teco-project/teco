@@ -161,7 +161,7 @@ extension Bmvpc {
     ///
     /// 获取NAT网关信息，包括NAT网关 ID、网关名称、私有网络、网关并发连接上限、绑定EIP列表等
     @inlinable
-    public func describeNatGatewaysPaginator(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatGatewaysRequest, DescribeNatGatewaysResponse>.ResponseSequence) {
+    public func describeNatGatewaysPaginator(_ input: DescribeNatGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGateways, logger: logger, on: eventLoop)
     }
 }

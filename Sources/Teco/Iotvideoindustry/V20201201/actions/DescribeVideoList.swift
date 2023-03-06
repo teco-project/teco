@@ -205,7 +205,7 @@ extension Iotvideoindustry {
     ///
     /// 根据时间获取云端录制文件列表
     @inlinable
-    public func describeVideoListPaginator(_ input: DescribeVideoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVideoListRequest, DescribeVideoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVideoListRequest, DescribeVideoListResponse>.ResponseSequence) {
+    public func describeVideoListPaginator(_ input: DescribeVideoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVideoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVideoList, logger: logger, on: eventLoop)
     }
 }

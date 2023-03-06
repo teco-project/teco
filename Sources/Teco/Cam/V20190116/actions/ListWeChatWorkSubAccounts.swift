@@ -112,7 +112,7 @@ extension Cam {
 
     /// 获取企业微信子用户列表
     @inlinable
-    public func listWeChatWorkSubAccountsPaginator(_ input: ListWeChatWorkSubAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResultSequence, responses: TCClient.Paginator<ListWeChatWorkSubAccountsRequest, ListWeChatWorkSubAccountsResponse>.ResponseSequence) {
+    public func listWeChatWorkSubAccountsPaginator(_ input: ListWeChatWorkSubAccountsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListWeChatWorkSubAccountsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listWeChatWorkSubAccounts, logger: logger, on: eventLoop)
     }
 }

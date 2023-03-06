@@ -166,7 +166,7 @@ extension Cynosdb {
     ///
     /// 此接口（DescribeInstanceSlowQueries）用于查询实例慢查询日志。
     @inlinable
-    public func describeInstanceSlowQueriesPaginator(_ input: DescribeInstanceSlowQueriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceSlowQueriesRequest, DescribeInstanceSlowQueriesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceSlowQueriesRequest, DescribeInstanceSlowQueriesResponse>.ResponseSequence) {
+    public func describeInstanceSlowQueriesPaginator(_ input: DescribeInstanceSlowQueriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceSlowQueriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceSlowQueries, logger: logger, on: eventLoop)
     }
 }

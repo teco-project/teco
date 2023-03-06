@@ -122,7 +122,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的AI防护开关列表
     @inlinable
-    public func describeListDDoSAIPaginator(_ input: DescribeListDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListDDoSAIRequest, DescribeListDDoSAIResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListDDoSAIRequest, DescribeListDDoSAIResponse>.ResponseSequence) {
+    public func describeListDDoSAIPaginator(_ input: DescribeListDDoSAIRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListDDoSAIRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListDDoSAI, logger: logger, on: eventLoop)
     }
 }

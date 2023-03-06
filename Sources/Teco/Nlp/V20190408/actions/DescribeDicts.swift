@@ -127,7 +127,7 @@ extension Nlp {
     ///
     /// 返回属于当前用户的所有自定义词库列表。
     @inlinable
-    public func describeDictsPaginator(_ input: DescribeDictsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDictsRequest, DescribeDictsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDictsRequest, DescribeDictsResponse>.ResponseSequence) {
+    public func describeDictsPaginator(_ input: DescribeDictsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDictsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDicts, logger: logger, on: eventLoop)
     }
 }

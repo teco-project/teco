@@ -129,7 +129,7 @@ extension Tsf {
 
     /// 查询公共配置项列表
     @inlinable
-    public func describePublicConfigsPaginator(_ input: DescribePublicConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublicConfigsRequest, DescribePublicConfigsResponse>.ResponseSequence) {
+    public func describePublicConfigsPaginator(_ input: DescribePublicConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublicConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublicConfigs, logger: logger, on: eventLoop)
     }
 }

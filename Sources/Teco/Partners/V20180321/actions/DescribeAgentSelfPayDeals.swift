@@ -164,7 +164,7 @@ extension Partners {
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
     @inlinable
-    public func describeAgentSelfPayDealsPaginator(_ input: DescribeAgentSelfPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentSelfPayDealsRequest, DescribeAgentSelfPayDealsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentSelfPayDealsRequest, DescribeAgentSelfPayDealsResponse>.ResponseSequence) {
+    public func describeAgentSelfPayDealsPaginator(_ input: DescribeAgentSelfPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentSelfPayDealsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentSelfPayDeals, logger: logger, on: eventLoop)
     }
 }

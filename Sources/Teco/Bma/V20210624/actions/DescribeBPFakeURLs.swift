@@ -121,7 +121,7 @@ extension Bma {
 
     /// 查询仿冒链接
     @inlinable
-    public func describeBPFakeURLsPaginator(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBPFakeURLsRequest, DescribeBPFakeURLsResponse>.ResponseSequence) {
+    public func describeBPFakeURLsPaginator(_ input: DescribeBPFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPFakeURLsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPFakeURLs, logger: logger, on: eventLoop)
     }
 }

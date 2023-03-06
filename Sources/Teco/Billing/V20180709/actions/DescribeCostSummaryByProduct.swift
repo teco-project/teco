@@ -137,7 +137,7 @@ extension Billing {
 
     /// 获取按产品汇总消耗详情
     @inlinable
-    public func describeCostSummaryByProductPaginator(_ input: DescribeCostSummaryByProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCostSummaryByProductRequest, DescribeCostSummaryByProductResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCostSummaryByProductRequest, DescribeCostSummaryByProductResponse>.ResponseSequence) {
+    public func describeCostSummaryByProductPaginator(_ input: DescribeCostSummaryByProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCostSummaryByProductRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCostSummaryByProduct, logger: logger, on: eventLoop)
     }
 }

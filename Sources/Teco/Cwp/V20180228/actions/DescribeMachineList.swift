@@ -150,7 +150,7 @@ extension Cwp {
     ///
     /// 用于网页防篡改获取区域主机列表。
     @inlinable
-    public func describeMachineListPaginator(_ input: DescribeMachineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMachineListRequest, DescribeMachineListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMachineListRequest, DescribeMachineListResponse>.ResponseSequence) {
+    public func describeMachineListPaginator(_ input: DescribeMachineListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMachineListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMachineList, logger: logger, on: eventLoop)
     }
 }

@@ -134,7 +134,7 @@ extension Eiam {
 
     /// 获取用户组中的用户列表
     @inlinable
-    public func listUsersInUserGroupPaginator(_ input: ListUsersInUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListUsersInUserGroupRequest, ListUsersInUserGroupResponse>.ResultSequence, responses: TCClient.Paginator<ListUsersInUserGroupRequest, ListUsersInUserGroupResponse>.ResponseSequence) {
+    public func listUsersInUserGroupPaginator(_ input: ListUsersInUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListUsersInUserGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listUsersInUserGroup, logger: logger, on: eventLoop)
     }
 }

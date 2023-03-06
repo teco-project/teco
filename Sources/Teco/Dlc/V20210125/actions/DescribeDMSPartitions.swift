@@ -162,7 +162,7 @@ extension Dlc {
 
     /// DMS元数据获取分区
     @inlinable
-    public func describeDMSPartitionsPaginator(_ input: DescribeDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDMSPartitionsRequest, DescribeDMSPartitionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDMSPartitionsRequest, DescribeDMSPartitionsResponse>.ResponseSequence) {
+    public func describeDMSPartitionsPaginator(_ input: DescribeDMSPartitionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDMSPartitionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDMSPartitions, logger: logger, on: eventLoop)
     }
 }

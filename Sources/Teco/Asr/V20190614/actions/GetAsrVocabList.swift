@@ -131,7 +131,7 @@ extension Asr {
     ///
     /// 用户通过该接口，可获得所有的热词表及其信息。
     @inlinable
-    public func getAsrVocabListPaginator(_ input: GetAsrVocabListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetAsrVocabListRequest, GetAsrVocabListResponse>.ResultSequence, responses: TCClient.Paginator<GetAsrVocabListRequest, GetAsrVocabListResponse>.ResponseSequence) {
+    public func getAsrVocabListPaginator(_ input: GetAsrVocabListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetAsrVocabListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getAsrVocabList, logger: logger, on: eventLoop)
     }
 }

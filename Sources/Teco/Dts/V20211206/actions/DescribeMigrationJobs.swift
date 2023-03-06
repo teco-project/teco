@@ -184,7 +184,7 @@ extension Dts {
 
     /// 查询数据迁移任务列表
     @inlinable
-    public func describeMigrationJobsPaginator(_ input: DescribeMigrationJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMigrationJobsRequest, DescribeMigrationJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMigrationJobsRequest, DescribeMigrationJobsResponse>.ResponseSequence) {
+    public func describeMigrationJobsPaginator(_ input: DescribeMigrationJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMigrationJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrationJobs, logger: logger, on: eventLoop)
     }
 }

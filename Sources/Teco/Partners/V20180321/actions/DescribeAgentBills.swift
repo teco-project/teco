@@ -151,7 +151,7 @@ extension Partners {
     ///
     /// 代理商可查询自己及名下代客所有业务明细
     @inlinable
-    public func describeAgentBillsPaginator(_ input: DescribeAgentBillsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentBillsRequest, DescribeAgentBillsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentBillsRequest, DescribeAgentBillsResponse>.ResponseSequence) {
+    public func describeAgentBillsPaginator(_ input: DescribeAgentBillsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentBillsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentBills, logger: logger, on: eventLoop)
     }
 }

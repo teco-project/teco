@@ -138,7 +138,7 @@ extension Iecp {
 
     /// 查询指定NodeGroup下NodeUnit模板列表
     @inlinable
-    public func describeNodeUnitTemplateOnNodeGroupPaginator(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNodeUnitTemplateOnNodeGroupRequest, DescribeNodeUnitTemplateOnNodeGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNodeUnitTemplateOnNodeGroupRequest, DescribeNodeUnitTemplateOnNodeGroupResponse>.ResponseSequence) {
+    public func describeNodeUnitTemplateOnNodeGroupPaginator(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNodeUnitTemplateOnNodeGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNodeUnitTemplateOnNodeGroup, logger: logger, on: eventLoop)
     }
 }

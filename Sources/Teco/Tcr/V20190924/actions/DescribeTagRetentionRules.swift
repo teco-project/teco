@@ -122,7 +122,7 @@ extension Tcr {
 
     /// 查询版本保留规则
     @inlinable
-    public func describeTagRetentionRulesPaginator(_ input: DescribeTagRetentionRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagRetentionRulesRequest, DescribeTagRetentionRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagRetentionRulesRequest, DescribeTagRetentionRulesResponse>.ResponseSequence) {
+    public func describeTagRetentionRulesPaginator(_ input: DescribeTagRetentionRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagRetentionRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagRetentionRules, logger: logger, on: eventLoop)
     }
 }

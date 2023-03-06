@@ -159,7 +159,7 @@ extension Postgres {
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
     @inlinable
-    public func describeDBErrlogsPaginator(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBErrlogsRequest, DescribeDBErrlogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBErrlogsRequest, DescribeDBErrlogsResponse>.ResponseSequence) {
+    public func describeDBErrlogsPaginator(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBErrlogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBErrlogs, logger: logger, on: eventLoop)
     }
 }

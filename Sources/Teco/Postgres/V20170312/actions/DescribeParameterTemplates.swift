@@ -141,7 +141,7 @@ extension Postgres {
     ///
     /// 本接口 (DescribeParameterTemplates) 用于查询参数模板列表。
     @inlinable
-    public func describeParameterTemplatesPaginator(_ input: DescribeParameterTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeParameterTemplatesRequest, DescribeParameterTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeParameterTemplatesRequest, DescribeParameterTemplatesResponse>.ResponseSequence) {
+    public func describeParameterTemplatesPaginator(_ input: DescribeParameterTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeParameterTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeParameterTemplates, logger: logger, on: eventLoop)
     }
 }

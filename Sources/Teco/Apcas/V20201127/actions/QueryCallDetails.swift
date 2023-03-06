@@ -123,7 +123,7 @@ extension Apcas {
 
     /// 查询调用明细
     @inlinable
-    public func queryCallDetailsPaginator(_ input: QueryCallDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryCallDetailsRequest, QueryCallDetailsResponse>.ResultSequence, responses: TCClient.Paginator<QueryCallDetailsRequest, QueryCallDetailsResponse>.ResponseSequence) {
+    public func queryCallDetailsPaginator(_ input: QueryCallDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryCallDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryCallDetails, logger: logger, on: eventLoop)
     }
 }

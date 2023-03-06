@@ -142,7 +142,7 @@ extension Cloudaudit {
 
     /// 查询云审计日志
     @inlinable
-    public func describeEventsPaginator(_ input: DescribeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEventsRequest, DescribeEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEventsRequest, DescribeEventsResponse>.ResponseSequence) {
+    public func describeEventsPaginator(_ input: DescribeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEvents, logger: logger, on: eventLoop)
     }
 }

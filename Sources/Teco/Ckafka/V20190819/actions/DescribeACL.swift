@@ -128,7 +128,7 @@ extension Ckafka {
 
     /// 枚举ACL
     @inlinable
-    public func describeACLPaginator(_ input: DescribeACLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeACLRequest, DescribeACLResponse>.ResultSequence, responses: TCClient.Paginator<DescribeACLRequest, DescribeACLResponse>.ResponseSequence) {
+    public func describeACLPaginator(_ input: DescribeACLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeACLRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeACL, logger: logger, on: eventLoop)
     }
 }

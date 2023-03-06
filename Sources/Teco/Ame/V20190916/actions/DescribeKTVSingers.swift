@@ -152,7 +152,7 @@ extension Ame {
     ///
     /// 根据过滤条件，返回匹配的歌手列表。
     @inlinable
-    public func describeKTVSingersPaginator(_ input: DescribeKTVSingersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVSingersRequest, DescribeKTVSingersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVSingersRequest, DescribeKTVSingersResponse>.ResponseSequence) {
+    public func describeKTVSingersPaginator(_ input: DescribeKTVSingersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVSingersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVSingers, logger: logger, on: eventLoop)
     }
 }

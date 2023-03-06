@@ -153,7 +153,7 @@ extension Apm {
     ///
     /// 服务概览数据拉取
     @inlinable
-    public func describeServiceOverviewPaginator(_ input: DescribeServiceOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeServiceOverviewRequest, DescribeServiceOverviewResponse>.ResultSequence, responses: TCClient.Paginator<DescribeServiceOverviewRequest, DescribeServiceOverviewResponse>.ResponseSequence) {
+    public func describeServiceOverviewPaginator(_ input: DescribeServiceOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceOverviewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceOverview, logger: logger, on: eventLoop)
     }
 }

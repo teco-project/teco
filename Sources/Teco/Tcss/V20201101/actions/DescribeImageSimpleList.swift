@@ -141,7 +141,7 @@ extension Tcss {
     ///
     /// DescribeImageSimpleList 查询全部镜像列表
     @inlinable
-    public func describeImageSimpleListPaginator(_ input: DescribeImageSimpleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageSimpleListRequest, DescribeImageSimpleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageSimpleListRequest, DescribeImageSimpleListResponse>.ResponseSequence) {
+    public func describeImageSimpleListPaginator(_ input: DescribeImageSimpleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageSimpleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageSimpleList, logger: logger, on: eventLoop)
     }
 }

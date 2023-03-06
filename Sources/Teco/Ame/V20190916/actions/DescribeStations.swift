@@ -139,7 +139,7 @@ extension Ame {
     ///
     /// 该服务后续会停用，不再建议使用
     @inlinable
-    public func describeStationsPaginator(_ input: DescribeStationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStationsRequest, DescribeStationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStationsRequest, DescribeStationsResponse>.ResponseSequence) {
+    public func describeStationsPaginator(_ input: DescribeStationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStations, logger: logger, on: eventLoop)
     }
 }

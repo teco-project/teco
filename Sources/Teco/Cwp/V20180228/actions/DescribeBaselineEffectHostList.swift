@@ -150,7 +150,7 @@ extension Cwp {
     ///
     /// 根据基线id查询基线影响主机列表
     @inlinable
-    public func describeBaselineEffectHostListPaginator(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineEffectHostListRequest, DescribeBaselineEffectHostListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineEffectHostListRequest, DescribeBaselineEffectHostListResponse>.ResponseSequence) {
+    public func describeBaselineEffectHostListPaginator(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineEffectHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineEffectHostList, logger: logger, on: eventLoop)
     }
 }

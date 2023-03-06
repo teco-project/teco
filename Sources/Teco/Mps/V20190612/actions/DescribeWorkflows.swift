@@ -139,7 +139,7 @@ extension Mps {
     ///
     /// 根据工作流 ID，获取工作流详情列表。
     @inlinable
-    public func describeWorkflowsPaginator(_ input: DescribeWorkflowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWorkflowsRequest, DescribeWorkflowsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWorkflowsRequest, DescribeWorkflowsResponse>.ResponseSequence) {
+    public func describeWorkflowsPaginator(_ input: DescribeWorkflowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkflowsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkflows, logger: logger, on: eventLoop)
     }
 }

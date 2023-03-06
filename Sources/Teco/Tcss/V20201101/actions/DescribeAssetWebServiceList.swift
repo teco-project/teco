@@ -137,7 +137,7 @@ extension Tcss {
     ///
     /// 容器安全查询web服务列表
     @inlinable
-    public func describeAssetWebServiceListPaginator(_ input: DescribeAssetWebServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetWebServiceListRequest, DescribeAssetWebServiceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetWebServiceListRequest, DescribeAssetWebServiceListResponse>.ResponseSequence) {
+    public func describeAssetWebServiceListPaginator(_ input: DescribeAssetWebServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebServiceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebServiceList, logger: logger, on: eventLoop)
     }
 }

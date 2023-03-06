@@ -122,7 +122,7 @@ extension Tdid {
 
     /// 标签列表
     @inlinable
-    public func getLabelListPaginator(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetLabelListRequest, GetLabelListResponse>.ResultSequence, responses: TCClient.Paginator<GetLabelListRequest, GetLabelListResponse>.ResponseSequence) {
+    public func getLabelListPaginator(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetLabelListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLabelList, logger: logger, on: eventLoop)
     }
 }

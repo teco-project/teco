@@ -136,7 +136,7 @@ extension Cme {
     ///
     /// 获取用户所加入的团队列表
     @inlinable
-    public func describeJoinTeamsPaginator(_ input: DescribeJoinTeamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeJoinTeamsRequest, DescribeJoinTeamsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeJoinTeamsRequest, DescribeJoinTeamsResponse>.ResponseSequence) {
+    public func describeJoinTeamsPaginator(_ input: DescribeJoinTeamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeJoinTeamsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJoinTeams, logger: logger, on: eventLoop)
     }
 }

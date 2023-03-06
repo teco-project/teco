@@ -133,7 +133,7 @@ extension Cwp {
     ///
     /// 查询已经忽略的检测项信息
     @inlinable
-    public func describeIgnoreBaselineRulePaginator(_ input: DescribeIgnoreBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIgnoreBaselineRuleRequest, DescribeIgnoreBaselineRuleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIgnoreBaselineRuleRequest, DescribeIgnoreBaselineRuleResponse>.ResponseSequence) {
+    public func describeIgnoreBaselineRulePaginator(_ input: DescribeIgnoreBaselineRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIgnoreBaselineRuleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIgnoreBaselineRule, logger: logger, on: eventLoop)
     }
 }

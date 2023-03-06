@@ -136,7 +136,7 @@ extension Antiddos {
     ///
     /// 获取边界防护CC防护等级列表
     @inlinable
-    public func describeCCLevelListPaginator(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCLevelListRequest, DescribeCCLevelListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCLevelListRequest, DescribeCCLevelListResponse>.ResponseSequence) {
+    public func describeCCLevelListPaginator(_ input: DescribeCCLevelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCLevelListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCLevelList, logger: logger, on: eventLoop)
     }
 }

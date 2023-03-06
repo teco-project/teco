@@ -138,7 +138,7 @@ extension Tcss {
     ///
     /// 按照 检测项 → 资产 的两级层次展开的第二层级：资产层级。
     @inlinable
-    public func describeCompliancePolicyItemAffectedAssetListPaginator(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCompliancePolicyItemAffectedAssetListRequest, DescribeCompliancePolicyItemAffectedAssetListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCompliancePolicyItemAffectedAssetListRequest, DescribeCompliancePolicyItemAffectedAssetListResponse>.ResponseSequence) {
+    public func describeCompliancePolicyItemAffectedAssetListPaginator(_ input: DescribeCompliancePolicyItemAffectedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCompliancePolicyItemAffectedAssetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCompliancePolicyItemAffectedAssetList, logger: logger, on: eventLoop)
     }
 }

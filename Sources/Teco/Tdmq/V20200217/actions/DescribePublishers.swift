@@ -152,7 +152,7 @@ extension Tdmq {
     ///
     /// 获取生产者信息列表
     @inlinable
-    public func describePublishersPaginator(_ input: DescribePublishersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublishersRequest, DescribePublishersResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublishersRequest, DescribePublishersResponse>.ResponseSequence) {
+    public func describePublishersPaginator(_ input: DescribePublishersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublishersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublishers, logger: logger, on: eventLoop)
     }
 }

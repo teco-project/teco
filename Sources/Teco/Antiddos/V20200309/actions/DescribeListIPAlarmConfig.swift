@@ -135,7 +135,7 @@ extension Antiddos {
 
     /// 获取单IP告警阈值配置列表
     @inlinable
-    public func describeListIPAlarmConfigPaginator(_ input: DescribeListIPAlarmConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListIPAlarmConfigRequest, DescribeListIPAlarmConfigResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListIPAlarmConfigRequest, DescribeListIPAlarmConfigResponse>.ResponseSequence) {
+    public func describeListIPAlarmConfigPaginator(_ input: DescribeListIPAlarmConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListIPAlarmConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListIPAlarmConfig, logger: logger, on: eventLoop)
     }
 }

@@ -127,7 +127,7 @@ extension Billing {
 
     /// 获取代金券使用记录
     @inlinable
-    public func describeVoucherUsageDetailsPaginator(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVoucherUsageDetailsRequest, DescribeVoucherUsageDetailsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVoucherUsageDetailsRequest, DescribeVoucherUsageDetailsResponse>.ResponseSequence) {
+    public func describeVoucherUsageDetailsPaginator(_ input: DescribeVoucherUsageDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVoucherUsageDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVoucherUsageDetails, logger: logger, on: eventLoop)
     }
 }

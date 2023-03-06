@@ -124,7 +124,7 @@ extension Tsf {
 
     /// 查询泳道规则列表
     @inlinable
-    public func describeLaneRulesPaginator(_ input: DescribeLaneRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLaneRulesRequest, DescribeLaneRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLaneRulesRequest, DescribeLaneRulesResponse>.ResponseSequence) {
+    public func describeLaneRulesPaginator(_ input: DescribeLaneRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLaneRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLaneRules, logger: logger, on: eventLoop)
     }
 }

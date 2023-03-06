@@ -144,7 +144,7 @@ extension Dlc {
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
     @inlinable
-    public func describeScriptsPaginator(_ input: DescribeScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScriptsRequest, DescribeScriptsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScriptsRequest, DescribeScriptsResponse>.ResponseSequence) {
+    public func describeScriptsPaginator(_ input: DescribeScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScriptsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScripts, logger: logger, on: eventLoop)
     }
 }

@@ -141,7 +141,7 @@ extension Ses {
     ///
     /// 分页查询批量发送邮件任务，包含即时发送任务，定时发送任务，周期重复发送任务，查询发送情况，包括请求数量，已发数量，缓存数量，任务状态等信息
     @inlinable
-    public func listSendTasksPaginator(_ input: ListSendTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListSendTasksRequest, ListSendTasksResponse>.ResultSequence, responses: TCClient.Paginator<ListSendTasksRequest, ListSendTasksResponse>.ResponseSequence) {
+    public func listSendTasksPaginator(_ input: ListSendTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListSendTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listSendTasks, logger: logger, on: eventLoop)
     }
 }

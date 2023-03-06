@@ -159,7 +159,7 @@ extension As {
     ///
     /// 本接口（DescribeAutoScalingActivities）用于查询伸缩组的伸缩活动记录。
     @inlinable
-    public func describeAutoScalingActivitiesPaginator(_ input: DescribeAutoScalingActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAutoScalingActivitiesRequest, DescribeAutoScalingActivitiesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAutoScalingActivitiesRequest, DescribeAutoScalingActivitiesResponse>.ResponseSequence) {
+    public func describeAutoScalingActivitiesPaginator(_ input: DescribeAutoScalingActivitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoScalingActivitiesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoScalingActivities, logger: logger, on: eventLoop)
     }
 }

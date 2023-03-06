@@ -178,7 +178,7 @@ extension Apm {
     ///
     /// 拉取通用指标列表
     @inlinable
-    public func describeMetricRecordsPaginator(_ input: DescribeMetricRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMetricRecordsRequest, DescribeMetricRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMetricRecordsRequest, DescribeMetricRecordsResponse>.ResponseSequence) {
+    public func describeMetricRecordsPaginator(_ input: DescribeMetricRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMetricRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMetricRecords, logger: logger, on: eventLoop)
     }
 }

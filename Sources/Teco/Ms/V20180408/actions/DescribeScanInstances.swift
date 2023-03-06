@@ -153,7 +153,7 @@ extension Ms {
     /// 本接口用于查看app列表。
     /// 可以通过指定任务唯一标识ItemId来查询指定app的详细信息，或通过设定过滤器来查询满足过滤条件的app的详细信息。 指定偏移(Offset)和限制(Limit)来选择结果中的一部分，默认返回满足条件的前20个app信息。
     @inlinable
-    public func describeScanInstancesPaginator(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeScanInstancesRequest, DescribeScanInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeScanInstancesRequest, DescribeScanInstancesResponse>.ResponseSequence) {
+    public func describeScanInstancesPaginator(_ input: DescribeScanInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanInstances, logger: logger, on: eventLoop)
     }
 }

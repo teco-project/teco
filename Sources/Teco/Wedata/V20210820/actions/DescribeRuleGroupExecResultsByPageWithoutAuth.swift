@@ -124,7 +124,7 @@ extension Wedata {
 
     /// 规则组执行结果分页查询接口不带鉴权
     @inlinable
-    public func describeRuleGroupExecResultsByPageWithoutAuthPaginator(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRuleGroupExecResultsByPageWithoutAuthRequest, DescribeRuleGroupExecResultsByPageWithoutAuthResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRuleGroupExecResultsByPageWithoutAuthRequest, DescribeRuleGroupExecResultsByPageWithoutAuthResponse>.ResponseSequence) {
+    public func describeRuleGroupExecResultsByPageWithoutAuthPaginator(_ input: DescribeRuleGroupExecResultsByPageWithoutAuthRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleGroupExecResultsByPageWithoutAuthRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleGroupExecResultsByPageWithoutAuth, logger: logger, on: eventLoop)
     }
 }

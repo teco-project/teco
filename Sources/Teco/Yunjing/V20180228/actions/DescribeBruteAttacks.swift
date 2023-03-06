@@ -138,7 +138,7 @@ extension Yunjing {
     ///
     /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
     @inlinable
-    public func describeBruteAttacksPaginator(_ input: DescribeBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBruteAttacksRequest, DescribeBruteAttacksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBruteAttacksRequest, DescribeBruteAttacksResponse>.ResponseSequence) {
+    public func describeBruteAttacksPaginator(_ input: DescribeBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBruteAttacksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBruteAttacks, logger: logger, on: eventLoop)
     }
 }

@@ -128,7 +128,7 @@ extension Tcss {
 
     /// 查询集群策略列表
     @inlinable
-    public func describeNetworkFirewallClusterListPaginator(_ input: DescribeNetworkFirewallClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNetworkFirewallClusterListRequest, DescribeNetworkFirewallClusterListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNetworkFirewallClusterListRequest, DescribeNetworkFirewallClusterListResponse>.ResponseSequence) {
+    public func describeNetworkFirewallClusterListPaginator(_ input: DescribeNetworkFirewallClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkFirewallClusterListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkFirewallClusterList, logger: logger, on: eventLoop)
     }
 }

@@ -133,7 +133,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeApiAppBindApisStatus）查询应用绑定的Api列表。
     @inlinable
-    public func describeApiAppBindApisStatusPaginator(_ input: DescribeApiAppBindApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApiAppBindApisStatusRequest, DescribeApiAppBindApisStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApiAppBindApisStatusRequest, DescribeApiAppBindApisStatusResponse>.ResponseSequence) {
+    public func describeApiAppBindApisStatusPaginator(_ input: DescribeApiAppBindApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiAppBindApisStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiAppBindApisStatus, logger: logger, on: eventLoop)
     }
 }

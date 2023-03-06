@@ -162,7 +162,7 @@ extension Redis {
 
     /// 查询任务列表信息
     @inlinable
-    public func describeTaskListPaginator(_ input: DescribeTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTaskListRequest, DescribeTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTaskListRequest, DescribeTaskListResponse>.ResponseSequence) {
+    public func describeTaskListPaginator(_ input: DescribeTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskList, logger: logger, on: eventLoop)
     }
 }

@@ -127,7 +127,7 @@ extension Tcaplusdb {
 
     /// 查询表描述文件详情
     @inlinable
-    public func describeIdlFileInfosPaginator(_ input: DescribeIdlFileInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIdlFileInfosRequest, DescribeIdlFileInfosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIdlFileInfosRequest, DescribeIdlFileInfosResponse>.ResponseSequence) {
+    public func describeIdlFileInfosPaginator(_ input: DescribeIdlFileInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIdlFileInfosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIdlFileInfos, logger: logger, on: eventLoop)
     }
 }

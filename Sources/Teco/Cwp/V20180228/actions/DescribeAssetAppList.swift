@@ -147,7 +147,7 @@ extension Cwp {
 
     /// 查询应用列表
     @inlinable
-    public func describeAssetAppListPaginator(_ input: DescribeAssetAppListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetAppListRequest, DescribeAssetAppListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetAppListRequest, DescribeAssetAppListResponse>.ResponseSequence) {
+    public func describeAssetAppListPaginator(_ input: DescribeAssetAppListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetAppListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetAppList, logger: logger, on: eventLoop)
     }
 }

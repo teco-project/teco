@@ -169,7 +169,7 @@ extension Partners {
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
     @inlinable
-    public func describeAgentDealsCachePaginator(_ input: DescribeAgentDealsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAgentDealsCacheRequest, DescribeAgentDealsCacheResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAgentDealsCacheRequest, DescribeAgentDealsCacheResponse>.ResponseSequence) {
+    public func describeAgentDealsCachePaginator(_ input: DescribeAgentDealsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentDealsCacheRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentDealsCache, logger: logger, on: eventLoop)
     }
 }

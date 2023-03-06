@@ -132,7 +132,7 @@ extension Iotexplorer {
     ///
     /// 列出量产数据列表信息。
     @inlinable
-    public func getBatchProductionsListPaginator(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetBatchProductionsListRequest, GetBatchProductionsListResponse>.ResultSequence, responses: TCClient.Paginator<GetBatchProductionsListRequest, GetBatchProductionsListResponse>.ResponseSequence) {
+    public func getBatchProductionsListPaginator(_ input: GetBatchProductionsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBatchProductionsListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBatchProductionsList, logger: logger, on: eventLoop)
     }
 }

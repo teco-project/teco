@@ -138,7 +138,7 @@ extension Tcss {
 
     /// 查询应急漏洞列表
     @inlinable
-    public func describeEmergencyVulListPaginator(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEmergencyVulListRequest, DescribeEmergencyVulListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEmergencyVulListRequest, DescribeEmergencyVulListResponse>.ResponseSequence) {
+    public func describeEmergencyVulListPaginator(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEmergencyVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEmergencyVulList, logger: logger, on: eventLoop)
     }
 }

@@ -128,7 +128,7 @@ extension Cwp {
 
     /// 获取软件关联进程列表
     @inlinable
-    public func describeAssetAppProcessListPaginator(_ input: DescribeAssetAppProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetAppProcessListRequest, DescribeAssetAppProcessListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetAppProcessListRequest, DescribeAssetAppProcessListResponse>.ResponseSequence) {
+    public func describeAssetAppProcessListPaginator(_ input: DescribeAssetAppProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetAppProcessListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetAppProcessList, logger: logger, on: eventLoop)
     }
 }

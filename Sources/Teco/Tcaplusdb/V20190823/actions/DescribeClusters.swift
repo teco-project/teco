@@ -141,7 +141,7 @@ extension Tcaplusdb {
     ///
     /// 查询TcaplusDB集群列表，包含集群详细信息。
     @inlinable
-    public func describeClustersPaginator(_ input: DescribeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClustersRequest, DescribeClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClustersRequest, DescribeClustersResponse>.ResponseSequence) {
+    public func describeClustersPaginator(_ input: DescribeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusters, logger: logger, on: eventLoop)
     }
 }

@@ -127,7 +127,7 @@ extension Ssa {
 
     /// 合规管理-资产列表
     @inlinable
-    public func describeComplianceAssetListPaginator(_ input: DescribeComplianceAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceAssetListRequest, DescribeComplianceAssetListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceAssetListRequest, DescribeComplianceAssetListResponse>.ResponseSequence) {
+    public func describeComplianceAssetListPaginator(_ input: DescribeComplianceAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceAssetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceAssetList, logger: logger, on: eventLoop)
     }
 }

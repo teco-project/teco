@@ -141,7 +141,7 @@ extension Tat {
     ///
     /// 此接口用于查询执行任务详情。
     @inlinable
-    public func describeInvocationTasksPaginator(_ input: DescribeInvocationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInvocationTasksRequest, DescribeInvocationTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInvocationTasksRequest, DescribeInvocationTasksResponse>.ResponseSequence) {
+    public func describeInvocationTasksPaginator(_ input: DescribeInvocationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInvocationTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInvocationTasks, logger: logger, on: eventLoop)
     }
 }

@@ -133,7 +133,7 @@ extension Tsf {
 
     /// 镜像版本列表
     @inlinable
-    public func describeImageTagsPaginator(_ input: DescribeImageTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageTagsRequest, DescribeImageTagsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageTagsRequest, DescribeImageTagsResponse>.ResponseSequence) {
+    public func describeImageTagsPaginator(_ input: DescribeImageTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageTagsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageTags, logger: logger, on: eventLoop)
     }
 }

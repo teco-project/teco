@@ -109,7 +109,7 @@ extension Wav {
 
     /// 查询小程序码列表接口
     @inlinable
-    public func queryMiniAppCodeListPaginator(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryMiniAppCodeListRequest, QueryMiniAppCodeListResponse>.ResultSequence, responses: TCClient.Paginator<QueryMiniAppCodeListRequest, QueryMiniAppCodeListResponse>.ResponseSequence) {
+    public func queryMiniAppCodeListPaginator(_ input: QueryMiniAppCodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryMiniAppCodeListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMiniAppCodeList, logger: logger, on: eventLoop)
     }
 }

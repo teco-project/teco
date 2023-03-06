@@ -154,7 +154,7 @@ extension Tsf {
 
     /// 获取虚拟机部署组列表
     @inlinable
-    public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupsRequest, DescribeGroupsResponse>.ResponseSequence) {
+    public func describeGroupsPaginator(_ input: DescribeGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroups, logger: logger, on: eventLoop)
     }
 }

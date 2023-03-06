@@ -122,7 +122,7 @@ extension Tdid {
 
     /// DID列表
     @inlinable
-    public func getDidListPaginator(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetDidListRequest, GetDidListResponse>.ResultSequence, responses: TCClient.Paginator<GetDidListRequest, GetDidListResponse>.ResponseSequence) {
+    public func getDidListPaginator(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDidListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDidList, logger: logger, on: eventLoop)
     }
 }

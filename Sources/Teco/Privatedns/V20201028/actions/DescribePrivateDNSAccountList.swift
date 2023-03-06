@@ -117,7 +117,7 @@ extension Privatedns {
 
     /// 获取私有域解析账号列表
     @inlinable
-    public func describePrivateDNSAccountListPaginator(_ input: DescribePrivateDNSAccountListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrivateDNSAccountListRequest, DescribePrivateDNSAccountListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrivateDNSAccountListRequest, DescribePrivateDNSAccountListResponse>.ResponseSequence) {
+    public func describePrivateDNSAccountListPaginator(_ input: DescribePrivateDNSAccountListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivateDNSAccountListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateDNSAccountList, logger: logger, on: eventLoop)
     }
 }

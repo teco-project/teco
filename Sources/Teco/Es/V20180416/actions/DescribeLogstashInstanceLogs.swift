@@ -161,7 +161,7 @@ extension Es {
     ///
     /// 查询用户该地域下符合条件的Logstash实例的日志
     @inlinable
-    public func describeLogstashInstanceLogsPaginator(_ input: DescribeLogstashInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLogstashInstanceLogsRequest, DescribeLogstashInstanceLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLogstashInstanceLogsRequest, DescribeLogstashInstanceLogsResponse>.ResponseSequence) {
+    public func describeLogstashInstanceLogsPaginator(_ input: DescribeLogstashInstanceLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogstashInstanceLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogstashInstanceLogs, logger: logger, on: eventLoop)
     }
 }

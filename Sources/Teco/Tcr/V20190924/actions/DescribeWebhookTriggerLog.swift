@@ -127,7 +127,7 @@ extension Tcr {
 
     /// 获取触发器日志
     @inlinable
-    public func describeWebhookTriggerLogPaginator(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebhookTriggerLogRequest, DescribeWebhookTriggerLogResponse>.ResponseSequence) {
+    public func describeWebhookTriggerLogPaginator(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebhookTriggerLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)
     }
 }

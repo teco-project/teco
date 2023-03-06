@@ -137,7 +137,7 @@ extension Dlc {
 
     /// 获取spark应用列表
     @inlinable
-    public func describeSparkAppJobsPaginator(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSparkAppJobsRequest, DescribeSparkAppJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSparkAppJobsRequest, DescribeSparkAppJobsResponse>.ResponseSequence) {
+    public func describeSparkAppJobsPaginator(_ input: DescribeSparkAppJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSparkAppJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSparkAppJobs, logger: logger, on: eventLoop)
     }
 }

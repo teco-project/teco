@@ -147,7 +147,7 @@ extension Tcss {
     ///
     /// 查询workload类型的影响范围，返回workload列表
     @inlinable
-    public func describeAffectedWorkloadListPaginator(_ input: DescribeAffectedWorkloadListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAffectedWorkloadListRequest, DescribeAffectedWorkloadListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAffectedWorkloadListRequest, DescribeAffectedWorkloadListResponse>.ResponseSequence) {
+    public func describeAffectedWorkloadListPaginator(_ input: DescribeAffectedWorkloadListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAffectedWorkloadListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAffectedWorkloadList, logger: logger, on: eventLoop)
     }
 }

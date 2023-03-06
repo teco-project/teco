@@ -145,7 +145,7 @@ extension Tag {
 
     /// 根据标签键获取资源标签
     @inlinable
-    public func describeResourceTagsByTagKeysPaginator(_ input: DescribeResourceTagsByTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourceTagsByTagKeysRequest, DescribeResourceTagsByTagKeysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourceTagsByTagKeysRequest, DescribeResourceTagsByTagKeysResponse>.ResponseSequence) {
+    public func describeResourceTagsByTagKeysPaginator(_ input: DescribeResourceTagsByTagKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTagsByTagKeysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTagsByTagKeys, logger: logger, on: eventLoop)
     }
 }

@@ -153,7 +153,7 @@ extension Live {
     ///
     /// 查询某个时间范围内所有时移流列表。最大支持查询24小时内的数据。
     @inlinable
-    public func describeTimeShiftStreamListPaginator(_ input: DescribeTimeShiftStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTimeShiftStreamListRequest, DescribeTimeShiftStreamListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTimeShiftStreamListRequest, DescribeTimeShiftStreamListResponse>.ResponseSequence) {
+    public func describeTimeShiftStreamListPaginator(_ input: DescribeTimeShiftStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTimeShiftStreamListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTimeShiftStreamList, logger: logger, on: eventLoop)
     }
 }

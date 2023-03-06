@@ -140,7 +140,7 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeMultiDevices）用于查询批量创建设备的执行结果。
     @inlinable
-    public func describeMultiDevicesPaginator(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeMultiDevicesRequest, DescribeMultiDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeMultiDevicesRequest, DescribeMultiDevicesResponse>.ResponseSequence) {
+    public func describeMultiDevicesPaginator(_ input: DescribeMultiDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMultiDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMultiDevices, logger: logger, on: eventLoop)
     }
 }

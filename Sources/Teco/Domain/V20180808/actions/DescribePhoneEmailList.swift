@@ -136,7 +136,7 @@ extension Domain {
     ///
     /// 本接口用于获取已验证的手机邮箱列表
     @inlinable
-    public func describePhoneEmailListPaginator(_ input: DescribePhoneEmailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePhoneEmailListRequest, DescribePhoneEmailListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePhoneEmailListRequest, DescribePhoneEmailListResponse>.ResponseSequence) {
+    public func describePhoneEmailListPaginator(_ input: DescribePhoneEmailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePhoneEmailListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePhoneEmailList, logger: logger, on: eventLoop)
     }
 }

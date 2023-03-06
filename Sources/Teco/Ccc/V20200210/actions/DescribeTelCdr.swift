@@ -152,7 +152,7 @@ extension Ccc {
 
     /// 获取电话服务记录与录音
     @inlinable
-    public func describeTelCdrPaginator(_ input: DescribeTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTelCdrRequest, DescribeTelCdrResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTelCdrRequest, DescribeTelCdrResponse>.ResponseSequence) {
+    public func describeTelCdrPaginator(_ input: DescribeTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTelCdrRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTelCdr, logger: logger, on: eventLoop)
     }
 }

@@ -146,7 +146,7 @@ extension Gme {
     ///
     /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
     @inlinable
-    public func describeApplicationListPaginator(_ input: DescribeApplicationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationListRequest, DescribeApplicationListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationListRequest, DescribeApplicationListResponse>.ResponseSequence) {
+    public func describeApplicationListPaginator(_ input: DescribeApplicationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationList, logger: logger, on: eventLoop)
     }
 }

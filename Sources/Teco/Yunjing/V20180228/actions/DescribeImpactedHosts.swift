@@ -137,7 +137,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeImpactedHosts) 用于获取漏洞受影响机器列表。
     @inlinable
-    public func describeImpactedHostsPaginator(_ input: DescribeImpactedHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImpactedHostsRequest, DescribeImpactedHostsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImpactedHostsRequest, DescribeImpactedHostsResponse>.ResponseSequence) {
+    public func describeImpactedHostsPaginator(_ input: DescribeImpactedHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImpactedHostsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImpactedHosts, logger: logger, on: eventLoop)
     }
 }

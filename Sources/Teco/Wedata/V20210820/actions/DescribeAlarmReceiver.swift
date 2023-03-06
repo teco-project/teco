@@ -148,7 +148,7 @@ extension Wedata {
 
     /// 告警接收人详情
     @inlinable
-    public func describeAlarmReceiverPaginator(_ input: DescribeAlarmReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlarmReceiverRequest, DescribeAlarmReceiverResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlarmReceiverRequest, DescribeAlarmReceiverResponse>.ResponseSequence) {
+    public func describeAlarmReceiverPaginator(_ input: DescribeAlarmReceiverRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlarmReceiverRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlarmReceiver, logger: logger, on: eventLoop)
     }
 }

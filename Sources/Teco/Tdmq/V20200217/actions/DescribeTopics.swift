@@ -165,7 +165,7 @@ extension Tdmq {
     ///
     /// 获取环境下主题列表
     @inlinable
-    public func describeTopicsPaginator(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTopicsRequest, DescribeTopicsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTopicsRequest, DescribeTopicsResponse>.ResponseSequence) {
+    public func describeTopicsPaginator(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopics, logger: logger, on: eventLoop)
     }
 }

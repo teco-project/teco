@@ -131,7 +131,7 @@ extension Dcdb {
     ///
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
     @inlinable
-    public func describeDCDBInstanceNodeInfoPaginator(_ input: DescribeDCDBInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDCDBInstanceNodeInfoRequest, DescribeDCDBInstanceNodeInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDCDBInstanceNodeInfoRequest, DescribeDCDBInstanceNodeInfoResponse>.ResponseSequence) {
+    public func describeDCDBInstanceNodeInfoPaginator(_ input: DescribeDCDBInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDCDBInstanceNodeInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDCDBInstanceNodeInfo, logger: logger, on: eventLoop)
     }
 }

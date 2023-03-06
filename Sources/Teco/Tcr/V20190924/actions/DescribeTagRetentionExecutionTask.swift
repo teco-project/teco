@@ -127,7 +127,7 @@ extension Tcr {
 
     /// 查询版本保留执行任务
     @inlinable
-    public func describeTagRetentionExecutionTaskPaginator(_ input: DescribeTagRetentionExecutionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTagRetentionExecutionTaskRequest, DescribeTagRetentionExecutionTaskResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTagRetentionExecutionTaskRequest, DescribeTagRetentionExecutionTaskResponse>.ResponseSequence) {
+    public func describeTagRetentionExecutionTaskPaginator(_ input: DescribeTagRetentionExecutionTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagRetentionExecutionTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagRetentionExecutionTask, logger: logger, on: eventLoop)
     }
 }

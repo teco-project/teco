@@ -155,7 +155,7 @@ extension Dbbrain {
     ///
     /// 获取实例信息列表。Region统一选择广州。
     @inlinable
-    public func describeDiagDBInstancesPaginator(_ input: DescribeDiagDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDiagDBInstancesRequest, DescribeDiagDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDiagDBInstancesRequest, DescribeDiagDBInstancesResponse>.ResponseSequence) {
+    public func describeDiagDBInstancesPaginator(_ input: DescribeDiagDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDiagDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDiagDBInstances, logger: logger, on: eventLoop)
     }
 }

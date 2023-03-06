@@ -136,7 +136,7 @@ extension Tione {
 
     /// 查询模型加速任务列表
     @inlinable
-    public func describeModelAccelerateTasksPaginator(_ input: DescribeModelAccelerateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModelAccelerateTasksRequest, DescribeModelAccelerateTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModelAccelerateTasksRequest, DescribeModelAccelerateTasksResponse>.ResponseSequence) {
+    public func describeModelAccelerateTasksPaginator(_ input: DescribeModelAccelerateTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModelAccelerateTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModelAccelerateTasks, logger: logger, on: eventLoop)
     }
 }

@@ -208,7 +208,7 @@ extension Cat {
     ///
     /// 根据时间范围、任务ID、运营商等条件查询单次拨测详情数据
     @inlinable
-    public func describeDetailedSingleProbeDataPaginator(_ input: DescribeDetailedSingleProbeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDetailedSingleProbeDataRequest, DescribeDetailedSingleProbeDataResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDetailedSingleProbeDataRequest, DescribeDetailedSingleProbeDataResponse>.ResponseSequence) {
+    public func describeDetailedSingleProbeDataPaginator(_ input: DescribeDetailedSingleProbeDataRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDetailedSingleProbeDataRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDetailedSingleProbeData, logger: logger, on: eventLoop)
     }
 }

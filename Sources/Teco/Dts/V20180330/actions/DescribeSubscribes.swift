@@ -181,7 +181,7 @@ extension Dts {
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
     @inlinable
-    public func describeSubscribesPaginator(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSubscribesRequest, DescribeSubscribesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSubscribesRequest, DescribeSubscribesResponse>.ResponseSequence) {
+    public func describeSubscribesPaginator(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubscribesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscribes, logger: logger, on: eventLoop)
     }
 }

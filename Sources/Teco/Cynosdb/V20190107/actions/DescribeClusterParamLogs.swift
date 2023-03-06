@@ -147,7 +147,7 @@ extension Cynosdb {
     ///
     /// 本接口（DescribeClusterParamLogs）查询参数修改日志
     @inlinable
-    public func describeClusterParamLogsPaginator(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterParamLogsRequest, DescribeClusterParamLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterParamLogsRequest, DescribeClusterParamLogsResponse>.ResponseSequence) {
+    public func describeClusterParamLogsPaginator(_ input: DescribeClusterParamLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterParamLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterParamLogs, logger: logger, on: eventLoop)
     }
 }

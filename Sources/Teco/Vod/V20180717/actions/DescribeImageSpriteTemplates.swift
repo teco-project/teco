@@ -143,7 +143,7 @@ extension Vod {
     ///
     /// 查询雪碧图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeImageSpriteTemplatesPaginator(_ input: DescribeImageSpriteTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageSpriteTemplatesRequest, DescribeImageSpriteTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageSpriteTemplatesRequest, DescribeImageSpriteTemplatesResponse>.ResponseSequence) {
+    public func describeImageSpriteTemplatesPaginator(_ input: DescribeImageSpriteTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageSpriteTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageSpriteTemplates, logger: logger, on: eventLoop)
     }
 }

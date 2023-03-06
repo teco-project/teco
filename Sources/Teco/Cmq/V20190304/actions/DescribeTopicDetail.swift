@@ -127,7 +127,7 @@ extension Cmq {
 
     /// 查询主题详情
     @inlinable
-    public func describeTopicDetailPaginator(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTopicDetailRequest, DescribeTopicDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTopicDetailRequest, DescribeTopicDetailResponse>.ResponseSequence) {
+    public func describeTopicDetailPaginator(_ input: DescribeTopicDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicDetail, logger: logger, on: eventLoop)
     }
 }

@@ -148,7 +148,7 @@ extension Tcss {
     ///
     /// 搜索查询容器列表
     @inlinable
-    public func describeAssetContainerListPaginator(_ input: DescribeAssetContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetContainerListRequest, DescribeAssetContainerListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetContainerListRequest, DescribeAssetContainerListResponse>.ResponseSequence) {
+    public func describeAssetContainerListPaginator(_ input: DescribeAssetContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetContainerListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetContainerList, logger: logger, on: eventLoop)
     }
 }

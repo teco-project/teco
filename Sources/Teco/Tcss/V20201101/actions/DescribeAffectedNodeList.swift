@@ -147,7 +147,7 @@ extension Tcss {
     ///
     /// 查询节点类型的影响范围，返回节点列表
     @inlinable
-    public func describeAffectedNodeListPaginator(_ input: DescribeAffectedNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAffectedNodeListRequest, DescribeAffectedNodeListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAffectedNodeListRequest, DescribeAffectedNodeListResponse>.ResponseSequence) {
+    public func describeAffectedNodeListPaginator(_ input: DescribeAffectedNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAffectedNodeListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAffectedNodeList, logger: logger, on: eventLoop)
     }
 }

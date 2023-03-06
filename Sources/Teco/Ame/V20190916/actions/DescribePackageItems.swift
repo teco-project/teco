@@ -123,7 +123,7 @@ extension Ame {
     ///
     /// 获取曲库包下已核销歌曲列表接口
     @inlinable
-    public func describePackageItemsPaginator(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePackageItemsRequest, DescribePackageItemsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePackageItemsRequest, DescribePackageItemsResponse>.ResponseSequence) {
+    public func describePackageItemsPaginator(_ input: DescribePackageItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePackageItemsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePackageItems, logger: logger, on: eventLoop)
     }
 }

@@ -137,7 +137,7 @@ extension Tcss {
     ///
     /// 查询某资产下的检测项列表
     @inlinable
-    public func describeComplianceAssetPolicyItemListPaginator(_ input: DescribeComplianceAssetPolicyItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComplianceAssetPolicyItemListRequest, DescribeComplianceAssetPolicyItemListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComplianceAssetPolicyItemListRequest, DescribeComplianceAssetPolicyItemListResponse>.ResponseSequence) {
+    public func describeComplianceAssetPolicyItemListPaginator(_ input: DescribeComplianceAssetPolicyItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceAssetPolicyItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceAssetPolicyItemList, logger: logger, on: eventLoop)
     }
 }

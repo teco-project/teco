@@ -137,7 +137,7 @@ extension Zj {
     ///
     /// 获取人群包列表接口
     @inlinable
-    public func getCrowdPackListPaginator(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetCrowdPackListRequest, GetCrowdPackListResponse>.ResultSequence, responses: TCClient.Paginator<GetCrowdPackListRequest, GetCrowdPackListResponse>.ResponseSequence) {
+    public func getCrowdPackListPaginator(_ input: GetCrowdPackListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetCrowdPackListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCrowdPackList, logger: logger, on: eventLoop)
     }
 }

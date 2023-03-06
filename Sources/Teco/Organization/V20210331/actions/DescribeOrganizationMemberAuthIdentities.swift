@@ -119,7 +119,7 @@ extension Organization {
 
     /// 获取组织成员可被管理的身份列表
     @inlinable
-    public func describeOrganizationMemberAuthIdentitiesPaginator(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrganizationMemberAuthIdentitiesRequest, DescribeOrganizationMemberAuthIdentitiesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrganizationMemberAuthIdentitiesRequest, DescribeOrganizationMemberAuthIdentitiesResponse>.ResponseSequence) {
+    public func describeOrganizationMemberAuthIdentitiesPaginator(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationMemberAuthIdentitiesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationMemberAuthIdentities, logger: logger, on: eventLoop)
     }
 }

@@ -167,7 +167,7 @@ extension Pts {
 
     /// 查询任务列表
     @inlinable
-    public func describeJobsPaginator(_ input: DescribeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeJobsRequest, DescribeJobsResponse>.ResponseSequence) {
+    public func describeJobsPaginator(_ input: DescribeJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJobs, logger: logger, on: eventLoop)
     }
 }

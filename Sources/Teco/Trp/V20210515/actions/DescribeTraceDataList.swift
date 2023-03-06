@@ -151,7 +151,7 @@ extension Trp {
     ///
     /// 查询溯源信息，通常溯源信息跟生产批次绑定，即一个批次的所有溯源信息都是一样的
     @inlinable
-    public func describeTraceDataListPaginator(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTraceDataListRequest, DescribeTraceDataListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTraceDataListRequest, DescribeTraceDataListResponse>.ResponseSequence) {
+    public func describeTraceDataListPaginator(_ input: DescribeTraceDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTraceDataListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTraceDataList, logger: logger, on: eventLoop)
     }
 }

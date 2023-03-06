@@ -133,7 +133,7 @@ extension Iotvideoindustry {
     ///
     /// 获取场景绑定设备列表
     @inlinable
-    public func describeBindSceneDevicesPaginator(_ input: DescribeBindSceneDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBindSceneDevicesRequest, DescribeBindSceneDevicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBindSceneDevicesRequest, DescribeBindSceneDevicesResponse>.ResponseSequence) {
+    public func describeBindSceneDevicesPaginator(_ input: DescribeBindSceneDevicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindSceneDevicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindSceneDevices, logger: logger, on: eventLoop)
     }
 }

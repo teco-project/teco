@@ -126,7 +126,7 @@ extension Yunjing {
     ///
     /// 本接口 (DescribeWeeklyReports) 用于获取周报列表数据。
     @inlinable
-    public func describeWeeklyReportsPaginator(_ input: DescribeWeeklyReportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWeeklyReportsRequest, DescribeWeeklyReportsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWeeklyReportsRequest, DescribeWeeklyReportsResponse>.ResponseSequence) {
+    public func describeWeeklyReportsPaginator(_ input: DescribeWeeklyReportsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWeeklyReportsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWeeklyReports, logger: logger, on: eventLoop)
     }
 }

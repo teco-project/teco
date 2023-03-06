@@ -141,7 +141,7 @@ extension Cwp {
     ///
     /// 查询授权绑定任务的进度
     @inlinable
-    public func describeLicenseBindSchedulePaginator(_ input: DescribeLicenseBindScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLicenseBindScheduleRequest, DescribeLicenseBindScheduleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLicenseBindScheduleRequest, DescribeLicenseBindScheduleResponse>.ResponseSequence) {
+    public func describeLicenseBindSchedulePaginator(_ input: DescribeLicenseBindScheduleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLicenseBindScheduleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLicenseBindSchedule, logger: logger, on: eventLoop)
     }
 }

@@ -137,7 +137,7 @@ extension Tione {
 
     /// 查询Notebook实例列表
     @inlinable
-    public func describeNotebookInstancesPaginator(_ input: DescribeNotebookInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNotebookInstancesRequest, DescribeNotebookInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNotebookInstancesRequest, DescribeNotebookInstancesResponse>.ResponseSequence) {
+    public func describeNotebookInstancesPaginator(_ input: DescribeNotebookInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNotebookInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotebookInstances, logger: logger, on: eventLoop)
     }
 }

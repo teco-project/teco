@@ -124,7 +124,7 @@ extension Organization {
 
     /// 获取组织成员的授权策略列表
     @inlinable
-    public func describeOrganizationMemberPoliciesPaginator(_ input: DescribeOrganizationMemberPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOrganizationMemberPoliciesRequest, DescribeOrganizationMemberPoliciesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOrganizationMemberPoliciesRequest, DescribeOrganizationMemberPoliciesResponse>.ResponseSequence) {
+    public func describeOrganizationMemberPoliciesPaginator(_ input: DescribeOrganizationMemberPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationMemberPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationMemberPolicies, logger: logger, on: eventLoop)
     }
 }

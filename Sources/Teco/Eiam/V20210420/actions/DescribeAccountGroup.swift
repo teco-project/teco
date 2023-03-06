@@ -129,7 +129,7 @@ extension Eiam {
 
     /// 查询账号组列表
     @inlinable
-    public func describeAccountGroupPaginator(_ input: DescribeAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAccountGroupRequest, DescribeAccountGroupResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAccountGroupRequest, DescribeAccountGroupResponse>.ResponseSequence) {
+    public func describeAccountGroupPaginator(_ input: DescribeAccountGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccountGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccountGroup, logger: logger, on: eventLoop)
     }
 }

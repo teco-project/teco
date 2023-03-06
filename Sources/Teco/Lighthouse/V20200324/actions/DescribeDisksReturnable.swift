@@ -131,7 +131,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
     @inlinable
-    public func describeDisksReturnablePaginator(_ input: DescribeDisksReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDisksReturnableRequest, DescribeDisksReturnableResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDisksReturnableRequest, DescribeDisksReturnableResponse>.ResponseSequence) {
+    public func describeDisksReturnablePaginator(_ input: DescribeDisksReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDisksReturnableRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDisksReturnable, logger: logger, on: eventLoop)
     }
 }

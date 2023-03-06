@@ -119,7 +119,7 @@ extension Redis {
 
     /// 查看实例子账号信息
     @inlinable
-    public func describeInstanceAccountPaginator(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceAccountRequest, DescribeInstanceAccountResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceAccountRequest, DescribeInstanceAccountResponse>.ResponseSequence) {
+    public func describeInstanceAccountPaginator(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceAccountRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)
     }
 }

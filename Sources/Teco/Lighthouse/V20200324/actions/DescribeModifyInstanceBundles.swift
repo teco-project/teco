@@ -152,7 +152,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeModifyInstanceBundles）用于查询实例可变更套餐列表。
     @inlinable
-    public func describeModifyInstanceBundlesPaginator(_ input: DescribeModifyInstanceBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModifyInstanceBundlesRequest, DescribeModifyInstanceBundlesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModifyInstanceBundlesRequest, DescribeModifyInstanceBundlesResponse>.ResponseSequence) {
+    public func describeModifyInstanceBundlesPaginator(_ input: DescribeModifyInstanceBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModifyInstanceBundlesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModifyInstanceBundles, logger: logger, on: eventLoop)
     }
 }

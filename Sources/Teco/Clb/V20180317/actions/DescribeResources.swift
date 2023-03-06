@@ -133,7 +133,7 @@ extension Clb {
     ///
     /// 查询用户在当前地域支持可用区列表和资源列表。
     @inlinable
-    public func describeResourcesPaginator(_ input: DescribeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourcesRequest, DescribeResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourcesRequest, DescribeResourcesResponse>.ResponseSequence) {
+    public func describeResourcesPaginator(_ input: DescribeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResources, logger: logger, on: eventLoop)
     }
 }

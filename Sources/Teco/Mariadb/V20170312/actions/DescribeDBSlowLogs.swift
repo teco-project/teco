@@ -181,7 +181,7 @@ extension Mariadb {
     ///
     /// 本接口(DescribeDBSlowLogs)用于查询慢查询日志列表。
     @inlinable
-    public func describeDBSlowLogsPaginator(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBSlowLogsRequest, DescribeDBSlowLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBSlowLogsRequest, DescribeDBSlowLogsResponse>.ResponseSequence) {
+    public func describeDBSlowLogsPaginator(_ input: DescribeDBSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBSlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBSlowLogs, logger: logger, on: eventLoop)
     }
 }

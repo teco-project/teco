@@ -128,7 +128,7 @@ extension Cwp {
 
     /// 获取反弹Shell列表
     @inlinable
-    public func describeReverseShellEventsPaginator(_ input: DescribeReverseShellEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeReverseShellEventsRequest, DescribeReverseShellEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeReverseShellEventsRequest, DescribeReverseShellEventsResponse>.ResponseSequence) {
+    public func describeReverseShellEventsPaginator(_ input: DescribeReverseShellEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReverseShellEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReverseShellEvents, logger: logger, on: eventLoop)
     }
 }

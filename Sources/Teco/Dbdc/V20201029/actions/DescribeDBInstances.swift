@@ -141,7 +141,7 @@ extension Dbdc {
     ///
     /// 本接口用于查询独享集群内的DB实例列表
     @inlinable
-    public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResponseSequence) {
+    public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
     }
 }

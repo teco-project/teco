@@ -136,7 +136,7 @@ extension Cws {
     ///
     /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
     @inlinable
-    public func describeSitesPaginator(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSitesRequest, DescribeSitesResponse>.ResponseSequence) {
+    public func describeSitesPaginator(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSitesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)
     }
 }

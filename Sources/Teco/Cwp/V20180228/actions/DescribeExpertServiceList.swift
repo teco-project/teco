@@ -143,7 +143,7 @@ extension Cwp {
     ///
     /// 专家服务-安全管家列表
     @inlinable
-    public func describeExpertServiceListPaginator(_ input: DescribeExpertServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExpertServiceListRequest, DescribeExpertServiceListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExpertServiceListRequest, DescribeExpertServiceListResponse>.ResponseSequence) {
+    public func describeExpertServiceListPaginator(_ input: DescribeExpertServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExpertServiceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExpertServiceList, logger: logger, on: eventLoop)
     }
 }

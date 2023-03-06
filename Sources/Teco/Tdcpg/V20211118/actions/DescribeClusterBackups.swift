@@ -117,7 +117,7 @@ extension Tdcpg {
 
     /// 查询集群的备份集
     @inlinable
-    public func describeClusterBackupsPaginator(_ input: DescribeClusterBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterBackupsRequest, DescribeClusterBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterBackupsRequest, DescribeClusterBackupsResponse>.ResponseSequence) {
+    public func describeClusterBackupsPaginator(_ input: DescribeClusterBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterBackups, logger: logger, on: eventLoop)
     }
 }

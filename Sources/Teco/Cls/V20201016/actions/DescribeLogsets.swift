@@ -161,7 +161,7 @@ extension Cls {
     ///
     /// 本接口用于获取日志集信息列表。
     @inlinable
-    public func describeLogsetsPaginator(_ input: DescribeLogsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLogsetsRequest, DescribeLogsetsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLogsetsRequest, DescribeLogsetsResponse>.ResponseSequence) {
+    public func describeLogsetsPaginator(_ input: DescribeLogsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogsetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogsets, logger: logger, on: eventLoop)
     }
 }

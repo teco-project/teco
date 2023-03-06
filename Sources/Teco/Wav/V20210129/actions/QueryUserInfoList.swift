@@ -109,7 +109,7 @@ extension Wav {
 
     /// 查询企业成员信息列表接口
     @inlinable
-    public func queryUserInfoListPaginator(_ input: QueryUserInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryUserInfoListRequest, QueryUserInfoListResponse>.ResultSequence, responses: TCClient.Paginator<QueryUserInfoListRequest, QueryUserInfoListResponse>.ResponseSequence) {
+    public func queryUserInfoListPaginator(_ input: QueryUserInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryUserInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryUserInfoList, logger: logger, on: eventLoop)
     }
 }

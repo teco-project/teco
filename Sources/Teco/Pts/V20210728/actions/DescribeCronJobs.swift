@@ -157,7 +157,7 @@ extension Pts {
     ///
     /// 列出定时任务，非必填数组为空就默认全选
     @inlinable
-    public func describeCronJobsPaginator(_ input: DescribeCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCronJobsRequest, DescribeCronJobsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCronJobsRequest, DescribeCronJobsResponse>.ResponseSequence) {
+    public func describeCronJobsPaginator(_ input: DescribeCronJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCronJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCronJobs, logger: logger, on: eventLoop)
     }
 }

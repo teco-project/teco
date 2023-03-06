@@ -158,7 +158,7 @@ extension Gaap {
     ///
     /// 该接口（DescribeUDPListeners）用于查询单通道或者通道组下的UDP监听器信息
     @inlinable
-    public func describeUDPListenersPaginator(_ input: DescribeUDPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUDPListenersRequest, DescribeUDPListenersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUDPListenersRequest, DescribeUDPListenersResponse>.ResponseSequence) {
+    public func describeUDPListenersPaginator(_ input: DescribeUDPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUDPListenersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUDPListeners, logger: logger, on: eventLoop)
     }
 }

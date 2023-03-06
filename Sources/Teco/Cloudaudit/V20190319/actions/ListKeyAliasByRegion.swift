@@ -117,7 +117,7 @@ extension Cloudaudit {
 
     /// 根据地域获取KMS密钥别名
     @inlinable
-    public func listKeyAliasByRegionPaginator(_ input: ListKeyAliasByRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListKeyAliasByRegionRequest, ListKeyAliasByRegionResponse>.ResultSequence, responses: TCClient.Paginator<ListKeyAliasByRegionRequest, ListKeyAliasByRegionResponse>.ResponseSequence) {
+    public func listKeyAliasByRegionPaginator(_ input: ListKeyAliasByRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeyAliasByRegionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeyAliasByRegion, logger: logger, on: eventLoop)
     }
 }

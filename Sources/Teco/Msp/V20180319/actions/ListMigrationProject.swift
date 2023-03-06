@@ -112,7 +112,7 @@ extension Msp {
 
     /// 获取迁移项目名称列表
     @inlinable
-    public func listMigrationProjectPaginator(_ input: ListMigrationProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListMigrationProjectRequest, ListMigrationProjectResponse>.ResultSequence, responses: TCClient.Paginator<ListMigrationProjectRequest, ListMigrationProjectResponse>.ResponseSequence) {
+    public func listMigrationProjectPaginator(_ input: ListMigrationProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListMigrationProjectRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listMigrationProject, logger: logger, on: eventLoop)
     }
 }

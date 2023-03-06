@@ -130,7 +130,7 @@ extension Cwp {
 
     /// 查询篡改事件列表
     @inlinable
-    public func describeWebPageEventListPaginator(_ input: DescribeWebPageEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebPageEventListRequest, DescribeWebPageEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebPageEventListRequest, DescribeWebPageEventListResponse>.ResponseSequence) {
+    public func describeWebPageEventListPaginator(_ input: DescribeWebPageEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebPageEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebPageEventList, logger: logger, on: eventLoop)
     }
 }

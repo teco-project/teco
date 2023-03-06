@@ -182,7 +182,7 @@ extension Billing {
 
     /// 获取代金券相关信息
     @inlinable
-    public func describeVoucherInfoPaginator(_ input: DescribeVoucherInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVoucherInfoRequest, DescribeVoucherInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVoucherInfoRequest, DescribeVoucherInfoResponse>.ResponseSequence) {
+    public func describeVoucherInfoPaginator(_ input: DescribeVoucherInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVoucherInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVoucherInfo, logger: logger, on: eventLoop)
     }
 }

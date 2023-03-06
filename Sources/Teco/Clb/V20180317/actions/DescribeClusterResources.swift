@@ -135,7 +135,7 @@ extension Clb {
     ///
     /// 查询独占集群中的资源列表，支持按集群ID、VIP、负载均衡ID、是否闲置为过滤条件检索。
     @inlinable
-    public func describeClusterResourcesPaginator(_ input: DescribeClusterResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeClusterResourcesRequest, DescribeClusterResourcesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeClusterResourcesRequest, DescribeClusterResourcesResponse>.ResponseSequence) {
+    public func describeClusterResourcesPaginator(_ input: DescribeClusterResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClusterResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusterResources, logger: logger, on: eventLoop)
     }
 }

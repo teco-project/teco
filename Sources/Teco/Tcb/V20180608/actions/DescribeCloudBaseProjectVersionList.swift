@@ -148,7 +148,7 @@ extension Tcb {
     ///
     /// 云项目部署列表
     @inlinable
-    public func describeCloudBaseProjectVersionListPaginator(_ input: DescribeCloudBaseProjectVersionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCloudBaseProjectVersionListRequest, DescribeCloudBaseProjectVersionListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCloudBaseProjectVersionListRequest, DescribeCloudBaseProjectVersionListResponse>.ResponseSequence) {
+    public func describeCloudBaseProjectVersionListPaginator(_ input: DescribeCloudBaseProjectVersionListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudBaseProjectVersionListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudBaseProjectVersionList, logger: logger, on: eventLoop)
     }
 }

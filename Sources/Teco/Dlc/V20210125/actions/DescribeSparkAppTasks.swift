@@ -143,7 +143,7 @@ extension Dlc {
 
     /// 查询spark应用的运行任务实例列表
     @inlinable
-    public func describeSparkAppTasksPaginator(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSparkAppTasksRequest, DescribeSparkAppTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSparkAppTasksRequest, DescribeSparkAppTasksResponse>.ResponseSequence) {
+    public func describeSparkAppTasksPaginator(_ input: DescribeSparkAppTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSparkAppTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSparkAppTasks, logger: logger, on: eventLoop)
     }
 }

@@ -118,7 +118,7 @@ extension Cdc {
 
     /// 专用集群宿主机信息
     @inlinable
-    public func describeDedicatedClusterHostsPaginator(_ input: DescribeDedicatedClusterHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDedicatedClusterHostsRequest, DescribeDedicatedClusterHostsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDedicatedClusterHostsRequest, DescribeDedicatedClusterHostsResponse>.ResponseSequence) {
+    public func describeDedicatedClusterHostsPaginator(_ input: DescribeDedicatedClusterHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClusterHostsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusterHosts, logger: logger, on: eventLoop)
     }
 }

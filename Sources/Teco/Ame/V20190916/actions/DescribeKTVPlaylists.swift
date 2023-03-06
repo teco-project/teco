@@ -136,7 +136,7 @@ extension Ame {
     ///
     /// 获取直播互动曲库推荐歌单列表。
     @inlinable
-    public func describeKTVPlaylistsPaginator(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeKTVPlaylistsRequest, DescribeKTVPlaylistsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeKTVPlaylistsRequest, DescribeKTVPlaylistsResponse>.ResponseSequence) {
+    public func describeKTVPlaylistsPaginator(_ input: DescribeKTVPlaylistsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKTVPlaylistsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKTVPlaylists, logger: logger, on: eventLoop)
     }
 }

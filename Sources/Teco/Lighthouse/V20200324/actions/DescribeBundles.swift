@@ -157,7 +157,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeBundles）用于查询套餐信息。
     @inlinable
-    public func describeBundlesPaginator(_ input: DescribeBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBundlesRequest, DescribeBundlesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBundlesRequest, DescribeBundlesResponse>.ResponseSequence) {
+    public func describeBundlesPaginator(_ input: DescribeBundlesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBundlesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBundles, logger: logger, on: eventLoop)
     }
 }

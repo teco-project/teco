@@ -124,7 +124,7 @@ extension Iotexplorer {
 
     /// 搜索位置空间
     @inlinable
-    public func searchPositionSpacePaginator(_ input: SearchPositionSpaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<SearchPositionSpaceRequest, SearchPositionSpaceResponse>.ResultSequence, responses: TCClient.Paginator<SearchPositionSpaceRequest, SearchPositionSpaceResponse>.ResponseSequence) {
+    public func searchPositionSpacePaginator(_ input: SearchPositionSpaceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchPositionSpaceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchPositionSpace, logger: logger, on: eventLoop)
     }
 }

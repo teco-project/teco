@@ -177,7 +177,7 @@ extension Teo {
     ///
     /// 本接口（DescribeWebManagedRulesHitRuleDetail）用于查询WAF攻击命中规则详情。
     @inlinable
-    public func describeWebManagedRulesHitRuleDetailPaginator(_ input: DescribeWebManagedRulesHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWebManagedRulesHitRuleDetailRequest, DescribeWebManagedRulesHitRuleDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWebManagedRulesHitRuleDetailRequest, DescribeWebManagedRulesHitRuleDetailResponse>.ResponseSequence) {
+    public func describeWebManagedRulesHitRuleDetailPaginator(_ input: DescribeWebManagedRulesHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebManagedRulesHitRuleDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebManagedRulesHitRuleDetail, logger: logger, on: eventLoop)
     }
 }

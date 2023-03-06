@@ -137,7 +137,7 @@ extension Tcr {
     ///
     /// 用于查询应用更新触发器触发日志
     @inlinable
-    public func describeApplicationTriggerLogPersonalPaginator(_ input: DescribeApplicationTriggerLogPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeApplicationTriggerLogPersonalRequest, DescribeApplicationTriggerLogPersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeApplicationTriggerLogPersonalRequest, DescribeApplicationTriggerLogPersonalResponse>.ResponseSequence) {
+    public func describeApplicationTriggerLogPersonalPaginator(_ input: DescribeApplicationTriggerLogPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationTriggerLogPersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationTriggerLogPersonal, logger: logger, on: eventLoop)
     }
 }

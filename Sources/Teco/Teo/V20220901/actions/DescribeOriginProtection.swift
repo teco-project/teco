@@ -116,7 +116,7 @@ extension Teo {
 
     /// 查询源站防护信息
     @inlinable
-    public func describeOriginProtectionPaginator(_ input: DescribeOriginProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOriginProtectionRequest, DescribeOriginProtectionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOriginProtectionRequest, DescribeOriginProtectionResponse>.ResponseSequence) {
+    public func describeOriginProtectionPaginator(_ input: DescribeOriginProtectionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOriginProtectionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOriginProtection, logger: logger, on: eventLoop)
     }
 }

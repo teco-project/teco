@@ -138,7 +138,7 @@ extension Mps {
     ///
     /// 批量查询媒体输入流的配置信息。
     @inlinable
-    public func describeStreamLinkFlowsPaginator(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeStreamLinkFlowsRequest, DescribeStreamLinkFlowsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeStreamLinkFlowsRequest, DescribeStreamLinkFlowsResponse>.ResponseSequence) {
+    public func describeStreamLinkFlowsPaginator(_ input: DescribeStreamLinkFlowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStreamLinkFlowsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamLinkFlows, logger: logger, on: eventLoop)
     }
 }

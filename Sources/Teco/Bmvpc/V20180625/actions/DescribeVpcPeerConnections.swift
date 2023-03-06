@@ -129,7 +129,7 @@ extension Bmvpc {
 
     /// 获取对等连接列表
     @inlinable
-    public func describeVpcPeerConnectionsPaginator(_ input: DescribeVpcPeerConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcPeerConnectionsRequest, DescribeVpcPeerConnectionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcPeerConnectionsRequest, DescribeVpcPeerConnectionsResponse>.ResponseSequence) {
+    public func describeVpcPeerConnectionsPaginator(_ input: DescribeVpcPeerConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcPeerConnectionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcPeerConnections, logger: logger, on: eventLoop)
     }
 }

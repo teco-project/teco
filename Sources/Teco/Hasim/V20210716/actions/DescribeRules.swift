@@ -134,7 +134,7 @@ extension Hasim {
 
     /// 查询自动化规则列表
     @inlinable
-    public func describeRulesPaginator(_ input: DescribeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRulesRequest, DescribeRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRulesRequest, DescribeRulesResponse>.ResponseSequence) {
+    public func describeRulesPaginator(_ input: DescribeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRules, logger: logger, on: eventLoop)
     }
 }

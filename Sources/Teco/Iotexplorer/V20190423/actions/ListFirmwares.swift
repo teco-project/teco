@@ -136,7 +136,7 @@ extension Iotexplorer {
     ///
     /// 本接口（ListFirmwares）用于获取固件列表
     @inlinable
-    public func listFirmwaresPaginator(_ input: ListFirmwaresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListFirmwaresRequest, ListFirmwaresResponse>.ResultSequence, responses: TCClient.Paginator<ListFirmwaresRequest, ListFirmwaresResponse>.ResponseSequence) {
+    public func listFirmwaresPaginator(_ input: ListFirmwaresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListFirmwaresRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listFirmwares, logger: logger, on: eventLoop)
     }
 }

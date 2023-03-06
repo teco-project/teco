@@ -137,7 +137,7 @@ extension Kms {
     ///
     /// 列出账号下面状态为Enabled， Disabled 和 PendingImport 的CMK KeyId 列表
     @inlinable
-    public func listKeysPaginator(_ input: ListKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListKeysRequest, ListKeysResponse>.ResultSequence, responses: TCClient.Paginator<ListKeysRequest, ListKeysResponse>.ResponseSequence) {
+    public func listKeysPaginator(_ input: ListKeysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeys, logger: logger, on: eventLoop)
     }
 }

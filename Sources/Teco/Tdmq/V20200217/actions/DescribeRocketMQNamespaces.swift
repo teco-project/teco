@@ -122,7 +122,7 @@ extension Tdmq {
 
     /// 获取RocketMQ命名空间列表
     @inlinable
-    public func describeRocketMQNamespacesPaginator(_ input: DescribeRocketMQNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRocketMQNamespacesRequest, DescribeRocketMQNamespacesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRocketMQNamespacesRequest, DescribeRocketMQNamespacesResponse>.ResponseSequence) {
+    public func describeRocketMQNamespacesPaginator(_ input: DescribeRocketMQNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRocketMQNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQNamespaces, logger: logger, on: eventLoop)
     }
 }

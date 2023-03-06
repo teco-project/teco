@@ -134,7 +134,7 @@ extension Monitor {
     ///
     /// 获取与云监控融合实例列表
     @inlinable
-    public func describePrometheusInstancesOverviewPaginator(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusInstancesOverviewRequest, DescribePrometheusInstancesOverviewResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusInstancesOverviewRequest, DescribePrometheusInstancesOverviewResponse>.ResponseSequence) {
+    public func describePrometheusInstancesOverviewPaginator(_ input: DescribePrometheusInstancesOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusInstancesOverviewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusInstancesOverview, logger: logger, on: eventLoop)
     }
 }

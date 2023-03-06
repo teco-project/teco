@@ -123,7 +123,7 @@ extension Dc {
 
     /// 获取用户互联网公网地址信息
     @inlinable
-    public func describeInternetAddressPaginator(_ input: DescribeInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInternetAddressRequest, DescribeInternetAddressResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInternetAddressRequest, DescribeInternetAddressResponse>.ResponseSequence) {
+    public func describeInternetAddressPaginator(_ input: DescribeInternetAddressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInternetAddressRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInternetAddress, logger: logger, on: eventLoop)
     }
 }

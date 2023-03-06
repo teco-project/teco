@@ -148,7 +148,7 @@ extension Wedata {
     ///
     /// 质量报告-查询表质量详情
     @inlinable
-    public func describeTableQualityDetailsPaginator(_ input: DescribeTableQualityDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTableQualityDetailsRequest, DescribeTableQualityDetailsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTableQualityDetailsRequest, DescribeTableQualityDetailsResponse>.ResponseSequence) {
+    public func describeTableQualityDetailsPaginator(_ input: DescribeTableQualityDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTableQualityDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTableQualityDetails, logger: logger, on: eventLoop)
     }
 }

@@ -197,7 +197,7 @@ extension Monitor {
     ///
     /// 分页获取产品事件的列表
     @inlinable
-    public func describeProductEventListPaginator(_ input: DescribeProductEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProductEventListRequest, DescribeProductEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProductEventListRequest, DescribeProductEventListResponse>.ResponseSequence) {
+    public func describeProductEventListPaginator(_ input: DescribeProductEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductEventList, logger: logger, on: eventLoop)
     }
 }

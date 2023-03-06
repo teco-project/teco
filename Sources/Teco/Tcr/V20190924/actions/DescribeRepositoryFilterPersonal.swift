@@ -137,7 +137,7 @@ extension Tcr {
     ///
     /// 用于在个人版镜像仓库中，获取满足输入搜索条件的用户镜像仓库
     @inlinable
-    public func describeRepositoryFilterPersonalPaginator(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRepositoryFilterPersonalRequest, DescribeRepositoryFilterPersonalResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRepositoryFilterPersonalRequest, DescribeRepositoryFilterPersonalResponse>.ResponseSequence) {
+    public func describeRepositoryFilterPersonalPaginator(_ input: DescribeRepositoryFilterPersonalRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRepositoryFilterPersonalRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRepositoryFilterPersonal, logger: logger, on: eventLoop)
     }
 }

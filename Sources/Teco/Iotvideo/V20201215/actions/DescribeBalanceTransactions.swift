@@ -122,7 +122,7 @@ extension Iotvideo {
 
     /// 拉取账户流水
     @inlinable
-    public func describeBalanceTransactionsPaginator(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBalanceTransactionsRequest, DescribeBalanceTransactionsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBalanceTransactionsRequest, DescribeBalanceTransactionsResponse>.ResponseSequence) {
+    public func describeBalanceTransactionsPaginator(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBalanceTransactionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBalanceTransactions, logger: logger, on: eventLoop)
     }
 }

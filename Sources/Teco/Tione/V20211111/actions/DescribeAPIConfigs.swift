@@ -130,7 +130,7 @@ extension Tione {
 
     /// 列举API
     @inlinable
-    public func describeAPIConfigsPaginator(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAPIConfigsRequest, DescribeAPIConfigsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAPIConfigsRequest, DescribeAPIConfigsResponse>.ResponseSequence) {
+    public func describeAPIConfigsPaginator(_ input: DescribeAPIConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAPIConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAPIConfigs, logger: logger, on: eventLoop)
     }
 }

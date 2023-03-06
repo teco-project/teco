@@ -157,7 +157,7 @@ extension Tsf {
     ///
     /// 无
     @inlinable
-    public func describePkgsPaginator(_ input: DescribePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePkgsRequest, DescribePkgsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePkgsRequest, DescribePkgsResponse>.ResponseSequence) {
+    public func describePkgsPaginator(_ input: DescribePkgsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePkgsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePkgs, logger: logger, on: eventLoop)
     }
 }

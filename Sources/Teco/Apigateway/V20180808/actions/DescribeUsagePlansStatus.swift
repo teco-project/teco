@@ -128,7 +128,7 @@ extension Apigateway {
     ///
     /// 本接口（DescribeUsagePlanStatus）用于查询使用计划的列表。
     @inlinable
-    public func describeUsagePlansStatusPaginator(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUsagePlansStatusRequest, DescribeUsagePlansStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUsagePlansStatusRequest, DescribeUsagePlansStatusResponse>.ResponseSequence) {
+    public func describeUsagePlansStatusPaginator(_ input: DescribeUsagePlansStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUsagePlansStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUsagePlansStatus, logger: logger, on: eventLoop)
     }
 }

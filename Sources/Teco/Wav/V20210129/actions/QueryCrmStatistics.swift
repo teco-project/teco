@@ -143,7 +143,7 @@ extension Wav {
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
     @inlinable
-    public func queryCrmStatisticsPaginator(_ input: QueryCrmStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryCrmStatisticsRequest, QueryCrmStatisticsResponse>.ResultSequence, responses: TCClient.Paginator<QueryCrmStatisticsRequest, QueryCrmStatisticsResponse>.ResponseSequence) {
+    public func queryCrmStatisticsPaginator(_ input: QueryCrmStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryCrmStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryCrmStatistics, logger: logger, on: eventLoop)
     }
 }

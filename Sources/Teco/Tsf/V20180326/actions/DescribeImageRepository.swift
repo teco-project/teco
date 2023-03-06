@@ -128,7 +128,7 @@ extension Tsf {
 
     /// 镜像仓库列表
     @inlinable
-    public func describeImageRepositoryPaginator(_ input: DescribeImageRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageRepositoryRequest, DescribeImageRepositoryResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageRepositoryRequest, DescribeImageRepositoryResponse>.ResponseSequence) {
+    public func describeImageRepositoryPaginator(_ input: DescribeImageRepositoryRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageRepositoryRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageRepository, logger: logger, on: eventLoop)
     }
 }

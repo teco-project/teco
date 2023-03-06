@@ -135,7 +135,7 @@ extension Cwp {
 
     /// 获取基线检测主机列表
     @inlinable
-    public func describeBaselineHostDetectListPaginator(_ input: DescribeBaselineHostDetectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselineHostDetectListRequest, DescribeBaselineHostDetectListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselineHostDetectListRequest, DescribeBaselineHostDetectListResponse>.ResponseSequence) {
+    public func describeBaselineHostDetectListPaginator(_ input: DescribeBaselineHostDetectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineHostDetectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineHostDetectList, logger: logger, on: eventLoop)
     }
 }

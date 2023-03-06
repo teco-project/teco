@@ -113,7 +113,7 @@ extension Apigateway {
 
     /// 查询后端通道列表详情
     @inlinable
-    public func describeUpstreamsPaginator(_ input: DescribeUpstreamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUpstreamsRequest, DescribeUpstreamsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUpstreamsRequest, DescribeUpstreamsResponse>.ResponseSequence) {
+    public func describeUpstreamsPaginator(_ input: DescribeUpstreamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUpstreamsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUpstreams, logger: logger, on: eventLoop)
     }
 }

@@ -150,7 +150,7 @@ extension Monitor {
     ///
     /// 根据条件查询 Prometheus 预聚合规则
     @inlinable
-    public func describeRecordingRulesPaginator(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRecordingRulesRequest, DescribeRecordingRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRecordingRulesRequest, DescribeRecordingRulesResponse>.ResponseSequence) {
+    public func describeRecordingRulesPaginator(_ input: DescribeRecordingRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordingRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordingRules, logger: logger, on: eventLoop)
     }
 }

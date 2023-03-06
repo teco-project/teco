@@ -153,7 +153,7 @@ extension Ecm {
     ///
     /// 查询私有网络列表
     @inlinable
-    public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpcsRequest, DescribeVpcsResponse>.ResponseSequence) {
+    public func describeVpcsPaginator(_ input: DescribeVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcs, logger: logger, on: eventLoop)
     }
 }

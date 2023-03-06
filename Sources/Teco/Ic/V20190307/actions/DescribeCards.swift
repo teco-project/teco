@@ -122,7 +122,7 @@ extension Ic {
     ///
     /// 查询卡片列表信息
     @inlinable
-    public func describeCardsPaginator(_ input: DescribeCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCardsRequest, DescribeCardsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCardsRequest, DescribeCardsResponse>.ResponseSequence) {
+    public func describeCardsPaginator(_ input: DescribeCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCardsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCards, logger: logger, on: eventLoop)
     }
 }

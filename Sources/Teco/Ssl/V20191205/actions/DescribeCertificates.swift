@@ -183,7 +183,7 @@ extension Ssl {
     ///
     /// 本接口（DescribeCertificates）用于获取证书列表。
     @inlinable
-    public func describeCertificatesPaginator(_ input: DescribeCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCertificatesRequest, DescribeCertificatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCertificatesRequest, DescribeCertificatesResponse>.ResponseSequence) {
+    public func describeCertificatesPaginator(_ input: DescribeCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertificatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertificates, logger: logger, on: eventLoop)
     }
 }

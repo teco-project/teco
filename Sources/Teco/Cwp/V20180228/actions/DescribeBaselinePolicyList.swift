@@ -127,7 +127,7 @@ extension Cwp {
 
     /// 获取基线策略列表
     @inlinable
-    public func describeBaselinePolicyListPaginator(_ input: DescribeBaselinePolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBaselinePolicyListRequest, DescribeBaselinePolicyListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBaselinePolicyListRequest, DescribeBaselinePolicyListResponse>.ResponseSequence) {
+    public func describeBaselinePolicyListPaginator(_ input: DescribeBaselinePolicyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselinePolicyListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselinePolicyList, logger: logger, on: eventLoop)
     }
 }

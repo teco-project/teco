@@ -155,7 +155,7 @@ extension Cms {
     /// <br>
     /// 查询图片样本库，支持批量查询。
     @inlinable
-    public func describeFileSamplePaginator(_ input: DescribeFileSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFileSampleRequest, DescribeFileSampleResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFileSampleRequest, DescribeFileSampleResponse>.ResponseSequence) {
+    public func describeFileSamplePaginator(_ input: DescribeFileSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFileSampleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFileSample, logger: logger, on: eventLoop)
     }
 }

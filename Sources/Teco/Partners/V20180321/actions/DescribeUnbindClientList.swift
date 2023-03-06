@@ -145,7 +145,7 @@ extension Partners {
 
     /// 代理商名下客户解绑记录查询接口
     @inlinable
-    public func describeUnbindClientListPaginator(_ input: DescribeUnbindClientListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUnbindClientListRequest, DescribeUnbindClientListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUnbindClientListRequest, DescribeUnbindClientListResponse>.ResponseSequence) {
+    public func describeUnbindClientListPaginator(_ input: DescribeUnbindClientListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUnbindClientListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnbindClientList, logger: logger, on: eventLoop)
     }
 }

@@ -124,7 +124,7 @@ extension Tsf {
 
     /// 获取容器事件列表
     @inlinable
-    public func describeContainerEventsPaginator(_ input: DescribeContainerEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeContainerEventsRequest, DescribeContainerEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeContainerEventsRequest, DescribeContainerEventsResponse>.ResponseSequence) {
+    public func describeContainerEventsPaginator(_ input: DescribeContainerEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeContainerEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContainerEvents, logger: logger, on: eventLoop)
     }
 }

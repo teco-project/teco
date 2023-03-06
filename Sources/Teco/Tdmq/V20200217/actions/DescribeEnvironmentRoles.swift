@@ -135,7 +135,7 @@ extension Tdmq {
 
     /// 获取命名空间角色列表
     @inlinable
-    public func describeEnvironmentRolesPaginator(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEnvironmentRolesRequest, DescribeEnvironmentRolesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEnvironmentRolesRequest, DescribeEnvironmentRolesResponse>.ResponseSequence) {
+    public func describeEnvironmentRolesPaginator(_ input: DescribeEnvironmentRolesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEnvironmentRolesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEnvironmentRoles, logger: logger, on: eventLoop)
     }
 }

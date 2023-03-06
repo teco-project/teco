@@ -129,7 +129,7 @@ extension Cfw {
 
     /// 展示当前natfw 实例对应的vpc dns开关
     @inlinable
-    public func describeNatFwVpcDnsLstPaginator(_ input: DescribeNatFwVpcDnsLstRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatFwVpcDnsLstRequest, DescribeNatFwVpcDnsLstResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatFwVpcDnsLstRequest, DescribeNatFwVpcDnsLstResponse>.ResponseSequence) {
+    public func describeNatFwVpcDnsLstPaginator(_ input: DescribeNatFwVpcDnsLstRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatFwVpcDnsLstRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatFwVpcDnsLst, logger: logger, on: eventLoop)
     }
 }

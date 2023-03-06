@@ -126,7 +126,7 @@ extension Tione {
 
     /// 查看notebook生命周期脚本列表
     @inlinable
-    public func describeNotebookLifecycleScriptsPaginator(_ input: DescribeNotebookLifecycleScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNotebookLifecycleScriptsRequest, DescribeNotebookLifecycleScriptsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNotebookLifecycleScriptsRequest, DescribeNotebookLifecycleScriptsResponse>.ResponseSequence) {
+    public func describeNotebookLifecycleScriptsPaginator(_ input: DescribeNotebookLifecycleScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNotebookLifecycleScriptsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNotebookLifecycleScripts, logger: logger, on: eventLoop)
     }
 }

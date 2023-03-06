@@ -283,7 +283,7 @@ extension Cpdp {
     ///
     /// 通过商家批次单号或者微信批次号查询批次单
     @inlinable
-    public func queryTransferBatchPaginator(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryTransferBatchRequest, QueryTransferBatchResponse>.ResultSequence, responses: TCClient.Paginator<QueryTransferBatchRequest, QueryTransferBatchResponse>.ResponseSequence) {
+    public func queryTransferBatchPaginator(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryTransferBatchRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryTransferBatch, logger: logger, on: eventLoop)
     }
 }

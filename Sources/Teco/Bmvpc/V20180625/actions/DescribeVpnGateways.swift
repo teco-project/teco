@@ -150,7 +150,7 @@ extension Bmvpc {
     ///
     /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
     @inlinable
-    public func describeVpnGatewaysPaginator(_ input: DescribeVpnGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpnGatewaysRequest, DescribeVpnGatewaysResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpnGatewaysRequest, DescribeVpnGatewaysResponse>.ResponseSequence) {
+    public func describeVpnGatewaysPaginator(_ input: DescribeVpnGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGateways, logger: logger, on: eventLoop)
     }
 }

@@ -156,7 +156,7 @@ extension Dcdb {
     ///
     /// 本接口（DescribeUserTasks）用于拉取用户任务列表
     @inlinable
-    public func describeUserTasksPaginator(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserTasksRequest, DescribeUserTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserTasksRequest, DescribeUserTasksResponse>.ResponseSequence) {
+    public func describeUserTasksPaginator(_ input: DescribeUserTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserTasks, logger: logger, on: eventLoop)
     }
 }

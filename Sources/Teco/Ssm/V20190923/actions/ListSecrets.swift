@@ -170,7 +170,7 @@ extension Ssm {
     ///
     /// 该接口用于获取所有凭据的详细列表，可以指定过滤字段、排序方式等。
     @inlinable
-    public func listSecretsPaginator(_ input: ListSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListSecretsRequest, ListSecretsResponse>.ResultSequence, responses: TCClient.Paginator<ListSecretsRequest, ListSecretsResponse>.ResponseSequence) {
+    public func listSecretsPaginator(_ input: ListSecretsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListSecretsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listSecrets, logger: logger, on: eventLoop)
     }
 }

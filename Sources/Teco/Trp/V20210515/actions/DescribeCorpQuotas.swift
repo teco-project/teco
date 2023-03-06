@@ -124,7 +124,7 @@ extension Trp {
 
     /// 查询渠道商下属企业额度使用情况
     @inlinable
-    public func describeCorpQuotasPaginator(_ input: DescribeCorpQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCorpQuotasRequest, DescribeCorpQuotasResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCorpQuotasRequest, DescribeCorpQuotasResponse>.ResponseSequence) {
+    public func describeCorpQuotasPaginator(_ input: DescribeCorpQuotasRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCorpQuotasRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCorpQuotas, logger: logger, on: eventLoop)
     }
 }

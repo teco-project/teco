@@ -149,7 +149,7 @@ extension Gaap {
     ///
     /// 本接口（DescribeProxyGroupList）用于拉取通道组列表及各通道组基本信息。
     @inlinable
-    public func describeProxyGroupListPaginator(_ input: DescribeProxyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProxyGroupListRequest, DescribeProxyGroupListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProxyGroupListRequest, DescribeProxyGroupListResponse>.ResponseSequence) {
+    public func describeProxyGroupListPaginator(_ input: DescribeProxyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProxyGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProxyGroupList, logger: logger, on: eventLoop)
     }
 }

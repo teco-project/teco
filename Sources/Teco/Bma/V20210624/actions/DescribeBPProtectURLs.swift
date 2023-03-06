@@ -112,7 +112,7 @@ extension Bma {
 
     /// 查询保护网站
     @inlinable
-    public func describeBPProtectURLsPaginator(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBPProtectURLsRequest, DescribeBPProtectURLsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBPProtectURLsRequest, DescribeBPProtectURLsResponse>.ResponseSequence) {
+    public func describeBPProtectURLsPaginator(_ input: DescribeBPProtectURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPProtectURLsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPProtectURLs, logger: logger, on: eventLoop)
     }
 }

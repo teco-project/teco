@@ -214,7 +214,7 @@ extension Billing {
     ///
     /// 获取收支明细列表，支持翻页和参数过滤
     @inlinable
-    public func describeBillListPaginator(_ input: DescribeBillListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBillListRequest, DescribeBillListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBillListRequest, DescribeBillListResponse>.ResponseSequence) {
+    public func describeBillListPaginator(_ input: DescribeBillListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBillListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBillList, logger: logger, on: eventLoop)
     }
 }

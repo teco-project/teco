@@ -146,7 +146,7 @@ extension Redis {
     ///
     /// 查询 CRS 实例备份列表
     @inlinable
-    public func describeInstanceBackupsPaginator(_ input: DescribeInstanceBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceBackupsRequest, DescribeInstanceBackupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceBackupsRequest, DescribeInstanceBackupsResponse>.ResponseSequence) {
+    public func describeInstanceBackupsPaginator(_ input: DescribeInstanceBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceBackups, logger: logger, on: eventLoop)
     }
 }

@@ -118,7 +118,7 @@ extension Tsf {
 
     /// 查询仓库列表
     @inlinable
-    public func describeRepositoriesPaginator(_ input: DescribeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRepositoriesRequest, DescribeRepositoriesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRepositoriesRequest, DescribeRepositoriesResponse>.ResponseSequence) {
+    public func describeRepositoriesPaginator(_ input: DescribeRepositoriesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRepositoriesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRepositories, logger: logger, on: eventLoop)
     }
 }

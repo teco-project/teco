@@ -140,7 +140,7 @@ extension Teo {
 
     /// 查询清除缓存历史记录
     @inlinable
-    public func describePurgeTasksPaginator(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribePurgeTasksRequest, DescribePurgeTasksResponse>.ResponseSequence) {
+    public func describePurgeTasksPaginator(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePurgeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)
     }
 }

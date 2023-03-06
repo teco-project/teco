@@ -117,7 +117,7 @@ extension Tdmq {
 
     /// 获取租户VPC绑定关系
     @inlinable
-    public func describeBindVpcsPaginator(_ input: DescribeBindVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBindVpcsRequest, DescribeBindVpcsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBindVpcsRequest, DescribeBindVpcsResponse>.ResponseSequence) {
+    public func describeBindVpcsPaginator(_ input: DescribeBindVpcsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindVpcsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindVpcs, logger: logger, on: eventLoop)
     }
 }

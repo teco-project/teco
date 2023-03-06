@@ -125,7 +125,7 @@ extension Tcss {
 
     /// 查询受漏洞的容器列表
     @inlinable
-    public func describeVulContainerListPaginator(_ input: DescribeVulContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulContainerListRequest, DescribeVulContainerListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulContainerListRequest, DescribeVulContainerListResponse>.ResponseSequence) {
+    public func describeVulContainerListPaginator(_ input: DescribeVulContainerListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulContainerListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulContainerList, logger: logger, on: eventLoop)
     }
 }

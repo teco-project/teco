@@ -137,7 +137,7 @@ extension Cwp {
 
     /// 获取高危命令列表(新)
     @inlinable
-    public func describeBashEventsNewPaginator(_ input: DescribeBashEventsNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBashEventsNewRequest, DescribeBashEventsNewResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBashEventsNewRequest, DescribeBashEventsNewResponse>.ResponseSequence) {
+    public func describeBashEventsNewPaginator(_ input: DescribeBashEventsNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBashEventsNewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBashEventsNew, logger: logger, on: eventLoop)
     }
 }

@@ -143,7 +143,7 @@ extension Vod {
     ///
     /// 查询采样截图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeSampleSnapshotTemplatesPaginator(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSampleSnapshotTemplatesRequest, DescribeSampleSnapshotTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSampleSnapshotTemplatesRequest, DescribeSampleSnapshotTemplatesResponse>.ResponseSequence) {
+    public func describeSampleSnapshotTemplatesPaginator(_ input: DescribeSampleSnapshotTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSampleSnapshotTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSampleSnapshotTemplates, logger: logger, on: eventLoop)
     }
 }

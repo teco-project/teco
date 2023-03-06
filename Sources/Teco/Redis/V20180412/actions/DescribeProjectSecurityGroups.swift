@@ -141,7 +141,7 @@ extension Redis {
     ///
     /// 本接口(DescribeProjectSecurityGroups)用于查询项目的安全组详情。
     @inlinable
-    public func describeProjectSecurityGroupsPaginator(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProjectSecurityGroupsRequest, DescribeProjectSecurityGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProjectSecurityGroupsRequest, DescribeProjectSecurityGroupsResponse>.ResponseSequence) {
+    public func describeProjectSecurityGroupsPaginator(_ input: DescribeProjectSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectSecurityGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjectSecurityGroups, logger: logger, on: eventLoop)
     }
 }

@@ -173,7 +173,7 @@ extension Live {
     ///
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
     @inlinable
-    public func describeTopClientIpSumInfoListPaginator(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeTopClientIpSumInfoListRequest, DescribeTopClientIpSumInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeTopClientIpSumInfoListRequest, DescribeTopClientIpSumInfoListResponse>.ResponseSequence) {
+    public func describeTopClientIpSumInfoListPaginator(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopClientIpSumInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopClientIpSumInfoList, logger: logger, on: eventLoop)
     }
 }

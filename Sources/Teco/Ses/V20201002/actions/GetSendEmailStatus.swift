@@ -144,7 +144,7 @@ extension Ses {
     /// 获取邮件发送状态。仅支持查询30天之内的数据
     /// 默认接口请求频率限制：1次/秒
     @inlinable
-    public func getSendEmailStatusPaginator(_ input: GetSendEmailStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetSendEmailStatusRequest, GetSendEmailStatusResponse>.ResultSequence, responses: TCClient.Paginator<GetSendEmailStatusRequest, GetSendEmailStatusResponse>.ResponseSequence) {
+    public func getSendEmailStatusPaginator(_ input: GetSendEmailStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetSendEmailStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getSendEmailStatus, logger: logger, on: eventLoop)
     }
 }

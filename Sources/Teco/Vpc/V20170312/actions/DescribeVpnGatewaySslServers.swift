@@ -146,7 +146,7 @@ extension Vpc {
     ///
     /// 查询SSL-VPN SERVER 列表信息
     @inlinable
-    public func describeVpnGatewaySslServersPaginator(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVpnGatewaySslServersRequest, DescribeVpnGatewaySslServersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVpnGatewaySslServersRequest, DescribeVpnGatewaySslServersResponse>.ResponseSequence) {
+    public func describeVpnGatewaySslServersPaginator(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewaySslServersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewaySslServers, logger: logger, on: eventLoop)
     }
 }

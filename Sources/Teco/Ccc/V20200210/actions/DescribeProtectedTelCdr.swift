@@ -127,7 +127,7 @@ extension Ccc {
 
     /// 获取主被叫受保护的电话服务记录与录音
     @inlinable
-    public func describeProtectedTelCdrPaginator(_ input: DescribeProtectedTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProtectedTelCdrRequest, DescribeProtectedTelCdrResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProtectedTelCdrRequest, DescribeProtectedTelCdrResponse>.ResponseSequence) {
+    public func describeProtectedTelCdrPaginator(_ input: DescribeProtectedTelCdrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProtectedTelCdrRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProtectedTelCdr, logger: logger, on: eventLoop)
     }
 }

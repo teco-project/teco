@@ -150,7 +150,7 @@ extension Tag {
 
     /// 通过标签查询资源列表并集
     @inlinable
-    public func describeResourcesByTagsUnionPaginator(_ input: DescribeResourcesByTagsUnionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResourcesByTagsUnionRequest, DescribeResourcesByTagsUnionResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResourcesByTagsUnionRequest, DescribeResourcesByTagsUnionResponse>.ResponseSequence) {
+    public func describeResourcesByTagsUnionPaginator(_ input: DescribeResourcesByTagsUnionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourcesByTagsUnionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourcesByTagsUnion, logger: logger, on: eventLoop)
     }
 }

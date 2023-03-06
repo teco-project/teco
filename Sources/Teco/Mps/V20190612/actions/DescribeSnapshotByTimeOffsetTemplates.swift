@@ -138,7 +138,7 @@ extension Mps {
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
     @inlinable
-    public func describeSnapshotByTimeOffsetTemplatesPaginator(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotByTimeOffsetTemplatesRequest, DescribeSnapshotByTimeOffsetTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotByTimeOffsetTemplatesRequest, DescribeSnapshotByTimeOffsetTemplatesResponse>.ResponseSequence) {
+    public func describeSnapshotByTimeOffsetTemplatesPaginator(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotByTimeOffsetTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, logger: logger, on: eventLoop)
     }
 }

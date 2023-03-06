@@ -141,7 +141,7 @@ extension Tcss {
     ///
     /// 查询运行时异常进程策略列表信息
     @inlinable
-    public func describeAbnormalProcessRulesPaginator(_ input: DescribeAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAbnormalProcessRulesRequest, DescribeAbnormalProcessRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAbnormalProcessRulesRequest, DescribeAbnormalProcessRulesResponse>.ResponseSequence) {
+    public func describeAbnormalProcessRulesPaginator(_ input: DescribeAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAbnormalProcessRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAbnormalProcessRules, logger: logger, on: eventLoop)
     }
 }

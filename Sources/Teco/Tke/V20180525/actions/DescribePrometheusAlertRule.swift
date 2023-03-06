@@ -123,7 +123,7 @@ extension Tke {
 
     /// 获取告警规则列表
     @inlinable
-    public func describePrometheusAlertRulePaginator(_ input: DescribePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusAlertRuleRequest, DescribePrometheusAlertRuleResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusAlertRuleRequest, DescribePrometheusAlertRuleResponse>.ResponseSequence) {
+    public func describePrometheusAlertRulePaginator(_ input: DescribePrometheusAlertRuleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAlertRuleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAlertRule, logger: logger, on: eventLoop)
     }
 }

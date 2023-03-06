@@ -127,7 +127,7 @@ extension Antiddos {
 
     /// 获取防护概览的ddos攻击事件
     @inlinable
-    public func describeOverviewDDoSEventListPaginator(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeOverviewDDoSEventListRequest, DescribeOverviewDDoSEventListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeOverviewDDoSEventListRequest, DescribeOverviewDDoSEventListResponse>.ResponseSequence) {
+    public func describeOverviewDDoSEventListPaginator(_ input: DescribeOverviewDDoSEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOverviewDDoSEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOverviewDDoSEventList, logger: logger, on: eventLoop)
     }
 }

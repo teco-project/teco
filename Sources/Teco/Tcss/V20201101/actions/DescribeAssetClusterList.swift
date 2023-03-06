@@ -130,7 +130,7 @@ extension Tcss {
 
     /// 查询集群列表
     @inlinable
-    public func describeAssetClusterListPaginator(_ input: DescribeAssetClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssetClusterListRequest, DescribeAssetClusterListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssetClusterListRequest, DescribeAssetClusterListResponse>.ResponseSequence) {
+    public func describeAssetClusterListPaginator(_ input: DescribeAssetClusterListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetClusterListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetClusterList, logger: logger, on: eventLoop)
     }
 }

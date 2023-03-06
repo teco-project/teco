@@ -123,7 +123,7 @@ extension Wav {
     ///
     /// 根据游标拉取会话存档列表信息
     @inlinable
-    public func queryChatArchivingListPaginator(_ input: QueryChatArchivingListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<QueryChatArchivingListRequest, QueryChatArchivingListResponse>.ResultSequence, responses: TCClient.Paginator<QueryChatArchivingListRequest, QueryChatArchivingListResponse>.ResponseSequence) {
+    public func queryChatArchivingListPaginator(_ input: QueryChatArchivingListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryChatArchivingListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryChatArchivingList, logger: logger, on: eventLoop)
     }
 }

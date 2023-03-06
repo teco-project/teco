@@ -144,7 +144,7 @@ extension Iotvideoindustry {
 
     /// 获取告警列表
     @inlinable
-    public func describeWarningsPaginator(_ input: DescribeWarningsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWarningsRequest, DescribeWarningsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWarningsRequest, DescribeWarningsResponse>.ResponseSequence) {
+    public func describeWarningsPaginator(_ input: DescribeWarningsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWarningsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWarnings, logger: logger, on: eventLoop)
     }
 }

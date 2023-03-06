@@ -157,7 +157,7 @@ extension Ckafka {
     ///
     /// 用户账户下获取实例列表详情
     @inlinable
-    public func describeInstancesDetailPaginator(_ input: DescribeInstancesDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstancesDetailRequest, DescribeInstancesDetailResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstancesDetailRequest, DescribeInstancesDetailResponse>.ResponseSequence) {
+    public func describeInstancesDetailPaginator(_ input: DescribeInstancesDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesDetail, logger: logger, on: eventLoop)
     }
 }

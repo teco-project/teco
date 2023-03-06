@@ -127,7 +127,7 @@ extension Dasb {
 
     /// 查询用户组列表
     @inlinable
-    public func describeUserGroupsPaginator(_ input: DescribeUserGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeUserGroupsRequest, DescribeUserGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeUserGroupsRequest, DescribeUserGroupsResponse>.ResponseSequence) {
+    public func describeUserGroupsPaginator(_ input: DescribeUserGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserGroups, logger: logger, on: eventLoop)
     }
 }

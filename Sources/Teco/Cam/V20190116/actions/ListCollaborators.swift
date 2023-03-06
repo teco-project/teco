@@ -112,7 +112,7 @@ extension Cam {
 
     /// 获取协作者列表
     @inlinable
-    public func listCollaboratorsPaginator(_ input: ListCollaboratorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListCollaboratorsRequest, ListCollaboratorsResponse>.ResultSequence, responses: TCClient.Paginator<ListCollaboratorsRequest, ListCollaboratorsResponse>.ResponseSequence) {
+    public func listCollaboratorsPaginator(_ input: ListCollaboratorsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListCollaboratorsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listCollaborators, logger: logger, on: eventLoop)
     }
 }

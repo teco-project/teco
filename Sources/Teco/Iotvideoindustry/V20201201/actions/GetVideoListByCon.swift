@@ -161,7 +161,7 @@ extension Iotvideoindustry {
     /// 本接口(GetVideoListByCon)用于查询设备的录制文件列表
     /// 请使用DescribeVideoListByChannel接口
     @inlinable
-    public func getVideoListByConPaginator(_ input: GetVideoListByConRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetVideoListByConRequest, GetVideoListByConResponse>.ResultSequence, responses: TCClient.Paginator<GetVideoListByConRequest, GetVideoListByConResponse>.ResponseSequence) {
+    public func getVideoListByConPaginator(_ input: GetVideoListByConRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetVideoListByConRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getVideoListByCon, logger: logger, on: eventLoop)
     }
 }

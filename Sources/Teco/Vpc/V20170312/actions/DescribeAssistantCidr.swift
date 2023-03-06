@@ -138,7 +138,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeAssistantCidr）用于查询辅助CIDR列表。
     @inlinable
-    public func describeAssistantCidrPaginator(_ input: DescribeAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAssistantCidrRequest, DescribeAssistantCidrResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAssistantCidrRequest, DescribeAssistantCidrResponse>.ResponseSequence) {
+    public func describeAssistantCidrPaginator(_ input: DescribeAssistantCidrRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssistantCidrRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssistantCidr, logger: logger, on: eventLoop)
     }
 }

@@ -108,7 +108,7 @@ extension Ckafka {
 
     /// 查询用户列表
     @inlinable
-    public func describeAppInfoPaginator(_ input: DescribeAppInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAppInfoRequest, DescribeAppInfoResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAppInfoRequest, DescribeAppInfoResponse>.ResponseSequence) {
+    public func describeAppInfoPaginator(_ input: DescribeAppInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAppInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAppInfo, logger: logger, on: eventLoop)
     }
 }

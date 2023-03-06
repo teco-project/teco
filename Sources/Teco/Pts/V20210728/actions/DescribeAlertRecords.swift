@@ -158,7 +158,7 @@ extension Pts {
     ///
     /// 返回告警历史项的列表
     @inlinable
-    public func describeAlertRecordsPaginator(_ input: DescribeAlertRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeAlertRecordsRequest, DescribeAlertRecordsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeAlertRecordsRequest, DescribeAlertRecordsResponse>.ResponseSequence) {
+    public func describeAlertRecordsPaginator(_ input: DescribeAlertRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertRecords, logger: logger, on: eventLoop)
     }
 }

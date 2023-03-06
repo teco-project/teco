@@ -140,7 +140,7 @@ extension Batch {
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
     @inlinable
-    public func describeComputeEnvCreateInfosPaginator(_ input: DescribeComputeEnvCreateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeComputeEnvCreateInfosRequest, DescribeComputeEnvCreateInfosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeComputeEnvCreateInfosRequest, DescribeComputeEnvCreateInfosResponse>.ResponseSequence) {
+    public func describeComputeEnvCreateInfosPaginator(_ input: DescribeComputeEnvCreateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComputeEnvCreateInfosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComputeEnvCreateInfos, logger: logger, on: eventLoop)
     }
 }

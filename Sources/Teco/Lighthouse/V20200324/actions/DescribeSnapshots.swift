@@ -150,7 +150,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeSnapshots）用于查询快照的详细信息。
     @inlinable
-    public func describeSnapshotsPaginator(_ input: DescribeSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotsRequest, DescribeSnapshotsResponse>.ResponseSequence) {
+    public func describeSnapshotsPaginator(_ input: DescribeSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshots, logger: logger, on: eventLoop)
     }
 }

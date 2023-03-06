@@ -139,7 +139,7 @@ extension Tcss {
 
     /// 运行时查询文件查杀任务列表
     @inlinable
-    public func describeVirusTaskListPaginator(_ input: DescribeVirusTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVirusTaskListRequest, DescribeVirusTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVirusTaskListRequest, DescribeVirusTaskListResponse>.ResponseSequence) {
+    public func describeVirusTaskListPaginator(_ input: DescribeVirusTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVirusTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVirusTaskList, logger: logger, on: eventLoop)
     }
 }

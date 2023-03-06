@@ -169,7 +169,7 @@ extension Dlc {
 
     /// DMS元数据获取表列表
     @inlinable
-    public func describeDMSTablesPaginator(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDMSTablesRequest, DescribeDMSTablesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDMSTablesRequest, DescribeDMSTablesResponse>.ResponseSequence) {
+    public func describeDMSTablesPaginator(_ input: DescribeDMSTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDMSTablesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDMSTables, logger: logger, on: eventLoop)
     }
 }

@@ -132,7 +132,7 @@ extension Waf {
     ///
     /// 查询用户所有域名的详细信息
     @inlinable
-    public func describeDomainsPaginator(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDomainsRequest, DescribeDomainsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDomainsRequest, DescribeDomainsResponse>.ResponseSequence) {
+    public func describeDomainsPaginator(_ input: DescribeDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDomains, logger: logger, on: eventLoop)
     }
 }

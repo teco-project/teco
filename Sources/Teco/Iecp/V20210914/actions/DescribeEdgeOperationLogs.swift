@@ -139,7 +139,7 @@ extension Iecp {
 
     /// 查询边缘操作日志
     @inlinable
-    public func describeEdgeOperationLogsPaginator(_ input: DescribeEdgeOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEdgeOperationLogsRequest, DescribeEdgeOperationLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEdgeOperationLogsRequest, DescribeEdgeOperationLogsResponse>.ResponseSequence) {
+    public func describeEdgeOperationLogsPaginator(_ input: DescribeEdgeOperationLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeOperationLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeOperationLogs, logger: logger, on: eventLoop)
     }
 }

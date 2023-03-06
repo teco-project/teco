@@ -124,7 +124,7 @@ extension Organization {
 
     /// 获取组织成员访问身份列表
     @inlinable
-    public func listOrganizationIdentityPaginator(_ input: ListOrganizationIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListOrganizationIdentityRequest, ListOrganizationIdentityResponse>.ResultSequence, responses: TCClient.Paginator<ListOrganizationIdentityRequest, ListOrganizationIdentityResponse>.ResponseSequence) {
+    public func listOrganizationIdentityPaginator(_ input: ListOrganizationIdentityRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListOrganizationIdentityRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listOrganizationIdentity, logger: logger, on: eventLoop)
     }
 }

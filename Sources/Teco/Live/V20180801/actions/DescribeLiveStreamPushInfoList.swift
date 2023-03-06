@@ -152,7 +152,7 @@ extension Live {
     ///
     /// 查询所有实时流的推流信息，包括客户端IP，服务端IP，帧率，码率，域名，开始推流时间。
     @inlinable
-    public func describeLiveStreamPushInfoListPaginator(_ input: DescribeLiveStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLiveStreamPushInfoListRequest, DescribeLiveStreamPushInfoListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLiveStreamPushInfoListRequest, DescribeLiveStreamPushInfoListResponse>.ResponseSequence) {
+    public func describeLiveStreamPushInfoListPaginator(_ input: DescribeLiveStreamPushInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveStreamPushInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveStreamPushInfoList, logger: logger, on: eventLoop)
     }
 }

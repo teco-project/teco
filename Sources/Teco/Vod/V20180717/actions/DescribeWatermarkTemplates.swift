@@ -147,7 +147,7 @@ extension Vod {
     ///
     /// 查询用户自定义水印模板，支持根据条件，分页查询。
     @inlinable
-    public func describeWatermarkTemplatesPaginator(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWatermarkTemplatesRequest, DescribeWatermarkTemplatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWatermarkTemplatesRequest, DescribeWatermarkTemplatesResponse>.ResponseSequence) {
+    public func describeWatermarkTemplatesPaginator(_ input: DescribeWatermarkTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWatermarkTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWatermarkTemplates, logger: logger, on: eventLoop)
     }
 }

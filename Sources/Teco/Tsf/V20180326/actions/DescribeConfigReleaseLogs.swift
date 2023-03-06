@@ -129,7 +129,7 @@ extension Tsf {
 
     /// 查询配置发布历史
     @inlinable
-    public func describeConfigReleaseLogsPaginator(_ input: DescribeConfigReleaseLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeConfigReleaseLogsRequest, DescribeConfigReleaseLogsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeConfigReleaseLogsRequest, DescribeConfigReleaseLogsResponse>.ResponseSequence) {
+    public func describeConfigReleaseLogsPaginator(_ input: DescribeConfigReleaseLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigReleaseLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigReleaseLogs, logger: logger, on: eventLoop)
     }
 }

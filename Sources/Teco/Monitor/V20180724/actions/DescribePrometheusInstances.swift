@@ -202,7 +202,7 @@ extension Monitor {
     /// <li>如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的实例。</li>
     /// </ul>
     @inlinable
-    public func describePrometheusInstancesPaginator(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusInstancesRequest, DescribePrometheusInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusInstancesRequest, DescribePrometheusInstancesResponse>.ResponseSequence) {
+    public func describePrometheusInstancesPaginator(_ input: DescribePrometheusInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusInstances, logger: logger, on: eventLoop)
     }
 }

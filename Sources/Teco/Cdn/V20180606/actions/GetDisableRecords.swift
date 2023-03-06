@@ -163,7 +163,7 @@ extension Cdn {
     ///
     /// GetDisableRecords 用于查询资源禁用历史，及 URL 当前状态。（接口尚在内测中，暂未全量开放使用）
     @inlinable
-    public func getDisableRecordsPaginator(_ input: GetDisableRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetDisableRecordsRequest, GetDisableRecordsResponse>.ResultSequence, responses: TCClient.Paginator<GetDisableRecordsRequest, GetDisableRecordsResponse>.ResponseSequence) {
+    public func getDisableRecordsPaginator(_ input: GetDisableRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDisableRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDisableRecords, logger: logger, on: eventLoop)
     }
 }

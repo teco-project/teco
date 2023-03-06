@@ -117,7 +117,7 @@ extension Bma {
 
     /// 查询举报列表
     @inlinable
-    public func describeBPReportFakeURLsPaginator(_ input: DescribeBPReportFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBPReportFakeURLsRequest, DescribeBPReportFakeURLsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBPReportFakeURLsRequest, DescribeBPReportFakeURLsResponse>.ResponseSequence) {
+    public func describeBPReportFakeURLsPaginator(_ input: DescribeBPReportFakeURLsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBPReportFakeURLsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBPReportFakeURLs, logger: logger, on: eventLoop)
     }
 }

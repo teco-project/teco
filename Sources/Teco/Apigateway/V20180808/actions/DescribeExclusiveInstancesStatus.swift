@@ -113,7 +113,7 @@ extension Apigateway {
 
     /// 查询专享实例列表（新）
     @inlinable
-    public func describeExclusiveInstancesStatusPaginator(_ input: DescribeExclusiveInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeExclusiveInstancesStatusRequest, DescribeExclusiveInstancesStatusResponse>.ResultSequence, responses: TCClient.Paginator<DescribeExclusiveInstancesStatusRequest, DescribeExclusiveInstancesStatusResponse>.ResponseSequence) {
+    public func describeExclusiveInstancesStatusPaginator(_ input: DescribeExclusiveInstancesStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExclusiveInstancesStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExclusiveInstancesStatus, logger: logger, on: eventLoop)
     }
 }

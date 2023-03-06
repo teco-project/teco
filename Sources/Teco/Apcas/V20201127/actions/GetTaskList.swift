@@ -142,7 +142,7 @@ extension Apcas {
     ///
     /// 查询当前账号AppID下的画像洞察任务列表
     @inlinable
-    public func getTaskListPaginator(_ input: GetTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetTaskListRequest, GetTaskListResponse>.ResultSequence, responses: TCClient.Paginator<GetTaskListRequest, GetTaskListResponse>.ResponseSequence) {
+    public func getTaskListPaginator(_ input: GetTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTaskList, logger: logger, on: eventLoop)
     }
 }

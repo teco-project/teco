@@ -124,7 +124,7 @@ extension Tke {
 
     /// 获取2.0实例告警策略列表
     @inlinable
-    public func describePrometheusAlertPolicyPaginator(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrometheusAlertPolicyRequest, DescribePrometheusAlertPolicyResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrometheusAlertPolicyRequest, DescribePrometheusAlertPolicyResponse>.ResponseSequence) {
+    public func describePrometheusAlertPolicyPaginator(_ input: DescribePrometheusAlertPolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusAlertPolicyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusAlertPolicy, logger: logger, on: eventLoop)
     }
 }

@@ -122,7 +122,7 @@ extension Dayu {
 
     /// 获取CC自定义策略
     @inlinable
-    public func describeCCSelfDefinePolicyPaginator(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCCSelfDefinePolicyRequest, DescribeCCSelfDefinePolicyResponse>.ResponseSequence) {
+    public func describeCCSelfDefinePolicyPaginator(_ input: DescribeCCSelfDefinePolicyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCSelfDefinePolicyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCSelfDefinePolicy, logger: logger, on: eventLoop)
     }
 }

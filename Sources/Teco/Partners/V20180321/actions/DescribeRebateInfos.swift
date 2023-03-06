@@ -131,7 +131,7 @@ extension Partners {
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeRebateInfosNew】代理商可查询自己名下全部返佣信息
     @inlinable
-    public func describeRebateInfosPaginator(_ input: DescribeRebateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRebateInfosRequest, DescribeRebateInfosResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRebateInfosRequest, DescribeRebateInfosResponse>.ResponseSequence) {
+    public func describeRebateInfosPaginator(_ input: DescribeRebateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRebateInfosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRebateInfos, logger: logger, on: eventLoop)
     }
 }

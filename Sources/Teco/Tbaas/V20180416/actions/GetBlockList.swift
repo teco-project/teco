@@ -161,7 +161,7 @@ extension Tbaas {
     ///
     /// 查看当前网络下的所有区块列表，分页展示
     @inlinable
-    public func getBlockListPaginator(_ input: GetBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetBlockListRequest, GetBlockListResponse>.ResultSequence, responses: TCClient.Paginator<GetBlockListRequest, GetBlockListResponse>.ResponseSequence) {
+    public func getBlockListPaginator(_ input: GetBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBlockListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBlockList, logger: logger, on: eventLoop)
     }
 }

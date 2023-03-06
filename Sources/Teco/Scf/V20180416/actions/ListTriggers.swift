@@ -138,7 +138,7 @@ extension Scf {
 
     /// 获取函数触发器列表
     @inlinable
-    public func listTriggersPaginator(_ input: ListTriggersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListTriggersRequest, ListTriggersResponse>.ResultSequence, responses: TCClient.Paginator<ListTriggersRequest, ListTriggersResponse>.ResponseSequence) {
+    public func listTriggersPaginator(_ input: ListTriggersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListTriggersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listTriggers, logger: logger, on: eventLoop)
     }
 }

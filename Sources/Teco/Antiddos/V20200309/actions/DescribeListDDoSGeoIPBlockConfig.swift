@@ -122,7 +122,7 @@ extension Antiddos {
 
     /// 获取DDoS防护的区域封禁配置列表
     @inlinable
-    public func describeListDDoSGeoIPBlockConfigPaginator(_ input: DescribeListDDoSGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeListDDoSGeoIPBlockConfigRequest, DescribeListDDoSGeoIPBlockConfigResponse>.ResultSequence, responses: TCClient.Paginator<DescribeListDDoSGeoIPBlockConfigRequest, DescribeListDDoSGeoIPBlockConfigResponse>.ResponseSequence) {
+    public func describeListDDoSGeoIPBlockConfigPaginator(_ input: DescribeListDDoSGeoIPBlockConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListDDoSGeoIPBlockConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListDDoSGeoIPBlockConfig, logger: logger, on: eventLoop)
     }
 }

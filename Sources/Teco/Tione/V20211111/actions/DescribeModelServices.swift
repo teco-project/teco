@@ -135,7 +135,7 @@ extension Tione {
 
     /// 查询多个服务
     @inlinable
-    public func describeModelServicesPaginator(_ input: DescribeModelServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeModelServicesRequest, DescribeModelServicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeModelServicesRequest, DescribeModelServicesResponse>.ResponseSequence) {
+    public func describeModelServicesPaginator(_ input: DescribeModelServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeModelServicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeModelServices, logger: logger, on: eventLoop)
     }
 }

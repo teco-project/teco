@@ -127,7 +127,7 @@ extension Iai {
     ///
     /// 获取人员库列表。
     @inlinable
-    public func getGroupListPaginator(_ input: GetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetGroupListRequest, GetGroupListResponse>.ResultSequence, responses: TCClient.Paginator<GetGroupListRequest, GetGroupListResponse>.ResponseSequence) {
+    public func getGroupListPaginator(_ input: GetGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getGroupList, logger: logger, on: eventLoop)
     }
 }

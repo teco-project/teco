@@ -131,7 +131,7 @@ extension Asw {
     ///
     /// 查询指定用户下所有状态机，以列表形式返回
     @inlinable
-    public func describeFlowServicesPaginator(_ input: DescribeFlowServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeFlowServicesRequest, DescribeFlowServicesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeFlowServicesRequest, DescribeFlowServicesResponse>.ResponseSequence) {
+    public func describeFlowServicesPaginator(_ input: DescribeFlowServicesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFlowServicesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFlowServices, logger: logger, on: eventLoop)
     }
 }

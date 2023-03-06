@@ -136,7 +136,7 @@ extension Vpc {
     ///
     /// 查询专线绑定NAT的路由
     @inlinable
-    public func describeNatGatewayDirectConnectGatewayRoutePaginator(_ input: DescribeNatGatewayDirectConnectGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNatGatewayDirectConnectGatewayRouteRequest, DescribeNatGatewayDirectConnectGatewayRouteResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNatGatewayDirectConnectGatewayRouteRequest, DescribeNatGatewayDirectConnectGatewayRouteResponse>.ResponseSequence) {
+    public func describeNatGatewayDirectConnectGatewayRoutePaginator(_ input: DescribeNatGatewayDirectConnectGatewayRouteRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatGatewayDirectConnectGatewayRouteRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatGatewayDirectConnectGatewayRoute, logger: logger, on: eventLoop)
     }
 }

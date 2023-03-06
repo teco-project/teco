@@ -118,7 +118,7 @@ extension Cwp {
 
     /// 查询java内存马事件列表
     @inlinable
-    public func describeJavaMemShellListPaginator(_ input: DescribeJavaMemShellListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeJavaMemShellListRequest, DescribeJavaMemShellListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeJavaMemShellListRequest, DescribeJavaMemShellListResponse>.ResponseSequence) {
+    public func describeJavaMemShellListPaginator(_ input: DescribeJavaMemShellListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeJavaMemShellListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJavaMemShellList, logger: logger, on: eventLoop)
     }
 }

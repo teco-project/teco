@@ -146,7 +146,7 @@ extension Vpc {
     ///
     /// 接口用于查询带宽包详细信息，包括带宽包唯一标识ID，类型，计费模式，名称，资源信息等
     @inlinable
-    public func describeBandwidthPackagesPaginator(_ input: DescribeBandwidthPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBandwidthPackagesRequest, DescribeBandwidthPackagesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBandwidthPackagesRequest, DescribeBandwidthPackagesResponse>.ResponseSequence) {
+    public func describeBandwidthPackagesPaginator(_ input: DescribeBandwidthPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBandwidthPackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBandwidthPackages, logger: logger, on: eventLoop)
     }
 }

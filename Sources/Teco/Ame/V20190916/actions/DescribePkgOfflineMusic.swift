@@ -131,7 +131,7 @@ extension Ame {
     ///
     /// 根据购买曲库包用户可查询已回退的歌曲信息
     @inlinable
-    public func describePkgOfflineMusicPaginator(_ input: DescribePkgOfflineMusicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePkgOfflineMusicRequest, DescribePkgOfflineMusicResponse>.ResultSequence, responses: TCClient.Paginator<DescribePkgOfflineMusicRequest, DescribePkgOfflineMusicResponse>.ResponseSequence) {
+    public func describePkgOfflineMusicPaginator(_ input: DescribePkgOfflineMusicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePkgOfflineMusicRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePkgOfflineMusic, logger: logger, on: eventLoop)
     }
 }

@@ -137,7 +137,7 @@ extension Nlp {
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
     @inlinable
-    public func describeWordItemsPaginator(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeWordItemsRequest, DescribeWordItemsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeWordItemsRequest, DescribeWordItemsResponse>.ResponseSequence) {
+    public func describeWordItemsPaginator(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWordItemsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWordItems, logger: logger, on: eventLoop)
     }
 }

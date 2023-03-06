@@ -177,7 +177,7 @@ extension Bmeip {
 
     /// 黑石EIP查询接口
     @inlinable
-    public func describeEipsPaginator(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeEipsRequest, DescribeEipsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeEipsRequest, DescribeEipsResponse>.ResponseSequence) {
+    public func describeEipsPaginator(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEipsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEips, logger: logger, on: eventLoop)
     }
 }

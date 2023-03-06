@@ -146,7 +146,7 @@ extension Postgres {
     ///
     /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
     @inlinable
-    public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBInstancesRequest, DescribeDBInstancesResponse>.ResponseSequence) {
+    public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)
     }
 }

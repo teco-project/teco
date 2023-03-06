@@ -108,7 +108,7 @@ extension Iotcloud {
 
     /// 查询私有CA绑定的产品列表
     @inlinable
-    public func describePrivateCABindedProductsPaginator(_ input: DescribePrivateCABindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrivateCABindedProductsRequest, DescribePrivateCABindedProductsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrivateCABindedProductsRequest, DescribePrivateCABindedProductsResponse>.ResponseSequence) {
+    public func describePrivateCABindedProductsPaginator(_ input: DescribePrivateCABindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivateCABindedProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateCABindedProducts, logger: logger, on: eventLoop)
     }
 }

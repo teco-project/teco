@@ -148,7 +148,7 @@ extension Clb {
     ///
     /// 拉取个性化配置列表，返回用户 AppId 下指定类型的配置。
     @inlinable
-    public func describeCustomizedConfigListPaginator(_ input: DescribeCustomizedConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeCustomizedConfigListRequest, DescribeCustomizedConfigListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeCustomizedConfigListRequest, DescribeCustomizedConfigListResponse>.ResponseSequence) {
+    public func describeCustomizedConfigListPaginator(_ input: DescribeCustomizedConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomizedConfigListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomizedConfigList, logger: logger, on: eventLoop)
     }
 }

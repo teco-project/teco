@@ -142,7 +142,7 @@ extension Dasb {
 
     /// 查询资产组成员列表
     @inlinable
-    public func describeDeviceGroupMembersPaginator(_ input: DescribeDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDeviceGroupMembersRequest, DescribeDeviceGroupMembersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDeviceGroupMembersRequest, DescribeDeviceGroupMembersResponse>.ResponseSequence) {
+    public func describeDeviceGroupMembersPaginator(_ input: DescribeDeviceGroupMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceGroupMembersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceGroupMembers, logger: logger, on: eventLoop)
     }
 }

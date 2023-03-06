@@ -123,7 +123,7 @@ extension Yunjing {
 
     /// 获取高危命令规则列表
     @inlinable
-    public func describeBashRulesPaginator(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBashRulesRequest, DescribeBashRulesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBashRulesRequest, DescribeBashRulesResponse>.ResponseSequence) {
+    public func describeBashRulesPaginator(_ input: DescribeBashRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBashRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBashRules, logger: logger, on: eventLoop)
     }
 }

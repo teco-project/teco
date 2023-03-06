@@ -131,7 +131,7 @@ extension Iotcloud {
     ///
     /// 本接口（DescribeProductTasks）用于查看产品级别的任务列表
     @inlinable
-    public func describeProductTasksPaginator(_ input: DescribeProductTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProductTasksRequest, DescribeProductTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProductTasksRequest, DescribeProductTasksResponse>.ResponseSequence) {
+    public func describeProductTasksPaginator(_ input: DescribeProductTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProductTasks, logger: logger, on: eventLoop)
     }
 }

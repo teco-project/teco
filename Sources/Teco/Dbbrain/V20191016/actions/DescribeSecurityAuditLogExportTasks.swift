@@ -141,7 +141,7 @@ extension Dbbrain {
     ///
     /// 查询安全审计日志导出任务列表。
     @inlinable
-    public func describeSecurityAuditLogExportTasksPaginator(_ input: DescribeSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecurityAuditLogExportTasksRequest, DescribeSecurityAuditLogExportTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecurityAuditLogExportTasksRequest, DescribeSecurityAuditLogExportTasksResponse>.ResponseSequence) {
+    public func describeSecurityAuditLogExportTasksPaginator(_ input: DescribeSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityAuditLogExportTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityAuditLogExportTasks, logger: logger, on: eventLoop)
     }
 }

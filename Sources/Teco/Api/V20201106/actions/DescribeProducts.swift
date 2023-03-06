@@ -126,7 +126,7 @@ extension Api {
     ///
     /// 本接口(DescribeProducts)用于查询各个支持地域列表查询的产品信息。
     @inlinable
-    public func describeProductsPaginator(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProductsRequest, DescribeProductsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProductsRequest, DescribeProductsResponse>.ResponseSequence) {
+    public func describeProductsPaginator(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)
     }
 }

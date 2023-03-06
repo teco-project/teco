@@ -144,7 +144,7 @@ extension Cwp {
     ///
     /// 获取用户所有授权订单信息
     @inlinable
-    public func describeLicenseListPaginator(_ input: DescribeLicenseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeLicenseListRequest, DescribeLicenseListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeLicenseListRequest, DescribeLicenseListResponse>.ResponseSequence) {
+    public func describeLicenseListPaginator(_ input: DescribeLicenseListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLicenseListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLicenseList, logger: logger, on: eventLoop)
     }
 }

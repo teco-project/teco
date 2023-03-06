@@ -144,7 +144,7 @@ extension Ssl {
 
     /// 查询管理人列表
     @inlinable
-    public func describeManagersPaginator(_ input: DescribeManagersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeManagersRequest, DescribeManagersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeManagersRequest, DescribeManagersResponse>.ResponseSequence) {
+    public func describeManagersPaginator(_ input: DescribeManagersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeManagersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeManagers, logger: logger, on: eventLoop)
     }
 }

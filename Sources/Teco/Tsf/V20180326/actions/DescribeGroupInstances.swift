@@ -129,7 +129,7 @@ extension Tsf {
 
     /// 查询虚拟机部署组云主机列表
     @inlinable
-    public func describeGroupInstancesPaginator(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupInstancesRequest, DescribeGroupInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupInstancesRequest, DescribeGroupInstancesResponse>.ResponseSequence) {
+    public func describeGroupInstancesPaginator(_ input: DescribeGroupInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupInstances, logger: logger, on: eventLoop)
     }
 }

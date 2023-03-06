@@ -131,7 +131,7 @@ extension Tcss {
 
     /// 查询k8sapi异常请求规则列表
     @inlinable
-    public func describeK8sApiAbnormalRuleListPaginator(_ input: DescribeK8sApiAbnormalRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeK8sApiAbnormalRuleListRequest, DescribeK8sApiAbnormalRuleListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeK8sApiAbnormalRuleListRequest, DescribeK8sApiAbnormalRuleListResponse>.ResponseSequence) {
+    public func describeK8sApiAbnormalRuleListPaginator(_ input: DescribeK8sApiAbnormalRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeK8sApiAbnormalRuleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeK8sApiAbnormalRuleList, logger: logger, on: eventLoop)
     }
 }

@@ -138,7 +138,7 @@ extension Tcss {
 
     /// 查询镜像自动授权任务列表
     @inlinable
-    public func describeImageAutoAuthorizedTaskListPaginator(_ input: DescribeImageAutoAuthorizedTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeImageAutoAuthorizedTaskListRequest, DescribeImageAutoAuthorizedTaskListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeImageAutoAuthorizedTaskListRequest, DescribeImageAutoAuthorizedTaskListResponse>.ResponseSequence) {
+    public func describeImageAutoAuthorizedTaskListPaginator(_ input: DescribeImageAutoAuthorizedTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageAutoAuthorizedTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageAutoAuthorizedTaskList, logger: logger, on: eventLoop)
     }
 }

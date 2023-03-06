@@ -132,7 +132,7 @@ extension Tbaas {
 
     /// 获取通道列表
     @inlinable
-    public func getChannelListForUserPaginator(_ input: GetChannelListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetChannelListForUserRequest, GetChannelListForUserResponse>.ResultSequence, responses: TCClient.Paginator<GetChannelListForUserRequest, GetChannelListForUserResponse>.ResponseSequence) {
+    public func getChannelListForUserPaginator(_ input: GetChannelListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetChannelListForUserRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getChannelListForUser, logger: logger, on: eventLoop)
     }
 }

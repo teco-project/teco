@@ -144,7 +144,7 @@ extension Tione {
 
     /// 查询资源组详情
     @inlinable
-    public func describeBillingResourceGroupsPaginator(_ input: DescribeBillingResourceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBillingResourceGroupsRequest, DescribeBillingResourceGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBillingResourceGroupsRequest, DescribeBillingResourceGroupsResponse>.ResponseSequence) {
+    public func describeBillingResourceGroupsPaginator(_ input: DescribeBillingResourceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBillingResourceGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBillingResourceGroups, logger: logger, on: eventLoop)
     }
 }

@@ -123,7 +123,7 @@ extension Tcss {
 
     /// 查询漏洞防御插件列表
     @inlinable
-    public func describeVulDefencePluginPaginator(_ input: DescribeVulDefencePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulDefencePluginRequest, DescribeVulDefencePluginResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulDefencePluginRequest, DescribeVulDefencePluginResponse>.ResponseSequence) {
+    public func describeVulDefencePluginPaginator(_ input: DescribeVulDefencePluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulDefencePluginRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulDefencePlugin, logger: logger, on: eventLoop)
     }
 }

@@ -161,7 +161,7 @@ extension Sqlserver {
     ///
     /// 本接口（DescribePublishSubscribe）用于查询发布订阅关系列表。
     @inlinable
-    public func describePublishSubscribePaginator(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResultSequence, responses: TCClient.Paginator<DescribePublishSubscribeRequest, DescribePublishSubscribeResponse>.ResponseSequence) {
+    public func describePublishSubscribePaginator(_ input: DescribePublishSubscribeRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublishSubscribeRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublishSubscribe, logger: logger, on: eventLoop)
     }
 }

@@ -132,7 +132,7 @@ extension Emr {
 
     /// 查询集群列表
     @inlinable
-    public func describeInstancesListPaginator(_ input: DescribeInstancesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstancesListRequest, DescribeInstancesListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstancesListRequest, DescribeInstancesListResponse>.ResponseSequence) {
+    public func describeInstancesListPaginator(_ input: DescribeInstancesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstancesList, logger: logger, on: eventLoop)
     }
 }

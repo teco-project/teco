@@ -118,7 +118,7 @@ extension Teo {
 
     /// 查询默认证书列表
     @inlinable
-    public func describeDefaultCertificatesPaginator(_ input: DescribeDefaultCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDefaultCertificatesRequest, DescribeDefaultCertificatesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDefaultCertificatesRequest, DescribeDefaultCertificatesResponse>.ResponseSequence) {
+    public func describeDefaultCertificatesPaginator(_ input: DescribeDefaultCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDefaultCertificatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDefaultCertificates, logger: logger, on: eventLoop)
     }
 }

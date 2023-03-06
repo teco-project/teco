@@ -128,7 +128,7 @@ extension Cwp {
 
     /// 获取本地提权事件列表
     @inlinable
-    public func describePrivilegeEventsPaginator(_ input: DescribePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePrivilegeEventsRequest, DescribePrivilegeEventsResponse>.ResultSequence, responses: TCClient.Paginator<DescribePrivilegeEventsRequest, DescribePrivilegeEventsResponse>.ResponseSequence) {
+    public func describePrivilegeEventsPaginator(_ input: DescribePrivilegeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivilegeEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivilegeEvents, logger: logger, on: eventLoop)
     }
 }

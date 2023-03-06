@@ -126,7 +126,7 @@ extension Ecm {
 
     /// 查看安全组
     @inlinable
-    public func describeSecurityGroupsPaginator(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSecurityGroupsRequest, DescribeSecurityGroupsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSecurityGroupsRequest, DescribeSecurityGroupsResponse>.ResponseSequence) {
+    public func describeSecurityGroupsPaginator(_ input: DescribeSecurityGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityGroups, logger: logger, on: eventLoop)
     }
 }

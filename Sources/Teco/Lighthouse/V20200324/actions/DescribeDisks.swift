@@ -173,7 +173,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeDisks）用于查询云硬盘信息。
     @inlinable
-    public func describeDisksPaginator(_ input: DescribeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDisksRequest, DescribeDisksResponse>.ResponseSequence) {
+    public func describeDisksPaginator(_ input: DescribeDisksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDisksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDisks, logger: logger, on: eventLoop)
     }
 }

@@ -163,7 +163,7 @@ extension Dlc {
     ///
     /// 本接口（DescribeViews）用于查询数据视图列表。
     @inlinable
-    public func describeViewsPaginator(_ input: DescribeViewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeViewsRequest, DescribeViewsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeViewsRequest, DescribeViewsResponse>.ResponseSequence) {
+    public func describeViewsPaginator(_ input: DescribeViewsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeViewsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeViews, logger: logger, on: eventLoop)
     }
 }

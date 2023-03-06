@@ -155,7 +155,7 @@ extension Cwp {
     ///
     /// 获取漏洞列表数据
     @inlinable
-    public func describeVulListPaginator(_ input: DescribeVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeVulListRequest, DescribeVulListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeVulListRequest, DescribeVulListResponse>.ResponseSequence) {
+    public func describeVulListPaginator(_ input: DescribeVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVulList, logger: logger, on: eventLoop)
     }
 }

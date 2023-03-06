@@ -135,7 +135,7 @@ extension Clb {
     ///
     /// 查询一个负载均衡所封禁的IP列表（黑名单）。（接口灰度中，如需使用请提工单）
     @inlinable
-    public func describeBlockIPListPaginator(_ input: DescribeBlockIPListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBlockIPListRequest, DescribeBlockIPListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBlockIPListRequest, DescribeBlockIPListResponse>.ResponseSequence) {
+    public func describeBlockIPListPaginator(_ input: DescribeBlockIPListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBlockIPListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBlockIPList, logger: logger, on: eventLoop)
     }
 }

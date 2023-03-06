@@ -141,7 +141,7 @@ extension Es {
     ///
     /// 查询实例指定条件下的操作记录
     @inlinable
-    public func describeInstanceOperationsPaginator(_ input: DescribeInstanceOperationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceOperationsRequest, DescribeInstanceOperationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceOperationsRequest, DescribeInstanceOperationsResponse>.ResponseSequence) {
+    public func describeInstanceOperationsPaginator(_ input: DescribeInstanceOperationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceOperationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceOperations, logger: logger, on: eventLoop)
     }
 }

@@ -137,7 +137,7 @@ extension Cdc {
 
     /// 查询专用集群列表
     @inlinable
-    public func describeDedicatedClustersPaginator(_ input: DescribeDedicatedClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDedicatedClustersRequest, DescribeDedicatedClustersResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDedicatedClustersRequest, DescribeDedicatedClustersResponse>.ResponseSequence) {
+    public func describeDedicatedClustersPaginator(_ input: DescribeDedicatedClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDedicatedClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDedicatedClusters, logger: logger, on: eventLoop)
     }
 }

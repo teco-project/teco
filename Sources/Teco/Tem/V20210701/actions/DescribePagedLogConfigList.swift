@@ -123,7 +123,7 @@ extension Tem {
 
     /// 查询分页的日志收集配置列表
     @inlinable
-    public func describePagedLogConfigListPaginator(_ input: DescribePagedLogConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribePagedLogConfigListRequest, DescribePagedLogConfigListResponse>.ResultSequence, responses: TCClient.Paginator<DescribePagedLogConfigListRequest, DescribePagedLogConfigListResponse>.ResponseSequence) {
+    public func describePagedLogConfigListPaginator(_ input: DescribePagedLogConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePagedLogConfigListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePagedLogConfigList, logger: logger, on: eventLoop)
     }
 }

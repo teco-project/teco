@@ -112,7 +112,7 @@ extension Iot {
 
     /// 获取转发规则列表
     @inlinable
-    public func getRulesPaginator(_ input: GetRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetRulesRequest, GetRulesResponse>.ResultSequence, responses: TCClient.Paginator<GetRulesRequest, GetRulesResponse>.ResponseSequence) {
+    public func getRulesPaginator(_ input: GetRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getRules, logger: logger, on: eventLoop)
     }
 }

@@ -124,7 +124,7 @@ extension Wedata {
 
     /// 获取表列表
     @inlinable
-    public func describeRuleTablesByPagePaginator(_ input: DescribeRuleTablesByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeRuleTablesByPageRequest, DescribeRuleTablesByPageResponse>.ResultSequence, responses: TCClient.Paginator<DescribeRuleTablesByPageRequest, DescribeRuleTablesByPageResponse>.ResponseSequence) {
+    public func describeRuleTablesByPagePaginator(_ input: DescribeRuleTablesByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleTablesByPageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleTablesByPage, logger: logger, on: eventLoop)
     }
 }

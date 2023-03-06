@@ -169,7 +169,7 @@ extension Dbbrain {
     ///
     /// 查询健康报告生成任务列表。
     @inlinable
-    public func describeDBDiagReportTasksPaginator(_ input: DescribeDBDiagReportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeDBDiagReportTasksRequest, DescribeDBDiagReportTasksResponse>.ResultSequence, responses: TCClient.Paginator<DescribeDBDiagReportTasksRequest, DescribeDBDiagReportTasksResponse>.ResponseSequence) {
+    public func describeDBDiagReportTasksPaginator(_ input: DescribeDBDiagReportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBDiagReportTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBDiagReportTasks, logger: logger, on: eventLoop)
     }
 }

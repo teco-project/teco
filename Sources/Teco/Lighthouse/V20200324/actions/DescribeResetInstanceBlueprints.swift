@@ -155,7 +155,7 @@ extension Lighthouse {
     ///
     /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
     @inlinable
-    public func describeResetInstanceBlueprintsPaginator(_ input: DescribeResetInstanceBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeResetInstanceBlueprintsRequest, DescribeResetInstanceBlueprintsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeResetInstanceBlueprintsRequest, DescribeResetInstanceBlueprintsResponse>.ResponseSequence) {
+    public func describeResetInstanceBlueprintsPaginator(_ input: DescribeResetInstanceBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResetInstanceBlueprintsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResetInstanceBlueprints, logger: logger, on: eventLoop)
     }
 }

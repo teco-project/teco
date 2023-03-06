@@ -150,7 +150,7 @@ extension Cwp {
     ///
     /// 查询防护目录关联服务器列表信息
     @inlinable
-    public func describeProtectDirRelatedServerPaginator(_ input: DescribeProtectDirRelatedServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeProtectDirRelatedServerRequest, DescribeProtectDirRelatedServerResponse>.ResultSequence, responses: TCClient.Paginator<DescribeProtectDirRelatedServerRequest, DescribeProtectDirRelatedServerResponse>.ResponseSequence) {
+    public func describeProtectDirRelatedServerPaginator(_ input: DescribeProtectDirRelatedServerRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProtectDirRelatedServerRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProtectDirRelatedServer, logger: logger, on: eventLoop)
     }
 }

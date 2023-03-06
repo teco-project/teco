@@ -128,7 +128,7 @@ extension Tsf {
 
     /// 查询某个插件下绑定或未绑定的API分组
     @inlinable
-    public func describeGroupsWithPluginPaginator(_ input: DescribeGroupsWithPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeGroupsWithPluginRequest, DescribeGroupsWithPluginResponse>.ResultSequence, responses: TCClient.Paginator<DescribeGroupsWithPluginRequest, DescribeGroupsWithPluginResponse>.ResponseSequence) {
+    public func describeGroupsWithPluginPaginator(_ input: DescribeGroupsWithPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupsWithPluginRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupsWithPlugin, logger: logger, on: eventLoop)
     }
 }

@@ -122,7 +122,7 @@ extension Tia {
     ///
     /// 列举训练任务
     @inlinable
-    public func listJobsPaginator(_ input: ListJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResultSequence, responses: TCClient.Paginator<ListJobsRequest, ListJobsResponse>.ResponseSequence) {
+    public func listJobsPaginator(_ input: ListJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listJobs, logger: logger, on: eventLoop)
     }
 }

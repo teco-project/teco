@@ -117,7 +117,7 @@ extension Tcr {
 
     /// 查询长期访问凭证信息
     @inlinable
-    public func describeInstanceTokenPaginator(_ input: DescribeInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeInstanceTokenRequest, DescribeInstanceTokenResponse>.ResultSequence, responses: TCClient.Paginator<DescribeInstanceTokenRequest, DescribeInstanceTokenResponse>.ResponseSequence) {
+    public func describeInstanceTokenPaginator(_ input: DescribeInstanceTokenRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceTokenRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceToken, logger: logger, on: eventLoop)
     }
 }

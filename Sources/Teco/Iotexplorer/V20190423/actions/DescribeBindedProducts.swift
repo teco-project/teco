@@ -122,7 +122,7 @@ extension Iotexplorer {
 
     /// 获取网关产品已经绑定的子产品
     @inlinable
-    public func describeBindedProductsPaginator(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeBindedProductsRequest, DescribeBindedProductsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeBindedProductsRequest, DescribeBindedProductsResponse>.ResponseSequence) {
+    public func describeBindedProductsPaginator(_ input: DescribeBindedProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindedProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindedProducts, logger: logger, on: eventLoop)
     }
 }

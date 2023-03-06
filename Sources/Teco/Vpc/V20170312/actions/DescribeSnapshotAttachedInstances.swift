@@ -139,7 +139,7 @@ extension Vpc {
     ///
     /// 本接口（DescribeSnapshotAttachedInstances）用于查询快照策略关联实例列表。
     @inlinable
-    public func describeSnapshotAttachedInstancesPaginator(_ input: DescribeSnapshotAttachedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSnapshotAttachedInstancesRequest, DescribeSnapshotAttachedInstancesResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSnapshotAttachedInstancesRequest, DescribeSnapshotAttachedInstancesResponse>.ResponseSequence) {
+    public func describeSnapshotAttachedInstancesPaginator(_ input: DescribeSnapshotAttachedInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotAttachedInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotAttachedInstances, logger: logger, on: eventLoop)
     }
 }

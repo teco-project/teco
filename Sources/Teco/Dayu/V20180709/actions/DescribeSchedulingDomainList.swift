@@ -117,7 +117,7 @@ extension Dayu {
 
     /// 获取调度域名列表
     @inlinable
-    public func describeSchedulingDomainListPaginator(_ input: DescribeSchedulingDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeSchedulingDomainListRequest, DescribeSchedulingDomainListResponse>.ResultSequence, responses: TCClient.Paginator<DescribeSchedulingDomainListRequest, DescribeSchedulingDomainListResponse>.ResponseSequence) {
+    public func describeSchedulingDomainListPaginator(_ input: DescribeSchedulingDomainListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSchedulingDomainListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSchedulingDomainList, logger: logger, on: eventLoop)
     }
 }

@@ -132,7 +132,7 @@ extension Teo {
     ///
     /// 查询站点的验证信息。
     @inlinable
-    public func describeIdentificationsPaginator(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeIdentificationsRequest, DescribeIdentificationsResponse>.ResultSequence, responses: TCClient.Paginator<DescribeIdentificationsRequest, DescribeIdentificationsResponse>.ResponseSequence) {
+    public func describeIdentificationsPaginator(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIdentificationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIdentifications, logger: logger, on: eventLoop)
     }
 }

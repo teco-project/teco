@@ -132,7 +132,7 @@ extension Tdmq {
 
     /// 运营端获取命名空间bundle列表
     @inlinable
-    public func describeNamespaceBundlesOptPaginator(_ input: DescribeNamespaceBundlesOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<DescribeNamespaceBundlesOptRequest, DescribeNamespaceBundlesOptResponse>.ResultSequence, responses: TCClient.Paginator<DescribeNamespaceBundlesOptRequest, DescribeNamespaceBundlesOptResponse>.ResponseSequence) {
+    public func describeNamespaceBundlesOptPaginator(_ input: DescribeNamespaceBundlesOptRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNamespaceBundlesOptRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespaceBundlesOpt, logger: logger, on: eventLoop)
     }
 }

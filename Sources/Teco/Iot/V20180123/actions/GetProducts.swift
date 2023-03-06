@@ -126,7 +126,7 @@ extension Iot {
     ///
     /// 获取用户在物联网套件所创建的所有产品信息。
     @inlinable
-    public func getProductsPaginator(_ input: GetProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> (results: TCClient.Paginator<GetProductsRequest, GetProductsResponse>.ResultSequence, responses: TCClient.Paginator<GetProductsRequest, GetProductsResponse>.ResponseSequence) {
+    public func getProductsPaginator(_ input: GetProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getProducts, logger: logger, on: eventLoop)
     }
 }
