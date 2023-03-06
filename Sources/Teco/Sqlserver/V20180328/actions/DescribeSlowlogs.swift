@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Sqlserver {
     /// DescribeSlowlogs请求参数结构体
-    public struct DescribeSlowlogsRequest: TCRequestModel {
+    public struct DescribeSlowlogsRequest: TCPaginatedRequest {
         /// 实例ID，形如mssql-k8voqdlz
         public let instanceId: String
 
@@ -56,10 +57,18 @@ extension Sqlserver {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeSlowlogsResponse) -> DescribeSlowlogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeSlowlogsRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DescribeSlowlogs返回参数结构体
-    public struct DescribeSlowlogsResponse: TCResponseModel {
+    public struct DescribeSlowlogsResponse: TCPaginatedResponse {
         /// 查询总数
         public let totalCount: Int64
 
@@ -73,6 +82,16 @@ extension Sqlserver {
             case totalCount = "TotalCount"
             case slowlogs = "Slowlogs"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [SlowlogInfo] {
+            self.slowlogs
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

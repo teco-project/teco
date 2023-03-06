@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Dayu {
     /// DescribeDDoSAttackSource请求参数结构体
-    public struct DescribeDDoSAttackSourceRequest: TCRequestModel {
+    public struct DescribeDDoSAttackSourceRequest: TCPaginatedRequest {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版）
         public let business: String
 
@@ -66,10 +67,18 @@ extension Dayu {
             case offset = "Offset"
             case ipList = "IpList"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDDoSAttackSourceResponse) -> DescribeDDoSAttackSourceRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDDoSAttackSourceRequest(business: self.business, id: self.id, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: self.offset + .init(response.getItems().count), ipList: self.ipList)
+        }
     }
 
     /// DescribeDDoSAttackSource返回参数结构体
-    public struct DescribeDDoSAttackSourceResponse: TCResponseModel {
+    public struct DescribeDDoSAttackSourceResponse: TCPaginatedResponse {
         /// 总攻击源条数
         public let total: UInt64
 
@@ -83,6 +92,16 @@ extension Dayu {
             case total = "Total"
             case attackSourceList = "AttackSourceList"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [DDoSAttackSourceRecord] {
+            self.attackSourceList
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.total
         }
     }
 

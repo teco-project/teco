@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Ecdn {
     /// DescribePurgeTasks请求参数结构体
-    public struct DescribePurgeTasksRequest: TCRequestModel {
+    public struct DescribePurgeTasksRequest: TCPaginatedRequest {
         /// 查询刷新类型。url：查询 url 刷新记录；path：查询目录刷新记录。
         public let purgeType: String?
 
@@ -71,10 +72,18 @@ extension Ecdn {
             case keyword = "Keyword"
             case status = "Status"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribePurgeTasksResponse) -> DescribePurgeTasksRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribePurgeTasksRequest(purgeType: self.purgeType, startTime: self.startTime, endTime: self.endTime, taskId: self.taskId, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, keyword: self.keyword, status: self.status)
+        }
     }
 
     /// DescribePurgeTasks返回参数结构体
-    public struct DescribePurgeTasksResponse: TCResponseModel {
+    public struct DescribePurgeTasksResponse: TCPaginatedResponse {
         /// 刷新历史记录。
         public let purgeLogs: [PurgeTask]
 
@@ -88,6 +97,16 @@ extension Ecdn {
             case purgeLogs = "PurgeLogs"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [PurgeTask] {
+            self.purgeLogs
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

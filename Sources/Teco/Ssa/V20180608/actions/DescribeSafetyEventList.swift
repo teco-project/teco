@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Ssa {
     /// DescribeSafetyEventList请求参数结构体
-    public struct DescribeSafetyEventListRequest: TCRequestModel {
+    public struct DescribeSafetyEventListRequest: TCPaginatedRequest {
         /// 搜索过滤查询参数
         public let filter: String
 
@@ -71,10 +72,18 @@ extension Ssa {
             case endTime = "EndTime"
             case isFilterResponseTime = "IsFilterResponseTime"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeSafetyEventListResponse) -> DescribeSafetyEventListRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeSafetyEventListRequest(filter: self.filter, limit: self.limit, offset: self.offset + .init(response.getItems().count), order: self.order, by: self.by, startTime: self.startTime, endTime: self.endTime, isFilterResponseTime: self.isFilterResponseTime)
+        }
     }
 
     /// DescribeSafetyEventList返回参数结构体
-    public struct DescribeSafetyEventListResponse: TCResponseModel {
+    public struct DescribeSafetyEventListResponse: TCPaginatedResponse {
         /// 事件列表
         public let list: [DataEvent]
 
@@ -88,6 +97,16 @@ extension Ssa {
             case list = "List"
             case total = "Total"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [DataEvent] {
+            self.list
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.total
         }
     }
 

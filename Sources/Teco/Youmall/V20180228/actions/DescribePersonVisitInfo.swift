@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Youmall {
     /// DescribePersonVisitInfo请求参数结构体
-    public struct DescribePersonVisitInfoRequest: TCRequestModel {
+    public struct DescribePersonVisitInfoRequest: TCPaginatedRequest {
         /// 公司ID
         public let companyId: String
 
@@ -82,10 +83,18 @@ extension Youmall {
             case startDateTime = "StartDateTime"
             case endDateTime = "EndDateTime"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribePersonVisitInfoResponse) -> DescribePersonVisitInfoRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribePersonVisitInfoRequest(companyId: self.companyId, shopId: self.shopId, offset: self.offset + .init(response.getItems().count), limit: self.limit, startDate: self.startDate, endDate: self.endDate, pictureExpires: self.pictureExpires, startDateTime: self.startDateTime, endDateTime: self.endDateTime)
+        }
     }
 
     /// DescribePersonVisitInfo返回参数结构体
-    public struct DescribePersonVisitInfoResponse: TCResponseModel {
+    public struct DescribePersonVisitInfoResponse: TCPaginatedResponse {
         /// 公司ID
         public let companyId: String
 
@@ -107,6 +116,16 @@ extension Youmall {
             case totalCount = "TotalCount"
             case personVisitInfoSet = "PersonVisitInfoSet"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [PersonVisitInfo] {
+            self.personVisitInfoSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

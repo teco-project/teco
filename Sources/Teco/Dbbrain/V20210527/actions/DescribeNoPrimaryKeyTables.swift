@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Dbbrain {
     /// DescribeNoPrimaryKeyTables请求参数结构体
-    public struct DescribeNoPrimaryKeyTablesRequest: TCRequestModel {
+    public struct DescribeNoPrimaryKeyTablesRequest: TCPaginatedRequest {
         /// 实例ID。
         public let instanceId: String
 
@@ -53,10 +54,18 @@ extension Dbbrain {
             case offset = "Offset"
             case product = "Product"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeNoPrimaryKeyTablesResponse) -> DescribeNoPrimaryKeyTablesRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeNoPrimaryKeyTablesRequest(instanceId: self.instanceId, date: self.date, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), product: self.product)
+        }
     }
 
     /// DescribeNoPrimaryKeyTables返回参数结构体
-    public struct DescribeNoPrimaryKeyTablesResponse: TCResponseModel {
+    public struct DescribeNoPrimaryKeyTablesResponse: TCPaginatedResponse {
         /// 无主键表总数。
         public let noPrimaryKeyTableCount: Int64
 
@@ -82,6 +91,16 @@ extension Dbbrain {
             case noPrimaryKeyTables = "NoPrimaryKeyTables"
             case timestamp = "Timestamp"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [Table] {
+            self.noPrimaryKeyTables
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.noPrimaryKeyTableCount
         }
     }
 

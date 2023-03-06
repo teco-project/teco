@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Cdn {
     /// DescribeScdnBotRecords请求参数结构体
-    public struct DescribeScdnBotRecordsRequest: TCRequestModel {
+    public struct DescribeScdnBotRecordsRequest: TCPaginatedRequest {
         /// BOT类型，取值为"UB","UCB","TCB"，分别表示：未知类型，自定义类型，公开类型
         public let botType: String
 
@@ -154,10 +155,18 @@ extension Cdn {
             case filterIp = "FilterIp"
             case domains = "Domains"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeScdnBotRecordsResponse) -> DescribeScdnBotRecordsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeScdnBotRecordsRequest(botType: self.botType, domain: self.domain, startTime: self.startTime, endTime: self.endTime, offset: self.offset + .init(response.getItems().count), limit: self.limit, area: self.area, sortBy: self.sortBy, filterName: self.filterName, filterAction: self.filterAction, filterIp: self.filterIp, domains: self.domains)
+        }
     }
 
     /// DescribeScdnBotRecords返回参数结构体
-    public struct DescribeScdnBotRecordsResponse: TCResponseModel {
+    public struct DescribeScdnBotRecordsResponse: TCPaginatedResponse {
         /// BOT拦截结果数组
         public let data: [BotRecord]
 
@@ -171,6 +180,16 @@ extension Cdn {
             case data = "Data"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [BotRecord] {
+            self.data
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

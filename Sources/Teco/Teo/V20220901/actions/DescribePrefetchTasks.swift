@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Teo {
     /// DescribePrefetchTasks请求参数结构体
-    public struct DescribePrefetchTasksRequest: TCRequestModel {
+    public struct DescribePrefetchTasksRequest: TCPaginatedRequest {
         /// 查询起始时间。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -57,10 +58,18 @@ extension Teo {
             case limit = "Limit"
             case filters = "Filters"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribePrefetchTasksResponse) -> DescribePrefetchTasksRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribePrefetchTasksRequest(startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, filters: self.filters)
+        }
     }
 
     /// DescribePrefetchTasks返回参数结构体
-    public struct DescribePrefetchTasksResponse: TCResponseModel {
+    public struct DescribePrefetchTasksResponse: TCPaginatedResponse {
         /// 该查询条件总共条目数。
         public let totalCount: UInt64
 
@@ -74,6 +83,16 @@ extension Teo {
             case totalCount = "TotalCount"
             case tasks = "Tasks"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [Task] {
+            self.tasks
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

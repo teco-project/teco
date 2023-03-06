@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Cdn {
     /// DescribeEdgePackTaskStatus请求参数结构体
-    public struct DescribeEdgePackTaskStatusRequest: TCRequestModel {
+    public struct DescribeEdgePackTaskStatusRequest: TCPaginatedRequest {
         /// 开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -56,10 +57,18 @@ extension Cdn {
             case offset = "Offset"
             case filters = "Filters"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeEdgePackTaskStatusResponse) -> DescribeEdgePackTaskStatusRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeEdgePackTaskStatusRequest(startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count), filters: self.filters)
+        }
     }
 
     /// DescribeEdgePackTaskStatus返回参数结构体
-    public struct DescribeEdgePackTaskStatusResponse: TCResponseModel {
+    public struct DescribeEdgePackTaskStatusResponse: TCPaginatedResponse {
         /// 动态打包任务状态列表
         public let edgePackTaskStatusSet: [EdgePackTaskStatus]
 
@@ -73,6 +82,16 @@ extension Cdn {
             case edgePackTaskStatusSet = "EdgePackTaskStatusSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [EdgePackTaskStatus] {
+            self.edgePackTaskStatusSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

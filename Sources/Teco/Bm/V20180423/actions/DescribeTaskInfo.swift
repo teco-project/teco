@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Bm {
     /// DescribeTaskInfo请求参数结构体
-    public struct DescribeTaskInfoRequest: TCRequestModel {
+    public struct DescribeTaskInfoRequest: TCPaginatedRequest {
         /// 开始位置
         public let offset: UInt64
 
@@ -86,10 +87,18 @@ extension Bm {
             case aliases = "Aliases"
             case taskTypeIds = "TaskTypeIds"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeTaskInfoResponse) -> DescribeTaskInfoRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeTaskInfoRequest(offset: self.offset + .init(response.getItems().count), limit: self.limit, startDate: self.startDate, endDate: self.endDate, taskStatus: self.taskStatus, orderField: self.orderField, order: self.order, taskIds: self.taskIds, instanceIds: self.instanceIds, aliases: self.aliases, taskTypeIds: self.taskTypeIds)
+        }
     }
 
     /// DescribeTaskInfo返回参数结构体
-    public struct DescribeTaskInfoResponse: TCResponseModel {
+    public struct DescribeTaskInfoResponse: TCPaginatedResponse {
         /// 返回任务总数量
         public let totalCount: Int64
 
@@ -103,6 +112,16 @@ extension Bm {
             case totalCount = "TotalCount"
             case taskInfoSet = "TaskInfoSet"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [TaskInfo] {
+            self.taskInfoSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

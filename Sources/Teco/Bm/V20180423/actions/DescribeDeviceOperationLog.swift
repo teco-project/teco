@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Bm {
     /// DescribeDeviceOperationLog请求参数结构体
-    public struct DescribeDeviceOperationLogRequest: TCRequestModel {
+    public struct DescribeDeviceOperationLogRequest: TCPaginatedRequest {
         /// 设备实例ID
         public let instanceId: String
 
@@ -56,10 +57,18 @@ extension Bm {
             case offset = "Offset"
             case limit = "Limit"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDeviceOperationLogResponse) -> DescribeDeviceOperationLogRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDeviceOperationLogRequest(instanceId: self.instanceId, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+        }
     }
 
     /// DescribeDeviceOperationLog返回参数结构体
-    public struct DescribeDeviceOperationLogResponse: TCResponseModel {
+    public struct DescribeDeviceOperationLogResponse: TCPaginatedResponse {
         /// 操作日志列表
         public let deviceOperationLogSet: [DeviceOperationLog]
 
@@ -73,6 +82,16 @@ extension Bm {
             case deviceOperationLogSet = "DeviceOperationLogSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [DeviceOperationLog] {
+            self.deviceOperationLogSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

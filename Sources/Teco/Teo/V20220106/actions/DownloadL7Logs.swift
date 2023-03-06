@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Teo {
     /// DownloadL7Logs请求参数结构体
-    public struct DownloadL7LogsRequest: TCRequestModel {
+    public struct DownloadL7LogsRequest: TCPaginatedRequest {
         /// 起始时间(需严格按照RFC3339标准传参)
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -61,10 +62,18 @@ extension Teo {
             case zones = "Zones"
             case domains = "Domains"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DownloadL7LogsResponse) -> DownloadL7LogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DownloadL7LogsRequest(startTime: self.startTime, endTime: self.endTime, pageSize: self.pageSize, pageNo: self.pageNo + 1, zones: self.zones, domains: self.domains)
+        }
     }
 
     /// DownloadL7Logs返回参数结构体
-    public struct DownloadL7LogsResponse: TCResponseModel {
+    public struct DownloadL7LogsResponse: TCPaginatedResponse {
         /// 七层离线日志data
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let data: [L7OfflineLog]?
@@ -95,6 +104,11 @@ extension Teo {
             case pages = "Pages"
             case totalSize = "TotalSize"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [L7OfflineLog] {
+            self.data ?? []
         }
     }
 

@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Tcss {
     /// DescribeImageAutoAuthorizedTaskList请求参数结构体
-    public struct DescribeImageAutoAuthorizedTaskListRequest: TCRequestModel {
+    public struct DescribeImageAutoAuthorizedTaskListRequest: TCPaginatedRequest {
         /// 开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -59,10 +60,18 @@ extension Tcss {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeImageAutoAuthorizedTaskListResponse) -> DescribeImageAutoAuthorizedTaskListRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeImageAutoAuthorizedTaskListRequest(startTime: self.startTime, endTime: self.endTime, filters: self.filters, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DescribeImageAutoAuthorizedTaskList返回参数结构体
-    public struct DescribeImageAutoAuthorizedTaskListResponse: TCResponseModel {
+    public struct DescribeImageAutoAuthorizedTaskListResponse: TCPaginatedResponse {
         /// 自动授权任务列表
         public let list: [ImageAutoAuthorizedTask]
 
@@ -76,6 +85,16 @@ extension Tcss {
             case list = "List"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [ImageAutoAuthorizedTask] {
+            self.list
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

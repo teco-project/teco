@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Dayu {
     /// DescribeDDoSNetEvList请求参数结构体
-    public struct DescribeDDoSNetEvListRequest: TCRequestModel {
+    public struct DescribeDDoSNetEvListRequest: TCPaginatedRequest {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
 
@@ -61,10 +62,18 @@ extension Dayu {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDDoSNetEvListResponse) -> DescribeDDoSNetEvListRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDDoSNetEvListRequest(business: self.business, id: self.id, startTime: self.startTime, endTime: self.endTime, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DescribeDDoSNetEvList返回参数结构体
-    public struct DescribeDDoSNetEvListResponse: TCResponseModel {
+    public struct DescribeDDoSNetEvListResponse: TCPaginatedResponse {
         /// 大禹子产品代号（net表示高防IP专业版）
         public let business: String
 
@@ -100,6 +109,16 @@ extension Dayu {
             case data = "Data"
             case total = "Total"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [DDoSEventRecord] {
+            self.data
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.total
         }
     }
 

@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Postgres {
     /// DescribeDBXlogs请求参数结构体
-    public struct DescribeDBXlogsRequest: TCRequestModel {
+    public struct DescribeDBXlogsRequest: TCPaginatedRequest {
         /// 实例ID，形如postgres-4wdeb0zv。
         public let dbInstanceId: String
 
@@ -56,10 +57,18 @@ extension Postgres {
             case offset = "Offset"
             case limit = "Limit"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDBXlogsResponse) -> DescribeDBXlogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDBXlogsRequest(dbInstanceId: self.dbInstanceId, startTime: self.startTime, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+        }
     }
 
     /// DescribeDBXlogs返回参数结构体
-    public struct DescribeDBXlogsResponse: TCResponseModel {
+    public struct DescribeDBXlogsResponse: TCPaginatedResponse {
         /// 表示此次返回结果有多少条数据。
         public let totalCount: Int64
 
@@ -73,6 +82,16 @@ extension Postgres {
             case totalCount = "TotalCount"
             case xlogList = "XlogList"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [Xlog] {
+            self.xlogList
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

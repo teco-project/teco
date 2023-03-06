@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Dayu {
     /// DescribeActionLog请求参数结构体
-    public struct DescribeActionLogRequest: TCRequestModel {
+    public struct DescribeActionLogRequest: TCPaginatedRequest {
         /// 开始时间
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -61,10 +62,18 @@ extension Dayu {
             case limit = "Limit"
             case offset = "Offset"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeActionLogResponse) -> DescribeActionLogRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeActionLogRequest(startTime: self.startTime, endTime: self.endTime, business: self.business, filter: self.filter, limit: self.limit, offset: (self.offset ?? 0) + .init(response.getItems().count))
+        }
     }
 
     /// DescribeActionLog返回参数结构体
-    public struct DescribeActionLogResponse: TCResponseModel {
+    public struct DescribeActionLogResponse: TCPaginatedResponse {
         /// 总记录数
         public let totalCount: UInt64
 
@@ -78,6 +87,16 @@ extension Dayu {
             case totalCount = "TotalCount"
             case data = "Data"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [KeyValueRecord] {
+            self.data
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

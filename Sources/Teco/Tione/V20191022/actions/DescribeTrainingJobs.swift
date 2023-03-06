@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Tione {
     /// DescribeTrainingJobs请求参数结构体
-    public struct DescribeTrainingJobsRequest: TCRequestModel {
+    public struct DescribeTrainingJobsRequest: TCPaginatedRequest {
         /// 偏移量
         public let offset: UInt64?
 
@@ -68,10 +69,18 @@ extension Tione {
             case statusEquals = "StatusEquals"
             case filters = "Filters"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeTrainingJobsResponse) -> DescribeTrainingJobsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeTrainingJobsRequest(offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit, creationTimeAfter: self.creationTimeAfter, creationTimeBefore: self.creationTimeBefore, nameContains: self.nameContains, statusEquals: self.statusEquals, filters: self.filters)
+        }
     }
 
     /// DescribeTrainingJobs返回参数结构体
-    public struct DescribeTrainingJobsResponse: TCResponseModel {
+    public struct DescribeTrainingJobsResponse: TCPaginatedResponse {
         /// 训练任务列表
         public let trainingJobSet: [TrainingJobSummary]
 
@@ -85,6 +94,16 @@ extension Tione {
             case trainingJobSet = "TrainingJobSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [TrainingJobSummary] {
+            self.trainingJobSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 

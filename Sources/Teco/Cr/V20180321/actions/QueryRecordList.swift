@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Cr {
     /// QueryRecordList请求参数结构体
-    public struct QueryRecordListRequest: TCRequestModel {
+    public struct QueryRecordListRequest: TCPaginatedRequest {
         /// 模块名。AiApi
         public let module: String
 
@@ -76,10 +77,18 @@ extension Cr {
             case startBizDate = "StartBizDate"
             case endBizDate = "EndBizDate"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: QueryRecordListResponse) -> QueryRecordListRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return QueryRecordListRequest(module: self.module, operation: self.operation, offset: self.offset + .init(response.getItems().count), limit: self.limit, botId: self.botId, botName: self.botName, calledPhone: self.calledPhone, startBizDate: self.startBizDate, endBizDate: self.endBizDate)
+        }
     }
 
     /// QueryRecordList返回参数结构体
-    public struct QueryRecordListResponse: TCResponseModel {
+    public struct QueryRecordListResponse: TCPaginatedResponse {
         /// 录音列表。
         public let recordList: [RecordInfo]
 
@@ -93,6 +102,16 @@ extension Cr {
             case recordList = "RecordList"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [RecordInfo] {
+            self.recordList
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.totalCount
         }
     }
 

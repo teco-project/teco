@@ -6,8 +6,8 @@
         "repositoryURL": "https://github.com/swift-server/async-http-client.git",
         "state": {
           "branch": null,
-          "revision": "7f05a8da46cc2a4ab43218722298b81ac7a08031",
-          "version": "1.13.2"
+          "revision": "864c8d9e0ead5de7ba70b61c8982f89126710863",
+          "version": "1.15.0"
         }
       },
       {
@@ -33,8 +33,8 @@
         "repositoryURL": "https://github.com/apple/swift-crypto.git",
         "state": {
           "branch": null,
-          "revision": "75ec60b8b4cc0f085c3ac414f3dca5625fa3588e",
-          "version": "2.2.4"
+          "revision": "80a6e3edc1fc3a4c6c7d4177c73fa3f74c72d3e1",
+          "version": "2.3.0"
         }
       },
       {
@@ -51,8 +51,8 @@
         "repositoryURL": "https://github.com/apple/swift-metrics.git",
         "state": {
           "branch": null,
-          "revision": "9b39d811a83cf18b79d7d5513b06f8b290198b10",
-          "version": "2.3.3"
+          "revision": "e8bced74bc6d747745935e469f45d03f048d6cbd",
+          "version": "2.3.4"
         }
       },
       {
@@ -69,8 +69,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-extras.git",
         "state": {
           "branch": null,
-          "revision": "91dd2d61fb772e1311bb5f13b59266b579d77e42",
-          "version": "1.15.0"
+          "revision": "d75ed708d00353acf173ca23018b6bd46f949464",
+          "version": "1.17.0"
         }
       },
       {
@@ -78,8 +78,8 @@
         "repositoryURL": "https://github.com/apple/swift-nio-http2.git",
         "state": {
           "branch": null,
-          "revision": "d6656967f33ed8b368b38e4b198631fc7c484a40",
-          "version": "1.23.1"
+          "revision": "38feec96bcd929028939107684073554bf01abeb",
+          "version": "1.25.2"
         }
       },
       {
@@ -104,9 +104,9 @@
         "package": "teco-core",
         "repositoryURL": "https://github.com/teco-project/teco-core.git",
         "state": {
-          "branch": null,
-          "revision": "e7e91edfa299cd22649a0060d9922bc62df6419c",
-          "version": "0.4.0"
+          "branch": "main",
+          "revision": "ebe6541512e2be0eeb6d93ac7150bd635885326b",
+          "version": null
         }
       }
     ]

@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Dcdb {
     /// DescribeDBSlowLogs请求参数结构体
-    public struct DescribeDBSlowLogsRequest: TCRequestModel {
+    public struct DescribeDBSlowLogsRequest: TCPaginatedRequest {
         /// 实例 ID，形如：dcdbt-hw0qj6m1
         public let instanceId: String
 
@@ -81,10 +82,18 @@ extension Dcdb {
             case orderByType = "OrderByType"
             case slave = "Slave"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeDBSlowLogsResponse) -> DescribeDBSlowLogsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeDBSlowLogsRequest(instanceId: self.instanceId, offset: self.offset + .init(response.getItems().count), limit: self.limit, startTime: self.startTime, shardId: self.shardId, endTime: self.endTime, db: self.db, orderBy: self.orderBy, orderByType: self.orderByType, slave: self.slave)
+        }
     }
 
     /// DescribeDBSlowLogs返回参数结构体
-    public struct DescribeDBSlowLogsResponse: TCResponseModel {
+    public struct DescribeDBSlowLogsResponse: TCPaginatedResponse {
         /// 所有语句锁时间总和
         public let lockTimeSum: Float
 
@@ -110,6 +119,16 @@ extension Dcdb {
             case queryTimeSum = "QueryTimeSum"
             case data = "Data"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [SlowLogData] {
+            self.data
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.total
         }
     }
 

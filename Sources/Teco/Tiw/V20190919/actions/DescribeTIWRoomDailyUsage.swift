@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Tiw {
     /// DescribeTIWRoomDailyUsage请求参数结构体
-    public struct DescribeTIWRoomDailyUsageRequest: TCRequestModel {
+    public struct DescribeTIWRoomDailyUsageRequest: TCPaginatedRequest {
         /// 互动白板应用SdkAppId
         public let sdkAppId: Int64
 
@@ -68,10 +69,18 @@ extension Tiw {
             case offset = "Offset"
             case limit = "Limit"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeTIWRoomDailyUsageResponse) -> DescribeTIWRoomDailyUsageRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeTIWRoomDailyUsageRequest(sdkAppId: self.sdkAppId, subProduct: self.subProduct, startTime: self.startTime, endTime: self.endTime, roomIDs: self.roomIDs, offset: (self.offset ?? 0) + .init(response.getItems().count), limit: self.limit)
+        }
     }
 
     /// DescribeTIWRoomDailyUsage返回参数结构体
-    public struct DescribeTIWRoomDailyUsageResponse: TCResponseModel {
+    public struct DescribeTIWRoomDailyUsageResponse: TCPaginatedResponse {
         /// 指定区间指定产品的房间用量列表
         public let usages: [RoomUsageDataItem]
 
@@ -85,6 +94,16 @@ extension Tiw {
             case usages = "Usages"
             case total = "Total"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [RoomUsageDataItem] {
+            self.usages
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.total
         }
     }
 

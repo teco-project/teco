@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Ses {
     /// GetSendEmailStatus请求参数结构体
-    public struct GetSendEmailStatusRequest: TCRequestModel {
+    public struct GetSendEmailStatusRequest: TCPaginatedRequest {
         /// 发送的日期，必填。仅支持查询某个日期，不支持范围查询。
         ///
         /// While the wrapped date value is immutable just like other fields, you can customize the projected
@@ -53,10 +54,18 @@ extension Ses {
             case messageId = "MessageId"
             case toEmailAddress = "ToEmailAddress"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: GetSendEmailStatusResponse) -> GetSendEmailStatusRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return GetSendEmailStatusRequest(requestDate: self.requestDate, offset: self.offset + .init(response.getItems().count), limit: self.limit, messageId: self.messageId, toEmailAddress: self.toEmailAddress)
+        }
     }
 
     /// GetSendEmailStatus返回参数结构体
-    public struct GetSendEmailStatusResponse: TCResponseModel {
+    public struct GetSendEmailStatusResponse: TCPaginatedResponse {
         /// 邮件发送状态列表
         public let emailStatusList: [SendEmailStatus]
 
@@ -66,6 +75,11 @@ extension Ses {
         enum CodingKeys: String, CodingKey {
             case emailStatusList = "EmailStatusList"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [SendEmailStatus] {
+            self.emailStatusList
         }
     }
 

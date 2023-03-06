@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Tsf {
     /// DescribeUnitApiUseDetail请求参数结构体
-    public struct DescribeUnitApiUseDetailRequest: TCRequestModel {
+    public struct DescribeUnitApiUseDetailRequest: TCPaginatedRequest {
         /// 网关部署组ID
         public let gatewayDeployGroupId: String
 
@@ -76,10 +77,18 @@ extension Tsf {
             case limit = "Limit"
             case period = "Period"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeUnitApiUseDetailResponse) -> DescribeUnitApiUseDetailRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeUnitApiUseDetailRequest(gatewayDeployGroupId: self.gatewayDeployGroupId, apiId: self.apiId, startTime: self.startTime, endTime: self.endTime, gatewayInstanceId: self.gatewayInstanceId, groupId: self.groupId, offset: self.offset + .init(response.getItems().count), limit: self.limit, period: self.period)
+        }
     }
 
     /// DescribeUnitApiUseDetail返回参数结构体
-    public struct DescribeUnitApiUseDetailResponse: TCResponseModel {
+    public struct DescribeUnitApiUseDetailResponse: TCPaginatedResponse {
         /// 单元化使用统计对象
         public let result: GroupUnitApiUseStatistics
 
@@ -89,6 +98,16 @@ extension Tsf {
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [GroupUnitApiDailyUseStatistics] {
+            self.result.content
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.result.totalCount
         }
     }
 

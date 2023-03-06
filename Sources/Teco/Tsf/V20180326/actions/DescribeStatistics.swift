@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Tsf {
     /// DescribeStatistics请求参数结构体
-    public struct DescribeStatisticsRequest: TCRequestModel {
+    public struct DescribeStatisticsRequest: TCPaginatedRequest {
         /// 类型：Interface、Service、Group、Instance、SQL、NoSQL
         public let type: String
 
@@ -106,10 +107,18 @@ extension Tsf {
             case dbName = "DbName"
             case namespaceIdList = "NamespaceIdList"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeStatisticsResponse) -> DescribeStatisticsRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeStatisticsRequest(type: self.type, timeStep: self.timeStep, offset: self.offset + .init(response.getItems().count), limit: self.limit, namespaceId: self.namespaceId, orderBy: self.orderBy, orderType: self.orderType, endTime: self.endTime, startTime: self.startTime, serviceName: self.serviceName, searchWord: self.searchWord, metricDimensionValues: self.metricDimensionValues, bucketKey: self.bucketKey, dbName: self.dbName, namespaceIdList: self.namespaceIdList)
+        }
     }
 
     /// DescribeStatistics返回参数结构体
-    public struct DescribeStatisticsResponse: TCResponseModel {
+    public struct DescribeStatisticsResponse: TCPaginatedResponse {
         /// 查询服务统计结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: ServiceStatisticsResults?
@@ -120,6 +129,16 @@ extension Tsf {
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [ServiceStatisticsResult] {
+            self.result?.content ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.result?.totalCount
         }
     }
 

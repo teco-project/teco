@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Tsf {
     /// SearchStdoutLog请求参数结构体
-    public struct SearchStdoutLogRequest: TCRequestModel {
+    public struct SearchStdoutLogRequest: TCPaginatedRequest {
         /// 机器实例ID
         public let instanceId: String?
 
@@ -95,10 +96,18 @@ extension Tsf {
             case batchType = "BatchType"
             case scrollId = "ScrollId"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: SearchStdoutLogResponse) -> SearchStdoutLogRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return SearchStdoutLogRequest(instanceId: self.instanceId, limit: self.limit, searchWords: self.searchWords, startTime: self.startTime, groupId: self.groupId, endTime: self.endTime, offset: (self.offset ?? 0) + .init(response.getItems().count), orderBy: self.orderBy, orderType: self.orderType, searchWordType: self.searchWordType, batchType: self.batchType, scrollId: self.scrollId)
+        }
     }
 
     /// SearchStdoutLog返回参数结构体
-    public struct SearchStdoutLogResponse: TCResponseModel {
+    public struct SearchStdoutLogResponse: TCPaginatedResponse {
         /// 标准输出日志列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: TsfPageStdoutLogV2?
@@ -109,6 +118,16 @@ extension Tsf {
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [StdoutLogV2] {
+            self.result?.content ?? []
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> Int64? {
+            self.result?.totalCount
         }
     }
 

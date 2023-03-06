@@ -16,10 +16,11 @@
 
 @_exported import struct Foundation.Date
 import TecoDateHelpers
+import TecoPaginationHelpers
 
 extension Youmall {
     /// DescribeShopHourTrafficInfo请求参数结构体
-    public struct DescribeShopHourTrafficInfoRequest: TCRequestModel {
+    public struct DescribeShopHourTrafficInfoRequest: TCPaginatedRequest {
         /// 公司ID
         public let companyId: String
 
@@ -61,10 +62,18 @@ extension Youmall {
             case offset = "Offset"
             case limit = "Limit"
         }
+
+        /// Compute the next request based on API response.
+        public func getNextPaginatedRequest(with response: DescribeShopHourTrafficInfoResponse) -> DescribeShopHourTrafficInfoRequest? {
+            guard !response.getItems().isEmpty else {
+                return nil
+            }
+            return DescribeShopHourTrafficInfoRequest(companyId: self.companyId, shopId: self.shopId, startDate: self.startDate, endDate: self.endDate, offset: self.offset + .init(response.getItems().count), limit: self.limit)
+        }
     }
 
     /// DescribeShopHourTrafficInfo返回参数结构体
-    public struct DescribeShopHourTrafficInfoResponse: TCResponseModel {
+    public struct DescribeShopHourTrafficInfoResponse: TCPaginatedResponse {
         /// 公司ID
         public let companyId: String
 
@@ -86,6 +95,16 @@ extension Youmall {
             case totalCount = "TotalCount"
             case shopHourTrafficInfoSet = "ShopHourTrafficInfoSet"
             case requestId = "RequestId"
+        }
+
+        /// Extract the returned item list from the paginated response.
+        public func getItems() -> [ShopHourTrafficInfo] {
+            self.shopHourTrafficInfoSet
+        }
+
+        /// Extract the total count from the paginated response.
+        public func getTotalCount() -> UInt64? {
+            self.totalCount
         }
     }
 
