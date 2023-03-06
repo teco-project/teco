@@ -149,6 +149,8 @@ extension Ame {
     /// 获取分类内容下歌曲列表
     ///
     /// 该服务后续会停用，不再建议使用
+    ///
+    /// - Returns: `AsyncSequence`s of `Item` and `DescribeItemsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeItemsPaginator(_ input: DescribeItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeItemsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeItems, logger: logger, on: eventLoop)

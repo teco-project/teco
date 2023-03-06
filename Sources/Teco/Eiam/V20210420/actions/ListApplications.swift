@@ -142,6 +142,8 @@ extension Eiam {
     /// 获取应用列表信息
     ///
     /// 获取应用列表信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `ApplicationInformation` and `ListApplicationsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listApplicationsPaginator(_ input: ListApplicationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListApplicationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listApplications, logger: logger, on: eventLoop)

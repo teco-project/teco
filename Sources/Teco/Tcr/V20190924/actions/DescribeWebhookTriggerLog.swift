@@ -126,6 +126,8 @@ extension Tcr {
     }
 
     /// 获取触发器日志
+    ///
+    /// - Returns: `AsyncSequence`s of `WebhookTriggerLog` and `DescribeWebhookTriggerLogResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWebhookTriggerLogPaginator(_ input: DescribeWebhookTriggerLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebhookTriggerLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebhookTriggerLog, logger: logger, on: eventLoop)

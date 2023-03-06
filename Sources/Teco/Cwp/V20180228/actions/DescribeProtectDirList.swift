@@ -141,6 +141,8 @@ extension Cwp {
     /// 防护目录列表
     ///
     /// 网页防篡改防护目录列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ProtectDirInfo` and `DescribeProtectDirListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProtectDirListPaginator(_ input: DescribeProtectDirListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProtectDirListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProtectDirList, logger: logger, on: eventLoop)

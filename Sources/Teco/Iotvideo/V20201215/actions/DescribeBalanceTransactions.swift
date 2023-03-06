@@ -121,6 +121,8 @@ extension Iotvideo {
     }
 
     /// 拉取账户流水
+    ///
+    /// - Returns: `AsyncSequence`s of `BalanceTransaction` and `DescribeBalanceTransactionsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBalanceTransactionsPaginator(_ input: DescribeBalanceTransactionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBalanceTransactionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBalanceTransactions, logger: logger, on: eventLoop)

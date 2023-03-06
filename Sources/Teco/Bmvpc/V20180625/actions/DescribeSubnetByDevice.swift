@@ -135,6 +135,8 @@ extension Bmvpc {
     /// 查询物理机加入的子网列表
     ///
     /// 物理机可以加入物理机子网，虚拟子网，DOCKER子网，通过此接口可以查询物理机加入的子网。
+    ///
+    /// - Returns: `AsyncSequence`s of `SubnetInfo` and `DescribeSubnetByDeviceResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubnetByDevicePaginator(_ input: DescribeSubnetByDeviceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubnetByDeviceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubnetByDevice, logger: logger, on: eventLoop)

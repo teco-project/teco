@@ -130,6 +130,8 @@ extension Dcdb {
     /// 获取实例节点信息
     ///
     /// 本接口（DescribeDCDBInstanceNodeInfo）用于获取实例节点信息
+    ///
+    /// - Returns: `AsyncSequence`s of `BriefNodeInfo` and `DescribeDCDBInstanceNodeInfoResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDCDBInstanceNodeInfoPaginator(_ input: DescribeDCDBInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDCDBInstanceNodeInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDCDBInstanceNodeInfo, logger: logger, on: eventLoop)

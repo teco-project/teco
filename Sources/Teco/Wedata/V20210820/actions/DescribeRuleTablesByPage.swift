@@ -123,6 +123,8 @@ extension Wedata {
     }
 
     /// 获取表列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleGroup` and `DescribeRuleTablesByPageResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRuleTablesByPagePaginator(_ input: DescribeRuleTablesByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleTablesByPageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleTablesByPage, logger: logger, on: eventLoop)

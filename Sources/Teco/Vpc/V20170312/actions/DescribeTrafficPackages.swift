@@ -138,6 +138,8 @@ extension Vpc {
     /// 查询共享流量包
     ///
     /// 本接口 (DescribeTrafficPackages)  用于查询共享流量包详细信息，包括共享流量包唯一标识ID，名称，流量使用信息等
+    ///
+    /// - Returns: `AsyncSequence`s of `TrafficPackage` and `DescribeTrafficPackagesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrafficPackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)

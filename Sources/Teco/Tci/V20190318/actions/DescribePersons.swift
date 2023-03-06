@@ -116,6 +116,8 @@ extension Tci {
     }
 
     /// 拉取人员列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Person` and `DescribePersonsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePersonsPaginator(_ input: DescribePersonsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersons, logger: logger, on: eventLoop)

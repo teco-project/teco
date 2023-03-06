@@ -148,6 +148,8 @@ extension Bm {
     /// 查询设备操作日志
     ///
     /// 查询设备操作日志， 如设备重启，重装，设置密码等操作
+    ///
+    /// - Returns: `AsyncSequence`s of `DeviceOperationLog` and `DescribeDeviceOperationLogResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeviceOperationLogPaginator(_ input: DescribeDeviceOperationLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceOperationLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceOperationLog, logger: logger, on: eventLoop)

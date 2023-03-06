@@ -122,6 +122,8 @@ extension Cmq {
     }
 
     /// 查询订阅详情
+    ///
+    /// - Returns: `AsyncSequence`s of `Subscription` and `DescribeSubscriptionDetailResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubscriptionDetailPaginator(_ input: DescribeSubscriptionDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubscriptionDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscriptionDetail, logger: logger, on: eventLoop)

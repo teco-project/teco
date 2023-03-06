@@ -169,6 +169,8 @@ extension Mps {
     /// 查询传输流的日志
     ///
     /// 查询媒体传输流的日志信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `FlowLogInfo` and `DescribeStreamLinkFlowLogsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeStreamLinkFlowLogsPaginator(_ input: DescribeStreamLinkFlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStreamLinkFlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamLinkFlowLogs, logger: logger, on: eventLoop)

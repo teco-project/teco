@@ -176,6 +176,8 @@ extension Bmeip {
     }
 
     /// 黑石EIP查询接口
+    ///
+    /// - Returns: `AsyncSequence`s of `EipInfo` and `DescribeEipsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEipsPaginator(_ input: DescribeEipsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEipsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEips, logger: logger, on: eventLoop)

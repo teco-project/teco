@@ -112,6 +112,8 @@ extension Tem {
     }
 
     /// 查询配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ConfigData` and `DescribeConfigDataListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeConfigDataListPaginator(_ input: DescribeConfigDataListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigDataListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigDataList, logger: logger, on: eventLoop)

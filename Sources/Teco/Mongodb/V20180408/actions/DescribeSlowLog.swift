@@ -153,6 +153,8 @@ extension Mongodb {
     /// 查询实例慢日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `String` and `DescribeSlowLogResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSlowLogPaginator(_ input: DescribeSlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLog, logger: logger, on: eventLoop)

@@ -145,6 +145,8 @@ extension Cme {
     /// 获取团队成员信息
     ///
     /// 获取指定团队的成员信息。支持获取指定成员的信息，同时也支持分页拉取指定团队的所有成员信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `TeamMemberInfo` and `DescribeTeamMembersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTeamMembersPaginator(_ input: DescribeTeamMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTeamMembersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTeamMembers, logger: logger, on: eventLoop)

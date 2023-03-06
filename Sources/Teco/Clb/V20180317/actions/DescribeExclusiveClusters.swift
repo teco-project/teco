@@ -139,6 +139,8 @@ extension Clb {
     /// 查询集群列表
     ///
     /// 查询集群信息列表，支持以集群类型、集群唯一ID、集群名字、集群标签、集群内vip、集群内负载均衡唯一id、集群网络类型、可用区等条件进行检索
+    ///
+    /// - Returns: `AsyncSequence`s of `Cluster` and `DescribeExclusiveClustersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeExclusiveClustersPaginator(_ input: DescribeExclusiveClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeExclusiveClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeExclusiveClusters, logger: logger, on: eventLoop)

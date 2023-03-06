@@ -126,6 +126,8 @@ extension Cvm {
     }
 
     /// 查询高性能集群信息
+    ///
+    /// - Returns: `AsyncSequence`s of `HpcClusterInfo` and `DescribeHpcClustersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHpcClustersPaginator(_ input: DescribeHpcClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHpcClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHpcClusters, logger: logger, on: eventLoop)

@@ -128,6 +128,8 @@ extension Trp {
     }
 
     /// 查询商品列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Product` and `DescribeProductsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProductsPaginator(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)

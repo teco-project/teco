@@ -126,6 +126,8 @@ extension Cmq {
     }
 
     /// 枚举队列
+    ///
+    /// - Returns: `AsyncSequence`s of `QueueSet` and `DescribeQueueDetailResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeQueueDetailPaginator(_ input: DescribeQueueDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeQueueDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeQueueDetail, logger: logger, on: eventLoop)

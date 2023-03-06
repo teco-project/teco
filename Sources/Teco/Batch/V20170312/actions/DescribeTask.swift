@@ -165,6 +165,8 @@ extension Batch {
     /// 查询任务详情
     ///
     /// 用于查询指定任务的详细信息，包括任务内部的任务实例信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskInstanceView` and `DescribeTaskResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskPaginator(_ input: DescribeTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTask, logger: logger, on: eventLoop)

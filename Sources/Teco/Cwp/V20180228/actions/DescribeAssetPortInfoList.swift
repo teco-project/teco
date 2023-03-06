@@ -144,6 +144,8 @@ extension Cwp {
     }
 
     /// 获取资产管理端口列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetPortBaseInfo` and `DescribeAssetPortInfoListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetPortInfoListPaginator(_ input: DescribeAssetPortInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetPortInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetPortInfoList, logger: logger, on: eventLoop)

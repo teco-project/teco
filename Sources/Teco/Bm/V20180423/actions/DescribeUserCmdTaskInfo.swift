@@ -131,6 +131,8 @@ extension Bm {
     }
 
     /// 获取自定义脚本任务详细信息
+    ///
+    /// - Returns: `AsyncSequence`s of `UserCmdTaskInfo` and `DescribeUserCmdTaskInfoResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUserCmdTaskInfoPaginator(_ input: DescribeUserCmdTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserCmdTaskInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserCmdTaskInfo, logger: logger, on: eventLoop)

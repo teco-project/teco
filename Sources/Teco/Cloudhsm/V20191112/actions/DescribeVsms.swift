@@ -132,6 +132,8 @@ extension Cloudhsm {
     }
 
     /// 获取用户VSM列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ResourceInfo` and `DescribeVsmsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVsmsPaginator(_ input: DescribeVsmsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVsmsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVsms, logger: logger, on: eventLoop)

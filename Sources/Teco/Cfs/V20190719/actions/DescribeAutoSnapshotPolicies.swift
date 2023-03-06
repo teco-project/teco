@@ -145,6 +145,8 @@ extension Cfs {
     /// 查询文件系统快照策略列表信息
     ///
     /// 查询文件系统快照定期策略列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `AutoSnapshotPolicyInfo` and `DescribeAutoSnapshotPoliciesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAutoSnapshotPoliciesPaginator(_ input: DescribeAutoSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAutoSnapshotPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAutoSnapshotPolicies, logger: logger, on: eventLoop)

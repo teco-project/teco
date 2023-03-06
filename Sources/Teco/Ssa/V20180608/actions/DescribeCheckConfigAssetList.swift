@@ -127,6 +127,8 @@ extension Ssa {
     }
 
     /// 云安全配置管理资产组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CheckAssetItem` and `DescribeCheckConfigAssetListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCheckConfigAssetListPaginator(_ input: DescribeCheckConfigAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCheckConfigAssetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCheckConfigAssetList, logger: logger, on: eventLoop)

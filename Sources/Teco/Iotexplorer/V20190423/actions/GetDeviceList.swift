@@ -147,6 +147,8 @@ extension Iotexplorer {
     /// 获取产品的设备列表
     ///
     /// 用于查询某个产品下的设备列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DeviceInfo` and `GetDeviceListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getDeviceListPaginator(_ input: GetDeviceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDeviceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDeviceList, logger: logger, on: eventLoop)

@@ -145,6 +145,8 @@ extension Gme {
     /// 查询某账号下的应用列表
     ///
     /// 本接口(DescribeApplicationList)用于查询自己账号下的应用列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ApplicationList` and `DescribeApplicationListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApplicationListPaginator(_ input: DescribeApplicationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationList, logger: logger, on: eventLoop)

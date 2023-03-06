@@ -170,6 +170,8 @@ extension Mongodb {
     /// 查询实例列表
     ///
     /// 本接口(DescribeDBInstances)用于查询云数据库实例列表，支持通过项目ID、实例ID、实例状态等过滤条件来筛选实例。支持查询主实例、灾备实例和只读实例信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `MongoDBInstanceDetail` and `DescribeDBInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)

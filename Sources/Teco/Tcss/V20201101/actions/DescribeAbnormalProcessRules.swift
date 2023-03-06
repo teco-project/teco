@@ -140,6 +140,8 @@ extension Tcss {
     /// 运行时异常进程策略列表
     ///
     /// 查询运行时异常进程策略列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleBaseInfo` and `DescribeAbnormalProcessRulesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAbnormalProcessRulesPaginator(_ input: DescribeAbnormalProcessRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAbnormalProcessRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAbnormalProcessRules, logger: logger, on: eventLoop)

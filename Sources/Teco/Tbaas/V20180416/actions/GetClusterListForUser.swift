@@ -135,6 +135,8 @@ extension Tbaas {
     /// 获取网络列表
     ///
     /// 获取该用户的网络列表。网络信息中包含组织信息，但仅包含该用户所在组织的信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterDetailForUser` and `GetClusterListForUserResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getClusterListForUserPaginator(_ input: GetClusterListForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetClusterListForUserRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getClusterListForUser, logger: logger, on: eventLoop)

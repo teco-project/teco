@@ -203,6 +203,8 @@ extension Cat {
     /// 分页查询拨测任务列表
     ///
     /// 查询拨测任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ProbeTask` and `DescribeProbeTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProbeTasksPaginator(_ input: DescribeProbeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProbeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProbeTasks, logger: logger, on: eventLoop)

@@ -122,6 +122,8 @@ extension Ckafka {
     }
 
     /// 获取Datahub消费分组offset
+    ///
+    /// - Returns: `AsyncSequence`s of `GroupOffsetTopic` and `DescribeDatahubGroupOffsetsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDatahubGroupOffsetsPaginator(_ input: DescribeDatahubGroupOffsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDatahubGroupOffsetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatahubGroupOffsets, logger: logger, on: eventLoop)

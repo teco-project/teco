@@ -111,6 +111,8 @@ extension Iot {
     }
 
     /// 获取转发规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Rule` and `GetRulesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getRulesPaginator(_ input: GetRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getRules, logger: logger, on: eventLoop)

@@ -107,6 +107,8 @@ extension Apigateway {
     }
 
     /// 查询 API 文档列表
+    ///
+    /// - Returns: `AsyncSequence`s of `APIDoc` and `DescribeAPIDocsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAPIDocsPaginator(_ input: DescribeAPIDocsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAPIDocsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAPIDocs, logger: logger, on: eventLoop)

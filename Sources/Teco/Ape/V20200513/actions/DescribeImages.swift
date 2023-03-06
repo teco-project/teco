@@ -157,6 +157,8 @@ extension Ape {
     /// 查询图片列表
     ///
     /// 根据关键字搜索图片列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageItem` and `DescribeImagesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImagesPaginator(_ input: DescribeImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImages, logger: logger, on: eventLoop)

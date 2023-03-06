@@ -125,6 +125,8 @@ extension Iotcloud {
     /// 获取产品列表
     ///
     /// 本接口（DescribeProducts）用于列出产品列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProductInfo` and `DescribeProductsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProductsPaginator(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)

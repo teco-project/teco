@@ -126,6 +126,8 @@ extension Nlp {
     /// 查询词库列表
     ///
     /// 返回属于当前用户的所有自定义词库列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DictInfo` and `DescribeDictsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDictsPaginator(_ input: DescribeDictsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDictsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDicts, logger: logger, on: eventLoop)

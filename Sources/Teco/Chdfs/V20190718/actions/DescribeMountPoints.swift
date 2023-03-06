@@ -134,6 +134,8 @@ extension Chdfs {
     /// 查看挂载点列表
     ///
     /// 通过文件系统ID或者权限组ID查看挂载点列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `MountPoint` and `DescribeMountPointsResponse` that can be iterated over asynchronously on demand.
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeMountPointsPaginator(_ input: DescribeMountPointsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMountPointsRequest> {

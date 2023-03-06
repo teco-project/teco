@@ -150,6 +150,8 @@ extension Ivld {
     /// 依照输入条件，描述命中的任务信息，包括任务创建时间，处理时间信息等。
     ///
     /// 请注意，本接口最多支持同时描述**50**个任务信息
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskInfo` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)

@@ -126,6 +126,8 @@ extension Trp {
     /// 查询扫码统计列表
     ///
     /// 查询某个批次被扫码的统计列表，没有被扫过的不会返回
+    ///
+    /// - Returns: `AsyncSequence`s of `ScanStat` and `DescribeScanStatsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScanStatsPaginator(_ input: DescribeScanStatsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanStatsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanStats, logger: logger, on: eventLoop)

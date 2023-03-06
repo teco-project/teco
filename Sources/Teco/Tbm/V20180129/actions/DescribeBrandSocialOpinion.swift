@@ -161,6 +161,8 @@ extension Tbm {
     /// 获取品牌社交渠道观点
     ///
     /// 检测品牌关键词出现在微博、QQ兴趣部落、论坛、博客等个人公开贡献资讯中的内容，每天聚合近30天热度最高的观点列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `BrandReportArticle` and `DescribeBrandSocialOpinionResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBrandSocialOpinionPaginator(_ input: DescribeBrandSocialOpinionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBrandSocialOpinionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBrandSocialOpinion, logger: logger, on: eventLoop)

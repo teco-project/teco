@@ -143,6 +143,8 @@ extension Yunjing {
     /// 获取端口列表
     ///
     /// 本接口 (DescribeOpenPorts) 用于获取端口列表数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `OpenPort` and `DescribeOpenPortsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOpenPortsPaginator(_ input: DescribeOpenPortsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOpenPortsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOpenPorts, logger: logger, on: eventLoop)

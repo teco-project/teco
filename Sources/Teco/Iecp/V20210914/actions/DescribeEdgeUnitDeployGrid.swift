@@ -132,6 +132,8 @@ extension Iecp {
     }
 
     /// 查询边缘单元Grid列表
+    ///
+    /// - Returns: `AsyncSequence`s of `GridInfo` and `DescribeEdgeUnitDeployGridResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEdgeUnitDeployGridPaginator(_ input: DescribeEdgeUnitDeployGridRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeUnitDeployGridRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeUnitDeployGrid, logger: logger, on: eventLoop)

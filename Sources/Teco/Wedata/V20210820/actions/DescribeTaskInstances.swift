@@ -172,6 +172,8 @@ extension Wedata {
     }
 
     /// 查询任务实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskInstanceInfo` and `DescribeTaskInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskInstancesPaginator(_ input: DescribeTaskInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskInstances, logger: logger, on: eventLoop)

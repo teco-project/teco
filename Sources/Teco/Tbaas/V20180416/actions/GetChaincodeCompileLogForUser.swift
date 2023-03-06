@@ -146,6 +146,8 @@ extension Tbaas {
     }
 
     /// 获取合约编译日志
+    ///
+    /// - Returns: `AsyncSequence`s of `LogDetailForUser` and `GetChaincodeCompileLogForUserResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getChaincodeCompileLogForUserPaginator(_ input: GetChaincodeCompileLogForUserRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetChaincodeCompileLogForUserRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getChaincodeCompileLogForUser, logger: logger, on: eventLoop)

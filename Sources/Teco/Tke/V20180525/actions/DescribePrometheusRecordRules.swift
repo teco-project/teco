@@ -135,6 +135,8 @@ extension Tke {
     /// 获取聚合规则列表，包含关联集群内的资源
     ///
     /// 获取聚合规则列表，包含关联集群内crd资源创建的record rule
+    ///
+    /// - Returns: `AsyncSequence`s of `PrometheusRecordRuleYamlItem` and `DescribePrometheusRecordRulesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrometheusRecordRulesPaginator(_ input: DescribePrometheusRecordRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrometheusRecordRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrometheusRecordRules, logger: logger, on: eventLoop)

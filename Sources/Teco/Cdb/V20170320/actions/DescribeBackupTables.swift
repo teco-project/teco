@@ -159,6 +159,8 @@ extension Cdb {
     /// 本接口(DescribeBackupTables)用于查询指定的数据库的备份数据表名 (已废弃)。
     /// 旧版本支持全量备份后，用户如果分库表下载逻辑备份文件，需要用到此接口。
     /// 新版本支持(CreateBackup)创建逻辑备份的时候，直接发起指定库表备份，用户直接下载该备份文件即可。
+    ///
+    /// - Returns: `AsyncSequence`s of `TableName` and `DescribeBackupTablesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupTablesPaginator(_ input: DescribeBackupTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupTablesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupTables, logger: logger, on: eventLoop)

@@ -130,6 +130,8 @@ extension Partners {
     /// 查询代理商返佣信息V2
     ///
     /// 代理商可查询自己名下全部返佣信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RebateInfoElemNew` and `DescribeRebateInfosNewResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRebateInfosNewPaginator(_ input: DescribeRebateInfosNewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRebateInfosNewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRebateInfosNew, logger: logger, on: eventLoop)

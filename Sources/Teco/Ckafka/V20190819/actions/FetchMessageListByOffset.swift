@@ -117,6 +117,8 @@ extension Ckafka {
     }
 
     /// 根据位点查询消息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ConsumerRecord` and `FetchMessageListByOffsetResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func fetchMessageListByOffsetPaginator(_ input: FetchMessageListByOffsetRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<FetchMessageListByOffsetRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.fetchMessageListByOffset, logger: logger, on: eventLoop)

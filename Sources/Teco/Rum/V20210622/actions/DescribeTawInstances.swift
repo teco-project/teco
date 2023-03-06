@@ -160,6 +160,8 @@ extension Rum {
     /// 查询 RUM 业务系统信息
     ///
     /// 查询实例信息
+    ///
+    /// - Returns: `AsyncSequence`s of `RumInstanceInfo` and `DescribeTawInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTawInstancesPaginator(_ input: DescribeTawInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTawInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTawInstances, logger: logger, on: eventLoop)

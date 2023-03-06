@@ -113,6 +113,8 @@ extension Organization {
     }
 
     /// 获取组织节点列表
+    ///
+    /// - Returns: `AsyncSequence`s of `OrgNode` and `DescribeOrganizationNodesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOrganizationNodesPaginator(_ input: DescribeOrganizationNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationNodesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationNodes, logger: logger, on: eventLoop)

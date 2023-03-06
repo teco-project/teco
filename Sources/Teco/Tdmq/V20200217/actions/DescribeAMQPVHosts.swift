@@ -140,6 +140,8 @@ extension Tdmq {
     /// 获取Amqp Vhost列表
     ///
     /// 获取Amqp Vhost 列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AMQPVHost` and `DescribeAMQPVHostsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAMQPVHostsPaginator(_ input: DescribeAMQPVHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPVHostsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPVHosts, logger: logger, on: eventLoop)

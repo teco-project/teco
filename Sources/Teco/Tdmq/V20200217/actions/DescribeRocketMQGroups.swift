@@ -151,6 +151,8 @@ extension Tdmq {
     }
 
     /// 获取RocketMQ消费组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RocketMQGroup` and `DescribeRocketMQGroupsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRocketMQGroupsPaginator(_ input: DescribeRocketMQGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRocketMQGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRocketMQGroups, logger: logger, on: eventLoop)

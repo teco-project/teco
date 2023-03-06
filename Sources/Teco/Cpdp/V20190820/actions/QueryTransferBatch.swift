@@ -282,6 +282,8 @@ extension Cpdp {
     /// 智慧薪酬-通过商家或者微信批次号查询批次单
     ///
     /// 通过商家批次单号或者微信批次号查询批次单
+    ///
+    /// - Returns: `AsyncSequence`s of `TransferDetailResponse` and `QueryTransferBatchResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryTransferBatchPaginator(_ input: QueryTransferBatchRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryTransferBatchRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryTransferBatch, logger: logger, on: eventLoop)

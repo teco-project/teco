@@ -140,6 +140,8 @@ extension Dbbrain {
     /// 查询实例SQL限流任务列表
     ///
     /// 查询实例SQL限流任务列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `SQLFilter` and `DescribeSqlFiltersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSqlFiltersPaginator(_ input: DescribeSqlFiltersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSqlFiltersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSqlFilters, logger: logger, on: eventLoop)

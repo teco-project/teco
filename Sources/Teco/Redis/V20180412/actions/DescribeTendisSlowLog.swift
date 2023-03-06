@@ -131,6 +131,8 @@ extension Redis {
     }
 
     /// 查询Tendis慢查询
+    ///
+    /// - Returns: `AsyncSequence`s of `TendisSlowLogDetail` and `DescribeTendisSlowLogResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTendisSlowLogPaginator(_ input: DescribeTendisSlowLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTendisSlowLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTendisSlowLog, logger: logger, on: eventLoop)

@@ -121,6 +121,8 @@ extension Antiddos {
     }
 
     /// 获取DDoS防护的端口acl策略列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AclConfigRelation` and `DescribeListPortAclListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListPortAclListPaginator(_ input: DescribeListPortAclListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListPortAclListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListPortAclList, logger: logger, on: eventLoop)

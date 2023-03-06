@@ -158,6 +158,8 @@ extension Wedata {
     /// {表名称TableName,支持模糊匹配}       {表负责人TableOwnerName,支持模糊匹配}      {监控方式MonitorTypes，1.未配置 2.关联生产调度 3.离线周期检测,支持多选}  {订阅人ReceiverUin}
     /// 【必要字段】
     /// {数据来源DatasourceId}
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleGroup` and `DescribeRuleGroupsByPageResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRuleGroupsByPagePaginator(_ input: DescribeRuleGroupsByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleGroupsByPageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleGroupsByPage, logger: logger, on: eventLoop)

@@ -147,6 +147,8 @@ extension Bmlb {
     /// 获取指定VPC下的7层监听器
     ///
     /// 获取指定VPC下的7层监听器(支持模糊匹配)。
+    ///
+    /// - Returns: `AsyncSequence`s of `L7ExListener` and `DescribeL7ListenersExResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeL7ListenersExPaginator(_ input: DescribeL7ListenersExRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeL7ListenersExRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeL7ListenersEx, logger: logger, on: eventLoop)

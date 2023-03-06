@@ -141,6 +141,8 @@ extension Vpc {
     /// 查询网络探测列表
     ///
     /// 本接口（DescribeNetDetects）用于查询网络探测列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `NetDetect` and `DescribeNetDetectsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetDetectsPaginator(_ input: DescribeNetDetectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetDetectsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetDetects, logger: logger, on: eventLoop)

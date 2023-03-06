@@ -126,6 +126,8 @@ extension Teo {
     }
 
     /// 获取负载均衡列表
+    ///
+    /// - Returns: `AsyncSequence`s of `LoadBalancing` and `DescribeLoadBalancingResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLoadBalancingPaginator(_ input: DescribeLoadBalancingRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoadBalancingRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancing, logger: logger, on: eventLoop)

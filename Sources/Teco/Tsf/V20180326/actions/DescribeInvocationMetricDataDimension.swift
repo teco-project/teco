@@ -132,6 +132,8 @@ extension Tsf {
     }
 
     /// 查询维度
+    ///
+    /// - Returns: `AsyncSequence`s of `String` and `DescribeInvocationMetricDataDimensionResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInvocationMetricDataDimensionPaginator(_ input: DescribeInvocationMetricDataDimensionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInvocationMetricDataDimensionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInvocationMetricDataDimension, logger: logger, on: eventLoop)

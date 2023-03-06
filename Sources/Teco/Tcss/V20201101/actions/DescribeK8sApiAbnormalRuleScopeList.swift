@@ -123,6 +123,8 @@ extension Tcss {
     }
 
     /// 查询k8sapi 异常规则中范围列表
+    ///
+    /// - Returns: `AsyncSequence`s of `K8sApiAbnormalRuleScopeInfo` and `DescribeK8sApiAbnormalRuleScopeListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeK8sApiAbnormalRuleScopeListPaginator(_ input: DescribeK8sApiAbnormalRuleScopeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeK8sApiAbnormalRuleScopeListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeK8sApiAbnormalRuleScopeList, logger: logger, on: eventLoop)

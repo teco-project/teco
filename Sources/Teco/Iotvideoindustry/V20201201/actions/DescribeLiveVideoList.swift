@@ -153,6 +153,8 @@ extension Iotvideoindustry {
     }
 
     /// 直播录像回放列表
+    ///
+    /// - Returns: `AsyncSequence`s of `LiveRecordItem` and `DescribeLiveVideoListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLiveVideoListPaginator(_ input: DescribeLiveVideoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveVideoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveVideoList, logger: logger, on: eventLoop)

@@ -130,6 +130,8 @@ extension Lighthouse {
     /// 查看云硬盘是否可退还
     ///
     /// 本接口（DescribeDisksReturnable）用于查询云硬盘是否可退还。
+    ///
+    /// - Returns: `AsyncSequence`s of `DiskReturnable` and `DescribeDisksReturnableResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDisksReturnablePaginator(_ input: DescribeDisksReturnableRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDisksReturnableRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDisksReturnable, logger: logger, on: eventLoop)

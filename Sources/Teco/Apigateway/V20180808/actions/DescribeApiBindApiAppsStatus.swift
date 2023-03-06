@@ -137,6 +137,8 @@ extension Apigateway {
     /// 查询Api绑定的应用列表
     ///
     /// 本接口（DescribeApiBindApiAppsStatus）查询Api绑定的应用列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ApiAppApiInfo` and `DescribeApiBindApiAppsStatusResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApiBindApiAppsStatusPaginator(_ input: DescribeApiBindApiAppsStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApiBindApiAppsStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApiBindApiAppsStatus, logger: logger, on: eventLoop)

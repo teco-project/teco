@@ -117,6 +117,8 @@ extension Cwp {
     }
 
     /// 获取本地提权规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PrivilegeRule` and `DescribePrivilegeRulesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrivilegeRulesPaginator(_ input: DescribePrivilegeRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivilegeRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivilegeRules, logger: logger, on: eventLoop)

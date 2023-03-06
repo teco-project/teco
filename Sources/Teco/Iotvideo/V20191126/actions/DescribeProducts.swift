@@ -141,6 +141,8 @@ extension Iotvideo {
     /// 获取产品列表
     ///
     /// 本接口（DescribeProducts）用于列出用户账号下的物联网智能视频产品列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProductData` and `DescribeProductsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProductsPaginator(_ input: DescribeProductsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProductsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProducts, logger: logger, on: eventLoop)

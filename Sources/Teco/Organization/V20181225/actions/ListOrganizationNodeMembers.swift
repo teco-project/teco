@@ -116,6 +116,8 @@ extension Organization {
     }
 
     /// 获取企业组织单元成员列表
+    ///
+    /// - Returns: `AsyncSequence`s of `OrgMember` and `ListOrganizationNodeMembersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listOrganizationNodeMembersPaginator(_ input: ListOrganizationNodeMembersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListOrganizationNodeMembersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listOrganizationNodeMembers, logger: logger, on: eventLoop)

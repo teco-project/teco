@@ -172,6 +172,8 @@ extension Live {
     /// 查询某段时间top n客户端ip汇总信息
     ///
     /// 查询某段时间top n客户端ip汇总信息（暂支持top 1000）
+    ///
+    /// - Returns: `AsyncSequence`s of `ClientIpPlaySumInfo` and `DescribeTopClientIpSumInfoListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTopClientIpSumInfoListPaginator(_ input: DescribeTopClientIpSumInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopClientIpSumInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopClientIpSumInfoList, logger: logger, on: eventLoop)

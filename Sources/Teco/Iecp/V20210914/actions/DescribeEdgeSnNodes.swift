@@ -133,6 +133,8 @@ extension Iecp {
     }
 
     /// 查询预注册节点列表
+    ///
+    /// - Returns: `AsyncSequence`s of `EdgeDracoNodeInfo` and `DescribeEdgeSnNodesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEdgeSnNodesPaginator(_ input: DescribeEdgeSnNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEdgeSnNodesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEdgeSnNodes, logger: logger, on: eventLoop)

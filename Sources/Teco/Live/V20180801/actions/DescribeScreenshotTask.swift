@@ -161,6 +161,8 @@ extension Live {
     /// - 使用前提
     /// 1. 仅用于查询由 CreateScreenshotTask接口创建的截图任务。
     /// 2. 不能查询被 DeleteScreenshotTask接口删除以及已过期（平台侧保留3个月）的截图任务。
+    ///
+    /// - Returns: `AsyncSequence`s of `ScreenshotTask` and `DescribeScreenshotTaskResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScreenshotTaskPaginator(_ input: DescribeScreenshotTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScreenshotTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScreenshotTask, logger: logger, on: eventLoop)

@@ -154,6 +154,8 @@ extension Lighthouse {
     /// 查询重置实例的镜像信息
     ///
     /// 本接口（DescribeResetInstanceBlueprints）查询重置实例的镜像信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `ResetInstanceBlueprint` and `DescribeResetInstanceBlueprintsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResetInstanceBlueprintsPaginator(_ input: DescribeResetInstanceBlueprintsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResetInstanceBlueprintsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResetInstanceBlueprints, logger: logger, on: eventLoop)

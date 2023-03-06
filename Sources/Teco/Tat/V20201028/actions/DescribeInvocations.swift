@@ -139,6 +139,8 @@ extension Tat {
     /// 查询执行活动
     ///
     /// 此接口用于查询执行活动详情。
+    ///
+    /// - Returns: `AsyncSequence`s of `Invocation` and `DescribeInvocationsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInvocationsPaginator(_ input: DescribeInvocationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInvocationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInvocations, logger: logger, on: eventLoop)

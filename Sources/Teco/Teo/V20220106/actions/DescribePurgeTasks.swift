@@ -160,6 +160,8 @@ extension Teo {
     }
 
     /// 查询清除缓存历史记录
+    ///
+    /// - Returns: `AsyncSequence`s of `Task` and `DescribePurgeTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePurgeTasksPaginator(_ input: DescribePurgeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePurgeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePurgeTasks, logger: logger, on: eventLoop)

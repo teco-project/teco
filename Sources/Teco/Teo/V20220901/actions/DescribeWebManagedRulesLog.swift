@@ -177,6 +177,8 @@ extension Teo {
     /// 查询Web攻击日志
     ///
     /// 本接口（DescribeWebManagedRulesLog）用于查询Web攻击日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `WebLogs` and `DescribeWebManagedRulesLogResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWebManagedRulesLogPaginator(_ input: DescribeWebManagedRulesLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebManagedRulesLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebManagedRulesLog, logger: logger, on: eventLoop)

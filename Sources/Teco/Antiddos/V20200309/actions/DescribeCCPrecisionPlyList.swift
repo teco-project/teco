@@ -136,6 +136,8 @@ extension Antiddos {
     }
 
     /// 获取CC精准防护列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CCPrecisionPolicy` and `DescribeCCPrecisionPlyListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCCPrecisionPlyListPaginator(_ input: DescribeCCPrecisionPlyListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCCPrecisionPlyListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCCPrecisionPlyList, logger: logger, on: eventLoop)

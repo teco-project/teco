@@ -121,6 +121,8 @@ extension Tdid {
     }
 
     /// 标签列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Label` and `GetLabelListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getLabelListPaginator(_ input: GetLabelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetLabelListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLabelList, logger: logger, on: eventLoop)

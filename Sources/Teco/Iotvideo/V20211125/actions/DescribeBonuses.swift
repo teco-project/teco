@@ -111,6 +111,8 @@ extension Iotvideo {
     }
 
     /// 查看运营活动资源包列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BonusInfo` and `DescribeBonusesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBonusesPaginator(_ input: DescribeBonusesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBonusesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBonuses, logger: logger, on: eventLoop)

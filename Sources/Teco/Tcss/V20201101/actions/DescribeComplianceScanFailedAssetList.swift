@@ -140,6 +140,8 @@ extension Tcss {
     /// 安全合规查询上次检测失败的资产的列表
     ///
     /// 按照 资产 → 检测项 二层结构展示的信息。这里查询第一层 资产的通过率汇总信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `ComplianceScanFailedAsset` and `DescribeComplianceScanFailedAssetListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComplianceScanFailedAssetListPaginator(_ input: DescribeComplianceScanFailedAssetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceScanFailedAssetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceScanFailedAssetList, logger: logger, on: eventLoop)

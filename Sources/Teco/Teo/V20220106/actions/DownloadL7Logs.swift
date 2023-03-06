@@ -165,6 +165,8 @@ extension Teo {
     /// 七层离线日志下载
     ///
     /// 查询七层离线日志
+    ///
+    /// - Returns: `AsyncSequence`s of `L7OfflineLog` and `DownloadL7LogsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func downloadL7LogsPaginator(_ input: DownloadL7LogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DownloadL7LogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.downloadL7Logs, logger: logger, on: eventLoop)

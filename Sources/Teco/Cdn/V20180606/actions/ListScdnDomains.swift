@@ -132,6 +132,8 @@ extension Cdn {
     /// 查询SCDN域名列表
     ///
     /// ListScdnDomains 用于查询 SCDN 安全加速域名列表，及域名基本配置信息
+    ///
+    /// - Returns: `AsyncSequence`s of `ScdnDomain` and `ListScdnDomainsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listScdnDomainsPaginator(_ input: ListScdnDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListScdnDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listScdnDomains, logger: logger, on: eventLoop)

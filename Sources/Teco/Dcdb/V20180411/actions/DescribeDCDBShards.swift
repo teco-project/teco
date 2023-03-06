@@ -150,6 +150,8 @@ extension Dcdb {
     /// 查询分片信息
     ///
     /// 本接口（DescribeDCDBShards）用于查询云数据库实例的分片信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DCDBShardInfo` and `DescribeDCDBShardsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDCDBShardsPaginator(_ input: DescribeDCDBShardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDCDBShardsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDCDBShards, logger: logger, on: eventLoop)

@@ -136,6 +136,8 @@ extension Bm {
     }
 
     /// 获取预授权规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PsaRegulation` and `DescribePsaRegulationsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePsaRegulationsPaginator(_ input: DescribePsaRegulationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePsaRegulationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePsaRegulations, logger: logger, on: eventLoop)

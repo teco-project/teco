@@ -142,6 +142,8 @@ extension Vpc {
     ///
     /// 本接口（DescribeVpcIpv6Addresses）用于查询 `VPC` `IPv6` 信息。
     /// 只能查询已使用的`IPv6`信息，当查询未使用的IP时，本接口不会报错，但不会出现在返回结果里。
+    ///
+    /// - Returns: `AsyncSequence`s of `VpcIpv6Address` and `DescribeVpcIpv6AddressesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcIpv6AddressesPaginator(_ input: DescribeVpcIpv6AddressesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcIpv6AddressesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcIpv6Addresses, logger: logger, on: eventLoop)

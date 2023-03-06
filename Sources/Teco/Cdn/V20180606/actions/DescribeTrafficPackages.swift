@@ -148,6 +148,8 @@ extension Cdn {
     /// 流量包查询
     ///
     /// DescribeTrafficPackages 用于查询 CDN 流量包详情。
+    ///
+    /// - Returns: `AsyncSequence`s of `TrafficPackage` and `DescribeTrafficPackagesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTrafficPackagesPaginator(_ input: DescribeTrafficPackagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTrafficPackagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTrafficPackages, logger: logger, on: eventLoop)

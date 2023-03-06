@@ -150,6 +150,8 @@ extension Cwp {
     }
 
     /// 获取Web站点列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetWebLocationBaseInfo` and `DescribeAssetWebLocationListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetWebLocationListPaginator(_ input: DescribeAssetWebLocationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetWebLocationListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetWebLocationList, logger: logger, on: eventLoop)

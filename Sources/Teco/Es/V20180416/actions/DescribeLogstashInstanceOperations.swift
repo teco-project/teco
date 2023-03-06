@@ -140,6 +140,8 @@ extension Es {
     /// 查询Logstash实例操作记录
     ///
     /// 查询实例指定条件下的操作记录
+    ///
+    /// - Returns: `AsyncSequence`s of `Operation` and `DescribeLogstashInstanceOperationsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLogstashInstanceOperationsPaginator(_ input: DescribeLogstashInstanceOperationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogstashInstanceOperationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogstashInstanceOperations, logger: logger, on: eventLoop)

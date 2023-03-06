@@ -142,6 +142,8 @@ extension Lighthouse {
     /// 查询用户密钥对列表
     ///
     /// 本接口 (DescribeKeyPairs) 用于查询用户密钥对信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `KeyPair` and `DescribeKeyPairsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeKeyPairsPaginator(_ input: DescribeKeyPairsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeKeyPairsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeKeyPairs, logger: logger, on: eventLoop)

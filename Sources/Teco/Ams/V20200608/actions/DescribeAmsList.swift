@@ -139,6 +139,8 @@ extension Ams {
     /// 获取音频审核明细数据
     ///
     /// 音频审核明细列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AmsDetailInfo` and `DescribeAmsListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAmsListPaginator(_ input: DescribeAmsListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAmsListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAmsList, logger: logger, on: eventLoop)

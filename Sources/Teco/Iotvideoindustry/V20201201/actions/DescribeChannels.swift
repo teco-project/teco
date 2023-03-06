@@ -147,6 +147,8 @@ extension Iotvideoindustry {
     /// 获取设备下属通道列表
     ///
     /// 本接口（DescribeChannels）用于获取设备下属通道列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ChannelDetail` and `DescribeChannelsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeChannelsPaginator(_ input: DescribeChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeChannels, logger: logger, on: eventLoop)

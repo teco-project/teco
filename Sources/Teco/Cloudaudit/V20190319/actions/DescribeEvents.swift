@@ -141,6 +141,8 @@ extension Cloudaudit {
     }
 
     /// 查询云审计日志
+    ///
+    /// - Returns: `AsyncSequence`s of `Event` and `DescribeEventsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEventsPaginator(_ input: DescribeEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEvents, logger: logger, on: eventLoop)

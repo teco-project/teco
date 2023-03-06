@@ -163,6 +163,8 @@ extension Cvm {
     /// * 可以根据实例`ID`、实例名称或者实例计费模式等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
     /// * 支持查询实例的最新操作（LatestOperation）以及最新操作状态(LatestOperationState)。
+    ///
+    /// - Returns: `AsyncSequence`s of `Instance` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)

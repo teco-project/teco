@@ -133,6 +133,8 @@ extension Apigateway {
     ///
     /// 本接口（DescribeServiceSubDomains）用于查询自定义域名列表。
     /// API 网关可绑定自定义域名到服务，用于服务调用。此接口用于查询用户绑定在服务的自定义域名列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainSetList` and `DescribeServiceSubDomainsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServiceSubDomainsPaginator(_ input: DescribeServiceSubDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceSubDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceSubDomains, logger: logger, on: eventLoop)

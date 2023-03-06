@@ -155,6 +155,8 @@ extension Wss {
     /// 获取证书列表
     ///
     /// 本接口(DescribeCertList)用于获取证书列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `SSLCertificate` and `DescribeCertListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCertListPaginator(_ input: DescribeCertListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertList, logger: logger, on: eventLoop)

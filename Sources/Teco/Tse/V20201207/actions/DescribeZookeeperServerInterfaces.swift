@@ -116,6 +116,8 @@ extension Tse {
     }
 
     /// 查询zookeeper服务接口列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ZookeeperServerInterface` and `DescribeZookeeperServerInterfacesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeZookeeperServerInterfacesPaginator(_ input: DescribeZookeeperServerInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeZookeeperServerInterfacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeZookeeperServerInterfaces, logger: logger, on: eventLoop)

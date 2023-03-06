@@ -131,6 +131,8 @@ extension Iotexplorer {
     /// 获取 LoRa 网关列表
     ///
     /// 获取 LoRa 网关列表接口
+    ///
+    /// - Returns: `AsyncSequence`s of `LoRaGatewayItem` and `GetLoRaGatewayListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getLoRaGatewayListPaginator(_ input: GetLoRaGatewayListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetLoRaGatewayListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getLoRaGatewayList, logger: logger, on: eventLoop)

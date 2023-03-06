@@ -123,6 +123,8 @@ extension Cfs {
     }
 
     /// 查询文件系统配额
+    ///
+    /// - Returns: `AsyncSequence`s of `UserQuota` and `DescribeUserQuotaResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUserQuotaPaginator(_ input: DescribeUserQuotaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUserQuotaRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUserQuota, logger: logger, on: eventLoop)

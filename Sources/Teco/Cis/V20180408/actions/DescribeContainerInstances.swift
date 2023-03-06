@@ -133,6 +133,8 @@ extension Cis {
     /// 查询容器实例列表
     ///
     /// 此接口（DescribeContainerInstances）查询容器实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ContainerInstance` and `DescribeContainerInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeContainerInstancesPaginator(_ input: DescribeContainerInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeContainerInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContainerInstances, logger: logger, on: eventLoop)

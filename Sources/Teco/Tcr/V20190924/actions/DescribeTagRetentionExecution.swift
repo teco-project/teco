@@ -121,6 +121,8 @@ extension Tcr {
     }
 
     /// 查询版本保留执行记录
+    ///
+    /// - Returns: `AsyncSequence`s of `RetentionExecution` and `DescribeTagRetentionExecutionResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTagRetentionExecutionPaginator(_ input: DescribeTagRetentionExecutionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTagRetentionExecutionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTagRetentionExecution, logger: logger, on: eventLoop)

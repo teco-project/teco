@@ -158,6 +158,8 @@ extension Dts {
     }
 
     /// 查询同步任务信息
+    ///
+    /// - Returns: `AsyncSequence`s of `SyncJobInfo` and `DescribeSyncJobsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSyncJobsPaginator(_ input: DescribeSyncJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSyncJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSyncJobs, logger: logger, on: eventLoop)

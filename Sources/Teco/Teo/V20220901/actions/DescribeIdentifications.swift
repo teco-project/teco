@@ -131,6 +131,8 @@ extension Teo {
     /// 查询站点的验证信息
     ///
     /// 查询站点的验证信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `Identification` and `DescribeIdentificationsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIdentificationsPaginator(_ input: DescribeIdentificationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIdentificationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIdentifications, logger: logger, on: eventLoop)

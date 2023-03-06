@@ -121,6 +121,8 @@ extension Tdid {
     }
 
     /// DID列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DidData` and `GetDidListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getDidListPaginator(_ input: GetDidListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetDidListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getDidList, logger: logger, on: eventLoop)

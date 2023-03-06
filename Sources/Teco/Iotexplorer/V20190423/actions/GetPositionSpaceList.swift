@@ -118,6 +118,8 @@ extension Iotexplorer {
     }
 
     /// 获取位置空间列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PositionSpaceInfo` and `GetPositionSpaceListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getPositionSpaceListPaginator(_ input: GetPositionSpaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetPositionSpaceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getPositionSpaceList, logger: logger, on: eventLoop)

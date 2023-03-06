@@ -137,6 +137,8 @@ extension Tcss {
     }
 
     /// 查询镜像自动授权任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageAutoAuthorizedTask` and `DescribeImageAutoAuthorizedTaskListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageAutoAuthorizedTaskListPaginator(_ input: DescribeImageAutoAuthorizedTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageAutoAuthorizedTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageAutoAuthorizedTaskList, logger: logger, on: eventLoop)

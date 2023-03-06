@@ -133,6 +133,8 @@ extension Eiam {
     }
 
     /// 获取用户组中的用户列表
+    ///
+    /// - Returns: `AsyncSequence`s of `UserInfo` and `ListUsersInUserGroupResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listUsersInUserGroupPaginator(_ input: ListUsersInUserGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListUsersInUserGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listUsersInUserGroup, logger: logger, on: eventLoop)

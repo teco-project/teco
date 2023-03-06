@@ -145,6 +145,8 @@ extension Tbaas {
     /// 分页查询Bcos区块列表
     ///
     /// Bcos分页查询当前群组下的区块列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BcosBlockObj` and `GetBcosBlockListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getBcosBlockListPaginator(_ input: GetBcosBlockListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBcosBlockListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBcosBlockList, logger: logger, on: eventLoop)

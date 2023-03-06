@@ -121,6 +121,8 @@ extension Antiddos {
     }
 
     /// 获取DDoS防护的访问限速配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DDoSSpeedLimitConfigRelation` and `DescribeListDDoSSpeedLimitConfigResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeListDDoSSpeedLimitConfigPaginator(_ input: DescribeListDDoSSpeedLimitConfigRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeListDDoSSpeedLimitConfigRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeListDDoSSpeedLimitConfig, logger: logger, on: eventLoop)

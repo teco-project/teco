@@ -131,6 +131,8 @@ extension Oceanus {
     }
 
     /// 描述系统资源接口
+    ///
+    /// - Returns: `AsyncSequence`s of `SystemResourceItem` and `DescribeSystemResourcesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSystemResourcesPaginator(_ input: DescribeSystemResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSystemResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSystemResources, logger: logger, on: eventLoop)

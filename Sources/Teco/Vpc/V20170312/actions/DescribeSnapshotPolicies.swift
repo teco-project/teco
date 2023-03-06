@@ -137,6 +137,8 @@ extension Vpc {
     /// 查询快照策略
     ///
     /// 本接口（DescribeSnapshotPolicies）用于查询快照策略。
+    ///
+    /// - Returns: `AsyncSequence`s of `SnapshotPolicy` and `DescribeSnapshotPoliciesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSnapshotPoliciesPaginator(_ input: DescribeSnapshotPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotPolicies, logger: logger, on: eventLoop)

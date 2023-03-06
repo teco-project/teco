@@ -151,6 +151,8 @@ extension Vpc {
     /// 查询CCN列表
     ///
     /// 本接口（DescribeCcns）用于查询云联网（CCN）列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `CCN` and `DescribeCcnsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCcnsPaginator(_ input: DescribeCcnsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcnsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcns, logger: logger, on: eventLoop)

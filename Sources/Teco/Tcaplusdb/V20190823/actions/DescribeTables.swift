@@ -131,6 +131,8 @@ extension Tcaplusdb {
     }
 
     /// 查询表详情
+    ///
+    /// - Returns: `AsyncSequence`s of `TableInfoNew` and `DescribeTablesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTablesPaginator(_ input: DescribeTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTablesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTables, logger: logger, on: eventLoop)

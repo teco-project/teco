@@ -167,6 +167,8 @@ extension Cvm {
     ///
     /// * 可以根据实例`ID`、实例名称或者设备类型等信息来查询实例的详细信息。过滤信息详细请见过滤器`Filter`。
     /// * 如果参数为空，返回当前用户一定数量（`Limit`所指定的数量，默认为20）的实例。
+    ///
+    /// - Returns: `AsyncSequence`s of `ChcHost` and `DescribeChcHostsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeChcHostsPaginator(_ input: DescribeChcHostsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeChcHostsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeChcHosts, logger: logger, on: eventLoop)

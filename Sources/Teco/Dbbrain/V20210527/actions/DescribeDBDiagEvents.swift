@@ -153,6 +153,8 @@ extension Dbbrain {
     /// 获取诊断事件列表
     ///
     /// 获取指定时间段内的诊断事件列表，支持依据风险等级、实例ID等条件过滤。
+    ///
+    /// - Returns: `AsyncSequence`s of `DiagHistoryEventItem` and `DescribeDBDiagEventsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBDiagEventsPaginator(_ input: DescribeDBDiagEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBDiagEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBDiagEvents, logger: logger, on: eventLoop)

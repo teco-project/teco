@@ -160,6 +160,8 @@ extension Cls {
     /// 获取日志集列表
     ///
     /// 本接口用于获取日志集信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `LogsetInfo` and `DescribeLogsetsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLogsetsPaginator(_ input: DescribeLogsetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLogsetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLogsets, logger: logger, on: eventLoop)

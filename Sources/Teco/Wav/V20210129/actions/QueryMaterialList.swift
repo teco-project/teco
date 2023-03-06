@@ -127,6 +127,8 @@ extension Wav {
     /// 获取企业素材列表接口
     ///
     /// 通过接口按类型拉取租户当前的素材列表及关键信息
+    ///
+    /// - Returns: `AsyncSequence`s of `MaterialInfo` and `QueryMaterialListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryMaterialListPaginator(_ input: QueryMaterialListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryMaterialListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryMaterialList, logger: logger, on: eventLoop)

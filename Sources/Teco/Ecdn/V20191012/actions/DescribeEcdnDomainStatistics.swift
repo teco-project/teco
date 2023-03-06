@@ -187,6 +187,8 @@ extension Ecdn {
     /// 本接口（DescribeEcdnDomainStatistics）用于查询指定时间段内的域名访问统计指标。
     ///
     /// >?  若您的业务已迁移至 CDN 控制台，请参考<a href="https://cloud.tencent.com/document/api/228/30986"> CDN 接口文档</a>，使用  CDN 相关API 进行操作。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainData` and `DescribeEcdnDomainStatisticsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEcdnDomainStatisticsPaginator(_ input: DescribeEcdnDomainStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEcdnDomainStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEcdnDomainStatistics, logger: logger, on: eventLoop)

@@ -145,6 +145,8 @@ extension Iotexplorer {
     /// 搜索产品
     ///
     /// 提供根据产品名称查找产品的能力
+    ///
+    /// - Returns: `AsyncSequence`s of `ProductEntry` and `SearchStudioProductResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchStudioProductPaginator(_ input: SearchStudioProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchStudioProductRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchStudioProduct, logger: logger, on: eventLoop)

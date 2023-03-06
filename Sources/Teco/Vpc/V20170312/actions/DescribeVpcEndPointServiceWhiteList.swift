@@ -132,6 +132,8 @@ extension Vpc {
     /// 查询终端节点服务的服务白名单列表
     ///
     /// 查询终端节点服务的服务白名单列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `VpcEndPointServiceUser` and `DescribeVpcEndPointServiceWhiteListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcEndPointServiceWhiteListPaginator(_ input: DescribeVpcEndPointServiceWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcEndPointServiceWhiteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcEndPointServiceWhiteList, logger: logger, on: eventLoop)

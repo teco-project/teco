@@ -145,6 +145,8 @@ extension Sqlserver {
     /// 查询备份文件列表
     ///
     /// 本接口(DescribeBackupFiles)用于在非打包备份模式下单个库对应的备份文件
+    ///
+    /// - Returns: `AsyncSequence`s of `BackupFile` and `DescribeBackupFilesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupFilesPaginator(_ input: DescribeBackupFilesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupFilesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackupFiles, logger: logger, on: eventLoop)

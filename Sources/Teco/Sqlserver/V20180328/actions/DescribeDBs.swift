@@ -140,6 +140,8 @@ extension Sqlserver {
     /// 查询数据库列表
     ///
     /// 本接口（DescribeDBs）用于查询数据库列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceDBDetail` and `DescribeDBsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBsPaginator(_ input: DescribeDBsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBs, logger: logger, on: eventLoop)

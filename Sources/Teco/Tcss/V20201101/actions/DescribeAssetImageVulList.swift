@@ -147,6 +147,8 @@ extension Tcss {
     /// 查询镜像漏洞列表
     ///
     /// 容器安全查询镜像漏洞列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImagesVul` and `DescribeAssetImageVulListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetImageVulListPaginator(_ input: DescribeAssetImageVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageVulList, logger: logger, on: eventLoop)

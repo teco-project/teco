@@ -151,6 +151,8 @@ extension Tdmq {
     /// 获取生产者信息
     ///
     /// 获取生产者信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Publisher` and `DescribePublishersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePublishersPaginator(_ input: DescribePublishersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublishersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublishers, logger: logger, on: eventLoop)

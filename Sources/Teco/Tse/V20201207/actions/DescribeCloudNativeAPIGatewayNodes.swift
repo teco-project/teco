@@ -117,6 +117,8 @@ extension Tse {
     }
 
     /// 获取云原生网关节点列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CloudNativeAPIGatewayNode` and `DescribeCloudNativeAPIGatewayNodesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloudNativeAPIGatewayNodesPaginator(_ input: DescribeCloudNativeAPIGatewayNodesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloudNativeAPIGatewayNodesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloudNativeAPIGatewayNodes, logger: logger, on: eventLoop)

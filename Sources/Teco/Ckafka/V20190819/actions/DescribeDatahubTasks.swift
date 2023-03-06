@@ -132,6 +132,8 @@ extension Ckafka {
     }
 
     /// 查询Datahub任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DatahubTaskInfo` and `DescribeDatahubTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDatahubTasksPaginator(_ input: DescribeDatahubTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDatahubTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDatahubTasks, logger: logger, on: eventLoop)

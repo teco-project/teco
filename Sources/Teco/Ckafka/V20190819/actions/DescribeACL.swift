@@ -127,6 +127,8 @@ extension Ckafka {
     }
 
     /// 枚举ACL
+    ///
+    /// - Returns: `AsyncSequence`s of `Acl` and `DescribeACLResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeACLPaginator(_ input: DescribeACLRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeACLRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeACL, logger: logger, on: eventLoop)

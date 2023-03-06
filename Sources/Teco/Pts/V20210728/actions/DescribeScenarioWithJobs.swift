@@ -181,6 +181,8 @@ extension Pts {
     /// 查询场景及对应的任务
     ///
     /// 查询场景配置并附带已经执行的任务内容
+    ///
+    /// - Returns: `AsyncSequence`s of `ScenarioWithJobs` and `DescribeScenarioWithJobsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScenarioWithJobsPaginator(_ input: DescribeScenarioWithJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScenarioWithJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScenarioWithJobs, logger: logger, on: eventLoop)

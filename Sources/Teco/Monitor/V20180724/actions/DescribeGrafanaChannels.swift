@@ -122,6 +122,8 @@ extension Monitor {
     }
 
     /// 列出 Grafana 所有告警通道
+    ///
+    /// - Returns: `AsyncSequence`s of `GrafanaChannel` and `DescribeGrafanaChannelsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGrafanaChannelsPaginator(_ input: DescribeGrafanaChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGrafanaChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGrafanaChannels, logger: logger, on: eventLoop)

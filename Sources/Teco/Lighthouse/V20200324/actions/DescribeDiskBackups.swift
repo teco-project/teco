@@ -150,6 +150,8 @@ extension Lighthouse {
     /// 查看云硬盘备份点列表
     ///
     /// 本接口（DescribeDiskBackups）用于查询云硬盘备份点的详细信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DiskBackup` and `DescribeDiskBackupsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDiskBackupsPaginator(_ input: DescribeDiskBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDiskBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDiskBackups, logger: logger, on: eventLoop)

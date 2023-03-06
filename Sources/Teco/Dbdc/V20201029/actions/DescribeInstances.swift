@@ -165,6 +165,8 @@ extension Dbdc {
     /// 查询独享集群列表
     ///
     /// 根据不同地域不同用户，获取集群列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceExpand` and `DescribeInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstancesPaginator(_ input: DescribeInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstances, logger: logger, on: eventLoop)

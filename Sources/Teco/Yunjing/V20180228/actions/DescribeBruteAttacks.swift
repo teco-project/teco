@@ -137,6 +137,8 @@ extension Yunjing {
     /// 获取云镜破解事件列表
     ///
     /// 本接口{DescribeBruteAttacks}用于获取暴力破解事件列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `BruteAttack` and `DescribeBruteAttacksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBruteAttacksPaginator(_ input: DescribeBruteAttacksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBruteAttacksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBruteAttacks, logger: logger, on: eventLoop)

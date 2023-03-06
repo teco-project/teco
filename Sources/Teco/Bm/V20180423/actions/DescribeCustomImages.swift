@@ -142,6 +142,8 @@ extension Bm {
     }
 
     /// 查看自定义镜像列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CustomImage` and `DescribeCustomImagesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCustomImagesPaginator(_ input: DescribeCustomImagesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomImagesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomImages, logger: logger, on: eventLoop)

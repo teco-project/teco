@@ -153,6 +153,8 @@ extension Tag {
     /// 批量查看资源关联的标签
     ///
     /// 用于批量查询已有资源关联的标签键值对
+    ///
+    /// - Returns: `AsyncSequence`s of `TagResource` and `DescribeResourceTagsByResourceIdsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResourceTagsByResourceIdsPaginator(_ input: DescribeResourceTagsByResourceIdsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceTagsByResourceIdsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceTagsByResourceIds, logger: logger, on: eventLoop)

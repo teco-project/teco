@@ -136,6 +136,8 @@ extension Antiddos {
     }
 
     /// 获取CC防护的区域封禁配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CcGeoIpPolicyNew` and `DescribeCcGeoIPBlockConfigListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCcGeoIPBlockConfigListPaginator(_ input: DescribeCcGeoIPBlockConfigListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcGeoIPBlockConfigListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcGeoIPBlockConfigList, logger: logger, on: eventLoop)

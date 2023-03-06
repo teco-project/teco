@@ -130,6 +130,8 @@ extension Smh {
     /// 查询媒体库
     ///
     /// 查询 PaaS 服务媒体库列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Library` and `DescribeLibrariesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLibrariesPaginator(_ input: DescribeLibrariesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLibrariesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLibraries, logger: logger, on: eventLoop)

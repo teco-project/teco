@@ -123,6 +123,8 @@ extension Iecp {
     }
 
     /// 获取ConfigMap列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ConfigMapBasicInfo` and `DescribeConfigMapsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeConfigMapsPaginator(_ input: DescribeConfigMapsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigMapsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigMaps, logger: logger, on: eventLoop)

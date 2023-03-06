@@ -175,6 +175,8 @@ extension Dnspod {
     /// 获取域名的解析记录列表
     ///
     /// 获取某个域名下的解析记录列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RecordListItem` and `DescribeRecordListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRecordListPaginator(_ input: DescribeRecordListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordList, logger: logger, on: eventLoop)

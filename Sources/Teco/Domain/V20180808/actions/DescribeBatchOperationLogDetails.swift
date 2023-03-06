@@ -131,6 +131,8 @@ extension Domain {
     /// 批量操作日志详情
     ///
     /// 本接口 ( DescribeBatchOperationLogDetails ) 用于获取批量操作日志详情。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainBatchDetailSet` and `DescribeBatchOperationLogDetailsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBatchOperationLogDetailsPaginator(_ input: DescribeBatchOperationLogDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBatchOperationLogDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchOperationLogDetails, logger: logger, on: eventLoop)

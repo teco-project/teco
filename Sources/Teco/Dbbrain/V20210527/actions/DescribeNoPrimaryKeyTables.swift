@@ -157,6 +157,8 @@ extension Dbbrain {
     /// 查询实例无主键表
     ///
     /// 查询实例无主键表。
+    ///
+    /// - Returns: `AsyncSequence`s of `Table` and `DescribeNoPrimaryKeyTablesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNoPrimaryKeyTablesPaginator(_ input: DescribeNoPrimaryKeyTablesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNoPrimaryKeyTablesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNoPrimaryKeyTables, logger: logger, on: eventLoop)

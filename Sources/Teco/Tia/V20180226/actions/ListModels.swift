@@ -126,6 +126,8 @@ extension Tia {
     /// 列举Model
     ///
     /// 用以列举已经部署的模型。而部署有两种模式：`无服务器模式` 和 `集群模式`。`无服务器模式` 下，模型文件被部署到无服务器云函数，即 [SCF](https://cloud.tencent.com/product/scf)，用户可以在其控制台上进一步操作。`集群模式` 下，模型文件被部署到 TI-A 的计算集群中。不同部署模式下的模型分开列出。
+    ///
+    /// - Returns: `AsyncSequence`s of `Model` and `ListModelsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listModelsPaginator(_ input: ListModelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListModelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listModels, logger: logger, on: eventLoop)

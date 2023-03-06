@@ -161,6 +161,8 @@ extension Live {
     /// 查询所有流的流量数据
     ///
     /// 查询天维度每条流的播放数据，包括总流量等。
+    ///
+    /// - Returns: `AsyncSequence`s of `PlayDataInfoByStream` and `DescribeStreamDayPlayInfoListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeStreamDayPlayInfoListPaginator(_ input: DescribeStreamDayPlayInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStreamDayPlayInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStreamDayPlayInfoList, logger: logger, on: eventLoop)

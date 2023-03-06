@@ -144,6 +144,8 @@ extension Ckafka {
     ///
     /// 接口请求域名：https://ckafka.tencentcloudapi.com
     /// 本接口（DescribeTopic）用于在用户获取消息队列 CKafka 实例的主题列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Topic` and `DescribeTopicResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTopicPaginator(_ input: DescribeTopicRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopic, logger: logger, on: eventLoop)

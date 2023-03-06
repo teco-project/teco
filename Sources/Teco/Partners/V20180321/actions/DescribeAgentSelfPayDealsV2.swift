@@ -168,6 +168,8 @@ extension Partners {
     /// 代理商自付订单查询接口（预付费）
     ///
     /// 查询代理商名下指定代客的自付订单（预付费）
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentDealNewElem` and `DescribeAgentSelfPayDealsV2Response` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAgentSelfPayDealsV2Paginator(_ input: DescribeAgentSelfPayDealsV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentSelfPayDealsV2Request> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentSelfPayDealsV2, logger: logger, on: eventLoop)

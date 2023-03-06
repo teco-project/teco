@@ -155,6 +155,8 @@ extension Partners {
     /// 查询待审核客户列表
     ///
     /// 代理商可查询自己名下待审核客户列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentClientElem` and `DescribeAgentClientsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAgentClientsPaginator(_ input: DescribeAgentClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentClientsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentClients, logger: logger, on: eventLoop)

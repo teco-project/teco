@@ -148,6 +148,8 @@ extension Ssl {
     /// 获取证书操作日志
     ///
     /// 获取用户账号下有关证书的操作日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `OperationLog` and `DescribeCertificateOperateLogsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCertificateOperateLogsPaginator(_ input: DescribeCertificateOperateLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertificateOperateLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertificateOperateLogs, logger: logger, on: eventLoop)

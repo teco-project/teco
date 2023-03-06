@@ -130,6 +130,8 @@ extension Thpc {
     /// 查询集群列表
     ///
     /// 本接口（DescribeClusters）用于查询集群列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterOverview` and `DescribeClustersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClustersPaginator(_ input: DescribeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusters, logger: logger, on: eventLoop)

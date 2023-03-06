@@ -145,6 +145,8 @@ extension Vpc {
     /// 查询SSL-VPN SERVER 列表
     ///
     /// 查询SSL-VPN SERVER 列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `SslVpnSever` and `DescribeVpnGatewaySslServersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpnGatewaySslServersPaginator(_ input: DescribeVpnGatewaySslServersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewaySslServersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGatewaySslServers, logger: logger, on: eventLoop)

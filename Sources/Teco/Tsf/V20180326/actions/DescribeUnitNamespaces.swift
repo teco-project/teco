@@ -118,6 +118,8 @@ extension Tsf {
     }
 
     /// 查询单元化命名空间列表
+    ///
+    /// - Returns: `AsyncSequence`s of `UnitNamespace` and `DescribeUnitNamespacesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUnitNamespacesPaginator(_ input: DescribeUnitNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUnitNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnitNamespaces, logger: logger, on: eventLoop)

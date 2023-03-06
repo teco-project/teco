@@ -135,6 +135,8 @@ extension Ses {
     /// 查询收件人列表
     ///
     /// 根据条件查询收件人列表，支持分页，模糊查询，状态查询
+    ///
+    /// - Returns: `AsyncSequence`s of `ReceiverData` and `ListReceiversResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listReceiversPaginator(_ input: ListReceiversRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListReceiversRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listReceivers, logger: logger, on: eventLoop)

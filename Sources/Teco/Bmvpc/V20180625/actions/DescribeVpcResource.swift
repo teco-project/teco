@@ -135,6 +135,8 @@ extension Bmvpc {
     }
 
     /// 查询黑石私有网络关联资源
+    ///
+    /// - Returns: `AsyncSequence`s of `VpcResource` and `DescribeVpcResourceResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcResourcePaginator(_ input: DescribeVpcResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcResourceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpcResource, logger: logger, on: eventLoop)

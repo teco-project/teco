@@ -152,6 +152,8 @@ extension Cwp {
     /// 应急漏洞列表
     ///
     /// 获取应急漏洞列表
+    ///
+    /// - Returns: `AsyncSequence`s of `EmergencyVul` and `DescribeEmergencyVulListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEmergencyVulListPaginator(_ input: DescribeEmergencyVulListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEmergencyVulListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEmergencyVulList, logger: logger, on: eventLoop)

@@ -173,6 +173,8 @@ extension Tic {
     /// - 可以根据版本ID查询感兴趣的版本
     /// - 可以根据版本名字和状态来过滤版本，详见过滤器Filter
     /// - 如果参数为空，返回当前用户一定数量（Limit所指定的数量，默认为20）的版本
+    ///
+    /// - Returns: `AsyncSequence`s of `VersionInfo` and `DescribeStackVersionsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeStackVersionsPaginator(_ input: DescribeStackVersionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStackVersionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStackVersions, logger: logger, on: eventLoop)

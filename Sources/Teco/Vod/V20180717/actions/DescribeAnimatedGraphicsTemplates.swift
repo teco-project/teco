@@ -142,6 +142,8 @@ extension Vod {
     /// 获取转动图模板列表
     ///
     /// 查询转动图模板列表，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `AnimatedGraphicsTemplate` and `DescribeAnimatedGraphicsTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAnimatedGraphicsTemplatesPaginator(_ input: DescribeAnimatedGraphicsTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAnimatedGraphicsTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAnimatedGraphicsTemplates, logger: logger, on: eventLoop)

@@ -118,6 +118,8 @@ extension Ssa {
     }
 
     /// 云安全配置检查项列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SocCheckItemV1` and `DescribeSocCheckItemListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSocCheckItemListPaginator(_ input: DescribeSocCheckItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSocCheckItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSocCheckItemList, logger: logger, on: eventLoop)

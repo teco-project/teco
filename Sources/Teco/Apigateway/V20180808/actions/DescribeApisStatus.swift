@@ -131,6 +131,8 @@ extension Apigateway {
     /// 查询 API 接口列表
     ///
     /// 本接口（DescribeApisStatus）用于查看一个服务下的某个 API 或所有 API 列表及其相关信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DesApisStatus` and `DescribeApisStatusResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApisStatusPaginator(_ input: DescribeApisStatusRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApisStatusRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApisStatus, logger: logger, on: eventLoop)

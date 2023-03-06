@@ -126,6 +126,8 @@ extension Fmu {
     /// 查询唇色素材
     ///
     /// 查询已注册的唇色素材。
+    ///
+    /// - Returns: `AsyncSequence`s of `ModelInfo` and `GetModelListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getModelListPaginator(_ input: GetModelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetModelListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getModelList, logger: logger, on: eventLoop)

@@ -149,6 +149,8 @@ extension Bmvpc {
     /// 查询VPN网关
     ///
     /// 本接口（DescribeVpnGateways）用于查询VPN网关列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `VpnGateway` and `DescribeVpnGatewaysResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpnGatewaysPaginator(_ input: DescribeVpnGatewaysRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpnGatewaysRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpnGateways, logger: logger, on: eventLoop)

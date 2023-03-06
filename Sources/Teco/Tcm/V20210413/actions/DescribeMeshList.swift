@@ -117,6 +117,8 @@ extension Tcm {
     }
 
     /// 查询网格列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Mesh` and `DescribeMeshListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMeshListPaginator(_ input: DescribeMeshListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMeshListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMeshList, logger: logger, on: eventLoop)

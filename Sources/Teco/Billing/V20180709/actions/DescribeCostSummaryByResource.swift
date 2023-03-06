@@ -152,6 +152,8 @@ extension Billing {
     }
 
     /// 获取按资源汇总消耗详情
+    ///
+    /// - Returns: `AsyncSequence`s of `ConsumptionResourceSummaryDataItem` and `DescribeCostSummaryByResourceResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCostSummaryByResourcePaginator(_ input: DescribeCostSummaryByResourceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCostSummaryByResourceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCostSummaryByResource, logger: logger, on: eventLoop)

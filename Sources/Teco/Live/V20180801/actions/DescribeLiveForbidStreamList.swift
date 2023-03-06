@@ -158,6 +158,8 @@ extension Live {
     /// 获取禁推流列表。
     ///
     /// 注意：该接口仅作为直播辅助查询接口，重要业务场景不可强依赖该接口。
+    ///
+    /// - Returns: `AsyncSequence`s of `ForbidStreamInfo` and `DescribeLiveForbidStreamListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLiveForbidStreamListPaginator(_ input: DescribeLiveForbidStreamListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveForbidStreamListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveForbidStreamList, logger: logger, on: eventLoop)

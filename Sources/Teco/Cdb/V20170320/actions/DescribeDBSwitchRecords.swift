@@ -130,6 +130,8 @@ extension Cdb {
     /// 查询云数据库切换记录
     ///
     /// 本接口(DescribeDBSwitchRecords)用于查询云数据库实例切换记录。
+    ///
+    /// - Returns: `AsyncSequence`s of `DBSwitchInfo` and `DescribeDBSwitchRecordsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBSwitchRecordsPaginator(_ input: DescribeDBSwitchRecordsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBSwitchRecordsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBSwitchRecords, logger: logger, on: eventLoop)

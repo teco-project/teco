@@ -145,6 +145,8 @@ extension Sqlserver {
     /// 查询互通实例的信息
     ///
     /// 本接口（DescribeDBInstanceInter）用于查询互通实例的信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `InterInstance` and `DescribeDBInstanceInterResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBInstanceInterPaginator(_ input: DescribeDBInstanceInterRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstanceInterRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstanceInter, logger: logger, on: eventLoop)

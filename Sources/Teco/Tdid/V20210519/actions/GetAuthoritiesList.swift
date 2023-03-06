@@ -116,6 +116,8 @@ extension Tdid {
     }
 
     /// 权威机构列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Authority` and `GetAuthoritiesListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getAuthoritiesListPaginator(_ input: GetAuthoritiesListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetAuthoritiesListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getAuthoritiesList, logger: logger, on: eventLoop)

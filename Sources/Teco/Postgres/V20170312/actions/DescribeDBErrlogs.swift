@@ -158,6 +158,8 @@ extension Postgres {
     /// 获取错误日志
     ///
     /// 本接口（DescribeDBErrlogs）用于获取错误日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `ErrLogDetail` and `DescribeDBErrlogsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBErrlogsPaginator(_ input: DescribeDBErrlogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBErrlogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBErrlogs, logger: logger, on: eventLoop)

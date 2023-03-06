@@ -137,6 +137,8 @@ extension Dc {
     /// 查询互联网通道路由列表
     ///
     /// 本接口（DescribePublicDirectConnectTunnelRoutes）用于查询互联网通道路由列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DirectConnectTunnelRoute` and `DescribePublicDirectConnectTunnelRoutesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePublicDirectConnectTunnelRoutesPaginator(_ input: DescribePublicDirectConnectTunnelRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePublicDirectConnectTunnelRoutesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePublicDirectConnectTunnelRoutes, logger: logger, on: eventLoop)

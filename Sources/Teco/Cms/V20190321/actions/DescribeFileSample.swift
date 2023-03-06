@@ -154,6 +154,8 @@ extension Cms {
     /// 本文档适用于图片内容安全、视频内容安全自定义识别库的管理。
     /// <br>
     /// 查询图片样本库，支持批量查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `FileSampleInfo` and `DescribeFileSampleResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFileSamplePaginator(_ input: DescribeFileSampleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFileSampleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFileSample, logger: logger, on: eventLoop)

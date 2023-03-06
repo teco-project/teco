@@ -154,6 +154,8 @@ extension Cfs {
     /// 查询快照列表
     ///
     /// 查询文件系统快照列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SnapshotInfo` and `DescribeCfsSnapshotsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCfsSnapshotsPaginator(_ input: DescribeCfsSnapshotsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCfsSnapshotsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCfsSnapshots, logger: logger, on: eventLoop)

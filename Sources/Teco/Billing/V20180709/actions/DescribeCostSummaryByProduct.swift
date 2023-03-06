@@ -136,6 +136,8 @@ extension Billing {
     }
 
     /// 获取按产品汇总消耗详情
+    ///
+    /// - Returns: `AsyncSequence`s of `ConsumptionBusinessSummaryDataItem` and `DescribeCostSummaryByProductResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCostSummaryByProductPaginator(_ input: DescribeCostSummaryByProductRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCostSummaryByProductRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCostSummaryByProduct, logger: logger, on: eventLoop)

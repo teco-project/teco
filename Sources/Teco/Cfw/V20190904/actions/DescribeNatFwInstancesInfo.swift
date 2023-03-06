@@ -132,6 +132,8 @@ extension Cfw {
     /// 获取租户所有NAT实例卡片信息
     ///
     /// GetNatInstance 获取租户所有NAT实例及实例卡片信息
+    ///
+    /// - Returns: `AsyncSequence`s of `NatInstanceInfo` and `DescribeNatFwInstancesInfoResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNatFwInstancesInfoPaginator(_ input: DescribeNatFwInstancesInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNatFwInstancesInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNatFwInstancesInfo, logger: logger, on: eventLoop)

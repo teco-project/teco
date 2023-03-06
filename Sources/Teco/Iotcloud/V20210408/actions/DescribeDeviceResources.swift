@@ -146,6 +146,8 @@ extension Iotcloud {
     /// 获取设备资源列表
     ///
     /// 本接口（DescribeDeviceResources）用于查询设备资源列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DeviceResourceInfo` and `DescribeDeviceResourcesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeviceResourcesPaginator(_ input: DescribeDeviceResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceResources, logger: logger, on: eventLoop)

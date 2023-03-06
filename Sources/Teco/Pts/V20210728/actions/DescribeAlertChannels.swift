@@ -133,6 +133,8 @@ extension Pts {
     }
 
     /// 查询告警通知接收组
+    ///
+    /// - Returns: `AsyncSequence`s of `AlertChannelRecord` and `DescribeAlertChannelsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAlertChannelsPaginator(_ input: DescribeAlertChannelsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAlertChannelsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAlertChannels, logger: logger, on: eventLoop)

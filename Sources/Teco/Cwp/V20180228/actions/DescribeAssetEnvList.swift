@@ -145,6 +145,8 @@ extension Cwp {
     }
 
     /// 查询资产管理环境变量列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetEnvBaseInfo` and `DescribeAssetEnvListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetEnvListPaginator(_ input: DescribeAssetEnvListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetEnvListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetEnvList, logger: logger, on: eventLoop)

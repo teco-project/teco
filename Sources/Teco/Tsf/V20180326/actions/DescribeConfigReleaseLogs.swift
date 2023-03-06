@@ -128,6 +128,8 @@ extension Tsf {
     }
 
     /// 查询配置发布历史
+    ///
+    /// - Returns: `AsyncSequence`s of `ConfigReleaseLog` and `DescribeConfigReleaseLogsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeConfigReleaseLogsPaginator(_ input: DescribeConfigReleaseLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeConfigReleaseLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeConfigReleaseLogs, logger: logger, on: eventLoop)

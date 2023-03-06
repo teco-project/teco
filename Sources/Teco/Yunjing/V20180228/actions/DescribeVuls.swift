@@ -141,6 +141,8 @@ extension Yunjing {
     /// 获取漏洞列表
     ///
     /// 本接口 (DescribeVuls) 用于获取漏洞列表数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `Vul` and `DescribeVulsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVulsPaginator(_ input: DescribeVulsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVulsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVuls, logger: logger, on: eventLoop)

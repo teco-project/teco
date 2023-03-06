@@ -142,6 +142,8 @@ extension Cwp {
     /// 查询忽略检测项影响主机列表
     ///
     /// 根据检测项id与筛选条件查询忽略检测项影响主机列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `IgnoreRuleEffectHostInfo` and `DescribeIgnoreRuleEffectHostListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIgnoreRuleEffectHostListPaginator(_ input: DescribeIgnoreRuleEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIgnoreRuleEffectHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIgnoreRuleEffectHostList, logger: logger, on: eventLoop)

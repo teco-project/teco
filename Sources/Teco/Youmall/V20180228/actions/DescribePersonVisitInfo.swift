@@ -182,6 +182,8 @@ extension Youmall {
     /// 获取顾客到访信息列表
     ///
     /// 获取门店指定时间范围内的所有用户到访信息记录，支持的时间范围：过去365天，含当天。
+    ///
+    /// - Returns: `AsyncSequence`s of `PersonVisitInfo` and `DescribePersonVisitInfoResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePersonVisitInfoPaginator(_ input: DescribePersonVisitInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePersonVisitInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePersonVisitInfo, logger: logger, on: eventLoop)

@@ -139,6 +139,8 @@ extension Wedata {
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 数据源详情
+    ///
+    /// - Returns: `AsyncSequence`s of `DataSourceInfo` and `DescribeDataSourceListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDataSourceListPaginator(_ input: DescribeDataSourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDataSourceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDataSourceList, logger: logger, on: eventLoop)

@@ -138,6 +138,8 @@ extension Ecm {
     }
 
     /// 查询弹性网卡列表
+    ///
+    /// - Returns: `AsyncSequence`s of `NetworkInterface` and `DescribeNetworkInterfacesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNetworkInterfacesPaginator(_ input: DescribeNetworkInterfacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNetworkInterfacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNetworkInterfaces, logger: logger, on: eventLoop)

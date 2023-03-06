@@ -127,6 +127,8 @@ extension Cwp {
     }
 
     /// 获取反弹Shell列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ReverseShell` and `DescribeReverseShellEventsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeReverseShellEventsPaginator(_ input: DescribeReverseShellEventsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReverseShellEventsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReverseShellEvents, logger: logger, on: eventLoop)

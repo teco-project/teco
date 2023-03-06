@@ -157,6 +157,8 @@ extension Gaap {
     /// 查询UDP监听器列表
     ///
     /// 该接口（DescribeUDPListeners）用于查询单通道或者通道组下的UDP监听器信息
+    ///
+    /// - Returns: `AsyncSequence`s of `UDPListener` and `DescribeUDPListenersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUDPListenersPaginator(_ input: DescribeUDPListenersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUDPListenersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUDPListeners, logger: logger, on: eventLoop)

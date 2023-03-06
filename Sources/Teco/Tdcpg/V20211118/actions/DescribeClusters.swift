@@ -135,6 +135,8 @@ extension Tdcpg {
     }
 
     /// 查询集群
+    ///
+    /// - Returns: `AsyncSequence`s of `Cluster` and `DescribeClustersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClustersPaginator(_ input: DescribeClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClusters, logger: logger, on: eventLoop)

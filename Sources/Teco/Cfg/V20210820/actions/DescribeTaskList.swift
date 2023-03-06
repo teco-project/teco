@@ -141,6 +141,8 @@ extension Cfg {
     }
 
     /// 查询任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskListItem` and `DescribeTaskListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskListPaginator(_ input: DescribeTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskList, logger: logger, on: eventLoop)

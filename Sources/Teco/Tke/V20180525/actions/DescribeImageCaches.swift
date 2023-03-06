@@ -143,6 +143,8 @@ extension Tke {
     /// 查询镜像缓存信息
     ///
     /// 查询镜像缓存信息接口
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageCache` and `DescribeImageCachesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageCachesPaginator(_ input: DescribeImageCachesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageCachesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageCaches, logger: logger, on: eventLoop)

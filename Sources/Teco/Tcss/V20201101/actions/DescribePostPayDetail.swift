@@ -117,6 +117,8 @@ extension Tcss {
     /// 查询后付费详情
     ///
     /// DescribePostPayDetail  查询后付费详情
+    ///
+    /// - Returns: `AsyncSequence`s of `SoftQuotaDayInfo` and `DescribePostPayDetailResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePostPayDetailPaginator(_ input: DescribePostPayDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePostPayDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePostPayDetail, logger: logger, on: eventLoop)

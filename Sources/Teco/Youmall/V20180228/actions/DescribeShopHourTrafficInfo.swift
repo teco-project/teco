@@ -161,6 +161,8 @@ extension Youmall {
     /// 获取每小时客流人数
     ///
     /// 按小时提供查询日期范围内门店的每天每小时累计客流人数数据，支持的时间范围：过去365天，含当天。
+    ///
+    /// - Returns: `AsyncSequence`s of `ShopHourTrafficInfo` and `DescribeShopHourTrafficInfoResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeShopHourTrafficInfoPaginator(_ input: DescribeShopHourTrafficInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeShopHourTrafficInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeShopHourTrafficInfo, logger: logger, on: eventLoop)

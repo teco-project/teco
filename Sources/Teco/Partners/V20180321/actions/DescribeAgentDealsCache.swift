@@ -168,6 +168,8 @@ extension Partners {
     /// 代理商缓存订单查询接口（禁止接入）
     ///
     /// 【该接口已下线，请使用升级版本DescribeAgentDealsByCache】代理商拉取缓存的全量客户订单
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentDealElem` and `DescribeAgentDealsCacheResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAgentDealsCachePaginator(_ input: DescribeAgentDealsCacheRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentDealsCacheRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentDealsCache, logger: logger, on: eventLoop)

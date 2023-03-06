@@ -131,6 +131,8 @@ extension Clb {
     /// 查询负载均衡闲置实例
     ///
     /// 闲置实例是指创建超过7天后付费实例，且没有创建规则或创建规则没有绑定子机的负载均衡实例。
+    ///
+    /// - Returns: `AsyncSequence`s of `IdleLoadBalancer` and `DescribeIdleLoadBalancersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIdleLoadBalancersPaginator(_ input: DescribeIdleLoadBalancersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIdleLoadBalancersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIdleLoadBalancers, logger: logger, on: eventLoop)

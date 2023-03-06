@@ -135,6 +135,8 @@ extension Rum {
     /// 获取 RUM 应用列表
     ///
     /// 获取项目列表（实例创建的团队下的项目列表）
+    ///
+    /// - Returns: `AsyncSequence`s of `RumProject` and `DescribeProjectsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProjectsPaginator(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)

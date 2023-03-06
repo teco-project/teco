@@ -144,6 +144,8 @@ extension Wedata {
     ///
     /// <p style="color:red;">[注意：该Beta版本只满足广州区部分白名单客户使用]</p>
     /// 拉取文件夹下的工作流
+    ///
+    /// - Returns: `AsyncSequence`s of `Workflow` and `DescribeFolderWorkflowListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFolderWorkflowListPaginator(_ input: DescribeFolderWorkflowListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFolderWorkflowListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFolderWorkflowList, logger: logger, on: eventLoop)

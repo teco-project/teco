@@ -152,6 +152,8 @@ extension Apm {
     /// 获取服务概览数据
     ///
     /// 服务概览数据拉取
+    ///
+    /// - Returns: `AsyncSequence`s of `ApmMetricRecord` and `DescribeServiceOverviewResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServiceOverviewPaginator(_ input: DescribeServiceOverviewRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceOverviewRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceOverview, logger: logger, on: eventLoop)

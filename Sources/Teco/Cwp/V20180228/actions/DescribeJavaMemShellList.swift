@@ -117,6 +117,8 @@ extension Cwp {
     }
 
     /// 查询java内存马事件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `JavaMemShellInfo` and `DescribeJavaMemShellListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeJavaMemShellListPaginator(_ input: DescribeJavaMemShellListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeJavaMemShellListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJavaMemShellList, logger: logger, on: eventLoop)

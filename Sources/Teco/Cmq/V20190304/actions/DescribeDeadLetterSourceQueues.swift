@@ -121,6 +121,8 @@ extension Cmq {
     }
 
     /// 枚举死信队列源队列
+    ///
+    /// - Returns: `AsyncSequence`s of `DeadLetterSource` and `DescribeDeadLetterSourceQueuesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeadLetterSourceQueuesPaginator(_ input: DescribeDeadLetterSourceQueuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeadLetterSourceQueuesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeadLetterSourceQueues, logger: logger, on: eventLoop)

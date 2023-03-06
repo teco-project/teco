@@ -116,6 +116,8 @@ extension Cloudaudit {
     }
 
     /// 根据地域获取KMS密钥别名
+    ///
+    /// - Returns: `AsyncSequence`s of `KeyMetadata` and `ListKeyAliasByRegionResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listKeyAliasByRegionPaginator(_ input: ListKeyAliasByRegionRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListKeyAliasByRegionRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listKeyAliasByRegion, logger: logger, on: eventLoop)

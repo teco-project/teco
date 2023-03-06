@@ -142,6 +142,8 @@ extension Wav {
     /// 查询CRM统计数据接口
     ///
     /// 通过接口拉取租户/指定成员/部门在指定日期范围内的CRM跟进统计数据
+    ///
+    /// - Returns: `AsyncSequence`s of `CrmStatisticsData` and `QueryCrmStatisticsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryCrmStatisticsPaginator(_ input: QueryCrmStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryCrmStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryCrmStatistics, logger: logger, on: eventLoop)

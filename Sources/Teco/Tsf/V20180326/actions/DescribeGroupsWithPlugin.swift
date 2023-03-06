@@ -127,6 +127,8 @@ extension Tsf {
     }
 
     /// 查询某个插件下绑定或未绑定的API分组
+    ///
+    /// - Returns: `AsyncSequence`s of `ApiGroupInfo` and `DescribeGroupsWithPluginResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeGroupsWithPluginPaginator(_ input: DescribeGroupsWithPluginRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeGroupsWithPluginRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeGroupsWithPlugin, logger: logger, on: eventLoop)

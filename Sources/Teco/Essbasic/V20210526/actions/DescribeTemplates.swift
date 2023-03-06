@@ -178,6 +178,8 @@ extension Essbasic {
     /// 查询模板信息列表
     ///
     /// 通过此接口（DescribeTemplates）查询该子客企业在电子签拥有的有效模板，不包括渠道模板
+    ///
+    /// - Returns: `AsyncSequence`s of `TemplateInfo` and `DescribeTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTemplatesPaginator(_ input: DescribeTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplates, logger: logger, on: eventLoop)

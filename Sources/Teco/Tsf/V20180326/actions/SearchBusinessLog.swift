@@ -171,6 +171,8 @@ extension Tsf {
     }
 
     /// 业务日志搜索
+    ///
+    /// - Returns: `AsyncSequence`s of `BusinessLogV2` and `SearchBusinessLogResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func searchBusinessLogPaginator(_ input: SearchBusinessLogRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<SearchBusinessLogRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.searchBusinessLog, logger: logger, on: eventLoop)

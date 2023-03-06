@@ -139,6 +139,8 @@ extension Batch {
     /// 查看计算环境创建信息列表
     ///
     /// 用于查看计算环境创建信息列表，包括名称、描述、类型、环境参数、通知及期望节点数等。
+    ///
+    /// - Returns: `AsyncSequence`s of `ComputeEnvCreateInfo` and `DescribeComputeEnvCreateInfosResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComputeEnvCreateInfosPaginator(_ input: DescribeComputeEnvCreateInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComputeEnvCreateInfosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComputeEnvCreateInfos, logger: logger, on: eventLoop)

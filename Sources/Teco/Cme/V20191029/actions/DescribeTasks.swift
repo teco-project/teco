@@ -158,6 +158,8 @@ extension Cme {
     /// 获取任务列表
     ///
     /// 获取任务列表，支持条件筛选，返回对应的任务基础信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskBaseInfo` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)

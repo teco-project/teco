@@ -163,6 +163,8 @@ extension Monitor {
     }
 
     /// 获取平台事件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeAccidentEventListAlarms` and `DescribeAccidentEventListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAccidentEventListPaginator(_ input: DescribeAccidentEventListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccidentEventListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAccidentEventList, logger: logger, on: eventLoop)

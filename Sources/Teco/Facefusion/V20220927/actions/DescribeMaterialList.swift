@@ -135,6 +135,8 @@ extension Facefusion {
     /// 查询素材列表
     ///
     /// 通常通过腾讯云人脸融合的控制台可以查看到素材相关的参数数据，可以满足使用。本接口返回活动的素材数据，包括素材状态等。用于用户通过Api查看素材相关数据，方便使用。
+    ///
+    /// - Returns: `AsyncSequence`s of `PublicMaterialInfos` and `DescribeMaterialListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMaterialListPaginator(_ input: DescribeMaterialListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMaterialListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMaterialList, logger: logger, on: eventLoop)

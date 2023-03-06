@@ -136,6 +136,8 @@ extension Tdmq {
     }
 
     /// 获取Amqp路由关系列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AMQPRouteRelation` and `DescribeAMQPRouteRelationsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAMQPRouteRelationsPaginator(_ input: DescribeAMQPRouteRelationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPRouteRelationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPRouteRelations, logger: logger, on: eventLoop)

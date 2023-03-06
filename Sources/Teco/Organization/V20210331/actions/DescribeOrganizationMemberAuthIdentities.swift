@@ -118,6 +118,8 @@ extension Organization {
     }
 
     /// 获取组织成员可被管理的身份列表
+    ///
+    /// - Returns: `AsyncSequence`s of `OrgMemberAuthIdentity` and `DescribeOrganizationMemberAuthIdentitiesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOrganizationMemberAuthIdentitiesPaginator(_ input: DescribeOrganizationMemberAuthIdentitiesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrganizationMemberAuthIdentitiesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrganizationMemberAuthIdentities, logger: logger, on: eventLoop)

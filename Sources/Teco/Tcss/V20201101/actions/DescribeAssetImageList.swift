@@ -144,6 +144,8 @@ extension Tcss {
     /// 查询镜像列表
     ///
     /// 容器安全搜索查询镜像列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImagesInfo` and `DescribeAssetImageListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetImageListPaginator(_ input: DescribeAssetImageListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetImageListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetImageList, logger: logger, on: eventLoop)

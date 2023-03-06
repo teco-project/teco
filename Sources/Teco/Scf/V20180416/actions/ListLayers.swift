@@ -135,6 +135,8 @@ extension Scf {
     /// 返回层列表
     ///
     /// 返回全部层的列表，其中包含了每个层最新版本的信息，可以通过适配运行时进行过滤。
+    ///
+    /// - Returns: `AsyncSequence`s of `LayerVersionInfo` and `ListLayersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listLayersPaginator(_ input: ListLayersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListLayersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listLayers, logger: logger, on: eventLoop)

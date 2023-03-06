@@ -157,6 +157,8 @@ extension Dts {
     ///
     /// 查询数据迁移任务.
     /// 如果是金融区链路, 请使用域名: https://dts.ap-shenzhen-fsi.tencentcloudapi.com
+    ///
+    /// - Returns: `AsyncSequence`s of `MigrateJobInfo` and `DescribeMigrateJobsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMigrateJobsPaginator(_ input: DescribeMigrateJobsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMigrateJobsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMigrateJobs, logger: logger, on: eventLoop)

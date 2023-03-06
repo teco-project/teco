@@ -149,6 +149,8 @@ extension Cwp {
     /// 基线影响主机列表
     ///
     /// 根据基线id查询基线影响主机列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BaselineEffectHost` and `DescribeBaselineEffectHostListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineEffectHostListPaginator(_ input: DescribeBaselineEffectHostListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineEffectHostListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineEffectHostList, logger: logger, on: eventLoop)

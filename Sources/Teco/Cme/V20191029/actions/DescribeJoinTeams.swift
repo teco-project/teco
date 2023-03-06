@@ -135,6 +135,8 @@ extension Cme {
     /// 获取成员加入的团队列表
     ///
     /// 获取用户所加入的团队列表
+    ///
+    /// - Returns: `AsyncSequence`s of `JoinTeamInfo` and `DescribeJoinTeamsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeJoinTeamsPaginator(_ input: DescribeJoinTeamsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeJoinTeamsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeJoinTeams, logger: logger, on: eventLoop)

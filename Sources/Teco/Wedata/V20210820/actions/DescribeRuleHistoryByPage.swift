@@ -132,6 +132,8 @@ extension Wedata {
     /// 分页查询规则操作记录接口
     ///
     /// 过滤条件【必要字段】{ruleId}
+    ///
+    /// - Returns: `AsyncSequence`s of `RuleHistory` and `DescribeRuleHistoryByPageResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRuleHistoryByPagePaginator(_ input: DescribeRuleHistoryByPageRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRuleHistoryByPageRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRuleHistoryByPage, logger: logger, on: eventLoop)

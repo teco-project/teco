@@ -126,6 +126,8 @@ extension Dasb {
     }
 
     /// 查询资产组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Group` and `DescribeDeviceGroupsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDeviceGroupsPaginator(_ input: DescribeDeviceGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDeviceGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDeviceGroups, logger: logger, on: eventLoop)

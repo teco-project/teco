@@ -134,6 +134,8 @@ extension Faceid {
     /// 查询账单明细（微信渠道）
     ///
     /// 查询微信渠道服务（微信小程序、微信原生H5、微信普通H5）的账单明细及计费状态。
+    ///
+    /// - Returns: `AsyncSequence`s of `WeChatBillDetail` and `GetWeChatBillDetailsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getWeChatBillDetailsPaginator(_ input: GetWeChatBillDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetWeChatBillDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getWeChatBillDetails, logger: logger, on: eventLoop)

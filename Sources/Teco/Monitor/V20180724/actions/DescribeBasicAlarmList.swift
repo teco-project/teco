@@ -168,6 +168,8 @@ extension Monitor {
     }
 
     /// 获取基础告警列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeBasicAlarmListAlarms` and `DescribeBasicAlarmListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBasicAlarmListPaginator(_ input: DescribeBasicAlarmListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBasicAlarmListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBasicAlarmList, logger: logger, on: eventLoop)

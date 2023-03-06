@@ -129,6 +129,8 @@ extension Tcss {
     }
 
     /// 查询支持防御的漏洞列表
+    ///
+    /// - Returns: `AsyncSequence`s of `SupportDefenceVul` and `DescribeSupportDefenceVulResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSupportDefenceVulPaginator(_ input: DescribeSupportDefenceVulRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSupportDefenceVulRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSupportDefenceVul, logger: logger, on: eventLoop)

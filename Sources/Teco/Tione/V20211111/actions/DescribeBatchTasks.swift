@@ -153,6 +153,8 @@ extension Tione {
     /// 跑批任务列表
     ///
     /// 批量预测任务列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `BatchTaskSetItem` and `DescribeBatchTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBatchTasksPaginator(_ input: DescribeBatchTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBatchTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBatchTasks, logger: logger, on: eventLoop)

@@ -137,6 +137,8 @@ extension Tdmq {
     }
 
     /// 获取amqp集群列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AMQPClusterDetail` and `DescribeAMQPClustersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAMQPClustersPaginator(_ input: DescribeAMQPClustersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAMQPClustersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAMQPClusters, logger: logger, on: eventLoop)

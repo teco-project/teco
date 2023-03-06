@@ -200,6 +200,8 @@ extension Dayu {
     }
 
     /// 获取资源列表
+    ///
+    /// - Returns: `AsyncSequence`s of `KeyValueRecord` and `DescribeResourceListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResourceListPaginator(_ input: DescribeResourceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResourceList, logger: logger, on: eventLoop)

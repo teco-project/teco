@@ -130,6 +130,8 @@ extension Cls {
     /// 获取日志主题列表
     ///
     /// 本接口用于获取日志主题列表，支持分页
+    ///
+    /// - Returns: `AsyncSequence`s of `TopicInfo` and `DescribeTopicsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTopicsPaginator(_ input: DescribeTopicsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopics, logger: logger, on: eventLoop)

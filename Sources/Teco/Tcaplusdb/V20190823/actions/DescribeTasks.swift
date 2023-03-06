@@ -126,6 +126,8 @@ extension Tcaplusdb {
     }
 
     /// 查询任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskInfoNew` and `DescribeTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTasksPaginator(_ input: DescribeTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTasks, logger: logger, on: eventLoop)

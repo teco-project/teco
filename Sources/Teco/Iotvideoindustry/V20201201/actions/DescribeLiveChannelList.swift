@@ -128,6 +128,8 @@ extension Iotvideoindustry {
     }
 
     /// 直播列表接口
+    ///
+    /// - Returns: `AsyncSequence`s of `LiveChannelInfo` and `DescribeLiveChannelListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLiveChannelListPaginator(_ input: DescribeLiveChannelListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLiveChannelListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLiveChannelList, logger: logger, on: eventLoop)

@@ -141,6 +141,8 @@ extension Dbbrain {
     /// 获取单个proxy实时会话统计详情
     ///
     /// 获取当前实例下的单个proxy的会话统计详情信息， 返回数据为单个 proxy 的会话统计信息。【注意】该接口仅限部分环境调用。
+    ///
+    /// - Returns: `AsyncSequence`s of `SessionItem` and `DescribeProxyProcessStatisticsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProxyProcessStatisticsPaginator(_ input: DescribeProxyProcessStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProxyProcessStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProxyProcessStatistics, logger: logger, on: eventLoop)

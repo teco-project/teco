@@ -143,6 +143,8 @@ extension Dlc {
     /// 查询script列表
     ///
     /// 该接口（DescribeScripts）用于获取所有SQL查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `Script` and `DescribeScriptsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScriptsPaginator(_ input: DescribeScriptsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScriptsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScripts, logger: logger, on: eventLoop)

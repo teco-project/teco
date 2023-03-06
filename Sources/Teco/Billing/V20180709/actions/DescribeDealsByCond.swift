@@ -175,6 +175,8 @@ extension Billing {
     /// 查询订单数据
     ///
     /// 查询订单
+    ///
+    /// - Returns: `AsyncSequence`s of `Deal` and `DescribeDealsByCondResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDealsByCondPaginator(_ input: DescribeDealsByCondRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDealsByCondRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDealsByCond, logger: logger, on: eventLoop)

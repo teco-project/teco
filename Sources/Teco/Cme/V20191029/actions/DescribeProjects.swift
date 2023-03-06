@@ -181,6 +181,8 @@ extension Cme {
     /// 获取项目列表
     ///
     /// 支持根据多种条件过滤出项目列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProjectInfo` and `DescribeProjectsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProjectsPaginator(_ input: DescribeProjectsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProjectsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProjects, logger: logger, on: eventLoop)

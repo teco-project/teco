@@ -149,6 +149,8 @@ extension Ape {
     /// 获取图片下载记录
     ///
     /// 获取用户图片下载记录
+    ///
+    /// - Returns: `AsyncSequence`s of `DownloadInfo` and `DescribeDownloadInfosResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDownloadInfosPaginator(_ input: DescribeDownloadInfosRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDownloadInfosRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDownloadInfos, logger: logger, on: eventLoop)

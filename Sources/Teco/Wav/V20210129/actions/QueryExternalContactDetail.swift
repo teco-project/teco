@@ -132,6 +132,8 @@ extension Wav {
     /// 查询外部联系人详情接口
     ///
     /// 企业可通过此接口，根据外部联系人的userid，拉取外部联系人详情
+    ///
+    /// - Returns: `AsyncSequence`s of `FollowUser` and `QueryExternalContactDetailResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryExternalContactDetailPaginator(_ input: QueryExternalContactDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryExternalContactDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryExternalContactDetail, logger: logger, on: eventLoop)

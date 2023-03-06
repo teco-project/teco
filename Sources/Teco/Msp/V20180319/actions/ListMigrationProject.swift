@@ -111,6 +111,8 @@ extension Msp {
     }
 
     /// 获取迁移项目名称列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Project` and `ListMigrationProjectResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listMigrationProjectPaginator(_ input: ListMigrationProjectRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListMigrationProjectRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listMigrationProject, logger: logger, on: eventLoop)

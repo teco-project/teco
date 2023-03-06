@@ -195,6 +195,8 @@ extension Tsf {
     /// 服务统计
     ///
     /// 服务统计页面：接口和服务维度
+    ///
+    /// - Returns: `AsyncSequence`s of `ServiceStatisticsResult` and `DescribeStatisticsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeStatisticsPaginator(_ input: DescribeStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStatistics, logger: logger, on: eventLoop)

@@ -136,6 +136,8 @@ extension Tcss {
     /// 查询进程列表
     ///
     /// 容器安全搜索查询进程列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ProcessInfo` and `DescribeAssetProcessListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetProcessListPaginator(_ input: DescribeAssetProcessListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetProcessListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetProcessList, logger: logger, on: eventLoop)

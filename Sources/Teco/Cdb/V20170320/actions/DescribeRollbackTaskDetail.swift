@@ -136,6 +136,8 @@ extension Cdb {
     /// 查询回档任务详情
     ///
     /// 本接口(DescribeRollbackTaskDetail)用于查询云数据库实例回档任务详情。
+    ///
+    /// - Returns: `AsyncSequence`s of `RollbackTask` and `DescribeRollbackTaskDetailResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRollbackTaskDetailPaginator(_ input: DescribeRollbackTaskDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRollbackTaskDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRollbackTaskDetail, logger: logger, on: eventLoop)

@@ -113,6 +113,8 @@ extension Iotvideoindustry {
     }
 
     /// 查看消息转发配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `MessageForward` and `DescribeMessageForwardsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeMessageForwardsPaginator(_ input: DescribeMessageForwardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeMessageForwardsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeMessageForwards, logger: logger, on: eventLoop)

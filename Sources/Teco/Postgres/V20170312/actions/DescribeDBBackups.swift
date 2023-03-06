@@ -153,6 +153,8 @@ extension Postgres {
     /// 查询实例备份列表
     ///
     /// 本接口（DescribeDBBackups）用于查询实例备份列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DBBackup` and `DescribeDBBackupsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBBackupsPaginator(_ input: DescribeDBBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBBackups, logger: logger, on: eventLoop)

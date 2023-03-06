@@ -166,6 +166,8 @@ extension Mmps {
     /// 获取隐私合规诊断任务列表
     ///
     /// 获取小程序隐私合规诊断任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AppTaskData` and `DescribeScanTaskListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeScanTaskListPaginator(_ input: DescribeScanTaskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeScanTaskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeScanTaskList, logger: logger, on: eventLoop)

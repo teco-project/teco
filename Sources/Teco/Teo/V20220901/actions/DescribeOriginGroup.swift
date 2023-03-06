@@ -117,6 +117,8 @@ extension Teo {
     }
 
     /// 获取源站组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `OriginGroup` and `DescribeOriginGroupResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOriginGroupPaginator(_ input: DescribeOriginGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOriginGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOriginGroup, logger: logger, on: eventLoop)

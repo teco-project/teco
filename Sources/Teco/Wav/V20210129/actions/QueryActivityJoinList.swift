@@ -127,6 +127,8 @@ extension Wav {
     /// 查询活动参与明细列表接口
     ///
     /// 根据游标拉取活动参与列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `ActivityJoinDetail` and `QueryActivityJoinListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryActivityJoinListPaginator(_ input: QueryActivityJoinListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryActivityJoinListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryActivityJoinList, logger: logger, on: eventLoop)

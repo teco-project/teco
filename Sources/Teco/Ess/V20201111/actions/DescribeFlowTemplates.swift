@@ -169,6 +169,8 @@ extension Ess {
     /// 查询模板
     ///
     /// 当模板较多或模板中的控件较多时，可以通过查询模板接口更方便的获取模板列表，以及每个模板内的控件信息。该接口常用来配合“创建电子文档”接口作为前置的接口使用。
+    ///
+    /// - Returns: `AsyncSequence`s of `TemplateInfo` and `DescribeFlowTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFlowTemplatesPaginator(_ input: DescribeFlowTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFlowTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFlowTemplates, logger: logger, on: eventLoop)

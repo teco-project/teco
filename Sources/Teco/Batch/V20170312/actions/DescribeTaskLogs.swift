@@ -140,6 +140,8 @@ extension Batch {
     /// 获取任务日志详情
     ///
     /// 用于获取任务多个实例标准输出和标准错误日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskInstanceLog` and `DescribeTaskLogsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskLogsPaginator(_ input: DescribeTaskLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskLogs, logger: logger, on: eventLoop)

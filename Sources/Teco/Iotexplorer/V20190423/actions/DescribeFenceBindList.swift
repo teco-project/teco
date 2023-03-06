@@ -116,6 +116,8 @@ extension Iotexplorer {
     }
 
     /// 获取围栏绑定信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `FenceBindProductItem` and `DescribeFenceBindListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeFenceBindListPaginator(_ input: DescribeFenceBindListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeFenceBindListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeFenceBindList, logger: logger, on: eventLoop)

@@ -155,6 +155,8 @@ extension Smh {
     /// 查询官方实例
     ///
     /// 查询官方云盘实例
+    ///
+    /// - Returns: `AsyncSequence`s of `Instance` and `DescribeOfficialInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOfficialInstancesPaginator(_ input: DescribeOfficialInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOfficialInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOfficialInstances, logger: logger, on: eventLoop)

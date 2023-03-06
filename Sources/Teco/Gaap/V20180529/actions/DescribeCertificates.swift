@@ -137,6 +137,8 @@ extension Gaap {
     /// 查询服务器证书列表
     ///
     /// 本接口（DescribeCertificates）用来查询可以使用的证书列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `Certificate` and `DescribeCertificatesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCertificatesPaginator(_ input: DescribeCertificatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCertificatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCertificates, logger: logger, on: eventLoop)

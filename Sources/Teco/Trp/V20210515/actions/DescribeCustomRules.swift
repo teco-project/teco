@@ -133,6 +133,8 @@ extension Trp {
     }
 
     /// 查自定义码规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CustomRule` and `DescribeCustomRulesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCustomRulesPaginator(_ input: DescribeCustomRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCustomRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCustomRules, logger: logger, on: eventLoop)

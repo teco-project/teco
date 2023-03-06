@@ -152,6 +152,8 @@ extension Cdb {
     /// 查询审计策略
     ///
     /// 本接口(DescribeAuditPolicies)用于查询云数据库实例的审计策略。
+    ///
+    /// - Returns: `AsyncSequence`s of `AuditPolicy` and `DescribeAuditPoliciesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAuditPoliciesPaginator(_ input: DescribeAuditPoliciesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuditPoliciesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuditPolicies, logger: logger, on: eventLoop)

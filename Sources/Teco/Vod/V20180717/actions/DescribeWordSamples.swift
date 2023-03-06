@@ -153,6 +153,8 @@ extension Vod {
     /// 获取关键词样本列表
     ///
     /// 该接口用于根据应用场景、关键词、标签，分页查询关键词样本信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `AiSampleWord` and `DescribeWordSamplesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWordSamplesPaginator(_ input: DescribeWordSamplesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWordSamplesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWordSamples, logger: logger, on: eventLoop)

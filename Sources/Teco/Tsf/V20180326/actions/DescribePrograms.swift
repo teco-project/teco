@@ -112,6 +112,8 @@ extension Tsf {
     }
 
     /// 查询数据集列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Program` and `DescribeProgramsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProgramsPaginator(_ input: DescribeProgramsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProgramsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrograms, logger: logger, on: eventLoop)

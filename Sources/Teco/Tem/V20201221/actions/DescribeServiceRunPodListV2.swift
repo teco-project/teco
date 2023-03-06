@@ -135,6 +135,8 @@ extension Tem {
     }
 
     /// 获取服务下面运行pod列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RunVersionPod` and `DescribeServiceRunPodListV2Response` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeServiceRunPodListV2Paginator(_ input: DescribeServiceRunPodListV2Request, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeServiceRunPodListV2Request> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeServiceRunPodListV2, logger: logger, on: eventLoop)

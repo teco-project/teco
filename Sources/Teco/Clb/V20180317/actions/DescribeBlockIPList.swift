@@ -134,6 +134,8 @@ extension Clb {
     /// 查询一个负载均衡所封禁的IP列表（黑名单）
     ///
     /// 查询一个负载均衡所封禁的IP列表（黑名单）。（接口灰度中，如需使用请提工单）
+    ///
+    /// - Returns: `AsyncSequence`s of `BlockedIP` and `DescribeBlockIPListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBlockIPListPaginator(_ input: DescribeBlockIPListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBlockIPListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBlockIPList, logger: logger, on: eventLoop)

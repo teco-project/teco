@@ -136,6 +136,8 @@ extension Ckafka {
     /// 获取Topic 同步副本信息
     ///
     /// 获取Topic 副本详情信息
+    ///
+    /// - Returns: `AsyncSequence`s of `TopicInSyncReplicaInfo` and `DescribeTopicSyncReplicaResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTopicSyncReplicaPaginator(_ input: DescribeTopicSyncReplicaRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTopicSyncReplicaRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTopicSyncReplica, logger: logger, on: eventLoop)

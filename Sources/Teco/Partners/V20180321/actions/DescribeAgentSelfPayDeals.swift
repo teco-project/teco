@@ -163,6 +163,8 @@ extension Partners {
     /// 代理商自付订单查询接口（禁止接入）
     ///
     /// 【该接口已下线，请切换使用升级版本DescribeAgentSelfPayDealsV2】可以查询代理商下指定客户的自付订单
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentDealElem` and `DescribeAgentSelfPayDealsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAgentSelfPayDealsPaginator(_ input: DescribeAgentSelfPayDealsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentSelfPayDealsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentSelfPayDeals, logger: logger, on: eventLoop)

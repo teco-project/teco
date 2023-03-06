@@ -146,6 +146,8 @@ extension Dasb {
     }
 
     /// 查询访问权限列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Acl` and `DescribeAclsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAclsPaginator(_ input: DescribeAclsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAclsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAcls, logger: logger, on: eventLoop)

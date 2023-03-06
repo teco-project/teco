@@ -121,6 +121,8 @@ extension Antiddos {
     }
 
     /// 获取DDoS连接抑制配置列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ConnectLimitRelation` and `DescribeDDoSConnectLimitListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDDoSConnectLimitListPaginator(_ input: DescribeDDoSConnectLimitListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDDoSConnectLimitListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDDoSConnectLimitList, logger: logger, on: eventLoop)

@@ -142,6 +142,8 @@ extension Iotvideoindustry {
     /// 查询子分组列表
     ///
     /// 本接口(DescribeSubGroups)用于查询分组下的子分组列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `GroupItem` and `DescribeSubGroupsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubGroupsPaginator(_ input: DescribeSubGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubGroups, logger: logger, on: eventLoop)

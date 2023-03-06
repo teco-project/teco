@@ -137,6 +137,8 @@ extension Yunjing {
     /// 获取异地登录事件
     ///
     /// 本接口(DescribeNonlocalLoginPlaces)用于获取异地登录事件。
+    ///
+    /// - Returns: `AsyncSequence`s of `NonLocalLoginPlace` and `DescribeNonlocalLoginPlacesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNonlocalLoginPlacesPaginator(_ input: DescribeNonlocalLoginPlacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNonlocalLoginPlacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNonlocalLoginPlaces, logger: logger, on: eventLoop)

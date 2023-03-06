@@ -136,6 +136,8 @@ extension Teo {
     /// 查询别称域名信息列表
     ///
     /// 查询别称域名信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `AliasDomain` and `DescribeAliasDomainsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAliasDomainsPaginator(_ input: DescribeAliasDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAliasDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAliasDomains, logger: logger, on: eventLoop)

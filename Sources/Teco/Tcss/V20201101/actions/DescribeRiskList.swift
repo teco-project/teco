@@ -146,6 +146,8 @@ extension Tcss {
     /// 查询集群风险项列表
     ///
     /// 查询最近一次任务发现的风险项的信息列表，支持根据特殊字段进行过滤
+    ///
+    /// - Returns: `AsyncSequence`s of `ClusterRiskItem` and `DescribeRiskListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRiskListPaginator(_ input: DescribeRiskListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRiskListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRiskList, logger: logger, on: eventLoop)

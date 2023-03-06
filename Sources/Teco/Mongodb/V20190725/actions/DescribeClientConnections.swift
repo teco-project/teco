@@ -130,6 +130,8 @@ extension Mongodb {
     /// 查询实例客户端连接信息
     ///
     /// 本接口(DescribeClientConnections)用于查询实例客户端连接信息，包括连接IP和连接数量。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClientConnection` and `DescribeClientConnectionsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClientConnectionsPaginator(_ input: DescribeClientConnectionsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClientConnectionsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientConnections, logger: logger, on: eventLoop)

@@ -108,6 +108,8 @@ extension Iotvideoindustry {
     }
 
     /// 直播录像存储日期列表
+    ///
+    /// - Returns: `AsyncSequence`s of `String` and `DescribeRecordDatesByLiveResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRecordDatesByLivePaginator(_ input: DescribeRecordDatesByLiveRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRecordDatesByLiveRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRecordDatesByLive, logger: logger, on: eventLoop)

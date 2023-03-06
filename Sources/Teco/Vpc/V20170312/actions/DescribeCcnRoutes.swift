@@ -146,6 +146,8 @@ extension Vpc {
     /// 查询云联网路由策略
     ///
     /// 本接口（DescribeCcnRoutes）用于查询已加入云联网（CCN）的路由
+    ///
+    /// - Returns: `AsyncSequence`s of `CcnRoute` and `DescribeCcnRoutesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCcnRoutesPaginator(_ input: DescribeCcnRoutesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCcnRoutesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCcnRoutes, logger: logger, on: eventLoop)

@@ -118,6 +118,8 @@ extension Asr {
     }
 
     /// 查询自学习模型列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Model` and `GetCustomizationListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getCustomizationListPaginator(_ input: GetCustomizationListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetCustomizationListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getCustomizationList, logger: logger, on: eventLoop)

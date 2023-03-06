@@ -183,6 +183,8 @@ extension Teo {
     /// 查询CC防护命中规则详情列表
     ///
     /// 本接口（DescribeWebProtectionHitRuleDetail）用于查询CC防护命中规则详情列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `SecHitRuleInfo` and `DescribeWebProtectionHitRuleDetailResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWebProtectionHitRuleDetailPaginator(_ input: DescribeWebProtectionHitRuleDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebProtectionHitRuleDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebProtectionHitRuleDetail, logger: logger, on: eventLoop)

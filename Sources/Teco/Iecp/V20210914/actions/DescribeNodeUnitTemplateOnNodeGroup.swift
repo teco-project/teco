@@ -137,6 +137,8 @@ extension Iecp {
     }
 
     /// 查询指定NodeGroup下NodeUnit模板列表
+    ///
+    /// - Returns: `AsyncSequence`s of `NodeGroupNodeUnitTemplateInfo` and `DescribeNodeUnitTemplateOnNodeGroupResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNodeUnitTemplateOnNodeGroupPaginator(_ input: DescribeNodeUnitTemplateOnNodeGroupRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNodeUnitTemplateOnNodeGroupRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNodeUnitTemplateOnNodeGroup, logger: logger, on: eventLoop)

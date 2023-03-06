@@ -173,6 +173,8 @@ extension Cdn {
     /// 预热历史查询
     ///
     /// DescribePushTasks  用于查询预热任务提交历史记录及执行进度。
+    ///
+    /// - Returns: `AsyncSequence`s of `PushTask` and `DescribePushTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePushTasksPaginator(_ input: DescribePushTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePushTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePushTasks, logger: logger, on: eventLoop)

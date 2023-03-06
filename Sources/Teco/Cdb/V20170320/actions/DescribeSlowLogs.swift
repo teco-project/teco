@@ -130,6 +130,8 @@ extension Cdb {
     /// 查询慢查询日志
     ///
     /// 本接口(DescribeSlowLogs)用于获取云数据库实例的慢查询日志。
+    ///
+    /// - Returns: `AsyncSequence`s of `SlowLogInfo` and `DescribeSlowLogsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSlowLogsPaginator(_ input: DescribeSlowLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogs, logger: logger, on: eventLoop)

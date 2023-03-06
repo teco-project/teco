@@ -168,6 +168,8 @@ extension Dbbrain {
     /// 按照Sql模板查询指定时间段内的慢日志统计结果
     ///
     /// 按照Sql模板+schema的聚合方式，统计排序指定时间段内的top慢sql。
+    ///
+    /// - Returns: `AsyncSequence`s of `SlowLogTopSqlItem` and `DescribeSlowLogTopSqlsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSlowLogTopSqlsPaginator(_ input: DescribeSlowLogTopSqlsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSlowLogTopSqlsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSlowLogTopSqls, logger: logger, on: eventLoop)

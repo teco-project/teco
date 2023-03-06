@@ -153,6 +153,8 @@ extension Es {
     }
 
     /// 获取索引列表
+    ///
+    /// - Returns: `AsyncSequence`s of `IndexMetaField` and `DescribeIndexListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIndexListPaginator(_ input: DescribeIndexListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIndexListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIndexList, logger: logger, on: eventLoop)

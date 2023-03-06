@@ -132,6 +132,8 @@ extension Tsf {
     }
 
     /// 镜像版本列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageTag` and `DescribeImageTagsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageTagsPaginator(_ input: DescribeImageTagsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageTagsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageTags, logger: logger, on: eventLoop)

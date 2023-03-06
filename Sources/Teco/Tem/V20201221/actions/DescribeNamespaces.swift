@@ -126,6 +126,8 @@ extension Tem {
     /// 获取租户命名空间列表
     ///
     /// 获取租户环境列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TemNamespaceInfo` and `DescribeNamespacesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeNamespacesPaginator(_ input: DescribeNamespacesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeNamespacesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeNamespaces, logger: logger, on: eventLoop)

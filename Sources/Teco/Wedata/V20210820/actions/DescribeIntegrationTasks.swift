@@ -133,6 +133,8 @@ extension Wedata {
     }
 
     /// 查询集成任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `IntegrationTaskInfo` and `DescribeIntegrationTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIntegrationTasksPaginator(_ input: DescribeIntegrationTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIntegrationTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIntegrationTasks, logger: logger, on: eventLoop)

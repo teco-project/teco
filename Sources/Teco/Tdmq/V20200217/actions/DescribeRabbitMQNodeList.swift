@@ -117,6 +117,8 @@ extension Tdmq {
     }
 
     /// RabbitMQ专享版查询节点列表
+    ///
+    /// - Returns: `AsyncSequence`s of `RabbitMQPrivateNode` and `DescribeRabbitMQNodeListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeRabbitMQNodeListPaginator(_ input: DescribeRabbitMQNodeListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeRabbitMQNodeListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeRabbitMQNodeList, logger: logger, on: eventLoop)

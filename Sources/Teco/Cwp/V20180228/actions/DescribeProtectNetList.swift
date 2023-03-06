@@ -142,6 +142,8 @@ extension Cwp {
     /// 旗舰重保列表
     ///
     /// 专家服务-旗舰重保列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ProtectNetInfo` and `DescribeProtectNetListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProtectNetListPaginator(_ input: DescribeProtectNetListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProtectNetListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProtectNetList, logger: logger, on: eventLoop)

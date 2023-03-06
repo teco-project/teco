@@ -141,6 +141,8 @@ extension Monitor {
     }
 
     /// 获取已绑定对象列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribeBindingPolicyObjectListInstance` and `DescribeBindingPolicyObjectListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBindingPolicyObjectListPaginator(_ input: DescribeBindingPolicyObjectListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBindingPolicyObjectListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBindingPolicyObjectList, logger: logger, on: eventLoop)

@@ -134,6 +134,8 @@ extension Tke {
     }
 
     /// 获得节点升级当前的进度
+    ///
+    /// - Returns: `AsyncSequence`s of `InstanceUpgradeProgressItem` and `GetUpgradeInstanceProgressResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getUpgradeInstanceProgressPaginator(_ input: GetUpgradeInstanceProgressRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetUpgradeInstanceProgressRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getUpgradeInstanceProgress, logger: logger, on: eventLoop)

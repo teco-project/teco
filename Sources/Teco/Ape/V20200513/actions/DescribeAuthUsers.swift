@@ -130,6 +130,8 @@ extension Ape {
     /// 查询授权人列表
     ///
     /// 分页查询授权人列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AuthInfo` and `DescribeAuthUsersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAuthUsersPaginator(_ input: DescribeAuthUsersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAuthUsersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAuthUsers, logger: logger, on: eventLoop)

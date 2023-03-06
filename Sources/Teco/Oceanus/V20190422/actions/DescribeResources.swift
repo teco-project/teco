@@ -127,6 +127,8 @@ extension Oceanus {
     }
 
     /// 描述资源接口
+    ///
+    /// - Returns: `AsyncSequence`s of `ResourceItem` and `DescribeResourcesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeResourcesPaginator(_ input: DescribeResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeResources, logger: logger, on: eventLoop)

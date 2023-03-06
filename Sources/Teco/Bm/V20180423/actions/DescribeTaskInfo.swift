@@ -234,6 +234,8 @@ extension Bm {
     /// 4：未授权-暂不处理<br>
     /// 5：已恢复<br>
     /// 6：待确认-未恢复<br>
+    ///
+    /// - Returns: `AsyncSequence`s of `TaskInfo` and `DescribeTaskInfoResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTaskInfoPaginator(_ input: DescribeTaskInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTaskInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTaskInfo, logger: logger, on: eventLoop)

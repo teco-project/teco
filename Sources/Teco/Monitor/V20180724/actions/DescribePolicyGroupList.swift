@@ -182,6 +182,8 @@ extension Monitor {
     }
 
     /// 获取基础策略告警组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `DescribePolicyGroupListGroup` and `DescribePolicyGroupListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePolicyGroupListPaginator(_ input: DescribePolicyGroupListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePolicyGroupListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePolicyGroupList, logger: logger, on: eventLoop)

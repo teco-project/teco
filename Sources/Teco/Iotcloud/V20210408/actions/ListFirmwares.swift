@@ -135,6 +135,8 @@ extension Iotcloud {
     /// 获取固件列表
     ///
     /// 本接口（ListFirmwares）用于获取固件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `FirmwareInfo` and `ListFirmwaresResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listFirmwaresPaginator(_ input: ListFirmwaresRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListFirmwaresRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listFirmwares, logger: logger, on: eventLoop)

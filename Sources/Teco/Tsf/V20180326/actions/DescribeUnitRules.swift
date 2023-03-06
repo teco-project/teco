@@ -118,6 +118,8 @@ extension Tsf {
     }
 
     /// 查询单元化规则列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TsfPageUnitRule` and `DescribeUnitRulesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeUnitRulesPaginator(_ input: DescribeUnitRulesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeUnitRulesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeUnitRules, logger: logger, on: eventLoop)

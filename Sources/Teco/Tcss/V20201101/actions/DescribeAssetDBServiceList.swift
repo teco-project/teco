@@ -131,6 +131,8 @@ extension Tcss {
     /// 查询db服务列表
     ///
     /// 容器安全查询db服务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ServiceInfo` and `DescribeAssetDBServiceListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetDBServiceListPaginator(_ input: DescribeAssetDBServiceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetDBServiceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetDBServiceList, logger: logger, on: eventLoop)

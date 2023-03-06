@@ -136,6 +136,8 @@ extension Vod {
     /// 查询点播域名列表
     ///
     /// 该接口用于查询点播域名信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainDetailInfo` and `DescribeVodDomainsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVodDomainsPaginator(_ input: DescribeVodDomainsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVodDomainsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVodDomains, logger: logger, on: eventLoop)

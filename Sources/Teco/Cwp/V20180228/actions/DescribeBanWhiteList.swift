@@ -117,6 +117,8 @@ extension Cwp {
     }
 
     /// 获取阻断白名单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BanWhiteListDetail` and `DescribeBanWhiteListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBanWhiteListPaginator(_ input: DescribeBanWhiteListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBanWhiteListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBanWhiteList, logger: logger, on: eventLoop)

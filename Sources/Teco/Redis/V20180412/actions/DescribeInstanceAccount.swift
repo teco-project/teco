@@ -118,6 +118,8 @@ extension Redis {
     }
 
     /// 查看实例子账号信息
+    ///
+    /// - Returns: `AsyncSequence`s of `Account` and `DescribeInstanceAccountResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceAccountPaginator(_ input: DescribeInstanceAccountRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceAccountRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceAccount, logger: logger, on: eventLoop)

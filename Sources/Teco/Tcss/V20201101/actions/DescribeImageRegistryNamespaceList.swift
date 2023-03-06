@@ -116,6 +116,8 @@ extension Tcss {
     }
 
     /// 查询用户镜像仓库下的项目名称列表
+    ///
+    /// - Returns: `AsyncSequence`s of `String` and `DescribeImageRegistryNamespaceListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageRegistryNamespaceListPaginator(_ input: DescribeImageRegistryNamespaceListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageRegistryNamespaceListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageRegistryNamespaceList, logger: logger, on: eventLoop)

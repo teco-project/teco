@@ -130,6 +130,8 @@ extension Cds {
     /// 获取数据安全审计实例列表
     ///
     /// 本接口 (DescribeDbauditInstances) 用于查询数据安全审计实例列表
+    ///
+    /// - Returns: `AsyncSequence`s of `CdsAuditInstance` and `DescribeDbauditInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDbauditInstancesPaginator(_ input: DescribeDbauditInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDbauditInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDbauditInstances, logger: logger, on: eventLoop)

@@ -131,6 +131,8 @@ extension Cfg {
     }
 
     /// 查询经验库列表
+    ///
+    /// - Returns: `AsyncSequence`s of `TemplateListItem` and `DescribeTemplateListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeTemplateListPaginator(_ input: DescribeTemplateListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeTemplateListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeTemplateList, logger: logger, on: eventLoop)

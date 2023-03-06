@@ -142,6 +142,8 @@ extension Apigateway {
     /// 查询IP策略详情
     ///
     /// 本接口（DescribeIPStrategy）用于查询IP策略详情。
+    ///
+    /// - Returns: `AsyncSequence`s of `DesApisStatus` and `DescribeIPStrategyResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeIPStrategyPaginator(_ input: DescribeIPStrategyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeIPStrategyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeIPStrategy, logger: logger, on: eventLoop)

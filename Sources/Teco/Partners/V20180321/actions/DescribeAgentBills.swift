@@ -150,6 +150,8 @@ extension Partners {
     /// 查询业务明细
     ///
     /// 代理商可查询自己及名下代客所有业务明细
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentBillElem` and `DescribeAgentBillsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAgentBillsPaginator(_ input: DescribeAgentBillsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentBillsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentBills, logger: logger, on: eventLoop)

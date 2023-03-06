@@ -145,6 +145,8 @@ extension Cwp {
     }
 
     /// 查询Jar包列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetJarBaseInfo` and `DescribeAssetJarListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetJarListPaginator(_ input: DescribeAssetJarListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetJarListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetJarList, logger: logger, on: eventLoop)

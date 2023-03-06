@@ -127,6 +127,8 @@ extension Wav {
     /// 查询车系车型信息列表接口
     ///
     /// 企业可通过此接口获取企微SaaS平台上的车系车型信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `VehicleInfo` and `QueryVehicleInfoListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func queryVehicleInfoListPaginator(_ input: QueryVehicleInfoListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<QueryVehicleInfoListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.queryVehicleInfoList, logger: logger, on: eventLoop)

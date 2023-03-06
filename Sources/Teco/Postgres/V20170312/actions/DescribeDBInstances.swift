@@ -145,6 +145,8 @@ extension Postgres {
     /// 查询实例列表
     ///
     /// 本接口 (DescribeDBInstances) 用于查询一个或多个实例的详细信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `DBInstance` and `DescribeDBInstancesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeDBInstancesPaginator(_ input: DescribeDBInstancesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeDBInstancesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeDBInstances, logger: logger, on: eventLoop)

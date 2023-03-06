@@ -116,6 +116,8 @@ extension Msp {
     }
 
     /// 获取迁移任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Task` and `ListMigrationTaskResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func listMigrationTaskPaginator(_ input: ListMigrationTaskRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ListMigrationTaskRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.listMigrationTask, logger: logger, on: eventLoop)

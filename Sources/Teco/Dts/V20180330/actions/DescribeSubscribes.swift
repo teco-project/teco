@@ -180,6 +180,8 @@ extension Dts {
     /// 获取数据订阅实例列表
     ///
     /// 本接口(DescribeSubscribes)获取数据订阅实例信息列表，默认分页，每次返回20条
+    ///
+    /// - Returns: `AsyncSequence`s of `SubscribeInfo` and `DescribeSubscribesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSubscribesPaginator(_ input: DescribeSubscribesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSubscribesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSubscribes, logger: logger, on: eventLoop)

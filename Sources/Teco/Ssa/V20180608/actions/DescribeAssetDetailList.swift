@@ -148,6 +148,8 @@ extension Ssa {
     /// 获取资产列表
     ///
     /// 资产条件查询
+    ///
+    /// - Returns: `AsyncSequence`s of `AssetDetail` and `DescribeAssetDetailListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAssetDetailListPaginator(_ input: DescribeAssetDetailListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAssetDetailListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAssetDetailList, logger: logger, on: eventLoop)

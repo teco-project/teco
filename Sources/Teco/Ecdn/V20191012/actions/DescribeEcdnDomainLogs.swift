@@ -149,6 +149,8 @@ extension Ecdn {
     /// 查询域名日志下载链接
     ///
     /// 本接口（DescribeEcdnDomainLogs）用于查询域名的访问日志下载地址。
+    ///
+    /// - Returns: `AsyncSequence`s of `DomainLogs` and `DescribeEcdnDomainLogsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeEcdnDomainLogsPaginator(_ input: DescribeEcdnDomainLogsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeEcdnDomainLogsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeEcdnDomainLogs, logger: logger, on: eventLoop)

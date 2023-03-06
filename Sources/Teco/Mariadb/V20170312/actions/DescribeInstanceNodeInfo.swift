@@ -130,6 +130,8 @@ extension Mariadb {
     /// 获取实例节点信息
     ///
     /// 本接口（DescribeInstanceNodeInfo）用于获取数据库实例主备节点信息
+    ///
+    /// - Returns: `AsyncSequence`s of `NodeInfo` and `DescribeInstanceNodeInfoResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeInstanceNodeInfoPaginator(_ input: DescribeInstanceNodeInfoRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeInstanceNodeInfoRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeInstanceNodeInfo, logger: logger, on: eventLoop)

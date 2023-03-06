@@ -134,6 +134,8 @@ extension Teo {
     }
 
     /// 获取应用代理列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ApplicationProxy` and `DescribeApplicationProxyResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeApplicationProxyPaginator(_ input: DescribeApplicationProxyRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeApplicationProxyRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeApplicationProxy, logger: logger, on: eventLoop)

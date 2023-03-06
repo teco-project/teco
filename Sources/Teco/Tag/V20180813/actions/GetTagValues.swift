@@ -129,6 +129,8 @@ extension Tag {
     /// 查询标签值列表
     ///
     /// 用于查询已建立的标签列表中的标签值。
+    ///
+    /// - Returns: `AsyncSequence`s of `Tag` and `GetTagValuesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getTagValuesPaginator(_ input: GetTagValuesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetTagValuesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getTagValues, logger: logger, on: eventLoop)

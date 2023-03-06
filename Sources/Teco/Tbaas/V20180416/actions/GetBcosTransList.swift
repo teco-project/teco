@@ -145,6 +145,8 @@ extension Tbaas {
     /// 分页查询Bcos交易列表
     ///
     /// Bcos分页查询当前群组的交易信息列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BcosTransInfo` and `GetBcosTransListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getBcosTransListPaginator(_ input: GetBcosTransListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetBcosTransListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getBcosTransList, logger: logger, on: eventLoop)

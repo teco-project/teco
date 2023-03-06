@@ -138,6 +138,8 @@ extension Mps {
     /// 获取工作流列表
     ///
     /// 根据工作流 ID，获取工作流详情列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `WorkflowInfo` and `DescribeWorkflowsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWorkflowsPaginator(_ input: DescribeWorkflowsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWorkflowsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWorkflows, logger: logger, on: eventLoop)

@@ -140,6 +140,8 @@ extension Dbbrain {
     /// 查询安全审计日志导出任务列表
     ///
     /// 查询安全审计日志导出任务列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `SecLogExportTaskInfo` and `DescribeSecurityAuditLogExportTasksResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSecurityAuditLogExportTasksPaginator(_ input: DescribeSecurityAuditLogExportTasksRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSecurityAuditLogExportTasksRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSecurityAuditLogExportTasks, logger: logger, on: eventLoop)

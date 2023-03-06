@@ -122,6 +122,8 @@ extension Kms {
     }
 
     /// 获取白盒密钥列表
+    ///
+    /// - Returns: `AsyncSequence`s of `WhiteboxKeyInfo` and `DescribeWhiteBoxKeyDetailsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWhiteBoxKeyDetailsPaginator(_ input: DescribeWhiteBoxKeyDetailsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWhiteBoxKeyDetailsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWhiteBoxKeyDetails, logger: logger, on: eventLoop)

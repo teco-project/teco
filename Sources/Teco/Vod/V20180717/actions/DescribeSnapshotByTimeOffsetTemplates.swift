@@ -142,6 +142,8 @@ extension Vod {
     /// 获取指定时间点截图模板列表
     ///
     /// 查询指定时间点截图模板，支持根据条件，分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `SnapshotByTimeOffsetTemplate` and `DescribeSnapshotByTimeOffsetTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSnapshotByTimeOffsetTemplatesPaginator(_ input: DescribeSnapshotByTimeOffsetTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSnapshotByTimeOffsetTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSnapshotByTimeOffsetTemplates, logger: logger, on: eventLoop)

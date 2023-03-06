@@ -142,6 +142,8 @@ extension Yunjing {
     /// 获取组件列表
     ///
     /// 本接口 (DescribeComponents) 用于获取组件列表数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `Component` and `DescribeComponentsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComponentsPaginator(_ input: DescribeComponentsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComponentsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComponents, logger: logger, on: eventLoop)

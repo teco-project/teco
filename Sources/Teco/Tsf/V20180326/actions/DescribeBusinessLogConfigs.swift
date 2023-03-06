@@ -123,6 +123,8 @@ extension Tsf {
     }
 
     /// 查询日志配置项列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BusinessLogConfig` and `DescribeBusinessLogConfigsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBusinessLogConfigsPaginator(_ input: DescribeBusinessLogConfigsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBusinessLogConfigsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBusinessLogConfigs, logger: logger, on: eventLoop)

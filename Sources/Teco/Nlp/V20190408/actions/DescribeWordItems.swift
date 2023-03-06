@@ -136,6 +136,8 @@ extension Nlp {
     /// 查询指定词库的词条信息
     ///
     /// 依据自定义词库的ID，查询对应的词条信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `WordItem` and `DescribeWordItemsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWordItemsPaginator(_ input: DescribeWordItemsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWordItemsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWordItems, logger: logger, on: eventLoop)

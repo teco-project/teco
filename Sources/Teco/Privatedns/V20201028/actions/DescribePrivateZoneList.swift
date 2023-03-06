@@ -116,6 +116,8 @@ extension Privatedns {
     }
 
     /// 获取私有域列表
+    ///
+    /// - Returns: `AsyncSequence`s of `PrivateZone` and `DescribePrivateZoneListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describePrivateZoneListPaginator(_ input: DescribePrivateZoneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribePrivateZoneListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describePrivateZoneList, logger: logger, on: eventLoop)

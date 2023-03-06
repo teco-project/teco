@@ -145,6 +145,8 @@ extension Tcss {
     /// 安全合规查询白名单列表
     ///
     /// 查询白名单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ComplianceWhitelistItem` and `DescribeComplianceWhitelistItemListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeComplianceWhitelistItemListPaginator(_ input: DescribeComplianceWhitelistItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeComplianceWhitelistItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeComplianceWhitelistItemList, logger: logger, on: eventLoop)

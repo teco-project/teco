@@ -137,6 +137,8 @@ extension Vpc {
     /// 查询共享带宽包内的资源
     ///
     /// 本接口 (DescribeBandwidthPackageResources) 用于根据共享带宽包唯一ID查询共享带宽包内的资源列表，支持按条件过滤查询结果和分页查询。
+    ///
+    /// - Returns: `AsyncSequence`s of `Resource` and `DescribeBandwidthPackageResourcesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBandwidthPackageResourcesPaginator(_ input: DescribeBandwidthPackageResourcesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBandwidthPackageResourcesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBandwidthPackageResources, logger: logger, on: eventLoop)

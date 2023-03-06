@@ -131,6 +131,8 @@ extension Yunjing {
     /// 获取进程统计列表
     ///
     /// 本接口 (DescribeProcessStatistics) 用于获取进程统计列表数据。
+    ///
+    /// - Returns: `AsyncSequence`s of `ProcessStatistics` and `DescribeProcessStatisticsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeProcessStatisticsPaginator(_ input: DescribeProcessStatisticsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeProcessStatisticsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeProcessStatistics, logger: logger, on: eventLoop)

@@ -134,6 +134,8 @@ extension Clb {
     /// 查询跨域2.0版本云联网后端子机和网卡信息
     ///
     /// 查询跨域2.0版本云联网后端子机和网卡信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `CrossTargets` and `DescribeCrossTargetsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCrossTargetsPaginator(_ input: DescribeCrossTargetsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCrossTargetsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCrossTargets, logger: logger, on: eventLoop)

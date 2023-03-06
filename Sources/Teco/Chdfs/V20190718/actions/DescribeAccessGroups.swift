@@ -127,6 +127,8 @@ extension Chdfs {
     /// 查看权限组列表
     ///
     /// 查看权限组列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `AccessGroup` and `DescribeAccessGroupsResponse` that can be iterated over asynchronously on demand.
     @available(*, deprecated, message: "云API旧版本2019-07-18预下线，所有功能由新版本2020-11-12替代，目前云API主要用作控制台使用。")
     @inlinable
     public func describeAccessGroupsPaginator(_ input: DescribeAccessGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAccessGroupsRequest> {

@@ -176,6 +176,8 @@ extension Teo {
     /// 查询CC防护攻击源IP信息列表
     ///
     /// 本接口（DescribeWebProtectionClientIpList）用于查询CC防护客户端（攻击源）IP信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `SecClientIp` and `DescribeWebProtectionClientIpListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeWebProtectionClientIpListPaginator(_ input: DescribeWebProtectionClientIpListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeWebProtectionClientIpListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeWebProtectionClientIpList, logger: logger, on: eventLoop)

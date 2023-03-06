@@ -136,6 +136,8 @@ extension Cwp {
     }
 
     /// 获取基线项检测结果列表
+    ///
+    /// - Returns: `AsyncSequence`s of `BaselineItem` and `DescribeBaselineItemListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBaselineItemListPaginator(_ input: DescribeBaselineItemListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBaselineItemListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBaselineItemList, logger: logger, on: eventLoop)

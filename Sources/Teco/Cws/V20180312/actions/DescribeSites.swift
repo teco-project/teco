@@ -135,6 +135,8 @@ extension Cws {
     /// 查看站点列表
     ///
     /// 本接口 (DescribeSites) 用于查询一个或多个站点的详细信息。
+    ///
+    /// - Returns: `AsyncSequence`s of `Site` and `DescribeSitesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeSitesPaginator(_ input: DescribeSitesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeSitesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeSites, logger: logger, on: eventLoop)

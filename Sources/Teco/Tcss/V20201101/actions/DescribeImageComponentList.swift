@@ -132,6 +132,8 @@ extension Tcss {
     }
 
     /// 查询本地镜像组件列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ImageComponent` and `DescribeImageComponentListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeImageComponentListPaginator(_ input: DescribeImageComponentListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeImageComponentListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeImageComponentList, logger: logger, on: eventLoop)

@@ -188,6 +188,8 @@ extension Sqlserver {
     /// 查询备份列表
     ///
     /// 本接口(DescribeBackups)用于查询备份列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `Backup` and `DescribeBackupsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBackupsPaginator(_ input: DescribeBackupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBackupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBackups, logger: logger, on: eventLoop)

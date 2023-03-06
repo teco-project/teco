@@ -131,6 +131,8 @@ extension Vpc {
     /// 查询本地网关
     ///
     /// 该接口用于查询CDC的本地网关。
+    ///
+    /// - Returns: `AsyncSequence`s of `LocalGateway` and `DescribeLocalGatewayResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLocalGatewayPaginator(_ input: DescribeLocalGatewayRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLocalGatewayRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLocalGateway, logger: logger, on: eventLoop)

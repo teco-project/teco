@@ -155,6 +155,8 @@ extension Tke {
     /// 节点是否可升级
     ///
     /// 检查给定节点列表中哪些是可升级的
+    ///
+    /// - Returns: `AsyncSequence`s of `UpgradeAbleInstancesItem` and `CheckInstancesUpgradeAbleResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func checkInstancesUpgradeAblePaginator(_ input: CheckInstancesUpgradeAbleRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<CheckInstancesUpgradeAbleRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.checkInstancesUpgradeAble, logger: logger, on: eventLoop)

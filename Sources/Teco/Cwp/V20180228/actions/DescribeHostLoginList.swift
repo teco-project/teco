@@ -136,6 +136,8 @@ extension Cwp {
     }
 
     /// 获取登录审计列表
+    ///
+    /// - Returns: `AsyncSequence`s of `HostLoginList` and `DescribeHostLoginListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeHostLoginListPaginator(_ input: DescribeHostLoginListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeHostLoginListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeHostLoginList, logger: logger, on: eventLoop)

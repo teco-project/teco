@@ -137,6 +137,8 @@ extension Tsf {
     }
 
     /// 容器部署组列表
+    ///
+    /// - Returns: `AsyncSequence`s of `ContainGroup` and `DescribeContainerGroupsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeContainerGroupsPaginator(_ input: DescribeContainerGroupsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeContainerGroupsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeContainerGroups, logger: logger, on: eventLoop)

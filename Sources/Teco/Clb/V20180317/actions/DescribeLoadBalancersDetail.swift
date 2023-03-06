@@ -151,6 +151,8 @@ extension Clb {
     /// 查询负载均衡详细信息
     ///
     /// 查询负载均衡的详细信息，包括监听器，规则及后端目标。
+    ///
+    /// - Returns: `AsyncSequence`s of `LoadBalancerDetail` and `DescribeLoadBalancersDetailResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeLoadBalancersDetailPaginator(_ input: DescribeLoadBalancersDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeLoadBalancersDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeLoadBalancersDetail, logger: logger, on: eventLoop)

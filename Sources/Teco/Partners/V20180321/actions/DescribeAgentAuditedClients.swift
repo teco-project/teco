@@ -166,6 +166,8 @@ extension Partners {
     }
 
     /// 查询已审核客户列表
+    ///
+    /// - Returns: `AsyncSequence`s of `AgentAuditedClient` and `DescribeAgentAuditedClientsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAgentAuditedClientsPaginator(_ input: DescribeAgentAuditedClientsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAgentAuditedClientsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAgentAuditedClients, logger: logger, on: eventLoop)

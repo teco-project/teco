@@ -130,6 +130,8 @@ extension Cdb {
     /// 查询克隆任务列表
     ///
     /// 本接口(DescribeCloneList) 用于查询用户实例的克隆任务列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `CloneItem` and `DescribeCloneListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCloneListPaginator(_ input: DescribeCloneListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCloneListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCloneList, logger: logger, on: eventLoop)

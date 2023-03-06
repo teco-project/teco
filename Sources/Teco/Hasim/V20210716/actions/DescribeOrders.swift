@@ -127,6 +127,8 @@ extension Hasim {
     }
 
     /// 查询订单列表
+    ///
+    /// - Returns: `AsyncSequence`s of `OrderInfo` and `DescribeOrdersResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeOrdersPaginator(_ input: DescribeOrdersRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeOrdersRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeOrders, logger: logger, on: eventLoop)

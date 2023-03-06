@@ -135,6 +135,8 @@ extension Vod {
     /// 获取音视频内容分析模板列表
     ///
     /// 根据音视频内容分析模板唯一标识，获取音视频内容分析模板详情列表。返回结果包含符合条件的所有用户自定义音视频内容分析模板及[系统预置音视频内容分析模板](https://cloud.tencent.com/document/product/266/33476#.E9.A2.84.E7.BD.AE.E8.A7.86.E9.A2.91.E5.86.85.E5.AE.B9.E5.88.86.E6.9E.90.E6.A8.A1.E6.9D.BF)。
+    ///
+    /// - Returns: `AsyncSequence`s of `AIAnalysisTemplateItem` and `DescribeAIAnalysisTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeAIAnalysisTemplatesPaginator(_ input: DescribeAIAnalysisTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeAIAnalysisTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeAIAnalysisTemplates, logger: logger, on: eventLoop)

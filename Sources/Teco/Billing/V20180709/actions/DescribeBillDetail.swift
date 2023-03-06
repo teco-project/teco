@@ -195,6 +195,8 @@ extension Billing {
     }
 
     /// 查询账单明细数据
+    ///
+    /// - Returns: `AsyncSequence`s of `BillDetail` and `DescribeBillDetailResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeBillDetailPaginator(_ input: DescribeBillDetailRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeBillDetailRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeBillDetail, logger: logger, on: eventLoop)

@@ -140,6 +140,8 @@ extension Postgres {
     /// 查询参数模板列表
     ///
     /// 本接口 (DescribeParameterTemplates) 用于查询参数模板列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ParameterTemplate` and `DescribeParameterTemplatesResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeParameterTemplatesPaginator(_ input: DescribeParameterTemplatesRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeParameterTemplatesRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeParameterTemplates, logger: logger, on: eventLoop)

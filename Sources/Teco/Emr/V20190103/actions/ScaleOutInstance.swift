@@ -267,6 +267,8 @@ extension Emr {
     /// 实例扩容
     ///
     /// 扩容节点
+    ///
+    /// - Returns: `AsyncSequence`s of `String` and `ScaleOutInstanceResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func scaleOutInstancePaginator(_ input: ScaleOutInstanceRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<ScaleOutInstanceRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.scaleOutInstance, logger: logger, on: eventLoop)

@@ -121,6 +121,8 @@ extension Ic {
     /// 查询卡片列表
     ///
     /// 查询卡片列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `CardInfo` and `DescribeCardsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeCardsPaginator(_ input: DescribeCardsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeCardsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeCards, logger: logger, on: eventLoop)

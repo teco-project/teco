@@ -131,6 +131,8 @@ extension Cloudhsm {
     /// 查询私有网络列表
     ///
     /// 查询用户的私有网络列表
+    ///
+    /// - Returns: `AsyncSequence`s of `Vpc` and `DescribeVpcResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeVpcPaginator(_ input: DescribeVpcRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeVpcRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeVpc, logger: logger, on: eventLoop)

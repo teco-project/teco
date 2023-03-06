@@ -111,6 +111,8 @@ extension Iai {
     }
 
     /// 获取人员库升级任务列表
+    ///
+    /// - Returns: `AsyncSequence`s of `UpgradeJobInfo` and `GetUpgradeGroupFaceModelVersionJobListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func getUpgradeGroupFaceModelVersionJobListPaginator(_ input: GetUpgradeGroupFaceModelVersionJobListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<GetUpgradeGroupFaceModelVersionJobListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.getUpgradeGroupFaceModelVersionJobList, logger: logger, on: eventLoop)

@@ -160,6 +160,8 @@ extension Teo {
     /// 查询封禁客户端信息列表
     ///
     /// 本接口（DescribeClientRuleList）用于查询封禁客户端信息列表。
+    ///
+    /// - Returns: `AsyncSequence`s of `ClientRule` and `DescribeClientRuleListResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeClientRuleListPaginator(_ input: DescribeClientRuleListRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeClientRuleListRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeClientRuleList, logger: logger, on: eventLoop)

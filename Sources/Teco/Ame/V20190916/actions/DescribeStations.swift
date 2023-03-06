@@ -138,6 +138,8 @@ extension Ame {
     /// 获取分类内容（Station）列表
     ///
     /// 该服务后续会停用，不再建议使用
+    ///
+    /// - Returns: `AsyncSequence`s of `Station` and `DescribeStationsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeStationsPaginator(_ input: DescribeStationsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeStationsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeStations, logger: logger, on: eventLoop)

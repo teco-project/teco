@@ -140,6 +140,8 @@ extension Tcss {
     /// 运行时反弹shell白名单列表
     ///
     /// 查询运行时运行时反弹shell白名单列表信息
+    ///
+    /// - Returns: `AsyncSequence`s of `ReverseShellWhiteListBaseInfo` and `DescribeReverseShellWhiteListsResponse` that can be iterated over asynchronously on demand.
     @inlinable
     public func describeReverseShellWhiteListsPaginator(_ input: DescribeReverseShellWhiteListsRequest, region: TCRegion? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> TCClient.PaginatorSequences<DescribeReverseShellWhiteListsRequest> {
         TCClient.Paginator.makeAsyncSequences(input: input, region: region, command: self.describeReverseShellWhiteLists, logger: logger, on: eventLoop)
